@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.DS_Store
+.build/
+.swiftpm/
+private/
+pass_manifest.json

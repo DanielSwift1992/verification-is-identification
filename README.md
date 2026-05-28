@@ -1,10 +1,10 @@
 # Verification Is Identification
 
-A formal framework for provably safe AI derived from first principles.
+One postulate. One loop. Five theorems. Verification is identification.
 
 ## Core result
 
-One postulate – *a finite structure exists* – yields a mathematical proof that any system certifying solutions over finite structures must converge to a single architecture: fixed space, decidable test, append-only memory. Safety is structural: the system cannot produce an output that fails its own verification, by construction. When exactly one candidate passes (|S| = 1), verification is identification.
+One postulate — *a finite structure exists* — yields a mathematical proof that verifying a solution and identifying it are the same operation on finite structures. If exactly one candidate passes (|S| = 1), the candidate that passes IS the solution. Any system certifying solutions over finite structures must satisfy three invariants: fixed space, decidable test, append-only memory. Safety is structural, not trained.
 
 Five theorems, 25 properties, three invariants (I1–I3) – all derived from the postulate.
 

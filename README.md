@@ -1,72 +1,56 @@
-# Verification Is Identification
+# V=I Framework
 
-One postulate. One loop. Five theorems. Verification is identification.
+Formal theory built on one operation — binary comparison over finite structures — and the structural consequences that follow from it.
 
-## Core result
+## Starting point
 
-One postulate — *a finite structure exists* — yields a mathematical proof that verifying a solution and identifying it are the same operation on finite structures. If exactly one candidate passes (|S| = 1), the candidate that passes IS the solution. Any system certifying solutions over finite structures must satisfy three invariants: fixed space, decidable test, append-only memory. Safety is structural, not trained.
+Take a finite structure. To verify that a candidate matches it, you compare piece by piece until the answer is certain. If exactly one candidate can pass, the candidate that passes IS the identified structure. Verification and identification collapse into the same operation.
 
-Five theorems, 25 properties, three invariants (I1–I3) – all derived from the postulate.
+This is a provable property of decidable equality on finite domains: when the consistent set has one element, the verifier is already an identifier. The framework formalizes this loop and traces what it forces.
 
-## Paper
+## What the loop forces
 
-- **[Zenodo Publication](https://zenodo.org/records/20319580)** (Preprint & DOI)
-- [Verification Is Identification](paper/Verification%20Is%20Identification.md) (Markdown source)
-- [PDF Version](paper/Verification_Is_Identification.pdf)
+**The system** must satisfy three invariants: finite space, deterministic test, append-only memory. Any system checking solutions over finite structures inherits all three.
+
+**The agent** running the loop accumulates certified results irreversibly. Over a finite domain, this accumulation saturates: every possible task eventually resolves from cache. The saturation point depends on the domain alone.
+
+**The output** that accumulates is permanent (cannot be retracted), irreducible (cannot be simplified without breaking correctness), and resistant (the next-level agent encounters it as something fixed that it cannot modify). Each saturated output becomes the input structure for the next level.
+
+**The geometry** between agents arises from what they have not shared. Two agents with identical caches have distance zero. The symmetric difference of their caches satisfies the axioms of a metric. Communication costs and locality follow from the metric.
+
+**The mechanism** of improvement is ordering. The agent's sole degree of freedom is the sequence in which it runs comparisons. The right sequence extracts more information per step. The framework quantifies this as interference between comparisons and shows that inefficiency is self-correcting.
+
+## Papers
+
+| # | Title | Subject |
+|---|---|---|
+| 1 | [Verification Is Identification](papers/1_verification_is_identification.md) | The loop, five theorems, 26 properties, three invariants. |
+| 2 | [Intelligence Is Inevitable](papers/2_intelligence_is_inevitable.md) | Accumulation, saturation, phase-transition dynamics. |
+| 3 | [Permanence Is Resistance](papers/3_permanence_is_resistance.md) | Properties of the crystallized output, level tower. |
+| 4 | [Difference Is Distance](papers/4_difference_is_distance.md) | Cache-difference metric, communication bounds. |
+| 5 | [Interference Is Intelligence](papers/5_interference_is_intelligence.md) | Ordering, information density, self-correction. |
+
+Each paper extends the previous. The fifth cuts across all four.
+
+## Publication
+
+All five papers are published as preprints on Zenodo:
+
+| # | DOI |
+|---|---|
+| 1 | [10.5281/zenodo.20615799](https://doi.org/10.5281/zenodo.20615799) |
+| 2 | [10.5281/zenodo.20601995](https://doi.org/10.5281/zenodo.20601995) |
+| 3 | [10.5281/zenodo.20615888](https://doi.org/10.5281/zenodo.20615888) |
+| 4 | [10.5281/zenodo.20615998](https://doi.org/10.5281/zenodo.20615998) |
+| 5 | [10.5281/zenodo.20616058](https://doi.org/10.5281/zenodo.20616058) |
 
 ## Implementations
 
-### Swift — Appendix C (compile-time proof)
+Two independent implementations verify the first paper's results:
 
-```
-swift/Sources/
-├── Engine/
-│   ├── Primitives.swift      # §2: Z, S<N> (Peano naturals as types)
-│   └── Engine.swift           # §4: State, Rule, Gate, CompilationGate
-├── Atom/
-│   └── Cell.swift             # §4.1: Cell<Row, Col, Val>
-├── Compose/
-│   ├── BasisGate.swift        # §4.2: In.Val == Out.Val
-│   ├── MapRules.swift         # §4.4: SameRow, SameCol, ShiftRight, etc.
-│   ├── ValueRules.swift       # §4.4: SameValue
-│   └── ComposeRules.swift     # §4.5: And<R1, R2>
-├── Agent/
-│   └── AgentOS.swift          # §5.15: 20 protocol proof chain (DAG)
-├── Proof/
-│   ├── Main.swift             # Appendix C demonstrations
-│   ├── IdentityProof.swift    # Identity mapping: 8 gates
-│   └── RejectDemos.swift      # REJECT(basis) + REJECT(map)
-└── SelfTest/
-    └── Main.swift             # VIProofWitness — compile = verify all 20 claims
-```
+- **Swift** (`swift/`) — compile-time proof via the type system. If the program compiles, the constraints hold. Run: `cd swift && swift build && swift run SelfTest`
 
-**Principle:** `CompilationGate<R>` compiles ⟺ rule constraints hold (§4.7). The Swift compiler IS the verifier. `enum` (uninhabited) = type-level only, no runtime.
-
-Run: `cd swift && swift build && swift run Proof && swift run SelfTest`
-
-### Python — Appendix B (runtime solver)
-
-```
-python/
-├── primitives.py       # §2: NULL, PAIR, COMPARE
-├── graph.py            # §2.3: append-only comparison cache (I3)
-├── engine.py           # §4: domain-agnostic rule extraction
-├── representation.py   # §3–4: atoms, features, compile, execute
-├── grammar.py          # §3.3: F = all feature-conjunction rules
-├── vi_core.py          # §5.5: full pipeline + §3.6 R4 check
-├── tasks.py            # 5 demo tasks
-└── main.py             # → pass_manifest.json
-```
-
-Pipeline: `ENCODE → VALIDATE(basis) → EXTRACT → COMPILE → EXECUTE` + R4 check (|S| counted extensionally).
-
-Run: `cd python && python main.py`
-
-## Full verification
-
-```bash
-cd python && python main.py && cd ../swift && swift build && swift run Proof && swift run SelfTest
-```
+- **Python** (`python/`) — runtime solver. Encodes tasks, extracts rules, identifies solutions. Run: `cd python && python main.py`
 
 ## License
 

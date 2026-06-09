@@ -1,8 +1,8 @@
-# Verification Is Identification
+# Verification Is Identification (System)
 
 A finite structure exists. It is not nothing: a distinction holds. Equality on finite structures is decidable (finitely many components, finitely many comparisons). A decidable test halts, examines finite data, lives in a finite space. If exactly one candidate passes — verification is identification.
 
-One postulate. One loop. 25 proven properties plus information-theoretic bounds. Five theorems — compilation, safety, identifiability, universality, completeness — all derived from the postulate. The inner pipeline is total on valid finite encodings, deterministic under fixed features and protocol, with an append-only comparison cache. Formalized over finite binary trees with decidable equality. Implemented in Python (runtime solver, ARC-AGI tasks) and Swift (compile-time proof: the type checker verifies encoded constraints).
+One postulate. One loop. 26 proven properties plus information-theoretic bounds. Five theorems — compilation, safety, identifiability, universality, completeness — all derived from the postulate. The inner pipeline is total on valid finite encodings, deterministic under fixed features and protocol, with an append-only comparison cache. Formalized over finite binary trees with decidable equality. Implemented in Python (runtime solver, ARC-AGI tasks) and Swift (compile-time proof: the type checker verifies encoded constraints).
 
 
 ## §0. Derivation
@@ -12,7 +12,7 @@ One postulate. One loop. 25 proven properties plus information-theoretic bounds.
 1. A finite structure exists. *[postulate]*
 2. A finite structure is not nothing. *[from 1: if structure = nothing, "a finite structure exists" = "nothing exists" = no postulate. Self-destructs.]*
 3. Structure ≠ nothing → a distinction exists between them. *[from 2: "not" IS the distinction.]*
-4. Structural equality on finite structures is decidable. *[from 1 + 3: distinction has two sides (step 3). The structure is finite (step 1) → binary distinctions recurse to finite depth → finitely many components. Comparing two finite structures = finitely many component comparisons → terminates → decidable.]*
+4. Structural equality on finite structures is decidable. *[from 1 + 3: distinction has two sides (step 3). The structure is finite (step 1) → binary distinctions recurse to finite depth → finitely many components. Comparing two finite structures = finitely many component comparisons → terminates → decidable.]* Decidability follows from the inductive structure of finite distinction itself: two sides (step 3) with finite termination (step 1) yield an inductive type — traversable by structural recursion. No external representation assumption is required; traversability is a consequence of the structure, not a premise.
 5. The test halts. *[from 4: decidable ⊂ halting.]*
 6. A halting test examines finite data. *[from 1 + 5: finite structure → finite data.]*
 7. Finite data of bounded size lives in a finite space F. *[from 1 + 6: the structure has finite size n over finite alphabet Σ (its distinct components). All structures over Σ up to size n form a finite set by combinatorics.]*
@@ -37,10 +37,12 @@ Verification asks whether a candidate passes. Identification asks which candidat
 The system operates as a cycle between two participants:
 
 ```
-AGENT ──→ ENCODING ──→ VERIFY ──→ PASS: solution identified (Theorem 2)
+AGENT ──> ENCODING ──> VERIFY ──> PASS: solution identified (Theorem 2)
   ↑                        │
   └── REJECT(where, why) ──┘
 ```
+
+The system certifies; the agent proposes. The system's guarantees (Theorems 1–5, §5) are unconditional: if PASS, the output is correct, regardless of how the encoding was chosen. The agent's responsibility is to provide an encoding under which the task is representable and R4 (§3.5) holds. Every condition the system requires — finite space, decidable test, basis-selectability — is achievable for any finite deterministic task (Theorem 4, §5). The question is never whether the conditions can be met, but whether the agent meets them. Encoding is the agent's contribution; correctness is the system's guarantee.
 
 1. **AGENT** provides an encoding: how to represent the task as finite binary trees. The encoding is what makes the system's preconditions hold — finite F, decidable verification. The agent transforms the task into a form the system can certify.
 2. **SYSTEM** runs the inner pipeline (§2–§4): encode → extract → compile → execute.
@@ -84,8 +86,7 @@ Every element of Σ is a finite binary tree. PAIR is distinction. NULL is its bo
 
 ```
 COMPARE(NULL, NULL) = equal
-COMPARE(PAIR(A₁,B₁), PAIR(A₂,B₂)) = equal 
-    iff COMPARE(A₁,A₂) = COMPARE(B₁,B₂) = equal
+COMPARE(PAIR(A₁,B₁), PAIR(A₂,B₂)) = equal  iff  COMPARE(A₁,A₂) = COMPARE(B₁,B₂) = equal
 All other cases → not_equal
 ```
 
@@ -153,7 +154,7 @@ These follow from the postulate and the derived decidability (§0 steps 1–7). 
 
 **When |S| = 0.** No candidate passes verification. The system rejects: no output produced.
 
-**Real boundary.** The system requires decidable verification and finite F. These are non-negotiable for the inner half. But meeting them is the agent's responsibility (§1): the agent chooses an encoding that MAKES F finite and verification decidable. A task with undecidable verification (e.g., Halting Problem) can be reframed by the agent into a decidable bounded version ("halts within N steps?"). The system's guarantees apply to whatever bounded encoding the agent provides. The boundary is not "is the task inherently finite" but "does the agent's encoding make it finite".
+**Real boundary.** The system requires decidable verification and finite F. These are non-negotiable for the inner half. But meeting them is the agent's responsibility (§1): the agent chooses an encoding that MAKES F finite and verification decidable. A task with undecidable verification (e.g., Halting Problem) can be reframed by the agent into a decidable bounded version ("halts within N steps?"). The system's guarantees apply to whatever bounded encoding the agent provides. The real boundary question is "does the agent's encoding make the task finite" — never "is the task inherently finite".
 
 **Naturally basis-selectable tasks** (require no codomain embedding):
 
@@ -280,7 +281,7 @@ Safety depends only on compilation (§4.7) and R4, not on how f' was found. The 
 
 **Theorem 4 (Universality).** For any finite deterministic task under a semantics-preserving encoding, there exists an encoding and example set producing an R4-valid game. The framework requires decidable verification over the encoding; the encoding must be chosen so that verification reduces to structural comparisons.
 
-*Proof.* Task finite → encoding yields finite atoms (I1). Basis-selectability: embed codomain into input (§3.2). NULL/PAIR encoding satisfies I2. Graph append-only by I3. Target representable in F (§0 step 9). F is extensional (§3.3): distinct members produce distinct decoded outputs on some input. Providing all possible inputs as examples: any g ≠ f_T differs on ≥1 decoded output → g ∉ S → |S| = 1 → R4. QED. Practical efficiency depends on encoding choice (§6). The universality is structural: the framework identifies what "proven solution" already requires.
+*Proof.* Task finite → encoding yields finite atoms (I1). Basis-selectability: embed codomain into input (§3.2). NULL/PAIR encoding satisfies I2. Graph append-only by I3. Target representable in F (§0 step 9). F is extensional (§3.3): distinct members produce distinct decoded outputs on some input. Providing all possible inputs as examples: any g ≠ f_T differs on ≥1 decoded output → g ∉ S → |S| = 1 → R4. QED. Theorem 4 is an existence result: it establishes that R4 is achievable for any finite deterministic task, not that it is achievable efficiently. The constructive proof uses exhaustive supervision — a brute-force strategy. Its value is structural: it closes the question "are there finite deterministic tasks where R4 is impossible?" with a definitive no (under adequate encoding). Practical efficiency depends on encoding choice (§6).
 
 Theorem 4 establishes that R4 is achievable for any finite deterministic task. Theorem 5 (below) establishes that when R4 holds, the system certifies f*. Together: any finite deterministic task admits a certified solution. Practical identification with fewer examples depends on the encoding (§6).
 
@@ -318,7 +319,7 @@ The following properties hold for the full loop (agent + system). §5.6–§5.7 
 
 **5.9. Loop termination.** E finite (grammar bounded) + inner half terminates (§5.1) → outer loop terminates. At most |E| iterations, each finite. *Proof.* |E| is finite. Each iteration terminates (§5.1). Finite sum of finite steps is finite. QED
 
-**5.10. Convergence.** The loop tries every encoding in E (finite enumeration). If any encoding's inner run produces PASS, the loop terminates with PASS. If no encoding produces PASS, the loop exhausts E and reports REJECT. No encoding is skipped. An encoding may satisfy R4 yet produce REJECT if the extraction heuristic (§4.5–4.6) fails to find f*. Exhausting E without PASS does not prove that no R4-valid encoding exists in E — only that the extractor failed on all of them. This is an extraction limitation, not a soundness failure. Soundness (Theorem 2) is unconditional: any PASS is correct.
+**5.10. Convergence.** The loop tries every encoding in E (finite enumeration). If any encoding's inner run produces PASS, the loop terminates with PASS. If no encoding produces PASS, the loop exhausts E and reports REJECT. No encoding is skipped. An encoding may satisfy R4 yet produce REJECT if the extraction heuristic (§4.5–4.6) fails to find f*. Exhausting E without PASS proves only that the extractor failed on every encoding in E; an R4-valid encoding may still be among them. This is an extraction limitation, not a soundness failure. Soundness (Theorem 2) is unconditional: any PASS is correct.
 
 ### Compositional Properties
 
@@ -358,11 +359,17 @@ The following properties hold for the full loop (agent + system). §5.6–§5.7 
 
 **5.25. Order as sole dynamic variable.** For a fixed encoding, task, and feature set, the system's facts are pre-existing (§5.20), operations are fixed (I2), the cache is append-only (I3), the space is finite (I1), and correctness is determined (Theorem 2). The only free parameter is the order in which the agent reveals facts via COMPARE calls. Different orders produce different path lengths through the comparison lattice but reach the same endpoint. Correctness is order-invariant; efficiency is order-determined. I3 is what makes order matter: irreversibility means each ordering commits to a path. Diagnostics (§6) function as order guidance: each REJECT prunes branches the agent need not revisit. *Proof.* §5.20: facts are pre-existing. I2: operations fixed. I3: cache append-only. I1: space finite. Theorem 2: correctness depends on R4 and PASS, not on traversal order. §5.8: same order → same result. §5.10: all complete traversals of E reach the same outcome. The traversal order σ determines iteration count T(σ), which ranges from 1 (valid encoding tried first) to |E| (tried last). QED. *Remark:* The ratio T_min / T_max defines an intrinsic task complexity within the framework. T_min = 1 means the task is trivially distinguishable; T_min = N² means every atom-pair comparison is needed. This measure is derivable from §5.22 (S-shrinkage rate per COMPARE) and Theorem 3 (N² upper bound).
 
-*Remark (information-theoretic interpretation).* Identifying f\* from F requires log₂(|F|) bits of information (Shannon). Each COMPARE produces a binary outcome — at most 1 bit of information about f*. Equality when the outcome bisects the remaining candidate space; less when the outcome is predictable from prior comparisons. N atoms yield N² perspectives (§5.2), which always exceeds log₂(|F|) — the comparison space is redundant. When candidates differ across d independent dimensions and d > log₂(|F|), the foundation (minimum claims for identification) is bounded by d, not log₂(|F|): skipping any dimension leaves indistinguishable candidates. The optimal claim order (§5.25) achieves ⌈log₂(|F|)⌉ claims when d ≤ log₂(|F|); when d > log₂(|F|), the dimensional bound dominates.
+*Remark (information-theoretic interpretation).* Identifying f\* from F requires log₂(|F|) bits of information (Shannon). Each COMPARE produces a binary outcome — at most 1 bit of information about f* under independence; in practice, comparisons are generally correlated with prior results, so many outcomes contribute less than 1 bit. Equality holds when the outcome bisects the remaining candidate space; less when the outcome is predictable from prior comparisons. N atoms yield N² perspectives (§5.2), which always exceeds log₂(|F|) — the comparison space is redundant. When candidates differ across d independent dimensions and d > log₂(|F|), the foundation (minimum claims for identification) is bounded by d, not log₂(|F|): skipping any dimension leaves indistinguishable candidates. The optimal claim order (§5.25) achieves ⌈log₂(|F|)⌉ claims when d ≤ log₂(|F|); when d > log₂(|F|), the dimensional bound dominates.
 
 *Remark (axis alignment).* The monotone properties (§5.6, §5.7, §5.20, §5.22) are simultaneously monotone in the same direction: information grows, rejections accumulate, candidates only leave S, and facts are pre-existing. No execution step can advance one axis while reversing another. This global co-orientation follows from I3 alone: removing append-only permits cache retraction, which re-admits eliminated candidates, breaking §5.22 and misaligning the axes. I3 is thus the alignment generator — the single derived property that forces all monotone axes to co-orient. A consequence: saturation (1 − |S|/|F|) is an incorruptible progress metric. It cannot increase without genuine elimination and cannot decrease at all. At saturation = 1, identification is complete (Theorem 2).
 
+**5.26. Cross-task saturation.** A finite domain D under a fixed encoding E contains K ≤ |F| distinct rule classes (equivalence classes of tasks that share the same f\*). Define the library L as the set of certified pairs (features, f\*) accumulated across tasks via PASS. L inherits I3: entries are added, never removed (each entry is a cached identification result; I3 applies to identification facts as it applies to comparison facts). Each PASS adds at most one entry (Theorem 2: f\* is unique for that task). |L| ≤ K (I1: finitely many rule classes). After K distinct PASSes, every future task whose rule class is in D resolves via cached lookup: match features against L, verify via compilation gate (§4.7), PASS if the cached f\* compiles on the new examples.
 
+*Proof.* I1: D finite → K finite. Theorem 2: each entry correct (f' = f\*). I3: entries permanent. §5.18: cached identifications transfer across tasks (COMPARE is context-independent). §5.19: same rule class → same f\* → compilation succeeds on new examples of that class. After K entries, every rule class has a cached f\*. Any new task in D matches some entry. Compilation gate verifies. PASS. QED
+
+The saturated library is unique up to insertion order. *Proof.* Each entry is the unique f\* for its rule class (Theorem 2). §5.25: correctness is order-invariant. Two agents processing the same domain under the same encoding produce libraries with identical entries, differing only in the order entries were added. The library's content is determined by the domain, not by the agent.
+
+*Remark (saturation levels).* Saturation within a single task (§5.22: 1 − |S|/|F|) and saturation across tasks (|L|/K) are distinct measures operating at different levels. The first tracks identification progress for one f\*; the second tracks coverage of the domain. Both are monotonically non-decreasing and bounded. Cross-task saturation converges to 1 when L covers all rule classes in D. At that point, the system produces no new comparisons — every task resolves from cached results.
 
 ## §6. Interface
 
@@ -449,255 +456,161 @@ This terminates (E finite, each run terminates by §5.1). Each compiling encodin
 
 **The separation.** The agent provides the encoding. The system certifies the result. Once the encoding is fixed, everything the system does is proven (§5); the only remaining degree of freedom is the order of verification (§5.25). Everything the agent does is engineering.
 
-
-
 ## Appendix A: Proof Chain
 
-Every line cites its dependencies. No unsupported claims.
+Every claim in the paper traces to the postulate through explicit dependencies. The following is the complete dependency map: each line states a claim and cites the prior lines it follows from. No unsupported claims.
 
 ```
 DERIVATION (§0):
-  A1:  A finite structure exists.
-       [postulate]
-  A2:  A finite structure is not nothing.
-       [from A1: else postulate is vacuous]
-  A3:  Structure ≠ nothing → a distinction exists.
-       [from A2: "not" IS the distinction]
-  A4:  Structural equality on finite structures is decidable.
-       [from A1 + A3: finite components → finite comparisons → terminates]
-  A5:  The test halts.
-       [from A4: non-halting = never distinguishes]
-  A6:  A halting test examines finite data.
-       [from A5: finite time → finite data]
-  A7:  Finite data of bounded size → finite space F.
-       [from A6: combinatorics]
-  A8:  S = {y ∈ F : COMPARE(y, target) = EQUAL} is computable.
-       [from A4 + A7: decidable equality + finite space]
-  A9:  The structure is representable in F.
-       [from A1 + A7; S-membership requires encoding's test]
-  A10: |S| is computable.
-       [from A8]
-  A11: |S|=1 → verification = identification.
-       [from A9 + A10]
-  A12: Order of verification is the sole degree of freedom.
-       [from A4 + A7 + A8: fixed test, fixed space, permanent facts]
-       Mutable test breaks A4; growing space breaks A7;
+  A1:  A finite structure exists.                                        [postulate]
+  A2:  A finite structure is not nothing.                                 [from A1: else postulate is vacuous]
+  A3:  Structure ≠ nothing → a distinction exists.                        [from A2: "not" IS the distinction]
+  A4:  Structural equality on finite structures is decidable.             [from A1 + A3: finite components → finite comparisons → terminates]
+  A5:  The test halts.                                                   [from A4: non-halting = never distinguishes]
+  A6:  A halting test examines finite data.                              [from A5: finite time → finite data]
+  A7:  Finite data of bounded size → finite space F.                     [from A6: combinatorics]
+  A8:  S = {y ∈ F : COMPARE(y, target) = EQUAL} is computable.           [from A4 + A7: decidable equality + finite space]
+  A9:  The structure is representable in F.                               [from A1 + A7; S-membership requires encoding's test]
+  A10: |S| is computable.                                                [from A8]
+  A11: |S|=1 → verification = identification.                            [from A9 + A10]
+  A12: Order of verification is the sole degree of freedom.               [from A4 + A7 + A8: test fixed, space fixed, facts permanent → only sequence varies]
+       Mutable test breaks A4; growing space breaks A7;                   [contrapositive: extra DOF → specific step fails → |S| undetermined]
        retractable record breaks A8.
-       [contrapositive: extra DOF → specific step fails → |S| undetermined]
 
 SYSTEM (§2):
-  I1: All structures finite.
-      [from postulate: finite components]
-  I2: Distinction (PAIR) sole primitive; NULL, COMPARE, proj derived.
-      [NULL from finite base case; COMPARE from structural recursion;]
-      [proj from destructuring]
-  I3: G append-only.
-      [from finiteness + purity: results cannot change]
+  I1: All structures finite.                              [from postulate: finite components]
+  I2: Distinction (PAIR) sole primitive; NULL, COMPARE, proj derived. [NULL from finite base case; COMPARE from structural recursion; proj from destructuring]
+  I3: G append-only.                                      [from finiteness + purity: results cannot change]
 
 PROBLEM (§3):
-  P1: F = functions from output positions to decoded values.
-      [§3.2 + extensional]
-  P2: |F| ≤ |V|^|O|, finite. F extensional by construction.
-      [I1, P1]
-  P3: S = {f ∈ F : f matches all examples}.
-      [definition]
-  P4: R4: |S| = 1. Encoding adequacy measure.
-      [§0 step 9]
+  P1: F = functions from output positions to decoded values. [§3.2 + extensional]
+  P2: |F| ≤ |V|^|O|, finite. F extensional by construction. [I1, P1]
+  P3: S = {f ∈ F : f matches all examples}.               [definition]
+  P4: R4: |S| = 1. Encoding adequacy measure.              [§0 step 9]
 
 IDENTIFIABILITY (§5):
-  D1: N atoms → ≤ N² pairs.
-      [I1]
-  D2: Each COMPARE classifies one pair.
-      [I2]
-  D3: Classifications permanent.
-      [I3]
-  D4: Under exhaustive pair schedule, N² COMPAREs classify all.
-      [D1, D2, D3]
-  D5: Any f ∈ F verifiable via cached COMPAREs.
-      [D4, P1]
-  D6: |S| = 1 → exactly one passes → f* distinguished.
-      [P4, D5]
+  D1: N atoms → ≤ N² pairs.                               [I1]
+  D2: Each COMPARE classifies one pair.                    [I2]
+  D3: Classifications permanent.                           [I3]
+  D4: Under exhaustive pair schedule, N² COMPAREs classify all. [D1, D2, D3]
+  D5: Any f ∈ F verifiable via cached COMPAREs.            [D4, P1]
+  D6: |S| = 1 → exactly one passes → f* distinguished.    [P4, D5]
 
 COMPILATION (§4.7):
-  C1: Checks f'(Iₖ) = Oₖ for all k.
-      [§4.7]
-  C2: Fail → REJECT.
-      [§4.7]
-  C3: Pass → f' ∈ S.
-      [C1, P3]
+  C1: Checks f'(Iₖ) = Oₖ for all k.                      [§4.7]
+  C2: Fail → REJECT.                                      [§4.7]
+  C3: Pass → f' ∈ S.                                      [C1, P3]
 
 ENCODING INDEPENDENCE:
-  E1: Each encoding defines its own F, S, f*.
-      [encoding-local]
-  E2: R4 + PASS → f' = f* for that encoding.
-      [S3]
-  E3: Cross-encoding decoded agreement requires
-      [external premise]
+  E1: Each encoding defines its own F, S, f*.              [encoding-local]
+  E2: R4 + PASS → f' = f* for that encoding.              [S3]
+  E3: Cross-encoding decoded agreement requires             [external premise]
       semantics-preservation (external to proof chain).
 
 SAFETY (§5):
-  S1: Output produced only if PASS.
-      [C2]
-  S2: PASS → f' ∈ S.
-      [C3]
-  S3: |S| = 1 → f' = f*.
-      [S2, P4]
-  S4: R4 + PASS → output equals f*.
-      [S1, S2, S3]
+  S1: Output produced only if PASS.                        [C2]
+  S2: PASS → f' ∈ S.                                      [C3]
+  S3: |S| = 1 → f' = f*.                                  [S2, P4]
+  S4: R4 + PASS → output equals f*.                       [S1, S2, S3]
 
 UNIVERSALITY (§5):
-  U1: Finite task → finite atoms.
-      [I1]
-  U2: NULL/PAIR encoding → I2 holds.
-      [I2]
-  U3: Append-only → I3 holds.
-      [I3]
-  U4: F extensional → distinct g ≠ f_T differs on ≥1 output.
-      [P2]
-      All inputs as examples → g ∉ S → |S| = 1 → R4.
-      [P2, finite domain]
-  U5: Requires: f_T representable, computable verifier,
-      [external premises]
+  U1: Finite task → finite atoms.                          [I1]
+  U2: NULL/PAIR encoding → I2 holds.                       [I2]
+  U3: Append-only → I3 holds.                              [I3]
+  U4: F extensional → distinct g ≠ f_T differs on ≥1 output. [P2]
+      All inputs as examples → g ∉ S → |S| = 1 → R4.       [P2, finite domain]
+  U5: Requires: f_T representable, computable verifier,      [external premises]
       finite basis.
 
 COMPLETENESS (§5):
-  CM1: F enumerable.
-       [A7, I1]
-  CM2: S computable by enumeration + membership check.
-       [A8, P3]
-  CM3: |S| = 1 → f* found.
-       [CM2, P4]
-  CM4: f* satisfies all examples → compilation succeeds.
-       [CM3, C1]
-  CM5: PASS + |S| = 1 → f' = f*.
-       [CM4, S3]
-  CM6: Outcome ∈ {|S|=0, |S|=1, |S|>1}. Exhaustive.
-       [A10: |S| ∈ ℕ]
+  CM1: F enumerable.                                        [A7, I1]
+  CM2: S computable by enumeration + membership check.      [A8, P3]
+  CM3: |S| = 1 → f* found.                                 [CM2, P4]
+  CM4: f* satisfies all examples → compilation succeeds.    [CM3, C1]
+  CM5: PASS + |S| = 1 → f' = f*.                           [CM4, S3]
+  CM6: Outcome ∈ {|S|=0, |S|=1, |S|>1}. Exhaustive.        [A10: |S| ∈ ℕ]
 
 INCOMPLETENESS:
   L1: Feature search may fail to find f' ∈ S.
-  L2: Compilation rejects.
-      [C2]
-  L3: Rejection produces no output.
-      [S1]
-  L4: Exhaustive enumeration of P2 would be complete.
-      [P2, D5]
+  L2: Compilation rejects.                                 [C2]
+  L3: Rejection produces no output.                         [S1]
+  L4: Exhaustive enumeration of P2 would be complete.      [P2, D5]
 
 TERMINATION:
-  T1: Each step domain finite.
-      [I1]
-  T2: No unbounded loops.
-      [§4]
-  T3: Terminates.
-      [T1, T2]
+  T1: Each step domain finite.                             [I1]
+  T2: No unbounded loops.                                  [§4]
+  T3: Terminates.                                          [T1, T2]
 
 LOOP (§1):
-  G1: Grammar E finite.
-      [bounded grammar premise]
-  G2: Each encoding run terminates.
-      [T3]
-  G3: Search terminates.
-      [G1, G2]
-  G4: Compiling encoding yields encoding-local f* under R4.
-      [S3]
-  G5: Per-task enumeration is finite; grammar adequacy is external.
-      [G1, G3]
+  G1: Grammar E finite.                                    [bounded grammar premise]
+  G2: Each encoding run terminates.                        [T3]
+  G3: Search terminates.                                   [G1, G2]
+  G4: Compiling encoding yields encoding-local f* under R4. [S3]
+  G5: Per-task enumeration is finite; grammar adequacy is external. [G1, G3]
 
 TOTALITY (§1):
-  TOT1: Inner pipeline is linear:
-        ENCODE → VALIDATE → EXTRACT → COMPILE → EXECUTE.
-        [§4]
-  TOT2: Two binary gates (basis, compilation) are the only conditionals.
-        [§4.2, §4.7]
-  TOT3: Every path terminates at:
-        {PASS, REJECT(basis), REJECT(compile), MISMATCH}.
-        [T3, TOT2]
-  TOT4: No execution path diverges, hangs, or reaches undefined state.
-        [TOT1, TOT2, TOT3]
+  TOT1: Inner pipeline is linear: ENCODE → VALIDATE → EXTRACT → COMPILE → EXECUTE.  [§4]
+  TOT2: Two binary gates (basis, compilation) are the only conditionals.              [§4.2, §4.7]
+  TOT3: Every path terminates at {PASS, REJECT(basis), REJECT(compile), MISMATCH}.   [T3, TOT2]
+  TOT4: No execution path diverges, hangs, or reaches an undefined state.             [TOT1, TOT2, TOT3]
 
 LOOP PROPERTIES (§5.6–5.10):
-  LP1: G_n ⊆ G_{n+1} (arrow of time).
-       [I3]
-  LP2: Diagnostic information monotonically non-decreasing.
-       [LP1, C2]
-  LP3: Full loop deterministic (given fixed protocol).
-       [TOT4, G1]
-  LP4: Loop terminates in at most |E| iterations.
-       [G1, T3]
-  LP5: If valid encoding exists in E, loop finds it.
-       [LP4, finite enumeration]
+  LP1: G_n ⊆ G_{n+1} (arrow of time).                     [I3]
+  LP2: Diagnostic information monotonically non-decreasing. [LP1, C2]
+  LP3: Full loop deterministic (given fixed protocol).      [TOT4, G1]
+  LP4: Loop terminates in at most |E| iterations.           [G1, T3]
+  LP5: If valid encoding exists in E, loop finds it.        [LP4, finite enumeration]
 
 COMPOSITIONAL (§5.11–5.13):
-  CO1: Output of game A = valid input for game B.
-       [I1]
-  CO2: Total ∘ Total = Total.
-       [TOT4, CO1]
-  CO3: Games decompose: T = T1 ∧ T2 → verify independently.
-       [CO2, P4]
-  CO4: Sub-game spawn: any node can create V=I sub-game.
-       [I1, I2, I3 inherited]
-  CO5: Sub-game solution = parent's next encoding.
-       [CO4, CO1]
+  CO1: Output of game A = valid input for game B.            [I1]
+  CO2: Total ∘ Total = Total.                                [TOT4, CO1]
+  CO3: Games decompose: T = T1 ∧ T2 → verify independently. [CO2, P4]
+  CO4: Sub-game spawn: any node can create V=I sub-game.     [I1, I2, I3 inherited]
+  CO5: Sub-game solution = parent's next encoding.           [CO4, CO1]
 
 STRUCTURAL (§5.14–5.17):
-  ST1: I1, I2, I3 hold at every node in computation graph.
-       [invariant preservation]
-  ST2: Sub-graph from any node = V=I instance.
-       [ST1]
-  ST3: Level N and N+1 share same triple structure.
-       [ST2, G1; structural recurrence]
-  ST4: Tower terminates when each level explicitly encoded.
-       [I1: finite at each level; conditional]
-  ST5: Agent at level N = candidate at level N+1.
-       [ST3; same role, not identity]
-  ST6: System at level N = agent tool T2 at level N+1.
-       [ST5; functional duality]
+  ST1: I1, I2, I3 hold at every node in computation graph.   [invariant preservation]
+  ST2: Sub-graph from any node = V=I instance.               [ST1]
+  ST3: Level N and N+1 share same triple structure.          [ST2, G1; structural recurrence]
+  ST4: Tower terminates when each level explicitly encoded.  [I1: finite at each level; conditional]
+  ST5: Agent at level N = candidate at level N+1.            [ST3; same role, not identity]
+  ST6: System at level N = agent tool T2 at level N+1.       [ST5; functional duality]
 
 CACHE (§5.18–5.19):
-  CA1: COMPARE is context-independent.
-       [I2]
-  CA2: G from game A valid for game B.
-       [CA1, I3]
-  CA3: work(B, G_after_A) ≤ work(B, G_empty).
-       [CA2]
-  CA4: Same encoding twice → same result, zero new work.
-       [LP3, I3]
+  CA1: COMPARE is context-independent.                       [I2]
+  CA2: G from game A valid for game B.                       [CA1, I3]
+  CA3: work(B, G_after_A) ≤ work(B, G_empty).               [CA2]
+  CA4: Same encoding twice → same result, zero new work.     [LP3, I3]
 
 INFORMATION (§5.20–5.25):
-  IN1: COMPARE reveals pre-existing facts (revelation).
-       [I2: pure function]
-  IN2: COMPARE is sole source of equality facts.
-       [I2: only COMPARE classifies]
-  IN3: S monotonically non-increasing.
-       [I3: new facts only eliminate]
-  IN4: No self-reference in pipeline.
-       [I2: ops don't take pipeline as arg]
-  IN5: Pipeline sees only encoded representation.
-       [pure function of input]
-  IN6: ORDER is sole dynamic variable.
-       [IN1, I1, I2, I3, Thm 2]
+  IN1: COMPARE reveals pre-existing facts (revelation).      [I2: pure function]
+  IN2: COMPARE is sole source of equality facts.             [I2: only COMPARE classifies]
+  IN3: S monotonically non-increasing.                       [I3: new facts only eliminate]
+  IN4: No self-reference in pipeline.                        [I2: ops don't take pipeline as arg]
+  IN5: Pipeline sees only encoded representation.            [pure function of input]
+  IN6: ORDER is sole dynamic variable.                       [IN1, I1, I2, I3, Thm 2]
 
 INFORMATION-THEORETIC (remark):
-  IT1: Identification requires log₂(|F|) bits.
-       [I1, Shannon]
-  IT2: Optimal order: ⌈log₂(|F|)⌉ claims.
-       [IN6, IT1]
-  IT3: N atoms → N² perspectives.
-       [D1, D2]
-  IT4: N² ≥ log₂(|F|) (comparison redundancy).
-       [IT3, IT1]
-  IT5: f* at level N = substrate at level N+1.
-       [CO1, ST3, ST6]
-  IT6: Foundation ≥ separating dimensions d.
-       [I1, A4: skip d → |S|>1]
+  IT1: Identification requires log₂(|F|) bits.              [I1, Shannon]
+  IT2: Optimal order: ⌈log₂(|F|)⌉ claims.                  [IN6, IT1]
+  IT3: N atoms → N² perspectives.                           [D1, D2]
+  IT4: N² ≥ log₂(|F|) (comparison redundancy).             [IT3, IT1]
+  IT5: f* at level N = substrate at level N+1.              [CO1, ST3, ST6]
+  IT6: Foundation ≥ separating dimensions d.                 [I1, A4: skip d → |S|>1]
 
 AXIS ALIGNMENT (remark):
-  AX1: All monotone properties co-oriented.
-       [I3 → §5.6, §5.7, §5.22; I2 → §5.20]
-  AX2: Saturation = incorruptible progress metric.
-       [AX1, §5.22]
-  AX3: I3 is the alignment generator.
-       [without I3 → §5.22 breaks → axes misalign]
+  AX1: All monotone properties co-oriented.                  [I3 → §5.6, §5.7, §5.22; I2 → §5.20]
+  AX2: Saturation = incorruptible progress metric.           [AX1, §5.22]
+  AX3: I3 is the alignment generator.                        [without I3 → §5.22 breaks → axes misalign]
+
+CROSS-TASK SATURATION (§5.26):
+  SAT1: Domain D has K ≤ |F| distinct rule classes.          [I1, P2]
+  SAT2: Each PASS adds ≤1 certified entry to library L.      [S3, I3]
+  SAT3: |L| monotonically non-decreasing, bounded by K.      [I3, SAT1]
+  SAT4: After K PASSes, all tasks in D resolve via lookup.    [SAT2, SAT3, CA2, §5.19]
+  SAT5: L unique up to insertion order.                       [S3, §5.25: each entry = f*;
+                                                               correctness order-invariant]
+  SAT6: L invariant across agents.                            [I2: COMPARE pure; SAT5]
 ```
 
 
@@ -712,7 +625,7 @@ The implementation is modularized to reflect the formal separation of concerns:
 5.  **`main.py` (Pipeline):** Connects representation, engine, and data.
 
 ```
-Encoding:    Peano (0 → NULL, n → PAIR(n-1, NULL))
+Encoding:    Peano (0 -> NULL, n -> PAIR(n-1, NULL))
 Atoms:       PAIR(PAIR(row, col), value)
 COMPARE:     Python == on nested tuples
 Features:    5 (same_row, same_col, row_mirror, col_mirror, rank)
@@ -741,10 +654,10 @@ enum ShiftRight<In: CellType, Out: CellType>: Rule
 The compilation gate (§4.7) becomes literal:
 
 ```swift
-// CompilationGate<R> compiles ⟺ R's constraints are satisfiable.
+// CompilationGate<R> compiles iff R's constraints are satisfiable.
 // If it compiles, the rule is verified. If not, the compiler rejects.
-enum CompilationGate<R: Rule>: Gate {
-    // Compilation of this enum IS the verification.
+struct CompilationGate<R: Rule>: Gate {
+    // Compilation of this struct IS the verification.
     static func verify() {}
 
     // Type inference determines the output. No search needed.
@@ -760,7 +673,7 @@ Demonstration:
 typealias In  = Cell<N1, N1, N5>  // row=1, col=1, val=5
 typealias Out = Cell<N1, N2, N5>  // row=1, col=2, val=5
 
-// This line compiles ⟺ ShiftRight ∧ SameValue holds for In → Out.
+// This line compiles iff ShiftRight AND SameValue holds for In -> Out.
 typealias Mapping = And<ShiftRight<In, Out>, SameValue<In, Out>>
 let gate = CompilationGate<Mapping>.self  // Compilation = PASS
 ```

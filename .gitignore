@@ -1,7 +1,22 @@
+# Private (unpublished papers, build, experiments)
+private/
+
+# Claude Code
+.claude/
+
+# Python
 __pycache__/
 *.pyc
-.DS_Store
+
+# Swift
 .build/
 .swiftpm/
-private/
+
+# macOS
+.DS_Store
+
+# Build artifacts
+*.log
+
+# Generated
 pass_manifest.json

@@ -35,6 +35,7 @@ The tag in each symbol's discussion decodes here. Every paper is readable in ful
 | `Search` · `GA` | [GA · Gradient Is Alignment](doc:GA_gradient_is_alignment) |
 | `Gen` · `GD` | [GD · Proposal Is Order](doc:GD_proposal_is_order) |
 | `Liquid` | [L · Learning Is Liquid](doc:L_learning_is_liquid) |
+| `Read` | [R · Reading Is Order](doc:R_reading_is_order) |
 | `Spec` | [E2 · The Solvability Criterion](doc:E2_solvability_criterion) |
 | `Projection` | [AI · The Architecture of Learning Machines](doc:AI_architecture_of_learning_machines) |
 
@@ -65,5 +66,6 @@ The tag in each symbol's discussion decodes here. Every paper is readable in ful
 - <doc:GA_gradient_is_alignment>
 - <doc:GD_proposal_is_order>
 - <doc:L_learning_is_liquid>
+- <doc:R_reading_is_order>
 - <doc:E2_solvability_criterion>
 - <doc:AI_architecture_of_learning_machines>

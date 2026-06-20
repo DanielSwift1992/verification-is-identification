@@ -119,7 +119,7 @@ PAPER = {
     "Strategy.swift": "8_order_is_object", "Dynamics.swift": "9_law_is_target",
     "Play.swift": "10_play_is_proof", "Basis.swift": "B_basis_is_residue",
     "Search.swift": "GA_gradient_is_alignment", "Generation.swift": "GD_proposal_is_order",
-    "Liquid.swift": "L_learning_is_liquid",
+    "Liquid.swift": "L_learning_is_liquid", "Reading.swift": "R_reading_is_order",
 }
 FLOOR_FILES = {"Spec.swift", "Measure.swift"}   # -> landing "The floor"
 PROJ_FILES = {"Projection.swift"}               # -> landing "Projection"

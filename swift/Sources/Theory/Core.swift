@@ -41,7 +41,7 @@ public protocol Monotone: Pair where Left: Pair, Left.Left == Right {}
 /// Decision: membership is computable, in or out, every time.
 ///
 /// The output side branches two ways — `Right` is a `Pair`, the verdict
-/// `(in \| out)`. A predicate that always halts with one of two answers. [V=I A4]
+/// `(in \| out)`. A predicate that always halts with one of two answers. [EiF Thm 3]
 public protocol Decidable: Pair where Right: Pair {}
 
 /// Triangle inequality holds: `d(a,c) ≤ d(a,b) + d(b,c)`.

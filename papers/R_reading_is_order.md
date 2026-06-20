@@ -35,7 +35,7 @@ The relation is **duality**, not an adjunction: there is no adjoint pair `gen �
 
 **R5 (Learning settles ν into μ).** A reading is a ν-process — an unfold, possibly unbounded; each closed subterm **folds** (deposits) into `μF = Σ`. **Crystallization is the μ-object precipitating from the ν-process** — the Stefan front of Learning Is Liquid is the μ/ν boundary, solid behind, liquid ahead. Two faces:
 
-- **Learning = convergence.** Saturation is the deposited set reaching a sub-fixpoint (Basis Is Residue B8f). **[interpretive** until "saturation" is the colimit of the deposit map.]**
+- **Learning = convergence.** Saturation is the *colimit* of the deposit chain `X₀ → X₁ → ⋯`, each step folding new closed subterms into Σ: the directed union `⋃ₙ Xₙ = cl_G`, the least fixpoint of the closure operator (Basis Is Residue B8f). A fair reading reaches it, and the limit is **order-independent** — a directed union does not depend on the order of accumulation (Kleene). **[solid** given a fair reading; this is the saturation the draft left open.]**
 - **The μ → ν flip.** A reading *with cycles* — draw-by-repetition, an agent that may go on forever — is genuinely ν: "can continue" is coinductive. Its value is a *greatest-fixpoint / retrograde* computation, not well-founded recursion; self-play is fixpoint iteration, and the cycle turns μ into ν. **[solid** that a cyclic value is a coinductive fixpoint; **interpretive** that this is "the flip."]**
 
 ## §6. Statement

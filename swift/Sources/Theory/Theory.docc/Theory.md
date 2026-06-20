@@ -1,28 +1,30 @@
 # ``Theory``
 
-A formal theory encoded as a lattice of pure Swift types — where the compiler *is* the proof checker.
+A theory of when checking an answer is the same as knowing it — written as pure Swift types, with the compiler as the proof checker.
 
 ![The construction law: one seed, two moves, one floor.](law)
 
 ## Overview
 
-The theory grows from one act and one fixpoint.
+**The one idea.** When exactly one candidate can pass a test, then to pass the test *is* to be the answer: verification and identification are one act (``PassIsIdentification``). That single result is the whole of it; everything else is how far it reaches and what follows.
+
+**Why it reaches everywhere.** Whatever is determinate — a concept no less than an object — is a finite structure (*Existence Is Finite*), and on finite structures the identity holds with no further argument. So it grounds, in the papers below, intelligence, matter, distance, and learning — each derived, none assumed.
+
+**How it is checked.** Nothing here runs. The theory is encoded as pure Swift types, so reading a fact is asking the type checker — *does `X` conform? what is `X.SolutionSet`?* — never computing a value. A green build is not a test that passed; it is a proof that type-checked.
+
+**How it is built — one act and one fixpoint:**
 
 - term **The seed:** a single act of distinction — ``Pair``. Its fixpoint, where the two sides close, is ``Null``.
 - term **The move:** two directions and no third — *expand* opens a degree of freedom (`associatedtype`), *compress* closes one (`where`).
 - term **The floor:** every space is finite — width (``Pair`` has two sides) × depth (every chain reaches ``Null``).
 
-The central result is one line: when exactly one candidate survives verification, the verifier is already an identifier — ``PassIsIdentification``, encoded as `where Left == SolutionSet`. Nothing here runs; you read a fact by asking the type checker — *does `X` conform? what is `X.SolutionSet`?* — never by computing a value.
+### How to read this
 
-### How this is organized
+Not by paper. The order the papers were written is one walk through the lattice, not its structure — so the page is organized by the structure, measured from the lattice itself.
 
-Not by paper. The order the papers were written is one walk through the lattice, not its structure — so this is organized by the structure, measured from the lattice itself.
+Every protocol makes one move, and that move *is* its place. A few **open an axis** (`associatedtype`) — these *generators* are the lattice's **spine**, the only part that partitions cleanly. Every other protocol **pins** a fixpoint (`where`) or **intersects** several — a *bridge* like ``Matter`` or ``GateIsMembrane``, belonging to no single subject. Most of the lattice is bridges, deepening into a **cone**: the deeper a theorem, the more axes it intersects, until the capstones — ``PlayIsProof``, ``InteractiveDecomposition`` — intersect nearly all at once.
 
-Every protocol makes one move, and that move *is* its place. A few **open an axis** (`associatedtype`) — a new degree of freedom; these *generators* are the only part that partitions cleanly, the lattice's **spine**. Every other protocol **pins** a fixpoint (`where`) or **intersects** several — a *bridge* like ``Matter`` or ``GateIsMembrane``, which therefore belongs to no single subject. Most of the lattice is bridges, and they form a **cone**: the deeper a theorem sits, the more axes it intersects, until the capstones — ``PlayIsProof``, ``InteractiveDecomposition`` — intersect nearly all at once.
-
-So this is a small **basis** of axes spanned by a **web** of theorems — the framework's own *Basis Is Residue*, turned on itself. The split decides the page. The **spine** is here on this landing: the seed, the markers, the kernel, and the four axes with the theorems that hang on them. The **web** is carried by the papers — each paper page lists the bridges it proves, because a walk through the lattice is itself a certified object (*Order Is Object*). Territory here, routes there.
-
-The papers these protocols encode — and why their order is deliberately not this one — are credited in <doc:Sources>. Each symbol's page stands on its own; a paper tag like `[Nav N5]` points to the formal proof, never something you must read first.
+So a small **basis** of axes spanned by a **web** of theorems — the framework's own *Basis Is Residue*, turned on itself. The **spine** is on this landing: the seed, the markers, the kernel, and the four axes with the theorems that hang on them. The **web** is carried by the papers, each listing the bridges it proves (a walk through the lattice is itself a certified object — *Order Is Object*). Territory here, routes there. The papers are credited in <doc:Sources>; each symbol's page stands on its own, and a tag like `[Nav N5]` points to the proof, never something you must read first.
 
 > Important: The compiler is the engine. A green build is not a test that passed — it is a proof that type-checked. Conform a type to ``SystemCrystallizes`` and its compilation *is* its certificate; break a theorem's premise and every dependent stops compiling.
 

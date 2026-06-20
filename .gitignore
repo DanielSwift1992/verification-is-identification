@@ -1,6 +1,9 @@
 # Private (unpublished papers, build, experiments)
 private/
 
+# Secrets
+.env
+
 # Claude Code
 .claude/
 

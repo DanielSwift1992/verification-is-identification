@@ -231,3 +231,12 @@ Descent — propose modifications that reduce loss, guided by frontier addresses
 | G15 | G13; PiR §1; DiD S18 |
 
 Difference Is Distance derived the geometry between witnesses. This document derives the geometry between the witnessed. One operation, one metric, one loop: COMPARE was always measuring. It was only ever asked for the sign.
+
+## Topics
+
+### Theorems this paper proves
+
+- ``DistanceIsCost``
+- ``OrderByDistance``
+- ``BallSaturation``
+- ``CompressionCriterion``

@@ -327,3 +327,17 @@ The conditions are the claim's whole scope — a verification loop, an append-on
 
 > **Intelligence is inevitable. Its crystallization is a phase transition with computable dynamics. The result is determined by the domain.**
 
+## Topics
+
+### Theorems this paper proves
+
+- ``KnowledgeAccumulates``
+- ``LibrarySaturates``
+- ``BasisIsFinite``
+- ``EncodingSelectionSaturates``
+- ``SystemCrystallizes``
+- ``PipelineCrystallizes``
+- ``LibraryCrystallizes``
+- ``SaturationDynamics``
+- ``DiscoveryIsRevelation``
+- ``IntelligenceRises``

@@ -87,8 +87,8 @@ The phase transition is the moment the dominant COMPARE response flips:
 
 | Phase | Dominant signal | Agent experience | Cost |
 |-------|----------------|------------------|------|
-| Liquid ($|L| < K$) | not_equal | Resistance. Each task requires fresh derivation | $O(T_{\text{brute}})$ per task |
-| Crystal ($|L| = K$) | equal | Resolution. Each task matches a stored rule | $O(K \times F) + 1$ per task |
+| Liquid (|L| < K) | not_equal | Resistance. Each task requires fresh derivation | O(T_brute) per task |
+| Crystal (|L| = K) | equal | Resolution. Each task matches a stored rule | O(K × F) + 1 per task |
 
 After crystallization, L resolves what used to require derivation.
 
@@ -113,11 +113,11 @@ The three properties rotate through the tower. Level N crystallizes: L_N is perm
 
 ### Time
 
-**M1 (Discrete time).** The agent's clock is a sequence of COMPAREs, indexed by ℕ. Tick 1 = COMPARE$_1$, tick 2 = COMPARE$_2$, ... No continuous time exists within the framework. Between ticks, the agent's state is unchanged (nothing acts on L or G between COMPAREs).
+**M1 (Discrete time).** The agent's clock is a sequence of COMPAREs, indexed by ℕ. Tick 1 = COMPARE₁, tick 2 = COMPARE₂, ... No continuous time exists within the framework. Between ticks, the agent's state is unchanged (nothing acts on L or G between COMPAREs).
 
 **M2 (External time independence).** The agent's state after n COMPAREs depends only on the sequence of COMPARE results, not on the wall-clock duration between them.
 
-*Proof.* The agent's state is (L, G): library plus comparison graph. L changes only on PASS (I3: append). G changes only on COMPARE (I3: append). Between ticks, no operation acts on L or G (I2: no background process). Therefore state(n) = f(result$_1$, ..., result$_n$). Wall-clock time does not appear. QED
+*Proof.* The agent's state is (L, G): library plus comparison graph. L changes only on PASS (I3: append). G changes only on COMPARE (I3: append). Between ticks, no operation acts on L or G (I2: no background process). Therefore state(n) = f(result₁, ..., resultₙ). Wall-clock time does not appear. QED
 
 **M3 (Corollary: agent equivalence).** Two agents that receive identical COMPARE sequences are in identical states, regardless of when or where the COMPAREs occurred.
 
@@ -126,13 +126,13 @@ The three properties rotate through the tower. Level N crystallizes: L_N is perm
 | Level | One tick = | Level-0 COMPAREs inside one tick |
 |-------|------------|----------------------------------|
 | 0 | One COMPARE | 1 |
-| 1 | One solved task (pipeline) | $O(|F|)$ to $O(T_{\text{brute}})$ |
-| 2 | One saturated library | $K_1 \times O(|F_1|)$ ($K_1$ tasks, each a pipeline) |
-| N+1 | One level-N saturation | $K_N \times T_N$ |
+| 1 | One solved task (pipeline) | O(|F|) to O(T_brute) |
+| 2 | One saturated library | K₁ × O(|F₁|) (K₁ tasks, each a pipeline) |
+| N+1 | One level-N saturation | K_N × T_N |
 
-**M5 (Time-nesting bound).** Let $T_N$ = maximum number of level-0 COMPAREs inside one level-N tick. Then $T_0 = 1$, $T_{N+1} \le K_N \cdot T_N$. By induction: $T_N \le \prod_{i=0}^{N-1} K_i$.
+**M5 (Time-nesting bound).** Let T_N = maximum number of level-0 COMPAREs inside one level-N tick. Then T₀ = 1, T_(N+1) ≤ K_N · T_N. By induction: T_N ≤ ∏_{i=0}^{N-1} K_i.
 
-Higher levels are exponentially slower in level-0 time. One level-3 tick contains $K_0 \cdot K_1 \cdot K_2$ level-0 COMPAREs. The level-3 agent experiences one tick.
+Higher levels are exponentially slower in level-0 time. One level-3 tick contains K₀ · K₁ · K₂ level-0 COMPAREs. The level-3 agent experiences one tick.
 
 ### Ignition
 
@@ -177,7 +177,7 @@ Any system satisfying I1 (finite space), I2 (fixed operations), and I3 (append-o
 | Size | 1 | K |
 | Internal structure | flat (feature list) | tree (PAIR-nesting of K entries) |
 | Symmetries | none | rule groups with shared features |
-| Compressibility | irreducible (|S|=1: no simpler element in S) | measurable: decision tree depth $d \ge \lceil \log_2 K \rceil$, met when bisecting predicates exist |
+| Compressibility | irreducible (|S|=1: no simpler element in S) | measurable: decision tree depth d ≥ ⌈log₂ K⌉, met when bisecting predicates exist |
 | Target capability | cannot satisfy I2 alone | can be V=I target (M8) |
 
 These properties exist only at saturation. Before |L| = K, L is incomplete: its size is changing, its symmetries are partial, it cannot be a target (M6).
@@ -186,10 +186,10 @@ These properties exist only at saturation. Before |L| = K, L is incomplete: its 
 
 | Property | Level N | Level N+1 |
 |----------|---------|-----------|
-| Space | raw Σ (or $L_{N-1}$) | $L_N$ (crystal) |
-| One tick | $T_N$ level-0 COMPAREs | $K_N \cdot T_N$ level-0 COMPAREs |
-| What is visible | individual structures | patterns across $L_N$ entries |
-| Result | $L_N$ (lookup table) | $L_{N+1}$ (compressor of $L_N$) |
+| Space | raw Σ (or L_(N-1)) | L_N (crystal) |
+| One tick | T_N level-0 COMPAREs | K_N · T_N level-0 COMPAREs |
+| What is visible | individual structures | patterns across L_N entries |
+| Result | L_N (lookup table) | L_(N+1) (compressor of L_N) |
 | Grain | fine (features of one task) | coarse (classes of tasks) |
 
 Level N+1 operates on patterns, not instances. Its time is strictly slower (M5). Its space is derived from level N's result.
@@ -197,8 +197,8 @@ Level N+1 operates on patterns, not instances. Its time is strictly slower (M5).
 **M15 (Predictable successor).** Given L_N, the next level's parameters are determined:
 
 1. K_(N+1) = number of distinguishable interaction patterns with L_N. Bounded above by 2^(K_N) (each pattern either matches or does not match each entry). In practice: K_(N+1) < K_N (compression).
-2. $\mathbb{E}[\tau_{\text{sat}}(N+1)] = K_{N+1} \cdot H_{K_{N+1}}$ (coupon collector, Intelligence Is Inevitable §6).
-3. Decision tree depth for L_(N+1): at least $\lceil \log_2 K_{N+1} \rceil$, met when bisecting predicates exist.
+2. 𝔼[τ_sat(N+1)] = K_(N+1) · H_(K_(N+1)) (coupon collector, Intelligence Is Inevitable §6).
+3. Decision tree depth for L_(N+1): at least ⌈log₂ K_(N+1)⌉, met when bisecting predicates exist.
 
 The crystal at level N determines the structure of level N+1 before level N+1 runs.
 
@@ -243,15 +243,15 @@ Ignition conditions (M8) are also permanent. Once |L_N| = K_N, the three conditi
 
 **M23 (Cumulative capacity).** If one agent persists across games (Intelligence Is Inevitable §1: persistence), L grows monotonically across domains. After N domains with non-overlapping classes: |L| = Σᵢ Kᵢ. Finite at every moment, unbounded over games.
 
-If domains share structure, L entries from earlier domains cover classes in later ones. Saturation time drops: $\mathbb{E}[\tau_{\text{sat}}(D_2)] = K_2 \cdot H_{K_2 - \text{overlap}}$ under a uniform stream over $D_2$'s classes, where overlap = number of classes already covered by L from prior domains — coupon collector over the uncovered classes, with draws landing in covered classes as the waiting cost — against $K_2 \cdot H_{K_2}$ from scratch. The agent saturates faster on structurally related domains.
+If domains share structure, L entries from earlier domains cover classes in later ones. Saturation time drops: 𝔼[τ_sat(D₂)] = K₂ · H_(K₂−overlap) under a uniform stream over D₂'s classes, where overlap = number of classes already covered by L from prior domains — coupon collector over the uncovered classes, with draws landing in covered classes as the waiting cost — against K₂ · H_(K₂) from scratch. The agent saturates faster on structurally related domains.
 
 Lookup cost grows with |L|: O(|L| × F) per task at level 1. Level-2 compression (M13, M15) bounds effective lookup to O(log |L|). Cumulative growth is sustainable because higher levels compress it. This is a structural role of the tower: without compression, accumulation eventually makes lookup more expensive than derivation.
 
 ### Cost
 
-**M24 (Cost of permanence).** I3 guarantees that no entry in L or G can be removed. Each entry is a recorded distinction — a binary classification (equal/not_equal) that was not previously cached. In any physical instantiation, recording a distinction that was not previously recorded is an irreversible act: it reduces the system's uncertainty by at least one bit. Landauer's principle (1961, experimentally confirmed 2012) establishes the minimum physical cost: any logically irreversible one-bit operation — erasure, overwrite — dissipates at least $kT \cdot \ln(2)$ joules as heat. I3's formal permanence has a physical price.
+**M24 (Cost of permanence).** I3 guarantees that no entry in L or G can be removed. Each entry is a recorded distinction — a binary classification (equal/not_equal) that was not previously cached. In any physical instantiation, recording a distinction that was not previously recorded is an irreversible act: it reduces the system's uncertainty by at least one bit. Landauer's principle (1961, experimentally confirmed 2012) establishes the minimum physical cost: any logically irreversible one-bit operation — erasure, overwrite — dissipates at least kT · ln(2) joules as heat. I3's formal permanence has a physical price.
 
-The total cost of maintaining L grows with $|L|$. Each entry in L stores a certified rule: a finite binary tree of F features. Landauer prices the irreversible acts — recording a result, erasing an error; passive storage between acts it does not bound. The per-cycle bill is therefore a model premise, stated openly: storage at finite temperature, held against noise by active error correction, costs on the order of $|L| \times F \times kT \cdot \ln(2)$ per correction cycle. The premise has the standing of compression in M16: not derived from I1–I3, declared where used.
+The total cost of maintaining L grows with |L|. Each entry in L stores a certified rule: a finite binary tree of F features. Landauer prices the irreversible acts — recording a result, erasing an error; passive storage between acts it does not bound. The per-cycle bill is therefore a model premise, stated openly: storage at finite temperature, held against noise by active error correction, costs on the order of |L| × F × kT · ln(2) per correction cycle. The premise has the standing of compression in M16: not derived from I1–I3, declared where used.
 
 **M25 (Tower as cost management).** The tower's compression role (M15: K_(N+1) < K_N) is not only an efficiency gain — it is a cost constraint. Without compression, lookup cost grows as O(|L| × F) (M23). With level-2 compression, effective lookup drops to O(log |L|). The thermodynamic consequence: the active bit count that must be maintained during each lookup is bounded by the compressed representation, not the raw library size. Higher levels reduce the energy cost per task.
 
@@ -259,15 +259,15 @@ The tower makes unbounded accumulation (M23) compatible with finite energy budge
 
 **M26 (Resistance bound).** Total resistance per game is finite. Resistance is the agent's distance from the invariant (§1), measured by the number of COMPAREs returning not_equal. S is monotonically non-increasing (V=I §5.22: each COMPARE can only shrink S or leave it unchanged). The total number of COMPAREs is bounded by |Σ|² (M11). After exhaustion, every possible comparison is cached. Resistance = 0.
 
-Combined with M24: the maximum thermodynamic cost of overcoming resistance in one game $\le |\Sigma|^2 \times kT \cdot \ln(2)$. Resistance is not only finite — it has a computable upper bound.
+Combined with M24: the maximum thermodynamic cost of overcoming resistance in one game ≤ |Σ|² × kT · ln(2). Resistance is not only finite — it has a computable upper bound.
 
-**M27 (Cost transformation).** Crystallization does not eliminate cost — it transforms it. Before saturation: cost is active. Each task requires derivation: $O(T_{\text{brute}})$ COMPAREs per task (§3), paid as resistance (§1). Maintenance cost of L is low (L is small). After saturation: active cost drops to $O(K \times F) + 1$ per task (§3). But maintenance cost of L rises to $|L| \times F \times kT \cdot \ln(2)$ per cycle (M24). The transition converts dynamic resistance into static permanence.
+**M27 (Cost transformation).** Crystallization does not eliminate cost — it transforms it. Before saturation: cost is active. Each task requires derivation: O(T_brute) COMPAREs per task (§3), paid as resistance (§1). Maintenance cost of L is low (L is small). After saturation: active cost drops to O(K × F) + 1 per task (§3). But maintenance cost of L rises to |L| × F × kT · ln(2) per cycle (M24). The transition converts dynamic resistance into static permanence.
 
 The net effect is a decrease in total cost per task — crystallization is efficient (§3). But the cost does not vanish. It shifts from per-task derivation (active, proportional to resistance) to per-library maintenance (passive, proportional to |L|). The one-time expenditure of overcoming resistance during saturation is the price of the transformation.
 
 **Theorem M28 (Finite discovery).** The total thermodynamic cost of the tower is bounded.
 
-*Proof.* The tower terminates at level $M \le K_0$ (M16). At each level n, the number of level-0 COMPAREs is at most $T_n \le \prod_{i=0}^{n-1} K_i$ (M5). Each COMPARE costs at minimum $kT \cdot \ln(2)$ (M24). Total cost = $\sum_{n=0}^{M} T_n \times kT \cdot \ln(2)$. Each term is finite (M5). The number of terms is finite (M16). The sum is finite. QED
+*Proof.* The tower terminates at level M ≤ K₀ (M16). At each level n, the number of level-0 COMPAREs is at most T_n ≤ ∏_{i=0}^{n-1} K_i (M5). Each COMPARE costs at minimum kT · ln(2) (M24). Total cost = ∑_{n=0}^{M} T_n × kT · ln(2). Each term is finite (M5). The number of terms is finite (M16). The sum is finite. QED
 
 The entire structure of matter within a finite domain D has a finite price of discovery. The tower's compression (M15: K_(N+1) < K_N) ensures that higher levels contribute less to the total, because each level operates on fewer classes than the one below.
 
@@ -409,3 +409,14 @@ The system provides the halt condition formally: PASS/REJECT is decidable (I2). 
 ### Physical instances
 
 The physical instances (§5) map physical systems onto the framework's vocabulary. They show where the same axioms hold independently. The mapping is structural: it identifies which structure plays PAIR, which boundary plays NULL, which test plays COMPARE, which process is monotone (A1), irreversible (A2), decidable (A3), and crystallizing (A4).
+
+## Topics
+
+### Theorems this paper proves
+
+- ``Matter``
+- ``NoInverse``
+- ``Converges``
+- ``Ignites``
+- ``Tower``
+- ``FiniteDiscovery``

@@ -683,3 +683,11 @@ Change `Out` to `Cell<N1, N3, N5>` and the program does not compile. The compile
 Verification and identification collapse into one operation for the encoded constraints: the compiler checks constraints (verification) and determines the unique satisfying type assignment (identification). This is §0 step 11 executed by the compiler for the specific constraints encoded as types. Full identification of the task's target function additionally requires R4 (§3.5) and a semantics-preserving encoding (§5.4).
 
 Source: Python (runtime solver, ARC-AGI tasks) and Swift (compile-time proof). Successful compilation confirms all encoded constraints are verified.
+
+## Topics
+
+### Theorems this paper proves
+
+- ``CandidatesOnlyLeave``
+- ``Universality``
+- ``OrderIsOnlyFreedom``

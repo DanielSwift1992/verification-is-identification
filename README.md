@@ -30,8 +30,12 @@ This is a provable property of decidable equality on finite domains: when the co
 | 4 | [Difference Is Distance](papers/4_difference_is_distance.md) | Cache-difference metric, communication bounds. |
 | 5 | [Interference Is Intelligence](papers/5_interference_is_intelligence.md) | Ordering, information density, self-correction. |
 | 6 | [Distance Is Cost](papers/6_distance_is_cost.md) | Derived metric on structures, resolution, generalization criterion. |
+| 7 | [Navigation Is Geometry](papers/7_navigation_is_geometry.md) | Anchor graph, routing, addressed holes, permanent repair, navigability thresholds. |
+| 8 | [Order Is Object](papers/8_order_is_object.md) | Strategies as certified objects; skills as balls in strategy space. |
+| 9 | [Law Is Target](papers/9_law_is_target.md) | Dynamics via law identification; planning as navigation; no reward functions. |
+| E1 | [The Measured Geometry of ARC-AGI-1](papers/E1_measured_geometry_of_arc.md) | Measurement protocol: ten predictions, declared thresholds, symmetric forks. |
 
-Each paper extends the previous. The fifth cuts across all four. The sixth gives the binary comparison its magnitude: distance between structures, derived from the same primitives, verified in `python/delta.py`.
+Each paper extends the previous. The fifth cuts across the first four. The sixth gives the binary comparison its magnitude: distance between structures, derived from the same primitives, verified in `python/delta.py`. The seventh draws the map that metric implies; the eighth certifies the paths themselves; the ninth relocates the target from state to law. E1 is the protocol that takes the chain's measurable claims to ARC-AGI-1.
 
 ## Publication
 

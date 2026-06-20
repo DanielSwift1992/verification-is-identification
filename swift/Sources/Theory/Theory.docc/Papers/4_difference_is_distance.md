@@ -285,3 +285,11 @@ The deepest conservation: |Σ| = constant. The total space of possible structure
 | | M1 (discrete time), M11 (information exhaustion), M16 (tower termination) |
 
 The formal trio (V=I + IiI + PiR) is prerequisite. This document extends it: one agent has state but no position; multiple agents on the same target produce a metric space from the difference in their histories.
+
+## Topics
+
+### Theorems this paper proves
+
+- ``DistanceIsMetric``
+- ``SpaceFromDifference``
+- ``DepthIsBounded``

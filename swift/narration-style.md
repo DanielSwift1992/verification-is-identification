@@ -60,6 +60,13 @@ Pin the landmarks — claim first, predictable headings, the skeleton block — 
 every sentence. The goal is skimmability and re-entry, never robotic templating.
 Deviate when the content demands it, and make the deviation visible.
 
+## Register — two voices
+
+The papers and a page's thesis line are aphoristic — earned, the framework's
+identity. The reference layer — the `///` comments, the How beat, every
+mechanism — is plain and actionable. Aphorism a reader cannot act on belongs in
+the paper, not the reference. (`comment-style` pins this at the sentence.)
+
 ## The test
 
 - Returning, can you reach the one slot you need without re-reading? If not, the

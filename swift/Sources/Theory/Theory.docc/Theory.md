@@ -18,7 +18,7 @@ The central result is one line: when exactly one candidate survives verification
 
 Not by paper. The order the papers were written is one walk through the lattice, not its structure — so this is organized by the structure, measured from the lattice itself.
 
-Every protocol makes one move, and that move *is* its place. A few **open an axis** (`associatedtype`) — a new degree of freedom; these *generators* are the only part that partitions cleanly, the lattice's **spine**. Every other protocol **pins** a fixpoint (`where`) or **intersects** several — a *bridge* like ``Matter`` or ``GateIsMembrane``, standing where axes meet, at home in no single subject. Most of the lattice is bridges, and they form a **cone**: the deeper a theorem sits, the more axes it weaves, until the capstones — ``PlayIsProof``, ``InteractiveDecomposition`` — braid nearly all of them at once.
+Every protocol makes one move, and that move *is* its place. A few **open an axis** (`associatedtype`) — a new degree of freedom; these *generators* are the only part that partitions cleanly, the lattice's **spine**. Every other protocol **pins** a fixpoint (`where`) or **intersects** several — a *bridge* like ``Matter`` or ``GateIsMembrane``, which therefore belongs to no single subject. Most of the lattice is bridges, and they form a **cone**: the deeper a theorem sits, the more axes it intersects, until the capstones — ``PlayIsProof``, ``InteractiveDecomposition`` — intersect nearly all at once.
 
 So this is a small **basis** of axes spanned by a **web** of theorems — the framework's own *Basis Is Residue*, turned on itself. The split decides the page. The **spine** is here on this landing: the seed, the markers, the kernel, and the four axes with the theorems that hang on them. The **web** is carried by the papers — each paper page lists the bridges it proves, because a walk through the lattice is itself a certified object (*Order Is Object*). Territory here, routes there.
 
@@ -26,7 +26,7 @@ The papers these protocols encode — and why their order is deliberately not th
 
 > Important: The compiler is the engine. A green build is not a test that passed — it is a proof that type-checked. Conform a type to ``SystemCrystallizes`` and its compilation *is* its certificate; break a theorem's premise and every dependent stops compiling.
 
-> Note: The whole tree obeys one construction law — see ``Law`` — enforced on every build by a linter wired into the package. Pure types, no renames: structurally, not by anyone remembering. This page is the same law read one level up: the spine and the routes below are *induced* from the types — each symbol placed by the move it makes — never arranged by hand.
+> Note: The whole tree obeys one construction law (see ``Law``), enforced on every build by the package's linter. The spine and routes below are *induced* from the types: `tree-sort` computes each symbol's group from the `associatedtype`/`where` it declares, and `tree-sort --check` holds the page equal to the types. Nothing is grouped by hand.
 
 ## Topics
 

@@ -52,6 +52,19 @@ At most one aside, each with a fixed job:
 - the fixed nouns: *the seed*, *the gate*, *the cache*, *the library*, *the
   crystal*, *the floor*, *the spine*, *the web*.
 
+## Register — reference, not manifesto
+
+A doc-comment is *reference*: state the mechanism a reader can act on, in plain
+words. The aphoristic, oppositional voice is the papers' — the theses are
+aphorisms by design — and it does not belong here.
+
+- **Actionable, not poetic.** Write `tree-sort computes the group from the type
+  it declares`, not `each symbol placed by the move it makes`. If a reader cannot
+  act on a sentence without first decoding a metaphor, name the mechanism instead.
+- **Opposition must inform.** An `X, not Y` earns its `Y` only when `Y` carries
+  what `X` does not — `a proof that type-checked, not a test that passed`, where
+  `Y` corrects the reader's default. A `Y` that only echoes `X` for effect is cut.
+
 ## The test
 
 Read the comment aloud.

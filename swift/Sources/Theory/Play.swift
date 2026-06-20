@@ -57,8 +57,8 @@ public protocol TowerSelfPlay: SelfPlaySaturates, Ignites {}
 /// Play *is* proof: the training signal is a gate-certificate, proof accumulates,
 /// and accumulation is the agent. It all runs on one closed substrate — Σ with
 /// the append-only journal G. An input is a structure already in Σ, brought into
-/// the record by COMPARE: revelation, not import (the body changes its own
-/// surface and settles). This is the capstone of the numbered series.
+/// the record by COMPARE: revelation, not import. This is the capstone of the
+/// numbered series.
 /// [Play PP10]
 ///
 /// > Note: The whole stack composes here, on ``RevealsNotCreates`` over one

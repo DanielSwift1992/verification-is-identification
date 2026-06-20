@@ -1,14 +1,14 @@
 # Gradient Is Alignment (Search)
 
-The framework's entire search story assumes one thing it never names: that getting closer in structure gets you closer to the answer. Ball search (DiC G10) assumes the ball around an anchor contains better candidates. Greedy descent (NiG N5) assumes a W-neighbor exists that improves the loss. "Descent proposes, the gate certifies" (DiC §9) assumes descent's proposals are good. Each is conditional on a hidden premise: that the solution-loss is *aligned* with the W-metric — that distance-toward and goodness-toward point the same way. This document names the premise and makes it the object. A domain is searchable by local descent iff its loss has no spurious minima along W (GA1) — iff loss and distance-to-solution are correlated, a measurable coefficient α (GA3). When α is high the geometry points at solutions and descent is ballistic; when α is zero the geometry is real but useless for search, and no order beats enumeration — which is exactly the distribution-relativity boundary of Intelligence Is Inevitable, re-derived as landscape ruggedness (GA6). Primes are the canonical α-zero domain, and the reason is sharper than ruggedness: their natural predicate is binary, carrying no gradient at all, and the only graded surrogate (distance to nearest prime) is as expensive as the problem (GA4). This is precisely where ARC differs and where grounded optimism lives: ARC's loss — pixel-distance of a candidate's output from the target — is graded and cheap (GA5). ARC therefore *has* a candidate gradient; whether that gradient is *aligned* is the open measurement, and it decomposes the ARC question into two that clustering alone conflated: does the space have structure (G12), and does that structure point at solutions (α). Both are required; either can fail alone (GA7). The keystone the series was missing: clustering is geometry, alignment is whether the geometry is *for* you.
+The framework's entire search story assumes one thing it never names: that getting closer in structure gets you closer to the answer. Ball search (DiC G10) assumes the ball around an anchor contains better candidates. Greedy descent (NiG N5) assumes a W-neighbor exists that improves the loss. "Descent proposes, the gate certifies" (DiC §9) assumes descent's proposals are good. Each is conditional on a hidden premise: that the solution-loss is *aligned* with the W-metric — that distance-toward and goodness-toward point the same way. This document names the premise and makes it the object. A domain is searchable by local descent iff its loss has no spurious minima along W (GA1) — iff loss and distance-to-solution are correlated, a measurable coefficient α (GA3). When α is high the geometry points at solutions and descent is ballistic; when α is zero the geometry is real but useless for search, and no order beats enumeration — which is exactly the distribution-relativity boundary of Intelligence Is Inevitable, re-derived as landscape ruggedness (GA6). Primes are the canonical α-zero domain, and the reason is sharper than ruggedness: their natural predicate is binary, carrying no gradient at all, and the only graded surrogate (distance to nearest prime) is as expensive as the problem (GA4). This is precisely where a graded-loss domain differs from primes: its loss — e.g. pixel-distance of an output from a target — is graded and cheap (GA5). Such a domain *has* a candidate gradient; whether that gradient is *aligned* is the open measurement, and it decomposes the question into two that clustering alone conflated: does the space have structure (G12), and does that structure point at solutions (α). Both are required; either can fail alone (GA7). The keystone the series was missing: clustering is geometry, alignment is whether the geometry is *for* you.
 
 ## §0. Derivation
 
-No new postulate. Everything below is derived from the loss already defined in the search pipeline (DiC G13; E1 Phase 3), the W metric (DiC G2), greedy descent (NiG N5), ball search (DiC G10), and the distribution-relativity boundary (IiI §4).
+No new postulate. Everything below is derived from the loss already defined in the search pipeline (DiC G13), the W metric (DiC G2), greedy descent (NiG N5), ball search (DiC G10), and the distribution-relativity boundary (IiI §4).
 
 1. A candidate rule R has a loss on task τ: loss_τ(R) = Σ_k W(apply(R, Iₖ), Oₖ) over the task's pairs — the structural distance between what R produces and what τ demands. Cheap: one W-traversal per pair. *[DiC G2, G13]*
 2. loss_τ(R) = 0 iff R passes τ's gate (outputs match exactly). The solution set is the loss-zero set. *[V=I §2.2]*
-3. Search moves through candidate space along W-edges (structurally near rules, DiC G2) and is guided by loss (step 1). *[NiG N1; E1 Phase 3]*
+3. Search moves through candidate space along W-edges (structurally near rules, DiC G2) and is guided by loss (step 1). *[NiG N1]*
 4. Greedy descent accepts a move to a W-neighbor iff it strictly lowers loss; it halts at a loss-local-minimum in the W-topology. *[NiG N4–N6]*
 5. Whether descent reaches loss-zero depends on whether loss-local-minima other than solutions exist along W — a property of the *pairing* of loss with metric, not of either alone. *[from 4]*
 6. That pairing is measurable: sample candidates, correlate W-distance-to-solution against loss. *[I1; finite samples]*
@@ -50,9 +50,9 @@ Primality is mode 2, the deeper failure. "Is n prime" is binary — pass/fail, n
 
 **GA4a (The correction to the earlier framing).** Primes were first called a "void" (an absence) and a "synchronization point" (a coincidence). Both were wrong, and GA4 says why. A prime is not absence — it is the *anti-synchronization* of the sieve's waves: the point struck by *no* periodic deletion (rarefaction in the interference pattern), whereas composites are where many period-waves *do* align (60 is hit by the 2-, 3-, and 5-waves at once). So if anything, composites are the synchronizations and primes are the gaps between them. And primes are not hard because they coincide — they are hard because their predicate is binary and gradient-free (GA4). The framework replaces both metaphors with a measurable property: α, and the (non)existence of a cheap graded loss.
 
-## §3. The Decomposition ARC Needed
+## §3. The Decomposition Search Needed
 
-**GA5 (ARC has a gradient; the question is alignment).** ARC's loss — pixel-distance of a candidate program's output grid from the target grid (GA0.1, G13) — is graded and cheap: a near-miss program scores lower loss than a wild one, computed by one grid-traversal. ARC is therefore in a strictly better position than primes: it is mode-1, not mode-2 (GA4). It *has* a cheap graded loss to descend. The entire open question is its **alignment** α: does lowering pixel-loss move the program structurally toward the solution, or does the loss surface ridge and deceive? This is grounded optimism, not wishful: the reason to expect ARC may be searchable is concrete — its loss is graded where primality's is binary — and the reason it might still fail is equally concrete and measurable — its α may be low.
+**GA5 (A graded loss puts a domain in the shallower mode).** A domain whose loss is graded and cheap — e.g. pixel-distance of a candidate's output from the target (G13), one traversal, a near-miss scoring lower than a wild one — is in a strictly better position than primes: mode-1, not mode-2 (GA4). It *has* a cheap graded loss to descend. The entire open question is its **alignment** α: does lowering loss move the candidate structurally toward the solution, or does the surface ridge and deceive? This is grounded, not wishful: the reason to expect such a domain may be searchable is concrete — its loss is graded where primality's is binary — and the reason it might still fail is equally concrete and measurable — its α may be low.
 
 **GA6 (Alignment is the precondition for intelligence).** Intelligence (IiI: η = T_min/T_actual > brute-force efficiency) exceeds enumeration iff α > 0.
 
@@ -64,7 +64,7 @@ This unifies three things the series stated separately: InI's "optimal order is 
 
 | Clustered | Aligned | Domain |
 |---|---|---|
-| yes | yes | searchable — ball search flies, η → high (the hoped-for ARC) |
+| yes | yes | searchable — ball search flies, η → high (the hoped-for case) |
 | yes | no | structured but search-useless — navigation exists, but not toward solutions; the geometry is real and orthogonal to the answer |
 | no | yes | smooth but flat — a gradient exists but no hierarchy to amortize; descent works, navigation does not help |
 | no | no | hard — enumeration only (primes' neighborhood) |
@@ -79,43 +79,20 @@ NiG N18 identified clustering with searchability. GA7 corrects it: clustering is
 
 A domain can have any subset. Primes have only symmetry (√n) — no clustering of their sequence, no alignment of their predicate — which is the exact profile of a domain that is *checkable cheaply per element* yet *unpredictable in aggregate*. The user's √n insight is this third lever, and it is real and separate from the gradient: symmetry shrinks the space, the gradient orders the walk, the hierarchy reuses the result — and which you have is measured, not assumed.
 
-## §4. Measurement: P11 for E1
-
-E1 Phase 2 measures clustering (does the rule space have geometry). GA adds the orthogonal measurement clustering cannot supply: alignment (does the geometry point at solutions). Together they answer ARC's real question, which is their conjunction (GA7).
-
-**P11 — alignment of the rule landscape.** On the certified library and the search runs of E1 Phase 3:
-
-1. *α along search paths.* During each eval-task search, log (W-distance from current candidate to the eventual solution, loss of current candidate). Correlate over all steps. α > 0 with low variance ⇒ aligned, descent justified; α ≈ 0 ⇒ rugged, the ball-search advantage (P6) should *vanish* — and P6 and P11 must agree, a cross-check: W-ordered search beats random (P6) iff α > 0 (P11), or the theory is wrong.
-2. *Loss-landscape autocorrelation.* From a solution, take random W-walks; measure how fast loss decorrelates with steps. Slow decorrelation ⇒ smooth (high α); immediate ⇒ rugged. This is the standard fitness-landscape ruggedness measure, computed on the rule graph.
-3. *Spurious-minimum census.* Count loss-local-minima that are not solutions (GA1's obstacles), per task, at each W-radius. Few ⇒ descent solves directly; many ⇒ the landscape traps, and the count predicts how much restart/backtrack search needs.
-4. *The prime reference.* Run the identical α-measurement on the primality predicate over an integer range (binary loss, or distance-to-nearest-prime as the graded surrogate). This fixes the α ≈ 0 / mode-2 reference point, so ARC's α is reported *relative to a known-hard domain* — ARC's number means something only against a calibration, and primes are the calibration.
-
-**Declared readings — before measurement:**
-
-| Observation | Reading |
-|---|---|
-| α high, few spurious minima, P6 separation large | ARC is aligned: ball search and descent are the right architecture; the hoped-for case |
-| α near 0, many spurious minima, P6 separation vanishes | ARC is rugged under this grammar: descent fails, only enumeration or restart works — and the failure is localized to alignment, not to clustering (which Phase 2 measured separately) |
-| clustered (Phase 2) but α ≈ 0 (P11) | the damaging-but-informative case: structure exists, orthogonal to solutions — the grammar must change to realign, and DiC §11 says alignment is grammar-relative, so this is a directive, not a dead end |
-| ARC α ≫ primes α | grounded confirmation that ARC's graded loss is genuinely more searchable than the canonical hard domain |
-
-**Runnable on 50 now.** α along search paths needs only solved tasks with logged search traces — available at 50. A first α on 50 tasks, reported next to the prime reference, is the earliest evidence on whether ARC's geometry is *for* the searcher. Preliminary, so labeled — but it is the number that tells you whether to descend or to enumerate.
-
-## §5. Statement
+## §4. Statement
 
 1. Every search in the framework assumed loss aligns with distance; this document names the premise and makes it measurable (GA1–GA3).
 2. Descent solves iff loss has no spurious minima along W — N5's ballistic walk arrives at a solution only when the landscape is aligned, else at a wall (GA1).
 3. Alignment is a coefficient α: high ⇒ descent optimal, zero ⇒ rugged (search-useless geometry), negative ⇒ deceptive (GA3).
 4. Primes are hard in the deeper of two modes — no cheap graded loss exists, the predicate is binary and gradient-free — which corrects the "void"/"synchronization" framings and replaces them with a measurable property (GA4, GA4a).
-5. ARC is in the shallower, better mode: its loss is graded and cheap, so it *has* a gradient — the open question is whether that gradient is aligned, measured as α (GA5).
+5. A graded-loss domain is in the shallower, better mode: it *has* a gradient — the open question is whether that gradient is aligned, measured as α (GA5).
 6. Alignment is the shared precondition of intelligence, distribution-relativity, and ball search; ruggedness and no-free-lunch are one wall from two sides (GA6).
 7. Searchability decomposes into clustered AND aligned — independent properties, both required — sharpening the one-boundary claim: clustering is geometry, alignment is whether the geometry is for you (GA7).
 8. Symmetry is a third, orthogonal lever — it shrinks the space without ordering the search (the √n reduction) — so a domain's profile is a triple (cluster, align, symmetry), each measured (GA8).
-9. P11 measures α on ARC against the prime calibration; it must agree with P6, and it tells the project whether to descend or enumerate — runnable at 50 tasks (§4).
 
-> **Distance tells you how far. Alignment tells you whether far is the same as wrong. The framework knew the first and assumed the second; primes are the proof that the assumption can fail completely, and ARC's whole hope is one number — whether its geometry, which Phase 2 shows is real, is also pointed the right way.**
+> **Distance tells you how far. Alignment tells you whether far is the same as wrong. The framework knew the first and assumed the second; primes are the proof that the assumption can fail completely, and a domain's whole hope is one number — whether its geometry, where it is real, is also pointed the right way.**
 
-## §6. Dependency
+## §5. Dependency
 
 ### External
 
@@ -142,7 +119,6 @@ E1 Phase 2 measures clustering (does the rule space have geometry). GA adds the 
 | GA6 | GA3; IiI §3–§4; InI S5 |
 | GA7 | GA6; DiC G12; NiG N18 |
 | GA8 | GA3; structural symmetry |
-| P11 | GA3, GA7, GA8; E1 P6 |
 
 The series built a metric and then a geometry and then a navigation, each step assuming the geometry was worth navigating *toward a goal*. This document audits the assumption. Most of the time, in domains worth calling learnable, it holds — and where it holds, everything earlier pays off. Where it fails, the failure is total and has a name, and the name is the same one number that tells an agent whether its map is a map or only a picture.
 

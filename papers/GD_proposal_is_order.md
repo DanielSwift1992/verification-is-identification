@@ -60,7 +60,7 @@ So neither easiness implies the other. QED.
 
 ## §4. Failures, Factorization, Monism
 
-**GD6 (Two failures, two ledger terminals).** G fails → α ≤ 0 or out of closure → no cheap proposal of f\* → BUDGET / EMPTY (E1 §4). D fails → features cannot separate survivors → |S| > 1 / AMBIGUOUS (V=I §3.5). The honest ledger already distinguishes them; GD6 names which organ each terminal indicts. *(V=I outcome corollary; E1 §4.)*
+**GD6 (Two failures, two ledger terminals).** G fails → α ≤ 0 or out of closure → no cheap proposal of f\* → BUDGET / EMPTY. D fails → features cannot separate survivors → |S| > 1 / AMBIGUOUS (V=I §3.5). The honest ledger already distinguishes them; GD6 names which organ each terminal indicts. *(V=I outcome corollary.)*
 
 **GD7 (E2's factorization is the organ split).** The encoder / backend split (E2) is generator / discriminator. The backend (V=I, certified-safe, never wrong) is D — proven and inevitable. The encoder (the open problem, the priors, the Source) is G — delegated and conditional. C2 (discrimination, |S| = 1) is the D-condition; C1, C3, C4, C5 (coverage, compression, anchoring, certifiability) are G-conditions. All irreducible difficulty of a domain localizes to G because D is proven (E2 §0, §5).
 
@@ -115,7 +115,6 @@ On a horn (B8b: K = ∞, finite basis, infinite reach): (1) holds — the gate i
 | NiG | N19 (inevitability under population / clustering) |
 | B | B8 (saturability), B8a (primes), B8b (horn: K = ∞) |
 | PP | PP2 (poser/solver), PP6 (endpoint is the basis), PP15 (one given COMPARE) |
-| E1 | §4 (ledger terminals) |
 | E2 | §0, §5 (encoder/backend = generator/discriminator; C1–C5) |
 | LiT | §6 (stochastic / partial weakening) |
 | LL | LQ5–LQ10 (the two organs in motion: front = discriminator, flow = generator) |
@@ -126,10 +125,10 @@ On a horn (B8b: K = ∞, finite basis, infinite reach): (1) holds — the gate i
 |---|---|
 | GD1 | V=I §5.21, §5.22; InI S1, S2 |
 | GD2 | InI S5b; DiC G13; GA |
-| GD3 | GD2; InI S1; GA4, GA7; B8a; E2 §4 |
+| GD3 | GD2; InI S1; GA4, GA7; B8a |
 | GD4 | InI S6; GA3, GA6; NiG N19; IiI §3 |
 | GD5 | InI S4a; GA6 |
-| GD6 | V=I outcome corollary; E1 §4; V=I §3.5 |
+| GD6 | V=I outcome corollary; V=I §3.5 |
 | GD7 | E2 §0, §5 |
 | GD8 | V=I §2.5; InI §0; PP15 |
 | GD9 | Theorem 2; IiI §3; B8, B8b; GA; PP6 |

@@ -49,9 +49,9 @@ QED. *(Structural identification: the shared structure is (one-sided, rate-bound
 
 *Proof.* GA1: descent reaches a solution iff no loss-local-minimum separates start from solution. GA6: an order beats enumeration iff α > 0. So smooth-and-solving (laminar) ⟺ α high; rough-and-wandering (turbulent) ⟺ α low. QED.
 
-**LQ6 (Ruggedness is measurable as a spectrum).** The loss-landscape autocorrelation C(d) = corr(loss(R), loss(R′)) for W(R, R′) = d (GA P11.2) measures how fast loss decorrelates with structural distance — the spectral signature of the landscape's roughness. Two derived facts and one named analogy:
+**LQ6 (Ruggedness is measurable as a spectrum).** The loss-landscape autocorrelation C(d) = corr(loss(R), loss(R′)) for W(R, R′) = d (GA3) measures how fast loss decorrelates with structural distance — the spectral signature of the landscape's roughness. Two derived facts and one named analogy:
 
-*Derived.* (i) C(d) → 0 fast (loss decorrelates within a few W-steps) ⟺ α ≈ 0 (rugged; GA3). (ii) C(d) → 0 slow (loss stays correlated across many W-steps) ⟺ α high (smooth; GA1: descent reaches solutions). The autocorrelation function C(d) is computable from the same data as α (GA P11.2) and carries strictly more information (it resolves roughness by scale, where α is a single summary).
+*Derived.* (i) C(d) → 0 fast (loss decorrelates within a few W-steps) ⟺ α ≈ 0 (rugged; GA3). (ii) C(d) → 0 slow (loss stays correlated across many W-steps) ⟺ α high (smooth; GA1: descent reaches solutions). The autocorrelation function C(d) is computable from the same data as α (GA3) and carries strictly more information (it resolves roughness by scale, where α is a single summary).
 
 *Named analogy (§6 discipline).* In fluid dynamics, the Reynolds number Re separates laminar (low Re) from turbulent (high Re) flow. The coarse inverse ~1/α plays an analogous role: low α → rugged/turbulent search; high α → smooth/laminar search. This is a structural correspondence (the same binary regime-separation by a single scalar), not a derived equation — no claim about fluid turbulence is made.
 
@@ -98,7 +98,7 @@ Each step feeds the next; the boundary's position determines the field, and the 
 
 This explicit wall is the PiR §5 discipline applied: borrow the analysis, never the authority.
 
-**The numbers are open.** The front-rate (S6b), the ruggedness spectrum / α (GA P11), the cascade rate γ and Z (B8e, PP17) are all measurable, but their values per domain — and whether a rich domain's liquid ever fully freezes (the horn bet) — are open.
+**The numbers are open.** The front-rate (S6b), the ruggedness spectrum / α (GA3, GA6), the cascade rate γ and Z (B8e, PP17) are all measurable, but their values per domain — and whether a rich domain's liquid ever fully freezes (the horn bet) — are open.
 
 **Singularity = non-saturable basis.** The liquid's only true "blow-up" is a basis that never closes (prime-like, B8a): the front never reaches the whole domain, the reach is a non-normalizable cascade (λ < γ, PP17). In finite/horn domains the dynamics is bounded (M11, M26).
 
@@ -127,7 +127,7 @@ This explicit wall is the PiR §5 discipline applied: borrow the analysis, never
 | DiC | §4 (frontier = interface), G3 (reversible motion, irreversible record), G11 (ball saturation), G12 (clustering), G13 (loss) |
 | NiG | N11 (separated clusters), N14 (attachment / dendrite hubs) |
 | InI | S6a–S6c (dual flow, dissipation = freezing rate, self-thickening) |
-| GA | GA1 (descent precondition), GA3/GA6 (α, laminar/turbulent), P11 (ruggedness/autocorrelation) |
+| GA | GA1 (descent precondition), GA3/GA6 (α, laminar/turbulent, ruggedness/autocorrelation) |
 | B | B1 (composition = cascade), B8a (prime-like singularity), B8b (horn = permanent liquid), B8d (γ), B8e (n(s)) |
 | PP | PP7 (membrane: I3 + gate), PP15 (floor), PP17 (partition function / free energy) |
 | External | Stefan free-boundary problems; NK-landscapes / fitness-landscape ruggedness; (named only as borrowed tools, §6) |
@@ -141,7 +141,7 @@ This explicit wall is the PiR §5 discipline applied: borrow the analysis, never
 | LQ3 | I3; InI S6b; DiC §4; PiR §3 |
 | LQ4 | LQ3; DiC G11; NiG N14 |
 | LQ5 | GA1, GA3, GA6; DiC G13 |
-| LQ6 | LQ5; GA P11 |
+| LQ6 | LQ5; GA6 |
 | LQ7 | B1, B8d; PP17 |
 | LQ8 | LQ3, LQ5; InI S6c; DiC §4 |
 | LQ9 | I3; PiR §3; DiC G3; V=I §5.25 |

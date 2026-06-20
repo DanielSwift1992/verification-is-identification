@@ -36,7 +36,6 @@ The tag in each symbol's discussion decodes here. Every paper is readable in ful
 | `Gen` · `GD` | [GD · Proposal Is Order](doc:GD_proposal_is_order) |
 | `Liquid` | [L · Learning Is Liquid](doc:L_learning_is_liquid) |
 | `Spec` | [E2 · The Solvability Criterion](doc:E2_solvability_criterion) |
-| `Measure` | [E1 · The Measured Geometry of ARC-AGI-1](doc:E1_measured_geometry_of_arc) |
 | `Projection` | [AI · The Architecture of Learning Machines](doc:AI_architecture_of_learning_machines) |
 
 > Tip: A section code inside a tag is the paper's own numbering — `§5.22`, `G2c`, `N5`, `O9`, `LT3`, `PP10`, `B4`. In the paper, that code lands you on the exact claim.
@@ -67,5 +66,4 @@ The tag in each symbol's discussion decodes here. Every paper is readable in ful
 - <doc:GD_proposal_is_order>
 - <doc:L_learning_is_liquid>
 - <doc:E2_solvability_criterion>
-- <doc:E1_measured_geometry_of_arc>
 - <doc:AI_architecture_of_learning_machines>

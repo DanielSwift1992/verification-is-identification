@@ -40,7 +40,7 @@ The same move PiR §5 makes for ice and hydrogen: map the vocabulary, check whic
 **AI2 (Projection onto an LLM: pure liquid).** The framework's coordinates applied to a large language model: gate — absent (the system cannot force |S| = 1 → it emits the generator's guess as if certified = hallucination). I3 — absent (mutable weights overwrite → catastrophic forgetting, IiI §3). Basis — uncertified (entangled, polysemantic features, not certified irreducible atoms). Organ — generator only (flow, no discriminating front). Each consequence is the absent coordinate (AI1): hallucination ↔ no gate, forgetting ↔ no I3, irreproducibility ↔ no gate+I3, confident error ↔ no honest |S|>1.
 *Tags:* no-gate / no-I3 / generator-only — **solid** (architectural facts). "Pseudo-basis" — **interpretive** (mechanistic-interpretability evidence of superposition/polysemanticity, not proven).
 
-**AI3 (Projection onto reinforcement self-play: the proof is traded for an estimate).** The framework's gate coordinate is replaced by a *reward*: the label becomes an outcome estimate, not f\*. The value field is noisy, the endpoint seed-dependent (no SAT5/6), and the play can blunder (no gate) — exactly the PP7 contrast, measured in `selfplay_demo.py` / `alphazero_pure.py`. **[solid]**
+**AI3 (Projection onto reinforcement self-play: the proof is traded for an estimate).** The framework's gate coordinate is replaced by a *reward*: the label becomes an outcome estimate, not f\*. The value field is noisy, the endpoint seed-dependent (no SAT5/6), and the play can blunder (no gate) — exactly the PP7 contrast. **[solid]**
 
 ## §3. What the Projection Derives
 
@@ -60,10 +60,10 @@ The same move PiR §5 makes for ice and hydrogen: map the vocabulary, check whic
 
 *Proof.* (i) The gate emits PASS only when |S| = 1 (Theorem 2, V=I §5.25). A wrong answer requires PASS on f ≠ f*, which the gate rejects. So false positives = 0, independent of G's quality. (ii) If G proposes f* with probability C_G(τ) per trial, then after n trials the probability of having proposed f* at least once is 1 − (1 − C_G(τ))^n → 1. The gate certifies f* whenever proposed (Theorem 2: f* passes). So the wrapper's eventual coverage ≥ C_G(τ) — the generator's reach is not reduced, only its errors are filtered. (iii) I3: certified entries are append-only (V=I §2.4); no update, retraining, or weight change can erase them (LQ9: the front never recedes). QED.
 
-*Corollary (the quality–silence tradeoff).* A better generator (higher C_G) shifts the answer/silence boundary outward — more answers, fewer silences — but never introduces error. Quality moves coverage; the gate moves correctness. The two axes are orthogonal (GD3). This is the `answer_or_silence.py` result measured: 0 wrong at any generator quality, with coverage tracking C_G.
+*Corollary (the quality–silence tradeoff).* A better generator (higher C_G) shifts the answer/silence boundary outward — more answers, fewer silences — but never introduces error. Quality moves coverage; the gate moves correctness. The two axes are orthogonal (GD3): 0 wrong at any generator quality follows from (i), and coverage tracks C_G by (ii).
 
 The completion is not a new learner but a *wrapper*: keep the generator's flow, add the gate as the output membrane, I3 as permanence, honesty where still liquid. This is the AlphaProof shape (generator + checker), generalized.
-*Tag:* the architecture is **solid** (demonstrated, `answer_or_silence.py`: 0 wrong at any generator quality); whether it reaches a rich domain's *coverage* is the **open** horn bet.
+*Tag:* the architecture is **solid** (0 wrong at any generator quality follows from the gate, AI6.i); whether it reaches a rich domain's *coverage* is the **open** horn bet.
 
 ## §6. Measurement — the Saturation Map
 

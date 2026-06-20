@@ -70,6 +70,8 @@ R is an **atom** iff ‖R‖_comp ≥ ‖R‖ — no description of R as a compo
 
 **B8e (Two residue curves).** The residue curve splits in two: |atoms|(s) [the volume] and N(s) [the behavioral surface]. Both bounded ⇒ CLOSED; |atoms| plateaus while N(s) → ∞ ⇒ HORN (finite priors, unbounded recombination — an evaluation set that defeats r = 0 is, formally, *a horn*); |atoms| grows ⇒ PRIMES (B8a). The log-slope of N(s) measures γ. Sampling caveat for self-play: on an infinite-reach horn no uniform measure over ⟨Π⟩ exists, and any norm-discount β^{‖g‖} normalizes only for β < e^{−γ}, concentrating on small norm — so coverage must be enumerated by norm, never sampled (Play Is Proof PP5c).
 
+**B8f (The trichotomy is fixpoint-reachability).** A domain's closure under composition is a *sub-fixpoint of Σ* — the least set containing its atoms and closed under the operation, the same construction that makes Σ the least fixpoint of the bare rule (*Existence Is Finite*), one signature richer. The three cells are three ways that fixpoint is reached: CLOSED with a finite carrier; HORN only *as the rule*, the carrier unbounded (ℕ-under-+); PRIMES never, no finite basis. Saturability is fixpoint-reachability. The sub-fixpoints of Σ, ordered by inclusion and closed under intersection, form the lattice of all maths — each a choice of atoms and axioms; this framework is the one that closes around COMPARE.
+
 ## §4. Static and Dynamic
 
 **B9 (Atom-ness is a property of the trajectory, not the rule).** Whether R is an atom is not readable from R alone. It is the outcome of the sieve (B3): R is an atom relative to (the library scanned before it in norm order, the depth bound d). Two relativities, both honest and both measurable:

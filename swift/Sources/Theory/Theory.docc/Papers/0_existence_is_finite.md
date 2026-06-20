@@ -40,6 +40,8 @@ the finite binary trees, with ⊥ the leaf and ⟨·,·⟩ the node.
 
 The line "there is one logical space" is here the uniqueness of an initial object. Two spaces with no relation between them have no fact of their being two; two with a relation share the space the relation lives in. Both readings are the one categorical fact: every medium receives the unique map from Σ, and every generated, finite one returns it.
 
+**The least fixpoint.** That Σ is the *least* fixed point (μ, not the greatest) is C6 read algebraically: the actual is the well-founded closure — every element reached in finitely many steps — and the unbounded rule it is drawn from, *one more* without end, is the potential, the standing possibility that lies outside Σ as no finished member. To be is to inhabit the least fixpoint of distinction; the open rule above it is the infinite, placed but never collected. The structure map 1 + Σ² ≅ Σ states it plainly: the rule returns its own domain, and Σ is the rule closed on itself.
+
 **Theorem 2 — Existence is finite structure.** Every determinate thing is a finite structure: it is an element of Σ, uniquely up to the isomorphism of Theorem 1.
 
 *Proof.* Whatever is determinate satisfies C1–C6 (Part I): it is a non-contradictory, relational, binary-with-floor, finitely generated distinction. By Definition 1 the things satisfying these are the elements of a medium, and by Theorem 1 that medium is Σ. So each determinate thing is an element of Σ, with the identification unique. ∎

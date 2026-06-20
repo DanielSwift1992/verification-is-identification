@@ -273,6 +273,8 @@ OUT:  Theorems 1–5, Properties, Totality
 
 **Corollary.** Given R4: any compiling output equals f*. Without R4: compilation guarantees example consistency, not uniqueness. Compilation failure: no output.
 
+**Remark (identification is a fixpoint collapse).** R4 — |S| = 1 — is the condition under which the pass-set is a single point, S = {f*}, and there the verifier and the namer coincide: to pass *is* to be f*. The three outcomes are three fixpoint counts of one operator — |S| = 1 a unique fixpoint (identification), |S| > 1 several (encoding insufficient), |S| = 0 none (the honest REJECT). Identification is verification collapsed to a point: the least-fixpoint reading of *Existence Is Finite*, one scale up — where Σ is the rule closed on itself, the lone survivor is the check closed on itself.
+
 Safety depends only on compilation (§4.7) and R4, not on how f' was found. The feature search (§4.5–4.6) is one strategy among many — random sampling, exhaustive enumeration, neural network output, or manual construction all produce the same safety guarantee. They differ in how quickly they find a passing candidate, not in what the guarantee means when they do. Safety comes from verification, not search.
 
 **Theorem 3 (Identifiability).** If R4 holds and output values ⊆ input values, then under an exhaustive pair-enumeration schedule, at most N² COMPARE operations (N = atom count) classify all atom-pair equalities. With all pairs classified, f* is distinguishable from every other candidate via cached verification.

@@ -6,9 +6,15 @@ A theory of when checking an answer is the same as knowing it — written as pur
 
 ## Overview
 
-**The one idea.** When exactly one candidate can pass a test, then to pass the test *is* to be the answer: verification and identification are one act (``PassIsIdentification``). That single result is the whole of it; everything else is how far it reaches and what follows.
+**The one idea.** Take a finite set of candidates and a test. If exactly one candidate passes, then "it passes" and "it is the answer" are the *same fact* — to check the lone survivor is to identify it. (Of `a, b, c`, if only `c` passes, then "`c` passed" and "the answer is `c`" say one thing.) That is the whole result — ``PassIsIdentification`` — and the theory proves it, bounds where it holds, and follows what it implies.
 
-**Why it reaches everywhere.** Whatever is determinate — a concept no less than an object — is a finite structure (*Existence Is Finite*), and on finite structures the identity holds with no further argument. So it grounds, in the papers below, intelligence, matter, distance, and learning — each derived, none assumed.
+**Where to read it.** The result is proved and extended across eighteen papers, listed in full at <doc:Sources>. A first path:
+
+- <doc:0_existence_is_finite> — the ground: whatever is, is a finite structure, so the result reaches everything.
+- <doc:1_verification_is_identification> — the result itself, proved.
+- <doc:2_intelligence_is_inevitable> — its first consequence: a learner that must saturate.
+
+From there, follow whichever thread you like — matter, distance, learning, dynamics, and the rest.
 
 **How it is checked.** Nothing here runs. The theory is encoded as pure Swift types, so reading a fact is asking the type checker — *does `X` conform? what is `X.SolutionSet`?* — never computing a value. A green build is not a test that passed; it is a proof that type-checked.
 
@@ -18,13 +24,11 @@ A theory of when checking an answer is the same as knowing it — written as pur
 - term **The move:** two directions and no third — *expand* opens a degree of freedom (`associatedtype`), *compress* closes one (`where`).
 - term **The floor:** every space is finite — width (``Pair`` has two sides) × depth (every chain reaches ``Null``).
 
-### How to read this
+### What is on this page
 
-Not by paper. The order the papers were written is one walk through the lattice, not its structure — so the page is organized by the structure, measured from the lattice itself.
+The types below are grouped by what each one does: the seed, the markers, the kernel, the four axes, and the theorems built on them. That is the framework's core; the papers carry the rest and are linked from <doc:Sources>. Every type's page stands on its own — a tag like `[Nav N5]` points to its proof in a paper, never something you must read first.
 
-Every protocol makes one move, and that move *is* its place. A few **open an axis** (`associatedtype`) — these *generators* are the lattice's **spine**, the only part that partitions cleanly. Every other protocol **pins** a fixpoint (`where`) or **intersects** several — a *bridge* like ``Matter`` or ``GateIsMembrane``, belonging to no single subject. Most of the lattice is bridges, deepening into a **cone**: the deeper a theorem, the more axes it intersects, until the capstones — ``PlayIsProof``, ``InteractiveDecomposition`` — intersect nearly all at once.
-
-So a small **basis** of axes spanned by a **web** of theorems — the framework's own *Basis Is Residue*, turned on itself. The **spine** is on this landing: the seed, the markers, the kernel, and the four axes with the theorems that hang on them. The **web** is carried by the papers, each listing the bridges it proves (a walk through the lattice is itself a certified object — *Order Is Object*). Territory here, routes there. The papers are credited in <doc:Sources>; each symbol's page stands on its own, and a tag like `[Nav N5]` points to the proof, never something you must read first.
+(The page is not ordered by paper: the order the papers were written is one walk through the types, while this lists them by the move each one makes. A fuller account of that organization is in ``Law``.)
 
 > Important: The compiler is the engine. A green build is not a test that passed — it is a proof that type-checked. Conform a type to ``SystemCrystallizes`` and its compilation *is* its certificate; break a theorem's premise and every dependent stops compiling.
 

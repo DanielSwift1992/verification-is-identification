@@ -132,7 +132,6 @@ Rungs 3–6 stand on the same boundary: compressibility of the domain's geometry
 
 **Stochastic environments are out of scope.** cost(σ, τ) presumes deterministic execution (I2). Moving or noisy targets break the strategy gate as they break the rule gate — the subject of the next document (law identification restores I2 at the level of dynamics).
 
-**Implementation.** Extends `python/`: encode decision trees into the Peano/PAIR representation, implement cost(σ, τ) as an instrumented pipeline run, GATE_σ as a wrapper, O8's lexicographic selection, and the W-matrix of L_σ via `delta.py` unchanged. Machine-verifiable claims: O6 (no strategy alters any PASS/REJECT outcome — exhaustive over small Π_R), O7 (binary search agrees with exhaustive minimum), O8 (uniqueness), O13 (saturation curve fits coupon collector on synthetic class streams).
 
 ## §9. Statement
 

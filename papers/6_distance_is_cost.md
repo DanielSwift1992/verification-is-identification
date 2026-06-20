@@ -196,7 +196,6 @@ Descent — propose modifications that reduce loss, guided by frontier addresses
 
 **Discrete throughout.** W is integer-valued; d_k is a finite family; every claim here stays discrete. Whether coarse-grained W on large structures approximates continuous metrics is an open question of the same standing as Difference Is Distance §10.
 
-**Implementation.** `python/delta.py` implements W, d_k, the norm, and the overlap identity, and machine-verifies G2 (the formula equals BFS geodesic distance, exhaustively over all trees with ≤ 4 distinctions), the metric axioms (G2b), G6, and G7. `private/experiments/gradient.py` measures G9–G13 and G15 on the reference grid pipeline.
 
 ## §12. Dependency
 

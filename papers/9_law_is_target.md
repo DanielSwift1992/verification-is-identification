@@ -100,7 +100,6 @@ Each stage is certified or returns an addressed failure: unidentified law → ex
 
 **Continuity.** Continuous state must be finitely encoded; what the encoding discards, no theorem recovers (IiI §4, finiteness boundary, verbatim).
 
-**Implementation.** A gridworld suffices to machine-verify the chain: (i) LT6 — S shrinks monotonically as transitions arrive, hitting |S| = 1 at the predicted count for a feature-compressible law; (ii) LT5 — the ambiguity diagnostic names exactly the withheld transitions; (iii) LT12 — greedy descent under the derived taxicab metric reaches goals, and every stuck state is a wall by inspection; (iv) LT13 — extracted macro-actions pass the strategy gate of OiO. Extends `python/`: a transition-table encoder, an instrumented explorer, and the unchanged `delta.py` for all distances.
 
 ## §7. Statement
 

@@ -109,7 +109,6 @@ The three criteria are not three assumptions: they are three consumers of one me
 
 **The map is level-relative.** Γ(L, ρ) maps one library at one level. Each tower level carries its own map; the construction is level-invariant for the same reason everything else is (InI S8a): it references only finiteness, decidability, and the metric.
 
-**Implementation.** Extends `python/`: the W-matrix via `delta.py` unchanged; MST for ρ\* (N2), greedy walks and routing tables (N3, N7), binary search for ρ_nav (N9), hole enumeration (N6), insertion maintenance (N16). Machine-verifiable claims: N2 (threshold equals max MST edge, exhaustively on small libraries), N5 (hop counts never exceed initial W), N8/N16 (monotonicity under radius growth and insertion), N9 (binary search agrees with exhaustive sweep).
 
 ## §10. Statement
 

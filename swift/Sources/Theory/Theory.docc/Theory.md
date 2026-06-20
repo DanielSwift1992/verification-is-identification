@@ -6,19 +6,19 @@ A theory of when checking an answer is the same as knowing it — written as pur
 
 ## Overview
 
-**The one idea.** Take a finite set of candidates and a test. If exactly one candidate passes, then "it passes" and "it is the answer" are the *same fact* — to check the lone survivor is to identify it. (Of `a, b, c`, if only `c` passes, then "`c` passed" and "the answer is `c`" say one thing.) That is the whole result — ``PassIsIdentification`` — and the theory proves it, bounds where it holds, and follows what it implies.
+**What it is.** A theory of when checking an answer is the same as knowing it. Take a finite set of candidates and a test: if exactly one passes, then "it passes" and "it is the answer" are the same fact — to check the lone survivor is to identify it. (Of `a, b, c`, if only `c` passes, then "`c` passed" and "the answer is `c`" say one thing.) That collapse is the result, ``PassIsIdentification``. It is written as pure Swift types, so the compiler is the proof checker: a claim is a protocol, its proof is that the protocol compiles, and nothing runs.
 
-**Where to read it.** The result is proved and extended across eighteen papers, listed in full at <doc:Sources>. A first path:
+**Why it matters.** Checking is the cheap, mechanical half of knowing; identifying is the hard half. When the two collapse, a system that only *checks* answers thereby *finds* them — and because a passing check is a proof, the answer is **certain**, never confident-but-wrong. This is not a trick for one problem: whatever is determinate is a finite structure, so it holds wherever anything does, and it draws the exact line between what can be known for sure and what must be supplied from outside. It is the opposite shape from a system that guesses fluently and cannot tell a proof from a guess.
 
-- <doc:0_existence_is_finite> — the ground: whatever is, is a finite structure, so the result reaches everything.
+**Where to start.** The result is proved and extended across eighteen papers (full list in <doc:Sources>):
+
+- <doc:0_existence_is_finite> — the ground: to be is to be a finite structure.
 - <doc:1_verification_is_identification> — the result itself, proved.
 - <doc:2_intelligence_is_inevitable> — its first consequence: a learner that must saturate.
 
-From there, follow whichever thread you like — matter, distance, learning, dynamics, and the rest.
+From there, follow whichever thread you like — matter, distance, learning, dynamics.
 
-**How it is checked.** Nothing here runs. The theory is encoded as pure Swift types, so reading a fact is asking the type checker — *does `X` conform? what is `X.SolutionSet`?* — never computing a value. A green build is not a test that passed; it is a proof that type-checked.
-
-**How it is built — one act and one fixpoint:**
+**How it is built.** From one act and one fixpoint:
 
 - term **The seed:** a single act of distinction — ``Pair``. Its fixpoint, where the two sides close, is ``Null``.
 - term **The move:** two directions and no third — *expand* opens a degree of freedom (`associatedtype`), *compress* closes one (`where`).

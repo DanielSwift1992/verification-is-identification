@@ -58,7 +58,7 @@ public protocol CachePermanent: StructuresFinite, OperationsClosed,
 
 // ── §5 Inner Properties ─────────────────────────────────
 
-/// Every step operates on a finite domain, so every step terminates. [V=I §5.1]
+/// Every step operates on a finite domain (EiF C6), so every step terminates. [V=I §5.1]
 /// Names the Steps axis (``IntegerValued``) — the step count is a finite chain.
 /// Inherits ``StructuresFinite``.
 public protocol StepsTerminate: StructuresFinite {
@@ -73,7 +73,7 @@ public protocol PipelineTotal: StepsTerminate {
 }
 
 /// Same task + grammar + protocol yields the same result. [V=I §5.8]
-/// Names the Result axis (``Measurable``) — input determines output, one value.
+/// Names the Result axis (``Measurable``) — input determines output, one value (EiF C3).
 /// Inherits ``OperationsClosed``.
 public protocol ResultDeterministic: OperationsClosed {
     associatedtype Result: Measurable
@@ -104,7 +104,8 @@ public protocol CandidatesOnlyLeave: CachePermanent,
 /// as argument. [V=I §5.23]
 /// PROXY (§1, §4-through-negation): types can't state "X ∉ its own input".
 /// Finite-depth `Input` (``IntegerValued``) excludes the infinite self-nesting that
-/// self-reference would create — the closest sound expression of the bound.
+/// self-reference would create — the closest sound expression of the bound. The
+/// medium is well-founded (EiF C6): nothing contains itself.
 /// Inherits ``OperationsClosed``.
 public protocol NoSelfReference: OperationsClosed {
     associatedtype Input: IntegerValued
@@ -149,7 +150,7 @@ public protocol PassIsIdentification: PassImpliesMembership, ExactlyOneSurvives,
 
 /// Comparison is bounded: N atoms need at most N² COMPAREs to classify all pairs. [V=I Thm 3]
 /// Names the Comparisons axis (``IntegerValued``) — the comparison count is a finite
-/// integer. Inherits ``StructuresFinite``.
+/// integer (finite medium, EiF C6). Inherits ``StructuresFinite``.
 public protocol ComparisonsAreBounded: StructuresFinite {
     associatedtype Comparisons: IntegerValued
 }
@@ -187,7 +188,7 @@ public protocol Universality: StructuresFinite, HasEncoding, ExactlyOneSurvives 
 
 /// COMPARE reveals a pre-existing fact: its result is fixed by the inputs'
 /// structure before the call, never created. The output settles to one
-/// determined value. [V=I §5.20]
+/// determined value — the medium holds it, the call only reads (EiF Part III). [V=I §5.20]
 /// Intersects ``OperationsClosed`` with ``Measurable``.
 public protocol RevealsNotCreates: OperationsClosed, Measurable {}
 

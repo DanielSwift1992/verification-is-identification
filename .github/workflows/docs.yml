@@ -45,6 +45,9 @@ jobs:
           --hosting-base-path verification-is-identification
           --output-path "$GITHUB_WORKSPACE/_site"
 
+      - name: Redirect the site root to the library documentation
+        run: echo '<!DOCTYPE html><meta charset="utf-8"><title>Verification Is Identification</title><meta http-equiv="refresh" content="0; url=./documentation/verificationisidentification/"><a href="./documentation/verificationisidentification/">Documentation</a>' > "$GITHUB_WORKSPACE/_site/index.html"
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

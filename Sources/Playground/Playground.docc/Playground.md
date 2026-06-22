@@ -1,6 +1,6 @@
 # ``Playground``
 
-Worked examples of the framework: a physical system is written as types, and the compiler checks a question about it.
+Worked examples of the framework: physics reproduced as types, learning machines located by their coordinates, the concrete models that inhabit the markers, and a working solver — each settled by compiling, nothing run.
 
 ## Overview
 
@@ -17,6 +17,7 @@ no program run:
 - Show that hydrogen's 2s state is metastable — the `2s → 1s` transition breaks the dipole rule `Δℓ = ±1`.
 - Show that the proton is stable — `p → e⁺ + π⁰` does not conserve baryon number.
 - Solve a constraint graph — it reduces to one forced assignment, or the compiler proves that none exists.
+- Locate a learning machine by its coordinates — a gated, append-only learner conforms to the crystallizing lattice, and one without a gate (a language model with `|S| > 1`) is rejected with the missing coordinate named.
 
 **How it works.** The type checker performs three operations on a finite structure,
 and each corresponds to a question.
@@ -95,3 +96,29 @@ A domain crystallizes when `|S| = 1` or carries a residual when `|S| > 1`, and t
 - ``IceOxygen``
 - ``QuantumMeasurement``
 - ``HiggsGaugeInvariant``
+
+### Learning machines — the projection
+
+A learner is located by which coordinates it has. A gated, append-only machine conforms to the crystallizing lattice. One without the gate cannot, and the compiler names what is missing.
+
+- ``CertifiedSelfPlay``
+- ``LanguageModel``
+
+### One lattice, many domains
+
+Ice, the hydrogen spectrum, and the Higgs vacuum each certify the same `SystemCrystallizes` structure, so a construction written over it applies to all of them at once.
+
+- ``CrystallizingDomain``
+
+### The witnesses — concrete models of the markers
+
+Non-trivial inhabitants that make the proof bite: the markers have rich models, not only the empty `Never`.
+
+- ``Cell``
+- ``Succ``
+- ``Grew``
+- ``Shrank``
+- ``Path``
+- ``Measured``
+- ``Verdict``
+- ``ConcreteAgent``

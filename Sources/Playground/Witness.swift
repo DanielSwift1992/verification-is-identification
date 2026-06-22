@@ -13,7 +13,7 @@ import VerificationIsIdentification
 // relation and its witness stops compiling.
 // ═══════════════════════════════════════════════════════════════
 
-/// The raw act of distinction with two named sides: a reusable ``Pair``.
+/// The raw act of distinction with two named sides: a reusable `Pair`.
 ///
 /// The building block every other witness is assembled from: ``Grew``, ``Shrank``,
 /// ``Path``, and ``Verdict`` all package their sides as a `Cell`.
@@ -25,7 +25,7 @@ public struct Cell<L, R>: Pair {
 // ── IntegerValued: the Peano chain, floored at Never (zero) ──
 // Never is 0. Succ<N> is n+1 — its predecessor Right = N is again a
 // count. Every number presses down to Never: this IS finite depth (§4).
-/// The successor: `n+1` as a non-trivial witness for ``IntegerValued``.
+/// The successor: `n+1` as a non-trivial witness for `IntegerValued`.
 ///
 /// `Succ<N>` is one step above its predecessor `N`. The chain bottoms out at
 /// `Never` (zero, aliased ``Zero``). ``Three`` is `Succ<Succ<Succ<Never>>>`.
@@ -40,7 +40,7 @@ public typealias Zero = Never
 public typealias Three = Succ<Succ<Succ<Never>>>
 
 // ── Permanent: accumulation. after = (before, delta), Left ≠ Right ──
-/// Accumulation made concrete: a non-trivial witness for ``Permanent``.
+/// Accumulation made concrete: a non-trivial witness for `Permanent`.
 ///
 /// The after-state `Right = Cell<Before, Delta>` holds the whole before-state
 /// plus an increment, so `Right.Left == Before`. Distinct sides, real growth —
@@ -51,7 +51,7 @@ public struct Grew<Before, Delta>: Pair, Permanent {
 }
 
 // ── Monotone: elimination. before = (after, removed). Permanent's mirror ──
-/// Elimination made concrete: a non-trivial witness for ``Monotone``.
+/// Elimination made concrete: a non-trivial witness for `Monotone`.
 ///
 /// The before-state `Left = Cell<After, Removed>` holds the after-state plus what
 /// was dropped, so `Left.Left == After`. The mirror of ``Grew``: same `Cell`, sides flipped.
@@ -61,7 +61,7 @@ public struct Shrank<After, Removed>: Pair, Monotone {
 }
 
 // ── MetricProperty: two legs (a→b)(b→c) sharing the midpoint b ──
-/// Two legs through a shared midpoint: a non-trivial witness for ``MetricProperty``.
+/// Two legs through a shared midpoint: a non-trivial witness for `MetricProperty`.
 ///
 /// `Left = Cell<A, B>` and `Right = Cell<B, C>` meet at `B`, so
 /// `Left.Right == Right.Left == B`. The shared point is what forces the triangle inequality.
@@ -71,9 +71,9 @@ public struct Path<A, B, C>: Pair, MetricProperty {
 }
 
 // ── Measurable: settles to one value (Right is Null) ──
-/// One input, one settled value: a non-trivial witness for ``Measurable``.
+/// One input, one settled value: a non-trivial witness for `Measurable`.
 ///
-/// `Left = Input` varies. `Right = Never` is ``Null``, the determined value
+/// `Left = Input` varies. `Right = Never` is `Null`, the determined value
 /// collapsed to a point. The structure fixes the answer with no room for choice.
 public struct Measured<Input>: Pair, Measurable {
     public typealias Left = Input
@@ -81,7 +81,7 @@ public struct Measured<Input>: Pair, Measurable {
 }
 
 // ── Decidable: the verdict branches two ways (in | out) ──
-/// A two-way verdict on an element: a non-trivial witness for ``Decidable``.
+/// A two-way verdict on an element: a non-trivial witness for `Decidable`.
 ///
 /// `Left = Elem` is the element under test. `Right = Cell<Never, Never>` is the
 /// `Pair` that branches `(in \| out)`. Membership always resolves to one side.
@@ -93,10 +93,10 @@ public struct Verdict<Elem>: Pair, Decidable {
 // ── Axes carry real, non-trivial dimensions ──
 // A concrete agent whose Distance is an actual count (Three, not Never)
 // and whose Alpha is an actual measured value. The §2 pins bite here.
-/// An agent carrying real coordinates: a non-trivial witness for ``HasDistance`` and ``HasAlpha``.
+/// An agent carrying real coordinates: a non-trivial witness for `HasDistance` and `HasAlpha`.
 ///
 /// `Distance = Three` is an actual count, not the `Never` floor. `Alpha = Measured<Three>`
-/// is an actual settled value. The §2 axis pins (``IntegerValued``, ``Measurable``) bite here,
+/// is an actual settled value. The §2 axis pins (`IntegerValued`, `Measurable`) bite here,
 /// proving the axes have models with genuine dimension.
 public struct ConcreteAgent: HasDistance, HasAlpha {
     public typealias Sigma = Cell<Never, Never>

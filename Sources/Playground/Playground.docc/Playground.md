@@ -63,39 +63,87 @@ magnitude into a finite structure. The type checker verifies. The encoder search
 
 ## Topics
 
-### Count — how many?
+### Ice — residual entropy, counted
 
-A fold on the `IntegerValued` ladder. The number is the normal form it reduces to.
-
-- ``Survivor``
-- ``Eigenstate``
-- ``Broken``
-- ``Bonds``
-
-### Select — is it allowed?
-
-A `where` clause on a relation. The cases that satisfy it compile, and one that does not is rejected.
-
-- ``Orbital``
-- ``DipoleAllowed``
-- ``Side``
-- ``Conserved``
-
-### Propagate — what is forced?
-
-A chain reduced to its forced value. The result is `|S| = 0`, `1`, or greater than `1`.
-
-- ``Machine``
-- ``Task``
-- ``CrystallizedSchedule``
-
-### The physical instances — Matter §5 gates
-
-A domain crystallizes when `|S| = 1` or carries a residual when `|S| > 1`, and the encoding is what fixes it.
+Six of sixteen proton arrangements obey the two-in/two-out ice rule, a fold that counts them to `|S| = 6` per vertex. ``IceOxygen`` crystallizes (`|S| = 1`) while the hydrogen positions carry the residual.
 
 - ``IceOxygen``
-- ``QuantumMeasurement``
+- ``IceHydrogen``
+- ``IceVertex``
+- ``Bonds``
+- ``Survivor``
+- ``In``
+- ``Out``
+- ``Vacuum``
+
+### The hydrogen spectrum — selection by a where clause
+
+A transition emits a line when it satisfies the dipole rule `Δℓ = ±1`, a `where` clause the compiler checks. The `2s → 1s` step has `Δℓ = 0`, so it is rejected and 2s is metastable.
+
+- ``Orbital``
+- ``Orbital1s``
+- ``Orbital2s``
+- ``Orbital2p``
+- ``Orbital3s``
+- ``Orbital3p``
+- ``Orbital3d``
+- ``Lowers``
+- ``Raises``
+- ``DipoleAllowed``
+
+### The Higgs vacuum — broken symmetry, counted
+
+Electroweak breaking leaves three massless Goldstone directions, counted to `= 3`. ``HiggsGaugeInvariant`` is the gauge-invariant vacuum (`|S| = 1`) while the field components carry the residual.
+
 - ``HiggsGaugeInvariant``
+- ``HiggsFieldComponents``
+- ``BrokenSymmetry``
+- ``Unbroken``
+- ``Broken``
+- ``ThreeGoldstones``
+- ``Counted``
+
+### Quantum measurement — degeneracy
+
+A non-degenerate eigenvalue identifies a single state (`|S| = 1`). A degenerate level leaves a residual of `n²`, read by the same gate that certifies the other domains.
+
+- ``QuantumMeasurement``
+- ``DegenerateMeasurement``
+- ``Eigenspace``
+- ``Eigenstate``
+- ``NoEigenstate``
+- ``IdentifyingMeasurement``
+- ``Identified``
+
+### Conservation laws — what a reaction allows
+
+A process is allowed when its conserved quantities close across the arrow, a `where` clause on the totals. The proton is stable because `p → e⁺ + π⁰` conserves charge but not baryon number.
+
+- ``Conserved``
+- ``Reaction``
+- ``Proton``
+- ``Positron``
+- ``Pion0``
+- ``DeltaPlus``
+- ``Side``
+- ``Nothing``
+- ``Allowed``
+
+### The solver — a certified scheduler
+
+Constraints propagate to one forced assignment (`|S| = 1`), or the graph reports as ambiguous (`|S| > 1`) or impossible (`|S| = 0`). Nothing is searched at runtime — the compiler settles it.
+
+- ``Machine``
+- ``MachineA``
+- ``MachineB``
+- ``Task``
+- ``CrystallizedSchedule``
+- ``AmbiguousSchedule``
+- ``Conflict``
+- ``Conflicts``
+- ``Separated``
+- ``Pinned``
+- ``Require``
 
 ### Learning machines — the projection
 
@@ -106,9 +154,12 @@ A learner is located by which coordinates it has. A gated, append-only machine c
 
 ### One lattice, many domains
 
-Ice, the hydrogen spectrum, and the Higgs vacuum each certify the same `SystemCrystallizes` structure, so a construction written over it applies to all of them at once.
+Ice, the hydrogen spectrum, and the Higgs vacuum each certify the same `SystemCrystallizes` structure, so a construction written over it applies to all of them at once — and the three crystals below prove it by compiling.
 
 - ``CrystallizingDomain``
+- ``IceCrystal``
+- ``HiggsCrystal``
+- ``QuantumCrystal``
 
 ### The witnesses — concrete models of the markers
 

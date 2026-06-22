@@ -2,6 +2,8 @@
 
 Formal theory built on one operation — binary comparison over finite structures — and the structural consequences that follow from it.
 
+📖 **[Read the documentation →](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification)** — every protocol and every paper, browsable.
+
 ## Starting point
 
 Take a finite structure. To verify that a candidate matches it, you compare piece by piece until the answer is certain. If exactly one candidate can pass, the candidate that passes IS the identified structure. Verification and identification collapse into the same operation.
@@ -37,7 +39,10 @@ swift test     # the worked physics demos — ice's residual entropy, hydrogen's
 
 ## Documentation
 
-The full theory — every protocol and every paper, woven by the dependency lattice — renders as a browsable DocC site, generated from this package and published with GitHub Pages.
+The full theory — every protocol and every paper, woven by the dependency lattice — renders as a browsable DocC site, generated from this package and published with GitHub Pages:
+
+- **[VerificationIsIdentification](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification)** — the framework: the protocols and the papers.
+- **[Playground](https://danielswift1992.github.io/verification-is-identification/documentation/playground)** — the framework applied: the physics demos and a working solver.
 
 ## License
 

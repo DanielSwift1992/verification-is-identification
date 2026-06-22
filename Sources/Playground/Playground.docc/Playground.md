@@ -154,7 +154,7 @@ A learner is located by which coordinates it has. A gated, append-only machine c
 
 ### One lattice, many domains
 
-Ice, the hydrogen spectrum, and the Higgs vacuum each certify the same `SystemCrystallizes` structure, so a construction written over it applies to all of them at once — and the three crystals below prove it by compiling.
+Ice, the hydrogen spectrum, and the Higgs vacuum each certify the same `SystemCrystallizes` structure, so a construction written over it applies to all of them at once — and the three crystals below prove it by compiling. It is one game on three boards: the same winning structure, reached from ice, from spectra, from broken symmetry.
 
 - ``CrystallizingDomain``
 - ``IceCrystal``

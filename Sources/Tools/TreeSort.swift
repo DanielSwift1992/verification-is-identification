@@ -169,6 +169,7 @@ func byDepth(_ ps: [String]) -> [String] { ps.sorted { (depth($0), index[$0]!) <
 // ── the landing (spine) ──
 func landingTopics(_ trailheads: [String]) -> String {
     var g = ["## Topics\n"]
+    g.append("### Why it exists\n\n- <doc:Purpose>\n")
     g.append("### Start here\n\n" + bullets(trailheads) + "\n")
     g.append("### The seed — the two undefined terms\n\n" + bullets(names(SEED.sorted { title($0) < title($1) })) + "\n")
     g.append("### The medium — markers, the functions on Pair\n\n"

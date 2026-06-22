@@ -14,6 +14,20 @@ So a tag like `[Nav N5]` at the end of a symbol's discussion is provenance, not 
 
 > Note: The lattice is an encoding, not a transcript. Some corollaries the papers state in prose are recorded here as comments rather than protocols, and the paper order is deliberately not the dependency order. The documentation never asks you to open a paper to understand what a symbol *is* — only to see how it was *proved*.
 
+## The papers as one game
+
+The list reads three ways. By the order the papers were written, the walk above. By the structure measured from the lattice, the documentation's spine. And as one game, the reading that <doc:Purpose> opens: each paper is a rule of the game, or a consequence of playing it.
+
+| In the game | Where it is set |
+| --- | --- |
+| the board — to be is to be a finite structure | [Existence Is Finite](doc:existence_is_finite) |
+| the two moves — draw a distinction, or close one | the grammar, ``Law`` |
+| a legal play is a proof | [Play Is Proof](doc:play_is_proof) |
+| the winning position — one survivor, identified | [Verification Is Identification](doc:verification_is_identification) |
+| what playing forces — it saturates, it gains a metric, distance costs, order is its only freedom | [Intelligence Is Inevitable](doc:intelligence_is_inevitable), [Difference Is Distance](doc:difference_is_distance), [Distance Is Cost](doc:distance_is_cost), [Interference Is Intelligence](doc:interference_is_intelligence) |
+
+These are the spine of the arc. The other papers deepen one of these moves, and the full list is below.
+
 ## The tag legend
 
 The tag in each symbol's discussion decodes here. Every paper is readable in full at its link.

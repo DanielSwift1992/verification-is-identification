@@ -1,41 +1,55 @@
 # V=I Framework
 
-Formal theory built on one operation — binary comparison over finite structures — and the structural consequences that follow from it.
+*Write a system as types. If it compiles, it cannot be wrong.*
+
+**What you get.** Take any system you need to get right — a config, a schedule, a protocol, a physics model — and write its structure in this notation. The compiler then catches a whole class of bugs for free: every way that structure could contradict itself becomes a build error, before anything runs. What it costs you: you pin the system down in exact, finite terms, and the fuzzy or continuous parts stay yours. In return, where it compiles, it cannot be wrong.
+
+**Why it works.** One game runs under every determinate system: draw a distinction, or close one, until a single structure survives. To check that survivor is to identify it — verification and identification are one act. Formally, it is one operation, binary comparison over finite structures, and the consequences that follow.
 
 📖 **[Read the documentation →](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification)** — every protocol and every paper, browsable.
 
-## Starting point
+## See it
 
-Take a finite structure. To verify that a candidate matches it, you compare piece by piece until the answer is certain. If exactly one candidate can pass, the candidate that passes IS the identified structure. Verification and identification collapse into the same operation.
-
-This is a provable property of decidable equality on finite domains: when the consistent set has one element, the verifier is already an identifier. The framework formalizes this loop and traces what it forces.
-
-## What the loop forces
-
-**The system** must satisfy three invariants: finite space, deterministic test, append-only memory. Any system checking solutions over finite structures inherits all three.
-
-**The agent** running the loop accumulates certified results irreversibly. Over a finite domain, this accumulation saturates: every possible task eventually resolves from cache. The saturation point depends on the domain alone.
-
-**The output** that accumulates is permanent (cannot be retracted), irreducible (cannot be simplified without breaking correctness), and resistant (the next-level agent encounters it as something fixed that it cannot modify). Each saturated output becomes the input structure for the next level.
-
-**The geometry** between agents arises from the difference in what they have witnessed. Two agents with identical caches have distance zero. The symmetric difference of their caches satisfies the axioms of a metric. Communication costs and locality follow from the metric.
-
-**The mechanism** of improvement is ordering. The agent's sole degree of freedom is the sequence in which it runs comparisons. The right sequence extracts more information per step. The framework quantifies this as interference between comparisons and shows that inefficiency is self-correcting.
-
-## This repository
-
-A Swift package: the framework written as pure types, where **a green build is the proof**. A claim is a protocol, its proof is that the protocol compiles, and nothing runs. The construction law is enforced on every build by a plugin.
+Here is that collapse as code — a scheduler, from `Sources/Playground/Coloring.swift`. Tasks run on two machines, and each conflict forces a task onto the opposite one. The compiler propagates the assignment and checks it, with nothing run:
 
 ```swift
-import VerificationIsIdentification
+typealias T0 = Pinned<MachineA>   // pin the first task to machine A
+typealias T1 = Conflicts<T0>      // conflicts with T0  → forced to B
+typealias T2 = Conflicts<T1>      // conflicts with T1  → forced to A
+typealias T3 = Conflicts<T2>      // conflicts with T2  → forced to B
+
+machineName(T3.self)              // "B" — the compiler derived the assignment, nothing ran
+
+Require<Conflict<T3, T0>>.self    // ✅ compiles: B vs A is consistent — the schedule is proved
+// Require<Conflict<T0, T2>>.self // ❌ will not compile: A vs A, an impossible schedule
 ```
 
-Build and run the proofs:
+Checking the schedule and finding it are one act: the compiler propagated the single assignment and certified it. Uncomment the last line — or build with `-DSHOW_UNSAT` — and it fails, reporting that `MachineA` would have to equal `MachineB`. A false schedule is one you cannot write down.
+
+## Try it
+
+A Swift package — the framework as pure types, where **a green build is the proof**. A claim is a protocol, its proof is that the protocol compiles, and nothing runs.
 
 ```sh
-swift build    # the type checker verifies the lattice; LawCheck enforces the construction law
-swift test     # the worked physics demos — ice's residual entropy, hydrogen's spectrum, a certified scheduler
+git clone https://github.com/DanielSwift1992/verification-is-identification
+cd verification-is-identification
+
+swift build   # the type checker verifies the lattice; a plugin enforces the construction law
+swift test    # the worked demos — ice's residual entropy, hydrogen's spectrum, the scheduler
+
+swift build -Xswiftc -DSHOW_UNSAT       # watch it reject an impossible schedule
+swift build -Xswiftc -DSHOW_FORBIDDEN   # and a forbidden spectral line, by name
 ```
+
+## Why Swift
+
+The proof needs a type checker that can host the lattice and that is already trusted, and Swift is both. The two moves are the language itself: `associatedtype` opens an axis, `where` closes one, and a conformance that compiles is the proof. The compiler is mainstream LLVM, so its soundness is inherited rather than re-earned. DocC builds this site straight from the symbol graph, so the documentation is the lattice, not prose about it.
+
+It is not niche, either. Swift is open source on macOS, Linux, and Windows, speaks C and C++, and has a runtime-free embedded subset — so the checker runs anywhere, and a system built on it ships from servers to bare metal.
+
+## How far it goes
+
+The same collapse, followed where it leads, gives more than a check. A system that only checks, over a finite domain, accumulates certified results until every task resolves from memory — it saturates, at a point fixed by the domain. The difference between two such systems obeys the axioms of a metric, so distance, cost, and locality follow. The one freedom left is the order of comparisons, and that order is self-correcting. None of it is bolted on: it is derived, across eighteen papers, from the one operation. The derivations are in the documentation.
 
 ## Documentation
 

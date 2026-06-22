@@ -1,0 +1,44 @@
+<svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The construction law: one seed, two moves, one floor.">
+  <title>The construction law</title>
+  <desc>One seed — Pair: two sides, one boundary. Two moves — expand, compress. One floor — finite: width times depth.</desc>
+  <defs>
+    <marker id="ah" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#1d1d1f"/>
+    </marker>
+  </defs>
+  <g font-family="-apple-system, system-ui, 'Helvetica Neue', Arial, sans-serif">
+    <line x1="240" y1="46" x2="240" y2="178" stroke="#e8e8ed" stroke-width="1"/>
+    <line x1="480" y1="46" x2="480" y2="178" stroke="#e8e8ed" stroke-width="1"/>
+
+    <text x="120" y="32" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="2.5" fill="#86868b">SEED</text>
+    <text x="360" y="32" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="2.5" fill="#86868b">MOVE</text>
+    <text x="600" y="32" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="2.5" fill="#86868b">FLOOR</text>
+
+    <!-- SEED: one boundary divides one thing into two sides -->
+    <rect x="82" y="63" width="76" height="46" rx="9" fill="none" stroke="#d2d2d7" stroke-width="1.5"/>
+    <line x1="120" y1="63" x2="120" y2="109" stroke="#0071e3" stroke-width="2"/>
+    <text x="101" y="91" text-anchor="middle" font-size="15" fill="#1d1d1f">a</text>
+    <text x="139" y="91" text-anchor="middle" font-size="15" fill="#1d1d1f">b</text>
+    <text x="120" y="150" text-anchor="middle" font-size="14" font-weight="600" fill="#1d1d1f">Pair</text>
+    <text x="120" y="170" text-anchor="middle" font-size="11" fill="#86868b">two sides · one boundary</text>
+
+    <!-- MOVE: two moves, no third -->
+    <text x="346" y="82" text-anchor="end" font-size="12.5" fill="#1d1d1f">expand</text>
+    <line x1="352" y1="78" x2="384" y2="78" stroke="#1d1d1f" stroke-width="1.5" marker-end="url(#ah)"/>
+    <text x="394" y="82" text-anchor="start" font-size="11" fill="#86868b">+ axis</text>
+    <text x="346" y="104" text-anchor="end" font-size="12.5" fill="#1d1d1f">compress</text>
+    <line x1="384" y1="100" x2="352" y2="100" stroke="#1d1d1f" stroke-width="1.5" marker-end="url(#ah)"/>
+    <text x="394" y="104" text-anchor="start" font-size="11" fill="#86868b">where</text>
+    <text x="360" y="150" text-anchor="middle" font-size="14" font-weight="600" fill="#1d1d1f">two moves</text>
+    <text x="360" y="170" text-anchor="middle" font-size="11" fill="#86868b">no third</text>
+
+    <!-- FLOOR: finite — width × depth, every chain ends at ∅ -->
+    <circle cx="600" cy="66" r="5" fill="#0071e3"/>
+    <line x1="599" y1="71" x2="584" y2="92" stroke="#1d1d1f" stroke-width="1.5"/>
+    <line x1="601" y1="71" x2="616" y2="92" stroke="#1d1d1f" stroke-width="1.5"/>
+    <text x="584" y="104" text-anchor="middle" font-size="14" fill="#86868b">∅</text>
+    <text x="616" y="104" text-anchor="middle" font-size="14" fill="#86868b">∅</text>
+    <text x="600" y="150" text-anchor="middle" font-size="14" font-weight="600" fill="#1d1d1f">width × depth</text>
+    <text x="600" y="170" text-anchor="middle" font-size="11" fill="#86868b">finite — every chain ends at ∅</text>
+  </g>
+</svg>

@@ -1,0 +1,60 @@
+name: Docs
+
+# Build the documentation site on every push to main and deploy it to GitHub Pages.
+# The site is never committed — it is built fresh here and served from Pages.
+# One-time setup: Settings → Pages → Source = "GitHub Actions".
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Build (LawCheck enforces the law) and test
+        run: |
+          swift --version
+          swift build
+          swift test
+
+      - name: Generate the combined documentation site
+        run: >
+          swift package
+          --allow-writing-to-directory "$GITHUB_WORKSPACE/_site"
+          generate-documentation
+          --enable-experimental-combined-documentation
+          --target VerificationIsIdentification --target Playground
+          --transform-for-static-hosting
+          --hosting-base-path verification-is-identification
+          --output-path "$GITHUB_WORKSPACE/_site"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

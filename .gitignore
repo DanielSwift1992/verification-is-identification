@@ -21,5 +21,9 @@ __pycache__/
 # Build artifacts
 *.log
 
+# Generated docs (built by CI, deployed to Pages — never committed)
+docs/
+_site/
+
 # Generated
 pass_manifest.json

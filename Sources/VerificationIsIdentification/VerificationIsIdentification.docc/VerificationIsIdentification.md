@@ -28,7 +28,7 @@ From there, pick a thread — matter, distance, learning, dynamics.
 
 ![The construction law: one seed, two moves, one floor.](law)
 
-**The law applied.** To see the framework used rather than stated, open [the `Playground` module](/documentation/playground): the physics of *Matter* §5 reproduced as types — the residual entropy of ice, hydrogen's metastable 2s, the stable proton — and a working solver. A green build is the proof there too.
+**The law applied.** To see the framework used rather than stated, open [the `Playground` module](https://danielswift1992.github.io/verification-is-identification/documentation/playground): the physics of *Matter* §5 reproduced as types — the residual entropy of ice, hydrogen's metastable 2s, the stable proton — and a working solver. A green build is the proof there too.
 
 ### What is on this page
 

@@ -49,7 +49,7 @@ It is not niche, either. Swift is open source on macOS, Linux, and Windows, spea
 
 ## How far it goes
 
-The same collapse, followed where it leads, gives more than a check. A system that only checks, over a finite domain, accumulates certified results until every task resolves from memory — it saturates, at a point fixed by the domain. The difference between two such systems obeys the axioms of a metric, so distance, cost, and locality follow. The one freedom left is the order of comparisons, and that order is self-correcting. None of it is bolted on: it is derived, across eighteen papers, from the one operation. The derivations are in the documentation.
+The collapse forces more than a check. A system that only checks, over a finite domain, accumulates certified results until every task resolves from memory — it saturates, at a point fixed by the domain. The difference between two such systems obeys the axioms of a metric, so distance, cost, and locality follow. The one freedom left is the order of comparisons, and that order is self-correcting. None of it is bolted on: it is derived, across eighteen papers, from the one operation. The derivations are in the documentation.
 
 ## Documentation
 

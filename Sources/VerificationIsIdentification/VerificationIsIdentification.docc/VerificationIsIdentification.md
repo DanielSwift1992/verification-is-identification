@@ -6,7 +6,7 @@ A theory of when checking an answer is the same as knowing it — written as pur
 
 ## Overview
 
-**Why it exists.** Correctness is usually a second artifact — a proof kept beside the system, drifting from it. This collapses the two: you write the structure, and the writing is the proof. The goal and the method behind that collapse are one page, <doc:Purpose>. What follows is the result that method reaches.
+**Why it exists.** Correctness is usually a second artifact — a proof kept beside the system, drifting from it. This collapses the two: you write the structure, and the writing is the proof. The goal and the method behind that collapse are one page, <doc:Purpose>. This page is the result.
 
 **What it is.** Take a finite set of candidates and a test. If exactly one candidate passes, then "it passed" and "it is the answer" say the same thing — to check the lone survivor is to identify it. (Of `a, b, c`, if only `c` passes, then "`c` passed" and "the answer is `c`" are one fact.) That collapse is the result, ``PassIsIdentification``. It is written as pure Swift types, so the compiler is the proof checker: a claim is a protocol, its proof is that the protocol compiles, and nothing runs.
 
@@ -20,7 +20,7 @@ For the derivations, the result is proved and extended across eighteen papers (f
 - <doc:verification_is_identification> — the result itself, proved.
 - <doc:intelligence_is_inevitable> — its first consequence: a learner that must saturate.
 
-From there, follow whichever thread you like — matter, distance, learning, dynamics.
+From there, pick a thread — matter, distance, learning, dynamics.
 
 **How it is built.** From one act and one fixpoint:
 
@@ -28,7 +28,7 @@ From there, follow whichever thread you like — matter, distance, learning, dyn
 - term **The move:** two directions and no third — *expand* opens a degree of freedom (`associatedtype`), *compress* closes one (`where`).
 - term **The floor:** every space is finite — width (``Pair`` has two sides) × depth (every chain reaches ``Null``).
 
-**The law applied.** To see the framework used rather than stated, open [the `Playground` module](/documentation/playground): the physics of *Matter* §5 reproduced as types — the residual entropy of ice, hydrogen's metastable 2s, the stable proton — and a working solver. A green build is the answer there too.
+**The law applied.** To see the framework used rather than stated, open [the `Playground` module](/documentation/playground): the physics of *Matter* §5 reproduced as types — the residual entropy of ice, hydrogen's metastable 2s, the stable proton — and a working solver. A green build is the proof there too.
 
 ### What is on this page
 

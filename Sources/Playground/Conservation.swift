@@ -21,29 +21,37 @@ public protocol Side {
 }
 
 /// The empty side: both quantities floor at `Never` (zero).
-public enum Nothing: Side { public typealias Baryon = Never; public typealias Charge = Never; public static let label = "" }
+public enum Nothing: Side {
+    public typealias Baryon = Never
+    public typealias Charge = Never
+    public static let label = ""
+}
 
 /// A proton on the side: baryon +1, charge +1.
 public struct Proton<Rest: Side>: Side {
-    public typealias Baryon = Succ<Rest.Baryon>; public typealias Charge = Succ<Rest.Charge>
+    public typealias Baryon = Succ<Rest.Baryon>
+    public typealias Charge = Succ<Rest.Charge>
     public static var label: String { "p " + Rest.label }
 }
 
 /// A positron on the side: baryon 0, charge +1.
 public struct Positron<Rest: Side>: Side {
-    public typealias Baryon = Rest.Baryon; public typealias Charge = Succ<Rest.Charge>
+    public typealias Baryon = Rest.Baryon
+    public typealias Charge = Succ<Rest.Charge>
     public static var label: String { "e⁺ " + Rest.label }
 }
 
 /// A neutral pion on the side: baryon 0, charge 0.
 public struct Pion0<Rest: Side>: Side {
-    public typealias Baryon = Rest.Baryon; public typealias Charge = Rest.Charge
+    public typealias Baryon = Rest.Baryon
+    public typealias Charge = Rest.Charge
     public static var label: String { "π⁰ " + Rest.label }
 }
 
 /// A Δ⁺ baryon on the side: baryon +1, charge +1.
 public struct DeltaPlus<Rest: Side>: Side {
-    public typealias Baryon = Succ<Rest.Baryon>; public typealias Charge = Succ<Rest.Charge>
+    public typealias Baryon = Succ<Rest.Baryon>
+    public typealias Charge = Succ<Rest.Charge>
     public static var label: String { "Δ⁺ " + Rest.label }
 }
 

@@ -17,13 +17,34 @@ public typealias EllP = Succ<Never>
 public typealias EllD = Succ<Succ<Never>>
 
 /// A hydrogen orbital, carrying its ℓ and a label.
-public protocol Orbital { associatedtype L: IntegerValued; static var label: String { get } }
-public enum Orbital1s: Orbital { public typealias L = EllS; public static let label = "1s" }
-public enum Orbital2s: Orbital { public typealias L = EllS; public static let label = "2s" }
-public enum Orbital2p: Orbital { public typealias L = EllP; public static let label = "2p" }
-public enum Orbital3s: Orbital { public typealias L = EllS; public static let label = "3s" }
-public enum Orbital3p: Orbital { public typealias L = EllP; public static let label = "3p" }
-public enum Orbital3d: Orbital { public typealias L = EllD; public static let label = "3d" }
+public protocol Orbital {
+    associatedtype L: IntegerValued
+    static var label: String { get }
+}
+public enum Orbital1s: Orbital {
+    public typealias L = EllS
+    public static let label = "1s"
+}
+public enum Orbital2s: Orbital {
+    public typealias L = EllS
+    public static let label = "2s"
+}
+public enum Orbital2p: Orbital {
+    public typealias L = EllP
+    public static let label = "2p"
+}
+public enum Orbital3s: Orbital {
+    public typealias L = EllS
+    public static let label = "3s"
+}
+public enum Orbital3p: Orbital {
+    public typealias L = EllP
+    public static let label = "3p"
+}
+public enum Orbital3d: Orbital {
+    public typealias L = EllD
+    public static let label = "3d"
+}
 
 /// A dipole-allowed transition: Δℓ = ±1. The two branches are distinct generic
 /// heads (`Lowers`, `Raises`), so each carries one side of the rule without a

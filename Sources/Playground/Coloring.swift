@@ -16,13 +16,22 @@ import VerificationIsIdentification
 
 /// One of two machines. Each names its opposite — the unary type function
 /// propagation walks across every conflict edge. [V=I §2.5]
-public protocol Machine { static var name: String { get }; associatedtype Opposite: Machine }
+public protocol Machine {
+    static var name: String { get }
+    associatedtype Opposite: Machine
+}
 
 /// Machine A: its opposite is ``MachineB``. [V=I §2.5]
-public enum MachineA: Machine { public static let name = "A"; public typealias Opposite = MachineB }
+public enum MachineA: Machine {
+    public static let name = "A"
+    public typealias Opposite = MachineB
+}
 
 /// Machine B: its opposite is ``MachineA``. [V=I §2.5]
-public enum MachineB: Machine { public static let name = "B"; public typealias Opposite = MachineA }
+public enum MachineB: Machine {
+    public static let name = "B"
+    public typealias Opposite = MachineA
+}
 
 /// A task carries the machine it is assigned, reduced by the type checker. [V=I §5.22]
 public protocol Task { associatedtype Assigned: Machine }
@@ -35,7 +44,7 @@ public struct Pinned<M: Machine>: Task { public typealias Assigned = M }
 public struct Conflicts<Prev: Task>: Task { public typealias Assigned = Prev.Assigned.Opposite }
 
 /// A conflict edge that must hold: the two tasks land on different machines. The
-/// constraint is the `where`; an edge whose endpoints share a machine cannot
+/// constraint is the `where`. An edge whose endpoints share a machine cannot
 /// conform, so the schedule that violates it cannot be built. [V=I §3.5]
 public protocol Separated {}
 public enum Conflict<U: Task, V: Task> {}
@@ -55,7 +64,7 @@ public typealias T3 = Conflicts<T2>     // forced B
 public typealias ClosingConflict = Require<Conflict<T3, T0>>   // B vs A — satisfied, compiles
 
 /// The derived machine name of a task, read back from the type the compiler
-/// reduced. The propagation is the proof; this only labels it. [V=I §5.20]
+/// reduced. The propagation is the proof. This only labels it. [V=I §5.20]
 public func machineName<T: Task>(_: T.Type) -> String { T.Assigned.name }
 
 /// |S| = 1: the pinned, connected, consistent schedule is forced to one

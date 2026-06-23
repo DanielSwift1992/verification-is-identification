@@ -18,7 +18,7 @@ import VerificationIsIdentification
 
 /// Ice under the OXYGEN encoding crystallizes: the oxygen lattice has a unique
 /// ground state Ih, so `|S| = 1`. The type checker certifies it by accepting
-/// this conformance; the `Instances` target then computes `|S|` under the
+/// this conformance. The `Instances` target then computes `|S|` under the
 /// hydrogen encoding and recovers the residual entropy from it. [Matter §5]
 public struct IceOxygen: SystemCrystallizes {
     public typealias Sigma       = Three              // configurations on a finite lattice (I1)

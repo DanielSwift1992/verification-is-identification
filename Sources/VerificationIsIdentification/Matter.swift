@@ -40,7 +40,7 @@ public protocol Resistant: HasDistance, Decidable {}
 /// Matter is what a settled system leaves behind: a result that can no longer change.
 /// Three faces of one fact — it is permanent (it only accumulates), irreducible (it is
 /// the unique survivor, so nothing simpler is correct), and resistant (the next system
-/// meets it as something fixed). Conform here and the build certifies all three at once.
+/// meets it as something fixed). A conforming type certifies all three at once.
 ///
 /// The three are pinned by ``KnowledgeAccumulates`` (permanent, I3),
 /// ``PassIsIdentification`` (irreducible, Thm 2, each entry the unique `f*`), and

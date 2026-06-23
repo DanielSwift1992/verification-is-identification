@@ -53,7 +53,7 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``Matter``
 - ``PlayIsProof``
 
-### The seed — the two undefined terms
+### The seed — one act and its fixpoint
 
 - ``Null``
 - ``Pair``

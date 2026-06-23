@@ -18,10 +18,13 @@
 /// - term Move: two directions — *expand* (add an axis), *compress* (close one).
 /// - term Floor: every space is finite — width (``Pair``) × depth (``Null``).
 ///
-/// ## §0 — Two primitives
+/// ## §0 — The seed and its fixpoint
 ///
-/// There are exactly two undefined terms. Everything else reduces to them. A
-/// term that cannot is foreign and is rejected (§6).
+/// The lattice grows from one act, ``Pair`` (a distinction), and closes at its
+/// fixpoint ``Null``. Everything reduces to them. They are primitive here — the
+/// lattice starts from them — but not arbitrary: Existence Is Finite shows they are
+/// the only foundation determinacy allows, below the floor. A term that reduces to
+/// neither is foreign and is rejected (§6).
 ///
 /// - ``Pair`` — one act of distinction: two sides, one boundary
 ///   (`associatedtype Left`, `associatedtype Right`).

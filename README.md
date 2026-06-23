@@ -28,7 +28,7 @@ Checking the schedule and finding it are one act: the compiler propagated the si
 
 ## Try it
 
-A Swift package — the framework as pure types, where **a green build is the proof**. A claim is a protocol, its proof is that the protocol compiles, and nothing runs.
+A Swift package — the framework as pure types, where **a green build is the proof**. You write a claim as a protocol, and if it compiles, the claim holds. Nothing runs.
 
 ```sh
 git clone https://github.com/DanielSwift1992/verification-is-identification

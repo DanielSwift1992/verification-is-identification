@@ -1,6 +1,6 @@
 # ``Playground``
 
-Worked examples of the framework: physics reproduced as types, learning machines located by their coordinates, the concrete models that inhabit the markers, and a working solver — each settled by compiling, nothing run.
+Worked examples of the framework: physics reproduced as types, learning machines located by their coordinates, the concrete models that inhabit the markers, and a working solver — each decided by compiling, nothing run.
 
 ## Overview
 
@@ -10,7 +10,7 @@ it. The papers call this Verification Is Identification. This `Playground` is th
 applied layer that puts those protocols to work on concrete systems. If you are new,
 read [`VerificationIsIdentification`](/documentation/verificationisidentification) first. This page shows what is built on it.
 
-**What you can do here.** The type checker settles each of these by compiling, with
+**What you can do here.** The type checker decides each of these by compiling, with
 no program run:
 
 - Reproduce the residual entropy of ice — the count of two-in/two-out configurations, `|S| = 6` per vertex.
@@ -36,7 +36,7 @@ or impossible.
 **How to use it.** There are three steps.
 
 1. Run the demos. `swift test` exercises them and pins the numbers the build
-   settled — the residual entropy of ice, the hydrogen spectrum, the scheduler.
+   fixed — the residual entropy of ice, the hydrogen spectrum, the scheduler.
 2. See a rejection. Rebuild with a flag and read the named error:
    `swift build -Xswiftc -DSHOW_FORBIDDEN` for the forbidden spectral lines and
    proton decay, `-DSHOW_REJECT` for the `|S| > 1` gates, `-DSHOW_UNSAT` or
@@ -131,7 +131,7 @@ A process is allowed when its conserved quantities close across the arrow, a `wh
 
 ### The solver — a certified scheduler
 
-Constraints propagate to one forced assignment (`|S| = 1`), or the graph reports as ambiguous (`|S| > 1`) or impossible (`|S| = 0`). Nothing is searched at runtime — the compiler settles it.
+Constraints propagate to one forced assignment (`|S| = 1`), or the graph reports as ambiguous (`|S| > 1`) or impossible (`|S| = 0`). Nothing is searched at runtime. The compiler decides it.
 
 - ``Machine``
 - ``MachineA``

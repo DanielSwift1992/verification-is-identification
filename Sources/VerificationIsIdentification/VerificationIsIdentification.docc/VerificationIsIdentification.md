@@ -8,7 +8,7 @@ A theory of when checking an answer is the same as knowing it — written as pur
 
 **Why it exists.** Correctness is usually a second artifact — a proof kept beside the system, drifting from it. This collapses the two: you write the structure, and the writing is the proof. The goal and the method behind that collapse are one page, <doc:Purpose>. This page is the result.
 
-**What it is.** Take a finite set of candidates and a test. If exactly one candidate passes, then "it passed" and "it is the answer" say the same thing — to check the lone survivor is to identify it. (Of `a, b, c`, if only `c` passes, then "`c` passed" and "the answer is `c`" are one fact.) That collapse is the result, ``PassIsIdentification``. It is written as pure Swift types, so the compiler is the proof checker: a claim is a protocol, its proof is that the protocol compiles, and nothing runs.
+**What it is.** Take a finite set of candidates and a test. If exactly one candidate passes, then "it passed" and "it is the answer" say the same thing — to check the lone survivor is to identify it. (Of `a, b, c`, if only `c` passes, then "`c` passed" and "the answer is `c`" are one fact.) That collapse is the result, ``PassIsIdentification``. It is written as pure Swift types, so the compiler is the proof checker. You write a claim as a protocol, and if it compiles, the claim holds. Nothing runs.
 
 **Why it matters.** Checking an answer is the cheap, mechanical half of knowing. Finding it is the hard half. Where the two collapse, a system that only *checks* thereby *finds* — and since a passing check is a proof, its answer is certain, never confident-but-wrong. This is not one problem's trick: whatever is determinate is a finite structure, so the collapse holds wherever anything is determinate, and it marks the exact line between what can be known for sure and what must be supplied from outside. It is the opposite of a system that guesses fluently yet cannot tell a proof from a guess.
 
@@ -36,7 +36,7 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 
 (The page is not ordered by paper: the order the papers were written is one walk through the types, while this lists them by the move each one makes. A fuller account of that organization is in ``Law``.)
 
-> Important: The compiler is the engine. A green build is not a test that passed — it is a proof that type-checked. Conform a type to ``SystemCrystallizes`` and its compilation *is* its certificate. Break a theorem's premise and every dependent stops compiling.
+> Important: The compiler is the engine. A green build is a proof that type-checked, not a test that passed. When a type conforms to ``SystemCrystallizes``, its compilation is the certificate. When a theorem's premise breaks, every dependent stops compiling.
 
 > Note: The whole tree obeys one construction law (see ``Law``), enforced on every build by the package's linter. The spine and routes below are *induced* from the types: `tree-sort` computes each symbol's group from the `associatedtype`/`where` it declares, and `tree-sort --check` holds the page equal to the types. Nothing is grouped by hand.
 

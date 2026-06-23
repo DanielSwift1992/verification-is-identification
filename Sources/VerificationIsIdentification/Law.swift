@@ -18,7 +18,7 @@
 /// - term Move: two directions — *expand* (add an axis), *compress* (close one).
 /// - term Floor: every space is finite — width (``Pair``) × depth (``Null``).
 ///
-/// ## §0 — The seed and its fixpoint
+/// ## §0 · The seed and its fixpoint
 ///
 /// The lattice grows from one act, ``Pair`` (a distinction), and closes at its
 /// fixpoint ``Null``. Everything reduces to them. They are primitive here — the
@@ -31,7 +31,7 @@
 /// - ``Null`` — the fixpoint of ``Pair``: the boundary closes, `Left == Right`.
 ///   Its inhabitant is `Never` — uninhabited, nothing left to split.
 ///
-/// ## §0′ — Pure types
+/// ## §0′ · Pure types
 ///
 /// The medium is the type system and nothing else. There is no runtime, no
 /// values, ever. You read a fact by asking the type checker — *does `X`
@@ -49,7 +49,7 @@
 /// | `where` clauses | `init`, `subscript`, `operator` |
 /// | `struct`/`enum` whose only members are `typealias` | any executable body |
 ///
-/// ## §1 — Two moves, and you must make one
+/// ## §1 · Two moves, and you must make one
 ///
 /// ```swift
 /// associatedtype Distance   // EXPAND   — open a degree of freedom
@@ -66,7 +66,7 @@
 /// > If nothing breaks that a parent did not already guarantee, it was a rename.
 /// > The linter rejects this form on every build.
 ///
-/// ## §2 — Every axis gets a dimension
+/// ## §2 · Every axis gets a dimension
 ///
 /// A bare `associatedtype X` is a *free* axis — dimensionless, hence infinite.
 /// To give it a dimension is to constrain it with `where`. Every axis opened by
@@ -89,7 +89,7 @@
 /// > structure) → inline. `Cache: Permanent` (a cache could be mutable, I3
 /// > forbids it) → theorem.
 ///
-/// ## §3 — A function is expressed, never tagged
+/// ## §3 · A function is expressed, never tagged
 ///
 /// A marker names a function on a space, and a function is a ``Pair`` whose two
 /// sides are *related* — the relation **is** the function, written as a `where`.
@@ -104,32 +104,29 @@
 ///
 /// Strip the `where` and the two opposites collapse to the same empty type.
 ///
-/// > Tip: **Parent or pin.** A marker attaches two ways, and which one is itself a
-/// > claim. As a *parent* (`protocol P: Decidable`) when P's own sides embody the
-/// > relation — P *is* a decision, a measurement, a collapse (``Resistant`` is the
-/// > `not_equal` verdict, ``LiquidPhase`` is the unresolved region shrinking). As a
-/// > *pin* (`where Axis: Decidable`) when an axis of P has the property, not P
-/// > itself (``CachePermanent`` pins `Cache:` ``Permanent``, ``SystemCrystallizes``
-/// > pins `SolutionSet:` ``Unique``). The test: does the marker describe the
-/// > protocol's own ``Pair``, or one of its axes?
+/// > Tip: **Parent or pin.** A marker attaches two ways, and the choice is itself a
+/// > claim. Make it a *parent* (`protocol P: Decidable`) when the protocol itself is
+/// > that thing: P *is* the decision, the measurement. Make it a *pin*
+/// > (`where Axis: Decidable`) when P itself is not, but one of its axes is. The
+/// > test: does the marker describe the protocol's own ``Pair``, or one of its axes?
 ///
-/// ## §4 — Finite = width × depth
+/// ## §4 · Finite = width × depth
 ///
-/// Both, not either. Width is positive and built in — a ``Pair`` has exactly two
-/// sides, never ω. Depth is negative and by witness — every ``Pair``-chain
-/// reaches `Never`, and an infinite structure has no concrete witness, so the
-/// compiler admits no type for it. `Never` is the witness that the chain stops.
-/// A ``Pair`` without a floor is the infinite binary tree. A floor without
-/// ``Pair`` is a node of ω children. Volume = width × depth — both must close.
+/// Finite means both are bounded, not just one. Width is bounded by the shape
+/// itself: a ``Pair`` has exactly two sides, never infinitely many. Depth is
+/// bounded because every ``Pair``-chain has to reach `Never`, the floor where it
+/// stops. An infinite structure never reaches a floor, so the compiler has no type
+/// for it. Drop the floor and you have the infinite binary tree. Drop ``Pair`` and
+/// you have a node with infinitely many children. Both must close.
 ///
-/// ## §5 — Nothing floats
+/// ## §5 · Nothing floats
 ///
 /// Trace any protocol up its parents: it must reach ``Pair``. Trace any structure
 /// down: it must reach ``Null``. Markers root in ``Pair`` or ``Null``. Axes root
 /// in the one space-root ``HasSigma``. Theorems root in markers and axes. A
 /// protocol that reaches neither is rejected.
 ///
-/// ## §6 — The law obeys the law
+/// ## §6 · The law obeys the law
 ///
 /// The law is written in ``Pair`` and ``Null``:
 ///
@@ -144,7 +141,7 @@
 /// state it in ``Pair``/``Null``. If it cannot be said in those terms, it is
 /// foreign — do not add it.
 ///
-/// ## §T — Translation: any theorem → types
+/// ## §T · Translation: any theorem → types
 ///
 /// The algorithm that turns a published theorem into a protocol. A theorem is
 /// *premises ⟹ conclusion*. Fill four slots, then render.
@@ -178,7 +175,7 @@
 /// the conclusion-fixpoint is present, and at least one move is made. Then the
 /// compiler's conformance check *is* the proof.
 ///
-/// ## §7 — The tree obeys the law
+/// ## §7 · The tree obeys the law
 ///
 /// The page that documents the lattice branches by the same move the lattice
 /// makes. §6 forces it: the law lives in ``Pair`` and ``Null``, so the *tree of

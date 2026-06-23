@@ -45,7 +45,8 @@ or impossible.
    `-DSHOW_AMBIGUOUS` for the solver.
 3. Encode your own question. Choose the operation, write it as types, and read the
    build. A selection rule is a `where` clause. The cases that satisfy it compile,
-   and one that does not is rejected:
+   and one that does not is rejected. The `Lowers` and `Orbital` types below are real,
+   in `Sources/Playground/Hydrogen.swift`:
 
    ```swift
    // The dipole rule Δℓ = ±1, written as a where clause.

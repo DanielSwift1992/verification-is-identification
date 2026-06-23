@@ -37,14 +37,14 @@ public protocol Resistant: HasDistance, Decidable {}
 
 // ── §2 Matter ──
 
-/// Matter is the crystallized output: permanent, irreducible, resistant. Permanent
-/// (``KnowledgeAccumulates``, I3), irreducible (``PassIsIdentification``, Thm 2 —
-/// each entry is the unique `f*`), resistant (``Resistant``, I2). Three angles on
-/// one structural fact, so the type is exactly their intersection. [Matter §2]
+/// Matter is what a settled system leaves behind: a result that can no longer change.
+/// Three faces of one fact — it is permanent (it only accumulates), irreducible (it is
+/// the unique survivor, so nothing simpler is correct), and resistant (the next system
+/// meets it as something fixed). Conform here and the build certifies all three at once.
 ///
-/// > Note: The three faces are one fact, not three requirements — append-only
-/// > history, unique survivor, and a target that resists collapse to the same
-/// > crystallized entry. Conform here and the build certifies all three at once.
+/// The three are pinned by ``KnowledgeAccumulates`` (permanent, I3),
+/// ``PassIsIdentification`` (irreducible, Thm 2, each entry the unique `f*`), and
+/// ``Resistant`` (resistant, I2), so the type is exactly their intersection. [Matter §2]
 ///
 /// **Premises** — ``KnowledgeAccumulates`` (accumulation) · ``PassIsIdentification`` (kernel) · ``Resistant`` (geometry).
 public protocol Matter: KnowledgeAccumulates, PassIsIdentification, Resistant {}

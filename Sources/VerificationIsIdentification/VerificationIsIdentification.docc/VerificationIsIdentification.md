@@ -12,7 +12,9 @@ A theory of when checking an answer is the same as knowing it — written as pur
 
 **Why it matters.** Checking an answer is the cheap, mechanical half of knowing. Finding it is the hard half. Where the two collapse, a system that only *checks* thereby *finds* — and since a passing check is a proof, its answer is certain, never confident-but-wrong. This is not one problem's trick: whatever is determinate is a finite structure, so the collapse holds wherever anything is determinate, and it marks the exact line between what can be known for sure and what must be supplied from outside. It is the opposite of a system that guesses fluently yet cannot tell a proof from a guess.
 
-**Where to start.** The result is proved and extended across eighteen papers (full list in <doc:Sources>):
+**Where to start.** Four type pages make a plain on-ramp, read in order: ``PassIsIdentification`` (the result), ``SystemCrystallizes`` (a system that settles to one answer), ``Matter`` (what it leaves behind), and ``PlayIsProof`` (the capstone). Everything else under Topics is a reference to dip into — each page stands on its own.
+
+For the derivations, the result is proved and extended across eighteen papers (full list in <doc:Sources>):
 
 - <doc:existence_is_finite> — the ground: to be is to be a finite structure.
 - <doc:verification_is_identification> — the result itself, proved.

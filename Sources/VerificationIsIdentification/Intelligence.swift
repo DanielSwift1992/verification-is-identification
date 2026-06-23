@@ -50,17 +50,16 @@ public protocol ResultsIrreversible: CachePermanent, EqualityDecidable {}
 public protocol MembershipDecidable: EqualityDecidable,
     HasSolutions where SolutionSet: Decidable {}
 
-/// The system reaches a terminal state: `∃n: |Sₙ| ≤ 1`. Four axioms force it.
-/// [IiI §5]
-/// A1 = ``CandidatesOnlyLeave`` (V=I §5.22), A2 = ``ResultsIrreversible``, A3 = ``MembershipDecidable``.
-/// A4 conclusion pinned (§T): S collapses to one survivor — `where SolutionSet: Unique`.
+/// A system that keeps narrowing its options until one is left, and then cannot be
+/// budged. Concrete domains prove they are this kind of system by *conforming*: quantum
+/// measurement, ice, and certified self-play all compile, so the type checker has shown
+/// each one settles to a single answer. A system with no such gate — a language model,
+/// with `|S| > 1` — cannot conform, and the compiler names the coordinate it is missing.
 ///
-/// > Note: Concrete domains certify by *conforming* to this protocol — quantum
-/// > measurement, ice crystallization, and certified self-play all compile, so
-/// > the type checker has proven they satisfy A1–A4. A system with no gate
-/// > (its `SolutionSet` is not ``Unique``, e.g. a language model with |S|>1) is
-/// > rejected, and the compiler names the missing coordinate. The build is the
-/// > certificate. See the `Domains` target.
+/// Formally, it reaches a terminal state `∃n: |Sₙ| ≤ 1`, forced by four axioms. A1
+/// ``CandidatesOnlyLeave`` (V=I §5.22), A2 ``ResultsIrreversible``, A3
+/// ``MembershipDecidable``, and A4 the conclusion pinned (§T): `where SolutionSet:`
+/// ``Unique``. The build is the certificate. See the `Domains` target. [IiI §5]
 public protocol SystemCrystallizes: CandidatesOnlyLeave, ResultsIrreversible,
     MembershipDecidable where SolutionSet: Unique {}
 

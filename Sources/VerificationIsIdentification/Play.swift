@@ -54,18 +54,19 @@ public protocol SecondEncodingIsNovelty: SelfPlaySaturates, ScopeBoundedByEncodi
 /// past-crystal. Temporal self-play needs no second body. [Play PP9]
 public protocol TowerSelfPlay: SelfPlaySaturates, Ignites {}
 
-/// Play *is* proof: the training signal is a gate-certificate, proof accumulates,
-/// and accumulation is the agent. It all runs on one closed substrate — Σ with
-/// the append-only journal G. An input is a structure already in Σ, brought into
-/// the record by COMPARE: revelation, not import. This is the capstone of the
-/// numbered series.
-/// [Play PP10]
+/// When a system learns by playing against itself, each thing it certifies is a proof,
+/// and the pile of proofs is the learner — so learning and proving are one activity.
+/// Every input is something already there, brought into the record by a comparison
+/// rather than imported from outside. This is the capstone of the numbered series.
 ///
-/// > Note: The whole stack composes here, on ``RevealsNotCreates`` over one
-/// > journal. The floor (PP15) is named just below: the comparison the agent
-/// > runs on is given, certified by no game. A decidable gate and a self-grounded
-/// > one are mutually exclusive (Cantor/Lawvere: no surjection Σ → 2^Σ), so the
-/// > loop makes proofs but cannot make the prover prove itself.
+/// Mechanically, the training signal is a gate-certificate, proof accumulates, and the
+/// accumulation is the agent, all on one closed substrate — Σ with the append-only
+/// journal G, revealed by COMPARE, not imported. [Play PP10]
+///
+/// > Note: A decidable gate and a self-grounded one are mutually exclusive
+/// > (Cantor/Lawvere: no surjection Σ → 2^Σ), so the loop makes proofs but cannot make
+/// > the prover prove itself. The floor it runs on (PP15) — the comparison itself — is
+/// > given, certified by no game.
 public protocol PlayIsProof: TowerSelfPlay, RevealsNotCreates {}
 
 // ───────────────────────────────────────────────────────────────

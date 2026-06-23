@@ -141,16 +141,14 @@ public protocol ExactlyOneSurvives: StructuresFinite, EqualityDecidable,
 /// (``ResultDeterministic``), so every PASS is a definite membership fact. [V=I Thm 1]
 public protocol PassImpliesMembership: PipelineTotal, ResultDeterministic {}
 
-/// Verification *is* identification: when |S|=1, a PASS pins the candidate to the
-/// unique survivor, f' = f*. The central theorem. [V=I Thm 2]
-/// Conclusion pinned (§T): the candidate (`Left`) collapses onto the unique
-/// survivor, `where Left == SolutionSet` *is* f' = f*. Combines membership
-/// (``PassImpliesMembership``) with uniqueness (``ExactlyOneSurvives``) over the
-/// solution axis (``HasSolutions``).
+/// To check the answer and to name it are the same act. When exactly one candidate
+/// can pass the test, the one that passes is the one you were looking for, so passing
+/// the check is already knowing which it is. This is the central theorem.
 ///
-/// > Note: To verify the answer and to name it are one act. Once the encoding
-/// > admits a single survivor, passing the check *is* knowing which one it is —
-/// > the same collapse ``Null`` makes when `Left == Right`.
+/// Formally, with `|S| = 1` a PASS pins the candidate to the unique survivor, `f' = f*`.
+/// Conclusion pinned (§T): `where Left == SolutionSet` *is* that collapse, the same one
+/// ``Null`` makes when `Left == Right`. It joins membership (``PassImpliesMembership``)
+/// to uniqueness (``ExactlyOneSurvives``) on the solution axis (``HasSolutions``). [V=I Thm 2]
 public protocol PassIsIdentification: PassImpliesMembership, ExactlyOneSurvives,
     HasSolutions where Left == SolutionSet {}
 

@@ -18,16 +18,16 @@
 // as derived equations (§6). Knowledge is solid; learning is liquid. [Liquid]
 // ═══════════════════════════════════════════════════════════════
 
-/// Below saturation is a PHASE, not a deficit. For a horn (B8b) or prime-like
-/// domain (B8a) it is permanent — the reach never crystallizes, only the basis.
-/// The crystal (``Matter``) is the special case. The liquid is the norm.
-/// Saturation is a FIELD — solid patches in a liquid surround, the library
-/// accumulating (``KnowledgeAccumulates``, I3) while the unresolved region
-/// shrinks (``Monotone``). [Liquid LQ1-2]
+/// Below saturation is a PHASE in its own right, not a deficient crystal. For a
+/// horn (B8b) or prime-like domain (B8a) it is permanent: the reach never
+/// crystallizes, only the basis. So the liquid is the usual phase, and the crystal
+/// (``Matter``) is the exception. Saturation is a FIELD, solid patches in a liquid
+/// surround, the library accumulating (``KnowledgeAccumulates``, I3) while the
+/// unresolved region shrinks (``Monotone``). [Liquid LQ1-2]
 ///
-/// > Note: For most domains the liquid is the only phase there is. The crystal
-/// > is a corner case. Learning lives in the melt, and on a horn it stays
-/// > there forever.
+/// > Note: For most domains the liquid is the only phase, and the crystal is a
+/// > corner case. On a horn domain, learning never crystallizes. It stays liquid
+/// > forever.
 public protocol LiquidPhase: KnowledgeAccumulates, Monotone {}
 
 /// The solid/liquid interface is the frontier: a ONE-SIDED free boundary of the
@@ -57,8 +57,8 @@ public protocol StefanCoupling: CrystallizationFront, SearchFlow {}
 /// CERTIFICATE — certified answer out (``PassImpliesMembership``), honest silence
 /// where still liquid (PP7). Current statistical AI is pure liquid with NEITHER
 /// front nor membrane: no I3 (the freeze never sticks: catastrophic forgetting),
-/// no gate (guesses leak out as if certified: hallucination). It flows
-/// everywhere and solidifies nowhere. [Liquid LQ10]
+/// no gate (guesses leak out as if certified: hallucination). Nothing it
+/// produces is ever certified. [Liquid LQ10]
 ///
 /// > Note: Two failures, one missing membrane. Hallucination is a guess that
 /// > crossed without a gate. Forgetting is a freeze that melted without I3 —

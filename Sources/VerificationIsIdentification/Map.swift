@@ -19,7 +19,7 @@
 /// For a library and radius ρ, the anchor graph Γ has entries as nodes and pairs
 /// with W ≤ ρ as edges: the library drawn as a map. A ``HasLibrary`` under the
 /// ``DistanceOnStructures`` metric becomes a graph: finite (I1), computed from the
-/// W-matrix. The metric was the map all along. [Nav N1]
+/// W-matrix. [Nav N1]
 public protocol AnchorGraph: DistanceOnStructures, HasLibrary {}
 
 /// A greedy walk toward any comparable target terminates in at most W(s,τ) hops.

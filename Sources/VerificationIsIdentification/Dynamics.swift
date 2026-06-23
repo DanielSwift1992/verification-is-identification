@@ -30,8 +30,8 @@ public protocol HasLaw: HasSigma {
 /// pin.) [Law LT2]
 public protocol LawLivesInSigma: HasLaw, DistanceOnStructures {}
 
-/// The law is the fixed target. The state is free to move. Relocate the target
-/// from state to law and identifying f becomes an ordinary V=I game: observed
+/// The law is the fixed target. The state is free to move. When the target is relocated
+/// from state to law, identifying f becomes an ordinary V=I game: observed
 /// transitions are examples, Theorems 1–5 apply unchanged (they never referenced
 /// WHEN the examples arrive). The state violates I2. The law does not. This is
 /// the central move of the paper. [Law LT3, LT4]

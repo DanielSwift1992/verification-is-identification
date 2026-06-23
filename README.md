@@ -43,13 +43,13 @@ swift build -Xswiftc -DSHOW_FORBIDDEN   # and a forbidden spectral line, by name
 
 ## Why Swift
 
-The proof needs a type checker that can host the lattice and that is already trusted, and Swift is both. The two moves are the language itself: `associatedtype` opens an axis, `where` closes one, and a conformance that compiles is the proof. The compiler is mainstream LLVM, so its soundness is inherited rather than re-earned. DocC builds this site straight from the symbol graph, so the documentation is the lattice, not prose about it.
+Swift's type system expresses the notation directly: an `associatedtype` introduces a type, a `where` clause constrains it, and a protocol that compiles is a claim that holds. So the proof checker is just `swift build` — there is no separate prover to install, learn, or trust. The compiler is mainstream and LLVM-based, the same one millions already run, and DocC generates this documentation from those same types, so it cannot drift from the code.
 
 It is not niche, either. Swift is open source on macOS, Linux, and Windows, speaks C and C++, and has a runtime-free embedded subset — so the checker runs anywhere, and a system built on it ships from servers to bare metal.
 
 ## How far it goes
 
-The collapse forces more than a check. A system that only checks, over a finite domain, accumulates certified results until every task resolves from memory — it saturates, at a point fixed by the domain. The difference between two such systems obeys the axioms of a metric, so distance, cost, and locality follow. The one freedom left is the order of comparisons, and that order is self-correcting. None of it is bolted on: it is derived, across eighteen papers, from the one operation. The derivations are in the documentation.
+The idea does not stay a checking trick. The same one operation, pushed further, forces real consequences — a system that only checks eventually holds every answer in memory and stops computing, and the difference between two such systems becomes a measurable distance. None of it is bolted on: it is derived, step by step across eighteen papers, from that one operation. The documentation walks the whole chain.
 
 ## Documentation
 

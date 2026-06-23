@@ -4,7 +4,7 @@ To make correctness the cheapest thing to build — a notation where writing a s
 
 ## Overview
 
-**What it buys you.** Write the part of a system you need to be sure of as types, and the compiler checks it for free: every contradiction in the structure becomes a build error, and a wrong version does not build. You give up reach: only the exact, finite, determinate part fits, and the rest stays craft. You gain certainty for the price of a build.
+**What it buys you.** Write the part of a system you need to be sure of as types, and the compiler checks it for free: every contradiction in the structure becomes a build error, and a wrong version does not build. You give up scope: only the exact, finite, determinate part fits, and the rest stays craft. You gain certainty for the price of a build.
 
 **One game under all of them.** Whatever you build, a crystal or a schedule or a learner, its determinate part is a finite structure, and finite structures play one game: draw a distinction, or close one (`Pair` and `Null`). Those are the only two moves. The rules of that game are the framework. Your system is a position in it, and the rules are what every position already obeys. Nothing stands over the board.
 
@@ -32,7 +32,7 @@ It is not a language, a proof assistant, or the most powerful tool.
 | --- | --- | --- |
 | a language | a notation to record structure in | nothing runs (Law §0′), so there is no program, only a form the compiler reads |
 | a proof assistant | a way to write the thing that cannot be wrong | a proof assistant proves a theorem you pose. Here correctness is the system's own shape. |
-| the most powerful tool | the cheapest tool that stays certain | the axis is least barrier, not greatest reach |
+| the most powerful tool | the cheapest tool that stays certain | the axis is least barrier, not greatest power |
 
 > Note: A proof assistant asks how much you can prove. This asks how little it can cost to be sure. The same structure could be proved more powerfully elsewhere, but here it is proved more cheaply, and the cheap proof is the one that gets written.
 

@@ -152,7 +152,7 @@
 /// | **quantities** — what it is about | one axis each (`associatedtype`), pinned by a marker |
 /// | **premises** — what it assumes | parent protocols (intersect) |
 /// | **conclusion** — what it proves | a `where` pinning the fixpoint where the freedom collapses |
-/// | **move** — at least one, per §1 | expand / compress / intersect |
+/// | **move** — at least one, per §1 | expand / compress (close, pin, or intersect) |
 ///
 /// > Important: The conclusion is **mandatory**. A theorem without its
 /// > conclusion-fixpoint is only its premises — the trap that once left two of

@@ -1,6 +1,12 @@
 # Proposal Is Order (Generation)
 
-Verification Is Identification built the discriminator — the certified cut, |S| = 1, never a wrong PASS — and Intelligence Is Inevitable gave its dynamics. The other organ, the *generator* that proposes the candidates to cut, was always delegated: the agent, the encoding, the Source. This document derives the generator and proves it orthogonal to the discriminator. A solve is iterate(discriminate ∘ generate), and the two have disjoint inputs (Interference Is Intelligence S1): the discriminator is the **cut** (the Z-axis — each COMPARE eliminates survivors, the sole source of identification bits, V=I §5.21–§5.22); the generator is the **order** (the Y-axis — which candidate to propose next, zero new bits, InI S2). They run on two geometries — the discriminator's *confusion-cover* (cert, InI S5b), the generator's *loss over the W-metric* (α, Gradient Is Alignment) — and these are independent: a domain can be easy to discriminate yet hard to generate, or the reverse (GD3, completing GA7). The deepest result is an asymmetry of inevitability: the inevitability the series proved (IiI) is the **discriminator's** — at saturation the library teaches the optimal ordering — while the generator is conditional on alignment α, which saturation cannot manufacture (GD4). Hence the inversion at the centre: the organ that carries all the information (discrimination) is the one the series proved inevitable; the organ that carries none (generation, pure order) is where domains are hard. E2's encoder/backend split is this split (GD7); both organs are one COMPARE read at different scope, so the framework stays monist (GD8); and on a horn, where the behavioural library is infinite, the generator is the only available mode (GD9). In Learning Is Liquid these two organs are in motion — a freezing front and a searching flow; here they are at rest — two axes of one act. The series built the cut; this builds its silent twin.
+Verification Is Identification built the discriminator — the certified cut, |S| = 1, never a wrong PASS — and Intelligence Is Inevitable gave its dynamics. The other organ, the *generator* that proposes the candidates to cut, was always delegated: the agent, the encoding, the Source. This document derives the generator and proves it orthogonal to the discriminator.
+
+A solve is iterate(discriminate ∘ generate), and the two have disjoint inputs. The discriminator is the **cut** — the Z-axis, where each COMPARE eliminates survivors, the sole source of identification bits. The generator is the **order** — the Y-axis, which candidate to propose next, zero new bits. They run on two geometries, the discriminator's *confusion-cover* and the generator's *loss over the W-metric*, and these are independent: a domain can be easy to discriminate yet hard to generate, or the reverse.
+
+The deepest result is an asymmetry of inevitability. The inevitability the series proved is the **discriminator's** — at saturation the library teaches the optimal ordering — while the generator is conditional on alignment α, which saturation cannot manufacture. Hence the inversion at the centre: the organ that carries all the information, discrimination, is the one the series proved inevitable; the organ that carries none, generation, pure order, is where domains are hard.
+
+E2's encoder/backend split is this split, both organs are one COMPARE read at different scope, so the framework stays monist, and on a horn, where the behavioural library is infinite, the generator is the only available mode. In Learning Is Liquid these two organs are in motion — a freezing front and a searching flow. Here they are at rest, two axes of one act. The series built the cut; this builds its silent twin.
 
 ## §0. Derivation
 
@@ -27,7 +33,7 @@ No new postulate. Everything below is derived from the three axes of COMPARE (In
 
 | | discriminate-easy | discriminate-hard |
 |---|---|---|
-| **generate-easy** | cheaply solvable | reached, but not resolved (|S| > 1) |
+| **generate-easy** | cheaply solvable | reached, but not resolved (\|S\| > 1) |
 | **generate-hard** | resolved at once, but not reached | enumerate, and ambiguous |
 
 *Proof.* Inhabit the off-diagonals.

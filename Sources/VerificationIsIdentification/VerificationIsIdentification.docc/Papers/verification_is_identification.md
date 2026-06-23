@@ -406,7 +406,7 @@ The system never chooses. It computes. Every output is determined by the encodin
 | Select encoding grammar E | Requires domain knowledge — what features are relevant |
 | Design features | Requires understanding what "same row" or "mirror" means for this domain |
 | Decide when to stop | The loop halts when the agent says so |
-| Interpret |S| > 1 | Multiple valid solutions = agent must add selection criterion or accept ambiguity |
+| Interpret \|S\| > 1 | Multiple valid solutions = agent must add selection criterion or accept ambiguity |
 
 **Agent boundaries** (what limits the agent's effectiveness):
 
@@ -439,7 +439,7 @@ Each REJECT is a message FROM the system TO the agent with a structural address:
 | REJECT(basis, value V at position P) | V ∉ input basis | Extend basis or change encoding |
 | REJECT(compile, example k) | Rule fails on example k | Add features or change representation |
 | MISMATCH | Compiles but wrong on test | Add training examples or refine features |
-| |S| > 1 (if checked) | Multiple candidates pass | Add selection criterion |
+| \|S\| > 1 (if checked) | Multiple candidates pass | Add selection criterion |
 
 ### Encoding Selection
 

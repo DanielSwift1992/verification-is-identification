@@ -6,6 +6,8 @@ The papers this lattice encodes — readable here, in full.
 
 Each protocol in ``VerificationIsIdentification`` encodes a claim first made and proved in one of the papers below. The relationship runs one way: the papers are the *source* — prose derivations carrying the full proofs and the mathematics — and the lattice is their type-level *encoding*.
 
+These are the *why*, not the *how*. To use the framework you need none of them — that path starts at <doc:Purpose>. They are here for the reader who wants the claim proved.
+
 One paper sits apart. *Existence Is Finite* (`EiF`) is the ground, below the protocol floor: it argues the seed (``Pair``, ``Null``) and the medium Σ into place, so no protocol *routes* to it — it is what the rest are built in. Its claims surface as provenance on the seed and the kernel, never as a route of their own.
 
 They are arranged differently, on purpose. The papers follow the order they were written. This documentation follows the structure *measured* from the lattice itself — a small basis of axes spanned by a web of theorems (see the ``VerificationIsIdentification`` overview). The papers are one walk through that structure. The documentation is the structure.
@@ -27,6 +29,17 @@ The list reads three ways. By the order the papers were written, the walk above.
 | what playing forces — it saturates, it gains a metric, distance costs, order is its only freedom | [Intelligence Is Inevitable](doc:intelligence_is_inevitable), [Difference Is Distance](doc:difference_is_distance), [Distance Is Cost](doc:distance_is_cost), [Interference Is Intelligence](doc:interference_is_intelligence) |
 
 These are the spine of the arc. The other papers deepen one of these moves, and the full list is below.
+
+## By what you came to build
+
+The readings above are the structure. This one is for the reader with a goal: pick your path and pull the thread in order.
+
+| If you came for | The thread |
+| --- | --- |
+| the foundations — what is, and the one result | <doc:existence_is_finite> → <doc:verification_is_identification> → <doc:law_is_target> |
+| matter and dynamics — what the loop leaves, and how it moves | <doc:permanence_is_resistance> → <doc:difference_is_distance> → <doc:distance_is_cost> → <doc:interference_is_intelligence> |
+| learning machines — the agent, and how it trains itself | <doc:intelligence_is_inevitable> → <doc:play_is_proof> → <doc:architecture_of_learning_machines>, then <doc:basis_is_residue>, <doc:gradient_is_alignment>, <doc:proposal_is_order>, <doc:learning_is_liquid>, <doc:solvability_criterion> |
+| order and reading — the one free variable, made object | <doc:order_is_object> → <doc:reading_is_order> → <doc:navigation_is_geometry> |
 
 ## The tag legend
 

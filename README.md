@@ -2,7 +2,7 @@
 
 *Write a system as types. If it compiles, it cannot be wrong.*
 
-**What you get.** Take any system you need to get right — a config, a schedule, a protocol, a physics model — and write its structure in this notation. The compiler then catches a whole class of bugs for free: every way that structure could contradict itself becomes a build error, before anything runs. What it costs you: you pin the system down in exact, finite terms, and the fuzzy or continuous parts stay yours. In return, where it compiles, it cannot be wrong.
+**What you get.** Take any system you need to get right — a config, a schedule, a protocol, a physics model — and write its structure in this notation. The compiler then catches a whole class of bugs for free: every way that structure could contradict itself becomes a build error, before anything runs. What it costs you: you pin the system down in exact, finite terms, and the fuzzy or continuous parts stay yours. In return, where it compiles, it cannot be wrong — and you can do it one part at a time, each part trustworthy for the price of a build.
 
 **Why it works.** One game runs under every determinate system: draw a distinction, or close one, until a single structure survives. To check that survivor is to identify it — verification and identification are one act. Formally, it is one operation, binary comparison over finite structures, and the consequences that follow.
 

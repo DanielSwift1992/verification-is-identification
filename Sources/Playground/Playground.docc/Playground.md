@@ -25,9 +25,9 @@ and each corresponds to a question.
 
 | operation | the question | how | examples |
 | --- | --- | --- | --- |
-| count | How many? | a fold that adds one per structural step | degeneracy `n² = 4`, Goldstones `= 3`, `|S| = 6` |
+| count | How many? | a fold that adds one per structural step | degeneracy `n² = 4`, Goldstones `= 3`, `\|S\| = 6` |
 | select | Is it allowed? | a `where` clause on a relation | `Δℓ = ±1`, `2-in/2-out`, `baryon in == baryon out` |
-| propagate | What is forced? | a chain reduced to its forced value | the conflict graph, `|S| = 0/1/>1` |
+| propagate | What is forced? | a chain reduced to its forced value | the conflict graph, `\|S\| = 0/1/>1` |
 
 A count reduces a `Succ`-chain to a number. A select compiles when the case is
 allowed, or is rejected with the violated rule named. A propagation gives the

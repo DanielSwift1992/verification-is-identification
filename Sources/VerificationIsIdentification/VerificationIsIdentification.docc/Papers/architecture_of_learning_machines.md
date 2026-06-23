@@ -1,6 +1,12 @@
 # The Architecture of Learning Machines (Projection)
 
-Permanence Is Resistance §5 projects the framework onto physical systems: what plays the role of Σ, what plays COMPARE, whether I1–I3 hold, what follows. This document is the same move applied to learning machines. The theory derives a machine (V=I), its dynamics (IiI, LL), and its statics (GD). A learning system — any learning system — is an instance of the framework with some coordinates present and others absent: a *gate* (decidable verifier), *I3* (append-only record), a *certified basis* or an uncertified one, the *organ* it runs (generator, discriminator, or both), the *phase* it occupies (liquid, crystal, or a coupled field), and the *alignment* of its domain (α). The framework's theorems are conditional: each guarantee holds exactly when its coordinate is present (AI1). The projection onto a given system reads the coordinates and derives what follows — the same operation PiR §5 performs when it reads I1–I3 on ice and derives that |S| > 1 on hydrogen positions. An LLM is an instance where the gate is absent (Theorem 2 does not apply → no certification), I3 is absent (§5.22 breaks → S can regrow), and the basis is uncertified — yet the domain is aligned (α > 0), so the generator exploits structure (AI4). Reinforcement self-play is an instance where the gate is replaced by a reward signal (the label is an estimate, not f* → PP7 contrast). The instance where all coordinates are present — gate, I3, certified basis — is the framework's own shape: certified self-play, the AlphaProof architecture generalized (AI6). The projection is not a judgment of these systems. It is the framework's own vocabulary applied to them, and what follows is derived, not assessed.
+Permanence Is Resistance §5 projects the framework onto physical systems: what plays the role of Σ, what plays COMPARE, whether I1–I3 hold, what follows. This document is the same move applied to learning machines. The theory derives a machine (V=I), its dynamics (IiI, LL), and its statics (GD).
+
+A learning system — any learning system — is an instance of the framework, with some coordinates present and others absent: a *gate* (a decidable verifier), *I3* (an append-only record), a *certified basis* or an uncertified one, the *organ* it runs (generator, discriminator, or both), the *phase* it occupies (liquid, crystal, or a coupled field), and the *alignment* of its domain (α). The framework's theorems are conditional, so each guarantee holds exactly when its coordinate is present.
+
+Projection reads the coordinates and derives what follows — the same operation PiR §5 performs when it reads I1–I3 on ice and finds |S| > 1 on hydrogen. An LLM is the instance where the gate is absent, I3 is absent, and the basis is uncertified, yet the domain is aligned, so the generator exploits structure. Reinforcement self-play replaces the gate with a reward, so the label is an estimate, not f\*. The instance where all coordinates are present — gate, I3, certified basis — is the framework's own shape: certified self-play, the AlphaProof architecture generalized.
+
+The projection is not a judgment of these systems. It is the framework's own vocabulary applied to them, and what follows is derived, not assessed.
 
 ## §0. The Projection Basis
 
@@ -8,7 +14,7 @@ No new postulate. The coordinates are read off the theory:
 
 | Coordinate | Source | What it grants |
 |---|---|---|
-| **gate** (decidable verifier) | V=I §3.7 | certified output; honest |S|>1 / EMPTY |
+| **gate** (decidable verifier) | V=I §3.7 | certified output; honest \|S\|>1 / EMPTY |
 | **I3** (append-only record) | V=I §2.4 | non-forgetting; monotone S (§5.22) |
 | **basis** (certified atoms vs pseudo-features) | B; IiI §3 | reproducible, irreducible knowledge |
 | **organ** (generator / discriminator) | GD (Proposal Is Order) | which half runs; where difficulty sits |

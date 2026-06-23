@@ -82,9 +82,9 @@ Exact bounds:
 
 | Axes | Bound | Mechanism |
 |---|---|---|
-| Z | E[T_Z] = (|S₀| + 1)/2 | Random candidate from S, discard on mismatch (uniform draw, coupon at random position) |
+| Z | E[T_Z] = (\|S₀\| + 1)/2 | Random candidate from S, discard on mismatch (uniform draw, coupon at random position) |
 | Z+X | E[T_{ZX}] ≈ n/β | Each COMPARE reveals β features; n/β COMPAREs to learn all n |
-| Z+X+Y | E[T_{ZXY}] = ⌈log₂|S₀|⌉ | Optimal: each COMPARE yields 1 bit (when H_max = 1) |
+| Z+X+Y | E[T_{ZXY}] = ⌈log₂\|S₀\|⌉ | Optimal: each COMPARE yields 1 bit (when H_max = 1) |
 
 *Proof.* Z: the agent draws candidates uniformly without replacement from S. The target is at a uniformly random position in the draw order. Expected position: (|S₀| + 1)/2. Z+X: each COMPARE reveals β feature values on average. After n/β COMPAREs, all n features are known → |S| = 1. Z+X+Y: optimal ordering selects the feature maximizing H(f | S_k) ≈ 1 bit. Each step halves S. Total: ⌈log₂|S₀|⌉. QED
 
@@ -162,9 +162,9 @@ The greedy algorithm — always choose the next COMPARE maximizing information g
 
 | Phase | Knowledge | Ordering quality | η |
 |---|---|---|---|
-| Early (|L| ≪ K) | Domain structure unknown | Near-random | Low |
+| Early (\|L\| ≪ K) | Domain structure unknown | Near-random | Low |
 | Middle | Partial structure | Heuristic ordering | Growing |
-| Saturated (|L| = K) | Full structure known | Optimal ordering | → 1 |
+| Saturated (\|L\| = K) | Full structure known | Optimal ordering | → 1 |
 
 *Proof.* Optimal ordering requires knowing which COMPAREs are correlated — i.e., domain structure. Domain structure IS the library L. Larger L → better correlation model → better ordering. At saturation: full structure known → optimal ordering computable → η = 1. QED
 

@@ -252,7 +252,7 @@ Specific instances:
 
 | Symmetry | V=I statement | Conserved quantity |
 |---|---|---|
-| Time-translation | M2: state depends on COMPARE results, not wall-clock time | Total information capacity |Σ|² (fixed, I1) |
+| Time-translation | M2: state depends on COMPARE results, not wall-clock time | Total information capacity \|Σ\|² (fixed, I1) |
 | Encoding-rotation | Grammar axis invariance: rotating all features by a fixed offset preserves COMPAREs | "Angular momentum" = invariant of the rotation in encoding space |
 | Agent-exchange | S7 symmetry: d(A₁, A₂) = d(A₂, A₁) | Total cache size |G₁| + |G₂| grows monotonically (I3) |
 

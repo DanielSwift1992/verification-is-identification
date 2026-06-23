@@ -12,6 +12,10 @@ To make correctness the cheapest thing to build — a notation where writing a s
 
 **The move is the proof.** Writing your system in the notation is making the game's moves, and the compiler is the referee: a position that compiles is a true one. The compile is the whole proof, so there is no second artifact to keep in sync.
 
+**Trust grows one part at a time.** A part you write in the notation is a part you can trust: the compiler checked it, and a wrong version would not build. You need not convert the whole system. Write down the one part you must be sure of, and it holds while the rest stays craft. The line between them is visible, exactly where the types stop. Each further part you move in widens the part you can trust.
+
+> Note: One act does two things. Writing a part down certifies it, and it lays out the part's legal forms — the positions that conform — then collapses them to the one that survives. What secures the part also maps it.
+
 **Why it spreads.** A method spreads when each step to adopt it costs less than the last. Here every step is borrowed or free: the grammar is learned in minutes, the proof checker is a compiler you already run, the check is a build, and the soundness is the compiler's rather than yours to re-earn. Correctness is no longer something you add afterward. It is the structure you already wrote.
 
 ## The method
@@ -52,4 +56,4 @@ It is not a language, a proof assistant, or the most powerful tool.
 
 ## Where this goes
 
-The board is laid in <doc:existence_is_finite>: to be is to be a finite structure. A legal play is a proof in <doc:play_is_proof>. The winning position, one survivor identified, is <doc:verification_is_identification>. The grammar that governs every move is ``Law``, the full construction is the ``VerificationIsIdentification`` overview, and the papers behind each claim are gathered in <doc:Sources>.
+Two ways on, by what you came for. **To use it:** the scheduler in [Playground](https://danielswift1992.github.io/verification-is-identification/documentation/playground) is the method in ten lines, and a green build is the proof there too. **To see why it holds**, read on. The board is laid in <doc:existence_is_finite>: to be is to be a finite structure. A legal play is a proof in <doc:play_is_proof>. The winning position, one survivor identified, is <doc:verification_is_identification>. The grammar that governs every move is ``Law``, the full construction is the ``VerificationIsIdentification`` overview, and the papers behind each claim are gathered in <doc:Sources>.

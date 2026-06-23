@@ -77,7 +77,7 @@ Three properties make it matter:
 
 The three properties are one structural fact described from three angles. Permanence: what happens when you try to erase the pattern (I3 prevents removal). Irreducibility: what happens when you try to simplify it (f* is the unique element of S — any simplification either is f* or fails verification, Theorem 2). Resistance: what happens when the agent pushes against it (COMPARE returns not_equal, §1).
 
-Each property traces to a primary structural guarantee: permanence to I3 (append-only prevents erasure), irreducibility to Theorem 2 (|S|=1: no simpler element of S exists), resistance to I2 (fixedness prevents modification by the agent). Three properties, three invariants.
+Each property traces to a primary structural guarantee: permanence to I3 (append-only prevents erasure), irreducibility to Theorem 2 (|S| = 1: a simpler rule either still denotes f* or fails verification, so none can replace it), resistance to I2 (fixedness prevents modification by the agent). Three properties, three invariants.
 
 ## §3. The Transition
 
@@ -87,8 +87,8 @@ The phase transition is the moment the dominant COMPARE response flips:
 
 | Phase | Dominant signal | Agent experience | Cost |
 |-------|----------------|------------------|------|
-| Liquid (|L| < K) | not_equal | Resistance. Each task requires fresh derivation | O(T_brute) per task |
-| Crystal (|L| = K) | equal | Resolution. Each task matches a stored rule | O(K × F) + 1 per task |
+| Liquid (\|L\| < K) | not_equal | Resistance. Each task requires fresh derivation | O(T_brute) per task |
+| Crystal (\|L\| = K) | equal | Resolution. Each task matches a stored rule | O(K × F) + 1 per task |
 
 After crystallization, L resolves what used to require derivation.
 
@@ -105,7 +105,7 @@ Intelligence Is Inevitable §4 derives the tower: each level is a V=I game. The 
 | 2 | Meta-library M (encoding classes) | A selector: task domain → encoding choice |
 | N | Level-N library | Level-(N+1) matter: the resistant structure that constrains the next agent |
 
-Each level's crystal is the next level's matter. Level 0's f* is a certified fact the level-1 agent cannot change (I2 at the N+1 scale). Level 1's L determines which encodings the level-2 agent tries. Each crystal is a finite binary tree in Σ, built from the same act of distinction, tested by the same structural recursion.
+Each level's crystal is the next level's matter, in the structural sense of §1 — the resistant structure the next loop inherits. Level 0's f* is a certified fact the level-1 agent cannot change (I2 at the N+1 scale). Level 1's L determines which encodings the level-2 agent tries. Each crystal is a finite binary tree in Σ, built from the same act of distinction, tested by the same structural recursion.
 
 The circuit closes: V=I defines the verification loop. Intelligence Is Inevitable derives the agent that runs it and the crystallization that results. This document derives what the crystallized output is. The crystal becomes a V=I target at the next level. Three documents, one cycle.
 
@@ -126,8 +126,8 @@ The three properties rotate through the tower. Level N crystallizes: L_N is perm
 | Level | One tick = | Level-0 COMPAREs inside one tick |
 |-------|------------|----------------------------------|
 | 0 | One COMPARE | 1 |
-| 1 | One solved task (pipeline) | O(|F|) to O(T_brute) |
-| 2 | One saturated library | K₁ × O(|F₁|) (K₁ tasks, each a pipeline) |
+| 1 | One solved task (pipeline) | O(\|F\|) to O(T_brute) |
+| 2 | One saturated library | K₁ × O(\|F₁\|) (K₁ tasks, each a pipeline) |
 | N+1 | One level-N saturation | K_N × T_N |
 
 **M5 (Time-nesting bound).** Let T_N = maximum number of level-0 COMPAREs inside one level-N tick. Then T₀ = 1, T_(N+1) ≤ K_N · T_N. By induction: T_N ≤ ∏_{i=0}^{N-1} K_i.
@@ -177,7 +177,7 @@ Any system satisfying I1 (finite space), I2 (fixed operations), and I3 (append-o
 | Size | 1 | K |
 | Internal structure | flat (feature list) | tree (PAIR-nesting of K entries) |
 | Symmetries | none | rule groups with shared features |
-| Compressibility | irreducible (|S|=1: no simpler element in S) | measurable: decision tree depth d ≥ ⌈log₂ K⌉, met when bisecting predicates exist |
+| Compressibility | irreducible (\|S\|=1: no simpler element in S) | measurable: decision tree depth d ≥ ⌈log₂ K⌉, met when bisecting predicates exist |
 | Target capability | cannot satisfy I2 alone | can be V=I target (M8) |
 
 These properties exist only at saturation. Before |L| = K, L is incomplete: its size is changing, its symmetries are partial, it cannot be a target (M6).
@@ -245,11 +245,11 @@ Ignition conditions (M8) are also permanent. Once |L_N| = K_N, the three conditi
 
 If domains share structure, L entries from earlier domains cover classes in later ones. Saturation time drops: 𝔼[τ_sat(D₂)] = K₂ · H_(K₂−overlap) under a uniform stream over D₂'s classes, where overlap = number of classes already covered by L from prior domains — coupon collector over the uncovered classes, with draws landing in covered classes as the waiting cost — against K₂ · H_(K₂) from scratch. The agent saturates faster on structurally related domains.
 
-Lookup cost grows with |L|: O(|L| × F) per task at level 1. Level-2 compression (M13, M15) bounds effective lookup to O(log |L|). Cumulative growth is sustainable because higher levels compress it. This is a structural role of the tower: without compression, accumulation eventually makes lookup more expensive than derivation.
+Lookup cost grows with |L|: O(|L| × F) per task at level 1. Level-2 compression (M13, M15: decision-tree depth ⌈log₂ K⌉, when bisecting predicates exist) bounds effective lookup to O(log |L|). Cumulative growth is sustainable because higher levels compress it. This is a structural role of the tower: without compression, accumulation eventually makes lookup more expensive than derivation.
 
 ### Cost
 
-**M24 (Cost of permanence).** I3 guarantees that no entry in L or G can be removed. Each entry is a recorded distinction — a binary classification (equal/not_equal) that was not previously cached. In any physical instantiation, recording a distinction that was not previously recorded is an irreversible act: it reduces the system's uncertainty by at least one bit. Landauer's principle (1961, experimentally confirmed 2012) establishes the minimum physical cost: any logically irreversible one-bit operation — erasure, overwrite — dissipates at least kT · ln(2) joules as heat. I3's formal permanence has a physical price.
+**M24 (Cost of permanence).** I3 guarantees that no entry in L or G can be removed. Each entry is a recorded distinction — a binary classification (equal/not_equal) that was not previously cached. In any physical instantiation, recording a distinction that was not previously recorded is an irreversible act: it reduces the system's uncertainty by at least one bit. Landauer's principle (1961, experimentally confirmed 2012) establishes the minimum physical cost: any logically irreversible one-bit operation — erasure, overwrite — dissipates at least kT · ln(2) joules as heat. I3's formal permanence has a physical price wherever the framework is instantiated in a physical system.
 
 The total cost of maintaining L grows with |L|. Each entry in L stores a certified rule: a finite binary tree of F features. Landauer prices the irreversible acts — recording a result, erasing an error; passive storage between acts it does not bound. The per-cycle bill is therefore a model premise, stated openly: storage at finite temperature, held against noise by active error correction, costs on the order of |L| × F × kT · ln(2) per correction cycle. The premise has the standing of compression in M16: not derived from I1–I3, declared where used.
 
@@ -363,7 +363,7 @@ Near the threshold of black hole formation, spacetime geometry settles into a re
 | A3 (decidable) | Convexity conditions f ≤ 1, Ω ≥ 0 are algebraic | Yes |
 | A4 (crystallization) | Unique β* | Conjectured (numerical evidence at finite D) |
 
-The Ricci scalar R grows as 1/ε for large D. Each oscillation of the DSS solution is a distinction in spacetime curvature. The self-similar cycle is self-sustaining: each period produces the geometry required for the next.
+The Ricci scalar R grows as 1/ε for large D. Each oscillation of the DSS solution is a distinction in spacetime curvature. The self-similar cycle is self-sustaining: each period produces the geometry required for the next. Unlike the other instances, this one rests on a conjecture (unique β*, numerically evidenced); it is included because the framework's question — whether the encoding forces |S| = 1 — is well-posed even where the physics is open, so the mapping holds before the conjecture is settled.
 
 ## §6. Creation
 
@@ -381,7 +381,7 @@ V=I §5.25: order is the sole dynamic variable. Correctness is order-invariant. 
 
 Search is elimination. The agent starts with all of F and removes what does not survive. Each REJECT removes candidates from S (V=I §5.22: S is monotonically non-increasing). Each step subtracts from the agent's uncertainty, not adds to the domain.
 
-Encoding is lens selection. The structure does not depend on the lens (V=I §5.14: the target does not change). The lens determines which part of the structure is visible. A richer lens exposes more structure; a poorer one hides it.
+Encoding is lens selection. The structure — the target in Σ — does not depend on the lens (V=I §5.14: the target does not change). The lens determines which part of the structure is visible. A richer lens exposes more structure; a poorer one hides it.
 
 This applies at every level. Level-2 encoding selection uncovers the meta-library. Level-3 grammar selection uncovers the grammar map. At every level, the same act of distinction and the same elimination process.
 

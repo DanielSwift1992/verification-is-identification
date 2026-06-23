@@ -1,6 +1,14 @@
 # Play Is Proof (Self-Play)
 
-Intelligence Is Inevitable derives saturation — but only under a premise it does not control: the task stream must present every class (IiI §3 scope remark; §6 pₖ > 0). An external stream may violate it; the measured geometry of a real domain can demand more tasks than the world supplies (E2: critical slowing, budget below N·H_N). This document removes the dependence on an external stream. Given a finite generating basis whose closure contains the domain, the agent generates its own task stream: it applies a certified rule to fresh inputs (the label is computed, not labeled), poses the result to a solver, and the gate certifies the answer. The stream premise is no longer a hope about the world — it is something the agent can direct rather than await: the poser controls what it generates, so coverage becomes a choice, not a stroke of luck (PP5). The resulting self-play saturates the closure (PP5) to the *same* library any agent would reach (PP6), with a guarantee that classical self-play cannot offer: every self-generated label is f\* (Theorem 2), so no label noise accumulates and the endpoint is domain-determined, not play-determined (PP7). The training signal is not a statistic of outcomes; it is a proof. The minimal seed is a basis (PP1–PP2); the optimal generation is frontier-targeted (PP3–PP4); the only irreducible source of novelty a single agent cannot self-supply is a second encoding (PP8); and across the tower, the second agent is the agent's own crystallized past (PP9). All of it runs on one closed substrate (PP10). I3 made knowledge permanent; the gate makes self-made knowledge certified — and certified self-made knowledge is a proof the agent can train on. Read one level deeper, the gate is a witness and saturation is compression; the same reading exposes the architecture's floor (§7): certified self-play is *shared* witnessing, never *self*-witnessing, because the verification primitive is the postulate — an entry in no library, certified by no game. The agent grounds its rules, encodings, and strategies in its own certified record, but never the comparison it runs on. It makes proofs; it cannot make the prover prove itself.
+Intelligence Is Inevitable derives saturation, but only under a premise it does not control: the task stream must present every class. An external stream may not, and the measured geometry of a real domain can demand more tasks than the world supplies.
+
+This document removes that dependence. Given a finite generating basis whose closure contains the domain, the agent generates its own tasks. It applies a certified rule to a fresh input, so the label is computed rather than assumed, poses the result to a solver, and the gate certifies the answer. The stream is no longer a hope about the world. The poser controls what it generates, so coverage is a choice, not a stroke of luck.
+
+Self-play of this kind saturates the closure to the same library any agent would reach, with a guarantee classical self-play cannot offer: every self-generated label is f\*, so no label noise accumulates and the endpoint is domain-determined, not play-determined. The training signal is not a statistic of outcomes. It is a proof. I3 made knowledge permanent, and the gate makes self-made knowledge certified, so certified self-made knowledge is a proof the agent can train on.
+
+The seed is a basis, the generation is frontier-targeted, and the one novelty a single agent cannot self-supply is a second encoding — across the tower, that second agent is its own crystallized past. All of it runs on one closed substrate.
+
+Read one level deeper, the gate is a witness and saturation is compression, and the same reading exposes the floor. Certified self-play is *shared* witnessing, never *self*-witnessing: the verification primitive is the postulate, an entry in no library, certified by no game. The agent grounds its rules, its encodings, and its strategies in its own certified record, but never the comparison it runs on. It makes proofs. It cannot make the prover prove itself.
 
 ## §0. Derivation
 
@@ -80,7 +88,7 @@ The prior papers asked where the agent's data comes from and answered: the world
 | candidate set | may re-grow under updates | monotone non-increasing (V=I §5.22) |
 | endpoint | play- and seed-dependent | domain-determined (SAT5/6; PP6) |
 | convergence | empirical | proven (PP5) |
-| failure mode | confident error | honest |S|>1 / EMPTY (V=I outcome corollary) |
+| failure mode | confident error | honest \|S\|>1 / EMPTY (V=I outcome corollary) |
 
 *Proof.* Each row of the right column is cited; each row of the left is its negation when I3 (append-only) or the gate (decidable certification) is absent. Without I3, V=I §5.22 breaks (eliminated candidates re-enter), so PP5's monotone saturation fails. Without the gate, PP2's label is uncertified, so PP6's uniqueness (Theorem 2) fails. QED
 

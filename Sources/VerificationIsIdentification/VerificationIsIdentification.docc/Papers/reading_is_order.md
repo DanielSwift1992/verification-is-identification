@@ -1,6 +1,10 @@
 # Reading Is Order (Dynamics)
 
-Existence Is Finite froze the static: Σ, COMPARE, and the verification corollary all hold timelessly, and Part III deferred the dynamics — "time as the track reading leaves, learning as the settling of order back into Σ — a separate study." This is that study. The agent is not a second space; it is the *active face* of the one space, a **reading** of the standing structure, and the reading is the one thing left free (the order, §5.25). The mathematics is already to hand: a reading-head is a **zipper** whose step is the derivative of the rule (R1); the two organs of a solve are **unfold and fold** — a coalgebra and an algebra, dual (R2); the verdict's indifference to order is **anamorphism uniqueness** (R3); the asymmetry of inevitability is **initiality** (R4); and crystallization is a μ-object precipitating from a ν-process (R5). The static is `μF`; the reading is the ν-side that deposits into it. Nothing new is postulated — the dynamics is the static, read.
+Existence Is Finite froze the static: Σ, COMPARE, and the verification corollary all hold timelessly, and Part III deferred the dynamics — time as the track reading leaves, learning as the settling of order back into Σ. This is that study. The agent is not a second space. It is the *active face* of the one space, a **reading** of the standing structure, and the reading is the one thing left free: the order.
+
+The mathematics is already to hand. A reading-head is a **zipper** whose step is the derivative of the rule. The two organs of a solve are **unfold and fold**, a coalgebra and an algebra, dual. The verdict's indifference to order is **anamorphism uniqueness**, the asymmetry of inevitability is **initiality**, and crystallization is a μ-object precipitating from a ν-process.
+
+The static is `μF`, and the reading is the ν-side that deposits into it. Nothing new is postulated: the dynamics is the static, read.
 
 ## §0. Derivation
 

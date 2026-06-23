@@ -26,7 +26,7 @@ Five principles. The first four each remove a cost. The last names the one that 
 
 ## The boundary
 
-What this is decides what it is not. Three things it is taken for, and what it is in each case instead.
+It is not a language, a proof assistant, or the most powerful tool.
 
 | Taken for | What it is | The line |
 | --- | --- | --- |
@@ -34,7 +34,7 @@ What this is decides what it is not. Three things it is taken for, and what it i
 | a proof assistant | a way to write the thing that cannot be wrong | a proof assistant proves a theorem you pose. Here correctness is the system's own shape. |
 | the most powerful tool | the cheapest tool that stays certain | the axis is least barrier, not greatest reach |
 
-> Note: The contrast with a proof assistant is the whole axis. One asks how much you can prove. This asks how little it can cost to be sure. The same structure could be proved more powerfully elsewhere, but here it is proved more cheaply, and the cheap proof is the one that gets written.
+> Note: A proof assistant asks how much you can prove. This asks how little it can cost to be sure. The same structure could be proved more powerfully elsewhere, but here it is proved more cheaply, and the cheap proof is the one that gets written.
 
 ## Where this goes
 

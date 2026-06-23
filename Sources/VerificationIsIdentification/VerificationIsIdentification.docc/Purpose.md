@@ -18,23 +18,23 @@ To make correctness the cheapest thing to build — a notation where writing a s
 
 Five principles. The first four each remove a cost. The last names the one that stays.
 
-### Compile is proof
+#### Compile is proof
 
 You write a claim as a `protocol`. If it compiles, it is true. If not, it is false. Nothing runs, and no separate step proves it.
 
-### Pin every choice
+#### Pin every choice
 
 The grammar leaves the writer almost no choices: no style, no idiom, no second way to say one thing (Law §0′). The same claim becomes the same code in any hand. The only thing to decide is the claim, and the only thing to review is whether it is true.
 
-### Borrow the engine and its trust
+#### Borrow the engine and its trust
 
 The proof checker is an off-the-shelf compiler, and its soundness is inherited rather than re-earned. You stand on a tool that millions already run and already believe.
 
-### The grammar fits a page
+#### The grammar fits a page
 
 One seed, two moves, one floor: the whole notation lives in ``Law``, learnable in minutes. Writing it is a skill, not a degree.
 
-### Verification is free, encoding is craft
+#### Verification is free, encoding is craft
 
 Checking a written structure costs a build, and the machine does it. Turning a claim into that structure is the work that stays human. The framework draws the line, naming where its guarantee stops and your craft starts.
 

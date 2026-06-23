@@ -16,13 +16,13 @@ To make correctness the cheapest thing to build — a notation where writing a s
 
 ## The method
 
-Five principles, each one a way the cost is removed.
+Five principles. The first four each remove a cost. The last names the one that stays.
 
-- term Compile is proof: A claim is a `protocol`, its proof is that the protocol compiles, and nothing runs. The structure and its certificate are one object, so coherence costs nothing beyond the writing.
-- term Pin every choice: Wherever the writer could decide, the form decides instead (Law §0′). The content fixes the text, two encodings of one claim converge, and the only freedom left is the claim itself.
+- term Compile is proof: A claim is a `protocol`, its proof is that the protocol compiles, and nothing runs. The structure and its proof are one object, so correctness is not a second step — writing it is proving it.
+- term Pin every choice: The grammar leaves the writer almost no choices: no style, no idiom, no second way to say one thing (Law §0′). The same claim becomes the same code in any hand, so the only thing to decide is the claim itself — and the only thing to review is whether it is true.
 - term Borrow the engine and its trust: The proof checker is an off-the-shelf compiler, and its soundness is inherited rather than re-earned. You stand on a tool that millions already run and already believe.
 - term The grammar fits a page: One seed, two moves, one floor — the whole notation lives in ``Law``, learnable in minutes. Writing it is a skill, not a degree.
-- term Verification is free, encoding is craft: Checking a written structure costs one build. Turning a claim into that structure is the human work that remains, and the framework marks exactly where it begins.
+- term Verification is free, encoding is craft: Checking a written structure costs a build, and the machine does it. Turning a claim into that structure is the work that stays human — and the framework draws the line, naming where its guarantee stops and your craft starts.
 
 ## The boundary
 

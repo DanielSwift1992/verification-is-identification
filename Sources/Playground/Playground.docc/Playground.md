@@ -8,8 +8,7 @@ Worked examples of the framework: physics reproduced as types, learning machines
 residual entropy of ice, hydrogen's metastable 2s, the stable proton, and a certified
 scheduler. Pick one and follow it. The one idea underneath, that checking a
 single-survivor answer is the same act as finding it, lives in
-[`VerificationIsIdentification`](/documentation/verificationisidentification) — but the
-examples do not wait on it.
+[`VerificationIsIdentification`](/verification-is-identification/documentation/verificationisidentification) — but the examples do not wait on it.
 
 **What you can do here.** You do not need the physics. Each example is a real, known
 result, and the point is that the compiler reproduces it by type-checking, with no

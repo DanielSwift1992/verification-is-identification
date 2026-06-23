@@ -2,8 +2,6 @@
 
 A theory of when checking an answer is the same as knowing it — written as pure Swift types, with the compiler as the proof checker.
 
-![The construction law: one seed, two moves, one floor.](law)
-
 ## Overview
 
 **Why it exists.** Correctness is usually a second artifact — a proof kept beside the system, drifting from it. This collapses the two: you write the structure, and the writing is the proof. The goal and the method behind that collapse are one page, <doc:Purpose>. This page is the result.
@@ -28,7 +26,9 @@ From there, pick a thread — matter, distance, learning, dynamics.
 - term **The move:** two directions and no third — *expand* opens a degree of freedom (`associatedtype`), *compress* closes one (`where`).
 - term **The floor:** every space is finite — width (``Pair`` has two sides) × depth (every chain reaches ``Null``).
 
-**The law applied.** To see the framework used rather than stated, open [the `Playground` module](/documentation/playground): the physics of *Matter* §5 reproduced as types — the residual entropy of ice, hydrogen's metastable 2s, the stable proton — and a working solver. A green build is the proof there too.
+![The construction law: one seed, two moves, one floor.](law)
+
+**The law applied.** To see the framework used rather than stated, open [the `Playground` module](/verification-is-identification/documentation/playground): the physics of *Matter* §5 reproduced as types — the residual entropy of ice, hydrogen's metastable 2s, the stable proton — and a working solver. A green build is the proof there too.
 
 ### What is on this page
 

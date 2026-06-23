@@ -21,9 +21,9 @@
 //
 // A valid protocol does at least one of:
 //
-//   1. associatedtype  — expand (new axis)
-//   2. where           — compress (constrain an axis)
-//   3. inherit from 2+ — intersect (A ∩ B < A, B)
+//   associatedtype  — EXPAND   (open an axis)
+//   where           — COMPRESS (constrain an axis)
+//   inherit from 2+ — COMPRESS (intersect: A ∩ B, smaller than either)
 //
 // `protocol X: Y {}` (single parent, no where, no axis)
 // is a rename, not a claim. Zero information added.

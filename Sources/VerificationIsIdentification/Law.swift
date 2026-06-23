@@ -52,13 +52,14 @@
 /// ## §1 · Two moves, and you must make one
 ///
 /// ```swift
-/// associatedtype Distance   // EXPAND   — open a degree of freedom
-/// where X == Y              // COMPRESS — close one  (→ Null)
-/// where X: SomeMarker       // COMPRESS — pin one     (→ partial Null)
-/// protocol P: A, B          // INTERSECT — A ∩ B is smaller than either
+/// associatedtype Distance   // EXPAND:   open a degree of freedom
+/// where X == Y              // COMPRESS: close it to a point   (→ Null)
+/// where X: SomeMarker       // COMPRESS: pin it to a property  (→ partial Null)
+/// protocol P: A, B          // COMPRESS: intersect, keep only what A and B share
 /// ```
 ///
-/// There is no third move. A protocol is one or more of these.
+/// There is no third move. Close, pin, and intersect are all forms of compress:
+/// each narrows the space. Every protocol is one or more of these two moves.
 ///
 /// > Warning: The **rename** is forbidden — one parent, no axis, no `where`:
 /// > `protocol Renamed: Parent {}` makes no move and adds nothing (`Renamed`

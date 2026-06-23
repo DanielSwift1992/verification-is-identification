@@ -11,14 +11,15 @@ single-survivor answer is the same act as finding it, lives in
 [`VerificationIsIdentification`](/documentation/verificationisidentification) — but the
 examples do not wait on it.
 
-**What you can do here.** Each of these is checked by the compiler, with
-no program run:
+**What you can do here.** You do not need the physics. Each example is a real, known
+result, and the point is that the compiler reproduces it by type-checking, with no
+program run:
 
-- Reproduce the residual entropy of ice — the count of two-in/two-out configurations, `|S| = 6` per vertex.
-- Show that hydrogen's 2s state is metastable — the `2s → 1s` transition breaks the dipole rule `Δℓ = ±1`.
-- Show that the proton is stable — `p → e⁺ + π⁰` does not conserve baryon number.
-- Solve a constraint graph — it reduces to one forced assignment, or the compiler proves that none exists.
-- Locate a learning machine by its coordinates — a gated, append-only learner conforms to the crystallizing lattice, and one without a gate (a language model with `|S| > 1`) is rejected with the missing coordinate named.
+- **Reproduce the residual entropy of ice.** Ice keeps a little disorder even when cooled to absolute zero, a fact known since the 1930s. The compiler counts the allowed arrangements of its atoms and gets the number: `|S| = 6` per vertex.
+- **Show why hydrogen's 2s state is long-lived.** The jump that would empty it is forbidden by a rule on which light an atom can emit, so it survives far longer than its neighbours. The compiler rejects the `2s → 1s` transition for breaking the rule (`Δℓ = 0`, not `±1`).
+- **Show why the proton never decays**, the reason ordinary matter holds together. Its one possible decay would break a conservation law. The compiler finds `p → e⁺ + π⁰` does not conserve baryon number.
+- **Solve a constraint graph.** It reduces to one forced assignment, or the compiler proves that none exists.
+- **Locate a learning machine by its coordinates.** A gated, append-only learner conforms to the crystallizing lattice. One without a gate (a language model, `|S| > 1`) is rejected, with the missing coordinate named.
 
 **How it works.** The type checker performs three operations on a finite structure,
 and each corresponds to a question.
@@ -66,7 +67,7 @@ magnitude into a finite structure. The type checker verifies. The encoder search
 
 ### Ice — residual entropy, counted
 
-Six of sixteen proton arrangements obey the two-in/two-out ice rule, a fold that counts them to `|S| = 6` per vertex. ``IceOxygen`` crystallizes (`|S| = 1`) while the hydrogen positions carry the residual.
+Ice keeps a little disorder even at absolute zero, and this counts it. Six of sixteen proton arrangements obey the two-in/two-out ice rule, a fold that counts them to `|S| = 6` per vertex. ``IceOxygen`` crystallizes (`|S| = 1`) while the hydrogen positions carry the residual.
 
 - ``IceOxygen``
 - ``IceHydrogen``
@@ -79,7 +80,7 @@ Six of sixteen proton arrangements obey the two-in/two-out ice rule, a fold that
 
 ### The hydrogen spectrum — selection by a where clause
 
-A transition emits a line when it satisfies the dipole rule `Δℓ = ±1`, a `where` clause the compiler checks. The `2s → 1s` step has `Δℓ = 0`, so it is rejected and 2s is metastable.
+Some jumps an electron could make are forbidden, which is why parts of an atom's light are missing. A transition emits a line when it satisfies the dipole rule `Δℓ = ±1`, a `where` clause the compiler checks. The `2s → 1s` step has `Δℓ = 0`, so it is rejected and 2s is long-lived.
 
 - ``Orbital``
 - ``Orbital1s``
@@ -94,7 +95,7 @@ A transition emits a line when it satisfies the dipole rule `Δℓ = ±1`, a `wh
 
 ### The Higgs vacuum — broken symmetry, counted
 
-Electroweak breaking leaves three massless Goldstone directions, counted to `= 3`. ``HiggsGaugeInvariant`` is the gauge-invariant vacuum (`|S| = 1`) while the field components carry the residual.
+When a symmetry of nature breaks, some directions cost nothing to shift, and this counts them. Electroweak breaking leaves three massless Goldstone directions, counted to `= 3`. ``HiggsGaugeInvariant`` is the gauge-invariant vacuum (`|S| = 1`) while the field components carry the residual.
 
 - ``HiggsGaugeInvariant``
 - ``HiggsFieldComponents``
@@ -106,7 +107,7 @@ Electroweak breaking leaves three massless Goldstone directions, counted to `= 3
 
 ### Quantum measurement — degeneracy
 
-A non-degenerate eigenvalue identifies a single state (`|S| = 1`). A degenerate level leaves a residual of `n²`, read by the same gate that certifies the other domains.
+A measurement with a single possible outcome pins down one state. When several states share an outcome, a residual remains. A non-degenerate eigenvalue identifies a single state (`|S| = 1`). A degenerate level leaves a residual of `n²`, read by the same gate that certifies the other domains.
 
 - ``QuantumMeasurement``
 - ``DegenerateMeasurement``
@@ -118,7 +119,7 @@ A non-degenerate eigenvalue identifies a single state (`|S| = 1`). A degenerate 
 
 ### Conservation laws — what a reaction allows
 
-A process is allowed when its conserved quantities close across the arrow, a `where` clause on the totals. The proton is stable because `p → e⁺ + π⁰` conserves charge but not baryon number.
+A reaction can happen only if its books balance, the same totals on both sides. A process is allowed when its conserved quantities close across the arrow, a `where` clause on the totals. The proton is stable because `p → e⁺ + π⁰` conserves charge but not baryon number.
 
 - ``Conserved``
 - ``Reaction``

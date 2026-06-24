@@ -12,7 +12,7 @@ A theory of when checking an answer is the same as knowing it — written as pur
 
 **Where to start.** One question picks your door.
 
-- term **To use it:** write a part of your own system and trust it for the price of a build. Begin with <doc:Purpose> — what it buys, and what it does not — then read the scheduler in [Playground](https://danielswift1992.github.io/verification-is-identification/documentation/playground), a proof in ten lines.
+- term **To use it:** write a part of your own system and trust it for the price of a build. Begin with <doc:Purpose> — what it buys, and what it does not — then read the scheduler in [Playground](https://danielswift1992.github.io/verification-is-identification/documentation/playground), a proof in ten lines. To map your own part, see <doc:Encoding>.
 - term **To see why it holds:** the result proved from one postulate, then where it forces. Begin with <doc:verification_is_identification>, ground it in <doc:existence_is_finite>, then follow a consequence into <doc:intelligence_is_inevitable>.
 - term **To write in the notation yourself:** the grammar is ``Law`` — one seed, two moves, one floor.
 
@@ -43,6 +43,10 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 ### Why it exists
 
 - <doc:Purpose>
+
+### Encode your own
+
+- <doc:Encoding>
 
 ### Start here
 

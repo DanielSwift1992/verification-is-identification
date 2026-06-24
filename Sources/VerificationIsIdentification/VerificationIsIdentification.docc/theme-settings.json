@@ -1,0 +1,18 @@
+{
+  "theme": {
+    "color": {
+      "link": {
+        "light": "#0D9373",
+        "dark": "#2DD4BF"
+      },
+      "documentation-intro-accent": {
+        "light": "#5EEAD4",
+        "dark": "#5EEAD4"
+      },
+      "documentation-intro-fill": {
+        "light": "linear-gradient(135deg, #064E40, #0D9373)",
+        "dark": "linear-gradient(135deg, #042F27, #0A6E57)"
+      }
+    }
+  }
+}

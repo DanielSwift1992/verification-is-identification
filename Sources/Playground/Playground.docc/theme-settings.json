@@ -1,31 +1,10 @@
 {
   "theme": {
     "color": {
-      "link": {
-        "light": "#2563EB",
-        "dark": "#60A5FA"
-      },
-      "figure-blue": {
-        "light": "#2563EB",
-        "dark": "#60A5FA"
-      },
-      "fill-blue": {
-        "light": "#2563EB",
-        "dark": "#3B82F6"
-      },
-      "standard-blue": {
-        "light": "#2563EB",
-        "dark": "#60A5FA"
-      },
-      "navigator-item-hover": {
-        "light": "#EFF6FF",
-        "dark": "#1E3A5F"
-      },
-      "documentation-intro-fill": "linear-gradient(135deg, #172554, #1E40AF)",
-      "documentation-intro-title": "#FFFFFF",
-      "documentation-intro-figure": "#DBEAFE",
-      "documentation-intro-eyebrow": "#BFDBFE",
-      "documentation-intro-accent": "#93C5FD"
+      "documentation-intro-fill": {
+        "light": "linear-gradient(160deg, #EFF6FF, #BFDBFE)",
+        "dark": "linear-gradient(135deg, #172554, #1E40AF)"
+      }
     }
   }
 }

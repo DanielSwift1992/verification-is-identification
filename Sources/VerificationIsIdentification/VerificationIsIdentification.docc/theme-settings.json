@@ -2,32 +2,32 @@
   "theme": {
     "color": {
       "link": {
-        "light": "#0D9373",
-        "dark": "#2DD4BF"
+        "light": "#2563EB",
+        "dark": "#60A5FA"
       },
       "figure-blue": {
-        "light": "#0D9373",
-        "dark": "#2DD4BF"
+        "light": "#2563EB",
+        "dark": "#60A5FA"
       },
       "fill-blue": {
-        "light": "#0D9373",
-        "dark": "#2DD4BF"
+        "light": "#2563EB",
+        "dark": "#3B82F6"
       },
       "standard-blue": {
-        "light": "#0D9373",
-        "dark": "#2DD4BF"
+        "light": "#2563EB",
+        "dark": "#60A5FA"
       },
       "navigator-item-hover": {
-        "light": "#ECFDF5",
-        "dark": "#0F3D2A"
+        "light": "#EFF6FF",
+        "dark": "#1E3A5F"
       },
       "documentation-intro-accent": {
-        "light": "#047857",
-        "dark": "#5EEAD4"
+        "light": "#2563EB",
+        "dark": "#93C5FD"
       },
       "documentation-intro-fill": {
-        "light": "linear-gradient(160deg, #ECFDF5, #A7F3D0)",
-        "dark": "linear-gradient(135deg, #042F27, #0A6E57)"
+        "light": "linear-gradient(160deg, #EFF6FF, #BFDBFE)",
+        "dark": "linear-gradient(135deg, #172554, #1E40AF)"
       }
     }
   }

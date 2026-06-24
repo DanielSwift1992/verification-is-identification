@@ -172,25 +172,25 @@ func landingTopics(_ trailheads: [String]) -> String {
     g.append("### Why it exists\n\n- <doc:Purpose>\n")
     g.append("### Encode your own\n\n- <doc:Encoding>\n")
     g.append("### Start here\n\n" + bullets(trailheads) + "\n")
-    g.append("### The seed — one act and its fixpoint\n\n" + bullets(names(SEED.sorted { title($0) < title($1) })) + "\n")
-    g.append("### The medium — markers, the functions on Pair\n\n"
+    g.append("### The seed: one act and its fixpoint\n\n" + bullets(names(SEED.sorted { title($0) < title($1) })) + "\n")
+    g.append("### The medium: markers, the functions on Pair\n\n"
              + bullets(names(byDepth(protos.filter { cls[$0] == "marker" }))) + "\n")
-    g.append("### The kernel — the V=I core (Pair / Σ-rooted)\n\n"
+    g.append("### The kernel: the V=I core (Pair / Σ-rooted)\n\n"
              + bullets(names(byDepth(protos.filter { cls[$0] == "kernel" }))) + "\n")
     for (aname, role) in [("HasSolutions", "Identification"), ("HasCache", "The cache"),
                           ("HasDistance", "The metric"), ("HasEncoding", "The lens")] {
         let a = pidOf[aname]!
         let members = [aname] + names(byDepth(theoremsOn[a] ?? []))
-        g.append("### \(role) — the \(aname) axis\n\n" + bullets(members) + "\n")
+        g.append("### \(role): the \(aname) axis\n\n" + bullets(members) + "\n")
     }
     let gen = axis.filter { (theoremsOn[$0] ?? []).isEmpty }
         .sorted { ($0 == ROOT ? 0 : 1, title($0)) < ($1 == ROOT ? 0 : 1, title($1)) }
-    g.append("### The axes — pure generators\n\n" + bullets(names(gen)) + "\n")
+    g.append("### The axes: pure generators\n\n" + bullets(names(gen)) + "\n")
     let floor = byDepth(protos.filter { FLOOR_FILES.contains(file($0)) })
-    g.append("### The floor — what it delegates, where it stops\n\n" + bullets(names(floor)) + "\n")
+    g.append("### The floor: what it delegates, where it stops\n\n" + bullets(names(floor)) + "\n")
     let proj = byDepth(protos.filter { PROJ_FILES.contains(file($0)) })
-    g.append("### Projection — the framework instantiated on machines\n\n" + bullets(names(proj)) + "\n")
-    g.append("### The papers — the routes\n\n- <doc:Sources>\n")
+    g.append("### Projection: the framework instantiated on machines\n\n" + bullets(names(proj)) + "\n")
+    g.append("### The papers: the routes\n\n- <doc:Sources>\n")
     return g.joined(separator: "\n")
 }
 

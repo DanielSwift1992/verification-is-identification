@@ -1,36 +1,36 @@
 # ``VerificationIsIdentification``
 
-A theory of when checking an answer is the same as knowing it — written as pure Swift types, with the compiler as the proof checker.
+A theory of when checking an answer is the same as knowing it, written as pure Swift types, with the compiler as the proof checker.
 
 ## Overview
 
-**Why it exists.** Correctness is usually a second artifact — a proof kept beside the system, drifting from it. This collapses the two: you write the structure, and the writing is the proof. The goal and the method behind that collapse are one page, <doc:Purpose>. This page is the result.
+**Why it exists.** Correctness is usually a second artifact, a proof kept beside the system, drifting from it. This collapses the two: you write the structure, and the writing is the proof. The goal and the method behind that collapse are one page, <doc:Purpose>. This page is the result.
 
-**What it is.** Take a finite set of candidates and a test. If exactly one candidate passes, then "it passed" and "it is the answer" say the same thing — to check the lone survivor is to identify it. (Of `a, b, c`, if only `c` passes, then "`c` passed" and "the answer is `c`" are one fact.) That collapse is the result, ``PassIsIdentification``. It is written as pure Swift types, so the compiler is the proof checker. You write a claim as a protocol, and if it compiles, the claim holds. Nothing runs.
+**What it is.** Take a finite set of candidates and a test. If exactly one candidate passes, then "it passed" and "it is the answer" say the same thing: to check the lone survivor is to identify it. (Of `a, b, c`, if only `c` passes, then "`c` passed" and "the answer is `c`" are one fact.) That collapse is the result, ``PassIsIdentification``. It is written as pure Swift types, so the compiler is the proof checker. You write a claim as a protocol, and if it compiles, the claim holds. Nothing runs.
 
-**Why it matters.** Checking an answer is the cheap, mechanical half of knowing. Finding it is the hard half. Where the two collapse, a system that only *checks* thereby *finds* — and since a passing check is a proof, its answer is certain, never confident-but-wrong. This is not one problem's trick: whatever is determinate is a finite structure, so the collapse holds wherever anything is determinate, and it marks the exact line between what can be known for sure and what must be supplied from outside. It is the opposite of a system that guesses fluently yet cannot tell a proof from a guess.
+**Why it matters.** Checking an answer is the cheap, mechanical half of knowing. Finding it is the hard half. Where the two collapse, a system that only *checks* thereby *finds*. A passing check is a proof, so its answer is certain, never confident-but-wrong. This is not one problem's trick: whatever is determinate is a finite structure, so the collapse holds wherever anything is determinate, and it marks the exact line between what can be known for sure and what must be supplied from outside. It is the opposite of a system that guesses fluently yet cannot tell a proof from a guess.
 
 **Where to start.** One question picks your door.
 
-- term **To use it:** write a part of your own system and trust it for the price of a build. Begin with <doc:Purpose> — what it buys, and what it does not — then read the scheduler in [Playground](https://danielswift1992.github.io/verification-is-identification/documentation/playground), a proof in ten lines. To map your own part, see <doc:Encoding>.
+- term **To use it:** write a part of your own system and trust it for the price of a build. Begin with <doc:Purpose> (what it buys, and what it does not), then read the scheduler in [Playground](https://danielswift1992.github.io/verification-is-identification/documentation/playground), a proof in ten lines. To map your own part, see <doc:Encoding>.
 - term **To see why it holds:** the result proved from one postulate, then where it forces. Begin with <doc:verification_is_identification>, ground it in <doc:existence_is_finite>, then follow a consequence into <doc:intelligence_is_inevitable>.
-- term **To write in the notation yourself:** the grammar is ``Law`` — one seed, two moves, one floor.
+- term **To write in the notation yourself:** the grammar is ``Law``: one seed, two moves, one floor.
 
 The type pages under Topics are reference, each standing on its own, reached by name. For learning machines, the thread is <doc:intelligence_is_inevitable> → <doc:play_is_proof> → <doc:architecture_of_learning_machines>.
 
 **How it is built.** From one act and one fixpoint:
 
-- term **The seed:** a single act of distinction — ``Pair``. Its fixpoint, where the two sides close, is ``Null``.
-- term **The move:** two directions and no third — *expand* opens a degree of freedom (`associatedtype`), *compress* closes one (`where`).
-- term **The floor:** every space is finite — width (``Pair`` has two sides) × depth (every chain reaches ``Null``).
+- term **The seed:** a single act of distinction, ``Pair``. Its fixpoint, where the two sides close, is ``Null``.
+- term **The move:** two directions and no third: *expand* opens a degree of freedom (`associatedtype`), *compress* closes one (`where`).
+- term **The floor:** every space is finite: width (``Pair`` has two sides) × depth (every chain reaches ``Null``).
 
 ![The construction law: one seed, two moves, one floor.](law)
 
-**The law applied.** To see the framework used rather than stated, open [the `Playground` module](https://danielswift1992.github.io/verification-is-identification/documentation/playground): the physics of *Matter* §5 reproduced as types — the residual entropy of ice, hydrogen's metastable 2s, the stable proton — and a working solver. A green build is the proof there too.
+**The law applied.** To see the framework used rather than stated, open [the `Playground` module](https://danielswift1992.github.io/verification-is-identification/documentation/playground). It reproduces the physics of *Matter* §5 as types: the residual entropy of ice, hydrogen's metastable 2s, the stable proton, and a working solver. A green build is the proof there too.
 
 ### What is on this page
 
-The types below are grouped by what each one does: the seed, the markers, the kernel, the four axes, and the theorems built on them. That is the framework's core. The papers carry the rest and are linked from <doc:Sources>. Every type's page stands on its own — a tag like `[Nav N5]` points to its proof in a paper, never something you must read first.
+The types below are grouped by what each one does: the seed, the markers, the kernel, the four axes, and the theorems built on them. That is the framework's core. The papers carry the rest and are linked from <doc:Sources>. Every type's page stands on its own. A tag like `[Nav N5]` points to its proof in a paper, never something you must read first.
 
 (The page is not ordered by paper: the order the papers were written is one walk through the types, while this lists them by the move each one makes. A fuller account of that organization is in ``Law``.)
 
@@ -55,12 +55,12 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``Matter``
 - ``PlayIsProof``
 
-### The seed — one act and its fixpoint
+### The seed: one act and its fixpoint
 
 - ``Null``
 - ``Pair``
 
-### The medium — markers, the functions on Pair
+### The medium: markers, the functions on Pair
 
 - ``Permanent``
 - ``Monotone``
@@ -70,7 +70,7 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``Measurable``
 - ``Unique``
 
-### The kernel — the V=I core (Pair / Σ-rooted)
+### The kernel: the V=I core (Pair / Σ-rooted)
 
 - ``StructuresFinite``
 - ``OperationsClosed``
@@ -84,7 +84,7 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``ScopeBoundedByEncoding``
 - ``PassImpliesMembership``
 
-### Identification — the HasSolutions axis
+### Identification: the HasSolutions axis
 
 - ``HasSolutions``
 - ``IdentityCollapse``
@@ -94,7 +94,7 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``PassIsIdentification``
 - ``AgentPathCertified``
 
-### The cache — the HasCache axis
+### The cache: the HasCache axis
 
 - ``HasCache``
 - ``CachePermanent``
@@ -105,7 +105,7 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``ResultsIrreversible``
 - ``CommunicationBounded``
 
-### The metric — the HasDistance axis
+### The metric: the HasDistance axis
 
 - ``HasDistance``
 - ``DistanceOnStructures``
@@ -115,13 +115,13 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``ResistanceHasMagnitude``
 - ``GateIsZeroOfLoss``
 
-### The lens — the HasEncoding axis
+### The lens: the HasEncoding axis
 
 - ``HasEncoding``
 - ``QualitiesAreFinite``
 - ``PerspectiveIsEncoding``
 
-### The axes — pure generators
+### The axes: pure generators
 
 - ``HasSigma``
 - ``HasAlpha``
@@ -135,19 +135,19 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``HasSaturation``
 - ``HasTime``
 
-### The floor — what it delegates, where it stops
+### The floor: what it delegates, where it stops
 
 - ``EncoderConditions``
 - ``ConditionalSolving``
 - ``DifficultyIsEncoder``
 - ``MeasuredGeometry``
 
-### Projection — the framework instantiated on machines
+### Projection: the framework instantiated on machines
 
 - ``GateWrapper``
 - ``AllCoordinatesPresent``
 - ``SaturationMap``
 
-### The papers — the routes
+### The papers: the routes
 
 - <doc:Sources>

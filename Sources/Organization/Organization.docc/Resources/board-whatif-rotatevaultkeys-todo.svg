@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" role="img" data-vi-canvas="1" font-family="Inter, Roboto, system-ui, sans-serif" aria-label="The task board with one card previewed in a new column, marked as a preview, not a fact.">
+<filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+<feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#000000" flood-opacity="0.10"/>
+</filter>
+<g transform="translate(12, 0)">
+<g transform="translate(0, 0)">
+<text x="0" y="20" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="17">To Do</text>
+</g>
+<g transform="translate(0, 40)">
+<g filter="url(#soft-shadow)">
+<rect x="0" width="280" height="90" rx="12" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="24" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">Onboard New Hire</text>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="42" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="13">Carol</text>
+</g>
+<g transform="translate(16, 0)">
+<g transform="translate(0, 54)">
+<rect x="0" width="92" height="20" rx="10" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(8, 0)">
+<text x="0" y="14" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="10">To Do</text>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(0, 146)">
+<g filter="url(#soft-shadow)">
+<rect x="0" width="280" height="90" rx="12" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="24" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">Archive Old Repos</text>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="42" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="13">Dave</text>
+</g>
+<g transform="translate(16, 0)">
+<g transform="translate(0, 54)">
+<rect x="0" width="92" height="20" rx="10" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(8, 0)">
+<text x="0" y="14" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="10">To Do</text>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(0, 252)">
+<g filter="url(#soft-shadow)">
+<rect x="0" width="280" height="90" rx="12" fill="rgba(66,139,249,0.16)" stroke="var(--vi-action, #336FEE)" stroke-width="1" stroke-dasharray="4 3"/>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="24" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">Rotate Vault Keys</text>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="42" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="13">Dave</text>
+</g>
+<g transform="translate(16, 0)">
+<g transform="translate(0, 54)">
+<rect x="0" width="92" height="20" rx="10" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(8, 0)">
+<text x="0" y="14" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="10">To Do</text>
+</g>
+</g>
+</g>
+<g transform="translate(16, 0)">
+<text x="248" y="24" text-anchor="end" fill="var(--vi-action, #336FEE)" font-weight="400" font-size="10">Preview</text>
+</g>
+</g>
+<g transform="translate(0, 358)">
+</g>
+</g>
+<g transform="translate(340, 0)">
+<g transform="translate(0, 0)">
+<text x="0" y="20" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="17">In Progress</text>
+</g>
+<g transform="translate(0, 40)">
+</g>
+<g transform="translate(0, 146)">
+<g filter="url(#soft-shadow)">
+<rect x="0" width="280" height="90" rx="12" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="24" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">Review PIP Policy</text>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="42" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="13">Bob</text>
+</g>
+<g transform="translate(16, 0)">
+<g transform="translate(0, 54)">
+<rect x="0" width="92" height="20" rx="10" fill="var(--vi-action, #336FEE)"/>
+<g transform="translate(8, 0)">
+<text x="0" y="14" text-anchor="start" fill="var(--vi-on-action, #FFFFFF)" font-weight="400" font-size="10">In Progress</text>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(0, 252)">
+<g filter="url(#soft-shadow)">
+<rect x="0" width="280" height="90" rx="12" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="24" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">Finance Reconciliation</text>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="42" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="13">Alice</text>
+</g>
+<g transform="translate(16, 0)">
+<g transform="translate(0, 54)">
+<rect x="0" width="92" height="20" rx="10" fill="var(--vi-action, #336FEE)"/>
+<g transform="translate(8, 0)">
+<text x="0" y="14" text-anchor="start" fill="var(--vi-on-action, #FFFFFF)" font-weight="400" font-size="10">In Progress</text>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(0, 358)">
+</g>
+</g>
+<g transform="translate(668, 0)">
+<g transform="translate(0, 0)">
+<text x="0" y="20" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="17">Done</text>
+</g>
+<g transform="translate(0, 40)">
+<g filter="url(#soft-shadow)">
+<rect x="0" width="280" height="90" rx="12" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="24" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">Q3 Access Audit</text>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="42" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="13">Alice</text>
+</g>
+<g transform="translate(16, 0)">
+<g transform="translate(0, 54)">
+<rect x="0" width="92" height="20" rx="10" fill="var(--vi-accent, #FFDD2D)"/>
+<g transform="translate(8, 0)">
+<text x="0" y="14" text-anchor="start" fill="var(--vi-on-accent, #1C1C1E)" font-weight="400" font-size="10">Done</text>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(0, 146)">
+<g filter="url(#soft-shadow)">
+<rect x="0" width="280" height="90" rx="12" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="24" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">Org Chart Update</text>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="42" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="13">Carol</text>
+</g>
+<g transform="translate(16, 0)">
+<g transform="translate(0, 54)">
+<rect x="0" width="92" height="20" rx="10" fill="var(--vi-accent, #FFDD2D)"/>
+<g transform="translate(8, 0)">
+<text x="0" y="14" text-anchor="start" fill="var(--vi-on-accent, #1C1C1E)" font-weight="400" font-size="10">Done</text>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(0, 252)">
+</g>
+<g transform="translate(0, 358)">
+</g>
+</g>
+
+</svg>

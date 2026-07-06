@@ -3,7 +3,7 @@
 //
 // IiI saturates after K tasks. This sharpens K: most rule classes are
 // recompositions of structure already certified. The genuinely new
-// entries — the domain's ATOMS — are defined as the primes are: by
+// entries, the domain's ATOMS, are defined as the primes are: by
 // survival of a sieve. A rule is atomic iff no composition of
 // strictly-smaller certified rules reaches it (B4); the atom basis is the
 // residue of running the composition-sieve in norm order (Eratosthenes,
@@ -31,15 +31,15 @@ public protocol HasCompositionalNorm: HasDistance {
 /// An atom is the FIXED POINT where the two norms COINCIDE,
 /// ‖R‖_comp = ‖R‖ (B4–B5), the prime characterization generalized: "primality
 /// is the equality of the two axial norms." Conclusion pinned (§T): the gap
-/// between the compositional and intrinsic norm collapses — `where
+/// between the compositional and intrinsic norm collapses: `where
 /// CompositionalNorm == Distance`. Composites drop strictly below (a cheaper
-/// name, a shortcut). Atoms are where no shortcut exists — a path that does not
+/// name, a shortcut). Atoms are where no shortcut exists: a path that does not
 /// fold, already at the floor of its norm. The residue GENERATES the reachable
 /// domain, is the true generating count |A| ≤ K (B7), and a domain is saturable
-/// at finite cost iff it is finite (B8 — the primes, infinite by Euclid, are the
+/// at finite cost iff it is finite (B8, the primes, infinite by Euclid, are the
 /// canonical negative). [Basis B4-B8]
 ///
-/// > Note: Atoms are the residue of the composition-sieve in norm order — the
+/// > Note: Atoms are the residue of the composition-sieve in norm order, the
 /// > domain's primes, where the two axial norms meet.
 public protocol AtomBasis: RulesCompose, BasisIsFinite, HasCompositionalNorm
     where CompositionalNorm == Distance {}
@@ -48,21 +48,21 @@ public protocol AtomBasis: RulesCompose, BasisIsFinite, HasCompositionalNorm
 /// in isolation: library- and depth-relative. Statically the basis looks
 /// structureless. Dynamically, over a finite window, every atom has a witnessed
 /// cause (the gate rejected every bounded composition of its predecessors), so
-/// the residue is fully determined and permanent (I3) — determined, not
+/// the residue is fully determined and permanent (I3), determined, not
 /// random, exactly as the primes are. [Basis B9, B10]
 public protocol AtomnessIsTrajectory: AtomBasis, NoInverse {}
 
 // ───────────────────────────────────────────────────────────────
-// B8b (trichotomy) and B11 (the open question) — recorded, not pinned.
+// B8b (trichotomy) and B11 (the open question): recorded, not pinned.
 //
 // B8b: by (basis, reach) a composition domain is CLOSED (finite basis, bounded
-// reach), HORN (finite basis, INFINITE reach — ℕ-under-+: one atom, every
+// reach), HORN (finite basis, INFINITE reach: ℕ-under-+: one atom, every
 // numeral), or PRIMES (infinite basis). The HORN's infinite reach is the
-// unbounded Pair-type itself (each element finite, the closure not) — not
+// unbounded Pair-type itself (each element finite, the closure not), not
 // expressible as a finite axis, so it stays prose.
 //
 // B11: the sieve COMPUTES the basis (terminates by I1), but whether the residue
-// is COMPRESSIBLE — foreseeable more cheaply than running the sieve — is open
+// is COMPRESSIBLE, foreseeable more cheaply than running the sieve, is open
 // per domain. That is the prime-distribution question (Riemann) in the
 // framework's clothes: named precisely, left honest. A boundary, like PP15.
 // ───────────────────────────────────────────────────────────────

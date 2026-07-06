@@ -178,7 +178,7 @@ The tower climbs while libraries cluster; it halts at the first metrically unifo
 
 **Definition (loss).** For a candidate rule g on a game with examples {(Iₖ, Oₖ)}: loss(g) = Σₖ W(apply(g, Iₖ), Oₖ).
 
-**G13 (The gate is the zero of the loss).** Compilation (V=I §4.7) passes iff loss(g) = 0. MISMATCH, previously a bare flag, carries magnitude: how far the produced output is from the expected one, summed over examples. The X-axis carries direction: a frontier address of some divergent pair — *where* to repair (G4).
+**G13 (The gate is the zero of the loss).** Compilation (V=I §4.7) passes iff loss(g) = 0. MISMATCH, a bare flag at the base loop, here carries magnitude: how far the produced output is from the expected one, summed over examples. The X-axis carries direction: a frontier address of some divergent pair — *where* to repair (G4).
 
 Descent — propose modifications that reduce loss, guided by frontier addresses — is a proposal strategy on the Y-axis: it reorders attempts and changes nothing else (G9). Discrete descent can stall in local minima of rule space; a stall is a sequence of REJECTs, and completeness still rests on enumeration (V=I §5.10). Soundness never rested on the search (Theorem 2).
 

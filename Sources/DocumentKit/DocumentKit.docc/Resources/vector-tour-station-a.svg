@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 96" role="img" data-vi-canvas="1" font-family="Inter, Roboto, system-ui, sans-serif" aria-label="Station A, a dot linked to Station B's own page.">
+<g transform="translate(0, 0)">
+<a href="/documentation/documentkit/vectortourstationb">
+<circle cx="60" cy="40" r="20" fill="var(--vi-action, #336FEE)"/>
+</a>
+</g>
+<g transform="translate(0, 0)">
+<text x="60" y="76" text-anchor="middle" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Station A</text>
+</g>
+
+</svg>

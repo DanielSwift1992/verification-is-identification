@@ -16,7 +16,9 @@ import VerificationIsIdentification
 /// A construction valid over ANY certified crystallizing domain. Build or
 /// prove once here. Every conforming domain plugs in for free. A new physical
 /// instance added tomorrow slots in with no change here.
-public struct CrystallizingDomain<D: SystemCrystallizes> {
+public struct CrystallizingDomain<
+    D: SystemCrystallizes
+> {
     public typealias Instance = D
 }
 

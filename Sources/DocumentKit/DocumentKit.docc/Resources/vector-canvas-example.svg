@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 96" role="img" data-vi-canvas="1" font-family="Inter, Roboto, system-ui, sans-serif" aria-label="A plate reading Vector.">
+<rect width="240" height="96" rx="16" fill="var(--vi-surface-card, #FFFFFF)"/>
+<g transform="translate(24, 0)">
+<text x="0" y="56" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="21">Vector</text>
+</g>
+
+</svg>

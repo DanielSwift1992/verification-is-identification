@@ -130,3 +130,11 @@ The completion is not a new learner but a *wrapper*: keep the generator's flow, 
 | AI7 | V=I §3.7, Theorem 2; I3; E2 C4a / ledger; LL (crystal/liquid) |
 
 The series derived a machine and proved its guarantees. This document projects those guarantees onto the field's machines: where the gate is present the output is certified, where I3 is present the library never shrinks, where α > 0 the generator exploits structure — and where a coordinate is absent, the corresponding guarantee is absent, derived from the same reading. The contribution is a projection — the framework's own vocabulary applied to every learner, with consequences that follow from coordinates, not from assessment.
+
+## Topics
+
+### Theorems this paper proves
+
+- ``AllCoordinatesPresent``
+- ``GateWrapper``
+- ``SaturationMap``

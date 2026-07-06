@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 130" role="img" data-vi-canvas="1" font-family="Inter, Roboto, system-ui, sans-serif" aria-label="A summary strip: headcount by department, by rank, and by work arrangement, each read live from the same verified counts the tables below list in full.">
+<g transform="translate(0, 10)">
+<g transform="translate(16, 0)">
+<rect x="0" width="220" height="32" rx="10" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(12, 0)">
+<text x="0" y="21" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Finance</text>
+<text x="196" y="21" text-anchor="end" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">45</text>
+</g>
+</g>
+<g transform="translate(252, 0)">
+<rect x="0" width="220" height="32" rx="10" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(12, 0)">
+<text x="0" y="21" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Engineering</text>
+<text x="196" y="21" text-anchor="end" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">71</text>
+</g>
+</g>
+<g transform="translate(488, 0)">
+<rect x="0" width="220" height="32" rx="10" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(12, 0)">
+<text x="0" y="21" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Sales</text>
+<text x="196" y="21" text-anchor="end" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">56</text>
+</g>
+</g>
+<g transform="translate(724, 0)">
+<rect x="0" width="220" height="32" rx="10" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(12, 0)">
+<text x="0" y="21" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">People</text>
+<text x="196" y="21" text-anchor="end" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">28</text>
+</g>
+</g>
+</g>
+<g transform="translate(0, 50)">
+<g transform="translate(16, 0)">
+<rect x="0" width="220" height="32" rx="10" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(12, 0)">
+<text x="0" y="21" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">IndividualContributor</text>
+<text x="196" y="21" text-anchor="end" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">67</text>
+</g>
+</g>
+<g transform="translate(252, 0)">
+<rect x="0" width="220" height="32" rx="10" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(12, 0)">
+<text x="0" y="21" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Lead</text>
+<text x="196" y="21" text-anchor="end" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">67</text>
+</g>
+</g>
+<g transform="translate(488, 0)">
+<rect x="0" width="220" height="32" rx="10" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(12, 0)">
+<text x="0" y="21" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Manager</text>
+<text x="196" y="21" text-anchor="end" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">66</text>
+</g>
+</g>
+</g>
+<g transform="translate(0, 90)">
+<g transform="translate(16, 0)">
+<rect x="0" width="220" height="32" rx="10" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(12, 0)">
+<text x="0" y="21" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">OnSite</text>
+<text x="196" y="21" text-anchor="end" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">68</text>
+</g>
+</g>
+<g transform="translate(252, 0)">
+<rect x="0" width="220" height="32" rx="10" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(12, 0)">
+<text x="0" y="21" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Hybrid</text>
+<text x="196" y="21" text-anchor="end" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">66</text>
+</g>
+</g>
+<g transform="translate(488, 0)">
+<rect x="0" width="220" height="32" rx="10" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(12, 0)">
+<text x="0" y="21" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Remote</text>
+<text x="196" y="21" text-anchor="end" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">66</text>
+</g>
+</g>
+</g>
+</svg>

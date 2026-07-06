@@ -1,0 +1,195 @@
+<!--
+  DESIGN8 §3 — the inline-swap hook. DocC's own template extension point
+  (`--experimental-enable-custom-templates`), inserted verbatim into every generated page's
+  shell. The site is a SPA already (Vue reads data/*.json and renders `<picture><img>` for every
+  `Picture` DocumentKit emits) — this script is not a runtime of ours, it is an instruction to
+  that host about how to embed OUR SVGs specifically: swap the `<img>` for the literal SVG file
+  it references, so a `Linked` subtree inside it becomes a real DOM anchor. Only our own
+  generated files qualify — DESIGN14 §1: a canvas declares itself (`data-vi-canvas="1"` on its
+  own root, DocumentKit/Vector.swift's `Diagram`), read back off the fetched document, not a
+  name kept in a list here (that list was its own bug once: a new canvas shipped before its
+  name was added, and rendered untheme'd until someone noticed — the class of bug a self-
+  declaring marker cannot have, there is nothing second to forget). Every other same-origin SVG
+  is fetched once, found to carry no marker, and left exactly as DocC rendered it. Without this
+  script the page is a completely ordinary image — nothing breaks, nothing is required to read
+  the site.
+
+  DESIGN10 — theme-aware. DocC already resolves `x~dark.svg` beside `x.svg` into a real
+  `<picture><source media="(prefers-color-scheme: dark)">` (checked directly against the
+  generated site, no code of ours involved). `img.getAttribute("src")` alone is only ever the
+  light fallback; `resolvedSrc`, below, is what actually follows the dark preference (see its own
+  comment — `currentSrc` turned out to race).
+
+  DESIGN11 — the eight design-system roles (DocumentKit/Design.swift), mechanism (B): every
+  inline-canvas component (Pulse, the keypad, the architecture diagram) reads a role atom whose
+  `typeName` is `var(--vi-<role>, <light-hex>)`, never a flat hex. The two palettes those
+  variables resolve are injected by THIS SCRIPT, not a sibling `<style>` tag — checked directly
+  against the generated site: DocC wraps footer.html's whole content in
+  `<template id="custom-footer">`, whose children are inert (never part of the live document,
+  per the HTML spec) until something promotes them. DocC's own bootstrap promotes `<script>`
+  elements (recreating and running each one — how this file's inline-swap hook has always
+  worked) but leaves everything else in the template inert, including a plain `<style>` tag —
+  confirmed by inspecting the live DOM: the raw HTML held the block, `document.body.children`
+  showed a `TEMPLATE#custom-footer` still holding it, and no `<style>` reached the document at
+  all. The fix is to build the `<style>` element ourselves, in script, the one channel already
+  proven to reach the live page — appended to `<head>` before the scan below runs, so the first
+  inlined SVG already has the variables in scope. A canvas file never changes after that; only
+  which custom property the browser resolves does, so the theme switches LIVE, with no reload,
+  the moment the OS/browser preference changes — the interim round's "already-inlined SVGs
+  freeze at whatever theme was active when the page loaded" caveat does not apply to a colour
+  carried by a CSS variable, only to which of two SEPARATE FILES got inlined (mechanism A, the
+  card grid — DESIGN10's `x~dark.svg` mechanism, unaffected by this block).
+
+  These hexes are also declared, literally, as Swift atoms in Design.swift (the light values) and
+  as `SurfaceTrackDark`/`TextPrimaryDark` (the two dark values `CardPalette` needs) — this file is
+  not Swift-rendered, so the two lists cannot share one declaration the way the rest of
+  Design.swift's palette does. Keeping them in step is a manual discipline (SurfaceLaw §S23's own
+  edge), not a mechanism that enforces it.
+-->
+<script>
+(function () {
+  var ROLE_CSS =
+    ":root {" +
+    "--vi-surface-card:#FFFFFF;" +
+    "--vi-surface-track:#F6F7F8;" +
+    "--vi-text-primary:rgba(0,0,0,0.80);" +
+    "--vi-text-secondary:rgba(0,0,0,0.54);" +
+    "--vi-accent:#FFDD2D;" +
+    "--vi-action:#336FEE;" +
+    "--vi-line:#EAECEE;" +
+    "--vi-on-accent:#1C1C1E;" +
+    "--vi-action-tint:rgba(66,139,249,0.16);" +
+    "--vi-on-action:#FFFFFF;" +
+    "--vi-surface-card-shadow-opacity:0.10;" +
+    "}" +
+    "@media (prefers-color-scheme: dark) {" +
+    ":root {" +
+    "--vi-surface-card:#1C1C1E;" +
+    "--vi-surface-track:rgba(255,255,255,0.15);" +
+    "--vi-text-primary:rgba(255,255,255,0.90);" +
+    "--vi-text-secondary:rgba(255,255,255,0.70);" +
+    "--vi-accent:#FFDD2D;" +
+    "--vi-action:#4972CF;" +
+    "--vi-line:rgba(255,255,255,0.15);" +
+    "--vi-on-accent:#1C1C1E;" +
+    "--vi-action-tint:rgba(73,114,207,0.16);" +
+    "--vi-on-action:#FFFFFF;" +
+    "--vi-surface-card-shadow-opacity:0;" +
+    "}" +
+    "}";
+  var roleStyle = document.createElement("style");
+  roleStyle.textContent = ROLE_CSS;
+  (document.head || document.documentElement).appendChild(roleStyle);
+
+  // The marker mechanism is explained above (DESIGN14 §1) — `notOurs` is its one piece of
+  // bookkeeping: a fetched-and-rejected URL, cached so an SPA route change never re-fetches
+  // something already known not to carry the marker.
+  var notOurs = Object.create(null);
+
+  function baseName(src) {
+    // Strip DocC's own light/dark suffix (`x~dark.svg`) so either variant of the same asset is
+    // recognised as the same name.
+    return (src || "").split("/").pop().replace(/\.svg$/i, "").replace(/~dark$/, "");
+  }
+
+  function isSameOriginSvg(src) {
+    if (!/\.svg(?:[?#]|$)/i.test(src || "")) { return false; }
+    try {
+      return new URL(src, window.location.href).origin === window.location.origin;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  // `avatar`/`card-*` are mechanism (A): TWO literal files, `x.svg` and `x~dark.svg`
+  // (`CardPalette`, DESIGN11), the only assets a `~dark` sibling actually exists for.
+  function isCardLike(name) {
+    return name === "avatar" || name.indexOf("card-") === 0;
+  }
+
+  function prefersDark() {
+    return !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  }
+
+  // `img.currentSrc` is what the browser decided a `<picture>` resolves to — but that
+  // resolution is not guaranteed synchronous on an element that has not yet been laid out, so
+  // reading it right after insertion can race and return the light fallback even in dark mode
+  // (checked directly: an inlined card came back light-filled with dark active). For the ONLY
+  // assets where the choice matters (`isCardLike`), decide it ourselves from `prefersDark()` —
+  // synchronous, no race — instead of trusting `currentSrc`'s timing. Every other canvas
+  // (architecture/pulse/keypad-*, mechanism B) has exactly one file; its colour comes from
+  // the CSS variables above, not from which file got fetched, so `currentSrc` there is fine.
+  function resolvedSrc(img) {
+    var attr = img.getAttribute("src") || "";
+    if (isCardLike(baseName(attr)) && prefersDark()) {
+      return attr.replace(/\.svg$/i, "~dark.svg");
+    }
+    return img.currentSrc || attr;
+  }
+
+  function inline(img) {
+    if (img.dataset.vectorInlined) { return; }
+    var src = resolvedSrc(img);
+    if (notOurs[src]) { return; }
+    img.dataset.vectorInlined = "pending";
+    // `fetch` is async — between this call and its resolution, the raw `<img>` is still what
+    // paints. That file's own `var(--vi-x, #lighthex)` fallbacks are the ONLY colours a plain
+    // `<img>` ever sees (an image element has no access to the host document's CSS custom
+    // properties), so in dark mode the untouched image is the LIGHT theme, briefly, regardless
+    // of the page around it — a light flash at each of this image's own corners, most visible
+    // where an image sits early in paint order. Hidden here, synchronously, before the fetch
+    // starts; restored if the fetch fails OR the fetched document turns out not to carry our
+    // own marker (some other same-origin SVG DocC itself references).
+    img.style.visibility = "hidden";
+    fetch(src)
+      .then(function (response) { return response.text(); })
+      .then(function (text) {
+        var parsed = new DOMParser().parseFromString(text, "image/svg+xml");
+        var svg = parsed.documentElement;
+        if (!svg || svg.nodeName.toLowerCase() !== "svg" || svg.getAttribute("data-vi-canvas") !== "1") {
+          notOurs[src] = true;
+          img.dataset.vectorInlined = "";
+          img.style.visibility = "visible";
+          return;
+        }
+        // Fill the container width DocC already laid out (a grid cell, a table cell, the full
+        // content column) rather than copying the `<img>`'s own width — DocC picks a fixed,
+        // conservative default (300px) for a bare image regardless of the SVG's own aspect, far
+        // too small for a wide canvas like the dashboard. Height follows the viewBox's own
+        // aspect ratio (the canvas contract, Vector.swift) — nothing drifts.
+        svg.setAttribute("style", "width:100%;height:auto;display:block;");
+        svg.setAttribute("data-vector-inlined", "true");
+        var host = img.closest("picture") || img;
+        host.replaceWith(svg);
+      })
+      .catch(function () {
+        img.dataset.vectorInlined = "";
+        img.style.visibility = "visible";
+      });
+  }
+
+  function scan(root) {
+    var images = root.querySelectorAll ? root.querySelectorAll("img[src]") : [];
+    for (var i = 0; i < images.length; i++) {
+      var img = images[i];
+      if (isSameOriginSvg(img.getAttribute("src"))) { inline(img); }
+    }
+  }
+
+  scan(document);
+
+  new MutationObserver(function (mutations) {
+    for (var i = 0; i < mutations.length; i++) {
+      var added = mutations[i].addedNodes;
+      for (var j = 0; j < added.length; j++) {
+        var node = added[j];
+        if (node.nodeType !== 1) { continue; }
+        if (node.matches && node.matches("img[src]") && isSameOriginSvg(node.getAttribute("src"))) {
+          inline(node);
+        }
+        if (node.querySelectorAll) { scan(node); }
+      }
+    }
+  }).observe(document.body, { childList: true, subtree: true });
+})();
+</script>

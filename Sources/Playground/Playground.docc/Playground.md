@@ -4,10 +4,16 @@ Worked examples of the framework: physics reproduced as types, learning machines
 
 ## Overview
 
-**Dive in.** Every example here is a finished result you can read on its own: the
-residual entropy of ice, hydrogen's metastable 2s, the stable proton, and a certified
-scheduler. Pick one and follow it. The one idea underneath, that checking a
-single-survivor answer is the same act as finding it, lives in
+**Start with the scheduler.** It asks for no physics: tasks, two machines, and
+conflicts that force each task onto the opposite machine. The compiler propagates
+the one consistent assignment and certifies it, or refuses an impossible schedule
+by name — ``Pinned``, ``Conflicts``, ``Require``, all in `Coloring.swift`. Read it
+first; every other example is the same three operations on a harder board.
+
+**Then dive in.** Every example here is a finished result you can read on its own:
+the residual entropy of ice, hydrogen's metastable 2s, the stable proton. The one
+idea underneath, that checking a single-survivor answer is the same act as finding
+it, lives in
 [`VerificationIsIdentification`](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification) — but the examples do not wait on it.
 
 **What you can do here.** You do not need the physics. Each example is a real, known
@@ -64,6 +70,22 @@ relation when more than one survives (`|S| > 1`), and the encoding of a continuo
 magnitude into a finite structure. The type checker verifies. The encoder searches.
 
 ## Topics
+
+### The solver — a certified scheduler
+
+Constraints propagate to one forced assignment (`|S| = 1`), or the graph reports as ambiguous (`|S| > 1`) or impossible (`|S| = 0`). Nothing is searched at runtime. The answer is a type reduction.
+
+- ``Machine``
+- ``MachineA``
+- ``MachineB``
+- ``Task``
+- ``CrystallizedSchedule``
+- ``AmbiguousSchedule``
+- ``Conflict``
+- ``Conflicts``
+- ``Separated``
+- ``Pinned``
+- ``Require``
 
 ### Ice — residual entropy, counted
 
@@ -130,22 +152,6 @@ A reaction can happen only if its books balance, the same totals on both sides. 
 - ``Side``
 - ``Nothing``
 - ``Allowed``
-
-### The solver — a certified scheduler
-
-Constraints propagate to one forced assignment (`|S| = 1`), or the graph reports as ambiguous (`|S| > 1`) or impossible (`|S| = 0`). Nothing is searched at runtime. The answer is a type reduction.
-
-- ``Machine``
-- ``MachineA``
-- ``MachineB``
-- ``Task``
-- ``CrystallizedSchedule``
-- ``AmbiguousSchedule``
-- ``Conflict``
-- ``Conflicts``
-- ``Separated``
-- ``Pinned``
-- ``Require``
 
 ### Learning machines — the projection
 

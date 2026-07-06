@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 930 280" role="img" data-vi-canvas="1" font-family="Inter, Roboto, system-ui, sans-serif" aria-label="The keypad's state graph: k0 through k3 are the digits entered so far, correct one moves to the next box, any other digit collapses to the one shared dead box, reset returns to k0, and the last correct digit at k3 is a real link to Unlocked, not another box in this picture.">
+<defs>
+<marker id="a" markerWidth="9" markerHeight="9" refX="5" refY="3" orient="auto">
+<path d="M0,0 L6,3 L0,6 Z" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))"/>
+</marker>
+</defs>
+<filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+<feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#000000" flood-opacity="0.10"/>
+</filter>
+<path d="M65,80 L425,170" stroke="var(--vi-text-secondary, rgba(0,0,0,0.54))" stroke-width="2" stroke-dasharray="4 3" fill="none" marker-end="url(#a)"/>
+<path d="M240,80 L425,170" stroke="var(--vi-text-secondary, rgba(0,0,0,0.54))" stroke-width="2" stroke-dasharray="4 3" fill="none" marker-end="url(#a)"/>
+<path d="M415,80 L425,170" stroke="var(--vi-text-secondary, rgba(0,0,0,0.54))" stroke-width="2" stroke-dasharray="4 3" fill="none" marker-end="url(#a)"/>
+<path d="M590,80 L425,170" stroke="var(--vi-text-secondary, rgba(0,0,0,0.54))" stroke-width="2" stroke-dasharray="4 3" fill="none" marker-end="url(#a)"/>
+<text x="645" y="125" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-size="10" font-style="italic">any other digit, from any state</text>
+<path d="M425,230 L425,250 L65,250 L65,80" stroke="var(--vi-text-secondary, rgba(0,0,0,0.54))" stroke-width="2" stroke-dasharray="4 3" fill="none" marker-end="url(#a)"/>
+<text x="240" y="263" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-size="10" font-style="italic">reset</text>
+<g transform="translate(0, 20)">
+<g transform="translate(0, 0)">
+<rect x="0" width="130" height="60" rx="10" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+<text x="65" y="26" text-anchor="middle" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">k0</text>
+<text x="65" y="46" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="10">0 digits</text>
+</g>
+<g transform="translate(130, 0)">
+<line x1="0" y1="30" x2="45" y2="30" stroke="var(--vi-text-secondary, rgba(0,0,0,0.54))" stroke-width="2" marker-end="url(#a)"/>
+</g>
+<g transform="translate(175, 0)">
+<rect x="0" width="130" height="60" rx="10" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+<text x="65" y="26" text-anchor="middle" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">k1</text>
+<text x="65" y="46" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="10">1 digit</text>
+</g>
+<g transform="translate(305, 0)">
+<line x1="0" y1="30" x2="45" y2="30" stroke="var(--vi-text-secondary, rgba(0,0,0,0.54))" stroke-width="2" marker-end="url(#a)"/>
+</g>
+<g transform="translate(350, 0)">
+<rect x="0" width="130" height="60" rx="10" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+<text x="65" y="26" text-anchor="middle" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">k2</text>
+<text x="65" y="46" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="10">2 digits</text>
+</g>
+<g transform="translate(480, 0)">
+<line x1="0" y1="30" x2="45" y2="30" stroke="var(--vi-text-secondary, rgba(0,0,0,0.54))" stroke-width="2" marker-end="url(#a)"/>
+</g>
+<g transform="translate(525, 0)">
+<rect x="0" width="130" height="60" rx="10" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+<text x="65" y="26" text-anchor="middle" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">k3</text>
+<text x="65" y="46" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="10">3 digits</text>
+</g>
+<g transform="translate(655, 0)">
+<line x1="0" y1="30" x2="90" y2="30" stroke="var(--vi-text-secondary, rgba(0,0,0,0.54))" stroke-width="2" marker-end="url(#a)"/>
+</g>
+<g transform="translate(745, 0)">
+<rect x="0" width="130" height="60" rx="10" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-action, #336FEE)" stroke-width="1"/>
+<text x="65" y="26" text-anchor="middle" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">Unlocked</text>
+<text x="65" y="46" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="10">real address</text>
+<text x="0" y="-8" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-size="10" font-style="italic">a real link, not a fragment</text>
+</g>
+</g>
+<g transform="translate(0, 170)">
+<g transform="translate(360, 0)">
+<rect x="0" width="130" height="60" rx="10" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+<text x="65" y="26" text-anchor="middle" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">dead</text>
+<text x="65" y="46" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="10">every wrong digit</text>
+</g>
+</g>
+
+</svg>

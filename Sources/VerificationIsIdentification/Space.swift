@@ -4,12 +4,12 @@
 // One agent has state but no position. Multiple agents on the same
 // target produce a metric space from the difference in their histories.
 // Central result (S7): distance = the symmetric difference of two
-// agents' comparison caches, |G₁ △ G₂| — a metric. Distance is not a
+// agents' comparison caches, |G₁ △ G₂|, a metric. Distance is not a
 // primitive; it is the difference in what two agents have witnessed.
 //
 // Pure types (§0′). Grounds the Distance / MetricProperty machinery the
 // markers already name. Physical instances (§9, S18–S24) are analogical
-// — not encoded, as with Matter §5.
+// not encoded, as with Matter §5.
 // ═══════════════════════════════════════════════════════════════
 
 // ── New axis: the grammar and its dimension ──
@@ -25,7 +25,7 @@ public protocol HasGrammar: HasEncoding {
 
 /// The agent's perspective *is* its encoding: determined by E alone, gauge-
 /// invariant (``HasEncoding``, bounded by ``ScopeBoundedByEncoding``). One agent
-/// has only its own frame, so an encoding-preserving transform looks the same to it —
+/// has only its frame, so an encoding-preserving transform looks the same to it,
 /// a ``Measurable`` fact. [DiD S1, S2]
 public protocol PerspectiveIsEncoding: ScopeBoundedByEncoding, HasEncoding, Measurable {}
 
@@ -37,10 +37,11 @@ public protocol PerspectiveIsEncoding: ScopeBoundedByEncoding, HasEncoding, Meas
 /// distance zero. ``HasDistance`` over ``HasCache``, with `Distance` (a finite count,
 /// ``IntegerValued``) here pinned ``MetricProperty``. [DiD S7]
 ///
-/// > Note: Distance is not a primitive — it is the difference in what two agents
+/// > Note: Distance is not a primitive: it is the difference in what two agents
 /// > have witnessed. Space is built from comparison history, so the metric axioms
 /// > are theorems of the cache, not assumptions.
-public protocol DistanceIsMetric: HasDistance, HasCache where Distance: MetricProperty {}
+public protocol DistanceIsMetric: HasDistance, HasCache
+where Distance: MetricProperty {}
 
 /// Space is the set of all perspective-distances. One agent is a point (zero
 /// distance, S1), and n agents span up to `(n−1)` dimensions. A metric

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" data-vi-canvas="1" font-family="Inter, Roboto, system-ui, sans-serif" aria-label="departments">
+<rect width="320" height="180" fill="rgba(255,255,255,0.15)"/>
+<g stroke="rgba(255,255,255,0.90)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none">
+<rect x="142" y="40" width="36" height="26" rx="5"/>
+<rect x="104" y="108" width="36" height="26" rx="5"/>
+<rect x="180" y="108" width="36" height="26" rx="5"/>
+<path d="M160 66v20M122 88v20M198 88v20M122 88h76"/>
+</g>
+<style>
+@keyframes card-accent-pulse { 0%, 100% { opacity: 1; r: 8px; } 50% { opacity: 0.35; r: 5.5px; } }
+.card-accent-pulse circle { animation: card-accent-pulse 1.8s ease-in-out infinite; }
+</style>
+<g class="card-accent-pulse" fill="#FFDD2D">
+<circle cx="290" cy="32" r="8"/>
+</g>
+
+</svg>

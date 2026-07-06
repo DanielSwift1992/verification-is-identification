@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" data-vi-canvas="1" font-family="Inter, Roboto, system-ui, sans-serif" aria-label="documents">
+<rect width="320" height="180" fill="rgba(255,255,255,0.15)"/>
+<g stroke="rgba(255,255,255,0.90)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none">
+<path d="M128 42h42l26 26v66a6 6 0 0 1-6 6h-62a6 6 0 0 1-6-6V48a6 6 0 0 1 6-6z"/>
+<path d="M170 42v26h26"/>
+<path d="M140 92h40M140 110h40M140 74h18"/>
+</g>
+<style>
+@keyframes card-accent-pulse { 0%, 100% { opacity: 1; r: 8px; } 50% { opacity: 0.35; r: 5.5px; } }
+.card-accent-pulse circle { animation: card-accent-pulse 1.8s ease-in-out infinite; }
+</style>
+<g class="card-accent-pulse" fill="#FFDD2D">
+<circle cx="290" cy="32" r="8"/>
+</g>
+
+</svg>

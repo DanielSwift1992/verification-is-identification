@@ -48,3 +48,7 @@ Checking the schedule and finding it are one act: the compiler derived the singl
 ## The one caveat
 
 The compiler proves your encoding is self-consistent, never that it matches what you meant. A wrong encoding compiles into a confident proof of the wrong thing (V=I §6: correctness is relative to the relation you wrote). The framework clears the structural bugs and hands back exactly one job: write the relation that says what you mean. That job is the craft, and it stays yours.
+
+## Showing the part you encoded
+
+The surface is the same discipline: a page is a type, and its markdown is the type's name. [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit) builds a page in five steps, and [Organization](https://danielswift1992.github.io/verification-is-identification/documentation/organization) is that surface run at scale — the encoded company and its site, one build.

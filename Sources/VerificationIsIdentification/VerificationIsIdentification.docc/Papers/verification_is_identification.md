@@ -618,6 +618,13 @@ CROSS-TASK SATURATION (§5.26):
 
 ## Appendix B: Reference Implementation
 
+> Note: Appendices B and C document the paper's own reference artifacts, kept as they were
+> when the result was first proved: a Python runtime solver and an early Swift sketch. The
+> package hosting this page is that sketch grown into a construction of its own, with its own
+> grammar — ``Law`` — which the sketch predates (`struct`, for one, is a form the grammar now
+> forbids, §0″). Read the appendices as the paper's record; read the package as the current
+> form, applied in the `Playground` and `Organization` modules.
+
 The implementation is modularized to reflect the formal separation of concerns:
 
 1.  **`primitives.py` (§2):** Peano encoding and structural equality. Domain-agnostic foundation.

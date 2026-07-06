@@ -30,7 +30,8 @@ public protocol StructuresFinite: Pair, HasSigma {}
 /// structures. Operations stay closed under Σ.
 /// Compresses both sides of ``Pair``: `Left` and `Right` must each be `Pair`.
 /// [EiF C5]
-public protocol OperationsClosed: Pair where Left: Pair, Right: Pair {}
+public protocol OperationsClosed: Pair
+where Left: Pair, Right: Pair {}
 
 // §4 floor: the component recursion bottoms at Null. Never is the
 // reachable base case (Never.Left, Never.Right: Pair via Null) — the
@@ -53,7 +54,8 @@ public protocol EqualityDecidable: StructuresFinite {
 /// ``Permanent``. A pure function on fixed inputs gives fixed results, because the
 /// structures are finite (``StructuresFinite``) and the operations closed (``OperationsClosed``). [V=I §2.4 I3]
 public protocol CachePermanent: StructuresFinite, OperationsClosed,
-    HasCache where Cache: Permanent {}
+    HasCache
+    where Cache: Permanent {}
 
 
 // ── §5 Inner Properties ─────────────────────────────────
@@ -99,7 +101,8 @@ public protocol DiagnosticsAccumulate: CachePermanent, ResultDeterministic {}
 /// built on the permanent cache (``CachePermanent``) that makes a drop final. This
 /// protocol owns the claim, and IiI A1 reuses it. [V=I §5.22]
 public protocol CandidatesOnlyLeave: CachePermanent,
-    HasSolutions where SolutionSet: Monotone {}
+    HasSolutions
+    where SolutionSet: Monotone {}
 
 
 // ── §5 Structural ────────────────────────────────────────
@@ -131,7 +134,8 @@ public protocol ScopeBoundedByEncoding: OperationsClosed, ResultDeterministic {}
 /// `SolutionSet: Unique`, the framework's canonical encoding of |S|=1 (the gate
 /// coordinate, Domains). Inherits ``StructuresFinite`` and ``EqualityDecidable``.
 public protocol ExactlyOneSurvives: StructuresFinite, EqualityDecidable,
-    HasSolutions where SolutionSet: Unique {}
+    HasSolutions
+    where SolutionSet: Unique {}
 
 
 // ── §5 Theorems ──────────────────────────────────────────
@@ -150,7 +154,8 @@ public protocol PassImpliesMembership: PipelineTotal, ResultDeterministic {}
 /// ``Null`` makes when `Left == Right`. It joins membership (``PassImpliesMembership``)
 /// to uniqueness (``ExactlyOneSurvives``) on the solution axis (``HasSolutions``). [V=I Thm 2]
 public protocol PassIsIdentification: PassImpliesMembership, ExactlyOneSurvives,
-    HasSolutions where Left == SolutionSet {}
+    HasSolutions
+    where Left == SolutionSet {}
 
 /// Comparison is bounded: N atoms settle in at most N² COMPAREs, classifying every pair.
 /// The comparison count is a finite integer (`Comparisons: IntegerValued`), bounded
@@ -169,11 +174,11 @@ public protocol PreconditionsGuaranteePass: StructuresFinite, EqualityDecidable,
 // ── §5 Axis Alignment ────────────────────────────────────
 
 /// The axes are co-oriented: every monotone property points the same way
-/// (info↑, rejections↑, |S|↓). [V=I §5 AX1]
-/// AX3 lives in this line: AxesCoOriented depends on CachePermanent (I3) — that
+/// (info↑, rejections↑, |S|↓).
+/// AX3 lives in this line: AxesCoOriented depends on CachePermanent (I3), that
 /// edge *is* "permanence generates alignment". Delete CachePermanent here and the
 /// alignment cannot be formed: "remove I3 → axes decouple", executable. So AX3
-/// is the dependency itself, not a separate protocol (Law §1: no rename). [V=I §5 AX3]
+/// is the dependency itself, not a separate protocol (Law §1: no rename). [V=I §5 AX1, AX3]
 /// It meets the four monotone axes: ``StructuresFinite``, ``CachePermanent``, ``OperationsClosed``, and ``ResultDeterministic``.
 public protocol AxesCoOriented: StructuresFinite, CachePermanent, OperationsClosed, ResultDeterministic {}
 

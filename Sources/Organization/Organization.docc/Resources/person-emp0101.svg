@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 144" role="img" data-vi-canvas="1" font-family="Inter, Roboto, system-ui, sans-serif" aria-label="A person's identity, role, and access, read from the compiled roster.">
+<filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+<feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#000000" flood-opacity="0.10"/>
+</filter>
+<g transform="translate(0, 24)">
+<g transform="translate(24, 0)">
+<rect x="0" width="96" height="96" rx="16" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(0,0) scale(0.48)">
+<g fill="var(--vi-text-secondary, rgba(0,0,0,0.54))">
+<circle cx="100" cy="78" r="32"/>
+<path d="M48 166c0-32 24-50 52-50s52 18 52 50z"/>
+</g>
+</g>
+</g>
+<g transform="translate(144, 0)">
+<text x="0" y="26" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="17">Frances Ritchie</text>
+<text x="0" y="44" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="13">Emp0101</text>
+<g transform="translate(0, 66)">
+<g transform="translate(0, 0)">
+<rect x="0" width="175" height="24" rx="12" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(14, 0)">
+<text x="0" y="16" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Manager</text>
+</g>
+</g>
+<g transform="translate(183, 0)">
+<a href="/documentation/organization/departments">
+<rect x="0" width="175" height="24" rx="12" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(14, 0)">
+<text x="0" y="16" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Engineering</text>
+</g>
+</a>
+</g>
+<g transform="translate(366, 0)">
+<rect x="0" width="175" height="24" rx="12" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(14, 0)">
+<text x="0" y="16" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">OnSite</text>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(692, 0)">
+<g transform="translate(0, 32)">
+<g transform="translate(0, 0)">
+<circle cx="6" cy="0" r="6" fill="var(--vi-line, #EAECEE)"/>
+</g>
+<g transform="translate(22, 0)">
+<text x="0" y="5" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="13">Finance Vault</text>
+</g>
+</g>
+<g transform="translate(0, 66)">
+<g transform="translate(0, 0)">
+<circle cx="6" cy="0" r="6" fill="var(--vi-action, #336FEE)"/>
+</g>
+<g transform="translate(22, 0)">
+<text x="0" y="5" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="13">Engineering Repo</text>
+</g>
+</g>
+</g>
+</g>
+<g transform="translate(0, 120)">
+<g transform="translate(692, 0)">
+<g transform="translate(0, 0)">
+<rect x="0" width="175" height="24" rx="12" fill="var(--vi-surface-track, #F6F7F8)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+<g transform="translate(14, 0)">
+<text x="0" y="16" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="13">Left in 2026</text>
+</g>
+</g>
+</g>
+</g>
+</svg>

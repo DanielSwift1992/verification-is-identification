@@ -4,9 +4,9 @@
 // The whole search story assumed one thing it never named: that getting
 // closer in structure gets you closer to the answer. This names it. A
 // domain is searchable by descent iff its loss has no spurious minima
-// along W — iff loss and distance-to-solution are correlated, a measurable
+// along W: iff loss and distance-to-solution are correlated, a measurable
 // coefficient α (GA3). High α: the geometry points at solutions, descent
-// is ballistic. Zero α: the geometry is real but useless — no order beats
+// is ballistic. Zero α: the geometry is real but useless, no order beats
 // enumeration, exactly IiI's distribution-relativity boundary as landscape
 // ruggedness (GA6). Clustering is whether the space has geometry; alignment
 // is whether the geometry is FOR you (GA7).
@@ -15,15 +15,15 @@
 // ═══════════════════════════════════════════════════════════════
 
 /// Every search assumes loss aligns with distance. α measures whether it does.
-/// α = correlation( W(R,R*), loss(R) ) names the assumption — α→1 descent
+/// α = correlation( W(R,R*), loss(R) ) names the assumption: α→1 descent
 /// optimal, α→0 rugged (no signal), α<0 deceptive. Descent reaches a solution
 /// iff no spurious loss-minimum lies along the ``DistanceOnStructures`` metric W
 /// (the premise hidden in N5's "ballistic" promise: it arrives at a solution
-/// only when the landscape is aligned, else at a wall — the wall being the
+/// only when the landscape is aligned, else at a wall, the wall being the
 /// ``GateIsZeroOfLoss`` zero it can no longer reach). α is the measured
 /// alignment, encoding-relative. [Search GA1-GA3]
 ///
-/// > Note: α lives on the ``HasAlpha`` axis — a property of the (domain,
+/// > Note: α lives on the ``HasAlpha`` axis: a property of the (domain,
 /// > encoding) pair, not of the searcher. Change the encoding and α changes.
 /// > Re-grind the same encoding and it stays put.
 public protocol AlignmentCoefficient: HasAlpha, DistanceOnStructures, GateIsZeroOfLoss {}
@@ -46,19 +46,19 @@ public protocol AlignmentEnablesIntelligence: AlignmentCoefficient, Intelligence
 ///
 /// > Tip: Two knobs, not one. A space can have rich geometry that points
 /// > nowhere useful (clustered, α≈0) or a clear gradient over a structureless
-/// > space (aligned, unclustered) — only both together make descent pay.
+/// > space (aligned, unclustered), only both together make descent pay.
 public protocol SearchableIffClusteredAndAligned: AlignmentCoefficient, OneBoundaryThreeFaces {}
 
 // ───────────────────────────────────────────────────────────────
-// GA4 (why primes are hard) and GA8 (symmetry, a third lever) — recorded.
+// GA4 (why primes are hard) and GA8 (symmetry, a third lever): recorded.
 //
-// GA4: primes fail in the DEEPER mode — not "graded but misaligned" (α≈0) but
+// GA4: primes fail in the DEEPER mode, not "graded but misaligned" (α≈0) but
 // "no cheap graded loss at all": the predicate is binary, the one graded
 // surrogate (distance to nearest prime) is as expensive as the problem. The
 // α≈0 calibration point (Basis Is Residue's primes).
 //
 // GA8: clustering (amortizes), alignment (orders), and SYMMETRY (shrinks the
-// space by quotient — the √n divisor-pairing) are three orthogonal levers. A
+// space by quotient (the √n divisor-pairing) are three orthogonal levers. A
 // domain's profile is a triple (cluster, align, symmetry); primes have only
 // symmetry. A third axis worth its own pin in a later pass.
 // ───────────────────────────────────────────────────────────────

@@ -1,0 +1,9 @@
+# Allen, Barbara … Wirth, Radia
+
+Two doors, and each door names every page behind it. Choose the half that holds yours, or step back up.
+
+- [Allen, Barbara … Lamport, Ken](doc:RosterSpan0000To0101)
+- [Lamport, Margaret … Wirth, Radia](doc:RosterSpan0102To0203)
+- [Back up a step](doc:PeopleHalf)
+
+

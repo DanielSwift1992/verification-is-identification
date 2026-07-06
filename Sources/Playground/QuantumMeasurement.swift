@@ -28,9 +28,18 @@ import VerificationIsIdentification
 /// successful build is the certificate.
 public struct QuantumMeasurement: SystemCrystallizes {
     public typealias Sigma       = Three              // H — a finite-dimensional state space
-    public typealias Left        = Cell<Never, Never> // a measurement branch …
-    public typealias Right       = Cell<Never, Never> // … bottoming at the ground state (NULL)
-    public typealias Cache       = Grew<Never, Never> // recorded outcomes ACCUMULATE — append-only (I3, decoherence)
+    public typealias Left        = Cell<
+        Never,
+        Never
+    > // a measurement branch …
+    public typealias Right       = Cell<
+        Never,
+        Never
+    > // … bottoming at the ground state (NULL)
+    public typealias Cache       = Grew<
+        Never,
+        Never
+    > // recorded outcomes ACCUMULATE — append-only (I3, decoherence)
     public typealias SolutionSet = Never              // surviving eigenstates → one (|S|=1, non-degenerate)
     public typealias Equality    = Verdict<Never>     // projective measurement: matches or not (decidable, I2)
 }
@@ -39,7 +48,10 @@ public struct QuantumMeasurement: SystemCrystallizes {
 /// eigenstates, so `|S| > 1`. The measurement returns the eigenvalue yet cannot
 /// identify the state, the case `Unique` excludes. [Matter §5]
 public struct DegenerateMeasurement {
-    public typealias SolutionSet = Cell<Three, Never> // |S| > 1: a degenerate eigenspace
+    public typealias SolutionSet = Cell<
+        Three,
+        Never
+    > // |S| > 1: a degenerate eigenspace
 }
 // `extension DegenerateMeasurement: SystemCrystallizes {}` is rejected: SolutionSet
 // is not Unique. The Instances target counts the degeneracy (hydrogen n=2 → n² = 4).

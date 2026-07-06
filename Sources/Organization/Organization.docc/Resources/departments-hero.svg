@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 142" role="img" data-vi-canvas="1" font-family="Inter, Roboto, system-ui, sans-serif" aria-label="The four departments, each card its live headcount and what it carries: a shared space every one has, an owned vault the two that carry one.">
+<filter id="surface-card-shadow" x="-20%" y="-20%" width="140%" height="140%">
+<feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#000000" flood-opacity="var(--vi-surface-card-shadow-opacity, 0.10)"/>
+</filter>
+<g transform="translate(0, 16)">
+<g transform="translate(16, 0)">
+<a href="/documentation/organization/alice">
+<g filter="url(#surface-card-shadow)">
+<rect x="0" width="220" height="110" rx="16" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="28" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="17">Finance</text>
+<text x="0" y="68" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="28">45</text>
+<text x="0" y="92" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="11">shared + vault (Alice)</text>
+</g>
+</a>
+</g>
+<g transform="translate(252, 0)">
+<a href="/documentation/organization/dave">
+<g filter="url(#surface-card-shadow)">
+<rect x="0" width="220" height="110" rx="16" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="28" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="17">Engineering</text>
+<text x="0" y="68" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="28">71</text>
+<text x="0" y="92" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="11">shared + vault (Dave)</text>
+</g>
+</a>
+</g>
+<g transform="translate(488, 0)">
+<a href="/documentation/organization/departments">
+<g filter="url(#surface-card-shadow)">
+<rect x="0" width="220" height="110" rx="16" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="28" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="17">Sales</text>
+<text x="0" y="68" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="28">56</text>
+<text x="0" y="92" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="11">shared space only</text>
+</g>
+</a>
+</g>
+<g transform="translate(724, 0)">
+<a href="/documentation/organization/departments">
+<g filter="url(#surface-card-shadow)">
+<rect x="0" width="220" height="110" rx="16" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+</g>
+<g transform="translate(16, 0)">
+<text x="0" y="28" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="17">People</text>
+<text x="0" y="68" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="28">28</text>
+<text x="0" y="92" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="11">shared space only</text>
+</g>
+</a>
+</g>
+</g>
+</svg>

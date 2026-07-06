@@ -4,7 +4,7 @@
 // Difference Is Distance gave the geometry between witnesses (agents).
 // This gives the geometry between the witnessed (structures). A structure
 // IS its set of distinctions (G1); the minimal number of single-distinction
-// changes from s to t is W(s,t) = |D(s) △ D(t)| — a TRUE metric on Σ (G2),
+// changes from s to t is W(s,t) = |D(s) △ D(t)|, a TRUE metric on Σ (G2),
 // integer-valued, with NULL as origin. Binary COMPARE is its zero test;
 // the gradient was always inside the operation, only asked for its sign.
 // W × kT·ln2 is the work of re-formation: distance IS cost.
@@ -20,16 +20,18 @@
 /// a bijection), and the count is integer-valued (G2b). This sharpens DiD S7, which
 /// gave only a pseudometric on agents. [DiC G2]
 ///
-/// > Note: This is the central type of the gradient layer — every other protocol
+/// > Note: This is the central type of the gradient layer: every other protocol
 /// > here threads through ``HasDistance``. The metric exists the moment the
 /// > structures are finite and distinctions are countable.
-public protocol DistanceOnStructures: HasDistance, StructuresFinite where Distance: MetricProperty {}
+public protocol DistanceOnStructures: HasDistance, StructuresFinite
+where Distance: MetricProperty {}
 
 /// The minimal work to transform s into t is W(s,t) × kT·ln2: distance *is* cost,
 /// two readings of one integer count. The ``DistanceOnStructures`` metric and the
 /// thermodynamic ``HasCost`` are the same quantity. The conclusion is pinned (§T)
-/// as a collapse — `where Distance == Cost`. This is the title claim. [DiC G2c]
-public protocol DistanceIsCost: DistanceOnStructures, HasCost where Distance == Cost {}
+/// as a collapse: `where Distance == Cost`. This is the title claim. [DiC G2c]
+public protocol DistanceIsCost: DistanceOnStructures, HasCost
+where Distance == Cost {}
 
 /// ``Null`` is the unique structure of norm 0: the only form that costs nothing.
 /// (Σ, W, ``Null``) is a pointed metric space over ``DistanceOnStructures``:
@@ -66,7 +68,7 @@ public protocol BallSaturation: LibrarySaturates, DistanceOnStructures {}
 /// The ``Tower``'s compression premise (M16, K_{N+1}<K_N, once underived) becomes
 /// a MEASURABLE criterion on the ``DistanceOnStructures`` metric: compression at
 /// level N iff the library is r-compressible, N_{L_N}(r) < K_N. The tower halts at
-/// the first metrically uniform library — a flat W-matrix is the shape of "nothing
+/// the first metrically uniform library, a flat W-matrix is the shape of "nothing
 /// to learn". [DiC G12]
 public protocol CompressionCriterion: Tower, DistanceOnStructures {}
 

@@ -13,8 +13,10 @@ import Foundation
 struct TreeSortCommand: CommandPlugin {
     func performCommand(context: PluginContext, arguments: [String]) async throws {
         let mode = arguments.first ?? "check"
-        guard let theory = context.package.targets.first(where: { $0.name == "VerificationIsIdentification" }) else {
-            Diagnostics.error("VerificationIsIdentification target not found"); return
+        guard let theory = context.package.targets.first(
+        where: { $0.name == "VerificationIsIdentification" }) else {
+            Diagnostics.error("VerificationIsIdentification target not found")
+            return
         }
         let result = try packageManager.getSymbolGraph(
             for: theory,

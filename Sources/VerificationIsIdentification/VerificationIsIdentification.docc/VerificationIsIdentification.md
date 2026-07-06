@@ -1,6 +1,6 @@
 # ``VerificationIsIdentification``
 
-A theory of when checking an answer is the same as knowing it, written as pure Swift types, with the compiler as the proof checker.
+Software with no runtime, and one move: a link. A theory of when checking an answer is the same as knowing it, written as pure Swift types, with the compiler as the proof checker.
 
 ## Overview
 
@@ -12,11 +12,11 @@ A theory of when checking an answer is the same as knowing it, written as pure S
 
 **Where to start.** One question picks your door.
 
-- term **To use it:** write a part of your own system and trust it for the price of a build. Begin with <doc:Purpose> (what it buys, and what it does not), then read the scheduler in [Playground](https://danielswift1992.github.io/verification-is-identification/documentation/playground), a proof in ten lines. To map your own part, see <doc:Encoding>.
+- term **To use it:** write a part of your own system and trust it for the price of a build. Begin with <doc:Purpose> (what it buys, and what it does not), then read the scheduler in [Playground](https://danielswift1992.github.io/verification-is-identification/documentation/playground), a proof in nine lines — and see the same method run a whole company in [Organization](https://danielswift1992.github.io/verification-is-identification/documentation/organization), its site proved by the build. To map your own part, see <doc:Encoding>.
 - term **To see why it holds:** the result proved from one postulate, then where it forces. Begin with <doc:verification_is_identification>, ground it in <doc:existence_is_finite>, then follow a consequence into <doc:intelligence_is_inevitable>.
 - term **To write in the notation yourself:** the grammar is ``Law``: one seed, two moves, one floor.
 
-The type pages under Topics are reference, each standing on its own, reached by name. For learning machines, the thread is <doc:intelligence_is_inevitable> → <doc:play_is_proof> → <doc:architecture_of_learning_machines>.
+The type pages under Topics are reference, each standing on its own, reached by name. For learning machines, the thread is <doc:intelligence_is_inevitable> → <doc:play_is_proof> → <doc:architecture_of_learning_machines>, and the path a machine emits — token by token, gated or not — is <doc:program_is_path>. For the software artifact itself, <doc:record_is_system>.
 
 **How it is built.** From one act and one fixpoint:
 
@@ -43,25 +43,25 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 ### Why it exists
 
 - <doc:Purpose>
-
 ### Encode your own
 
 - <doc:Encoding>
+### How these pages read
 
+- <doc:Reading>
 ### Start here
 
 - ``PassIsIdentification``
 - ``SystemCrystallizes``
 - ``Matter``
 - ``PlayIsProof``
-
 ### The seed: one act and its fixpoint
 
 - ``Null``
 - ``Pair``
-
 ### The medium: markers, the functions on Pair
 
+- ``Structure``
 - ``Permanent``
 - ``Monotone``
 - ``Decidable``
@@ -69,9 +69,11 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``IntegerValued``
 - ``Measurable``
 - ``Unique``
-
 ### The kernel: the V=I core (Pair / Σ-rooted)
 
+- ``Open``
+- ``Close``
+- ``Digit``
 - ``StructuresFinite``
 - ``OperationsClosed``
 - ``EqualityDecidable``
@@ -83,7 +85,6 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``PipelineTotal``
 - ``ScopeBoundedByEncoding``
 - ``PassImpliesMembership``
-
 ### Identification: the HasSolutions axis
 
 - ``HasSolutions``
@@ -93,7 +94,6 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``PreconditionsGuaranteePass``
 - ``PassIsIdentification``
 - ``AgentPathCertified``
-
 ### The cache: the HasCache axis
 
 - ``HasCache``
@@ -104,7 +104,6 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``SaturationIncorruptible``
 - ``ResultsIrreversible``
 - ``CommunicationBounded``
-
 ### The metric: the HasDistance axis
 
 - ``HasDistance``
@@ -114,13 +113,11 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``GradientInComparison``
 - ``ResistanceHasMagnitude``
 - ``GateIsZeroOfLoss``
-
 ### The lens: the HasEncoding axis
 
 - ``HasEncoding``
 - ``QualitiesAreFinite``
 - ``PerspectiveIsEncoding``
-
 ### The axes: pure generators
 
 - ``HasSigma``
@@ -134,20 +131,17 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``HasLibrary``
 - ``HasSaturation``
 - ``HasTime``
-
 ### The floor: what it delegates, where it stops
 
 - ``EncoderConditions``
 - ``ConditionalSolving``
 - ``DifficultyIsEncoder``
 - ``MeasuredGeometry``
-
 ### Projection: the framework instantiated on machines
 
 - ``GateWrapper``
 - ``AllCoordinatesPresent``
 - ``SaturationMap``
-
 ### The papers: the routes
 
 - <doc:Sources>

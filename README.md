@@ -1,5 +1,9 @@
 # V=I Framework
 
+A Swift package that turns `swift build` into a checker for any system you can state in exact terms: write the rules as protocols and the states as types, and a state that breaks a rule becomes a compile error that names the rule. For Swift developers first — nothing new to install, the checker is the compiler you already run; the theory and the papers behind it are in the documentation, for anyone going deeper.
+
+**Software with no runtime. The only move is a link.**
+
 *Write a system as types. If it compiles, it cannot be wrong.*
 
 **What you get.** Take any system you need to get right — a config, a schedule, a protocol, a physics model — and write its structure in this notation. The compiler then catches a whole class of bugs for free: every way that structure could contradict itself becomes a build error, before anything runs. What it costs you: you pin the system down in exact, finite terms, and the fuzzy or continuous parts stay yours. In return, where it compiles, it cannot be wrong — and you can do it one part at a time, each part trustworthy for the price of a build.
@@ -41,6 +45,42 @@ swift build -Xswiftc -DSHOW_UNSAT       # watch it reject an impossible schedule
 swift build -Xswiftc -DSHOW_FORBIDDEN   # and a forbidden spectral line, by name
 ```
 
+`swift test` runs two harnesses back to back. Look for "Executed 17 tests, with 0
+failures" first, that's the real suite (XCTest). The line after it, "0 tests in 0
+suites," is the newer Swift Testing harness finding no `@Test` functions. Expected,
+not a failure.
+
+The system itself compiles with zero functions, zero classes, and zero stored
+state — the law forbids them — and CI counts the declarations on every build
+(`swift run Tools census`).
+
+## The same program, three ways
+
+| | OOP | Functional | Here |
+| --- | --- | --- | --- |
+| Data lives in | a class instance | an immutable value | a type: an empty `enum` |
+| Behavior lives in | methods | functions | conformances |
+| A decision is | an `if`, a dispatch | a pattern match | a `where` clause, resolved at compile time |
+| Repetition is | a loop | a `map`, a `fold` | a builder body, folded by the compiler |
+| State changes by | mutation | making a new value | making a new type — never at runtime |
+| A wrong program is | caught by tests | narrowed by types, caught by tests | not compiled: it cannot be written |
+| The program runs | at runtime | at runtime | never — the build is the run |
+
+`swift run Tools census` prints the live counts behind the last column, target
+by target: the columns for `struct`, `class`, and runtime `func` hold zeros
+across the system's rows, and everything that executes sits in the tooling row,
+counted beside the system it serves.
+
+`swift package --allow-writing-to-package-directory generate` — the roster, the login walk, and
+the card art are all regenerable, in Swift, in-repo.
+
+The repository checks itself: `swift run Tools grammar Sources Plugins`
+re-states every source file in a typed vocabulary and lets the compiler judge
+it — a style violation is a compile error that names its own rule,
+`swift package tree-sort check` holds the docs' topic tree equal to the type
+lattice, and `swift run Tools census` counts what the laws forbid. Green across
+the board is the review.
+
 ## Why Swift
 
 Swift's type system expresses the notation directly: an `associatedtype` introduces a type, a `where` clause constrains it, and a protocol that compiles is a claim that holds. So the proof checker is just `swift build` — there is no separate prover to install, learn, or trust. The compiler is mainstream and LLVM-based, the same one millions already run, and DocC generates this documentation from those same types, so it cannot drift from the code.
@@ -49,7 +89,20 @@ It is not niche, either. Swift is open source on macOS, Linux, and Windows, spea
 
 ## How far it goes
 
-The idea does not stay a checking trick. The same one operation, pushed further, forces real consequences — a system that only checks eventually holds every answer in memory and stops computing, and the difference between two such systems becomes a measurable distance. None of it is bolted on: it is derived, step by step across eighteen papers, from that one operation. The documentation walks the whole chain.
+The idea does not stay a checking trick. The same one operation, pushed further, forces real consequences — a system that only checks eventually holds every answer in memory and stops computing, and the difference between two such systems becomes a measurable distance. None of it is bolted on: it is derived, step by step across twenty papers, from that one operation. The documentation walks the whole chain.
+
+## See it at scale
+
+The same notation runs a whole company. The `Organization` target writes two hundred
+people, their roles, documents, and the access policy as pure types, and renders the
+company's own site — dashboard, directories, reports, audit — from those types at
+build time. An access rule that contradicts the policy does not compile, and every
+page is re-proved by every build. The rendering engine, `DocumentKit`, is itself
+written in the notation it renders: a page is a type, and its markdown is the type's
+name. Even finding your way is proved: the site carries walks — your page in four
+choices, any of 204 people in eight (a phone book of types), or four doors that form a
+(department, rank) pair whose own page reads the access verdicts — and every door names
+exactly what it holds, read off the same types.
 
 ## Documentation
 
@@ -57,6 +110,8 @@ The full theory — every protocol and every paper, woven by the dependency latt
 
 - **[VerificationIsIdentification](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification)** — the framework: the protocols and the papers.
 - **[Playground](https://danielswift1992.github.io/verification-is-identification/documentation/playground)** — the framework applied: the physics demos and a working solver.
+- **[Organization](https://danielswift1992.github.io/verification-is-identification/documentation/organization)** — the framework at scale: a whole company as types, its site proved by the build.
+- **[DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit)** — the rendering engine, written in the notation it renders.
 
 ## License
 

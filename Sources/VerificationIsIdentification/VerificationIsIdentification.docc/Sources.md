@@ -40,6 +40,7 @@ The readings above are the structure. This one is for the reader with a goal: pi
 | matter and dynamics — what the loop leaves, and how it moves | <doc:permanence_is_resistance> → <doc:difference_is_distance> → <doc:distance_is_cost> → <doc:interference_is_intelligence> |
 | learning machines — the agent, and how it trains itself | <doc:intelligence_is_inevitable> → <doc:play_is_proof> → <doc:architecture_of_learning_machines>, then <doc:basis_is_residue>, <doc:gradient_is_alignment>, <doc:proposal_is_order>, <doc:learning_is_liquid>, <doc:solvability_criterion> |
 | order and reading — the one free variable, made object | <doc:order_is_object> → <doc:reading_is_order> → <doc:navigation_is_geometry> |
+| software — the artifact, and the path it is written along | <doc:record_is_system> → <doc:program_is_path> → <doc:permission_is_existence> |
 
 ## The tag legend
 
@@ -63,6 +64,7 @@ The tag in each symbol's discussion decodes here. Every paper is readable in ful
 | `Gen` · `GD` | [Proposal Is Order](doc:proposal_is_order) |
 | `Liquid` | [Learning Is Liquid](doc:learning_is_liquid) |
 | `Read` | [Reading Is Order](doc:reading_is_order) |
+| `PiP` | [Program Is Path](doc:program_is_path) |
 | `Spec` | [The Solvability Criterion](doc:solvability_criterion) |
 | `Projection` | [The Architecture of Learning Machines](doc:architecture_of_learning_machines) |
 
@@ -93,3 +95,7 @@ The tag in each symbol's discussion decodes here. Every paper is readable in ful
 - <doc:reading_is_order>
 - <doc:solvability_criterion>
 - <doc:architecture_of_learning_machines>
+- <doc:program_is_path>
+- <doc:record_is_system>
+- <doc:halt_is_ignition>
+- <doc:permission_is_existence>

@@ -14,6 +14,7 @@ __pycache__/
 # Swift
 .build/
 .swiftpm/
+build/
 
 # macOS
 .DS_Store

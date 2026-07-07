@@ -508,7 +508,6 @@ public enum Schema {
         ("Sources/VerificationIsIdentification/Primitive.swift", EngineScope.self)
         ("Sources/VerificationIsIdentification", LatticeScope.self)
         ("Sources/DocumentKit", SurfaceScope.self)
-        ("Sources/Oracle", SurfaceScope.self)
         ("Sources/Organization/View", SurfaceScope.self)
         ("Sources/Organization/System", SystemScope.self)
         ("Sources/Organization/Query", SystemScope.self)

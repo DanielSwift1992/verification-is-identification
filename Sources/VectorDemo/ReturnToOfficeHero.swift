@@ -27,10 +27,7 @@ enum RtoVerdictChipY: Close {}
 extension RtoVerdictChipY {
     public static var typeName: String { "44" }
 }
-enum RtoVerdictTextY: Close {}
-extension RtoVerdictTextY {
-    public static var typeName: String { "15" }
-}
+typealias RtoVerdictTextY = CenteredBaseline<VerdictChipTall, TextXXS>
 
 enum YesText: Close {}
 extension YesText {

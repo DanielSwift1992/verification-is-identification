@@ -20,11 +20,6 @@ let package = Package(
         // Rendering is typeName walking the Paired chain.
         .library(name: "DocumentKit", targets: ["DocumentKit"]),
 
-        // Oracle: navigation as the V=I game itself — binary questions divide the space of
-        // destinations until one survives, and compiling certifies the walk (finite, binary,
-        // budgeted, arriving).
-        .library(name: "Oracle", targets: ["Oracle"]),
-
         // GrammarLexicon: the linter's own vocabulary (DESIGN15) — atoms, formations, grants,
         // nothing else. Exposed as a product so the disposable "mirror" package (generated and
         // built in scratch by `Tools grammar`, Sources/Tools/Grammar/Mirror.swift) can import it
@@ -76,6 +71,7 @@ let package = Package(
         // Spells Organization/Prose.json into Glyph atoms + Open types on every build —
         // generated, never a script a human has to remember to run.
         .plugin(name: "ProseGen", capability: .buildTool(), dependencies: ["Tools"]),
+        .plugin(name: "CensusGen", capability: .buildTool(), dependencies: ["Tools"]),
 
         // `swift package tree-sort [check|write]` — induce/check the Topics tree.
         .plugin(name: "TreeSortCommand",
@@ -105,10 +101,6 @@ let package = Package(
         // The law applied: physical instances, concrete witnesses, type-level demos.
         .target(name: "Playground", dependencies: ["VerificationIsIdentification"]),
 
-        // Oracle: the wayfinding engine — Routing/Asks/Found/Mounted and the arrival pin.
-        // Pure types over the lattice; the org's own tree lives in Organization.
-        .target(name: "Oracle", dependencies: ["VerificationIsIdentification"],
-                plugins: ["LawCheck"]),
 
         // DocumentKit: atoms + combinators → documents via typeName. Vector.swift is the same
         // mechanism turned on a second medium, SVG (DESIGN7 §1). Alphabet supplies the shared
@@ -128,14 +120,14 @@ let package = Package(
         // DocumentKit to produce. Depends on Organization too (DESIGN7 §4) — `chart` reads the
         // same team-chain `count` the console audit already prints; Organization does not
         // depend back on VectorDemo, so this is one direction, no cycle.
-        .executableTarget(name: "VectorDemo", dependencies: ["VerificationIsIdentification", "DocumentKit", "Organization", "Oracle"]),
+        .executableTarget(name: "VectorDemo", dependencies: ["VerificationIsIdentification", "DocumentKit", "Organization"]),
 
         // Organization: the domain model (System/, Query/) and its rendering (View/) — the
         // showcase applied end to end. Depends on Alphabet directly (not just transitively
         // through DocumentKit) — several View files spell shared punctuation atoms themselves.
         .target(name: "Organization",
-                dependencies: ["VerificationIsIdentification", "DocumentKit", "Alphabet", "Oracle"],
-                plugins: ["ProseGen", "LawCheck"]),
+                dependencies: ["VerificationIsIdentification", "DocumentKit", "Alphabet"],
+                plugins: ["ProseGen", "CensusGen", "LawCheck"]),
 
         // `swift run OrgDemo render-doc` — writes every generated page's rendered markdown
         // into the real .docc catalog, so a doc: link resolves to that content instead of

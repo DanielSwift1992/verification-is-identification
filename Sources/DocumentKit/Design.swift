@@ -695,60 +695,46 @@ public typealias RtoSurface = Times<
     >
 >   // sixteen forty-fives: the arrangements strip
 public typealias BoardTall = Times<U32, Plus<U8, Plus<U4, Plus<U2, U1>>>>
-public typealias ArchitectureTall = Times<U4, Plus<U128, Plus<U16, U1>>>
 public typealias GateTall = Times<U8, Plus<U32, Plus<U2, U1>>>
-public typealias SlabLeft = Plus<U8, Plus<U4, Plus<U2, U1>>>
-public typealias SlabWide = Plus<U128, Plus<U16, Plus<U4, U2>>>
-public typealias ArchColumnLeft = Plus<U128, Plus<U64, Plus<U16, U2>>>
-public typealias ArchColumnWide = Plus<U256, Plus<U128, U16>>
-public typealias ArchPanelLeft = Plus<U512, Plus<U64, Plus<U32, Plus<U8, U4>>>>
-public typealias ArchPanelWide = Plus<U256, U64>
-public typealias ArchCaptionLeft = Plus<U256, Plus<U128, Plus<U32, Plus<U8, Plus<U2, U1>>>>>
 public typealias ArchCaptionWide = Plus<U256, Plus<U16, Plus<U8, Plus<U2, U1>>>>
-public typealias ArchGapLeft = Plus<U512, Plus<U64, Plus<U32, U2>>>
-public typealias ArchGapWide = Plus<U64, Plus<U16, Plus<U8, Plus<U4, U2>>>>
-public typealias ArchOutputWide = Plus<U128, Plus<U64, Plus<U32, Plus<U16, Plus<U4, U1>>>>>
-public typealias ArchOutputGap = Plus<U128, Plus<U64, Plus<U32, Plus<U16, Plus<U8, Plus<U4, Plus<U2, U1>>>>>>>
-public typealias ArchDependencyLeft = Plus<U128, Plus<U32, Plus<U8, U1>>>
-public typealias ArchDependencyWide = Plus<U32, Plus<U8, U1>>
-public typealias ArchBoxWide = Plus<U128, Plus<U64, Plus<U32, U1>>>
-public typealias ArchBoxLeft = Plus<U512, Plus<U128, Plus<U64, U16>>>
-public typealias ArchAnnotationLeft = Plus<U256, Plus<U32, Plus<U8, U4>>>
-public typealias ArchAnnotationWide = Plus<U128, Plus<U64, Plus<U32, U16>>>
-public typealias ArchConsoleArrowLeft = Plus<U256, Plus<U64, U4>>
-public typealias ArchConsoleCaptionLeft = Plus<U256, Plus<U64, Plus<U16, Plus<U8, U1>>>>
-public typealias ArchConsoleCaptionWide = Plus<U128, Plus<U64, U8>>
-public typealias ArchSiteArrowLeft = Plus<U512, Plus<U256, Plus<U32, Plus<U16, Plus<U8, U2>>>>>
 // ── The gate's vertical fascia: the row's drop, the box, the fall to dead, and the reset
 // swing — every horizontal line of the diagram, named once, so the pen's stopping
 // conditions and the boxes' faces read the same rungs. `GateArrowDrop` states half the box
 // (the medium has no division of a rung); `GateFallTall` is the one free height the fall
 // takes. ──
-// ── The architecture's vertical fascia: every horizontal line of the diagram named by
-// role — the ceiling lane, the slab, the four box rows, the noses the arrows stop short
-// by, the panels, the outputs, the footer. Baselines inside the rows stay typography
-// (stated, in the canvas); everything structural derives from here. ──
-public typealias ArchCeiling = Plus<U8, Plus<U4, U2>>
-public typealias ArchSlabDrop = Plus<U32, Plus<U8, Plus<U4, U1>>>
-public typealias ArchSlabTall = Times<U4, Plus<U64, Plus<U32, Plus<U16, Plus<U8, Plus<U4, U1>>>>>>
-public typealias ArchSlabCenter = Plus<SlabLeft, Half<SlabWide>>
-public typealias ArchSystemDrop = Plus<U32, Plus<U16, U2>>
-public typealias ArchSystemTall = Plus<U64, Plus<U16, Plus<U4, U1>>>
-public typealias ArchSystemBottom = Plus<ArchSystemDrop, ArchSystemTall>
-public typealias ArchQueryDrop = Plus<U128, Plus<U32, Plus<U16, Plus<U8, U1>>>>
-public typealias ArchLowBoxTall = Plus<U64, Plus<U8, Plus<U2, U1>>>
-public typealias ArchQueryBottom = Plus<ArchQueryDrop, ArchLowBoxTall>
-public typealias ArchThirdRowDrop = Plus<U256, Plus<U32, Plus<U16, U4>>>
-public typealias ArchThirdRowBottom = Plus<ArchThirdRowDrop, ArchLowBoxTall>
-public typealias ArchFlowNose = Plus<U8, U2>
+// ── The architecture's row rungs: the bar, the box, the gap an arrow falls through, the
+// nose it stops short by, and the footer line. The drops are sums the canvas composes. ──
+// The build-flow band: four zones across the inner width, three gutters between, every
+// width a quarter of what remains — and the zone's own storeys, summed like the boxes'.
+public typealias FlowZoneGaps = Plus<Gutter, Twice<Gutter>>
+public typealias FlowZoneWide = Half<Half<Rest<Rest<WideSurface, Twice<EdgeMargin>>, FlowZoneGaps>>>
+public typealias FlowZoneTitleStorey = Plus<U16, Plus<U8, U4>>
+public typealias FlowCardNameStorey = Plus<U16, U4>
+public typealias FlowCardRoleStorey = Plus<U16, Plus<U8, U4>>
+public typealias FlowCardTall = Plus<FlowCardNameStorey, FlowCardRoleStorey>
+public typealias FlowCardGap = Plus<U8, U4>
+public typealias FlowCardPitch = Plus<FlowCardTall, FlowCardGap>
+public typealias FlowZoneTall = Plus<
+    FlowZoneTitleStorey,
+    Plus<Times<U4, FlowCardPitch>, Plus<U4, HairBreath>>
+>
+
+// The architecture box's three storeys, summed into its tall: the title's, the component
+// plaques', the census line's. The height follows the stack, not an eyeballed slab.
+public typealias ArchTitleStorey = Plus<U32, U4>
+public typealias ArchRoleStorey = Plus<U16, Plus<U8, U4>>
+public typealias ArchPlaqueStorey = Plus<VerdictChipTall, U8>
+public typealias ArchStatsStorey = Plus<U16, Plus<U8, U2>>
+public typealias ArchStackTall = Plus<
+    ArchTitleStorey,
+    Plus<ArchRoleStorey, Plus<ArchPlaqueStorey, ArchStatsStorey>>
+>
+public typealias ArchGapTall = Plus<U32, U8>
+public typealias ArchNose = Plus<U8, U2>
+public typealias ArchFooterTall = Plus<U16, U4>
+
 public typealias ArchDotDip = Plus<U8, Plus<U4, U2>>
-public typealias ArchPanelTall = Plus<U64, Plus<U32, U4>>
-public typealias ArchFourthPanelDrop = Plus<ArchThirdRowBottom, Plus<U8, U4>>
-public typealias ArchOutputDrop = Plus<U256, Plus<U128, Plus<U64, U32>>>
 public typealias ArchOutputTall = Plus<U32, Plus<U16, Plus<U8, U4>>>
-public typealias ArchOutputNose = U8
-public typealias ArchFooterDrop = Plus<U512, Plus<U32, Plus<U16, Plus<U4, U1>>>>
-public typealias ArchRiseInset = Plus<U16, Plus<U8, Plus<U4, U2>>>
 public typealias GateRowDrop = Plus<U16, U4>
 public typealias GateBoxTall = Plus<U32, Plus<U16, Plus<U8, U4>>>
 public typealias GateBoxBottom = Plus<GateRowDrop, GateBoxTall>
@@ -854,15 +840,12 @@ public typealias VaultZoneTall = Times<
 // fact. The bar itself is span-drawn; the design system keeps the vertical word. ──
 
 public typealias TrackHeight = U32
-// `TrackBaseline` and every per-canvas `…Y` token that positions TEXT inside a zone
-// (`RtoNameY`, `DeptCountY`, and their kin) are string tokens by decision, the one named
-// hole the division law keeps open: a baseline is a fact about glyph metrics, and until
-// text metrics join the shares as magnitudes, spelling one as a share would only dress a
-// number as a division. The heights and widths around them are already magnitudes.
-public enum TrackBaseline: Close {}
-extension TrackBaseline {
-    public static var typeName: String { "21" }
-}
+// The CENTRED class of baselines derives now: `CenteredBaseline` (Vector.swift) reads the
+// zone's middle plus half the font's own capital height (GeneratedFontMetrics), and this
+// rung is its first conversion — the derived value reproduces the old stated "21" to the
+// pixel. STACKED baselines (a title over a subtitle) remain stated per canvas: they are
+// design choices, not centrings, and the hole they keep open is named where they stand.
+public typealias TrackBaseline = CenteredBaseline<TrackHeight, TextS>
 
 public enum N0: Close {}
 extension N0 {

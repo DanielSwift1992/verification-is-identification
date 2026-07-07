@@ -28,3 +28,5 @@ _site/
 
 # Generated
 pass_manifest.json
+.site/
+.claude/

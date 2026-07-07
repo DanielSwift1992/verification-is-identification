@@ -9,7 +9,7 @@
 <rect x="0" width="220" height="80" rx="16" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
 <g transform="translate(0, 0)">
-<text x="110" y="46" text-anchor="middle" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">Lead</text>
+<text x="110" y="45" text-anchor="middle" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">Lead</text>
 </g>
 </a>
 </g>
@@ -19,7 +19,7 @@
 <rect x="0" width="220" height="80" rx="16" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
 <g transform="translate(0, 0)">
-<text x="110" y="46" text-anchor="middle" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">Manager</text>
+<text x="110" y="45" text-anchor="middle" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">Manager</text>
 </g>
 </a>
 </g>

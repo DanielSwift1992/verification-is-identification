@@ -13,8 +13,6 @@ The divided axis and its members, the span leaves, the frames, and the interacti
 - ``Air``
 - ``ArrowMarkers``
 - ``CanvasSize``
-- ``ClipPathDef``
-- ``Clipped``
 - ``DashedArrow``
 - ``Diagram``
 - ``Divides``
@@ -37,8 +35,6 @@ The divided axis and its members, the span leaves, the frames, and the interacti
 - ``Group``
 - ``GrownDiagram``
 - ``HFlow``
-- ``HoverAffordanceDot``
-- ``HoverAffordanceDotFilled``
 - ``HoverAffordanceRadius``
 - ``HoverHighlight``
 - ``HoverReveal``
@@ -52,11 +48,9 @@ The divided axis and its members, the span leaves, the frames, and the interacti
 - ``PlacedScaled``
 - ``RestAir``
 - ``RoundedFullBleedRect``
-- ``RoundedFullBleedRectStroked``
 - ``RowStart``
 - ``SelfShowing``
 - ``Shape``
-- ``SolidArrow``
 - ``SpanArrowAcross``
 - ``SpanArrowBackAcross``
 - ``SpanArrowDown``
@@ -180,27 +174,7 @@ The sizes text wears, the corner radii, and the text anchors (Design.swift).
 Every extent, breath, inset, and zone the divided axes speak: the one home of numbers (Design.swift).
 
 - ``AccessWide``
-- ``ArchAnnotationLeft``
-- ``ArchAnnotationWide``
-- ``ArchBoxLeft``
-- ``ArchBoxWide``
-- ``ArchCaptionLeft``
 - ``ArchCaptionWide``
-- ``ArchColumnLeft``
-- ``ArchColumnWide``
-- ``ArchConsoleArrowLeft``
-- ``ArchConsoleCaptionLeft``
-- ``ArchConsoleCaptionWide``
-- ``ArchDependencyLeft``
-- ``ArchDependencyWide``
-- ``ArchGapLeft``
-- ``ArchGapWide``
-- ``ArchOutputGap``
-- ``ArchOutputWide``
-- ``ArchPanelLeft``
-- ``ArchPanelWide``
-- ``ArchSiteArrowLeft``
-- ``ArchitectureTall``
 - ``AvatarCanvasSide``
 - ``AvatarSide``
 - ``BadgeChipWide``
@@ -252,8 +226,6 @@ Every extent, breath, inset, and zone the divided axes speak: the one home of nu
 - ``RankChipWide``
 - ``RevealPanelWide``
 - ``RtoSurface``
-- ``SlabLeft``
-- ``SlabWide``
 - ``StatusChipWide``
 - ``StripInset``
 - ``SurfaceCard``
@@ -278,6 +250,63 @@ Every extent, breath, inset, and zone the divided axes speak: the one home of nu
 - ``VerdictChipWide``
 - ``WideMargin``
 - ``WideSurface``
+
+- ``ArchTitleStorey``
+- ``ArchPlaqueStorey``
+- ``ArchStatsStorey``
+- ``ArchStackTall``
+- ``ArchRoleStorey``
+- ``FlowZoneGaps``
+- ``FlowZoneWide``
+- ``FlowZoneTitleStorey``
+- ``FlowCardNameStorey``
+- ``FlowCardRoleStorey``
+- ``FlowCardTall``
+- ``FlowCardPitch``
+- ``FlowZoneTall``
+- ``ArchDotDip``
+- ``ArchFooterTall``
+- ``ArchGapTall``
+- ``ArchNose``
+- ``ArchOutputTall``
+- ``GateArrowDrop``
+- ``GateBoxBottom``
+- ``GateBoxTall``
+- ``GateDeadBottom``
+- ``GateDeadDrop``
+- ``GateFallTall``
+- ``GateResetSwing``
+- ``GateResetTurn``
+- ``GateRowDrop``
+
+### The pen and the measure
+
+Drawing as constrained motion, and text measured by the stated font's own metrics (Vector.swift, GeneratedFontMetrics.swift).
+
+- ``Pen``
+- ``StartAt``
+- ``UntilY``
+- ``UntilX``
+- ``SlideTo``
+- ``Halfway``
+- ``Under``
+- ``TextWidth``
+- ``CenteredBaseline``
+- ``SpanLabelMidFitted``
+- ``SpanLabelMidWrapped``
+- ``FontUnitsPerEm``
+- ``FontCapHeight``
+- ``FontAdvanceTable``
+- ``MeasuredWord``
+
+### The stroke voices
+
+The two widths every line speaks, the dependency dash, and the one arrowhead (Design.swift).
+
+- ``HairlineWidth``
+- ``ArrowWidth``
+- ``DependencyDash``
+- ``ArrowHeadName``
 
 ### The markup combinators
 
@@ -358,6 +387,16 @@ Atoms and combinators that render a page from a type; `Tally(_:)` is the countin
 - ``WeightOf``
 - ``WeightedPanel``
 - ``Tally(_:)``
+
+### The walk
+
+Search as navigation over any composed body. `Pair` is the fork, and these five read and spell it: a door's face is a witness of its half, and a walker's path is a word in two letters.
+
+- ``RollCall``
+- ``WentLeft``
+- ``WentRight``
+- ``WordSoFar``
+- ``StepDot``
 
 ### The gallery, behind the landing
 

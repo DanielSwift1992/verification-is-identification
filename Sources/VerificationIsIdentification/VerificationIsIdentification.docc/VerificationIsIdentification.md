@@ -1,22 +1,20 @@
 # ``VerificationIsIdentification``
 
-Software with no runtime, and one move: a link. A theory of when checking an answer is the same as knowing it, written as pure Swift types, with the compiler as the proof checker.
+A theory of when checking an answer is the same act as finding it, written as pure Swift types, with the compiler as the proof checker.
 
 ## Overview
 
-**Why it exists.** Correctness is usually a second artifact, a proof kept beside the system, drifting from it. This collapses the two: you write the structure, and the writing is the proof. The goal and the method behind that collapse are one page, <doc:Purpose>. This page is the result.
+Take a finite set of candidates and a test. If exactly one candidate passes, "it passed" and "it is the answer" state the same fact: checking the lone survivor identifies it. (Of `a, b, c`, if only `c` passes, "`c` passed" and "the answer is `c`" say one thing.) That collapse is the result, ``PassIsIdentification``, and it is written as pure Swift types: a claim is a protocol, a claim that compiles holds, and nothing runs. Correctness stops being a second artifact kept in sync beside the system — the writing is the proof.
 
-**What it is.** Take a finite set of candidates and a test. If exactly one candidate passes, then "it passed" and "it is the answer" say the same thing: to check the lone survivor is to identify it. (Of `a, b, c`, if only `c` passes, then "`c` passed" and "the answer is `c`" are one fact.) That collapse is the result, ``PassIsIdentification``. It is written as pure Swift types, so the compiler is the proof checker. You write a claim as a protocol, and if it compiles, the claim holds. Nothing runs.
+**Where to go.** Pick by what you came for.
 
-**Why it matters.** Checking an answer is the cheap, mechanical half of knowing. Finding it is the hard half. Where the two collapse, a system that only *checks* thereby *finds*. A passing check is a proof, so its answer is certain, never confident-but-wrong. This is not one problem's trick: whatever is determinate is a finite structure, so the collapse holds wherever anything is determinate, and it marks the exact line between what can be known for sure and what must be supplied from outside. It is the opposite of a system that guesses fluently yet cannot tell a proof from a guess.
+- term **See it work:** the scheduler in [Playground](https://danielswift1992.github.io/verification-is-identification/documentation/playground) is a proof in nine lines — the compiler derives the one consistent schedule and refuses an impossible one by name. Five minutes.
+- term **See it at scale:** [Organization](https://danielswift1992.github.io/verification-is-identification/documentation/organization) is a whole company in the notation — browse the site its build rendered, walk a login keypad, read the access verdicts.
+- term **See why it holds:** <doc:verification_is_identification> proves the result from one postulate, <doc:existence_is_finite> grounds it, and <doc:intelligence_is_inevitable> follows one consequence out. <doc:Neighbors> sets the result beside partial evaluation, Datalog, and total languages.
+- term **Build your own:** <doc:Purpose> states what the notation buys and what it does not, <doc:Encoding> maps your part of a system onto it, and ``Law`` is the grammar you write in.
+- term **See how these pages are made:** [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit) renders them, guided walks included — this site is written in the notation it documents.
 
-**Where to start.** One question picks your door.
-
-- term **To use it:** write a part of your own system and trust it for the price of a build. Begin with <doc:Purpose> (what it buys, and what it does not), then read the scheduler in [Playground](https://danielswift1992.github.io/verification-is-identification/documentation/playground), a proof in nine lines — and see the same method run a whole company in [Organization](https://danielswift1992.github.io/verification-is-identification/documentation/organization), its site proved by the build. To map your own part, see <doc:Encoding>.
-- term **To see why it holds:** the result proved from one postulate, then where it forces. Begin with <doc:verification_is_identification>, ground it in <doc:existence_is_finite>, then follow a consequence into <doc:intelligence_is_inevitable>.
-- term **To write in the notation yourself:** the grammar is ``Law``: one seed, two moves, one floor.
-
-The type pages under Topics are reference, each standing on its own, reached by name. For learning machines, the thread is <doc:intelligence_is_inevitable> → <doc:play_is_proof> → <doc:architecture_of_learning_machines>, and the path a machine emits — token by token, gated or not — is <doc:program_is_path>. For the software artifact itself, <doc:record_is_system>.
+Two longer threads run through the papers: learning machines, <doc:intelligence_is_inevitable> → <doc:play_is_proof> → <doc:architecture_of_learning_machines>, and the emitted path — token by token, gated or not — <doc:program_is_path>. The type pages under Topics are reference, each standing on its own.
 
 **How it is built.** From one act and one fixpoint:
 
@@ -25,8 +23,6 @@ The type pages under Topics are reference, each standing on its own, reached by 
 - term **The floor:** every space is finite: width (``Pair`` has two sides) × depth (every chain reaches ``Null``).
 
 ![The construction law: one seed, two moves, one floor.](law)
-
-**The law applied.** To see the framework used rather than stated, open [the `Playground` module](https://danielswift1992.github.io/verification-is-identification/documentation/playground). It reproduces the physics of *Matter* §5 as types: the residual entropy of ice, hydrogen's metastable 2s, the stable proton, and a working solver. A green build is the proof there too.
 
 ### What is on this page
 
@@ -49,6 +45,9 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 ### How these pages read
 
 - <doc:Reading>
+### Where it stands
+
+- <doc:Neighbors>
 ### Start here
 
 - ``PassIsIdentification``

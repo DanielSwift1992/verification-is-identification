@@ -157,6 +157,21 @@
         // conservative default (300px) for a bare image regardless of the SVG's own aspect, far
         // too small for a wide canvas like the dashboard. Height follows the viewBox's own
         // aspect ratio (the canvas contract, Vector.swift) — nothing drifts.
+        // The host owns its base. A canvas states site-absolute addresses
+        // ("/documentation/..."), and only the embedding page knows where the site's
+        // root actually lives — GitHub Pages serves a project under its repository's
+        // own prefix. Rewritten here, at inline time, the one moment both sides meet;
+        // at a domain root the base is empty and nothing changes.
+        var docsBase = window.location.pathname.split("/documentation/")[0] || "";
+        if (docsBase) {
+          var anchors = svg.querySelectorAll("a[href]");
+          for (var k = 0; k < anchors.length; k++) {
+            var stated = anchors[k].getAttribute("href") || "";
+            if (stated.indexOf("/documentation/") === 0) {
+              anchors[k].setAttribute("href", docsBase + stated);
+            }
+          }
+        }
         svg.setAttribute("style", "width:100%;height:auto;display:block;");
         svg.setAttribute("data-vector-inlined", "true");
         var host = img.closest("picture") || img;

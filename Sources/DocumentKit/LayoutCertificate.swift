@@ -67,4 +67,16 @@ public enum LayoutGate {
         >
     >
     public typealias Verdict = FitVerdict<Plus<U4, U8>>
+
+    /// The measured magnitude stands in the axis: a slot sized by its own words. `TextWidth`
+    /// is a magnitude like any rung, so `Fixed` takes it directly — the door the text cycle
+    /// opened, certified here as an instantiation, adopted wherever a box should hug its
+    /// words rather than wear a uniform extent.
+    public typealias WordsSizeTheSlot = Fixed<TextWidth<MeasuredWord, TextS>, SpanNothing>
+}
+
+/// The word the certificate measures: any text serves, this one names the act.
+public enum MeasuredWord: Close {}
+extension MeasuredWord {
+    public static var typeName: String { "measured" }
 }

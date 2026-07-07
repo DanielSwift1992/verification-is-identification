@@ -61,16 +61,16 @@ extension AvatarAsset {
 /// This names the drawn `PersonHero`'s asset name for a given person: `person-` + that person's
 /// site slug (`PageSlug`, DocumentKit/Vector.swift), the same fix `KeypadAsset` already stands
 /// on (Keypad.swift), so the picture reference cannot drift from the SVG the emitter actually
-/// writes (`swift package generate org`, VectorDemo/PersonHero.swift).
+/// writes (`swift package generate org`, VectorDemo/PersonHero.swift). The keypad-carrying
+/// picture is shown by the person's LOGIN page (`PasscodePage`), where it stands alone.
 enum PersonHeroAsset<X>: Close {}
 extension PersonHeroAsset {
     public static var typeName: String { "person-" + PageSlug<X>.typeName }
 }
 
-/// This names the picture a named person's SIGNED-IN page embeds: the header alone, the same
-/// shape a generated employee's picture already is, no vault section, because the walk that
-/// reaches this page already is the proof. `PersonHeroAsset` names a different file, the one the
-/// GUEST page shows, carrying the live keypad, so the two states cannot resolve to one asset.
+/// This names the still header picture: no keypad, the shape a generated employee's picture
+/// already is. Both the guest card and the signed-in card wear it now — what differs between
+/// those two states is the access section, and the live keypad lives on the login page alone.
 enum UnlockedHeroAsset<X>: Close {}
 extension UnlockedHeroAsset {
     public static var typeName: String { "person-" + PageSlug<X>.typeName + "-unlocked" }
@@ -93,6 +93,42 @@ where Page.Secret == Secret {
     @StructureBuilder
     public static var body: some Structure {
         Page.Unlocked.self
+    }
+}
+
+/// The keypad's own pages: a digit press is a fragment jump inside the picture, and jumping
+/// scrolls whatever page carries it — mid-card, that read as the page leaping. On a page of
+/// its own the picture is the whole viewport, and the walk stands still. The card keeps the
+/// still header and offers this door instead.
+public enum AliceLogin: Close {}
+public enum BobLogin: Close {}
+public enum CarolLogin: Close {}
+public enum DaveLogin: Close {}
+enum EnterPasscodeTitle: Close {}
+extension EnterPasscodeTitle {
+    static var typeName: String { "Enter the passcode" }
+}
+enum PasscodeHint: Close {}
+extension PasscodeHint {
+    static var typeName: String {
+        "The person's own card spells the passcode; walk it on the keypad below, digit by digit, and the last correct press is a real link to the unlocked card."
+    }
+}
+enum EnterPasscodeText: Close {}
+extension EnterPasscodeText {
+    static var typeName: String { "Sign in at the keypad" }
+}
+public enum PasscodePage<
+    Who: Employee & Person & Structure
+>: Screen {
+    @StructureBuilder
+    public static var body: some Structure {
+        PageTitle { EnterPasscodeTitle.self }
+        PasscodeHint.self
+        Break.self
+        Picture { Symbol { Who.self }; PersonHeroAsset<Who>.self }
+        Break.self
+        Link { DashboardTitle.self; Nav.CompanyDashboard.self }; Chevron.self; Link { RawName<Who>.self; Who.self }
     }
 }
 
@@ -239,6 +275,8 @@ enum AliceGuestAccessBlock: Fragment {
     public static var body: some Structure {
         GuestAccessLine.self
         Break.self
+        Link { EnterPasscodeText.self; AliceLogin.self }
+        Break.self
         GateExplainerLink.self
     }
 }
@@ -272,7 +310,7 @@ public enum AliceCard: Screen, HasSecret {
         CardShell<
             Alice,
             AliceGuestAccessBlock,
-            PersonHeroAsset<Alice>
+            UnlockedHeroAsset<Alice>
         >.self
         TabGroup { AliceCardTabs.self }
         Break.self
@@ -322,6 +360,8 @@ enum BobGuestAccessBlock: Fragment {
     public static var body: some Structure {
         GuestAccessLine.self
         Break.self
+        Link { EnterPasscodeText.self; BobLogin.self }
+        Break.self
         GateExplainerLink.self
     }
 }
@@ -355,7 +395,7 @@ public enum BobCard: Screen, HasSecret {
         CardShell<
             Bob,
             BobGuestAccessBlock,
-            PersonHeroAsset<Bob>
+            UnlockedHeroAsset<Bob>
         >.self
         TabGroup { BobCardTabs.self }
         Break.self
@@ -406,6 +446,8 @@ enum CarolGuestAccessBlock: Fragment {
     public static var body: some Structure {
         GuestAccessLine.self
         Break.self
+        Link { EnterPasscodeText.self; CarolLogin.self }
+        Break.self
         GateExplainerLink.self
     }
 }
@@ -439,7 +481,7 @@ public enum CarolCard: Screen, HasSecret {
         CardShell<
             Carol,
             CarolGuestAccessBlock,
-            PersonHeroAsset<Carol>
+            UnlockedHeroAsset<Carol>
         >.self
         TabGroup { CarolCardTabs.self }
         Break.self
@@ -490,6 +532,8 @@ enum DaveGuestAccessBlock: Fragment {
     public static var body: some Structure {
         GuestAccessLine.self
         Break.self
+        Link { EnterPasscodeText.self; DaveLogin.self }
+        Break.self
         GateExplainerLink.self
     }
 }
@@ -523,7 +567,7 @@ public enum DaveCard: Screen, HasSecret {
         CardShell<
             Dave,
             DaveGuestAccessBlock,
-            PersonHeroAsset<Dave>
+            UnlockedHeroAsset<Dave>
         >.self
         TabGroup { DaveCardTabs.self }
         Break.self

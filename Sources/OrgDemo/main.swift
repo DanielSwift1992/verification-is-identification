@@ -107,6 +107,10 @@ write(CutPage<Cut2029>.typeName, "Cut2029")
 // XPass>`, named `XUnlocked` for a clean address, a genuinely separate state, so it keeps its
 // own address). Both sides of a person carry the same picture, the one asset
 // (Resources/avatar.svg), embedded inline (`Picture`) AND set as the grid-tile picture.
+write(PasscodePage<Alice>.typeName, "AliceLogin")
+write(PasscodePage<Bob>.typeName, "BobLogin")
+write(PasscodePage<Carol>.typeName, "CarolLogin")
+write(PasscodePage<Dave>.typeName, "DaveLogin")
 write(withCard(AliceCard.typeName, "avatar", "Alice"), "Alice")
 write(withCard(AliceUnlocked.typeName, "avatar", "Alice"), "AliceUnlocked")
 write(withCard(BobCard.typeName, "avatar", "Bob"), "Bob")
@@ -140,4 +144,4 @@ renderEmployeeCards()
 renderRosterWalk()
 renderRoleWalk()
 
-print("rendered 467 pages: 10 hubs, 9 walk steps, 203 roster-walk steps, 11 role-walk steps + 12 role cells, 4 cut pages, 4 cards + 4 unlocked gates, 10 what-if pages, 200 employee profiles (the keypad walk moved into each card's own picture, DESIGN19 §2, 20 fewer pages)")
+print("rendered 471 pages: 10 hubs, 4 keypad pages, 9 walk steps, 203 roster-walk steps, 11 role-walk steps + 12 role cells, 4 cut pages, 4 cards + 4 unlocked gates, 10 what-if pages, 200 employee profiles (the keypad walk moved into each card's own picture, DESIGN19 §2, 20 fewer pages)")

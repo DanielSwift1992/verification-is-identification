@@ -11,3 +11,9 @@ The word so far: right · left
 - [Back up a step](doc:SalesOrPeopleSide)
 
 
+## Topics
+
+### The doors
+
+- <doc:SalesIndividualContributors>
+- <doc:SalesLeadOrManager>

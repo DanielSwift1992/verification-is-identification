@@ -168,6 +168,15 @@ extension View: Open {}
 extension Administer: Open {}
 extension Delete: Open {}
 
+/// This asserts an access in one written line: it instantiates only with an ``Authorized`` gate,
+/// so `Granted<Administer<Alice, FinanceShare>>` compiles exactly when the policy allows that
+/// access. A denied access does not instantiate: the build stops and names the premise that
+/// failed. [V=I Thm 2]
+public enum Granted<
+    A: Authorized
+> {}
+extension Granted: Open {}
+
 /// This names one premise of the gates, on its own: a principal whose rank reaches administrator.
 /// It is `Decidable` exactly when `Who.Rank` carries ``CanAdmin``, so `decide` reads the rank half
 /// of ``Administer`` and ``Delete`` apart from the rest. When a link does not form, this tells the

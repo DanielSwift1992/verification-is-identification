@@ -173,6 +173,12 @@ public enum Symbol<
 /// not the page's content embedded inline. `String(describing:)` reads the bare identifier
 /// regardless of what `X` composes, so linking to an actual `Screen` (real body, real content)
 /// does not inline that screen's whole rendering into the link.
+/// This renders a bare curation link, `<doc:Name>`: the one form DocC's Topics accept for
+/// nesting an article under another, read off the type name like every address.
+public enum TopicReference<X>: Close {}
+extension TopicReference {
+    public static var typeName: String { "<doc:\(RawName<X>.typeName)>" }
+}
 public enum RawName<X>: Close {}
 extension RawName {
     public static var typeName: String { String(describing: X.self) }

@@ -320,19 +320,8 @@ public enum EmployeesPage: Screen {
         Break.self
         Link { DashboardTitle.self; Nav.CompanyDashboard.self }; Chevron.self; EmployeesTitle.self
         Break.self
-        DoubleHash.self; TopicsHeading.self; Break.self
-        TripleHash.self; TheTwoHundredHeading.self; Break.self
-        GeneratedRosterTopics.self
     }
 }
 
-// The Topics section curates the two hundred under this hub: DocC nests every generated
-// employee's page here instead of pouring them into the landing's automatic symbol flood.
-enum TopicsHeading: Close {}
-extension TopicsHeading {
-    static var typeName: String { "Topics" }
-}
-enum TheTwoHundredHeading: Close {}
-extension TheTwoHundredHeading {
-    static var typeName: String { "The two hundred" }
-}
+// The two hundred are curated once, under the ``Roster`` symbol (Roster.md, written by
+// `generate org`): only symbol-extension curation clears the landing's automatic flood.

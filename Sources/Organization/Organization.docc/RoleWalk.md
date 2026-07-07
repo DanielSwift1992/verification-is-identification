@@ -8,3 +8,9 @@ Two doors, and each door names every page behind it. Choose the half that holds 
 - [Sales, People](doc:SalesOrPeopleSide)
 
 
+## Topics
+
+### The doors
+
+- <doc:MoneyOrBuildSide>
+- <doc:SalesOrPeopleSide>

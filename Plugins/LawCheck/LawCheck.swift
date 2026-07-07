@@ -34,7 +34,7 @@ struct LawCheck: BuildToolPlugin {
         let tool = try context.tool(named: "Tools")
         let sources = target.sourceFiles(withSuffix: "swift").map(\.path)
 
-        let libraryTargets: Set<String> = ["Organization", "DocumentKit", "Oracle"]
+        let libraryTargets: Set<String> = ["Organization", "DocumentKit"]
         let strict = libraryTargets.contains(target.name)
 
         let stamp = context.pluginWorkDirectory.appending("lawcheck.stamp")

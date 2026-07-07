@@ -169,6 +169,54 @@ Ice, the hydrogen spectrum, and the Higgs vacuum each certify the same `SystemCr
 - ``HiggsCrystal``
 - ``QuantumCrystal``
 
+### The demo's own hands
+
+The scheduler's four tasks, the readers the demos print with, and the named counts the examples pin.
+
+- ``T0``
+- ``T1``
+- ``T2``
+- ``T3``
+- ``ClosingConflict``
+- ``machineName(_:)``
+- ``allowedReactions``
+- ``hydrogenLines``
+- ``Zero``
+- ``One``
+- ``Two``
+- ``Three``
+
+### The hydrogen ladder, named
+
+The orbital angular momenta and the survivor sets the spectrum demo reads.
+
+- ``EllS``
+- ``EllP``
+- ``EllD``
+- ``HydrogenLevel2``
+- ``HydrogenSurvivor1``
+- ``HydrogenSurvivor2``
+- ``HydrogenSurvivor3``
+- ``HydrogenSurvivor4``
+- ``HydrogenSurvivor5``
+- ``HydrogenSurvivor6``
+- ``NonDegenerate``
+- ``LeftSurvivor``
+- ``RightSurvivor``
+- ``TwoSurvivors``
+- ``Electroweak``
+- ``ElectroweakGoldstones``
+
+### The concrete machines
+
+Ordinary-Swift witnesses beside the pure types: the learners the projection locates.
+
+- ``CountedPath``
+- ``EmittingPath``
+- ``FreeBabbler``
+- ``GatedSolver``
+- ``HollowReach``
+
 ### The witnesses — concrete models of the markers
 
 Non-trivial inhabitants that make the proof bite: the markers have rich models, not only the empty `Never`.

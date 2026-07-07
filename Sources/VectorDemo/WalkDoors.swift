@@ -8,17 +8,16 @@ import Organization
 // Only walks with short faces are drawn — the site walk's roll calls outrun a card's width,
 // and splitting them into lines is glyph metrics, the stated hole the text cycle owns.
 
-enum WalkDoorTitleBase: Close {}
-extension WalkDoorTitleBase {
-    public static var typeName: String { "46" }
-}
+// Derived now: the stated "46" was an eyeballed centring; the font's own formula says 45,
+// and the doors follow it (a one-pixel settle across the twenty strips).
+typealias WalkDoorTitleBase = CenteredBaseline<VerdictCardTall, TextM>
 enum WalkDoorFace: SpanCardFace {
     public typealias H = Tally<VerdictCardTall>
     public typealias Radius = R16
     public typealias Fill = SurfaceCard
     public typealias Stroke = LineRole
 }
-enum WalkDoorLabel<Face: Structure>: SpanLabelMid {
+enum WalkDoorLabel<Face: Structure>: SpanLabelMidFitted {
     public typealias Y = WalkDoorTitleBase
     public typealias FillColor = TextPrimary
     public typealias Size = TextM

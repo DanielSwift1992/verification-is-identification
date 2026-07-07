@@ -29,20 +29,23 @@ case "lint":      Lint.run(Array(CommandLine.arguments.dropFirst(2)))
 case "tree-sort": TreeSortTool.run(Array(CommandLine.arguments.dropFirst(2)))
 case "prose":     ProseGenTool.run(Array(CommandLine.arguments.dropFirst(2)))
 case "grammar":   Linter.run(Array(CommandLine.arguments.dropFirst(2)))
+case "site":      Site.run(Array(CommandLine.arguments.dropFirst(2)))
 case "census":    Census.run(Array(CommandLine.arguments.dropFirst(2)))
 case "generate":
     let sub = Array(CommandLine.arguments.dropFirst(2))
     let rest = Array(sub.dropFirst())
     switch sub.first {
     case "org":   GenerateOrg.run(rest)
+    case "font":  GenerateFont.run(rest)
     case "all":
         GenerateOrg.run(rest)
-        print("Tools generate all: roster only; cards/diagram/pulse/board/heroes are VectorDemo's; the complete regenerate is `swift package generate` (or `swift package generate all`), not this command alone.")
+        GenerateFont.run([])
+        print("Tools generate all: roster and font metrics; cards/diagram/pulse/board/heroes are VectorDemo's; the complete regenerate is `swift package generate` (or `swift package generate all`), not this command alone.")
     default:
-        FileHandle.standardError.write(Data("usage: Tools generate <org|all> [N]: the COMPLETE regenerate is `swift package generate`\n".utf8))
+        FileHandle.standardError.write(Data("usage: Tools generate <org|font|all> [N]: the COMPLETE regenerate is `swift package generate`\n".utf8))
         exit(2)
     }
 default:
-    FileHandle.standardError.write(Data("usage: Tools <lint|tree-sort|grammar|prose|census|generate> ...\n".utf8))
+    FileHandle.standardError.write(Data("usage: Tools <lint|tree-sort|grammar|prose|census|generate|site> ...\n".utf8))
     exit(2)
 }

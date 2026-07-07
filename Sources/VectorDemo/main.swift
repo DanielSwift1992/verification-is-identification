@@ -32,6 +32,7 @@ func run(_ args: [String]) {
     if mode == "cards" || mode == "all" { runCards() }
     if mode == "diagram" || mode == "all" {
         runDiagram()
+        runBuildFlow()
         runGateDiagram()
     }
     if mode == "pulse" || mode == "all" { runPulse() }
@@ -47,7 +48,10 @@ func run(_ args: [String]) {
         runNamedCards()
         renderPersonHeroes()
     }
-    if mode == "doors" || mode == "all" { runRoleDoors() }
+    if mode == "doors" || mode == "all" {
+        runRoleDoors()
+        runSiteDoors()
+    }
     if mode == "source" || mode == "all" { runSelfShowing() }
     if !["cards", "diagram", "pulse", "board", "heroes", "people", "doors", "source", "all"].contains(mode) {
         print("usage: VectorDemo <cards|diagram|pulse|board|heroes|people|source|all>")

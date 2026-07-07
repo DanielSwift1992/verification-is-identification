@@ -7,3 +7,9 @@ Two doors, and each door names every page behind it. Choose the half that holds 
 - [Back up a step](doc:PeopleHalf)
 
 
+## Topics
+
+### The doors
+
+- <doc:RosterSpan0000To0101>
+- <doc:RosterSpan0102To0203>

@@ -9,3 +9,8 @@ The word so far: left · right · right · left · left · left
 - [Back up a step](doc:RosterSpan0076To0081)
 
 
+## Topics
+
+### The doors
+
+- <doc:RosterSpan0077To0078>

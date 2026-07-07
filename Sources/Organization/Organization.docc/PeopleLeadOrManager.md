@@ -11,3 +11,9 @@ The word so far: right · right · right
 - [Back up a step](doc:PeopleRanks)
 
 
+## Topics
+
+### The doors
+
+- <doc:PeopleLeads>
+- <doc:PeopleManagers>

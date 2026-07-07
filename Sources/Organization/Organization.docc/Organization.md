@@ -4,16 +4,13 @@ A company modeled in Swift's type system. Its people, its access rules, and its 
 
 ## Start here
 
-Every page below is the same for everyone — the dashboard, the roster, the access matrix. The
-one page that is not is a card (<doc:CompanyDashboard> lists all four): identity and tasks are
-open to anyone, and the real access is one walk away — the card shows the password and the
-keypad is drawn right into the same picture. Walking it resolves to that one identity and
-unlocks the same card's other half. The company stays open to look at either way, only that
-half differs.
+Three things to do, in order:
 
-Not sure where to look? <doc:SiteWalk> finds your page in four choices, and the people
-shelf behind it finds any of the 204 in eight — every door names exactly what it holds,
-read off the same types this whole site is.
+- term **Take the walk:** <doc:SiteWalk> finds your page in four choices, and the people shelf behind it finds any of the 204 in eight. Every door names what it holds, read off the same types this site is rendered from.
+- term **Unlock a card:** every person's card is public, including the password printed on it, and the keypad beside it is the login. Walk the code digit by digit — the last correct press lands on the card's unlocked half. <doc:CompanyDashboard> lists the four named cards to try.
+- term **Change a rule:** edit `System/Policy.swift` and rebuild. Every page re-reads itself, and a rule that contradicts the policy refuses the build with the failed premise named.
+
+The pages are the same for everyone — dashboard, roster, access matrix. The one page that differs is a card's unlocked half, and it is reached by the walk above, never by a session.
 
 ## The idea
 
@@ -23,14 +20,25 @@ Here the three are one. The policy is written as types, so compiling the company
 
 ## Architecture
 
-This is not a pattern beside MVVM or VIPER — at runtime there is nothing left to
-architect, because nothing runs. The whole shape is one direction, proved, then
-read: the types are proved by the build, the verdicts are read off them, and the
-pages you are reading are that reading, rendered.
+At runtime there is nothing to architect, because nothing runs. The whole shape is
+one direction: the types are proved by the build, the verdicts are read off the
+types, and the pages you are reading are that reading, rendered. Where MVVM or
+VIPER would slice a runtime, this slices a proof.
 
-![The four layers — System, Query, View, and DocumentKit — and the audit and documentation they render from one source.](architecture)
+![The package, top down: the V=I lattice, the DocumentKit engine that renders and walks it, the Organization written in both, and the two outputs of every build.](architecture)
 
-The package has four layers, and data flows one way down them.
+![The build, left to right: sources of truth feed the generators, generated Swift meets the gates inside swift build, and the outputs are the site, the drawings, and the audit.](build-flow)
+
+The second picture is the tooling: everything that executes, executes here, once, at
+build time. The sources of truth are files in the repository; swift package generate
+turns them into checked-in Swift; swift build holds the gates — a law violation, a style
+violation, or an overdrawn doc-comment budget refuses the build by name — and what falls
+out is the site you are reading.
+
+One flow, top down: the core library everything imports, the render engine that reads
+it (markdown, SVG, and the guided walks), the demo application written in both, and the
+two outputs every build produces. Each box names its role, its parts, and its census, counted
+by the build that rendered this page; click a box to open it.
 
 - term `System/`, the company itself, written in the types of the V=I framework (`VerificationIsIdentification`): the people, the roles, the departments, the documents, the access gates, and the year-close interlock. Nothing here runs and nothing is stored. Compiling this layer is what enforces the policy and proves every access.
 - term `Query/`, the questions the compiler answers about that company: is this access granted, who owns this document, do the standing invariants still hold. Each answer is a conformance that either holds or fails to, decided when the code type-checks, not stored anywhere.
@@ -142,12 +150,23 @@ copy of it (DESIGN12 §2).
 - <doc:BoardSource>
 - <doc:CyclesHeroSource>
 
+### The walk pages' own tails
+
+The atoms a walk step spells its Topics section with, so the navigator nests each step under the one before it.
+
+- ``TopicsHeadingBlock``
+- ``WalkTopicsHeading``
+- ``WalkDoorsGroupHeading``
+- ``TopicDoor``
+- ``TopicSymbol``
+
 ### The policy, enforced
 
 - ``Authorized``
 - ``View``
 - ``Administer``
 - ``Delete``
+- ``Granted``
 - ``CanView``
 - ``CanEdit``
 - ``CanAdmin``
@@ -199,11 +218,34 @@ element and counts them at once.
 - ``Report``
 - ``StandingReport``
 
+### Counted by this build
+
+The census, spelled into atoms by the CensusGen plugin on every build: the numbers the architecture diagram wears.
+
+- ``CensusLatticeTypes``
+- ``CensusLatticeRuntimeFunctions``
+- ``CensusLatticeStructs``
+- ``CensusLatticeClasses``
+- ``CensusEngineTypes``
+- ``CensusEngineRuntimeFunctions``
+- ``CensusEngineStructs``
+- ``CensusEngineClasses``
+- ``CensusCompanyTypes``
+- ``CensusCompanyRuntimeFunctions``
+- ``CensusCompanyStructs``
+- ``CensusCompanyClasses``
+- ``CensusToolingTypes``
+- ``CensusToolingRuntimeFunctions``
+- ``CensusToolingStructs``
+- ``CensusToolingClasses``
+
 ### Find your way
 
 The walk: binary questions over the site's own composition, every door a witness of the half it opens. <doc:SiteWalk> is the entry; the pages below are the steps, as types.
 
 - <doc:SiteWalk>
+- <doc:RoleWalk>
+- <doc:RosterSpan0000To0203>
 - ``SiteWalkPage``
 - ``PeopleOrWorkPage``
 - ``PolicyOrNumbersPage``
@@ -291,6 +333,11 @@ Each named person's password walk, unlocked half, and access dots.
 - ``DaveUnlockedContent``
 - ``DaveFinanceDot``
 - ``DaveEngineeringDot``
+- ``PasscodePage``
+- ``AliceLogin``
+- ``BobLogin``
+- ``CarolLogin``
+- ``DaveLogin``
 - ``Spelled``
 - ``SpelledSecret``
 - ``HandleName``

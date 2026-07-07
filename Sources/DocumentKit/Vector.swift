@@ -234,6 +234,147 @@ extension Under {
     }
 }
 
+/// This reads a text's measured width at a size, in canvas pixels, rounded up: the sum of
+/// the stated font's own advances (GeneratedFontMetrics, spelled from Assets' Inter file
+/// by `swift run Tools generate font`). The canvas contract keeps its caveat — a fallback
+/// font approximates — so the measure serves generous boxes and honest gates: it may
+/// over-provide, never under. A character outside the table measures as an "m".
+public enum TextWidth<
+    Content: Structure,
+    TextSize: Structure
+>: Close {}
+extension TextWidth {
+    public static var count: Int {
+        var advances: [Int: Int] = [:]
+        for pair in FontAdvanceTable.typeName.split(separator: " ") {
+            let parts = pair.split(separator: ":")
+            if parts.count == 2, let code = Int(parts[0]), let width = Int(parts[1]) {
+                advances[code] = width
+            }
+        }
+        let units = Int(FontUnitsPerEm.typeName) ?? 2048
+        let size = Int(TextSize.typeName) ?? 0
+        let fallback = advances[109] ?? units / 2
+        let total = Content.typeName.unicodeScalars.reduce(0) { sum, scalar in
+            sum + (advances[Int(scalar.value)] ?? fallback)
+        }
+        return (total * size + units - 1) / units
+    }
+}
+
+/// This is the measured gate on a centred label: the words must fit the width the slice
+/// hands over, and a text that outgrows its box refuses at generation, loudly, naming
+/// itself — the same floor a crashed generator already is, now standing under every fitted
+/// label instead of a reviewer's eye.
+public protocol SpanLabelMidFitted: Spanning {
+    associatedtype Y: Structure
+    associatedtype FillColor: Structure
+    associatedtype Size: Structure
+    associatedtype Weight: Structure
+    associatedtype Content: Structure
+}
+extension SpanLabelMidFitted {
+    public static func rendered<
+        X: Frac & Structure,
+        W: Frac & Structure
+    >(
+        atX x: X.Type,
+        width w: W.Type
+    ) -> String {
+        let measured = TextWidth<Content, Size>.count
+        let given = (2 * W.Left.count + W.Right.count) / (2 * W.Right.count)
+        precondition(
+            measured <= given,
+            "SpanLabelMidFitted overflow in \(Self.self): \"\(Content.typeName)\" measures \(measured)px, the slice hands \(given)px"
+        )
+        return "<text x=\"\(SpanPx<MidOf<X, W>>.typeName)\" y=\"\(Y.typeName)\" text-anchor=\"middle\" "
+            + "fill=\"\(FillColor.typeName)\" font-weight=\"\(Weight.typeName)\" "
+            + "font-size=\"\(Size.typeName)\">\(Content.typeName)</text>\n"
+    }
+}
+
+/// This is the centred baseline, derived: where text of a size sits to stand visually
+/// centred in a zone — the zone's middle plus half the font's own capital height, rounded
+/// to the nearest pixel. The centred class of baselines stops being stated with this;
+/// stacked lines (a title over a subtitle) remain stated, being design choices, not
+/// centrings.
+public enum CenteredBaseline<
+    ZoneTall: Structure,
+    TextSize: Structure
+>: Close {}
+extension CenteredBaseline {
+    public static var typeName: String {
+        let units = Int(FontUnitsPerEm.typeName) ?? 2048
+        let cap = Int(FontCapHeight.typeName) ?? 0
+        let size = Int(TextSize.typeName) ?? 0
+        return String((ZoneTall.count * units + cap * size + units) / (2 * units))
+    }
+}
+
+/// This is the wrapped centred label: the words fill measured lines within the width the
+/// slice hands over, breaking greedily by the same measure the fitted gate reads, each
+/// line one stated pitch below the last. Wrapping earns lines, never truncation: a single
+/// word wider than the slice still refuses, loudly. The advance-table parse repeats
+/// `TextWidth`'s by law — a value helper has no lawful home outside a witness body.
+public protocol SpanLabelMidWrapped: Spanning {
+    associatedtype Y: Structure
+    associatedtype LinePitch: Structure
+    associatedtype FillColor: Structure
+    associatedtype Size: Structure
+    associatedtype Weight: Structure
+    associatedtype Content: Structure
+}
+extension SpanLabelMidWrapped {
+    public static func rendered<
+        X: Frac & Structure,
+        W: Frac & Structure
+    >(
+        atX x: X.Type,
+        width w: W.Type
+    ) -> String {
+        var advances: [Int: Int] = [:]
+        for pair in FontAdvanceTable.typeName.split(separator: " ") {
+            let parts = pair.split(separator: ":")
+            if parts.count == 2, let code = Int(parts[0]), let width = Int(parts[1]) {
+                advances[code] = width
+            }
+        }
+        let units = Int(FontUnitsPerEm.typeName) ?? 2048
+        let size = Int(Size.typeName) ?? 0
+        let fallback = advances[109] ?? units / 2
+        let given = (2 * W.Left.count + W.Right.count) / (2 * W.Right.count)
+        let measured: (Substring) -> Int = { text in
+            let total = text.unicodeScalars.reduce(0) { sum, scalar in
+                sum + (advances[Int(scalar.value)] ?? fallback)
+            }
+            return (total * size + units - 1) / units
+        }
+        var lines: [Substring] = []
+        var line = Substring("")
+        for word in Content.typeName.split(separator: " ") {
+            precondition(
+                measured(word) <= given,
+                "SpanLabelMidWrapped overflow in \(Self.self): the word \"\(word)\" measures \(measured(word))px, the slice hands \(given)px"
+            )
+            let candidate = line.isEmpty ? word : Substring("\(line) \(word)")
+            if measured(candidate) <= given {
+                line = candidate
+            } else {
+                lines.append(line)
+                line = word
+            }
+        }
+        if !line.isEmpty { lines.append(line) }
+        let base = Int(Y.typeName) ?? 0
+        let pitch = Int(LinePitch.typeName) ?? 0
+        return lines.enumerated().map { index, text in
+            "<text x=\"\(SpanPx<MidOf<X, W>>.typeName)\" y=\"\(base + pitch * index)\" text-anchor=\"middle\" "
+                + "fill=\"\(FillColor.typeName)\" font-weight=\"\(Weight.typeName)\" "
+                + "font-size=\"\(Size.typeName)\">\(text)</text>\n"
+        }.joined()
+    }
+}
+
 /// This reads the line halfway between two named lines: the one division the fascia keeps
 /// (a midpoint of magnitudes), for annotations that stand between.
 public enum Halfway<

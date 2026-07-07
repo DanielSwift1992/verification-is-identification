@@ -11,3 +11,9 @@ The word so far: left · left
 - [Back up a step](doc:MoneyOrBuildSide)
 
 
+## Topics
+
+### The doors
+
+- <doc:FinanceIndividualContributors>
+- <doc:FinanceLeadOrManager>

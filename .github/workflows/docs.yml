@@ -37,6 +37,12 @@ jobs:
       - name: Count declarations per target (Tools census)
         run: swift run Tools census
 
+      - name: The grammar carries every source file
+        run: swift run Tools grammar
+
+      - name: Topics stay equal to the type lattice
+        run: swift package --allow-writing-to-package-directory tree-sort check
+
       - name: Generate the combined documentation site
         run: >
           swift package
@@ -44,8 +50,9 @@ jobs:
           generate-documentation
           --enable-experimental-combined-documentation
           --experimental-enable-custom-templates
-          --target VerificationIsIdentification --target Playground
-          --target Organization --target DocumentKit
+          --target VerificationIsIdentification --target Organization
+          --target DocumentKit --target Playground
+          --target GrammarLexicon --target Alphabet
           --transform-for-static-hosting
           --hosting-base-path verification-is-identification
           --output-path "$GITHUB_WORKSPACE/_site"

@@ -1,7 +1,7 @@
 import VerificationIsIdentification
 
 // ═══════════════════════════════════════════════════════════════
-// ORACLE names the walk: authorship and navigation as the V=I game itself.
+// THE WALK names search as navigation: the V=I game read the other way.
 //
 // The seed says: draw a distinction, or close one, until a single structure survives. Read
 // forward, that is verification. Read the other way, it is a walk: at every `Pair` the
@@ -10,7 +10,7 @@ import VerificationIsIdentification
 //
 // There is deliberately no node protocol here. The fork is `Pair` itself: any composed
 // body in the system is already a walkable space, so a second ontology would be a second
-// artifact. This module holds only what a walk adds to the lattice:
+// artifact. This file holds only what a walk adds to the lattice:
 //
 //   readings  a door must show what stands behind it, and the reading is a witness of the
 //             subtree (`labels`, `count`), so a door cannot say what its half does not hold.

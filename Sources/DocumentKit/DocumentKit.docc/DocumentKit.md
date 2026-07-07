@@ -1,6 +1,6 @@
 # ``DocumentKit``
 
-A render engine with no runtime: a page's `body` is a TYPE, composed the way any other type in the lattice is, and reading its `typeName` (`Structure`, VerificationIsIdentification) walks that composition once into markdown. There is no second pass, no array of nodes interpreted — the page IS the type, the render IS `typeName`.
+A render engine with no runtime. A page is a type: its `body` composes other types, and reading `typeName` (`Structure`, VerificationIsIdentification) walks the composition once into markdown. There is no second pass and no node tree to interpret — the type is the page, and reading its name is the render.
 
 ## Build a page
 

@@ -478,7 +478,10 @@ enum Linter {
         }
 
         try? process.run()
-        let deadline = Date().addingTimeInterval(240)
+        // 900s: a wedge-catcher, not a pace-setter. A cold CI runner builds the mirror
+        // several times slower than a warm laptop (~40s here, past 240s there), and the
+        // deadline exists to catch a hung build, so it stays far above any honest one.
+        let deadline = Date().addingTimeInterval(900)
         while process.isRunning, Date() < deadline {
             Thread.sleep(forTimeInterval: 0.1)
         }

@@ -30,6 +30,7 @@ case "tree-sort": TreeSortTool.run(Array(CommandLine.arguments.dropFirst(2)))
 case "prose":     ProseGenTool.run(Array(CommandLine.arguments.dropFirst(2)))
 case "grammar":   Linter.run(Array(CommandLine.arguments.dropFirst(2)))
 case "site":      Site.run(Array(CommandLine.arguments.dropFirst(2)))
+case "curve":     Curve.run(Array(CommandLine.arguments.dropFirst(2)))
 case "census":    Census.run(Array(CommandLine.arguments.dropFirst(2)))
 case "generate":
     let sub = Array(CommandLine.arguments.dropFirst(2))
@@ -46,6 +47,6 @@ case "generate":
         exit(2)
     }
 default:
-    FileHandle.standardError.write(Data("usage: Tools <lint|tree-sort|grammar|prose|census|generate|site> ...\n".utf8))
+    FileHandle.standardError.write(Data("usage: Tools <lint|tree-sort|grammar|prose|census|generate|site|curve> ...\n".utf8))
     exit(2)
 }

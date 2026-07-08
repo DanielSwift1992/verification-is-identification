@@ -400,13 +400,14 @@ enum GenerateOrg {
         //    in an article (the Employees hub) re-parents the navigator but leaves the
         //    landing's automatic group standing (probed directly, 2026-07-07). ──
         var curation = ["# ``Roster``", "",
-                        "The full generated roster, one symbol per person, curated here so the",
-                        "module landing lists people once, under the type that composes them.", "",
+                        "The full generated roster and its walk shelves, curated here as a symbol",
+                        "extension: the one curation every DocC honors, so the module landing lists",
+                        "people and shelves once, under the type that composes them.", "",
                         "## Topics", "", "### The two hundred", ""]
         for i in 0..<n {
             curation.append("- ``\(emp(i))``")
         }
-        try? (curation.joined(separator: "\n") + "\n").write(toFile: "Sources/Organization/Organization.docc/Roster.md", atomically: true, encoding: .utf8)
+        // The shelves join below, once the walk has named them; one file, one writer.
 
         // ── OrgDemo: one EmployeeCard<Emp####> render call per generated employee, a
         //    doc-extension merged onto that person's OWN symbol page (Card.swift's header
@@ -718,9 +719,11 @@ enum GenerateOrg {
             "        try? FileManager.default.removeItem(atPath: catalog + stale)",
             "    }",
         ]
+        var shelfNames: [String] = []
         func descend(_ lo: Int, _ hi: Int, _ parent: String, _ word: [String]) -> String {
             if lo == hi { return shelf[lo].reference }
             let name = spanName(lo, hi)
+            shelfNames.append(name)
             let half = (hi - lo + 1) / 2
             let leftReference = descend(lo, lo + half - 1, name, word + ["WentLeft"])
             let rightReference = descend(lo + half, hi, name, word + ["WentRight"])
@@ -772,6 +775,11 @@ enum GenerateOrg {
             return name
         }
         _ = descend(0, shelf.count - 1, "PeopleHalf", [])
+        curation += ["", "### The shelves of the phone book", ""]
+        for shelfName in shelfNames.sorted() {
+            curation.append("- ``\(shelfName)``")
+        }
+        try? (curation.joined(separator: "\n") + "\n").write(toFile: "Sources/Organization/Organization.docc/Roster.md", atomically: true, encoding: .utf8)
         walkWrites.append("}")
         try? (tree.joined(separator: "\n") + "\n").write(toFile: "Sources/Organization/System/GeneratedRosterWalk.swift", atomically: true, encoding: .utf8)
         try? ((walkPages + walkWrites).joined(separator: "\n") + "\n").write(toFile: "Sources/OrgDemo/GeneratedWalkPages.swift", atomically: true, encoding: .utf8)

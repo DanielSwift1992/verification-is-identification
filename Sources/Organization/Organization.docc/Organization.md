@@ -256,6 +256,14 @@ The walk: binary questions over the site's own composition, every door a witness
 - ``DepartmentsOrDirectoriesPage``
 - ``BoardOrTasksPage``
 - ``Halves``
+- ``PeopleOrWork``
+- ``PeopleHalf``
+- ``WorkHalf``
+- ``PolicyOrNumbers``
+- ``PolicyHalf``
+- ``NumbersHalf``
+- ``DepartmentsOrDirectories``
+- ``BoardOrTasks``
 - ``RoleWalk``
 - ``MoneyOrBuildSide``
 - ``SalesOrPeopleSide``

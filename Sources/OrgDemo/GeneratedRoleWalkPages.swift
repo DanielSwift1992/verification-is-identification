@@ -19,9 +19,9 @@ enum RoleWalkTitle: Close {}
 extension RoleWalkTitle {
     static var typeName: String { "Form a query: which department?" }
 }
-public enum RoleWalkPage: Screen {
+enum RoleWalkPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { RoleWalkTitle.self }
         WalkHint.self; Break.self
         Picture { RoleWalkDoorsPictureAlt.self; RoleWalkDoorsPictureAsset.self }
@@ -47,9 +47,9 @@ enum MoneyOrBuildSideTitle: Close {}
 extension MoneyOrBuildSideTitle {
     static var typeName: String { "Finance, or Engineering?" }
 }
-public enum MoneyOrBuildSidePage: Screen {
+enum MoneyOrBuildSidePage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { MoneyOrBuildSideTitle.self }
         WalkHint.self; Break.self
         WordSoFar.self; WentLeft.self
@@ -78,9 +78,9 @@ enum FinanceRanksTitle: Close {}
 extension FinanceRanksTitle {
     static var typeName: String { "A rank in Finance: the individual contributors, or the leads and managers?" }
 }
-public enum FinanceRanksPage: Screen {
+enum FinanceRanksPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { FinanceRanksTitle.self }
         WalkHint.self; Break.self
         WordSoFar.self; WentLeft.self; StepDot.self; WentLeft.self
@@ -109,9 +109,9 @@ enum FinanceLeadOrManagerTitle: Close {}
 extension FinanceLeadOrManagerTitle {
     static var typeName: String { "In Finance: a lead, or a manager?" }
 }
-public enum FinanceLeadOrManagerPage: Screen {
+enum FinanceLeadOrManagerPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { FinanceLeadOrManagerTitle.self }
         WalkHint.self; Break.self
         WordSoFar.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
@@ -140,9 +140,9 @@ enum EngineeringRanksTitle: Close {}
 extension EngineeringRanksTitle {
     static var typeName: String { "A rank in Engineering: the individual contributors, or the leads and managers?" }
 }
-public enum EngineeringRanksPage: Screen {
+enum EngineeringRanksPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { EngineeringRanksTitle.self }
         WalkHint.self; Break.self
         WordSoFar.self; WentLeft.self; StepDot.self; WentRight.self
@@ -171,9 +171,9 @@ enum EngineeringLeadOrManagerTitle: Close {}
 extension EngineeringLeadOrManagerTitle {
     static var typeName: String { "In Engineering: a lead, or a manager?" }
 }
-public enum EngineeringLeadOrManagerPage: Screen {
+enum EngineeringLeadOrManagerPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { EngineeringLeadOrManagerTitle.self }
         WalkHint.self; Break.self
         WordSoFar.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
@@ -202,9 +202,9 @@ enum SalesOrPeopleSideTitle: Close {}
 extension SalesOrPeopleSideTitle {
     static var typeName: String { "Sales, or People?" }
 }
-public enum SalesOrPeopleSidePage: Screen {
+enum SalesOrPeopleSidePage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { SalesOrPeopleSideTitle.self }
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self
@@ -233,9 +233,9 @@ enum SalesRanksTitle: Close {}
 extension SalesRanksTitle {
     static var typeName: String { "A rank in Sales: the individual contributors, or the leads and managers?" }
 }
-public enum SalesRanksPage: Screen {
+enum SalesRanksPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { SalesRanksTitle.self }
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self
@@ -264,9 +264,9 @@ enum SalesLeadOrManagerTitle: Close {}
 extension SalesLeadOrManagerTitle {
     static var typeName: String { "In Sales: a lead, or a manager?" }
 }
-public enum SalesLeadOrManagerPage: Screen {
+enum SalesLeadOrManagerPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { SalesLeadOrManagerTitle.self }
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
@@ -295,9 +295,9 @@ enum PeopleRanksTitle: Close {}
 extension PeopleRanksTitle {
     static var typeName: String { "A rank in People: the individual contributors, or the leads and managers?" }
 }
-public enum PeopleRanksPage: Screen {
+enum PeopleRanksPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { PeopleRanksTitle.self }
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self
@@ -326,9 +326,9 @@ enum PeopleLeadOrManagerTitle: Close {}
 extension PeopleLeadOrManagerTitle {
     static var typeName: String { "In People: a lead, or a manager?" }
 }
-public enum PeopleLeadOrManagerPage: Screen {
+enum PeopleLeadOrManagerPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { PeopleLeadOrManagerTitle.self }
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
@@ -356,9 +356,9 @@ enum FinanceIndividualContributorsRepoVerdict: Close {}
 extension FinanceIndividualContributorsRepoVerdict {
     static var typeName: String { ViewCapability<SomeoneAs<Finance, IndividualContributor>, EngineeringRepo>.typeName }
 }
-public enum FinanceIndividualContributorsCellPage: Screen {
+enum FinanceIndividualContributorsCellPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { Symbol { RawName<FinanceIndividualContributors>.self } }
         RoleCellIntro.self; Break.self
         ListItem { StandingHereWord.self; Tally<FinanceIndividualContributors>.self }
@@ -380,9 +380,9 @@ enum FinanceLeadsRepoVerdict: Close {}
 extension FinanceLeadsRepoVerdict {
     static var typeName: String { ViewCapability<SomeoneAs<Finance, Lead>, EngineeringRepo>.typeName }
 }
-public enum FinanceLeadsCellPage: Screen {
+enum FinanceLeadsCellPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { Symbol { RawName<FinanceLeads>.self } }
         RoleCellIntro.self; Break.self
         ListItem { StandingHereWord.self; Tally<FinanceLeads>.self }
@@ -404,9 +404,9 @@ enum FinanceManagersRepoVerdict: Close {}
 extension FinanceManagersRepoVerdict {
     static var typeName: String { ViewCapability<SomeoneAs<Finance, Manager>, EngineeringRepo>.typeName }
 }
-public enum FinanceManagersCellPage: Screen {
+enum FinanceManagersCellPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { Symbol { RawName<FinanceManagers>.self } }
         RoleCellIntro.self; Break.self
         ListItem { StandingHereWord.self; Tally<FinanceManagers>.self }
@@ -428,9 +428,9 @@ enum EngineeringIndividualContributorsRepoVerdict: Close {}
 extension EngineeringIndividualContributorsRepoVerdict {
     static var typeName: String { ViewCapability<SomeoneAs<Engineering, IndividualContributor>, EngineeringRepo>.typeName }
 }
-public enum EngineeringIndividualContributorsCellPage: Screen {
+enum EngineeringIndividualContributorsCellPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { Symbol { RawName<EngineeringIndividualContributors>.self } }
         RoleCellIntro.self; Break.self
         ListItem { StandingHereWord.self; Tally<EngineeringIndividualContributors>.self }
@@ -452,9 +452,9 @@ enum EngineeringLeadsRepoVerdict: Close {}
 extension EngineeringLeadsRepoVerdict {
     static var typeName: String { ViewCapability<SomeoneAs<Engineering, Lead>, EngineeringRepo>.typeName }
 }
-public enum EngineeringLeadsCellPage: Screen {
+enum EngineeringLeadsCellPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { Symbol { RawName<EngineeringLeads>.self } }
         RoleCellIntro.self; Break.self
         ListItem { StandingHereWord.self; Tally<EngineeringLeads>.self }
@@ -476,9 +476,9 @@ enum EngineeringManagersRepoVerdict: Close {}
 extension EngineeringManagersRepoVerdict {
     static var typeName: String { ViewCapability<SomeoneAs<Engineering, Manager>, EngineeringRepo>.typeName }
 }
-public enum EngineeringManagersCellPage: Screen {
+enum EngineeringManagersCellPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { Symbol { RawName<EngineeringManagers>.self } }
         RoleCellIntro.self; Break.self
         ListItem { StandingHereWord.self; Tally<EngineeringManagers>.self }
@@ -500,9 +500,9 @@ enum SalesIndividualContributorsRepoVerdict: Close {}
 extension SalesIndividualContributorsRepoVerdict {
     static var typeName: String { ViewCapability<SomeoneAs<Sales, IndividualContributor>, EngineeringRepo>.typeName }
 }
-public enum SalesIndividualContributorsCellPage: Screen {
+enum SalesIndividualContributorsCellPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { Symbol { RawName<SalesIndividualContributors>.self } }
         RoleCellIntro.self; Break.self
         ListItem { StandingHereWord.self; Tally<SalesIndividualContributors>.self }
@@ -524,9 +524,9 @@ enum SalesLeadsRepoVerdict: Close {}
 extension SalesLeadsRepoVerdict {
     static var typeName: String { ViewCapability<SomeoneAs<Sales, Lead>, EngineeringRepo>.typeName }
 }
-public enum SalesLeadsCellPage: Screen {
+enum SalesLeadsCellPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { Symbol { RawName<SalesLeads>.self } }
         RoleCellIntro.self; Break.self
         ListItem { StandingHereWord.self; Tally<SalesLeads>.self }
@@ -548,9 +548,9 @@ enum SalesManagersRepoVerdict: Close {}
 extension SalesManagersRepoVerdict {
     static var typeName: String { ViewCapability<SomeoneAs<Sales, Manager>, EngineeringRepo>.typeName }
 }
-public enum SalesManagersCellPage: Screen {
+enum SalesManagersCellPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { Symbol { RawName<SalesManagers>.self } }
         RoleCellIntro.self; Break.self
         ListItem { StandingHereWord.self; Tally<SalesManagers>.self }
@@ -572,9 +572,9 @@ enum PeopleIndividualContributorsRepoVerdict: Close {}
 extension PeopleIndividualContributorsRepoVerdict {
     static var typeName: String { ViewCapability<SomeoneAs<People, IndividualContributor>, EngineeringRepo>.typeName }
 }
-public enum PeopleIndividualContributorsCellPage: Screen {
+enum PeopleIndividualContributorsCellPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { Symbol { RawName<PeopleIndividualContributors>.self } }
         RoleCellIntro.self; Break.self
         ListItem { StandingHereWord.self; Tally<PeopleIndividualContributors>.self }
@@ -596,9 +596,9 @@ enum PeopleLeadsRepoVerdict: Close {}
 extension PeopleLeadsRepoVerdict {
     static var typeName: String { ViewCapability<SomeoneAs<People, Lead>, EngineeringRepo>.typeName }
 }
-public enum PeopleLeadsCellPage: Screen {
+enum PeopleLeadsCellPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { Symbol { RawName<PeopleLeads>.self } }
         RoleCellIntro.self; Break.self
         ListItem { StandingHereWord.self; Tally<PeopleLeads>.self }
@@ -620,9 +620,9 @@ enum PeopleManagersRepoVerdict: Close {}
 extension PeopleManagersRepoVerdict {
     static var typeName: String { ViewCapability<SomeoneAs<People, Manager>, EngineeringRepo>.typeName }
 }
-public enum PeopleManagersCellPage: Screen {
+enum PeopleManagersCellPage: Screen {
     @StructureBuilder
-    public static var body: some Structure {
+    static var body: some Structure {
         PageTitle { Symbol { RawName<PeopleManagers>.self } }
         RoleCellIntro.self; Break.self
         ListItem { StandingHereWord.self; Tally<PeopleManagers>.self }

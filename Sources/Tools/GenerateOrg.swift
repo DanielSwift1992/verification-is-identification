@@ -586,9 +586,9 @@ enum GenerateOrg {
                 "extension \(name)Title {",
                 "    static var typeName: String { \(quoted(title)) }",
                 "}",
-                "public enum \(name)Page: Screen {",
+                "enum \(name)Page: Screen {",
                 "    @StructureBuilder",
-                "    public static var body: some Structure {",
+                "    static var body: some Structure {",
                 "        PageTitle { \(name)Title.self }",
                 "        WalkHint.self; Break.self",
             ]
@@ -661,9 +661,9 @@ enum GenerateOrg {
                     "extension \(cohort)RepoVerdict {",
                     "    static var typeName: String { ViewCapability<SomeoneAs<\(department.name), \(rank)>, EngineeringRepo>.typeName }",
                     "}",
-                    "public enum \(cohort)CellPage: Screen {",
+                    "enum \(cohort)CellPage: Screen {",
                     "    @StructureBuilder",
-                    "    public static var body: some Structure {",
+                    "    static var body: some Structure {",
                     "        PageTitle { Symbol { RawName<\(cohort)>.self } }",
                     "        RoleCellIntro.self; Break.self",
                     "        ListItem { StandingHereWord.self; Tally<\(cohort)>.self }",
@@ -800,9 +800,9 @@ enum GenerateOrg {
                 .map { "        TopicDoor<\($0)>.self" }
             let topicsTail = shelfDoors.isEmpty ? [] : ["        TopicsHeadingBlock.self"] + shelfDoors
             var pageLines: [String] = [
-                "public enum \(name)Page: Screen {",
+                "enum \(name)Page: Screen {",
                 "    @StructureBuilder",
-                "    public static var body: some Structure {",
+                "    static var body: some Structure {",
                 "        PageTitle { NameSpan<\(shelf[lo].reference), \(shelf[hi].reference)>.self }",
                 "        WalkHint.self; Break.self",
             ]
@@ -849,7 +849,7 @@ enum GenerateOrg {
             for line in lines {
                 if line.hasPrefix("/// ") || line == "///" {
                     docBuffer.append(line)
-                } else if line.hasPrefix("public enum ") || line.hasPrefix("public typealias ") {
+                } else if opensDeclaration(line) {
                     if !current.isEmpty { blocks.append(current) }
                     current = docBuffer + [line]
                     docBuffer = []
@@ -872,11 +872,15 @@ enum GenerateOrg {
                 cursor += perShard
             }
         }
-        let treePrefixCount = tree.prefix(while: { !$0.hasPrefix("public enum ") }).count
+        func opensDeclaration(_ line: String) -> Bool {
+            line.hasPrefix("public enum ") || line.hasPrefix("enum ")
+                || line.hasPrefix("public typealias ") || line.hasPrefix("typealias ")
+        }
+        let treePrefixCount = tree.prefix(while: { !opensDeclaration($0) }).count
         let treeHeader = Array(tree.prefix(treePrefixCount)).filter { !$0.hasPrefix("///") }
         let treeBody = Array(tree.dropFirst(treePrefixCount))
         writeShards(treeBody, header: treeHeader, directory: "Sources/Organization/System", base: "GeneratedRosterWalk")
-        let pagesHeader = Array(walkPages.prefix(while: { !$0.hasPrefix("public enum ") }))
+        let pagesHeader = Array(walkPages.prefix(while: { !opensDeclaration($0) }))
         let pagesBody = Array(walkPages.dropFirst(pagesHeader.count))
         writeShards(pagesBody, header: pagesHeader, directory: "Sources/OrgDemo", base: "GeneratedWalkPages")
         var renderHub = pagesHeader + [

@@ -743,15 +743,7 @@ enum GenerateOrg {
             "// door to a person wears `NameOf`; every step page spells the word walked so far.",
             "// All faces are witnesses, read off the types, never authored.", "",
         ]
-        var walkWrites = [
-            "func renderRosterWalk() {",
-            "    // Sweep first: shelf positions shift when the roster changes, and filenames",
-            "    // follow, so a stale span page would keep a door into yesterday's split.",
-            "    for stale in (try? FileManager.default.contentsOfDirectory(atPath: catalog)) ?? []",
-            "    where stale.hasPrefix(\"RosterSpan\") {",
-            "        try? FileManager.default.removeItem(atPath: catalog + stale)",
-            "    }",
-        ]
+        var walkWriteLines: [String] = []
         var shelfNames: [String] = []
         func descend(_ lo: Int, _ hi: Int, _ parent: String, _ word: [String]) -> String {
             if lo == hi { return shelf[lo].reference }
@@ -804,7 +796,7 @@ enum GenerateOrg {
                 "    }",
                 "}",
             ]
-            walkWrites.append("    write(\(name)Page.typeName, \"\(name)\")")
+            walkWriteLines.append("    write(\(name)Page.typeName, \"\(name)\")")
             return name
         }
         let walkRootName = descend(0, shelf.count - 1, "PeopleHalf", [])
@@ -819,9 +811,75 @@ enum GenerateOrg {
             curation.append("- ``\(shelfName)``")
         }
         try? (curation.joined(separator: "\n") + "\n").write(toFile: "Sources/Organization/Organization.docc/Roster.md", atomically: true, encoding: .utf8)
-        walkWrites.append("}")
-        try? (tree.joined(separator: "\n") + "\n").write(toFile: "Sources/Organization/System/GeneratedRosterWalk.swift", atomically: true, encoding: .utf8)
-        try? ((walkPages + walkWrites).joined(separator: "\n") + "\n").write(toFile: "Sources/OrgDemo/GeneratedWalkPages.swift", atomically: true, encoding: .utf8)
+        // One giant generated file is one frontend job: it cannot spread across cores, and
+        // every declaration pays name lookup against the whole module. Sharding by ~120
+        // top-level declarations lets the type checker work the shards in parallel — the
+        // composition instrument of the curve (DESIGN21 v29), byte-identical in every reading.
+        func writeShards(_ lines: [String], header: [String], directory: String, base: String) {
+            for stale in (try? FileManager.default.contentsOfDirectory(atPath: directory)) ?? []
+            where stale.hasPrefix(base) && stale.hasSuffix(".swift") {
+                try? FileManager.default.removeItem(atPath: directory + "/" + stale)
+            }
+            var blocks: [[String]] = []
+            var current: [String] = []
+            var docBuffer: [String] = []
+            for line in lines {
+                if line.hasPrefix("/// ") || line == "///" {
+                    docBuffer.append(line)
+                } else if line.hasPrefix("public enum ") || line.hasPrefix("public typealias ") {
+                    if !current.isEmpty { blocks.append(current) }
+                    current = docBuffer + [line]
+                    docBuffer = []
+                } else {
+                    current += docBuffer + [line]
+                    docBuffer = []
+                }
+            }
+            current += docBuffer
+            if !current.isEmpty { blocks.append(current) }
+            let perShard = 120
+            var shardIndex = 0
+            var cursor = 0
+            while cursor < blocks.count {
+                let slice = blocks[cursor..<min(cursor + perShard, blocks.count)]
+                let name = String(format: "%@_%02d.swift", base, shardIndex)
+                let text = (header + slice.flatMap { [""] + $0 }).joined(separator: "\n") + "\n"
+                try? text.write(toFile: directory + "/" + name, atomically: true, encoding: .utf8)
+                shardIndex += 1
+                cursor += perShard
+            }
+        }
+        let treePrefixCount = tree.prefix(while: { !$0.hasPrefix("public enum ") }).count
+        let treeHeader = Array(tree.prefix(treePrefixCount)).filter { !$0.hasPrefix("///") }
+        let treeBody = Array(tree.dropFirst(treePrefixCount))
+        writeShards(treeBody, header: treeHeader, directory: "Sources/Organization/System", base: "GeneratedRosterWalk")
+        let pagesHeader = Array(walkPages.prefix(while: { !$0.hasPrefix("public enum ") }))
+        let pagesBody = Array(walkPages.dropFirst(pagesHeader.count))
+        writeShards(pagesBody, header: pagesHeader, directory: "Sources/OrgDemo", base: "GeneratedWalkPages")
+        var renderHub = pagesHeader + [
+            "func renderRosterWalk() {",
+            "    // Sweep first: shelf positions shift when the roster changes, and filenames",
+            "    // follow, so a stale span page would keep a door into yesterday's split.",
+            "    for stale in (try? FileManager.default.contentsOfDirectory(atPath: catalog)) ?? []",
+            "    where stale.hasPrefix(\"RosterSpan\") {",
+            "        try? FileManager.default.removeItem(atPath: catalog + stale)",
+            "    }",
+        ]
+        let writesPerShard = 400
+        var shardCalls: [String] = []
+        var writeCursor = 0
+        var writeShard = 0
+        var shardFuncs: [String] = []
+        while writeCursor < walkWriteLines.count {
+            let slice = walkWriteLines[writeCursor..<min(writeCursor + writesPerShard, walkWriteLines.count)]
+            let funcName = String(format: "renderRosterWalkShard%02d", writeShard)
+            shardCalls.append("    \(funcName)()")
+            shardFuncs += ["func \(funcName)() {"] + slice + ["}"]
+            writeShard += 1
+            writeCursor += writesPerShard
+        }
+        renderHub += shardCalls + ["}"] + shardFuncs
+        try? (renderHub.joined(separator: "\n") + "\n").write(toFile: "Sources/OrgDemo/GeneratedWalkPagesRender.swift", atomically: true, encoding: .utf8)
 
         // ── VectorDemo: one `PersonHero` render call per generated employee (DESIGN14 §3).
         //    `ViewDotColor<Who, Of>`'s conditional dispatch, read through PersonHero's own

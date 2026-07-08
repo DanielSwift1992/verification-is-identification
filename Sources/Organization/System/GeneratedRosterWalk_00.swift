@@ -7,6 +7,7 @@ import DocumentKit
 // door cannot say what its half does not hold. Span indices are positions on the
 // alphabetical shelf; the midpoint split keeps every walk within ⌈log₂ 200⌉ choices.
 
+
 public enum RosterSpan0001To0002: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -14,6 +15,7 @@ public enum RosterSpan0001To0002: Halves {
         Emp0064.self
     }
 }
+
 public enum RosterSpan0000To0002: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -21,6 +23,7 @@ public enum RosterSpan0000To0002: Halves {
         RosterSpan0001To0002.self
     }
 }
+
 public enum RosterSpan0004To0005: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -28,6 +31,7 @@ public enum RosterSpan0004To0005: Halves {
         Emp0062.self
     }
 }
+
 public enum RosterSpan0003To0005: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -35,6 +39,7 @@ public enum RosterSpan0003To0005: Halves {
         RosterSpan0004To0005.self
     }
 }
+
 public enum RosterSpan0000To0005: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -42,6 +47,7 @@ public enum RosterSpan0000To0005: Halves {
         RosterSpan0003To0005.self
     }
 }
+
 public enum RosterSpan0007To0008: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -49,6 +55,7 @@ public enum RosterSpan0007To0008: Halves {
         Emp0066.self
     }
 }
+
 public enum RosterSpan0006To0008: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -56,6 +63,7 @@ public enum RosterSpan0006To0008: Halves {
         RosterSpan0007To0008.self
     }
 }
+
 public enum RosterSpan0010To0011: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -63,6 +71,7 @@ public enum RosterSpan0010To0011: Halves {
         Emp0069.self
     }
 }
+
 public enum RosterSpan0009To0011: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -70,6 +79,7 @@ public enum RosterSpan0009To0011: Halves {
         RosterSpan0010To0011.self
     }
 }
+
 public enum RosterSpan0006To0011: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -77,6 +87,7 @@ public enum RosterSpan0006To0011: Halves {
         RosterSpan0009To0011.self
     }
 }
+
 public enum RosterSpan0000To0011: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -84,6 +95,7 @@ public enum RosterSpan0000To0011: Halves {
         RosterSpan0006To0011.self
     }
 }
+
 public enum RosterSpan0013To0014: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -91,6 +103,7 @@ public enum RosterSpan0013To0014: Halves {
         Emp0008.self
     }
 }
+
 public enum RosterSpan0012To0014: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -98,6 +111,7 @@ public enum RosterSpan0012To0014: Halves {
         RosterSpan0013To0014.self
     }
 }
+
 public enum RosterSpan0016To0017: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -105,6 +119,7 @@ public enum RosterSpan0016To0017: Halves {
         Emp0148.self
     }
 }
+
 public enum RosterSpan0015To0017: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -112,6 +127,7 @@ public enum RosterSpan0015To0017: Halves {
         RosterSpan0016To0017.self
     }
 }
+
 public enum RosterSpan0012To0017: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -119,6 +135,7 @@ public enum RosterSpan0012To0017: Halves {
         RosterSpan0015To0017.self
     }
 }
+
 public enum RosterSpan0019To0020: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -126,6 +143,7 @@ public enum RosterSpan0019To0020: Halves {
         Emp0005.self
     }
 }
+
 public enum RosterSpan0018To0020: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -133,6 +151,7 @@ public enum RosterSpan0018To0020: Halves {
         RosterSpan0019To0020.self
     }
 }
+
 public enum RosterSpan0021To0022: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -140,6 +159,7 @@ public enum RosterSpan0021To0022: Halves {
         Emp0002.self
     }
 }
+
 public enum RosterSpan0023To0024: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -147,6 +167,7 @@ public enum RosterSpan0023To0024: Halves {
         Emp0011.self
     }
 }
+
 public enum RosterSpan0021To0024: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -154,6 +175,7 @@ public enum RosterSpan0021To0024: Halves {
         RosterSpan0023To0024.self
     }
 }
+
 public enum RosterSpan0018To0024: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -161,6 +183,7 @@ public enum RosterSpan0018To0024: Halves {
         RosterSpan0021To0024.self
     }
 }
+
 public enum RosterSpan0012To0024: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -168,6 +191,7 @@ public enum RosterSpan0012To0024: Halves {
         RosterSpan0018To0024.self
     }
 }
+
 public enum RosterSpan0000To0024: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -175,6 +199,7 @@ public enum RosterSpan0000To0024: Halves {
         RosterSpan0012To0024.self
     }
 }
+
 public enum RosterSpan0026To0027: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -182,6 +207,7 @@ public enum RosterSpan0026To0027: Halves {
         Emp0151.self
     }
 }
+
 public enum RosterSpan0025To0027: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -189,6 +215,7 @@ public enum RosterSpan0025To0027: Halves {
         RosterSpan0026To0027.self
     }
 }
+
 public enum RosterSpan0029To0030: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -196,6 +223,7 @@ public enum RosterSpan0029To0030: Halves {
         Emp0003.self
     }
 }
+
 public enum RosterSpan0028To0030: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -203,6 +231,7 @@ public enum RosterSpan0028To0030: Halves {
         RosterSpan0029To0030.self
     }
 }
+
 public enum RosterSpan0025To0030: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -210,6 +239,7 @@ public enum RosterSpan0025To0030: Halves {
         RosterSpan0028To0030.self
     }
 }
+
 public enum RosterSpan0032To0033: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -217,6 +247,7 @@ public enum RosterSpan0032To0033: Halves {
         Emp0154.self
     }
 }
+
 public enum RosterSpan0031To0033: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -224,6 +255,7 @@ public enum RosterSpan0031To0033: Halves {
         RosterSpan0032To0033.self
     }
 }
+
 public enum RosterSpan0034To0035: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -231,6 +263,7 @@ public enum RosterSpan0034To0035: Halves {
         Emp0153.self
     }
 }
+
 public enum RosterSpan0036To0037: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -238,6 +271,7 @@ public enum RosterSpan0036To0037: Halves {
         Emp0092.self
     }
 }
+
 public enum RosterSpan0034To0037: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -245,6 +279,7 @@ public enum RosterSpan0034To0037: Halves {
         RosterSpan0036To0037.self
     }
 }
+
 public enum RosterSpan0031To0037: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -252,6 +287,7 @@ public enum RosterSpan0031To0037: Halves {
         RosterSpan0034To0037.self
     }
 }
+
 public enum RosterSpan0025To0037: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -259,6 +295,7 @@ public enum RosterSpan0025To0037: Halves {
         RosterSpan0031To0037.self
     }
 }
+
 public enum RosterSpan0039To0040: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -266,6 +303,7 @@ public enum RosterSpan0039To0040: Halves {
         Emp0089.self
     }
 }
+
 public enum RosterSpan0038To0040: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -273,6 +311,7 @@ public enum RosterSpan0038To0040: Halves {
         RosterSpan0039To0040.self
     }
 }
+
 public enum RosterSpan0042To0043: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -280,6 +319,7 @@ public enum RosterSpan0042To0043: Halves {
         Emp0091.self
     }
 }
+
 public enum RosterSpan0041To0043: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -287,6 +327,7 @@ public enum RosterSpan0041To0043: Halves {
         RosterSpan0042To0043.self
     }
 }
+
 public enum RosterSpan0038To0043: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -294,6 +335,7 @@ public enum RosterSpan0038To0043: Halves {
         RosterSpan0041To0043.self
     }
 }
+
 public enum RosterSpan0045To0046: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -301,6 +343,7 @@ public enum RosterSpan0045To0046: Halves {
         Emp0094.self
     }
 }
+
 public enum RosterSpan0044To0046: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -308,6 +351,7 @@ public enum RosterSpan0044To0046: Halves {
         RosterSpan0045To0046.self
     }
 }
+
 public enum RosterSpan0047To0048: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -315,6 +359,7 @@ public enum RosterSpan0047To0048: Halves {
         Emp0037.self
     }
 }
+
 public enum RosterSpan0049To0050: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -322,6 +367,7 @@ public enum RosterSpan0049To0050: Halves {
         Emp0044.self
     }
 }
+
 public enum RosterSpan0047To0050: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -329,6 +375,7 @@ public enum RosterSpan0047To0050: Halves {
         RosterSpan0049To0050.self
     }
 }
+
 public enum RosterSpan0044To0050: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -336,6 +383,7 @@ public enum RosterSpan0044To0050: Halves {
         RosterSpan0047To0050.self
     }
 }
+
 public enum RosterSpan0038To0050: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -343,6 +391,7 @@ public enum RosterSpan0038To0050: Halves {
         RosterSpan0044To0050.self
     }
 }
+
 public enum RosterSpan0025To0050: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -350,6 +399,7 @@ public enum RosterSpan0025To0050: Halves {
         RosterSpan0038To0050.self
     }
 }
+
 public enum RosterSpan0000To0050: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -357,6 +407,7 @@ public enum RosterSpan0000To0050: Halves {
         RosterSpan0025To0050.self
     }
 }
+
 public enum RosterSpan0052To0053: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -364,6 +415,7 @@ public enum RosterSpan0052To0053: Halves {
         Emp0184.self
     }
 }
+
 public enum RosterSpan0051To0053: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -371,6 +423,7 @@ public enum RosterSpan0051To0053: Halves {
         RosterSpan0052To0053.self
     }
 }
+
 public enum RosterSpan0055To0056: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -378,6 +431,7 @@ public enum RosterSpan0055To0056: Halves {
         Emp0041.self
     }
 }
+
 public enum RosterSpan0054To0056: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -385,6 +439,7 @@ public enum RosterSpan0054To0056: Halves {
         RosterSpan0055To0056.self
     }
 }
+
 public enum RosterSpan0051To0056: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -392,6 +447,7 @@ public enum RosterSpan0051To0056: Halves {
         RosterSpan0054To0056.self
     }
 }
+
 public enum RosterSpan0058To0059: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -399,6 +455,7 @@ public enum RosterSpan0058To0059: Halves {
         Emp0182.self
     }
 }
+
 public enum RosterSpan0057To0059: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -406,6 +463,7 @@ public enum RosterSpan0057To0059: Halves {
         RosterSpan0058To0059.self
     }
 }
+
 public enum RosterSpan0061To0062: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -413,6 +471,7 @@ public enum RosterSpan0061To0062: Halves {
         Emp0043.self
     }
 }
+
 public enum RosterSpan0060To0062: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -420,6 +479,7 @@ public enum RosterSpan0060To0062: Halves {
         RosterSpan0061To0062.self
     }
 }
+
 public enum RosterSpan0057To0062: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -427,6 +487,7 @@ public enum RosterSpan0057To0062: Halves {
         RosterSpan0060To0062.self
     }
 }
+
 public enum RosterSpan0051To0062: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -434,6 +495,7 @@ public enum RosterSpan0051To0062: Halves {
         RosterSpan0057To0062.self
     }
 }
+
 public enum RosterSpan0064To0065: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -441,6 +503,7 @@ public enum RosterSpan0064To0065: Halves {
         Emp0186.self
     }
 }
+
 public enum RosterSpan0063To0065: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -448,6 +511,7 @@ public enum RosterSpan0063To0065: Halves {
         RosterSpan0064To0065.self
     }
 }
+
 public enum RosterSpan0067To0068: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -455,6 +519,7 @@ public enum RosterSpan0067To0068: Halves {
         Emp0046.self
     }
 }
+
 public enum RosterSpan0066To0068: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -462,6 +527,7 @@ public enum RosterSpan0066To0068: Halves {
         RosterSpan0067To0068.self
     }
 }
+
 public enum RosterSpan0063To0068: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -469,6 +535,7 @@ public enum RosterSpan0063To0068: Halves {
         RosterSpan0066To0068.self
     }
 }
+
 public enum RosterSpan0070To0071: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -476,6 +543,7 @@ public enum RosterSpan0070To0071: Halves {
         Emp0189.self
     }
 }
+
 public enum RosterSpan0069To0071: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -483,6 +551,7 @@ public enum RosterSpan0069To0071: Halves {
         RosterSpan0070To0071.self
     }
 }
+
 public enum RosterSpan0072To0073: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -490,6 +559,7 @@ public enum RosterSpan0072To0073: Halves {
         Emp0049.self
     }
 }
+
 public enum RosterSpan0074To0075: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -497,6 +567,7 @@ public enum RosterSpan0074To0075: Halves {
         Emp0056.self
     }
 }
+
 public enum RosterSpan0072To0075: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -504,6 +575,7 @@ public enum RosterSpan0072To0075: Halves {
         RosterSpan0074To0075.self
     }
 }
+
 public enum RosterSpan0069To0075: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -511,6 +583,7 @@ public enum RosterSpan0069To0075: Halves {
         RosterSpan0072To0075.self
     }
 }
+
 public enum RosterSpan0063To0075: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -518,6 +591,7 @@ public enum RosterSpan0063To0075: Halves {
         RosterSpan0069To0075.self
     }
 }
+
 public enum RosterSpan0051To0075: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -525,6 +599,7 @@ public enum RosterSpan0051To0075: Halves {
         RosterSpan0063To0075.self
     }
 }
+
 public enum RosterSpan0077To0078: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -532,6 +607,7 @@ public enum RosterSpan0077To0078: Halves {
         Emp0048.self
     }
 }
+
 public enum RosterSpan0076To0078: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -539,6 +615,7 @@ public enum RosterSpan0076To0078: Halves {
         RosterSpan0077To0078.self
     }
 }
+
 public enum RosterSpan0080To0081: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -546,6 +623,7 @@ public enum RosterSpan0080To0081: Halves {
         Emp0197.self
     }
 }
+
 public enum RosterSpan0079To0081: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -553,6 +631,7 @@ public enum RosterSpan0079To0081: Halves {
         RosterSpan0080To0081.self
     }
 }
+
 public enum RosterSpan0076To0081: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -560,6 +639,7 @@ public enum RosterSpan0076To0081: Halves {
         RosterSpan0079To0081.self
     }
 }
+
 public enum RosterSpan0083To0084: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -567,6 +647,7 @@ public enum RosterSpan0083To0084: Halves {
         Emp0059.self
     }
 }
+
 public enum RosterSpan0082To0084: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -574,6 +655,7 @@ public enum RosterSpan0082To0084: Halves {
         RosterSpan0083To0084.self
     }
 }
+
 public enum RosterSpan0085To0086: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -581,6 +663,7 @@ public enum RosterSpan0085To0086: Halves {
         Emp0199.self
     }
 }
+
 public enum RosterSpan0087To0088: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -588,6 +671,7 @@ public enum RosterSpan0087To0088: Halves {
         Emp0198.self
     }
 }
+
 public enum RosterSpan0085To0088: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -595,6 +679,7 @@ public enum RosterSpan0085To0088: Halves {
         RosterSpan0087To0088.self
     }
 }
+
 public enum RosterSpan0082To0088: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -602,6 +687,7 @@ public enum RosterSpan0082To0088: Halves {
         RosterSpan0085To0088.self
     }
 }
+
 public enum RosterSpan0076To0088: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -609,6 +695,7 @@ public enum RosterSpan0076To0088: Halves {
         RosterSpan0082To0088.self
     }
 }
+
 public enum RosterSpan0090To0091: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -616,6 +703,7 @@ public enum RosterSpan0090To0091: Halves {
         Emp0058.self
     }
 }
+
 public enum RosterSpan0089To0091: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -623,6 +711,7 @@ public enum RosterSpan0089To0091: Halves {
         RosterSpan0090To0091.self
     }
 }
+
 public enum RosterSpan0093To0094: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -630,6 +719,7 @@ public enum RosterSpan0093To0094: Halves {
         Emp0140.self
     }
 }
+
 public enum RosterSpan0092To0094: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -637,6 +727,7 @@ public enum RosterSpan0092To0094: Halves {
         RosterSpan0093To0094.self
     }
 }
+
 public enum RosterSpan0089To0094: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -644,6 +735,7 @@ public enum RosterSpan0089To0094: Halves {
         RosterSpan0092To0094.self
     }
 }
+
 public enum RosterSpan0096To0097: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -651,6 +743,7 @@ public enum RosterSpan0096To0097: Halves {
         Emp0137.self
     }
 }
+
 public enum RosterSpan0095To0097: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -658,6 +751,7 @@ public enum RosterSpan0095To0097: Halves {
         RosterSpan0096To0097.self
     }
 }
+
 public enum RosterSpan0098To0099: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -665,6 +759,7 @@ public enum RosterSpan0098To0099: Halves {
         Emp0143.self
     }
 }
+
 public enum RosterSpan0100To0101: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -672,6 +767,7 @@ public enum RosterSpan0100To0101: Halves {
         Emp0138.self
     }
 }
+
 public enum RosterSpan0098To0101: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -679,6 +775,7 @@ public enum RosterSpan0098To0101: Halves {
         RosterSpan0100To0101.self
     }
 }
+
 public enum RosterSpan0095To0101: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -686,6 +783,7 @@ public enum RosterSpan0095To0101: Halves {
         RosterSpan0098To0101.self
     }
 }
+
 public enum RosterSpan0089To0101: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -693,6 +791,7 @@ public enum RosterSpan0089To0101: Halves {
         RosterSpan0095To0101.self
     }
 }
+
 public enum RosterSpan0076To0101: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -700,6 +799,7 @@ public enum RosterSpan0076To0101: Halves {
         RosterSpan0089To0101.self
     }
 }
+
 public enum RosterSpan0051To0101: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -707,6 +807,7 @@ public enum RosterSpan0051To0101: Halves {
         RosterSpan0076To0101.self
     }
 }
+
 public enum RosterSpan0000To0101: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -714,6 +815,7 @@ public enum RosterSpan0000To0101: Halves {
         RosterSpan0051To0101.self
     }
 }
+
 public enum RosterSpan0103To0104: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -721,6 +823,7 @@ public enum RosterSpan0103To0104: Halves {
         Emp0141.self
     }
 }
+
 public enum RosterSpan0102To0104: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -728,6 +831,7 @@ public enum RosterSpan0102To0104: Halves {
         RosterSpan0103To0104.self
     }
 }
+
 public enum RosterSpan0106To0107: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -735,6 +839,7 @@ public enum RosterSpan0106To0107: Halves {
         Emp0020.self
     }
 }
+
 public enum RosterSpan0105To0107: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -742,6 +847,7 @@ public enum RosterSpan0105To0107: Halves {
         RosterSpan0106To0107.self
     }
 }
+
 public enum RosterSpan0102To0107: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -749,6 +855,7 @@ public enum RosterSpan0102To0107: Halves {
         RosterSpan0105To0107.self
     }
 }
+
 public enum RosterSpan0109To0110: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -756,6 +863,7 @@ public enum RosterSpan0109To0110: Halves {
         Emp0160.self
     }
 }
+
 public enum RosterSpan0108To0110: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -763,6 +871,7 @@ public enum RosterSpan0108To0110: Halves {
         RosterSpan0109To0110.self
     }
 }
+
 public enum RosterSpan0112To0113: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -770,6 +879,7 @@ public enum RosterSpan0112To0113: Halves {
         Emp0017.self
     }
 }
+
 public enum RosterSpan0111To0113: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -777,6 +887,7 @@ public enum RosterSpan0111To0113: Halves {
         RosterSpan0112To0113.self
     }
 }
+
 public enum RosterSpan0108To0113: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -784,6 +895,7 @@ public enum RosterSpan0108To0113: Halves {
         RosterSpan0111To0113.self
     }
 }
+
 public enum RosterSpan0102To0113: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -791,6 +903,7 @@ public enum RosterSpan0102To0113: Halves {
         RosterSpan0108To0113.self
     }
 }
+
 public enum RosterSpan0115To0116: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -798,6 +911,7 @@ public enum RosterSpan0115To0116: Halves {
         Emp0158.self
     }
 }
+
 public enum RosterSpan0114To0116: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -805,6 +919,7 @@ public enum RosterSpan0114To0116: Halves {
         RosterSpan0115To0116.self
     }
 }
+
 public enum RosterSpan0118To0119: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -812,6 +927,7 @@ public enum RosterSpan0118To0119: Halves {
         Emp0019.self
     }
 }
+
 public enum RosterSpan0117To0119: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -819,6 +935,7 @@ public enum RosterSpan0117To0119: Halves {
         RosterSpan0118To0119.self
     }
 }
+
 public enum RosterSpan0114To0119: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -826,6 +943,7 @@ public enum RosterSpan0114To0119: Halves {
         RosterSpan0117To0119.self
     }
 }
+
 public enum RosterSpan0121To0122: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -833,6 +951,7 @@ public enum RosterSpan0121To0122: Halves {
         Emp0162.self
     }
 }
+
 public enum RosterSpan0120To0122: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -840,6 +959,7 @@ public enum RosterSpan0120To0122: Halves {
         RosterSpan0121To0122.self
     }
 }
+
 public enum RosterSpan0123To0124: Halves {
     @StructureBuilder
     public static var body: some Structure {
@@ -847,589 +967,3 @@ public enum RosterSpan0123To0124: Halves {
         Emp0159.self
     }
 }
-public enum RosterSpan0125To0126: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0022.self
-        Emp0166.self
-    }
-}
-public enum RosterSpan0123To0126: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0123To0124.self
-        RosterSpan0125To0126.self
-    }
-}
-public enum RosterSpan0120To0126: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0120To0122.self
-        RosterSpan0123To0126.self
-    }
-}
-public enum RosterSpan0114To0126: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0114To0119.self
-        RosterSpan0120To0126.self
-    }
-}
-public enum RosterSpan0102To0126: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0102To0113.self
-        RosterSpan0114To0126.self
-    }
-}
-public enum RosterSpan0128To0129: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0165.self
-        Alice.self
-    }
-}
-public enum RosterSpan0127To0129: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0021.self
-        RosterSpan0128To0129.self
-    }
-}
-public enum RosterSpan0131To0132: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0169.self
-        Emp0032.self
-    }
-}
-public enum RosterSpan0130To0132: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0025.self
-        RosterSpan0131To0132.self
-    }
-}
-public enum RosterSpan0127To0132: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0127To0129.self
-        RosterSpan0130To0132.self
-    }
-}
-public enum RosterSpan0134To0135: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0028.self
-        Emp0172.self
-    }
-}
-public enum RosterSpan0133To0135: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0176.self
-        RosterSpan0134To0135.self
-    }
-}
-public enum RosterSpan0136To0137: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0024.self
-        Emp0168.self
-    }
-}
-public enum RosterSpan0138To0139: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0029.self
-        Emp0173.self
-    }
-}
-public enum RosterSpan0136To0139: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0136To0137.self
-        RosterSpan0138To0139.self
-    }
-}
-public enum RosterSpan0133To0139: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0133To0135.self
-        RosterSpan0136To0139.self
-    }
-}
-public enum RosterSpan0127To0139: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0127To0132.self
-        RosterSpan0133To0139.self
-    }
-}
-public enum RosterSpan0141To0142: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0170.self
-        Emp0035.self
-    }
-}
-public enum RosterSpan0140To0142: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0026.self
-        RosterSpan0141To0142.self
-    }
-}
-public enum RosterSpan0144To0145: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0031.self
-        Emp0175.self
-    }
-}
-public enum RosterSpan0143To0145: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0179.self
-        RosterSpan0144To0145.self
-    }
-}
-public enum RosterSpan0140To0145: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0140To0142.self
-        RosterSpan0143To0145.self
-    }
-}
-public enum RosterSpan0147To0148: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0174.self
-        Emp0027.self
-    }
-}
-public enum RosterSpan0146To0148: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0030.self
-        RosterSpan0147To0148.self
-    }
-}
-public enum RosterSpan0149To0150: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0171.self
-        Emp0034.self
-    }
-}
-public enum RosterSpan0151To0152: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0178.self
-        Emp0033.self
-    }
-}
-public enum RosterSpan0149To0152: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0149To0150.self
-        RosterSpan0151To0152.self
-    }
-}
-public enum RosterSpan0146To0152: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0146To0148.self
-        RosterSpan0149To0152.self
-    }
-}
-public enum RosterSpan0140To0152: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0140To0145.self
-        RosterSpan0146To0152.self
-    }
-}
-public enum RosterSpan0127To0152: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0127To0139.self
-        RosterSpan0140To0152.self
-    }
-}
-public enum RosterSpan0102To0152: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0102To0126.self
-        RosterSpan0127To0152.self
-    }
-}
-public enum RosterSpan0154To0155: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0121.self
-        Emp0128.self
-    }
-}
-public enum RosterSpan0153To0155: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0177.self
-        RosterSpan0154To0155.self
-    }
-}
-public enum RosterSpan0157To0158: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0120.self
-        Emp0125.self
-    }
-}
-public enum RosterSpan0156To0158: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0124.self
-        RosterSpan0157To0158.self
-    }
-}
-public enum RosterSpan0153To0158: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0153To0155.self
-        RosterSpan0156To0158.self
-    }
-}
-public enum RosterSpan0160To0161: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0131.self
-        Emp0127.self
-    }
-}
-public enum RosterSpan0159To0161: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0122.self
-        RosterSpan0160To0161.self
-    }
-}
-public enum RosterSpan0163To0164: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0123.self
-        Emp0130.self
-    }
-}
-public enum RosterSpan0162To0164: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0126.self
-        RosterSpan0163To0164.self
-    }
-}
-public enum RosterSpan0159To0164: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0159To0161.self
-        RosterSpan0162To0164.self
-    }
-}
-public enum RosterSpan0153To0164: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0153To0158.self
-        RosterSpan0159To0164.self
-    }
-}
-public enum RosterSpan0166To0167: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0097.self
-        Emp0104.self
-    }
-}
-public enum RosterSpan0165To0167: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0129.self
-        RosterSpan0166To0167.self
-    }
-}
-public enum RosterSpan0169To0170: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0096.self
-        Emp0101.self
-    }
-}
-public enum RosterSpan0168To0170: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0100.self
-        RosterSpan0169To0170.self
-    }
-}
-public enum RosterSpan0165To0170: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0165To0167.self
-        RosterSpan0168To0170.self
-    }
-}
-public enum RosterSpan0172To0173: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0107.self
-        Emp0103.self
-    }
-}
-public enum RosterSpan0171To0173: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0098.self
-        RosterSpan0172To0173.self
-    }
-}
-public enum RosterSpan0174To0175: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0102.self
-        Emp0099.self
-    }
-}
-public enum RosterSpan0176To0177: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0106.self
-        Emp0105.self
-    }
-}
-public enum RosterSpan0174To0177: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0174To0175.self
-        RosterSpan0176To0177.self
-    }
-}
-public enum RosterSpan0171To0177: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0171To0173.self
-        RosterSpan0174To0177.self
-    }
-}
-public enum RosterSpan0165To0177: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0165To0170.self
-        RosterSpan0171To0177.self
-    }
-}
-public enum RosterSpan0153To0177: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0153To0164.self
-        RosterSpan0165To0177.self
-    }
-}
-public enum RosterSpan0179To0180: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0080.self
-        Emp0076.self
-    }
-}
-public enum RosterSpan0178To0180: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0073.self
-        RosterSpan0179To0180.self
-    }
-}
-public enum RosterSpan0182To0183: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0077.self
-        Emp0074.self
-    }
-}
-public enum RosterSpan0181To0183: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0072.self
-        RosterSpan0182To0183.self
-    }
-}
-public enum RosterSpan0178To0183: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0178To0180.self
-        RosterSpan0181To0183.self
-    }
-}
-public enum RosterSpan0185To0186: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0079.self
-        Emp0078.self
-    }
-}
-public enum RosterSpan0184To0186: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0083.self
-        RosterSpan0185To0186.self
-    }
-}
-public enum RosterSpan0187To0188: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0075.self
-        Emp0082.self
-    }
-}
-public enum RosterSpan0189To0190: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0081.self
-        Dave.self
-    }
-}
-public enum RosterSpan0187To0190: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0187To0188.self
-        RosterSpan0189To0190.self
-    }
-}
-public enum RosterSpan0184To0190: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0184To0186.self
-        RosterSpan0187To0190.self
-    }
-}
-public enum RosterSpan0178To0190: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0178To0183.self
-        RosterSpan0184To0190.self
-    }
-}
-public enum RosterSpan0192To0193: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0109.self
-        Emp0116.self
-    }
-}
-public enum RosterSpan0191To0193: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Bob.self
-        RosterSpan0192To0193.self
-    }
-}
-public enum RosterSpan0195To0196: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0108.self
-        Emp0113.self
-    }
-}
-public enum RosterSpan0194To0196: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0112.self
-        RosterSpan0195To0196.self
-    }
-}
-public enum RosterSpan0191To0196: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0191To0193.self
-        RosterSpan0194To0196.self
-    }
-}
-public enum RosterSpan0198To0199: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0119.self
-        Emp0115.self
-    }
-}
-public enum RosterSpan0197To0199: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0110.self
-        RosterSpan0198To0199.self
-    }
-}
-public enum RosterSpan0200To0201: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0114.self
-        Emp0111.self
-    }
-}
-public enum RosterSpan0202To0203: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        Emp0118.self
-        Emp0117.self
-    }
-}
-public enum RosterSpan0200To0203: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0200To0201.self
-        RosterSpan0202To0203.self
-    }
-}
-public enum RosterSpan0197To0203: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0197To0199.self
-        RosterSpan0200To0203.self
-    }
-}
-public enum RosterSpan0191To0203: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0191To0196.self
-        RosterSpan0197To0203.self
-    }
-}
-public enum RosterSpan0178To0203: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0178To0190.self
-        RosterSpan0191To0203.self
-    }
-}
-public enum RosterSpan0153To0203: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0153To0177.self
-        RosterSpan0178To0203.self
-    }
-}
-public enum RosterSpan0102To0203: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0102To0152.self
-        RosterSpan0153To0203.self
-    }
-}
-public enum RosterSpan0000To0203: Halves {
-    @StructureBuilder
-    public static var body: some Structure {
-        RosterSpan0000To0101.self
-        RosterSpan0102To0203.self
-    }
-}
-
-/// The phone book's root shelf under one stable name: the hand-written pages, the
-/// diagram, and the audit reach the walk through this alias, so the universe can
-/// change size without touching them.
-public typealias RosterWalkRoot = RosterSpan0000To0203

@@ -5,6 +5,9 @@ import Organization
 // onto that person's own symbol page (see Card.swift's EmployeeCard, and its header
 // comment on doc-extension vs a second address).
 func renderEmployeeCards() {
+    renderEmployeeCardsShard00()
+}
+func renderEmployeeCardsShard00() {
     write(withCard(EmployeeCard<Emp0000>.typeName, "avatar", "Emp0000"), "Emp0000")
     write(withCard(EmployeeCard<Emp0001>.typeName, "avatar", "Emp0001"), "Emp0001")
     write(withCard(EmployeeCard<Emp0002>.typeName, "avatar", "Emp0002"), "Emp0002")

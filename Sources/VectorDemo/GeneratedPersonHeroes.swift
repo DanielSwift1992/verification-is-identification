@@ -3610,6 +3610,10 @@ extension Emp0199EngineeringDot {
 }
 
 func renderPersonHeroes() {
+    renderPersonHeroesShard00()
+    print("generated 200 person heroes (Vector composition, 40 departed)")
+}
+func renderPersonHeroesShard00() {
     write(PersonHero<
         Emp0000,
         Emp0000FinanceDot,
@@ -4810,5 +4814,4 @@ func renderPersonHeroes() {
         Emp0199EngineeringDot,
         NoAccentBlock
     >.typeName, "person-emp0199")
-    print("generated 200 person heroes (Vector composition, 40 departed)")
 }

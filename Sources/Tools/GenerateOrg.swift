@@ -193,6 +193,26 @@ enum GenerateOrg {
     private static let sliceFanout = 16
     private static let sliceThreshold = 24
 
+    // Render calls shard into functions of two hundred behind one hub: a body of N
+    // statements is one SIL emission, and the frontend's stack is finite (DESIGN21 v30).
+    private static func shardedRenderer(_ name: String, _ calls: [String], footer: String? = nil) -> [String] {
+        var out: [String] = []
+        var hub = ["func \(name)() {"]
+        let perShard = 200
+        var index = 0
+        var cursor = 0
+        while cursor < calls.count {
+            let shardName = String(format: "%@Shard%02d", name, index)
+            hub.append("    \(shardName)()")
+            out += ["func \(shardName)() {"] + calls[cursor..<min(cursor + perShard, calls.count)] + ["}"]
+            index += 1
+            cursor += perShard
+        }
+        if let footer { hub.append(footer) }
+        hub.append("}")
+        return hub + out
+    }
+
     private static func bodyStatements(_ leaves: [String], _ indent: String, _ perLine: Int) -> [String] {
         var out: [String] = []
         var pending: [String] = []
@@ -449,11 +469,14 @@ enum GenerateOrg {
         //    starts showing this profile for free. ──
         var c = ["import VerificationIsIdentification", "import Organization", ""]
         c += GeneratedEmployeeCardsHeader.typeName.components(separatedBy: "\n")
-        c += ["func renderEmployeeCards() {"]
+        // One render call per person makes one function N statements long, and past a few
+        // thousand the frontend dies emitting it (signal 4, DESIGN21 v30): the calls shard
+        // into functions of two hundred behind one hub, the composition instrument again.
+        var cardCalls: [String] = []
         for i in 0..<n {
-            c.append("    write(withCard(EmployeeCard<\(emp(i))>.typeName, \"avatar\", \"\(emp(i))\"), \"\(emp(i))\")")
+            cardCalls.append("    write(withCard(EmployeeCard<\(emp(i))>.typeName, \"avatar\", \"\(emp(i))\"), \"\(emp(i))\")")
         }
-        c.append("}")
+        c += shardedRenderer("renderEmployeeCards", cardCalls)
         try? (c.joined(separator: "\n") + "\n").write(toFile: "Sources/OrgDemo/GeneratedEmployeeCards.swift", atomically: true, encoding: .utf8)
 
         // ── The role cells: one cohort per (department, rank) pair, the twelve destinations
@@ -932,19 +955,21 @@ enum GenerateOrg {
             p.append("}")
         }
         p.append("")
-        p.append("func renderPersonHeroes() {")
+        var heroCalls: [String] = []
         for i in 0..<n {
             let name = emp(i)
             let accent = departureYear[name].map { "LeftIn\($0)Chip" } ?? "NoAccentBlock"
-            p.append("    write(PersonHero<")
-            p.append("        \(name),")
-            p.append("        \(name)FinanceDot,")
-            p.append("        \(name)EngineeringDot,")
-            p.append("        \(accent)")
-            p.append("    >.typeName, \"person-\(name.lowercased())\")")
+            heroCalls.append("""
+    write(PersonHero<
+        \(name),
+        \(name)FinanceDot,
+        \(name)EngineeringDot,
+        \(accent)
+    >.typeName, "person-\(name.lowercased())")
+""")
         }
-        p.append("    print(\"generated \(n) person heroes (Vector composition, \(departureYear.count) departed)\")")
-        p.append("}")
+        p += shardedRenderer("renderPersonHeroes", heroCalls,
+                             footer: "    print(\"generated \(n) person heroes (Vector composition, \(departureYear.count) departed)\")")
         try? (p.joined(separator: "\n") + "\n").write(toFile: "Sources/VectorDemo/GeneratedPersonHeroes.swift", atomically: true, encoding: .utf8)
 
         print("generated \(n) full people + \(n) proofs (system) + \(n) roster rows (render) + "

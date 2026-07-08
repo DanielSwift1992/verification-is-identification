@@ -51,8 +51,8 @@ func runAudit() {
     print("Site walk covers: \(SiteWalk.count) of \(AllPlaces.count) places, same names: "
         + String(Set(SiteWalk.labels) == Set(AllPlaces.labels)))
     let everyone = Company.labels + Alice.labels + Bob.labels + Carol.labels + Dave.labels
-    print("Roster walk covers: \(RosterSpan0000To0203.count) of \(everyone.count) people, same names: "
-        + String(Set(RosterSpan0000To0203.labels) == Set(everyone)))
+    print("Roster walk covers: \(RosterWalkRoot.count) of \(everyone.count) people, same names: "
+        + String(Set(RosterWalkRoot.labels) == Set(everyone)))
     let cellSum = FinanceIndividualContributors.count + FinanceLeads.count + FinanceManagers.count
         + EngineeringIndividualContributors.count + EngineeringLeads.count + EngineeringManagers.count
         + SalesIndividualContributors.count + SalesLeads.count + SalesManagers.count

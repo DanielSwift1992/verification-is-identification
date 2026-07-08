@@ -181,13 +181,13 @@ public enum PeopleHalfPage: Screen {
         Break.self
         ListItem { Link { RollCall<Nav.Employees>.self; Nav.Employees.self } }
         ListItem { Link { RollCall<DepartmentsOrDirectories>.self; DepartmentsOrDirectories.self } }
-        ListItem { Link { FindPersonLabel.self; RosterSpan0000To0203.self } }
+        ListItem { Link { FindPersonLabel.self; RosterWalkRoot.self } }
         ListItem { Link { UpWord.self; PeopleOrWork.self } }
         Break.self
         TopicsHeadingBlock.self
         TopicDoor<Nav.Employees>.self
         TopicDoor<DepartmentsOrDirectories>.self
-        TopicDoor<RosterSpan0000To0203>.self
+        TopicDoor<RosterWalkRoot>.self
 
     }
 }

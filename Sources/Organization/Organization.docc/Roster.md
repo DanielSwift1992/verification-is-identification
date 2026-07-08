@@ -209,6 +209,10 @@ people and shelves once, under the type that composes them.
 - ``Emp0198``
 - ``Emp0199``
 
+### The walk root
+
+- ``RosterWalkRoot``
+
 ### The shelves of the phone book
 
 - ``RosterSpan0000To0002``

@@ -185,10 +185,16 @@ enum GenerateOrg {
 
     private static func quoted(_ text: String) -> String { "\"\(text)\"" }
 
-    private static func bodyBlock(_ name: String, _ category: String, _ doc: [String], _ leaves: [String], perLine: Int = 6) -> [String] {
-        var out = doc.map { "// \($0)" }
-        out += ["public enum \(name): \(category) {", "    @StructureBuilder", "    public static var body: some Structure {"]
-        let indent = "        "
+    // A flat body of N statements folds into a Pair chain N deep, and every reader of the
+    // type then re-walks that depth: the measured quadratic of the curve (DESIGN21 v28).
+    // Past the threshold the leaves nest into slices of sixteen, so the chain becomes a
+    // tree and depth falls to the logarithm. Counts, labels, and rendered text are fold
+    // sums over Pair, so the regrouping changes no reading.
+    private static let sliceFanout = 16
+    private static let sliceThreshold = 24
+
+    private static func bodyStatements(_ leaves: [String], _ indent: String, _ perLine: Int) -> [String] {
+        var out: [String] = []
         var pending: [String] = []
         func flush() {
             if !pending.isEmpty {
@@ -206,8 +212,35 @@ enum GenerateOrg {
             }
         }
         flush()
-        out += ["    }", "}"]
         return out
+    }
+
+    private static func enumBlock(_ name: String, _ category: String, _ leaves: [String],
+                                  _ perLine: Int, keyword: String, pad: String) -> [String] {
+        var out = ["\(pad)\(keyword) enum \(name): \(category) {"]
+        var level = leaves
+        var tier = 0
+        while level.count > sliceThreshold {
+            let groups = stride(from: 0, to: level.count, by: sliceFanout).map {
+                Array(level[$0..<min($0 + sliceFanout, level.count)])
+            }
+            var groupNames: [String] = []
+            for (index, group) in groups.enumerated() {
+                let sliceName = String(format: "Slice%d_%02d", tier, index)
+                groupNames.append(sliceName + ".self")
+                out += enumBlock(sliceName, category, group, perLine, keyword: "public", pad: pad + "    ")
+            }
+            level = groupNames
+            tier += 1
+        }
+        out += ["\(pad)    @StructureBuilder", "\(pad)    public static var body: some Structure {"]
+        out += bodyStatements(level, pad + "        ", perLine)
+        out += ["\(pad)    }", "\(pad)}"]
+        return out
+    }
+
+    private static func bodyBlock(_ name: String, _ category: String, _ doc: [String], _ leaves: [String], perLine: Int = 6) -> [String] {
+        doc.map { "// \($0)" } + enumBlock(name, category, leaves, perLine, keyword: "public", pad: "")
     }
 
     private static func emp(_ i: Int) -> String { String(format: "Emp%04d", i) }
@@ -774,7 +807,13 @@ enum GenerateOrg {
             walkWrites.append("    write(\(name)Page.typeName, \"\(name)\")")
             return name
         }
-        _ = descend(0, shelf.count - 1, "PeopleHalf", [])
+        let walkRootName = descend(0, shelf.count - 1, "PeopleHalf", [])
+        tree += ["",
+                 "/// The phone book's root shelf under one stable name: the hand-written pages, the",
+                 "/// diagram, and the audit reach the walk through this alias, so the universe can",
+                 "/// change size without touching them.",
+                 "public typealias RosterWalkRoot = \(walkRootName)"]
+        curation += ["", "### The walk root", "", "- ``RosterWalkRoot``"]
         curation += ["", "### The shelves of the phone book", ""]
         for shelfName in shelfNames.sorted() {
             curation.append("- ``\(shelfName)``")

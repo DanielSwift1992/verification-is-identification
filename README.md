@@ -93,7 +93,7 @@ The package is a stack of layers. Each layer is built from the same types, and e
 | `GrammarLexicon` | the style law: scopes and grants for every source region | even the linter is this mechanism: a source file is re-stated as one typed object, and the compiler judges it |
 | `Tools` | the only code that executes | generators and the census: they write files, and the census prints its counts onto the diagram the build drew |
 
-None of this uses `Int`, `String`, or Foundation in the system code. In the engine, a number is a type and a text is a type: coordinates, sizes, and glyph widths are named types the checker composes, and strings exist only as rendered output. The company alone counts 977 types, 0 structs, 0 classes, 0 runtime functions, and the engine and the theory count 0 runtime functions the same way. Every function that does execute belongs to the build tooling, counted separately, beside the system it serves.
+None of this uses `Int`, `String`, or Foundation in the system code. In the engine, a number is a type and a text is a type: coordinates, sizes, and glyph widths are named types the checker composes, and strings exist only as rendered output. The company alone counts 1059 types, 0 structs, 0 classes, 0 runtime functions, and the engine and the theory count 0 runtime functions the same way. Every function that does execute belongs to the build tooling, counted separately, beside the system it serves.
 
 ## The comparison
 

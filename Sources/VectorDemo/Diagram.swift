@@ -70,7 +70,7 @@ extension EngineStatsText {
 enum CompanyStatsText: Close {}
 extension CompanyStatsText {
     public static var typeName: String {
-        "\(Tally<RosterSpan0000To0203>.typeName) people · \(CensusCompanyTypes.typeName) types · "
+        "\(Tally<RosterWalkRoot>.typeName) people · \(CensusCompanyTypes.typeName) types · "
             + "\(CensusCompanyRuntimeFunctions.typeName) runtime functions"
     }
 }

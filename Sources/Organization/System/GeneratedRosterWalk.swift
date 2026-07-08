@@ -1428,3 +1428,8 @@ public enum RosterSpan0000To0203: Halves {
         RosterSpan0102To0203.self
     }
 }
+
+/// The phone book's root shelf under one stable name: the hand-written pages, the
+/// diagram, and the audit reach the walk through this alias, so the universe can
+/// change size without touching them.
+public typealias RosterWalkRoot = RosterSpan0000To0203

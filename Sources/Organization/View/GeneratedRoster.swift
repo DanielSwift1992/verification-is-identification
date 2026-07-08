@@ -5,75 +5,153 @@ import DocumentKit
 // `RosterTableRow(_:)` (View/Employees.swift) is generic: one declaration, reused per
 // person, the same relationship `Emp####` has to `Employee, Person`.
 public enum FullRosterRows: Fragment {
+    public enum Slice0_00: Fragment {
+        @StructureBuilder
+        public static var body: some Structure {
+            TableRow { RosterHeader.self }; TableRow { RosterRule.self }; RosterTableRow { Emp0000.self };
+            RosterTableRow { Emp0001.self }; RosterTableRow { Emp0002.self }; RosterTableRow { Emp0003.self };
+            RosterTableRow { Emp0004.self }; RosterTableRow { Emp0005.self }; RosterTableRow { Emp0006.self };
+            RosterTableRow { Emp0007.self }; RosterTableRow { Emp0008.self }; RosterTableRow { Emp0009.self };
+            RosterTableRow { Emp0010.self }; RosterTableRow { Emp0011.self }; RosterTableRow { Emp0012.self };
+            RosterTableRow { Emp0013.self };
+        }
+    }
+    public enum Slice0_01: Fragment {
+        @StructureBuilder
+        public static var body: some Structure {
+            RosterTableRow { Emp0014.self }; RosterTableRow { Emp0015.self }; RosterTableRow { Emp0016.self };
+            RosterTableRow { Emp0017.self }; RosterTableRow { Emp0018.self }; RosterTableRow { Emp0019.self };
+            RosterTableRow { Emp0020.self }; RosterTableRow { Emp0021.self }; RosterTableRow { Emp0022.self };
+            RosterTableRow { Emp0023.self }; RosterTableRow { Emp0024.self }; RosterTableRow { Emp0025.self };
+            RosterTableRow { Emp0026.self }; RosterTableRow { Emp0027.self }; RosterTableRow { Emp0028.self };
+            RosterTableRow { Emp0029.self };
+        }
+    }
+    public enum Slice0_02: Fragment {
+        @StructureBuilder
+        public static var body: some Structure {
+            RosterTableRow { Emp0030.self }; RosterTableRow { Emp0031.self }; RosterTableRow { Emp0032.self };
+            RosterTableRow { Emp0033.self }; RosterTableRow { Emp0034.self }; RosterTableRow { Emp0035.self };
+            RosterTableRow { Emp0036.self }; RosterTableRow { Emp0037.self }; RosterTableRow { Emp0038.self };
+            RosterTableRow { Emp0039.self }; RosterTableRow { Emp0040.self }; RosterTableRow { Emp0041.self };
+            RosterTableRow { Emp0042.self }; RosterTableRow { Emp0043.self }; RosterTableRow { Emp0044.self };
+            RosterTableRow { Emp0045.self };
+        }
+    }
+    public enum Slice0_03: Fragment {
+        @StructureBuilder
+        public static var body: some Structure {
+            RosterTableRow { Emp0046.self }; RosterTableRow { Emp0047.self }; RosterTableRow { Emp0048.self };
+            RosterTableRow { Emp0049.self }; RosterTableRow { Emp0050.self }; RosterTableRow { Emp0051.self };
+            RosterTableRow { Emp0052.self }; RosterTableRow { Emp0053.self }; RosterTableRow { Emp0054.self };
+            RosterTableRow { Emp0055.self }; RosterTableRow { Emp0056.self }; RosterTableRow { Emp0057.self };
+            RosterTableRow { Emp0058.self }; RosterTableRow { Emp0059.self }; RosterTableRow { Emp0060.self };
+            RosterTableRow { Emp0061.self };
+        }
+    }
+    public enum Slice0_04: Fragment {
+        @StructureBuilder
+        public static var body: some Structure {
+            RosterTableRow { Emp0062.self }; RosterTableRow { Emp0063.self }; RosterTableRow { Emp0064.self };
+            RosterTableRow { Emp0065.self }; RosterTableRow { Emp0066.self }; RosterTableRow { Emp0067.self };
+            RosterTableRow { Emp0068.self }; RosterTableRow { Emp0069.self }; RosterTableRow { Emp0070.self };
+            RosterTableRow { Emp0071.self }; RosterTableRow { Emp0072.self }; RosterTableRow { Emp0073.self };
+            RosterTableRow { Emp0074.self }; RosterTableRow { Emp0075.self }; RosterTableRow { Emp0076.self };
+            RosterTableRow { Emp0077.self };
+        }
+    }
+    public enum Slice0_05: Fragment {
+        @StructureBuilder
+        public static var body: some Structure {
+            RosterTableRow { Emp0078.self }; RosterTableRow { Emp0079.self }; RosterTableRow { Emp0080.self };
+            RosterTableRow { Emp0081.self }; RosterTableRow { Emp0082.self }; RosterTableRow { Emp0083.self };
+            RosterTableRow { Emp0084.self }; RosterTableRow { Emp0085.self }; RosterTableRow { Emp0086.self };
+            RosterTableRow { Emp0087.self }; RosterTableRow { Emp0088.self }; RosterTableRow { Emp0089.self };
+            RosterTableRow { Emp0090.self }; RosterTableRow { Emp0091.self }; RosterTableRow { Emp0092.self };
+            RosterTableRow { Emp0093.self };
+        }
+    }
+    public enum Slice0_06: Fragment {
+        @StructureBuilder
+        public static var body: some Structure {
+            RosterTableRow { Emp0094.self }; RosterTableRow { Emp0095.self }; RosterTableRow { Emp0096.self };
+            RosterTableRow { Emp0097.self }; RosterTableRow { Emp0098.self }; RosterTableRow { Emp0099.self };
+            RosterTableRow { Emp0100.self }; RosterTableRow { Emp0101.self }; RosterTableRow { Emp0102.self };
+            RosterTableRow { Emp0103.self }; RosterTableRow { Emp0104.self }; RosterTableRow { Emp0105.self };
+            RosterTableRow { Emp0106.self }; RosterTableRow { Emp0107.self }; RosterTableRow { Emp0108.self };
+            RosterTableRow { Emp0109.self };
+        }
+    }
+    public enum Slice0_07: Fragment {
+        @StructureBuilder
+        public static var body: some Structure {
+            RosterTableRow { Emp0110.self }; RosterTableRow { Emp0111.self }; RosterTableRow { Emp0112.self };
+            RosterTableRow { Emp0113.self }; RosterTableRow { Emp0114.self }; RosterTableRow { Emp0115.self };
+            RosterTableRow { Emp0116.self }; RosterTableRow { Emp0117.self }; RosterTableRow { Emp0118.self };
+            RosterTableRow { Emp0119.self }; RosterTableRow { Emp0120.self }; RosterTableRow { Emp0121.self };
+            RosterTableRow { Emp0122.self }; RosterTableRow { Emp0123.self }; RosterTableRow { Emp0124.self };
+            RosterTableRow { Emp0125.self };
+        }
+    }
+    public enum Slice0_08: Fragment {
+        @StructureBuilder
+        public static var body: some Structure {
+            RosterTableRow { Emp0126.self }; RosterTableRow { Emp0127.self }; RosterTableRow { Emp0128.self };
+            RosterTableRow { Emp0129.self }; RosterTableRow { Emp0130.self }; RosterTableRow { Emp0131.self };
+            RosterTableRow { Emp0132.self }; RosterTableRow { Emp0133.self }; RosterTableRow { Emp0134.self };
+            RosterTableRow { Emp0135.self }; RosterTableRow { Emp0136.self }; RosterTableRow { Emp0137.self };
+            RosterTableRow { Emp0138.self }; RosterTableRow { Emp0139.self }; RosterTableRow { Emp0140.self };
+            RosterTableRow { Emp0141.self };
+        }
+    }
+    public enum Slice0_09: Fragment {
+        @StructureBuilder
+        public static var body: some Structure {
+            RosterTableRow { Emp0142.self }; RosterTableRow { Emp0143.self }; RosterTableRow { Emp0144.self };
+            RosterTableRow { Emp0145.self }; RosterTableRow { Emp0146.self }; RosterTableRow { Emp0147.self };
+            RosterTableRow { Emp0148.self }; RosterTableRow { Emp0149.self }; RosterTableRow { Emp0150.self };
+            RosterTableRow { Emp0151.self }; RosterTableRow { Emp0152.self }; RosterTableRow { Emp0153.self };
+            RosterTableRow { Emp0154.self }; RosterTableRow { Emp0155.self }; RosterTableRow { Emp0156.self };
+            RosterTableRow { Emp0157.self };
+        }
+    }
+    public enum Slice0_10: Fragment {
+        @StructureBuilder
+        public static var body: some Structure {
+            RosterTableRow { Emp0158.self }; RosterTableRow { Emp0159.self }; RosterTableRow { Emp0160.self };
+            RosterTableRow { Emp0161.self }; RosterTableRow { Emp0162.self }; RosterTableRow { Emp0163.self };
+            RosterTableRow { Emp0164.self }; RosterTableRow { Emp0165.self }; RosterTableRow { Emp0166.self };
+            RosterTableRow { Emp0167.self }; RosterTableRow { Emp0168.self }; RosterTableRow { Emp0169.self };
+            RosterTableRow { Emp0170.self }; RosterTableRow { Emp0171.self }; RosterTableRow { Emp0172.self };
+            RosterTableRow { Emp0173.self };
+        }
+    }
+    public enum Slice0_11: Fragment {
+        @StructureBuilder
+        public static var body: some Structure {
+            RosterTableRow { Emp0174.self }; RosterTableRow { Emp0175.self }; RosterTableRow { Emp0176.self };
+            RosterTableRow { Emp0177.self }; RosterTableRow { Emp0178.self }; RosterTableRow { Emp0179.self };
+            RosterTableRow { Emp0180.self }; RosterTableRow { Emp0181.self }; RosterTableRow { Emp0182.self };
+            RosterTableRow { Emp0183.self }; RosterTableRow { Emp0184.self }; RosterTableRow { Emp0185.self };
+            RosterTableRow { Emp0186.self }; RosterTableRow { Emp0187.self }; RosterTableRow { Emp0188.self };
+            RosterTableRow { Emp0189.self };
+        }
+    }
+    public enum Slice0_12: Fragment {
+        @StructureBuilder
+        public static var body: some Structure {
+            RosterTableRow { Emp0190.self }; RosterTableRow { Emp0191.self }; RosterTableRow { Emp0192.self };
+            RosterTableRow { Emp0193.self }; RosterTableRow { Emp0194.self }; RosterTableRow { Emp0195.self };
+            RosterTableRow { Emp0196.self }; RosterTableRow { Emp0197.self }; RosterTableRow { Emp0198.self };
+            RosterTableRow { Emp0199.self };
+        }
+    }
     @StructureBuilder
     public static var body: some Structure {
-        TableRow { RosterHeader.self }; TableRow { RosterRule.self }; RosterTableRow { Emp0000.self };
-        RosterTableRow { Emp0001.self }; RosterTableRow { Emp0002.self }; RosterTableRow { Emp0003.self };
-        RosterTableRow { Emp0004.self }; RosterTableRow { Emp0005.self }; RosterTableRow { Emp0006.self };
-        RosterTableRow { Emp0007.self }; RosterTableRow { Emp0008.self }; RosterTableRow { Emp0009.self };
-        RosterTableRow { Emp0010.self }; RosterTableRow { Emp0011.self }; RosterTableRow { Emp0012.self };
-        RosterTableRow { Emp0013.self }; RosterTableRow { Emp0014.self }; RosterTableRow { Emp0015.self };
-        RosterTableRow { Emp0016.self }; RosterTableRow { Emp0017.self }; RosterTableRow { Emp0018.self };
-        RosterTableRow { Emp0019.self }; RosterTableRow { Emp0020.self }; RosterTableRow { Emp0021.self };
-        RosterTableRow { Emp0022.self }; RosterTableRow { Emp0023.self }; RosterTableRow { Emp0024.self };
-        RosterTableRow { Emp0025.self }; RosterTableRow { Emp0026.self }; RosterTableRow { Emp0027.self };
-        RosterTableRow { Emp0028.self }; RosterTableRow { Emp0029.self }; RosterTableRow { Emp0030.self };
-        RosterTableRow { Emp0031.self }; RosterTableRow { Emp0032.self }; RosterTableRow { Emp0033.self };
-        RosterTableRow { Emp0034.self }; RosterTableRow { Emp0035.self }; RosterTableRow { Emp0036.self };
-        RosterTableRow { Emp0037.self }; RosterTableRow { Emp0038.self }; RosterTableRow { Emp0039.self };
-        RosterTableRow { Emp0040.self }; RosterTableRow { Emp0041.self }; RosterTableRow { Emp0042.self };
-        RosterTableRow { Emp0043.self }; RosterTableRow { Emp0044.self }; RosterTableRow { Emp0045.self };
-        RosterTableRow { Emp0046.self }; RosterTableRow { Emp0047.self }; RosterTableRow { Emp0048.self };
-        RosterTableRow { Emp0049.self }; RosterTableRow { Emp0050.self }; RosterTableRow { Emp0051.self };
-        RosterTableRow { Emp0052.self }; RosterTableRow { Emp0053.self }; RosterTableRow { Emp0054.self };
-        RosterTableRow { Emp0055.self }; RosterTableRow { Emp0056.self }; RosterTableRow { Emp0057.self };
-        RosterTableRow { Emp0058.self }; RosterTableRow { Emp0059.self }; RosterTableRow { Emp0060.self };
-        RosterTableRow { Emp0061.self }; RosterTableRow { Emp0062.self }; RosterTableRow { Emp0063.self };
-        RosterTableRow { Emp0064.self }; RosterTableRow { Emp0065.self }; RosterTableRow { Emp0066.self };
-        RosterTableRow { Emp0067.self }; RosterTableRow { Emp0068.self }; RosterTableRow { Emp0069.self };
-        RosterTableRow { Emp0070.self }; RosterTableRow { Emp0071.self }; RosterTableRow { Emp0072.self };
-        RosterTableRow { Emp0073.self }; RosterTableRow { Emp0074.self }; RosterTableRow { Emp0075.self };
-        RosterTableRow { Emp0076.self }; RosterTableRow { Emp0077.self }; RosterTableRow { Emp0078.self };
-        RosterTableRow { Emp0079.self }; RosterTableRow { Emp0080.self }; RosterTableRow { Emp0081.self };
-        RosterTableRow { Emp0082.self }; RosterTableRow { Emp0083.self }; RosterTableRow { Emp0084.self };
-        RosterTableRow { Emp0085.self }; RosterTableRow { Emp0086.self }; RosterTableRow { Emp0087.self };
-        RosterTableRow { Emp0088.self }; RosterTableRow { Emp0089.self }; RosterTableRow { Emp0090.self };
-        RosterTableRow { Emp0091.self }; RosterTableRow { Emp0092.self }; RosterTableRow { Emp0093.self };
-        RosterTableRow { Emp0094.self }; RosterTableRow { Emp0095.self }; RosterTableRow { Emp0096.self };
-        RosterTableRow { Emp0097.self }; RosterTableRow { Emp0098.self }; RosterTableRow { Emp0099.self };
-        RosterTableRow { Emp0100.self }; RosterTableRow { Emp0101.self }; RosterTableRow { Emp0102.self };
-        RosterTableRow { Emp0103.self }; RosterTableRow { Emp0104.self }; RosterTableRow { Emp0105.self };
-        RosterTableRow { Emp0106.self }; RosterTableRow { Emp0107.self }; RosterTableRow { Emp0108.self };
-        RosterTableRow { Emp0109.self }; RosterTableRow { Emp0110.self }; RosterTableRow { Emp0111.self };
-        RosterTableRow { Emp0112.self }; RosterTableRow { Emp0113.self }; RosterTableRow { Emp0114.self };
-        RosterTableRow { Emp0115.self }; RosterTableRow { Emp0116.self }; RosterTableRow { Emp0117.self };
-        RosterTableRow { Emp0118.self }; RosterTableRow { Emp0119.self }; RosterTableRow { Emp0120.self };
-        RosterTableRow { Emp0121.self }; RosterTableRow { Emp0122.self }; RosterTableRow { Emp0123.self };
-        RosterTableRow { Emp0124.self }; RosterTableRow { Emp0125.self }; RosterTableRow { Emp0126.self };
-        RosterTableRow { Emp0127.self }; RosterTableRow { Emp0128.self }; RosterTableRow { Emp0129.self };
-        RosterTableRow { Emp0130.self }; RosterTableRow { Emp0131.self }; RosterTableRow { Emp0132.self };
-        RosterTableRow { Emp0133.self }; RosterTableRow { Emp0134.self }; RosterTableRow { Emp0135.self };
-        RosterTableRow { Emp0136.self }; RosterTableRow { Emp0137.self }; RosterTableRow { Emp0138.self };
-        RosterTableRow { Emp0139.self }; RosterTableRow { Emp0140.self }; RosterTableRow { Emp0141.self };
-        RosterTableRow { Emp0142.self }; RosterTableRow { Emp0143.self }; RosterTableRow { Emp0144.self };
-        RosterTableRow { Emp0145.self }; RosterTableRow { Emp0146.self }; RosterTableRow { Emp0147.self };
-        RosterTableRow { Emp0148.self }; RosterTableRow { Emp0149.self }; RosterTableRow { Emp0150.self };
-        RosterTableRow { Emp0151.self }; RosterTableRow { Emp0152.self }; RosterTableRow { Emp0153.self };
-        RosterTableRow { Emp0154.self }; RosterTableRow { Emp0155.self }; RosterTableRow { Emp0156.self };
-        RosterTableRow { Emp0157.self }; RosterTableRow { Emp0158.self }; RosterTableRow { Emp0159.self };
-        RosterTableRow { Emp0160.self }; RosterTableRow { Emp0161.self }; RosterTableRow { Emp0162.self };
-        RosterTableRow { Emp0163.self }; RosterTableRow { Emp0164.self }; RosterTableRow { Emp0165.self };
-        RosterTableRow { Emp0166.self }; RosterTableRow { Emp0167.self }; RosterTableRow { Emp0168.self };
-        RosterTableRow { Emp0169.self }; RosterTableRow { Emp0170.self }; RosterTableRow { Emp0171.self };
-        RosterTableRow { Emp0172.self }; RosterTableRow { Emp0173.self }; RosterTableRow { Emp0174.self };
-        RosterTableRow { Emp0175.self }; RosterTableRow { Emp0176.self }; RosterTableRow { Emp0177.self };
-        RosterTableRow { Emp0178.self }; RosterTableRow { Emp0179.self }; RosterTableRow { Emp0180.self };
-        RosterTableRow { Emp0181.self }; RosterTableRow { Emp0182.self }; RosterTableRow { Emp0183.self };
-        RosterTableRow { Emp0184.self }; RosterTableRow { Emp0185.self }; RosterTableRow { Emp0186.self };
-        RosterTableRow { Emp0187.self }; RosterTableRow { Emp0188.self }; RosterTableRow { Emp0189.self };
-        RosterTableRow { Emp0190.self }; RosterTableRow { Emp0191.self }; RosterTableRow { Emp0192.self };
-        RosterTableRow { Emp0193.self }; RosterTableRow { Emp0194.self }; RosterTableRow { Emp0195.self };
-        RosterTableRow { Emp0196.self }; RosterTableRow { Emp0197.self }; RosterTableRow { Emp0198.self };
-        RosterTableRow { Emp0199.self };
+        Slice0_00.self; Slice0_01.self; Slice0_02.self;
+        Slice0_03.self; Slice0_04.self; Slice0_05.self;
+        Slice0_06.self; Slice0_07.self; Slice0_08.self;
+        Slice0_09.self; Slice0_10.self; Slice0_11.self;
+        Slice0_12.self;
     }
 }

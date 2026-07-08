@@ -47,13 +47,24 @@ public enum EngineeringIndividualContributors: Team {
 
 // Everyone standing in the (Engineering, Lead) pair.
 public enum EngineeringLeads: Team {
+    public enum Slice0_00: Team {
+        @StructureBuilder
+        public static var body: some Structure {
+            Emp0004.self; Emp0007.self; Emp0019.self; Emp0031.self; Emp0034.self; Emp0046.self;
+            Emp0049.self; Emp0061.self; Emp0073.self; Emp0076.self; Emp0088.self; Emp0091.self;
+            Emp0103.self; Emp0115.self; Emp0118.self; Emp0130.self;
+        }
+    }
+    public enum Slice0_01: Team {
+        @StructureBuilder
+        public static var body: some Structure {
+            Emp0133.self; Emp0145.self; Emp0157.self; Emp0160.self; Emp0172.self; Emp0175.self;
+            Emp0187.self; Emp0199.self; Bob.self;
+        }
+    }
     @StructureBuilder
     public static var body: some Structure {
-        Emp0004.self; Emp0007.self; Emp0019.self; Emp0031.self; Emp0034.self; Emp0046.self;
-        Emp0049.self; Emp0061.self; Emp0073.self; Emp0076.self; Emp0088.self; Emp0091.self;
-        Emp0103.self; Emp0115.self; Emp0118.self; Emp0130.self; Emp0133.self; Emp0145.self;
-        Emp0157.self; Emp0160.self; Emp0172.self; Emp0175.self; Emp0187.self; Emp0199.self;
-        Bob.self;
+        Slice0_00.self; Slice0_01.self;
     }
 }
 

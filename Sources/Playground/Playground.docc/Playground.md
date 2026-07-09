@@ -162,12 +162,15 @@ A learner is located by which coordinates it has. A gated, append-only machine c
 
 ### One lattice, many domains
 
-Ice, the hydrogen spectrum, and the Higgs vacuum each certify the same `SystemCrystallizes` structure, so a construction written over it applies to all of them at once — and the three crystals below prove it by compiling. It is one game on three boards: the same winning structure, reached from ice, from spectra, from broken symmetry.
+Ice, the hydrogen spectrum, the Higgs vacuum, and the packing of this package's own generated code each certify the same `SystemCrystallizes` structure, so a construction written over it applies to all of them at once — and the four crystals below prove it by compiling. It is one game on four boards, and the fourth board is the package itself: under the cost encoding the measured packings crystallize to one survivor, and under the content encoding they refuse to, because every packing renders the same bytes.
 
 - ``CrystallizingDomain``
 - ``IceCrystal``
 - ``HiggsCrystal``
 - ``QuantumCrystal``
+- ``FormCrystal``
+- ``PackingUnderCost``
+- ``PackingUnderContent``
 
 ### The demo's own hands
 

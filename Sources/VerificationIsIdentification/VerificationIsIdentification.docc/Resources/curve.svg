@@ -5,6 +5,11 @@
 <g transform="translate(0, 0)">
 <g transform="translate(0, 0)">
 <g transform="translate(0, 0)">
+<rect x="0" width="960" height="326" rx="12" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+</g>
+</g>
+<g transform="translate(0, 0)">
+<g transform="translate(0, 0)">
 <text x="480" y="24" text-anchor="middle" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">The saturation curve — seconds to prove a universe of N states</text>
 </g>
 </g>

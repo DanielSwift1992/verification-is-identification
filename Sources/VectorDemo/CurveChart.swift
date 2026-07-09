@@ -109,6 +109,23 @@ typealias CurveBarArt<
     Value: Structure
 > = SpanLowered<Drop, Layered<CurveBarTrack<H, Fill>, CurveValueSpan<Value>>>
 
+// ── the ground: one rounded card under the whole figure, so every label sits on a
+// surface role and the chart reads as a card among the site's cards ──
+
+enum CurvePlate: SpanTrackOutlined {
+    public typealias H = Tally<CurveWholeTall>
+    public typealias Radius = R12
+    public typealias Fill = SurfaceCard
+    public typealias Stroke = LineRole
+}
+enum CurvePlateRow: HFlow {
+    public typealias Given = WideSurface
+    @StructureBuilder
+    public static var body: some Structure & Divides {
+        Flexible<CurvePlate>.self
+    }
+}
+
 enum CurveAxisRule: SpanRule {
     public typealias Y = CurvePlotTall
     public typealias Stroke = TextSecondary
@@ -528,6 +545,7 @@ enum CurveDropAt<
 enum CurveChartContent: Group {
     @StructureBuilder
     public static var body: some Structure {
+        CurveDropAt<CurveTitleDrop, CurvePlateRow>.self
         CurveDropAt<CurveTitleDrop, CurveTitleRow>.self
         CurveDropAt<CurveLegendDrop, CurveLegendRow>.self
         CurveDropAt<CurvePlotDrop, CurvePlotRow>.self

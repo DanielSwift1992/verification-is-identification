@@ -42,6 +42,7 @@ func run(_ args: [String]) {
         runGateDiagram()
     }
     if mode == "curve" || mode == "all" { runCurveChart() }
+    if mode == "film" || mode == "all" { renderWalkFilm() }
     if mode == "pulse" || mode == "all" { runPulse() }
     if mode == "board" || mode == "all" { runBoard() }
     if mode == "heroes" || mode == "all" {
@@ -60,8 +61,8 @@ func run(_ args: [String]) {
         runSiteDoors()
     }
     if mode == "source" || mode == "all" { runSelfShowing() }
-    if !["cards", "diagram", "curve", "pulse", "board", "heroes", "people", "doors", "source", "all"].contains(mode) {
-        print("usage: VectorDemo <cards|diagram|curve|pulse|board|heroes|people|source|all>")
+    if !["cards", "diagram", "curve", "film", "pulse", "board", "heroes", "people", "doors", "source", "all"].contains(mode) {
+        print("usage: VectorDemo <cards|diagram|curve|film|pulse|board|heroes|people|source|all>")
     }
 }
 

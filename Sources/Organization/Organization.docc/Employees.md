@@ -8,6 +8,8 @@ The directory, read from the roster. The named team owns the documents; the rest
 
 ![Headcount by department, rank, and workplace](employees-hero)
 
+![The phone-book walk playing itself to one person: eight choices, the taken door marked on each frame, the film freezing on the name it walked to.](walk-film)
+
 ## The named team
 
 | Handle | Name | Gender | Born | Department | Works | 

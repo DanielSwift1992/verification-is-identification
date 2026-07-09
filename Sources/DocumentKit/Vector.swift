@@ -1207,6 +1207,38 @@ extension SpanDot {
     }
 }
 
+/// This reveals its content on a stated cue and hides it after a stated dwell: one frame
+/// of a film, run by SVG's own clock (SMIL `set`, no script). A film is a sequence of
+/// these with consecutive cues; the reader's browser executes the schedule, and the
+/// artifact stays a pure composition.
+public enum TimedReveal<
+    Begin: Structure,
+    Dwell: Structure,
+    Content: Structure
+>: Close {}
+extension TimedReveal {
+    public static var typeName: String {
+        "<g opacity=\"0\"><set attributeName=\"opacity\" to=\"1\" "
+            + "begin=\"\(Begin.typeName)s\" dur=\"\(Dwell.typeName)s\"/>\n"
+            + Content.typeName + "</g>\n"
+    }
+}
+
+/// This reveals its content on a stated cue and keeps it: a film's last frame, the fixed
+/// point the sequence rests in. The freeze is the film's whole ending — nothing loops,
+/// nothing runs, the survivor stays on screen.
+public enum FrozenReveal<
+    Begin: Structure,
+    Content: Structure
+>: Close {}
+extension FrozenReveal {
+    public static var typeName: String {
+        "<g opacity=\"0\"><set attributeName=\"opacity\" to=\"1\" "
+            + "begin=\"\(Begin.typeName)s\" fill=\"freeze\"/>\n"
+            + Content.typeName + "</g>\n"
+    }
+}
+
 /// This dot breathes: the same centered disc a ``SpanDot`` places, carrying SVG's own
 /// declarative clock — opacity swings once every four seconds, forever (SMIL, the
 /// medium's stated timeline, no script). Time lives in the reader's browser, never in

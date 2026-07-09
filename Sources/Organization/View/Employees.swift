@@ -304,12 +304,26 @@ enum EmpHeroBlock: Fragment {
     }
 }
 
+enum WalkFilmAsset: Close {}
+extension WalkFilmAsset {
+    public static var typeName: String { "walk-film" }
+}
+enum WalkFilmAlt: Close {}
+extension WalkFilmAlt {
+    public static var typeName: String {
+        "The phone-book walk playing itself to one person: eight choices, the taken door "
+            + "marked on each frame, the film freezing on the name it walked to."
+    }
+}
+
 public enum EmployeesPage: Screen {
     @StructureBuilder
     public static var body: some Structure {
         PageTitle { EmployeesTitle.self }
         EmployeesIntro.self; Break.self
         EmpHeroBlock.self
+        Picture { WalkFilmAlt.self; WalkFilmAsset.self }
+        Break.self
         DoubleHash.self; NamedTeamHeading.self; Break.self
         Table { NamedTeamRows.self }
         Break.self

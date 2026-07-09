@@ -387,11 +387,11 @@ enum CurveGroup<
     public static var body: some Structure & Divides {
         RestAir.self
         Fixed<CurveBarWide, CurveBarArt<FlatD, FlatH, SurfaceTrack, FlatV>>.self
-        Air<U2>.self
+        Air<HairBreath>.self
         Fixed<CurveBarWide, CurveBarArt<FoldD, FoldH, Ink, FoldV>>.self
-        Air<U2>.self
+        Air<HairBreath>.self
         Fixed<CurveBarWide, CurveBarArt<ShardD, ShardH, ActionRole, ShardV>>.self
-        Air<U2>.self
+        Air<HairBreath>.self
         Fixed<CurveBarWide, CurveBarArt<DirD, DirH, AccentRole, DirV>>.self
         RestAir.self
     }

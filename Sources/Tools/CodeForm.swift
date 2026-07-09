@@ -14,12 +14,14 @@ import Foundation
 
 enum CodeForm {
     /// Members per slice inside a generated body: the chain becomes a tree of this
-    /// fanout, so a reader walks log-fanout levels instead of N members.
-    static var sliceFanout = 16
+    /// fanout, so a reader walks log-fanout levels instead of N members. Sixty-four is
+    /// the compiler's own vote: the sweep at N=3200 read 79s for sixteen, 66s for
+    /// sixty-four, and no gain past it beyond the run-to-run noise (DESIGN21 v35).
+    static var sliceFanout = 64
 
     /// A body longer than this nests into slices; a shorter one stays flat, because a
-    /// tree of two is noise.
-    static var sliceThreshold = 24
+    /// tree of two is noise. Held at 1.5 fanouts, the same ratio the override applies.
+    static var sliceThreshold = 96
 
     /// Top-level declarations per generated file: one file is one frontend job, so this
     /// is the unit of type-checking parallelism.

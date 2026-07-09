@@ -39,4 +39,4 @@ At N = 6400 the Organization target builds in 241 seconds. The full package — 
 
 ### Provenance
 
-The measurements are stated in `CurveChart.swift`, each with the run that produced it, and `swift run VectorDemo curve` redraws the figure from them. <doc:Neighbors> places this measurement in its literature: model checking and the state-space explosion.
+The measurements are stated in `CurveChart.swift`, each with the run that produced it, and `swift run VectorDemo curve` redraws the figure from them. The packing itself is stated in one dictionary (`CodeForm`), and its shipped fanout is the compiler's own vote: `swift run Tools curve --fanout 16,32,64 3200` read 79, 68, and 61 seconds, so sixty-four ships. <doc:Neighbors> places this measurement in its literature: model checking and the state-space explosion.

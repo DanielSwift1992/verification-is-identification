@@ -277,7 +277,7 @@ enum GenerateOrg {
             // `.Next`), the compiler derives the value, this generator only decides when to step.
 
             // The pool of name atoms the roster is composed from, directory values like any other,
-            // cyclic (`Next`) so the generator reads the next one off the previous hire's, not by index.
+            // cyclic (`Next`): the cycle states the rotation the roster's order follows, and each hire's coordinate is emitted directly by that rotation's index formula.
             """
         }
     }

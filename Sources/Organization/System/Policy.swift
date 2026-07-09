@@ -14,10 +14,11 @@ public protocol CanEdit: CanView {}   // law:allow — a rank level: its content
 /// This names the right to administer a document. Entails ``CanEdit``, and so ``CanView``.
 public protocol CanAdmin: CanEdit {}   // law:allow — a rank level: its content is the conformance SET (who holds it), stronger than CanEdit by construction, not a synonym of it
 
-/// This names a rank, cyclic: the generator's round-robin seed for a hire's level, propagated
-/// the way `Coloring`'s `Machine.Opposite` derives one task's assignment from another's: the
-/// generated roster's `Rank` is not looked up by index, it is read off the previous hire's
-/// `Rank.Next`.
+/// This names a rank, cyclic: `Next` states the round-robin order a hire's level follows.
+/// The roster emits each hire's rank directly by that rotation's index. A chain of
+/// `Rank.Next` reads across thousands of hires serializes as a member chain that deep,
+/// and the compiler's deserializer overflows resolving one person, so the rotation is
+/// stated, never chained.
 public protocol RankCycle: CanView {
     associatedtype Next: CanView & RankCycle
 }
@@ -37,8 +38,8 @@ public enum Manager: CanAdmin, RankCycle {
 
 /// This names a department: one organizational unit. An atom: the type is the identity, and its
 /// name is read off the type at the render boundary, not stored here (Law §0′). `Open`, so a
-/// department is directly readable (`Symbol`). `Next` cycles the four, the generator's
-/// round-robin seed for a hire's department, the same propagation ``RankCycle`` uses.
+/// department is directly readable (`Symbol`). `Next` cycles the four: the rotation a
+/// hire's department follows, stated the same way ``RankCycle`` states its round-robin.
 public protocol Department: Open {
     associatedtype Next: Department
 }

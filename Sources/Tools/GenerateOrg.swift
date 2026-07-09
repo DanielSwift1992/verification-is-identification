@@ -187,18 +187,18 @@ enum GenerateOrg {
 
     // A flat body of N statements folds into a Pair chain N deep, and every reader of the
     // type then re-walks that depth: the measured quadratic of the curve (DESIGN21 v28).
-    // Past the threshold the leaves nest into slices of sixteen, so the chain becomes a
-    // tree and depth falls to the logarithm. Counts, labels, and rendered text are fold
-    // sums over Pair, so the regrouping changes no reading.
-    private static let sliceFanout = 16
-    private static let sliceThreshold = 24
+    // Past the threshold the leaves nest into slices, so the chain becomes a tree and
+    // depth falls to the logarithm. Counts, labels, and rendered text are fold sums over
+    // Pair, so the regrouping changes no reading. The numbers live in CodeForm, the form
+    // dictionary, and `fanout=F` on the command line overrides them for a sweep.
+
 
     // Render calls shard into functions of two hundred behind one hub: a body of N
     // statements is one SIL emission, and the frontend's stack is finite (DESIGN21 v30).
     private static func shardedRenderer(_ name: String, _ calls: [String], footer: String? = nil) -> [String] {
         var out: [String] = []
         var hub = ["func \(name)() {"]
-        let perShard = 200
+        let perShard = CodeForm.renderCalls
         var index = 0
         var cursor = 0
         while cursor < calls.count {
@@ -240,9 +240,9 @@ enum GenerateOrg {
         var out = ["\(pad)\(keyword) enum \(name): \(category) {"]
         var level = leaves
         var tier = 0
-        while level.count > sliceThreshold {
-            let groups = stride(from: 0, to: level.count, by: sliceFanout).map {
-                Array(level[$0..<min($0 + sliceFanout, level.count)])
+        while level.count > CodeForm.sliceThreshold {
+            let groups = stride(from: 0, to: level.count, by: CodeForm.sliceFanout).map {
+                Array(level[$0..<min($0 + CodeForm.sliceFanout, level.count)])
             }
             var groupNames: [String] = []
             for (index, group) in groups.enumerated() {
@@ -302,6 +302,7 @@ enum GenerateOrg {
     }
 
     static func run(_ args: [String]) {
+        CodeForm.applyOverrides(args)
         let n = args.first.flatMap { Int($0) } ?? 200
 
         // ── System: the types and the proofs. No label, no string, pure. ──
@@ -860,7 +861,9 @@ enum GenerateOrg {
             }
             current += docBuffer
             if !current.isEmpty { blocks.append(current) }
-            let perShard = 120
+            let perShard = CodeForm.fileDeclarations
+            precondition(perShard <= CodeForm.fileDeclarationLimit,
+                         "form gate: \(perShard) declarations per file exceeds the stated limit \(CodeForm.fileDeclarationLimit)")
             var shardIndex = 0
             var cursor = 0
             while cursor < blocks.count {
@@ -892,7 +895,7 @@ enum GenerateOrg {
             "        try? FileManager.default.removeItem(atPath: catalog + stale)",
             "    }",
         ]
-        let writesPerShard = 400
+        let writesPerShard = CodeForm.renderCalls
         var shardCalls: [String] = []
         var writeCursor = 0
         var writeShard = 0

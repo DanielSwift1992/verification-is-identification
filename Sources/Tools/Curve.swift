@@ -37,7 +37,23 @@ enum Curve {
     }
 
     static func run(_ args: [String]) {
-        let sizes = args.compactMap { Int($0) }
+        var fanouts: [Int] = []
+        var rest: [String] = []
+        var index = 0
+        while index < args.count {
+            if args[index] == "--fanout", index + 1 < args.count {
+                fanouts = args[index + 1].split(separator: ",").compactMap { Int($0) }
+                index += 2
+            } else {
+                rest.append(args[index])
+                index += 1
+            }
+        }
+        if !fanouts.isEmpty {
+            sweep(fanouts, at: rest.compactMap { Int($0) }.first ?? 1600)
+            return
+        }
+        let sizes = rest.compactMap { Int($0) }
         let universes = sizes.isEmpty ? [400, 800, 1600] : sizes
 
         let dirty = shell(["git", "status", "--porcelain"]).output
@@ -89,5 +105,46 @@ enum Curve {
         }
         print("")
         print("every state proved by the build it timed; reproduce: swift run Tools curve \(universes.map(String.init).joined(separator: " "))")
+    }
+
+    // The sweep: one universe size, several packings, the compiler votes. The fanout is
+    // the form dictionary's one dial (CodeForm), and the best value is measured, not
+    // chosen by taste.
+    private static func sweep(_ fanouts: [Int], at n: Int) {
+        let worktree = NSTemporaryDirectory() + "vi-sweep-\(ProcessInfo.processInfo.processIdentifier)"
+        guard shell(["git", "worktree", "add", "-f", worktree, "HEAD"]).status == 0 else {
+            FileHandle.standardError.write(Data("curve: git worktree add failed\n".utf8))
+            exit(1)
+        }
+        defer {
+            shell(["git", "worktree", "remove", "-f", worktree])
+            shell(["git", "worktree", "prune"])
+        }
+        print("sweeping fanout at N=\(n) in a disposable worktree...")
+        guard shell(["swift", "build"], cwd: worktree).status == 0 else {
+            FileHandle.standardError.write(Data("curve: the warm build failed\n".utf8))
+            exit(1)
+        }
+        print("")
+        print("fanout   proof")
+        var best: (fanout: Int, seconds: Double)?
+        for f in fanouts {
+            guard shell([worktree + "/.build/debug/Tools", "generate", "org", String(n), "fanout=\(f)"], cwd: worktree).status == 0 else {
+                print(String(format: "%6d   GENERATE WALL", f))
+                continue
+            }
+            let started = Date()
+            guard shell(["swift", "build"], cwd: worktree).status == 0 else {
+                print(String(format: "%6d   BUILD WALL", f))
+                continue
+            }
+            let seconds = Date().timeIntervalSince(started)
+            print(String(format: "%6d   %5.0fs", f, seconds))
+            if best == nil || seconds < best!.seconds { best = (f, seconds) }
+        }
+        if let best {
+            print("")
+            print("the compiler votes fanout=\(best.fanout) at N=\(n): \(Int(best.seconds))s")
+        }
     }
 }

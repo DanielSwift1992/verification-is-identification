@@ -16,6 +16,7 @@ func renderRosterWalk() {
         try? FileManager.default.removeItem(atPath: catalog + stale)
     }
     renderRosterWalkShard00()
+    renderRosterWalkShard01()
 }
 func renderRosterWalkShard00() {
     write(RosterSpan0001To0002Page.typeName, "RosterSpan0001To0002")
@@ -218,6 +219,8 @@ func renderRosterWalkShard00() {
     write(RosterSpan0197To0203Page.typeName, "RosterSpan0197To0203")
     write(RosterSpan0191To0203Page.typeName, "RosterSpan0191To0203")
     write(RosterSpan0178To0203Page.typeName, "RosterSpan0178To0203")
+}
+func renderRosterWalkShard01() {
     write(RosterSpan0153To0203Page.typeName, "RosterSpan0153To0203")
     write(RosterSpan0102To0203Page.typeName, "RosterSpan0102To0203")
     write(RosterSpan0000To0203Page.typeName, "RosterSpan0000To0203")

@@ -348,29 +348,19 @@ enum GenerateOrg {
             }
         }
         for i in 0..<n {
-            let rankExpr: String, homeExpr: String, givenExpr: String, familyExpr: String, bornExpr: String, siteExpr: String
-            if i == 0 {
-                // The seed, pinned directly, the way `Pinned<MachineA>` seeds the scheduler's chain.
-                rankExpr = "IndividualContributor"
-                homeExpr = "Finance"
-                givenExpr = given[0].name.typeName
-                familyExpr = family[0].typeName
-                bornExpr = "Y\(born[0].typeName)"
-                siteExpr = "OnSite"
-            } else {
-                let prev = emp(i - 1)
-                // Rank and given name step every hire (period exactly `i % k`, always different
-                // from the previous hire). Department steps only where `deptSteps` marks a lap
-                // boundary (a variable dwell time, see `deptSteps`'s own comment). Family/born/
-                // site step only every 12th/4th/3rd hire (their periods used `i // k` before,
-                // same as the previous hire otherwise).
-                rankExpr = "\(prev).Rank.Next"
-                homeExpr = deptSteps(i) ? "\(prev).Home.Next" : "\(prev).Home"
-                givenExpr = "\(prev).Given.Next"
-                familyExpr = i % family.count == 0 ? "\(prev).Family.Next" : "\(prev).Family"
-                bornExpr = i % born.count == 0 ? "\(prev).Born.Next" : "\(prev).Born"
-                siteExpr = i % sites.count == 0 ? "\(prev).Site.Next" : "\(prev).Site"
-            }
+            // Every coordinate is emitted DIRECTLY, by the same index formulas the walk's
+            // faces already read (one formula per axis, never two to drift apart). The old
+            // form derived each hire from the previous one (`Emp5391.Rank.Next`): the same
+            // content, but serialized as a dependent-member chain N deep, and past a few
+            // thousand people the frontend's deserializer overflowed its stack resolving
+            // one person (signal 4, DESIGN21 v40). Direct coordinates are depth one; the
+            // rotation the chain performed is the same rotation these indices state.
+            let rankExpr = ranks[i % ranks.count]
+            let homeExpr = depts[deptIndexOf[i]].name
+            let givenExpr = given[i % given.count].name.typeName
+            let familyExpr = family[(i / family.count) % family.count].typeName
+            let bornExpr = "Y\(born[(i / born.count) % born.count].typeName)"
+            let siteExpr = sites[(i / sites.count) % sites.count]
             o += ["public enum \(emp(i)): Employee, Person {",
                   "    public typealias Rank = \(rankExpr)",
                   "    public typealias Home = \(homeExpr)",

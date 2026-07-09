@@ -176,1992 +176,1992 @@ public enum Emp0000: Employee, Person {
 }
 
 public enum Emp0001: Employee, Person {
-    public typealias Rank = Emp0000.Rank.Next
-    public typealias Home = Emp0000.Home
-    public typealias Given = Emp0000.Given.Next
-    public typealias Family = Emp0000.Family
-    public typealias Born = Emp0000.Born
-    public typealias Site = Emp0000.Site
+    public typealias Rank = Lead
+    public typealias Home = Finance
+    public typealias Given = Barbara
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0002: Employee, Person {
-    public typealias Rank = Emp0001.Rank.Next
-    public typealias Home = Emp0001.Home
-    public typealias Given = Emp0001.Given.Next
-    public typealias Family = Emp0001.Family
-    public typealias Born = Emp0001.Born
-    public typealias Site = Emp0001.Site
+    public typealias Rank = Manager
+    public typealias Home = Finance
+    public typealias Given = John
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0003: Employee, Person {
-    public typealias Rank = Emp0002.Rank.Next
-    public typealias Home = Emp0002.Home.Next
-    public typealias Given = Emp0002.Given.Next
-    public typealias Family = Emp0002.Family
-    public typealias Born = Emp0002.Born
-    public typealias Site = Emp0002.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Margaret
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0004: Employee, Person {
-    public typealias Rank = Emp0003.Rank.Next
-    public typealias Home = Emp0003.Home
-    public typealias Given = Emp0003.Given.Next
-    public typealias Family = Emp0003.Family
-    public typealias Born = Emp0003.Born
-    public typealias Site = Emp0003.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Donald
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0005: Employee, Person {
-    public typealias Rank = Emp0004.Rank.Next
-    public typealias Home = Emp0004.Home
-    public typealias Given = Emp0004.Given.Next
-    public typealias Family = Emp0004.Family
-    public typealias Born = Emp0004.Born
-    public typealias Site = Emp0004.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Frances
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0006: Employee, Person {
-    public typealias Rank = Emp0005.Rank.Next
-    public typealias Home = Emp0005.Home
-    public typealias Given = Emp0005.Given.Next
-    public typealias Family = Emp0005.Family
-    public typealias Born = Emp0005.Born
-    public typealias Site = Emp0005.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Ken
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0007: Employee, Person {
-    public typealias Rank = Emp0006.Rank.Next
-    public typealias Home = Emp0006.Home
-    public typealias Given = Emp0006.Given.Next
-    public typealias Family = Emp0006.Family
-    public typealias Born = Emp0006.Born
-    public typealias Site = Emp0006.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Katherine
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0008: Employee, Person {
-    public typealias Rank = Emp0007.Rank.Next
-    public typealias Home = Emp0007.Home.Next
-    public typealias Given = Emp0007.Given.Next
-    public typealias Family = Emp0007.Family
-    public typealias Born = Emp0007.Born
-    public typealias Site = Emp0007.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = Dennis
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0009: Employee, Person {
-    public typealias Rank = Emp0008.Rank.Next
-    public typealias Home = Emp0008.Home
-    public typealias Given = Emp0008.Given.Next
-    public typealias Family = Emp0008.Family
-    public typealias Born = Emp0008.Born
-    public typealias Site = Emp0008.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Radia
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0010: Employee, Person {
-    public typealias Rank = Emp0009.Rank.Next
-    public typealias Home = Emp0009.Home
-    public typealias Given = Emp0009.Given.Next
-    public typealias Family = Emp0009.Family
-    public typealias Born = Emp0009.Born
-    public typealias Site = Emp0009.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Niklaus
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0011: Employee, Person {
-    public typealias Rank = Emp0010.Rank.Next
-    public typealias Home = Emp0010.Home
-    public typealias Given = Emp0010.Given.Next
-    public typealias Family = Emp0010.Family
-    public typealias Born = Emp0010.Born
-    public typealias Site = Emp0010.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = Karen
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0012: Employee, Person {
-    public typealias Rank = Emp0011.Rank.Next
-    public typealias Home = Emp0011.Home.Next
-    public typealias Given = Emp0011.Given.Next
-    public typealias Family = Emp0011.Family.Next
-    public typealias Born = Emp0011.Born.Next
-    public typealias Site = Emp0011.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = People
+    public typealias Given = Edsger
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0013: Employee, Person {
-    public typealias Rank = Emp0012.Rank.Next
-    public typealias Home = Emp0012.Home
-    public typealias Given = Emp0012.Given.Next
-    public typealias Family = Emp0012.Family
-    public typealias Born = Emp0012.Born
-    public typealias Site = Emp0012.Site
+    public typealias Rank = Lead
+    public typealias Home = People
+    public typealias Given = Barbara
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0014: Employee, Person {
-    public typealias Rank = Emp0013.Rank.Next
-    public typealias Home = Emp0013.Home.Next
-    public typealias Given = Emp0013.Given.Next
-    public typealias Family = Emp0013.Family
-    public typealias Born = Emp0013.Born
-    public typealias Site = Emp0013.Site
+    public typealias Rank = Manager
+    public typealias Home = Finance
+    public typealias Given = John
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0015: Employee, Person {
-    public typealias Rank = Emp0014.Rank.Next
-    public typealias Home = Emp0014.Home
-    public typealias Given = Emp0014.Given.Next
-    public typealias Family = Emp0014.Family
-    public typealias Born = Emp0014.Born
-    public typealias Site = Emp0014.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Finance
+    public typealias Given = Margaret
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0016: Employee, Person {
-    public typealias Rank = Emp0015.Rank.Next
-    public typealias Home = Emp0015.Home
-    public typealias Given = Emp0015.Given.Next
-    public typealias Family = Emp0015.Family
-    public typealias Born = Emp0015.Born
-    public typealias Site = Emp0015.Site
+    public typealias Rank = Lead
+    public typealias Home = Finance
+    public typealias Given = Donald
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0017: Employee, Person {
-    public typealias Rank = Emp0016.Rank.Next
-    public typealias Home = Emp0016.Home.Next
-    public typealias Given = Emp0016.Given.Next
-    public typealias Family = Emp0016.Family
-    public typealias Born = Emp0016.Born
-    public typealias Site = Emp0016.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Frances
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0018: Employee, Person {
-    public typealias Rank = Emp0017.Rank.Next
-    public typealias Home = Emp0017.Home
-    public typealias Given = Emp0017.Given.Next
-    public typealias Family = Emp0017.Family
-    public typealias Born = Emp0017.Born
-    public typealias Site = Emp0017.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Ken
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0019: Employee, Person {
-    public typealias Rank = Emp0018.Rank.Next
-    public typealias Home = Emp0018.Home
-    public typealias Given = Emp0018.Given.Next
-    public typealias Family = Emp0018.Family
-    public typealias Born = Emp0018.Born
-    public typealias Site = Emp0018.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Katherine
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0020: Employee, Person {
-    public typealias Rank = Emp0019.Rank.Next
-    public typealias Home = Emp0019.Home
-    public typealias Given = Emp0019.Given.Next
-    public typealias Family = Emp0019.Family
-    public typealias Born = Emp0019.Born
-    public typealias Site = Emp0019.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Dennis
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0021: Employee, Person {
-    public typealias Rank = Emp0020.Rank.Next
-    public typealias Home = Emp0020.Home
-    public typealias Given = Emp0020.Given.Next
-    public typealias Family = Emp0020.Family
-    public typealias Born = Emp0020.Born
-    public typealias Site = Emp0020.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Radia
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0022: Employee, Person {
-    public typealias Rank = Emp0021.Rank.Next
-    public typealias Home = Emp0021.Home.Next
-    public typealias Given = Emp0021.Given.Next
-    public typealias Family = Emp0021.Family
-    public typealias Born = Emp0021.Born
-    public typealias Site = Emp0021.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Niklaus
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0023: Employee, Person {
-    public typealias Rank = Emp0022.Rank.Next
-    public typealias Home = Emp0022.Home
-    public typealias Given = Emp0022.Given.Next
-    public typealias Family = Emp0022.Family
-    public typealias Born = Emp0022.Born
-    public typealias Site = Emp0022.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = Karen
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0024: Employee, Person {
-    public typealias Rank = Emp0023.Rank.Next
-    public typealias Home = Emp0023.Home
-    public typealias Given = Emp0023.Given.Next
-    public typealias Family = Emp0023.Family.Next
-    public typealias Born = Emp0023.Born.Next
-    public typealias Site = Emp0023.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Edsger
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0025: Employee, Person {
-    public typealias Rank = Emp0024.Rank.Next
-    public typealias Home = Emp0024.Home
-    public typealias Given = Emp0024.Given.Next
-    public typealias Family = Emp0024.Family
-    public typealias Born = Emp0024.Born
-    public typealias Site = Emp0024.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Barbara
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0026: Employee, Person {
-    public typealias Rank = Emp0025.Rank.Next
-    public typealias Home = Emp0025.Home.Next
-    public typealias Given = Emp0025.Given.Next
-    public typealias Family = Emp0025.Family
-    public typealias Born = Emp0025.Born
-    public typealias Site = Emp0025.Site
+    public typealias Rank = Manager
+    public typealias Home = People
+    public typealias Given = John
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0027: Employee, Person {
-    public typealias Rank = Emp0026.Rank.Next
-    public typealias Home = Emp0026.Home
-    public typealias Given = Emp0026.Given.Next
-    public typealias Family = Emp0026.Family
-    public typealias Born = Emp0026.Born
-    public typealias Site = Emp0026.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = People
+    public typealias Given = Margaret
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0028: Employee, Person {
-    public typealias Rank = Emp0027.Rank.Next
-    public typealias Home = Emp0027.Home.Next
-    public typealias Given = Emp0027.Given.Next
-    public typealias Family = Emp0027.Family
-    public typealias Born = Emp0027.Born
-    public typealias Site = Emp0027.Site
+    public typealias Rank = Lead
+    public typealias Home = Finance
+    public typealias Given = Donald
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0029: Employee, Person {
-    public typealias Rank = Emp0028.Rank.Next
-    public typealias Home = Emp0028.Home
-    public typealias Given = Emp0028.Given.Next
-    public typealias Family = Emp0028.Family
-    public typealias Born = Emp0028.Born
-    public typealias Site = Emp0028.Site
+    public typealias Rank = Manager
+    public typealias Home = Finance
+    public typealias Given = Frances
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0030: Employee, Person {
-    public typealias Rank = Emp0029.Rank.Next
-    public typealias Home = Emp0029.Home
-    public typealias Given = Emp0029.Given.Next
-    public typealias Family = Emp0029.Family
-    public typealias Born = Emp0029.Born
-    public typealias Site = Emp0029.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Finance
+    public typealias Given = Ken
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0031: Employee, Person {
-    public typealias Rank = Emp0030.Rank.Next
-    public typealias Home = Emp0030.Home.Next
-    public typealias Given = Emp0030.Given.Next
-    public typealias Family = Emp0030.Family
-    public typealias Born = Emp0030.Born
-    public typealias Site = Emp0030.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Katherine
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0032: Employee, Person {
-    public typealias Rank = Emp0031.Rank.Next
-    public typealias Home = Emp0031.Home
-    public typealias Given = Emp0031.Given.Next
-    public typealias Family = Emp0031.Family
-    public typealias Born = Emp0031.Born
-    public typealias Site = Emp0031.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Dennis
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0033: Employee, Person {
-    public typealias Rank = Emp0032.Rank.Next
-    public typealias Home = Emp0032.Home
-    public typealias Given = Emp0032.Given.Next
-    public typealias Family = Emp0032.Family
-    public typealias Born = Emp0032.Born
-    public typealias Site = Emp0032.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Radia
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0034: Employee, Person {
-    public typealias Rank = Emp0033.Rank.Next
-    public typealias Home = Emp0033.Home
-    public typealias Given = Emp0033.Given.Next
-    public typealias Family = Emp0033.Family
-    public typealias Born = Emp0033.Born
-    public typealias Site = Emp0033.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Niklaus
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0035: Employee, Person {
-    public typealias Rank = Emp0034.Rank.Next
-    public typealias Home = Emp0034.Home
-    public typealias Given = Emp0034.Given.Next
-    public typealias Family = Emp0034.Family
-    public typealias Born = Emp0034.Born
-    public typealias Site = Emp0034.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Karen
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0036: Employee, Person {
-    public typealias Rank = Emp0035.Rank.Next
-    public typealias Home = Emp0035.Home.Next
-    public typealias Given = Emp0035.Given.Next
-    public typealias Family = Emp0035.Family.Next
-    public typealias Born = Emp0035.Born.Next
-    public typealias Site = Emp0035.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Edsger
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0037: Employee, Person {
-    public typealias Rank = Emp0036.Rank.Next
-    public typealias Home = Emp0036.Home
-    public typealias Given = Emp0036.Given.Next
-    public typealias Family = Emp0036.Family
-    public typealias Born = Emp0036.Born
-    public typealias Site = Emp0036.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Barbara
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0038: Employee, Person {
-    public typealias Rank = Emp0037.Rank.Next
-    public typealias Home = Emp0037.Home
-    public typealias Given = Emp0037.Given.Next
-    public typealias Family = Emp0037.Family
-    public typealias Born = Emp0037.Born
-    public typealias Site = Emp0037.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = John
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0039: Employee, Person {
-    public typealias Rank = Emp0038.Rank.Next
-    public typealias Home = Emp0038.Home
-    public typealias Given = Emp0038.Given.Next
-    public typealias Family = Emp0038.Family
-    public typealias Born = Emp0038.Born
-    public typealias Site = Emp0038.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Margaret
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0040: Employee, Person {
-    public typealias Rank = Emp0039.Rank.Next
-    public typealias Home = Emp0039.Home.Next
-    public typealias Given = Emp0039.Given.Next
-    public typealias Family = Emp0039.Family
-    public typealias Born = Emp0039.Born
-    public typealias Site = Emp0039.Site
+    public typealias Rank = Lead
+    public typealias Home = People
+    public typealias Given = Donald
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0041: Employee, Person {
-    public typealias Rank = Emp0040.Rank.Next
-    public typealias Home = Emp0040.Home
-    public typealias Given = Emp0040.Given.Next
-    public typealias Family = Emp0040.Family
-    public typealias Born = Emp0040.Born
-    public typealias Site = Emp0040.Site
+    public typealias Rank = Manager
+    public typealias Home = People
+    public typealias Given = Frances
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0042: Employee, Person {
-    public typealias Rank = Emp0041.Rank.Next
-    public typealias Home = Emp0041.Home.Next
-    public typealias Given = Emp0041.Given.Next
-    public typealias Family = Emp0041.Family
-    public typealias Born = Emp0041.Born
-    public typealias Site = Emp0041.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Finance
+    public typealias Given = Ken
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0043: Employee, Person {
-    public typealias Rank = Emp0042.Rank.Next
-    public typealias Home = Emp0042.Home
-    public typealias Given = Emp0042.Given.Next
-    public typealias Family = Emp0042.Family
-    public typealias Born = Emp0042.Born
-    public typealias Site = Emp0042.Site
+    public typealias Rank = Lead
+    public typealias Home = Finance
+    public typealias Given = Katherine
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0044: Employee, Person {
-    public typealias Rank = Emp0043.Rank.Next
-    public typealias Home = Emp0043.Home
-    public typealias Given = Emp0043.Given.Next
-    public typealias Family = Emp0043.Family
-    public typealias Born = Emp0043.Born
-    public typealias Site = Emp0043.Site
+    public typealias Rank = Manager
+    public typealias Home = Finance
+    public typealias Given = Dennis
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0045: Employee, Person {
-    public typealias Rank = Emp0044.Rank.Next
-    public typealias Home = Emp0044.Home.Next
-    public typealias Given = Emp0044.Given.Next
-    public typealias Family = Emp0044.Family
-    public typealias Born = Emp0044.Born
-    public typealias Site = Emp0044.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Radia
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0046: Employee, Person {
-    public typealias Rank = Emp0045.Rank.Next
-    public typealias Home = Emp0045.Home
-    public typealias Given = Emp0045.Given.Next
-    public typealias Family = Emp0045.Family
-    public typealias Born = Emp0045.Born
-    public typealias Site = Emp0045.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Niklaus
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0047: Employee, Person {
-    public typealias Rank = Emp0046.Rank.Next
-    public typealias Home = Emp0046.Home
-    public typealias Given = Emp0046.Given.Next
-    public typealias Family = Emp0046.Family
-    public typealias Born = Emp0046.Born
-    public typealias Site = Emp0046.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Karen
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0048: Employee, Person {
-    public typealias Rank = Emp0047.Rank.Next
-    public typealias Home = Emp0047.Home
-    public typealias Given = Emp0047.Given.Next
-    public typealias Family = Emp0047.Family.Next
-    public typealias Born = Emp0047.Born.Next
-    public typealias Site = Emp0047.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Edsger
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0049: Employee, Person {
-    public typealias Rank = Emp0048.Rank.Next
-    public typealias Home = Emp0048.Home
-    public typealias Given = Emp0048.Given.Next
-    public typealias Family = Emp0048.Family
-    public typealias Born = Emp0048.Born
-    public typealias Site = Emp0048.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Barbara
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0050: Employee, Person {
-    public typealias Rank = Emp0049.Rank.Next
-    public typealias Home = Emp0049.Home.Next
-    public typealias Given = Emp0049.Given.Next
-    public typealias Family = Emp0049.Family
-    public typealias Born = Emp0049.Born
-    public typealias Site = Emp0049.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = John
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0051: Employee, Person {
-    public typealias Rank = Emp0050.Rank.Next
-    public typealias Home = Emp0050.Home
-    public typealias Given = Emp0050.Given.Next
-    public typealias Family = Emp0050.Family
-    public typealias Born = Emp0050.Born
-    public typealias Site = Emp0050.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Margaret
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0052: Employee, Person {
-    public typealias Rank = Emp0051.Rank.Next
-    public typealias Home = Emp0051.Home
-    public typealias Given = Emp0051.Given.Next
-    public typealias Family = Emp0051.Family
-    public typealias Born = Emp0051.Born
-    public typealias Site = Emp0051.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Donald
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0053: Employee, Person {
-    public typealias Rank = Emp0052.Rank.Next
-    public typealias Home = Emp0052.Home
-    public typealias Given = Emp0052.Given.Next
-    public typealias Family = Emp0052.Family
-    public typealias Born = Emp0052.Born
-    public typealias Site = Emp0052.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = Frances
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0054: Employee, Person {
-    public typealias Rank = Emp0053.Rank.Next
-    public typealias Home = Emp0053.Home.Next
-    public typealias Given = Emp0053.Given.Next
-    public typealias Family = Emp0053.Family
-    public typealias Born = Emp0053.Born
-    public typealias Site = Emp0053.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = People
+    public typealias Given = Ken
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0055: Employee, Person {
-    public typealias Rank = Emp0054.Rank.Next
-    public typealias Home = Emp0054.Home
-    public typealias Given = Emp0054.Given.Next
-    public typealias Family = Emp0054.Family
-    public typealias Born = Emp0054.Born
-    public typealias Site = Emp0054.Site
+    public typealias Rank = Lead
+    public typealias Home = People
+    public typealias Given = Katherine
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0056: Employee, Person {
-    public typealias Rank = Emp0055.Rank.Next
-    public typealias Home = Emp0055.Home.Next
-    public typealias Given = Emp0055.Given.Next
-    public typealias Family = Emp0055.Family
-    public typealias Born = Emp0055.Born
-    public typealias Site = Emp0055.Site
+    public typealias Rank = Manager
+    public typealias Home = Finance
+    public typealias Given = Dennis
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0057: Employee, Person {
-    public typealias Rank = Emp0056.Rank.Next
-    public typealias Home = Emp0056.Home
-    public typealias Given = Emp0056.Given.Next
-    public typealias Family = Emp0056.Family
-    public typealias Born = Emp0056.Born
-    public typealias Site = Emp0056.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Finance
+    public typealias Given = Radia
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0058: Employee, Person {
-    public typealias Rank = Emp0057.Rank.Next
-    public typealias Home = Emp0057.Home
-    public typealias Given = Emp0057.Given.Next
-    public typealias Family = Emp0057.Family
-    public typealias Born = Emp0057.Born
-    public typealias Site = Emp0057.Site
+    public typealias Rank = Lead
+    public typealias Home = Finance
+    public typealias Given = Niklaus
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0059: Employee, Person {
-    public typealias Rank = Emp0058.Rank.Next
-    public typealias Home = Emp0058.Home.Next
-    public typealias Given = Emp0058.Given.Next
-    public typealias Family = Emp0058.Family
-    public typealias Born = Emp0058.Born
-    public typealias Site = Emp0058.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Karen
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0060: Employee, Person {
-    public typealias Rank = Emp0059.Rank.Next
-    public typealias Home = Emp0059.Home
-    public typealias Given = Emp0059.Given.Next
-    public typealias Family = Emp0059.Family.Next
-    public typealias Born = Emp0059.Born.Next
-    public typealias Site = Emp0059.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Edsger
+    public typealias Family = Allen
+    public typealias Born = Y1940
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0061: Employee, Person {
-    public typealias Rank = Emp0060.Rank.Next
-    public typealias Home = Emp0060.Home
-    public typealias Given = Emp0060.Given.Next
-    public typealias Family = Emp0060.Family
-    public typealias Born = Emp0060.Born
-    public typealias Site = Emp0060.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Barbara
+    public typealias Family = Allen
+    public typealias Born = Y1940
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0062: Employee, Person {
-    public typealias Rank = Emp0061.Rank.Next
-    public typealias Home = Emp0061.Home
-    public typealias Given = Emp0061.Given.Next
-    public typealias Family = Emp0061.Family
-    public typealias Born = Emp0061.Born
-    public typealias Site = Emp0061.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = John
+    public typealias Family = Allen
+    public typealias Born = Y1940
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0063: Employee, Person {
-    public typealias Rank = Emp0062.Rank.Next
-    public typealias Home = Emp0062.Home
-    public typealias Given = Emp0062.Given.Next
-    public typealias Family = Emp0062.Family
-    public typealias Born = Emp0062.Born
-    public typealias Site = Emp0062.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Margaret
+    public typealias Family = Allen
+    public typealias Born = Y1940
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0064: Employee, Person {
-    public typealias Rank = Emp0063.Rank.Next
-    public typealias Home = Emp0063.Home.Next
-    public typealias Given = Emp0063.Given.Next
-    public typealias Family = Emp0063.Family
-    public typealias Born = Emp0063.Born
-    public typealias Site = Emp0063.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Donald
+    public typealias Family = Allen
+    public typealias Born = Y1940
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0065: Employee, Person {
-    public typealias Rank = Emp0064.Rank.Next
-    public typealias Home = Emp0064.Home
-    public typealias Given = Emp0064.Given.Next
-    public typealias Family = Emp0064.Family
-    public typealias Born = Emp0064.Born
-    public typealias Site = Emp0064.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = Frances
+    public typealias Family = Allen
+    public typealias Born = Y1940
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0066: Employee, Person {
-    public typealias Rank = Emp0065.Rank.Next
-    public typealias Home = Emp0065.Home
-    public typealias Given = Emp0065.Given.Next
-    public typealias Family = Emp0065.Family
-    public typealias Born = Emp0065.Born
-    public typealias Site = Emp0065.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Ken
+    public typealias Family = Allen
+    public typealias Born = Y1940
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0067: Employee, Person {
-    public typealias Rank = Emp0066.Rank.Next
-    public typealias Home = Emp0066.Home
-    public typealias Given = Emp0066.Given.Next
-    public typealias Family = Emp0066.Family
-    public typealias Born = Emp0066.Born
-    public typealias Site = Emp0066.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Katherine
+    public typealias Family = Allen
+    public typealias Born = Y1940
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0068: Employee, Person {
-    public typealias Rank = Emp0067.Rank.Next
-    public typealias Home = Emp0067.Home.Next
-    public typealias Given = Emp0067.Given.Next
-    public typealias Family = Emp0067.Family
-    public typealias Born = Emp0067.Born
-    public typealias Site = Emp0067.Site
+    public typealias Rank = Manager
+    public typealias Home = People
+    public typealias Given = Dennis
+    public typealias Family = Allen
+    public typealias Born = Y1940
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0069: Employee, Person {
-    public typealias Rank = Emp0068.Rank.Next
-    public typealias Home = Emp0068.Home
-    public typealias Given = Emp0068.Given.Next
-    public typealias Family = Emp0068.Family
-    public typealias Born = Emp0068.Born
-    public typealias Site = Emp0068.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = People
+    public typealias Given = Radia
+    public typealias Family = Allen
+    public typealias Born = Y1940
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0070: Employee, Person {
-    public typealias Rank = Emp0069.Rank.Next
-    public typealias Home = Emp0069.Home.Next
-    public typealias Given = Emp0069.Given.Next
-    public typealias Family = Emp0069.Family
-    public typealias Born = Emp0069.Born
-    public typealias Site = Emp0069.Site
+    public typealias Rank = Lead
+    public typealias Home = Finance
+    public typealias Given = Niklaus
+    public typealias Family = Allen
+    public typealias Born = Y1940
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0071: Employee, Person {
-    public typealias Rank = Emp0070.Rank.Next
-    public typealias Home = Emp0070.Home
-    public typealias Given = Emp0070.Given.Next
-    public typealias Family = Emp0070.Family
-    public typealias Born = Emp0070.Born
-    public typealias Site = Emp0070.Site
+    public typealias Rank = Manager
+    public typealias Home = Finance
+    public typealias Given = Karen
+    public typealias Family = Allen
+    public typealias Born = Y1940
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0072: Employee, Person {
-    public typealias Rank = Emp0071.Rank.Next
-    public typealias Home = Emp0071.Home
-    public typealias Given = Emp0071.Given.Next
-    public typealias Family = Emp0071.Family.Next
-    public typealias Born = Emp0071.Born.Next
-    public typealias Site = Emp0071.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Finance
+    public typealias Given = Edsger
+    public typealias Family = Thompson
+    public typealias Born = Y1943
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0073: Employee, Person {
-    public typealias Rank = Emp0072.Rank.Next
-    public typealias Home = Emp0072.Home.Next
-    public typealias Given = Emp0072.Given.Next
-    public typealias Family = Emp0072.Family
-    public typealias Born = Emp0072.Born
-    public typealias Site = Emp0072.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Barbara
+    public typealias Family = Thompson
+    public typealias Born = Y1943
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0074: Employee, Person {
-    public typealias Rank = Emp0073.Rank.Next
-    public typealias Home = Emp0073.Home
-    public typealias Given = Emp0073.Given.Next
-    public typealias Family = Emp0073.Family
-    public typealias Born = Emp0073.Born
-    public typealias Site = Emp0073.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = John
+    public typealias Family = Thompson
+    public typealias Born = Y1943
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0075: Employee, Person {
-    public typealias Rank = Emp0074.Rank.Next
-    public typealias Home = Emp0074.Home
-    public typealias Given = Emp0074.Given.Next
-    public typealias Family = Emp0074.Family
-    public typealias Born = Emp0074.Born
-    public typealias Site = Emp0074.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Margaret
+    public typealias Family = Thompson
+    public typealias Born = Y1943
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0076: Employee, Person {
-    public typealias Rank = Emp0075.Rank.Next
-    public typealias Home = Emp0075.Home
-    public typealias Given = Emp0075.Given.Next
-    public typealias Family = Emp0075.Family
-    public typealias Born = Emp0075.Born
-    public typealias Site = Emp0075.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Donald
+    public typealias Family = Thompson
+    public typealias Born = Y1943
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0077: Employee, Person {
-    public typealias Rank = Emp0076.Rank.Next
-    public typealias Home = Emp0076.Home
-    public typealias Given = Emp0076.Given.Next
-    public typealias Family = Emp0076.Family
-    public typealias Born = Emp0076.Born
-    public typealias Site = Emp0076.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Frances
+    public typealias Family = Thompson
+    public typealias Born = Y1943
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0078: Employee, Person {
-    public typealias Rank = Emp0077.Rank.Next
-    public typealias Home = Emp0077.Home.Next
-    public typealias Given = Emp0077.Given.Next
-    public typealias Family = Emp0077.Family
-    public typealias Born = Emp0077.Born
-    public typealias Site = Emp0077.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Ken
+    public typealias Family = Thompson
+    public typealias Born = Y1943
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0079: Employee, Person {
-    public typealias Rank = Emp0078.Rank.Next
-    public typealias Home = Emp0078.Home
-    public typealias Given = Emp0078.Given.Next
-    public typealias Family = Emp0078.Family
-    public typealias Born = Emp0078.Born
-    public typealias Site = Emp0078.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Katherine
+    public typealias Family = Thompson
+    public typealias Born = Y1943
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0080: Employee, Person {
-    public typealias Rank = Emp0079.Rank.Next
-    public typealias Home = Emp0079.Home
-    public typealias Given = Emp0079.Given.Next
-    public typealias Family = Emp0079.Family
-    public typealias Born = Emp0079.Born
-    public typealias Site = Emp0079.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = Dennis
+    public typealias Family = Thompson
+    public typealias Born = Y1943
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0081: Employee, Person {
-    public typealias Rank = Emp0080.Rank.Next
-    public typealias Home = Emp0080.Home
-    public typealias Given = Emp0080.Given.Next
-    public typealias Family = Emp0080.Family
-    public typealias Born = Emp0080.Born
-    public typealias Site = Emp0080.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Radia
+    public typealias Family = Thompson
+    public typealias Born = Y1943
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0082: Employee, Person {
-    public typealias Rank = Emp0081.Rank.Next
-    public typealias Home = Emp0081.Home.Next
-    public typealias Given = Emp0081.Given.Next
-    public typealias Family = Emp0081.Family
-    public typealias Born = Emp0081.Born
-    public typealias Site = Emp0081.Site
+    public typealias Rank = Lead
+    public typealias Home = People
+    public typealias Given = Niklaus
+    public typealias Family = Thompson
+    public typealias Born = Y1943
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0083: Employee, Person {
-    public typealias Rank = Emp0082.Rank.Next
-    public typealias Home = Emp0082.Home
-    public typealias Given = Emp0082.Given.Next
-    public typealias Family = Emp0082.Family
-    public typealias Born = Emp0082.Born
-    public typealias Site = Emp0082.Site
+    public typealias Rank = Manager
+    public typealias Home = People
+    public typealias Given = Karen
+    public typealias Family = Thompson
+    public typealias Born = Y1943
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0084: Employee, Person {
-    public typealias Rank = Emp0083.Rank.Next
-    public typealias Home = Emp0083.Home.Next
-    public typealias Given = Emp0083.Given.Next
-    public typealias Family = Emp0083.Family.Next
-    public typealias Born = Emp0083.Born.Next
-    public typealias Site = Emp0083.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Finance
+    public typealias Given = Edsger
+    public typealias Family = Goldwasser
+    public typealias Born = Y1946
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0085: Employee, Person {
-    public typealias Rank = Emp0084.Rank.Next
-    public typealias Home = Emp0084.Home
-    public typealias Given = Emp0084.Given.Next
-    public typealias Family = Emp0084.Family
-    public typealias Born = Emp0084.Born
-    public typealias Site = Emp0084.Site
+    public typealias Rank = Lead
+    public typealias Home = Finance
+    public typealias Given = Barbara
+    public typealias Family = Goldwasser
+    public typealias Born = Y1946
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0086: Employee, Person {
-    public typealias Rank = Emp0085.Rank.Next
-    public typealias Home = Emp0085.Home
-    public typealias Given = Emp0085.Given.Next
-    public typealias Family = Emp0085.Family
-    public typealias Born = Emp0085.Born
-    public typealias Site = Emp0085.Site
+    public typealias Rank = Manager
+    public typealias Home = Finance
+    public typealias Given = John
+    public typealias Family = Goldwasser
+    public typealias Born = Y1946
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0087: Employee, Person {
-    public typealias Rank = Emp0086.Rank.Next
-    public typealias Home = Emp0086.Home.Next
-    public typealias Given = Emp0086.Given.Next
-    public typealias Family = Emp0086.Family
-    public typealias Born = Emp0086.Born
-    public typealias Site = Emp0086.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Margaret
+    public typealias Family = Goldwasser
+    public typealias Born = Y1946
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0088: Employee, Person {
-    public typealias Rank = Emp0087.Rank.Next
-    public typealias Home = Emp0087.Home
-    public typealias Given = Emp0087.Given.Next
-    public typealias Family = Emp0087.Family
-    public typealias Born = Emp0087.Born
-    public typealias Site = Emp0087.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Donald
+    public typealias Family = Goldwasser
+    public typealias Born = Y1946
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0089: Employee, Person {
-    public typealias Rank = Emp0088.Rank.Next
-    public typealias Home = Emp0088.Home
-    public typealias Given = Emp0088.Given.Next
-    public typealias Family = Emp0088.Family
-    public typealias Born = Emp0088.Born
-    public typealias Site = Emp0088.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Frances
+    public typealias Family = Goldwasser
+    public typealias Born = Y1946
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0090: Employee, Person {
-    public typealias Rank = Emp0089.Rank.Next
-    public typealias Home = Emp0089.Home
-    public typealias Given = Emp0089.Given.Next
-    public typealias Family = Emp0089.Family
-    public typealias Born = Emp0089.Born
-    public typealias Site = Emp0089.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Ken
+    public typealias Family = Goldwasser
+    public typealias Born = Y1946
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0091: Employee, Person {
-    public typealias Rank = Emp0090.Rank.Next
-    public typealias Home = Emp0090.Home
-    public typealias Given = Emp0090.Given.Next
-    public typealias Family = Emp0090.Family
-    public typealias Born = Emp0090.Born
-    public typealias Site = Emp0090.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Katherine
+    public typealias Family = Goldwasser
+    public typealias Born = Y1946
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0092: Employee, Person {
-    public typealias Rank = Emp0091.Rank.Next
-    public typealias Home = Emp0091.Home.Next
-    public typealias Given = Emp0091.Given.Next
-    public typealias Family = Emp0091.Family
-    public typealias Born = Emp0091.Born
-    public typealias Site = Emp0091.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = Dennis
+    public typealias Family = Goldwasser
+    public typealias Born = Y1946
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0093: Employee, Person {
-    public typealias Rank = Emp0092.Rank.Next
-    public typealias Home = Emp0092.Home
-    public typealias Given = Emp0092.Given.Next
-    public typealias Family = Emp0092.Family
-    public typealias Born = Emp0092.Born
-    public typealias Site = Emp0092.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Radia
+    public typealias Family = Goldwasser
+    public typealias Born = Y1946
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0094: Employee, Person {
-    public typealias Rank = Emp0093.Rank.Next
-    public typealias Home = Emp0093.Home
-    public typealias Given = Emp0093.Given.Next
-    public typealias Family = Emp0093.Family
-    public typealias Born = Emp0093.Born
-    public typealias Site = Emp0093.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Niklaus
+    public typealias Family = Goldwasser
+    public typealias Born = Y1946
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0095: Employee, Person {
-    public typealias Rank = Emp0094.Rank.Next
-    public typealias Home = Emp0094.Home
-    public typealias Given = Emp0094.Given.Next
-    public typealias Family = Emp0094.Family
-    public typealias Born = Emp0094.Born
-    public typealias Site = Emp0094.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = Karen
+    public typealias Family = Goldwasser
+    public typealias Born = Y1946
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0096: Employee, Person {
-    public typealias Rank = Emp0095.Rank.Next
-    public typealias Home = Emp0095.Home.Next
-    public typealias Given = Emp0095.Given.Next
-    public typealias Family = Emp0095.Family.Next
-    public typealias Born = Emp0095.Born.Next
-    public typealias Site = Emp0095.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = People
+    public typealias Given = Edsger
+    public typealias Family = Ritchie
+    public typealias Born = Y1949
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0097: Employee, Person {
-    public typealias Rank = Emp0096.Rank.Next
-    public typealias Home = Emp0096.Home
-    public typealias Given = Emp0096.Given.Next
-    public typealias Family = Emp0096.Family
-    public typealias Born = Emp0096.Born
-    public typealias Site = Emp0096.Site
+    public typealias Rank = Lead
+    public typealias Home = People
+    public typealias Given = Barbara
+    public typealias Family = Ritchie
+    public typealias Born = Y1949
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0098: Employee, Person {
-    public typealias Rank = Emp0097.Rank.Next
-    public typealias Home = Emp0097.Home.Next
-    public typealias Given = Emp0097.Given.Next
-    public typealias Family = Emp0097.Family
-    public typealias Born = Emp0097.Born
-    public typealias Site = Emp0097.Site
+    public typealias Rank = Manager
+    public typealias Home = Finance
+    public typealias Given = John
+    public typealias Family = Ritchie
+    public typealias Born = Y1949
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0099: Employee, Person {
-    public typealias Rank = Emp0098.Rank.Next
-    public typealias Home = Emp0098.Home
-    public typealias Given = Emp0098.Given.Next
-    public typealias Family = Emp0098.Family
-    public typealias Born = Emp0098.Born
-    public typealias Site = Emp0098.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Finance
+    public typealias Given = Margaret
+    public typealias Family = Ritchie
+    public typealias Born = Y1949
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0100: Employee, Person {
-    public typealias Rank = Emp0099.Rank.Next
-    public typealias Home = Emp0099.Home
-    public typealias Given = Emp0099.Given.Next
-    public typealias Family = Emp0099.Family
-    public typealias Born = Emp0099.Born
-    public typealias Site = Emp0099.Site
+    public typealias Rank = Lead
+    public typealias Home = Finance
+    public typealias Given = Donald
+    public typealias Family = Ritchie
+    public typealias Born = Y1949
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0101: Employee, Person {
-    public typealias Rank = Emp0100.Rank.Next
-    public typealias Home = Emp0100.Home.Next
-    public typealias Given = Emp0100.Given.Next
-    public typealias Family = Emp0100.Family
-    public typealias Born = Emp0100.Born
-    public typealias Site = Emp0100.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Frances
+    public typealias Family = Ritchie
+    public typealias Born = Y1949
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0102: Employee, Person {
-    public typealias Rank = Emp0101.Rank.Next
-    public typealias Home = Emp0101.Home
-    public typealias Given = Emp0101.Given.Next
-    public typealias Family = Emp0101.Family
-    public typealias Born = Emp0101.Born
-    public typealias Site = Emp0101.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Ken
+    public typealias Family = Ritchie
+    public typealias Born = Y1949
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0103: Employee, Person {
-    public typealias Rank = Emp0102.Rank.Next
-    public typealias Home = Emp0102.Home
-    public typealias Given = Emp0102.Given.Next
-    public typealias Family = Emp0102.Family
-    public typealias Born = Emp0102.Born
-    public typealias Site = Emp0102.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Katherine
+    public typealias Family = Ritchie
+    public typealias Born = Y1949
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0104: Employee, Person {
-    public typealias Rank = Emp0103.Rank.Next
-    public typealias Home = Emp0103.Home
-    public typealias Given = Emp0103.Given.Next
-    public typealias Family = Emp0103.Family
-    public typealias Born = Emp0103.Born
-    public typealias Site = Emp0103.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Dennis
+    public typealias Family = Ritchie
+    public typealias Born = Y1949
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0105: Employee, Person {
-    public typealias Rank = Emp0104.Rank.Next
-    public typealias Home = Emp0104.Home
-    public typealias Given = Emp0104.Given.Next
-    public typealias Family = Emp0104.Family
-    public typealias Born = Emp0104.Born
-    public typealias Site = Emp0104.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Radia
+    public typealias Family = Ritchie
+    public typealias Born = Y1949
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0106: Employee, Person {
-    public typealias Rank = Emp0105.Rank.Next
-    public typealias Home = Emp0105.Home.Next
-    public typealias Given = Emp0105.Given.Next
-    public typealias Family = Emp0105.Family
-    public typealias Born = Emp0105.Born
-    public typealias Site = Emp0105.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Niklaus
+    public typealias Family = Ritchie
+    public typealias Born = Y1949
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0107: Employee, Person {
-    public typealias Rank = Emp0106.Rank.Next
-    public typealias Home = Emp0106.Home
-    public typealias Given = Emp0106.Given.Next
-    public typealias Family = Emp0106.Family
-    public typealias Born = Emp0106.Born
-    public typealias Site = Emp0106.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = Karen
+    public typealias Family = Ritchie
+    public typealias Born = Y1949
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0108: Employee, Person {
-    public typealias Rank = Emp0107.Rank.Next
-    public typealias Home = Emp0107.Home
-    public typealias Given = Emp0107.Given.Next
-    public typealias Family = Emp0107.Family.Next
-    public typealias Born = Emp0107.Born.Next
-    public typealias Site = Emp0107.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Edsger
+    public typealias Family = Wirth
+    public typealias Born = Y1952
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0109: Employee, Person {
-    public typealias Rank = Emp0108.Rank.Next
-    public typealias Home = Emp0108.Home
-    public typealias Given = Emp0108.Given.Next
-    public typealias Family = Emp0108.Family
-    public typealias Born = Emp0108.Born
-    public typealias Site = Emp0108.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Barbara
+    public typealias Family = Wirth
+    public typealias Born = Y1952
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0110: Employee, Person {
-    public typealias Rank = Emp0109.Rank.Next
-    public typealias Home = Emp0109.Home.Next
-    public typealias Given = Emp0109.Given.Next
-    public typealias Family = Emp0109.Family
-    public typealias Born = Emp0109.Born
-    public typealias Site = Emp0109.Site
+    public typealias Rank = Manager
+    public typealias Home = People
+    public typealias Given = John
+    public typealias Family = Wirth
+    public typealias Born = Y1952
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0111: Employee, Person {
-    public typealias Rank = Emp0110.Rank.Next
-    public typealias Home = Emp0110.Home
-    public typealias Given = Emp0110.Given.Next
-    public typealias Family = Emp0110.Family
-    public typealias Born = Emp0110.Born
-    public typealias Site = Emp0110.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = People
+    public typealias Given = Margaret
+    public typealias Family = Wirth
+    public typealias Born = Y1952
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0112: Employee, Person {
-    public typealias Rank = Emp0111.Rank.Next
-    public typealias Home = Emp0111.Home.Next
-    public typealias Given = Emp0111.Given.Next
-    public typealias Family = Emp0111.Family
-    public typealias Born = Emp0111.Born
-    public typealias Site = Emp0111.Site
+    public typealias Rank = Lead
+    public typealias Home = Finance
+    public typealias Given = Donald
+    public typealias Family = Wirth
+    public typealias Born = Y1952
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0113: Employee, Person {
-    public typealias Rank = Emp0112.Rank.Next
-    public typealias Home = Emp0112.Home
-    public typealias Given = Emp0112.Given.Next
-    public typealias Family = Emp0112.Family
-    public typealias Born = Emp0112.Born
-    public typealias Site = Emp0112.Site
+    public typealias Rank = Manager
+    public typealias Home = Finance
+    public typealias Given = Frances
+    public typealias Family = Wirth
+    public typealias Born = Y1952
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0114: Employee, Person {
-    public typealias Rank = Emp0113.Rank.Next
-    public typealias Home = Emp0113.Home
-    public typealias Given = Emp0113.Given.Next
-    public typealias Family = Emp0113.Family
-    public typealias Born = Emp0113.Born
-    public typealias Site = Emp0113.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Finance
+    public typealias Given = Ken
+    public typealias Family = Wirth
+    public typealias Born = Y1952
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0115: Employee, Person {
-    public typealias Rank = Emp0114.Rank.Next
-    public typealias Home = Emp0114.Home.Next
-    public typealias Given = Emp0114.Given.Next
-    public typealias Family = Emp0114.Family
-    public typealias Born = Emp0114.Born
-    public typealias Site = Emp0114.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Katherine
+    public typealias Family = Wirth
+    public typealias Born = Y1952
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0116: Employee, Person {
-    public typealias Rank = Emp0115.Rank.Next
-    public typealias Home = Emp0115.Home
-    public typealias Given = Emp0115.Given.Next
-    public typealias Family = Emp0115.Family
-    public typealias Born = Emp0115.Born
-    public typealias Site = Emp0115.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Dennis
+    public typealias Family = Wirth
+    public typealias Born = Y1952
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0117: Employee, Person {
-    public typealias Rank = Emp0116.Rank.Next
-    public typealias Home = Emp0116.Home
-    public typealias Given = Emp0116.Given.Next
-    public typealias Family = Emp0116.Family
-    public typealias Born = Emp0116.Born
-    public typealias Site = Emp0116.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Radia
+    public typealias Family = Wirth
+    public typealias Born = Y1952
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0118: Employee, Person {
-    public typealias Rank = Emp0117.Rank.Next
-    public typealias Home = Emp0117.Home
-    public typealias Given = Emp0117.Given.Next
-    public typealias Family = Emp0117.Family
-    public typealias Born = Emp0117.Born
-    public typealias Site = Emp0117.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Niklaus
+    public typealias Family = Wirth
+    public typealias Born = Y1952
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0119: Employee, Person {
-    public typealias Rank = Emp0118.Rank.Next
-    public typealias Home = Emp0118.Home
-    public typealias Given = Emp0118.Given.Next
-    public typealias Family = Emp0118.Family
-    public typealias Born = Emp0118.Born
-    public typealias Site = Emp0118.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Karen
+    public typealias Family = Wirth
+    public typealias Born = Y1952
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0120: Employee, Person {
-    public typealias Rank = Emp0119.Rank.Next
-    public typealias Home = Emp0119.Home.Next
-    public typealias Given = Emp0119.Given.Next
-    public typealias Family = Emp0119.Family.Next
-    public typealias Born = Emp0119.Born.Next
-    public typealias Site = Emp0119.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Edsger
+    public typealias Family = Perlman
+    public typealias Born = Y1955
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0121: Employee, Person {
-    public typealias Rank = Emp0120.Rank.Next
-    public typealias Home = Emp0120.Home
-    public typealias Given = Emp0120.Given.Next
-    public typealias Family = Emp0120.Family
-    public typealias Born = Emp0120.Born
-    public typealias Site = Emp0120.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Barbara
+    public typealias Family = Perlman
+    public typealias Born = Y1955
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0122: Employee, Person {
-    public typealias Rank = Emp0121.Rank.Next
-    public typealias Home = Emp0121.Home
-    public typealias Given = Emp0121.Given.Next
-    public typealias Family = Emp0121.Family
-    public typealias Born = Emp0121.Born
-    public typealias Site = Emp0121.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = John
+    public typealias Family = Perlman
+    public typealias Born = Y1955
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0123: Employee, Person {
-    public typealias Rank = Emp0122.Rank.Next
-    public typealias Home = Emp0122.Home
-    public typealias Given = Emp0122.Given.Next
-    public typealias Family = Emp0122.Family
-    public typealias Born = Emp0122.Born
-    public typealias Site = Emp0122.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Margaret
+    public typealias Family = Perlman
+    public typealias Born = Y1955
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0124: Employee, Person {
-    public typealias Rank = Emp0123.Rank.Next
-    public typealias Home = Emp0123.Home.Next
-    public typealias Given = Emp0123.Given.Next
-    public typealias Family = Emp0123.Family
-    public typealias Born = Emp0123.Born
-    public typealias Site = Emp0123.Site
+    public typealias Rank = Lead
+    public typealias Home = People
+    public typealias Given = Donald
+    public typealias Family = Perlman
+    public typealias Born = Y1955
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0125: Employee, Person {
-    public typealias Rank = Emp0124.Rank.Next
-    public typealias Home = Emp0124.Home
-    public typealias Given = Emp0124.Given.Next
-    public typealias Family = Emp0124.Family
-    public typealias Born = Emp0124.Born
-    public typealias Site = Emp0124.Site
+    public typealias Rank = Manager
+    public typealias Home = People
+    public typealias Given = Frances
+    public typealias Family = Perlman
+    public typealias Born = Y1955
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0126: Employee, Person {
-    public typealias Rank = Emp0125.Rank.Next
-    public typealias Home = Emp0125.Home.Next
-    public typealias Given = Emp0125.Given.Next
-    public typealias Family = Emp0125.Family
-    public typealias Born = Emp0125.Born
-    public typealias Site = Emp0125.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Finance
+    public typealias Given = Ken
+    public typealias Family = Perlman
+    public typealias Born = Y1955
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0127: Employee, Person {
-    public typealias Rank = Emp0126.Rank.Next
-    public typealias Home = Emp0126.Home
-    public typealias Given = Emp0126.Given.Next
-    public typealias Family = Emp0126.Family
-    public typealias Born = Emp0126.Born
-    public typealias Site = Emp0126.Site
+    public typealias Rank = Lead
+    public typealias Home = Finance
+    public typealias Given = Katherine
+    public typealias Family = Perlman
+    public typealias Born = Y1955
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0128: Employee, Person {
-    public typealias Rank = Emp0127.Rank.Next
-    public typealias Home = Emp0127.Home
-    public typealias Given = Emp0127.Given.Next
-    public typealias Family = Emp0127.Family
-    public typealias Born = Emp0127.Born
-    public typealias Site = Emp0127.Site
+    public typealias Rank = Manager
+    public typealias Home = Finance
+    public typealias Given = Dennis
+    public typealias Family = Perlman
+    public typealias Born = Y1955
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0129: Employee, Person {
-    public typealias Rank = Emp0128.Rank.Next
-    public typealias Home = Emp0128.Home.Next
-    public typealias Given = Emp0128.Given.Next
-    public typealias Family = Emp0128.Family
-    public typealias Born = Emp0128.Born
-    public typealias Site = Emp0128.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Radia
+    public typealias Family = Perlman
+    public typealias Born = Y1955
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0130: Employee, Person {
-    public typealias Rank = Emp0129.Rank.Next
-    public typealias Home = Emp0129.Home
-    public typealias Given = Emp0129.Given.Next
-    public typealias Family = Emp0129.Family
-    public typealias Born = Emp0129.Born
-    public typealias Site = Emp0129.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Niklaus
+    public typealias Family = Perlman
+    public typealias Born = Y1955
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0131: Employee, Person {
-    public typealias Rank = Emp0130.Rank.Next
-    public typealias Home = Emp0130.Home
-    public typealias Given = Emp0130.Given.Next
-    public typealias Family = Emp0130.Family
-    public typealias Born = Emp0130.Born
-    public typealias Site = Emp0130.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Karen
+    public typealias Family = Perlman
+    public typealias Born = Y1955
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0132: Employee, Person {
-    public typealias Rank = Emp0131.Rank.Next
-    public typealias Home = Emp0131.Home
-    public typealias Given = Emp0131.Given.Next
-    public typealias Family = Emp0131.Family.Next
-    public typealias Born = Emp0131.Born.Next
-    public typealias Site = Emp0131.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Edsger
+    public typealias Family = Lamport
+    public typealias Born = Y1958
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0133: Employee, Person {
-    public typealias Rank = Emp0132.Rank.Next
-    public typealias Home = Emp0132.Home
-    public typealias Given = Emp0132.Given.Next
-    public typealias Family = Emp0132.Family
-    public typealias Born = Emp0132.Born
-    public typealias Site = Emp0132.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Barbara
+    public typealias Family = Lamport
+    public typealias Born = Y1958
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0134: Employee, Person {
-    public typealias Rank = Emp0133.Rank.Next
-    public typealias Home = Emp0133.Home.Next
-    public typealias Given = Emp0133.Given.Next
-    public typealias Family = Emp0133.Family
-    public typealias Born = Emp0133.Born
-    public typealias Site = Emp0133.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = John
+    public typealias Family = Lamport
+    public typealias Born = Y1958
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0135: Employee, Person {
-    public typealias Rank = Emp0134.Rank.Next
-    public typealias Home = Emp0134.Home
-    public typealias Given = Emp0134.Given.Next
-    public typealias Family = Emp0134.Family
-    public typealias Born = Emp0134.Born
-    public typealias Site = Emp0134.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Margaret
+    public typealias Family = Lamport
+    public typealias Born = Y1958
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0136: Employee, Person {
-    public typealias Rank = Emp0135.Rank.Next
-    public typealias Home = Emp0135.Home
-    public typealias Given = Emp0135.Given.Next
-    public typealias Family = Emp0135.Family
-    public typealias Born = Emp0135.Born
-    public typealias Site = Emp0135.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Donald
+    public typealias Family = Lamport
+    public typealias Born = Y1958
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0137: Employee, Person {
-    public typealias Rank = Emp0136.Rank.Next
-    public typealias Home = Emp0136.Home
-    public typealias Given = Emp0136.Given.Next
-    public typealias Family = Emp0136.Family
-    public typealias Born = Emp0136.Born
-    public typealias Site = Emp0136.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = Frances
+    public typealias Family = Lamport
+    public typealias Born = Y1958
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0138: Employee, Person {
-    public typealias Rank = Emp0137.Rank.Next
-    public typealias Home = Emp0137.Home.Next
-    public typealias Given = Emp0137.Given.Next
-    public typealias Family = Emp0137.Family
-    public typealias Born = Emp0137.Born
-    public typealias Site = Emp0137.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = People
+    public typealias Given = Ken
+    public typealias Family = Lamport
+    public typealias Born = Y1958
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0139: Employee, Person {
-    public typealias Rank = Emp0138.Rank.Next
-    public typealias Home = Emp0138.Home
-    public typealias Given = Emp0138.Given.Next
-    public typealias Family = Emp0138.Family
-    public typealias Born = Emp0138.Born
-    public typealias Site = Emp0138.Site
+    public typealias Rank = Lead
+    public typealias Home = People
+    public typealias Given = Katherine
+    public typealias Family = Lamport
+    public typealias Born = Y1958
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0140: Employee, Person {
-    public typealias Rank = Emp0139.Rank.Next
-    public typealias Home = Emp0139.Home.Next
-    public typealias Given = Emp0139.Given.Next
-    public typealias Family = Emp0139.Family
-    public typealias Born = Emp0139.Born
-    public typealias Site = Emp0139.Site
+    public typealias Rank = Manager
+    public typealias Home = Finance
+    public typealias Given = Dennis
+    public typealias Family = Lamport
+    public typealias Born = Y1958
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0141: Employee, Person {
-    public typealias Rank = Emp0140.Rank.Next
-    public typealias Home = Emp0140.Home
-    public typealias Given = Emp0140.Given.Next
-    public typealias Family = Emp0140.Family
-    public typealias Born = Emp0140.Born
-    public typealias Site = Emp0140.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Finance
+    public typealias Given = Radia
+    public typealias Family = Lamport
+    public typealias Born = Y1958
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0142: Employee, Person {
-    public typealias Rank = Emp0141.Rank.Next
-    public typealias Home = Emp0141.Home
-    public typealias Given = Emp0141.Given.Next
-    public typealias Family = Emp0141.Family
-    public typealias Born = Emp0141.Born
-    public typealias Site = Emp0141.Site
+    public typealias Rank = Lead
+    public typealias Home = Finance
+    public typealias Given = Niklaus
+    public typealias Family = Lamport
+    public typealias Born = Y1958
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0143: Employee, Person {
-    public typealias Rank = Emp0142.Rank.Next
-    public typealias Home = Emp0142.Home.Next
-    public typealias Given = Emp0142.Given.Next
-    public typealias Family = Emp0142.Family
-    public typealias Born = Emp0142.Born
-    public typealias Site = Emp0142.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Karen
+    public typealias Family = Lamport
+    public typealias Born = Y1958
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0144: Employee, Person {
-    public typealias Rank = Emp0143.Rank.Next
-    public typealias Home = Emp0143.Home
-    public typealias Given = Emp0143.Given.Next
-    public typealias Family = Emp0143.Family.Next
-    public typealias Born = Emp0143.Born.Next
-    public typealias Site = Emp0143.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Edsger
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0145: Employee, Person {
-    public typealias Rank = Emp0144.Rank.Next
-    public typealias Home = Emp0144.Home
-    public typealias Given = Emp0144.Given.Next
-    public typealias Family = Emp0144.Family
-    public typealias Born = Emp0144.Born
-    public typealias Site = Emp0144.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Barbara
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0146: Employee, Person {
-    public typealias Rank = Emp0145.Rank.Next
-    public typealias Home = Emp0145.Home
-    public typealias Given = Emp0145.Given.Next
-    public typealias Family = Emp0145.Family
-    public typealias Born = Emp0145.Born
-    public typealias Site = Emp0145.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = John
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0147: Employee, Person {
-    public typealias Rank = Emp0146.Rank.Next
-    public typealias Home = Emp0146.Home
-    public typealias Given = Emp0146.Given.Next
-    public typealias Family = Emp0146.Family
-    public typealias Born = Emp0146.Born
-    public typealias Site = Emp0146.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Margaret
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0148: Employee, Person {
-    public typealias Rank = Emp0147.Rank.Next
-    public typealias Home = Emp0147.Home.Next
-    public typealias Given = Emp0147.Given.Next
-    public typealias Family = Emp0147.Family
-    public typealias Born = Emp0147.Born
-    public typealias Site = Emp0147.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Donald
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0149: Employee, Person {
-    public typealias Rank = Emp0148.Rank.Next
-    public typealias Home = Emp0148.Home
-    public typealias Given = Emp0148.Given.Next
-    public typealias Family = Emp0148.Family
-    public typealias Born = Emp0148.Born
-    public typealias Site = Emp0148.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = Frances
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0150: Employee, Person {
-    public typealias Rank = Emp0149.Rank.Next
-    public typealias Home = Emp0149.Home
-    public typealias Given = Emp0149.Given.Next
-    public typealias Family = Emp0149.Family
-    public typealias Born = Emp0149.Born
-    public typealias Site = Emp0149.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Ken
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0151: Employee, Person {
-    public typealias Rank = Emp0150.Rank.Next
-    public typealias Home = Emp0150.Home
-    public typealias Given = Emp0150.Given.Next
-    public typealias Family = Emp0150.Family
-    public typealias Born = Emp0150.Born
-    public typealias Site = Emp0150.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Katherine
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0152: Employee, Person {
-    public typealias Rank = Emp0151.Rank.Next
-    public typealias Home = Emp0151.Home.Next
-    public typealias Given = Emp0151.Given.Next
-    public typealias Family = Emp0151.Family
-    public typealias Born = Emp0151.Born
-    public typealias Site = Emp0151.Site
+    public typealias Rank = Manager
+    public typealias Home = People
+    public typealias Given = Dennis
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0153: Employee, Person {
-    public typealias Rank = Emp0152.Rank.Next
-    public typealias Home = Emp0152.Home
-    public typealias Given = Emp0152.Given.Next
-    public typealias Family = Emp0152.Family
-    public typealias Born = Emp0152.Born
-    public typealias Site = Emp0152.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = People
+    public typealias Given = Radia
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0154: Employee, Person {
-    public typealias Rank = Emp0153.Rank.Next
-    public typealias Home = Emp0153.Home.Next
-    public typealias Given = Emp0153.Given.Next
-    public typealias Family = Emp0153.Family
-    public typealias Born = Emp0153.Born
-    public typealias Site = Emp0153.Site
+    public typealias Rank = Lead
+    public typealias Home = Finance
+    public typealias Given = Niklaus
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0155: Employee, Person {
-    public typealias Rank = Emp0154.Rank.Next
-    public typealias Home = Emp0154.Home
-    public typealias Given = Emp0154.Given.Next
-    public typealias Family = Emp0154.Family
-    public typealias Born = Emp0154.Born
-    public typealias Site = Emp0154.Site
+    public typealias Rank = Manager
+    public typealias Home = Finance
+    public typealias Given = Karen
+    public typealias Family = Dijkstra
+    public typealias Born = Y1925
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0156: Employee, Person {
-    public typealias Rank = Emp0155.Rank.Next
-    public typealias Home = Emp0155.Home
-    public typealias Given = Emp0155.Given.Next
-    public typealias Family = Emp0155.Family.Next
-    public typealias Born = Emp0155.Born.Next
-    public typealias Site = Emp0155.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Finance
+    public typealias Given = Edsger
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0157: Employee, Person {
-    public typealias Rank = Emp0156.Rank.Next
-    public typealias Home = Emp0156.Home.Next
-    public typealias Given = Emp0156.Given.Next
-    public typealias Family = Emp0156.Family
-    public typealias Born = Emp0156.Born
-    public typealias Site = Emp0156.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Barbara
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0158: Employee, Person {
-    public typealias Rank = Emp0157.Rank.Next
-    public typealias Home = Emp0157.Home
-    public typealias Given = Emp0157.Given.Next
-    public typealias Family = Emp0157.Family
-    public typealias Born = Emp0157.Born
-    public typealias Site = Emp0157.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = John
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0159: Employee, Person {
-    public typealias Rank = Emp0158.Rank.Next
-    public typealias Home = Emp0158.Home
-    public typealias Given = Emp0158.Given.Next
-    public typealias Family = Emp0158.Family
-    public typealias Born = Emp0158.Born
-    public typealias Site = Emp0158.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Margaret
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0160: Employee, Person {
-    public typealias Rank = Emp0159.Rank.Next
-    public typealias Home = Emp0159.Home
-    public typealias Given = Emp0159.Given.Next
-    public typealias Family = Emp0159.Family
-    public typealias Born = Emp0159.Born
-    public typealias Site = Emp0159.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Donald
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0161: Employee, Person {
-    public typealias Rank = Emp0160.Rank.Next
-    public typealias Home = Emp0160.Home
-    public typealias Given = Emp0160.Given.Next
-    public typealias Family = Emp0160.Family
-    public typealias Born = Emp0160.Born
-    public typealias Site = Emp0160.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Frances
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0162: Employee, Person {
-    public typealias Rank = Emp0161.Rank.Next
-    public typealias Home = Emp0161.Home.Next
-    public typealias Given = Emp0161.Given.Next
-    public typealias Family = Emp0161.Family
-    public typealias Born = Emp0161.Born
-    public typealias Site = Emp0161.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Ken
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0163: Employee, Person {
-    public typealias Rank = Emp0162.Rank.Next
-    public typealias Home = Emp0162.Home
-    public typealias Given = Emp0162.Given.Next
-    public typealias Family = Emp0162.Family
-    public typealias Born = Emp0162.Born
-    public typealias Site = Emp0162.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Katherine
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0164: Employee, Person {
-    public typealias Rank = Emp0163.Rank.Next
-    public typealias Home = Emp0163.Home
-    public typealias Given = Emp0163.Given.Next
-    public typealias Family = Emp0163.Family
-    public typealias Born = Emp0163.Born
-    public typealias Site = Emp0163.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = Dennis
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0165: Employee, Person {
-    public typealias Rank = Emp0164.Rank.Next
-    public typealias Home = Emp0164.Home
-    public typealias Given = Emp0164.Given.Next
-    public typealias Family = Emp0164.Family
-    public typealias Born = Emp0164.Born
-    public typealias Site = Emp0164.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Radia
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0166: Employee, Person {
-    public typealias Rank = Emp0165.Rank.Next
-    public typealias Home = Emp0165.Home.Next
-    public typealias Given = Emp0165.Given.Next
-    public typealias Family = Emp0165.Family
-    public typealias Born = Emp0165.Born
-    public typealias Site = Emp0165.Site
+    public typealias Rank = Lead
+    public typealias Home = People
+    public typealias Given = Niklaus
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0167: Employee, Person {
-    public typealias Rank = Emp0166.Rank.Next
-    public typealias Home = Emp0166.Home
-    public typealias Given = Emp0166.Given.Next
-    public typealias Family = Emp0166.Family
-    public typealias Born = Emp0166.Born
-    public typealias Site = Emp0166.Site
+    public typealias Rank = Manager
+    public typealias Home = People
+    public typealias Given = Karen
+    public typealias Family = Liskov
+    public typealias Born = Y1928
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0168: Employee, Person {
-    public typealias Rank = Emp0167.Rank.Next
-    public typealias Home = Emp0167.Home.Next
-    public typealias Given = Emp0167.Given.Next
-    public typealias Family = Emp0167.Family.Next
-    public typealias Born = Emp0167.Born.Next
-    public typealias Site = Emp0167.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Finance
+    public typealias Given = Edsger
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0169: Employee, Person {
-    public typealias Rank = Emp0168.Rank.Next
-    public typealias Home = Emp0168.Home
-    public typealias Given = Emp0168.Given.Next
-    public typealias Family = Emp0168.Family
-    public typealias Born = Emp0168.Born
-    public typealias Site = Emp0168.Site
+    public typealias Rank = Lead
+    public typealias Home = Finance
+    public typealias Given = Barbara
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0170: Employee, Person {
-    public typealias Rank = Emp0169.Rank.Next
-    public typealias Home = Emp0169.Home
-    public typealias Given = Emp0169.Given.Next
-    public typealias Family = Emp0169.Family
-    public typealias Born = Emp0169.Born
-    public typealias Site = Emp0169.Site
+    public typealias Rank = Manager
+    public typealias Home = Finance
+    public typealias Given = John
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0171: Employee, Person {
-    public typealias Rank = Emp0170.Rank.Next
-    public typealias Home = Emp0170.Home.Next
-    public typealias Given = Emp0170.Given.Next
-    public typealias Family = Emp0170.Family
-    public typealias Born = Emp0170.Born
-    public typealias Site = Emp0170.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Margaret
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0172: Employee, Person {
-    public typealias Rank = Emp0171.Rank.Next
-    public typealias Home = Emp0171.Home
-    public typealias Given = Emp0171.Given.Next
-    public typealias Family = Emp0171.Family
-    public typealias Born = Emp0171.Born
-    public typealias Site = Emp0171.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Donald
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0173: Employee, Person {
-    public typealias Rank = Emp0172.Rank.Next
-    public typealias Home = Emp0172.Home
-    public typealias Given = Emp0172.Given.Next
-    public typealias Family = Emp0172.Family
-    public typealias Born = Emp0172.Born
-    public typealias Site = Emp0172.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Frances
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0174: Employee, Person {
-    public typealias Rank = Emp0173.Rank.Next
-    public typealias Home = Emp0173.Home
-    public typealias Given = Emp0173.Given.Next
-    public typealias Family = Emp0173.Family
-    public typealias Born = Emp0173.Born
-    public typealias Site = Emp0173.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Ken
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0175: Employee, Person {
-    public typealias Rank = Emp0174.Rank.Next
-    public typealias Home = Emp0174.Home
-    public typealias Given = Emp0174.Given.Next
-    public typealias Family = Emp0174.Family
-    public typealias Born = Emp0174.Born
-    public typealias Site = Emp0174.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Katherine
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0176: Employee, Person {
-    public typealias Rank = Emp0175.Rank.Next
-    public typealias Home = Emp0175.Home.Next
-    public typealias Given = Emp0175.Given.Next
-    public typealias Family = Emp0175.Family
-    public typealias Born = Emp0175.Born
-    public typealias Site = Emp0175.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = Dennis
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0177: Employee, Person {
-    public typealias Rank = Emp0176.Rank.Next
-    public typealias Home = Emp0176.Home
-    public typealias Given = Emp0176.Given.Next
-    public typealias Family = Emp0176.Family
-    public typealias Born = Emp0176.Born
-    public typealias Site = Emp0176.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Radia
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0178: Employee, Person {
-    public typealias Rank = Emp0177.Rank.Next
-    public typealias Home = Emp0177.Home
-    public typealias Given = Emp0177.Given.Next
-    public typealias Family = Emp0177.Family
-    public typealias Born = Emp0177.Born
-    public typealias Site = Emp0177.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Niklaus
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0179: Employee, Person {
-    public typealias Rank = Emp0178.Rank.Next
-    public typealias Home = Emp0178.Home
-    public typealias Given = Emp0178.Given.Next
-    public typealias Family = Emp0178.Family
-    public typealias Born = Emp0178.Born
-    public typealias Site = Emp0178.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = Karen
+    public typealias Family = McCarthy
+    public typealias Born = Y1931
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0180: Employee, Person {
-    public typealias Rank = Emp0179.Rank.Next
-    public typealias Home = Emp0179.Home.Next
-    public typealias Given = Emp0179.Given.Next
-    public typealias Family = Emp0179.Family.Next
-    public typealias Born = Emp0179.Born.Next
-    public typealias Site = Emp0179.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = People
+    public typealias Given = Edsger
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0181: Employee, Person {
-    public typealias Rank = Emp0180.Rank.Next
-    public typealias Home = Emp0180.Home
-    public typealias Given = Emp0180.Given.Next
-    public typealias Family = Emp0180.Family
-    public typealias Born = Emp0180.Born
-    public typealias Site = Emp0180.Site
+    public typealias Rank = Lead
+    public typealias Home = People
+    public typealias Given = Barbara
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0182: Employee, Person {
-    public typealias Rank = Emp0181.Rank.Next
-    public typealias Home = Emp0181.Home.Next
-    public typealias Given = Emp0181.Given.Next
-    public typealias Family = Emp0181.Family
-    public typealias Born = Emp0181.Born
-    public typealias Site = Emp0181.Site
+    public typealias Rank = Manager
+    public typealias Home = Finance
+    public typealias Given = John
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0183: Employee, Person {
-    public typealias Rank = Emp0182.Rank.Next
-    public typealias Home = Emp0182.Home
-    public typealias Given = Emp0182.Given.Next
-    public typealias Family = Emp0182.Family
-    public typealias Born = Emp0182.Born
-    public typealias Site = Emp0182.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Finance
+    public typealias Given = Margaret
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0184: Employee, Person {
-    public typealias Rank = Emp0183.Rank.Next
-    public typealias Home = Emp0183.Home
-    public typealias Given = Emp0183.Given.Next
-    public typealias Family = Emp0183.Family
-    public typealias Born = Emp0183.Born
-    public typealias Site = Emp0183.Site
+    public typealias Rank = Lead
+    public typealias Home = Finance
+    public typealias Given = Donald
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0185: Employee, Person {
-    public typealias Rank = Emp0184.Rank.Next
-    public typealias Home = Emp0184.Home.Next
-    public typealias Given = Emp0184.Given.Next
-    public typealias Family = Emp0184.Family
-    public typealias Born = Emp0184.Born
-    public typealias Site = Emp0184.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Frances
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0186: Employee, Person {
-    public typealias Rank = Emp0185.Rank.Next
-    public typealias Home = Emp0185.Home
-    public typealias Given = Emp0185.Given.Next
-    public typealias Family = Emp0185.Family
-    public typealias Born = Emp0185.Born
-    public typealias Site = Emp0185.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Ken
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0187: Employee, Person {
-    public typealias Rank = Emp0186.Rank.Next
-    public typealias Home = Emp0186.Home
-    public typealias Given = Emp0186.Given.Next
-    public typealias Family = Emp0186.Family
-    public typealias Born = Emp0186.Born
-    public typealias Site = Emp0186.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Katherine
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0188: Employee, Person {
-    public typealias Rank = Emp0187.Rank.Next
-    public typealias Home = Emp0187.Home
-    public typealias Given = Emp0187.Given.Next
-    public typealias Family = Emp0187.Family
-    public typealias Born = Emp0187.Born
-    public typealias Site = Emp0187.Site
+    public typealias Rank = Manager
+    public typealias Home = Engineering
+    public typealias Given = Dennis
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0189: Employee, Person {
-    public typealias Rank = Emp0188.Rank.Next
-    public typealias Home = Emp0188.Home
-    public typealias Given = Emp0188.Given.Next
-    public typealias Family = Emp0188.Family
-    public typealias Born = Emp0188.Born
-    public typealias Site = Emp0188.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Engineering
+    public typealias Given = Radia
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0190: Employee, Person {
-    public typealias Rank = Emp0189.Rank.Next
-    public typealias Home = Emp0189.Home.Next
-    public typealias Given = Emp0189.Given.Next
-    public typealias Family = Emp0189.Family
-    public typealias Born = Emp0189.Born
-    public typealias Site = Emp0189.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Niklaus
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0191: Employee, Person {
-    public typealias Rank = Emp0190.Rank.Next
-    public typealias Home = Emp0190.Home
-    public typealias Given = Emp0190.Given.Next
-    public typealias Family = Emp0190.Family
-    public typealias Born = Emp0190.Born
-    public typealias Site = Emp0190.Site
+    public typealias Rank = Manager
+    public typealias Home = Sales
+    public typealias Given = Karen
+    public typealias Family = Hamilton
+    public typealias Born = Y1934
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0192: Employee, Person {
-    public typealias Rank = Emp0191.Rank.Next
-    public typealias Home = Emp0191.Home
-    public typealias Given = Emp0191.Given.Next
-    public typealias Family = Emp0191.Family.Next
-    public typealias Born = Emp0191.Born.Next
-    public typealias Site = Emp0191.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Sales
+    public typealias Given = Edsger
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0193: Employee, Person {
-    public typealias Rank = Emp0192.Rank.Next
-    public typealias Home = Emp0192.Home
-    public typealias Given = Emp0192.Given.Next
-    public typealias Family = Emp0192.Family
-    public typealias Born = Emp0192.Born
-    public typealias Site = Emp0192.Site
+    public typealias Rank = Lead
+    public typealias Home = Sales
+    public typealias Given = Barbara
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0194: Employee, Person {
-    public typealias Rank = Emp0193.Rank.Next
-    public typealias Home = Emp0193.Home.Next
-    public typealias Given = Emp0193.Given.Next
-    public typealias Family = Emp0193.Family
-    public typealias Born = Emp0193.Born
-    public typealias Site = Emp0193.Site
+    public typealias Rank = Manager
+    public typealias Home = People
+    public typealias Given = John
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = Hybrid
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0195: Employee, Person {
-    public typealias Rank = Emp0194.Rank.Next
-    public typealias Home = Emp0194.Home
-    public typealias Given = Emp0194.Given.Next
-    public typealias Family = Emp0194.Family
-    public typealias Born = Emp0194.Born
-    public typealias Site = Emp0194.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = People
+    public typealias Given = Margaret
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0196: Employee, Person {
-    public typealias Rank = Emp0195.Rank.Next
-    public typealias Home = Emp0195.Home.Next
-    public typealias Given = Emp0195.Given.Next
-    public typealias Family = Emp0195.Family
-    public typealias Born = Emp0195.Born
-    public typealias Site = Emp0195.Site
+    public typealias Rank = Lead
+    public typealias Home = Finance
+    public typealias Given = Donald
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0197: Employee, Person {
-    public typealias Rank = Emp0196.Rank.Next
-    public typealias Home = Emp0196.Home
-    public typealias Given = Emp0196.Given.Next
-    public typealias Family = Emp0196.Family
-    public typealias Born = Emp0196.Born
-    public typealias Site = Emp0196.Site
+    public typealias Rank = Manager
+    public typealias Home = Finance
+    public typealias Given = Frances
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = Remote
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0198: Employee, Person {
-    public typealias Rank = Emp0197.Rank.Next
-    public typealias Home = Emp0197.Home
-    public typealias Given = Emp0197.Given.Next
-    public typealias Family = Emp0197.Family
-    public typealias Born = Emp0197.Born
-    public typealias Site = Emp0197.Site.Next
+    public typealias Rank = IndividualContributor
+    public typealias Home = Finance
+    public typealias Given = Ken
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 
 public enum Emp0199: Employee, Person {
-    public typealias Rank = Emp0198.Rank.Next
-    public typealias Home = Emp0198.Home.Next
-    public typealias Given = Emp0198.Given.Next
-    public typealias Family = Emp0198.Family
-    public typealias Born = Emp0198.Born
-    public typealias Site = Emp0198.Site
+    public typealias Rank = Lead
+    public typealias Home = Engineering
+    public typealias Given = Katherine
+    public typealias Family = Knuth
+    public typealias Born = Y1937
+    public typealias Site = OnSite
     public typealias Sex = Given.Sex
 }
 

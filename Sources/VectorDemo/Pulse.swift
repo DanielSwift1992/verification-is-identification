@@ -103,6 +103,22 @@ typealias PulseKpiHeroCard<
         SpanHosted<PulseKpiInterior<T, V, OnAccent, OnAccent>>
     >
 >
+/// The one breathing fact on this canvas: the standing invariants are re-proved by every
+/// build, and their card carries the pulse that says so — a four-second opacity swing,
+/// SVG's own clock, no script.
+enum InvariantsHeartbeat: SpanBreathingDot {
+    public typealias CY = PulseHeartbeatCY
+    public typealias R = PulseHeartbeatR
+    public typealias Fill = ActionRole
+}
+enum PulseHeartbeatCY: Close {}
+extension PulseHeartbeatCY {
+    public static var typeName: String { "14" }
+}
+enum PulseHeartbeatR: Close {}
+extension PulseHeartbeatR {
+    public static var typeName: String { "3" }
+}
 enum PulseKpiRow: HFlow {
     public typealias Given = WideSurface
     @StructureBuilder
@@ -114,7 +130,7 @@ enum PulseKpiRow: HFlow {
         Air<EdgeMargin>.self
         Fixed<CardWide, SpanLink<SitePath<Nav.Reports>, PulseKpiCard<CertifiedTitleText, Tally<CertifiedRules>>>>.self
         Air<EdgeMargin>.self
-        Fixed<CardWide, SpanLink<SitePath<Nav.Reports>, PulseKpiCard<InvariantsTitleText, Tally<StandingReport>>>>.self
+        Fixed<CardWide, SpanLink<SitePath<Nav.Reports>, Layered<PulseKpiCard<InvariantsTitleText, Tally<StandingReport>>, InvariantsHeartbeat>>>.self
         Air<EdgeMargin>.self
         RestAir.self
     }

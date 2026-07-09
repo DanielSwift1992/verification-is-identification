@@ -193,6 +193,31 @@
 
   scan(document);
 
+  // Speculative background navigation: every in-site link on the current page gets its
+  // data JSON prefetched, so following any door is a cache hit. The state graph is known
+  // and finite, so the "profile" a hot-path optimizer would gather at run time is read
+  // off the page itself — both halves of a fork load while the reader decides.
+  var prefetched = {};
+  function prefetchDoors(root) {
+    var docsBase = window.location.pathname.split("/documentation/")[0] || "";
+    var anchors = root.querySelectorAll ? root.querySelectorAll("a[href]") : [];
+    var budget = 12;
+    for (var i = 0; i < anchors.length && budget > 0; i++) {
+      var href = anchors[i].getAttribute("href") || "";
+      if (href.indexOf(docsBase + "/documentation/") !== 0) { continue; }
+      var page = href.split("#")[0].replace(/\/$/, "");
+      var data = page.replace(docsBase + "/documentation/", docsBase + "/data/documentation/") + ".json";
+      if (prefetched[data]) { continue; }
+      prefetched[data] = true;
+      budget -= 1;
+      var link = document.createElement("link");
+      link.rel = "prefetch";
+      link.href = data;
+      document.head.appendChild(link);
+    }
+  }
+  prefetchDoors(document);
+
   new MutationObserver(function (mutations) {
     for (var i = 0; i < mutations.length; i++) {
       var added = mutations[i].addedNodes;
@@ -202,7 +227,7 @@
         if (node.matches && node.matches("img[src]") && isSameOriginSvg(node.getAttribute("src"))) {
           inline(node);
         }
-        if (node.querySelectorAll) { scan(node); }
+        if (node.querySelectorAll) { scan(node); prefetchDoors(node); }
       }
     }
   }).observe(document.body, { childList: true, subtree: true });

@@ -60,6 +60,7 @@
 <text x="0" y="92" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="40">4</text>
 </g>
 </g>
+<circle cx="110" cy="14" r="3" fill="var(--vi-action, #336FEE)"><animate attributeName="opacity" values="1;0.55;1" dur="4s" repeatCount="indefinite"/></circle>
 </a>
 </g>
 </g>

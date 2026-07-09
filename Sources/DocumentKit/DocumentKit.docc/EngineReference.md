@@ -61,6 +61,7 @@ The divided axis and its members, the span leaves, the frames, and the interacti
 - ``SpanDataSegment``
 - ``SpanDataSegmentOutlined``
 - ``SpanDot``
+- ``SpanBreathingDot``
 - ``SpanHeroFace``
 - ``SpanHosted``
 - ``SpanHoverReveal``

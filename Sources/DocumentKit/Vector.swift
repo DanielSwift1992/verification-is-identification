@@ -1207,6 +1207,32 @@ extension SpanDot {
     }
 }
 
+/// This dot breathes: the same centered disc a ``SpanDot`` places, carrying SVG's own
+/// declarative clock — opacity swings once every four seconds, forever (SMIL, the
+/// medium's stated timeline, no script). Time lives in the reader's browser, never in
+/// the artifact: the animation is a child element of the circle, and the drawing stays
+/// a pure composition. The voice is for one fact per canvas: a claim that is re-proved
+/// by every build may breathe, wallpaper may not.
+public protocol SpanBreathingDot: Spanning {
+    associatedtype CY: Structure
+    associatedtype R: Structure
+    associatedtype Fill: Structure
+}
+extension SpanBreathingDot {
+    public static func rendered<
+        X: Frac & Structure,
+        W: Frac & Structure
+    >(
+        atX x: X.Type,
+        width w: W.Type
+    ) -> String {
+        "<circle cx=\"\(SpanPx<MidOf<X, W>>.typeName)\" cy=\"\(CY.typeName)\" "
+            + "r=\"\(R.typeName)\" fill=\"\(Fill.typeName)\">"
+            + "<animate attributeName=\"opacity\" values=\"1;0.55;1\" dur=\"4s\" "
+            + "repeatCount=\"indefinite\"/></circle>\n"
+    }
+}
+
 /// This wraps a live link around spanning content: the anchor spans whatever its content spans.
 public enum SpanLink<
     Target: Structure,

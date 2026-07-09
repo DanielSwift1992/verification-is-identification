@@ -706,6 +706,17 @@ public typealias ArchCaptionWide = Plus<U256, Plus<U16, Plus<U8, Plus<U2, U1>>>>
 // nose it stops short by, and the footer line. The drops are sums the canvas composes. ──
 // The build-flow band: four zones across the inner width, three gutters between, every
 // width a quarter of what remains — and the zone's own storeys, summed like the boxes'.
+// ── the saturation curve's rungs (curve.svg): group and bar slots, legend slots,
+// and the summed frame — the chart's one surface, spoken here so the demo names
+// magnitudes and never spells units. ──
+public typealias CurveGroupWide = Plus<U64, Plus<U64, U32>>
+public typealias CurveBarWide = Plus<U32, U8>
+public typealias CurveWallWide = Plus<U64, Plus<U64, Plus<U8, U4>>>
+public typealias LegendChipWide = Plus<U16, U2>
+public typealias LegendTextWide = Plus<U64, Plus<U32, Plus<U16, U8>>>
+public typealias LegendWideTextWide = Plus<U64, Plus<U64, Plus<U32, Plus<U16, Plus<U8, Plus<U4, U2>>>>>>
+public typealias CurveWholeTall = Plus<U64, Plus<U64, Plus<U64, Plus<U64, Plus<U64, Plus<U4, U2>>>>>>
+
 public typealias FlowZoneGaps = Plus<Gutter, Twice<Gutter>>
 public typealias FlowZoneWide = Half<Half<Rest<Rest<WideSurface, Twice<EdgeMargin>>, FlowZoneGaps>>>
 public typealias FlowZoneTitleStorey = Plus<U16, Plus<U8, U4>>

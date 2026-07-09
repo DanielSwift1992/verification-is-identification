@@ -42,7 +42,7 @@ enum CurveFootTall: Close {}
 extension CurveFootTall {
     public static var typeName: String { "26" }
 }
-typealias CurveWholeTall = Plus<Times<Plus<U4, U1>, U64>, Plus<U4, U2>>   // 326 = 36+26+214+24+26, the summed frame
+// CurveWholeTall, the summed frame (36+26+214+24+26 = 326), lives in the dictionary too.
 enum CurveLegendDrop: Close {}
 extension CurveLegendDrop {
     public static var typeName: String { "36" }
@@ -481,14 +481,8 @@ enum CurveLegendRow: HFlow {
     }
 }
 
-// ── the slot widths, spoken in the weight lexicon the row engine counts ──
-
-typealias CurveGroupWide = Plus<U64, Plus<U64, U32>>                 // 160
-typealias CurveBarWide = Plus<U32, U8>                               // 40
-typealias CurveWallWide = Plus<U64, Plus<U64, Plus<U8, U4>>>         // 140
-typealias LegendChipWide = Plus<U16, U2>                             // 18
-typealias LegendTextWide = Plus<U64, Plus<U32, Plus<U16, U8>>>       // 120
-typealias LegendWideTextWide = Plus<U64, Plus<U64, Plus<U32, Plus<U16, Plus<U8, Plus<U4, U2>>>>>>   // 190
+// ── the slot widths are the dictionary's rungs (Design.swift): the demo names
+// magnitudes, the dictionary spells them ──
 
 // ── the rows on their summed drops, the frame grown from the storeys ──
 

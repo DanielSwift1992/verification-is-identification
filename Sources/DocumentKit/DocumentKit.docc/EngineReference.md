@@ -279,6 +279,14 @@ Every extent, breath, inset, and zone the divided axes speak: the one home of nu
 - ``GateResetTurn``
 - ``GateRowDrop``
 
+- ``CurveGroupWide``
+- ``CurveBarWide``
+- ``CurveWallWide``
+- ``LegendChipWide``
+- ``LegendTextWide``
+- ``LegendWideTextWide``
+- ``CurveWholeTall``
+
 ### The pen and the measure
 
 Drawing as constrained motion, and text measured by the stated font's own metrics (Vector.swift, GeneratedFontMetrics.swift).

@@ -11,7 +11,7 @@ Take a finite set of candidates and a test. If exactly one candidate passes, "it
 - term **See it work:** the scheduler in [Playground](https://danielswift1992.github.io/verification-is-identification/documentation/playground) is a proof in nine lines — the compiler derives the one consistent schedule and refuses an impossible one by name. Five minutes.
 - term **See it at scale:** [Organization](https://danielswift1992.github.io/verification-is-identification/documentation/organization) is a whole company in the notation — browse the site its build rendered, walk a login keypad, read the access verdicts.
 - term **See why it holds:** <doc:verification_is_identification> proves the result from one postulate, <doc:existence_is_finite> grounds it, and <doc:intelligence_is_inevitable> follows one consequence out. <doc:Neighbors> sets the result beside partial evaluation, Datalog, and total languages.
-- term **See how far it reaches:** <doc:Curve> is the saturation law, measured — universes to 6400 states, each line an instrument with its price.
+- term **See how far it reaches:** <doc:Curve> measures how build time grows with universe size, to 6400 states, and what each change bought.
 - term **Build your own:** <doc:Purpose> states what the notation buys and what it does not, <doc:Encoding> maps your part of a system onto it, and ``Law`` is the grammar you write in.
 - term **See how these pages are made:** [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit) renders them, guided walks included — this site is written in the notation it documents.
 

@@ -74,7 +74,7 @@ extension CurveTitleY {
 enum CurveFootText: Close {}
 extension CurveFootText {
     public static var typeName: String {
-        "log-scale bars, true seconds printed on each; reproduce: swift run Tools curve 400 800 1600 3200"
+        "log-scale bars, true seconds on each · reproduce: swift run Tools curve 400 800 1600 3200"
     }
 }
 enum CurveFootY: Close {}

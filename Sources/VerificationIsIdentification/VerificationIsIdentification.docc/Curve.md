@@ -1,6 +1,6 @@
 # The curve
 
-The saturation law, measured: the largest fully proved universe today is 6400 states, in 241 seconds, on a laptop.
+One build proves a universe of 6400 states in 241 seconds on a laptop. This page measures how that cost grows with the universe, and what moved it.
 
 ## Overview
 
@@ -8,31 +8,31 @@ The saturation law, measured: the largest fully proved universe today is 6400 st
 
 ### The problem
 
-"The build is the run" is a promise with a price: the build must enumerate and prove every state the system can reach, so the cost of one green build grows with the size of the world. If that cost grows faster than the world, the paradigm stops at toy sizes. This is the oldest wall in formal verification — the state-space explosion — and any claim to scale is a claim about this curve's shape.
+The build proves every state the system states, so build time grows with the number of states. If it grows faster than the number of states, the notation stops working past toy systems. Formal verification has met this obstacle for forty years under the name state-space explosion, and the shape of this curve decides whether the notation scales.
 
-The first measurement said the danger was real: with flat generated bodies, doubling the universe multiplied the proof by up to five. Near N², thousands of states already cost minutes.
+The first measurement showed near-quadratic growth: with flat generated bodies, doubling the universe multiplied build time by up to five, and thousands of states already cost minutes.
 
-### The solution, one instrument at a time
+### What moved the curve
 
-Each bar generation on the chart is one instrument from the theory, applied to the package's own generators and re-measured:
+Each series on the chart is one change to the code generators. Each change applies a known reduction technique, and each was measured before and after:
 
-| Line | The instrument | What it moved |
+| Series | The change | What it moved |
 | --- | --- | --- |
 | flat bodies | none: a body of N statements folds into a Pair chain N deep, and every reader re-walks that depth | the starting law, near N² |
 | folded into slices | past twenty-four leaves the emitter nests slices of sixteen, so chain depth falls to the logarithm | the exponent: N^2.3 to N^1.7 |
 | sliced and sharded | generated declarations write in files of ~120 and render calls in functions of 200, so the type checker works shards in parallel | the constant, about three times |
-| the proof layer | the same instruments, measured at the frontier | 6400 states in 241 seconds |
+| the proof layer | the same changes, measured at the frontier | 6400 states in 241 seconds |
 
-Each regrouping is a fold over `Pair` sums, so counts, labels, and rendered pages stay byte-identical: 471 pages re-rendered with zero diff after every instrument. The representation never changed — only the shape of its statement.
+Every regrouping preserves every reading: counts and labels are fold sums over `Pair`, and the 471 rendered pages came back with zero diff after each change. The statements regrouped; what they state did not change.
 
 ### Reproduce it
 
-`swift run Tools curve 400 800 1600 3200` runs the whole method: it checks HEAD out into a disposable worktree, generates a universe of each size, times the build that proves it, and prints the growth law. The universe generator takes the size as one argument, so any point on the chart reproduces in one command.
+`swift run Tools curve 400 800 1600 3200` checks HEAD out into a disposable worktree, generates a universe of each size, times the build that proves it, and prints the growth factor and exponent per step. The universe generator takes the size as one argument, so any point on the chart reproduces in one command.
 
 ### The frontier
 
-At 6400 states the proof layer passes and the full site pipeline does not: the compiler's own frontend aborts (signal 4) while emitting modules of that size, and the failing job moves between runs. The wall standing today is the toolchain's, not the notation's, and the next instruments are known: splitting the universe across modules, and a reproducer for the frontend abort.
+At 6400 states the proof layer passes and the full site pipeline does not: the compiler frontend aborts (signal 4) while emitting modules of that size. The same files compile in isolation and abort in the full pipeline, and the failing job moves between runs, so the limit sits in the compiler, not in the notation. Two next steps are known: splitting the universe across modules, and a standalone reproducer for the frontend abort.
 
-### Where the numbers live
+### Provenance
 
-The chart is drawn by the package's own vector engine from stated measurements, each with its provenance, and re-drawn by `swift run VectorDemo curve`. The neighbors this axis belongs to — model checking and its forty years of state-space walls — are on <doc:Neighbors>.
+The measurements are stated in `CurveChart.swift`, each with the run that produced it, and `swift run VectorDemo curve` redraws the figure from them. <doc:Neighbors> places this axis in its literature: model checking and the state-space explosion.

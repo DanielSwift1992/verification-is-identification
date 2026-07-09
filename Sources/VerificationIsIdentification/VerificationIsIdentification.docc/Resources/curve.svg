@@ -166,7 +166,7 @@
 </g>
 <g transform="translate(0, 300)">
 <g transform="translate(0, 0)">
-<text x="480" y="16" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="10">log-scale bars, true seconds printed on each; reproduce: swift run Tools curve 400 800 1600 3200</text>
+<text x="480" y="16" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="10">log-scale bars, true seconds on each · reproduce: swift run Tools curve 400 800 1600 3200</text>
 </g>
 </g>
 </g>

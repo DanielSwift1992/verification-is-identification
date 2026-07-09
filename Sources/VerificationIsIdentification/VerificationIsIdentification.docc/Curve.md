@@ -1,38 +1,42 @@
 # The curve
 
-One build proves a universe of 6400 states in 241 seconds on a laptop. This page measures how that cost grows with the universe, and what moved it.
+This package generates a demo company of N employees as Swift types and `swift build` type-checks all of it. This page measures how build time grows as N grows. At N = 6400 the build takes 241 seconds.
 
 ## Overview
 
-![The saturation curve: build seconds against universe size, grouped bars on a log scale, one bar per emitter generation, the proof frontier at 6400.](curve)
+The company is generated: `swift package generate org N` writes N employees, one enum per person, plus the access rules and the walk pages over them. `swift build` then type-checks every declaration — every access that must hold, every page that must exist. The compiler is the only checker in this package, so its running time is the price of every guarantee. The measurement is build seconds against N:
 
-### The problem
+![Build seconds against the number of generated employees: grouped bars on a log scale, one color per code layout, true seconds printed on each bar.](curve)
 
-The build proves every state the system states, so build time grows with the number of states. If it grows faster than the number of states, the notation stops working past toy systems. Formal verification has met this obstacle for forty years under the name state-space explosion, and the shape of this curve decides whether the notation scales.
+Horizontal axis: N, the number of generated employees. Vertical axis: seconds for `swift build`, drawn on a log scale, the true seconds printed on each bar. Each color is the same generated content in a different code layout.
 
-The first measurement showed near-quadratic growth: with flat generated bodies, doubling the universe multiplied build time by up to five, and thousands of states already cost minutes.
+### Why measure it
 
-### What moved the curve
+If build time grows faster than N, the approach works for demos and fails at real sizes. Model checking has fought this growth for forty years under the name state-space explosion, and this chart is that field's standard plot, taken for the Swift type checker.
 
-Each series on the chart is one change to the code generators. Each change applies a known reduction technique, and each was measured before and after:
+The first series showed the growth was real: near N², so doubling the company roughly quadrupled the build.
 
-| Series | The change | What it moved |
+### What each series changed
+
+The generator can lay out the same declarations in different shapes, and the shape sets the compile cost:
+
+| Series | The layout | The effect |
 | --- | --- | --- |
-| flat bodies | none: a body of N statements folds into a Pair chain N deep, and every reader re-walks that depth | the starting law, near N² |
-| folded into slices | past twenty-four leaves the emitter nests slices of sixteen, so chain depth falls to the logarithm | the exponent: N^2.3 to N^1.7 |
-| sliced and sharded | generated declarations write in files of ~120 and render calls in functions of 200, so the type checker works shards in parallel | the constant, about three times |
-| the proof layer | the same changes, measured at the frontier | 6400 states in 241 seconds |
+| flat bodies | the company enum lists all N members in one body, which folds into a chain N deep, and every use re-walks that chain | near N² growth |
+| folded into slices | members nest in slices of sixteen inside the same enum, so the chain becomes a tree of depth log N | growth fell to about N^1.7 |
+| sliced and sharded | declarations split across files of ~120 and render calls across functions of 200, so the compiler works them in parallel | about three times faster, same growth |
+| Organization target alone | the company and its rules, built without the demo executables that render the site | 6400 employees in 241 seconds |
 
-Every regrouping preserves every reading: counts and labels are fold sums over `Pair`, and the 471 rendered pages came back with zero diff after each change. The statements regrouped; what they state did not change.
+After each change the 471 site pages were re-rendered and compared: zero bytes differed. The layout changed; the generated content did not.
 
 ### Reproduce it
 
-`swift run Tools curve 400 800 1600 3200` checks HEAD out into a disposable worktree, generates a universe of each size, times the build that proves it, and prints the growth factor and exponent per step. The universe generator takes the size as one argument, so any point on the chart reproduces in one command.
+`swift run Tools curve 400 800 1600 3200` checks HEAD out into a disposable worktree, generates each company size, times each build, and prints the seconds, the growth factor per step, and the implied exponent. Any point on the chart reproduces in one command.
 
-### The frontier
+### The current limit
 
-At 6400 states the proof layer passes and the full site pipeline does not: the compiler frontend aborts (signal 4) while emitting modules of that size. The same files compile in isolation and abort in the full pipeline, and the failing job moves between runs, so the limit sits in the compiler, not in the notation. Two next steps are known: splitting the universe across modules, and a standalone reproducer for the frontend abort.
+At N = 6400 the Organization target builds in 241 seconds. The full package — the same company plus the demo executables — does not: the Swift frontend aborts (signal 4) during module emission. The same files compile when the target builds alone, so the failure sits in the compiler, not in the generated code. Two next steps: split the company across several targets, and reduce the abort to a standalone report for the Swift project.
 
 ### Provenance
 
-The measurements are stated in `CurveChart.swift`, each with the run that produced it, and `swift run VectorDemo curve` redraws the figure from them. <doc:Neighbors> places this axis in its literature: model checking and the state-space explosion.
+The measurements are stated in `CurveChart.swift`, each with the run that produced it, and `swift run VectorDemo curve` redraws the figure from them. <doc:Neighbors> places this measurement in its literature: model checking and the state-space explosion.

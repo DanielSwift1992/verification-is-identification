@@ -12,11 +12,11 @@ import DocumentKit
 enum CurveChartLabel: Close {}
 extension CurveChartLabel {
     public static var typeName: String {
-        "The saturation curve: build seconds against universe size, grouped bars on a log "
-            + "scale. Flat bodies grow near-quadratic, folding the bodies into slices drops "
-            + "the exponent, sharding the files and the renderers drops the constant, and at "
-            + "6400 states the proof still passes while the site pipeline hits the frontend's "
-            + "own abort."
+        "Build seconds against the number of generated employees, grouped bars on a log "
+            + "scale, one color per code layout, true seconds printed on each bar. Flat "
+            + "bodies grow near-quadratic, slices drop the exponent, shards drop the "
+            + "constant. At 6400 the Organization target builds in 241 seconds while the "
+            + "full package aborts in the compiler frontend."
     }
 }
 
@@ -65,7 +65,7 @@ extension CurveFootDrop {
 
 enum CurveTitleText: Close {}
 extension CurveTitleText {
-    public static var typeName: String { "The saturation curve — seconds to prove a universe of N states" }
+    public static var typeName: String { "swift build seconds against N generated employees" }
 }
 enum CurveTitleY: Close {}
 extension CurveTitleY {
@@ -472,7 +472,7 @@ extension LegendShardText {
 }
 enum LegendProofText: Close {}
 extension LegendProofText {
-    public static var typeName: String { "the proof layer at the frontier" }
+    public static var typeName: String { "Organization target alone" }
 }
 enum CurveLegendRow: HFlow {
     public typealias Given = WideSurface

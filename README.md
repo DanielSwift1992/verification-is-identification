@@ -154,7 +154,7 @@ swift build -Xswiftc -DSHOW_FORBIDDEN   # and a forbidden spectral line, by name
 swift run Tools site   # build and serve the whole documentation site locally
 ```
 
-A clean build of all of it, 154 theory protocols and the whole company included, takes 23 seconds on a laptop. Incremental builds take seconds.
+A clean build of all of it, 154 theory protocols and the whole company included, takes 27 seconds on a laptop. Incremental builds take seconds.
 
 `swift test` runs two harnesses back to back: "Executed 17 tests, with 0 failures" is
 the real suite. The "0 tests" line after it is the newer Swift Testing harness finding

@@ -1,6 +1,6 @@
 # The curve
 
-This package generates a demo company of N employees as Swift types and `swift build` type-checks all of it. This page measures how build time grows as N grows. At N = 6400 the build takes 241 seconds.
+This package generates a demo company of N employees as Swift types and `swift build` type-checks all of it. This page measures how build time grows as N grows. At N = 12800 the whole build, site included, takes 199 seconds.
 
 ## Overview
 
@@ -33,7 +33,7 @@ After each change the 471 site pages were re-rendered and compared: zero bytes d
 
 ### Reproduce it
 
-`swift run Tools curve 400 800 1600 3200` checks HEAD out into a disposable worktree, generates each company size, times each build, and prints the seconds, the growth factor per step, and the implied exponent. Any point on the chart reproduces in one command.
+`swift run Tools curve 400 800 1600 3200 6400 12800` checks HEAD out into a disposable worktree, generates each company size, times each build, and prints the seconds, the growth factor per step, and the implied exponent. Any point on the chart reproduces in one command.
 
 ### The current limit
 

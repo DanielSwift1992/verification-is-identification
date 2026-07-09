@@ -15,8 +15,8 @@ extension CurveChartLabel {
         "Build seconds against the number of generated employees, grouped bars on a log "
             + "scale, one color per code layout, true seconds printed on each bar. Flat "
             + "bodies grow near-quadratic, slices drop the exponent, shards drop the "
-            + "constant. At 6400 the Organization target builds in 241 seconds while the "
-            + "full package aborts in the compiler frontend."
+            + "constant, and direct coordinates remove the serialized chain that crashed "
+            + "the compiler: twelve thousand eight hundred employees build in 199 seconds."
     }
 }
 
@@ -65,7 +65,7 @@ extension CurveFootDrop {
 
 enum CurveTitleText: Close {}
 extension CurveTitleText {
-    public static var typeName: String { "swift build seconds against N generated employees" }
+    public static var typeName: String { "swift build seconds against N generated employees, four generations of code layout" }
 }
 enum CurveTitleY: Close {}
 extension CurveTitleY {
@@ -74,7 +74,7 @@ extension CurveTitleY {
 enum CurveFootText: Close {}
 extension CurveFootText {
     public static var typeName: String {
-        "log-scale bars, true seconds on each · reproduce: swift run Tools curve 400 800 1600 3200"
+        "log-scale bars, true seconds on each · reproduce: swift run Tools curve 400 800 1600 3200 6400 12800"
     }
 }
 enum CurveFootY: Close {}
@@ -287,32 +287,90 @@ extension ShardV3200 {
     public static var typeName: String { "86" }
 }
 
-// the frontier at 6400 (DESIGN21 v32): the proof layer passes in 241s, the full site
-// pipeline hits the frontend's own abort (signal 4).
+// direct coordinates (DESIGN21 v40): the roster stopped deriving each hire from the
+// previous one, so one person's serialized type stopped being an N-deep chain — the
+// crash at 6400 was that chain overflowing the compiler's deserializer. Measured at
+// HEAD: 9s, 13s, 23s, 34s, 82s, 199s.
 
-enum ProofH6400: Close {}
-extension ProofH6400 {
-    public static var typeName: String { "167" }   // 241s
+enum DirH400: Close {}
+extension DirH400 {
+    public static var typeName: String { "67" }    // 9s
 }
-enum ProofD6400: Close {}
-extension ProofD6400 {
-    public static var typeName: String { "43" }
+enum DirD400: Close {}
+extension DirD400 {
+    public static var typeName: String { "143" }
 }
-enum ProofV6400: Close {}
-extension ProofV6400 {
-    public static var typeName: String { "241" }
+enum DirV400: Close {}
+extension DirV400 {
+    public static var typeName: String { "9" }
 }
-enum WallNoteText: Close {}
-extension WallNoteText {
-    public static var typeName: String { "site: frontend abort" }
+enum DirH800: Close {}
+extension DirH800 {
+    public static var typeName: String { "78" }    // 13s
 }
-enum WallNoteY: Close {}
-extension WallNoteY {
+enum DirD800: Close {}
+extension DirD800 {
+    public static var typeName: String { "132" }
+}
+enum DirV800: Close {}
+extension DirV800 {
+    public static var typeName: String { "13" }
+}
+enum DirH1600: Close {}
+extension DirH1600 {
+    public static var typeName: String { "95" }    // 23s
+}
+enum DirD1600: Close {}
+extension DirD1600 {
+    public static var typeName: String { "115" }
+}
+enum DirV1600: Close {}
+extension DirV1600 {
+    public static var typeName: String { "23" }
+}
+enum DirH3200: Close {}
+extension DirH3200 {
+    public static var typeName: String { "107" }   // 34s
+}
+enum DirD3200: Close {}
+extension DirD3200 {
+    public static var typeName: String { "103" }
+}
+enum DirV3200: Close {}
+extension DirV3200 {
+    public static var typeName: String { "34" }
+}
+enum DirH6400: Close {}
+extension DirH6400 {
+    public static var typeName: String { "134" }   // 82s
+}
+enum DirD6400: Close {}
+extension DirD6400 {
+    public static var typeName: String { "76" }
+}
+enum DirV6400: Close {}
+extension DirV6400 {
+    public static var typeName: String { "82" }
+}
+enum DirH12800: Close {}
+extension DirH12800 {
+    public static var typeName: String { "161" }   // 199s
+}
+enum DirD12800: Close {}
+extension DirD12800 {
+    public static var typeName: String { "49" }
+}
+enum DirV12800: Close {}
+extension DirV12800 {
+    public static var typeName: String { "199" }
+}
+enum ChainCrashNoteText: Close {}
+extension ChainCrashNoteText {
+    public static var typeName: String { "older layouts: compiler crash" }
+}
+enum ChainCrashNoteY: Close {}
+extension ChainCrashNoteY {
     public static var typeName: String { "20" }
-}
-enum ProofNoteText: Close {}
-extension ProofNoteText {
-    public static var typeName: String { "proof" }
 }
 
 // ── the groups: three bars where three generations were measured, one accent bar and a
@@ -321,26 +379,31 @@ extension ProofNoteText {
 enum CurveGroup<
     FlatD: Structure, FlatH: Structure, FlatV: Structure,
     FoldD: Structure, FoldH: Structure, FoldV: Structure,
-    ShardD: Structure, ShardH: Structure, ShardV: Structure
+    ShardD: Structure, ShardH: Structure, ShardV: Structure,
+    DirD: Structure, DirH: Structure, DirV: Structure
 >: HFlow {
     public typealias Given = CurveGroupWide
     @StructureBuilder
     public static var body: some Structure & Divides {
         RestAir.self
         Fixed<CurveBarWide, CurveBarArt<FlatD, FlatH, SurfaceTrack, FlatV>>.self
-        Air<HairBreath>.self
+        Air<U2>.self
         Fixed<CurveBarWide, CurveBarArt<FoldD, FoldH, Ink, FoldV>>.self
-        Air<HairBreath>.self
+        Air<U2>.self
         Fixed<CurveBarWide, CurveBarArt<ShardD, ShardH, ActionRole, ShardV>>.self
+        Air<U2>.self
+        Fixed<CurveBarWide, CurveBarArt<DirD, DirH, AccentRole, DirV>>.self
         RestAir.self
     }
 }
-enum FrontierGroup: HFlow {
+enum DirectOnlyGroup<
+    DirD: Structure, DirH: Structure, DirV: Structure
+>: HFlow {
     public typealias Given = CurveGroupWide
     @StructureBuilder
     public static var body: some Structure & Divides {
         RestAir.self
-        Fixed<CurveBarWide, CurveBarArt<ProofD6400, ProofH6400, AccentRole, ProofV6400>>.self
+        Fixed<CurveBarWide, CurveBarArt<DirD, DirH, AccentRole, DirV>>.self
         RestAir.self
     }
 }
@@ -350,15 +413,17 @@ enum CurvePlotRow: HFlow {
     @StructureBuilder
     public static var body: some Structure & Divides {
         Air<EdgeMargin>.self
-        Fixed<CurveGroupWide, SpanHosted<CurveGroup<FlatD400, FlatH400, FlatV400, FoldD400, FoldH400, FoldV400, ShardD400, ShardH400, ShardV400>>>.self
-        Air<Breath>.self
-        Fixed<CurveGroupWide, SpanHosted<CurveGroup<FlatD800, FlatH800, FlatV800, FoldD800, FoldH800, FoldV800, ShardD800, ShardH800, ShardV800>>>.self
-        Air<Breath>.self
-        Fixed<CurveGroupWide, SpanHosted<CurveGroup<FlatD1600, FlatH1600, FlatV1600, FoldD1600, FoldH1600, FoldV1600, ShardD1600, ShardH1600, ShardV1600>>>.self
-        Air<Breath>.self
-        Fixed<CurveGroupWide, SpanHosted<CurveGroup<FlatD3200, FlatH3200, FlatV3200, FoldD3200, FoldH3200, FoldV3200, ShardD3200, ShardH3200, ShardV3200>>>.self
-        Air<Breath>.self
-        Fixed<CurveGroupWide, SpanHosted<FrontierGroup>>.self
+        Fixed<CurveGroupWide, SpanHosted<CurveGroup<FlatD400, FlatH400, FlatV400, FoldD400, FoldH400, FoldV400, ShardD400, ShardH400, ShardV400, DirD400, DirH400, DirV400>>>.self
+        Air<HairBreath>.self
+        Fixed<CurveGroupWide, SpanHosted<CurveGroup<FlatD800, FlatH800, FlatV800, FoldD800, FoldH800, FoldV800, ShardD800, ShardH800, ShardV800, DirD800, DirH800, DirV800>>>.self
+        Air<HairBreath>.self
+        Fixed<CurveGroupWide, SpanHosted<CurveGroup<FlatD1600, FlatH1600, FlatV1600, FoldD1600, FoldH1600, FoldV1600, ShardD1600, ShardH1600, ShardV1600, DirD1600, DirH1600, DirV1600>>>.self
+        Air<HairBreath>.self
+        Fixed<CurveGroupWide, SpanHosted<CurveGroup<FlatD3200, FlatH3200, FlatV3200, FoldD3200, FoldH3200, FoldV3200, ShardD3200, ShardH3200, ShardV3200, DirD3200, DirH3200, DirV3200>>>.self
+        Air<HairBreath>.self
+        Fixed<CurveGroupWide, SpanHosted<DirectOnlyGroup<DirD6400, DirH6400, DirV6400>>>.self
+        Air<HairBreath>.self
+        Fixed<CurveGroupWide, SpanHosted<DirectOnlyGroup<DirD12800, DirH12800, DirV12800>>>.self
         RestAir.self
     }
 }
@@ -405,12 +470,16 @@ enum AxisN6400: Close {}
 extension AxisN6400 {
     public static var typeName: String { "6400" }
 }
+enum AxisN12800: Close {}
+extension AxisN12800 {
+    public static var typeName: String { "12800" }
+}
 enum FrontierAxisArt: HFlow {
     public typealias Given = CurveGroupWide
     @StructureBuilder
     public static var body: some Structure & Divides {
         RestAir.self
-        Fixed<CurveWallWide, Layered<CurveAxisSpan<AxisN6400>, SpanLowered<WallNoteY, CurveValueSpan<WallNoteText>>>>.self
+        Fixed<CurveWallWide, Layered<CurveAxisSpan<AxisN6400>, SpanLowered<ChainCrashNoteY, CurveValueSpan<ChainCrashNoteText>>>>.self
         RestAir.self
     }
 }
@@ -420,14 +489,16 @@ enum CurveAxisRow: HFlow {
     public static var body: some Structure & Divides {
         Air<EdgeMargin>.self
         Fixed<CurveGroupWide, CurveAxisSpan<AxisN400>>.self
-        Air<Breath>.self
+        Air<HairBreath>.self
         Fixed<CurveGroupWide, CurveAxisSpan<AxisN800>>.self
-        Air<Breath>.self
+        Air<HairBreath>.self
         Fixed<CurveGroupWide, CurveAxisSpan<AxisN1600>>.self
-        Air<Breath>.self
+        Air<HairBreath>.self
         Fixed<CurveGroupWide, CurveAxisSpan<AxisN3200>>.self
-        Air<Breath>.self
+        Air<HairBreath>.self
         Fixed<CurveGroupWide, SpanHosted<FrontierAxisArt>>.self
+        Air<HairBreath>.self
+        Fixed<CurveGroupWide, CurveAxisSpan<AxisN12800>>.self
         RestAir.self
     }
 }
@@ -470,9 +541,9 @@ enum LegendShardText: Close {}
 extension LegendShardText {
     public static var typeName: String { "sliced and sharded" }
 }
-enum LegendProofText: Close {}
-extension LegendProofText {
-    public static var typeName: String { "Organization target alone" }
+enum LegendDirectText: Close {}
+extension LegendDirectText {
+    public static var typeName: String { "direct coordinates" }
 }
 enum CurveLegendRow: HFlow {
     public typealias Given = WideSurface
@@ -493,7 +564,7 @@ enum CurveLegendRow: HFlow {
         Air<Breath>.self
         Fixed<LegendChipWide, SpanLowered<LegendChipDrop, LegendChip<AccentRole>>>.self
         Air<HairBreath>.self
-        Fixed<LegendWideTextWide, LegendLabel<LegendProofText>>.self
+        Fixed<LegendWideTextWide, LegendLabel<LegendDirectText>>.self
         RestAir.self
     }
 }

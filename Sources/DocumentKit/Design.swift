@@ -709,9 +709,9 @@ public typealias ArchCaptionWide = Plus<U256, Plus<U16, Plus<U8, Plus<U2, U1>>>>
 // ── the saturation curve's rungs (curve.svg): group and bar slots, legend slots,
 // and the summed frame — the chart's one surface, spoken here so the demo names
 // magnitudes and never spells units. ──
-public typealias CurveGroupWide = Plus<U64, Plus<U64, U32>>
-public typealias CurveBarWide = Plus<U32, U8>
-public typealias CurveWallWide = Plus<U64, Plus<U64, Plus<U8, U4>>>
+public typealias CurveGroupWide = Plus<U64, U64>
+public typealias CurveBarWide = Plus<U16, U8>
+public typealias CurveWallWide = Plus<U64, Plus<U32, Plus<U16, U8>>>
 public typealias LegendChipWide = Plus<U16, U2>
 public typealias LegendTextWide = Plus<U64, Plus<U32, Plus<U16, U8>>>
 public typealias LegendWideTextWide = Plus<U64, Plus<U64, Plus<U32, Plus<U16, Plus<U8, Plus<U4, U2>>>>>>

@@ -129,10 +129,15 @@ let package = Package(
                 dependencies: ["VerificationIsIdentification", "DocumentKit", "Alphabet"],
                 plugins: ["ProseGen", "CensusGen", "LawCheck"]),
 
+        // The generated walk page types, as their own module: one emit job and one
+        // lookup scope grow with the declarations inside, so the biggest generated
+        // family stands apart (the form move above file sharding, DESIGN21 v38).
+        .target(name: "OrgWalkPages", dependencies: ["VerificationIsIdentification", "DocumentKit", "Organization"]),
+
         // `swift run OrgDemo render-doc` — writes every generated page's rendered markdown
         // into the real .docc catalog, so a doc: link resolves to that content instead of
         // DocC's own bare auto-generated symbol page.
-        .executableTarget(name: "OrgDemo", dependencies: ["Organization", "DocumentKit"]),
+        .executableTarget(name: "OrgDemo", dependencies: ["Organization", "DocumentKit", "OrgWalkPages"]),
 
         // The demos as proofs.
         .testTarget(name: "PlaygroundTests", dependencies: ["Playground"]),

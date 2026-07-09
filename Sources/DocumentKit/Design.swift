@@ -8,8 +8,10 @@ import VerificationIsIdentification
 // when the palette allows it, so an unreadable (foreground, background) pair does not pass
 // review. It does not compile.
 //
-// Hexes are declared exactly ONCE, below: repainting the whole system to a different known
-// style is a six-line edit here, no component touched. A component may compose colours and
+// A hex literal is declared NOWHERE: every colour is a walk from White (Spectrum.swift),
+// eight halvings per band, and the machine forms (`#RRGGBB`, `rgba(...)`) exist only at the
+// reading edge, the way a magnitude becomes digits only through `Tally`. Repainting the
+// whole system is a walk edit here, no component touched. A component may compose colours and
 // scales. It may not introduce a number of its own (§S15: stated, never computed), reviewed
 // by eye for now, a linter is a later candidate.
 //
@@ -70,27 +72,57 @@ public protocol Paint: Structure {}
 
 public enum Ink: Paint, Close {}
 extension Ink {
-    public static var typeName: String { "#1C1C1E" }
+    public static var typeName: String {
+        Lit<
+            Dimmer<Dimmer<Dimmer<Brighter<Brighter<Brighter<Dimmer<Dimmer<Settled>>>>>>>>,
+            Dimmer<Dimmer<Dimmer<Brighter<Brighter<Brighter<Dimmer<Dimmer<Settled>>>>>>>>,
+            Dimmer<Dimmer<Dimmer<Brighter<Brighter<Brighter<Brighter<Dimmer<Settled>>>>>>>>
+        >.typeName
+    }
 }
 public enum Paper: Paint, Close {}
 extension Paper {
-    public static var typeName: String { "#FFFFFF" }
+    public static var typeName: String { White.typeName }
 }
 public enum Mist: Paint, Close {}
 extension Mist {
-    public static var typeName: String { "#F6F7F8" }
+    public static var typeName: String {
+        Lit<
+            Brighter<Brighter<Brighter<Brighter<Dimmer<Brighter<Brighter<Dimmer<Settled>>>>>>>>,
+            Brighter<Brighter<Brighter<Brighter<Dimmer<Brighter<Brighter<Brighter<Settled>>>>>>>>,
+            Brighter<Brighter<Brighter<Brighter<Brighter<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
+        >.typeName
+    }
 }
 public enum Accent: Paint, Close {}
 extension Accent {
-    public static var typeName: String { "#FFDD2D" }
+    public static var typeName: String {
+        Lit<
+            Brighter<Brighter<Brighter<Brighter<Brighter<Brighter<Brighter<Brighter<Settled>>>>>>>>,
+            Brighter<Brighter<Dimmer<Brighter<Brighter<Brighter<Dimmer<Brighter<Settled>>>>>>>>,
+            Dimmer<Dimmer<Brighter<Dimmer<Brighter<Brighter<Dimmer<Brighter<Settled>>>>>>>>
+        >.typeName
+    }
 }
 public enum Muted: Paint, Close {}
 extension Muted {
-    public static var typeName: String { "#8A8A8E" }
+    public static var typeName: String {
+        Lit<
+            Brighter<Dimmer<Dimmer<Dimmer<Brighter<Dimmer<Brighter<Dimmer<Settled>>>>>>>>,
+            Brighter<Dimmer<Dimmer<Dimmer<Brighter<Dimmer<Brighter<Dimmer<Settled>>>>>>>>,
+            Brighter<Dimmer<Dimmer<Dimmer<Brighter<Brighter<Brighter<Dimmer<Settled>>>>>>>>
+        >.typeName
+    }
 }
 public enum Line: Paint, Close {}
 extension Line {
-    public static var typeName: String { "#ECEDEF" }
+    public static var typeName: String {
+        Lit<
+            Brighter<Brighter<Brighter<Dimmer<Brighter<Brighter<Dimmer<Dimmer<Settled>>>>>>>>,
+            Brighter<Brighter<Brighter<Dimmer<Brighter<Brighter<Dimmer<Brighter<Settled>>>>>>>>,
+            Brighter<Brighter<Brighter<Dimmer<Brighter<Brighter<Brighter<Brighter<Settled>>>>>>>>
+        >.typeName
+    }
 }
 
 // Black at two opacities, not a third grey, the reference's own move: `InkSecondary` is the
@@ -103,26 +135,50 @@ extension Line {
 // The role atoms are new names ADDED alongside, not a replacement of this vocabulary.
 public enum InkPrimary: Paint, Close {}
 extension InkPrimary {
-    public static var typeName: String { "rgba(0,0,0,0.80)" }
+    public static var typeName: String {
+        Veiled<Quenched, Quenched, Quenched, Cover80>.typeName
+    }
 }
 public enum InkSecondary: Paint, Close {}
 extension InkSecondary {
-    public static var typeName: String { "rgba(0,0,0,0.54)" }
+    public static var typeName: String {
+        Veiled<Quenched, Quenched, Quenched, Cover54>.typeName
+    }
 }
 public enum Action: Paint, Close {}
 extension Action {
-    public static var typeName: String { "#336FEE" }
+    public static var typeName: String {
+        Lit<
+            Dimmer<Dimmer<Brighter<Brighter<Dimmer<Dimmer<Brighter<Brighter<Settled>>>>>>>>,
+            Dimmer<Brighter<Brighter<Dimmer<Brighter<Brighter<Brighter<Brighter<Settled>>>>>>>>,
+            Brighter<Brighter<Brighter<Dimmer<Brighter<Brighter<Brighter<Dimmer<Settled>>>>>>>>
+        >.typeName
+    }
 }
 /// This is a background tint, not a foreground: it is not granted a `LegibleOnX` conformance
 /// (SurfaceLaw keeps `Paint` for anything wanting the gate. A tint used as `Fill` on a
 /// `Shape`-family combinator needs only `Structure`, so a bare `Close` is enough and correct).
 public enum ActionTint: Close {}
 extension ActionTint {
-    public static var typeName: String { "rgba(66,139,249,0.16)" }
+    public static var typeName: String {
+        Veiled<
+            Dimmer<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Brighter<Dimmer<Settled>>>>>>>>,
+            Brighter<Dimmer<Dimmer<Dimmer<Brighter<Dimmer<Brighter<Brighter<Settled>>>>>>>>,
+            Brighter<Brighter<Brighter<Brighter<Brighter<Dimmer<Dimmer<Brighter<Settled>>>>>>>>,
+            Cover16
+        >.typeName
+    }
 }
 public enum NavyTint: Close {}
 extension NavyTint {
-    public static var typeName: String { "rgba(36,74,127,0.06)" }
+    public static var typeName: String {
+        Veiled<
+            Dimmer<Dimmer<Brighter<Dimmer<Dimmer<Brighter<Dimmer<Dimmer<Settled>>>>>>>>,
+            Dimmer<Brighter<Dimmer<Dimmer<Brighter<Dimmer<Brighter<Dimmer<Settled>>>>>>>>,
+            Dimmer<Brighter<Brighter<Brighter<Brighter<Brighter<Brighter<Brighter<Settled>>>>>>>>,
+            Cover06
+        >.typeName
+    }
 }
 public enum FontStack: Close {}
 extension FontStack {
@@ -138,37 +194,51 @@ extension FontStack {
 
 public enum SurfaceCardDark: Paint, Close {}
 extension SurfaceCardDark {
-    public static var typeName: String { "#1C1C1E" }
+    public static var typeName: String { Ink.typeName }
 }
 public enum SurfaceTrackDark: Paint, Close {}
 extension SurfaceTrackDark {
-    public static var typeName: String { "rgba(255,255,255,0.15)" }
+    public static var typeName: String {
+        Veiled<Undimmed, Undimmed, Undimmed, Cover15>.typeName
+    }
 }
 public enum TextPrimaryDark: Paint, Close {}
 extension TextPrimaryDark {
-    public static var typeName: String { "rgba(255,255,255,0.90)" }
+    public static var typeName: String {
+        Veiled<Undimmed, Undimmed, Undimmed, Cover90>.typeName
+    }
 }
 public enum TextSecondaryDark: Paint, Close {}
 extension TextSecondaryDark {
-    public static var typeName: String { "rgba(255,255,255,0.70)" }
+    public static var typeName: String {
+        Veiled<Undimmed, Undimmed, Undimmed, Cover70>.typeName
+    }
 }
 public enum AccentRoleDark: Paint, Close {}
 extension AccentRoleDark {
-    public static var typeName: String { "#FFDD2D" }
+    public static var typeName: String { Accent.typeName }
 }
 public enum ActionRoleDark: Paint, Close {}
 extension ActionRoleDark {
-    public static var typeName: String { "#4972CF" }
+    public static var typeName: String {
+        Lit<
+            Dimmer<Brighter<Dimmer<Dimmer<Brighter<Dimmer<Dimmer<Brighter<Settled>>>>>>>>,
+            Dimmer<Brighter<Brighter<Brighter<Dimmer<Dimmer<Brighter<Dimmer<Settled>>>>>>>>,
+            Brighter<Brighter<Dimmer<Dimmer<Brighter<Brighter<Brighter<Brighter<Settled>>>>>>>>
+        >.typeName
+    }
 }
 // `LineRoleDark` happens to share `SurfaceTrackDark`'s value by decision: a hairline and a
 // track read the same on ink today, and the two roles keep two names, free to diverge.
 public enum LineRoleDark: Paint, Close {}
 extension LineRoleDark {
-    public static var typeName: String { "rgba(255,255,255,0.15)" }
+    public static var typeName: String {
+        Veiled<Undimmed, Undimmed, Undimmed, Cover15>.typeName
+    }
 }
 public enum OnAccentDark: Paint, Close {}
 extension OnAccentDark {
-    public static var typeName: String { "#1C1C1E" }
+    public static var typeName: String { Ink.typeName }
 }
 
 /// This names the two colours a card icon needs: a ground and a glyph (`Accent`'s one dot
@@ -190,44 +260,50 @@ public enum DarkCardPalette: CardPalette {
     public typealias Glyph = TextPrimaryDark
 }
 
-// ── The eight roles mechanism (B) speaks. Each wraps `var(--vi-<role>, <light-hex>)`.
-// The light hex restated here is ALSO restated, literally, in footer.html's `<style>` block
-// (that file is not Swift-rendered, so the two cannot share one declaration the way the rest of
-// this file's hexes do, a seam, not an oversight, the same edge SurfaceLaw §S23 already names
-// for a generated artifact's own non-generated neighbours). Keeping the two lists in step is a
-// discipline, not a guarantee. Changing a role's hex means editing both places. ──
+// ── The eight roles mechanism (B) speaks. Each wraps `var(--vi-<role>, <light read>)`, and
+// the light fallback READS the pigment atom above it, one declaration point. footer.html's
+// `<style>` block restates the same values literally (that file is not Swift-rendered, so the
+// two cannot share one declaration: a seam, not an oversight, the same edge SurfaceLaw §S23
+// already names for a generated artifact's own non-generated neighbours). Keeping footer.html
+// in step is a discipline, not a guarantee. Changing a role means editing both places. ──
 
 public enum SurfaceCard: Paint, Close {}
 extension SurfaceCard {
-    public static var typeName: String { "var(--vi-surface-card, #FFFFFF)" }
+    public static var typeName: String { "var(--vi-surface-card, " + Paper.typeName + ")" }
 }
 public enum SurfaceTrack: Paint, Close {}
 extension SurfaceTrack {
-    public static var typeName: String { "var(--vi-surface-track, #F6F7F8)" }
+    public static var typeName: String { "var(--vi-surface-track, " + Mist.typeName + ")" }
 }
 public enum TextPrimary: Paint, Close {}
 extension TextPrimary {
-    public static var typeName: String { "var(--vi-text-primary, rgba(0,0,0,0.80))" }
+    public static var typeName: String { "var(--vi-text-primary, " + InkPrimary.typeName + ")" }
 }
 public enum TextSecondary: Paint, Close {}
 extension TextSecondary {
-    public static var typeName: String { "var(--vi-text-secondary, rgba(0,0,0,0.54))" }
+    public static var typeName: String { "var(--vi-text-secondary, " + InkSecondary.typeName + ")" }
 }
 public enum AccentRole: Paint, Close {}
 extension AccentRole {
-    public static var typeName: String { "var(--vi-accent, #FFDD2D)" }
+    public static var typeName: String { "var(--vi-accent, " + Accent.typeName + ")" }
 }
 public enum ActionRole: Paint, Close {}
 extension ActionRole {
-    public static var typeName: String { "var(--vi-action, #336FEE)" }
+    public static var typeName: String { "var(--vi-action, " + Action.typeName + ")" }
 }
 public enum LineRole: Paint, Close {}
 extension LineRole {
-    public static var typeName: String { "var(--vi-line, #EAECEE)" }
+    public static var typeName: String {
+        "var(--vi-line, " + Lit<
+                Brighter<Brighter<Brighter<Dimmer<Brighter<Dimmer<Brighter<Dimmer<Settled>>>>>>>>,
+                Brighter<Brighter<Brighter<Dimmer<Brighter<Brighter<Dimmer<Dimmer<Settled>>>>>>>>,
+                Brighter<Brighter<Brighter<Dimmer<Brighter<Brighter<Brighter<Dimmer<Settled>>>>>>>>
+            >.typeName + ")"
+    }
 }
 public enum OnAccent: Paint, Close {}
 extension OnAccent {
-    public static var typeName: String { "var(--vi-on-accent, #1C1C1E)" }
+    public static var typeName: String { "var(--vi-on-accent, " + Ink.typeName + ")" }
 }
 /// This is not one of the eight-role table's rows: `ActionTint` gets a role here by the same
 /// mechanism because the keypad's hover tint and `SplitBar`'s outlined segment both live in
@@ -237,7 +313,7 @@ extension OnAccent {
 /// of the stated table, not a silent invention.
 public enum ActionTintRole: Close {}
 extension ActionTintRole {
-    public static var typeName: String { "var(--vi-action-tint, rgba(66,139,249,0.16))" }
+    public static var typeName: String { "var(--vi-action-tint, " + ActionTint.typeName + ")" }
 }
 /// This is also not one of the eight rows: the board needs a status chip's text to read
 /// against `ActionRole` (the `InProgress` chip). `ActionRole`'s blue is dark enough, both
@@ -246,7 +322,7 @@ extension ActionTintRole {
 /// same way `ActionTintRole` was, not given by the table.
 public enum OnActionRole: Paint, Close {}
 extension OnActionRole {
-    public static var typeName: String { "var(--vi-on-action, #FFFFFF)" }
+    public static var typeName: String { "var(--vi-on-action, " + Paper.typeName + ")" }
 }
 
 /// This is the one shadow every `Paper` card reads: a filter def, declared once per canvas
@@ -258,7 +334,7 @@ extension SoftShadow {
     public static var typeName: String {
         """
         <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
-        <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#000000" flood-opacity="0.10"/>
+        <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="\(Black.typeName)" flood-opacity="0.10"/>
         </filter>
 
         """
@@ -285,7 +361,7 @@ extension SurfaceCardShadow {
     public static var typeName: String {
         """
         <filter id="surface-card-shadow" x="-20%" y="-20%" width="140%" height="140%">
-        <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#000000" flood-opacity="var(--vi-surface-card-shadow-opacity, 0.10)"/>
+        <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="\(Black.typeName)" flood-opacity="var(--vi-surface-card-shadow-opacity, 0.10)"/>
         </filter>
 
         """

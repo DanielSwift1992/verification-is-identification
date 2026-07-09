@@ -96,6 +96,28 @@ The divided axis and its members, the span leaves, the frames, and the interacti
 - ``WeightRegular``
 - ``WithinBounds``
 
+### The spectrum
+
+White is the atom and division is the only move: a colour is a walk of eight halvings per band, the machine forms read once at the edge (Spectrum.swift).
+
+- ``Shade``
+- ``Settled``
+- ``Brighter``
+- ``Dimmer``
+- ``Lit``
+- ``Veiled``
+- ``White``
+- ``Black``
+- ``Undimmed``
+- ``Quenched``
+- ``Cover06``
+- ``Cover15``
+- ``Cover16``
+- ``Cover54``
+- ``Cover70``
+- ``Cover80``
+- ``Cover90``
+
 ### The palette and its gates
 
 Colour atoms, the eight roles and their dark halves, and the legibility gates that refuse an unreadable pairing (Design.swift).

@@ -553,7 +553,7 @@ extension HoverRevealStyle {
         .hover-pair .hover-trigger { cursor: pointer; }
         .hover-pair .hover-trigger:hover ~ .hover-panel, .hover-pair .hover-panel:hover { opacity: 1; visibility: visible; transition-delay: 0s; }
         .hover-highlight { transition: stroke 150ms ease, stroke-width 150ms ease; cursor: pointer; }
-        .hover-highlight:hover { stroke: var(--vi-accent, #FFDD2D); stroke-width: 3; }
+        .hover-highlight:hover { stroke: \(AccentRole.typeName); stroke-width: 3; }
         </style>
 
         """

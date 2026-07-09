@@ -14,6 +14,12 @@ func write(_ content: String, _ name: String) {
     try? content.write(toFile: "\(out)/\(name).svg", atomically: true, encoding: .utf8)
 }
 
+let coreOut = "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources"
+
+func writeCore(_ content: String, _ name: String) {
+    try? content.write(toFile: "\(coreOut)/\(name).svg", atomically: true, encoding: .utf8)
+}
+
 // ── Shared size atoms — every card is the same canvas, the avatar its own ──
 
 typealias CardCanvasSize = CanvasSize<HubCardWide, HubCardTall>
@@ -35,6 +41,7 @@ func run(_ args: [String]) {
         runBuildFlow()
         runGateDiagram()
     }
+    if mode == "curve" || mode == "all" { runCurveChart() }
     if mode == "pulse" || mode == "all" { runPulse() }
     if mode == "board" || mode == "all" { runBoard() }
     if mode == "heroes" || mode == "all" {
@@ -53,8 +60,8 @@ func run(_ args: [String]) {
         runSiteDoors()
     }
     if mode == "source" || mode == "all" { runSelfShowing() }
-    if !["cards", "diagram", "pulse", "board", "heroes", "people", "doors", "source", "all"].contains(mode) {
-        print("usage: VectorDemo <cards|diagram|pulse|board|heroes|people|source|all>")
+    if !["cards", "diagram", "curve", "pulse", "board", "heroes", "people", "doors", "source", "all"].contains(mode) {
+        print("usage: VectorDemo <cards|diagram|curve|pulse|board|heroes|people|source|all>")
     }
 }
 

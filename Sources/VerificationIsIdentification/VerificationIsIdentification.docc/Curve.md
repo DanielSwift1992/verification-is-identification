@@ -14,6 +14,8 @@ Horizontal axis: N, the number of generated employees. Vertical axis: seconds fo
 
 If build time grows faster than N, the approach works for demos and fails at real sizes. Model checking has fought this growth for forty years under the name state-space explosion, and this chart is that field's standard plot, taken for the Swift type checker.
 
+The theory fixes what the chart cannot: every build terminates, because every stated space is finite. What it does not fix is the speed, so the exponent is measured, not derived.
+
 The first series showed the growth was real: near N², so doubling the company roughly quadrupled the build.
 
 ### What each series changed

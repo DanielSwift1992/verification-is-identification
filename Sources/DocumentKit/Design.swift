@@ -838,20 +838,20 @@ public typealias FlowZoneTall = Plus<
 
 // The architecture box's three storeys, summed into its tall: the title's, the component
 // plaques', the census line's. The height follows the stack, not an eyeballed slab.
-public typealias ArchTitleStorey = Plus<U32, U4>
-public typealias ArchRoleStorey = Plus<U16, Plus<U8, U4>>
-public typealias ArchPlaqueStorey = Plus<VerdictChipTall, U8>
-public typealias ArchStatsStorey = Plus<U16, Plus<U8, U2>>
+public typealias ArchTitleStorey = Plus<U32, U8>
+public typealias ArchRoleStorey = U32
+public typealias ArchPlaqueStorey = Plus<VerdictChipTall, U16>
+public typealias ArchStatsStorey = Plus<U16, Plus<U8, U4>>
 public typealias ArchStackTall = Plus<
     ArchTitleStorey,
     Plus<ArchRoleStorey, Plus<ArchPlaqueStorey, ArchStatsStorey>>
 >
-public typealias ArchGapTall = Plus<U32, U8>
+public typealias ArchGapTall = Plus<U32, U16>
 public typealias ArchNose = Plus<U8, U2>
 public typealias ArchFooterTall = Plus<U16, U4>
 
 public typealias ArchDotDip = Plus<U8, Plus<U4, U2>>
-public typealias ArchOutputTall = Plus<U32, Plus<U16, Plus<U8, U4>>>
+public typealias ArchOutputTall = U64
 public typealias GateRowDrop = Plus<U16, U4>
 public typealias GateBoxTall = Plus<U32, Plus<U16, Plus<U8, U4>>>
 public typealias GateBoxBottom = Plus<GateRowDrop, GateBoxTall>

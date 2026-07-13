@@ -81,8 +81,40 @@ enum Decompiler {
         return statements(of: args[0]) + [args[1]]
     }
 
+    /// A subtree spelled only in the magnitude ladder (`Plus`, `Twice`, `Half`, `Unit`,
+    /// `Never`) is a number the build already folded: the aliases the source named
+    /// (`U16`, `EdgeMargin`) are expanded away in the reflected string, and printing
+    /// their Unit trees would bury the composition. The count is that subtree's one
+    /// reading, so the page prints the count. Any other name below keeps the subtree.
+    private static func magnitudeCount(_ node: DecompiledNode) -> Int? {
+        switch node {
+        case .leaf("Unit"): return 1
+        case .leaf("Never"): return 0
+        case .generic("Plus", let args)
+        where args.count == 2:
+            guard let left = magnitudeCount(args[0]), let right = magnitudeCount(args[1]) else { return nil }
+            return left + right
+        case .generic("Twice", let args)
+        where args.count == 1:
+            guard let side = magnitudeCount(args[0]) else { return nil }
+            return 2 * side
+        case .generic("Times", let args)
+        where args.count == 2:
+            guard let left = magnitudeCount(args[0]), let right = magnitudeCount(args[1]) else { return nil }
+            return left * right
+        case .generic("Half", let args)
+        where args.count == 1:
+            guard let side = magnitudeCount(args[0]) else { return nil }
+            return side / 2
+        default: return nil
+        }
+    }
+
     private static func render(_ node: DecompiledNode, indent: Int) -> String {
         let pad = String(repeating: " ", count: indent * 4)
+        if case .generic = node, let count = magnitudeCount(node) {
+            return "\(pad)\(count)"
+        }
         switch node {
         case .leaf(let name):
             return "\(pad)\(name).self"

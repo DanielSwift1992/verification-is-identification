@@ -315,6 +315,16 @@ extension WalkFilmAlt {
             + "marked on each frame, the film freezing on the name it walked to."
     }
 }
+/// The film needs a visible caption: its alt text reaches a screen reader, and a sighted
+/// visitor otherwise meets bare shelf ranges with no word on what is playing.
+enum WalkFilmCaption: Close {}
+extension WalkFilmCaption {
+    public static var typeName: String {
+        "Below, the walk plays itself to one person. Each frame halves the shelf of 204 names, "
+            + "the chosen half is the link, and the word so far spells the turns taken. Eight "
+            + "halvings land on one name, and the film freezes there."
+    }
+}
 
 public enum EmployeesPage: Screen {
     @StructureBuilder
@@ -322,6 +332,8 @@ public enum EmployeesPage: Screen {
         PageTitle { EmployeesTitle.self }
         EmployeesIntro.self; Break.self
         EmpHeroBlock.self
+        WalkFilmCaption.self
+        Break.self
         Picture { WalkFilmAlt.self; WalkFilmAsset.self }
         Break.self
         DoubleHash.self; NamedTeamHeading.self; Break.self

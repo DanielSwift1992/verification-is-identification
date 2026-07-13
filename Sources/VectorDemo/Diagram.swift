@@ -218,22 +218,22 @@ typealias Plaque<Label: Structure> = Fixed<
     PlaqueWide<Label>,
     Layered<PlaqueFace, PlaqueLabel<Label>>
 >
-enum InkPlaqueFace: SpanTrackOutlined {
+enum CardPlaqueFace: SpanTrackOutlined {
     public typealias H = Tally<VerdictChipTall>
     public typealias Radius = R6
-    public typealias Fill = Ink
-    public typealias Stroke = TextSecondary
+    public typealias Fill = SurfaceCard
+    public typealias Stroke = LineRole
 }
-enum InkPlaqueLabel<T: Structure>: SpanLabelMid {
+enum CardPlaqueLabel<T: Structure>: SpanLabelMid {
     public typealias Y = CenteredBaseline<VerdictChipTall, TextXXS>
-    public typealias FillColor = Paper
+    public typealias FillColor = TextSecondary
     public typealias Size = TextXXS
     public typealias Weight = WeightRegular
     public typealias Content = T
 }
-typealias InkPlaque<Label: Structure> = Fixed<
+typealias CardPlaque<Label: Structure> = Fixed<
     PlaqueWide<Label>,
-    Layered<InkPlaqueFace, InkPlaqueLabel<Label>>
+    Layered<CardPlaqueFace, CardPlaqueLabel<Label>>
 >
 
 
@@ -255,7 +255,7 @@ enum ThreePlaqueRow<
         RestAir.self
     }
 }
-enum ThreeInkPlaqueRow<
+enum ThreeCardPlaqueRow<
     A: Structure,
     B: Structure,
     C: Structure,
@@ -265,11 +265,11 @@ enum ThreeInkPlaqueRow<
     @StructureBuilder
     public static var body: some Structure & Divides {
         RestAir.self
-        InkPlaque<A>.self
+        CardPlaque<A>.self
         Air<HairBreath>.self
-        InkPlaque<B>.self
+        CardPlaque<B>.self
         Air<HairBreath>.self
-        InkPlaque<C>.self
+        CardPlaque<C>.self
         RestAir.self
     }
 }
@@ -298,10 +298,11 @@ enum FourPlaqueRow<
 
 // ── one box vocabulary: a face, a title, the component plaques, a stats line ──
 
-enum ArchBarFace: SpanTrack {
+enum ArchBarFace: SpanTrackOutlined {
     public typealias H = Tally<ArchStackTall>
     public typealias Radius = R12
-    public typealias Fill = Ink
+    public typealias Fill = SurfaceTrack
+    public typealias Stroke = LineRole
 }
 enum ArchBoxFace: SpanTrackOutlined {
     public typealias H = Tally<ArchStackTall>
@@ -316,7 +317,7 @@ enum ArchOutputFace: SpanTrack {
 }
 enum BarTitleSpan: SpanLabelMid {
     public typealias Y = CenteredBaseline<ArchTitleStorey, TextL>
-    public typealias FillColor = Paper
+    public typealias FillColor = TextPrimary
     public typealias Size = TextL
     public typealias Weight = WeightBold
     public typealias Content = LatticeTitleText
@@ -326,7 +327,7 @@ enum BarStatsSpan: SpanLabelMid {
         Plus<ArchTitleStorey, Plus<ArchRoleStorey, ArchPlaqueStorey>>,
         CenteredBaseline<ArchStatsStorey, TextXXS>
     >
-    public typealias FillColor = Paper
+    public typealias FillColor = ActionRole
     public typealias Size = TextXXS
     public typealias Weight = WeightRegular
     public typealias Content = LatticeStatsText
@@ -356,29 +357,12 @@ enum RoleSpan<T: Structure>: SpanLabelMidWrapped {
     public typealias Weight = WeightRegular
     public typealias Content = T
 }
-enum InkRoleSpan<T: Structure>: SpanLabelMidWrapped {
-    public typealias Y = Under<ArchTitleStorey, RoleFirstBase>
-    public typealias LinePitch = RolePitch
-    public typealias FillColor = Paper
-    public typealias Size = TextXXS
-    public typealias Weight = WeightRegular
-    public typealias Content = T
-}
 enum RoleRow<T: Structure, Wide: Structure>: HFlow {
     public typealias Given = Wide
     @StructureBuilder
     public static var body: some Structure & Divides {
         Air<EdgeMargin>.self
         Flexible<RoleSpan<T>>.self
-        Air<EdgeMargin>.self
-    }
-}
-enum InkRoleRow<T: Structure, Wide: Structure>: HFlow {
-    public typealias Given = Wide
-    @StructureBuilder
-    public static var body: some Structure & Divides {
-        Air<EdgeMargin>.self
-        Flexible<InkRoleSpan<T>>.self
         Air<EdgeMargin>.self
     }
 }
@@ -453,9 +437,9 @@ enum LatticeBarRow: HFlow {
                     Layered<
                         ArchBarFace,
                         Layered<
-                            Layered<BarTitleSpan, SpanHosted<InkRoleRow<LatticeRoleText, ArchInner>>>,
+                            Layered<BarTitleSpan, SpanHosted<RoleRow<LatticeRoleText, ArchInner>>>,
                             Layered<
-                                SpanLowered<Tally<Plus<ArchTitleStorey, ArchRoleStorey>>, SpanHosted<ThreeInkPlaqueRow<PapersPlaqueText, AxesPlaqueText, OperationsPlaqueText, ArchInner>>>,
+                                SpanLowered<Tally<Plus<ArchTitleStorey, ArchRoleStorey>>, SpanHosted<ThreeCardPlaqueRow<PapersPlaqueText, AxesPlaqueText, OperationsPlaqueText, ArchInner>>>,
                                 BarStatsSpan
                             >
                         >

@@ -8,6 +8,8 @@ The directory, read from the roster. The named team owns the documents, and the 
 
 ![Headcount by department, rank, and workplace](employees-hero)
 
+Below, the walk plays itself to one person. Each frame halves the shelf of 204 names, the chosen half is the link, and the word so far spells the turns taken. Eight halvings land on one name, and the film freezes there.
+
 ![The phone-book walk playing itself to one person: eight choices, the taken door marked on each frame, the film freezing on the name it walked to.](walk-film)
 
 ## The named team

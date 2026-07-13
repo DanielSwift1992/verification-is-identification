@@ -117,10 +117,19 @@ public enum EngineeringRepo: Doc, Owned {
     public typealias Owner = Dave
 }
 
-// The accesses are proved by the types that compile:
-//   View<Carol, FinanceVault>:       Carol views Finance (same department)
-//   Administer<Alice, FinanceVault>: Alice admins Finance (manager rank)
-//   Delete<Alice, FinanceVault>:     Alice deletes her vault (owner gate, |S|=1)
-// OwnerGate: SystemCrystallizes:     the gate crystallizes, V=I Thm 2.
-//
-// The conformance IS the proof. No binding needed.
+// ── The standing accesses — asserted through the policy's own gates ──
+
+/// The accesses the company asserts on every build. Each line instantiates ``Granted``,
+/// and a gate satisfies ``Authorized`` only while the policy allows it, so revoking any
+/// line's premise refuses the build and names it: tighten ``View`` past Carol's rank and
+/// the error reads `'Carol.Rank' does not conform`. [V=I Thm 2]
+public enum CertifiedAccesses: AccessLedger {
+    @StructureBuilder
+    public static var body: some Structure {
+        Granted<View<Carol, FinanceShare>>.self           // an individual contributor reads her department's share
+        Granted<View<Bob, EngineeringShare>>.self         // a lead reads his department's share
+        Granted<Administer<Alice, FinanceVault>>.self     // a manager administers her department's vault
+        Granted<Administer<Dave, EngineeringRepo>>.self   // the same rule, the other department
+        Granted<Delete<Alice, FinanceVault>>.self         // only the owner, and only at manager rank, deletes
+    }
+}

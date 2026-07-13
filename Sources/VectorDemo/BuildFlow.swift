@@ -257,34 +257,46 @@ enum BuildFlowRow: HFlow {
     @StructureBuilder
     public static var body: some Structure & Divides {
         Air<EdgeMargin>.self
-        Fixed<FlowZoneWide, ThreeCardZoneArt<
-            SourcesZoneTitle,
-            FontSourceName, FontSourceRole,
-            ProseSourceName, ProseSourceRole,
-            IndexSourceName, IndexSourceRole
-        >>.self
+        Fixed<
+            FlowZoneWide,
+            ThreeCardZoneArt<
+                SourcesZoneTitle,
+                FontSourceName, FontSourceRole,
+                ProseSourceName, ProseSourceRole,
+                IndexSourceName, IndexSourceRole
+            >
+        >.self
         Fixed<Gutter, FlowAcrossArrow>.self
-        Fixed<FlowZoneWide, ThreeCardZoneArt<
-            GenerateZoneTitle,
-            RosterGenName, RosterGenRole,
-            FontGenName, FontGenRole,
-            WalkGenName, WalkGenRole
-        >>.self
+        Fixed<
+            FlowZoneWide,
+            ThreeCardZoneArt<
+                GenerateZoneTitle,
+                RosterGenName, RosterGenRole,
+                FontGenName, FontGenRole,
+                WalkGenName, WalkGenRole
+            >
+        >.self
         Fixed<Gutter, FlowAcrossArrow>.self
-        Fixed<FlowZoneWide, FourCardZoneArt<
-            GatesZoneTitle,
-            LawGateName, LawGateRole,
-            GrammarGateName, GrammarGateRole,
-            CensusGateName, CensusGateRole,
-            CensusGenCardName, CensusGenCardRole
-        >>.self
+        Fixed<
+            FlowZoneWide,
+            FourCardZoneArt<
+                GatesZoneTitle,
+                LawGateName, LawGateRole,
+                GrammarGateName, GrammarGateRole,
+                CensusGateName, CensusGateRole,
+                CensusGenCardName, CensusGenCardRole
+            >
+        >.self
         Fixed<Gutter, FlowAcrossArrow>.self
-        Fixed<FlowZoneWide, ThreeCardZoneArt<
-            OutputsZoneTitle,
-            PagesOutName, PagesOutRole,
-            DrawingsOutName, DrawingsOutRole,
-            AuditOutName, AuditOutRole
-        >>.self
+        Fixed<
+            FlowZoneWide,
+            ThreeCardZoneArt<
+                OutputsZoneTitle,
+                PagesOutName, PagesOutRole,
+                DrawingsOutName, DrawingsOutRole,
+                AuditOutName, AuditOutRole
+            >
+        >.self
         RestAir.self
     }
 }

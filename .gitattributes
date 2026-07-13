@@ -1,0 +1,28 @@
+# Build products, committed because the site serves them: written by the package's
+# own generators (swift package generate, OrgDemo, DocumentKitDemo, VectorDemo).
+# Marked so GitHub collapses them in diffs and keeps them out of language stats.
+
+# The company roster, walks, and role cells — swift package generate.
+Sources/Organization/System/Generated*.swift linguist-generated=true
+Sources/Organization/View/GeneratedRoster.swift linguist-generated=true
+Sources/OrgWalkPages/Generated*.swift linguist-generated=true
+
+# The card art, heroes, film, and diagrams — VectorDemo.
+Sources/VectorDemo/Generated*.swift linguist-generated=true
+Sources/Organization/Organization.docc/Resources/* linguist-generated=true
+
+# Every rendered page in the catalog — OrgDemo render-doc. The landing is the one
+# hand-written page, so the later line lifts the mark from it.
+Sources/Organization/Organization.docc/*.md linguist-generated=true
+Sources/Organization/Organization.docc/Organization.md linguist-generated=false
+
+# DocumentKit documents itself — DocumentKitDemo render-doc.
+Sources/DocumentKit/DocumentKit.docc/DocumentKit.md linguist-generated=true
+Sources/DocumentKit/DocumentKit.docc/SelfShowingExampleSource.md linguist-generated=true
+Sources/DocumentKit/DocumentKit.docc/VectorTourStationA.md linguist-generated=true
+Sources/DocumentKit/DocumentKit.docc/VectorTourStationB.md linguist-generated=true
+Sources/DocumentKit/DocumentKit.docc/Resources/vector-*.svg linguist-generated=true
+Sources/DocumentKit/DocumentKit.docc/Resources/roles-plate*.svg linguist-generated=true
+
+# The saturation curve, drawn by the engine it measures — VectorDemo curve.
+Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/curve.svg linguist-generated=true

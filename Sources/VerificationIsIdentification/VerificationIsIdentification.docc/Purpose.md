@@ -4,45 +4,19 @@ To make correctness the cheapest thing to build — a notation where writing a s
 
 ## Overview
 
-**What it buys you.** Write the part of a system you need to be sure of as types, and the compiler checks it for free: every contradiction in the structure becomes a build error, and a wrong version does not build. You give up scope: only the exact, finite, determinate part fits, and the rest stays craft. You gain certainty for the price of a build.
+**Compile is proof.** You write a claim as a `protocol`. If it compiles, it is true. If not, it is false. Nothing runs, and no separate step proves it. The compiler can decide because the system is stated in exact, finite terms: every degree of freedom is a written type, so the type checker decides every question the code states, at build time.
 
-**One game under all of them.** Whatever you build, a crystal or a schedule or a learner, its determinate part is a finite structure, and finite structures play one game: draw a distinction, or close one (``Pair`` and ``Null``). Those are the only two moves. The rules of that game are the framework. Your system is a position in it, and the rules are what every position already obeys. Nothing stands over the board.
+**What it buys.** The usual way to trust a system is to build it, prove something about it, and keep the two in step. The proof is a second artifact, and it drifts. Here the system and its proof are one text: the compile is the whole proof, and every build re-proves every stated claim.
 
-**The cost of being sure.** The usual way to trust a system is to build it, then prove something about it, then keep the two in step. The proof is a second artifact. It can drift from the system it describes, and holding them aligned is a cost of its own.
+**What it costs.** Only the exact, finite, determinate part of a system fits. Turning a claim into that typed structure is the work that stays human. And whether you stated the right rule stays yours to judge: the build checks consistency with what you stated.
 
-**The move is the proof.** Writing your system in the notation is making the game's moves, and the compiler is the referee: a position that compiles is a true one. The compile is the whole proof, so there is no second artifact to keep in sync.
+**One game under all of them.** Whatever you build, a company or a schedule or a learner, its determinate part is a finite structure, and finite structures play one game: draw a distinction, or close one (``Pair`` and ``Null``). Those are the only two moves. The rules of that game are the framework, your system is a position in it, and the rules are what every position already obeys. Nothing stands over the board.
 
-**The record shows itself.** The types the compiler checks are also what the reader browses: every page of this documentation is a type's rendered name, re-derived at each build. Documentation, reports, audit — readings of the one record, with nothing beside it to fall out of step. The projection is written out in <doc:record_is_system>.
+**Trust grows one part at a time.** You need not convert the whole system. Write the one part you must be sure of, and it holds while the rest stays craft: the line between them sits exactly where the types stop.
 
-**Trust grows one part at a time.** A part you write in the notation is a part you can trust: the compiler checked it, and a wrong version would not build. You need not convert the whole system. Write down the one part you must be sure of, and it holds while the rest stays craft. The line between them is visible, exactly where the types stop. Each further part you move in widens the part you can trust.
+**The record shows itself.** The types the compiler checks are the pages the reader browses: every page of this documentation is a type's rendered name, re-derived at each build. Documentation, reports, and audit are readings of the one record, with nothing beside it to fall out of step. The projection is written out in <doc:record_is_system>.
 
-> Note: One act does two things. Writing a part down certifies it, and it lays out the part's legal forms — the positions that conform — then collapses them to the one that survives. What secures the part also maps it.
-
-**Why it spreads.** A method spreads when each step to adopt it costs less than the last. Here every step is borrowed or free: the grammar is learned in minutes, the proof checker is a compiler you already run, the check is a build, and the soundness is the compiler's rather than yours to re-earn. Correctness is no longer something you add afterward. It is the structure you already wrote.
-
-## The method
-
-Five principles. The first four each remove a cost. The last names the one that stays.
-
-#### Compile is proof
-
-You write a claim as a `protocol`. If it compiles, it is true. If not, it is false. Nothing runs, and no separate step proves it.
-
-#### Pin every choice
-
-The grammar leaves the writer almost no choices: no style, no idiom, no second way to say one thing (Law §0′). The same claim becomes the same code in any hand. The only thing to decide is the claim, and the only thing to review is whether it is true.
-
-#### Borrow the engine and its trust
-
-The proof checker is an off-the-shelf compiler, and its soundness is inherited rather than re-earned. You stand on a tool that millions already run and already believe.
-
-#### The grammar fits a page
-
-One seed, two moves, one floor: the whole notation lives in ``Law``, learnable in minutes. Writing it is a skill, not a degree.
-
-#### Verification is free, encoding is craft
-
-Checking a written structure costs a build, and the machine does it. Turning a claim into that structure is the work that stays human. The framework draws the line, naming where its guarantee stops and your craft starts.
+**Why it is cheap.** Every step is borrowed or free. The grammar fits a page (``Law``) and is learned in minutes. The proof checker is a compiler you already run, so its soundness is inherited rather than re-earned. And the grammar leaves the writer almost no choices (Law §0′): the same claim becomes the same code in any hand, so the only thing to review is whether the claim is true.
 
 ## The boundary
 
@@ -58,4 +32,4 @@ It is not a language, a proof assistant, or the most powerful tool.
 
 ## Where this goes
 
-Two ways on, by what you came for. **To use it:** the scheduler in [Playground](https://danielswift1992.github.io/verification-is-identification/documentation/playground) is the method in nine lines, and the [Organization](https://danielswift1992.github.io/verification-is-identification/documentation/organization) showcase is the same method at scale — two hundred people, an access policy, and the company's whole site proved by one build. **To see why it holds**, read on. The winning position — one survivor, identified — is <doc:verification_is_identification>: start there. The board it stands on is laid in <doc:existence_is_finite>: to be is to be a finite structure. And <doc:play_is_proof> is the game played whole — a legal play is a proof — read after the two it builds on. The grammar that governs every move is ``Law``, the full construction is the ``VerificationIsIdentification`` overview, and the papers behind each claim are gathered in <doc:Sources>.
+**To build your own:** <doc:Encoding> maps your part of a system onto the notation, and ``Law`` is the grammar you write in — one seed, two moves, one floor. **To see it at scale:** the [Organization](https://danielswift1992.github.io/verification-is-identification/documentation/organization) showcase is two hundred people, an access policy, and the company's whole site proved by one build. **To see why it holds:** <doc:verification_is_identification> proves the result from one postulate, <doc:existence_is_finite> grounds it, and <doc:play_is_proof> is the game played whole. The papers behind each claim are gathered in <doc:Sources>.

@@ -29,7 +29,7 @@ indirect enum DecompiledNode {
 
 enum Decompiler {
     private static let modulePrefixes = [
-        "VerificationIsIdentification.", "DocumentKit.", "Organization.", "VectorDemo.", "Playground.",
+        "VerificationIsIdentification.", "DocumentKit.", "Organization.", "VectorDemo.", "Examples.",
     ]
 
     private static func stripModules(_ text: String) -> String {

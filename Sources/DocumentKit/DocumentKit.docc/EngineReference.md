@@ -311,6 +311,7 @@ Every extent, breath, inset, and zone the divided axes speak: the one home of nu
 - ``LegendTextWide``
 - ``LegendWideTextWide``
 - ``CurveWholeTall``
+- ``FilmStripTall``
 
 ### The pen and the measure
 
@@ -343,7 +344,7 @@ The two widths every line speaks, the dependency dash, and the one arrowhead (De
 
 ### The markup combinators
 
-Atoms and combinators that render a page from a type; `Tally(_:)` is the counting door (Markup.swift).
+Atoms and combinators that render a page from a type. `Tally(_:)` is the counting door (Markup.swift).
 
 - ``Break``
 - ``Bullet``

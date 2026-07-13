@@ -623,7 +623,7 @@ CROSS-TASK SATURATION (§5.26):
 > package hosting this page is that sketch grown into a construction of its own, with its own
 > grammar — ``Law`` — which the sketch predates (`struct`, for one, is a form the grammar now
 > forbids, §0″). Read the appendices as the paper's record; read the package as the current
-> form, applied in the `Playground` and `Organization` modules.
+> form, applied in the `Examples` and `Organization` modules.
 
 The implementation is modularized to reflect the formal separation of concerns:
 

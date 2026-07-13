@@ -21,7 +21,7 @@
   "CatalogsHeading": "Catalogs",
   "CardsHeading": "Cards",
   "CardsIntro": "The named team's own cards — identity, tasks, and a walk into the real access, one degree of who you are.",
-  "EmployeesIntro": "The directory, read from the roster. The named team owns the documents; the rest of the company scales the same policy.",
+  "EmployeesIntro": "The directory, read from the roster. The named team owns the documents, and the rest of the company scales the same policy.",
   "NamedTeamHeading": "The named team",
   "ByDepartmentHeading": "Roster by department",
   "ByRankHeading": "Roster by rank",
@@ -128,5 +128,5 @@
   "HeadcountRequirementsHeading": "Year-close headcount requirements",
   "LeavesOutHeading": "What the demo leaves out",
   "BatchBandHeader": "Batch (5% of 200)",
-  "PersonHeroIntro": "Identity, role, and access, drawn from the same fields listed below. The named team's own card carries the sign-in walk; every other card's access is read off role and department alone."
+  "PersonHeroIntro": "Identity, role, and access, drawn from the same fields listed below. The named team's card carries the sign-in walk. Every other card's access is read off role and department alone."
 }

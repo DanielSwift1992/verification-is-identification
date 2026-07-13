@@ -11,11 +11,7 @@ import Organization
 // walk itself (GeneratedWalkFilm.swift): the shelves shift when the roster changes, and
 // the film follows.
 
-typealias FilmCanvasSize = CanvasSize<WideSurface, FilmTall>
-enum FilmTall: Close {}
-extension FilmTall {
-    public static var typeName: String { "150" }
-}
+typealias FilmCanvasSize = CanvasSize<WideSurface, FilmStripTall>
 enum FilmWordY: Close {}
 extension FilmWordY {
     public static var typeName: String { "34" }
@@ -30,7 +26,7 @@ extension FilmDoorBY {
 }
 
 enum FilmGroundPlate: SpanTrackOutlined {
-    public typealias H = FilmTall
+    public typealias H = Tally<FilmStripTall>
     public typealias Radius = R12
     public typealias Fill = SurfaceCard
     public typealias Stroke = LineRole

@@ -21,7 +21,7 @@ enum Census {
         Target(name: "VerificationIsIdentification", paths: ["Sources/VerificationIsIdentification"]),
         Target(name: "DocumentKit", paths: ["Sources/DocumentKit"]),
         Target(name: "Organization", paths: ["Sources/Organization"]),
-        Target(name: "Playground", paths: ["Sources/Playground"]),
+        Target(name: "Examples", paths: ["Sources/Examples"]),
         Target(name: "Tools+Plugins", paths: ["Sources/Tools", "Plugins"]),
     ]
 
@@ -208,9 +208,9 @@ enum Census {
         lines.append("Zero RUNTIME functions in the law's rows is the point: every `func` they carry")
         lines.append("is builder machinery or a call-syntax door, and none of it ever executes — a")
         lines.append("body exists to be read as a type, never run (§S7). What executes lives in the")
-        lines.append("tooling row, and the census keeps it beside the system for scale. Playground's")
-        lines.append("one is `machineName`, the scheduler demo's own reader — the value the README")
-        lines.append("prints — beside its ordinary-Swift witnesses. Zero structs and zero classes")
+        lines.append("tooling row, and the census keeps it beside the system for scale. The one in")
+        lines.append("Examples is `machineName`, the scheduler demo's own reader — the value the Encoding")
+        lines.append("page prints — beside its ordinary-Swift witnesses. Zero structs and zero classes")
         lines.append("are the law itself (Law §0′, SurfaceLaw §S2).")
 
         let output = lines.joined(separator: "\n")

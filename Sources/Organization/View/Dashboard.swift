@@ -33,9 +33,9 @@ enum PulseBlock: Fragment {
 
 /// The walk door: one line under the catalog grid offering the halving walk
 /// (Wayfinding.swift) — at most four choices from here to any page, every door a witness.
-enum FindYourPageLabel: Close {}
-extension FindYourPageLabel {
-    public static var typeName: String { "Not sure where to look? Find your page in four choices" }
+enum WalkDoorLabel: Close {}
+extension WalkDoorLabel {
+    public static var typeName: String { "New here? Any page is four choices away" }
 }
 enum FormQueryLabel: Close {}
 extension FormQueryLabel {
@@ -44,7 +44,7 @@ extension FormQueryLabel {
 enum WalkDoor: Fragment {
     @StructureBuilder
     public static var body: some Structure {
-        Link { FindYourPageLabel.self; SiteWalk.self }
+        Link { WalkDoorLabel.self; SiteWalk.self }
         Break.self
         Link { FormQueryLabel.self; RoleWalk.self }
     }

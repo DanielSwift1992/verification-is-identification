@@ -185,6 +185,7 @@ let PAPER: [String: String] = [
     "Search.swift": "gradient_is_alignment", "Generation.swift": "proposal_is_order",
     "Liquid.swift": "learning_is_liquid", "Reading.swift": "reading_is_order",
     "Path.swift": "program_is_path",
+    "Gauge.swift": "form_is_gauge",
     "Projection.swift": "architecture_of_learning_machines",
 ]
 let FLOOR_FILES: Set<String> = ["Spec.swift"]        // -> landing "The floor"

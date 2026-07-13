@@ -16,7 +16,7 @@ enum Site {
     private static let siteDirectory = ".site"
     private static let targets = [
         "VerificationIsIdentification", "Organization", "DocumentKit",
-        "Playground", "GrammarLexicon", "Alphabet",
+        "Examples", "GrammarLexicon", "Alphabet",
     ]
 
     @discardableResult

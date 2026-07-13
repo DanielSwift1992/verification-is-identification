@@ -66,6 +66,7 @@ The tag in each symbol's discussion decodes here. Every paper is readable in ful
 | `Read` | [Reading Is Order](doc:reading_is_order) |
 | `PiP` | [Program Is Path](doc:program_is_path) |
 | `Spec` | [The Solvability Criterion](doc:solvability_criterion) |
+| `FiG` | [Form Is Gauge](doc:form_is_gauge) |
 | `Projection` | [The Architecture of Learning Machines](doc:architecture_of_learning_machines) |
 
 > Tip: A section code inside a tag is the paper's own numbering — `§5.22`, `G2c`, `N5`, `O9`, `LT3`, `PP10`, `B4`. In the paper, that code lands you on the exact claim.
@@ -99,3 +100,4 @@ The tag in each symbol's discussion decodes here. Every paper is readable in ful
 - <doc:record_is_system>
 - <doc:halt_is_ignition>
 - <doc:permission_is_existence>
+- <doc:form_is_gauge>

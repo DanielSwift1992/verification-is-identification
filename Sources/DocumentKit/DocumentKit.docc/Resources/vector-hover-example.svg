@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 96" role="img" data-vi-canvas="1" font-family="Inter, Roboto, system-ui, sans-serif" aria-label="A dot that reveals a panel on hover; its own click still navigates.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 96" role="img" data-vi-canvas="1" font-family="Inter, Roboto, system-ui, sans-serif" aria-label="A dot that reveals a panel on hover. Its click still navigates.">
 <style>
 .hover-pair .hover-panel { opacity: 0; visibility: hidden; transition: opacity 150ms ease 250ms, visibility 0s linear 400ms; }
 .hover-pair .hover-trigger { cursor: pointer; }

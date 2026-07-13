@@ -9,7 +9,7 @@ object over this vocabulary, and the compiler judges the object: an atom used wh
 scope grants no token fails on its own line, with the token named. Nothing here is
 universal by design — every grant names its context and its scope explicitly, so a
 violation is always a specific refusal, never a general warning. The linter that carries
-files into this vocabulary lives in Tools; this module supplies the types the carried
+files into this vocabulary lives in Tools. This module supplies the types the carried
 objects are judged against.
 
 ## Topics
@@ -128,7 +128,7 @@ The rung vocabulary: granted to the dictionary and the engine room, refused to c
 
 ### The exemption door
 
-Prose and comments pass as data; the door that admits them is itself typed.
+Prose and comments pass as data. The door that admits them is itself typed.
 
 - ``GrammarExempt``
 - ``ExemptionReason``

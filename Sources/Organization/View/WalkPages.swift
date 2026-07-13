@@ -9,7 +9,7 @@ import DocumentKit
 public enum WalkHint: Close {}
 extension WalkHint {
     public static var typeName: String {
-        "Two doors, and each door names every page behind it. Choose the half that holds yours, or step back up."
+        "Two doors, and each door names every page behind it. Pick a half and keep choosing: any page stands at most four choices away, and a wrong turn steps back up."
     }
 }
 /// The role-walk cell's shared voice: what the walker just formed, said once.
@@ -61,7 +61,7 @@ public typealias TopicSymbol<X> = ListItem<Symbol<RawName<X>>>
 
 enum SiteWalkTitle: Close {}
 extension SiteWalkTitle {
-    public static var typeName: String { "Find your page" }
+    public static var typeName: String { "Any page in four choices" }
 }
 enum PeopleOrWorkTitle: Close {}
 extension PeopleOrWorkTitle {

@@ -26,7 +26,7 @@ Every number above is read from the proved types — click any card.
 }
 
 
-[Not sure where to look? Find your page in four choices](doc:SiteWalk)
+[New here? Any page is four choices away](doc:SiteWalk)
 
 [Or form a query with your feet: a department and a rank, four doors](doc:RoleWalk)
 

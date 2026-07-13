@@ -66,7 +66,7 @@ extension ModuleTitleTarget {
 enum LandingIntro: Close {}
 extension LandingIntro {
     static var typeName: String {
-        "A render engine with no runtime: a page's `body` is a TYPE, composed the way any other type in the lattice is, and reading its `typeName` (`Structure`, VerificationIsIdentification) walks that composition once into markdown. There is no second pass, no array of nodes interpreted — the page IS the type, the render IS `typeName`."
+        "A render engine with no runtime. A page is a type: its `body` composes other types, and reading `typeName` (`Structure`, VerificationIsIdentification) walks the composition once into markdown. There is no second pass and no node tree to interpret — the type is the page, and reading its name is the render."
     }
 }
 
@@ -93,7 +93,7 @@ extension BuildAPageStep1 {
 enum BuildAPageStep2: Close {}
 extension BuildAPageStep2 {
     static var typeName: String {
-        "2. **Compose the body.** `@StructureBuilder static var body: some Structure { … }` — statements fold into a `Pair`-cons chain. Every leaf is an atom or another combinator: a name enters through `Symbol`, a count through `Tally`, prose through a prose atom — a type whose `typeName` is the sentence. Organization spells its prose from a JSON manifest through a build plugin; this page carries its own."
+        "2. **Compose the body.** `@StructureBuilder static var body: some Structure { … }` — statements fold into a `Pair`-cons chain. Every leaf is an atom or another combinator: a name enters through `Symbol`, a count through `Tally`, prose through a prose atom — a type whose `typeName` is the sentence. Organization spells its prose from a JSON manifest through a build plugin. This page carries its own."
     }
 }
 enum BuildAPageStep3: Close {}
@@ -105,7 +105,7 @@ extension BuildAPageStep3 {
 enum BuildAPageStep4: Close {}
 extension BuildAPageStep4 {
     static var typeName: String {
-        "4. **Read it.** `MyPage.typeName` IS the markdown. A demo executable writes it into the `.docc` catalog, so a `doc:` link resolves to this content instead of an empty auto-generated stub — that is the whole publishing pipeline."
+        "4. **Read it.** `MyPage.typeName` is the markdown. A demo executable writes it into the `.docc` catalog, so a `doc:` link resolves to this content instead of an empty auto-generated stub — that is the whole publishing pipeline."
     }
 }
 enum BuildAPageStep5: Close {}
@@ -126,7 +126,7 @@ extension TwoKindsHeading {
 enum TwoKindsIntro: Close {}
 extension TwoKindsIntro {
     static var typeName: String {
-        "Every combinator on the surface is an `Open` protocol carrying the hole (an `associatedtype`) plus the composition that reads it (`body`), realized by a caseless `enum` — never the reverse. A one-hole combinator's `{ }` door (`init`) lives on the protocol's own extension, shared by every conformer; a combinator with more than one hole (``Link``, ``Picture``, ``SizedPanel``) folds its statements through a single `Whole: Pair` parameter instead, the door living on the concrete enum. The gallery further down this page is a live instance of every shape below, rendered by the engine it exercises — reading it is reading what each row actually produces, not a description of it."
+        "Every combinator on the surface is an `Open` protocol carrying the hole (an `associatedtype`) plus the composition that reads it (`body`), realized by a caseless `enum` — never the reverse. A one-hole combinator's `{ }` door (`init`) lives on the protocol extension, shared by every conformer. A combinator with more than one hole (``Link``, ``Picture``, ``SizedPanel``) folds its statements through a single `Whole: Pair` parameter instead, the door living on the concrete enum. The gallery further down this page is a live instance of every shape below, rendered by the engine it exercises — reading it is reading what each row actually produces, not a description of it."
     }
 }
 
@@ -172,7 +172,7 @@ extension Row4Combinator {
 }
 enum Row4Is: Close {}
 extension Row4Is {
-    static var typeName: String { "`![Alt](Asset)` — an image embedded IN the body, not a link-grid tile" }
+    static var typeName: String { "`![Alt](Asset)` — an image embedded in the body, not a link-grid tile" }
 }
 
 enum Row5Combinator: Close {}
@@ -299,7 +299,7 @@ extension RenderingPathIntro {
 enum RenderingPathWarning: Close {}
 extension RenderingPathWarning {
     static var typeName: String {
-        "`typeName`'s walk concatenates strings on the way back UP the tree (`Paired.typeName = L.typeName + R.typeName`), so it is not tail-recursive — one `Structure` with enough total content in its own `body` can exhaust the call stack before it ever mis-renders (checked directly). Prefer several linked pages over one page trying to hold everything, the same choice Organization's showcase already makes."
+        "`typeName`'s walk concatenates strings on the way back up the tree (`Paired.typeName = L.typeName + R.typeName`), so it is not tail-recursive — one `Structure` with enough total content in its own `body` can exhaust the call stack before it ever mis-renders (checked directly). Prefer several linked pages over one page trying to hold everything, the same choice Organization's showcase already makes."
     }
 }
 
@@ -323,7 +323,7 @@ extension GallerySectionIntro {
 enum SymbolCaption: Close {}
 extension SymbolCaption {
     static var typeName: String {
-        "`Symbol` renders a type's own Swift name in double backticks, the same shape a doc comment uses to link a real symbol. Below, a stand-in type renders as its own identifier."
+        "`Symbol` renders a type's own Swift name in double backticks, the same shape a doc comment uses to link a real symbol. Below, a stand-in type renders as its identifier."
     }
 }
 
@@ -370,7 +370,7 @@ extension LinkLabel {
 enum LinkCaption: Close {}
 extension LinkCaption {
     static var typeName: String {
-        "`Link` is the same link, with its own chosen display text instead of the target's raw name."
+        "`Link` is the same link, with a chosen display text instead of the target's raw name."
     }
 }
 
@@ -391,7 +391,7 @@ extension LinkCode {
 enum PictureCaption: Close {}
 extension PictureCaption {
     static var typeName: String {
-        "`Picture` embeds an image inside the page's own content, not only as a link-grid thumbnail."
+        "`Picture` embeds an image inside the page's content, not only as a link-grid thumbnail."
     }
 }
 
@@ -1101,7 +1101,7 @@ extension CanvasContractGuaranteed {
 enum CanvasContractNotGuaranteed: Close {}
 extension CanvasContractNotGuaranteed {
     static var typeName: String {
-        "**Not guaranteed.** The absolute on-screen size: markdown offers no pixel pin, so the canvas renders at container width — the right shape, always; exact screen pixels, never promised. Text metrics: glyph width is the platform font's; the craft is a fixed font family and generous boxes — state the box, never compute the fit."
+        "**Not guaranteed.** The absolute on-screen size: markdown offers no pixel pin, so the canvas renders at container width — the right shape always, the exact screen pixels never promised. Text metrics: glyph width is the platform font's. The craft is a fixed font family and generous boxes — state the box, never compute the fit."
     }
 }
 
@@ -1115,7 +1115,7 @@ extension RolesHeading {
 enum RolesIntro: Close {}
 extension RolesIntro {
     static var typeName: String {
-        "Light and dark are not two unrelated palettes; they are two projections of the same eight roles, each declared once, carrying both a light and a dark value. A role reaches a canvas by whichever of two mechanisms fits that canvas's own use: inline canvases (anything the inline-swap hook, `footer.html`, turns into real DOM) read a role as `var(--vi-<role>, <light-hex>)`, switched live by `prefers-color-scheme`, with a light fallback that still reads correctly even with no CSS in scope at all — a bare `<img>`. The small, numerous, non-interactive grid tiles use the other mechanism instead: a second, literal `x~dark.svg` file beside `x.svg`, DocC's own native asset-swap. Both read the SAME eight roles; only where a role's value lands differs, and that choice is the canvas's own, made once, at the driver's edge. One rule holds regardless of mechanism: a canvas's ground is transparent, so text never floats — every label sits on a surface role (card, track, chip), never directly on the transparent ground, because a floating label is only legible on the one host theme its fallback hex happens to match."
+        "Light and dark are two projections of the same eight roles, each declared once, carrying both a light and a dark value. A role reaches a canvas by whichever of two mechanisms fits that canvas's own use: inline canvases (anything the inline-swap hook, `footer.html`, turns into real DOM) read a role as `var(--vi-<role>, <light-hex>)`, switched live by `prefers-color-scheme`, with a light fallback that still reads correctly even with no CSS in scope at all — a bare `<img>`. The small, numerous, non-interactive grid tiles use the other mechanism instead: a second, literal `x~dark.svg` file beside `x.svg`, DocC's own native asset-swap. Both read the same eight roles. Only where a role's value lands differs, and that choice is the canvas's own, made once, at the driver's edge. One rule holds regardless of mechanism: a canvas's ground is transparent, so text never floats — every label sits on a surface role (card, track, chip), never directly on the transparent ground, because a floating label is only legible on the one host theme its fallback hex happens to match."
     }
 }
 
@@ -1245,7 +1245,7 @@ extension GateTiersBody {
 enum LiveGatesLine: Close {}
 extension LiveGatesLine {
     static var typeName: String {
-        "Three of these are live in the site today. The five `Legible*` protocols above (`LegibleOnSurfaceCard`, `LegibleOnSurfaceTrack`, `LegibleOnAccentRole`, and two more) are compile gates on every (foreground, background) pairing — an unreadable pair does not build. `WithinCyclesHero` (Organization's own review-cycle diagram) is the same tier applied to placement: a canvas's own closed set of legal positions, so a position only one canvas vetted cannot satisfy a different canvas's layout by accident. `BudgetedLabel` is the generation gate — a stated character ceiling, checked once, at generate time, against the real text a label carries (checked directly: lowering a label's budget below its longest real name crashes `generate` with exactly this precondition, then raised back)."
+        "Three of these are live in the site today. The five `Legible*` protocols above (`LegibleOnSurfaceCard`, `LegibleOnSurfaceTrack`, `LegibleOnAccentRole`, and two more) are compile gates on every (foreground, background) pairing — an unreadable pair does not build. `WithinCyclesHero` (Organization's review-cycle diagram) is the same tier applied to placement: a canvas's closed set of legal positions, so a position only one canvas vetted cannot satisfy a different canvas's layout by accident. `BudgetedLabel` is the generation gate — a stated character ceiling, checked once, at generate time, against the real text a label carries (checked directly: lowering a label's budget below its longest real name crashes `generate` with exactly this precondition, then raised back)."
     }
 }
 
@@ -1265,13 +1265,13 @@ extension LinkedLine {
 enum PageSlugLine: Close {}
 extension PageSlugLine {
     static var typeName: String {
-        "`PageSlug<X>` reads a page type's own Swift name, lowercased — the same URL slug DocC's static-hosting build assigns it. A caller builds a real site path from a page TYPE with this, never a string kept in sync by hand."
+        "`PageSlug<X>` reads a page type's own Swift name, lowercased — the same URL slug DocC's static-hosting build assigns it. A caller builds a real site path from a page type with this, never a string kept in sync by hand."
     }
 }
 enum HoverRevealLine: Close {}
 extension HoverRevealLine {
     static var typeName: String {
-        "`HoverReveal` pairs a `Trigger` and a `Panel`: hovering either reveals the panel, while the trigger's own click still navigates. The panel must survive the pointer's OWN travel to it, so the reveal is keyed on either half's hover, the close is a delay rather than an instant cutoff, and `pointer-events` is never touched mid-transition (SurfaceLaw §S26 — found by checking directly, not assumed)."
+        "`HoverReveal` pairs a `Trigger` and a `Panel`: hovering either reveals the panel, while the trigger's own click still navigates. The panel must survive the pointer's travel to it, so the reveal is keyed on either half's hover, the close is a delay rather than an instant cutoff, and `pointer-events` is never touched mid-transition (SurfaceLaw §S26 — found by checking directly, not assumed)."
     }
 }
 enum SelfShowingLine: Close {}
@@ -1386,7 +1386,7 @@ extension VectorExampleSitePath {
 
 public enum VectorHoverExampleAlt: Close {}
 extension VectorHoverExampleAlt {
-    public static var typeName: String { "A dot that reveals a panel on hover; its own click still navigates." }
+    public static var typeName: String { "A dot that reveals a panel on hover. Its click still navigates." }
 }
 enum VectorHoverExampleAsset: Close {}
 extension VectorHoverExampleAsset {
@@ -1471,7 +1471,7 @@ extension HoverExampleHeading {
 enum HoverExampleCaption: Close {}
 extension HoverExampleCaption {
     static var typeName: String {
-        "A trigger and a panel, paired by `HoverReveal` — hover the dot below to see the panel; its own click still navigates."
+        "A trigger and a panel, paired by `HoverReveal` — hover the dot below to see the panel, and its click still navigates."
     }
 }
 enum HoverExample: GallerySection {
@@ -1582,7 +1582,7 @@ typealias SelfShowingExampleSourceTitle = VectorSelfShowingExampleText
 enum SelfShowingExampleSourceCaption: Close {}
 extension SelfShowingExampleSourceCaption {
     static var typeName: String {
-        "The composition the badge on the canvas points to — the SAME atom the gallery's own code block reads, never a second copy."
+        "The composition the badge on the canvas points to — the same atom the gallery's code block reads, never a second copy."
     }
 }
 public enum SelfShowingExampleSourcePage: GallerySection {
@@ -1709,7 +1709,7 @@ extension SelfShowingExampleHeading {
 enum SelfShowingExampleCaption: Close {}
 extension SelfShowingExampleCaption {
     static var typeName: String {
-        "`SelfShowing` costs nothing beyond the marker — the badge in the corner links to a page carrying this SAME canvas's own composition, read off the same atom the code block below shows, so it cannot drift from what actually compiled."
+        "`SelfShowing` costs nothing beyond the marker — the badge in the corner links to a page carrying this canvas's composition, read off the same atom the code block below shows, so it cannot drift from what actually compiled."
     }
 }
 enum SelfShowingExample: GallerySection {
@@ -1783,7 +1783,7 @@ enum VectorTourLabelB: HFlow {
 
 public enum VectorTourExampleAlt: Close {}
 extension VectorTourExampleAlt {
-    public static var typeName: String { "Station A, a dot linked to Station B's own page." }
+    public static var typeName: String { "Station A, a dot linked to Station B's page." }
 }
 enum VectorTourExampleAsset: Close {}
 extension VectorTourExampleAsset {
@@ -1813,7 +1813,7 @@ enum VectorTourStationBLinkToA: HFlow {
 }
 public enum VectorTourStationBAlt: Close {}
 extension VectorTourStationBAlt {
-    public static var typeName: String { "Station B, a dot linked back to Station A's own page." }
+    public static var typeName: String { "Station B, a dot linked back to Station A's page." }
 }
 public enum VectorTourStationBContent: Group {
     @StructureBuilder
@@ -1835,7 +1835,7 @@ extension VectorTourHeading {
 enum VectorTourCaption: Close {}
 extension VectorTourCaption {
     static var typeName: String {
-        "Two canvases, each `Linked` to the OTHER's own page. Visit Station A below, click its dot, land on Station B — click ITS dot, land back on Station A. Inert here (a plain `<img>`); real once the host inlines it."
+        "Two canvases, each `Linked` to the other's page. Visit Station A below, click its dot, land on Station B — click its dot to land back on Station A. Inert here, a plain `<img>`. Real once the host inlines it."
     }
 }
 enum VectorTourCode: Close {}
@@ -1844,8 +1844,10 @@ extension VectorTourCode {
         """
         enum VectorTourStationALinkToB: HFlow {
             static var body: some Structure & Divides {
-                Fixed<VectorExampleColumnWide, SpanLink<
-                    VectorExampleSitePath<VectorTourStationB>, VectorTourDot>>.self
+                Fixed<
+                    VectorExampleColumnWide,
+                    SpanLink<VectorExampleSitePath<VectorTourStationB>, VectorTourDot>
+                >.self
                 RestAir.self
             }
         }
@@ -1994,7 +1996,7 @@ enum RolesPlateBackingPlate<
 
 /// One cell speaks for all eight: the swatch is a slice-filling outlined track lowered to
 /// its row, the label sits under it on the same slice's start. The grid is two weighed
-/// rows over the plate, margin 4, swatch 10, breath 5, in fours; no cell holds a position.
+/// rows over the plate, margin 8, swatch 50, breath 8, and no cell holds a position.
 enum RolesSwatchFace<
     Fill: Structure,
     Line: Structure
@@ -2011,7 +2013,7 @@ enum RolesCellLabel<
 >: SpanLabel {
     typealias Y = LabelY
     typealias FillColor = Ink
-    typealias Size = TextS
+    typealias Size = TextXXS
     typealias Weight = WeightRegular
     typealias Content = T
 }
@@ -2043,14 +2045,14 @@ enum RolesPlateRowOne<Palette: RolesPalette>: HFlow {
     typealias Given = RolesPlateSurface
     @StructureBuilder
     static var body: some Structure & Divides {
-        Air<U4>.self
-        Fixed<Plus<U8, U2>, RolesCell<Palette.CardColor, Palette.LineColor, Palette.PrimaryColor, RolesPlateCardLabelText, RolesPlateRow1Y, RolesPlateLabelRow1Y>>.self
-        Air<Plus<U4, U1>>.self
-        Fixed<Plus<U8, U2>, RolesCell<Palette.TrackColor, Palette.LineColor, Palette.PrimaryColor, RolesPlateTrackLabelText, RolesPlateRow1Y, RolesPlateLabelRow1Y>>.self
-        Air<Plus<U4, U1>>.self
-        Fixed<Plus<U8, U2>, RolesCell<Palette.PrimaryColor, Palette.LineColor, Palette.PrimaryColor, RolesPlatePrimaryLabelText, RolesPlateRow1Y, RolesPlateLabelRow1Y>>.self
-        Air<Plus<U4, U1>>.self
-        Fixed<Plus<U8, U2>, RolesCell<Palette.SecondaryColor, Palette.LineColor, Palette.PrimaryColor, RolesPlateSecondaryLabelText, RolesPlateRow1Y, RolesPlateLabelRow1Y>>.self
+        Air<U8>.self
+        Fixed<Plus<U32, Plus<U16, U2>>, RolesCell<Palette.CardColor, Palette.LineColor, Palette.PrimaryColor, RolesPlateCardLabelText, RolesPlateRow1Y, RolesPlateLabelRow1Y>>.self
+        Air<U8>.self
+        Fixed<Plus<U32, Plus<U16, U2>>, RolesCell<Palette.TrackColor, Palette.LineColor, Palette.PrimaryColor, RolesPlateTrackLabelText, RolesPlateRow1Y, RolesPlateLabelRow1Y>>.self
+        Air<U8>.self
+        Fixed<Plus<U32, Plus<U16, U2>>, RolesCell<Palette.PrimaryColor, Palette.LineColor, Palette.PrimaryColor, RolesPlatePrimaryLabelText, RolesPlateRow1Y, RolesPlateLabelRow1Y>>.self
+        Air<U8>.self
+        Fixed<Plus<U32, Plus<U16, U2>>, RolesCell<Palette.SecondaryColor, Palette.LineColor, Palette.PrimaryColor, RolesPlateSecondaryLabelText, RolesPlateRow1Y, RolesPlateLabelRow1Y>>.self
         RestAir.self
     }
 }
@@ -2058,14 +2060,14 @@ enum RolesPlateRowTwo<Palette: RolesPalette>: HFlow {
     typealias Given = RolesPlateSurface
     @StructureBuilder
     static var body: some Structure & Divides {
-        Air<U4>.self
-        Fixed<Plus<U8, U2>, RolesCell<Palette.AccentColor, Palette.LineColor, Palette.PrimaryColor, RolesPlateAccentLabelText, RolesPlateRow2Y, RolesPlateLabelRow2Y>>.self
-        Air<Plus<U4, U1>>.self
-        Fixed<Plus<U8, U2>, RolesCell<Palette.ActionColor, Palette.LineColor, Palette.PrimaryColor, RolesPlateActionLabelText, RolesPlateRow2Y, RolesPlateLabelRow2Y>>.self
-        Air<Plus<U4, U1>>.self
-        Fixed<Plus<U8, U2>, RolesCell<Palette.LineColor, Palette.LineColor, Palette.PrimaryColor, RolesPlateLineLabelText, RolesPlateRow2Y, RolesPlateLabelRow2Y>>.self
-        Air<Plus<U4, U1>>.self
-        Fixed<Plus<U8, U2>, RolesCell<Palette.OnAccentColor, Palette.LineColor, Palette.PrimaryColor, RolesPlateOnAccentLabelText, RolesPlateRow2Y, RolesPlateLabelRow2Y>>.self
+        Air<U8>.self
+        Fixed<Plus<U32, Plus<U16, U2>>, RolesCell<Palette.AccentColor, Palette.LineColor, Palette.PrimaryColor, RolesPlateAccentLabelText, RolesPlateRow2Y, RolesPlateLabelRow2Y>>.self
+        Air<U8>.self
+        Fixed<Plus<U32, Plus<U16, U2>>, RolesCell<Palette.ActionColor, Palette.LineColor, Palette.PrimaryColor, RolesPlateActionLabelText, RolesPlateRow2Y, RolesPlateLabelRow2Y>>.self
+        Air<U8>.self
+        Fixed<Plus<U32, Plus<U16, U2>>, RolesCell<Palette.LineColor, Palette.LineColor, Palette.PrimaryColor, RolesPlateLineLabelText, RolesPlateRow2Y, RolesPlateLabelRow2Y>>.self
+        Air<U8>.self
+        Fixed<Plus<U32, Plus<U16, U2>>, RolesCell<Palette.OnAccentColor, Palette.LineColor, Palette.PrimaryColor, RolesPlateOnAccentLabelText, RolesPlateRow2Y, RolesPlateLabelRow2Y>>.self
         RestAir.self
     }
 }

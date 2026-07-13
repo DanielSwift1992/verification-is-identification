@@ -43,6 +43,17 @@ jobs:
       - name: Topics stay equal to the type lattice
         run: swift package --allow-writing-to-package-directory tree-sort check
 
+      - name: The second judge agrees with the compiler
+        run: swift run Tools judge diff 200
+
+      - name: The committed artifacts match the types, byte for byte
+        run: |
+          swift package --allow-writing-to-package-directory generate
+          swift run OrgDemo render-doc
+          swift run DocumentKitDemo render-doc
+          swift run VectorDemo all
+          git diff --exit-code
+
       - name: Generate the combined documentation site
         run: >
           swift package
@@ -51,7 +62,7 @@ jobs:
           --enable-experimental-combined-documentation
           --experimental-enable-custom-templates
           --target VerificationIsIdentification --target Organization
-          --target DocumentKit --target Playground
+          --target DocumentKit --target Examples
           --target GrammarLexicon --target Alphabet
           --transform-for-static-hosting
           --hosting-base-path verification-is-identification

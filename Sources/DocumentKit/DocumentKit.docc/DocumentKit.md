@@ -7,21 +7,21 @@ A render engine with no runtime. A page is a type: its `body` composes other typ
 A page is built the way everything else in this package is built: declare a type, compose its body, read the name.
 
 1. **Declare the screen.** `enum MyPage: Screen {}` — a caseless enum, like every concrete type on the surface (SurfaceLaw §S2). `Screen` is your app's own page kind, one line — `public protocol Screen: Open {}` — declared beside your pages, the way the Organization showcase declares its own. There is nothing to instantiate: the page is the type.
-2. **Compose the body.** `@StructureBuilder static var body: some Structure { … }` — statements fold into a `Pair`-cons chain. Every leaf is an atom or another combinator: a name enters through `Symbol`, a count through `Tally`, prose through a prose atom — a type whose `typeName` is the sentence. Organization spells its prose from a JSON manifest through a build plugin; this page carries its own.
+2. **Compose the body.** `@StructureBuilder static var body: some Structure { … }` — statements fold into a `Pair`-cons chain. Every leaf is an atom or another combinator: a name enters through `Symbol`, a count through `Tally`, prose through a prose atom — a type whose `typeName` is the sentence. Organization spells its prose from a JSON manifest through a build plugin. This page carries its own.
 3. **Compile.** Type-checking the body is the render happening: a table missing its header rule, a tab out of place, a count that does not fold — each is a build error, not a bad page.
-4. **Read it.** `MyPage.typeName` IS the markdown. A demo executable writes it into the `.docc` catalog, so a `doc:` link resolves to this content instead of an empty auto-generated stub — that is the whole publishing pipeline.
+4. **Read it.** `MyPage.typeName` is the markdown. A demo executable writes it into the `.docc` catalog, so a `doc:` link resolves to this content instead of an empty auto-generated stub — that is the whole publishing pipeline.
 5. **Curate it.** Add the page to the landing's Topics so it hangs where readers look, not at the navigator's root.
 
 ## Two kinds of combinator
 
-Every combinator on the surface is an `Open` protocol carrying the hole (an `associatedtype`) plus the composition that reads it (`body`), realized by a caseless `enum` — never the reverse. A one-hole combinator's `{ }` door (`init`) lives on the protocol's own extension, shared by every conformer; a combinator with more than one hole (``Link``, ``Picture``, ``SizedPanel``) folds its statements through a single `Whole: Pair` parameter instead, the door living on the concrete enum. The gallery further down this page is a live instance of every shape below, rendered by the engine it exercises — reading it is reading what each row actually produces, not a description of it.
+Every combinator on the surface is an `Open` protocol carrying the hole (an `associatedtype`) plus the composition that reads it (`body`), realized by a caseless `enum` — never the reverse. A one-hole combinator's `{ }` door (`init`) lives on the protocol extension, shared by every conformer. A combinator with more than one hole (``Link``, ``Picture``, ``SizedPanel``) folds its statements through a single `Whole: Pair` parameter instead, the door living on the concrete enum. The gallery further down this page is a live instance of every shape below, rendered by the engine it exercises — reading it is reading what each row actually produces, not a description of it.
 
 | Combinator | Is | 
 | --- | --- | 
 | ``Symbol`` | `Target` — a symbol link, the type's own name in backticks | 
 | ``Page`` | `<doc:Target>` — a link to a page, named by its own identity | 
 | ``Link`` | `[Label](doc:Target)` — a link whose display text is chosen | 
-| ``Picture`` | `![Alt](Asset)` — an image embedded IN the body, not a link-grid tile | 
+| ``Picture`` | `![Alt](Asset)` — an image embedded in the body, not a link-grid tile | 
 | ``Framed`` | the same content in a one-cell table — a border, for free, from `Table` alone | 
 | ``Table``, ``TableRow``, ``TableCell`` | a table — rows of cells, a Pair-cons never an array. `RuleMark` is the header delimiter every table needs to be a table at all | 
 | ``ListItem`` | one list line | 
@@ -37,7 +37,7 @@ Every combinator on the surface is an `Open` protocol carrying the hole (an `ass
 
 `typeName` (`Structure`) is the whole engine: an atom (`Close`) overrides it to its own character; a combinator's default reads `Body.typeName`, recursing through whatever `body` composed. `DocumentKit` depends only on `VerificationIsIdentification` — the same mechanism draws the Organization showcase and this page, gallery included.
 
-> Warning: `typeName`'s walk concatenates strings on the way back UP the tree (`Paired.typeName = L.typeName + R.typeName`), so it is not tail-recursive — one `Structure` with enough total content in its own `body` can exhaust the call stack before it ever mis-renders (checked directly). Prefer several linked pages over one page trying to hold everything, the same choice Organization's showcase already makes.
+> Warning: `typeName`'s walk concatenates strings on the way back up the tree (`Paired.typeName = L.typeName + R.typeName`), so it is not tail-recursive — one `Structure` with enough total content in its own `body` can exhaust the call stack before it ever mis-renders (checked directly). Prefer several linked pages over one page trying to hold everything, the same choice Organization's showcase already makes.
 
 ## The gallery — every mechanism, live
 
@@ -45,7 +45,7 @@ Each mechanism below is shown three ways: the code that composes it, the markdow
 
 ### Symbol
 
-`Symbol` renders a type's own Swift name in double backticks, the same shape a doc comment uses to link a real symbol. Below, a stand-in type renders as its own identifier.
+`Symbol` renders a type's own Swift name in double backticks, the same shape a doc comment uses to link a real symbol. Below, a stand-in type renders as its identifier.
 
 Used like this:
 
@@ -75,7 +75,7 @@ Comes out like this:
 
 ### Link
 
-`Link` is the same link, with its own chosen display text instead of the target's raw name.
+`Link` is the same link, with a chosen display text instead of the target's raw name.
 
 Used like this:
 
@@ -90,7 +90,7 @@ Comes out like this:
 
 ### Picture
 
-`Picture` embeds an image inside the page's own content, not only as a link-grid thumbnail.
+`Picture` embeds an image inside the page's content, not only as a link-grid thumbnail.
 
 Used like this:
 
@@ -416,11 +416,11 @@ The gallery above is markdown, DocC's own document medium. `Vector` is DocumentK
 
 **Guaranteed.** A canvas fixes its own coordinate space: `viewBox` W×H is a pixel grid that belongs to the composition. Inside it, placement is absolute (`Placed`), and the host cannot reach in — no margin, no centering, no theme rule moves anything within the `viewBox`. The host may scale the canvas only as a whole, uniformly: the aspect is preserved, so a known width fixes the height. Nothing drifts.
 
-**Not guaranteed.** The absolute on-screen size: markdown offers no pixel pin, so the canvas renders at container width — the right shape, always; exact screen pixels, never promised. Text metrics: glyph width is the platform font's; the craft is a fixed font family and generous boxes — state the box, never compute the fit.
+**Not guaranteed.** The absolute on-screen size: markdown offers no pixel pin, so the canvas renders at container width — the right shape always, the exact screen pixels never promised. Text metrics: glyph width is the platform font's. The craft is a fixed font family and generous boxes — state the box, never compute the fit.
 
 ### Roles and themes
 
-Light and dark are not two unrelated palettes; they are two projections of the same eight roles, each declared once, carrying both a light and a dark value. A role reaches a canvas by whichever of two mechanisms fits that canvas's own use: inline canvases (anything the inline-swap hook, `footer.html`, turns into real DOM) read a role as `var(--vi-<role>, <light-hex>)`, switched live by `prefers-color-scheme`, with a light fallback that still reads correctly even with no CSS in scope at all — a bare `<img>`. The small, numerous, non-interactive grid tiles use the other mechanism instead: a second, literal `x~dark.svg` file beside `x.svg`, DocC's own native asset-swap. Both read the SAME eight roles; only where a role's value lands differs, and that choice is the canvas's own, made once, at the driver's edge. One rule holds regardless of mechanism: a canvas's ground is transparent, so text never floats — every label sits on a surface role (card, track, chip), never directly on the transparent ground, because a floating label is only legible on the one host theme its fallback hex happens to match.
+Light and dark are two projections of the same eight roles, each declared once, carrying both a light and a dark value. A role reaches a canvas by whichever of two mechanisms fits that canvas's own use: inline canvases (anything the inline-swap hook, `footer.html`, turns into real DOM) read a role as `var(--vi-<role>, <light-hex>)`, switched live by `prefers-color-scheme`, with a light fallback that still reads correctly even with no CSS in scope at all — a bare `<img>`. The small, numerous, non-interactive grid tiles use the other mechanism instead: a second, literal `x~dark.svg` file beside `x.svg`, DocC's own native asset-swap. Both read the same eight roles. Only where a role's value lands differs, and that choice is the canvas's own, made once, at the driver's edge. One rule holds regardless of mechanism: a canvas's ground is transparent, so text never floats — every label sits on a surface role (card, track, chip), never directly on the transparent ground, because a floating label is only legible on the one host theme its fallback hex happens to match.
 
 | Role | What it is | 
 | --- | --- | 
@@ -439,15 +439,15 @@ Light and dark are not two unrelated palettes; they are two projections of the s
 
 **Compile gate.** An illegal type does not build (`Legible`, `WithinBounds` — the strongest form). **Generation gate.** An illegal value stops `generate` with a named precondition (`BudgetedLabel`) — weaker, still before anything ships. **Host gate.** What only the browser decides (hover, theme) — declared, never trusted with correctness.
 
-Three of these are live in the site today. The five `Legible*` protocols above (`LegibleOnSurfaceCard`, `LegibleOnSurfaceTrack`, `LegibleOnAccentRole`, and two more) are compile gates on every (foreground, background) pairing — an unreadable pair does not build. `WithinCyclesHero` (Organization's own review-cycle diagram) is the same tier applied to placement: a canvas's own closed set of legal positions, so a position only one canvas vetted cannot satisfy a different canvas's layout by accident. `BudgetedLabel` is the generation gate — a stated character ceiling, checked once, at generate time, against the real text a label carries (checked directly: lowering a label's budget below its longest real name crashes `generate` with exactly this precondition, then raised back).
+Three of these are live in the site today. The five `Legible*` protocols above (`LegibleOnSurfaceCard`, `LegibleOnSurfaceTrack`, `LegibleOnAccentRole`, and two more) are compile gates on every (foreground, background) pairing — an unreadable pair does not build. `WithinCyclesHero` (Organization's review-cycle diagram) is the same tier applied to placement: a canvas's closed set of legal positions, so a position only one canvas vetted cannot satisfy a different canvas's layout by accident. `BudgetedLabel` is the generation gate — a stated character ceiling, checked once, at generate time, against the real text a label carries (checked directly: lowering a label's budget below its longest real name crashes `generate` with exactly this precondition, then raised back).
 
 ### The interactive layer
 
 `Linked` wraps a subtree in a real link: `Target` is a page path from the site's own closed set of addresses, never an arbitrary URL, named at the call site, not computed. It is always emitted — inert inside a plain `<img>` (DocC's own embed choice) — and becomes a real, clickable DOM anchor only once the host inlines the canvas (the inline-swap hook, `footer.html`), a decision the host makes about how to embed the medium, not a capability this file adds.
 
-`PageSlug<X>` reads a page type's own Swift name, lowercased — the same URL slug DocC's static-hosting build assigns it. A caller builds a real site path from a page TYPE with this, never a string kept in sync by hand.
+`PageSlug<X>` reads a page type's own Swift name, lowercased — the same URL slug DocC's static-hosting build assigns it. A caller builds a real site path from a page type with this, never a string kept in sync by hand.
 
-`HoverReveal` pairs a `Trigger` and a `Panel`: hovering either reveals the panel, while the trigger's own click still navigates. The panel must survive the pointer's OWN travel to it, so the reveal is keyed on either half's hover, the close is a delay rather than an instant cutoff, and `pointer-events` is never touched mid-transition (SurfaceLaw §S26 — found by checking directly, not assumed).
+`HoverReveal` pairs a `Trigger` and a `Panel`: hovering either reveals the panel, while the trigger's own click still navigates. The panel must survive the pointer's travel to it, so the reveal is keyed on either half's hover, the close is a delay rather than an instant cutoff, and `pointer-events` is never touched mid-transition (SurfaceLaw §S26 — found by checking directly, not assumed).
 
 `SelfShowing` costs nothing beyond an empty conformance: a canvas that opts in can read its own already-compiled composition back out as text and print it as a small `{ }` chip on the page — nothing here is a second copy of what compiled, so nothing here can drift from it.
 
@@ -478,7 +478,7 @@ Comes out like this:
 
 ### Hover reveals more
 
-A trigger and a panel, paired by `HoverReveal` — hover the dot below to see the panel; its own click still navigates.
+A trigger and a panel, paired by `HoverReveal` — hover the dot below to see the panel, and its click still navigates.
 
 Used like this:
 
@@ -492,7 +492,7 @@ enum VectorHoverExampleReveal: HoverReveal {
 
 Comes out like this:
 
-![A dot that reveals a panel on hover; its own click still navigates.](vector-hover-example)
+![A dot that reveals a panel on hover. Its click still navigates.](vector-hover-example)
 
 ### The gate, both ways
 
@@ -535,7 +535,7 @@ conform to 'LegibleOnSurfaceCard'
 
 ### A canvas that shows its own code
 
-`SelfShowing` costs nothing beyond the marker — the badge in the corner links to a page carrying this SAME canvas's own composition, read off the same atom the code block below shows, so it cannot drift from what actually compiled.
+`SelfShowing` costs nothing beyond the marker — the badge in the corner links to a page carrying this canvas's composition, read off the same atom the code block below shows, so it cannot drift from what actually compiled.
 
 Used like this:
 
@@ -554,15 +554,17 @@ Comes out like this:
 
 ### A linked tour
 
-Two canvases, each `Linked` to the OTHER's own page. Visit Station A below, click its dot, land on Station B — click ITS dot, land back on Station A. Inert here (a plain `<img>`); real once the host inlines it.
+Two canvases, each `Linked` to the other's page. Visit Station A below, click its dot, land on Station B — click its dot to land back on Station A. Inert here, a plain `<img>`. Real once the host inlines it.
 
 Used like this:
 
 ```swift
 enum VectorTourStationALinkToB: HFlow {
     static var body: some Structure & Divides {
-        Fixed<VectorExampleColumnWide, SpanLink<
-            VectorExampleSitePath<VectorTourStationB>, VectorTourDot>>.self
+        Fixed<
+            VectorExampleColumnWide,
+            SpanLink<VectorExampleSitePath<VectorTourStationB>, VectorTourDot>
+        >.self
         RestAir.self
     }
 }
@@ -572,7 +574,7 @@ enum VectorTourStationALinkToB: HFlow {
 
 Comes out like this:
 
-![Station A, a dot linked to Station B's own page.](vector-tour-station-a)
+![Station A, a dot linked to Station B's page.](vector-tour-station-a)
 
 ### RolesPlate, both themes
 

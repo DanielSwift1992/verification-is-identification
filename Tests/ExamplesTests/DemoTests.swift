@@ -1,9 +1,9 @@
 import XCTest
-import Playground
+import Examples
 
 // The demos are proofs, not programs: each type below exists only because it
-// type-checked when `Playground` compiled. `swift test` runs that proof in CI and
-// pins the numbers the build settles. The full presentation lives in the Playground
+// type-checked when `Examples` compiled. `swift test` runs that proof in CI and
+// pins the numbers the build settles. The full presentation lives in the Examples
 // docs — here the compiler is the witness.
 final class DemoTests: XCTestCase {
 

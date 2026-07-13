@@ -4,7 +4,7 @@
     @PageImage(purpose: card, source: "card-employees", alt: "Employees")
 }
 
-The directory, read from the roster. The named team owns the documents; the rest of the company scales the same policy.
+The directory, read from the roster. The named team owns the documents, and the rest of the company scales the same policy.
 
 ![Headcount by department, rank, and workplace](employees-hero)
 

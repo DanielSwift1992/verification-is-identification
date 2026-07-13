@@ -244,14 +244,6 @@ typealias TaskCardCoreSpan<
     SpanHosted<CardTextRow<TaskTitleSpan<T.DisplayName>>>,
     Layered<SpanHosted<CardTextRow<TaskAssigneeSpan<T.Assignee>>>, SpanHosted<TaskChipRow<Chip>>>
 >
-typealias TrueCardSpan<
-    T: Task,
-    Chip: Spanning,
-    Reveals: Spanning
-> = Layered<
-    TaskCardFace,
-    Layered<TaskCardCoreSpan<T, Chip>, Reveals>
->
 typealias StaticCardSpan<
     T: Task,
     Chip: Spanning
@@ -317,7 +309,7 @@ enum BoardRow<
     public typealias Given = WideSurface
     @StructureBuilder
     public static var body: some Structure & Divides {
-        RestAir.self
+        Air<BoardEdge>.self
         Fixed<DocumentCardWide, C1>.self
         Air<Gutter>.self
         Fixed<DocumentCardWide, C2>.self
@@ -327,29 +319,28 @@ enum BoardRow<
     }
 }
 
-// ── the hover panels: the SAME preview card a what-if page's board draws, placed at its
-// hypothetical slot for the true board's in-place ghost — read once, shown two ways ──
+// ── the hover pairs live at the canvas frame, never inside a card: both halves spell
+// absolute lanes and slot drops, and a pair hosted in a card would re-base the panel at
+// that card's own corner. The lanes are the columns' true insets, read off `BoardRow`. ──
 
 typealias SlotDropFirst = BoardHeaderZone
 typealias SlotDropSecond = Plus<BoardHeaderZone, BoardSlotPitch>
 typealias SlotDropThird = Plus<BoardHeaderZone, Plus<BoardSlotPitch, BoardSlotPitch>>
 typealias SlotDropFourth = Plus<BoardHeaderZone, Plus<BoardSlotPitch, Plus<BoardSlotPitch, BoardSlotPitch>>>
-enum PreviewLane {}
-enum PreviewPanelRow<
+enum BoardCell<
     Lane: Structure,
     DropY: Structure,
-    T: Task,
-    Chip: Spanning
+    Art: Spanning
 >: HFlow {
     public typealias Given = WideSurface
     @StructureBuilder
     public static var body: some Structure & Divides {
         Air<Lane>.self
-        Fixed<DocumentCardWide, SpanLowered<Tally<DropY>, PreviewCardSpan<T, Chip>>>.self
+        Fixed<DocumentCardWide, SpanLowered<Tally<DropY>, Art>>.self
         RestAir.self
     }
 }
-typealias LaneToDo = PanelInset
+typealias LaneToDo = BoardEdge
 typealias LaneInProgress = Plus<LaneToDo, Plus<DocumentCardWide, Gutter>>
 typealias LaneDone = Plus<LaneInProgress, Plus<DocumentCardWide, Gutter>>
 typealias PreviewPanel<
@@ -357,74 +348,92 @@ typealias PreviewPanel<
     DropY: Structure,
     T: Task,
     Chip: Spanning
-> = PreviewPanelRow<Lane, DropY, T, Chip>
+> = BoardCell<Lane, DropY, PreviewCardSpan<T, Chip>>
 
-// ── the ten reveals — one per legal move, DESIGN13 §1 ──
+// ── the ten reveals — one per legal move, DESIGN13 §1. Each trigger is the card's ‹/›
+// art seated at that card's own lane and slot, each panel the ghost at the move's target
+// cell, and the pair is one `HoverReveal` so the CSS sibling rule stays scoped to it. ──
 
-typealias OnboardNewHireInProgressReveal = SpanHoverReveal<
-    NextTriggerArt<SitePath<WhatIfOnboardNewHireInProgress>>,
-    PreviewPanel<LaneInProgress, SlotDropFourth, OnboardNewHire, InProgressChipSpan>
->
-typealias ArchiveOldRepositoriesInProgressReveal = SpanHoverReveal<
-    NextTriggerArt<SitePath<WhatIfArchiveOldRepositoriesInProgress>>,
-    PreviewPanel<LaneInProgress, SlotDropFourth, ArchiveOldRepositories, InProgressChipSpan>
->
-typealias RotateVaultKeysToDoReveal = SpanHoverReveal<
-    PrevTriggerArt<SitePath<WhatIfRotateVaultKeysToDo>>,
-    PreviewPanel<LaneToDo, SlotDropThird, RotateVaultKeys, ToDoChipSpan>
->
-typealias RotateVaultKeysDoneReveal = SpanHoverReveal<
-    NextTriggerArt<SitePath<WhatIfRotateVaultKeysDone>>,
-    PreviewPanel<LaneDone, SlotDropThird, RotateVaultKeys, DoneChipSpan>
->
-typealias ReviewImprovementPlanPolicyToDoReveal = SpanHoverReveal<
-    PrevTriggerArt<SitePath<WhatIfReviewImprovementPlanPolicyToDo>>,
-    PreviewPanel<LaneToDo, SlotDropThird, ReviewImprovementPlanPolicy, ToDoChipSpan>
->
-typealias ReviewImprovementPlanPolicyDoneReveal = SpanHoverReveal<
-    NextTriggerArt<SitePath<WhatIfReviewImprovementPlanPolicyDone>>,
-    PreviewPanel<LaneDone, SlotDropThird, ReviewImprovementPlanPolicy, DoneChipSpan>
->
-typealias FinanceReconciliationToDoReveal = SpanHoverReveal<
-    PrevTriggerArt<SitePath<WhatIfFinanceReconciliationToDo>>,
-    PreviewPanel<LaneToDo, SlotDropThird, FinanceReconciliation, ToDoChipSpan>
->
-typealias FinanceReconciliationDoneReveal = SpanHoverReveal<
-    NextTriggerArt<SitePath<WhatIfFinanceReconciliationDone>>,
-    PreviewPanel<LaneDone, SlotDropThird, FinanceReconciliation, DoneChipSpan>
->
-typealias Q3AccessAuditInProgressReveal = SpanHoverReveal<
-    PrevTriggerArt<SitePath<WhatIfQ3AccessAuditInProgress>>,
-    PreviewPanel<LaneInProgress, SlotDropFourth, Q3AccessAudit, InProgressChipSpan>
->
-typealias UpdateOrganizationChartInProgressReveal = SpanHoverReveal<
-    PrevTriggerArt<SitePath<WhatIfUpdateOrganizationChartInProgress>>,
-    PreviewPanel<LaneInProgress, SlotDropFourth, UpdateOrganizationChart, InProgressChipSpan>
->
+enum OnboardNewHireInProgressReveal: HoverReveal {
+    public typealias Trigger = BoardCell<LaneToDo, SlotDropFirst, NextTriggerArt<SitePath<WhatIfOnboardNewHireInProgress>>>
+    public typealias Panel = PreviewPanel<LaneInProgress, SlotDropFourth, OnboardNewHire, InProgressChipSpan>
+}
+enum ArchiveOldRepositoriesInProgressReveal: HoverReveal {
+    public typealias Trigger = BoardCell<LaneToDo, SlotDropSecond, NextTriggerArt<SitePath<WhatIfArchiveOldRepositoriesInProgress>>>
+    public typealias Panel = PreviewPanel<LaneInProgress, SlotDropFourth, ArchiveOldRepositories, InProgressChipSpan>
+}
+enum RotateVaultKeysToDoReveal: HoverReveal {
+    public typealias Trigger = BoardCell<LaneInProgress, SlotDropFirst, PrevTriggerArt<SitePath<WhatIfRotateVaultKeysToDo>>>
+    public typealias Panel = PreviewPanel<LaneToDo, SlotDropThird, RotateVaultKeys, ToDoChipSpan>
+}
+enum RotateVaultKeysDoneReveal: HoverReveal {
+    public typealias Trigger = BoardCell<LaneInProgress, SlotDropFirst, NextTriggerArt<SitePath<WhatIfRotateVaultKeysDone>>>
+    public typealias Panel = PreviewPanel<LaneDone, SlotDropThird, RotateVaultKeys, DoneChipSpan>
+}
+enum ReviewImprovementPlanPolicyToDoReveal: HoverReveal {
+    public typealias Trigger = BoardCell<LaneInProgress, SlotDropSecond, PrevTriggerArt<SitePath<WhatIfReviewImprovementPlanPolicyToDo>>>
+    public typealias Panel = PreviewPanel<LaneToDo, SlotDropThird, ReviewImprovementPlanPolicy, ToDoChipSpan>
+}
+enum ReviewImprovementPlanPolicyDoneReveal: HoverReveal {
+    public typealias Trigger = BoardCell<LaneInProgress, SlotDropSecond, NextTriggerArt<SitePath<WhatIfReviewImprovementPlanPolicyDone>>>
+    public typealias Panel = PreviewPanel<LaneDone, SlotDropThird, ReviewImprovementPlanPolicy, DoneChipSpan>
+}
+enum FinanceReconciliationToDoReveal: HoverReveal {
+    public typealias Trigger = BoardCell<LaneInProgress, SlotDropThird, PrevTriggerArt<SitePath<WhatIfFinanceReconciliationToDo>>>
+    public typealias Panel = PreviewPanel<LaneToDo, SlotDropThird, FinanceReconciliation, ToDoChipSpan>
+}
+enum FinanceReconciliationDoneReveal: HoverReveal {
+    public typealias Trigger = BoardCell<LaneInProgress, SlotDropThird, NextTriggerArt<SitePath<WhatIfFinanceReconciliationDone>>>
+    public typealias Panel = PreviewPanel<LaneDone, SlotDropThird, FinanceReconciliation, DoneChipSpan>
+}
+enum Q3AccessAuditInProgressReveal: HoverReveal {
+    public typealias Trigger = BoardCell<LaneDone, SlotDropFirst, PrevTriggerArt<SitePath<WhatIfQ3AccessAuditInProgress>>>
+    public typealias Panel = PreviewPanel<LaneInProgress, SlotDropFourth, Q3AccessAudit, InProgressChipSpan>
+}
+enum UpdateOrganizationChartInProgressReveal: HoverReveal {
+    public typealias Trigger = BoardCell<LaneDone, SlotDropSecond, PrevTriggerArt<SitePath<WhatIfUpdateOrganizationChartInProgress>>>
+    public typealias Panel = PreviewPanel<LaneInProgress, SlotDropFourth, UpdateOrganizationChart, InProgressChipSpan>
+}
 
-// ── the true board: each card in its own status's column, reveals riding the cards ──
+// ── the true board: each card in its own status's column, the hover pairs one layer
+// above the cards, at the canvas frame ──
 
 typealias ToDoColumnTrue = BoardColumnArt<
     Organization.ToDo.DisplayName,
-    TrueCardSpan<OnboardNewHire, OnboardNewHire.Status.ChipVisual, OnboardNewHireInProgressReveal>,
-    TrueCardSpan<ArchiveOldRepositories, ArchiveOldRepositories.Status.ChipVisual, ArchiveOldRepositoriesInProgressReveal>,
+    StaticCardSpan<OnboardNewHire, OnboardNewHire.Status.ChipVisual>,
+    StaticCardSpan<ArchiveOldRepositories, ArchiveOldRepositories.Status.ChipVisual>,
     SpanNothing,
     SpanNothing
 >
 typealias InProgressColumnTrue = BoardColumnArt<
     InProgress.DisplayName,
-    TrueCardSpan<RotateVaultKeys, RotateVaultKeys.Status.ChipVisual, Layered<RotateVaultKeysToDoReveal, RotateVaultKeysDoneReveal>>,
-    TrueCardSpan<ReviewImprovementPlanPolicy, ReviewImprovementPlanPolicy.Status.ChipVisual, Layered<ReviewImprovementPlanPolicyToDoReveal, ReviewImprovementPlanPolicyDoneReveal>>,
-    TrueCardSpan<FinanceReconciliation, FinanceReconciliation.Status.ChipVisual, Layered<FinanceReconciliationToDoReveal, FinanceReconciliationDoneReveal>>,
+    StaticCardSpan<RotateVaultKeys, RotateVaultKeys.Status.ChipVisual>,
+    StaticCardSpan<ReviewImprovementPlanPolicy, ReviewImprovementPlanPolicy.Status.ChipVisual>,
+    StaticCardSpan<FinanceReconciliation, FinanceReconciliation.Status.ChipVisual>,
     SpanNothing
 >
 typealias DoneColumnTrue = BoardColumnArt<
     Organization.Done.DisplayName,
-    TrueCardSpan<Q3AccessAudit, Q3AccessAudit.Status.ChipVisual, Q3AccessAuditInProgressReveal>,
-    TrueCardSpan<UpdateOrganizationChart, UpdateOrganizationChart.Status.ChipVisual, UpdateOrganizationChartInProgressReveal>,
+    StaticCardSpan<Q3AccessAudit, Q3AccessAudit.Status.ChipVisual>,
+    StaticCardSpan<UpdateOrganizationChart, UpdateOrganizationChart.Status.ChipVisual>,
     SpanNothing,
     SpanNothing
 >
+enum BoardReveals: Group {
+    @StructureBuilder
+    public static var body: some Structure {
+        OnboardNewHireInProgressReveal.self
+        ArchiveOldRepositoriesInProgressReveal.self
+        RotateVaultKeysToDoReveal.self
+        RotateVaultKeysDoneReveal.self
+        ReviewImprovementPlanPolicyToDoReveal.self
+        ReviewImprovementPlanPolicyDoneReveal.self
+        FinanceReconciliationToDoReveal.self
+        FinanceReconciliationDoneReveal.self
+        Q3AccessAuditInProgressReveal.self
+        UpdateOrganizationChartInProgressReveal.self
+    }
+}
 
 enum BoardDefs: Group {
     @StructureBuilder
@@ -437,6 +446,7 @@ enum BoardContent: Group, SelfShowing {
     @StructureBuilder
     public static var body: some Structure {
         BoardRow<ToDoColumnTrue, InProgressColumnTrue, DoneColumnTrue>.self
+        BoardReveals.self
     }
 }
 enum BoardDiagram: GrownDiagram {
@@ -448,7 +458,7 @@ enum BoardDiagram: GrownDiagram {
         Air<EdgeMargin>.self
         Fixed<BoardColumnTall, SpanHosted<BoardContent>>.self
         Fixed<Never, SpanHosted<BoardSelfShowingRow>>.self
-        Air<EdgeMargin>.self
+        Air<S24Breath>.self
     }
 }
 

@@ -8,14 +8,12 @@ Take a finite set of candidates and a test. If exactly one candidate passes, "it
 
 **Where to go.** Pick by what you came for.
 
-- term **See it work:** the scheduler in [Playground](https://danielswift1992.github.io/verification-is-identification/documentation/playground) is a proof in nine lines — the compiler derives the one consistent schedule and refuses an impossible one by name. Five minutes.
-- term **See it at scale:** [Organization](https://danielswift1992.github.io/verification-is-identification/documentation/organization) is a whole company in the notation — browse the site its build rendered, walk a login keypad, read the access verdicts.
+- term **Try it:** [the playground](https://danielswift1992.github.io/typed-playground/) runs in the browser, nothing to install — Swift types on the left, their reading on the right, and the judge names every broken claim at the keystroke. In the compiler, the scheduler in [Examples](https://danielswift1992.github.io/verification-is-identification/documentation/examples) is a proof in nine lines: it derives the one consistent schedule and refuses an impossible one by name. Five minutes either way.
+- term **See it at scale:** [Organization](https://danielswift1992.github.io/verification-is-identification/documentation/organization) is a whole company in the notation — browse the site its build rendered, walk a login keypad, read the access verdicts. <doc:Curve> measures the build as the company grows, to 12800 employees.
 - term **See why it holds:** <doc:verification_is_identification> proves the result from one postulate, <doc:existence_is_finite> grounds it, and <doc:intelligence_is_inevitable> follows one consequence out. <doc:Neighbors> sets the result beside partial evaluation, Datalog, and total languages.
-- term **See how far it reaches:** <doc:Curve> measures how build time grows with the size of the generated company, to 6400 employees, and what each change bought.
-- term **Build your own:** <doc:Purpose> states what the notation buys and what it does not, <doc:Encoding> maps your part of a system onto it, and ``Law`` is the grammar you write in.
-- term **See how these pages are made:** [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit) renders them, guided walks included — this site is written in the notation it documents.
+- term **Build your own:** <doc:Purpose> states what the notation buys and where it stops, <doc:Encoding> maps your part of a system onto it, and ``Law`` is the grammar you write in. These pages are themselves rendered by [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit) — the site is written in the notation it documents.
 
-Two longer threads run through the papers: learning machines, <doc:intelligence_is_inevitable> → <doc:play_is_proof> → <doc:architecture_of_learning_machines>, and the emitted path — token by token, gated or not — <doc:program_is_path>. The type pages under Topics are reference, each standing on its own.
+Two longer threads run through the papers: learning machines, <doc:intelligence_is_inevitable> → <doc:play_is_proof> → <doc:architecture_of_learning_machines>, and the emitted path — token by token, gated or not — <doc:program_is_path>. The type pages under Topics are reference.
 
 **How it is built.** From one act and one fixpoint:
 
@@ -129,6 +127,7 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``HasCompositionalNorm``
 - ``HasCost``
 - ``HasEfficiency``
+- ``HasGauge``
 - ``HasGrammar``
 - ``HasLaw``
 - ``HasLibrary``

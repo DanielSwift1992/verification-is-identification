@@ -1157,7 +1157,7 @@ extension SpanCardFace {
         atX x: X.Type,
         width w: W.Type
     ) -> String {
-        "<g filter=\"url(#surface-card-shadow)\">\n"
+        "<g filter=\"url(#" + SurfaceCardShadowName.typeName + ")\">\n"
             + "<rect x=\"\(SpanPx<X>.typeName)\" width=\"\(SpanPx<W>.typeName)\" height=\"\(H.typeName)\" "
             + "rx=\"\(Radius.typeName)\" fill=\"\(Fill.typeName)\" stroke=\"\(Stroke.typeName)\" stroke-width=\"\(HairlineWidth.typeName)\"/>\n"
             + "</g>\n"
@@ -1320,7 +1320,7 @@ extension SpanHeroFace {
         atX x: X.Type,
         width w: W.Type
     ) -> String {
-        "<g filter=\"url(#soft-shadow)\">\n"
+        "<g filter=\"url(#" + SoftShadowName.typeName + ")\">\n"
             + "<rect x=\"\(SpanPx<X>.typeName)\" width=\"\(SpanPx<W>.typeName)\" height=\"\(H.typeName)\" "
             + "rx=\"\(Radius.typeName)\" fill=\"\(Fill.typeName)\"/>\n"
             + "</g>\n"
@@ -1431,7 +1431,7 @@ extension SpanSoftShadowed: Spanning {
         atX x: X.Type,
         width w: W.Type
     ) -> String {
-        "<g filter=\"url(#soft-shadow)\">\n"
+        "<g filter=\"url(#" + SoftShadowName.typeName + ")\">\n"
             + Content.rendered(atX: x, width: w)
             + "</g>\n"
     }

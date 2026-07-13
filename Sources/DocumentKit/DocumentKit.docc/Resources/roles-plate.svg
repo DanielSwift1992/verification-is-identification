@@ -1,52 +1,52 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 148" role="img" data-vi-canvas="1" font-family="Inter, Roboto, system-ui, sans-serif" aria-label="The eight roles, each as its own colour swatch.">
 <rect width="240" height="148" rx="16" fill="var(--vi-surface-card, #FFFFFF)"/>
-<g transform="translate(4, 0)">
+<g transform="translate(8, 0)">
 <g transform="translate(0, 16)">
-<rect x="0" width="10" height="24" rx="4" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
-<text x="0" y="56" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Card</text>
+<text x="0" y="56" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="10">Card</text>
 </g>
-<g transform="translate(19, 0)">
+<g transform="translate(66, 0)">
 <g transform="translate(0, 16)">
-<rect x="0" width="10" height="24" rx="4" fill="var(--vi-surface-track, #F6F7F8)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="var(--vi-surface-track, #F6F7F8)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
-<text x="0" y="56" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Track</text>
+<text x="0" y="56" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="10">Track</text>
 </g>
-<g transform="translate(34, 0)">
+<g transform="translate(124, 0)">
 <g transform="translate(0, 16)">
-<rect x="0" width="10" height="24" rx="4" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
-<text x="0" y="56" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Primary</text>
+<text x="0" y="56" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="10">Primary</text>
 </g>
-<g transform="translate(49, 0)">
+<g transform="translate(182, 0)">
 <g transform="translate(0, 16)">
-<rect x="0" width="10" height="24" rx="4" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
-<text x="0" y="56" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Secondary</text>
+<text x="0" y="56" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="10">Secondary</text>
 </g>
-<g transform="translate(4, 0)">
+<g transform="translate(8, 0)">
 <g transform="translate(0, 76)">
-<rect x="0" width="10" height="24" rx="4" fill="var(--vi-accent, #FFDD2D)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="var(--vi-accent, #FFDD2D)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
-<text x="0" y="116" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Accent</text>
+<text x="0" y="116" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="10">Accent</text>
 </g>
-<g transform="translate(19, 0)">
+<g transform="translate(66, 0)">
 <g transform="translate(0, 76)">
-<rect x="0" width="10" height="24" rx="4" fill="var(--vi-action, #336FEE)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="var(--vi-action, #336FEE)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
-<text x="0" y="116" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Action</text>
+<text x="0" y="116" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="10">Action</text>
 </g>
-<g transform="translate(34, 0)">
+<g transform="translate(124, 0)">
 <g transform="translate(0, 76)">
-<rect x="0" width="10" height="24" rx="4" fill="var(--vi-line, #EAECEE)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="var(--vi-line, #EAECEE)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
-<text x="0" y="116" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Line</text>
+<text x="0" y="116" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="10">Line</text>
 </g>
-<g transform="translate(49, 0)">
+<g transform="translate(182, 0)">
 <g transform="translate(0, 76)">
-<rect x="0" width="10" height="24" rx="4" fill="var(--vi-on-accent, #1C1C1E)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="var(--vi-on-accent, #1C1C1E)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
-<text x="0" y="116" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">On accent</text>
+<text x="0" y="116" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="10">On accent</text>
 </g>
 
 </svg>

@@ -1,6 +1,6 @@
 # Allen, Barbara … Wirth, Radia
 
-Two doors, and each door names every page behind it. Choose the half that holds yours, or step back up.
+Two doors, and each door names every page behind it. Pick a half and keep choosing: any page stands at most four choices away, and a wrong turn steps back up.
 
 - [Allen, Barbara … Lamport, Ken](doc:RosterSpan0000To0101)
 - [Lamport, Margaret … Wirth, Radia](doc:RosterSpan0102To0203)

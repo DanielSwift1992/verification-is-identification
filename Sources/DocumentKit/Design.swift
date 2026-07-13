@@ -325,6 +325,36 @@ extension OnActionRole {
     public static var typeName: String { "var(--vi-on-action, " + Paper.typeName + ")" }
 }
 
+/// The filter's name, spelled once: the def states its `id` through this atom and every
+/// applier builds its `url()` from the same atom, so a rename cannot strand an applier.
+public enum SoftShadowName: Close {}
+extension SoftShadowName {
+    public static var typeName: String { "soft-shadow" }
+}
+/// `SurfaceCardShadow`'s name, held to the same rule.
+public enum SurfaceCardShadowName: Close {}
+extension SurfaceCardShadowName {
+    public static var typeName: String { "surface-card-shadow" }
+}
+/// The envelope both shadow filters share: room around the shape for the blur to paint in.
+public enum ShadowEnvelope: Close {}
+extension ShadowEnvelope {
+    public static var typeName: String { "x=\"-20%\" y=\"-20%\" width=\"140%\" height=\"140%\"" }
+}
+/// The cast both shadow filters share: straight down five, blurred ten, black.
+public enum ShadowCast: Close {}
+extension ShadowCast {
+    public static var typeName: String {
+        "dx=\"0\" dy=\"5\" stdDeviation=\"10\" flood-color=\"" + Black.typeName + "\""
+    }
+}
+/// The resting opacity: `SoftShadow` reads it directly, `SurfaceCardShadow` as the
+/// light-theme fallback under its CSS variable.
+public enum ShadowRestOpacity: Close {}
+extension ShadowRestOpacity {
+    public static var typeName: String { "0.10" }
+}
+
 /// This is the one shadow every `Paper` card reads: a filter def, declared once per canvas
 /// that uses it (`ArrowMarkers`' shape), not restated per card. Fixed in both themes.
 /// `HeroKpiCard` (an `AccentRole` panel) is not the table row asked to go flat in the dark
@@ -332,12 +362,9 @@ extension OnActionRole {
 public enum SoftShadow: Close {}
 extension SoftShadow {
     public static var typeName: String {
-        """
-        <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
-        <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="\(Black.typeName)" flood-opacity="0.10"/>
-        </filter>
-
-        """
+        "<filter id=\"" + SoftShadowName.typeName + "\" " + ShadowEnvelope.typeName + ">\n"
+            + "<feDropShadow " + ShadowCast.typeName + " flood-opacity=\"" + ShadowRestOpacity.typeName + "\"/>\n"
+            + "</filter>\n"
     }
 }
 /// This is `SoftShadow` applied to a subtree, the one place a `Paper` card differs from a flat
@@ -347,7 +374,7 @@ public protocol Shadowed: Open {
 }
 extension Shadowed {
     public static var typeName: String {
-        "<g filter=\"url(#soft-shadow)\">\n" + Content.typeName + "</g>\n"
+        "<g filter=\"url(#" + SoftShadowName.typeName + ")\">\n" + Content.typeName + "</g>\n"
     }
 }
 
@@ -359,12 +386,10 @@ extension Shadowed {
 public enum SurfaceCardShadow: Close {}
 extension SurfaceCardShadow {
     public static var typeName: String {
-        """
-        <filter id="surface-card-shadow" x="-20%" y="-20%" width="140%" height="140%">
-        <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="\(Black.typeName)" flood-opacity="var(--vi-surface-card-shadow-opacity, 0.10)"/>
-        </filter>
-
-        """
+        "<filter id=\"" + SurfaceCardShadowName.typeName + "\" " + ShadowEnvelope.typeName + ">\n"
+            + "<feDropShadow " + ShadowCast.typeName
+            + " flood-opacity=\"var(--vi-surface-card-shadow-opacity, " + ShadowRestOpacity.typeName + ")\"/>\n"
+            + "</filter>\n"
     }
 }
 /// This is `SurfaceCardShadow` applied to a subtree: `KpiCardBackground`'s wrapper, the
@@ -374,7 +399,7 @@ public protocol ThemedShadowed: Open {
 }
 extension ThemedShadowed {
     public static var typeName: String {
-        "<g filter=\"url(#surface-card-shadow)\">\n" + Content.typeName + "</g>\n"
+        "<g filter=\"url(#" + SurfaceCardShadowName.typeName + ")\">\n" + Content.typeName + "</g>\n"
     }
 }
 
@@ -770,7 +795,7 @@ public typealias RtoSurface = Times<
         >
     >
 >   // sixteen forty-fives: the arrangements strip
-public typealias BoardTall = Times<U32, Plus<U8, Plus<U4, Plus<U2, U1>>>>
+public typealias BoardTall = Times<U8, Plus<U32, Plus<U16, Plus<U8, Plus<U4, U1>>>>>
 public typealias GateTall = Times<U8, Plus<U32, Plus<U2, U1>>>
 public typealias ArchCaptionWide = Plus<U256, Plus<U16, Plus<U8, Plus<U2, U1>>>>
 // ── The gate's vertical fascia: the row's drop, the box, the fall to dead, and the reset
@@ -785,13 +810,18 @@ public typealias ArchCaptionWide = Plus<U256, Plus<U16, Plus<U8, Plus<U2, U1>>>>
 // ── the saturation curve's rungs (curve.svg): group and bar slots, legend slots,
 // and the summed frame — the chart's one surface, spoken here so the demo names
 // magnitudes and never spells units. ──
-public typealias CurveGroupWide = Plus<U64, U64>
-public typealias CurveBarWide = Plus<U16, U8>
-public typealias CurveWallWide = Plus<U64, Plus<U32, Plus<U16, U8>>>
+public typealias CurveBarThick = Plus<U16, U8>
+public typealias CurveNameColumn = Plus<U64, U32>
+public typealias CurveLegendTextWide = Plus<U128, Plus<U32, U16>>
+public typealias CurveBuildWide3200 = Plus<U64, Plus<U32, Plus<U4, U2>>>       // 34 s × 3
+public typealias CurveBuildWide6400 = Plus<U128, Plus<U64, Plus<U32, Plus<U16, Plus<U4, U2>>>>>   // 82 s × 3
+public typealias CurveBuildWide12800 = Plus<U512, Plus<U64, Plus<U16, Plus<U4, U1>>>>             // 199 s × 3
 public typealias LegendChipWide = Plus<U16, U2>
 public typealias LegendTextWide = Plus<U64, Plus<U32, Plus<U16, U8>>>
 public typealias LegendWideTextWide = Plus<U64, Plus<U64, Plus<U32, Plus<U16, Plus<U8, Plus<U4, U2>>>>>>
 public typealias CurveWholeTall = Plus<U64, Plus<U64, Plus<U64, Plus<U64, Plus<U64, Plus<U4, U2>>>>>>
+// 150: the walk film's strip height, a count the canvas reads.
+public typealias FilmStripTall = Plus<U128, Plus<U16, Plus<U4, U2>>>
 
 public typealias FlowZoneGaps = Plus<Gutter, Twice<Gutter>>
 public typealias FlowZoneWide = Half<Half<Rest<Rest<WideSurface, Twice<EdgeMargin>>, FlowZoneGaps>>>
@@ -883,6 +913,7 @@ public typealias CyclesZoneTall = Plus<U128, Plus<U32, Plus<U8, U2>>>
 public typealias TaskCardTall = Plus<U64, Plus<U16, Plus<U8, U2>>>
 public typealias BoardHeaderZone = Plus<U32, U8>
 public typealias BoardSlotPitch = Plus<TaskCardTall, Breath>
+public typealias BoardEdge = Plus<U8, U4>
 public typealias BoardColumnTall = Plus<
     BoardHeaderZone,
     Plus<

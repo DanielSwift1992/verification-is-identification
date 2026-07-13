@@ -1,4 +1,4 @@
-# ``Playground``
+# ``Examples``
 
 Worked examples of the framework: physics reproduced as types, learning machines located by their coordinates, the concrete models that inhabit the markers, and a working solver — each one checked by the compiler, nothing run.
 
@@ -8,7 +8,7 @@ Worked examples of the framework: physics reproduced as types, learning machines
 conflicts that force each task onto the opposite machine. The compiler propagates
 the one consistent assignment and certifies it, or refuses an impossible schedule
 by name — ``Pinned``, ``Conflicts``, ``Require``, all in `Coloring.swift`. Read it
-first; every other example is the same three operations on a harder board.
+first: every other example is the same three operations on a harder board.
 
 **Then dive in.** Every example here is a finished result you can read on its own:
 the residual entropy of ice, hydrogen's metastable 2s, the stable proton. The one
@@ -51,7 +51,7 @@ or impossible.
 3. Encode your own question. Choose the operation, write it as types, and read the
    build. A selection rule is a `where` clause. The cases that satisfy it compile,
    and one that does not is rejected. The `Lowers` and `Orbital` types below are real,
-   in `Sources/Playground/Hydrogen.swift`:
+   in `Sources/Examples/Hydrogen.swift`:
 
    ```swift
    // The dipole rule Δℓ = ±1, written as a where clause.

@@ -6,7 +6,7 @@ A company modeled in Swift's type system. Its people, its access rules, and its 
 
 Three things to do, in order:
 
-- term **Take the walk:** <doc:SiteWalk> finds your page in four choices, and the people shelf behind it finds any of the 204 in eight. Every door names what it holds, read off the same types this site is rendered from.
+- term **Take the walk:** <doc:SiteWalk> reaches any page in four choices, and any of the 204 people in eight. Every door names what it holds, read off the same types this site is rendered from. Try it: the task board is three choices in.
 - term **Unlock a card:** every person's card is public, including the password printed on it, and the keypad beside it is the login. Walk the code digit by digit — the last correct press lands on the card's unlocked half. <doc:CompanyDashboard> lists the four named cards to try.
 - term **Change a rule:** edit `System/Policy.swift` and rebuild. Every page re-reads itself, and a rule that contradicts the policy refuses the build with the failed premise named.
 
@@ -30,22 +30,22 @@ VIPER would slice a runtime, this slices a proof.
 ![The build, left to right: sources of truth feed the generators, generated Swift meets the gates inside swift build, and the outputs are the site, the drawings, and the audit.](build-flow)
 
 The second picture is the tooling: everything that executes, executes here, once, at
-build time. The sources of truth are files in the repository; swift package generate
-turns them into checked-in Swift; swift build holds the gates — a law violation, a style
-violation, or an overdrawn doc-comment budget refuses the build by name — and what falls
-out is the site you are reading.
+build time. The sources of truth are files in the repository. `swift package generate`
+turns them into checked-in Swift, and `swift build` holds the gates — a law violation, a
+style violation, or an overdrawn doc-comment budget refuses the build by name — and what
+falls out is the site you are reading.
 
 One flow, top down: the core library everything imports, the render engine that reads
 it (markdown, SVG, and the guided walks), the demo application written in both, and the
 two outputs every build produces. Each box names its role, its parts, and its census, counted
-by the build that rendered this page; click a box to open it.
+by the build that rendered this page. Click a box to open it.
 
 - term `System/`, the company itself, written in the types of the V=I framework (`VerificationIsIdentification`): the people, the roles, the departments, the documents, the access gates, and the year-close interlock. Nothing here runs and nothing is stored. Compiling this layer is what enforces the policy and proves every access.
 - term `Query/`, the questions the compiler answers about that company: is this access granted, who owns this document, do the standing invariants still hold. Each answer is a conformance that either holds or fails to, decided when the code type-checks, not stored anywhere.
 - term `View/`, the surface: every page here is itself a type, composed from the same people and verdicts the system proved. It is the one place a type meets its printed form — a name through `Symbol`, a count through `Tally` — and nothing below it depends on it.
 - term `DocumentKit`, the render engine, itself pure types: a page's `body` is a composition, and reading its `typeName` walks that composition once into the markdown you are reading. Its grammar is `SurfaceLaw`, one level above the lattice's `Law`.
 
-**The stack.** Three packages' targets, one direction of dependency: `VerificationIsIdentification` holds the law and the lattice — what proves. `DocumentKit` holds the surface — what shows, written in the notation it renders. `Organization` holds the domain — what is proved and shown. `Playground` sits beside it, the same lattice applied to physics. Each floor writes its own grammar in the floor below (`Law`, then `SurfaceLaw`), and nothing points back up.
+**The stack.** Three packages' targets, one direction of dependency: `VerificationIsIdentification` holds the law and the lattice — what proves. `DocumentKit` holds the surface — what shows, written in the notation it renders. `Organization` holds the domain — what is proved and shown. `Examples` sits beside it, the same lattice applied to physics. Each floor writes its own grammar in the floor below (`Law`, then `SurfaceLaw`), and nothing points back up.
 
 The library depends on one framework, V=I, and on nothing else — in particular not Foundation. `System/` and `Query/` are made only of its types: protocols, conformances, and `where` clauses, with no stored state and no strings. A type turns into a string or a number only at the View boundary. Two things then read that boundary: this documentation, which `DocumentKit` renders to markdown, and the console audit (`swift run OrgDemo audit`), which prints the same reads without it. A policy that contradicts itself never compiles, so neither output can describe a company that does not exist.
 
@@ -61,7 +61,7 @@ The showcase rests on a few small mechanisms. Each one is checked by the compile
 | **An access can name a person** | Only the owner can delete a vault, so "who may delete it?" has one answer. Checking the access names that person (``OwnerGate``). |
 | **Policy holds by construction** | The next year (``Closed``, ``CommittedCut``) cannot be formed until the cut is recorded at the size the policy requires. |
 | **The numbers are not typed in** | Headcount, proof count, cut size: each is `count` on a type composed through `body`, folded by the compiler as it builds (``Roster``). |
-| **A condition costs what it is** | Return-to-office proves the arrangement cheaply — ``OfficeArrangement`` over ``Remote`` will not compile as compliant. The hours logged would be a typed count too; comparing them against a threshold is the heavier ordered move (Peano `>=`), so the demo shows the cheap half. |
+| **A condition costs what it is** | Return-to-office proves the arrangement cheaply — ``OfficeArrangement`` over ``Remote`` will not compile as compliant. The hours logged would be a typed count too. Comparing them against a threshold is the heavier ordered move (Peano `>=`), so the demo shows the cheap half. |
 
 ## Where to start
 
@@ -87,7 +87,7 @@ Supporting: `System/Witnesses.swift` and the two generated files.
 
 ### The named team's cards
 
-The person's own symbol page carries the card; the signed-in page is the same card, one proved walk later.
+The person's symbol page carries the card. The signed-in page is the same card, one proved walk later.
 
 - ``Alice``
 - ``Bob``
@@ -167,6 +167,7 @@ The atoms a walk step spells its Topics section with, so the navigator nests eac
 - ``Administer``
 - ``Delete``
 - ``Granted``
+- ``CertifiedAccesses``
 - ``CanView``
 - ``CanEdit``
 - ``CanAdmin``
@@ -239,9 +240,9 @@ The census, spelled into atoms by the CensusGen plugin on every build: the numbe
 - ``CensusToolingStructs``
 - ``CensusToolingClasses``
 
-### Find your way
+### The walk, step by step
 
-The walk: binary questions over the site's own composition, every door a witness of the half it opens. <doc:SiteWalk> is the entry; the pages below are the steps, as types.
+The walk: binary questions over the site's composition, every door a witness of the half it opens. <doc:SiteWalk> is the entry, and the pages below are the steps, as types.
 
 - <doc:SiteWalk>
 - <doc:RoleWalk>
@@ -286,16 +287,17 @@ The walk: binary questions over the site's own composition, every door a witness
 
 ### The site order
 
-Every place knows the place above it; the whole order is one type.
+Every place knows the place above it: the whole order is one type. ``SiteWalk`` is that order made walkable, and its `count` is the coverage read against ``AllPlaces``. The walk itself starts at <doc:SiteWalk>.
 
 - ``Nav``
 - ``Place``
 - ``SiteOrder``
 - ``AllPlaces``
+- ``SiteWalk``
 
 ### The pages, as types
 
-A page is a type and its markdown is the type's name; the demo writes these into this catalog on every build.
+A page is a type and its markdown is the type's name. The demo writes these into this catalog on every build.
 
 - ``DashboardPage``
 - ``EmployeesPage``

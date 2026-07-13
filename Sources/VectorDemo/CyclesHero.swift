@@ -384,6 +384,7 @@ enum CyclesHeroStrip: GrownDiagram, SelfShowing {
     public static var body: some Structure & DividesY {
         Fixed<CyclesZoneTall, SpanHosted<CyclesZone>>.self
         Fixed<Never, SpanHosted<CyclesSelfShowingRow>>.self
+        Air<S24Breath>.self
     }
 }
 

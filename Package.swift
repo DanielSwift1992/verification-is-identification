@@ -8,9 +8,9 @@ let package = Package(
         // VerificationIsIdentification: all papers as type-level protocols + operations.
         .library(name: "VerificationIsIdentification", targets: ["VerificationIsIdentification"]),
 
-        // Playground: the law applied — physics reproduced as types, the concrete
+        // Examples: the law applied — physics reproduced as types, the concrete
         // witnesses, and a working solver. The concrete layer beside VerificationIsIdentification.
-        .library(name: "Playground", targets: ["Playground"]),
+        .library(name: "Examples", targets: ["Examples"]),
 
         // Organization: a scaled showcase — a whole company's access model as types,
         // every access proved at build. The framework applied to business logic.
@@ -22,7 +22,7 @@ let package = Package(
 
         // GrammarLexicon: the linter's own vocabulary (DESIGN15) — atoms, formations, grants,
         // nothing else. Exposed as a product so the disposable "mirror" package (generated and
-        // built in scratch by `Tools grammar`, Sources/Tools/Grammar/Mirror.swift) can import it
+        // built in scratch by `Tools grammar`, Sources/GrammarLexicon/Mirror.swift) can import it
         // via a local path dependency back onto this repo — the mirror's own compiler IS the
         // check; this target only supplies the types it checks against.
         .library(name: "GrammarLexicon", targets: ["GrammarLexicon"]),
@@ -99,7 +99,7 @@ let package = Package(
                 dependencies: ["Tools", "VectorDemo"]),
 
         // The law applied: physical instances, concrete witnesses, type-level demos.
-        .target(name: "Playground", dependencies: ["VerificationIsIdentification"]),
+        .target(name: "Examples", dependencies: ["VerificationIsIdentification"]),
 
 
         // DocumentKit: atoms + combinators → documents via typeName. Vector.swift is the same
@@ -140,7 +140,7 @@ let package = Package(
         .executableTarget(name: "OrgDemo", dependencies: ["Organization", "DocumentKit", "OrgWalkPages"]),
 
         // The demos as proofs.
-        .testTarget(name: "PlaygroundTests", dependencies: ["Playground"]),
+        .testTarget(name: "ExamplesTests", dependencies: ["Examples"]),
 
         // count pins the numbers the showcase's body-composed types settle to.
         .testTarget(name: "OrganizationTests", dependencies: ["Organization"]),

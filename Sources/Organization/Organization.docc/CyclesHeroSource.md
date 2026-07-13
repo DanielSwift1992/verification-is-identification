@@ -527,6 +527,78 @@ CyclesHeroStrip {
             }
         }
     }
+    Air {
+        Plus {
+            Plus {
+                Plus {
+                    Plus {
+                        Plus {
+                            Unit.self
+                            Unit.self
+                        }
+                        Plus {
+                            Unit.self
+                            Unit.self
+                        }
+                    }
+                    Plus {
+                        Plus {
+                            Unit.self
+                            Unit.self
+                        }
+                        Plus {
+                            Unit.self
+                            Unit.self
+                        }
+                    }
+                }
+                Plus {
+                    Plus {
+                        Plus {
+                            Unit.self
+                            Unit.self
+                        }
+                        Plus {
+                            Unit.self
+                            Unit.self
+                        }
+                    }
+                    Plus {
+                        Plus {
+                            Unit.self
+                            Unit.self
+                        }
+                        Plus {
+                            Unit.self
+                            Unit.self
+                        }
+                    }
+                }
+            }
+            Plus {
+                Plus {
+                    Plus {
+                        Unit.self
+                        Unit.self
+                    }
+                    Plus {
+                        Unit.self
+                        Unit.self
+                    }
+                }
+                Plus {
+                    Plus {
+                        Unit.self
+                        Unit.self
+                    }
+                    Plus {
+                        Unit.self
+                        Unit.self
+                    }
+                }
+            }
+        }
+    }
 }
 ```
 

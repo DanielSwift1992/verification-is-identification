@@ -12,6 +12,13 @@ import Foundation
 //              §S22 rules are now this checker's schema, more precisely, per file).
 //   prose      spell Prose.json into Glyph atoms + Open types, run by the ProseGen build plugin.
 //   census     count declarations per target: the "almost no functions" claim, as a number.
+//   site       build the combined DocC archive and serve it locally (`site fast` skips checks).
+//   curve      the saturation instrument: growing universes, timed builds, the growth law
+//              read off the doublings; `--fanout a,b,c N` sweeps the packing, `--judge`
+//              seats the second arbiter's column beside the compiler's.
+//   judge      the second arbiter: a linear checker over the generated System fragment;
+//              `diff N` seats both checkers on one corpus under planted lies, `chain N`
+//              replays the derivation-chain spelling at any depth.
 //   generate   regenerate the roster: a checked-in artifact, not a build
 //              product, the same split `tree-sort write` makes for the Topics tree. The card
 //              art, the architecture diagram, and the headcount chart are
@@ -32,6 +39,7 @@ case "grammar":   Linter.run(Array(CommandLine.arguments.dropFirst(2)))
 case "site":      Site.run(Array(CommandLine.arguments.dropFirst(2)))
 case "curve":     Curve.run(Array(CommandLine.arguments.dropFirst(2)))
 case "census":    Census.run(Array(CommandLine.arguments.dropFirst(2)))
+case "judge":     Judge.run(Array(CommandLine.arguments.dropFirst(2)))
 case "generate":
     let sub = Array(CommandLine.arguments.dropFirst(2))
     let rest = Array(sub.dropFirst())

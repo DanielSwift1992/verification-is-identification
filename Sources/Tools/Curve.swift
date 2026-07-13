@@ -38,19 +38,23 @@ enum Curve {
 
     static func run(_ args: [String]) {
         var fanouts: [Int] = []
+        var seatJudge = false
         var rest: [String] = []
         var index = 0
         while index < args.count {
             if args[index] == "--fanout", index + 1 < args.count {
                 fanouts = args[index + 1].split(separator: ",").compactMap { Int($0) }
                 index += 2
+            } else if args[index] == "--judge" {
+                seatJudge = true
+                index += 1
             } else {
                 rest.append(args[index])
                 index += 1
             }
         }
         if !fanouts.isEmpty {
-            sweep(fanouts, at: rest.compactMap { Int($0) }.first ?? 1600)
+            sweep(fanouts, at: rest.compactMap { Int($0) }.first ?? 1600, seatJudge: seatJudge)
             return
         }
         let sizes = rest.compactMap { Int($0) }
@@ -79,8 +83,10 @@ enum Curve {
         }
 
         print("")
-        print("   N   proof   factor   exponent")
+        print(seatJudge ? "   N   proof     judge   proof growth    judge growth"
+                        : "   N   proof   factor   exponent")
         var previous: (n: Int, seconds: Double)?
+        var judgePrevious: (n: Int, milliseconds: Double)?
         for n in universes {
             guard shell([worktree + "/.build/debug/Tools", "generate", "org", String(n)], cwd: worktree).status == 0 else {
                 print("\(String(format: "%6d", n))   GENERATE WALL — the universe would not state itself")
@@ -98,9 +104,27 @@ enum Curve {
             if let previous {
                 let factor = seconds / previous.seconds
                 let exponent = log(factor) / log(Double(n) / Double(previous.n))
-                tail = String(format: "   ×%.2f   N^%.2f", factor, exponent)
+                tail = String(format: seatJudge ? "   ×%.2f N^%.2f" : "   ×%.2f   N^%.2f",
+                    factor, exponent)
             }
-            print(String(format: "%6d   %5.0fs%@", n, seconds, tail))
+            if seatJudge {
+                let corpus = worktree + "/Sources/Organization/System/GeneratedTeam.swift"
+                guard let judged = Judge.judge(paths: [corpus]), judged.refusals.isEmpty else {
+                    print(String(format: "%6d   %5.0fs   JUDGE REFUSES", n, seconds))
+                    break
+                }
+                var judgeTail = ""
+                if let judgePrevious {
+                    let factor = judged.milliseconds / judgePrevious.milliseconds
+                    let exponent = log(factor) / log(Double(n) / Double(judgePrevious.n))
+                    judgeTail = String(format: "   ×%.2f N^%.2f", factor, exponent)
+                }
+                print(String(format: "%6d   %5.0fs   %5.0f ms%@%@", n, seconds,
+                    judged.milliseconds, tail, judgeTail))
+                judgePrevious = (n, judged.milliseconds)
+            } else {
+                print(String(format: "%6d   %5.0fs%@", n, seconds, tail))
+            }
             previous = (n, seconds)
         }
         print("")
@@ -110,7 +134,7 @@ enum Curve {
     // The sweep: one universe size, several packings, the compiler votes. The fanout is
     // the form dictionary's one dial (CodeForm), and the best value is measured, not
     // chosen by taste.
-    private static func sweep(_ fanouts: [Int], at n: Int) {
+    private static func sweep(_ fanouts: [Int], at n: Int, seatJudge: Bool) {
         let worktree = NSTemporaryDirectory() + "vi-sweep-\(ProcessInfo.processInfo.processIdentifier)"
         guard shell(["git", "worktree", "add", "-f", worktree, "HEAD"]).status == 0 else {
             FileHandle.standardError.write(Data("curve: git worktree add failed\n".utf8))
@@ -126,7 +150,7 @@ enum Curve {
             exit(1)
         }
         print("")
-        print("fanout   proof")
+        print(seatJudge ? "fanout   proof     judge" : "fanout   proof")
         var best: (fanout: Int, seconds: Double)?
         for f in fanouts {
             guard shell([worktree + "/.build/debug/Tools", "generate", "org", String(n), "fanout=\(f)"], cwd: worktree).status == 0 else {
@@ -139,7 +163,14 @@ enum Curve {
                 continue
             }
             let seconds = Date().timeIntervalSince(started)
-            print(String(format: "%6d   %5.0fs", f, seconds))
+            if seatJudge {
+                let corpus = worktree + "/Sources/Organization/System/GeneratedTeam.swift"
+                let judged = Judge.judge(paths: [corpus])
+                let milliseconds = judged?.milliseconds ?? -1
+                print(String(format: "%6d   %5.0fs   %5.0f ms", f, seconds, milliseconds))
+            } else {
+                print(String(format: "%6d   %5.0fs", f, seconds))
+            }
             if best == nil || seconds < best!.seconds { best = (f, seconds) }
         }
         if let best {

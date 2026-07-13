@@ -214,7 +214,8 @@ enum PrevDotRow: HFlow {
     public typealias Given = DocumentCardWide
     @StructureBuilder
     public static var body: some Structure & Divides {
-        Fixed<EdgeMargin, ArrowDotSpan>.self
+        Air<NavDotInsetLead>.self
+        Fixed<NavDotWide, ArrowDotSpan>.self
         RestAir.self
     }
 }
@@ -223,7 +224,8 @@ enum NextDotRow: HFlow {
     @StructureBuilder
     public static var body: some Structure & Divides {
         RestAir.self
-        Fixed<EdgeMargin, ArrowDotSpan>.self
+        Fixed<NavDotWide, ArrowDotSpan>.self
+        Air<NavDotInsetTail>.self
     }
 }
 typealias PrevTriggerArt<Target: Structure> = Layered<

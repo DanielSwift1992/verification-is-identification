@@ -441,7 +441,7 @@ extension PlacedScaled {
 // directly. A canvas's legal positions are a small, closed, ENUMERATED set (`CycleNodeX1`…`X4`,
 // not "any integer"), and its own marker (`WithinCyclesHero`, CyclesHero.swift — the reference
 // instance) is granted, unconditionally, only to the coordinate atoms THAT canvas's author has
-// checked fit — an ungranted value is not rejected by a computed comparison, it is simply never
+// checked fit — an ungranted value is not rejected by a computed comparison, it is never
 // GRANTED, the illegal-state-unrepresentable move (ReviewCycle.swift's "the next state does not
 // exist until") applied to geometry.
 //

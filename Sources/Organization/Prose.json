@@ -87,7 +87,7 @@
   "WhoClearsItHeading": "Who clears it",
   "AcrossTheCompanyHeading": "Across the company",
   "WhyArrangementHeading": "Why the arrangement, not the hours",
-  "RefusalWarningPrefix": "The third arrangement is not merely listed as \"no\". Compile ",
+  "RefusalWarningPrefix": "The third arrangement is not only listed as \"no\". Compile ",
   "RefusalWarningMiddle": " as office-compliant and the build refuses: her `Site` is ",
   "RefusalWarningSuffix": ", and the office-minimum conformance has no instance over `Remote` to satisfy. The refusal names the rule, not just the person.",
   "ReadTheTypesLabel": "Read the types:",

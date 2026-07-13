@@ -172,7 +172,7 @@ This is the mechanism: the library doesn't just store results — it teaches the
 
 *Remark.* What exactly does L teach about ordering? Two levels. First, the *entropy profile*: which features have high H (signal) and which have low H (noise) over the domain's candidate set. This is sufficient for the greedy ordering (η → 1). Second, the full *confusion matrix*: D(τ, s) = {features distinguishing τ from s} for all pairs. This is sufficient for the globally optimal ordering (η = 1 exactly), computed as minimum set cover over the confusion sets (cf. Remark on finite exact form, S4a).
 
-At |L| = 0 the agent cannot distinguish signal from noise and orders randomly (η low). Partial saturation teaches the entropy profile → greedy. Full saturation teaches the confusion matrix → optimal. By S3a, this knowledge becomes more valuable as |S₀| grows, because the penalty for testing noise features amplifies. Saturation is therefore not merely "knowing the answers" but knowing which questions to ask — and in a large domain, this meta-knowledge dominates.
+At |L| = 0 the agent cannot distinguish signal from noise and orders randomly (η low). Partial saturation teaches the entropy profile → greedy. Full saturation teaches the confusion matrix → optimal. By S3a, this knowledge becomes more valuable as |S₀| grows, because the penalty for testing noise features amplifies. Saturation is therefore not "knowing the answers" alone but knowing which questions to ask — and in a large domain, this meta-knowledge dominates.
 
 **S6a (Dual information flow).** Each COMPARE that tests feature f for target τ produces two information flows from the same observation v = τ[f]:
 

@@ -11,7 +11,7 @@ import Organization
 // colour per segment, and the palette (DocumentKit/Design.swift) deliberately holds only two
 // non-surface hues (`ActionRole`, `AccentRole`, the DNA's scarcity rule), neither meant to
 // repeat as a categorical key across three, four, and three segments. Chip rows read the exact
-// same three facets, honestly, within the palette as declared, reported as a deliberate
+// same three facets, within the palette as declared, reported as a deliberate
 // substitution, not a silent shortcut.
 //
 // The rows ride the span engine in quarter units: margin 4, chip 55, breath 4. A chip is
@@ -79,7 +79,7 @@ typealias EmpChipSpan<
 
 // ── the rows: the axis divides the surface. Each chip takes its dictionary extent, each
 // breath the policy's; nothing counts, nothing weighs, and what remains past the last
-// chip simply remains. ──
+// chip remains. ──
 
 enum EmpChipQuad<
     LA: Structure, VA: Structure,

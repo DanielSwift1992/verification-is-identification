@@ -249,7 +249,7 @@ func scan(file path: String, checkProvenance: Bool) {
             lineViolations.append(Violation(file: name, line: number, rule: "§0′ PURE TYPES", detail: trimmed))
         }
         // Matched against the comment-stripped line: a trailing `// law:allow` comment must not
-        // hide a bare rename simply by occupying the end-of-line the regex anchors on.
+        // hide a bare rename by occupying the end-of-line the regex anchors on.
         if let declared = firstCapture(renameRegex, source, group: 1),
            let parent = firstCapture(renameRegex, source, group: 2),
            !primitiveModes.contains(parent), !raw.contains(allowMarker) {

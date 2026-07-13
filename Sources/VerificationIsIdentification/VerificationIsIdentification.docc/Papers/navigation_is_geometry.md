@@ -65,7 +65,7 @@ The statements so far are unconditional. The useful regime — small ρ_nav, few
 
 **N11 (Nested separated covers).** Premise: L admits a nested sequence of covers C₀ ⊃ C₁ ⊃ ... ⊃ C_m at scales r₀ > r₁ > ... > r_m, where C₀ is one ball of radius diam, each cluster at scale i is contained in a cluster at scale i−1, distinct clusters at scale i are separated by ≥ λ·rᵢ with λ > 2, and every cluster contains at least one anchor. This is the dendrogram condition: the library's hierarchical clustering has well-separated levels. Decidable for a given L by inspection of the W-matrix; its empirical signature is a Gromov four-point constant δ small relative to the diameter (tree-likeness).
 
-**N12 (Logarithmic hops).** Under N11, greedy descent at radius ρ ≥ 2·r₀/λ... — stated honestly: at each scale i, separation λ > 2 makes the target's cluster strictly closer than any sibling cluster, so a greedy step from an anchor in the wrong scale-i cluster moves into the target's scale-i cluster within one inter-cluster hop, and the walk descends one scale level per bounded number of hops. Total hops = O(m) = O(log(diam)) for geometrically decreasing scales — logarithmic in the diameter, sub-linear in |L|.
+**N12 (Logarithmic hops).** Under N11, greedy descent at radius ρ ≥ 2·r₀/λ... — the condition in full: at each scale i, separation λ > 2 makes the target's cluster strictly closer than any sibling cluster, so a greedy step from an anchor in the wrong scale-i cluster moves into the target's scale-i cluster within one inter-cluster hop, and the walk descends one scale level per bounded number of hops. Total hops = O(m) = O(log(diam)) for geometrically decreasing scales — logarithmic in the diameter, sub-linear in |L|.
 
 *Proof sketch.* From anchor a in a sibling cluster at scale i, every anchor b in the target's cluster satisfies W(b, τ) ≤ rᵢ and W(a, τ) ≥ λ·rᵢ − rᵢ > rᵢ (separation, λ > 2): b is strictly closer, and any neighbor in the target's cluster is a strict improvement; nested containment repeats the argument at scale i+1. The bounded-hops-per-scale constant depends on cluster occupancy — part of the premise, measured. QED
 
@@ -85,7 +85,7 @@ The statements so far are unconditional. The useful regime — small ρ_nav, few
 
 *Proof.* Stuckness at (s, τ) is "no neighbor strictly closer." Insertion adds candidate neighbors and removes none; an existing strict improvement persists. QED
 
-**N17 (The failure curriculum).** N6 gives every routing failure an address; N15 makes the address actionable; N16 makes acting on it monotone progress. Therefore the set of current holes IS the acquisition agenda: each hole names the region where the next certified entry buys navigability, and hole-directed acquisition strictly reduces the hole count, while undirected acquisition merely might. The router's failures are the curriculum — the navigation-level instance of the series' one pattern: the failure names its own cure.
+**N17 (The failure curriculum).** N6 gives every routing failure an address; N15 makes the address actionable; N16 makes acting on it monotone progress. Therefore the set of current holes IS the acquisition agenda: each hole names the region where the next certified entry buys navigability, and hole-directed acquisition strictly reduces the hole count, while undirected acquisition only might. The router's failures are the curriculum — the navigation-level instance of the series' one pattern: the failure names its own cure.
 
 ## §7. The Profile
 

@@ -29,7 +29,7 @@ The framework measured, in Distance Is Cost, how far apart two structures are. I
 
 This is the premise hidden inside N5's "ballistic" promise. N5 proved descent *terminates* in ≤ initial distance; it did not prove descent terminates *at a solution*. GA1 supplies the missing condition: descent solves iff loss is W-basin-aligned. Where it is not, N5's ballistic walk arrives — at a wall.
 
-**GA2 (The ball precondition).** Ball search (G10) finds the solution within radius r from anchor a iff the solution's loss-basin reaches a within radius r — iff B(a, r) is not merely distance-defined but *loss-connected* to the solution. A ball can contain the solution structurally (within r in W) yet be search-disconnected from it (a loss-ridge between them). G10 promised the solution is *in* the ball; GA2 adds that it must be *reachable within* the ball by descent.
+**GA2 (The ball precondition).** Ball search (G10) finds the solution within radius r from anchor a iff the solution's loss-basin reaches a within radius r — iff B(a, r) is not distance-defined alone but *loss-connected* to the solution. A ball can contain the solution structurally (within r in W) yet be search-disconnected from it (a loss-ridge between them). G10 promised the solution is *in* the ball; GA2 adds that it must be *reachable within* the ball by descent.
 
 **GA3 (The alignment coefficient).** Over a search region, define
 

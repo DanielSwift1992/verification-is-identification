@@ -516,7 +516,7 @@ extension Display {
 // conformance on the concrete colour. There is no limit on how many DIFFERENT protocols one
 // concrete type may conform to, only on conditionally reconforming the SAME generic/protocol
 // pair. An illegal foreground for a given background still fails to compile: it fails at the
-// component's OWN declaration (the associated type constraint below), not merely at a later
+// component's OWN declaration (the associated type constraint below), not only at a later
 // call to `typeName`.
 //
 // The gates name the ROLE a mechanism-B component actually reads
@@ -914,6 +914,9 @@ public typealias TaskCardTall = Plus<U64, Plus<U16, Plus<U8, U2>>>
 public typealias BoardHeaderZone = Plus<U32, U8>
 public typealias BoardSlotPitch = Plus<TaskCardTall, Breath>
 public typealias BoardEdge = Plus<U8, U4>
+public typealias NavDotWide = Plus<U8, U2>
+public typealias NavDotInsetLead = Plus<U16, Plus<U8, U4>>
+public typealias NavDotInsetTail = Plus<U32, U2>
 public typealias BoardColumnTall = Plus<
     BoardHeaderZone,
     Plus<

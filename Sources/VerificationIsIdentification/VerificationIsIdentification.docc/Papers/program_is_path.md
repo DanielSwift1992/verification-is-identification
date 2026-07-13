@@ -72,7 +72,7 @@ Three corollaries the type system cannot axis, kept as prose the way B8b and GD7
 7. A program is a finite, gated, autoregressive path over a hollow space — act ≡ write ≡ prove at the token (PiP8).
 8. Completion is the solution set at the prefix; erasure is the head receding over a record that keeps everything (PiP9–PiP10).
 
-> **A construction and its object are one chain read in two directions. The space it lives in is hollow — vast in potential, priced by the step — and the only question that separates a proof from a guess is asked at every token: did this step cut the candidates to one, or did it merely continue? Gate the step and the path cannot be wrong. Free the step and the path cannot be trusted. Everything else — strings, numerals, keypads, programs, the editor's suggestion list — is the same path, walked.**
+> **A construction and its object are one chain read in two directions. The space it lives in is hollow — vast in potential, priced by the step — and the only question that separates a proof from a guess is asked at every token: did this step cut the candidates to one, or did it only continue? Gate the step and the path cannot be wrong. Free the step and the path cannot be trusted. Everything else — strings, numerals, keypads, programs, the editor's suggestion list — is the same path, walked.**
 
 ## §12. Dependency
 

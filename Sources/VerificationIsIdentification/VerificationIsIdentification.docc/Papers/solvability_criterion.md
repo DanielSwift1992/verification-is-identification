@@ -117,4 +117,4 @@ So the encoder ascends as a crystallization tower (rules → encodings → gramm
 | DiD | S3, S5 (perception = the encoding apparatus's dimensionality) |
 | LiT | LT4, §6 (interactive extension and its boundaries) |
 
-The series proved what happens after the encoding is fixed, and proved it as *safety*. This note states what the encoding must be, splits the consequent into the safety it can prove and the completeness it cannot, and localizes the whole open problem in the finiteness of the prior. The conditions are the type of a solver; the open problem is an inhabitant of that type; and the proof stops, honestly, where sight begins.
+The series proved what happens after the encoding is fixed, and proved it as *safety*. This note states what the encoding must be, splits the consequent into the safety it can prove and the completeness it cannot, and localizes the whole open problem in the finiteness of the prior. The conditions are the type of a solver; the open problem is an inhabitant of that type; and the proof stops where sight begins.

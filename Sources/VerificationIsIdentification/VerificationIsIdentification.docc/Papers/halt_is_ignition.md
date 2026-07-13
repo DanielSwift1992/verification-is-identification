@@ -18,7 +18,7 @@ No new postulate. Every claim below is read off invariants and results already p
 
 ## §2. Eternal Return Is the Price of Forgetting
 
-**HF2 (Remove the record and the system cannot end — only repeat).** Drop I3 and let the cache retract. The system's total state (structure, cache) now ranges over a finite set with no monotone component. An unbounded run must revisit some total state (pigeonhole), and determinism (I2, §5.8) then replays the same successor from it, forever: a cycle. So a finite closed system without a permanent record has no terminal states at all — its only fate is return. This sharpens AX3's counterfactual: without I3 the monotone axes do not merely disalign; time closes on itself.
+**HF2 (Remove the record and the system cannot end — only repeat).** Drop I3 and let the cache retract. The system's total state (structure, cache) now ranges over a finite set with no monotone component. An unbounded run must revisit some total state (pigeonhole), and determinism (I2, §5.8) then replays the same successor from it, forever: a cycle. So a finite closed system without a permanent record has no terminal states at all — its only fate is return. This sharpens AX3's counterfactual: without I3 the monotone axes do worse than disalign: time closes on itself.
 
 *Proof.* Finitely many total states; an infinite run visits one twice; the step function is deterministic, so the segment between the two visits repeats verbatim. QED. **[solid** for the discrete pigeonhole; Poincaré recurrence is the measure-theoretic elder — I3 plays the role dissipation plays there, precedent not reduction**]**
 

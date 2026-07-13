@@ -1897,7 +1897,7 @@ extension VectorTourStationBAsset {
     static var typeName: String { "vector-tour-station-b" }
 }
 
-// ── Example 6 — RolesPlate, both themes: the eight roles table above, drawn instead of merely
+// ── Example 6 — RolesPlate, both themes: the eight roles table above, drawn instead of only
 //    tabulated. Mechanism (A)'s second consumer (DESIGN11) — a `Palette`, instantiated twice,
 //    the same edge substitution `LightCardPalette`/`DarkCardPalette` already stands on, written
 //    to `roles-plate.svg`/`roles-plate~dark.svg`, DocC's own native asset-swap for a grid tile.

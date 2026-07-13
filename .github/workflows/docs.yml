@@ -68,6 +68,22 @@ jobs:
           --hosting-base-path verification-is-identification
           --output-path "$GITHUB_WORKSPACE/_site"
 
+      - name: One hook in every shell (the guard makes a second copy inert)
+        run: |
+          python3 - << 'EOF'
+          import pathlib
+          hook = pathlib.Path('Sources/Organization/Organization.docc/footer.html').read_text()
+          root = pathlib.Path('_site')
+          patched = 0
+          for shell in root.rglob('index.html'):
+              s = shell.read_text()
+              if '__viInlineHook' in s or '</body>' not in s:
+                  continue
+              shell.write_text(s.replace('</body>', hook + '</body>'))
+              patched += 1
+          print('shells patched:', patched)
+          EOF
+
       - name: Redirect the site root to the library documentation
         run: echo '<!DOCTYPE html><meta charset="utf-8"><title>Verification Is Identification</title><meta http-equiv="refresh" content="0; url=./documentation/verificationisidentification/"><a href="./documentation/verificationisidentification/">Documentation</a>' > "$GITHUB_WORKSPACE/_site/index.html"
 

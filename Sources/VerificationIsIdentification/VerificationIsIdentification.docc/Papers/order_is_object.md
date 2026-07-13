@@ -4,7 +4,7 @@ V=I proves the agent's sole degree of freedom is the order of comparisons. Inter
 
 This document removes the caveat by changing its level. A strategy over a finite domain is a finite decision tree, a finite decision tree is a structure in Σ, and structures in Σ can be targets of V=I games. So strategies can be verified, identified, certified, and crystallized: they enter the library as permanent objects, carrying the metric, the balls, and the navigation of the later papers with them. The ordering that is phase at level N is amplitude at level N+1.
 
-The completed library entry becomes a triple — rule, encoding, strategy: WHAT the answer is, THROUGH WHICH lens, and HOW to reach it fastest. The path itself, not merely its endpoint, becomes a certified object, the top rung of the objectification ladder, and "skill" acquires a formal definition: a ball in strategy space.
+The completed library entry becomes a triple — rule, encoding, strategy: WHAT the answer is, THROUGH WHICH lens, and HOW to reach it fastest. The path itself, not its endpoint alone, becomes a certified object, the top rung of the objectification ladder, and "skill" acquires a formal definition: a ball in strategy space.
 
 ## §0. Derivation
 

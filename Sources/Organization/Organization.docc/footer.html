@@ -48,6 +48,8 @@
 -->
 <script>
 (function () {
+  if (window.__viInlineHook) { return; }
+  window.__viInlineHook = true;
   var ROLE_CSS =
     ":root {" +
     "--vi-surface-card:#FFFFFF;" +

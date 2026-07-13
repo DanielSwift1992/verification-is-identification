@@ -2,7 +2,9 @@
 
 **Zero-runtime programming.** The compiler enumerates every state a system can reach, proves each one, and a renderer writes each one to disk as a page. An action is a link. Nothing is left to run: **the build is the run**.
 
-**[Try it in the browser →](https://danielswift1992.github.io/typed-playground/)** — Swift types on the left, their reading on the right. The judge names every broken claim as you type, on a static page: no install, no server.
+[![The playground: Swift types on the left, the judged and drawn page on the right.](https://raw.githubusercontent.com/DanielSwift1992/typed-playground/main/screenshot.png)](https://danielswift1992.github.io/typed-playground/)
+
+**[Open the playground →](https://danielswift1992.github.io/typed-playground/)** — Swift types on the left, the page they draw on the right, and the judge names every broken claim as you type: no install, no server. Every tab there is a real Swift file, and this repository re-checks the same files.
 
 ## Run the proof
 
@@ -42,30 +44,7 @@ The repository checks itself. Each command below is a gate, and green means pass
 
 ## One rule, three positions
 
-Take a company policy: *only a manager may administer a department's documents.* Alice is a manager in Finance. Carol is an individual contributor in Finance. The rule is the same three times below. What changes is how much of the program lives at build time.
-
-**Dynamic.** Everything lives at run time. The rule, the shapes, even the field names are checked only when this line executes: in production, unless a test got there first.
-
-```python
-def administer(document, user):
-    if user.rank != "manager" or user.department != document.department:
-        raise AccessDenied()               # found out when this line runs
-```
-
-**Statically typed.** The shapes moved to build time: `rank` is an enum, so a misspelled rank cannot be written, and the compiler proves every shape before anything runs. The rule itself still lives at run time: the guard runs in production, and a test samples it.
-
-```swift
-func administer(_ document: Document, as user: Employee) throws {
-    guard user.rank == .manager, user.department == document.department
-    else { throw AccessDenied() }          // the rule still waits for this line to run
-}
-
-#expect(throws: AccessDenied.self) {
-    try administer(financeShare, as: carol)   // holds for the cases you wrote
-}
-```
-
-**This notation.** The rule moved too: it is a `where` clause on a type. People and documents are types, so an access request is also a type: you ask by writing it, and the compiler answers by compiling it or rejecting it with the reason. This is the shipped policy from `Sources/Organization`, trimmed to the rule:
+Take a company policy: *only a manager may administer a department's documents.* In a dynamic language the rule is an `if` that runs in production, and a test finds the bug or nothing does. With static types the shapes are proved at build time, but the rule itself still waits for a guard to run. Here the rule moves to build time too: it is a `where` clause on a type, people and documents are types, so an access request is also a type — the compiler answers it by compiling it or refusing it with the reason. This is the shipped policy from `Sources/Organization`, trimmed to the rule:
 
 ```swift
 public enum Carol: Employee {                     // a person is a type
@@ -84,7 +63,7 @@ Granted<Administer<Carol, FinanceShare>>.self     // ❌ error: type 'Carol.Rank
                                                   //    conform to protocol 'CanAdmin'
 ```
 
-No test mentions Carol, and none is needed. The compiler checks every access the code states, on every build. A denied access fails to compile, and the error names the premise that failed: Carol's rank.
+No test mentions Carol, and none is needed. The compiler checks every access the code states, on every build. A denied access fails to compile, and the error names the premise that failed: Carol's rank. The playground's **Plant a lie** button does the same live: one alias flips deep in a 200-person file, and the judge refuses it by line and by name.
 
 The concepts you already use map one to one:
 
@@ -100,13 +79,7 @@ The concepts you already use map one to one:
 
 ## What is happening
 
-A program lives in two times: build time, when the compiler constructs the artifact, and run time, when the artifact executes. Languages spread along this line, and the spread is not a split into camps: Python decides nearly everything at run time yet carries typed libraries, Rust decides much at build time. Object-oriented and functional sit off this line entirely: they organize code, and say nothing about when it is decided.
-
-The two times give one property: a function can execute at build time and generate a structure that is static at run time. Generics already do this. `List<T>` is a template. The source contains no `List<Int>`: the compiler creates it from the constraints you wrote, and it can create every other form the same way. SwiftUI made this a paradigm with result builders. A result builder is a build-time function: it assembles a screen's structure while the compiler compiles, and it does not exist in the running app. Apple changed the language for this mechanism: result builders entered Swift for SwiftUI's sake.
-
-## What this package does
-
-It takes the same mechanism to its end. SwiftUI generates the static shape of one screen. Here, build-time functions generate the complete tree of the program from the stated constraints: every state the system can reach, each one proved. Nothing is left to run: **the build is the run**. At run time only the user acts, choosing the next link.
+A program lives in two times: build time, when the compiler constructs the artifact, and run time, when the artifact executes. Generics already compute at build time: the source contains no `List<Int>`, the compiler creates it from the constraints you wrote. SwiftUI made this a paradigm — a result builder assembles a screen's structure while the compiler compiles, and it does not exist in the running app. Apple changed the language for its sake. This package takes the same mechanism to its end: build-time functions generate the complete tree of the program, every state the system can reach, each one proved. At run time only the user acts, choosing the next link.
 
 ## The state explosion
 
@@ -161,9 +134,7 @@ A wrong digit, at any depth, leads to one shared `dead` state, so the 9⁴ = 656
 
 ## Computing less, on purpose
 
-A language that runs code is Turing-complete: it can compute anything. That power has a price. For an arbitrary program, almost no property is decidable in advance, so the tooling approximates: tests cover the cases someone wrote, analyzers catch some of the rest, and the remainder ships unverified.
-
-Functional programming removed side effects from evaluation. Total languages like Agda went further: every program provably terminates. Both still run, because the input arrives at run time. Here the input is finite and stated, so every question you can write down is decidable: the type checker answers yes by compiling, and no by a refusal that names its reason. The parts of the world you cannot state exactly stay outside the system, still handled by you. The parts you can state go inside, where every claim is checked on every build. Checked means consistent with what you stated: whether you stated the right rule is yours to judge, and no build, here or anywhere, can answer that for you.
+A language that runs code is Turing-complete: it can compute anything, and pays for it — almost no property of an arbitrary program is decidable in advance, so tests cover the cases someone wrote and the remainder ships unverified. Here the input is finite and stated, so every question you can write down is decided on every build: the type checker answers yes by compiling, and no by a refusal that names its reason. The parts of the world you cannot state exactly stay outside, still handled by you. And checked means consistent with what you stated: whether you stated the right rule is yours to judge, and no build, here or anywhere, answers that for you.
 
 ## A company as types
 

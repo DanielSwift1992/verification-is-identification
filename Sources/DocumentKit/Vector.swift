@@ -375,6 +375,117 @@ extension SpanLabelMidWrapped {
     }
 }
 
+/// The wrapped label anchored at the START of its slice: the sheet's own voice, the same
+/// greedy measured break the centred twin makes, each line one stated pitch below the
+/// last. Wrapping earns lines, never truncation, and a single word wider than the slice
+/// refuses loudly. The advance-table parse repeats `TextWidth`'s by law — a value helper
+/// has no lawful home outside a witness body.
+public protocol SpanLabelWrapped: Spanning {
+    associatedtype Y: Structure
+    associatedtype LinePitch: Structure
+    associatedtype FillColor: Structure
+    associatedtype Size: Structure
+    associatedtype Weight: Structure
+    associatedtype Content: Structure
+}
+extension SpanLabelWrapped {
+    public static func rendered<
+        X: Frac & Structure,
+        W: Frac & Structure
+    >(
+        atX x: X.Type,
+        width w: W.Type
+    ) -> String {
+        var advances: [Int: Int] = [:]
+        for pair in FontAdvanceTable.typeName.split(separator: " ") {
+            let parts = pair.split(separator: ":")
+            if parts.count == 2, let code = Int(parts[0]), let width = Int(parts[1]) {
+                advances[code] = width
+            }
+        }
+        let units = Int(FontUnitsPerEm.typeName) ?? 2048
+        let size = Int(Size.typeName) ?? 0
+        let fallback = advances[109] ?? units / 2
+        let given = (2 * W.Left.count + W.Right.count) / (2 * W.Right.count)
+        let measured: (Substring) -> Int = { text in
+            let total = text.unicodeScalars.reduce(0) { sum, scalar in
+                sum + (advances[Int(scalar.value)] ?? fallback)
+            }
+            return (total * size + units - 1) / units
+        }
+        var lines: [Substring] = []
+        var line = Substring("")
+        for word in Content.typeName.split(separator: " ") {
+            precondition(
+                measured(word) <= given,
+                "SpanLabelWrapped overflow in \(Self.self): the word \"\(word)\" measures \(measured(word))px, the slice hands \(given)px"
+            )
+            let candidate = line.isEmpty ? word : Substring("\(line) \(word)")
+            if measured(candidate) <= given {
+                line = candidate
+            } else {
+                lines.append(line)
+                line = word
+            }
+        }
+        if !line.isEmpty { lines.append(line) }
+        let base = Int(Y.typeName) ?? 0
+        let pitch = Int(LinePitch.typeName) ?? 0
+        return lines.enumerated().map { index, text in
+            "<text x=\"\(SpanPx<X>.typeName)\" y=\"\(base + pitch * index)\" text-anchor=\"start\" "
+                + "fill=\"\(FillColor.typeName)\" font-weight=\"\(Weight.typeName)\" "
+                + "font-size=\"\(Size.typeName)\">\(text)</text>\n"
+        }.joined()
+    }
+}
+
+/// The line count of a wrapped text as a type: how many measured lines the content
+/// breaks into across a STATED width. The width is a dictionary rung, so the count
+/// stands before any slice is handed over and a sheet's band may size itself as
+/// `Times<LinePitch, LineTally<…>>` — keep the drawing's slice the same rung, or the
+/// measure lies. The break repeats the wrapped labels' own, by the same law that
+/// denies a value helper a home outside a witness body.
+public enum LineTally<
+    Content: Structure,
+    Wide: Structure,
+    Size: Structure
+>: Close {}
+extension LineTally {
+    public static var typeName: String { String(count) }
+    public static var count: Int {
+        var advances: [Int: Int] = [:]
+        for pair in FontAdvanceTable.typeName.split(separator: " ") {
+            let parts = pair.split(separator: ":")
+            if parts.count == 2, let code = Int(parts[0]), let width = Int(parts[1]) {
+                advances[code] = width
+            }
+        }
+        let units = Int(FontUnitsPerEm.typeName) ?? 2048
+        let size = Int(Size.typeName) ?? 0
+        let fallback = advances[109] ?? units / 2
+        let given = Wide.count
+        let measured: (Substring) -> Int = { text in
+            let total = text.unicodeScalars.reduce(0) { sum, scalar in
+                sum + (advances[Int(scalar.value)] ?? fallback)
+            }
+            return (total * size + units - 1) / units
+        }
+        var total = 0
+        var line = Substring("")
+        for word in Content.typeName.split(separator: " ") {
+            let candidate = line.isEmpty ? word : Substring("\(line) \(word)")
+            if measured(candidate) <= given {
+                line = candidate
+            } else {
+                total += 1
+                line = word
+            }
+        }
+        if !line.isEmpty { total += 1 }
+        return total
+    }
+}
+
 /// This reads the line halfway between two named lines: the one division the fascia keeps
 /// (a midpoint of magnitudes), for annotations that stand between.
 public enum Halfway<

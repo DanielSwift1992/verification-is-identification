@@ -327,6 +327,10 @@ Drawing as constrained motion, and text measured by the stated font's own metric
 - ``CenteredBaseline``
 - ``SpanLabelMidFitted``
 - ``SpanLabelMidWrapped``
+- ``SpanLabelWrapped``
+- ``LineTally``
+- ``SpanLabelWrapped``
+- ``LineTally``
 - ``FontUnitsPerEm``
 - ``FontCapHeight``
 - ``FontAdvanceTable``

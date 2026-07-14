@@ -517,6 +517,7 @@ public enum Schema {
         ("Sources/GrammarLexicon", ToolsScope.self)
         ("Sources/Alphabet", ToolsScope.self)
         ("Sources/Examples", DemoScope.self)
+        ("Sources/DynamicsDemo", DemoScope.self)
         ("Sources/OrgDemo", DemoScope.self)
         ("Sources/OrgWalkPages", DemoScope.self)
         ("Sources/VectorDemo", DemoScope.self)

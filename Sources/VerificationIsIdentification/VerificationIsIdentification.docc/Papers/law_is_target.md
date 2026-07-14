@@ -166,3 +166,7 @@ Permanence Is Resistance proved a moving structure cannot be a target, and the s
 - ``MotorSkillsAreStrategies``
 - ``InteractiveDecomposition``
 - ``LawfulDrift``
+- ``PresentedLaw``
+- ``PressIsIdentification``
+- ``EdgesCarryTheJudgement``
+- ``FormIsInvariant``

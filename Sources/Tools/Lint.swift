@@ -39,6 +39,8 @@ import Foundation
 
 let allowMarker = "law:allow"
 let stringFence = "\"\"\""
+let slotRuleMemberRegex = try! NSRegularExpression(
+    pattern: #"^\s*(?:public\s+)?typealias\s+(?:Slot|From|Into)\s*="#)
 
 struct Violation {
     let file: String
@@ -203,6 +205,10 @@ func scan(file path: String, checkProvenance: Bool) {
     // `rendered`) is still one pure function of the type, and its internal bindings are that
     // function's spelling, not shipped runtime. Tracked by brace balance from the head line.
     var witnessDepth = 0
+    // §S28's mechanical edge: a SlotRule conformer is one substitution, so its body may hold
+    // nothing but the three aliases. Anything else is an engine trying to enter through a
+    // rule's door, refused by name.
+    var insideSlotRule = false
     // A `rendered<…>` head opens its `{` lines later, after the generic signature closes; the
     // signature rides with the head.
     var witnessSignature = false
@@ -248,6 +254,17 @@ func scan(file path: String, checkProvenance: Bool) {
            matches(purityRegex, bare) {
             lineViolations.append(Violation(file: name, line: number, rule: "§0′ PURE TYPES", detail: trimmed))
         }
+        if insideSlotRule {
+            if trimmed.hasPrefix("}") {
+                insideSlotRule = false
+            } else if !trimmed.isEmpty, !trimmed.hasPrefix("//"),
+                      !matches(slotRuleMemberRegex, source) {
+                lineViolations.append(Violation(file: name, line: number, rule: "§S28 SLOT RULE",
+                    detail: "a rule is one substitution, three aliases only: " + trimmed))
+            }
+        } else if source.contains(": SlotRule"), bare.contains("{") {
+            insideSlotRule = true
+        }
         // Matched against the comment-stripped line: a trailing `// law:allow` comment must not
         // hide a bare rename by occupying the end-of-line the regex anchors on.
         if let declared = firstCapture(renameRegex, source, group: 1),
@@ -267,7 +284,12 @@ func scan(file path: String, checkProvenance: Bool) {
             }
         }
         if let axis = captures(bareAxisRegex, source).first {
-            openedAxes.append(OpenedAxis(name: axis, file: name, line: number))
+            // An axis whose reader stands outside the module (a medium read by its one
+            // applier) is argued on its own line with `law:allow`, the same claim-not-stamp
+            // the §1 exceptions carry: this axis alone stays unopened, never the name.
+            if !raw.contains(allowMarker) {
+                openedAxes.append(OpenedAxis(name: axis, file: name, line: number))
+            }
         }
         if let axis = captures(pinnedAxisRegex, source).first {
             closedAxes.insert(axis)

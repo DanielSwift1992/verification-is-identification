@@ -40,6 +40,9 @@ jobs:
       - name: The grammar carries every source file
         run: swift run Tools grammar
 
+      - name: A rule is one substitution (§S28, the triples dictionary)
+        run: swift run Tools lint Sources/DynamicsDemo/Rules.swift --strict
+
       - name: Topics stay equal to the type lattice
         run: swift package --allow-writing-to-package-directory tree-sort check
 

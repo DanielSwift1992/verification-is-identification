@@ -40,6 +40,7 @@ case "site":      Site.run(Array(CommandLine.arguments.dropFirst(2)))
 case "curve":     Curve.run(Array(CommandLine.arguments.dropFirst(2)))
 case "census":    Census.run(Array(CommandLine.arguments.dropFirst(2)))
 case "judge":     Judge.run(Array(CommandLine.arguments.dropFirst(2)))
+case "press":     Press.run(Array(CommandLine.arguments.dropFirst(2)))
 case "generate":
     let sub = Array(CommandLine.arguments.dropFirst(2))
     let rest = Array(sub.dropFirst())

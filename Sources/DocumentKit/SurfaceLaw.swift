@@ -421,4 +421,42 @@
 /// it lists every door that was tried. Scope note: the overload pair lives in tooling-tier
 /// code (the mirror's lexicon). On the pure surface §S4 still governs what a free function
 /// may be — this section licenses the FORM where functions are already lawful.
+///
+/// ## §S28 · A button is a triple, and the form is the invariant
+///
+/// The dynamics medium (Dynamics.swift) gives a state file exactly one kind of motion: a
+/// rewrite rule, the triple (slot, expected pattern, replacement template). Pressing is
+/// identification — the pattern finds its slot's term whole or the press is a lawful no-op
+/// that leaves the file byte-identical — and a rule may change nothing but its one slot's
+/// term. The consequence is the invariant this section states: the FORM of a state file
+/// never moves along any trajectory. Every reachable state carries the same slots, the same
+/// buttons, the same shape; the diff between neighbouring states lives inside one alias.
+/// What the class cannot say is part of the law, stated as sharply: a transition that needs
+/// case analysis over an unbounded term is not a triple, and belongs to an encoder outside
+/// the judge, whose product is judged as a file (the 2048 lane shift is the named example,
+/// lived and removed). A rule that carries anything beyond its three aliases has left the
+/// class, and the checker (`Tools lint`, the SLOT RULE check) refuses it by name.
+///
+/// ## §S29 · The judge sits on the edges, not the states
+///
+/// A rule with a variable is a GENERIC declaration, so the compiler admits its template for
+/// every binding of the pattern's variables at once: one declaration, universally
+/// quantified, checked before any press exists. With the starting file judged and every
+/// rule judged, every reachable state of a chain is well-typed by induction — finitely many
+/// checks cover unboundedly many trajectories, which no per-state testing reaches. The
+/// running consequences come from the same three lines: rules over different slots commute
+/// (independent aliases), a repeated press meets a stale pattern and stands (the no-op is
+/// the concurrency answer), and a non-erasing rule's reverse triple is again a rule, so
+/// undo is a button, not a mechanism.
+///
+/// ## §S30 · A key may carry a chord, and the chord is still an identification
+///
+/// One physical key can mean different moves at different states: a passcode digit starts
+/// the walk at the gate and resets it mid-walk. The lawful form is a CHORD — one face over
+/// several rules of the SAME slot (the sameness is the type's bound) whose patterns are
+/// pairwise distinct (the distinctness is the applier's refusal). Then at any state at most
+/// one rule matches, "first match" degenerates into THE match, and a chord press is the same
+/// identification a single press is: apply the one that matched, or stand. No priority
+/// exists to reason about, and the applier refuses an ambiguous chord by name instead of
+/// picking silently.
 public enum SurfaceLaw {}

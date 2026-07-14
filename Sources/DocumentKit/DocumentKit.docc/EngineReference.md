@@ -332,6 +332,15 @@ Drawing as constrained motion, and text measured by the stated font's own metric
 - ``FontAdvanceTable``
 - ``MeasuredWord``
 
+### The dynamics medium
+
+A button over a state file is a rewrite triple, and a key may fold a chord of them: one slot by the type's bound, one match by the applier's refusal (Dynamics.swift, `RuleKey` in Vector.swift, §S28-§S30).
+
+- ``Pressable``
+- ``SlotRule``
+- ``Chord``
+- ``RuleKey``
+
 ### The stroke voices
 
 The two widths every line speaks, the dependency dash, and the one arrowhead (Design.swift).

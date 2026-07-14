@@ -160,6 +160,23 @@ A learner is located by which coordinates it has. A gated, append-only machine c
 - ``CertifiedSelfPlay``
 - ``LanguageModel``
 
+### Dynamics — the worlds a button can move
+
+The terms a state file's slots may hold: the lamp's two faces, the counter's floor and wrap, the keypad's five stages. A slot marker drops its `Slot` suffix to name the alias a state file carries. The rules that move a world between these terms are rewrite triples beside the world itself (`Sources/DynamicsDemo/Rules.swift`) on the dynamics medium (`DocumentKit`), and pressing one is `swift run Tools press <Rule>`: compare, substitute, or stand.
+
+- ``LampModeSlot``
+- ``LampOff``
+- ``LampOn``
+- ``Counting``
+- ``CountSlot``
+- ``Tick``
+- ``PinProgressSlot``
+- ``PinStage0``
+- ``PinStage1``
+- ``PinStage2``
+- ``PinStage3``
+- ``PinUnlocked``
+
 ### One lattice, many domains
 
 Ice, the hydrogen spectrum, the Higgs vacuum, and the packing of this package's own generated code each certify the same `SystemCrystallizes` structure, so a construction written over it applies to all of them at once — and the four crystals below prove it by compiling. It is one game on four boards, and the fourth board is the package itself: under the cost encoding the measured packings crystallize to one survivor, and under the content encoding they refuse to, because every packing renders the same bytes.

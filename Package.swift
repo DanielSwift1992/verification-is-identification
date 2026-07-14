@@ -101,6 +101,11 @@ let package = Package(
         // The law applied: physical instances, concrete witnesses, type-level demos.
         .target(name: "Examples", dependencies: ["VerificationIsIdentification"]),
 
+        // The dynamics world: one state file whose slots move by rewrite triples
+        // (Examples/Dynamics.swift), pressed by `swift run Tools press <Rule>`. The
+        // executable only reads the compiled state back; nothing here computes.
+        .executableTarget(name: "DynamicsDemo", dependencies: ["VerificationIsIdentification", "DocumentKit", "Examples"]),
+
 
         // DocumentKit: atoms + combinators → documents via typeName. Vector.swift is the same
         // mechanism turned on a second medium, SVG (DESIGN7 §1). Alphabet supplies the shared

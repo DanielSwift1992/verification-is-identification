@@ -797,6 +797,50 @@ extension SpanVariant: Spanning {
     }
 }
 
+/// The rule key: a clickable face carrying what a key may stand on — one rule, or a
+/// chord of rules folded as nested pairs (`Chord`, Dynamics.swift). Placing it is a
+/// proof obligation: the key does not compile unless every leaf is a rule and the whole
+/// chord shares one slot, so a drawn button can never name a press that does not stand.
+/// The attribute lists the chord's leaves in declaration order; the host applies the ONE
+/// whose pattern matches, or stands (§S30). Inert inside a plain `<img>`.
+public enum RuleKey<
+    R: Pressable,
+    Face: Spanning
+>: Close {}
+extension RuleKey: Spanning {
+    public static func rendered<
+        X: Frac & Structure,
+        W: Frac & Structure
+    >(
+        atX x: X.Type,
+        width w: W.Type
+    ) -> String {
+        // The leaf names out of a chord's cons: `Chord` nodes recurse, anything else
+        // is a leaf named bare, its generic tail dropped.
+        func leaves(of term: Substring) -> [String] {
+            let text = term.trimmingCharacters(in: .whitespaces)
+            guard text.hasPrefix("Chord<"), text.hasSuffix(">") else {
+                return [String(text.split(separator: "<").first ?? "")]
+            }
+            let inner = text.dropFirst("Chord<".count).dropLast()
+            var depth = 0
+            for (offset, character) in inner.enumerated() {
+                if character == "<" { depth += 1 }
+                if character == ">" { depth -= 1 }
+                if character == ",", depth == 0 {
+                    let cut = inner.index(inner.startIndex, offsetBy: offset)
+                    return leaves(of: inner[inner.startIndex..<cut])
+                        + leaves(of: inner[inner.index(after: cut)...])
+                }
+            }
+            return [String(inner.split(separator: "<").first ?? "")]
+        }
+        let names = leaves(of: Substring(String(describing: R.self))).joined(separator: " ")
+        return "<g class=\"vi-rule\" data-vi-rules=\"\(names)\" data-vi-slot=\"\(String(describing: R.Slot.self))\" cursor=\"pointer\">\n"
+            + Face.rendered(atX: x, width: w) + "</g>\n"
+    }
+}
+
 /// The key that moves an owner to a position: a clickable face carrying the move as data.
 /// The host's hook reads it and shows that owner's variant at the named position, hiding
 /// its others. Emitted always, inert inside a plain `<img>`, the same floor `Linked` stands on.

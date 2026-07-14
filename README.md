@@ -25,7 +25,7 @@ swift run Tools site                    # build and serve the whole documentatio
 
 ## The map
 
-- [`Sources/VerificationIsIdentification`](Sources/VerificationIsIdentification) — the theory: 160 protocols, one per claim, with the compiler as the proof checker.
+- [`Sources/VerificationIsIdentification`](Sources/VerificationIsIdentification) — the theory: 164 protocols, one per claim, with the compiler as the proof checker.
 - [`Sources/Organization`](Sources/Organization) — the showcase: 200 people, the access policy, the whole site as types. Files named `Generated*` are build products: read the policy, not the generated people.
 - [`Sources/DocumentKit`](Sources/DocumentKit) — the engine: pages, tables, SVG, and text metrics, written in the notation it renders.
 - [`Papers`](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers) — the 23 papers that derive the chain, rendered into [the documentation site](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification).
@@ -95,7 +95,7 @@ The package is a stack of layers. Each layer is built from the same types, and e
 
 | Layer | What it holds | What it gives |
 | --- | --- | --- |
-| `VerificationIsIdentification` | the theory: 160 protocols, derived across 23 papers | compiling a claim is checking it: no separate prover runs |
+| `VerificationIsIdentification` | the theory: 164 protocols, derived across 23 papers | compiling a claim is checking it: no separate prover runs |
 | `DocumentKit` | the render engine: pages, tables, SVG, a vector pen, text metrics parsed from the font's TTF, the guided walks | a page is a type, a drawing is a type, and a label wider than its slot refuses the build |
 | `Organization` | the company: 200 people, the policy, the site | access, logins, search walks, reports, re-proved by every build |
 | `Alphabet` | one type per character | the renderer and the linter share one vocabulary |

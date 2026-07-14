@@ -17,11 +17,17 @@ public enum LampOn {}
 
 /// This marks the terms the counter's slot may hold: the floor and every wrap of
 /// it. The constraint is what the judge checks a press against, for all bindings
-/// at once.
-public protocol Counting {}
+/// at once. A counting term is a structure, so its chain folds to a number the
+/// way every chain in this package does, and ``Tally`` reads it with no reader
+/// written anywhere.
+public protocol Counting: Structure {}
 extension Never: Counting {}
-/// One step more than its content: the counter's only constructor.
+/// One step more than its content: the counter's only constructor. Its count is
+/// the structural fold: one more than what it wraps.
 public enum Tick<Previous: Counting>: Counting {}
+extension Tick {
+    public static var count: Int { Previous.count + 1 }
+}
 
 /// The counter's one slot: the state file's alias is `Count`.
 public enum CountSlot {}

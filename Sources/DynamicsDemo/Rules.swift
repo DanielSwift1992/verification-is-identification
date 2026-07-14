@@ -202,3 +202,4 @@ public enum Key9ResetsStage3: SlotRule {
     public typealias From = PinStage3
     public typealias Into = PinStage0
 }
+

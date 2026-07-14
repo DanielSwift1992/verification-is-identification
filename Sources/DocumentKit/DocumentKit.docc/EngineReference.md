@@ -334,12 +334,13 @@ Drawing as constrained motion, and text measured by the stated font's own metric
 
 ### The dynamics medium
 
-A button over a state file is a rewrite triple, and a key may fold a chord of them: one slot by the type's bound, one match by the applier's refusal (Dynamics.swift, `RuleKey` in Vector.swift, §S28-§S30).
+A button over a state file is a rewrite triple, a key may fold a chord of them (one slot by the type's bound, one match by the applier's refusal), and a slot's term spells itself safely into markup (Dynamics.swift, `RuleKey` in Vector.swift, §S28-§S30).
 
 - ``Pressable``
 - ``SlotRule``
 - ``Chord``
 - ``RuleKey``
+- ``TermText``
 
 ### The stroke voices
 

@@ -72,25 +72,6 @@ enum KeyTrack: SpanTrack {
 }
 typealias KeyFace<T: Structure> = Layered<KeyTrack, KeyLabel<T>>
 
-/// A term's name, spelled safely for markup: the angles become entities, so a
-/// level-1 term like `Tick<Never>` stands in a text node as written.
-enum TermText<T>: Close {}
-extension TermText {
-    public static var typeName: String {
-        var out = ""
-        for ch in String(describing: T.self) {
-            if ch == "<" {
-                out += "&lt;"
-            } else if ch == ">" {
-                out += "&gt;"
-            } else {
-                out.append(ch)
-            }
-        }
-        return out
-    }
-}
-
 enum SlotLabel<T: Structure>: SpanLabel {
     typealias Y = CenteredBaseline<TrackHeight, TextS>
     typealias FillColor = TextPrimary
@@ -117,7 +98,7 @@ enum CountRow: HFlow {
     static var body: some Structure & Divides {
         Air<EdgeMargin>.self
         Air<DotSlot>.self
-        Flexible<SlotLabel<TermText<Count>>>.self
+        Flexible<SlotLabel<Tally<Count>>>.self
         Fixed<KeySide, RuleKey<BumpUp<Never>, KeyFace<BumpWord>>>.self
         Air<EdgeMargin>.self
     }
@@ -147,6 +128,19 @@ enum PinRow: HFlow {
     }
 }
 
+/// The note's row: the literal slot drawn by an ordinary label — the text the
+/// reader typed IS the typeName, and nothing reads it in between.
+enum NoteRow: HFlow {
+    typealias Given = PanelWide
+    @StructureBuilder
+    static var body: some Structure & Divides {
+        Air<EdgeMargin>.self
+        Air<DotSlot>.self
+        Flexible<SlotLabel<Note>>.self
+        Air<EdgeMargin>.self
+    }
+}
+
 enum WorldArt: GrownDiagram {
     typealias Across = PanelWide
     typealias AriaLabel = WorldAria
@@ -158,6 +152,8 @@ enum WorldArt: GrownDiagram {
         Fixed<TrackHeight, SpanHosted<CountRow>>.self
         Air<Breath>.self
         Fixed<TrackHeight, SpanHosted<PinRow>>.self
+        Air<Breath>.self
+        Fixed<TrackHeight, SpanHosted<NoteRow>>.self
         Air<EdgeMargin>.self
     }
 }

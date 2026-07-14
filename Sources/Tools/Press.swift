@@ -7,7 +7,7 @@ import Foundation
 // rule's pattern, substitute the template. One match or none, never a search; a
 // mismatch is a lawful no-op that leaves the file byte-identical. No domain logic
 // stands here or ever will: a system's behaviour is its triples
-// (Sources/Examples/Dynamics.swift), and the judge already admitted every press
+// (Sources/DynamicsDemo/Rules.swift), and the judge already admitted every press
 // when it compiled the rule's generic declaration.
 // ═══════════════════════════════════════════════════════
 
@@ -101,12 +101,146 @@ enum Press {
         return String(out.dropLast(out.hasSuffix(" ") ? 1 : 0))
     }
 
+    /// A term as its head and arguments: the one shape every pattern, every slot
+    /// term, and every instance argument shares.
+    struct Term {
+        let head: String
+        let args: [Term]
+    }
+
+    static func parseTerm(_ text: Substring) -> Term {
+        let trimmed = text.trimmingCharacters(in: .whitespaces)
+        guard let open = trimmed.firstIndex(of: "<"), trimmed.hasSuffix(">") else {
+            return Term(head: trimmed, args: [])
+        }
+        let head = String(trimmed[trimmed.startIndex..<open])
+        let inner = trimmed[trimmed.index(after: open)...].dropLast()
+        var args: [Term] = []
+        var depth = 0
+        var piece = ""
+        for ch in inner {
+            if ch == "<" { depth += 1 }
+            if ch == ">" { depth -= 1 }
+            if ch == ",", depth == 0 {
+                args.append(parseTerm(Substring(piece)))
+                piece = ""
+            } else {
+                piece.append(ch)
+            }
+        }
+        if !piece.trimmingCharacters(in: .whitespaces).isEmpty {
+            args.append(parseTerm(Substring(piece)))
+        }
+        return Term(head: head, args: args)
+    }
+
+    static func serialize(_ term: Term) -> String {
+        term.args.isEmpty
+            ? term.head
+            : term.head + "<" + term.args.map(serialize).joined(separator: ", ") + ">"
+    }
+
+    /// Collects each variable's occurrence count across a pattern: linearity is
+    /// the theorem's premise (one occurrence keeps the match unique), so a
+    /// repeated variable refuses the rule before any state is touched.
+    static func occurrences(in pattern: Term, of variables: [String], into counts: inout [String: Int]) {
+        if pattern.args.isEmpty, variables.contains(pattern.head) {
+            counts[pattern.head, default: 0] += 1
+            return
+        }
+        for argument in pattern.args {
+            occurrences(in: argument, of: variables, into: &counts)
+        }
+    }
+
+    /// Structural unification of a linear pattern against a term: a variable node
+    /// binds whole (or agrees with its instance pre-binding), a constant node
+    /// demands the same head and unifies its arguments. One match or none.
+    static func unify(_ pattern: Term, _ term: Term, variables: [String], bindings: inout [String: String]) -> Bool {
+        if pattern.args.isEmpty, variables.contains(pattern.head) {
+            let value = serialize(term)
+            if let bound = bindings[pattern.head] {
+                return bound == value
+            }
+            bindings[pattern.head] = value
+            return true
+        }
+        guard pattern.head == term.head, pattern.args.count == term.args.count else {
+            return false
+        }
+        for (patternArgument, termArgument) in zip(pattern.args, term.args) {
+            guard unify(patternArgument, termArgument, variables: variables, bindings: &bindings) else {
+                return false
+            }
+        }
+        return true
+    }
+
+    /// The literal alphabet: what free text may carry into a typeName. Everything
+    /// that could escape the literal (quotes, slashes, angles) is outside it, so
+    /// the literal's FORM survives every press and the judge only ever sees a
+    /// well-formed file. The refusal names the character.
+    static func vetLiteral(_ text: String) {
+        for ch in text {
+            let allowed = ch.isLetter || ch.isNumber || ch == " " || ch == "."
+                || ch == "," || ch == "!" || ch == "?" || ch == "-"
+            guard allowed else {
+                fail("\"\(ch)\" is outside the literal's alphabet (letters, digits, space, .,!?-)")
+            }
+        }
+    }
+
+    /// The literal slot's three movements: append, rubout, clear. Free text lives
+    /// in a typeName (the prose genre), a label draws it with no reader between,
+    /// and the judge vets the file's form, never the words.
+    static func pressLiteral(_ operation: String, _ arguments: [String], statePath: String) {
+        guard let slotName = arguments.first else {
+            fail("usage: Tools press \(operation) <Slot> \(operation == "append" ? "<text> " : "")[--file <state file>]")
+        }
+        guard let state = try? String(contentsOfFile: statePath, encoding: .utf8) else {
+            fail("cannot read \(statePath)")
+        }
+        var lines = state.split(separator: "\n", omittingEmptySubsequences: false).map(String.init)
+        var insideExtension = false
+        for (number, line) in lines.enumerated() {
+            let trimmed = line.trimmingCharacters(in: .whitespaces)
+            if trimmed.hasPrefix("extension \(slotName) ") || trimmed.hasPrefix("extension \(slotName){") {
+                insideExtension = true
+                continue
+            }
+            guard insideExtension else { continue }
+            if trimmed.hasPrefix("}") { break }
+            guard let open = line.range(of: "{ \""), let close = line.range(of: "\" }") else { continue }
+            let current = String(line[open.upperBound..<close.lowerBound])
+            var next = current
+            switch operation {
+            case "append":
+                let text = arguments.dropFirst().joined(separator: " ")
+                vetLiteral(text)
+                next = current + text
+            case "rubout":
+                next = String(current.dropLast())
+            default:
+                next = ""
+            }
+            lines[number] = line.replacingOccurrences(of: "{ \"\(current)\" }", with: "{ \"\(next)\" }")
+            try? lines.joined(separator: "\n").write(toFile: statePath, atomically: true, encoding: .utf8)
+            print("pressed \(operation) \(slotName): \"\(current)\" -> \"\(next)\"")
+            return
+        }
+        fail("no literal slot \(slotName) in \(statePath)")
+    }
+
     static func run(_ args: [String]) {
         var arguments = args
         var statePath = defaultStatePath
         if let flag = arguments.firstIndex(of: "--file"), flag + 1 < arguments.count {
             statePath = arguments[flag + 1]
             arguments.removeSubrange(flag...flag + 1)
+        }
+        if let first = arguments.first, first == "append" || first == "rubout" || first == "clear" {
+            pressLiteral(first, Array(arguments.dropFirst()), statePath: statePath)
+            return
         }
         guard let ruleArgument = arguments.first else {
             fail("usage: Tools press <Rule>[,<Rule>…] [--file <state file>]")
@@ -117,11 +251,29 @@ enum Press {
         guard let state = try? String(contentsOfFile: statePath, encoding: .utf8) else {
             fail("cannot read \(statePath)")
         }
-        // A comma spells a chord: several rules of ONE slot behind one face (§S30). At any
-        // state at most one may match; two matches name an unlawful chord and refuse.
-        let rules = ruleArgument.split(separator: ",").map {
-            readRule(named: String($0), from: dictionary)
+        // A comma at depth zero spells a chord: several rules of ONE slot behind one
+        // face (§S30). An angle bracket spells an instance: `Rule<Atom>` hands the rule
+        // the arguments its pattern cannot bind (§S28's typed input). At any
+        // state at most one member may match; two matches name an unlawful chord.
+        var memberTexts: [String] = []
+        var depth = 0
+        var piece = ""
+        for ch in ruleArgument {
+            if ch == "<" { depth += 1 }
+            if ch == ">" { depth -= 1 }
+            if ch == ",", depth == 0 {
+                memberTexts.append(piece)
+                piece = ""
+            } else {
+                piece.append(ch)
+            }
         }
+        memberTexts.append(piece)
+        let members = memberTexts.map { text -> (rule: Rule, instance: [Term]) in
+            let spelled = parseTerm(Substring(text))
+            return (readRule(named: spelled.head, from: dictionary), spelled.args)
+        }
+        let rules = members.map(\.rule)
         guard let firstSlot = rules.first?.slot, rules.allSatisfy({ $0.slot == firstSlot }) else {
             fail("a chord holds one slot: \(ruleArgument) mixes \(Set(rules.map(\.slot)).sorted().joined(separator: ", "))")
         }
@@ -147,14 +299,35 @@ enum Press {
             lines[found][lines[found].range(of: marker)!.upperBound...]
         ).trimmingCharacters(in: .whitespaces)
 
-        // The match: a bare-variable pattern binds the whole term, a literal pattern
-        // must be the term verbatim. One match or none, across the whole chord.
+        // The match: a variable node binds whole, a constant node demands its head,
+        // and the pattern is LINEAR (each variable once) so the match is unique or
+        // absent (T1). A parameter the pattern never mentions is instance-bound: it
+        // must arrive with the press, and the judge of the NEXT state is what vets
+        // it — an atom outside the alphabet refuses to build, so typed input never
+        // widens the judged world. One match or none, across the whole chord.
+        let currentTerm = parseTerm(Substring(current))
         var matched: (rule: Rule, bindings: [String: String])?
-        for rule in rules {
+        for (rule, instance) in members {
+            let pattern = parseTerm(Substring(rule.from))
+            var counts: [String: Int] = [:]
+            occurrences(in: pattern, of: rule.variables, into: &counts)
+            for (variable, count) in counts {
+                if count > 1 {
+                    fail("\(rule.name) repeats \(variable) in its pattern: linearity is the premise of the unique match")
+                }
+            }
             var bindings: [String: String] = [:]
-            if rule.variables.contains(rule.from) {
-                bindings[rule.from] = current
-            } else if rule.from != current {
+            let instanceBound = rule.variables.filter { counts[$0] == nil }
+            guard instance.count <= instanceBound.count else {
+                fail("\(rule.name) takes \(instanceBound.count) instance argument(s), \(instance.count) given")
+            }
+            guard instance.count == instanceBound.count else {
+                fail("\(rule.name) needs its instance argument(s) \(instanceBound.joined(separator: ", ")): press \(rule.name)<…>")
+            }
+            for (variable, argument) in zip(instanceBound, instance) {
+                bindings[variable] = serialize(argument)
+            }
+            guard unify(pattern, currentTerm, variables: rule.variables, bindings: &bindings) else {
                 continue
             }
             guard matched == nil else {

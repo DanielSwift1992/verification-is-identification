@@ -80,7 +80,7 @@
 <text x="40" y="15" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="10">guided walks</text>
 </g>
 </g>
-<text x="464" y="128" text-anchor="middle" fill="var(--vi-action, #336FEE)" font-weight="400" font-size="10">621 types · 1 runtime</text>
+<text x="464" y="128" text-anchor="middle" fill="var(--vi-action, #336FEE)" font-weight="400" font-size="10">622 types · 1 runtime</text>
 </g>
 </a>
 </g>
@@ -158,7 +158,7 @@
 </g>
 <g transform="translate(0, 662)">
 <g transform="translate(0, 0)">
-<text x="480" y="14" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="10">Nothing above runs at runtime: 0 functions in the core, 1 in the engine, 0 in the demo, no structs, no classes. The 125 functions that do execute are the build tools, counted by this build.</text>
+<text x="480" y="14" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="10">Nothing above runs at runtime: 0 functions in the core, 1 in the engine, 0 in the demo, no structs, no classes. The 131 functions that do execute are the build tools, counted by this build.</text>
 </g>
 </g>
 </g>

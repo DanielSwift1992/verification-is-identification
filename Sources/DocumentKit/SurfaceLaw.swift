@@ -437,6 +437,21 @@
 /// lived and removed). A rule that carries anything beyond its three aliases has left the
 /// class, and the checker (`Tools lint`, the SLOT RULE check) refuses it by name.
 ///
+/// The boundary is per ACT, never per reach: with structural patterns one step of any
+/// machine is itself a triple (the tape a term, the head a marker in it), so a chain of
+/// presses reaches any computable rewrite, every step judged. What the medium refuses to
+/// own is the ITERATION, not the expressiveness: the loop belongs to the encoder, and the
+/// halting question goes with it — a question about a structure that does not exist yet
+/// (Existence Is Finite), not about any file the judge is ever handed. Input closes the
+/// last door in two genres, by what the input IS. A choice from a dictionary is typed
+/// input: a rule may leave a parameter its pattern never binds, the press brings the
+/// atom, and the NEXT state's build vets it — an atom outside the alphabet is a type
+/// that does not exist. Free text is the PROSE genre: it lives whole in a literal slot
+/// (a typeName), its three movements — append, rubout, clear — are the applier's own,
+/// a label draws it with no reader in between, and the judge vets the file's form,
+/// never the words. A textfield is the second genre's face, not a primitive, and
+/// neither genre ever widens the judged world.
+///
 /// ## §S29 · The judge sits on the edges, not the states
 ///
 /// A rule with a variable is a GENERIC declaration, so the compiler admits its template for

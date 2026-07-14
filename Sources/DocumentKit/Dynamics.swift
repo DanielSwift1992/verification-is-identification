@@ -49,3 +49,26 @@ public enum Chord<
 where A.Slot == B.Slot {
     public typealias Slot = A.Slot
 }
+
+// ── the term reader: a slot's term spelled safely back into markup. Born here,
+//    mirrored by every port against a byte golden: a reader is born in the kit
+//    or not at all. ──
+
+/// A term's name, spelled safely for markup: the angles become entities, so a
+/// level-1 term like `Tick<Never>` stands in a text node as written.
+public enum TermText<T>: Close {}
+extension TermText {
+    public static var typeName: String {
+        var out = ""
+        for ch in String(describing: T.self) {
+            if ch == "<" {
+                out += "&lt;"
+            } else if ch == ">" {
+                out += "&gt;"
+            } else {
+                out.append(ch)
+            }
+        }
+        return out
+    }
+}

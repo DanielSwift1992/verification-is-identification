@@ -96,7 +96,7 @@ enum PersonHeroHandleSpan<
     public typealias Content = PersonHeroHandleText<Who>
 }
 
-// ── chip row — Rank · Department (Linked to the Departments hub) · Site: three equal spans
+// ── chip row — Rank · Department (Linked to that department's own page) · Site: three equal spans
 // of 175 with breaths of 8, one generous shared width (THE CANVAS CONTRACT's doctrine: state
 // the box, never compute the fit) rather than a width per literal value ──
 
@@ -148,7 +148,7 @@ enum PersonHeroChipTriplet<
     public static var body: some Structure & Divides {
         Fixed<PersonChipWide, PersonHeroChipSpan<Who.Rank>>.self
         Air<HairBreath>.self
-        Fixed<PersonChipWide, SpanLink<SitePath<Nav.Departments>, PersonHeroChipSpan<Who.Home>>>.self
+        Fixed<PersonChipWide, SpanLink<SitePath<Who.Home>, PersonHeroChipSpan<Who.Home>>>.self
         Air<HairBreath>.self
         Fixed<PersonChipWide, PersonHeroChipSpan<Who.Site>>.self
         RestAir.self

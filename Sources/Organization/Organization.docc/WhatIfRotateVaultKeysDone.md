@@ -1,14 +1,16 @@
-# What if: Rotate Vault Keys → Done
+# ``WhatIfRotateVaultKeysDone``
 
 @Metadata {
     @PageImage(purpose: card, source: "card-board", alt: "Task board")
 }
 
+What if: Rotate Vault Keys → Done
+
 One task, redrawn in a hypothetical column.
 
 ![The task board with Rotate Vault Keys previewed in the Done column.](board-whatif-rotatevaultkeys-done)
 
-> Note: What-if view: the system holds ``RotateVaultKeys`` = ``InProgress``. To make this board real, change one typealias and rebuild — the act IS the write IS the proof.
+> Note: What-if view: the system holds ``RotateVaultKeys`` = ``InProgress``. To make this board real, change one typealias and rebuild: the act is the write is the proof.
 
 
 

@@ -59,7 +59,6 @@ The divided axis and its members, the span leaves, the frames, and the interacti
 - ``SpanClipped``
 - ``SpanDataFill``
 - ``SpanDataSegment``
-- ``SpanDataSegmentOutlined``
 - ``SpanDot``
 - ``SpanBreathingDot``
 - ``TimedReveal``

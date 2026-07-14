@@ -771,6 +771,53 @@ extension StateSwitchStyle {
     }
 }
 
+/// One drawn variant of an owner, independent of every other owner on the canvas. Where
+/// `StateGroup` switches the whole canvas on one `:target`, a canvas can carry many owners
+/// whose variants move independently, and one fragment cannot hold that product. So a
+/// variant declares its owner and its position as data, the owner's resting variant ships
+/// visible, the rest ship hidden, and the host's inline hook flips them per owner on a key
+/// press. Inside a plain `<img>` the resting variants stand alone: the built truth.
+public enum SpanVariant<
+    Owner: Structure,
+    Position: Structure,
+    Content: Spanning,
+    ShownAtRest: Structure
+>: Close {}
+extension SpanVariant: Spanning {
+    public static func rendered<
+        X: Frac & Structure,
+        W: Frac & Structure
+    >(
+        atX x: X.Type,
+        width w: W.Type
+    ) -> String {
+        "<g class=\"vi-variant\" data-vi-owner=\"\(Owner.typeName)\" data-vi-at=\"\(Position.typeName)\""
+            + (ShownAtRest.typeName == "1" ? "" : " style=\"display:none\"")
+            + ">\n" + Content.rendered(atX: x, width: w) + "</g>\n"
+    }
+}
+
+/// The key that moves an owner to a position: a clickable face carrying the move as data.
+/// The host's hook reads it and shows that owner's variant at the named position, hiding
+/// its others. Emitted always, inert inside a plain `<img>`, the same floor `Linked` stands on.
+public enum SpanVariantKey<
+    Owner: Structure,
+    Position: Structure,
+    Face: Spanning
+>: Close {}
+extension SpanVariantKey: Spanning {
+    public static func rendered<
+        X: Frac & Structure,
+        W: Frac & Structure
+    >(
+        atX x: X.Type,
+        width w: W.Type
+    ) -> String {
+        "<g class=\"vi-variant-key\" data-vi-owner=\"\(Owner.typeName)\" data-vi-to=\"\(Position.typeName)\" cursor=\"pointer\">\n"
+            + Face.rendered(atX: x, width: w) + "</g>\n"
+    }
+}
+
 /// This reads a state's fragment address: `"#"` + `X`'s bare id, the one form `Linked`'s
 /// `Target` wants. One atom, not two written by hand per state, the same reuse `SitePath<X>`
 /// gives a real page address.
@@ -1621,29 +1668,6 @@ extension SpanDataSegment {
         "<rect x=\"\(SpanPx<Sum<X, Paired<Times<W.Left, Prefix>, Times<W.Right, Whole>>>>.typeName)\" "
             + "width=\"\(SpanPx<Paired<Times<W.Left, Part>, Times<W.Right, Whole>>>.typeName)\" "
             + "height=\"\(H.typeName)\" rx=\"0\" fill=\"\(Fill.typeName)\"/>\n"
-    }
-}
-/// The outlined twin serves the one segment whose tint cannot hold its edge alone.
-public protocol SpanDataSegmentOutlined: Spanning {
-    associatedtype Prefix: Structure
-    associatedtype Part: Structure
-    associatedtype Whole: Structure
-    associatedtype H: Structure
-    associatedtype Fill: Structure
-    associatedtype Stroke: Structure
-}
-extension SpanDataSegmentOutlined {
-    public static func rendered<
-        X: Frac & Structure,
-        W: Frac & Structure
-    >(
-        atX x: X.Type,
-        width w: W.Type
-    ) -> String {
-        "<rect x=\"\(SpanPx<Sum<X, Paired<Times<W.Left, Prefix>, Times<W.Right, Whole>>>>.typeName)\" "
-            + "width=\"\(SpanPx<Paired<Times<W.Left, Part>, Times<W.Right, Whole>>>.typeName)\" "
-            + "height=\"\(H.typeName)\" rx=\"0\" "
-            + "fill=\"\(Fill.typeName)\" stroke=\"\(Stroke.typeName)\" stroke-width=\"\(HairlineWidth.typeName)\"/>\n"
     }
 }
 /// A label whose anchor is the MIDDLE of its slice: a key's digit, a column's title.

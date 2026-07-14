@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 150" role="img" data-vi-canvas="1" font-family="Inter, Roboto, system-ui, sans-serif" aria-label="The six documents: two owned, marked with a dot, four shared, each linking to its owner or its department.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 150" role="img" data-vi-canvas="1" font-family="Inter, Roboto, system-ui, sans-serif" aria-label="The six documents: two owned, marked with a dot, four shared, each card linking to that document's own page.">
 <filter id="surface-card-shadow" x="-20%" y="-20%" width="140%" height="140%">
 <feDropShadow dx="0" dy="5" stdDeviation="10" flood-color="#000000" flood-opacity="var(--vi-surface-card-shadow-opacity, 0.10)"/>
 </filter>
 <g transform="translate(0, 16)">
 <g transform="translate(44, 0)">
-<a href="/documentation/organization/alice">
+<a href="/documentation/organization/financevault">
 <g filter="url(#surface-card-shadow)">
 <rect x="0" width="280" height="50" rx="10" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
@@ -18,7 +18,7 @@
 </a>
 </g>
 <g transform="translate(340, 0)">
-<a href="/documentation/organization/dave">
+<a href="/documentation/organization/engineeringrepo">
 <g filter="url(#surface-card-shadow)">
 <rect x="0" width="280" height="50" rx="10" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
@@ -32,7 +32,7 @@
 </a>
 </g>
 <g transform="translate(636, 0)">
-<a href="/documentation/organization/departments">
+<a href="/documentation/organization/financeshare">
 <g filter="url(#surface-card-shadow)">
 <rect x="0" width="280" height="50" rx="10" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
@@ -45,7 +45,7 @@
 </g>
 <g transform="translate(0, 76)">
 <g transform="translate(44, 0)">
-<a href="/documentation/organization/departments">
+<a href="/documentation/organization/engineeringshare">
 <g filter="url(#surface-card-shadow)">
 <rect x="0" width="280" height="50" rx="10" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
@@ -56,7 +56,7 @@
 </a>
 </g>
 <g transform="translate(340, 0)">
-<a href="/documentation/organization/departments">
+<a href="/documentation/organization/salesshare">
 <g filter="url(#surface-card-shadow)">
 <rect x="0" width="280" height="50" rx="10" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
@@ -67,7 +67,7 @@
 </a>
 </g>
 <g transform="translate(636, 0)">
-<a href="/documentation/organization/departments">
+<a href="/documentation/organization/peopleshare">
 <g filter="url(#surface-card-shadow)">
 <rect x="0" width="280" height="50" rx="10" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>

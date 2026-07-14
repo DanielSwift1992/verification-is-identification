@@ -6,8 +6,8 @@ import Organization
 // `View/Documents.swift`'s table lists, an owned one (`FinanceVault`/`EngineeringRepo`)
 // carrying a small `AccentRole` dot, the one hero mark this hero repeats with a singular
 // meaning (DESIGN10's card-icon dot, DESIGN11 b3's Done chip, the same reading each time:
-// scarce in use, not in count). Each card is `Linked`: an owned one to its owner's page, a
-// shared one to the department catalog (no page of a single department exists yet).
+// scarce in use, not in count). Each card is `Linked` to the document's own page, the same
+// address the table under it names: a card that says FinanceVault lands on FinanceVault.
 //
 // Design.swift's `Chip` (140 wide, built for short values like "66"/"On-site") overflows a
 // document's name ("EngineeringRepo"), checked directly, the text ran past the chip's
@@ -18,8 +18,8 @@ import Organization
 enum DocHeroAriaLabel: Close {}
 extension DocHeroAriaLabel {
     public static var typeName: String {
-        "The six documents: two owned, marked with a dot, four shared, each linking to its "
-            + "owner or its department."
+        "The six documents: two owned, marked with a dot, four shared, each card linking to "
+            + "that document's own page."
     }
 }
 
@@ -127,11 +127,11 @@ enum DocCardsRow1: HFlow {
     @StructureBuilder
     public static var body: some Structure & Divides {
         RestAir.self
-        Fixed<DocumentCardWide, SpanLink<SitePath<Alice>, DocOwnedCard<FinanceVault, FinanceVaultNoteText>>>.self
+        Fixed<DocumentCardWide, SpanLink<SitePath<FinanceVault>, DocOwnedCard<FinanceVault, FinanceVaultNoteText>>>.self
         Air<Breath>.self
-        Fixed<DocumentCardWide, SpanLink<SitePath<Dave>, DocOwnedCard<EngineeringRepo, EngineeringRepoNoteText>>>.self
+        Fixed<DocumentCardWide, SpanLink<SitePath<EngineeringRepo>, DocOwnedCard<EngineeringRepo, EngineeringRepoNoteText>>>.self
         Air<Breath>.self
-        Fixed<DocumentCardWide, SpanLink<SitePath<Nav.Departments>, DocSharedCard<FinanceShare, SharedNoteText>>>.self
+        Fixed<DocumentCardWide, SpanLink<SitePath<FinanceShare>, DocSharedCard<FinanceShare, SharedNoteText>>>.self
         RestAir.self
     }
 }
@@ -140,11 +140,11 @@ enum DocCardsRow2: HFlow {
     @StructureBuilder
     public static var body: some Structure & Divides {
         RestAir.self
-        Fixed<DocumentCardWide, SpanLink<SitePath<Nav.Departments>, DocSharedCard<EngineeringShare, SharedNoteText>>>.self
+        Fixed<DocumentCardWide, SpanLink<SitePath<EngineeringShare>, DocSharedCard<EngineeringShare, SharedNoteText>>>.self
         Air<Breath>.self
-        Fixed<DocumentCardWide, SpanLink<SitePath<Nav.Departments>, DocSharedCard<SalesShare, SharedNoteText>>>.self
+        Fixed<DocumentCardWide, SpanLink<SitePath<SalesShare>, DocSharedCard<SalesShare, SharedNoteText>>>.self
         Air<Breath>.self
-        Fixed<DocumentCardWide, SpanLink<SitePath<Nav.Departments>, DocSharedCard<PeopleShare, SharedNoteText>>>.self
+        Fixed<DocumentCardWide, SpanLink<SitePath<PeopleShare>, DocSharedCard<PeopleShare, SharedNoteText>>>.self
         RestAir.self
     }
 }

@@ -1,14 +1,16 @@
-# What if: Org Chart Update → In Progress
+# ``WhatIfUpdateOrganizationChartInProgress``
 
 @Metadata {
     @PageImage(purpose: card, source: "card-board", alt: "Task board")
 }
 
+What if: Org Chart Update → In Progress
+
 One task, redrawn in a hypothetical column.
 
 ![The task board with Org Chart Update previewed in the In Progress column.](board-whatif-updateorganizationchart-inprogress)
 
-> Note: What-if view: the system holds ``UpdateOrganizationChart`` = ``Done``. To make this board real, change one typealias and rebuild — the act IS the write IS the proof.
+> Note: What-if view: the system holds ``UpdateOrganizationChart`` = ``Done``. To make this board real, change one typealias and rebuild: the act is the write is the proof.
 
 
 

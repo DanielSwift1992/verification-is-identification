@@ -29,7 +29,7 @@ indirect enum DecompiledNode {
 
 enum Decompiler {
     private static let modulePrefixes = [
-        "VerificationIsIdentification.", "DocumentKit.", "Organization.", "VectorDemo.", "Examples.",
+        "VerificationIsIdentification.", "DocumentKit.", "Organization.", "VectorDemo.", "Examples.", "Swift.",
     ]
 
     private static func stripModules(_ text: String) -> String {
@@ -139,9 +139,9 @@ enum Decompiler {
     }
 
     private static let honestyBanner =
-        "> Note: Read back from the compiled type, the structure the build actually proved, "
-            + "not the file a human formatted. Comments and spacing live in the source file; "
-            + "the shape lives here, and the two cannot disagree."
+        "> Note: Read back from the compiled type: the structure the build proved, with every "
+            + "magnitude folded to the count the source names through the dictionary. Comments "
+            + "and spacing live in the source file. The shape lives here, and the two cannot disagree."
 
     /// A `<Name>Source.md` page: three parts, a flat H1, the honesty banner
     /// (verbatim), the decompiled body fenced as Swift, then one link back to the canvas's

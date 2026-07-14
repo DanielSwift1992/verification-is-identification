@@ -22,7 +22,8 @@ extension RoleWalkTitle {
 enum RoleWalkPage: Screen {
     @StructureBuilder
     static var body: some Structure {
-        PageTitle { RoleWalkTitle.self }
+        PageTitle { Symbol { RawName<RoleWalk>.self } }
+        RoleWalkTitle.self; Break.self
         WalkHint.self; Break.self
         Picture { RoleWalkDoorsPictureAlt.self; RoleWalkDoorsPictureAsset.self }
         Break.self
@@ -50,7 +51,8 @@ extension MoneyOrBuildSideTitle {
 enum MoneyOrBuildSidePage: Screen {
     @StructureBuilder
     static var body: some Structure {
-        PageTitle { MoneyOrBuildSideTitle.self }
+        PageTitle { Symbol { RawName<MoneyOrBuildSide>.self } }
+        MoneyOrBuildSideTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentLeft.self
         Break.self
@@ -81,7 +83,8 @@ extension FinanceRanksTitle {
 enum FinanceRanksPage: Screen {
     @StructureBuilder
     static var body: some Structure {
-        PageTitle { FinanceRanksTitle.self }
+        PageTitle { Symbol { RawName<FinanceRanks>.self } }
+        FinanceRanksTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentLeft.self; StepDot.self; WentLeft.self
         Break.self
@@ -112,7 +115,8 @@ extension FinanceLeadOrManagerTitle {
 enum FinanceLeadOrManagerPage: Screen {
     @StructureBuilder
     static var body: some Structure {
-        PageTitle { FinanceLeadOrManagerTitle.self }
+        PageTitle { Symbol { RawName<FinanceLeadOrManager>.self } }
+        FinanceLeadOrManagerTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -143,7 +147,8 @@ extension EngineeringRanksTitle {
 enum EngineeringRanksPage: Screen {
     @StructureBuilder
     static var body: some Structure {
-        PageTitle { EngineeringRanksTitle.self }
+        PageTitle { Symbol { RawName<EngineeringRanks>.self } }
+        EngineeringRanksTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -174,7 +179,8 @@ extension EngineeringLeadOrManagerTitle {
 enum EngineeringLeadOrManagerPage: Screen {
     @StructureBuilder
     static var body: some Structure {
-        PageTitle { EngineeringLeadOrManagerTitle.self }
+        PageTitle { Symbol { RawName<EngineeringLeadOrManager>.self } }
+        EngineeringLeadOrManagerTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -205,7 +211,8 @@ extension SalesOrPeopleSideTitle {
 enum SalesOrPeopleSidePage: Screen {
     @StructureBuilder
     static var body: some Structure {
-        PageTitle { SalesOrPeopleSideTitle.self }
+        PageTitle { Symbol { RawName<SalesOrPeopleSide>.self } }
+        SalesOrPeopleSideTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self
         Break.self
@@ -236,7 +243,8 @@ extension SalesRanksTitle {
 enum SalesRanksPage: Screen {
     @StructureBuilder
     static var body: some Structure {
-        PageTitle { SalesRanksTitle.self }
+        PageTitle { Symbol { RawName<SalesRanks>.self } }
+        SalesRanksTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -267,7 +275,8 @@ extension SalesLeadOrManagerTitle {
 enum SalesLeadOrManagerPage: Screen {
     @StructureBuilder
     static var body: some Structure {
-        PageTitle { SalesLeadOrManagerTitle.self }
+        PageTitle { Symbol { RawName<SalesLeadOrManager>.self } }
+        SalesLeadOrManagerTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -298,7 +307,8 @@ extension PeopleRanksTitle {
 enum PeopleRanksPage: Screen {
     @StructureBuilder
     static var body: some Structure {
-        PageTitle { PeopleRanksTitle.self }
+        PageTitle { Symbol { RawName<PeopleRanks>.self } }
+        PeopleRanksTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -329,7 +339,8 @@ extension PeopleLeadOrManagerTitle {
 enum PeopleLeadOrManagerPage: Screen {
     @StructureBuilder
     static var body: some Structure {
-        PageTitle { PeopleLeadOrManagerTitle.self }
+        PageTitle { Symbol { RawName<PeopleLeadOrManager>.self } }
+        PeopleLeadOrManagerTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self

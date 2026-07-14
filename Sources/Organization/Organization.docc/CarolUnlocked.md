@@ -1,4 +1,4 @@
-# Carol
+# ``CarolUnlocked``
 
 @Metadata {
     @PageImage(purpose: card, source: "avatar", alt: "Carol")
@@ -14,10 +14,10 @@ Identity, role, and access, drawn from the same fields listed below. The named t
 
 @Row {
 @Column {
-``FinanceVault`` — View: granted · Administer: manager only · Delete: manager only
+``FinanceVault`` · View: granted · Administer: manager only · Delete: manager only
 }
 @Column {
-``EngineeringRepo`` — View: different department · Administer: manager only · Delete: manager only
+``EngineeringRepo`` · View: different department · Administer: manager only · Delete: manager only
 }
 }
 

@@ -1,14 +1,16 @@
-# What if: Archive Old Repos → In Progress
+# ``WhatIfArchiveOldRepositoriesInProgress``
 
 @Metadata {
     @PageImage(purpose: card, source: "card-board", alt: "Task board")
 }
 
+What if: Archive Old Repos → In Progress
+
 One task, redrawn in a hypothetical column.
 
 ![The task board with Archive Old Repos previewed in the In Progress column.](board-whatif-archiveoldrepositories-inprogress)
 
-> Note: What-if view: the system holds ``ArchiveOldRepositories`` = ``ToDo``. To make this board real, change one typealias and rebuild — the act IS the write IS the proof.
+> Note: What-if view: the system holds ``ArchiveOldRepositories`` = ``ToDo``. To make this board real, change one typealias and rebuild: the act is the write is the proof.
 
 
 

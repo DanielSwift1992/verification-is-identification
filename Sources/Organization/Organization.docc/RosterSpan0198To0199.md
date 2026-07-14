@@ -1,4 +1,6 @@
-# Wirth, Karen … Wirth, Katherine
+# ``RosterSpan0198To0199``
+
+Wirth, Karen … Wirth, Katherine
 
 Two doors, and each door names every page behind it. Pick a half and keep choosing: any page stands at most four choices away, and a wrong turn steps back up.
 

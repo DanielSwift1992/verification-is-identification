@@ -1,4 +1,6 @@
-# McCarthy, John … McCarthy, Karen
+# ``RosterSpan0141To0142``
+
+McCarthy, John … McCarthy, Karen
 
 Two doors, and each door names every page behind it. Pick a half and keep choosing: any page stands at most four choices away, and a wrong turn steps back up.
 

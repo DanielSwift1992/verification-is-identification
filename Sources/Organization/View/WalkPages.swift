@@ -103,7 +103,8 @@ extension SiteWalkDoorsAsset {
 public enum SiteWalkPage: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { SiteWalkTitle.self }
+        PageTitle { Symbol { RawName<SiteWalk>.self } }
+        SiteWalkTitle.self; Break.self
         WalkHint.self; Break.self
         Picture { WalkDoorsPictureAlt.self; SiteWalkDoorsAsset.self }
         Break.self
@@ -123,7 +124,8 @@ extension PeopleOrWorkDoorsAsset {
 public enum PeopleOrWorkPage: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { PeopleOrWorkTitle.self }
+        PageTitle { Symbol { RawName<PeopleOrWork>.self } }
+        PeopleOrWorkTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentLeft.self
         Break.self
@@ -146,7 +148,8 @@ extension PolicyOrNumbersDoorsAsset {
 public enum PolicyOrNumbersPage: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { PolicyOrNumbersTitle.self }
+        PageTitle { Symbol { RawName<PolicyOrNumbers>.self } }
+        PolicyOrNumbersTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self
         Break.self
@@ -173,7 +176,8 @@ extension PeopleHalfDoorsAsset {
 public enum PeopleHalfPage: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { PeopleHalfTitle.self }
+        PageTitle { Symbol { RawName<PeopleHalf>.self } }
+        PeopleHalfTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentLeft.self; StepDot.self; WentLeft.self
         Break.self
@@ -198,7 +202,8 @@ extension WorkHalfDoorsAsset {
 public enum WorkHalfPage: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { WorkHalfTitle.self }
+        PageTitle { Symbol { RawName<WorkHalf>.self } }
+        WorkHalfTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -221,7 +226,8 @@ extension PolicyHalfDoorsAsset {
 public enum PolicyHalfPage: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { PolicyHalfTitle.self }
+        PageTitle { Symbol { RawName<PolicyHalf>.self } }
+        PolicyHalfTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -244,7 +250,8 @@ extension NumbersHalfDoorsAsset {
 public enum NumbersHalfPage: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NumbersHalfTitle.self }
+        PageTitle { Symbol { RawName<NumbersHalf>.self } }
+        NumbersHalfTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -267,7 +274,8 @@ extension DepartmentsOrDirectoriesDoorsAsset {
 public enum DepartmentsOrDirectoriesPage: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { DepartmentsOrDirectoriesTitle.self }
+        PageTitle { Symbol { RawName<DepartmentsOrDirectories>.self } }
+        DepartmentsOrDirectoriesTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -290,7 +298,8 @@ extension BoardOrTasksDoorsAsset {
 public enum BoardOrTasksPage: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { BoardOrTasksTitle.self }
+        PageTitle { Symbol { RawName<BoardOrTasks>.self } }
+        BoardOrTasksTitle.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self

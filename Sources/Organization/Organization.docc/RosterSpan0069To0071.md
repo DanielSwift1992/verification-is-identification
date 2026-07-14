@@ -1,4 +1,6 @@
-# Hamilton, Niklaus … Hamilton, Radia
+# ``RosterSpan0069To0071``
+
+Hamilton, Niklaus … Hamilton, Radia
 
 Two doors, and each door names every page behind it. Pick a half and keep choosing: any page stands at most four choices away, and a wrong turn steps back up.
 

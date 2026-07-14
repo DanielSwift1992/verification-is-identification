@@ -12,17 +12,20 @@ import DocumentKit
 // per person.
 // ═══════════════════════════════════════════════════════════════
 
-/// This gives a person's given and family name, each linked separately: the reusable cell
-/// content for any table column showing a full name.
+/// This gives a person's given and family name as plain text: the reusable cell content
+/// for any column or label showing a full name. Neither half is a link, so a full name
+/// never leads anywhere but where its OWN door says: the handle beside it in a table, or
+/// the link wrapped around it under a card. The name types themselves stay reachable
+/// from the person's card, where Identity lists them.
 enum FullNameOf<
     Who: Employee & Person
 >: Fragment {
     init(@StructureBuilder _ who: () -> Who) { fatalError() }
     @StructureBuilder
     public static var body: some Structure {
-        Symbol { Who.Given.self }
+        Who.Given.self
         Space.self
-        Symbol { Who.Family.self }
+        Who.Family.self
     }
 }
 
@@ -304,25 +307,12 @@ enum EmpHeroBlock: Fragment {
     }
 }
 
-enum WalkFilmAsset: Close {}
-extension WalkFilmAsset {
-    public static var typeName: String { "walk-film" }
-}
-enum WalkFilmAlt: Close {}
-extension WalkFilmAlt {
+/// The shelf door: one line in place of the walk film. The film's frames read as noise
+/// without narration, so the hub offers the walk itself and the film waits for a redesign.
+enum ShelfWalkLabel: Close {}
+extension ShelfWalkLabel {
     public static var typeName: String {
-        "The phone-book walk playing itself to one person: eight choices, the taken door "
-            + "marked on each frame, the film freezing on the name it walked to."
-    }
-}
-/// The film needs a visible caption: its alt text reaches a screen reader, and a sighted
-/// visitor otherwise meets bare shelf ranges with no word on what is playing.
-enum WalkFilmCaption: Close {}
-extension WalkFilmCaption {
-    public static var typeName: String {
-        "Below, the walk plays itself to one person. Each frame halves the shelf of 204 names, "
-            + "the chosen half is the link, and the word so far spells the turns taken. Eight "
-            + "halvings land on one name, and the film freezes there."
+        "Walk to anyone: eight halvings of the shelf reach any of the 204"
     }
 }
 
@@ -332,9 +322,7 @@ public enum EmployeesPage: Screen {
         PageTitle { EmployeesTitle.self }
         EmployeesIntro.self; Break.self
         EmpHeroBlock.self
-        WalkFilmCaption.self
-        Break.self
-        Picture { WalkFilmAlt.self; WalkFilmAsset.self }
+        Link { ShelfWalkLabel.self; SiteWalk.self }
         Break.self
         DoubleHash.self; NamedTeamHeading.self; Break.self
         Table { NamedTeamRows.self }

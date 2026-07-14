@@ -1,4 +1,6 @@
-# Goldwasser, Barbara … Goldwasser, Dennis
+# ``RosterSpan0036To0037``
+
+Goldwasser, Barbara … Goldwasser, Dennis
 
 Two doors, and each door names every page behind it. Pick a half and keep choosing: any page stands at most four choices away, and a wrong turn steps back up.
 

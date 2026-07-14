@@ -580,7 +580,8 @@ enum GenerateOrg {
                 "enum \(name)Page: Screen {",
                 "    @StructureBuilder",
                 "    static var body: some Structure {",
-                "        PageTitle { \(name)Title.self }",
+                "        PageTitle { Symbol { RawName<\(name)>.self } }",
+                "        \(name)Title.self; Break.self",
                 "        WalkHint.self; Break.self",
             ]
             if !word.isEmpty {
@@ -794,7 +795,8 @@ enum GenerateOrg {
                 "public enum \(name)Page: Screen {",
                 "    @StructureBuilder",
                 "    public static var body: some Structure {",
-                "        PageTitle { NameSpan<\(shelf[lo].reference), \(shelf[hi].reference)>.self }",
+                "        PageTitle { Symbol { RawName<\(name)>.self } }",
+                "        NameSpan<\(shelf[lo].reference), \(shelf[hi].reference)>.self; Break.self",
                 "        WalkHint.self; Break.self",
             ]
             pageLines += wordLine

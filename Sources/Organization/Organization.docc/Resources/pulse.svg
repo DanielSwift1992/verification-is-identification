@@ -107,8 +107,7 @@
 <g clip-path="url(#workplace-split-clip)">
 <rect x="0" width="440" height="32" rx="10" fill="var(--vi-surface-track, #F6F7F8)"/>
 <rect x="0" width="150" height="32" rx="0" fill="var(--vi-action, #336FEE)"/>
-<rect x="150" width="145" height="32" rx="0" fill="var(--vi-text-primary, rgba(0,0,0,0.80))"/>
-<rect x="295" width="145" height="32" rx="0" fill="var(--vi-action-tint, rgba(66,139,249,0.16))" stroke="var(--vi-action, #336FEE)" stroke-width="1"/>
+<rect x="150" width="145" height="32" rx="0" fill="var(--vi-action-tint, rgba(66,139,249,0.16))"/>
 </g>
 </g>
 <g transform="translate(0, 48)">

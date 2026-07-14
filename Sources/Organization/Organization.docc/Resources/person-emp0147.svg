@@ -23,7 +23,7 @@
 </g>
 </g>
 <g transform="translate(183, 0)">
-<a href="/documentation/organization/departments">
+<a href="/documentation/organization/engineering">
 <rect x="0" width="175" height="24" rx="12" fill="var(--vi-surface-track, #F6F7F8)"/>
 <g transform="translate(14, 0)">
 <text x="0" y="16" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="13">Engineering</text>

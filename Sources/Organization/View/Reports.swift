@@ -301,7 +301,7 @@ extension OfficeArrangementName {
 enum WhyArrangementBody: Close {}
 extension WhyArrangementBody {
     public static var typeName: String {
-        "The policy asks two different questions, and this page proves the cheap one. Which arrangement a person holds is a marker: one conformance, checked by name. How many hours they actually logged would be an ordered quantity — a typed count compared against a threshold, Peano `>=` — a strictly heavier move (Distance Is Cost: the price of a claim is the structure it must carry). The demo proves the marker half and names the ordered half as the next, dearer step. The boundary between the two is exactly where the type gets more expensive."
+        "The policy asks two different questions, and this page proves the cheap one. Which arrangement a person holds is a marker: one conformance, checked by name. How many hours they actually logged would be an ordered quantity, a typed count compared against a threshold (Peano `>=`): a strictly heavier move (Distance Is Cost: the price of a claim is the structure it must carry). The demo proves the marker half and names the ordered half as the next, dearer step. The boundary between the two is exactly where the type gets more expensive."
     }
 }
 

@@ -1,4 +1,6 @@
-# Knuth, Donald … Knuth, Edsger
+# ``RosterSpan0076To0078``
+
+Knuth, Donald … Knuth, Edsger
 
 Two doors, and each door names every page behind it. Pick a half and keep choosing: any page stands at most four choices away, and a wrong turn steps back up.
 

@@ -1,4 +1,6 @@
-# Dijkstra, Barbara … Dijkstra, Karen
+# ``RosterSpan0012To0024``
+
+Dijkstra, Barbara … Dijkstra, Karen
 
 Two doors, and each door names every page behind it. Pick a half and keep choosing: any page stands at most four choices away, and a wrong turn steps back up.
 

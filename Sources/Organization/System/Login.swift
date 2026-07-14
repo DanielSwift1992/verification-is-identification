@@ -11,7 +11,7 @@ import VerificationIsIdentification
 // valid path reaches the door, every other runs out the length, not real secrecy.
 // ═══════════════════════════════════════════════════════════════
 
-/// This names a password: an Open type whose body IS the key sequence, composed via
+/// This names a password: an Open type whose body is the key sequence, composed via
 /// StructureBuilder.
 public protocol Secret: Open {}
 

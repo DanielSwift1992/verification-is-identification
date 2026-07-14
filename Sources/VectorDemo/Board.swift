@@ -2,26 +2,27 @@ import VerificationIsIdentification
 import DocumentKit
 import Organization
 
-// board.svg: DESIGN11 b3 / DESIGN12 §1. The TRUE board, drawn: the seven tasks laid out by
-// their own real `Status`, read off `System/Tasks.swift` directly, title (`Task.DisplayName`)
-// and assignee (`Task.Assignee`, itself a real `Employee` whose bare name IS its `typeName`) are
-// both READ off the type, not a second hand-typed copy. A card's ‹/› is `Linked` to a one-step
-// what-if page (`View/WhatIf.swift`), a closed action space, exactly the off-path keypad's own
-// shape: ToDo has no ‹, Done has no ›, and a what-if page offers no move at all.
+// board.svg: DESIGN12 §1 / DESIGN21 v96. The TRUE board, drawn: seven tasks, each a lane of
+// three stations, the card standing at its own real `Status` (read off `System/Tasks.swift`,
+// title `Task.DisplayName` and assignee `Task.Assignee` read off the type, not a second
+// hand-typed copy). The lane's other two stations are drawn empty: dashed slots that ARE the
+// keys. Pressing a slot shows this task's card there, dashed, a try; pressing the home
+// station brings the solid fact back. Every position is drawn at build time as a variant
+// (`SpanVariant`, Vector.swift), so the host's hook only chooses which drawing shows and no
+// geometry is ever computed after the build. A plain `<img>` shows the built truth alone.
 //
-// The board rides the span engine: three column slices of 280 with breaths of 40 and margins
-// of 20, each column a stack of four card slots lowered to the row tokens. A what-if board is
-// the same row of columns with one slot swapped: the moved card sits IN its hypothetical
-// column's slot, dash-stroked (`SpanTrackDashed`) on an `ActionTint` ground plus a small
-// "Preview" badge; the other six keep their true slots. No ‹/› on a what-if board: one step,
-// then closed, the same floor the what-if PAGE's own banner already states in prose.
+// The lane keeps each task's geometry a function of its own state and nothing else. A
+// falling column would make one card's place depend on every other card's state, 3^7 whole
+// boards or a runtime layout, and runtime layout is the thing this package abolishes. The
+// lane draws the product of independent states honestly: 21 variants, one per task and station.
 
 typealias BoardSize = CanvasSize<WideSurface, BoardTall>
 enum BoardAriaLabel: Close {}
 extension BoardAriaLabel {
     public static var typeName: String {
         "The task board: three columns, To Do, In Progress, Done, read from each task's own "
-            + "status. Every card links one step to a what-if page showing it in a neighbouring column."
+            + "status. Each task is one lane whose empty stations are pressable slots: pressing "
+            + "one shows the card there as a dashed preview, and the built status stays the fact."
     }
 }
 enum BoardWhatIfAriaLabel: Close {}
@@ -52,14 +53,6 @@ extension ChipHeight {
 enum ChipRelTextY: Close {}
 extension ChipRelTextY {
     public static var typeName: String { "14" }
-}
-enum NavY: Close {}
-extension NavY {
-    public static var typeName: String { "84" }
-}
-enum ArrowAffordanceCY: Close {}
-extension ArrowAffordanceCY {
-    public static var typeName: String { "84" }
 }
 
 // ── card faces: the true card's stroked face under the fixed soft shadow, and the
@@ -106,28 +99,6 @@ enum PreviewBadgeSpan: SpanLabelEnd {
     public typealias Size = TextXXS
     public typealias Weight = WeightRegular
     public typealias Content = PreviewBadgeText
-}
-enum PrevArrowText: Close {}
-extension PrevArrowText {
-    public static var typeName: String { "‹" }
-}
-enum NextArrowText: Close {}
-extension NextArrowText {
-    public static var typeName: String { "›" }
-}
-enum PrevArrowSpan: SpanLabel {
-    public typealias Y = NavY
-    public typealias FillColor = ActionRole
-    public typealias Size = TitleT
-    public typealias Weight = WeightBold
-    public typealias Content = PrevArrowText
-}
-enum NextArrowSpan: SpanLabelEnd {
-    public typealias Y = NavY
-    public typealias FillColor = ActionRole
-    public typealias Size = TitleT
-    public typealias Weight = WeightBold
-    public typealias Content = NextArrowText
 }
 /// The card's one text slice: sixteen in from either edge of the 280-wide card.
 enum CardTextRow<Content: Spanning>: HFlow {
@@ -198,44 +169,6 @@ extension InProgress: HasChipVisual {
 typealias ChipVisual = InProgressChipSpan }
 extension Organization.Done: HasChipVisual {
 typealias ChipVisual = DoneChipSpan }
-
-// ── the ‹/› what-if triggers — present only where a neighbour status actually exists
-// (DESIGN11 b3: ToDo has no ‹, Done has no ›). DESIGN13 §1: each is also a hover trigger
-// (the true board shows the ghost of the move in place, no navigation, while the arrow's
-// click still navigates to the full what-if page); a small dot marks it hoverable, the same
-// affordance CyclesHero's nodes carry, beside the glyph at the arrow's own baseline. ──
-
-enum ArrowDotSpan: SpanDot {
-    public typealias CY = ArrowAffordanceCY
-    public typealias R = HoverAffordanceRadius
-    public typealias Fill = ActionRole
-}
-enum PrevDotRow: HFlow {
-    public typealias Given = DocumentCardWide
-    @StructureBuilder
-    public static var body: some Structure & Divides {
-        Air<NavDotInsetLead>.self
-        Fixed<NavDotWide, ArrowDotSpan>.self
-        RestAir.self
-    }
-}
-enum NextDotRow: HFlow {
-    public typealias Given = DocumentCardWide
-    @StructureBuilder
-    public static var body: some Structure & Divides {
-        RestAir.self
-        Fixed<NavDotWide, ArrowDotSpan>.self
-        Air<NavDotInsetTail>.self
-    }
-}
-typealias PrevTriggerArt<Target: Structure> = Layered<
-    SpanLink<Target, SpanHosted<CardTextRow<PrevArrowSpan>>>,
-    SpanHosted<PrevDotRow>
->
-typealias NextTriggerArt<Target: Structure> = Layered<
-    SpanLink<Target, SpanHosted<CardTextRow<NextArrowSpan>>>,
-    SpanHosted<NextDotRow>
->
 
 // ── card compositions: the true card, the unaffected static, the dashed preview ──
 
@@ -321,119 +254,177 @@ enum BoardRow<
     }
 }
 
-// ── the hover pairs live at the canvas frame, never inside a card: both halves spell
-// absolute lanes and slot drops, and a pair hosted in a card would re-base the panel at
-// that card's own corner. The lanes are the columns' true insets, read off `BoardRow`. ──
+// ── the board is 7 lanes of drawn variants: per task, one variant per station, every
+// position drawn ahead of time. A variant fills its whole lane: the card at its station,
+// dashed empty slots at the other two, and the slots ARE the keys. The resting variant is
+// the built status (solid card); the try variants wear the dashed preview. The host shows
+// the pressed position and hides the owner's others, any number of moves, there and back
+// (SpanVariant / SpanVariantKey, Vector.swift). Nothing navigates, nothing scrolls, and a
+// plain <img> shows the built truth alone. ──
 
-typealias SlotDropFirst = BoardHeaderZone
-typealias SlotDropSecond = Plus<BoardHeaderZone, BoardSlotPitch>
-typealias SlotDropThird = Plus<BoardHeaderZone, Plus<BoardSlotPitch, BoardSlotPitch>>
-typealias SlotDropFourth = Plus<BoardHeaderZone, Plus<BoardSlotPitch, Plus<BoardSlotPitch, BoardSlotPitch>>>
-enum BoardCell<
-    Lane: Structure,
-    DropY: Structure,
-    Art: Spanning
+enum PosToDo: Close {}
+extension PosToDo {
+    public static var typeName: String { "todo" }
+}
+enum PosInProgress: Close {}
+extension PosInProgress {
+    public static var typeName: String { "inprogress" }
+}
+enum PosDone: Close {}
+extension PosDone {
+    public static var typeName: String { "done" }
+}
+enum ShownYes: Close {}
+extension ShownYes {
+    public static var typeName: String { "1" }
+}
+enum ShownNo: Close {}
+extension ShownNo {
+    public static var typeName: String { "0" }
+}
+
+/// This spells `fill="none"`: the ghost slot is an outline only, quieter than the filled
+/// dashed preview it invites.
+enum NoFillInk: Close {}
+extension NoFillInk {
+    public static var typeName: String { "none" }
+}
+/// The empty station: a dashed card-sized outline with one word of invitation in the
+/// action colour, centred by the derived baseline. Wrapped in a variant key it IS the
+/// move: press the slot, the card stands there. "Try" is the caption's own noun.
+enum GhostSlotFace: SpanTrackDashed {
+    public typealias H = Tally<TaskCardTall>
+    public typealias Radius = R12
+    public typealias Fill = NoFillInk
+    public typealias Stroke = LineRole
+}
+enum GhostTryText: Close {}
+extension GhostTryText {
+    public static var typeName: String { "Try" }
+}
+enum GhostTrySpan: SpanLabelMidFitted {
+    public typealias Y = CenteredBaseline<TaskCardTall, TextS>
+    public typealias FillColor = ActionRole
+    public typealias Size = TextS
+    public typealias Weight = WeightRegular
+    public typealias Content = GhostTryText
+}
+typealias GhostKeyAt<T: Task, To: Structure> = SpanVariantKey<
+    RawName<T>,
+    To,
+    Layered<GhostSlotFace, GhostTrySpan>
+>
+
+/// One variant of a task's lane: the card at the named station, ghost keys at the other
+/// two. The whole lane is one drawing, so a variant switch never leaves a hole behind.
+typealias LaneAtToDo<
+    T: Task,
+    Card: Spanning,
+    Shown: Structure
+> = SpanVariant<
+    RawName<T>,
+    PosToDo,
+    SpanHosted<TaskMatrixRow<Card, GhostKeyAt<T, PosInProgress>, GhostKeyAt<T, PosDone>>>,
+    Shown
+>
+typealias LaneAtInProgress<
+    T: Task,
+    Card: Spanning,
+    Shown: Structure
+> = SpanVariant<
+    RawName<T>,
+    PosInProgress,
+    SpanHosted<TaskMatrixRow<GhostKeyAt<T, PosToDo>, Card, GhostKeyAt<T, PosDone>>>,
+    Shown
+>
+typealias LaneAtDone<
+    T: Task,
+    Card: Spanning,
+    Shown: Structure
+> = SpanVariant<
+    RawName<T>,
+    PosDone,
+    SpanHosted<TaskMatrixRow<GhostKeyAt<T, PosToDo>, GhostKeyAt<T, PosInProgress>, Card>>,
+    Shown
+>
+
+/// A whole lane by its built status: solid card at the fact, dashed previews at the tries,
+/// the fact's variant resting visible. Three shapes cover all seven tasks.
+typealias LaneBuiltToDo<T: Task> = Layered<
+    LaneAtToDo<T, StaticCardSpan<T, ToDoChipSpan>, ShownYes>,
+    Layered<
+        LaneAtInProgress<T, PreviewCardSpan<T, InProgressChipSpan>, ShownNo>,
+        LaneAtDone<T, PreviewCardSpan<T, DoneChipSpan>, ShownNo>
+    >
+>
+typealias LaneBuiltInProgress<T: Task> = Layered<
+    LaneAtInProgress<T, StaticCardSpan<T, InProgressChipSpan>, ShownYes>,
+    Layered<
+        LaneAtToDo<T, PreviewCardSpan<T, ToDoChipSpan>, ShownNo>,
+        LaneAtDone<T, PreviewCardSpan<T, DoneChipSpan>, ShownNo>
+    >
+>
+typealias LaneBuiltDone<T: Task> = Layered<
+    LaneAtDone<T, StaticCardSpan<T, DoneChipSpan>, ShownYes>,
+    Layered<
+        LaneAtToDo<T, PreviewCardSpan<T, ToDoChipSpan>, ShownNo>,
+        LaneAtInProgress<T, PreviewCardSpan<T, InProgressChipSpan>, ShownNo>
+    >
+>
+
+// ── the rows: one per task, its solid cell at the built status, dashed cells beside ──
+
+enum BoardHeaderRow: HFlow {
+    public typealias Given = WideSurface
+    @StructureBuilder
+    public static var body: some Structure & Divides {
+        Air<BoardEdge>.self
+        Fixed<DocumentCardWide, ColumnHeaderSpan<Organization.ToDo.DisplayName>>.self
+        Air<Gutter>.self
+        Fixed<DocumentCardWide, ColumnHeaderSpan<InProgress.DisplayName>>.self
+        Air<Gutter>.self
+        Fixed<DocumentCardWide, ColumnHeaderSpan<Organization.Done.DisplayName>>.self
+        RestAir.self
+    }
+}
+enum TaskMatrixRow<
+    C1: Spanning,
+    C2: Spanning,
+    C3: Spanning
 >: HFlow {
     public typealias Given = WideSurface
     @StructureBuilder
     public static var body: some Structure & Divides {
-        Air<Lane>.self
-        Fixed<DocumentCardWide, SpanLowered<Tally<DropY>, Art>>.self
+        Air<BoardEdge>.self
+        Fixed<DocumentCardWide, C1>.self
+        Air<Gutter>.self
+        Fixed<DocumentCardWide, C2>.self
+        Air<Gutter>.self
+        Fixed<DocumentCardWide, C3>.self
         RestAir.self
     }
 }
-typealias LaneToDo = BoardEdge
-typealias LaneInProgress = Plus<LaneToDo, Plus<DocumentCardWide, Gutter>>
-typealias LaneDone = Plus<LaneInProgress, Plus<DocumentCardWide, Gutter>>
-typealias PreviewPanel<
-    Lane: Structure,
-    DropY: Structure,
-    T: Task,
-    Chip: Spanning
-> = BoardCell<Lane, DropY, PreviewCardSpan<T, Chip>>
 
-// ── the ten reveals — one per legal move, DESIGN13 §1. Each trigger is the card's ‹/›
-// art seated at that card's own lane and slot, each panel the ghost at the move's target
-// cell, and the pair is one `HoverReveal` so the CSS sibling rule stays scoped to it. ──
-
-enum OnboardNewHireInProgressReveal: HoverReveal {
-    public typealias Trigger = BoardCell<LaneToDo, SlotDropFirst, NextTriggerArt<SitePath<WhatIfOnboardNewHireInProgress>>>
-    public typealias Panel = PreviewPanel<LaneInProgress, SlotDropFourth, OnboardNewHire, InProgressChipSpan>
-}
-enum ArchiveOldRepositoriesInProgressReveal: HoverReveal {
-    public typealias Trigger = BoardCell<LaneToDo, SlotDropSecond, NextTriggerArt<SitePath<WhatIfArchiveOldRepositoriesInProgress>>>
-    public typealias Panel = PreviewPanel<LaneInProgress, SlotDropFourth, ArchiveOldRepositories, InProgressChipSpan>
-}
-enum RotateVaultKeysToDoReveal: HoverReveal {
-    public typealias Trigger = BoardCell<LaneInProgress, SlotDropFirst, PrevTriggerArt<SitePath<WhatIfRotateVaultKeysToDo>>>
-    public typealias Panel = PreviewPanel<LaneToDo, SlotDropThird, RotateVaultKeys, ToDoChipSpan>
-}
-enum RotateVaultKeysDoneReveal: HoverReveal {
-    public typealias Trigger = BoardCell<LaneInProgress, SlotDropFirst, NextTriggerArt<SitePath<WhatIfRotateVaultKeysDone>>>
-    public typealias Panel = PreviewPanel<LaneDone, SlotDropThird, RotateVaultKeys, DoneChipSpan>
-}
-enum ReviewImprovementPlanPolicyToDoReveal: HoverReveal {
-    public typealias Trigger = BoardCell<LaneInProgress, SlotDropSecond, PrevTriggerArt<SitePath<WhatIfReviewImprovementPlanPolicyToDo>>>
-    public typealias Panel = PreviewPanel<LaneToDo, SlotDropThird, ReviewImprovementPlanPolicy, ToDoChipSpan>
-}
-enum ReviewImprovementPlanPolicyDoneReveal: HoverReveal {
-    public typealias Trigger = BoardCell<LaneInProgress, SlotDropSecond, NextTriggerArt<SitePath<WhatIfReviewImprovementPlanPolicyDone>>>
-    public typealias Panel = PreviewPanel<LaneDone, SlotDropThird, ReviewImprovementPlanPolicy, DoneChipSpan>
-}
-enum FinanceReconciliationToDoReveal: HoverReveal {
-    public typealias Trigger = BoardCell<LaneInProgress, SlotDropThird, PrevTriggerArt<SitePath<WhatIfFinanceReconciliationToDo>>>
-    public typealias Panel = PreviewPanel<LaneToDo, SlotDropThird, FinanceReconciliation, ToDoChipSpan>
-}
-enum FinanceReconciliationDoneReveal: HoverReveal {
-    public typealias Trigger = BoardCell<LaneInProgress, SlotDropThird, NextTriggerArt<SitePath<WhatIfFinanceReconciliationDone>>>
-    public typealias Panel = PreviewPanel<LaneDone, SlotDropThird, FinanceReconciliation, DoneChipSpan>
-}
-enum Q3AccessAuditInProgressReveal: HoverReveal {
-    public typealias Trigger = BoardCell<LaneDone, SlotDropFirst, PrevTriggerArt<SitePath<WhatIfQ3AccessAuditInProgress>>>
-    public typealias Panel = PreviewPanel<LaneInProgress, SlotDropFourth, Q3AccessAudit, InProgressChipSpan>
-}
-enum UpdateOrganizationChartInProgressReveal: HoverReveal {
-    public typealias Trigger = BoardCell<LaneDone, SlotDropSecond, PrevTriggerArt<SitePath<WhatIfUpdateOrganizationChartInProgress>>>
-    public typealias Panel = PreviewPanel<LaneInProgress, SlotDropFourth, UpdateOrganizationChart, InProgressChipSpan>
-}
-
-// ── the true board: each card in its own status's column, the hover pairs one layer
-// above the cards, at the canvas frame ──
-
-typealias ToDoColumnTrue = BoardColumnArt<
-    Organization.ToDo.DisplayName,
-    StaticCardSpan<OnboardNewHire, OnboardNewHire.Status.ChipVisual>,
-    StaticCardSpan<ArchiveOldRepositories, ArchiveOldRepositories.Status.ChipVisual>,
-    SpanNothing,
-    SpanNothing
->
-typealias InProgressColumnTrue = BoardColumnArt<
-    InProgress.DisplayName,
-    StaticCardSpan<RotateVaultKeys, RotateVaultKeys.Status.ChipVisual>,
-    StaticCardSpan<ReviewImprovementPlanPolicy, ReviewImprovementPlanPolicy.Status.ChipVisual>,
-    StaticCardSpan<FinanceReconciliation, FinanceReconciliation.Status.ChipVisual>,
-    SpanNothing
->
-typealias DoneColumnTrue = BoardColumnArt<
-    Organization.Done.DisplayName,
-    StaticCardSpan<Q3AccessAudit, Q3AccessAudit.Status.ChipVisual>,
-    StaticCardSpan<UpdateOrganizationChart, UpdateOrganizationChart.Status.ChipVisual>,
-    SpanNothing,
-    SpanNothing
->
-enum BoardReveals: Group {
+enum BoardMatrix: VFlow {
+    public typealias Given = BoardMatrixTall
+    public typealias Across = WideSurface
     @StructureBuilder
-    public static var body: some Structure {
-        OnboardNewHireInProgressReveal.self
-        ArchiveOldRepositoriesInProgressReveal.self
-        RotateVaultKeysToDoReveal.self
-        RotateVaultKeysDoneReveal.self
-        ReviewImprovementPlanPolicyToDoReveal.self
-        ReviewImprovementPlanPolicyDoneReveal.self
-        FinanceReconciliationToDoReveal.self
-        FinanceReconciliationDoneReveal.self
-        Q3AccessAuditInProgressReveal.self
-        UpdateOrganizationChartInProgressReveal.self
+    public static var body: some Structure & DividesY {
+        Fixed<BoardHeaderZone, SpanHosted<BoardHeaderRow>>.self
+        Fixed<TaskCardTall, LaneBuiltToDo<OnboardNewHire>>.self
+        Air<Breath>.self
+        Fixed<TaskCardTall, LaneBuiltToDo<ArchiveOldRepositories>>.self
+        Air<Breath>.self
+        Fixed<TaskCardTall, LaneBuiltInProgress<RotateVaultKeys>>.self
+        Air<Breath>.self
+        Fixed<TaskCardTall, LaneBuiltInProgress<ReviewImprovementPlanPolicy>>.self
+        Air<Breath>.self
+        Fixed<TaskCardTall, LaneBuiltInProgress<FinanceReconciliation>>.self
+        Air<Breath>.self
+        Fixed<TaskCardTall, LaneBuiltDone<Q3AccessAudit>>.self
+        Air<Breath>.self
+        Fixed<TaskCardTall, LaneBuiltDone<UpdateOrganizationChart>>.self
+        Flexible<SpanNothing>.self
     }
 }
 
@@ -441,14 +432,12 @@ enum BoardDefs: Group {
     @StructureBuilder
     public static var body: some Structure {
         SoftShadow.self
-        HoverRevealStyle.self
     }
 }
 enum BoardContent: Group, SelfShowing {
     @StructureBuilder
     public static var body: some Structure {
-        BoardRow<ToDoColumnTrue, InProgressColumnTrue, DoneColumnTrue>.self
-        BoardReveals.self
+        BoardMatrix.self
     }
 }
 enum BoardDiagram: GrownDiagram {
@@ -458,7 +447,8 @@ enum BoardDiagram: GrownDiagram {
     @StructureBuilder
     public static var body: some Structure & DividesY {
         Air<EdgeMargin>.self
-        Fixed<BoardColumnTall, SpanHosted<BoardContent>>.self
+        Fixed<BoardMatrixTall, SpanHosted<BoardContent>>.self
+        Air<Breath>.self
         Fixed<Never, SpanHosted<BoardSelfShowingRow>>.self
         Air<S24Breath>.self
     }

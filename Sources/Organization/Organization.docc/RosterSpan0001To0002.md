@@ -1,4 +1,6 @@
-# Allen, Dennis … Allen, Donald
+# ``RosterSpan0001To0002``
+
+Allen, Dennis … Allen, Donald
 
 Two doors, and each door names every page behind it. Pick a half and keep choosing: any page stands at most four choices away, and a wrong turn steps back up.
 

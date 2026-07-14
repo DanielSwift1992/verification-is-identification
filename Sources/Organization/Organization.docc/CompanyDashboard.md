@@ -4,13 +4,13 @@
     @PageImage(purpose: card, source: "card-dashboard", alt: "Company dashboard")
 }
 
-The company, read from the enforced types — the same page for everyone. Every figure below is read from the system, never authored here.
+The company, read from the enforced types: the same page for everyone. Every figure below is read from the system, never authored here.
 
 ## Key figures
 
 ![Company Pulse](pulse)
 
-Every number above is read from the proved types — click any card.
+Every number above is read from the proved types. Click any card.
 
 ## Catalogs
 
@@ -32,11 +32,11 @@ Every number above is read from the proved types — click any card.
 
 ## Cards
 
-The named team's own cards — identity, tasks, and a walk into the real access, one degree of who you are.
+The named team's cards: identity, tasks, and a walk into the real access, one degree of who you are.
 
 | ![``Alice``](avatar) | ![``Bob``](avatar) | ![``Carol``](avatar) | ![``Dave``](avatar) | 
 | --- | --- | --- | --- | 
-| [``Alice`` ``Lovelace``](doc:Alice) | [``Bob`` ``Turing``](doc:Bob) | [``Carol`` ``Hopper``](doc:Carol) | [``Dave`` ``Torvalds``](doc:Dave) | 
+| [Alice Lovelace](doc:Alice) | [Bob Turing](doc:Bob) | [Carol Hopper](doc:Carol) | [Dave Torvalds](doc:Dave) | 
 
 
 

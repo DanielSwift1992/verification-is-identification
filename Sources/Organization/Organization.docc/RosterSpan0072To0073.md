@@ -1,4 +1,6 @@
-# Hopper, Carol … Knuth, Barbara
+# ``RosterSpan0072To0073``
+
+Hopper, Carol … Knuth, Barbara
 
 Two doors, and each door names every page behind it. Pick a half and keep choosing: any page stands at most four choices away, and a wrong turn steps back up.
 

@@ -269,29 +269,15 @@ enum WorkplaceSplitClipId: Close {}
 extension WorkplaceSplitClipId {
     public static var typeName: String { "workplace-split-clip" }
 }
-// The workplace split: the same rounded track every bar rides, and three flat segments
-// laid adjacently by the site teams themselves, clipped to the track's rounded shape. The
-// weights are the roster: on-site, hybrid, remote, in the bar exactly as in the company.
+// The workplace split: a presence ramp on one rounded track. On-site is the solid segment,
+// hybrid the tinted one, and remote is the bare track itself: absence drawn as absence, not
+// a third rectangle. No segment carries a stroke, so the rounded right cap meets nothing
+// square to cut, and the clip only rounds the solid segment's left corners. The weights are
+// the roster: on-site, hybrid, remote, in the bar exactly as in the company.
 enum PulseSplitTrack: SpanTrack {
     public typealias H = Tally<TrackHeight>
     public typealias Radius = R10
     public typealias Fill = SurfaceTrack
-}
-enum PulseSplitOnSite: SpanTrack {
-    public typealias H = Tally<TrackHeight>
-    public typealias Radius = N0
-    public typealias Fill = ActionRole
-}
-enum PulseSplitHybrid: SpanTrack {
-    public typealias H = Tally<TrackHeight>
-    public typealias Radius = N0
-    public typealias Fill = TextPrimary
-}
-enum PulseSplitRemote: SpanTrackOutlined {
-    public typealias H = Tally<TrackHeight>
-    public typealias Radius = N0
-    public typealias Fill = ActionTintRole
-    public typealias Stroke = ActionRole
 }
 typealias WholeCompanySites = Plus<OnSiteTeam, Plus<HybridTeam, RemoteTeam>>
 enum PulseSegmentOnSite: SpanDataSegment {
@@ -306,19 +292,11 @@ enum PulseSegmentHybrid: SpanDataSegment {
     public typealias Part = HybridTeam
     public typealias Whole = WholeCompanySites
     public typealias H = Tally<TrackHeight>
-    public typealias Fill = TextPrimary
-}
-enum PulseSegmentRemote: SpanDataSegmentOutlined {
-    public typealias Prefix = Plus<OnSiteTeam, HybridTeam>
-    public typealias Part = RemoteTeam
-    public typealias Whole = WholeCompanySites
-    public typealias H = Tally<TrackHeight>
     public typealias Fill = ActionTintRole
-    public typealias Stroke = ActionRole
 }
 typealias PulseSplitSegments = Layered<
     PulseSegmentOnSite,
-    Layered<PulseSegmentHybrid, PulseSegmentRemote>
+    PulseSegmentHybrid
 >
 enum PulseSplitClip: SpanClipDef {
     public typealias Id = WorkplaceSplitClipId

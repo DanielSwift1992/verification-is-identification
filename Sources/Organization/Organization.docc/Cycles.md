@@ -4,7 +4,7 @@
     @PageImage(purpose: card, source: "card-cycles", alt: "Review Cycles")
 }
 
-Some companies run forced distribution: rank everyone each year and let the bottom share go, here enforced by the People manager who owns the policy. Microsoft did it until 2013, and Amazon ran a version of it. This demo does not rank or score anyone — a real system would, from its performance data. It takes the decision as given and shows the part that holds by construction: the year cannot close until the cut is recorded.
+Some companies run forced distribution: rank everyone each year and let the bottom share go, here enforced by the People manager who owns the policy. Microsoft did it until 2013, and Amazon ran a version of it. This demo does not rank or score anyone. A real system would, from its performance data. It takes the decision as given and shows the part that holds by construction: the year cannot close until the cut is recorded.
 
 ![Review cycles](cycles-hero)
 
@@ -46,10 +46,10 @@ Headcount is the first ORDERED quantity here: a cap asks how many are ≤ X, a c
 
 ## The interlock: closing the year requires a cut
 
-> Important: The next year is `Closed<Prev, Cut>`: a type you cannot write without a cut committed for that year. The cut must name the whole band the policy lets go — 10 people, 5% of the founding 200 — and its enforcer must be a manager. A cut that names a different number will not compile, so the size is proved, not just stated. The chain compiles through 2030, so every year closed with its cut.
+> Important: The next year is `Closed<Prev, Cut>`: a type you cannot write without a cut committed for that year. The cut must name the whole band the policy lets go, 10 people, 5% of the founding 200, and its enforcer must be a manager. A cut that names a different number will not compile, so the size is proved, not just stated. The chain compiles through 2030, so every year closed with its cut.
 
 ## What the demo leaves out
 
-> Note: No ranking runs here, and no score is stored. A real system would hold performance data and compute the cut from it. The demo keeps the decision as data and enforces the one thing that holds by construction: the year does not close until the cut is recorded. This is the move for a policy like this one — rather than trust a process to run, make the next state unreachable until the decision is on record.
+> Note: No ranking runs here, and no score is stored. A real system would hold performance data and compute the cut from it. The demo keeps the decision as data and enforces the one thing that holds by construction: the year does not close until the cut is recorded. This is the move for a policy like this one: rather than trust a process to run, make the next state unreachable until the decision is on record.
 
 [Company Dashboard](doc:CompanyDashboard) › [Reports](doc:Reports) › Review Cycles

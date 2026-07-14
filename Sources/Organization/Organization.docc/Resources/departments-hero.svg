@@ -4,7 +4,7 @@
 </filter>
 <g transform="translate(0, 16)">
 <g transform="translate(16, 0)">
-<a href="/documentation/organization/alice">
+<a href="/documentation/organization/finance">
 <g filter="url(#surface-card-shadow)">
 <rect x="0" width="220" height="110" rx="16" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
@@ -16,7 +16,7 @@
 </a>
 </g>
 <g transform="translate(252, 0)">
-<a href="/documentation/organization/dave">
+<a href="/documentation/organization/engineering">
 <g filter="url(#surface-card-shadow)">
 <rect x="0" width="220" height="110" rx="16" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
@@ -28,7 +28,7 @@
 </a>
 </g>
 <g transform="translate(488, 0)">
-<a href="/documentation/organization/departments">
+<a href="/documentation/organization/sales">
 <g filter="url(#surface-card-shadow)">
 <rect x="0" width="220" height="110" rx="16" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>
@@ -40,7 +40,7 @@
 </a>
 </g>
 <g transform="translate(724, 0)">
-<a href="/documentation/organization/departments">
+<a href="/documentation/organization/people">
 <g filter="url(#surface-card-shadow)">
 <rect x="0" width="220" height="110" rx="16" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
 </g>

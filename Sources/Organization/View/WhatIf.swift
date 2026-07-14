@@ -46,7 +46,7 @@ extension WhatIfEqualsText {
 enum WhatIfBannerRestText: Close {}
 extension WhatIfBannerRestText {
     public static var typeName: String {
-        ". To make this board real, change one typealias and rebuild — the act IS the write IS the proof."
+        ". To make this board real, change one typealias and rebuild: the act is the write is the proof."
     }
 }
 
@@ -99,11 +99,14 @@ extension WhatIfBoardAlt {
 /// holds, and reads `Symbol` because it is body prose, not a heading, where backticks render fine.
 enum WhatIfPage<
     T: Task,
-    N: TaskState
+    N: TaskState,
+    Door: Structure
 >: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { WhatIfLeadText.self; T.DisplayName.self; WhatIfArrowText.self; N.DisplayName.self }
+        PageTitle { Symbol { RawName<Door>.self } }
+        WhatIfLeadText.self; T.DisplayName.self; WhatIfArrowText.self; N.DisplayName.self
+        Break.self
         WhatIfIntroText.self; Break.self
         Picture {
             WhatIfBoardAlt<
@@ -138,7 +141,8 @@ public enum WhatIfOnboardNewHireInProgress: Screen {
     public static var body: some Structure {
         WhatIfPage<
             OnboardNewHire,
-            InProgress
+            InProgress,
+            WhatIfOnboardNewHireInProgress
         >.self
     }
 }
@@ -147,7 +151,8 @@ public enum WhatIfArchiveOldRepositoriesInProgress: Screen {
     public static var body: some Structure {
         WhatIfPage<
             ArchiveOldRepositories,
-            InProgress
+            InProgress,
+            WhatIfArchiveOldRepositoriesInProgress
         >.self
     }
 }
@@ -156,7 +161,8 @@ public enum WhatIfRotateVaultKeysToDo: Screen {
     public static var body: some Structure {
         WhatIfPage<
             RotateVaultKeys,
-            ToDo
+            ToDo,
+            WhatIfRotateVaultKeysToDo
         >.self
     }
 }
@@ -165,7 +171,8 @@ public enum WhatIfRotateVaultKeysDone: Screen {
     public static var body: some Structure {
         WhatIfPage<
             RotateVaultKeys,
-            Done
+            Done,
+            WhatIfRotateVaultKeysDone
         >.self
     }
 }
@@ -174,7 +181,8 @@ public enum WhatIfReviewImprovementPlanPolicyToDo: Screen {
     public static var body: some Structure {
         WhatIfPage<
             ReviewImprovementPlanPolicy,
-            ToDo
+            ToDo,
+            WhatIfReviewImprovementPlanPolicyToDo
         >.self
     }
 }
@@ -183,7 +191,8 @@ public enum WhatIfReviewImprovementPlanPolicyDone: Screen {
     public static var body: some Structure {
         WhatIfPage<
             ReviewImprovementPlanPolicy,
-            Done
+            Done,
+            WhatIfReviewImprovementPlanPolicyDone
         >.self
     }
 }
@@ -192,7 +201,8 @@ public enum WhatIfFinanceReconciliationToDo: Screen {
     public static var body: some Structure {
         WhatIfPage<
             FinanceReconciliation,
-            ToDo
+            ToDo,
+            WhatIfFinanceReconciliationToDo
         >.self
     }
 }
@@ -201,7 +211,8 @@ public enum WhatIfFinanceReconciliationDone: Screen {
     public static var body: some Structure {
         WhatIfPage<
             FinanceReconciliation,
-            Done
+            Done,
+            WhatIfFinanceReconciliationDone
         >.self
     }
 }
@@ -210,7 +221,8 @@ public enum WhatIfQ3AccessAuditInProgress: Screen {
     public static var body: some Structure {
         WhatIfPage<
             Q3AccessAudit,
-            InProgress
+            InProgress,
+            WhatIfQ3AccessAuditInProgress
         >.self
     }
 }
@@ -219,7 +231,8 @@ public enum WhatIfUpdateOrganizationChartInProgress: Screen {
     public static var body: some Structure {
         WhatIfPage<
             UpdateOrganizationChart,
-            InProgress
+            InProgress,
+            WhatIfUpdateOrganizationChartInProgress
         >.self
     }
 }

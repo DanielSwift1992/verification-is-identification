@@ -5,9 +5,8 @@ import Organization
 // departments-hero.svg — DESIGN11 c. Four department cards: name, live `Tally` headcount, and
 // a one-line read of what each carries (a shared space every department has; two also carry an
 // owned vault, named after its owner), the same facts `View/Departments.swift`'s cards already
-// state, drawn instead of listed. `Finance`/`Engineering` (the two with a vault) link to their
-// owner's page, a real destination already in the site; `Sales`/`People` (shared space only)
-// link back to the catalog, since no page of their own exists yet.
+// state, drawn instead of listed. Each card links to its own department's page, the same
+// address the catalog table under it names: a card that says Finance lands on Finance.
 
 enum DeptHeroAriaLabel: Close {}
 extension DeptHeroAriaLabel {
@@ -100,13 +99,13 @@ enum DeptCardsRow: HFlow {
     @StructureBuilder
     public static var body: some Structure & Divides {
         RestAir.self
-        Fixed<CardWide, SpanLink<SitePath<Alice>, DeptCardArt<Finance, Tally<FinanceTeam>, FinanceNoteText>>>.self
+        Fixed<CardWide, SpanLink<SitePath<Finance>, DeptCardArt<Finance, Tally<FinanceTeam>, FinanceNoteText>>>.self
         Air<Breath>.self
-        Fixed<CardWide, SpanLink<SitePath<Dave>, DeptCardArt<Engineering, Tally<EngineeringTeam>, EngineeringNoteText>>>.self
+        Fixed<CardWide, SpanLink<SitePath<Engineering>, DeptCardArt<Engineering, Tally<EngineeringTeam>, EngineeringNoteText>>>.self
         Air<Breath>.self
-        Fixed<CardWide, SpanLink<SitePath<Nav.Departments>, DeptCardArt<Sales, Tally<SalesTeam>, SharedSpaceOnlyText>>>.self
+        Fixed<CardWide, SpanLink<SitePath<Sales>, DeptCardArt<Sales, Tally<SalesTeam>, SharedSpaceOnlyText>>>.self
         Air<Breath>.self
-        Fixed<CardWide, SpanLink<SitePath<Nav.Departments>, DeptCardArt<People, Tally<PeopleTeam>, SharedSpaceOnlyText>>>.self
+        Fixed<CardWide, SpanLink<SitePath<People>, DeptCardArt<People, Tally<PeopleTeam>, SharedSpaceOnlyText>>>.self
         RestAir.self
     }
 }

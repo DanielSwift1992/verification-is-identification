@@ -85,23 +85,6 @@ Supporting: `System/Witnesses.swift` and the two generated files.
 
 ## Topics
 
-### The named team's cards
-
-The person's symbol page carries the card. The signed-in page is the same card, one proved walk later.
-
-- ``Alice``
-- ``Bob``
-- ``Carol``
-- ``Dave``
-- <doc:AliceUnlocked>
-- <doc:BobUnlocked>
-- <doc:CarolUnlocked>
-- <doc:DaveUnlocked>
-- ``Credentialed``
-- ``Secret``
-- ``HasSecret``
-- ``SecretPage``
-
 ### The desk
 
 - <doc:CompanyDashboard>
@@ -135,6 +118,23 @@ One step from each task's own real status, closed after that (DESIGN11 b3).
 - <doc:Reports>
 - <doc:ReturnToOffice>
 - <doc:Cycles>
+
+### The named team's cards
+
+The person's symbol page carries the card. The signed-in page is the same card, one proved walk later.
+
+- ``Alice``
+- ``Bob``
+- ``Carol``
+- ``Dave``
+- <doc:AliceUnlocked>
+- <doc:BobUnlocked>
+- <doc:CarolUnlocked>
+- <doc:DaveUnlocked>
+- ``Credentialed``
+- ``Secret``
+- ``HasSecret``
+- ``SecretPage``
 
 ### How it is built
 

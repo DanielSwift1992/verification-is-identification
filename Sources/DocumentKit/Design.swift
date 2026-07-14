@@ -914,9 +914,13 @@ public typealias TaskCardTall = Plus<U64, Plus<U16, Plus<U8, U2>>>
 public typealias BoardHeaderZone = Plus<U32, U8>
 public typealias BoardSlotPitch = Plus<TaskCardTall, Breath>
 public typealias BoardEdge = Plus<U8, U4>
-public typealias NavDotWide = Plus<U8, U2>
-public typealias NavDotInsetLead = Plus<U16, Plus<U8, U4>>
-public typealias NavDotInsetTail = Plus<U32, U2>
+public typealias BoardMatrixTall = Plus<
+    BoardHeaderZone,
+    Plus<
+        Times<Plus<U4, Plus<U2, U1>>, TaskCardTall>,
+        Times<Plus<U4, U2>, Breath>
+    >
+>
 public typealias BoardColumnTall = Plus<
     BoardHeaderZone,
     Plus<

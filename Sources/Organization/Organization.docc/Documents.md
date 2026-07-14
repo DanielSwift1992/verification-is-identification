@@ -4,7 +4,7 @@
     @PageImage(purpose: card, source: "card-documents", alt: "Documents")
 }
 
-Every document in the company, read off the types — two owned vaults and four shared spaces. Access to each owned vault is listed principal by principal, read from the compiler's verdict.
+Every document in the company, read off the types: two owned vaults and four shared spaces. Access to each owned vault is listed principal by principal, read from the compiler's verdict.
 
 ![The six documents](documents-hero)
 

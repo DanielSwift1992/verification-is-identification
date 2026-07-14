@@ -220,6 +220,43 @@
   }
   prefetchDoors(document);
 
+  // A fragment press inside one of our canvases (the keypad's digits) must change the
+  // canvas's own :target state and nothing else. The browser and the SPA router both answer
+  // a hash change by scrolling the anchor into view, which reads as the page leaping on
+  // every key. The state needs the real hash (CSS :target), so the navigation is allowed
+  // through and the scroll is put back on the frames that follow it.
+  document.addEventListener("click", function (event) {
+    var anchor = event.target && event.target.closest ? event.target.closest("a") : null;
+    if (!anchor) { return; }
+    var href = anchor.getAttribute("href") || "";
+    if (href.charAt(0) !== "#") { return; }
+    if (!anchor.closest("svg[data-vi-canvas]")) { return; }
+    var y = window.scrollY;
+    var x = window.scrollX;
+    var hold = function () { window.scrollTo(x, y); };
+    requestAnimationFrame(hold);
+    setTimeout(hold, 0);
+    setTimeout(hold, 60);
+    setTimeout(hold, 160);
+  }, true);
+
+  // A variant key inside one of our canvases moves its owner between drawn positions:
+  // every position is already in the SVG, the hook only chooses which one shows. No hash,
+  // no navigation, nothing to scroll. Inert inside a plain <img>, like every enhancement here.
+  document.addEventListener("click", function (event) {
+    var key = event.target && event.target.closest ? event.target.closest(".vi-variant-key") : null;
+    if (!key) { return; }
+    var canvas = key.closest("svg[data-vi-canvas]");
+    if (!canvas) { return; }
+    event.preventDefault();
+    var owner = key.getAttribute("data-vi-owner");
+    var to = key.getAttribute("data-vi-to");
+    var variants = canvas.querySelectorAll('.vi-variant[data-vi-owner="' + owner + '"]');
+    for (var i = 0; i < variants.length; i++) {
+      variants[i].style.display = variants[i].getAttribute("data-vi-at") === to ? "inline" : "none";
+    }
+  }, true);
+
   new MutationObserver(function (mutations) {
     for (var i = 0; i < mutations.length; i++) {
       var added = mutations[i].addedNodes;

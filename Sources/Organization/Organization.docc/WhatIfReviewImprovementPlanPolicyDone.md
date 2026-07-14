@@ -1,14 +1,16 @@
-# What if: Review PIP Policy → Done
+# ``WhatIfReviewImprovementPlanPolicyDone``
 
 @Metadata {
     @PageImage(purpose: card, source: "card-board", alt: "Task board")
 }
 
+What if: Review PIP Policy → Done
+
 One task, redrawn in a hypothetical column.
 
 ![The task board with Review PIP Policy previewed in the Done column.](board-whatif-reviewimprovementplanpolicy-done)
 
-> Note: What-if view: the system holds ``ReviewImprovementPlanPolicy`` = ``InProgress``. To make this board real, change one typealias and rebuild — the act IS the write IS the proof.
+> Note: What-if view: the system holds ``ReviewImprovementPlanPolicy`` = ``InProgress``. To make this board real, change one typealias and rebuild: the act is the write is the proof.
 
 
 

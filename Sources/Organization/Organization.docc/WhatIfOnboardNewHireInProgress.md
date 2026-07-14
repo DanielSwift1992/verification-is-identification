@@ -1,14 +1,16 @@
-# What if: Onboard New Hire → In Progress
+# ``WhatIfOnboardNewHireInProgress``
 
 @Metadata {
     @PageImage(purpose: card, source: "card-board", alt: "Task board")
 }
 
+What if: Onboard New Hire → In Progress
+
 One task, redrawn in a hypothetical column.
 
 ![The task board with Onboard New Hire previewed in the In Progress column.](board-whatif-onboardnewhire-inprogress)
 
-> Note: What-if view: the system holds ``OnboardNewHire`` = ``ToDo``. To make this board real, change one typealias and rebuild — the act IS the write IS the proof.
+> Note: What-if view: the system holds ``OnboardNewHire`` = ``ToDo``. To make this board real, change one typealias and rebuild: the act is the write is the proof.
 
 
 

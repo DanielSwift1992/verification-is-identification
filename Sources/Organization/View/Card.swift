@@ -96,10 +96,10 @@ where Page.Secret == Secret {
     }
 }
 
-/// The keypad's own pages: a digit press is a fragment jump inside the picture, and jumping
-/// scrolls whatever page carries it — mid-card, that read as the page leaping. On a page of
-/// its own the picture is the whole viewport, and the walk stands still. The card keeps the
-/// still header and offers this door instead.
+/// The keypad's own pages. A digit press is a fragment jump inside the picture, and a jump
+/// scrolls the page that carries it: embedded mid-card, every press scrolled the whole card.
+/// On its own page the picture fills the viewport, so a press changes the frame and nothing
+/// moves. The card keeps the still header and links here instead.
 public enum AliceLogin: Close {}
 public enum BobLogin: Close {}
 public enum CarolLogin: Close {}
@@ -111,7 +111,7 @@ extension EnterPasscodeTitle {
 enum PasscodeHint: Close {}
 extension PasscodeHint {
     static var typeName: String {
-        "The person's own card spells the passcode; walk it on the keypad below, digit by digit, and the last correct press is a real link to the unlocked card."
+        "The person's card prints the passcode. Walk it on the keypad below, digit by digit: the last correct press is a real link to the unlocked card."
     }
 }
 enum EnterPasscodeText: Close {}
@@ -119,14 +119,17 @@ extension EnterPasscodeText {
     static var typeName: String { "Sign in at the keypad" }
 }
 public enum PasscodePage<
-    Who: Employee & Person & Structure
+    Who: Employee & Person & Structure,
+    Door: Structure
 >: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { EnterPasscodeTitle.self }
-        PasscodeHint.self
+        PageTitle { Symbol { RawName<Door>.self } }
+        EnterPasscodeTitle.self
         Break.self
         Picture { Symbol { Who.self }; PersonHeroAsset<Who>.self }
+        Break.self
+        PasscodeHint.self
         Break.self
         Link { DashboardTitle.self; Nav.CompanyDashboard.self }; Chevron.self; Link { RawName<Who>.self; Who.self }
     }
@@ -320,7 +323,7 @@ public enum AliceCard: Screen, HasSecret {
 public enum AliceUnlockedContent: Fragment {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { RawName<Alice>.self }
+        PageTitle { Symbol { RawName<AliceUnlocked>.self } }
         CardShell<
             Alice,
             AliceSignedInAccessBlock,
@@ -405,7 +408,7 @@ public enum BobCard: Screen, HasSecret {
 public enum BobUnlockedContent: Fragment {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { RawName<Bob>.self }
+        PageTitle { Symbol { RawName<BobUnlocked>.self } }
         CardShell<
             Bob,
             BobSignedInAccessBlock,
@@ -491,7 +494,7 @@ public enum CarolCard: Screen, HasSecret {
 public enum CarolUnlockedContent: Fragment {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { RawName<Carol>.self }
+        PageTitle { Symbol { RawName<CarolUnlocked>.self } }
         CardShell<
             Carol,
             CarolSignedInAccessBlock,
@@ -577,7 +580,7 @@ public enum DaveCard: Screen, HasSecret {
 public enum DaveUnlockedContent: Fragment {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { RawName<Dave>.self }
+        PageTitle { Symbol { RawName<DaveUnlocked>.self } }
         CardShell<
             Dave,
             DaveSignedInAccessBlock,

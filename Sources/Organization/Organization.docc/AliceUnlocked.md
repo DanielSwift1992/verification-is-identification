@@ -1,4 +1,4 @@
-# Alice
+# ``AliceUnlocked``
 
 @Metadata {
     @PageImage(purpose: card, source: "avatar", alt: "Alice")
@@ -14,10 +14,10 @@ Identity, role, and access, drawn from the same fields listed below. The named t
 
 @Row {
 @Column {
-``FinanceVault`` — View: granted · Administer: granted · Delete: granted
+``FinanceVault`` · View: granted · Administer: granted · Delete: granted
 }
 @Column {
-``EngineeringRepo`` — View: different department · Administer: different department · Delete: owner only
+``EngineeringRepo`` · View: different department · Administer: different department · Delete: owner only
 }
 }
 

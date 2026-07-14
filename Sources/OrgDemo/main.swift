@@ -107,10 +107,10 @@ write(CutPage<Cut2029>.typeName, "Cut2029")
 // XPass>`, named `XUnlocked` for a clean address, a genuinely separate state, so it keeps its
 // own address). Both sides of a person carry the same picture, the one asset
 // (Resources/avatar.svg), embedded inline (`Picture`) AND set as the grid-tile picture.
-write(PasscodePage<Alice>.typeName, "AliceLogin")
-write(PasscodePage<Bob>.typeName, "BobLogin")
-write(PasscodePage<Carol>.typeName, "CarolLogin")
-write(PasscodePage<Dave>.typeName, "DaveLogin")
+write(PasscodePage<Alice, AliceLogin>.typeName, "AliceLogin")
+write(PasscodePage<Bob, BobLogin>.typeName, "BobLogin")
+write(PasscodePage<Carol, CarolLogin>.typeName, "CarolLogin")
+write(PasscodePage<Dave, DaveLogin>.typeName, "DaveLogin")
 write(withCard(AliceCard.typeName, "avatar", "Alice"), "Alice")
 write(withCard(AliceUnlocked.typeName, "avatar", "Alice"), "AliceUnlocked")
 write(withCard(BobCard.typeName, "avatar", "Bob"), "Bob")

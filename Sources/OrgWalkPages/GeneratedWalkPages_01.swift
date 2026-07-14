@@ -11,7 +11,8 @@ import Organization
 public enum RosterSpan0125To0126Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0022, Emp0166>.self }
+        PageTitle { Symbol { RawName<RosterSpan0125To0126>.self } }
+        NameSpan<Emp0022, Emp0166>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -25,7 +26,8 @@ public enum RosterSpan0125To0126Page: Screen {
 public enum RosterSpan0123To0126Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0015, Emp0166>.self }
+        PageTitle { Symbol { RawName<RosterSpan0123To0126>.self } }
+        NameSpan<Emp0015, Emp0166>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -42,7 +44,8 @@ public enum RosterSpan0123To0126Page: Screen {
 public enum RosterSpan0120To0126Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0163, Emp0166>.self }
+        PageTitle { Symbol { RawName<RosterSpan0120To0126>.self } }
+        NameSpan<Emp0163, Emp0166>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -59,7 +62,8 @@ public enum RosterSpan0120To0126Page: Screen {
 public enum RosterSpan0114To0126Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0161, Emp0166>.self }
+        PageTitle { Symbol { RawName<RosterSpan0114To0126>.self } }
+        NameSpan<Emp0161, Emp0166>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -76,7 +80,8 @@ public enum RosterSpan0114To0126Page: Screen {
 public enum RosterSpan0102To0126Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0135, Emp0166>.self }
+        PageTitle { Symbol { RawName<RosterSpan0102To0126>.self } }
+        NameSpan<Emp0135, Emp0166>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self
         Break.self
@@ -93,7 +98,8 @@ public enum RosterSpan0102To0126Page: Screen {
 public enum RosterSpan0128To0129Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0165, Alice>.self }
+        PageTitle { Symbol { RawName<RosterSpan0128To0129>.self } }
+        NameSpan<Emp0165, Alice>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -107,7 +113,8 @@ public enum RosterSpan0128To0129Page: Screen {
 public enum RosterSpan0127To0129Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0021, Alice>.self }
+        PageTitle { Symbol { RawName<RosterSpan0127To0129>.self } }
+        NameSpan<Emp0021, Alice>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self
         Break.self
@@ -123,7 +130,8 @@ public enum RosterSpan0127To0129Page: Screen {
 public enum RosterSpan0131To0132Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0169, Emp0032>.self }
+        PageTitle { Symbol { RawName<RosterSpan0131To0132>.self } }
+        NameSpan<Emp0169, Emp0032>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -137,7 +145,8 @@ public enum RosterSpan0131To0132Page: Screen {
 public enum RosterSpan0130To0132Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0025, Emp0032>.self }
+        PageTitle { Symbol { RawName<RosterSpan0130To0132>.self } }
+        NameSpan<Emp0025, Emp0032>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -153,7 +162,8 @@ public enum RosterSpan0130To0132Page: Screen {
 public enum RosterSpan0127To0132Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0021, Emp0032>.self }
+        PageTitle { Symbol { RawName<RosterSpan0127To0132>.self } }
+        NameSpan<Emp0021, Emp0032>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self
         Break.self
@@ -170,7 +180,8 @@ public enum RosterSpan0127To0132Page: Screen {
 public enum RosterSpan0134To0135Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0028, Emp0172>.self }
+        PageTitle { Symbol { RawName<RosterSpan0134To0135>.self } }
+        NameSpan<Emp0028, Emp0172>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -184,7 +195,8 @@ public enum RosterSpan0134To0135Page: Screen {
 public enum RosterSpan0133To0135Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0176, Emp0172>.self }
+        PageTitle { Symbol { RawName<RosterSpan0133To0135>.self } }
+        NameSpan<Emp0176, Emp0172>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -200,7 +212,8 @@ public enum RosterSpan0133To0135Page: Screen {
 public enum RosterSpan0136To0137Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0024, Emp0168>.self }
+        PageTitle { Symbol { RawName<RosterSpan0136To0137>.self } }
+        NameSpan<Emp0024, Emp0168>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -214,7 +227,8 @@ public enum RosterSpan0136To0137Page: Screen {
 public enum RosterSpan0138To0139Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0029, Emp0173>.self }
+        PageTitle { Symbol { RawName<RosterSpan0138To0139>.self } }
+        NameSpan<Emp0029, Emp0173>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -228,7 +242,8 @@ public enum RosterSpan0138To0139Page: Screen {
 public enum RosterSpan0136To0139Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0024, Emp0173>.self }
+        PageTitle { Symbol { RawName<RosterSpan0136To0139>.self } }
+        NameSpan<Emp0024, Emp0173>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -245,7 +260,8 @@ public enum RosterSpan0136To0139Page: Screen {
 public enum RosterSpan0133To0139Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0176, Emp0173>.self }
+        PageTitle { Symbol { RawName<RosterSpan0133To0139>.self } }
+        NameSpan<Emp0176, Emp0173>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -262,7 +278,8 @@ public enum RosterSpan0133To0139Page: Screen {
 public enum RosterSpan0127To0139Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0021, Emp0173>.self }
+        PageTitle { Symbol { RawName<RosterSpan0127To0139>.self } }
+        NameSpan<Emp0021, Emp0173>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -279,7 +296,8 @@ public enum RosterSpan0127To0139Page: Screen {
 public enum RosterSpan0141To0142Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0170, Emp0035>.self }
+        PageTitle { Symbol { RawName<RosterSpan0141To0142>.self } }
+        NameSpan<Emp0170, Emp0035>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -293,7 +311,8 @@ public enum RosterSpan0141To0142Page: Screen {
 public enum RosterSpan0140To0142Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0026, Emp0035>.self }
+        PageTitle { Symbol { RawName<RosterSpan0140To0142>.self } }
+        NameSpan<Emp0026, Emp0035>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self
         Break.self
@@ -309,7 +328,8 @@ public enum RosterSpan0140To0142Page: Screen {
 public enum RosterSpan0144To0145Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0031, Emp0175>.self }
+        PageTitle { Symbol { RawName<RosterSpan0144To0145>.self } }
+        NameSpan<Emp0031, Emp0175>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -323,7 +343,8 @@ public enum RosterSpan0144To0145Page: Screen {
 public enum RosterSpan0143To0145Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0179, Emp0175>.self }
+        PageTitle { Symbol { RawName<RosterSpan0143To0145>.self } }
+        NameSpan<Emp0179, Emp0175>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -339,7 +360,8 @@ public enum RosterSpan0143To0145Page: Screen {
 public enum RosterSpan0140To0145Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0026, Emp0175>.self }
+        PageTitle { Symbol { RawName<RosterSpan0140To0145>.self } }
+        NameSpan<Emp0026, Emp0175>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -356,7 +378,8 @@ public enum RosterSpan0140To0145Page: Screen {
 public enum RosterSpan0147To0148Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0174, Emp0027>.self }
+        PageTitle { Symbol { RawName<RosterSpan0147To0148>.self } }
+        NameSpan<Emp0174, Emp0027>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -370,7 +393,8 @@ public enum RosterSpan0147To0148Page: Screen {
 public enum RosterSpan0146To0148Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0030, Emp0027>.self }
+        PageTitle { Symbol { RawName<RosterSpan0146To0148>.self } }
+        NameSpan<Emp0030, Emp0027>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -386,7 +410,8 @@ public enum RosterSpan0146To0148Page: Screen {
 public enum RosterSpan0149To0150Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0171, Emp0034>.self }
+        PageTitle { Symbol { RawName<RosterSpan0149To0150>.self } }
+        NameSpan<Emp0171, Emp0034>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -400,7 +425,8 @@ public enum RosterSpan0149To0150Page: Screen {
 public enum RosterSpan0151To0152Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0178, Emp0033>.self }
+        PageTitle { Symbol { RawName<RosterSpan0151To0152>.self } }
+        NameSpan<Emp0178, Emp0033>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -414,7 +440,8 @@ public enum RosterSpan0151To0152Page: Screen {
 public enum RosterSpan0149To0152Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0171, Emp0033>.self }
+        PageTitle { Symbol { RawName<RosterSpan0149To0152>.self } }
+        NameSpan<Emp0171, Emp0033>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -431,7 +458,8 @@ public enum RosterSpan0149To0152Page: Screen {
 public enum RosterSpan0146To0152Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0030, Emp0033>.self }
+        PageTitle { Symbol { RawName<RosterSpan0146To0152>.self } }
+        NameSpan<Emp0030, Emp0033>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -448,7 +476,8 @@ public enum RosterSpan0146To0152Page: Screen {
 public enum RosterSpan0140To0152Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0026, Emp0033>.self }
+        PageTitle { Symbol { RawName<RosterSpan0140To0152>.self } }
+        NameSpan<Emp0026, Emp0033>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -465,7 +494,8 @@ public enum RosterSpan0140To0152Page: Screen {
 public enum RosterSpan0127To0152Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0021, Emp0033>.self }
+        PageTitle { Symbol { RawName<RosterSpan0127To0152>.self } }
+        NameSpan<Emp0021, Emp0033>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -482,7 +512,8 @@ public enum RosterSpan0127To0152Page: Screen {
 public enum RosterSpan0102To0152Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0135, Emp0033>.self }
+        PageTitle { Symbol { RawName<RosterSpan0102To0152>.self } }
+        NameSpan<Emp0135, Emp0033>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -499,7 +530,8 @@ public enum RosterSpan0102To0152Page: Screen {
 public enum RosterSpan0154To0155Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0121, Emp0128>.self }
+        PageTitle { Symbol { RawName<RosterSpan0154To0155>.self } }
+        NameSpan<Emp0121, Emp0128>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -513,7 +545,8 @@ public enum RosterSpan0154To0155Page: Screen {
 public enum RosterSpan0153To0155Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0177, Emp0128>.self }
+        PageTitle { Symbol { RawName<RosterSpan0153To0155>.self } }
+        NameSpan<Emp0177, Emp0128>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self
         Break.self
@@ -529,7 +562,8 @@ public enum RosterSpan0153To0155Page: Screen {
 public enum RosterSpan0157To0158Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0120, Emp0125>.self }
+        PageTitle { Symbol { RawName<RosterSpan0157To0158>.self } }
+        NameSpan<Emp0120, Emp0125>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -543,7 +577,8 @@ public enum RosterSpan0157To0158Page: Screen {
 public enum RosterSpan0156To0158Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0124, Emp0125>.self }
+        PageTitle { Symbol { RawName<RosterSpan0156To0158>.self } }
+        NameSpan<Emp0124, Emp0125>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -559,7 +594,8 @@ public enum RosterSpan0156To0158Page: Screen {
 public enum RosterSpan0153To0158Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0177, Emp0125>.self }
+        PageTitle { Symbol { RawName<RosterSpan0153To0158>.self } }
+        NameSpan<Emp0177, Emp0125>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self
         Break.self
@@ -576,7 +612,8 @@ public enum RosterSpan0153To0158Page: Screen {
 public enum RosterSpan0160To0161Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0131, Emp0127>.self }
+        PageTitle { Symbol { RawName<RosterSpan0160To0161>.self } }
+        NameSpan<Emp0131, Emp0127>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -590,7 +627,8 @@ public enum RosterSpan0160To0161Page: Screen {
 public enum RosterSpan0159To0161Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0122, Emp0127>.self }
+        PageTitle { Symbol { RawName<RosterSpan0159To0161>.self } }
+        NameSpan<Emp0122, Emp0127>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -606,7 +644,8 @@ public enum RosterSpan0159To0161Page: Screen {
 public enum RosterSpan0163To0164Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0123, Emp0130>.self }
+        PageTitle { Symbol { RawName<RosterSpan0163To0164>.self } }
+        NameSpan<Emp0123, Emp0130>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -620,7 +659,8 @@ public enum RosterSpan0163To0164Page: Screen {
 public enum RosterSpan0162To0164Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0126, Emp0130>.self }
+        PageTitle { Symbol { RawName<RosterSpan0162To0164>.self } }
+        NameSpan<Emp0126, Emp0130>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -636,7 +676,8 @@ public enum RosterSpan0162To0164Page: Screen {
 public enum RosterSpan0159To0164Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0122, Emp0130>.self }
+        PageTitle { Symbol { RawName<RosterSpan0159To0164>.self } }
+        NameSpan<Emp0122, Emp0130>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -653,7 +694,8 @@ public enum RosterSpan0159To0164Page: Screen {
 public enum RosterSpan0153To0164Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0177, Emp0130>.self }
+        PageTitle { Symbol { RawName<RosterSpan0153To0164>.self } }
+        NameSpan<Emp0177, Emp0130>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self
         Break.self
@@ -670,7 +712,8 @@ public enum RosterSpan0153To0164Page: Screen {
 public enum RosterSpan0166To0167Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0097, Emp0104>.self }
+        PageTitle { Symbol { RawName<RosterSpan0166To0167>.self } }
+        NameSpan<Emp0097, Emp0104>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -684,7 +727,8 @@ public enum RosterSpan0166To0167Page: Screen {
 public enum RosterSpan0165To0167Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0129, Emp0104>.self }
+        PageTitle { Symbol { RawName<RosterSpan0165To0167>.self } }
+        NameSpan<Emp0129, Emp0104>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self
         Break.self
@@ -700,7 +744,8 @@ public enum RosterSpan0165To0167Page: Screen {
 public enum RosterSpan0169To0170Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0096, Emp0101>.self }
+        PageTitle { Symbol { RawName<RosterSpan0169To0170>.self } }
+        NameSpan<Emp0096, Emp0101>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -714,7 +759,8 @@ public enum RosterSpan0169To0170Page: Screen {
 public enum RosterSpan0168To0170Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0100, Emp0101>.self }
+        PageTitle { Symbol { RawName<RosterSpan0168To0170>.self } }
+        NameSpan<Emp0100, Emp0101>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -730,7 +776,8 @@ public enum RosterSpan0168To0170Page: Screen {
 public enum RosterSpan0165To0170Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0129, Emp0101>.self }
+        PageTitle { Symbol { RawName<RosterSpan0165To0170>.self } }
+        NameSpan<Emp0129, Emp0101>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -747,7 +794,8 @@ public enum RosterSpan0165To0170Page: Screen {
 public enum RosterSpan0172To0173Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0107, Emp0103>.self }
+        PageTitle { Symbol { RawName<RosterSpan0172To0173>.self } }
+        NameSpan<Emp0107, Emp0103>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -761,7 +809,8 @@ public enum RosterSpan0172To0173Page: Screen {
 public enum RosterSpan0171To0173Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0098, Emp0103>.self }
+        PageTitle { Symbol { RawName<RosterSpan0171To0173>.self } }
+        NameSpan<Emp0098, Emp0103>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -777,7 +826,8 @@ public enum RosterSpan0171To0173Page: Screen {
 public enum RosterSpan0174To0175Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0102, Emp0099>.self }
+        PageTitle { Symbol { RawName<RosterSpan0174To0175>.self } }
+        NameSpan<Emp0102, Emp0099>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -791,7 +841,8 @@ public enum RosterSpan0174To0175Page: Screen {
 public enum RosterSpan0176To0177Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0106, Emp0105>.self }
+        PageTitle { Symbol { RawName<RosterSpan0176To0177>.self } }
+        NameSpan<Emp0106, Emp0105>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -805,7 +856,8 @@ public enum RosterSpan0176To0177Page: Screen {
 public enum RosterSpan0174To0177Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0102, Emp0105>.self }
+        PageTitle { Symbol { RawName<RosterSpan0174To0177>.self } }
+        NameSpan<Emp0102, Emp0105>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -822,7 +874,8 @@ public enum RosterSpan0174To0177Page: Screen {
 public enum RosterSpan0171To0177Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0098, Emp0105>.self }
+        PageTitle { Symbol { RawName<RosterSpan0171To0177>.self } }
+        NameSpan<Emp0098, Emp0105>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -839,7 +892,8 @@ public enum RosterSpan0171To0177Page: Screen {
 public enum RosterSpan0165To0177Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0129, Emp0105>.self }
+        PageTitle { Symbol { RawName<RosterSpan0165To0177>.self } }
+        NameSpan<Emp0129, Emp0105>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -856,7 +910,8 @@ public enum RosterSpan0165To0177Page: Screen {
 public enum RosterSpan0153To0177Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0177, Emp0105>.self }
+        PageTitle { Symbol { RawName<RosterSpan0153To0177>.self } }
+        NameSpan<Emp0177, Emp0105>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -873,7 +928,8 @@ public enum RosterSpan0153To0177Page: Screen {
 public enum RosterSpan0179To0180Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0080, Emp0076>.self }
+        PageTitle { Symbol { RawName<RosterSpan0179To0180>.self } }
+        NameSpan<Emp0080, Emp0076>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -887,7 +943,8 @@ public enum RosterSpan0179To0180Page: Screen {
 public enum RosterSpan0178To0180Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0073, Emp0076>.self }
+        PageTitle { Symbol { RawName<RosterSpan0178To0180>.self } }
+        NameSpan<Emp0073, Emp0076>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self
         Break.self
@@ -903,7 +960,8 @@ public enum RosterSpan0178To0180Page: Screen {
 public enum RosterSpan0182To0183Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0077, Emp0074>.self }
+        PageTitle { Symbol { RawName<RosterSpan0182To0183>.self } }
+        NameSpan<Emp0077, Emp0074>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -917,7 +975,8 @@ public enum RosterSpan0182To0183Page: Screen {
 public enum RosterSpan0181To0183Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0072, Emp0074>.self }
+        PageTitle { Symbol { RawName<RosterSpan0181To0183>.self } }
+        NameSpan<Emp0072, Emp0074>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -933,7 +992,8 @@ public enum RosterSpan0181To0183Page: Screen {
 public enum RosterSpan0178To0183Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0073, Emp0074>.self }
+        PageTitle { Symbol { RawName<RosterSpan0178To0183>.self } }
+        NameSpan<Emp0073, Emp0074>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self
         Break.self
@@ -950,7 +1010,8 @@ public enum RosterSpan0178To0183Page: Screen {
 public enum RosterSpan0185To0186Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0079, Emp0078>.self }
+        PageTitle { Symbol { RawName<RosterSpan0185To0186>.self } }
+        NameSpan<Emp0079, Emp0078>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -964,7 +1025,8 @@ public enum RosterSpan0185To0186Page: Screen {
 public enum RosterSpan0184To0186Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0083, Emp0078>.self }
+        PageTitle { Symbol { RawName<RosterSpan0184To0186>.self } }
+        NameSpan<Emp0083, Emp0078>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -980,7 +1042,8 @@ public enum RosterSpan0184To0186Page: Screen {
 public enum RosterSpan0187To0188Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0075, Emp0082>.self }
+        PageTitle { Symbol { RawName<RosterSpan0187To0188>.self } }
+        NameSpan<Emp0075, Emp0082>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -994,7 +1057,8 @@ public enum RosterSpan0187To0188Page: Screen {
 public enum RosterSpan0189To0190Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0081, Dave>.self }
+        PageTitle { Symbol { RawName<RosterSpan0189To0190>.self } }
+        NameSpan<Emp0081, Dave>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -1008,7 +1072,8 @@ public enum RosterSpan0189To0190Page: Screen {
 public enum RosterSpan0187To0190Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0075, Dave>.self }
+        PageTitle { Symbol { RawName<RosterSpan0187To0190>.self } }
+        NameSpan<Emp0075, Dave>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -1025,7 +1090,8 @@ public enum RosterSpan0187To0190Page: Screen {
 public enum RosterSpan0184To0190Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0083, Dave>.self }
+        PageTitle { Symbol { RawName<RosterSpan0184To0190>.self } }
+        NameSpan<Emp0083, Dave>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -1042,7 +1108,8 @@ public enum RosterSpan0184To0190Page: Screen {
 public enum RosterSpan0178To0190Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0073, Dave>.self }
+        PageTitle { Symbol { RawName<RosterSpan0178To0190>.self } }
+        NameSpan<Emp0073, Dave>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -1059,7 +1126,8 @@ public enum RosterSpan0178To0190Page: Screen {
 public enum RosterSpan0192To0193Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0109, Emp0116>.self }
+        PageTitle { Symbol { RawName<RosterSpan0192To0193>.self } }
+        NameSpan<Emp0109, Emp0116>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -1073,7 +1141,8 @@ public enum RosterSpan0192To0193Page: Screen {
 public enum RosterSpan0191To0193Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Bob, Emp0116>.self }
+        PageTitle { Symbol { RawName<RosterSpan0191To0193>.self } }
+        NameSpan<Bob, Emp0116>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentLeft.self
         Break.self
@@ -1089,7 +1158,8 @@ public enum RosterSpan0191To0193Page: Screen {
 public enum RosterSpan0195To0196Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0108, Emp0113>.self }
+        PageTitle { Symbol { RawName<RosterSpan0195To0196>.self } }
+        NameSpan<Emp0108, Emp0113>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -1103,7 +1173,8 @@ public enum RosterSpan0195To0196Page: Screen {
 public enum RosterSpan0194To0196Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0112, Emp0113>.self }
+        PageTitle { Symbol { RawName<RosterSpan0194To0196>.self } }
+        NameSpan<Emp0112, Emp0113>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -1119,7 +1190,8 @@ public enum RosterSpan0194To0196Page: Screen {
 public enum RosterSpan0191To0196Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Bob, Emp0113>.self }
+        PageTitle { Symbol { RawName<RosterSpan0191To0196>.self } }
+        NameSpan<Bob, Emp0113>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -1136,7 +1208,8 @@ public enum RosterSpan0191To0196Page: Screen {
 public enum RosterSpan0198To0199Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0119, Emp0115>.self }
+        PageTitle { Symbol { RawName<RosterSpan0198To0199>.self } }
+        NameSpan<Emp0119, Emp0115>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self; StepDot.self; WentRight.self
         Break.self
@@ -1150,7 +1223,8 @@ public enum RosterSpan0198To0199Page: Screen {
 public enum RosterSpan0197To0199Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0110, Emp0115>.self }
+        PageTitle { Symbol { RawName<RosterSpan0197To0199>.self } }
+        NameSpan<Emp0110, Emp0115>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -1166,7 +1240,8 @@ public enum RosterSpan0197To0199Page: Screen {
 public enum RosterSpan0200To0201Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0114, Emp0111>.self }
+        PageTitle { Symbol { RawName<RosterSpan0200To0201>.self } }
+        NameSpan<Emp0114, Emp0111>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentLeft.self
         Break.self
@@ -1180,7 +1255,8 @@ public enum RosterSpan0200To0201Page: Screen {
 public enum RosterSpan0202To0203Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0118, Emp0117>.self }
+        PageTitle { Symbol { RawName<RosterSpan0202To0203>.self } }
+        NameSpan<Emp0118, Emp0117>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -1194,7 +1270,8 @@ public enum RosterSpan0202To0203Page: Screen {
 public enum RosterSpan0200To0203Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0114, Emp0117>.self }
+        PageTitle { Symbol { RawName<RosterSpan0200To0203>.self } }
+        NameSpan<Emp0114, Emp0117>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -1211,7 +1288,8 @@ public enum RosterSpan0200To0203Page: Screen {
 public enum RosterSpan0197To0203Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0110, Emp0117>.self }
+        PageTitle { Symbol { RawName<RosterSpan0197To0203>.self } }
+        NameSpan<Emp0110, Emp0117>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -1228,7 +1306,8 @@ public enum RosterSpan0197To0203Page: Screen {
 public enum RosterSpan0191To0203Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Bob, Emp0117>.self }
+        PageTitle { Symbol { RawName<RosterSpan0191To0203>.self } }
+        NameSpan<Bob, Emp0117>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -1245,7 +1324,8 @@ public enum RosterSpan0191To0203Page: Screen {
 public enum RosterSpan0178To0203Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0073, Emp0117>.self }
+        PageTitle { Symbol { RawName<RosterSpan0178To0203>.self } }
+        NameSpan<Emp0073, Emp0117>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -1262,7 +1342,8 @@ public enum RosterSpan0178To0203Page: Screen {
 public enum RosterSpan0153To0203Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0177, Emp0117>.self }
+        PageTitle { Symbol { RawName<RosterSpan0153To0203>.self } }
+        NameSpan<Emp0177, Emp0117>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self; StepDot.self; WentRight.self
         Break.self
@@ -1279,7 +1360,8 @@ public enum RosterSpan0153To0203Page: Screen {
 public enum RosterSpan0102To0203Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0135, Emp0117>.self }
+        PageTitle { Symbol { RawName<RosterSpan0102To0203>.self } }
+        NameSpan<Emp0135, Emp0117>.self; Break.self
         WalkHint.self; Break.self
         WordSoFar.self; WentRight.self
         Break.self
@@ -1296,7 +1378,8 @@ public enum RosterSpan0102To0203Page: Screen {
 public enum RosterSpan0000To0203Page: Screen {
     @StructureBuilder
     public static var body: some Structure {
-        PageTitle { NameSpan<Emp0061, Emp0117>.self }
+        PageTitle { Symbol { RawName<RosterSpan0000To0203>.self } }
+        NameSpan<Emp0061, Emp0117>.self; Break.self
         WalkHint.self; Break.self
         ListItem { Link { NameSpan<Emp0061, Emp0138>.self; RosterSpan0000To0101.self } }
         ListItem { Link { NameSpan<Emp0135, Emp0117>.self; RosterSpan0102To0203.self } }

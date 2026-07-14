@@ -1,4 +1,6 @@
-# Wirth, Ken … Wirth, Radia
+# ``RosterSpan0200To0203``
+
+Wirth, Ken … Wirth, Radia
 
 Two doors, and each door names every page behind it. Pick a half and keep choosing: any page stands at most four choices away, and a wrong turn steps back up.
 

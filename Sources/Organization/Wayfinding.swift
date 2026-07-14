@@ -96,8 +96,7 @@ public enum PolicyOrNumbers: Halves {
 }
 
 /// The whole site as one walkable type: the root every walk starts from. Its `count` is
-/// the coverage read against ``AllPlaces``, two readings of one fact (the demo audit
-/// prints both).
+/// the coverage, read against ``AllPlaces``: the demo audit prints both counts.
 public enum SiteWalk: Halves {
     @StructureBuilder
     public static var body: some Structure {

@@ -926,28 +926,37 @@ extension RuleKey: Spanning {
         atX x: X.Type,
         width w: W.Type
     ) -> String {
-        // The leaf names out of a chord's cons: `Chord` nodes recurse, anything else
-        // is a leaf named bare, its generic tail dropped.
-        func leaves(of term: Substring) -> [String] {
-            let text = term.trimmingCharacters(in: .whitespaces)
+        // The leaf names out of a chord's cons: a `Chord` node splits at its top-level
+        // comma and both halves return to the pile (right first, so declaration order
+        // survives the pops); anything else is a leaf named bare, its generic tail
+        // dropped. A stack walk, not a helper: the witness stays one body.
+        var names: [String] = []
+        var pile: [Substring] = [Substring(String(describing: R.self))]
+        while let term = pile.popLast() {
+            let text = Substring(term.trimmingCharacters(in: .whitespaces))
             guard text.hasPrefix("Chord<"), text.hasSuffix(">") else {
-                return [String(text.split(separator: "<").first ?? "")]
+                names.append(String(text.split(separator: "<").first ?? ""))
+                continue
             }
             let inner = text.dropFirst("Chord<".count).dropLast()
             var depth = 0
+            var cut = inner.startIndex
             for (offset, character) in inner.enumerated() {
                 if character == "<" { depth += 1 }
                 if character == ">" { depth -= 1 }
                 if character == ",", depth == 0 {
-                    let cut = inner.index(inner.startIndex, offsetBy: offset)
-                    return leaves(of: inner[inner.startIndex..<cut])
-                        + leaves(of: inner[inner.index(after: cut)...])
+                    cut = inner.index(inner.startIndex, offsetBy: offset)
+                    break
                 }
             }
-            return [String(inner.split(separator: "<").first ?? "")]
+            if cut == inner.startIndex {
+                names.append(String(inner.split(separator: "<").first ?? ""))
+                continue
+            }
+            pile.append(inner[inner.index(after: cut)...])
+            pile.append(inner[inner.startIndex..<cut])
         }
-        let names = leaves(of: Substring(String(describing: R.self))).joined(separator: " ")
-        return "<g class=\"vi-rule\" data-vi-rules=\"\(names)\" data-vi-slot=\"\(String(describing: R.Slot.self))\" cursor=\"pointer\">\n"
+        return "<g class=\"vi-rule\" data-vi-rules=\"\(names.joined(separator: " "))\" data-vi-slot=\"\(String(describing: R.Slot.self))\" cursor=\"pointer\">\n"
             + Face.rendered(atX: x, width: w) + "</g>\n"
     }
 }

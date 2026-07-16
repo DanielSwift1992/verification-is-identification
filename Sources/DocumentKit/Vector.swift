@@ -1313,6 +1313,10 @@ public protocol GrownDiagram: Open {
     /// Filters, styles, and other defs the canvas carries before its axis: not members,
     /// they take no height. `Never` by default: most canvases carry none.
     associatedtype Defs: Structure = Never
+    /// The ground under the axis, painted before any member and taking no height. `Never` by
+    /// default: a canvas ground is transparent (the design law), and a canvas whose content
+    /// cannot all sit on surfaces states `PageBackdrop` here instead.
+    associatedtype Backdrop: Structure = Never
 }
 extension GrownDiagram
 where Body: DividesY & Structure {
@@ -1325,6 +1329,7 @@ where Body: DividesY & Structure {
             + "data-vi-canvas=\"1\" font-family=\"Inter, Roboto, system-ui, sans-serif\" "
             + "aria-label=\"\(AriaLabel.typeName)\">\n"
             + Defs.typeName
+            + Backdrop.typeName
             + Body.rendered(
                 atY: RowStart.self,
                 width: GivenSpan<Across>.self,

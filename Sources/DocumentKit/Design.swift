@@ -275,6 +275,22 @@ public enum SurfaceTrack: Paint, Close {}
 extension SurfaceTrack {
     public static var typeName: String { "var(--vi-surface-track, " + Mist.typeName + ")" }
 }
+/// The page role paints the ground a whole canvas stands on: `Paper` where no CSS resolves
+/// (a raw `<img>`, a README), the host page's own colour where footer.html's variable does,
+/// so a stated backdrop disappears into the site and stays legible everywhere else.
+public enum SurfacePage: Paint, Close {}
+extension SurfacePage {
+    public static var typeName: String { "var(--vi-surface-page, " + Paper.typeName + ")" }
+}
+/// The backdrop fills the whole frame with the page role, under every member. A canvas whose
+/// content cannot all sit on surface roles states it on its `Backdrop` slot (the TRANSPARENCY
+/// law above names the architecture diagram as this case).
+public enum PageBackdrop: Close {}
+extension PageBackdrop {
+    public static var typeName: String {
+        "<rect width=\"100%\" height=\"100%\" fill=\"" + SurfacePage.typeName + "\"/>\n"
+    }
+}
 public enum TextPrimary: Paint, Close {}
 extension TextPrimary {
     public static var typeName: String { "var(--vi-text-primary, " + InkPrimary.typeName + ")" }

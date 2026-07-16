@@ -611,6 +611,7 @@ enum ArchitectureDiagram: GrownDiagram {
     public typealias Across = WideSurface
     public typealias AriaLabel = ArchitectureLabel
     public typealias Defs = ArchitectureDefs
+    public typealias Backdrop = PageBackdrop
     @StructureBuilder
     public static var body: some Structure & DividesY {
         Fixed<ArchWholeTall, SpanHosted<ArchitectureContent>>.self

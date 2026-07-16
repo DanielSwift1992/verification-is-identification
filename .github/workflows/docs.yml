@@ -40,6 +40,9 @@ jobs:
       - name: The grammar carries every source file
         run: swift run Tools grammar
 
+      - name: The README's numbers are counted, not remembered
+        run: swift run Tools readme
+
       - name: A rule is one substitution (§S28, the triples dictionary)
         run: swift run Tools lint Sources/DynamicsDemo/Rules.swift --strict
 

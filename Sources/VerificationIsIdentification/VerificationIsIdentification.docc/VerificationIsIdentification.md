@@ -144,6 +144,10 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``GateWrapper``
 - ``AllCoordinatesPresent``
 - ``SaturationMap``
+### The atlas: what stands on what
+
+- <doc:Atlas>
+- <doc:AtlasUnfolded>
 ### The papers: the routes
 
 - <doc:Sources>

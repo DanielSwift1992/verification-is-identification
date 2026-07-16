@@ -17,6 +17,10 @@ import Foundation
 //     witnesses). EACH PAPER PAGE (Papers/*.md ## Topics) = a ROUTE: the WEB
 //     bridges it proves. Σ (HasSigma) is the trunk, excluded from intersect counts.
 //
+//   ATLAS (Atlas.md + AtlasUnfolded.md) = the same lattice read as a LOAD TABLE:
+//     one row per claim, Carries counting the transitive cone, every count a door
+//     to the cone unfolded. Rides the same write/check as the routes.
+//
 // Reads the compiler's own symbol graph (swift package dump-symbol-graph): the
 // type lattice describing itself. No Python, no SwiftSyntax, just the JSON the
 // compiler emits. Replaces tree-sort.py.
@@ -229,8 +233,69 @@ func landingTopics(_ trailheads: [String]) -> String {
     topics += group("The floor: what it delegates, where it stops", symbols(names(floor)))
     let proj = byDepth(protos.filter { PROJ_FILES.contains(file($0)) })
     topics += group("Projection: the framework instantiated on machines", symbols(names(proj)))
+    topics += group("The atlas: what stands on what", ["<doc:Atlas>", "<doc:AtlasUnfolded>"])
     topics += group("The papers: the routes", ["<doc:Sources>"])
     return topics
+}
+
+// ── the atlas: the lattice read as a load table, one row per protocol. Every
+//    aggregate is a door: the Carries number links to that claim's unfolded
+//    cone, so no count ever hides its content. ──
+var atlasChildren: [String: [String]] = [:]
+var atlasCarryCache: [String: Set<String>] = [:]
+func atlasCarries(_ p: String) -> Set<String> {
+    if let c = atlasCarryCache[p] { return c }
+    var out = Set<String>()
+    for q in atlasChildren[p] ?? [] {
+        out.insert(q)
+        out.formUnion(atlasCarries(q))
+    }
+    atlasCarryCache[p] = out
+    return out
+}
+func atlasRows() -> [String] {
+    if atlasChildren.isEmpty {
+        for p in protos {
+            for q in par[p] ?? [] { atlasChildren[q, default: []].append(p) }
+        }
+    }
+    return protos.sorted {
+        (atlasCarries($0).count, title($1)) > (atlasCarries($1).count, title($0))
+    }
+}
+// One row form at every level: the whole map and any cone read identically,
+// heaviest first, and every Carries number is again a door. The descent is
+// well-founded, never cyclic: a cone inside a cone is strictly smaller (the
+// hierarchy the compiler already keeps acyclic), so the drilling bottoms out
+// at bare zeros.
+func atlasTable(_ members: [String]) -> String {
+    var out = "| Claim | Kind | Stands on | Carries | Home |\n"
+    out += "| --- | --- | --- | --- | --- |\n"
+    let ordered = members.sorted {
+        (atlasCarries($0).count, title($1)) > (atlasCarries($1).count, title($0))
+    }
+    for p in ordered {
+        let stands = (par[p] ?? []).map { "``\(title($0))``" }.joined(separator: ", ")
+        let home = file(p).replacingOccurrences(of: ".swift", with: "")
+        let count = atlasCarries(p).count
+        let door = count == 0 ? "0" : "[\(count)](<doc:AtlasUnfolded#\(title(p))>)"
+        out += "| ``\(title(p))`` | \(cls[p]!) | \(stands.isEmpty ? "—" : stands) | \(door) | \(home) |\n"
+    }
+    return out
+}
+func atlasBlock() -> String {
+    "## The load, heaviest first\n\n" + atlasTable(atlasRows())
+}
+func atlasUnfoldedBlock() -> String {
+    var out = "## The cones\n"
+    for p in atlasRows() {
+        let cone = atlasCarries(p)
+        guard !cone.isEmpty else { continue }
+        out += "\n### \(title(p))\n\n"
+        out += "``\(title(p))`` carries \(cone.count) claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.\n\n"
+        out += atlasTable(Array(cone))
+    }
+    return out
 }
 
 // ── per-paper web routes ──
@@ -280,8 +345,12 @@ let PAPERS = paperTopics()
 // ── apply / emit / check / audit ──
 func target(_ path: String, _ block: String) -> String {
     let txt = (try? String(contentsOfFile: path, encoding: .utf8)) ?? ""
+    // The cut mark is the block's own first line, so a page may carry a generated
+    // TABLE the same way the routes carry generated Topics: prose above, one
+    // induced block below, idempotent on every rewrite.
+    let mark = "\n" + (block.split(separator: "\n").first.map(String.init) ?? "## Topics")
     let head: String
-    if let r = txt.range(of: "\n## Topics", options: .backwards) {
+    if let r = txt.range(of: mark, options: .backwards) {
         head = String(txt[txt.startIndex..<r.lowerBound])
     } else { head = txt }
     let trimmedHead = head.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -294,6 +363,8 @@ func target(_ path: String, _ block: String) -> String {
 func eachFile() -> [(String, String)] {
     var out = [(theoryMD, LAND)]
     for (doc, block) in PAPERS { out.append(((docc as NSString).appendingPathComponent("Papers/\(doc).md"), block)) }
+    out.append(((docc as NSString).appendingPathComponent("Atlas.md"), atlasBlock()))
+    out.append(((docc as NSString).appendingPathComponent("AtlasUnfolded.md"), atlasUnfoldedBlock()))
     return out
 }
 

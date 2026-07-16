@@ -25,7 +25,7 @@ swift run Tools site                    # build and serve the whole documentatio
 
 ## The map
 
-- [`Sources/VerificationIsIdentification`](Sources/VerificationIsIdentification) — the theory: 164 protocols, one per claim, with the compiler as the proof checker.
+- [`Sources/VerificationIsIdentification`](Sources/VerificationIsIdentification) — the theory: 164 protocols, one per claim, with the compiler as the proof checker. It prints its own dependency map: [the atlas](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/atlas/), one row per claim, heaviest first.
 - [`Sources/Organization`](Sources/Organization) — the showcase: 200 people, the access policy, the whole site as types. Files named `Generated*` are build products: read the policy, not the generated people.
 - [`Sources/DocumentKit`](Sources/DocumentKit) — the engine: pages, tables, SVG, and text metrics, written in the notation it renders.
 - [`Papers`](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers) — the 23 papers that derive the chain, rendered into [the documentation site](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification).

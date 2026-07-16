@@ -88,7 +88,7 @@ extension ArchFooterText {
 
 enum LatticeTitleText: Close {}
 extension LatticeTitleText {
-    public static var typeName: String { "Verification Is Identification — the core" }
+    public static var typeName: String { "Verification Is Identification: the core" }
 }
 enum LatticeRoleText: Close {}
 extension LatticeRoleText {
@@ -114,7 +114,7 @@ extension EngineTitleText {
 }
 enum CompanyTitleText: Close {}
 extension CompanyTitleText {
-    public static var typeName: String { "Organization — System · Query · View" }
+    public static var typeName: String { "Organization: System · Query · View" }
 }
 enum SiteBoxTitleText: Close {}
 extension SiteBoxTitleText {
@@ -134,7 +134,7 @@ extension ConsoleSubtitleText {
 }
 enum FlowCaptionOneText: Close {}
 extension FlowCaptionOneText {
-    public static var typeName: String { "everything below imports it; a green build means the model is consistent" }
+    public static var typeName: String { "everything below imports it: a green build means the model is consistent" }
 }
 enum FlowCaptionTwoText: Close {}
 extension FlowCaptionTwoText {

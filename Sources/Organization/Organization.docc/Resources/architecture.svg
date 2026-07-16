@@ -21,7 +21,7 @@
 <a href="/documentation/verificationisidentification">
 <g class="hover-lift" style="--tx:0px;--ty:0px">
 <rect x="0" width="928" height="138" rx="12" fill="var(--vi-surface-track, #F6F7F8)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
-<text x="464" y="26" text-anchor="middle" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="17">Verification Is Identification — the core</text>
+<text x="464" y="26" text-anchor="middle" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="17">Verification Is Identification: the core</text>
 <g transform="translate(16, 0)">
 <text x="448" y="52" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="10">A plain SwiftPM library: write rules as protocols and states as types, and swift build becomes the checker</text>
 </g>
@@ -50,7 +50,7 @@
 <line x1="6" y1="10" x2="6" y2="38" stroke="var(--vi-text-secondary, rgba(0,0,0,0.54))" stroke-width="2" marker-end="url(#a)"/>
 </g>
 <g transform="translate(108, 0)">
-<text x="0" y="24" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-size="10" font-style="italic">everything below imports it; a green build means the model is consistent</text>
+<text x="0" y="24" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-size="10" font-style="italic">everything below imports it: a green build means the model is consistent</text>
 </g>
 </g>
 </g>
@@ -101,7 +101,7 @@
 <a href="/documentation/organization/companydashboard">
 <g class="hover-lift" style="--tx:0px;--ty:0px">
 <rect x="0" width="928" height="138" rx="12" fill="var(--vi-surface-card, #FFFFFF)" stroke="var(--vi-line, #EAECEE)" stroke-width="1"/>
-<text x="464" y="25" text-anchor="middle" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">Organization — System · Query · View</text>
+<text x="464" y="25" text-anchor="middle" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="700" font-size="15">Organization: System · Query · View</text>
 <g transform="translate(16, 0)">
 <text x="448" y="52" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="10">The at-scale demo: 204 people, the access policy, and the review cycles, modeled and proved</text>
 </g>
@@ -159,7 +159,7 @@
 </g>
 <g transform="translate(0, 662)">
 <g transform="translate(0, 0)">
-<text x="480" y="14" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="10">Nothing above runs at runtime: 0 functions in the core, 0 in the engine, 0 in the demo, no structs, no classes. The 136 functions that do execute are the build tools, counted by this build.</text>
+<text x="480" y="14" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="10">Nothing above runs at runtime: 0 functions in the core, 0 in the engine, 0 in the demo, no structs, no classes. The 142 functions that do execute are the build tools, counted by this build.</text>
 </g>
 </g>
 </g>

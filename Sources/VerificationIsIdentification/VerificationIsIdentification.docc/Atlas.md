@@ -6,7 +6,7 @@ Each claim is one Swift protocol, and one claim standing on another is that prot
 
 The table is testable. Delete any claim's declaration from the source and build: the compiler lists every claim that falls, and the length of that list is this table's Carries number. The table and the compiler read the same source, so the two counts cannot drift apart.
 
-A cycle between claims cannot exist here: Swift refuses a circular protocol hierarchy, so acyclicity is guaranteed by the language, not by the author's care.
+A cycle between claims cannot exist here: a circular protocol hierarchy does not compile. Acyclicity is built into the language.
 
 ## The load, heaviest first
 

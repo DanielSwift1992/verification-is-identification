@@ -13,8 +13,9 @@ import Organization
 enum ArchitectureLabel: Close {}
 extension ArchitectureLabel {
     public static var typeName: String {
-        "The package, top down: the V=I type lattice, the DocumentKit engine that renders "
-            + "and walks it, the Organization written in both, and the two outputs "
+        "The package, top down: the V=I type lattice, the DocumentKit engine that renders, "
+            + "walks, and rewrites it, the Organization written in both over a shared alphabet, "
+            + "and the two outputs "
             + "of every build, the rendered site and the console audit. Each box names its role, "
             + "its parts, and its census, counted by this build, and opens on click."
     }
@@ -99,7 +100,7 @@ extension LatticeRoleText {
 enum EngineRoleText: Close {}
 extension EngineRoleText {
     public static var typeName: String {
-        "Renders markdown and SVG from types, and carries the guided walks: a page is a type, search is navigation"
+        "Renders markdown and SVG from types, and carries the walks and the rewrite rules: a page is a type, a press is a substitution"
     }
 }
 enum CompanyRoleText: Close {}
@@ -138,7 +139,7 @@ extension FlowCaptionOneText {
 }
 enum FlowCaptionTwoText: Close {}
 extension FlowCaptionTwoText {
-    public static var typeName: String { "the demo application, written in both" }
+    public static var typeName: String { "the demo application, written in both, over one shared alphabet" }
 }
 enum PapersPlaqueText: Close {}
 extension PapersPlaqueText {
@@ -167,6 +168,10 @@ extension PenPlaqueText {
 enum WalksPlaqueText: Close {}
 extension WalksPlaqueText {
     public static var typeName: String { "guided walks" }
+}
+enum RulesPlaqueText: Close {}
+extension RulesPlaqueText {
+    public static var typeName: String { "rewrite rules" }
 }
 enum SystemPlaqueText: Close {}
 extension SystemPlaqueText {
@@ -292,6 +297,31 @@ enum FourPlaqueRow<
         Plaque<C>.self
         Air<HairBreath>.self
         Plaque<D>.self
+        RestAir.self
+    }
+}
+
+enum FivePlaqueRow<
+    A: Structure,
+    B: Structure,
+    C: Structure,
+    D: Structure,
+    E: Structure,
+    Wide: Structure
+>: HFlow {
+    public typealias Given = Wide
+    @StructureBuilder
+    public static var body: some Structure & Divides {
+        RestAir.self
+        Plaque<A>.self
+        Air<HairBreath>.self
+        Plaque<B>.self
+        Air<HairBreath>.self
+        Plaque<C>.self
+        Air<HairBreath>.self
+        Plaque<D>.self
+        Air<HairBreath>.self
+        Plaque<E>.self
         RestAir.self
     }
 }
@@ -465,7 +495,7 @@ enum EngineBoxRow: HFlow {
                         Layered<
                             Layered<ArchTitleSpan<EngineTitleText>, SpanHosted<RoleRow<EngineRoleText, ArchInner>>>,
                             Layered<
-                                SpanLowered<Tally<Plus<ArchTitleStorey, ArchRoleStorey>>, SpanHosted<FourPlaqueRow<MarkupPlaqueText, VectorPlaqueText, PenPlaqueText, WalksPlaqueText, ArchInner>>>,
+                                SpanLowered<Tally<Plus<ArchTitleStorey, ArchRoleStorey>>, SpanHosted<FivePlaqueRow<MarkupPlaqueText, VectorPlaqueText, PenPlaqueText, WalksPlaqueText, RulesPlaqueText, ArchInner>>>,
                                 ArchStatsSpan<EngineStatsText>
                             >
                         >

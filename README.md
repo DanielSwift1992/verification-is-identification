@@ -74,7 +74,7 @@ Second, change is navigation. A renderer writes every checked state to disk as a
 
 ## Interaction without a runtime
 
-The company site is rendered ahead of time, every page of it. That sounds limited: no interaction, no memory, no animation. Every employee card on the site carries a login keypad. The keypad refutes all three.
+The company site is rendered ahead of time, every page of it. That sounds limited: no interaction, no memory, no animation. Four of the employee cards carry a login keypad, as the demonstration. The keypad refutes all three.
 
 - A key press follows a link to the next state. That is interaction.
 - The state `k2` means two correct digits so far. The URL fragment holds it. That is memory.

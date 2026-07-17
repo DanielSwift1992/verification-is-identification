@@ -128,6 +128,22 @@ enum ReadmeCheck {
                 )
             }
         }
+        let credentialed = countMatches(
+            read("Sources/Organization/System/Team.swift"), of: ": *Employee, *Credentialed"
+        )
+        let keypadCards = words(readme, "(\\w+) of the employee cards")
+            .compactMap { numberWords[$0.lowercased()] }
+        if keypadCards.isEmpty {
+            lies.append("the keypad-cards claim \"<n> of the employee cards\" is gone from the README")
+        }
+        let overstated = keypadCards.filter { $0 != credentialed }
+        for value in overstated {
+            lies.append(
+                "the README says \(value) cards carry a keypad where Team.swift declares "
+                    + "\(credentialed) credentialed people"
+            )
+        }
+
         let readmeChoices = words(readme, "any page in (\\w+) choices")
         let pageChoices = words(organizationPage, "any page in (\\w+) choices")
         if readmeChoices.isEmpty || pageChoices.isEmpty {

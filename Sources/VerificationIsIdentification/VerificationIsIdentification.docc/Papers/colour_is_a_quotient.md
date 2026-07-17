@@ -1,0 +1,57 @@
+# Colour Is a Quotient (Gamut)
+
+Colour is not a property of light. It is a class of lights: everything the eye maps to one image is one colour, however many beams the class holds. This paper derives the colour stack from that one move — the quotient — and closes the pipeline: coordinates as charts on the quotient, hue as a residue, the display as a stated source whose reach is a cone, out-of-gamut as an empty candidate set, and bit depth as the length of a walk. The claim, pinned: colour is a quotient, and every colour space, gamut, and depth question is a question about the quotient's charts, cones, and ladders. The lattice encodes the two claims (`Colour.swift`); this is the paper the encoding was written against.
+
+## §0. Derivation
+
+No new postulate. Seeing Is Encoding gives the projection and its kernel; Form Is Gauge gives one content under many charts; Light Is a Ruler gives the residue and the two-tier distance; Dynamics Is Substitution gives the stated source. Colour is those four, composed on the eye.
+
+## §1. A colour is a fiber
+
+**CiQ1 (The quotient).** The eye's projection partitions all beams: two beams are one colour exactly when their images coincide. A colour is a fiber of that projection — the metameric class whole — and the space of colours is the quotient of light by the eye's kernel. Every colour coordinate ever written parameterizes the quotient, never the light: the chart cannot see into the fiber, and what it cannot see, no arithmetic on coordinates recovers. **[solid — ``ColourIsQuotient``]**
+
+## §2. Colour spaces are charts
+
+**CiQ2 (One quotient, many gauges).** RGB triples, XYZ, Lab, OKLCH: charts on one three-channel quotient, related by re-parameterization — the same content under different spellings, which is the gauge freedom of forms. The linear charts respect mixing; the bent ones buy something else. A perceptually uniform chart bends its coordinates until the perceptual distance runs flat along them: equal steps, equal felt difference. And one coordinate is not like the others: hue closes on itself. Hue is a residue — a position on a finite ring, the same carrier as a wave's phase — so complements are the half-turn, and the complement of the complement is the hue itself, an involution checked once for the whole ring.
+
+## §3. A display is a cone
+
+**CiQ3 (Gamut is a cone, and outside it S is empty).** A display is a stated source: finitely many primaries, each a written spectrum, with nonnegative levels. Its reach in the quotient is the cone the primaries span. A colour inside the cone is matched by stated levels — the certificate is the levels themselves. A colour outside has no matching levels at all: the candidate set is empty, and the display refuses by name instead of clipping in silence. The refusal is decidable before anything shines, because the primaries are written whole. **[solid — ``GamutIsCone``]**
+
+**CiQ4 (Three primaries never suffice).** The visible colours of single lines trace a curve whose region is convex, and any three primaries span a triangle inside it: some pure line always falls outside. Wider gamuts move the corners toward the curve — the widest stated primaries are single lines themselves — and still the triangle is a triangle. Reaching every colour needs more primaries, or the identity encoder: a display that states the spectrum itself. The limit is convexity, never engineering.
+
+## §4. Depth is a walk
+
+**CiQ5 (Bits are halvings).** A channel's depth is the length of its walk: each bit halves the remaining brightness interval, eight bits are eight halvings, and a high-dynamic-range channel is the same walk grown longer. Precision of colour and precision of measurement are one form — a walk down stated divisions — and the display's finest step is the walk's last door, stated, not approximated.
+
+## §5. Two distances, one hierarchy
+
+**CiQ6 (Structural below, perceptual above).** The structural distance lives on beams; the perceptual distance lives on the quotient. The projection maps the first onto the second and forgets the rest: a metameric pair is far below and at zero above. Every colour-difference formula is a metric on the quotient, so none of them can price what the eye already lost — and the perceptually flat chart is exactly the gauge in which the upper metric runs along coordinates. The hierarchy, not either floor alone, is the account of colour difference.
+
+## §6. Statement
+
+Colour is a quotient. The eye's kernel makes the class, the class is the colour, and the charts — RGB, OKLCH, all of them — parameterize classes, with hue a residue on its ring. A display is a stated source whose reach is a cone in the quotient: inside, levels certify the match; outside, the candidate set is empty and the refusal is named. Three primaries never cover the curve, by convexity. Depth is a walk of halvings, and colour difference is a two-storey affair: structural on the light, perceptual on the quotient, related by the projection that forgets. From the spectral line to the screen's last bit, every storey is the same mathematics: a finite structure, a stated law, a decided question.
+
+## Scope
+
+Claimed: the quotient, its charts, hue as a residue with its involution, the cone of stated primaries, refusal outside the cone, the convexity limit, and depth as halvings. Not claimed: the numerical weights of any real observer (the edge holds them), individual variation and adaptation, white points and tone mapping, and the smooth geometry of real chromaticity — stated instances carry the theorems, numbers stay at the reading edge.
+
+## §7. Dependency
+
+| Source | Used |
+|---|---|
+| Seeing Is Encoding | the projection, its kernel, the metameric class, the identity encoder |
+| Form Is Gauge | one content under many charts; the gauge that flattens a metric |
+| Light Is a Ruler | the residue as a cyclic coordinate; the two-tier distance; walks as precision |
+| Dynamics Is Substitution | the stated source; decidability before the first act |
+| Existence Is Finite | finite bases, finite rings, finite walks |
+| V=I | the empty candidate set as the form of refusal |
+
+The worked instance stands beside the light domain in the examples: the metameric twins as one fiber, a one-primary display that reaches equal channels and refuses unequal ones by name, and the six-spoke hue ring with its complement involution checked generically. The lattice pinned the two claims before this paper stated them; this document exists so the colour half of the quotient reads the same in prose and in types.
+
+## Topics
+
+### Theorems this paper proves
+
+- ``ColourIsQuotient``
+- ``GamutIsCone``

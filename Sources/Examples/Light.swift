@@ -43,6 +43,8 @@ public protocol BeamShape {
 
 /// One step of brightness: the unit level over the dark floor.
 public typealias Lit1 = Succ<Never>
+/// Two steps: the unit, once more.
+public typealias Lit2 = Succ<Lit1>
 
 /// A concrete beam: bright H-α, dark H-β, dark infrared.
 public enum RedBeam: BeamShape {
@@ -309,3 +311,90 @@ public let threePanesRevive: HalfOfRoundTrip.Type = Halves<
     ThreePanes.Vertical,
     Plus<DiagonalAfterLampH.Horizontal, DiagonalAfterLampH.Vertical>
 >.self
+
+// ── Colour and gamut: a colour is the class of beams behind one image, and a
+// display reaches only the cone of its stated primaries. One gray primary
+// spans one ray: equal channels are reachable, unequal ones are refused. ──
+
+/// A display with one stated primary whose image lights both eye channels
+/// equally: a gray laser. Its levels scale one direction and nothing else.
+public enum GrayPrimaryAt<Level: IntegerValued> {}
+
+/// Reachability, compiled: a target image is matched exactly when some stated
+/// level of the primary lands on it. Equal channels match; the certificate is
+/// the level itself.
+public protocol WithinGamut {}
+public enum Reaches<Level: IntegerValued, TargetLeft, TargetRight> {}
+extension Reaches: WithinGamut
+where TargetLeft == Level, TargetRight == Level {}
+public let equalGrayReached: WithinGamut.Type = Reaches<Lit2, Lit2, Lit2>.self
+
+#if SHOW_GAMUT
+/// An unequal target under the gray primary: no level satisfies both channels,
+/// the candidate set is empty, and the refusal names the mismatch. Build with
+/// -DSHOW_GAMUT to watch out-of-gamut fail as a type, never clip as a value.
+public let unequalRefused: WithinGamut.Type = Reaches<Lit2, Lit2, Lit1>.self
+#endif
+
+// ── Hue is a residue: the wheel is a finite ring, complement is the half-turn,
+// and taking the complement twice is the identity, checked once for the ring. ──
+
+/// The six-spoke hue wheel: each hue names its opposite, and the wheel is the
+/// statement — no arithmetic computes it.
+public protocol Hue {
+    associatedtype Opposite: Hue
+}
+public enum HueRed: Hue {
+    public typealias Opposite = HueCyan
+}
+public enum HueYellow: Hue {
+    public typealias Opposite = HueBlue
+}
+public enum HueGreen: Hue {
+    public typealias Opposite = HueMagenta
+}
+public enum HueCyan: Hue {
+    public typealias Opposite = HueRed
+}
+public enum HueBlue: Hue {
+    public typealias Opposite = HueYellow
+}
+public enum HueMagenta: Hue {
+    public typealias Opposite = HueGreen
+}
+
+/// The involution certificate: the complement of the complement is the hue
+/// itself, and the claim is generic — one check covers every spoke.
+public protocol SelfInverse {}
+public enum DoubleComplement<H: Hue> {}
+extension DoubleComplement: SelfInverse
+where H.Opposite.Opposite == H {}
+public let complementInvolutes: SelfInverse.Type = DoubleComplement<HueRed>.self
+
+// ── The lattice conformances: colour as a quotient, the display as a cone. ──
+
+public enum ColourSpace {}
+public enum GrayPrimaryMark {}
+
+/// Colour instantiates ``ColourIsQuotient``: the metameric twins above are two
+/// beams in one fiber, so the fiber is the colour and the beams stay two.
+public enum ColourWorld: ColourIsQuotient {
+    public typealias Sigma = BeamSpace
+    public typealias Encoding = EyeEncoding
+    public typealias LeftSource = RedBeam
+    public typealias RightSource = RedBeamWithIR
+    public typealias SharedImage = EyeImage<RedBeam>
+    public typealias Fiber = EyeImage<RedBeam>
+}
+
+/// The gray display instantiates ``GamutIsCone``: one stated primary, a reach
+/// of equal-channel images, and everything off the ray refused by name.
+public enum GrayDisplay: GamutIsCone {
+    public typealias Sigma = BeamSpace
+    public typealias Encoding = EyeEncoding
+    public typealias LeftSource = RedBeam
+    public typealias RightSource = RedBeamWithIR
+    public typealias SharedImage = EyeImage<RedBeam>
+    public typealias Fiber = EyeImage<RedBeam>
+    public typealias Primaries = GrayPrimaryAt<Lit1>
+}

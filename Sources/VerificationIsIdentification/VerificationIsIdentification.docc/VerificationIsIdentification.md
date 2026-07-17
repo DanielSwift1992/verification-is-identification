@@ -122,7 +122,9 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 ### The axes: pure generators
 
 - ``HasSigma``
+- ``ColourIsQuotient``
 - ``EncodingForgets``
+- ``GamutIsCone``
 - ``HasAlpha``
 - ``HasBasis``
 - ``HasCompositionalNorm``

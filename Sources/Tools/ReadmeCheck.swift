@@ -34,16 +34,27 @@ enum ReadmeCheck {
             .joined(separator: "\n")
     }
 
-    /// Every capture of `pattern` in the README, as digits with the thousands comma shed.
-    static func claims(_ readme: String, _ pattern: String) -> [Int] {
+    /// Every capture of `pattern`, as text.
+    static func words(_ text: String, _ pattern: String) -> [String] {
         let regex = try! NSRegularExpression(pattern: pattern)
-        let range = NSRange(readme.startIndex..., in: readme)
-        return regex.matches(in: readme, range: range).compactMap { match in
+        let range = NSRange(text.startIndex..., in: text)
+        return regex.matches(in: text, range: range).compactMap { match in
             guard match.numberOfRanges > 1,
-                  let captured = Range(match.range(at: 1), in: readme) else { return nil }
-            return Int(readme[captured].replacingOccurrences(of: ",", with: ""))
+                  let captured = Range(match.range(at: 1), in: text) else { return nil }
+            return String(text[captured])
         }
     }
+
+    /// Every capture of `pattern`, as digits with the thousands comma shed.
+    static func claims(_ text: String, _ pattern: String) -> [Int] {
+        words(text, pattern).compactMap { Int($0.replacingOccurrences(of: ",", with: "")) }
+    }
+
+    /// The number a prose word states: the walk sentences spell small counts as words.
+    static let numberWords = [
+        "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+        "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
+    ]
 
     static func run(_ arguments: [String]) {
         let readme = read("README.md")
@@ -99,11 +110,40 @@ enum ReadmeCheck {
             }
         }
 
+        // The walk sentence, in both homes. The roster walk halves the roster at every door,
+        // so its depth is implied by the people count. The site walk's depth has no formula
+        // here, so the README and the Organization page must speak the same sentence.
+        let organizationPage = read("Sources/Organization/Organization.docc/Organization.md")
+        let rosterDepth = Int(ceil(log2(Double(max(people, 2)))))
+        for home in [("README", readme), ("Organization page", organizationPage)] {
+            let stated = words(home.1, "people in (\\w+)").compactMap { numberWords[$0] }
+            if stated.isEmpty {
+                lies.append("the roster-walk claim \"people in <depth>\" is gone from the \(home.0)")
+            }
+            for value in stated where value != rosterDepth {
+                lies.append(
+                    "the \(home.0) says the roster walk takes \(value) choices where "
+                        + "\(people) people halve in \(rosterDepth)"
+                )
+            }
+        }
+        let readmeChoices = words(readme, "any page in (\\w+) choices")
+        let pageChoices = words(organizationPage, "any page in (\\w+) choices")
+        if readmeChoices.isEmpty || pageChoices.isEmpty {
+            lies.append("the site-walk claim \"any page in <n> choices\" must stand in the README and the Organization page")
+        } else if Set(readmeChoices + pageChoices).count > 1 {
+            lies.append(
+                "the site-walk depth disagrees: the README says \(readmeChoices.joined(separator: ", ")), "
+                    + "the Organization page says \(pageChoices.joined(separator: ", "))"
+            )
+        }
+
         if lies.isEmpty {
             print(
                 "✓ THE NUMBERS hold: \(papers) papers, \(protocols) protocols, "
                     + "\(people) people (\(named) named, \(generated) generated), \(tests) tests, "
-                    + "\(keypadSequences) keypad sequences, \(curveEmployees) at the curve's end."
+                    + "\(keypadSequences) keypad sequences, \(curveEmployees) at the curve's end, "
+                    + "walks \(pageChoices.first ?? "?") and \(rosterDepth) deep."
             )
         } else {
             for lie in lies { print("✗ \(lie)") }

@@ -141,3 +141,80 @@ public enum LightSeeing: SeparatorIdentifies {
     public typealias SharedImage = EyeImage<RedBeam>
     public typealias Separator = PrismSeparator
 }
+
+// ── Ranging: the same Seeing pair, worked on directions instead of lines. A
+// matte wall forgets which side its light came from; a mirror keeps the
+// direction whole. So a glint is the observer written into the image, and the
+// glint path measures the distance to its own eye. ──
+
+/// A lighting of the scene: how much light arrives from the east, from the
+/// west, and in total. The total is part of the statement, and the judge holds
+/// the images below to it.
+public protocol SceneLight {
+    associatedtype FromEast: IntegerValued
+    associatedtype FromWest: IntegerValued
+    associatedtype Total: IntegerValued
+}
+
+/// One unit of light from the east, nothing from the west.
+public enum LitFromEast: SceneLight {
+    public typealias FromEast = Lit1
+    public typealias FromWest = Never
+    public typealias Total = Lit1
+}
+
+/// The same total from the opposite side.
+public enum LitFromWest: SceneLight {
+    public typealias FromEast = Never
+    public typealias FromWest = Lit1
+    public typealias Total = Lit1
+}
+
+/// A matte wall reads the total and drops the side: a diffuse surface is an
+/// encoding of directions with a kernel.
+public typealias MatteImage<S: SceneLight> = S.Total
+
+/// A mirror reads both sides apart: nothing about the direction is forgotten.
+public typealias MirrorImage<S: SceneLight> = Paired<S.FromEast, S.FromWest>
+
+/// Two lightings a matte wall cannot tell apart: directional metamerism,
+/// compiled. The mirror parts the same pair, and the refusal names the side.
+public protocol MatteBlindPair {}
+public enum MatteAlike<X: SceneLight, Y: SceneLight> {}
+extension MatteAlike: MatteBlindPair
+where MatteImage<X> == MatteImage<Y> {}
+public let directionalMetamerism: MatteBlindPair.Type = MatteAlike<LitFromEast, LitFromWest>.self
+
+/// The direction world instantiates the same lattice pair a second time: the
+/// matte wall is the eye of directions, the mirror is their prism. One pair,
+/// two worlds, one certificate form.
+public enum MirrorSpace {}
+public enum MatteEncoding {}
+public enum MirrorSeparator {}
+public enum DirectionSeeing: SeparatorIdentifies {
+    public typealias Sigma = MirrorSpace
+    public typealias Encoding = MatteEncoding
+    public typealias LeftSource = LitFromEast
+    public typealias RightSource = LitFromWest
+    public typealias SharedImage = MatteImage<LitFromEast>
+    public typealias Separator = MirrorSeparator
+}
+
+// ── The glint measures: a round trip is twice the distance, and the compiler
+// checks the halving. ──
+
+/// The distance to the wall, in ticks of the stated unit: three.
+public typealias WallDistance = Succ<Succ<Succ<Never>>>
+
+/// The glint path goes there and back: the round trip is the pair of the
+/// distance with itself.
+public typealias GlintPath = Twice<WallDistance>
+
+/// The halving certificate: a distance is half its round trip exactly when the
+/// round trip is the distance paired with itself. Ranging reads the glint and
+/// halves it, and the halving is checked, never computed at run time.
+public protocol HalfOfRoundTrip {}
+public enum Halves<D, R> {}
+extension Halves: HalfOfRoundTrip
+where R == Plus<D, D> {}
+public let rangingChecked: HalfOfRoundTrip.Type = Halves<WallDistance, GlintPath>.self

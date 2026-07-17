@@ -73,6 +73,8 @@ let package = Package(
 
 Then `import VerificationIsIdentification`, state the part you must be sure of, and read the build.
 
+Two worked encodings of one physical sense stand in the papers: <doc:seeing_is_encoding> derives the sensor, and <doc:light_is_a_ruler> derives the measure.
+
 ## Showing the part you encoded
 
 The surface is the same discipline: a page is a type, and its markdown is the type's name. [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit) builds a page in five steps, and [Organization](https://danielswift1992.github.io/verification-is-identification/documentation/organization) is that surface run at scale — the encoded company and its site, one build.

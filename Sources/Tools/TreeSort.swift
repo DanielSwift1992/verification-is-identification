@@ -190,6 +190,8 @@ let PAPER: [String: String] = [
     "Liquid.swift": "learning_is_liquid", "Reading.swift": "reading_is_order",
     "Path.swift": "program_is_path",
     "Gauge.swift": "form_is_gauge",
+    "Presentation.swift": "dynamics_is_substitution",
+    "Seeing.swift": "seeing_is_encoding", "Ruler.swift": "light_is_a_ruler",
     "Projection.swift": "architecture_of_learning_machines",
 ]
 let FLOOR_FILES: Set<String> = ["Spec.swift"]        // -> landing "The floor"

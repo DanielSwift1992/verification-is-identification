@@ -10,7 +10,7 @@ No new postulate. A press is V=I's Theorem 2 applied to one slot: the pattern id
 
 ## §1. The objects
 
-**DiS1 (A system is a file).** A file is a constant form with named slots and one term per slot: F = (K, σ). A rule is a triple r = (Slot, From, Into): the one slot it may touch, the pattern it must find there, the template it writes. From is linear — each variable occurs once. A press applies one rule: if σ(Slot) matches From under a binding θ, the slot's term becomes Into[θ]; otherwise the press is a no-op and the file is unchanged. A system is a form, a finite dictionary of rules, and a start state. **[solid — the axis is ``PresentedLaw``]**
+**DiS1 (A system is a file).** A file F = (K, σ) is a constant form K with named slots, and an assignment σ of one term per slot. A rule is a triple r = (Slot, From, Into): the one slot it may touch, the pattern it must find there, the template it writes. From is linear — each variable occurs once. A press applies one rule: if σ(Slot) matches From under a binding θ, the slot's term becomes Into[θ]; otherwise the press is a no-op and the file is unchanged. A system is a form, a finite dictionary of rules, and a start state. The dictionary is the whole of the law: no second text implements it. **[solid — the axis is ``PresentedLaw``]**
 
 ## §2. A press identifies
 
@@ -30,7 +30,7 @@ No new postulate. A press is V=I's Theorem 2 applied to one slot: the pattern id
 
 ## §6. Races and reversal
 
-**DiS6 (Races are no-ops).** Rules over distinct slots commute: each reads and writes only its own slot. Two presses over one slot resolve as compare-and-swap: the later press finds a term its pattern no longer matches, and it lands as a no-op. A stale expectation loses nothing, because nothing it expected exists.
+**DiS6 (Races are no-ops).** Rules over distinct slots commute: each reads and writes only its own slot. Two systems over disjoint slots therefore compose by concatenating their forms and their dictionaries, and every theorem above survives the union. Two presses over one slot resolve as compare-and-swap: the later press finds a term its pattern no longer matches, and it lands as a no-op. A stale expectation loses nothing, because nothing it expected exists.
 
 **DiS7 (Undo is a rule).** A rule that erases no variable reverses by swapping From and Into. The reverse is again a rule, judged like any other. A history is one level-1 rule: cons the last term onto a list slot.
 

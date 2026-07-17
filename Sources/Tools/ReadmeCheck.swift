@@ -103,7 +103,8 @@ enum ReadmeCheck {
                 lies.append("the claim \"\(expectation.pattern)\" is gone from the README, and the gate holds it")
                 continue
             }
-            for value in found where value != expectation.count {
+            let drifted = found.filter { $0 != expectation.count }
+            for value in drifted {
                 lies.append(
                     "the README says \(value) where the repository counts \(expectation.count) (\(expectation.name))"
                 )
@@ -120,7 +121,8 @@ enum ReadmeCheck {
             if stated.isEmpty {
                 lies.append("the roster-walk claim \"people in <depth>\" is gone from the \(home.0)")
             }
-            for value in stated where value != rosterDepth {
+            let wrong = stated.filter { $0 != rosterDepth }
+            for value in wrong {
                 lies.append(
                     "the \(home.0) says the roster walk takes \(value) choices where "
                         + "\(people) people halve in \(rosterDepth)"

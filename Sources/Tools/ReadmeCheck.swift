@@ -85,14 +85,13 @@ enum ReadmeCheck {
 
         // What the README says, each pattern read at every occurrence.
         let expectations: [(pattern: String, count: Int, name: String)] = [
-            ("The (\\d+) papers", papers, "papers in the Papers directory"),
-            ("in (\\d+) papers", papers, "papers in the Papers directory"),
+            ("(\\d+) papers", papers, "papers in the Papers directory"),
             ("(\\d+) protocols", protocols, "public protocols in the theory"),
-            ("the (\\d+)-person company", people, "people in the two team files"),
+            ("(\\d+)-person company", people, "people in the two team files"),
             ("the (\\d+) people", people, "people in the two team files"),
             ("(\\d+) protocols, one per claim", protocols, "public protocols in the theory"),
             ("Executed (\\d+) tests", tests, "test functions under Tests"),
-            ("(\\d+) possible sequences", keypadSequences, "sequences the Neighbors page derives"),
+            ("(\\d+) possible input sequences", keypadSequences, "sequences the Neighbors page derives"),
             ("to ([\\d,]+) employees", curveEmployees, "employees the Curve page measures"),
             ("([\\d,]+)-person file", curveEmployees, "employees the Curve page measures"),
         ]

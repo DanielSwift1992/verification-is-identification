@@ -20,6 +20,13 @@ public enum LampOn {}
 /// at once. A counting term is a structure, so its chain folds to a number the
 /// way every chain in this package does, and ``Tally`` reads it with no reader
 /// written anywhere.
+///
+/// > Important: `Counting` deliberately stands apart from `IntegerValued`, and
+/// > ``Tick`` is no alias of `Succ`, though both wrap by one. The axis is the
+/// > grammar of moves: a number can be added and halved, a count of events can
+/// > only grow. Merged, every numeric rule would match the counter's slot and
+/// > the counter's rule would match every numeric slot — the axis split is what
+/// > keeps a button on its own slot.
 public protocol Counting: Structure {}
 extension Never: Counting {}
 /// One step more than its content: the counter's only constructor. Its count is

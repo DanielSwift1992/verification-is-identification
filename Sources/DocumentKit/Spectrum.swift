@@ -151,3 +151,82 @@ public enum Cover90: Close {}
 extension Cover90 {
     public static var typeName: String { "0.90" }
 }
+
+// ── The spectral bridge: what one unit of a stated line pours into the three
+// bands. The weights are walks like every colour here, stated in the edge's own
+// coordinates. The infrared row is ``Quenched`` across all bands: the eye's
+// blindness is a row of zeros, so two beams differing only there mix to one
+// identical colour by construction, never by a check. ──
+
+/// One unit of the H-α line, poured into the bands: nearly full long band,
+/// nothing else. The red of a hydrogen lamp.
+public enum HAlphaGlow: Close {}
+extension HAlphaGlow {
+    public typealias LongShare = Brighter<Brighter<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
+    public typealias MiddleShare = Quenched
+    public typealias ShortShare = Quenched
+    public static var typeName: String { "h-alpha" }
+}
+
+/// One unit of the H-β line: a middle-and-short pour, the blue-green of the
+/// same lamp.
+public enum HBetaGlow: Close {}
+extension HBetaGlow {
+    public typealias LongShare = Quenched
+    public typealias MiddleShare = Brighter<Dimmer<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
+    public typealias ShortShare = Brighter<Brighter<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
+    public static var typeName: String { "h-beta" }
+}
+
+/// One unit of the Paschen-α line: every band quenched. The line is real and
+/// the eye receives none of it.
+public enum PaschenGlow: Close {}
+extension PaschenGlow {
+    public typealias LongShare = Quenched
+    public typealias MiddleShare = Quenched
+    public typealias ShortShare = Quenched
+    public static var typeName: String { "paschen-alpha" }
+}
+
+/// This is the additive door: it reads three line levels, pours each through
+/// its stated weights, sums the bands before the edge, and clamps at the edge.
+/// ``Lit`` and ``Veiled`` read one finished walk; this door exists because a
+/// mix must be summed before it is encoded — the mixing theorem makes the
+/// door, and the clamp is the edge's own saturation, printed decimal as `rgb()`
+/// wants it.
+public enum SpectralFill<
+    AlphaLevel: Structure,
+    BetaLevel: Structure,
+    PaschenLevel: Structure
+>: Close {}
+extension SpectralFill {
+    public static var typeName: String {
+        let walk: (String) -> Int = { marks in
+            precondition(marks.count == 8, "a band settles in eight cuts, not \(marks.count)")
+            var level = 0
+            for mark in marks {
+                level = level * 2 + (mark == "1" ? 1 : 0)
+            }
+            return level
+        }
+        let band: (Int, Int, Int) -> Int = { long, middle, short in
+            min(255, AlphaLevel.count * long + BetaLevel.count * middle + PaschenLevel.count * short)
+        }
+        let red = band(
+            walk(HAlphaGlow.LongShare.typeName),
+            walk(HBetaGlow.LongShare.typeName),
+            walk(PaschenGlow.LongShare.typeName)
+        )
+        let green = band(
+            walk(HAlphaGlow.MiddleShare.typeName),
+            walk(HBetaGlow.MiddleShare.typeName),
+            walk(PaschenGlow.MiddleShare.typeName)
+        )
+        let blue = band(
+            walk(HAlphaGlow.ShortShare.typeName),
+            walk(HBetaGlow.ShortShare.typeName),
+            walk(PaschenGlow.ShortShare.typeName)
+        )
+        return "rgb(\(red),\(green),\(blue))"
+    }
+}

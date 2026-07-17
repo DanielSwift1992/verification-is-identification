@@ -152,137 +152,133 @@ extension Cover90 {
     public static var typeName: String { "0.90" }
 }
 
-// ── The spectral bridge: a stated line weight is the SHAPE of one full pour —
-// which bands, in which proportions — and the door's ladder is the stated
-// discretization of the edge: how many rungs climb to full. Shape and ladder
-// are orthogonal by law (depth is a walk), so there is one weight per line and
-// one Steps atom per instrument, never a second table. A gas is not a door
-// parameter: a gas is a world's alphabet of slots, and the kit only states the
-// weights its lines pour. A line beyond the eye is a quenched row, so beams
-// differing only there mix to one identical colour by construction. ──
+// ── The spectral bridge: mixing is a type. A line's weight per rung is a
+// stated magnitude (256ths of one full pour), a level is a stated rung, and a
+// pour is Plus of Times — the sum lives in the structure and Tally's own count
+// reads it. Nothing computes outside the one edge write that prints three
+// counts, the same class of door as ``Lit``'s radix print. No chart is wired
+// into the pour and nothing is clamped here: a value always exists, and the
+// device behind the edge write decides its own reach. A quenched row is
+// ``Never``, so beams differing only there pour to one identical value by
+// construction. ──
 
-/// A stated line weight: the shape of one full pour into the three bands, each
-/// share a walk like every colour here.
-public protocol GlowWeights {
-    associatedtype LongShare: Shade
-    associatedtype MiddleShare: Shade
-    associatedtype ShortShare: Shade
+/// A stated line weight per rung of the ladder: three magnitudes, chart-neutral,
+/// in 256ths of one full pour. Stating them is the bridge's whole job.
+public protocol CanonicalWeights {
+    associatedtype XShare: Structure
+    associatedtype YShare: Structure
+    associatedtype ZShare: Structure
 }
 
-/// The H-α line at full pour: nearly the whole long band, nothing else. The
-/// red of a hydrogen lamp.
-public enum HAlphaGlow: GlowWeights, Close {}
+/// The picker's ladder, stated as magnitudes with a documented count: rung
+/// zero is the floor, rung eight is one full pour.
+public typealias Rung0 = Never
+public typealias Rung1 = Unit
+public typealias Rung2 = Twice<Unit>
+public typealias Rung3 = Plus<Twice<Unit>, Unit>
+public typealias Rung4 = Twice<Twice<Unit>>
+public typealias Rung5 = Plus<Twice<Twice<Unit>>, Unit>
+public typealias Rung6 = Twice<Plus<Twice<Unit>, Unit>>
+public typealias Rung7 = Plus<Twice<Twice<Unit>>, Plus<Twice<Unit>, Unit>>
+public typealias Rung8 = Twice<Twice<Twice<Unit>>>
+
+/// The H-α line, 656 nm, per rung: a long-wave pour, no short-wave part.
+public enum HAlphaGlow: CanonicalWeights, Close {}
 extension HAlphaGlow {
-    public typealias LongShare = Brighter<Brighter<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
-    public typealias MiddleShare = Quenched
-    public typealias ShortShare = Quenched
+    public typealias XShare = Rung7
+    public typealias YShare = Rung2
+    public typealias ZShare = Never
     public static var typeName: String { "h-alpha" }
 }
 
-/// The H-β line at full pour: a middle-and-short shape, the blue-green of the
-/// same lamp.
-public enum HBetaGlow: GlowWeights, Close {}
+/// The H-β line, 486 nm, per rung: a short-wave pour with a middle lift.
+public enum HBetaGlow: CanonicalWeights, Close {}
 extension HBetaGlow {
-    public typealias LongShare = Quenched
-    public typealias MiddleShare = Brighter<Dimmer<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
-    public typealias ShortShare = Brighter<Brighter<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
+    public typealias XShare = Rung2
+    public typealias YShare = Rung7
+    public typealias ZShare = Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Twice<Unit>>, Plus<Twice<Unit>, Twice<Twice<Unit>>>>>
     public static var typeName: String { "h-beta" }
 }
 
-/// The Paschen-α line at full pour: every band quenched. The line is real and
-/// the eye receives none of it.
-public enum PaschenGlow: GlowWeights, Close {}
+/// The Paschen-α line, 1875 nm, per rung: every share ``Never``. The line is
+/// real and the standard observer receives none of it.
+public enum PaschenGlow: CanonicalWeights, Close {}
 extension PaschenGlow {
-    public typealias LongShare = Quenched
-    public typealias MiddleShare = Quenched
-    public typealias ShortShare = Quenched
+    public typealias XShare = Never
+    public typealias YShare = Never
+    public typealias ZShare = Never
     public static var typeName: String { "paschen-alpha" }
 }
 
-/// Neon's strong yellow-orange line, 585 nm, at full pour.
-public enum NeonYellowGlow: GlowWeights, Close {}
+/// Neon's yellow-orange line, 585 nm, per rung.
+public enum NeonYellowGlow: CanonicalWeights, Close {}
 extension NeonYellowGlow {
-    public typealias LongShare = Brighter<Brighter<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
-    public typealias MiddleShare = Brighter<Dimmer<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
-    public typealias ShortShare = Quenched
+    public typealias XShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Unit>
+    public typealias YShare = Twice<Twice<Twice<Twice<Unit>>>>
+    public typealias ZShare = Never
     public static var typeName: String { "neon-585" }
 }
 
-/// Neon's red-orange line, 640 nm, at full pour.
-public enum NeonRedGlow: GlowWeights, Close {}
+/// Neon's red-orange line, 640 nm, per rung.
+public enum NeonRedGlow: CanonicalWeights, Close {}
 extension NeonRedGlow {
-    public typealias LongShare = Brighter<Brighter<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
-    public typealias MiddleShare = Dimmer<Dimmer<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
-    public typealias ShortShare = Quenched
+    public typealias XShare = Plus<Twice<Twice<Twice<Unit>>>, Unit>
+    public typealias YShare = Twice<Twice<Unit>>
+    public typealias ZShare = Never
     public static var typeName: String { "neon-640" }
 }
 
-/// Sodium's D doublet, 589 nm, at full pour: the yellow of a street lamp.
-public enum SodiumDGlow: GlowWeights, Close {}
+/// Sodium's D doublet, 589 nm, per rung: the yellow of a street lamp.
+public enum SodiumDGlow: CanonicalWeights, Close {}
 extension SodiumDGlow {
-    public typealias LongShare = Brighter<Brighter<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
-    public typealias MiddleShare = Brighter<Dimmer<Dimmer<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
-    public typealias ShortShare = Quenched
+    public typealias XShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Twice<Unit>>
+    public typealias YShare = Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Twice<Unit>>, Plus<Twice<Unit>, Unit>>>
+    public typealias ZShare = Never
     public static var typeName: String { "sodium-589" }
 }
 
-/// Sodium's infrared line, 819 nm, at full pour: quenched in every band. A
-/// second blind row, so sodium carries its own metameric pair.
-public enum SodiumIRGlow: GlowWeights, Close {}
+/// Sodium's infrared line, 819 nm, per rung: every share ``Never``. A second
+/// blind row, so sodium carries its own metameric pair.
+public enum SodiumIRGlow: CanonicalWeights, Close {}
 extension SodiumIRGlow {
-    public typealias LongShare = Quenched
-    public typealias MiddleShare = Quenched
-    public typealias ShortShare = Quenched
+    public typealias XShare = Never
+    public typealias YShare = Never
+    public typealias ZShare = Never
     public static var typeName: String { "sodium-819" }
 }
 
-/// Eight rungs to full: the stated ladder of a picker whose levels climb 0
-/// through 8.
-public typealias EightSteps = Twice<Twice<Twice<Unit>>>
+/// One canonical coordinate of a pour: three levels times their line's share,
+/// summed by composition. The sum IS this type — Tally's count reads it, and
+/// no code adds anything anywhere.
+public typealias PouredCoordinate<
+    A: Structure, ShareA: Structure,
+    B: Structure, ShareB: Structure,
+    C: Structure, ShareC: Structure
+> = Plus<Times<A, ShareA>, Plus<Times<B, ShareB>, Times<C, ShareC>>>
 
-/// This is the additive door: three weighted sources, each a stated shape
-/// poured at its level, one stated ladder for the instrument. A rung is the
-/// shape divided by the steps, the bands sum before the edge, and the clamp is
-/// the edge's own saturation. ``Lit`` and ``Veiled`` read one finished walk;
-/// this door exists because a mix must be summed before it is encoded.
-public enum SpectralFill<
-    FirstWeights: GlowWeights, FirstLevel: Structure,
-    SecondWeights: GlowWeights, SecondLevel: Structure,
-    ThirdWeights: GlowWeights, ThirdLevel: Structure,
-    Steps: Structure
+/// The chart-neutral edge write: three canonical sums printed as the browser's
+/// own device-independent form, `color(xyz-d65 …)`, in 256ths. The device maps
+/// the value onto whatever it can reach — the clamp, where one must happen, is
+/// the device's own, never the canon's. This door reads three counts and
+/// prints them, the same class of door as ``Lit``'s radix print; a narrower
+/// chart is one more door beside it, never a new pour.
+public enum XYZWrite<
+    X: Structure,
+    Y: Structure,
+    Z: Structure
 >: Close {}
-extension SpectralFill {
+extension XYZWrite {
     public static var typeName: String {
-        let walk: (String) -> Int = { marks in
-            precondition(marks.count == 8, "a band settles in eight cuts, not \(marks.count)")
-            var level = 0
-            for mark in marks {
-                level = level * 2 + (mark == "1" ? 1 : 0)
-            }
-            return level
+        let thousandths: (Int) -> String = { value in
+            let scaled = value * 1000 / 256
+            let whole = scaled / 1000
+            let rest = scaled % 1000
+            let padded = rest < 10 ? "00\(rest)" : rest < 100 ? "0\(rest)" : "\(rest)"
+            return "\(whole).\(padded)"
         }
-        let steps = Steps.count
-        precondition(steps > 0, "a ladder has at least one rung")
-        let band: (Int, Int, Int) -> Int = { first, second, third in
-            let poured = FirstLevel.count * first + SecondLevel.count * second + ThirdLevel.count * third
-            return min(255, poured / steps)
-        }
-        let red = band(
-            walk(FirstWeights.LongShare.typeName),
-            walk(SecondWeights.LongShare.typeName),
-            walk(ThirdWeights.LongShare.typeName)
-        )
-        let green = band(
-            walk(FirstWeights.MiddleShare.typeName),
-            walk(SecondWeights.MiddleShare.typeName),
-            walk(ThirdWeights.MiddleShare.typeName)
-        )
-        let blue = band(
-            walk(FirstWeights.ShortShare.typeName),
-            walk(SecondWeights.ShortShare.typeName),
-            walk(ThirdWeights.ShortShare.typeName)
-        )
-        return "rgb(\(red),\(green),\(blue))"
+        return "color(xyz-d65 " + thousandths(X.count)
+            + " " + thousandths(Y.count)
+            + " " + thousandths(Z.count) + ")"
     }
 }
 

@@ -12,7 +12,7 @@ No new postulate. Seeing Is Encoding gives the projection and its kernel; Form I
 
 ## §2. Colour spaces are charts
 
-**CiQ2 (One quotient, many gauges).** RGB triples, XYZ, Lab, OKLCH: charts on one three-channel quotient, related by re-parameterization — the same content under different spellings, which is the gauge freedom of forms. The linear charts respect mixing; the bent ones buy something else. A perceptually uniform chart bends its coordinates until the perceptual distance runs flat along them: equal steps, equal felt difference. And one coordinate is not like the others: hue closes on itself. Hue is a residue — a position on a finite ring, the same carrier as a wave's phase — so complements are the half-turn, and the complement of the complement is the hue itself, an involution checked once for the whole ring.
+**CiQ2 (One quotient, many gauges).** RGB triples, XYZ, Lab, OKLCH: charts on one three-channel quotient, related by re-parameterization — the same content under different spellings, which is the gauge freedom of forms. The linear charts respect mixing; the bent ones buy something else. One chart is canonical for mixing: the linear one, where the sum of lights is the sum of coordinates — mixing lives there, and every other chart is a spelling at the edge. A perceptually uniform chart bends its coordinates until the perceptual distance runs flat along them: equal steps, equal felt difference. And one coordinate is not like the others: hue closes on itself. Hue is a residue — a position on a finite ring, the same carrier as a wave's phase — so complements are the half-turn, and the complement of the complement is the hue itself, an involution checked once for the whole ring.
 
 ## §3. A display is a cone
 

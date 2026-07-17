@@ -39,7 +39,7 @@
 <text x="32" y="15" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="10">Decidable</text>
 </g>
 </g>
-<text x="464" y="128" text-anchor="middle" fill="var(--vi-action, #336FEE)" font-weight="400" font-size="10">186 types · 0 runtime functions</text>
+<text x="464" y="128" text-anchor="middle" fill="var(--vi-action, #336FEE)" font-weight="400" font-size="10">188 types · 0 runtime functions</text>
 </g>
 </a>
 </g>

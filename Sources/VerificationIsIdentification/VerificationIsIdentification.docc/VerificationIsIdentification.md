@@ -122,6 +122,7 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 ### The axes: pure generators
 
 - ``HasSigma``
+- ``EncodingForgets``
 - ``HasAlpha``
 - ``HasBasis``
 - ``HasCompositionalNorm``
@@ -133,6 +134,7 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``HasLibrary``
 - ``HasSaturation``
 - ``HasTime``
+- ``SeparatorIdentifies``
 ### The floor: what it delegates, where it stops
 
 - ``EncoderConditions``

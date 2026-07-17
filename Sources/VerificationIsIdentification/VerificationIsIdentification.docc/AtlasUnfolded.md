@@ -8,7 +8,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ### HasSigma
 
-``HasSigma`` carries 145 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+``HasSigma`` carries 147 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
 | Claim | Kind | Stands on | Carries | Home |
 | --- | --- | --- | --- | --- |
@@ -38,8 +38,8 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 | ``Ignites`` | bridge | ``LibrarySaturates``, ``Matter`` | [22](<doc:AtlasUnfolded#Ignites>) | Matter |
 | ``HasCost`` | axis | ``HasSigma`` | [20](<doc:AtlasUnfolded#HasCost>) | Matter |
 | ``Tower`` | bridge | ``HasCost``, ``HasTime``, ``Ignites`` | [18](<doc:AtlasUnfolded#Tower>) | Matter |
+| ``HasEncoding`` | axis | ``HasSigma`` | [17](<doc:AtlasUnfolded#HasEncoding>) | Core |
 | ``BallSaturation`` | bridge | ``DistanceOnStructures``, ``LibrarySaturates`` | [15](<doc:AtlasUnfolded#BallSaturation>) | Gradient |
-| ``HasEncoding`` | axis | ``HasSigma`` | [15](<doc:AtlasUnfolded#HasEncoding>) | Core |
 | ``CompressionCriterion`` | bridge | ``DistanceOnStructures``, ``Tower`` | [14](<doc:AtlasUnfolded#CompressionCriterion>) | Gradient |
 | ``HasPath`` | axis | ``HasSigma`` | [13](<doc:AtlasUnfolded#HasPath>) | Path |
 | ``GateIsZeroOfLoss`` | theorem | ``DistanceOnStructures``, ``PassImpliesMembership`` | [12](<doc:AtlasUnfolded#GateIsZeroOfLoss>) | Gradient |
@@ -96,6 +96,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 | ``CostReadsGauge`` | bridge | ``HasDistance``, ``HasGauge`` | [1](<doc:AtlasUnfolded#CostReadsGauge>) | Gauge |
 | ``DistanceIsMetric`` | bridge | ``HasCache``, ``HasDistance`` | [1](<doc:AtlasUnfolded#DistanceIsMetric>) | Space |
 | ``EmissionIsAutoregressive`` | bridge | ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding`` | [1](<doc:AtlasUnfolded#EmissionIsAutoregressive>) | Path |
+| ``EncodingForgets`` | axis | ``HasEncoding`` | [1](<doc:AtlasUnfolded#EncodingForgets>) | Seeing |
 | ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
 | ``LinearArbiter`` | bridge | ``CostIsPathLength`` | [1](<doc:AtlasUnfolded#LinearArbiter>) | Gauge |
 | ``MeasuredGeometry`` | bridge | ``FourthFace``, ``SearchableIffClusteredAndAligned`` | [1](<doc:AtlasUnfolded#MeasuredGeometry>) | Spec |
@@ -153,6 +154,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 | ``SaturationIncorruptible`` | theorem | ``CachePermanent`` | 0 | Identification |
 | ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
 | ``SecondEncodingIsNovelty`` | bridge | ``ScopeBoundedByEncoding``, ``SelfPlaySaturates`` | 0 | Play |
+| ``SeparatorIdentifies`` | axis | ``EncodingForgets`` | 0 | Seeing |
 | ``SpaceFromDifference`` | bridge | ``DistanceIsMetric``, ``HasGrammar`` | 0 | Space |
 | ``StrategyNavigation`` | bridge | ``NavigationInevitable``, ``SkillsAreBalls`` | 0 | Strategy |
 | ``ThreeAxesOfCompare`` | bridge | ``Decidable``, ``OrderIsOnlyFreedom`` | 0 | Interference |
@@ -2232,6 +2234,30 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 | ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
 | ``StrategyNavigation`` | bridge | ``NavigationInevitable``, ``SkillsAreBalls`` | 0 | Strategy |
 
+### HasEncoding
+
+``HasEncoding`` carries 17 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Stands on | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``EncoderConditions`` | bridge | ``BallSaturation``, ``CompressionCriterion``, ``HasEncoding`` | [2](<doc:AtlasUnfolded#EncoderConditions>) | Spec |
+| ``HasGrammar`` | axis | ``HasEncoding`` | [2](<doc:AtlasUnfolded#HasGrammar>) | Space |
+| ``ConditionalSolving`` | bridge | ``EncoderConditions`` | [1](<doc:AtlasUnfolded#ConditionalSolving>) | Spec |
+| ``ContentIsGaugeInvariant`` | bridge | ``HasEncoding``, ``HasGauge``, ``RevealsNotCreates`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
+| ``EmissionIsAutoregressive`` | bridge | ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding`` | [1](<doc:AtlasUnfolded#EmissionIsAutoregressive>) | Path |
+| ``EncodingForgets`` | axis | ``HasEncoding`` | [1](<doc:AtlasUnfolded#EncodingForgets>) | Seeing |
+| ``CompleteEntry`` | bridge | ``HasEncoding``, ``PhaseBecomesAmplitude`` | 0 | Strategy |
+| ``DepthIsBounded`` | bridge | ``HasGrammar``, ``Tower`` | 0 | Space |
+| ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
+| ``EncodingSelectionSaturates`` | bridge | ``HasEncoding``, ``LibrarySaturates`` | 0 | Intelligence |
+| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
+| ``PerspectiveIsEncoding`` | theorem | ``HasEncoding``, ``Measurable``, ``ScopeBoundedByEncoding`` | 0 | Space |
+| ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
+| ``QualitiesAreFinite`` | theorem | ``HasEncoding``, ``IntegerValued`` | 0 | Space |
+| ``SeparatorIdentifies`` | axis | ``EncodingForgets`` | 0 | Seeing |
+| ``SpaceFromDifference`` | bridge | ``DistanceIsMetric``, ``HasGrammar`` | 0 | Space |
+| ``Universality`` | bridge | ``ExactlyOneSurvives``, ``HasEncoding`` | 0 | Identification |
+
 ### BallSaturation
 
 ``BallSaturation`` carries 15 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
@@ -2253,28 +2279,6 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 | ``OrthogonalOrgans`` | bridge | ``DiscriminatorAndGenerator``, ``SearchableIffClusteredAndAligned`` | 0 | Generation |
 | ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
 | ``StrategyNavigation`` | bridge | ``NavigationInevitable``, ``SkillsAreBalls`` | 0 | Strategy |
-
-### HasEncoding
-
-``HasEncoding`` carries 15 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
-
-| Claim | Kind | Stands on | Carries | Home |
-| --- | --- | --- | --- | --- |
-| ``EncoderConditions`` | bridge | ``BallSaturation``, ``CompressionCriterion``, ``HasEncoding`` | [2](<doc:AtlasUnfolded#EncoderConditions>) | Spec |
-| ``HasGrammar`` | axis | ``HasEncoding`` | [2](<doc:AtlasUnfolded#HasGrammar>) | Space |
-| ``ConditionalSolving`` | bridge | ``EncoderConditions`` | [1](<doc:AtlasUnfolded#ConditionalSolving>) | Spec |
-| ``ContentIsGaugeInvariant`` | bridge | ``HasEncoding``, ``HasGauge``, ``RevealsNotCreates`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
-| ``EmissionIsAutoregressive`` | bridge | ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding`` | [1](<doc:AtlasUnfolded#EmissionIsAutoregressive>) | Path |
-| ``CompleteEntry`` | bridge | ``HasEncoding``, ``PhaseBecomesAmplitude`` | 0 | Strategy |
-| ``DepthIsBounded`` | bridge | ``HasGrammar``, ``Tower`` | 0 | Space |
-| ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
-| ``EncodingSelectionSaturates`` | bridge | ``HasEncoding``, ``LibrarySaturates`` | 0 | Intelligence |
-| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
-| ``PerspectiveIsEncoding`` | theorem | ``HasEncoding``, ``Measurable``, ``ScopeBoundedByEncoding`` | 0 | Space |
-| ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
-| ``QualitiesAreFinite`` | theorem | ``HasEncoding``, ``IntegerValued`` | 0 | Space |
-| ``SpaceFromDifference`` | bridge | ``DistanceIsMetric``, ``HasGrammar`` | 0 | Space |
-| ``Universality`` | bridge | ``ExactlyOneSurvives``, ``HasEncoding`` | 0 | Identification |
 
 ### CompressionCriterion
 
@@ -3010,6 +3014,14 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 | Claim | Kind | Stands on | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
+
+### EncodingForgets
+
+``EncodingForgets`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Stands on | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``SeparatorIdentifies`` | axis | ``EncodingForgets`` | 0 | Seeing |
 
 ### GatedConstruction
 

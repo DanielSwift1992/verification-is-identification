@@ -12,7 +12,7 @@ A cycle between claims cannot exist here: a circular protocol hierarchy does not
 
 | Claim | Kind | Stands on | Carries | Home |
 | --- | --- | --- | --- | --- |
-| ``HasSigma`` | axis | — | [145](<doc:AtlasUnfolded#HasSigma>) | Core |
+| ``HasSigma`` | axis | — | [147](<doc:AtlasUnfolded#HasSigma>) | Core |
 | ``Structure`` | marker | — | [139](<doc:AtlasUnfolded#Structure>) | Primitive |
 | ``Open`` | kernel | ``Structure`` | [137](<doc:AtlasUnfolded#Open>) | Primitive |
 | ``Pair`` | seed | ``Open`` | [135](<doc:AtlasUnfolded#Pair>) | Primitive |
@@ -46,8 +46,8 @@ A cycle between claims cannot exist here: a circular protocol hierarchy does not
 | ``Ignites`` | bridge | ``LibrarySaturates``, ``Matter`` | [22](<doc:AtlasUnfolded#Ignites>) | Matter |
 | ``HasCost`` | axis | ``HasSigma`` | [20](<doc:AtlasUnfolded#HasCost>) | Matter |
 | ``Tower`` | bridge | ``HasCost``, ``HasTime``, ``Ignites`` | [18](<doc:AtlasUnfolded#Tower>) | Matter |
+| ``HasEncoding`` | axis | ``HasSigma`` | [17](<doc:AtlasUnfolded#HasEncoding>) | Core |
 | ``BallSaturation`` | bridge | ``DistanceOnStructures``, ``LibrarySaturates`` | [15](<doc:AtlasUnfolded#BallSaturation>) | Gradient |
-| ``HasEncoding`` | axis | ``HasSigma`` | [15](<doc:AtlasUnfolded#HasEncoding>) | Core |
 | ``CompressionCriterion`` | bridge | ``DistanceOnStructures``, ``Tower`` | [14](<doc:AtlasUnfolded#CompressionCriterion>) | Gradient |
 | ``HasPath`` | axis | ``HasSigma`` | [13](<doc:AtlasUnfolded#HasPath>) | Path |
 | ``GateIsZeroOfLoss`` | theorem | ``DistanceOnStructures``, ``PassImpliesMembership`` | [12](<doc:AtlasUnfolded#GateIsZeroOfLoss>) | Gradient |
@@ -108,6 +108,7 @@ A cycle between claims cannot exist here: a circular protocol hierarchy does not
 | ``CostReadsGauge`` | bridge | ``HasDistance``, ``HasGauge`` | [1](<doc:AtlasUnfolded#CostReadsGauge>) | Gauge |
 | ``DistanceIsMetric`` | bridge | ``HasCache``, ``HasDistance`` | [1](<doc:AtlasUnfolded#DistanceIsMetric>) | Space |
 | ``EmissionIsAutoregressive`` | bridge | ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding`` | [1](<doc:AtlasUnfolded#EmissionIsAutoregressive>) | Path |
+| ``EncodingForgets`` | axis | ``HasEncoding`` | [1](<doc:AtlasUnfolded#EncodingForgets>) | Seeing |
 | ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
 | ``IntegerValued`` | marker | ``Pair`` | [1](<doc:AtlasUnfolded#IntegerValued>) | Core |
 | ``LinearArbiter`` | bridge | ``CostIsPathLength`` | [1](<doc:AtlasUnfolded#LinearArbiter>) | Gauge |
@@ -171,6 +172,7 @@ A cycle between claims cannot exist here: a circular protocol hierarchy does not
 | ``SaturationIncorruptible`` | theorem | ``CachePermanent`` | 0 | Identification |
 | ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
 | ``SecondEncodingIsNovelty`` | bridge | ``ScopeBoundedByEncoding``, ``SelfPlaySaturates`` | 0 | Play |
+| ``SeparatorIdentifies`` | axis | ``EncodingForgets`` | 0 | Seeing |
 | ``SpaceFromDifference`` | bridge | ``DistanceIsMetric``, ``HasGrammar`` | 0 | Space |
 | ``StrategyNavigation`` | bridge | ``NavigationInevitable``, ``SkillsAreBalls`` | 0 | Strategy |
 | ``ThreeAxesOfCompare`` | bridge | ``Decidable``, ``OrderIsOnlyFreedom`` | 0 | Interference |

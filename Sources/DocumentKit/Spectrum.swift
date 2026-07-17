@@ -285,3 +285,20 @@ extension SpectralFill {
         return "rgb(\(red),\(green),\(blue))"
     }
 }
+
+/// This reads a band's perceptual rung at the edge: the position of the
+/// highest lit door, zero for a quenched band. Brightness perception runs on
+/// ratios, a halving is one ratio, so the rung is the level's logarithm and
+/// equal rung-steps are equal felt steps. Felt distance is a difference of
+/// rungs, never of counts.
+public enum PerceptualRung<Band: Shade>: Close {}
+extension PerceptualRung {
+    public static var typeName: String {
+        let marks = Band.typeName
+        precondition(marks.count == 8, "a band settles in eight cuts, not \(marks.count)")
+        for (offset, mark) in marks.enumerated() {
+            if mark == "1" { return String(8 - offset) }
+        }
+        return "0"
+    }
+}

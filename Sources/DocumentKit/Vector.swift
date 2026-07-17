@@ -928,12 +928,19 @@ extension RuleKey: Spanning {
     ) -> String {
         // The leaf names out of a chord's cons: a `Chord` node splits at its top-level
         // comma and both halves return to the pile (right first, so declaration order
-        // survives the pops); anything else is a leaf named bare, its generic tail
-        // dropped. A stack walk, not a helper: the witness stays one body.
+        // survives the pops). An `Exactly` leaf is spelled whole, spaces shed, because
+        // the press supplies the atom and the atom travels with the press; any other
+        // leaf is named bare, its placeholder tail dropped. A stack walk, not a
+        // helper: the witness stays one body.
         var names: [String] = []
         var pile: [Substring] = [Substring(String(describing: R.self))]
         while let term = pile.popLast() {
             let text = Substring(term.trimmingCharacters(in: .whitespaces))
+            if text.hasPrefix("Exactly<"), text.hasSuffix(">") {
+                let whole = text.dropFirst("Exactly<".count).dropLast()
+                names.append(String(whole.filter { $0 != " " }))
+                continue
+            }
             guard text.hasPrefix("Chord<"), text.hasSuffix(">") else {
                 names.append(String(text.split(separator: "<").first ?? ""))
                 continue
@@ -1336,6 +1343,29 @@ where Body: DividesY & Structure {
                 free: Paired<Never, Unit>.self
             )
             + "</svg>\n"
+    }
+}
+
+/// This reads the equality of two magnitudes at the edge and branches there:
+/// when the counts agree, the face renders; when they differ, nothing does.
+/// Equality of magnitudes is decided no earlier than the reading, the same
+/// edge a clamp or a tally lives on, and a conjunction of equalities is the
+/// nesting of this form inside itself.
+public enum EdgeSame<
+    A: Structure,
+    B: Structure,
+    Then: Spanning
+>: Close {}
+extension EdgeSame: Spanning {
+    public static func rendered<
+        X: Frac & Structure,
+        W: Frac & Structure
+    >(
+        atX x: X.Type,
+        width w: W.Type
+    ) -> String {
+        guard A.count == B.count else { return "" }
+        return Then.rendered(atX: x, width: w)
     }
 }
 

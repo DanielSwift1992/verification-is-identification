@@ -22,7 +22,7 @@ No new postulate. Seeing Is Encoding gives the projection and its kernel; Form I
 
 ## §4. Depth is a walk
 
-**CiQ5 (Bits are halvings).** A channel's depth is the length of its walk: each bit halves the remaining brightness interval, eight bits are eight halvings, and a high-dynamic-range channel is the same walk grown longer. Precision of colour and precision of measurement are one form — a walk down stated divisions — and the display's finest step is the walk's last door, stated, not approximated.
+**CiQ5 (Bits are halvings).** A channel's depth is the length of its walk: each bit halves the remaining brightness interval, eight bits are eight halvings, and a high-dynamic-range channel is the same walk grown longer. Precision of colour and precision of measurement are one form — a walk down stated divisions — and the display's finest step is the walk's last door, stated, not approximated. And the walk is more than storage. Brightness perception runs on ratios, a halving is one ratio, so the rung of the highest lit door is the level's logarithm — the walk's depth is the perceptually flat coordinate, and felt distance is a difference of rungs, never of counts.
 
 ## §5. Two distances, one hierarchy
 

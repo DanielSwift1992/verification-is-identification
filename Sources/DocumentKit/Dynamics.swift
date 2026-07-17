@@ -42,6 +42,15 @@ public protocol SlotRule: Pressable {
 /// this one pair reaches any width, and the one-slot bound rides every link of
 /// the chain. At any state at most one leaf of a lawful chord matches, so a
 /// chord press stays an identification (§S30), whatever its width.
+/// This marks a key's term as an instance to carry whole: the key's face
+/// spells the full applied term, holes filled, because the press supplies the
+/// atom and the atom must travel with the press. A generic rule's key stays
+/// bare — its placeholder is spelling, not information — so the two kinds are
+/// told apart by statement, never by guessing at a name's tail.
+public enum Exactly<Rule: Pressable>: Pressable {
+    public typealias Slot = Rule.Slot
+}
+
 public enum Chord<
     A: Pressable,
     B: Pressable

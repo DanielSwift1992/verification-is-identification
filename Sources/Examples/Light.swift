@@ -398,3 +398,91 @@ public enum GrayDisplay: GamutIsCone {
     public typealias Fiber = EyeImage<RedBeam>
     public typealias Primaries = GrayPrimaryAt<Lit1>
 }
+
+// ── A real display: two primaries over a three-channel eye. The gamut is a
+// protocol — its `where` clause is the span of the primaries — so a colour
+// inside conforms, and a colour outside fails the conformance by channel name. ──
+
+/// A three-channel appearance: how much red, green, and blue the eye receives.
+public protocol Glow {
+    associatedtype RedChannel: IntegerValued
+    associatedtype GreenChannel: IntegerValued
+    associatedtype BlueChannel: IntegerValued
+}
+
+/// The gamut of a red-green display, stated as a protocol: both primaries are
+/// dark in blue, so every mix is dark in blue, and the `where` clause says
+/// exactly that. Out of gamut is a failed conformance, named by its channel.
+public protocol OnRedGreenDisplay: Glow
+where BlueChannel == Never {}
+
+/// Yellow at full: both primaries lit, blue necessarily dark. It conforms —
+/// the levels are the certificate.
+public enum YellowAtFull: OnRedGreenDisplay {
+    public typealias RedChannel = Lit1
+    public typealias GreenChannel = Lit1
+    public typealias BlueChannel = Never
+}
+
+#if SHOW_GAMUT
+/// A laser blue on the red-green display: the conformance fails, and the
+/// refusal names the blue channel. The display does not clip the colour — the
+/// colour has no type on this display.
+public enum LaserBlueOnRG: OnRedGreenDisplay {
+    public typealias RedChannel = Never
+    public typealias GreenChannel = Never
+    public typealias BlueChannel = Lit1
+}
+#endif
+
+// ── The two-slit scene: stated geometry, judged parity. A screen node states
+// its left path and the extra length of its right path, and the SPELLING of
+// that extra carries its parity: an even gap is written as a pair, an odd gap
+// as one more beside a pair. The judge reads the spelling — even settles bright,
+// odd settles dark — and the dark node is the annihilation pair above. ──
+
+/// A screen node of the two-slit scene: the counted path through the left
+/// slit, and the gap the right path adds. The scene is stated; nothing
+/// measures it.
+public protocol SlitNode {
+    associatedtype ThroughLeft: IntegerValued
+    associatedtype Gap
+}
+
+/// An even gap settles bright: the two contributions arrive in phase, and
+/// agreement doubles. The certificate is the gap's own spelling as a pair.
+public protocol BrightFringe {}
+public enum EvenGap<N: SlitNode, K> {}
+extension EvenGap: BrightFringe
+where N.Gap == Twice<K> {}
+
+/// An odd gap settles dark: the two contributions arrive opposite, and the
+/// pair annihilates — the same rule ``OppositePair`` states in general.
+public protocol DarkFringe {}
+public enum OddGap<N: SlitNode, K> {}
+extension OddGap: DarkFringe
+where N.Gap == Plus<Lit1, Twice<K>> {}
+
+/// Four nodes up the screen: gaps of zero, one, two, and three half-ticks,
+/// spelled so their parity shows. The fringe pattern is four certificates.
+public enum NodeCenter: SlitNode {
+    public typealias ThroughLeft = Succ<Lit2>
+    public typealias Gap = Twice<Never>
+}
+public enum NodeFirst: SlitNode {
+    public typealias ThroughLeft = Succ<Lit2>
+    public typealias Gap = Plus<Lit1, Twice<Never>>
+}
+public enum NodeSecond: SlitNode {
+    public typealias ThroughLeft = Succ<Lit2>
+    public typealias Gap = Twice<Lit1>
+}
+public enum NodeThird: SlitNode {
+    public typealias ThroughLeft = Succ<Lit2>
+    public typealias Gap = Plus<Lit1, Twice<Lit1>>
+}
+
+public let centerBright: BrightFringe.Type = EvenGap<NodeCenter, Never>.self
+public let firstDark: DarkFringe.Type = OddGap<NodeFirst, Never>.self
+public let secondBright: BrightFringe.Type = EvenGap<NodeSecond, Lit1>.self
+public let thirdDark: DarkFringe.Type = OddGap<NodeThird, Lit1>.self

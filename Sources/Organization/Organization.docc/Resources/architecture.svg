@@ -85,7 +85,7 @@
 <text x="38" y="15" text-anchor="middle" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="10">rewrite rules</text>
 </g>
 </g>
-<text x="464" y="128" text-anchor="middle" fill="var(--vi-action, #336FEE)" font-weight="400" font-size="10">630 types · 0 runtime</text>
+<text x="464" y="128" text-anchor="middle" fill="var(--vi-action, #336FEE)" font-weight="400" font-size="10">635 types · 0 runtime</text>
 </g>
 </a>
 </g>

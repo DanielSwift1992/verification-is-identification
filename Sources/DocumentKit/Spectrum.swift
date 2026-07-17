@@ -152,15 +152,26 @@ extension Cover90 {
     public static var typeName: String { "0.90" }
 }
 
-// ── The spectral bridge: what one unit of a stated line pours into the three
-// bands. The weights are walks like every colour here, stated in the edge's own
-// coordinates. The infrared row is ``Quenched`` across all bands: the eye's
-// blindness is a row of zeros, so two beams differing only there mix to one
-// identical colour by construction, never by a check. ──
+// ── The spectral bridge: a stated line weight is the SHAPE of one full pour —
+// which bands, in which proportions — and the door's ladder is the stated
+// discretization of the edge: how many rungs climb to full. Shape and ladder
+// are orthogonal by law (depth is a walk), so there is one weight per line and
+// one Steps atom per instrument, never a second table. A gas is not a door
+// parameter: a gas is a world's alphabet of slots, and the kit only states the
+// weights its lines pour. A line beyond the eye is a quenched row, so beams
+// differing only there mix to one identical colour by construction. ──
 
-/// One unit of the H-α line, poured into the bands: nearly full long band,
-/// nothing else. The red of a hydrogen lamp.
-public enum HAlphaGlow: Close {}
+/// A stated line weight: the shape of one full pour into the three bands, each
+/// share a walk like every colour here.
+public protocol GlowWeights {
+    associatedtype LongShare: Shade
+    associatedtype MiddleShare: Shade
+    associatedtype ShortShare: Shade
+}
+
+/// The H-α line at full pour: nearly the whole long band, nothing else. The
+/// red of a hydrogen lamp.
+public enum HAlphaGlow: GlowWeights, Close {}
 extension HAlphaGlow {
     public typealias LongShare = Brighter<Brighter<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
     public typealias MiddleShare = Quenched
@@ -168,9 +179,9 @@ extension HAlphaGlow {
     public static var typeName: String { "h-alpha" }
 }
 
-/// One unit of the H-β line: a middle-and-short pour, the blue-green of the
+/// The H-β line at full pour: a middle-and-short shape, the blue-green of the
 /// same lamp.
-public enum HBetaGlow: Close {}
+public enum HBetaGlow: GlowWeights, Close {}
 extension HBetaGlow {
     public typealias LongShare = Quenched
     public typealias MiddleShare = Brighter<Dimmer<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
@@ -178,9 +189,9 @@ extension HBetaGlow {
     public static var typeName: String { "h-beta" }
 }
 
-/// One unit of the Paschen-α line: every band quenched. The line is real and
+/// The Paschen-α line at full pour: every band quenched. The line is real and
 /// the eye receives none of it.
-public enum PaschenGlow: Close {}
+public enum PaschenGlow: GlowWeights, Close {}
 extension PaschenGlow {
     public typealias LongShare = Quenched
     public typealias MiddleShare = Quenched
@@ -188,16 +199,57 @@ extension PaschenGlow {
     public static var typeName: String { "paschen-alpha" }
 }
 
-/// This is the additive door: it reads three line levels, pours each through
-/// its stated weights, sums the bands before the edge, and clamps at the edge.
-/// ``Lit`` and ``Veiled`` read one finished walk; this door exists because a
-/// mix must be summed before it is encoded — the mixing theorem makes the
-/// door, and the clamp is the edge's own saturation, printed decimal as `rgb()`
-/// wants it.
+/// Neon's strong yellow-orange line, 585 nm, at full pour.
+public enum NeonYellowGlow: GlowWeights, Close {}
+extension NeonYellowGlow {
+    public typealias LongShare = Brighter<Brighter<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
+    public typealias MiddleShare = Brighter<Dimmer<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
+    public typealias ShortShare = Quenched
+    public static var typeName: String { "neon-585" }
+}
+
+/// Neon's red-orange line, 640 nm, at full pour.
+public enum NeonRedGlow: GlowWeights, Close {}
+extension NeonRedGlow {
+    public typealias LongShare = Brighter<Brighter<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
+    public typealias MiddleShare = Dimmer<Dimmer<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
+    public typealias ShortShare = Quenched
+    public static var typeName: String { "neon-640" }
+}
+
+/// Sodium's D doublet, 589 nm, at full pour: the yellow of a street lamp.
+public enum SodiumDGlow: GlowWeights, Close {}
+extension SodiumDGlow {
+    public typealias LongShare = Brighter<Brighter<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
+    public typealias MiddleShare = Brighter<Dimmer<Dimmer<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
+    public typealias ShortShare = Quenched
+    public static var typeName: String { "sodium-589" }
+}
+
+/// Sodium's infrared line, 819 nm, at full pour: quenched in every band. A
+/// second blind row, so sodium carries its own metameric pair.
+public enum SodiumIRGlow: GlowWeights, Close {}
+extension SodiumIRGlow {
+    public typealias LongShare = Quenched
+    public typealias MiddleShare = Quenched
+    public typealias ShortShare = Quenched
+    public static var typeName: String { "sodium-819" }
+}
+
+/// Eight rungs to full: the stated ladder of a picker whose levels climb 0
+/// through 8.
+public typealias EightSteps = Twice<Twice<Twice<Unit>>>
+
+/// This is the additive door: three weighted sources, each a stated shape
+/// poured at its level, one stated ladder for the instrument. A rung is the
+/// shape divided by the steps, the bands sum before the edge, and the clamp is
+/// the edge's own saturation. ``Lit`` and ``Veiled`` read one finished walk;
+/// this door exists because a mix must be summed before it is encoded.
 public enum SpectralFill<
-    AlphaLevel: Structure,
-    BetaLevel: Structure,
-    PaschenLevel: Structure
+    FirstWeights: GlowWeights, FirstLevel: Structure,
+    SecondWeights: GlowWeights, SecondLevel: Structure,
+    ThirdWeights: GlowWeights, ThirdLevel: Structure,
+    Steps: Structure
 >: Close {}
 extension SpectralFill {
     public static var typeName: String {
@@ -209,23 +261,26 @@ extension SpectralFill {
             }
             return level
         }
-        let band: (Int, Int, Int) -> Int = { long, middle, short in
-            min(255, AlphaLevel.count * long + BetaLevel.count * middle + PaschenLevel.count * short)
+        let steps = Steps.count
+        precondition(steps > 0, "a ladder has at least one rung")
+        let band: (Int, Int, Int) -> Int = { first, second, third in
+            let poured = FirstLevel.count * first + SecondLevel.count * second + ThirdLevel.count * third
+            return min(255, poured / steps)
         }
         let red = band(
-            walk(HAlphaGlow.LongShare.typeName),
-            walk(HBetaGlow.LongShare.typeName),
-            walk(PaschenGlow.LongShare.typeName)
+            walk(FirstWeights.LongShare.typeName),
+            walk(SecondWeights.LongShare.typeName),
+            walk(ThirdWeights.LongShare.typeName)
         )
         let green = band(
-            walk(HAlphaGlow.MiddleShare.typeName),
-            walk(HBetaGlow.MiddleShare.typeName),
-            walk(PaschenGlow.MiddleShare.typeName)
+            walk(FirstWeights.MiddleShare.typeName),
+            walk(SecondWeights.MiddleShare.typeName),
+            walk(ThirdWeights.MiddleShare.typeName)
         )
         let blue = band(
-            walk(HAlphaGlow.ShortShare.typeName),
-            walk(HBetaGlow.ShortShare.typeName),
-            walk(PaschenGlow.ShortShare.typeName)
+            walk(FirstWeights.ShortShare.typeName),
+            walk(SecondWeights.ShortShare.typeName),
+            walk(ThirdWeights.ShortShare.typeName)
         )
         return "rgb(\(red),\(green),\(blue))"
     }

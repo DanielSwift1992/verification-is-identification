@@ -218,3 +218,94 @@ public enum Halves<D, R> {}
 extension Halves: HalfOfRoundTrip
 where R == Plus<D, D> {}
 public let rangingChecked: HalfOfRoundTrip.Type = Halves<WallDistance, GlintPath>.self
+
+// ── The wave: a contribution is a magnitude with a phase, phase is a residue,
+// and interference is rewriting. Two contributions of equal magnitude and
+// opposite phase annihilate; a dark fringe is a bag that settles to nothing. ──
+
+/// The two residues of the half-turn cycle: in phase, and opposite.
+public enum Phase0 {}
+public enum PhaseHalf {}
+
+/// One contribution to a wave: a magnitude on the ladder, a phase residue.
+public enum Contribution<Magnitude: IntegerValued, Phase> {}
+
+/// The annihilation schema, generic over magnitude: two contributions of equal
+/// magnitude and opposite phase settle to darkness. The claim compiles for
+/// every magnitude at once — the rule is judged on its edge, never per state.
+public protocol SettlesToDark {}
+public enum OppositePair<A, B> {}
+extension OppositePair: SettlesToDark
+where A == Contribution<Lit1, Phase0>, B == Contribution<Lit1, PhaseHalf> {}
+
+/// The two-slit dark node: the two paths to it differ by half a tick, so their
+/// contributions arrive opposite and cancel. Darkness is reached, not measured.
+public let darkFringe: SettlesToDark.Type = OppositePair<
+    Contribution<Lit1, Phase0>,
+    Contribution<Lit1, PhaseHalf>
+>.self
+
+/// The bright node beside it: the paths agree, and agreement doubles. The
+/// magnitude of the settled bag is the pair of the contribution with itself.
+public typealias BrightNode = Twice<Lit1>
+
+// ── Polarization: the tick carries two orthogonal slots. A polarizer kills
+// one slot; crossed polarizers compile to darkness; the diagonal pane halves,
+// and the halvings are checked, not computed. ──
+
+/// Polarized light: one magnitude per orthogonal slot.
+public protocol PolarizedLight {
+    associatedtype Horizontal
+    associatedtype Vertical
+}
+
+/// Eight units of horizontally polarized light: the lamp behind the panes.
+public typealias Lit8 = Plus<Twice<Twice<Lit1>>, Twice<Twice<Lit1>>>
+public enum LampH: PolarizedLight {
+    public typealias Horizontal = Lit8
+    public typealias Vertical = Never
+}
+
+/// A vertical-pass polarizer: kills the horizontal slot.
+public enum PassVertical<P: PolarizedLight>: PolarizedLight {
+    public typealias Horizontal = Never
+    public typealias Vertical = P.Vertical
+}
+
+/// A horizontal-pass polarizer: kills the vertical slot.
+public enum PassHorizontal<P: PolarizedLight>: PolarizedLight {
+    public typealias Horizontal = P.Horizontal
+    public typealias Vertical = Never
+}
+
+/// Crossed panes: horizontal light through a vertical pass. Both slots reach
+/// the floor, and the darkness is a checked identity, not an observation.
+public typealias Crossed = PassVertical<LampH>
+public protocol AllDark {}
+public enum Extinct<P: PolarizedLight> {}
+extension Extinct: AllDark
+where P.Horizontal == Never, P.Vertical == Never {}
+public let crossedPanesGoDark: AllDark.Type = Extinct<Crossed>.self
+
+/// The diagonal pane, presented on the stated 45° angle: it passes half the
+/// arriving light and turns it, so each output slot carries half of the sum.
+/// The pane is presented with its concrete levels, and the halving is checked
+/// by the same identity ranging uses.
+public enum DiagonalAfterLampH: PolarizedLight {
+    public typealias Horizontal = Twice<Lit1>
+    public typealias Vertical = Twice<Lit1>
+}
+public let diagonalHalvingChecked: HalfOfRoundTrip.Type = Halves<
+    Plus<DiagonalAfterLampH.Horizontal, DiagonalAfterLampH.Vertical>,
+    Lit8
+>.self
+
+/// Three panes: horizontal light, the diagonal pane, a vertical pass. A quarter
+/// of the lamp survives — where crossed panes alone give darkness, the middle
+/// pane revives the beam. The surviving level is checked as the half of the
+/// half.
+public typealias ThreePanes = PassVertical<DiagonalAfterLampH>
+public let threePanesRevive: HalfOfRoundTrip.Type = Halves<
+    ThreePanes.Vertical,
+    Plus<DiagonalAfterLampH.Horizontal, DiagonalAfterLampH.Vertical>
+>.self

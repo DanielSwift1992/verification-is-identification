@@ -12,19 +12,19 @@ A cycle between claims cannot exist here: a circular protocol hierarchy does not
 
 | Claim | Kind | Stands on | Carries | Home |
 | --- | --- | --- | --- | --- |
-| ``HasSigma`` | axis | — | [149](<doc:AtlasUnfolded#HasSigma>) | Core |
-| ``Structure`` | marker | — | [141](<doc:AtlasUnfolded#Structure>) | Primitive |
-| ``Open`` | kernel | ``Structure`` | [139](<doc:AtlasUnfolded#Open>) | Primitive |
-| ``Pair`` | seed | ``Open`` | [137](<doc:AtlasUnfolded#Pair>) | Primitive |
-| ``StructuresFinite`` | kernel | ``HasSigma``, ``Pair`` | [115](<doc:AtlasUnfolded#StructuresFinite>) | Identification |
+| ``HasSigma`` | axis | — | [151](<doc:AtlasUnfolded#HasSigma>) | Core |
+| ``Structure`` | marker | — | [143](<doc:AtlasUnfolded#Structure>) | Primitive |
+| ``Open`` | kernel | ``Structure`` | [141](<doc:AtlasUnfolded#Open>) | Primitive |
+| ``Pair`` | seed | ``Open`` | [139](<doc:AtlasUnfolded#Pair>) | Primitive |
+| ``StructuresFinite`` | kernel | ``HasSigma``, ``Pair`` | [117](<doc:AtlasUnfolded#StructuresFinite>) | Identification |
 | ``OperationsClosed`` | kernel | ``Pair`` | [99](<doc:AtlasUnfolded#OperationsClosed>) | Identification |
 | ``HasCache`` | axis | ``HasSigma`` | [86](<doc:AtlasUnfolded#HasCache>) | Core |
 | ``CachePermanent`` | theorem | ``HasCache``, ``OperationsClosed``, ``StructuresFinite`` | [82](<doc:AtlasUnfolded#CachePermanent>) | Identification |
-| ``HasDistance`` | axis | ``HasSigma`` | [77](<doc:AtlasUnfolded#HasDistance>) | Core |
+| ``HasDistance`` | axis | ``HasSigma`` | [79](<doc:AtlasUnfolded#HasDistance>) | Core |
 | ``HasSolutions`` | axis | ``HasSigma`` | [67](<doc:AtlasUnfolded#HasSolutions>) | Core |
 | ``ResultDeterministic`` | kernel | ``OperationsClosed`` | [67](<doc:AtlasUnfolded#ResultDeterministic>) | Identification |
 | ``HasLibrary`` | axis | ``HasSigma`` | [66](<doc:AtlasUnfolded#HasLibrary>) | Core |
-| ``DistanceOnStructures`` | theorem | ``HasDistance``, ``StructuresFinite`` | [59](<doc:AtlasUnfolded#DistanceOnStructures>) | Gradient |
+| ``DistanceOnStructures`` | theorem | ``HasDistance``, ``StructuresFinite`` | [61](<doc:AtlasUnfolded#DistanceOnStructures>) | Gradient |
 | ``StepsTerminate`` | kernel | ``StructuresFinite`` | [54](<doc:AtlasUnfolded#StepsTerminate>) | Identification |
 | ``PipelineTotal`` | kernel | ``StepsTerminate`` | [52](<doc:AtlasUnfolded#PipelineTotal>) | Identification |
 | ``EqualityDecidable`` | kernel | ``StructuresFinite`` | [51](<doc:AtlasUnfolded#EqualityDecidable>) | Identification |
@@ -48,8 +48,8 @@ A cycle between claims cannot exist here: a circular protocol hierarchy does not
 | ``Tower`` | bridge | ``HasCost``, ``HasTime``, ``Ignites`` | [18](<doc:AtlasUnfolded#Tower>) | Matter |
 | ``HasEncoding`` | axis | ``HasSigma`` | [17](<doc:AtlasUnfolded#HasEncoding>) | Core |
 | ``BallSaturation`` | bridge | ``DistanceOnStructures``, ``LibrarySaturates`` | [15](<doc:AtlasUnfolded#BallSaturation>) | Gradient |
+| ``HasLaw`` | axis | ``HasSigma`` | [15](<doc:AtlasUnfolded#HasLaw>) | Dynamics |
 | ``CompressionCriterion`` | bridge | ``DistanceOnStructures``, ``Tower`` | [14](<doc:AtlasUnfolded#CompressionCriterion>) | Gradient |
-| ``HasLaw`` | axis | ``HasSigma`` | [13](<doc:AtlasUnfolded#HasLaw>) | Dynamics |
 | ``HasPath`` | axis | ``HasSigma`` | [13](<doc:AtlasUnfolded#HasPath>) | Path |
 | ``GateIsZeroOfLoss`` | theorem | ``DistanceOnStructures``, ``PassImpliesMembership`` | [12](<doc:AtlasUnfolded#GateIsZeroOfLoss>) | Gradient |
 | ``HasAlpha`` | axis | ``HasDistance`` | [12](<doc:AtlasUnfolded#HasAlpha>) | Core |
@@ -65,6 +65,7 @@ A cycle between claims cannot exist here: a circular protocol hierarchy does not
 | ``CandidatesOnlyLeave`` | bridge | ``CachePermanent``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#CandidatesOnlyLeave>) | Identification |
 | ``LiquidPhase`` | bridge | ``KnowledgeAccumulates``, ``Monotone`` | [7](<doc:AtlasUnfolded#LiquidPhase>) | Liquid |
 | ``MembershipDecidable`` | theorem | ``EqualityDecidable``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#MembershipDecidable>) | Intelligence |
+| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [7](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
 | ``ResultsIrreversible`` | theorem | ``CachePermanent``, ``EqualityDecidable`` | [7](<doc:AtlasUnfolded#ResultsIrreversible>) | Intelligence |
 | ``RevealsNotCreates`` | kernel | ``Measurable``, ``OperationsClosed`` | [7](<doc:AtlasUnfolded#RevealsNotCreates>) | Identification |
 | ``CertifiedRuleGenerates`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification`` | [6](<doc:AtlasUnfolded#CertifiedRuleGenerates>) | Play |
@@ -76,7 +77,6 @@ A cycle between claims cannot exist here: a circular protocol hierarchy does not
 | ``DiscriminatorAndGenerator`` | bridge | ``OrderIsOnlyFreedom``, ``PassImpliesMembership`` | [5](<doc:AtlasUnfolded#DiscriminatorAndGenerator>) | Generation |
 | ``EmissionAccumulates`` | theorem | ``HasPath`` | [5](<doc:AtlasUnfolded#EmissionAccumulates>) | Path |
 | ``LawIsTarget`` | bridge | ``LawLivesInSigma``, ``PassIsIdentification`` | [5](<doc:AtlasUnfolded#LawIsTarget>) | Dynamics |
-| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [5](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
 | ``ScopeBoundedByEncoding`` | kernel | ``ResultDeterministic`` | [5](<doc:AtlasUnfolded#ScopeBoundedByEncoding>) | Identification |
 | ``SearchFlow`` | bridge | ``AlignmentCoefficient``, ``LiquidPhase`` | [5](<doc:AtlasUnfolded#SearchFlow>) | Liquid |
 | ``HasEfficiency`` | axis | ``HasSigma`` | [4](<doc:AtlasUnfolded#HasEfficiency>) | Intelligence |
@@ -111,6 +111,7 @@ A cycle between claims cannot exist here: a circular protocol hierarchy does not
 | ``EncodingForgets`` | axis | ``HasEncoding`` | [1](<doc:AtlasUnfolded#EncodingForgets>) | Seeing |
 | ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
 | ``IntegerValued`` | marker | ``Pair`` | [1](<doc:AtlasUnfolded#IntegerValued>) | Core |
+| ``InterferenceIsSubstitution`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#InterferenceIsSubstitution>) | Wave |
 | ``LinearArbiter`` | bridge | ``CostIsPathLength`` | [1](<doc:AtlasUnfolded#LinearArbiter>) | Gauge |
 | ``MeasuredGeometry`` | bridge | ``FourthFace``, ``SearchableIffClusteredAndAligned`` | [1](<doc:AtlasUnfolded#MeasuredGeometry>) | Spec |
 | ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
@@ -130,6 +131,7 @@ A cycle between claims cannot exist here: a circular protocol hierarchy does not
 | ``CompletionIsSolutionSet`` | bridge | ``HasPath``, ``Reading`` | 0 | Path |
 | ``ConstructionIsReading`` | bridge | ``EmissionAccumulates``, ``Reading`` | 0 | Path |
 | ``Converges`` | bridge | ``NoInverse``, ``SystemCrystallizes`` | 0 | Matter |
+| ``DarknessIsNormalForm`` | bridge | ``InterferenceIsSubstitution`` | 0 | Wave |
 | ``DepthIsBounded`` | bridge | ``HasGrammar``, ``Tower`` | 0 | Space |
 | ``DiagnosticsAccumulate`` | theorem | ``CachePermanent``, ``ResultDeterministic`` | 0 | Identification |
 | ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |

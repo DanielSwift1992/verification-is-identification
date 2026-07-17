@@ -1,10 +1,10 @@
 # Verification Is Identification
 
-**Zero-runtime programming.** The compiler enumerates every state a system can reach. It proves each one. A renderer writes each one to disk as a page. An action is a link. Nothing is left to run: **the build is the run**.
+**Zero-runtime programming.** The compiler enumerates every state a system can reach. It proves each one. A renderer writes each one to disk as a web page. An action is a link. Nothing is left to run: **the build is the run**.
 
 [![The playground: Swift types on the left, the judged and drawn page on the right.](https://raw.githubusercontent.com/DanielSwift1992/typed-playground/main/screenshot.png)](https://danielswift1992.github.io/typed-playground/)
 
-**[Open the playground →](https://danielswift1992.github.io/typed-playground/)**: Swift types on the left, the page they draw on the right. The judge names every broken claim as you type. It is one static page: no install, no server. Every tab is a real Swift file. This repository re-checks the same files.
+**[Open the playground →](https://danielswift1992.github.io/typed-playground/)**: Swift types on the left, the page they draw on the right. A checker called the judge names every broken claim as you type. It is one static page: no install, no server. Every tab is a real Swift file. This repository re-checks the same files.
 
 ## Run the proof
 
@@ -12,7 +12,7 @@
 git clone https://github.com/DanielSwift1992/verification-is-identification && cd verification-is-identification && swift build
 ```
 
-Green means every stated claim is proved: the theory, the access policy, the 204-person company, and every page of its site. A clean build takes 27 seconds on a laptop. An incremental build takes seconds. Four things to try:
+The package ships a worked system: a 204-person company, its access policy, and its whole intranet site, all written as types. Green means every stated claim is proved: the theory, the policy, the company, and every page of the site. A clean build takes 27 seconds on a laptop. An incremental build takes seconds. Four things to try:
 
 - Break a rule in [`Sources/Organization/System/Policy.swift`](Sources/Organization/System/Policy.swift) and rebuild. The error names what you broke.
 - `swift test` runs the worked demos: ice's residual entropy, hydrogen's spectrum, a scheduler. It prints "Executed 17 tests". The trailing "0 tests" line is expected: the newer Swift Testing harness finds no `@Test` functions there.
@@ -21,7 +21,7 @@ Green means every stated claim is proved: the theory, the access policy, the 204
 
 ## One rule, three positions
 
-The policy is one sentence: *only a manager may administer a department's documents.*
+The company's policy is one sentence: *only a manager may administer a department's documents.*
 
 In a dynamic language the rule is an `if`. It runs in production. A test finds the bug, or nothing does. With static types the shapes are proved at build time. The rule itself still waits for a guard to run. Here the rule moves to build time too. People and documents are types. The rule is a `where` clause. An access request is a type as well: the compiler compiles it, or refuses it and names the reason. This is the shipped policy from `Sources/Organization`, trimmed to the rule:
 
@@ -74,7 +74,7 @@ Second, the dynamics are navigation. A renderer writes every proved state to dis
 
 ## Interaction without a runtime
 
-A site rendered ahead of time sounds limited: no interaction, no memory, no animation. The login keypad on any person's card refutes all three.
+The company site is rendered ahead of time, every page of it. That sounds limited: no interaction, no memory, no animation. Every employee card on the site carries a login keypad. The keypad refutes all three.
 
 - A key press follows a link to the next state. That is interaction.
 - The state `k2` means two correct digits so far. The URL fragment holds it. That is memory.
@@ -82,7 +82,7 @@ A site rendered ahead of time sounds limited: no interaction, no memory, no anim
 
 A wrong digit at any depth lands in one shared dead state. So the 9⁴ = 6561 possible input sequences need five states. The last correct digit is a link out of the keypad, to the unlocked page. That page's type compiles only because the code matches. Reaching it is the proof.
 
-The result is login with no server, no session, and no JavaScript. It demonstrates the mechanism, and it keeps no secrets: the pages are static files, and the site prints each password on its card. What the build proves is agreement: the walk, the secret, and the unlocked address name the same person. The same merge holds across the system. States with identical continuations become one state. The access policy covers the 204 people with four certified rules the same way.
+The result is login with no server, no session, and no JavaScript. It demonstrates the mechanism, and it keeps no secrets: the pages are static files, and the site prints each password on its card. What the build proves is agreement: the key sequence, the secret, and the unlocked address name the same person. The same merge holds across the system. States with identical continuations become one state. The access policy covers the 204 people with four rules the same way.
 
 ## Computing less, on purpose
 
@@ -96,7 +96,7 @@ Here the input is finite and stated. Every question you can write down is decida
 
 ## A company as types
 
-The `Organization` target is the showcase. Every build re-proves and re-renders the 204 people, the access policy, and the company's whole site: dashboard, catalogs, reports, personal cards, keypad logins. Navigation is proved too. Guided walks reach any page in four choices, and any of the 204 people in eight.
+The `Organization` target is the showcase. Every build re-proves and re-renders the 204 people, the access policy, and the company's whole site: dashboard, catalogs, reports, personal cards, keypad logins. Navigation is proved too. The site carries guided walks: question pages that lead by choices. They reach any page in four choices, and any of the 204 people in eight.
 
 [![The package, top down: the V=I type lattice, the DocumentKit engine that renders and walks it, the Organization written in both, and the two outputs of every build, the rendered site and the console audit.](Sources/Organization/Organization.docc/Resources/architecture.svg)](https://danielswift1992.github.io/verification-is-identification/documentation/organization)
 

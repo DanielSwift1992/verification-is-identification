@@ -84,19 +84,23 @@ A wrong digit at any depth lands in one shared dead state. So the 9⁴ = 6561 po
 
 The result is login with no server, no session, and no JavaScript. It demonstrates the mechanism, and it keeps no secrets: the pages are static files, and the site prints each password on its card. What the build proves is agreement: the key sequence, the secret, and the unlocked address name the same person. The same merge holds across the system. States with identical continuations become one state. The access policy covers the 204 people with four rules the same way.
 
-## Computing less, on purpose
+## What cannot be written
 
-A language that runs code is Turing-complete: it can compute anything. That power has a price. Almost no property of an arbitrary program is decidable in advance. The tooling samples what it can. The rest ships unverified.
+An ordinary language is Turing-complete. It can compute anything. The cost: almost nothing about an arbitrary program can be proved in advance. Tests check the cases someone wrote. The rest ships unchecked.
 
-Functional programming removed side effects from evaluation. Total languages like Agda go further: every program provably terminates. Both still run, because the input arrives at run time.
+Here one step of computation is a find-and-replace. A rule says: find this pattern in the state, put that in its place. One step of any program can be written this way, and the compiler proves that step. A thousand steps can be written: the count is part of what you write. "Repeat until done" cannot be written. A run with no stated end may have no end. Its final state may simply not exist, and this language only writes things that exist. So the halting question cannot even be asked here.
 
-Here the input is finite and stated. Every question you can write down is decidable. The type checker answers yes by compiling. It answers no with a refusal that names its reason. The parts of the world you cannot state exactly stay outside, still handled by you. Checked means consistent with what you stated. Whether you stated the right rule stays yours to judge. No build, here or anywhere, answers that for you. [Purpose](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/purpose) draws the boundary in full.
+Loops therefore live outside. A generator runs the loop and writes each result down. Every result is a file. The build checks the whole file.
+
+What follows: everything you can write is decidable. The compiler says yes by compiling, or no with the reason. Agda proves a program will terminate, and then the program still runs, on input that arrives later. Here the input is already written, so the answer arrives at build time.
+
+What you cannot write exactly stays outside, yours to handle. The build checks one thing: the system agrees with what you wrote. Whether you wrote the right rule is still your judgment. [Purpose](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/purpose) draws the boundary in full.
 
 *Write a system as types. If it compiles, it cannot disagree with its own claims.*
 
 ## A company as types
 
-The `Organization` target is the showcase. Every build re-proves and re-renders the 204 people, the access policy, and the company's whole site: dashboard, catalogs, reports, personal cards, keypad logins. Navigation is proved too. The site carries guided walks: question pages that lead by choices. They reach any page in four choices, and any of the 204 people in eight.
+The `Organization` target is the showcase. Every build re-proves and re-renders the 204 people, the access policy, and the company's whole site: dashboard, catalogs, reports, personal cards, keypad logins. Navigation is proved too. The site carries guided walks: a page asks a question, and each answer is a link. The walks reach any page in four choices, and any of the 204 people in eight.
 
 [![The package, top down: the V=I type lattice, the DocumentKit engine that renders and walks it, the Organization written in both, and the two outputs of every build, the rendered site and the console audit.](Sources/Organization/Organization.docc/Resources/architecture.svg)](https://danielswift1992.github.io/verification-is-identification/documentation/organization)
 

@@ -17,6 +17,7 @@ import VerificationIsIdentification
 /// above s, the same ladder every orbital rides.
 public enum Orbital4p: Orbital {
     public typealias L = EllP
+    public typealias RadialNodes = Succ<Succ<Never>>
     public static let label = "4p"
 }
 

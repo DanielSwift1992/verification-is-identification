@@ -16,33 +16,49 @@ public typealias EllS = Never
 public typealias EllP = Succ<Never>
 public typealias EllD = Succ<Succ<Never>>
 
-/// This names a hydrogen orbital, carrying its ℓ and a label.
+/// This names a hydrogen orbital, carrying its ℓ, its radial node count, and a
+/// label. The shell number is never stated: n = ℓ + nodes + 1 is the definition
+/// of the radial count, so the shell is a reading and a wrong shell cannot be
+/// written. The two counts are also the orbital's whole portrait: 2·ℓ lobes
+/// around ``RadialNodes`` rings, so the selection rule shows as geometry — a
+/// dipole jump changes the lobe count by one pair, and 2s→1s, round to round,
+/// has no door.
 public protocol Orbital {
     associatedtype L: IntegerValued
+    associatedtype RadialNodes: IntegerValued
     static var label: String { get }
 }
+
+/// The shell, read instead of stated: one more than ℓ plus the radial nodes.
+public typealias ShellHeight<O: Orbital> = Plus<Succ<O.L>, O.RadialNodes>
 public enum Orbital1s: Orbital {
     public typealias L = EllS
+    public typealias RadialNodes = Never
     public static let label = "1s"
 }
 public enum Orbital2s: Orbital {
     public typealias L = EllS
+    public typealias RadialNodes = Succ<Never>
     public static let label = "2s"
 }
 public enum Orbital2p: Orbital {
     public typealias L = EllP
+    public typealias RadialNodes = Never
     public static let label = "2p"
 }
 public enum Orbital3s: Orbital {
     public typealias L = EllS
+    public typealias RadialNodes = Succ<Succ<Never>>
     public static let label = "3s"
 }
 public enum Orbital3p: Orbital {
     public typealias L = EllP
+    public typealias RadialNodes = Succ<Never>
     public static let label = "3p"
 }
 public enum Orbital3d: Orbital {
     public typealias L = EllD
+    public typealias RadialNodes = Never
     public static let label = "3d"
 }
 

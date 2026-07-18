@@ -282,6 +282,67 @@ extension XYZWrite {
     }
 }
 
+// ── The stated displays: a primary is a stated source like any line, so a
+// display is three CanonicalWeights atoms and nothing new. The values are
+// stated approximations of each primary's canonical coordinates per rung;
+// with them, a chart's cone is data, and a gamut badge is a threshold read
+// at the edge, never a clamp in the canon. ──
+
+/// The sRGB red primary, per rung.
+public enum SRGBRedPrimary: CanonicalWeights, Close {}
+extension SRGBRedPrimary {
+    public typealias XShare = Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Twice<Unit>>, Unit>>
+    public typealias YShare = Plus<Twice<Twice<Unit>>, Plus<Twice<Unit>, Unit>>
+    public typealias ZShare = Unit
+    public static var typeName: String { "srgb-red" }
+}
+
+/// The sRGB green primary, per rung.
+public enum SRGBGreenPrimary: CanonicalWeights, Close {}
+extension SRGBGreenPrimary {
+    public typealias XShare = Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Unit>, Unit>>
+    public typealias YShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Twice<Twice<Unit>>>, Twice<Twice<Unit>>>>
+    public typealias ZShare = Plus<Twice<Twice<Unit>>, Unit>
+    public static var typeName: String { "srgb-green" }
+}
+
+/// The sRGB blue primary, per rung.
+public enum SRGBBluePrimary: CanonicalWeights, Close {}
+extension SRGBBluePrimary {
+    public typealias XShare = Plus<Twice<Twice<Unit>>, Unit>
+    public typealias YShare = Twice<Unit>
+    public typealias ZShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Twice<Twice<Unit>>>, Unit>>
+    public static var typeName: String { "srgb-blue" }
+}
+
+/// The Display P3 red primary, per rung: further out than sRGB's, the wider
+/// corner of the wider cone.
+public enum P3RedPrimary: CanonicalWeights, Close {}
+extension P3RedPrimary {
+    public typealias XShare = Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Twice<Unit>>, Plus<Twice<Unit>, Unit>>>
+    public typealias YShare = Plus<Twice<Twice<Unit>>, Twice<Unit>>
+    public typealias ZShare = Never
+    public static var typeName: String { "p3-red" }
+}
+
+/// The Display P3 green primary, per rung.
+public enum P3GreenPrimary: CanonicalWeights, Close {}
+extension P3GreenPrimary {
+    public typealias XShare = Plus<Twice<Twice<Twice<Unit>>>, Unit>
+    public typealias YShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Twice<Unit>>, Plus<Twice<Unit>, Unit>>>>
+    public typealias ZShare = Twice<Unit>
+    public static var typeName: String { "p3-green" }
+}
+
+/// The Display P3 blue primary, per rung.
+public enum P3BluePrimary: CanonicalWeights, Close {}
+extension P3BluePrimary {
+    public typealias XShare = Plus<Twice<Twice<Unit>>, Unit>
+    public typealias YShare = Twice<Unit>
+    public typealias ZShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Twice<Twice<Unit>>>, Unit>>
+    public static var typeName: String { "p3-blue" }
+}
+
 /// This reads a band's perceptual rung at the edge: the position of the
 /// highest lit door, zero for a quenched band. Brightness perception runs on
 /// ratios, a halving is one ratio, so the rung is the level's logarithm and

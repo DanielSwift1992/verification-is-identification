@@ -10,6 +10,8 @@ certificates that hold it all. Each shelf is one file in the source.
 
 The divided axis and its members, the span leaves, the frames, and the interactive layer (Vector.swift).
 
+- ``EdgeSame``
+- ``EdgeAtLeast``
 - ``Air``
 - ``ArrowMarkers``
 - ``CanvasSize``
@@ -116,6 +118,37 @@ White is the atom and division is the only move: a colour is a walk of eight hal
 - ``Cover70``
 - ``Cover80``
 - ``Cover90``
+
+### The spectral bridge
+
+Mixing is a type: a line's weight per rung is a stated magnitude in 256ths, a pour is Plus of Times read by the structure's own count, and the one edge door prints three canonical sums for the device to map. Declaring a substance is stating data, never touching the kit: one ``CanonicalWeights`` atom per line, a world file for the lamp, ``Never`` rows for the lines no eye reads. A display is the same genre — three stated primaries — so a chart's cone is data too, and every threshold, from a contrast bound to a gamut badge, is a composition of the edge comparison doors.
+
+- ``CanonicalWeights``
+- ``Rung0``
+- ``Rung1``
+- ``Rung2``
+- ``Rung3``
+- ``Rung4``
+- ``Rung5``
+- ``Rung6``
+- ``Rung7``
+- ``Rung8``
+- ``HAlphaGlow``
+- ``HBetaGlow``
+- ``PaschenGlow``
+- ``NeonYellowGlow``
+- ``NeonRedGlow``
+- ``SodiumDGlow``
+- ``SodiumIRGlow``
+- ``SRGBRedPrimary``
+- ``SRGBGreenPrimary``
+- ``SRGBBluePrimary``
+- ``P3RedPrimary``
+- ``P3GreenPrimary``
+- ``P3BluePrimary``
+- ``PouredCoordinate``
+- ``XYZWrite``
+- ``PerceptualRung``
 
 ### The palette and its gates
 
@@ -340,6 +373,7 @@ Drawing as constrained motion, and text measured by the stated font's own metric
 
 A button over a state file is a rewrite triple, a key may fold a chord of them (one slot by the type's bound, one match by the applier's refusal), and a slot's term spells itself safely into markup (Dynamics.swift, `RuleKey` in Vector.swift, §S28-§S30).
 
+- ``Exactly``
 - ``Pressable``
 - ``SlotRule``
 - ``Chord``

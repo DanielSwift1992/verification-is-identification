@@ -1369,6 +1369,30 @@ extension EdgeSame: Spanning {
     }
 }
 
+/// This reads an order of two magnitudes at the edge and branches there: when
+/// the first count reaches the second, the face renders; short of it, nothing
+/// does. With ``Times`` for cross-multiplication a ratio bound is the same
+/// comparison — 4.5:1 is nine to two — and a strict bound is this form with
+/// one unit added to the bar. Thresholds of every kind are compositions of
+/// this one door.
+public enum EdgeAtLeast<
+    A: Structure,
+    B: Structure,
+    Then: Spanning
+>: Close {}
+extension EdgeAtLeast: Spanning {
+    public static func rendered<
+        X: Frac & Structure,
+        W: Frac & Structure
+    >(
+        atX x: X.Type,
+        width w: W.Type
+    ) -> String {
+        guard A.count >= B.count else { return "" }
+        return Then.rendered(atX: x, width: w)
+    }
+}
+
 /// This draws two spanning layers at the same origin and width: a background under its content,
 /// a name over its chip. Order is depth, the way a body's order always is.
 public enum Layered<

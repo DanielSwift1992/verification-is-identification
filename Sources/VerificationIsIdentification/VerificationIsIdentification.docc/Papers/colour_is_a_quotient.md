@@ -16,7 +16,7 @@ No new postulate. Seeing Is Encoding gives the projection and its kernel; Form I
 
 ## §3. A display is a cone
 
-**CiQ3 (Gamut is a cone, and outside it S is empty).** A display is a stated source: finitely many primaries, each a written spectrum, with nonnegative levels. Its reach in the quotient is the cone the primaries span. A colour inside the cone is matched by stated levels — the certificate is the levels themselves. A colour outside has no matching levels at all: the candidate set is empty, and the display refuses by name instead of clipping in silence. The refusal is decidable before anything shines, because the primaries are written whole. **[solid — ``GamutIsCone``]**
+**CiQ3 (Gamut is a cone, and outside it S is empty).** A display is a stated source: finitely many primaries, each a written spectrum, with nonnegative levels. Its reach in the quotient is the cone the primaries span. A colour inside the cone is matched by stated levels — the certificate is the levels themselves, and membership never needs an inverse matrix: the witness is the decomposition. A colour outside has no matching levels at all: the candidate set is empty, and the display refuses by name instead of clipping in silence. The refusal is decidable before anything shines, because the primaries are written whole. **[solid — ``GamutIsCone``]**
 
 **CiQ4 (Three primaries never suffice).** The visible colours of single lines trace a curve whose region is convex, and any three primaries span a triangle inside it: some pure line always falls outside. Wider gamuts move the corners toward the curve — the widest stated primaries are single lines themselves — and still the triangle is a triangle. Reaching every colour needs more primaries, or the identity encoder: a display that states the spectrum itself. The limit is convexity, never engineering.
 
@@ -28,15 +28,25 @@ No new postulate. Seeing Is Encoding gives the projection and its kernel; Form I
 
 **CiQ6 (Structural below, perceptual above).** The structural distance lives on beams; the perceptual distance lives on the quotient. The projection maps the first onto the second and forgets the rest: a metameric pair is far below and at zero above. Every colour-difference formula is a metric on the quotient, so none of them can price what the eye already lost — and the perceptually flat chart is exactly the gauge in which the upper metric runs along coordinates. The hierarchy, not either floor alone, is the account of colour difference.
 
-## §6. Statement
+## §6. Standards enter as data
 
-Colour is a quotient. The eye's kernel makes the class, the class is the colour, and the charts — RGB, OKLCH, all of them — parameterize classes, with hue a residue on its ring. A display is a stated source whose reach is a cone in the quotient: inside, levels certify the match; outside, the candidate set is empty and the refusal is named. Three primaries never cover the curve, by convexity. Depth is a walk of halvings, and colour difference is a two-storey affair: structural on the light, perceptual on the quotient, related by the projection that forgets. From the spectral line to the screen's last bit, every storey is the same mathematics: a finite structure, a stated law, a decided question.
+**CiQ7 (No committee number lives in a mechanism).** A colour standard — a white point, a threshold, a transfer curve — is a committee's stated agreement, and it enters this system the way any agreement does: as named data with a pedigree, never as a constant inside an operation. The engine keeps four operations forever — sum, product, and the two edge comparisons — and every standard reduces to them in one of three ways.
+
+A rational bound dissolves by cross-multiplication. A ratio like 4.5:1 is nine against two; an offset like 0.05 is one twentieth; multiply the whole inequality through by the common denominator and both sides become sums and products of integers on the lattice, compared at the edge. No lattice is ever the wrong size for a rational standard, because the scaling is itself a composition.
+
+A curve — a display's transfer function, transcendental by its formula — enters as a stated table on the ladder: one pair per rung, precision stated by depth, monotonicity a judged chain of edge comparisons. The formula stays outside as the table's generator; the system judges the table, which is also how the physical device holds the same curve.
+
+Membership in a cone is a witness, never an inverse. A colour is inside a chart's gamut exactly when a decomposition over the stated primaries exists, and the decomposition is the certificate — checked against the primaries' own stated weights, so the inverse matrix exists nowhere. Outside is the empty candidate set, the same refusal every question in this system ends in.
+
+## §7. Statement
+
+Colour is a quotient. The eye's kernel makes the class, the class is the colour, and the charts — RGB, OKLCH, all of them — parameterize classes, with hue a residue on its ring. A display is a stated source whose reach is a cone in the quotient: inside, levels certify the match; outside, the candidate set is empty and the refusal is named. Three primaries never cover the curve, by convexity. Depth is a walk of halvings, and colour difference is a two-storey affair: structural on the light, perceptual on the quotient, related by the projection that forgets. Standards enter as data on the lattice — rational bounds by cross-multiplication, curves by stated tables, membership by witness — and the engine's operations never grow. The whole pipeline loses information at exactly one point, the device's own cone, and the system names that point instead of hiding it: a colour here is not a number that gets clipped but a fact that gets projected. From the spectral line to the screen's last bit, every storey is the same mathematics: a finite structure, a stated law, a decided question.
 
 ## Scope
 
-Claimed: the quotient, its charts, hue as a residue with its involution, the cone of stated primaries, refusal outside the cone, the convexity limit, and depth as halvings. Not claimed: the numerical weights of any real observer (the edge holds them), individual variation and adaptation, white points and tone mapping, and the smooth geometry of real chromaticity — stated instances carry the theorems, numbers stay at the reading edge.
+Claimed: the quotient, its charts, hue as a residue with its involution, the cone of stated primaries, refusal outside the cone, the convexity limit, depth as halvings, and the entry of standards as data — rational bounds, stated curve tables, witness membership. Not claimed: the numerical weights of any real observer (the edge holds them), individual variation and adaptation, white points and tone mapping, and the smooth geometry of real chromaticity — stated instances carry the theorems, numbers stay at the reading edge.
 
-## §7. Dependency
+## §8. Dependency
 
 | Source | Used |
 |---|---|

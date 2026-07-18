@@ -146,6 +146,9 @@ Mixing is a type: a line's weight per rung is a stated magnitude in 256ths, a po
 - ``P3RedPrimary``
 - ``P3GreenPrimary``
 - ``P3BluePrimary``
+- ``Rec2020RedPrimary``
+- ``Rec2020GreenPrimary``
+- ``Rec2020BluePrimary``
 - ``PouredCoordinate``
 - ``XYZWrite``
 - ``PerceptualRung``

@@ -163,7 +163,10 @@ extension Cover90 {
 // construction. ──
 
 /// A stated line weight per rung of the ladder: three magnitudes, chart-neutral,
-/// in 256ths of one full pour. Stating them is the bridge's whole job.
+/// in 256ths of one full pour. Stating them is the bridge's whole job. The
+/// line weights below are coarse: their pedigree is the qualitative shape of
+/// the visible locus, and refinement arrives as reference data, never as code.
+/// The display primaries further down are exact, from published matrices.
 public protocol CanonicalWeights {
     associatedtype XShare: Structure
     associatedtype YShare: Structure
@@ -283,12 +286,14 @@ extension XYZWrite {
 }
 
 // ── The stated displays: a primary is a stated source like any line, so a
-// display is three CanonicalWeights atoms and nothing new. The values are
-// stated approximations of each primary's canonical coordinates per rung;
-// with them, a chart's cone is data, and a gamut badge is a threshold read
-// at the edge, never a clamp in the canon. ──
+// display is three CanonicalWeights atoms and nothing new. Unlike the lines,
+// a primary's pedigree is exact: each triple below is the column of the
+// standard's own published conversion matrix (sRGB: IEC 61966-2-1; Display
+// P3: SMPTE EG 432-1; Rec.2020: ITU-R BT.2020), stated on the lattice at one
+// thirty-second per rung, rounded once. With them a chart's cone is data, and
+// a gamut badge is a threshold read at the edge, never a clamp in the canon. ──
 
-/// The sRGB red primary, per rung.
+/// The sRGB red primary: 0.4124, 0.2126, 0.0193, in thirty-seconds per rung.
 public enum SRGBRedPrimary: CanonicalWeights, Close {}
 extension SRGBRedPrimary {
     public typealias XShare = Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Twice<Unit>>, Unit>>
@@ -297,50 +302,78 @@ extension SRGBRedPrimary {
     public static var typeName: String { "srgb-red" }
 }
 
-/// The sRGB green primary, per rung.
+/// The sRGB green primary: 0.3576, 0.7152, 0.1192.
 public enum SRGBGreenPrimary: CanonicalWeights, Close {}
 extension SRGBGreenPrimary {
     public typealias XShare = Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Unit>, Unit>>
-    public typealias YShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Twice<Twice<Unit>>>, Twice<Twice<Unit>>>>
-    public typealias ZShare = Plus<Twice<Twice<Unit>>, Unit>
+    public typealias YShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Twice<Unit>>, Plus<Twice<Unit>, Unit>>>
+    public typealias ZShare = Twice<Twice<Unit>>
     public static var typeName: String { "srgb-green" }
 }
 
-/// The sRGB blue primary, per rung.
+/// The sRGB blue primary: 0.1805, 0.0722, 0.9505.
 public enum SRGBBluePrimary: CanonicalWeights, Close {}
 extension SRGBBluePrimary {
-    public typealias XShare = Plus<Twice<Twice<Unit>>, Unit>
+    public typealias XShare = Twice<Plus<Twice<Unit>, Unit>>
     public typealias YShare = Twice<Unit>
-    public typealias ZShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Twice<Twice<Unit>>>, Unit>>
+    public typealias ZShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Twice<Unit>>, Twice<Unit>>>>
     public static var typeName: String { "srgb-blue" }
 }
 
-/// The Display P3 red primary, per rung: further out than sRGB's, the wider
-/// corner of the wider cone.
+/// The Display P3 red primary: 0.4866, 0.2290, 0.0000.
 public enum P3RedPrimary: CanonicalWeights, Close {}
 extension P3RedPrimary {
-    public typealias XShare = Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Twice<Unit>>, Plus<Twice<Unit>, Unit>>>
-    public typealias YShare = Plus<Twice<Twice<Unit>>, Twice<Unit>>
+    public typealias XShare = Twice<Twice<Twice<Twice<Unit>>>>
+    public typealias YShare = Plus<Twice<Twice<Unit>>, Plus<Twice<Unit>, Unit>>
     public typealias ZShare = Never
     public static var typeName: String { "p3-red" }
 }
 
-/// The Display P3 green primary, per rung.
+/// The Display P3 green primary: 0.2657, 0.6917, 0.0451.
 public enum P3GreenPrimary: CanonicalWeights, Close {}
 extension P3GreenPrimary {
     public typealias XShare = Plus<Twice<Twice<Twice<Unit>>>, Unit>
-    public typealias YShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Twice<Unit>>, Plus<Twice<Unit>, Unit>>>>
-    public typealias ZShare = Twice<Unit>
+    public typealias YShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Twice<Unit>>, Twice<Unit>>>
+    public typealias ZShare = Unit
     public static var typeName: String { "p3-green" }
 }
 
-/// The Display P3 blue primary, per rung.
+/// The Display P3 blue primary: 0.1982, 0.0793, 1.0439. The Z share passes one
+/// full pour: the canon has no ceiling, and the lattice states beyond it.
 public enum P3BluePrimary: CanonicalWeights, Close {}
 extension P3BluePrimary {
+    public typealias XShare = Twice<Plus<Twice<Unit>, Unit>>
+    public typealias YShare = Plus<Twice<Unit>, Unit>
+    public typealias ZShare = Plus<Twice<Twice<Twice<Twice<Twice<Unit>>>>>, Unit>
+    public static var typeName: String { "p3-blue" }
+}
+
+/// The Rec.2020 red primary: 0.6370, 0.2627, 0.0000.
+public enum Rec2020RedPrimary: CanonicalWeights, Close {}
+extension Rec2020RedPrimary {
+    public typealias XShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Twice<Twice<Unit>>>
+    public typealias YShare = Twice<Twice<Twice<Unit>>>
+    public typealias ZShare = Never
+    public static var typeName: String { "rec2020-red" }
+}
+
+/// The Rec.2020 green primary: 0.1446, 0.6780, 0.0281.
+public enum Rec2020GreenPrimary: CanonicalWeights, Close {}
+extension Rec2020GreenPrimary {
+    public typealias XShare = Plus<Twice<Twice<Unit>>, Unit>
+    public typealias YShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Twice<Unit>>, Twice<Unit>>>
+    public typealias ZShare = Unit
+    public static var typeName: String { "rec2020-green" }
+}
+
+/// The Rec.2020 blue primary: 0.1689, 0.0593, 1.0610. The widest stated blue,
+/// and its Z passes one full pour by two thirty-seconds.
+public enum Rec2020BluePrimary: CanonicalWeights, Close {}
+extension Rec2020BluePrimary {
     public typealias XShare = Plus<Twice<Twice<Unit>>, Unit>
     public typealias YShare = Twice<Unit>
-    public typealias ZShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Twice<Twice<Unit>>>, Unit>>
-    public static var typeName: String { "p3-blue" }
+    public typealias ZShare = Plus<Twice<Twice<Twice<Twice<Twice<Unit>>>>>, Twice<Unit>>
+    public static var typeName: String { "rec2020-blue" }
 }
 
 /// This reads a band's perceptual rung at the edge: the position of the

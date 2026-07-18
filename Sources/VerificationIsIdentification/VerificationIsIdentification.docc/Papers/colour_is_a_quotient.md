@@ -28,9 +28,15 @@ No new postulate. Seeing Is Encoding gives the projection and its kernel; Form I
 
 **CiQ6 (Structural below, perceptual above).** The structural distance lives on beams; the perceptual distance lives on the quotient. The projection maps the first onto the second and forgets the rest: a metameric pair is far below and at zero above. Every colour-difference formula is a metric on the quotient, so none of them can price what the eye already lost — and the perceptually flat chart is exactly the gauge in which the upper metric runs along coordinates. The hierarchy, not either floor alone, is the account of colour difference.
 
-## §6. Standards enter as data
+## §6. The eye bounds the record
 
-**CiQ7 (No committee number lives in a mechanism).** A colour standard — a white point, a threshold, a transfer curve — is a committee's stated agreement, and it enters this system the way any agreement does: as named data with a pedigree, never as a constant inside an operation. The engine keeps four operations forever — sum, product, and the two edge comparisons — and every standard reduces to them in one of three ways.
+**CiQ7 (The felt step is data too).** The eye has a resolution: below one just-noticeable difference, two stimuli are one percept. The threshold is measured physiology, and it enters like every magnitude here — stated data with a pedigree, an experiment's rather than a committee's. Telling apart is then an edge comparison against the stated step. The two pedigrees never mix: physiology bounds what a record can mean, and committees only name regions of it.
+
+**CiQ8 (The perceptual quotient is finite, so completeness is a file).** Walk the ladder until adjacent rungs sit one felt step apart: deeper rungs state nothing the quotient can carry, so the eye, not the lattice, sets the depth of a finished record. Across chromaticity the same threshold tiles the visible region into finitely many distinguishable cells — millions of them, and finite. A finite set is a file: every colour a human can tell apart is recordable whole, and "all the colours" stops being a figure of speech. Displays then order themselves as regions of that one field, sRGB inside P3 inside Rec.2020 inside the eye — markers on the eye's own map, useful for comparison and nothing else. The outermost cone is no standard's: it is the eye's, and the record reaches it.
+
+## §7. Standards enter as data
+
+**CiQ9 (No committee number lives in a mechanism).** A colour standard — a white point, a threshold, a transfer curve — is a committee's stated agreement, and it enters this system the way any agreement does: as named data with a pedigree, never as a constant inside an operation. The engine keeps four operations forever — sum, product, and the two edge comparisons — and every standard reduces to them in one of three ways.
 
 A rational bound dissolves by cross-multiplication. A ratio like 4.5:1 is nine against two; an offset like 0.05 is one twentieth; multiply the whole inequality through by the common denominator and both sides become sums and products of integers on the lattice, compared at the edge. No lattice is ever the wrong size for a rational standard, because the scaling is itself a composition.
 
@@ -38,15 +44,15 @@ A curve — a display's transfer function, transcendental by its formula — ent
 
 Membership in a cone is a witness, never an inverse. A colour is inside a chart's gamut exactly when a decomposition over the stated primaries exists, and the decomposition is the certificate — checked against the primaries' own stated weights, so the inverse matrix exists nowhere. Outside is the empty candidate set, the same refusal every question in this system ends in.
 
-## §7. Statement
+## §8. Statement
 
-Colour is a quotient. The eye's kernel makes the class, the class is the colour, and the charts — RGB, OKLCH, all of them — parameterize classes, with hue a residue on its ring. A display is a stated source whose reach is a cone in the quotient: inside, levels certify the match; outside, the candidate set is empty and the refusal is named. Three primaries never cover the curve, by convexity. Depth is a walk of halvings, and colour difference is a two-storey affair: structural on the light, perceptual on the quotient, related by the projection that forgets. Standards enter as data on the lattice — rational bounds by cross-multiplication, curves by stated tables, membership by witness — and the engine's operations never grow. The whole pipeline loses information at exactly one point, the device's own cone, and the system names that point instead of hiding it: a colour here is not a number that gets clipped but a fact that gets projected. From the spectral line to the screen's last bit, every storey is the same mathematics: a finite structure, a stated law, a decided question.
+Colour is a quotient. The eye's kernel makes the class, the class is the colour, and the charts — RGB, OKLCH, all of them — parameterize classes, with hue a residue on its ring. A display is a stated source whose reach is a cone in the quotient: inside, levels certify the match; outside, the candidate set is empty and the refusal is named. Three primaries never cover the curve, by convexity. Depth is a walk of halvings, and colour difference is a two-storey affair: structural on the light, perceptual on the quotient, related by the projection that forgets. Standards enter as data on the lattice — rational bounds by cross-multiplication, curves by stated tables, membership by witness — and the engine's operations never grow. The whole pipeline loses information at exactly one point, the device's own cone, and the system names that point instead of hiding it: a colour here is not a number that gets clipped but a fact that gets projected. The outermost cone belongs to no standard — it is the eye's, the perceptual quotient inside it is finite, and a finished record reaches the eye's own resolution. From the spectral line to the screen's last bit, every storey is the same mathematics: a finite structure, a stated law, a decided question.
 
 ## Scope
 
-Claimed: the quotient, its charts, hue as a residue with its involution, the cone of stated primaries, refusal outside the cone, the convexity limit, depth as halvings, and the entry of standards as data — rational bounds, stated curve tables, witness membership. Not claimed: the numerical weights of any real observer (the edge holds them), individual variation and adaptation, white points and tone mapping, and the smooth geometry of real chromaticity — stated instances carry the theorems, numbers stay at the reading edge.
+Claimed: the quotient, its charts, hue as a residue with its involution, the cone of stated primaries, refusal outside the cone, the convexity limit, depth as halvings, the entry of standards as data — rational bounds, stated curve tables, witness membership — and the eye as the outer bound: a stated felt step, a finite perceptual quotient, depth finished at the eye's resolution. The felt step's values and the unevenness of real discrimination ellipses are experimental data at the edge; the first wave states one isotropic step and says so. Not claimed: the numerical weights of any real observer (the edge holds them), individual variation and adaptation, white points and tone mapping, and the smooth geometry of real chromaticity — stated instances carry the theorems, numbers stay at the reading edge.
 
-## §8. Dependency
+## §9. Dependency
 
 | Source | Used |
 |---|---|

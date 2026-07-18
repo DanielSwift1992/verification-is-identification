@@ -52,6 +52,9 @@ jobs:
       - name: The second judge agrees with the compiler
         run: swift run Tools judge diff 200
 
+      - name: The second judge reads the conditional grammar
+        run: swift run Tools judge where Sources/Examples/Light.swift
+
       - name: The committed artifacts match the types, byte for byte
         run: |
           swift package --allow-writing-to-package-directory generate

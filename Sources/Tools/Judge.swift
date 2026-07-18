@@ -550,6 +550,10 @@ enum Judge {
             JudgeDiff.run(arguments)
             return
         }
+        if arguments.first == "where" {
+            WhereJudge.run(Array(arguments.dropFirst()))
+            return
+        }
         let paths = arguments.isEmpty
             ? ["Sources/Organization/System/GeneratedTeam.swift"]
             : arguments

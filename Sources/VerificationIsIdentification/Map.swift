@@ -32,8 +32,8 @@ public protocol AnchorGraph: DistanceOnStructures, HasLibrary {}
 /// > termination needs, no heuristic, no backtracking.
 public protocol GreedyDescentTerminates: AnchorGraph, Monotone {}
 
-/// A stuck walk's failure carries an address: the triple (s, τ, ρ) names the
-/// blank region where the ``AnchorGraph`` has no anchor. The failure says WHERE,
+/// A stuck walk's failure has an address: the triple (s, τ, ρ) names the
+/// blank region where the ``AnchorGraph`` has no anchor. The failure names WHERE,
 /// with coordinates: a ``Decidable`` verdict that localizes itself rather than
 /// reporting "lost". [Nav N6]
 public protocol HolesCarryAddresses: AnchorGraph, Decidable {}
@@ -51,11 +51,11 @@ public protocol RepairsPermanent: AnchorGraph, NoInverse {}
 /// failure names its own cure. [Nav N17]
 public protocol FailureCurriculum: HolesCarryAddresses, RepairsPermanent {}
 
-/// Learning, generalization, and navigation are three consumers of ONE measurable
+/// Learning, generalization, and navigation are three readings of ONE measurable
 /// property: whether the domain's W-matrix clusters. Compression
 /// (``CompressionCriterion``), anchored balls (``BallSaturation``), and the map
 /// (``AnchorGraph``) are three faces of that one number, not three assumptions.
-/// A flat matrix denies all three at once. A clustered one offers all three. [Nav N18]
+/// With a flat matrix all three fail at once. With a clustered one all three are there. [Nav N18]
 ///
 /// > Tip: One boundary governs the whole layer, and it is a number you can
 /// > compute: measure the clustering of the W-matrix and all three faces follow.
@@ -63,7 +63,7 @@ public protocol FailureCurriculum: HolesCarryAddresses, RepairsPermanent {}
 /// **Premises**: ``CompressionCriterion`` (learning) · ``BallSaturation`` (generalization) · ``AnchorGraph`` (navigation).
 public protocol OneBoundaryThreeFaces: CompressionCriterion, BallSaturation, AnchorGraph {}
 
-/// Under a populating stream, navigation converges and stays converged. Every ball
+/// Under a populating stream, navigation converges for good. Every ball
 /// eventually receives an anchor (coupon collector), stuck-sets shrink
 /// monotonically (``LibrarySaturates``), and ρ_nav is non-increasing, reached and
 /// KEPT, because I3 forbids regression. The ``OneBoundaryThreeFaces`` clustering

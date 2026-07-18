@@ -35,7 +35,7 @@ public protocol DiscriminatorAndGenerator: PassImpliesMembership, OrderIsOnlyFre
 /// axis, independent of clustering and alignment. [Gen GD3]
 public protocol OrthogonalOrgans: DiscriminatorAndGenerator, SearchableIffClusteredAndAligned {}
 
-/// The inevitability the series proved is the DISCRIMINATOR's, not the generator's.
+/// The inevitability proven in the series is the DISCRIMINATOR's, not the generator's.
 /// At saturation the library teaches the optimal ordering, η→1
 /// (``IntelligenceRises``), on structural premises alone (I1, I3). The GENERATOR
 /// of ``DiscriminatorAndGenerator`` is conditional on the ``AlignmentCoefficient``
@@ -45,15 +45,15 @@ public protocol OrthogonalOrgans: DiscriminatorAndGenerator, SearchableIffCluste
 /// cannot produce is its generator's alignment. [Gen GD4-5]
 ///
 /// > Note: The asymmetry is the deepest result. The organ that carries every
-/// > bit is the one the series proved inevitable. The organ that carries none is
-/// > exactly where domains stay hard, α is given, not grown.
+/// > bit is the one proven inevitable in the series. The organ that carries none is
+/// > exactly where domains remain hard, α is given, not grown.
 public protocol InevitabilityIsDiscriminator: DiscriminatorAndGenerator, IntelligenceRises, AlignmentCoefficient {}
 
 /// The two organs are ONE mechanism: both are COMPARE (§2.5). The
 /// ``DiscriminatorAndGenerator`` D is COMPARE read for its outcome (Z). G is the
 /// choice of which COMPARE next (Y). The split is scope on one ``Decidable``
-/// primitive: the framework stays monist, consistent with PP15: both run on the
-/// one given COMPARE, neither certifies it. [Gen GD8]
+/// primitive: the framework is monist, consistent with PP15. Both run on the
+/// one given COMPARE, and neither certifies it. [Gen GD8]
 public protocol OrgansAreOneCompare: DiscriminatorAndGenerator, Decidable {}
 
 // ───────────────────────────────────────────────────────────────

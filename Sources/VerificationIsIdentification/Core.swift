@@ -27,7 +27,7 @@ public protocol Unique: Monotone, Null {}
 /// This is accumulation: after ⊇ before. It only grows.
 ///
 /// `Right` unfolds to contain `Left`: `Right = (Left, delta)`, so the later
-/// state holds the earlier whole plus an increment. The relation, not a tag:
+/// state contains the earlier whole plus an increment. The relation, not a tag:
 /// strip the `where` and ``Permanent`` collapses into its mirror ``Monotone``. [V=I I3]
 public protocol Permanent: Pair
 where Right: Pair, Right.Left == Left {}
@@ -35,7 +35,7 @@ where Right: Pair, Right.Left == Left {}
 /// This is elimination: after ⊆ before. Shrinks toward ``Null``. Mirror of ``Permanent``.
 ///
 /// `Left` unfolds to contain `Right`: `Left = (Right, removed)`, so the earlier
-/// state holds the later whole plus what was dropped. Verification runs this way:
+/// state contains the later whole plus what was dropped. Verification runs this way:
 /// each `COMPARE` peels a candidate off until one survives. [V=I §5.22]
 public protocol Monotone: Pair
 where Left: Pair, Left.Left == Right {}
@@ -47,7 +47,7 @@ where Left: Pair, Left.Left == Right {}
 public protocol Decidable: Pair
 where Right: Pair {}
 
-/// Triangle inequality holds: `d(a,c) ≤ d(a,b) + d(b,c)`.
+/// The triangle inequality is in force: `d(a,c) ≤ d(a,b) + d(b,c)`.
 ///
 /// Two legs share a midpoint: `Left = (a,b)`, `Right = (b,c)`, joined where
 /// `Left.Right == Right.Left`. The shared point `b` is what makes the detour
@@ -96,7 +96,7 @@ extension Never: Unique, Permanent, Decidable,
 //   Alpha is computed from Distance
 // ═══════════════════════════════════════════════════════
 
-/// This is Σ: the space of all structures. The root axis every other axis sits inside.
+/// This is Σ: the space of all structures. The root axis every other axis is inside.
 ///
 /// Σ is the one free dimension everything else is carved from: solutions,
 /// library, cache, distance, and encoding are all sub-spaces of it.
@@ -107,7 +107,7 @@ public protocol HasSigma {
 /// This names the solution set: the candidates that survive verification.
 ///
 /// A sub-space of ``HasSigma``. Verification shrinks it. ``IdentityCollapse`` pins it
-/// to what identification finds, and ``Unique`` is the case where it holds one.
+/// to what identification finds, and ``Unique`` is the case where it has one.
 public protocol HasSolutions: HasSigma {
     associatedtype SolutionSet
 }
@@ -147,7 +147,7 @@ public protocol HasEncoding: HasSigma {
 
 /// This gives α, the alignment coefficient, computed from distance: `α = f(W)`.
 ///
-/// The dependency rides on ``HasDistance``. Swift can't type `f`, so `Alpha` is
+/// The dependency is through ``HasDistance``. Swift can't type `f`, so `Alpha` is
 /// pinned to ``Measurable`` instead: it settles to one computed value (§2). The
 /// pin captures the determinacy of α without naming the function. [GA]
 public protocol HasAlpha: HasDistance {
@@ -158,7 +158,7 @@ public protocol HasAlpha: HasDistance {
 ///
 /// Its finiteness is a result, proven by ``BasisIsFinite``, not a definition,
 /// so the axis opens bare here and the constraint lands in the theorem (§2
-/// placement: axes stay free, theorems compress). [IiI §3]
+/// placement: axes are free, theorems compress). [IiI §3]
 public protocol HasBasis: HasLibrary {
     associatedtype Basis
 }
@@ -191,7 +191,7 @@ public protocol HasSaturation: HasLibrary {
 /// collapsed to one. [V=I Thm 2]
 ///
 /// > Important: The compiler checking this conformance *is* the V=I loop. When
-/// > the constraint holds, verification and identification have been proven the
+/// > the constraint is met, verification and identification have been proven the
 /// > same act, and ``Unique`` is the point they meet.
 public protocol IdentityCollapse: Null, HasSolutions
 where Left == SolutionSet {}

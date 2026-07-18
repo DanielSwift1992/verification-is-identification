@@ -27,7 +27,7 @@
 /// ``HasEncoding``), pin them from few examples (C2 = R4,
 /// ``ExactlyOneSurvives``), COMPRESS (C3 = ``CompressionCriterion``), and ANCHOR
 /// eval rules within training balls (C4a = ``BallSaturation``, with routing C4b
-/// and within-ball certifiability C5 carried by the same stack). Distinct
+/// and within-ball certifiability C5 on the same stack). Distinct
 /// failure modes over one dependency chain: EMPTY, |S|>1, flat, no-anchor,
 /// BUDGET. [Spec C1-C5]
 public protocol EncoderConditions: HasEncoding, ExactlyOneSurvives, CompressionCriterion, BallSaturation {}
@@ -36,7 +36,7 @@ public protocol EncoderConditions: HasEncoding, ExactlyOneSurvives, CompressionC
 /// certified-SAFE unconditionally: every PASS is f* (``PassIsIdentification``,
 /// Theorem 2, independent of how the candidate was found), not a wrong answer,
 /// and certified-COMPLETE only within budget and C5. Safety is proven.
-/// Completeness rests on enumerating the ball, bounded by certifiability, and is
+/// Completeness depends on enumerating the ball, bounded by certifiability, and is
 /// NOT claimed unconditionally. The two halves of "solve", split exactly. [Spec E2.1]
 ///
 /// > Note: Safety and completeness part ways here. PASS is always correct on
@@ -49,21 +49,21 @@ public protocol ConditionalSolving: EncoderConditions, PassIsIdentification {}
 /// abstraction, the priors). The backend of ``ConditionalSolving`` is
 /// proven-safe and invariant to the attack. The difficulty of the domain and the
 /// ``ScopeBoundedByEncoding`` scope of V=I are disjoint by construction:
-/// difficulty localizes to the encoder, safety holds around it. [Spec E2.4, E2.5]
+/// difficulty localizes to the encoder, and safety is intact around it. [Spec E2.4, E2.5]
 public protocol DifficultyIsEncoder: ConditionalSolving, ScopeBoundedByEncoding {}
 
 // ── The measured boundary: proven core vs measured core ──
 
-/// The conditional faces the theory cannot derive from I1–I3 are what an
-/// instrument measures, per domain. Searchability (clustered ∧ aligned,
-/// ``SearchableIffClusteredAndAligned``) and the ``FourthFace``, skill
-/// compressibility (O18), are bundled as exactly those properties. This names
-/// the proven/measured split: the proven core holds unconditionally, the
+/// The conditional faces that are not derivable from I1–I3 are what an
+/// instrument measures, per domain. The bundle is exactly those properties:
+/// searchability (clustered ∧ aligned, ``SearchableIffClusteredAndAligned``)
+/// and the ``FourthFace``, skill compressibility (O18). This names
+/// the proven/measured split: the proven core is in force unconditionally, the
 /// measured core is a property a domain has or lacks. [Spec]
 ///
 /// > Note: This is the line between the proven core (Theorems 1–5,
 /// > ``PassIsIdentification`` and its ancestry) and the measured core. Whether a
-/// > domain's faces hold is settled by an instrument, and the instrument is
+/// > domain's faces are true is settled by an instrument, and the instrument is
 /// > empirical: a separate measurement tool, not in these types.
 public protocol MeasuredGeometry: SearchableIffClusteredAndAligned, FourthFace {}
 

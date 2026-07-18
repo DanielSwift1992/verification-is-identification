@@ -25,7 +25,7 @@ public protocol HasGrammar: HasEncoding {
 
 /// The agent's perspective *is* its encoding: determined by E alone, gauge-
 /// invariant (``HasEncoding``, bounded by ``ScopeBoundedByEncoding``). One agent
-/// has only its frame, so an encoding-preserving transform looks the same to it,
+/// has only its frame, so an encoding-preserving transform is invisible to it,
 /// a ``Measurable`` fact. [DiD S1, S2]
 public protocol PerspectiveIsEncoding: ScopeBoundedByEncoding, HasEncoding, Measurable {}
 
@@ -33,7 +33,7 @@ public protocol PerspectiveIsEncoding: ScopeBoundedByEncoding, HasEncoding, Meas
 
 /// Distance between two agents is the symmetric difference of their caches,
 /// `|G₁ △ G₂|`. On cache states it is a true metric (identity, symmetry, triangle,
-/// bounded `≤ |Σ|²`). On agents it is a pseudometric, since equal caches sit at
+/// bounded `≤ |Σ|²`). On agents it is a pseudometric, since equal caches are at
 /// distance zero. ``HasDistance`` over ``HasCache``, with `Distance` (a finite count,
 /// ``IntegerValued``) here pinned ``MetricProperty``. [DiD S7]
 ///
@@ -45,7 +45,7 @@ where Distance: MetricProperty {}
 
 /// Space is the set of all perspective-distances. One agent is a point (zero
 /// distance, S1), and n agents span up to `(n−1)` dimensions. A metric
-/// (``DistanceIsMetric``) carried over the grammar's axes (``HasGrammar``). [DiD S8]
+/// (``DistanceIsMetric``) over the grammar's axes (``HasGrammar``). [DiD S8]
 public protocol SpaceFromDifference: DistanceIsMetric, HasGrammar {}
 
 // ── §8 · theorems ──

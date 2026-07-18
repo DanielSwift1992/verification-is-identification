@@ -15,11 +15,11 @@
 // Pure types (§0′). The coordinate system, applied to machines. [Projection]
 // ═══════════════════════════════════════════════════════════════
 
-/// The framework's guarantees ARE coordinates. Each holds exactly when its
+/// The framework's guarantees ARE coordinates. Each is in force exactly when its
 /// coordinate is present. A system can CERTIFY iff it has a ``GateIsMembrane``
 /// gate (Theorem 2), does NOT FORGET iff it has I3 (else §5.22 breaks), is
 /// REPRODUCIBLE iff gate+I3 (SAT5/6), has IRREDUCIBLE transferable knowledge iff
-/// its basis is certified (B). A missing coordinate removes exactly its
+/// its basis is certified (B). A missing coordinate costs exactly its
 /// guarantee. The instance with ALL coordinates present is the framework's
 /// shape: certified self-play (``PlayIsProof``). [Projection AI1, AI6]
 ///
@@ -28,8 +28,8 @@
 /// > it suffers both fall out of that placement.
 public protocol AllCoordinatesPresent: PlayIsProof, GateIsMembrane {}
 
-/// Wrap any generator with a ``GateIsMembrane`` gate and an append-only store and
-/// it gains three guarantees: (i) does not emit a wrong answer (0 false positives,
+/// A generator wrapped with a ``GateIsMembrane`` gate and an append-only store
+/// gains three guarantees: (i) does not emit a wrong answer (0 false positives,
 /// Theorem 2), (ii) preserves the generator's coverage (errors filtered, reach
 /// untouched), (iii) monotonically accumulates (I3, the crystal only grows). A
 /// better ``DiscriminatorAndGenerator`` generator moves coverage. The gate moves

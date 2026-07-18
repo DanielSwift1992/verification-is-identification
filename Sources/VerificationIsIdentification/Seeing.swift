@@ -10,7 +10,7 @@ import Swift
 
 /// An encoding can forget: two distinct sources share one image under it, so the
 /// image alone leaves `|S| > 1` and identification stops at the reading edge. The
-/// claim is carried by its witnesses — the conformer presents the twin sources and
+/// claim is in its witnesses: the conformer presents the twin sources and
 /// their shared image, and the compiler checks the sharing. Builds on
 /// ``HasEncoding``: the encoding bounds what a reader of images can ever
 /// distinguish. [SiE 4]
@@ -23,7 +23,7 @@ public protocol EncodingForgets: HasEncoding {
 /// A presented separator returns the distinction the encoding forgot: routed
 /// through it, the twin sources land on distinct images, and identification is
 /// restored without touching the sources. The separator is presented, never
-/// searched for — the same author's move a presented law makes. Builds on
+/// searched for: the same author's move a presented law makes. Builds on
 /// ``EncodingForgets``: the forgetting names the pair the separator must part.
 /// [SiE 5]
 public protocol SeparatorIdentifies: EncodingForgets {

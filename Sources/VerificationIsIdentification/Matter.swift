@@ -52,7 +52,7 @@ public protocol Matter: KnowledgeAccumulates, PassIsIdentification, Resistant {}
 // ── §4 No-inverse: the load-bearing guarantee ──
 
 /// Distinction has no inverse: no operation removes from Σ or the cache. The
-/// library, like the cache (``KnowledgeAccumulates``), is append-only, this sits
+/// library, like the cache (``KnowledgeAccumulates``), is append-only, and this is
 /// beneath all three properties of ``Matter``. [Matter M21]
 public protocol NoInverse: KnowledgeAccumulates
 where Library: Permanent {}
@@ -61,7 +61,7 @@ where Library: Permanent {}
 
 /// Every V=I game on finite Σ converges to a fixed point `(L*, G*)`. Finite
 /// monotone sequences must converge: S shrinks (``SystemCrystallizes``), while G
-/// and L grow and cannot retract (``NoInverse``). The fixed point is the crystal.
+/// and L grow and never shrink (``NoInverse``). The fixed point is the crystal.
 /// [Matter M12]
 public protocol Converges: SystemCrystallizes, NoInverse {}
 
@@ -76,8 +76,8 @@ public protocol Ignites: LibrarySaturates, Matter {}
 
 /// Each level's crystal is the next level's matter: the tower recurses by ignition
 /// (``Ignites``) over discrete time (``HasTime``) and bounded cost (``HasCost``),
-/// terminating at `K_M ≤ 1`, finite `Levels`. (Termination assumes compression at
-/// every level, a premise stated in the paper, not derived from I1–I3.) [Matter §4]
+/// terminating at `K_M ≤ 1`, finite `Levels`. (Termination is conditional on compression at
+/// every level, a premise stated in the paper, never derived from I1–I3.) [Matter §4]
 public protocol Tower: Ignites, HasTime, HasCost {
     associatedtype Levels: IntegerValued
 }

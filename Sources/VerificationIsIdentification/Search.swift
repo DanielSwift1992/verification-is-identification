@@ -14,23 +14,23 @@
 // Pure types (§0′). Grounds the Alpha axis (HasAlpha) with its content. [Search]
 // ═══════════════════════════════════════════════════════════════
 
-/// Every search assumes loss aligns with distance. α measures whether it does.
+/// The premise of every search is that loss aligns with distance. α measures whether it does.
 /// α = correlation( W(R,R*), loss(R) ) names the assumption: α→1 descent
 /// optimal, α→0 rugged (no signal), α<0 deceptive. Descent reaches a solution
-/// iff no spurious loss-minimum lies along the ``DistanceOnStructures`` metric W
+/// iff no spurious loss-minimum is along the ``DistanceOnStructures`` metric W
 /// (the premise hidden in N5's "ballistic" promise: it arrives at a solution
 /// only when the landscape is aligned, else at a wall, the wall being the
 /// ``GateIsZeroOfLoss`` zero it can no longer reach). α is the measured
 /// alignment, encoding-relative. [Search GA1-GA3]
 ///
-/// > Note: α lives on the ``HasAlpha`` axis: a property of the (domain,
-/// > encoding) pair, not of the searcher. Change the encoding and α changes.
-/// > Re-grind the same encoding and it stays put.
+/// > Note: α is on the ``HasAlpha`` axis: a property of the (domain,
+/// > encoding) pair, not of the searcher. α changes with the encoding, and
+/// > only with the encoding.
 public protocol AlignmentCoefficient: HasAlpha, DistanceOnStructures, GateIsZeroOfLoss {}
 
 /// Intelligence exceeds enumeration iff α > 0. The advantage η = T_min/T_actual
 /// (``IntelligenceRises``) beats brute force exactly when the ``AlignmentCoefficient``
-/// loss carries a usable gradient. The α=0 case is IiI's distribution-relativity
+/// loss has a usable gradient. The α=0 case is IiI's distribution-relativity
 /// boundary: a rugged loss and no-free-lunch are one wall seen from two sides. [Search GA6]
 ///
 /// > Note: α > 0 is the single hinge. Above it the loss is a map. At zero it is
@@ -39,14 +39,14 @@ public protocol AlignmentEnablesIntelligence: AlignmentCoefficient, Intelligence
 
 /// A domain is efficiently searchable by descent iff it is BOTH clustered AND
 /// aligned. Clustered (G12: hierarchical W-structure exists) and aligned (α>0:
-/// that structure points at solutions) are independent ``AlignmentCoefficient``
+/// that structure leads to solutions) are independent ``AlignmentCoefficient``
 /// properties, both required. This sharpens the one-boundary claim
 /// (``OneBoundaryThreeFaces``, N18): clustering is whether the space has
 /// geometry. Alignment is whether the geometry is for you. [Search GA7]
 ///
-/// > Tip: Two knobs, not one. A space can have rich geometry that points
+/// > Tip: Two knobs, not one. A space can have geometry that leads
 /// > nowhere useful (clustered, α≈0) or a clear gradient over a structureless
-/// > space (aligned, unclustered), only both together make descent pay.
+/// > space (aligned, unclustered), and descent pays only when both are there.
 public protocol SearchableIffClusteredAndAligned: AlignmentCoefficient, OneBoundaryThreeFaces {}
 
 // ───────────────────────────────────────────────────────────────

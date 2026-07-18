@@ -26,7 +26,7 @@
 /// unresolved region shrinks (``Monotone``). [Liquid LQ1-2]
 ///
 /// > Note: For most domains the liquid is the only phase, and the crystal is a
-/// > corner case. On a horn domain, learning never crystallizes. It stays liquid
+/// > corner case. On a horn domain, learning never crystallizes. It is liquid
 /// > forever.
 public protocol LiquidPhase: KnowledgeAccumulates, Monotone {}
 

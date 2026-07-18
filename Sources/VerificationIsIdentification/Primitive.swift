@@ -34,7 +34,7 @@
 
 // ── Structure / Open / Close ──
 
-/// This names the root ability: what it is to participate in our world. A new name is not written
+/// This names the root ability: what it is to participate in the world. A new name is not written
 /// `: Structure` directly: it is ``Open`` (a `protocol` tunnel, still extensible) or ``Close`` (an
 /// empty `enum` seal, concrete). Trace any structure up its parents and it reaches here. Trace it down
 /// and it reaches a ``Close`` floor, so every structure opens and closes, finite by construction
@@ -60,7 +60,7 @@ public protocol Structure {
 }
 
 /// This is an OPEN tunnel, written ONLY as a `protocol`. A new name is Open by default: it opens an
-/// axis with `associatedtype` (a hole) and narrows it with `where`. It stays extensible, dot-readable,
+/// axis with `associatedtype` (a hole) and narrows it with `where`. It is extensible, dot-readable,
 /// a criterion. `enum X: Open` is the contradiction the check rejects: an `enum` has already sealed what
 /// Open must keep open.
 ///
@@ -83,8 +83,8 @@ where Body == Never {
 
 /// This is a CLOSE: a terminal seal, written ONLY as an empty `enum`: no cases, no `init`, the branch
 /// ends and Swift is handed a concrete empty type. `protocol X: Close` is the contradiction: a Close must be
-/// concrete. A foreign value joins our world here too: a layer writes `extension String: Close` to make
-/// a string one of our sealed leaves, the one place a value (a `String`) lives, at the edge.
+/// concrete. A foreign value joins the world here too: a layer writes `extension String: Close` to make
+/// a string one of the sealed leaves, the one place for a value (a `String`), at the edge.
 public protocol Close: Structure {}   // law:allow: the seal half of Open/Close, not a rename of Structure
 
 // ── Pair / Null ──
@@ -109,7 +109,7 @@ public protocol Pair: Open {
 /// `Never`: uninhabited, because nothing remains to be distinguished. [EiF C5]
 ///
 /// > Note: Every theorem that says "A = B" is ``Null`` at that level. The compiler
-/// > checking `where Left == Right` is the verification. The constraint holding is
+/// > checking `where Left == Right` is the verification. The met constraint is
 /// > the identification. The compiler is the V=I loop.
 public protocol Null: Pair
 where Left == Right {}
@@ -174,7 +174,7 @@ extension Structure {
 /// `Employee` (`Pair` for its `Rank`/`Home` coordinate), a verdict gate, an axis marker. It is a LEAF,
 /// the same as a ``Close`` atom, so it counts as one. Without this, the general rule below would read
 /// `Body.count` and silently count every such leaf as zero, exactly the case a roster's members
-/// are made of, so this is the override that keeps `count` correct for the cons-list replacement.
+/// are made of, so this is the override that keeps `count` correct for a roster's members.
 extension Open
 where Body == Never {
     public static var count: Int { 1 }
@@ -222,7 +222,7 @@ extension Paired {
 // so the builder can return them. Everything else is a protocol.
 
 /// This is the concrete Pair realizer: the ONE `<>` in the system, the framework's plumbing that the
-/// builder folds into. Holds a left and a right as a value, conforms to ``Pair``. Not written in domain code.
+/// builder folds into. It keeps a left and a right as a value and conforms to ``Pair``. Not written in domain code.
 /// The builder produces it behind the `{ }` curtain.
 public enum Paired<
     L: Structure,
@@ -283,7 +283,7 @@ public enum StructureBuilder {
 public enum Unit: Close {}
 
 /// Plus sums by composition: the pair of two magnitudes counts as both. The house fold does
-/// the arithmetic; no member states it.
+/// the arithmetic, and no member states it.
 public enum Plus<
     A: Structure,
     B: Structure
@@ -309,9 +309,9 @@ extension Times {
 }
 
 /// Rest is what remains: the whole minus what was taken, the subtractive witness beside
-/// `Times`' product. Layout divides space — known pieces come off a given whole, and the
-/// rest is handed on — so subtraction enters the lattice the same way multiplication did:
-/// one witness, counted only at the reading edge. Taking more than the whole holds is
+/// `Times`' product. Layout divides space (known pieces come off a given whole, and the
+/// rest is handed on), so subtraction enters the lattice the same way multiplication did:
+/// one witness, counted only at the reading edge. Taking more than the whole has is
 /// refused right there, at the read, the fit made a checked fact.
 public enum Rest<
     Whole: Structure,
@@ -341,7 +341,7 @@ extension Half {
 }
 
 /// Tally is the counting read: a structure in, its count out as digits, through `typeName`
-/// like every other reading. The one door a canvas may take to a number; a bare `count`
+/// like every other reading. The one door a canvas may take to a number, and a bare `count`
 /// call outside the readers is the smell this door exists to remove.
 public enum Tally<Of: Structure>: Close {}
 extension Tally {

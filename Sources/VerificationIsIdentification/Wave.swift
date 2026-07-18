@@ -11,10 +11,10 @@ import Swift
 
 /// Interference is substitution: a wave is a finite bag of contributions, each
 /// a magnitude with a cyclic remainder for its phase, and superposition never
-/// computes — it rewrites. The one rule finds two contributions of equal
+/// computes: it rewrites. The one rule finds two contributions of equal
 /// magnitude and opposite phase and removes the pair. The rule is a triple of
 /// the presented class, so every step is judged and the whole calculus is the
-/// dynamics medium, worn by optics. Builds on ``PresentedLaw``: the law is the
+/// dynamics medium, instantiated in optics. Builds on ``PresentedLaw``: the law is the
 /// annihilation dictionary, written whole. [IiS 2]
 public protocol InterferenceIsSubstitution: PresentedLaw {
     associatedtype Contribution
@@ -22,7 +22,7 @@ public protocol InterferenceIsSubstitution: PresentedLaw {
 
 /// Darkness is a normal form: rewriting terminates because every step removes
 /// a pair, and independent removals commute, so each bag settles to one
-/// residue — and a detector reads that residue, never the history. A dark
+/// residue, and a detector reads that residue, never the history. A dark
 /// fringe is the bag that settles to nothing: emptiness reached, not measured.
 /// Builds on ``InterferenceIsSubstitution``: the observable is what the
 /// rewriting leaves. [IiS 3]

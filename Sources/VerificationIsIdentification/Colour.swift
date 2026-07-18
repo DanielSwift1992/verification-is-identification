@@ -9,8 +9,8 @@ import Swift
 // ═══════════════════════════════════════════════════════════════
 
 /// A colour is a quotient's point: the fiber of the encoding over one image,
-/// the class of every source that lands there. Coordinates — any colour
-/// space — parameterize the quotient, never the light, so two sources in one
+/// the class of every source that lands there. Coordinates (any colour
+/// space) parameterize the quotient, never the light, so two sources in one
 /// fiber are one colour and remain two beams. Builds on ``EncodingForgets``:
 /// the forgetting is what makes the class bigger than one member. [CiQ 1]
 public protocol ColourIsQuotient: EncodingForgets {
@@ -19,11 +19,11 @@ public protocol ColourIsQuotient: EncodingForgets {
 
 /// A display is a presented source: stated primaries with nonnegative levels,
 /// and its reach is the cone those primaries span in the quotient. A colour
-/// inside the cone is matched by stated levels; a colour outside has no
-/// matching levels at all, so the display refuses it by name — an empty
+/// inside the cone is matched by stated levels. A colour outside has no
+/// matching levels at all, so the display refuses it by name: an empty
 /// candidate set, never a silent clip. Builds on ``ColourIsQuotient``: the
-/// cone lives in the quotient, where colours do, and the stated primaries
-/// make the reach decidable before anything shines. [CiQ 3]
+/// cone is in the quotient, where colours are, and the reach is decidable
+/// from the stated primaries before anything shines. [CiQ 3]
 public protocol GamutIsCone: ColourIsQuotient {
     associatedtype Primaries
 }

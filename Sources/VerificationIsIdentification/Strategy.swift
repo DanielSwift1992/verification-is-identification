@@ -16,7 +16,7 @@
 // ═══════════════════════════════════════════════════════════════
 
 /// A strategy (an order-choosing decision tree) is a finite structure in Σ, so
-/// the order, the sole free parameter (``OrderIsOnlyFreedom``, §5.25), carries a
+/// the order, the sole free parameter (``OrderIsOnlyFreedom``, §5.25), has a
 /// norm ‖σ‖ and a distance W. Strategy geometry is inherited from
 /// ``DistanceOnStructures``, not constructed, the moment the order enters Σ.
 /// [Order O1, O2]
@@ -31,13 +31,13 @@ public protocol StrategyGate: StrategyLivesInSigma, PassImpliesMembership {}
 
 /// Among the strategies passing the ``StrategyGate`` at the minimal budget, argmin
 /// over (worst-case cost, ‖σ‖, structural order) has a unique minimum σ*, the
-/// cheapest of the fastest, so ``ExactlyOneSurvives``. R4 holds for the refined
-/// relation. Thm 2 applies. [Order O8]
+/// cheapest of the fastest, so ``ExactlyOneSurvives``. R4 is true for the refined
+/// relation. Thm 2 is in force. [Order O8]
 public protocol StrategyIsUnique: StrategyGate, ExactlyOneSurvives {}
 
 /// The certified σ* (``StrategyIsUnique``) enters the library and inherits I3,
 /// permanent, irreducible, resistant: it *is* ``Matter``. The IiI §2 caveat
-/// ("strategy state is mutable") was true but about the wrong level: strategy
+/// ("strategy state is mutable") is true, but about the wrong level: strategy
 /// STATE at level N is mutable scaffolding. The strategy OBJECT at level N+1 is
 /// permanent. [Order O9]
 ///
@@ -58,7 +58,7 @@ public protocol PhaseBecomesAmplitude: StrategyCrystallizes, PassIsIdentificatio
 /// After rule and strategy saturation, a ``HasLibrary`` entry is the triple
 /// (f*, E, σ*): WHAT the answer is, THROUGH WHICH lens (``HasEncoding``), HOW to
 /// reach it fastest. Once ``PhaseBecomesAmplitude``, the object contains its
-/// path: certified WHAT (Thm 2), supplied lens (R4), certified HOW (this paper).
+/// path: certified WHAT (Thm 2), supplied lens (R4), certified HOW (the strategy gate).
 /// [Order O12]
 public protocol CompleteEntry: PhaseBecomesAmplitude, HasEncoding, HasLibrary {}
 
@@ -69,8 +69,8 @@ public protocol CompleteEntry: PhaseBecomesAmplitude, HasEncoding, HasLibrary {}
 /// [Order O15]
 public protocol SkillsAreBalls: StrategyLivesInSigma, BallSaturation {}
 
-/// The strategy library under W forms an anchor graph: ``NavigationInevitable``
-/// and all of NiG N1–N19 apply to ``SkillsAreBalls`` by substitution. A new class
+/// The strategy library under W is an anchor graph: ``NavigationInevitable``
+/// and all of NiG N1–N19 are in force on ``SkillsAreBalls`` by substitution. A new class
 /// routes greedily to its nearest certified skill. Gate failure emits an addressed
 /// hole naming the missing skill, the skill curriculum (N17, one level up).
 /// [Order O16]
@@ -82,6 +82,7 @@ public protocol StrategyNavigation: SkillsAreBalls, NavigationInevitable {}
 /// unless the strategy matrix (``SkillsAreBalls``) clusters too. Cluster at both
 /// levels → skills that route. [Order O18]
 ///
-/// > Tip: Transfer at the WHAT level does not buy transfer at the HOW level, the
-/// > strategy matrix has its clustering, and skills route only when it holds.
+/// > Tip: Transfer at the WHAT level does not imply transfer at the HOW level, the
+/// > strategy matrix has its clustering, and skills route only where that
+/// > clustering is present.
 public protocol FourthFace: OneBoundaryThreeFaces, SkillsAreBalls {}

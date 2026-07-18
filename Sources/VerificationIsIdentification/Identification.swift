@@ -27,7 +27,7 @@
 public protocol StructuresFinite: Pair, HasSigma {}
 
 /// Distinction is recursive: a structure's components are themselves
-/// structures. Operations stay closed under Σ.
+/// structures. Operations are closed under Σ.
 /// Compresses both sides of ``Pair``: `Left` and `Right` must each be `Pair`.
 /// [EiF C5]
 public protocol OperationsClosed: Pair
@@ -49,7 +49,7 @@ public protocol EqualityDecidable: StructuresFinite {
 
 // ── §2 Derived Invariant ─────────────────────────────────
 
-/// The comparison graph is append-only: G' ⊇ G. Cached results stand for good.
+/// The comparison graph is append-only: G' ⊇ G. Cached results are kept for good.
 /// Introduces the Cache axis (``HasCache``) and compresses it: `Cache` must be
 /// ``Permanent``. A pure function on fixed inputs gives fixed results, because the
 /// structures are finite (``StructuresFinite``) and the operations closed (``OperationsClosed``). [V=I §2.4 I3]
@@ -85,7 +85,7 @@ public protocol ResultDeterministic: OperationsClosed {
 
 // ── §5 Monotonicity ─────────────────────────────────────
 
-/// The cache only grows: G_n ⊆ G_{n+1}, cached comparisons stand for every step.
+/// The cache only grows: G_n ⊆ G_{n+1}, and cached comparisons are kept at every step.
 /// It carries permanence (``CachePermanent``) across the terminating steps
 /// (``StepsTerminate``), so the cache accumulates step by step. [V=I §5.6]
 public protocol CacheOnlyGrows: CachePermanent, StepsTerminate {}
@@ -96,7 +96,7 @@ public protocol CacheOnlyGrows: CachePermanent, StepsTerminate {}
 public protocol DiagnosticsAccumulate: CachePermanent, ResultDeterministic {}
 
 /// The solution set only shrinks: each COMPARE can drop a candidate, and once dropped
-/// it stays out (|S_{n+1}| ≤ |S_n|).
+/// it is out for good (|S_{n+1}| ≤ |S_n|).
 /// It compresses the solution axis (``HasSolutions``) to a ``Monotone`` `SolutionSet`,
 /// built on the permanent cache (``CachePermanent``) that makes a drop final. This
 /// protocol owns the claim, and IiI A1 reuses it. [V=I §5.22]
@@ -107,11 +107,11 @@ public protocol CandidatesOnlyLeave: CachePermanent,
 
 // ── §5 Structural ────────────────────────────────────────
 
-/// The pipeline stays out of its own input: operations never take the pipeline
+/// The pipeline is outside its own input: operations never take the pipeline
 /// as argument. [V=I §5.23]
-/// PROXY (§1, §4-through-negation): types can't state "X ∉ its own input".
+/// PROXY (§1, §4-through-negation): types cannot spell "X ∉ its own input".
 /// Finite-depth `Input` (``IntegerValued``) excludes the infinite self-nesting that
-/// self-reference would create — the closest sound expression of the bound. The
+/// self-reference would create, the closest sound expression of the bound. The
 /// medium is well-founded (EiF C6): nothing contains itself.
 /// Built on closed operations (``OperationsClosed``), which take only the encoded data.
 public protocol NoSelfReference: OperationsClosed {
@@ -120,7 +120,7 @@ public protocol NoSelfReference: OperationsClosed {
 
 /// The pipeline sees only the encoded representation: its scope stops at the encoding.
 /// It joins closed operations (``OperationsClosed``) to a deterministic result
-/// (``ResultDeterministic``), so the result depends on the encoding alone. [V=I §5.24]
+/// (``ResultDeterministic``), so the result is a function of the encoding alone. [V=I §5.24]
 public protocol ScopeBoundedByEncoding: OperationsClosed, ResultDeterministic {}
 
 
@@ -130,7 +130,7 @@ public protocol ScopeBoundedByEncoding: OperationsClosed, ResultDeterministic {}
 /// Conclusion pinned (§T): the requirement *is* a fixpoint on the solution axis
 /// (``HasSolutions``) — `where SolutionSet:` ``Unique``. R4 ASSUMES the collapse (a
 /// decidable property of the encoding, §3.5–3.6). A4 (``SystemCrystallizes``) PROVES
-/// it from A1–A3 — the requirement and the theorem meet at the SAME fixpoint,
+/// it from A1–A3: the requirement and the theorem meet at the SAME fixpoint,
 /// `SolutionSet: Unique`, the framework's canonical encoding of |S|=1 (the gate
 /// coordinate, Domains). Inherits ``StructuresFinite`` and ``EqualityDecidable``.
 public protocol ExactlyOneSurvives: StructuresFinite, EqualityDecidable,
@@ -175,7 +175,7 @@ public protocol PreconditionsGuaranteePass: StructuresFinite, EqualityDecidable,
 
 /// The axes are co-oriented: every monotone property points the same way
 /// (info↑, rejections↑, |S|↓).
-/// AX3 lives in this line: AxesCoOriented depends on CachePermanent (I3), that
+/// AX3 is in this line: AxesCoOriented inherits CachePermanent (I3), and that
 /// edge *is* "permanence generates alignment". Delete CachePermanent here and the
 /// alignment cannot be formed: "remove I3 → axes decouple", executable. So AX3
 /// is the dependency itself, not a separate protocol (Law §1: no rename). [V=I §5 AX1, AX3]
@@ -198,15 +198,15 @@ public protocol Universality: StructuresFinite, HasEncoding, ExactlyOneSurvives 
 
 /// COMPARE reveals a pre-existing fact: its result is fixed by the inputs' structure
 /// before the call, never created. The output settles to one determined value, and the
-/// medium already holds it.
+/// medium already contains it.
 /// It joins closed operations (``OperationsClosed``) to a measured value (``Measurable``):
 /// the call reads what the medium already fixes (EiF Part III). [V=I §5.20]
 public protocol RevealsNotCreates: OperationsClosed, Measurable {}
 
 /// Order is the sole freedom (A12): once the encoding is fixed, the only free variable
-/// is the order of COMPAREs, and correctness holds whatever the order.
+/// is the order of COMPAREs, and correctness is intact whatever the order.
 /// Everything else is pinned (``AxesCoOriented``), and the identification fixpoint
-/// (``IdentityCollapse``) holds atop that, so order is the residue left after every
+/// (``IdentityCollapse``) is in force atop that, so order is the residue left after every
 /// other collapse. [V=I §5.25]
 ///
 /// > Tip: When every axis is co-oriented and the answer is pinned, the one thing

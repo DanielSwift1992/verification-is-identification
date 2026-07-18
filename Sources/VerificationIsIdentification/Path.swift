@@ -35,7 +35,7 @@ public protocol HasPath: HasSigma {
 
 /// Emission ACCUMULATES: the path only grows, each token consed ahead of the rest.
 ///
-/// To emit a token is to extend the path, not to revise it: the prefix already written stays
+/// To emit a token is to extend the path, not to revise it: the written prefix is there for good
 /// (`Path: Permanent`, after ⊇ before). So the path is its own history: drop the last token and
 /// the prior state is exactly there, the cons-list the secret and the roster are. The write-order
 /// is monotone, the mirror of the discriminator's shrinking candidate set. [PiP · cf. Read]
@@ -45,21 +45,21 @@ where Path: Permanent {}
 /// COST is the path's LENGTH: a construction pays one distinction per token, and the total is the
 /// count of tokens.
 ///
-/// Distance Is Cost made distance an integer count of steps. Here the steps are the tokens, so the
+/// In Distance Is Cost, distance is an integer count of steps. Here the steps are the tokens, so the
 /// cost of a construction *is* its path length, pinned by closing the two axes onto one
 /// (`Distance == Path`, a ``Null`` between cost and path). A short path is a cheap object, a long
 /// one dear, and nothing else enters the price. [PiP · DiC G2c]
 public protocol CostIsPathLength: HasPath, HasDistance
 where Path: IntegerValued, Distance == Path {}
 
-/// REACH is a PATH: the hollow space whose reach Basis Is Residue could not axis is the path itself.
+/// REACH is a PATH: the hollow space whose reach has no axis in Basis Is Residue is the path itself.
 ///
 /// The HORN has a finite basis and an infinite reach (`Basis: IntegerValued`, one atom, the
 /// successor) yet every reachable element is finite (`Path: IntegerValued`, a counted chain). That
 /// is the whole of B8b's open point: the closure is open, each path is finite, and the compiler
 /// does not build the closure, it materializes only the paths actually walked. The space is large in
-/// potential and cheap in fact, hollow because its members declare themselves into it rather than
-/// being enumerated from it. [PiP · Basis B8b]
+/// potential and cheap in fact, hollow because its members enter by declaration, never by
+/// enumeration from it. [PiP · Basis B8b]
 ///
 /// > Note: This is why a type-level string space does not explode the compiler. The reach is
 /// > inverted, the concrete path depends on the alphabet, not the alphabet on its closure, so
@@ -81,11 +81,12 @@ public protocol EmissionIsAutoregressive: HasPath, ScopeBoundedByEncoding,
 
 /// CONSTRUCTION is READING run forward: emitting a path and traversing one are the same navigation.
 ///
-/// Reading Is Order reads a standing structure: the order is the agent, the zipper's walk. Emission
-/// writes one: the order is the generator, the same walk the other way. They are one navigation over
-/// one path (`Reading` met with the accumulating emission): the discriminator folds μ-ward, the
-/// generator unfolds ν-ward, and the path is what both move along. So to write a program and to read
-/// it are not two acts: the trace the construction leaves IS the object read back. [PiP · Read]
+/// In Reading Is Order a reading walks a standing structure: the order is the agent, the zipper's
+/// walk. Emission writes one: the order is the generator, the same walk the other way. They are
+/// one navigation over one path (`Reading` met with the accumulating emission): the discriminator
+/// folds μ-ward, the generator unfolds ν-ward, and the path is what both move along. So to write
+/// a program and to read it are not two acts: the trace the construction leaves IS the object
+/// read back. [PiP · Read]
 public protocol ConstructionIsReading: Reading, EmissionAccumulates {}
 
 /// An INVALID step FOLDS onto itself: a token that cannot validly extend the path closes the path
@@ -113,11 +114,11 @@ public protocol GatedConstruction: HasPath, SystemCrystallizes, EmissionAccumula
 /// sound.
 ///
 /// It proposes and accumulates (`DiscriminatorAndGenerator`, `EmissionAccumulates`) but nothing
-/// pins the survivor to one: `SolutionSet` is not ``Unique`` here, so `|S| > 1` stands and the path
-/// commits to candidates it never cut. This is the language model: it always emits (total) yet the
-/// emitted path need not be valid (unsound), and the coordinate it is missing is exactly the gate
-/// ``GatedConstruction`` carries. The compiler names that coordinate: a free generation cannot be
-/// gated without proving the uniqueness it does not have. [PiP · Gen GD1]
+/// pins the survivor to one: `SolutionSet` is not ``Unique`` here, so `|S| > 1` persists and the
+/// path is built on candidates the cut never touched. This is the language model: it always
+/// emits (total) yet the emitted path need not be valid (unsound), and the coordinate it is
+/// missing is exactly the gate ``GatedConstruction`` has. The compiler names that coordinate:
+/// a free generation cannot be gated without proving the uniqueness it does not have. [PiP · Gen GD1]
 ///
 /// > Note: Hallucination is not a defect added to generation. It is generation with the
 /// > discriminator removed, the organ that carries every identification bit (Proposal Is Order) is
@@ -126,15 +127,15 @@ public protocol FreeGeneration: HasPath, DiscriminatorAndGenerator, EmissionAccu
 
 /// PROGRAM is PATH: a construction is a finite, gated, autoregressive path over a hollow space.
 ///
-/// The capstone braids the three readings into one object. The reach is a path (``ReachIsPath``,
+/// The capstone intersects the three readings in one object. The reach is a path (``ReachIsPath``,
 /// hollow space, finite walk), the emission is sequential (``EmissionIsAutoregressive``, one token
 /// at a time), and each step is gated (``GatedConstruction``, the cut that keeps it sound). A
 /// program is then nothing but the path its construction walked, read back: `act ≡ write ≡ prove`
-/// at the level of the token. Strip the gate and the same path is a free generation. Strip the
-/// finiteness and the reach is the open HORN. This is where all three close at once. [PiP]
+/// at the level of the token. Without the gate the same path is a free generation. Without the
+/// finiteness the reach is the open HORN. This is where all three close at once. [PiP]
 public protocol ProgramIsPath: ReachIsPath, EmissionIsAutoregressive, GatedConstruction {}
 
-/// COMPLETION is the SOLUTION SET: the continuations a node offers are exactly the candidates
+/// COMPLETION is the SOLUTION SET: the continuations at a node are exactly the candidates
 /// verification still admits there, read forward as the path is walked.
 ///
 /// Typing a token is a `COMPARE`, a cut, so the candidate set only shrinks (`SolutionSet:
@@ -142,15 +143,15 @@ public protocol ProgramIsPath: ReachIsPath, EmissionIsAutoregressive, GatedConst
 /// verifying: the suggestion is the proof state, not a second index built beside it. When the set
 /// reaches one the segment crystallizes (the boundary), and the next node opens its set,
 /// conditioned on the prefix. So an editor's completion is the V=I loop made visible: ``Reading``
-/// over the solution axis, walked along the path. A model shows the same list ungated. This shows it
-/// cut to the survivors, which is why a suggested path is always valid. [PiP · Read]
+/// over the solution axis, walked along the path. A model shows the same list ungated. The editor
+/// shows it cut to the survivors, which is why a suggested path is always valid. [PiP · Read]
 public protocol CompletionIsSolutionSet: Reading, HasSolutions, HasPath
 where SolutionSet: Monotone {}
 
-/// ERASURE is HEAD RECESSION: deleting the last token moves the reading head back, it does not
-/// destroy the object: the monotone history keeps it.
+/// ERASURE is HEAD RECESSION: deleting the last token moves the reading head back and destroys
+/// nothing: the object is in the monotone history.
 ///
-/// The record is append-only (``NoInverse``: a fact written is not retracted), so an edit cannot
+/// The record is append-only (``NoInverse``: the system retracts no written fact), so an edit cannot
 /// delete at the system level. What "erasing `hello`" does is recede the head: drop the focus and
 /// the prior state is exactly there, the chain reversible by construction (``EmissionAccumulates``).
 /// The object goes unreachable from the head, not gone, which is why undo costs nothing. Garbage is

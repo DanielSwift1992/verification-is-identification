@@ -9,8 +9,8 @@
 // reaches is checked by review. The law is written in the thing it governs,
 // it is itself Pair and Null all the way down (§6).
 
-/// How every protocol in the lattice must be written: the grammar the whole
-/// theory speaks.
+/// How every protocol in the lattice must be written: the grammar
+/// of the whole theory.
 ///
 /// Every protocol is built from one seed by one of two moves, grounded on one
 /// floor, and the law that governs this is itself written in the seed it grows
@@ -24,9 +24,9 @@
 ///
 /// The lattice grows from one act, ``Pair`` (a distinction), and closes at its
 /// fixpoint ``Null``. Everything reduces to them. They are primitive here, the
-/// lattice starts from them, but not arbitrary: Existence Is Finite shows they are
+/// lattice starts from them, but not arbitrary: by Existence Is Finite they are
 /// the only foundation determinacy allows, below the floor. A term that reduces to
-/// neither is foreign and is rejected (§6).
+/// neither is foreign, and the law rejects it (§6).
 ///
 /// - ``Pair``: one act of distinction: two sides, one boundary
 ///   (`associatedtype Left`, `associatedtype Right`).
@@ -57,26 +57,26 @@
 /// point in the lattice, or with a `Body` (`Open`) when it composes other types.
 /// `struct` and `class` are forbidden: they can be instantiated.
 ///
-/// - term `<>` lives on `enum` only. Protocols parameterize through `associatedtype`.
+/// - term `<>` is on `enum` only. Protocols parameterize through `associatedtype`.
 ///   A generic parameter on a protocol would be `<>` on a protocol, impossible in Swift,
 ///   and the reason `associatedtype` exists.
-/// - term Name over angle brackets. If a generic instantiation is used more than once,
+/// - term Name over angle brackets. If you use a generic instantiation more than once,
 ///   give it a `typealias`. Write `Never` instead of `Cell<Never, Never>` when the
 ///   Pair floor suffices. Raw `<>` is allowed only when no simpler name exists.
-/// - term Angles open like a tree. One bare argument stays inline (`Succ<Prev.Length>`).
+/// - term Angles open like a tree. One bare argument is inline (`Succ<Prev.Length>`).
 ///   From the second argument, or the first constraint in the list, the angles open:
-///   each argument on its own line, the closing `>` on its own. The indent then shows the
-///   nesting the way a `body`'s braces already do, and the brackets read as the tree they
-///   spell, uniform for any eye, whatever language it came from.
-/// - term Supplementary information has one home. `where` heads its own line, always,
-///   after a generic list, after a conformance list, in a `for`, and so do `var` and
-///   `typealias` inside a declaration. What may sit in two places gets hunted in both.
-///   One home ends the hunt, and the eye lands where it expects. Modifiers (`public`,
-///   `static`) are transparent: they stand before the word without taking its line. A
-///   `body`'s statements keep their freedom: nobody hunts inside a body, §S7 reads it
-///   whole, and packing its leaves is what keeps a long spell from becoming one-story
-///   sprawl. The grammar enforces the home as a name: an atom out of place is carried as
-///   `Midline` and `Midline` is granted nothing.
+///   each argument on its own line, the closing `>` on its own. The nesting is then in the
+///   indent, the way it is already in a `body`'s braces, and the opened brackets are the
+///   tree, uniform for any eye, whatever language it came from.
+/// - term Supplementary information has one home. `where` is on its own line, always,
+///   after a generic list, after a conformance list, in a `for`, and so are `var` and
+///   `typealias` inside a declaration. What may be in two places is hunted in both
+///   by the reader. One home ends the hunt, and the eye lands where it expects.
+///   Modifiers (`public`, `static`) are transparent: they are before the word, and
+///   the line is still the word's. A `body`'s statements are free: nobody hunts
+///   inside a body, §S7 reads it whole, and packed leaves are why a long spell is
+///   not one-story sprawl. The grammar enforces the home as a name: an atom out of
+///   place is carried as `Midline` and `Midline` is granted nothing.
 ///
 /// ## §1 · Two moves, and you must make one
 ///
@@ -101,12 +101,12 @@
 /// A bare `associatedtype X` is a *free* axis: dimensionless, hence infinite.
 /// To give it a dimension is to constrain it with `where`. Every axis opened by
 /// *expand* must be closed by *compress* in at least one protocol. Opening and
-/// closing may live apart. Where a dimension is pinned carries the claim's
+/// closing may be apart. The place of the pin is the claim's
 /// **status**:
 ///
 /// - term Inline (`associatedtype X: M`): *definitional*, true by what `X` is.
 ///   It opens and dimensions in one act.
-/// - term Theorem (`where X: M`): *derived*, proven to hold under the dynamics,
+/// - term Theorem (`where X: M`): *derived*, proven under the dynamics,
 ///   in the protocol that earns it.
 ///
 /// Pinning a derived property inline collapses its theorem into an axiom. So the
@@ -132,29 +132,29 @@
 /// protocol Monotone:  Pair where Left: Pair,  Left.Left  == Right {} // after ⊆ before
 /// ```
 ///
-/// Strip the `where` and the two opposites collapse to the same empty type.
+/// Without the `where` the two opposites collapse to the same empty type.
 ///
-/// > Tip: **Parent or pin.** A marker attaches two ways, and the choice is itself a
+/// > Tip: **Parent or pin.** There are two ways to attach a marker, and the choice is itself a
 /// > claim. Make it a *parent* (`protocol P: Decidable`) when the protocol itself is
 /// > that thing: P *is* the decision, the measurement. Make it a *pin*
 /// > (`where Axis: Decidable`) when P itself is not, but one of its axes is. The
-/// > test: does the marker describe the protocol's own ``Pair``, or one of its axes?
+/// > test: does the marker name the protocol's own ``Pair``, or one of its axes?
 ///
 /// ## §4 · Finite = width × depth
 ///
-/// Finite means both are bounded, not just one. Width is bounded by the shape
+/// Finite names both bounds, not just one. Width is bounded by the shape
 /// itself: a ``Pair`` has exactly two sides, never infinitely many. Depth is
 /// bounded because every ``Pair``-chain has to reach `Never`, the floor where it
 /// stops. An infinite structure never reaches a floor, so the compiler has no type
-/// for it. Drop the floor and you have the infinite binary tree. Drop ``Pair`` and
-/// you have a node with infinitely many children. Both must close.
+/// for it. Without the floor the structure is the infinite binary tree. Without
+/// ``Pair`` it is a node with infinitely many children. Both must close.
 ///
 /// ## §5 · Nothing floats
 ///
 /// Trace any protocol up its parents: it must reach ``Pair``. Trace any structure
-/// down: it must reach ``Null``. Markers root in ``Pair`` or ``Null``. Axes root
-/// in the one space-root ``HasSigma``. Theorems root in markers and axes. A
-/// protocol that reaches neither is rejected.
+/// down: it must reach ``Null``. Markers are rooted in ``Pair`` or ``Null``. Axes are rooted
+/// in the one space-root ``HasSigma``. Theorems are rooted in markers and axes.
+/// The law rejects a protocol that reaches neither.
 ///
 /// ## §6 · The law obeys the law
 ///
@@ -184,12 +184,11 @@
 /// | **move**: at least one, per §1 | expand / compress (close, pin, or intersect) |
 ///
 /// > Important: The conclusion is **mandatory**. A theorem without its
-/// > conclusion-fixpoint is only its premises, the trap that once left two of
-/// > Verification Is Identification's theorems half-stated. Worked example: ``AtomBasis`` pins
+/// > conclusion-fixpoint is only its premises, half-stated. Worked example: ``AtomBasis`` pins
 /// > `where CompositionalNorm == Distance`, the equation that *is* "an atom is
 /// > where the two norms coincide."
 ///
-/// How a freedom stands to its collapse picks the marker:
+/// How a freedom is related to its collapse names the marker:
 ///
 /// | Marker | The freedom… |
 /// | --- | --- |
@@ -201,17 +200,18 @@
 /// | ``IntegerValued`` | a ladder of fixpoints (Peano, floored at ``Null``) |
 /// | ``MetricProperty`` | a path *between* two (through a shared midpoint) |
 ///
-/// Coverage is full exactly when every quantity is pinned, premises are parents,
-/// the conclusion-fixpoint is present, and at least one move is made. Then the
+/// Coverage is full exactly when every quantity is pinned by its marker, the premises
+/// are parents, the conclusion-fixpoint is present, and the protocol makes at least
+/// one move. Then the
 /// compiler's conformance check *is* the proof.
 ///
 /// ## §T′ · Translation: everyday constructs → types
 ///
-/// §T translates theorems; this table translates the constructs ordinary code
-/// reaches for. Each row is exhibited in this package, not proposed. The test
-/// before writing any runtime: does the construct *decide* something? Then it
-/// moves into types. Does it only *carry* bytes across the world's edge? Then it
-/// stays at a named door.
+/// §T translates theorems. This table translates the constructs an ordinary
+/// programmer reaches for. Each row is exhibited in this package, not proposed. The test
+/// before writing any runtime: does the construct *decide* something? Then its
+/// home is types. Does it only *carry* bytes across the world's edge? Then its
+/// home is a named door.
 ///
 /// | Ordinary construct | Becomes | Exhibited by |
 /// | --- | --- | --- |
@@ -228,36 +228,36 @@
 /// | a pure function's call | a generic type applied to its argument | `Succ<N>`, `PageSlug<X>` |
 ///
 /// What never translates: contact with the world. Reading a file, emitting a
-/// file, invoking the compiler, these stay as functions, few and named, at the
+/// file, invoking the compiler, these are functions, few and named, at the
 /// package's doors (Play Is Proof PP15: the gate is given, not self-certified).
 /// The census keeps the running count of both kinds, per target.
 ///
 /// ## §7 · The tree obeys the law
 ///
-/// The page that documents the lattice branches by the same move the lattice
-/// makes. §6 forces it: the law lives in ``Pair`` and ``Null``, so the *tree of
-/// the law* does too. Every node (a Topics group, a page, a route) earns its
+/// The lattice's page branches by the same move the lattice
+/// makes. §6 forces it: the law is written in ``Pair`` and ``Null``, so the *tree of
+/// the law* is too. Every node (a Topics group, a page, a route) earns its
 /// place by the move it makes, never by a hand-picked theme (that is the §1
 /// rename, read one level up).
 ///
-/// | A node that… | is a… | and lives… |
+/// | A node that… | is a… | and its place is… |
 /// | --- | --- | --- |
 /// | opens an axis (`associatedtype`), axis-only lineage | generator | on the **spine**, the landing |
 /// | pins one axis (`where` on one) | theorem | under that axis |
-/// | intersects two or more axes | bridge | in the **web**, carried by its paper |
-/// | makes no move | rename | nowhere, it is removed |
+/// | intersects two or more axes | bridge | in the **web**, listed by its paper |
+/// | makes no move | rename | nowhere, the linter rejects it |
 ///
 /// The generators are the only clean partition: a thin **spine** of axes
 /// (*Basis Is Residue*, turned on the framework). The bridges are a **web**, most
-/// of the lattice, and they form a *cone*: the deeper a theorem sits, the more
-/// axes it weaves, until the capstones braid nearly all of them at once. A web is
+/// of the lattice, and they are a *cone*: the deeper a theorem is, the more
+/// axes it intersects, until the capstones intersect nearly all of them at once. A web is
 /// *ordered*, not branched: premise before conclusion, by distance from the seed.
 /// It is *carried*: each paper lists the bridges it proves, because a walk
 /// through the lattice is itself a certified object (*Order Is Object*). Territory
 /// on the landing. Routes in the papers.
 ///
-/// > Note: This organization is *induced*, not arranged. Spine and routes are read
-/// > off the types, each symbol placed by its move, and a checker holds the page
-/// > equal to what the types dictate, as the linter holds every protocol to §1. The
+/// > Note: This organization is *induced*, not arranged. The checker reads the spine and the routes
+/// > off the types, each symbol at the place its move earns, and holds the page
+/// > equal to that reading, as the linter holds every protocol to §1. The
 /// > tree is ``Pair`` and ``Null`` all the way up, as a protocol is all the way down.
 public enum Law {}

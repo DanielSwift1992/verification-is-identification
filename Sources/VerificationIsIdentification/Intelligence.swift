@@ -31,7 +31,7 @@ public protocol LibrarySaturates: StructuresFinite, CachePermanent,
 public protocol BasisIsFinite: LibrarySaturates, HasBasis
 where Basis: IntegerValued {}
 
-/// This is encoding selection at level 2, also saturates: coverage over the encoding
+/// This is encoding selection at level 2, and it also saturates: coverage over the encoding
 /// grammar, not uniqueness. ``LibrarySaturates`` extended along ``HasEncoding``,
 /// with `Encoding: Permanent` pinning the level-2 axis: coverage accumulates,
 /// mirroring the library. [IiI §4]
@@ -43,7 +43,7 @@ public protocol EncodingSelectionSaturates: LibrarySaturates,
 // inner-loop result CandidatesOnlyLeave (§5.22); IiI reuses it directly
 // (Law §1: the claim lives once, in Identification.swift, no rename here).
 
-/// A2: results are not retracted. ``CachePermanent`` (I3) plus
+/// A2: the system never retracts a result. ``CachePermanent`` (I3) plus
 /// ``EqualityDecidable`` makes each individual membership result permanent.
 /// [IiI §5 · V=I I3, A4]
 public protocol ResultsIrreversible: CachePermanent, EqualityDecidable {}
@@ -57,7 +57,7 @@ public protocol MembershipDecidable: EqualityDecidable,
 /// A system that keeps narrowing its options until one is left, and then cannot be
 /// budged. Concrete gates prove they are this kind of system by *conforming*: the
 /// organization's owner gate (`OwnerGate`) and the grammar's linter (`SpellingGate`)
-/// both compile, so the type checker has shown each one settles to a single answer. A
+/// both compile, so the type checker shows each one settles to a single answer. A
 /// system with no such gate (a language model, an ungated walk, with `|S| > 1`)
 /// cannot conform, and the compiler names the coordinate it is missing.
 ///
@@ -69,11 +69,11 @@ public protocol SystemCrystallizes: CandidatesOnlyLeave, ResultsIrreversible,
     MembershipDecidable
     where SolutionSet: Unique {}
 
-/// Lemma 1: the V=I inner pipeline is a crystallizing system. A1–A4 hold.
+/// Lemma 1: the V=I inner pipeline is a crystallizing system. A1–A4 are met.
 /// ``SystemCrystallizes`` realized on ``PassIsIdentification``. [IiI §5]
 public protocol PipelineCrystallizes: SystemCrystallizes, PassIsIdentification {}
 
-/// Lemma 2: library accumulation is a crystallizing system. A1–A4 hold.
+/// Lemma 2: library accumulation is a crystallizing system. A1–A4 are met.
 /// ``SystemCrystallizes`` realized on ``LibrarySaturates``. [IiI §5]
 public protocol LibraryCrystallizes: SystemCrystallizes, LibrarySaturates {}
 

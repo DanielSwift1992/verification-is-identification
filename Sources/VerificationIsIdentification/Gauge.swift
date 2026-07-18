@@ -21,7 +21,7 @@
 // ═══════════════════════════════════════════════════════════════
 
 /// The gauge axis opens the grouping freedom of an emitted artifact: which of the
-/// forms rendering one content this emission wears.
+/// forms rendering one content the artifact is in.
 ///
 /// A generated roster can list its members flat, fold them into slices, shard them
 /// across files, or state each coordinate directly, and every choice renders the same
@@ -31,20 +31,20 @@ public protocol HasGauge: HasSigma {
     associatedtype Gauge
 }
 
-/// Content stays fixed across the gauge class: regrouping an artifact reveals its
+/// Content is fixed across the gauge class: regrouping an artifact reveals its
 /// content and edits nothing.
 ///
 /// The reading is closed over the gauge choice (``RevealsNotCreates``), so every form
-/// in one class carries one encoding, checked by byte comparison of the rendered
+/// in one class has one encoding, checked by byte comparison of the rendered
 /// artifact. The packing domain's content verdict is the compiled witness. [FiG1]
 public protocol ContentIsGaugeInvariant: HasGauge, HasEncoding, RevealsNotCreates {}
 
-/// Cost reads the gauge under a standing arbiter: one content carries many prices.
+/// Cost is a reading of the gauge under a standing arbiter: one content has many prices.
 ///
-/// The arbiter's organs carry form-sized terms, one coordinate each — body size for
-/// the solver, derivation depth for the deserializer — and no organ prices the
-/// content, since the content is what every form shares. The axis pairing
-/// (``HasDistance`` with ``HasGauge``) states the dependency. [FiG2]
+/// The arbiter's organs read form-sized terms, one coordinate each (body size for
+/// the solver, derivation depth for the deserializer), and no organ prices the
+/// content, since the content is what every form shares. The dependency is in the axis pairing
+/// (``HasDistance`` with ``HasGauge``). [FiG2]
 public protocol CostReadsGauge: HasGauge, HasDistance {}
 
 /// A cost sweep over the gauge class crystallizes, and its survivor is a constant of
@@ -54,16 +54,16 @@ public protocol CostReadsGauge: HasGauge, HasDistance {}
 /// ordering decidable, a slower form excluded for good, one survivor
 /// (``SystemCrystallizes``). A form dictionary that ships the survivor records a
 /// vote, and the vote belongs to the voter: a new arbiter re-runs the election.
-/// `PackingUnderCost` is the compiled witness, seated in `Examples` beside
+/// `PackingUnderCost` is the compiled witness, in `Examples` beside
 /// ice. [FiG3]
 public protocol GaugeFixing: CostReadsGauge, SystemCrystallizes {}
 
 /// The linear arbiter prices by the token: one distinction per step and nothing else
 /// in the bill.
 ///
-/// Its whole work is one pass — a dictionary of names, a lookup per reference — so
+/// Its whole work is one pass (a dictionary of names, a lookup per reference), so
 /// its cost axis closes onto the artifact's own length (``CostIsPathLength``,
-/// `Distance == Path`). No organ holds a form-sized term. [FiG · PiP3]
+/// `Distance == Path`). No organ reads a form-sized term. [FiG · PiP3]
 public protocol LinearArbiter: CostIsPathLength {}
 
 /// The collapse: under the linear arbiter, cost joins content in gauge-invariance.

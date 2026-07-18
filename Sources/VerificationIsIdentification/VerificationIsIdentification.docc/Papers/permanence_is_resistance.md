@@ -1,6 +1,6 @@
 # Permanence Is Resistance (Matter)
 
-V=I derives one structural primitive (PAIR: distinction) and two aspects (NULL: where distinction ends; COMPARE: whether two instances match). Intelligence Is Inevitable derives what happens when the verification loop runs: the agent accumulates certified knowledge, the accumulation saturates, the saturated library crystallizes. This document derives what the crystallized output is. The output has three properties (permanence, irreducibility, resistance) that define matter within this framework.
+V=I derives one structural primitive (PAIR: distinction) and two aspects (NULL: where distinction ends, and COMPARE: whether two instances match). Intelligence Is Inevitable derives what happens when the verification loop runs: the agent accumulates certified knowledge, the accumulation saturates, the saturated library crystallizes. Here the author derives what the crystallized output is. The output has three properties (permanence, irreducibility, resistance) that define matter within this framework.
 
 ## §0. One Act
 
@@ -10,8 +10,8 @@ V=I §2.5 derives the space Σ from a single structural primitive:
 
 Two aspects follow:
 
-- **NULL**: the fixpoint of PAIR — where left(x) = right(x) = x. Distinction self-terminates. Not a separate symbol; the boundary where composition ends (V=I §2.5).
-- **COMPARE(a, b)**: structural recursion over pairs. Two trees are identical iff their components are identical at every level, terminating at the fixpoint. Identity is not an external operation — it is what simultaneous traversal of two structures already is (V=I §2.2, §2.5).
+- **NULL**: the fixpoint of PAIR, where left(x) = right(x) = x. Distinction self-terminates. Not a separate symbol: the boundary where composition ends (V=I §2.5).
+- **COMPARE(a, b)**: structural recursion over pairs. Two trees are identical iff their components are identical at every level, terminating at the fixpoint. Identity is what simultaneous traversal of two structures already is, never an external operation (V=I §2.2, §2.5).
 
 Distinction is the sole act. Where it ends: boundary. Whether two histories match: identity. Which side you examine: access. NULL, COMPARE, and access are aspects of the single act of distinction (V=I §2.5).
 
@@ -25,15 +25,15 @@ What does the agent encounter when COMPARE returns not_equal and the target cann
 
 The agent submits a candidate. The system returns not_equal. The target is invariant (I2). The result is deterministic (V=I §2.4: same inputs, same output). The not_equal is irreducible. The agent's only option is to change the candidate.
 
-Why can the agent not leave the game? Structurally, the agent *is* the caller (Intelligence Is Inevitable §0), and the agent here carries persistence — the component that continues until PASS or exhaustion (Intelligence Is Inevitable §0). A protocol does not choose to play; it executes, and persistence leaves a game two exits: PASS or grammar exhausted. Stopping short is the one move the component excludes. The persistent agent is the unstoppable force of the verification loop meeting the immovable object of the invariant target. Because the agent does not stop, and the target cannot yield, the agent must yield.
+Why can the agent not leave the game? Structurally, the agent *is* the caller (Intelligence Is Inevitable §0), and the agent here carries persistence, the component that continues until PASS or exhaustion (Intelligence Is Inevitable §0). A protocol does not choose to play: it executes, and persistence leaves a game two exits, PASS or grammar exhausted. Stopping short is the one move the component excludes. The persistent agent is the unstoppable force of the verification loop meeting the immovable object of the invariant target. Because the agent does not stop, and the target cannot yield, the agent must yield.
 
-The agent cannot modify the target (I2: fixed). The agent cannot retract a result (I3: append-only). The only thing the agent can change is its own next submission. Every not_equal modifies the agent, never the world. The agent encounters its own distance from the invariant — through the system, on itself.
+The agent cannot modify the target (I2: fixed). The agent cannot retract a result (I3: append-only). The only thing the agent can change is its own next submission. Every not_equal modifies the agent, never the world. The agent encounters its own distance from the invariant: through the system, on itself.
 
-Resistance within the framework is a relation, not a property of the target. The agent encounters it when its current form does not match the invariant. Remove the agent and resistance has no referent — the target sits in Σ, inert, with no one to return not_equal to. Both sides are required: the invariant structure and the form that fails to match it.
+Resistance within the framework is a relation, not a property of the target. The agent encounters it when its current form does not match the invariant. Without the agent, resistance has no referent: the target is in Σ, inert, with no one to return not_equal to. Both sides are required: the invariant structure and the form that fails to match it.
 
-The system's invariants (I1: finite space, I2: fixed operations, I3: append-only cache) are what the agent encounters as constraints. The compilation gate is the densest constraint: every incorrect encoding hits it. It returns REJECT(where, why) — a diagnostic of the mismatch. Each diagnostic is information about the agent's encoding, not about the target (V=I §5.24: the pipeline sees only the encoding).
+The system's invariants (I1: finite space, I2: fixed operations, I3: append-only cache) are what the agent encounters as constraints. The compilation gate is the densest constraint: every incorrect encoding hits it. It returns REJECT(where, why), a diagnostic of the mismatch. Each diagnostic is information about the agent's encoding, not about the target (V=I §5.24: the pipeline sees only the encoding).
 
-Definition: matter is the pattern encountered as resistance — the irreducible cost when the agent's form does not yet match the invariant. The word names a structural role: what is permanent (I3), irreducible (Theorem 2), and resistant (I2) within the framework. The role is derived here; §5 then tests where physical systems instantiate the same axioms.
+Definition: matter is the pattern encountered as resistance, the irreducible cost when the agent's form does not yet match the invariant. The word names a structural role: what is permanent (I3), irreducible (Theorem 2), and resistant (I2) within the framework. The role is derived here, and §5 then tests where physical systems instantiate the same axioms.
 
 ## §2. What the Library Is
 
@@ -63,7 +63,7 @@ Each rule is a tree of features:
 rule = PAIR(feature₁, PAIR(feature₂, ... PAIR(featureₙ, NULL)))
 ```
 
-Each feature is a COMPARE result: `same_row(o, i) = COMPARE(row(o), row(i))`. The rule stores which relations held across training examples. On a new task: recompute each feature. If all hold, compilation passes.
+Each feature is a COMPARE result: `same_row(o, i) = COMPARE(row(o), row(i))`. The rule stores which relations were true across training examples. On a new task: recompute each feature. If all are true, compilation passes.
 
 The library is a finite binary tree in Σ, built from the same PAIR and NULL, tested by the same COMPARE.
 
@@ -73,9 +73,9 @@ Three properties make it matter:
 |----------|--------|-------------|
 | Permanent | I3: append-only | Cannot be un-made |
 | Irreducible | Each entry is f*, the unique element of S (Theorem 2): any simplification either is f* or fails verification | Cannot be replaced by less |
-| Resistant | L predetermines which encodings will pass (Theorem 2); constraint realized at COMPARE (M19) | Constrains future behavior |
+| Resistant | L predetermines which encodings will pass (Theorem 2), constraint realized at COMPARE (M19) | Constrains future behavior |
 
-The three properties are one structural fact described from three angles. Permanence: what happens when you try to erase the pattern (I3 prevents removal). Irreducibility: what happens when you try to simplify it (f* is the unique element of S — any simplification either is f* or fails verification, Theorem 2). Resistance: what happens when the agent pushes against it (COMPARE returns not_equal, §1).
+The three properties are one structural fact described from three angles. Permanence: what happens when you try to erase the pattern (I3 prevents removal). Irreducibility: what happens when you try to simplify it (f* is the unique element of S, and any simplification either is f* or fails verification, Theorem 2). Resistance: what happens when the agent pushes against it (COMPARE returns not_equal, §1).
 
 Each property traces to a primary structural guarantee: permanence to I3 (append-only prevents erasure), irreducibility to Theorem 2 (|S| = 1: a simpler rule either still denotes f* or fails verification, so none can replace it), resistance to I2 (fixedness prevents modification by the agent). Three properties, three invariants.
 
@@ -92,11 +92,11 @@ The phase transition is the moment the dominant COMPARE response flips:
 
 After crystallization, L resolves what used to require derivation.
 
-The phase vocabulary is structural, and the analogy has a stated limit. Unlike physical crystallization, the pre-saturation phase is already irreversible at each step: I3 prevents any entry from leaving L. The transition is monotone solidification — each PASS adds one permanent entry, and no mechanism reverses it. The "liquid" phase has no melting. Only accumulation toward the fixed point.
+The phase vocabulary is structural, and the analogy has a stated limit. Unlike physical crystallization, the pre-saturation phase is already irreversible at each step: I3 prevents any entry from leaving L. The transition is monotone solidification: each PASS adds one permanent entry, and no mechanism reverses it. The "liquid" phase has no melting. Only accumulation toward the fixed point.
 
 ## §4. Levels
 
-Intelligence Is Inevitable §4 derives the tower: each level is a V=I game. The crystallized output of level N is what level N+1 encounters as resistance — the fixed structure that constrains the next agent.
+Intelligence Is Inevitable §4 derives the tower: each level is a V=I game. The crystallized output of level N is what level N+1 encounters as resistance: the fixed structure that constrains the next agent.
 
 | Level | What crystallizes | What level N+1 encounters as matter |
 |-------|-------------------|--------------------------------------|
@@ -105,7 +105,7 @@ Intelligence Is Inevitable §4 derives the tower: each level is a V=I game. The 
 | 2 | Meta-library M (encoding classes) | A selector: task domain → encoding choice |
 | N | Level-N library | Level-(N+1) matter: the resistant structure that constrains the next agent |
 
-Each level's crystal is the next level's matter, in the structural sense of §1 — the resistant structure the next loop inherits. Level 0's f* is a certified fact the level-1 agent cannot change (I2 at the N+1 scale). Level 1's L determines which encodings the level-2 agent tries. Each crystal is a finite binary tree in Σ, built from the same act of distinction, tested by the same structural recursion.
+Each level's crystal is the next level's matter, in the structural sense of §1: the resistant structure the next loop inherits. Level 0's f* is a certified fact the level-1 agent cannot change (I2 at the N+1 scale). Level 1's L determines which encodings the level-2 agent tries. Each crystal is a finite binary tree in Σ, built from the same act of distinction, tested by the same structural recursion.
 
 The circuit closes: V=I defines the verification loop. Intelligence Is Inevitable derives the agent that runs it and the crystallization that results. This document derives what the crystallized output is. The crystal becomes a V=I target at the next level. Three documents, one cycle.
 
@@ -138,7 +138,7 @@ Higher levels are exponentially slower in level-0 time. One level-3 tick contain
 
 **M6 (Unstable target).** Before saturation, L_N is incomplete: new entries arrive with each task. A structure that changes between COMPAREs cannot be a V=I target (I2 requires fixed system structure). Growing L_N violates I2 at the N+1 scale.
 
-**M7 (Stable target).** After saturation, L_N is permanent (I3), complete (Saturation Theorem, Intelligence Is Inevitable §3), and irreducible (each entry is f*, Theorem 2). L_N does not change. I2 holds for L_N as target.
+**M7 (Stable target).** After saturation, L_N is permanent (I3), complete (Saturation Theorem, Intelligence Is Inevitable §3), and irreducible (each entry is f*, Theorem 2). L_N does not change. I2 is true for L_N as target.
 
 **Theorem M8 (Ignition).** The transition from "L_N cannot be a V=I target" to "L_N can be a V=I target" occurs at the saturation point |L_N| = K_N. It is discrete.
 
@@ -150,7 +150,7 @@ Higher levels are exponentially slower in level-0 time. One level-3 tick contain
 
 All three met at |L_N| = K_N and not before. Discrete: the last class is either covered or not (Intelligence Is Inevitable §3). QED
 
-M8 inherits the saturation premise: |L_N| = K_N is reached only if the level-N stream presents every class (Intelligence Is Inevitable §3, scope remark; §6: pₖ > 0). Ignition is conditional on completed saturation — the condition is the stream's, not the structure's.
+M8 inherits the saturation premise: |L_N| = K_N is reached only if the level-N stream presents every class (Intelligence Is Inevitable §3, scope remark, and §6: pₖ > 0). Ignition is conditional on completed saturation: the condition is the stream's, not the structure's.
 
 **M9 (No external instruction).** M8's conditions follow from L_N ∈ Σ, |Σ| > |L_N|, and COMPARE defined on Σ. No designer specifies level N+1.
 
@@ -160,7 +160,7 @@ The tower is bottom-up. Level 0 saturates → L₀ fixed → level 1 ignites →
 
 ### Exhaustion and Form
 
-**M11 (Information exhaustion).** At level 0, the number of distinct COMPARE pairs is bounded by |Σ|². (Counted Σ, here and below, is the finite fragment in play — the structures the domain's encoding generates under I1. The inductive type is unbounded; the encoded universe is not.) Each COMPARE either adds a new entry to G (informative) or hits the cache (redundant). After at most |Σ|² COMPAREs, every possible comparison is cached. Information rate = 0.
+**M11 (Information exhaustion).** At level 0, the number of distinct COMPARE pairs is bounded by |Σ|². (Counted Σ, here and below, is the finite fragment in play, the structures the domain's encoding generates under I1. The inductive type is unbounded, and the encoded universe is not.) Each COMPARE either adds a new entry to G (informative) or hits the cache (redundant). After at most |Σ|² COMPAREs, every possible comparison is cached. Information rate = 0.
 
 At level N, the bound is T_N (from M5). After T_N level-0 COMPAREs, the level-N game is exhausted.
 
@@ -204,13 +204,13 @@ The crystal at level N determines the structure of level N+1 before level N+1 ru
 
 **M16 (Tower termination).** The tower terminates at level M where K_M ≤ 1, provided compression occurs at every level.
 
-*Proof.* If K_(N+1) < K_N for all N, the sequence K_0, K_1, ... is strictly decreasing in ℕ and must reach 0 or 1 in at most K_0 steps. At K_M ≤ 1: level M+1 has at most one interaction pattern. No further compression. Tower stops. The premise K_(N+1) < K_N (compression at every level) holds in all known instances but is not derived from I1–I3 alone; the worst-case bound K_(N+1) ≤ 2^(K_N) (M15) permits growth. QED
+*Proof.* If K_(N+1) < K_N for all N, the sequence K_0, K_1, ... is strictly decreasing in ℕ and must reach 0 or 1 in at most K_0 steps. At K_M ≤ 1: level M+1 has at most one interaction pattern. No further compression. Tower stops. The premise K_(N+1) < K_N (compression at every level) is true in all known instances but is not derived from I1–I3 alone, and the worst-case bound K_(N+1) ≤ 2^(K_N) (M15) permits growth. QED
 
 At termination, L_M is the final crystal with no successor. It is the most compressed representation of D that COMPARE can produce.
 
 **M17 (Boundary).** NULL is the fixpoint of PAIR: the element where left(x) = right(x) = x. Distinction self-terminates at NULL. Every tree terminates at NULL. Every path through L terminates at NULL (V=I §2.5).
 
-NULL is the boundary of composition — where the act of distinction has nothing left to distinguish. Beyond NULL, PAIR has no operands and COMPARE has no distinct inputs (COMPARE(NULL, NULL) = equal). NULL is fully specified: its behavior under all operations is exact.
+NULL is the boundary of composition: where the act of distinction has nothing left to distinguish. Beyond NULL, PAIR has no operands and COMPARE has no distinct inputs (COMPARE(NULL, NULL) = equal). NULL is fully specified: its behavior under all operations is exact.
 
 ### Protocol
 
@@ -218,18 +218,18 @@ NULL is the boundary of composition — where the act of distinction has nothing
 
 Given input τ, lookup runs: COMPARE(feature_j(τ), feature_j(rule_i)) for each rule i and feature j in L. The sequence is fixed (L cannot change, I3). Each lookup traverses L's tree. The crystal is a protocol: fixed structure, dynamic execution.
 
-**M19 (Active existence).** The only operation in Σ is COMPARE. L participates in Σ through COMPARE only. L's resistance (§1) is realized when an agent COMPAREs against L — the agent pays the cost, L constrains the outcome. Between COMPAREs, L is available (I3 guarantees it cannot be removed) but inactive: no resistance, no cost, no encounter.
+**M19 (Active existence).** The only operation in Σ is COMPARE. L participates in Σ through COMPARE only. L's resistance (§1) is realized when an agent COMPAREs against L: the agent pays the cost, L constrains the outcome. Between COMPAREs, L is available (I3 guarantees it cannot be removed) but inactive: no resistance, no cost, no encounter.
 
 Permanence (I3) = availability for future COMPAREs is never revoked. A tree stored but never COMPAREd is permanent but not resistant: no encounters, no constraints, no cost. §1 defines matter as the pattern encountered as resistance. M19 says resistance is realized only at COMPARE. Together: between COMPAREs, a structure exists (I3) but is not matter (not encountered). Existence without resistance. Matter requires the encounter.
 
-**M20 (Self-sustenance).** Each successful lookup confirms L's accuracy: the rule L stores produces PASS on the new task. Theorem 2 guarantees this — L cannot produce incorrect results within its domain. The guarantee holds at every COMPARE, not just at the moment of certification.
+**M20 (Self-sustenance).** Each successful lookup confirms L's accuracy: the rule L stores produces PASS on the new task. Theorem 2 guarantees this: L cannot produce incorrect results within its domain. The guarantee is in force at every COMPARE, not just at the moment of certification.
 
 L's stability is ongoing correctness: every COMPARE against L reproduces the same certified result (Theorem 2). The crystal sustains itself through protocol consistency.
 
 **M21 (Existence guarantee).** No operation in V=I removes a structure from Σ or from the cache.
 
 - NULL and PAIR produce elements of Σ. Neither removes elements.
-- COMPARE tests; it does not modify (§0).
+- COMPARE tests, and it does not modify (§0).
 - I3: cached results are never removed.
 - No other operations exist (§0).
 
@@ -243,27 +243,27 @@ Ignition conditions (M8) are also permanent. Once |L_N| = K_N, the three conditi
 
 **M23 (Cumulative capacity).** If one agent persists across games (Intelligence Is Inevitable §1: persistence), L grows monotonically across domains. After N domains with non-overlapping classes: |L| = Σᵢ Kᵢ. Finite at every moment, unbounded over games.
 
-If domains share structure, L entries from earlier domains cover classes in later ones. Saturation time drops: 𝔼[τ_sat(D₂)] = K₂ · H_(K₂−overlap) under a uniform stream over D₂'s classes, where overlap = number of classes already covered by L from prior domains — coupon collector over the uncovered classes, with draws landing in covered classes as the waiting cost — against K₂ · H_(K₂) from scratch. The agent saturates faster on structurally related domains.
+If domains share structure, L entries from earlier domains cover classes in later ones. Saturation time drops: 𝔼[τ_sat(D₂)] = K₂ · H_(K₂−overlap) under a uniform stream over D₂'s classes, where overlap = number of classes already covered by L from prior domains (coupon collector over the uncovered classes, with draws landing in covered classes as the waiting cost), against K₂ · H_(K₂) from scratch. The agent saturates faster on structurally related domains.
 
 Lookup cost grows with |L|: O(|L| × F) per task at level 1. Level-2 compression (M13, M15: decision-tree depth ⌈log₂ K⌉, when bisecting predicates exist) bounds effective lookup to O(log |L|). Cumulative growth is sustainable because higher levels compress it. This is a structural role of the tower: without compression, accumulation eventually makes lookup more expensive than derivation.
 
 ### Cost
 
-**M24 (Cost of permanence).** I3 guarantees that no entry in L or G can be removed. Each entry is a recorded distinction — a binary classification (equal/not_equal) that was not previously cached. In any physical instantiation, recording a distinction that was not previously recorded is an irreversible act: it reduces the system's uncertainty by at least one bit. Landauer's principle (1961, experimentally confirmed 2012) establishes the minimum physical cost: any logically irreversible one-bit operation — erasure, overwrite — dissipates at least kT · ln(2) joules as heat. I3's formal permanence has a physical price wherever the framework is instantiated in a physical system.
+**M24 (Cost of permanence).** I3 guarantees that no entry in L or G can be removed. Each entry is a recorded distinction, a binary classification (equal/not_equal) that was not previously cached. In any physical instantiation, recording a distinction that was not previously recorded is an irreversible act: it reduces the system's uncertainty by at least one bit. Landauer's principle (1961, experimentally confirmed 2012) establishes the minimum physical cost: any logically irreversible one-bit operation (erasure, overwrite) dissipates at least kT · ln(2) joules as heat. I3's formal permanence has a physical price wherever the framework is instantiated in a physical system.
 
-The total cost of maintaining L grows with |L|. Each entry in L stores a certified rule: a finite binary tree of F features. Landauer prices the irreversible acts — recording a result, erasing an error; passive storage between acts it does not bound. The per-cycle bill is therefore a model premise, stated openly: storage at finite temperature, held against noise by active error correction, costs on the order of |L| × F × kT · ln(2) per correction cycle. The premise has the standing of compression in M16: not derived from I1–I3, declared where used.
+The total cost of maintaining L grows with |L|. Each entry in L stores a certified rule: a finite binary tree of F features. Landauer prices the irreversible acts (recording a result, erasing an error), and passive storage between acts it does not bound. The per-cycle bill is therefore a model premise, stated openly: storage at finite temperature, held against noise by active error correction, costs on the order of |L| × F × kT · ln(2) per correction cycle. The premise has the standing of compression in M16: not derived from I1–I3, declared where used.
 
-**M25 (Tower as cost management).** The tower's compression role (M15: K_(N+1) < K_N) is not only an efficiency gain — it is a cost constraint. Without compression, lookup cost grows as O(|L| × F) (M23). With level-2 compression, effective lookup drops to O(log |L|). The thermodynamic consequence: the active bit count that must be maintained during each lookup is bounded by the compressed representation, not the raw library size. Higher levels reduce the energy cost per task.
+**M25 (Tower as cost management).** The tower's compression role (M15: K_(N+1) < K_N) is not only an efficiency gain: it is a cost constraint. Without compression, lookup cost grows as O(|L| × F) (M23). With level-2 compression, effective lookup drops to O(log |L|). The thermodynamic consequence: the active bit count that must be maintained during each lookup is bounded by the compressed representation, not the raw library size. Higher levels reduce the energy cost per task.
 
 The tower makes unbounded accumulation (M23) compatible with finite energy budgets. Without compression, I3's permanence guarantee (no deletion) eventually produces a library whose maintenance cost exceeds any finite agent's capacity.
 
 **M26 (Resistance bound).** Total resistance per game is finite. Resistance is the agent's distance from the invariant (§1), measured by the number of COMPAREs returning not_equal. S is monotonically non-increasing (V=I §5.22: each COMPARE can only shrink S or leave it unchanged). The total number of COMPAREs is bounded by |Σ|² (M11). After exhaustion, every possible comparison is cached. Resistance = 0.
 
-Combined with M24: the maximum thermodynamic cost of overcoming resistance in one game ≤ |Σ|² × kT · ln(2). Resistance is not only finite — it has a computable upper bound.
+Combined with M24: the maximum thermodynamic cost of overcoming resistance in one game ≤ |Σ|² × kT · ln(2). Resistance is not only finite: it has a computable upper bound.
 
-**M27 (Cost transformation).** Crystallization does not eliminate cost — it transforms it. Before saturation: cost is active. Each task requires derivation: O(T_brute) COMPAREs per task (§3), paid as resistance (§1). Maintenance cost of L is low (L is small). After saturation: active cost drops to O(K × F) + 1 per task (§3). But maintenance cost of L rises to |L| × F × kT · ln(2) per cycle (M24). The transition converts dynamic resistance into static permanence.
+**M27 (Cost transformation).** Crystallization does not eliminate cost: it transforms it. Before saturation: cost is active. Each task requires derivation: O(T_brute) COMPAREs per task (§3), paid as resistance (§1). Maintenance cost of L is low (L is small). After saturation: active cost drops to O(K × F) + 1 per task (§3). But maintenance cost of L rises to |L| × F × kT · ln(2) per cycle (M24). The transition converts dynamic resistance into static permanence.
 
-The net effect is a decrease in total cost per task — crystallization is efficient (§3). But the cost does not vanish. It shifts from per-task derivation (active, proportional to resistance) to per-library maintenance (passive, proportional to |L|). The one-time expenditure of overcoming resistance during saturation is the price of the transformation.
+The net effect is a decrease in total cost per task: crystallization is efficient (§3). But the cost does not vanish. It shifts from per-task derivation (active, proportional to resistance) to per-library maintenance (passive, proportional to |L|). The one-time expenditure of overcoming resistance during saturation is the price of the transformation.
 
 **Theorem M28 (Finite discovery).** The total thermodynamic cost of the tower is bounded.
 
@@ -279,7 +279,7 @@ V=I's theorems are proven for any system satisfying I1, I2, I3 (V=I §2). They a
 2. Verify I1 (finite), I2 (fixed), I3 (append-only) against the physical model.
 3. Check |S|: unique solution (|S| = 1) or degenerate (|S| > 1).
 
-If all axioms hold, V=I's theorems apply by instantiation. The axiom verification is empirical (it depends on the physics model). The deduction from axioms to consequences is mathematical.
+If all axioms are true, V=I's theorems are in force by instantiation. The axiom verification is empirical (it is a question of the physics model). The deduction from axioms to consequences is mathematical.
 
 ### Quantum measurement
 
@@ -299,7 +299,7 @@ A detector tests whether a particle is in a specific state. The answer is binary
 | I3 (append-only) | Measurement result, once recorded, is permanent (decoherence) | Yes (given decoherence) |
 | \|S\| = 1 | Non-degenerate eigenvalue → unique eigenstate | Yes (if non-degenerate) |
 
-All axioms satisfied → V=I Theorems 1–3 apply. Verification is identification for quantum measurement on finite-dimensional systems with non-degenerate eigenvalues.
+All axioms satisfied → V=I Theorems 1–3 are in force. Verification is identification for quantum measurement on finite-dimensional systems with non-degenerate eigenvalues.
 
 Where axioms fail: degenerate eigenvalue (|S| > 1) → V=I §5.14 applies (encoding is insufficient). Infinite-dimensional H → I1 fails.
 
@@ -318,7 +318,7 @@ Water molecules try configurations. Cooling eliminates high-energy ones until on
 |-------|-------------|--------|
 | I1 (finite) | Finite lattice → finite configurations | Yes |
 | I2 (fixed) | Hamiltonian fixed at constant T | Yes |
-| I3 (append-only) | Excluded configurations stay excluded at fixed T (Boltzmann suppression) | Approximately (thermal fluctuations at finite T) |
+| I3 (append-only) | Excluded configurations are excluded for good at fixed T (Boltzmann suppression) | Approximately (thermal fluctuations at finite T) |
 | A1 (monotone) | Each temperature drop excludes more configurations | Yes |
 | A2 (irreversible) | At fixed T, excluded configurations remain excluded | Yes (thermodynamic limit) |
 | A4 (crystallization) | Unique ground state: lattice Ih | Yes for oxygen positions. No for hydrogen (Pauling residual entropy: \|S\| > 1) |
@@ -337,12 +337,12 @@ At high energy, all particles are massless. Below a critical energy, a field acq
 
 | Axiom | Verification | Holds? |
 |-------|-------------|--------|
-| I1 (finite) | Field space is continuous; finite under a finite-mode encoding | Under encoding (I1 is the agent's to meet, V=I §6) |
+| I1 (finite) | Field space is continuous, and finite under a finite-mode encoding | Under encoding (I1 is the agent's to meet, V=I §6) |
 | I2 (fixed) | V(φ) fixed (Lagrangian does not change) | Yes |
 | I3 (append-only) | Vacuum does not spontaneously return to symmetric state | Yes (energy barrier) |
-| A4 (crystallization) | The vacuum manifold is degenerate: a continuum of minima related by gauge transformations | On field components: \|S\| > 1 (Goldstone directions). On the gauge-invariant encoding: unique \|φ\| = v ≈ 246 GeV — \|S\| = 1 |
+| A4 (crystallization) | The vacuum manifold is degenerate: a continuum of minima related by gauge transformations | On field components: \|S\| > 1 (Goldstone directions). On the gauge-invariant encoding: unique \|φ\| = v ≈ 246 GeV, \|S\| = 1 |
 
-The degeneracy is the framework's own lesson in physical form: the encoding determines |S|. On field components the vacuum is ambiguous; on the gauge-invariant lens the minimum is unique — same physics, two encodings, two verdicts, exactly as the ice table's hydrogen row. Mass = resistance to acceleration. Before transition: no mass, no resistance. After: mass. The minimum of V(φ) existed before the transition. The transition exposed it.
+The degeneracy is the framework's own lesson in physical form: the encoding determines |S|. On field components the vacuum is ambiguous, and on the gauge-invariant lens the minimum is unique: same physics, two encodings, two verdicts, exactly as the ice table's hydrogen row. Mass = resistance to acceleration. Before transition: no mass, no resistance. After: mass. The minimum of V(φ) existed before the transition. The transition exposed it.
 
 ### Critical gravitational collapse (Ecker, Ecker, Grumiller 2026)
 
@@ -363,11 +363,11 @@ Near the threshold of black hole formation, spacetime geometry settles into a re
 | A3 (decidable) | Convexity conditions f ≤ 1, Ω ≥ 0 are algebraic | Yes |
 | A4 (crystallization) | Unique β* | Conjectured (numerical evidence at finite D) |
 
-The Ricci scalar R grows as 1/ε for large D. Each oscillation of the DSS solution is a distinction in spacetime curvature. The self-similar cycle is self-sustaining: each period produces the geometry required for the next. Unlike the other instances, this one rests on a conjecture (unique β*, numerically evidenced); it is included because the framework's question — whether the encoding forces |S| = 1 — is well-posed even where the physics is open, so the mapping holds before the conjecture is settled.
+The Ricci scalar R grows as 1/ε for large D. Each oscillation of the DSS solution is a distinction in spacetime curvature. The self-similar cycle is self-sustaining: each period produces the geometry required for the next. Unlike the other instances, this one is grounded in a conjecture (unique β*, numerically evidenced), and it is included because the framework's question (whether the encoding forces |S| = 1) is well-posed even where the physics is open, so the mapping is valid before the conjecture is settled.
 
 ## §6. Creation
 
-V=I §5.20: COMPARE(a, b) tests whether two trees are equal. The equality or inequality holds before the test. COMPARE returns what is already the case. Created, exposed, was always — here as in Intelligence Is Inevitable §7 — are statements of determination by (D, E), prior to any run.
+V=I §5.20: COMPARE(a, b) tests whether two trees are equal. The equality or inequality is settled before the test. COMPARE returns what is already the case. Created, exposed, was always (here as in Intelligence Is Inevitable §7) are statements of determination by (D, E), prior to any run.
 
 If matter is the crystallized library, and the library is determined by (D, E) and not by the agent (Intelligence Is Inevitable §3: uniqueness of the saturated library), then matter is not created by the agent.
 
@@ -381,7 +381,7 @@ V=I §5.25: order is the sole dynamic variable. Correctness is order-invariant. 
 
 Search is elimination. The agent starts with all of F and removes what does not survive. Each REJECT removes candidates from S (V=I §5.22: S is monotonically non-increasing). Each step subtracts from the agent's uncertainty, not adds to the domain.
 
-Encoding is lens selection. The structure — the target in Σ — does not depend on the lens (V=I §5.14: the target does not change). The lens determines which part of the structure is visible. A richer lens exposes more structure; a poorer one hides it.
+Encoding is lens selection. The structure (the target in Σ) is the same under every lens (V=I §5.14: the target does not change). The lens determines which part of the structure is visible. A richer lens exposes more structure, and a poorer one hides it.
 
 This applies at every level. Level-2 encoding selection uncovers the meta-library. Level-3 grammar selection uncovers the grammar map. At every level, the same act of distinction and the same elimination process.
 
@@ -398,17 +398,17 @@ This applies at every level. Level-2 encoding selection uncovers the meta-librar
 
 ### Circuit
 
-V=I defines the verification loop: finite space, decidable test, append-only cache. Intelligence Is Inevitable derives the agent that runs the loop and the crystallization that results. This document derives what the crystallized output is: the permanent, irreducible, resistant structure — matter.
+V=I defines the verification loop: finite space, decidable test, append-only cache. Intelligence Is Inevitable derives the agent that runs the loop and the crystallization that results. This document derives what the crystallized output is: the permanent, irreducible, resistant structure: matter.
 
 The circuit: V=I provides the loop → Intelligence Is Inevitable provides the agent and the accumulation → Matter derives what accumulates into → the accumulated crystal becomes a V=I target at the next level (M8, M10). The logical chain is linear: V=I → Intelligence Is Inevitable → Matter (each document extends the previous). The operational cycle is closed: the crystal re-enters the V=I loop as a target at the next level.
 
 ### Agent
 
-The system provides the halt condition formally: PASS/REJECT is decidable (I2). The compilation gate (V=I §4.7) returns a definite answer on every input (V=I §5.5: totality). What kind of physical process can instantiate the agent — receive diagnostics, modify encodings, persist across games (Intelligence Is Inevitable §0) — is outside the formal system. The formal guarantee is unconditional: if PASS, the output is correct (Theorem 2). What it takes to be an agent that receives PASS is a separate question.
+The system provides the halt condition formally: PASS/REJECT is decidable (I2). The compilation gate (V=I §4.7) returns a definite answer on every input (V=I §5.5: totality). What kind of physical process can instantiate the agent (receive diagnostics, modify encodings, persist across games, Intelligence Is Inevitable §0) is outside the formal system. The formal guarantee is unconditional: if PASS, the output is correct (Theorem 2). What it takes to be an agent that receives PASS is a separate question.
 
 ### Physical instances
 
-The physical instances (§5) map physical systems onto the framework's vocabulary. They show where the same axioms hold independently. The mapping is structural: it identifies which structure plays PAIR, which boundary plays NULL, which test plays COMPARE, which process is monotone (A1), irreversible (A2), decidable (A3), and crystallizing (A4).
+The physical instances (§5) map physical systems onto the framework's vocabulary. They show where the same axioms are true independently. The mapping is structural: it identifies which structure plays PAIR, which boundary plays NULL, which test plays COMPARE, which process is monotone (A1), irreversible (A2), decidable (A3), and crystallizing (A4).
 
 ## Topics
 

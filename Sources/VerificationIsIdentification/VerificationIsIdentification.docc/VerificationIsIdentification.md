@@ -117,6 +117,7 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 ### The lens: the HasEncoding axis
 
 - ``HasEncoding``
+- ``FaithfulEncoding``
 - ``QualitiesAreFinite``
 - ``PerspectiveIsEncoding``
 ### The axes: pure generators
@@ -124,6 +125,7 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``HasSigma``
 - ``ColourIsQuotient``
 - ``EncodingForgets``
+- ``EncodingInvents``
 - ``GamutIsCone``
 - ``HasAlpha``
 - ``HasBasis``

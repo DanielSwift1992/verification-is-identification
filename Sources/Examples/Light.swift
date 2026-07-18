@@ -313,6 +313,35 @@ public let threePanesRevive: HalfOfRoundTrip.Type = Halves<
     Plus<DiagonalAfterLampH.Horizontal, DiagonalAfterLampH.Vertical>
 >.self
 
+// ── The phantom: an encoding that invents. Under salt, one beam is parted
+// into two readings — the difference is the salt's, never the light's — so
+// downstream there is a distinction with no source. A verb on a structure is
+// this phantom, worn by prose. ──
+
+/// Two salts: marks with no upstream fact behind them.
+public enum SaltA: Close {}
+extension SaltA {
+    public static var typeName: String { "salt-a" }
+}
+public enum SaltB: Close {}
+extension SaltB {
+    public static var typeName: String { "salt-b" }
+}
+
+/// A salted reading of a beam: the eye's image with a mark that is no part of
+/// the light.
+public typealias SaltedImage<B: BeamShape, Salt: Structure> = Paired<EyeImage<B>, Salt>
+
+/// The compiled phantom: one beam, two salted images, and the two are
+/// distinct types — a difference downstream with no difference upstream.
+public enum SaltedSeeing: EncodingInvents {
+    public typealias Sigma = BeamSpace
+    public typealias Encoding = EyeEncoding
+    public typealias OneSource = RedBeam
+    public typealias FirstImage = SaltedImage<RedBeam, SaltA>
+    public typealias SecondImage = SaltedImage<RedBeam, SaltB>
+}
+
 // ── Colour and gamut: a colour is the class of beams behind one image, and a
 // display reaches only the cone of its stated primaries. One gray primary
 // spans one ray: equal channels are reachable, unequal ones are refused. ──

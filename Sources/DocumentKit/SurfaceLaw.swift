@@ -8,8 +8,8 @@
 // surface` (SurfaceLint.swift) checks the checkable subset on every build; the rest is checked
 // by review, the same split the core Law uses.
 
-/// How every combinator on the rendering surface must be written: the grammar the whole View
-/// layer speaks, one level above `Law`.
+/// How every combinator on the rendering surface must be written: the grammar of the whole
+/// View layer, one level above `Law`.
 ///
 /// - term Combinator: a markup shape with one hole (`Symbol`, `TableCell`, `Table`, …),
 ///   an `Open` protocol carrying the hole (`associatedtype`) and the composition (`body`), realized
@@ -29,14 +29,14 @@
 /// public enum Symbol<Target: Structure>: Reference {}
 /// ```
 ///
-/// The protocol carries everything reusable: the hole and the composition that reads it. The
-/// enum carries nothing: a bare name and its conformance. Two combinators sharing a hole name
+/// The protocol has everything reusable: the hole and the composition that reads it. The
+/// enum has nothing: a bare name and its conformance. Two combinators sharing a hole name
 /// (`Content`) still get two protocols: `body` differs, so the composition is not shared, only
 /// the letter of the name is.
 ///
 /// ## §S2 · Only protocol and enum
 ///
-/// A `struct` or `class` can hold a runtime value. The surface holds none: every realizer is a
+/// A `struct` or `class` can contain a runtime value. The surface contains none: every realizer is a
 /// caseless `enum`, every category a `protocol`. `Tools grammar` rejects a `struct`/`class`/`actor`
 /// on the surface (checked on every build).
 ///
@@ -46,7 +46,7 @@
 /// through it: `TableCell { Symbol { Alice.self } }`, not `TableCell<Symbol<Alice>>.self`.
 /// Composition nests, and `{ }` reads left-to-right, the way the rendered text itself is built.
 ///
-/// Two shapes have no door to offer, and their use sites lawfully read the bare generic leaf,
+/// Two shapes have no door, and their use sites lawfully read the bare generic leaf,
 /// formatted by the angle rule (core Law §0″, "Angles open like a tree"):
 ///
 /// - a `Close` READER: ``RawName`` (§S10), `ProtocolReference`, a verdict proxy, a derived
@@ -59,7 +59,7 @@
 ///
 /// > Note: neither is a hand-written cons-chain (the thing §6 of the core lattice's
 /// > authored-layer check forbids, `Paired`/`Cons`/`Seq` spelled by hand). Both are ordinary
-/// > generic instantiation, the same shape as `Array<Int>`. The line to hold: where content
+/// > generic instantiation, the same shape as `Array<Int>`. The line: where content
 /// > COMPOSES, the door. Where a parameter NAMES, the angles, and not a `Kind`-suffixed
 /// > second name to fake a door where none exists (§S4's warning, from the other side).
 ///
@@ -78,7 +78,7 @@
 /// > cases, no `init` (core Law §0″). A free function plus a hidden `Kind`-suffixed type is what
 /// > is left when the shortcut itself is unavailable, not a choice made for convenience.
 ///
-/// ## §S5 · The door lives on the protocol, not the enum
+/// ## §S5 · The door is on the protocol, not the enum
 ///
 /// A protocol extension can default an `init` for every conformer, without declaring `init` a
 /// protocol requirement (checked directly). So the door is written once, next to `body`, in the
@@ -93,7 +93,7 @@
 /// ```
 ///
 /// Writing the same `init` again on every enum is not wrong, only repetitive: the protocol
-/// already holds the hole (`Target`) the `init` closes over, the same associated type `body`
+/// already has the hole (`Target`) the `init` closes over, the same associated type `body`
 /// already reads.
 ///
 /// ## §S6 · A door's hole is typed as a value, not a metatype
@@ -125,8 +125,8 @@
 /// > of them on a clean build, one per composed leaf. That is §S7 stated by the diagnostics
 /// > engine, the design's signature and not a defect: the bodies exist to be READ as types,
 /// > never to run. The count is large exactly because the composition is. Silencing it would
-/// > take an inhabited carrier through the whole builder, a redesign parked until it earns
-/// > itself.
+/// > take an inhabited carrier through the whole builder, and the noise does not earn
+/// > that redesign.
 ///
 /// ## §S8 · A combinator earns its protocol by genuine reuse
 ///
@@ -139,7 +139,7 @@
 /// handful of uses, over a set that will not scale, does not buy back a combinator's cost.
 ///
 /// > Tip: the test is not the current use count, it is whether the set could ever grow. `Symbol`
-/// > gains a use every time a new page names a new type — genuinely open-ended. A department
+/// > gains a use every time a new page names a new type, genuinely open-ended. A department
 /// > facet does not gain a fourth workplace next quarter.
 ///
 /// ## §S9 · A multi-hole combinator still takes one door, not several
@@ -160,10 +160,10 @@
 /// // Link { TextDigit._1.self; SomeTarget.self } — one body, two statements, not two parameters.
 /// ```
 ///
-/// > Warning: a function taking N separate closure parameters (`init(_ a: ..., _ b: ...)`) or N
-/// > labeled trailing closures (`Foo { } b: { }`) was tried first and rejected. Both read as a
-/// > parenthesized call wearing `{ }` as a costume. One `@StructureBuilder` parameter, many
-/// > statements, is the only shape that reads as what it is: a body.
+/// > Warning: the law rejects a function taking N separate closure parameters
+/// > (`init(_ a: ..., _ b: ...)`) and N labeled trailing closures (`Foo { } b: { }`): both are
+/// > a parenthesized call, and `{ }` on them is not a body. One `@StructureBuilder` parameter,
+/// > many statements, is the only shape that reads as what it is: a body.
 ///
 /// ## §S10 · A link reads the target's bare name, never its rendered content
 ///
@@ -191,7 +191,7 @@
 /// A combinator's hole is always a concrete type (or a `Pair` of them, §S9), not another
 /// generic type, unapplied, waiting for its arguments. `Foo<Bar, Int, String>` meaning "apply
 /// `Bar` to `Int` and `String`" does not exist in Swift: a bare generic name like `Bar` has no
-/// type of its to be a parameter with (checked directly: passing an unapplied generic as a
+/// type of its own to be a parameter with (checked directly: passing an unapplied generic as a
 /// type argument fails with "generic parameter could not be inferred", not a workaround-able
 /// error). This is the reason a combinator's protocol names each hole directly
 /// (`associatedtype Target`) rather than taking a template it fills. There is no fifth door
@@ -216,7 +216,7 @@
 /// space (checked directly: `@Tab "Title"` fails with "Missing argument for unlabeled
 /// parameter". The atoms read `TabLabel.self; ParenOpen.self; Quote.self; …`). Every other
 /// directive used here (`@Row`, `@Column`, `@TabNavigator`, `@Links`, `@Metadata`,
-/// `@PageImage`) was checked the same way before its atoms were written. DocC's directive
+/// `@PageImage`) is checked the same way before its atoms are written. DocC's directive
 /// grammar is not uniform across directives, so a new one is checked, not patterned off the
 /// last one that worked.
 ///
@@ -239,14 +239,14 @@
 /// `TableCell` called a specific way. `SizedPanel` (a relative column weight, `@Column(size:
 /// N)`) reads `N` through `WeightOf` off the SAME magnitude lexicon the vector surface
 /// weighs (`U2`, `Plus`, the house count): both media share one axis of magnitudes, and each
-/// surface only chooses its reading — `SpanPx` divides a fraction to a pixel, `WeightOf`
+/// surface only chooses its reading: `SpanPx` divides a fraction to a pixel, `WeightOf`
 /// reads a count as a relative weight. A weight is stated, not computed, the same discipline
 /// `Tally` keeps for `count` (the number comes from what compiles, not from arithmetic
 /// written by hand). Neither combinator
-/// needed a new atom or a new witness ability. The tell that an effect is cheap enough to build
+/// needs a new atom or a new witness ability. The tell that an effect is cheap enough to build
 /// is that it composes entirely from what already exists.
 ///
-/// > Note: `SizedPanel` is not a general layout solver, and is not trying to become one. GFM
+/// > Note: `SizedPanel` is not a general layout solver, and is not the seed of one. GFM
 /// > markdown tables have no column-width primitive at all (checked directly: there is no
 /// > syntax to carry a computed width to), so `@Column(size:)`'s relative weight is the one
 /// > foothold this render target actually has. A constraint system with nowhere to send its
@@ -259,9 +259,9 @@
 /// release build too (checked directly: a `Structure` whose `body` held twelve substantial
 /// sections crashed `EXC_BAD_ACCESS` inside `Paired.typeName.getter`, in both debug and release,
 /// while every one of those sections rendered fine read separately). The fix is not a deeper
-/// stack, it is fewer statements in one `body`: prefer several linked pages, the same design
-/// Organization's showcase already uses for 235 pages, over one page whose composition
-/// tries to hold everything. A single `Structure` should read as one screen's worth of content,
+/// stack, it is fewer statements in one `body`: prefer several linked pages (the same design
+/// Organization's showcase already uses for 235 pages) over one page with everything
+/// in its composition. A single `Structure` should read as one screen's worth of content,
 /// not a whole site flattened into one type.
 ///
 /// ## §S17 · §S12's trap is not about generic FUNCTIONS — it is about `@StructureBuilder` itself
@@ -301,7 +301,7 @@
 /// trusting the data model. `@Column(size: N)` is recorded correctly (`numberOfColumns` sums
 /// every weight, each column reports its `size`, confirmed in the archive's JSON), but
 /// THIS renderer draws every column the same width regardless, and several `Picture`s with no
-/// atom between them do not sit side by side the way inline images do in ordinary HTML. They
+/// atom between them are not side by side the way inline images are in ordinary HTML. They
 /// stack VERTICALLY, one under the next, turning a "wider" bar into a "taller" one instead. The
 /// one thing already confirmed to flow horizontally by its default is TEXT: `Gap`'s
 /// repeated spaces render exactly as wide as they are (`SpaceBetween`, §S17), so a bar built
@@ -318,11 +318,11 @@
 /// discipline `Y2029: Cycle { Length = Three }` and `TwoRowGrid`'s `Total` already use, §S18),
 /// and repeat the unit that many times. The unit decides what it LOOKS like (`Space`, nothing
 /// visible, `Block`, "█", a bar, `HLine`/`VLine`, a ruled edge), not what the mechanism
-/// IS. This is also why a true two-axis grid (§S15's note, revisited) does not get built here:
+/// IS. This is also why no true two-axis grid exists here (§S15's note, revisited):
 /// TEXT is the one unit proven to repeat reliably in every renderer this file has actually
-/// been read in (§S19). An image or a table cell is not, so "space" stays this one
+/// been read in (§S19). An image or a table cell is not, so "space" remains this one
 /// mechanism, applied through whichever unit the moment calls for, rather than a second,
-/// fancier one built on primitives already shown not to hold.
+/// fancier one built on primitives already shown to fail.
 ///
 /// ## §S21 · A `@Column` centers an embedded image: a table cell does not
 ///
@@ -353,44 +353,44 @@
 ///
 /// ## §S23 · Generation is a gated construction
 ///
-/// A generated artifact — a roster file, a card, a diagram — is a page whose medium is source
+/// A generated artifact (a roster file, a card, a diagram) is a page whose medium is source
 /// text: a `SourceFile` template composes typed skeleton atoms, its `typeName` IS the file, and
 /// a thin driver writes it, the same three lines `render-doc` uses for markdown. The emitter
-/// PROPOSES. The build is the gate — compilation, the linters, and the parity gates cut the
-/// proposal to one survivor, which is Program Is Path's gated construction run on artifacts:
-/// where the template and its rules admit exactly one output, regeneration is idempotent, and
+/// PROPOSES. The build is the gate: compilation, the linters, and the parity gates cut the
+/// proposal to one survivor, Program Is Path's gated construction run on artifacts.
+/// Where the template and its rules admit exactly one output, regeneration is idempotent, and
 /// the md5 gate is measuring `|S| = 1` at the artifact level. Two edges: the ENUMERATION
-/// (two hundred employees) is a value-level fold in the driver — a type cannot be chosen by a
-/// runtime index — and the data pools ride as typed chains read via `labels`, so only the
-/// iteration itself lives outside the notation.
+/// (two hundred employees) is a value-level fold in the driver (a type cannot be chosen by a
+/// runtime index), and the data pools are typed chains read via `labels`, so only the
+/// iteration itself is outside the notation.
 ///
 /// ## §S24 · The medium can carry what the host discards
 ///
 /// A `Vector` composition may carry a link (`Linked`, its target read off the page TYPE by
-/// `PageSlug` — a typo in an href is structurally impossible). Whether the link FIRES is the
+/// `PageSlug`: a typo in an href is structurally impossible). Whether the link FIRES is the
 /// host's decision, and each hosting path was checked directly: an `<img>`-embedded SVG
 /// discards its anchors entirely. Raw inline `<svg>` in markdown is stripped by DocC's
-/// parse down to bare text. And the static-hosting output holds no image markup at all —
-/// 11,386 shell `index.html`s, the content living in `data/*.json`, rendered by the host's
+/// parse down to bare text. And the static-hosting output has no image markup at all:
+/// 11,386 shell `index.html`s, the content in `data/*.json`, rendered by the host's
 /// script in the browser. The one sanctioned door is the host's template hook
 /// (`--experimental-enable-custom-templates`, footer.html): a whitelist-scoped swap that
-/// re-routes OUR generated images from `<img>` to inline `<svg>`, after which the anchors are
-/// ordinary DOM links and a drawn keypad walks its state graph by click. The law to hold:
-/// the medium always emits its full content. The host is granted doors, not workarounds —
-/// and a host of our own would make the door unnecessary, not the content different.
+/// re-routes the house's generated images from `<img>` to inline `<svg>`, after which the anchors are
+/// ordinary DOM links and a drawn keypad walks its state graph by click. The law:
+/// the medium always emits its full content. The host is granted doors, not workarounds,
+/// and a house host would make the door unnecessary, not the content different.
 ///
 /// ## §S25 · A many-cased gate routes through the case's own identity
 ///
-/// Swift grants a generic type AT MOST ONE conditional conformance to a given protocol —
+/// Swift grants a generic type AT MOST ONE conditional conformance to a given protocol:
 /// a whitelist written as `extension On: Legible where Fg == Paper, Bg == Ink {}` plus a second
 /// pair is "conflicting conformance … even with different conditional bounds" (checked
 /// directly, two extensions suffice to trigger it). So a gate with many legal cases cannot
 /// hang them all on one generic's conformance. Route through the CASE's identity instead:
 /// one protocol per case family (`LegibleOnInk`, `LegibleOnPaper`, …), each legal member
-/// conforming unconditionally — a type may conform to any number of DIFFERENT protocols — and
-/// the gated slot carries the constraint on its axis (`associatedtype Fg: LegibleOnInk`).
+/// conforming unconditionally (a type may conform to any number of DIFFERENT protocols), and
+/// the gated slot states the constraint on its axis (`associatedtype Fg: LegibleOnInk`).
 /// The refusal then lands at the illegal type's declaration ("`Muted` does not conform to
-/// `LegibleOnInk`"), earlier and plainer than any `.typeName` dispatch could place it — the
+/// `LegibleOnInk`"), earlier and plainer than any `.typeName` dispatch could place it: the
 /// same family of limits as §S12/§S17, met from the conformance side.
 ///
 /// ## §S26 · A hover panel is interactive, not a tooltip
@@ -398,11 +398,11 @@
 /// A revealed panel that carries links must survive the pointer's TRAVEL to it, and two
 /// standard CSS habits silently kill that (both checked directly, one round each). First, a
 /// reveal keyed only on the trigger's `:hover` dies the instant the pointer leaves the trigger
-/// toward the panel — the reveal rule must include the panel's hover
+/// toward the panel: the reveal rule must include the panel's hover
 /// (`.trigger:hover ~ .panel, .panel:hover`), so a reached panel holds itself open. Second,
 /// `pointer-events` is NOT animatable: toggling it flips interactivity off the same instant
-/// the trigger's hover drops, no matter what transition sits beside it. The close must be a
-/// GRACE WINDOW instead — `visibility` delayed a few hundred ms — because visibility IS
+/// the trigger's hover drops, no matter what transition is beside it. The close must be a
+/// GRACE WINDOW instead (`visibility` delayed a few hundred ms), because visibility IS
 /// delayable, and in SVG a `visibility: hidden` element already receives no pointer events
 /// (`visiblePainted`). The rule of thumb the two collapse into: reveal on either hover, close
 /// on a delay, and keep `pointer-events` away from a traversal.
@@ -411,53 +411,52 @@
 ///
 /// §S25 gives a gate many legal CASES. A gate whose legality is a DISJUNCTION of two whole
 /// constraint SETS ("preceded by a builder marker AND items are builder tokens, OR items are
-/// plain tokens") hits the same one-conditional-conformance wall from another side — a shared
-/// umbrella protocol cannot carry both arms (checked directly, in the grammar mirror's design).
+/// plain tokens") hits the same one-conditional-conformance wall from another side: a shared
+/// umbrella protocol cannot have both arms (checked directly, in the grammar mirror's design).
 /// The lawful door is OVERLOAD RESOLUTION: declare the same generic function twice, each arm's
-/// constraint set on one overload, and Swift's overload resolution IS the disjunction — a site
+/// constraint set on one overload, and Swift's overload resolution IS the disjunction: a site
 /// satisfying either arm compiles, a site satisfying neither is refused with BOTH candidates'
 /// unmet requirements named ("candidate requires 'SemicolonAtom' conform to 'PlainToken'" /
 /// "candidate requires … 'OpensBuilder'"). The refusal is richer than a conformance failure:
-/// it lists every door that was tried. Scope note: the overload pair lives in tooling-tier
+/// it lists every door that was tried. Scope note: the overload pair is in tooling-tier
 /// code (the mirror's lexicon). On the pure surface §S4 still governs what a free function
-/// may be — this section licenses the FORM where functions are already lawful.
+/// may be: this section licenses the FORM where functions are already lawful.
 ///
 /// ## §S28 · A button is a triple, and the form is the invariant
 ///
 /// The dynamics medium (Dynamics.swift) gives a state file exactly one kind of motion: a
 /// rewrite rule, the triple (slot, expected pattern, replacement template). Pressing is
-/// identification — the pattern finds its slot's term whole or the press is a lawful no-op
-/// that leaves the file byte-identical — and a rule may change nothing but its one slot's
+/// identification: the pattern finds its slot's term whole, or the press is a lawful no-op
+/// that leaves the file byte-identical. A rule may change nothing but its one slot's
 /// term. The consequence is the invariant this section states: the FORM of a state file
-/// never moves along any trajectory. Every reachable state carries the same slots, the same
-/// buttons, the same shape; the diff between neighbouring states lives inside one alias.
+/// never moves along any trajectory. Every reachable state has the same slots, the same
+/// buttons, the same shape. The diff between neighbouring states is inside one alias.
 /// What the class cannot say is part of the law, stated as sharply: a transition that needs
 /// case analysis over an unbounded term is not a triple, and belongs to an encoder outside
-/// the judge, whose product is judged as a file (the 2048 lane shift is the named example,
-/// lived and removed). A rule that carries anything beyond its three aliases has left the
+/// the judge, whose product is judged as a file (the 2048 lane shift is the named example). A rule with anything beyond its three aliases has left the
 /// class, and the checker (`Tools lint`, the SLOT RULE check) refuses it by name.
 ///
 /// The boundary is per ACT, never per reach: with structural patterns one step of any
 /// machine is itself a triple (the tape a term, the head a marker in it), so a chain of
 /// presses reaches any computable rewrite, every step judged. What the medium refuses to
 /// own is the ITERATION, not the expressiveness: the loop belongs to the encoder, and the
-/// halting question goes with it — a question about a structure that does not exist yet
+/// halting question goes with it: a question about a structure that does not exist yet
 /// (Existence Is Finite), not about any file the judge is ever handed. Input closes the
 /// last door in two genres, by what the input IS. A choice from a dictionary is typed
 /// input: a rule may leave a parameter its pattern never binds, the press brings the
-/// atom, and the NEXT state's build vets it — an atom outside the alphabet is a type
-/// that does not exist. Free text is the PROSE genre: it lives whole in a literal slot
-/// (a typeName), its three movements — append, rubout, clear — are the applier's own,
+/// atom, and the NEXT state's build vets it. An atom outside the alphabet is a type
+/// that does not exist. Free text is the PROSE genre: it is whole in a literal slot
+/// (a typeName), its three movements (append, rubout, clear) are the applier's own,
 /// a label draws it with no reader in between, and the judge vets the file's form,
 /// never the words. A textfield is the second genre's face, not a primitive, and
 /// neither genre ever widens the judged world.
 ///
-/// ## §S29 · The judge sits on the edges, not the states
+/// ## §S29 · The judge is on the edges, not the states
 ///
 /// A rule with a variable is a GENERIC declaration, so the compiler admits its template for
 /// every binding of the pattern's variables at once: one declaration, universally
 /// quantified, checked before any press exists. With the starting file judged and every
-/// rule judged, every reachable state of a chain is well-typed by induction — finitely many
+/// rule judged, every reachable state of a chain is well-typed by induction: finitely many
 /// checks cover unboundedly many trajectories, which no per-state testing reaches. The
 /// running consequences come from the same three lines: rules over different slots commute
 /// (independent aliases), a repeated press meets a stale pattern and stands (the no-op is
@@ -467,7 +466,7 @@
 /// ## §S30 · A key may carry a chord, and the chord is still an identification
 ///
 /// One physical key can mean different moves at different states: a passcode digit starts
-/// the walk at the gate and resets it mid-walk. The lawful form is a CHORD — one face over
+/// the walk at the gate and resets it mid-walk. The lawful form is a CHORD: one face over
 /// several rules of the SAME slot (the sameness is the type's bound) whose patterns are
 /// pairwise distinct (the distinctness is the applier's refusal). Then at any state at most
 /// one rule matches, "first match" degenerates into THE match, and a chord press is the same

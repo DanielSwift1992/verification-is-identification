@@ -36,7 +36,7 @@ extension ComesOutLikeThisLabel {
     static var typeName: String { "Comes out like this:" }
 }
 
-/// This stands in as a link target: `Gallery.self` would read `Gallery.typeName`, which reads
+/// This is a proxy link target: `Gallery.self` would read `Gallery.typeName`, which reads
 /// `Body.typeName`, which contains the very link reading `Gallery.typeName` again, infinite
 /// recursion at the first render (checked directly, the same circularity `AliceUnlocked` avoids
 /// by pointing at `SecretPage<...>` instead of itself). A real page would name a real other
@@ -1995,8 +1995,8 @@ enum RolesPlateBackingPlate<
 }
 
 /// One cell speaks for all eight: the swatch is a slice-filling outlined track lowered to
-/// its row, the label sits under it on the same slice's start. The grid is two weighed
-/// rows over the plate, margin 8, swatch 50, breath 8, and no cell holds a position.
+/// its row, the label is under it, on the same slice's start. The grid is two weighed
+/// rows over the plate, margin 8, swatch 50, breath 8, and no cell states a position.
 enum RolesSwatchFace<
     Fill: Structure,
     Line: Structure

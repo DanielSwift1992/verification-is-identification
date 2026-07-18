@@ -18,7 +18,7 @@ import VerificationIsIdentification
 // the law PRESENTED by its author, and the build is the gate it must pass.
 // ═══════════════════════════════════════════════════════════════
 
-/// What a key may stand on: one slot's worth of pressing. A single rule is the
+/// What a key may carry: one slot's worth of pressing. A single rule is the
 /// base case and a chord of rules is the cons, so a key's bound never grows an
 /// arity: any width is nested pairs of this one protocol, the same law every
 /// tree in this package obeys.
@@ -27,11 +27,11 @@ public protocol Pressable {
 }
 
 /// One rewrite rule: the slot it owns, the pattern it expects, the template it
-/// leaves. A rule whose template cannot stand for every binding of its
+/// leaves. A rule whose template fails some binding of its
 /// pattern's variables refuses to compile on its own line, so a dictionary of
 /// rules that builds is a dictionary whose every press is safe. The axes are
 /// read by the medium's one applier (Tools press) and by ``RuleKey``'s slot
-/// attribute: the reader of a state file's dynamics stands outside the module,
+/// attribute: the reader of a state file's dynamics is outside the module,
 /// which is the medium's whole point.
 public protocol SlotRule: Pressable {
     associatedtype From   // law:allow — the pattern: compared by the one applier, never inside the module
@@ -39,13 +39,13 @@ public protocol SlotRule: Pressable {
 }
 
 /// The chord's cons: two pressables of the SAME slot under one face. Nesting
-/// this one pair reaches any width, and the one-slot bound rides every link of
+/// this one pair reaches any width, and the one-slot bound is on every link of
 /// the chain. At any state at most one leaf of a lawful chord matches, so a
-/// chord press stays an identification (§S30), whatever its width.
+/// chord press remains an identification (§S30), whatever its width.
 /// This marks a key's term as an instance to carry whole: the key's face
 /// spells the full applied term, holes filled, because the press supplies the
-/// atom and the atom must travel with the press. A generic rule's key stays
-/// bare — its placeholder is spelling, not information — so the two kinds are
+/// atom and the atom must travel with the press. A generic rule's key remains
+/// bare (its placeholder is spelling, not information), so the two kinds are
 /// told apart by statement, never by guessing at a name's tail.
 public enum Exactly<Rule: Pressable>: Pressable {
     public typealias Slot = Rule.Slot
@@ -64,7 +64,7 @@ where A.Slot == B.Slot {
 //    or not at all. ──
 
 /// A term's name, spelled safely for markup: the angles become entities, so a
-/// level-1 term like `Tick<Never>` stands in a text node as written.
+/// level-1 term like `Tick<Never>` is safe in a text node as written.
 public enum TermText<T>: Close {}
 extension TermText {
     public static var typeName: String {

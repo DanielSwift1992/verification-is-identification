@@ -46,7 +46,7 @@ public enum FitVerdict<Parts: Structure>: Pair, Decidable {
     public typealias Right = Paired<Unit, Never>
 }
 
-/// The gate itself: one name holding a live instantiation of every claim, so none of the
+/// The gate itself: one name with a live instantiation of every claim, so none of the
 /// witnesses above can drift into dead code. A layout engine that stopped satisfying the
 /// space axioms would stop compiling here first.
 public enum LayoutGate {
@@ -68,10 +68,10 @@ public enum LayoutGate {
     >
     public typealias Verdict = FitVerdict<Plus<U4, U8>>
 
-    /// The measured magnitude stands in the axis: a slot sized by its own words. `TextWidth`
-    /// is a magnitude like any rung, so `Fixed` takes it directly — the door the text cycle
+    /// The measured magnitude is in the axis: a slot sized by its own words. `TextWidth`
+    /// is a magnitude like any rung, so `Fixed` takes it directly: the door the text cycle
     /// opened, certified here as an instantiation, adopted wherever a box should hug its
-    /// words rather than wear a uniform extent.
+    /// words rather than take a uniform extent.
     public typealias WordsSizeTheSlot = Fixed<TextWidth<MeasuredWord, TextS>, SpanNothing>
 }
 

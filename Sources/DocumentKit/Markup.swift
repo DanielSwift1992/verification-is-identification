@@ -573,7 +573,7 @@ public enum PanelOf<
 
 /// The markdown surface reads the same magnitudes the vector surface weighs: a column's
 /// relative size is a count-structure's reading, digits born at this one door. One lexicon
-/// of magnitudes serves both media; only the reading differs by surface.
+/// of magnitudes serves both media. Only the reading differs by surface.
 public enum WeightOf<S: Structure>: Close {}
 extension WeightOf {
     public static var typeName: String { String(S.count) }
@@ -599,7 +599,7 @@ extension WeightedPanel {
     }
 }
 /// This renders `@Column(size: Weight) { Content }`, two holes, the same `Whole: Pair` fold
-/// `Link`/`Picture` use. The door lives HERE, not on `WeightedPanel`'s extension, because
+/// `Link`/`Picture` use. The door is HERE, not on `WeightedPanel`'s extension, because
 /// `Whole` is not one of the protocol's associated types, the same shape `Link`/`Picture`
 /// already settled on for every two-hole combinator.
 public enum SizedPanel<

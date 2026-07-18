@@ -44,8 +44,8 @@ extension WentRight {
 }
 
 /// This labels the word a walker has spelled so far: the letters of the walk shown back as
-/// the object they form. A step page carries its own word because a tree gives every node
-/// exactly one path from the root; nothing is stored, the word is read off the position.
+/// the object they form. A step page has its own word because a tree gives every node
+/// exactly one path from the root: nothing is stored, the word is read off the position.
 public enum WordSoFar: Close {}
 extension WordSoFar {
     public static var typeName: String { "The word so far: " }

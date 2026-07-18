@@ -128,8 +128,8 @@ extension Letter.z {
     public static var typeName: String { "z" }
 }
 
-/// The capital of any single-character `Structure` — reads `L`'s one character and upper-cases
-/// it, so the alphabet stays 26 atoms, not 52.
+/// This is the capital of any single-character `Structure`: it reads `L`'s one character and
+/// upper-cases it, so the alphabet remains 26 atoms, not 52.
 public enum Cap<
     L: Structure
 >: Close {}
@@ -137,7 +137,7 @@ extension Cap {
     public static var typeName: String { L.typeName.uppercased() }
 }
 
-/// The ten digits, as text glyphs (distinct from `Numeral`'s counting atoms — a glyph's
+/// The ten digits, as text glyphs (distinct from `Numeral`'s counting atoms: a glyph's
 /// `typeName` is its digit character, a `Numeral`'s is its Swift case name).
 public enum TextDigit {
     public enum _0: Glyph {}

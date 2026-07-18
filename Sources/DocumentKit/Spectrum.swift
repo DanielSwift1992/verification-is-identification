@@ -54,7 +54,7 @@ extension Dimmer {
 /// middle (green), then the short (blue). Inside the read, a walk folds to its level, 0
 /// through 255, door marks taken as a binary number, most significant cut first, and a walk
 /// of any other depth refuses right here, the way `Rest` refuses an underflow. The one door
-/// a canvas may take to a colour; a bare hex anywhere else is the smell this door exists to
+/// a canvas may take to a colour. A bare hex anywhere else is the smell this door exists to
 /// remove.
 public enum Lit<
     LongBand: Shade,
@@ -166,7 +166,7 @@ extension Cover90 {
 /// in 256ths of one full pour. Stating them is the bridge's whole job. Every
 /// weight below carries its pedigree: the line weights read the CIE 1931 2°
 /// observer (cvrl.org, 1 nm table) at their wavelengths, rounded to the
-/// nearest lattice pair preserving chromaticity; the display primaries are the
+/// nearest lattice pair preserving chromaticity. The display primaries are the
 /// columns of their standards' published matrices, rounded once.
 public protocol CanonicalWeights {
     associatedtype XShare: Structure
@@ -207,7 +207,7 @@ extension HBetaGlow {
 }
 
 /// The Paschen-α line, 1875 nm, per rung: every share ``Never``, and the table
-/// agrees — far beyond the observer's reach.
+/// agrees: far beyond the observer's reach.
 public enum PaschenGlow: CanonicalWeights, Close {}
 extension PaschenGlow {
     public typealias XShare = Never
@@ -227,7 +227,7 @@ extension NeonYellowGlow {
 }
 
 /// Neon's red-orange line, 640 nm, per rung: CIE 1931 2° reads 0.4479, 0.1750,
-/// 0.0000; the stated pair keeps x = 0.722 against the table's 0.7194.
+/// 0.0000. The stated pair keeps x = 0.722 against the table's 0.7194.
 public enum NeonRedGlow: CanonicalWeights, Close {}
 extension NeonRedGlow {
     public typealias XShare = Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Twice<Unit>>, Unit>>
@@ -257,7 +257,7 @@ extension SodiumIRGlow {
 }
 
 /// One canonical coordinate of a pour: three levels times their line's share,
-/// summed by composition. The sum IS this type — Tally's count reads it, and
+/// summed by composition. The sum IS this type: Tally's count reads it, and
 /// no code adds anything anywhere.
 public typealias PouredCoordinate<
     A: Structure, ShareA: Structure,
@@ -267,9 +267,9 @@ public typealias PouredCoordinate<
 
 /// The chart-neutral edge write: three canonical sums printed as the browser's
 /// own device-independent form, `color(xyz-d65 …)`, in 256ths. The device maps
-/// the value onto whatever it can reach — the clamp, where one must happen, is
+/// the value onto whatever it can reach: the clamp, where one must happen, is
 /// the device's own, never the canon's. This door reads three counts and
-/// prints them, the same class of door as ``Lit``'s radix print; a narrower
+/// prints them, the same class of door as ``Lit``'s radix print. A narrower
 /// chart is one more door beside it, never a new pour.
 public enum XYZWrite<
     X: Structure,

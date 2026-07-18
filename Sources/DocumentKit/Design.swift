@@ -242,7 +242,7 @@ extension OnAccentDark {
 }
 
 /// This names the two colours a card icon needs: a ground and a glyph (`Accent`'s one dot
-/// stays fixed, both palettes, so it is not a member: the eight-role table gives it the
+/// is fixed, both palettes, so it is not a member: the eight-role table gives it the
 /// identical value twice). `LightCardPalette`/`DarkCardPalette` are the driver's edge
 /// substitution (SurfaceLaw
 /// §S23): the SAME nine card compositions, run twice, are what produces `card-x.svg` and
@@ -275,15 +275,15 @@ public enum SurfaceTrack: Paint, Close {}
 extension SurfaceTrack {
     public static var typeName: String { "var(--vi-surface-track, " + Mist.typeName + ")" }
 }
-/// The page role paints the ground a whole canvas stands on: `Paper` where no CSS resolves
+/// The page role paints the ground under a whole canvas: `Paper` where no CSS resolves
 /// (a raw `<img>`, a README), the host page's own colour where footer.html's variable does,
-/// so a stated backdrop disappears into the site and stays legible everywhere else.
+/// so a stated backdrop disappears into the site and remains legible everywhere else.
 public enum SurfacePage: Paint, Close {}
 extension SurfacePage {
     public static var typeName: String { "var(--vi-surface-page, " + Paper.typeName + ")" }
 }
 /// The backdrop fills the whole frame with the page role, under every member. A canvas whose
-/// content cannot all sit on surface roles states it on its `Backdrop` slot (the TRANSPARENCY
+/// content cannot all be on surface roles states it on its `Backdrop` slot (the TRANSPARENCY
 /// law above names the architecture diagram as this case).
 public enum PageBackdrop: Close {}
 extension PageBackdrop {
@@ -322,8 +322,8 @@ extension OnAccent {
     public static var typeName: String { "var(--vi-on-accent, " + Ink.typeName + ")" }
 }
 /// This is not one of the eight-role table's rows: `ActionTint` gets a role here by the same
-/// mechanism because the keypad's hover tint and `SplitBar`'s outlined segment both live in
-/// mechanism-B canvases and so cannot stay a flat hex either. Its dark value is DERIVED, not
+/// mechanism because the keypad's hover tint and `SplitBar`'s outlined segment both are in
+/// mechanism-B canvases and so cannot remain a flat hex either. Its dark value is DERIVED, not
 /// given: the light tint is `Action` at 16% alpha, so the dark tint is `ActionRole`'s dark
 /// hex (`#4972CF` = `rgb(73,114,207)`) at the same 16%, a reasoned extension
 /// of the stated table, not a silent invention.

@@ -1393,6 +1393,45 @@ extension EdgeAtLeast: Spanning {
     }
 }
 
+/// This reads a magnitude's parity at the edge and renders on even: the count
+/// splits into pairs or it does not, and the face follows the split. With its
+/// odd twin below, a fringe is a living reader of its gap — press the gap and
+/// the parity follows the file, no certificate to go stale.
+public enum EdgeEven<
+    A: Structure,
+    Then: Spanning
+>: Close {}
+extension EdgeEven: Spanning {
+    public static func rendered<
+        X: Frac & Structure,
+        W: Frac & Structure
+    >(
+        atX x: X.Type,
+        width w: W.Type
+    ) -> String {
+        guard A.count % 2 == 0 else { return "" }
+        return Then.rendered(atX: x, width: w)
+    }
+}
+
+/// The odd twin of ``EdgeEven``: renders when the count leaves one over.
+public enum EdgeOdd<
+    A: Structure,
+    Then: Spanning
+>: Close {}
+extension EdgeOdd: Spanning {
+    public static func rendered<
+        X: Frac & Structure,
+        W: Frac & Structure
+    >(
+        atX x: X.Type,
+        width w: W.Type
+    ) -> String {
+        guard A.count % 2 == 1 else { return "" }
+        return Then.rendered(atX: x, width: w)
+    }
+}
+
 /// This draws two spanning layers at the same origin and width: a background under its content,
 /// a name over its chip. Order is depth, the way a body's order always is.
 public enum Layered<

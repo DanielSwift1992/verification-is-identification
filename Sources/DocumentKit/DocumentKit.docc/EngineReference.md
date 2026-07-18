@@ -12,6 +12,8 @@ The divided axis and its members, the span leaves, the frames, and the interacti
 
 - ``EdgeSame``
 - ``EdgeAtLeast``
+- ``EdgeEven``
+- ``EdgeOdd``
 - ``Air``
 - ``ArrowMarkers``
 - ``CanvasSize``

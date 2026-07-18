@@ -163,10 +163,11 @@ extension Cover90 {
 // construction. ──
 
 /// A stated line weight per rung of the ladder: three magnitudes, chart-neutral,
-/// in 256ths of one full pour. Stating them is the bridge's whole job. The
-/// line weights below are coarse: their pedigree is the qualitative shape of
-/// the visible locus, and refinement arrives as reference data, never as code.
-/// The display primaries further down are exact, from published matrices.
+/// in 256ths of one full pour. Stating them is the bridge's whole job. Every
+/// weight below carries its pedigree: the line weights read the CIE 1931 2°
+/// observer (cvrl.org, 1 nm table) at their wavelengths, rounded to the
+/// nearest lattice pair preserving chromaticity; the display primaries are the
+/// columns of their standards' published matrices, rounded once.
 public protocol CanonicalWeights {
     associatedtype XShare: Structure
     associatedtype YShare: Structure
@@ -185,26 +186,28 @@ public typealias Rung6 = Twice<Plus<Twice<Unit>, Unit>>
 public typealias Rung7 = Plus<Twice<Twice<Unit>>, Plus<Twice<Unit>, Unit>>
 public typealias Rung8 = Twice<Twice<Twice<Unit>>>
 
-/// The H-α line, 656 nm, per rung: a long-wave pour, no short-wave part.
+/// The H-α line, 656 nm, per rung: CIE 1931 2° reads 0.2071, 0.0771, 0.0000,
+/// stated as the nearest lattice pair preserving chromaticity (x = 0.727
+/// against the table's 0.7286).
 public enum HAlphaGlow: CanonicalWeights, Close {}
 extension HAlphaGlow {
-    public typealias XShare = Rung7
-    public typealias YShare = Rung2
+    public typealias XShare = Twice<Twice<Twice<Unit>>>
+    public typealias YShare = Plus<Twice<Unit>, Unit>
     public typealias ZShare = Never
     public static var typeName: String { "h-alpha" }
 }
 
-/// The H-β line, 486 nm, per rung: a short-wave pour with a middle lift.
+/// The H-β line, 486 nm, per rung: CIE 1931 2° reads 0.0519, 0.1762, 0.5823.
 public enum HBetaGlow: CanonicalWeights, Close {}
 extension HBetaGlow {
-    public typealias XShare = Rung2
-    public typealias YShare = Rung7
-    public typealias ZShare = Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Twice<Unit>>, Plus<Twice<Unit>, Twice<Twice<Unit>>>>>
+    public typealias XShare = Twice<Unit>
+    public typealias YShare = Twice<Plus<Twice<Unit>, Unit>>
+    public typealias ZShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Unit>, Unit>>
     public static var typeName: String { "h-beta" }
 }
 
-/// The Paschen-α line, 1875 nm, per rung: every share ``Never``. The line is
-/// real and the standard observer receives none of it.
+/// The Paschen-α line, 1875 nm, per rung: every share ``Never``, and the table
+/// agrees — far beyond the observer's reach.
 public enum PaschenGlow: CanonicalWeights, Close {}
 extension PaschenGlow {
     public typealias XShare = Never
@@ -213,35 +216,38 @@ extension PaschenGlow {
     public static var typeName: String { "paschen-alpha" }
 }
 
-/// Neon's yellow-orange line, 585 nm, per rung.
+/// Neon's yellow-orange line, 585 nm, per rung: CIE 1931 2° reads 0.9786,
+/// 0.8163, 0.0014.
 public enum NeonYellowGlow: CanonicalWeights, Close {}
 extension NeonYellowGlow {
-    public typealias XShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Unit>
-    public typealias YShare = Twice<Twice<Twice<Twice<Unit>>>>
+    public typealias XShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Twice<Unit>>, Plus<Twice<Unit>, Unit>>>>
+    public typealias YShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Twice<Twice<Unit>>>, Twice<Unit>>>
     public typealias ZShare = Never
     public static var typeName: String { "neon-585" }
 }
 
-/// Neon's red-orange line, 640 nm, per rung.
+/// Neon's red-orange line, 640 nm, per rung: CIE 1931 2° reads 0.4479, 0.1750,
+/// 0.0000; the stated pair keeps x = 0.722 against the table's 0.7194.
 public enum NeonRedGlow: CanonicalWeights, Close {}
 extension NeonRedGlow {
-    public typealias XShare = Plus<Twice<Twice<Twice<Unit>>>, Unit>
-    public typealias YShare = Twice<Twice<Unit>>
+    public typealias XShare = Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Twice<Unit>>, Unit>>
+    public typealias YShare = Plus<Twice<Twice<Unit>>, Unit>
     public typealias ZShare = Never
     public static var typeName: String { "neon-640" }
 }
 
-/// Sodium's D doublet, 589 nm, per rung: the yellow of a street lamp.
+/// Sodium's D doublet, 589 nm, per rung: CIE 1931 2° reads 1.0180, 0.7692,
+/// 0.0011. The X share passes one full pour: the canon has no ceiling.
 public enum SodiumDGlow: CanonicalWeights, Close {}
 extension SodiumDGlow {
-    public typealias XShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Twice<Unit>>
-    public typealias YShare = Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Twice<Unit>>, Plus<Twice<Unit>, Unit>>>
+    public typealias XShare = Plus<Twice<Twice<Twice<Twice<Twice<Unit>>>>>, Unit>
+    public typealias YShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Twice<Twice<Unit>>>, Unit>>
     public typealias ZShare = Never
     public static var typeName: String { "sodium-589" }
 }
 
-/// Sodium's infrared line, 819 nm, per rung: every share ``Never``. A second
-/// blind row, so sodium carries its own metameric pair.
+/// Sodium's infrared line, 819 nm, per rung: every share ``Never``, and the
+/// table agrees to six decimal places. The blind row is measured, not assumed.
 public enum SodiumIRGlow: CanonicalWeights, Close {}
 extension SodiumIRGlow {
     public typealias XShare = Never

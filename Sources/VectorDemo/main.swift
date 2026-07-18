@@ -61,8 +61,9 @@ func run(_ args: [String]) {
         runSiteDoors()
     }
     if mode == "source" || mode == "all" { runSelfShowing() }
-    if !["cards", "diagram", "curve", "film", "pulse", "board", "heroes", "people", "doors", "source", "all"].contains(mode) {
-        print("usage: VectorDemo <cards|diagram|curve|film|pulse|board|heroes|people|source|all>")
+    if mode == "goldens" { runGoldens() }
+    if !["cards", "diagram", "curve", "film", "pulse", "board", "heroes", "people", "doors", "source", "goldens", "all"].contains(mode) {
+        print("usage: VectorDemo <cards|diagram|curve|film|pulse|board|heroes|people|source|goldens|all>")
     }
 }
 

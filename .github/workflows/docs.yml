@@ -58,6 +58,9 @@ jobs:
       - name: The second judge reads the conditional grammar
         run: swift run Tools judge where Sources/Examples/Light.swift
 
+      - name: The second judge counts the Rydberg ladder
+        run: swift run Tools judge where Sources/Examples/RydbergLadder.swift
+
       - name: The committed artifacts match the types, byte for byte
         run: |
           swift package --allow-writing-to-package-directory generate

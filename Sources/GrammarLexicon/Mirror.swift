@@ -359,14 +359,14 @@ extension SpelledWord: SystemToken, DemoToken, ToolsToken {}
 // The magnitudes' words: a canvas SPEAKS the dictionary and never spells a rung, so
 // DemoToken is deliberately absent, and so is SystemToken. The refusal IS the gun.
 extension TimesWord: LatticeToken, EngineToken, SurfaceToken, ToolsToken {}
-extension U1Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken {}
-extension U2Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken {}
-extension U4Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken {}
-extension U8Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken {}
-extension U16Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken {}
-extension U32Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken {}
-extension U64Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken {}
-extension U128Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken {}
+extension U1Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken, DemoToken {}
+extension U2Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken, DemoToken {}
+extension U4Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken, DemoToken {}
+extension U8Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken, DemoToken {}
+extension U16Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken, DemoToken {}
+extension U32Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken, DemoToken {}
+extension U64Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken, DemoToken {}
+extension U128Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken, DemoToken {}
 extension U256Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken {}
 extension U512Word: LatticeToken, EngineToken, SurfaceToken, ToolsToken {}
 extension LabelsWord: LatticeToken, EngineToken, SurfaceToken, SystemToken, ToolsToken, DemoToken {}

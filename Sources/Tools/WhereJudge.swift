@@ -4,7 +4,13 @@
 // This judge reads those statements, normalizes every term to one canon —
 // aliases unfolded, generic parameters substituted, dotted axes resolved
 // through the conformer's own table, Twice opened into Plus — and then judges
-// each use of a gated head and each conformer of a gated protocol. A refusal
+// each use of a gated head and each conformer of a gated protocol. On top of
+// the structural canon the judge carries the counting canon: a Plus tree is
+// flattened to its leaves, the counted leaves (Unit is one, Never is nothing)
+// fold into one numeral, a Times of two numerals is their product, and the
+// symbolic leaves are sorted, so two spellings of one number are one term and
+// an arithmetic equality like 7 + 20 == 27 is judged where the nominal
+// compiler sees two different types. A refusal
 // speaks in the compiler's own voice: the two sides that had to be equivalent,
 // named with their canons. The port's judge and this one must always agree,
 // and the compiler stays the standard both answer to.
@@ -96,7 +102,7 @@ enum WhereJudge {
         names.append(piece)
         return names.map { piece in
             let bare = piece.split(separator: ":").first.map(String.init) ?? piece
-            return bare.trimmingCharacters(in: .whitespaces)
+            return bare.trimmingCharacters(in: .whitespacesAndNewlines)
         }
     }
 
@@ -120,8 +126,8 @@ enum WhereJudge {
             let sides = part.components(separatedBy: "==")
             if sides.count == 2 {
                 pairs.append((
-                    sides[0].trimmingCharacters(in: .whitespaces),
-                    sides[1].trimmingCharacters(in: .whitespaces)
+                    sides[0].trimmingCharacters(in: .whitespacesAndNewlines),
+                    sides[1].trimmingCharacters(in: .whitespacesAndNewlines)
                 ))
             }
         }
@@ -262,8 +268,54 @@ enum WhereJudge {
         return Term(head: term.head, args: term.args.map { normalize($0, world, depth: depth + 1) })
     }
 
+    // ── the counting canon: two spellings of one number are one term ──
+    // Twice is already open by the time this pass reads a term, so a number is a
+    // tree of Plus over counted leaves. The pass flattens every Plus into its
+    // leaves, folds the counted leaves into one numeral, multiplies a Times whose
+    // two sides are both numerals, and sorts the symbolic leaves, so the spelling
+    // of a number cannot tell two equal numbers apart. The port's judge mirrors
+    // this pass, the same law as the structural canon above.
+
+    static func counted(_ term: Term) -> Int? {
+        guard term.args.isEmpty else { return nil }
+        if term.head == "Unit" { return 1 }
+        if term.head == "Never" { return 0 }
+        if term.head.hasPrefix("#") { return Int(term.head.dropFirst()) }
+        return nil
+    }
+
+    static func numeral(_ count: Int) -> Term { Term(head: "#\(count)", args: []) }
+
+    static func arithmetic(_ term: Term) -> Term {
+        let folded = Term(head: term.head, args: term.args.map { arithmetic($0) })
+        if let count = counted(folded) { return numeral(count) }
+        if folded.head == "Times", folded.args.count == 2,
+           let left = counted(folded.args[0]), let right = counted(folded.args[1]) {
+            return numeral(left * right)
+        }
+        guard folded.head == "Plus", folded.args.count == 2 else { return folded }
+        var leaves: [Term] = []
+        var count = 0
+        var pile = folded.args
+        while let piece = pile.popLast() {
+            if piece.head == "Plus", piece.args.count == 2 {
+                pile.append(contentsOf: piece.args)
+                continue
+            }
+            if let n = counted(piece) { count += n } else { leaves.append(piece) }
+        }
+        leaves.sort { Press.serialize($0) < Press.serialize($1) }
+        if leaves.isEmpty { return numeral(count) }
+        if count > 0 { leaves.append(numeral(count)) }
+        var result = leaves.removeLast()
+        while let next = leaves.popLast() {
+            result = Term(head: "Plus", args: [next, result])
+        }
+        return result
+    }
+
     static func canon(_ text: String, _ world: World) -> String {
-        Press.serialize(normalize(Press.parseTerm(Substring(text)), world))
+        Press.serialize(arithmetic(normalize(Press.parseTerm(Substring(text)), world)))
     }
 
     // ── the judgement ──
@@ -293,8 +345,8 @@ enum WhereJudge {
                     judged += 1
                     let leftTerm = substitute(Press.parseTerm(Substring(left)), bindings)
                     let rightTerm = substitute(Press.parseTerm(Substring(right)), bindings)
-                    let leftCanon = Press.serialize(normalize(leftTerm, world))
-                    let rightCanon = Press.serialize(normalize(rightTerm, world))
+                    let leftCanon = Press.serialize(arithmetic(normalize(leftTerm, world)))
+                    let rightCanon = Press.serialize(arithmetic(normalize(rightTerm, world)))
                     if leftCanon != rightCanon {
                         refusals.append(
                             "'\(use)' requires the types '\(left)' (aka '\(leftCanon)') and "

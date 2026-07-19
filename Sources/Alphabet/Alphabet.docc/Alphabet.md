@@ -7,7 +7,7 @@ One type per character: the vocabulary the renderer and the style linter both re
 Every character that matters to the system is one atom with two readings: the character
 it renders (`typeName`) and the identifier the linter carries (its Swift name). One
 registry serves both readings, so the renderer and the linter cannot disagree about a
-name — there is exactly one `Comma`, and both mean the same thing by it.
+name: there is exactly one `Comma`, and both mean the same thing by it.
 
 ## Topics
 

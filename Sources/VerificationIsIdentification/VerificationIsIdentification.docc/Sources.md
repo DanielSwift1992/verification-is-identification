@@ -1,20 +1,20 @@
 # Sources
 
-The papers this lattice encodes — readable here, in full.
+The papers this lattice encodes, readable here in full.
 
 ## Overview
 
-Each protocol in ``VerificationIsIdentification`` encodes a claim first made and proved in one of the papers below. The relationship runs one way: the papers are the *source* — prose derivations carrying the full proofs and the mathematics — and the lattice is their type-level *encoding*.
+Each protocol in ``VerificationIsIdentification`` encodes a claim first made and proved in one of the papers below. The relationship runs one way: the papers are the *source* (prose derivations carrying the full proofs and the mathematics) and the lattice is their type-level *encoding*.
 
-These are the *why*, not the *how*. To use the framework you need none of them — that path starts at <doc:Purpose>. They are here for the reader who wants the claim proved.
+These are the *why*, not the *how*. To use the framework you need none of them: that path starts at <doc:Purpose>. They are here for the reader who wants the claim proved.
 
-One paper sits apart. *Existence Is Finite* (`EiF`) is the ground, below the protocol floor: it argues the seed (``Pair``, ``Null``) and the medium Σ into place, so no protocol *routes* to it — it is what the rest are built in. Its claims surface as provenance on the seed and the kernel, never as a route of their own.
+One paper is apart. *Existence Is Finite* (`EiF`) is the ground, below the protocol floor: in it the author argues the seed (``Pair``, ``Null``) and the medium Σ into place, so no protocol *routes* to it. It is what the rest are built in. Its claims surface as provenance on the seed and the kernel, never as a route of their own.
 
-They are arranged differently, on purpose. The papers follow the order they were written. This documentation follows the structure *measured* from the lattice itself — a small basis of axes spanned by a web of theorems (see the ``VerificationIsIdentification`` overview). The papers are one walk through that structure. The documentation is the structure.
+They are arranged differently, on purpose. The papers follow the order they were written. This documentation follows the structure *measured* from the lattice itself: a small basis of axes spanned by a web of theorems (see the ``VerificationIsIdentification`` overview). The papers are one walk through that structure. The documentation is the structure.
 
-So a tag like `[Nav N5]` at the end of a symbol's discussion is provenance, not navigation — it points to the section of the paper that proves the claim, where the full notation lives. To understand a symbol, its own page is enough. To read the derivation and the math, open the paper.
+So a tag like `[Nav N5]` at the end of a symbol's discussion is provenance, not navigation: it points to the section of the paper that proves the claim, where the full notation is. To understand a symbol, its own page is enough. To read the derivation and the math, open the paper.
 
-> Note: The lattice is an encoding, not a transcript. Some corollaries the papers state in prose are recorded here as comments rather than protocols, and the paper order is deliberately not the dependency order. The documentation never asks you to open a paper to understand what a symbol *is* — only to see how it was *proved*.
+> Note: The lattice is an encoding, not a transcript. Some corollaries the papers state in prose are recorded here as comments rather than protocols, and the paper order is deliberately not the dependency order. The documentation never asks you to open a paper to understand what a symbol *is*, only to see how it was *proved*.
 
 ## The papers as one game
 
@@ -69,7 +69,7 @@ The tag in each symbol's discussion decodes here. Every paper is readable in ful
 | `FiG` | [Form Is Gauge](doc:form_is_gauge) |
 | `Projection` | [The Architecture of Learning Machines](doc:architecture_of_learning_machines) |
 
-> Tip: A section code inside a tag is the paper's own numbering — `§5.22`, `G2c`, `N5`, `O9`, `LT3`, `PP10`, `B4`. In the paper, that code lands you on the exact claim.
+> Tip: A section code inside a tag is the paper's own numbering: `§5.22`, `G2c`, `N5`, `O9`, `LT3`, `PP10`, `B4`. In the paper, that code lands you on the exact claim.
 
 ## Topics
 

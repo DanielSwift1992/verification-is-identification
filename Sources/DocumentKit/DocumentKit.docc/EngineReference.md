@@ -123,7 +123,7 @@ White is the atom and division is the only move: a colour is a walk of eight hal
 
 ### The spectral bridge
 
-Mixing is a type: a line's weight per rung is a stated magnitude in 256ths, a pour is Plus of Times read by the structure's own count, and the one edge door prints three canonical sums for the device to map. Declaring a substance is stating data, never touching the kit: one ``CanonicalWeights`` atom per line, a world file for the lamp, ``Never`` rows for the lines no eye reads. A display is the same genre — three stated primaries — so a chart's cone is data too, and every threshold, from a contrast bound to a gamut badge, is a composition of the edge comparison doors.
+Mixing is a type: a line's weight per rung is a stated magnitude in 256ths, a pour is Plus of Times read by the structure's own count, and the one edge door prints three canonical sums for the device to map. Declaring a substance is stating data, never touching the kit: one ``CanonicalWeights`` atom per line, a world file for the lamp, ``Never`` rows for the lines no eye reads. A display is the same genre (three stated primaries), so a chart's cone is data too, and every threshold, from a contrast bound to a gamut badge, is a composition of the edge comparison doors.
 
 - ``CanonicalWeights``
 - ``Rung0``

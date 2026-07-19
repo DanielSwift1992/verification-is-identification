@@ -7,16 +7,16 @@ The style linter's vocabulary: the words, scopes, and grants every source file i
 The style check (`swift run Tools grammar`) re-states each source file as one typed
 object over this vocabulary, and the compiler judges the object: an atom used where its
 scope grants no token fails on its own line, with the token named. Nothing here is
-universal by design — every grant names its context and its scope explicitly, so a
+universal by design: every grant names its context and its scope explicitly, so a
 violation is always a specific refusal, never a general warning. The linter that carries
-files into this vocabulary lives in Tools. This module supplies the types the carried
+files into this vocabulary is in Tools. This module supplies the types the carried
 objects are judged against.
 
 ## Topics
 
 ### The contexts
 
-Where an atom stands: plain code, a builder body, a line head — and the sensitivities that decide it.
+Where an atom is: plain code, a builder body, a line head, and the sensitivities that decide it.
 
 - ``PlainToken``
 - ``BuilderToken``

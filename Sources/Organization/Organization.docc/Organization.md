@@ -6,17 +6,17 @@ A company modeled in Swift's type system. Its people, its access rules, and its 
 
 Three things to do, in order:
 
-- term **Take the walk:** <doc:SiteWalk> reaches any page in four choices, and any of the 204 people in eight. Every door names what it holds, read off the same types this site is rendered from. Try it: the task board is three choices in.
-- term **Unlock a card:** every person's card is public, including the password printed on it, and the keypad beside it is the login. Walk the code digit by digit — the last correct press lands on the card's unlocked half. <doc:CompanyDashboard> lists the four named cards to try.
-- term **Change a rule:** edit `System/Policy.swift` and rebuild. Every page re-reads itself, and a rule that contradicts the policy refuses the build with the failed premise named.
+- term **Take the walk:** <doc:SiteWalk> reaches any page in four choices, and any of the 204 people in eight. Every door names what is behind it, read off the same types this site is rendered from. Try it: the task board is three choices in.
+- term **Unlock a card:** every person's card is public, including the password printed on it, and the keypad beside it is the login. Walk the code digit by digit: the last correct press lands on the card's unlocked half. <doc:CompanyDashboard> lists the four named cards to try.
+- term **Change a rule:** edit `System/Policy.swift` and rebuild. The build re-reads every page, and a rule that contradicts the policy is refused by the build, with the failed premise named.
 
-The pages are the same for everyone — dashboard, roster, access matrix. The one page that differs is a card's unlocked half, and it is reached by the walk above, never by a session.
+The pages are the same for everyone: dashboard, roster, access matrix. The one page that differs is a card's unlocked half, and it is reached by the walk above, never by a session.
 
 ## The idea
 
-Most companies describe who can do what in three places, and the three disagree. The policy is a wiki page. The code that enforces it sits somewhere else. The audit that certifies it was correct is a spreadsheet from last quarter. Keeping them in step is manual work, so they drift, and the wiki page is usually the part that is quietly wrong.
+Most companies describe who can do what in three places, and the three disagree. The policy is a wiki page. The code that enforces it is somewhere else. The audit that certifies it was correct is a spreadsheet from last quarter. Keeping them in step is manual work, so they drift, and the wiki page is usually the part that is quietly wrong.
 
-Here the three are one. The policy is written as types, so compiling the company is what enforces it: an allowed access compiles, and a forbidden one fails to compile and names the rule it broke. The audit, the access matrix, and this documentation are not copies kept in sync — each is read straight from those types. Change a rule, rebuild, and every page re-reads itself.
+Here the three are one. The policy is written as types, so compiling the company is what enforces it: an allowed access compiles, and a forbidden one fails to compile and names the rule it broke. The audit, the access matrix, and this documentation are not copies kept in sync: each is read straight from those types. Change a rule, rebuild, and the build re-reads every page.
 
 ## Architecture
 
@@ -31,8 +31,8 @@ VIPER would slice a runtime, this slices a proof.
 
 The second picture is the tooling: everything that executes, executes here, once, at
 build time. The sources of truth are files in the repository. `swift package generate`
-turns them into checked-in Swift, and `swift build` holds the gates — a law violation, a
-style violation, or an overdrawn doc-comment budget refuses the build by name — and what
+turns them into checked-in Swift, and `swift build` holds the gates (a law violation, a
+style violation, or an overdrawn doc-comment budget is refused by name), and what
 falls out is the site you are reading.
 
 One flow, top down: the core library everything imports, the render engine that reads
@@ -41,31 +41,31 @@ two outputs every build produces. Each box names its role, its parts, and its ce
 by the build that rendered this page. Click a box to open it.
 
 - term `System/`, the company itself, written in the types of the V=I framework (`VerificationIsIdentification`): the people, the roles, the departments, the documents, the access gates, and the year-close interlock. Nothing here runs and nothing is stored. Compiling this layer is what enforces the policy and proves every access.
-- term `Query/`, the questions the compiler answers about that company: is this access granted, who owns this document, do the standing invariants still hold. Each answer is a conformance that either holds or fails to, decided when the code type-checks, not stored anywhere.
-- term `View/`, the surface: every page here is itself a type, composed from the same people and verdicts the system proved. It is the one place a type meets its printed form — a name through `Symbol`, a count through `Tally` — and nothing below it depends on it.
+- term `Query/`, the questions the compiler answers about that company: is this access granted, who owns this document, are the standing invariants still true. Each answer is a conformance that compiles or fails to, decided when the code type-checks, not stored anywhere.
+- term `View/`, the surface: every page here is itself a type, composed from the same people and verdicts the system proved. It is the one place a type meets its printed form (a name through `Symbol`, a count through `Tally`), and nothing below it depends on it.
 - term `DocumentKit`, the render engine, itself pure types: a page's `body` is a composition, and reading its `typeName` walks that composition once into the markdown you are reading. Its grammar is `SurfaceLaw`, one level above the lattice's `Law`.
 
-**The stack.** Three packages' targets, one direction of dependency: `VerificationIsIdentification` holds the law and the lattice — what proves. `DocumentKit` holds the surface — what shows, written in the notation it renders. `Organization` holds the domain — what is proved and shown. `Examples` sits beside it, the same lattice applied to physics. Each floor writes its own grammar in the floor below (`Law`, then `SurfaceLaw`), and nothing points back up.
+**The stack.** Three packages' targets, one direction of dependency: `VerificationIsIdentification` has the law and the lattice: what proves. `DocumentKit` has the surface: what shows, written in the notation it renders. `Organization` has the domain: what is proved and shown. `Examples` is beside it, the same lattice applied to physics. Each floor writes its own grammar in the floor below (`Law`, then `SurfaceLaw`), and nothing points back up.
 
-The library depends on one framework, V=I, and on nothing else — in particular not Foundation. `System/` and `Query/` are made only of its types: protocols, conformances, and `where` clauses, with no stored state and no strings. A type turns into a string or a number only at the View boundary. Two things then read that boundary: this documentation, which `DocumentKit` renders to markdown, and the console audit (`swift run OrgDemo audit`), which prints the same reads without it. A policy that contradicts itself never compiles, so neither output can describe a company that does not exist.
+The library depends on one framework, V=I, and on nothing else, in particular not Foundation. `System/` and `Query/` are made only of its types: protocols, conformances, and `where` clauses, with no stored state and no strings. A type turns into a string or a number only at the View boundary. Two things then read that boundary: this documentation, which `DocumentKit` renders to markdown, and the console audit (`swift run OrgDemo audit`), which prints the same reads without it. A policy that contradicts itself never compiles, so neither output can describe a company that does not exist.
 
 ## How it works
 
-The showcase rests on a few small mechanisms. Each one is checked by the compiler, so a green build is the proof that all of them hold.
+The showcase is a few small mechanisms. Each one is checked by the compiler, so a green build is the proof that all of them are in force.
 
 | Mechanism | What the compiler guarantees |
 | --- | --- |
-| **Access is a gate** | ``View``, ``Administer``, ``Delete`` earn ``Authorized`` only when their rule holds. A forbidden access does not compile. |
-| **Roles make it scale** | Access depends on the role, not the person, so the whole roster resolves from a few certified rules (``RoleLibrary``) — 200 people, four proofs. |
+| **Access is a gate** | ``View``, ``Administer``, ``Delete`` earn ``Authorized`` only when their rule is met. A forbidden access does not compile. |
+| **Roles make it scale** | Access depends on the role, not the person, so the whole roster resolves from a few certified rules (``RoleLibrary``): 200 people, four proofs. |
 | **The audit re-proves itself** | The standing report (``OwnedFromWithin``, ``LedByManager``) is re-checked on every build, so a fact that stops being true becomes a build error. |
 | **An access can name a person** | Only the owner can delete a vault, so "who may delete it?" has one answer. Checking the access names that person (``OwnerGate``). |
-| **Policy holds by construction** | The next year (``Closed``, ``CommittedCut``) cannot be formed until the cut is recorded at the size the policy requires. |
+| **Policy is in force by construction** | The next year (``Closed``, ``CommittedCut``) cannot be formed until the cut is recorded at the size the policy requires. |
 | **The numbers are not typed in** | Headcount, proof count, cut size: each is `count` on a type composed through `body`, folded by the compiler as it builds (``Roster``). |
-| **A condition costs what it is** | Return-to-office proves the arrangement cheaply — ``OfficeArrangement`` over ``Remote`` will not compile as compliant. The hours logged would be a typed count too. Comparing them against a threshold is the heavier ordered move (Peano `>=`), so the demo shows the cheap half. |
+| **A condition costs what it is** | Return-to-office proves the arrangement cheaply: ``OfficeArrangement`` over ``Remote`` will not compile as compliant. The hours logged would be a typed count too. Comparing them against a threshold is the heavier ordered move (Peano `>=`), so the demo shows the cheap half. |
 
 ## Where to start
 
-To read the source, take the files in this order — each builds on the last.
+To read the source, take the files in this order: each builds on the last.
 
 | File | What it shows |
 | --- | --- |
@@ -75,13 +75,13 @@ To read the source, take the files in this order — each builds on the last.
 | `System/Saturation.swift` | it scales: ``RoleLibrary``, the roster resolves from a few certified rules |
 | `Query/Report.swift` | it reports itself: ``OwnedFromWithin``, ``LedByManager``, re-proved every build |
 | `Query/Access.swift` | the matrix, read: `granted` asks the compiler one access at a time |
-| `View/Card.swift` | each person's card, guest and signed in — one shared shell, two states of one identity |
+| `View/Card.swift` | each person's card, guest and signed in: one shared shell, two states of one identity |
 | `System/ReviewCycle.swift` | the harder policy: ``Closed``, a year cannot close without its cut |
 | `System/ReturnToOffice.swift` | the cost gradient: ``OfficeArrangement`` proves the arrangement cheaply, the hour threshold is the heavier ordered move |
 
 Supporting: `System/Witnesses.swift` and the two generated files.
 
-**The company, rendered.** `swift run OrgDemo render-doc` builds the <doc:CompanyDashboard> and the catalogs from the compiled types: the access matrix, the standing report, the figures. These pages are objective — the same company for everyone — read from the types, never written into the page. A personal view is not built in: it is reached by walking a card's own password, and it unlocks that same card. So nothing multiplies per viewer.
+**The company, rendered.** `swift run OrgDemo render-doc` builds the <doc:CompanyDashboard> and the catalogs from the compiled types: the access matrix, the standing report, the figures. These pages are objective, the same company for everyone, read from the types, never written into the page. A personal view is not built in: it is reached by walking a card's own password, and it unlocks that same card. So nothing multiplies per viewer.
 
 ## Topics
 
@@ -100,7 +100,7 @@ Supporting: `System/Witnesses.swift` and the two generated files.
 
 ### The board's what-if walk
 
-One step from each task's own real status, closed after that (DESIGN11 b3).
+One step from each task's own real status, closed after that.
 
 - <doc:WhatIfOnboardNewHireInProgress>
 - <doc:WhatIfArchiveOldRepositoriesInProgress>
@@ -121,7 +121,7 @@ One step from each task's own real status, closed after that (DESIGN11 b3).
 
 ### The named team's cards
 
-The person's symbol page carries the card. The signed-in page is the same card, one proved walk later.
+The card is on the person's symbol page. The signed-in page is the same card, one proved walk later.
 
 - ``Alice``
 - ``Bob``
@@ -143,8 +143,8 @@ The person's symbol page carries the card. The signed-in page is the same card, 
 
 ### How it is written
 
-Three canvases show their own composition — read back from the compiled type, never a second
-copy of it (DESIGN12 §2).
+Three canvases show their own composition, read back from the compiled type, never a second
+copy of it.
 
 - <doc:PulseSource>
 - <doc:BoardSource>
@@ -221,7 +221,7 @@ element and counts them at once.
 
 ### Counted by this build
 
-The census, spelled into atoms by the CensusGen plugin on every build: the numbers the architecture diagram wears.
+The census, spelled into atoms by the CensusGen plugin on every build: the numbers on the architecture diagram.
 
 - ``CensusLatticeTypes``
 - ``CensusLatticeRuntimeFunctions``
@@ -287,7 +287,7 @@ The walk: binary questions over the site's composition, every door a witness of 
 
 ### The site order
 
-Every place knows the place above it: the whole order is one type. ``SiteWalk`` is that order made walkable, and its `count` is the coverage read against ``AllPlaces``. The walk itself starts at <doc:SiteWalk>.
+Every place names the place above it: the whole order is one type. ``SiteWalk`` is that order made walkable, and its `count` is the coverage read against ``AllPlaces``. The walk itself starts at <doc:SiteWalk>.
 
 - ``Nav``
 - ``Place``

@@ -1,20 +1,20 @@
 # ``Examples``
 
-Worked examples of the framework: physics reproduced as types, learning machines located by their coordinates, the concrete models that inhabit the markers, and a working solver — each one checked by the compiler, nothing run.
+Worked examples of the framework: physics reproduced as types, learning machines located by their coordinates, the concrete models that inhabit the markers, and a working solver, each one checked by the compiler, nothing run.
 
 ## Overview
 
 **Start with the scheduler.** It asks for no physics: tasks, two machines, and
 conflicts that force each task onto the opposite machine. The compiler propagates
 the one consistent assignment and certifies it, or refuses an impossible schedule
-by name — ``Pinned``, ``Conflicts``, ``Require``, all in `Coloring.swift`. Read it
+by name: ``Pinned``, ``Conflicts``, ``Require``, all in `Coloring.swift`. Read it
 first: every other example is the same three operations on a harder board.
 
 **Then dive in.** Every example here is a finished result you can read on its own:
 the residual entropy of ice, hydrogen's metastable 2s, the stable proton. The one
 idea underneath, that checking a single-survivor answer is the same act as finding
-it, lives in
-[`VerificationIsIdentification`](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification) — but the examples do not wait on it.
+it, is in
+[`VerificationIsIdentification`](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification), but the examples do not wait on it.
 
 **What you can do here.** You do not need the physics. Each example is a real, known
 result, and the point is that the compiler reproduces it by type-checking, with no
@@ -43,7 +43,7 @@ or impossible.
 **How to use it.** There are three steps.
 
 1. Run the demos. `swift test` exercises them and pins the numbers the build
-   produced — the residual entropy of ice, the hydrogen spectrum, the scheduler.
+   produced: the residual entropy of ice, the hydrogen spectrum, the scheduler.
 2. See a rejection. Rebuild with a flag and read the named error:
    `swift build -Xswiftc -DSHOW_FORBIDDEN` for the forbidden spectral lines and
    proton decay, `-DSHOW_REJECT` for the `|S| > 1` gates, `-DSHOW_UNSAT` or
@@ -89,7 +89,7 @@ Constraints propagate to one forced assignment (`|S| = 1`), or the graph reports
 
 ### Ice — residual entropy, counted
 
-Ice keeps a little disorder even at absolute zero, and this counts it. Six of sixteen proton arrangements obey the two-in/two-out ice rule, a fold that counts them to `|S| = 6` per vertex. ``IceOxygen`` crystallizes (`|S| = 1`) while the hydrogen positions carry the residual.
+Ice keeps a little disorder even at absolute zero, and this counts it. Six of sixteen proton arrangements obey the two-in/two-out ice rule, a fold that counts them to `|S| = 6` per vertex. ``IceOxygen`` crystallizes (`|S| = 1`) while the residual is in the hydrogen positions.
 
 - ``IceOxygen``
 - ``IceHydrogen``
@@ -117,7 +117,7 @@ Some jumps an electron could make are forbidden, which is why parts of an atom's
 
 ### The Higgs vacuum — broken symmetry, counted
 
-When a symmetry of nature breaks, some directions cost nothing to shift, and this counts them. Electroweak breaking leaves three massless Goldstone directions, counted to `= 3`. ``HiggsGaugeInvariant`` is the gauge-invariant vacuum (`|S| = 1`) while the field components carry the residual.
+When a symmetry of nature breaks, some directions cost nothing to shift, and this counts them. Electroweak breaking leaves three massless Goldstone directions, counted to `= 3`. ``HiggsGaugeInvariant`` is the gauge-invariant vacuum (`|S| = 1`) while the residual is in the field components.
 
 - ``HiggsGaugeInvariant``
 - ``HiggsFieldComponents``
@@ -162,7 +162,7 @@ A learner is located by which coordinates it has. A gated, append-only machine c
 
 ### Dynamics — the worlds a button can move
 
-The terms a state file's slots may hold: the lamp's two faces, the counter's floor and wrap, the keypad's five stages. A slot marker drops its `Slot` suffix to name the alias a state file carries. The rules that move a world between these terms are rewrite triples beside the world itself (`Sources/DynamicsDemo/Rules.swift`) on the dynamics medium (`DocumentKit`), and pressing one is `swift run Tools press <Rule>`: compare, substitute, or stand.
+The terms allowed in a state file's slots: the lamp's two faces, the counter's floor and wrap, the keypad's five stages. A slot marker drops its `Slot` suffix to name the alias a state file declares. The rules that move a world between these terms are rewrite triples beside the world itself (`Sources/DynamicsDemo/Rules.swift`) on the dynamics medium (`DocumentKit`), and pressing one is `swift run Tools press <Rule>`: compare, substitute, or stand.
 
 - ``LampModeSlot``
 - ``LampOff``
@@ -179,7 +179,7 @@ The terms a state file's slots may hold: the lamp's two faces, the counter's flo
 
 ### One lattice, many domains
 
-Ice, the hydrogen spectrum, the Higgs vacuum, and the packing of this package's own generated code each certify the same `SystemCrystallizes` structure, so a construction written over it applies to all of them at once — and the four crystals below prove it by compiling. It is one game on four boards, and the fourth board is the package itself: under the cost encoding the measured packings crystallize to one survivor, and under the content encoding they refuse to, because every packing renders the same bytes.
+Ice, the hydrogen spectrum, the Higgs vacuum, and the packing of this package's own generated code each certify the same `SystemCrystallizes` structure, so one construction written over it covers all of them at once, and the four crystals below prove it by compiling. It is one game on four boards, and the fourth board is the package itself: under the cost encoding the measured packings crystallize to one survivor, and under the content encoding they refuse to, because every packing renders the same bytes.
 
 - ``CrystallizingDomain``
 - ``IceCrystal``
@@ -239,7 +239,7 @@ Ordinary-Swift witnesses beside the pure types: the learners the projection loca
 
 ### The witnesses — concrete models of the markers
 
-Non-trivial inhabitants that make the proof bite: the markers have rich models, not only the empty `Never`.
+Non-trivial inhabitants, so no proof is vacuous: the markers have real models, not only the empty `Never`.
 
 - ``Cell``
 - ``Succ``

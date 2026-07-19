@@ -1,16 +1,16 @@
-# Where this stands
+# The neighbors
 
-Four known results sit next to this package. Each section names one in plain words, then states the exact point of difference.
+Four known results are beside this package. Each section names one in plain words, then states the exact point of difference.
 
 ## Overview
 
 ### Partial evaluation
 
-A partial evaluator takes a program together with the part of its input that is already known, runs everything that depends on the known part, and outputs a smaller program, called the residual. The canonical account is Jones, Gomard, and Sestoft, and it includes the degenerate case that matters here: when all of the input is known, partial evaluation is ordinary evaluation. This package lives in that case on purpose. The input domain is finite and fully stated, so the build specializes the whole system over every input at once, and the residual contains no computation: pages, verdicts, and drawings. "The build is the run" is this case, stated as a slogan.
+A partial evaluator takes a program together with the part of its input that is already known, runs everything that depends on the known part, and outputs a smaller program, called the residual. The canonical account is Jones, Gomard, and Sestoft, and it includes the degenerate case that matters here: when all of the input is known, partial evaluation is ordinary evaluation. This package is in that case on purpose. The input domain is finite and fully stated, so the build specializes the whole system over every input at once, and the residual contains no computation: pages, verdicts, and drawings. "The build is the run" is this case, stated as a slogan.
 
 ### Materialized Datalog
 
-Datalog is a query language over facts and rules, decidable because it gives up Turing completeness. A materialized Datalog database does not search at query time: it derives every derivable fact once, ahead of time, and stores the closure, so a query becomes a lookup. The saturation this package's papers prove, a checking system that eventually holds every answer and stops computing, is that fixpoint. The difference is in the terms. Datalog forbids function symbols, while this lattice composes types: `Pair`, generic parameters. Termination is kept by the theory's floor instead: every space is finite, width by ``Pair``, depth by ``Null``.
+Datalog is a query language over facts and rules, decidable because it gives up Turing completeness. A materialized Datalog database does not search at query time: it derives every derivable fact once, ahead of time, and stores the closure, so a query becomes a lookup. The saturation this package's papers prove, a checking system that eventually contains every answer and stops computing, is that fixpoint. The difference is in the terms. Datalog forbids function symbols, while this lattice composes types: `Pair`, generic parameters. Termination is kept by the theory's floor instead: every space is finite, width by ``Pair``, depth by ``Null``.
 
 ### Total languages
 

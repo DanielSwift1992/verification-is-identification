@@ -6,7 +6,7 @@ import VerificationIsIdentification
 // A learning system is located by which coordinates it has. The gate
 // coordinate is, at the type level, |S|=1 (SolutionSet collapses to one,
 // Unique). A machine WITH the gate (and I3) conforms to the certified
-// lattice; a machine WITHOUT it cannot, and the compiler names the missing
+// lattice. A machine WITHOUT it cannot, and the compiler names the missing
 // coordinate. The same conformance gate that certified quantum measurement
 // now separates a certified learner from a hallucinating one.
 // ═══════════════════════════════════════════════════════════════
@@ -38,4 +38,4 @@ public struct LanguageModel {
 // machine cannot tell a proof from a guess. The missing coordinate is named,
 // exactly as the degenerate eigenvalue was (QuantumMeasurement). Give it a gate
 // and I3 (CertifiedSelfPlay) and the same flow becomes a machine that answers
-// or stays silent, not a confident lie.
+// or remains silent, not a confident lie.

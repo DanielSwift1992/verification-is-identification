@@ -5,7 +5,7 @@ import DocumentKit
 // DIRECTORIES names every attribute in the company, read as the protocol that names it.
 // Generated, like every other hub, part of the render pipeline, not a second hand-authored
 // artifact this whole showcase otherwise refuses to keep, the same discipline Return to
-// Office's page holds too.
+// Office's page is under too.
 //
 // A protocol (`Gender`, `CanView`, …) is not `Structure`-conforming, so `Symbol` (built for a
 // concrete type) cannot read one (checked directly). `ProtocolReference` (DocumentKit,

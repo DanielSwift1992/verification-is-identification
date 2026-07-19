@@ -3,8 +3,8 @@ import DocumentKit
 
 // ═══════════════════════════════════════════════════════════════
 // WHAT-IF names the board's true state: ONE typealias per task (`Task.Status`,
-// System/Tasks.swift): Σ holds a single answer, so a click here cannot rewrite the company,
-// that would be the site lying about what the system holds. The honest, useful frame is a
+// System/Tasks.swift): Σ contains a single answer, so a click here cannot rewrite the company,
+// that would be the site lying about what the system contains. The honest, useful frame is a
 // one-step counterfactual: "if this ONE task's status typealias read differently, here is what
 // changes", closed after that one step, the same way an off-path keypad digit has nowhere
 // further to go.
@@ -12,7 +12,7 @@ import DocumentKit
 // `WhatIfPage<T, N>` is the whole page, generic over the task and the hypothetical neighbour
 // status: one engine, not ten bespoke bodies. Its banner ALWAYS reads `T.Status`, the type's
 // REAL value, regardless of which hypothetical `N` the page is showing. The page can show
-// any arrangement, but the sentence about what the system actually holds does not drift from the
+// any arrangement, but the sentence about what the system actually contains does not drift from the
 // type itself. `Task`/`TaskState` are `Open`, so `Symbol` reads them directly, live.
 // ═══════════════════════════════════════════════════════════════
 

@@ -76,7 +76,7 @@ public enum TasksPage: Screen {
 // ── The board: the callout-card columns give way to the true board, a drawn
 // `Vector` canvas (`VectorDemo/Board.swift`) read from the same seven tasks. Each card's
 // ‹/› is a real link one step into a what-if page (`View/WhatIf.swift`). `TasksPage`'s table
-// above stays the honest fallback list. ──
+// above remains the honest fallback list. ──
 
 enum BoardAsset: Close {}
 extension BoardAsset {

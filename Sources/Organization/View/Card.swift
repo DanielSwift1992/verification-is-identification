@@ -9,17 +9,17 @@ import DocumentKit
 // This is deliberate, not incidental: it means EVERY existing `Symbol { Alice.self }` reference
 // anywhere in the whole app, the roster, Documents.swift's access rows, TasksBoard.swift's
 // assignees, wherever, starts showing the merged card for free. We do not chase down and
-// rewrite every call site by hand; we control the ONE page each of those references already
+// rewrite every call site by hand. We control the ONE page each of those references already
 // resolves to. The only case that needs a genuinely SEPARATE address is `AliceUnlocked`
-// (below): a person can be in two states, locked and unlocked, and one symbol page cannot
-// hold two, so the resolved state gets its address, reached only from that person's
+// (below): a person can be in two states, locked and unlocked, and two do not fit on
+// one symbol page, so the resolved state gets its address, reached only from that person's
 // keypad walk, linked from nowhere public.
 //
 // `CardShell<Who, AccessBlock, PictureAsset>` is the one shell every state of a person's page
 // composes: title, the drawn canvas (identity, role, and access-dots, never a second markdown
 // table restating what the canvas already shows), and the access section, differing only in
 // `AccessBlock` (the guest prompt, or the granted table) and `PictureAsset` (which picture). A
-// generated employee has one state, so both name the same choice every time; a named person's
+// generated employee has one state, so both name the same choice every time, and a named person's
 // guest page plugs in the live vault (`PersonHeroAsset`) and its signed-in page plugs in the
 // header alone (`UnlockedHeroAsset`) — the walk that reaches that page already is the proof, so
 // nothing there asks for the password again. The `Identity`/`Tasks` tabs are a SEPARATE,
@@ -29,7 +29,7 @@ import DocumentKit
 //
 // The picture is embedded IN the body (`Picture`, DocumentKit). `@PageImage` (Metadata,
 // written in OrgDemo) only shows a page's picture when it is a TILE in a link grid (the
-// Dashboard's Cards list); it shows nothing on the page itself. Both are used: `@PageImage` for
+// Dashboard's Cards list), and it shows nothing on the page itself. Both are used: `@PageImage` for
 // the grid tile, `Picture` for the page you actually land on.
 //
 // Tabs (`TabGroup`, `SideBySide`, `PanelOf`) are the same combinators ``ReportsPage``/
@@ -43,11 +43,11 @@ import DocumentKit
 //
 // Every generated employee gets the SAME shell (`CardShell`, below): avatar, an access section,
 // an identity table, not a plainer cousin. The one honest difference: their access section
-// carries no lock, because there is nothing PERSONAL to unlock; access is entirely role-derived
+// carries no lock, because there is nothing PERSONAL to unlock, and access is entirely role-derived
 // (Roles Make It Scale), a public fact true of anyone at that department and rank. The four named
 // people additionally OWN a vault each, an individual, provable fact, which is the one thing
 // worth a real password walk. Alice and Emp0000 are the same KIND of type (`Employee & Person`,
-// checked by `IdentityRows` below accepting either); only `Credentialed` (a password) and
+// checked by `IdentityRows` below accepting either), and only `Credentialed` (a password) and
 // ownership set the named four apart, and both are real facts, not arbitrary design choices.
 // ═══════════════════════════════════════════════════════════════
 

@@ -1,8 +1,8 @@
 import VerificationIsIdentification
 
 // ═══════════════════════════════════════════════════════════════
-// A readable slice of the company. GeneratedTeam.swift scales this to hundreds;
-// here are a few named people so the policy stays legible.
+// A readable slice of the company. GeneratedTeam.swift scales this to hundreds,
+// here are a few named people so the policy remains legible.
 // ═══════════════════════════════════════════════════════════════
 
 // ── Passcodes — each composed through the body pattern ──

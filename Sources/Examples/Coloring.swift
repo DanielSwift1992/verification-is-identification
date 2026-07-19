@@ -3,12 +3,12 @@ import VerificationIsIdentification
 // ═══════════════════════════════════════════════════════════════
 // A certified scheduler names the V=I loop as a working tool.
 //
-// Declare tasks and conflicts; pin one task. The compiler PROPAGATES the forced
+// Declare tasks and conflicts, and pin one task. The compiler PROPAGATES the forced
 // assignment (each conflicting task takes the opposite machine) and reports the
 // V=I trichotomy: |S| = 1 derived and certified, |S| = 0 proven impossible (it
 // does not compile), |S| > 1 ambiguous (not Unique, search is the encoder's).
 //
-// Nothing runs. Propagation is type reduction; the constraint is a `where`; the
+// Nothing runs. Propagation is type reduction, the constraint is a `where`, and the
 // gate is SystemCrystallizes. Because a pinned, connected graph forces one
 // assignment, the compiler CHECKING it is the compiler FINDING it: verification
 // is identification. [V=I Thm 2]
@@ -67,7 +67,7 @@ public enum Require<
 > {}
 
 // The conflict graph names a 4-cycle of tasks, T0 pinned to machine A. Propagation
-// forces T1, T2, T3; the closing conflict T3–T0 is a constraint the derived
+// forces T1, T2, T3, and the closing conflict T3–T0 is a constraint the derived
 // assignment must satisfy. The whole schedule is a type function of one pin.
 public typealias T0 = Pinned<MachineA>
 public typealias T1 = Conflicts<T0>     // forced B

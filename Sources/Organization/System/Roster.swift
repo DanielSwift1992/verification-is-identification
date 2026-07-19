@@ -17,7 +17,7 @@ public protocol Chain {
 // Finding the one element that UNIQUELY passes a test is a different thing from reading a count:
 // that is the framework's `Unique` crystallization (|S| = 1), already the owner gate
 // (Identification.swift). A find-first-matching over an unordered list would need a "not yet
-// matched" test, the negation the type system does not give, so a predicate search lives at that
+// matched" test, the negation the type system does not give, so a predicate search is at that
 // monotone, crystallizing boundary. [V=I §5.22]
 // ═══════════════════════════════════════════════════════════════
 
@@ -27,7 +27,7 @@ public protocol Chain {
 // composed through `@StructureBuilder` (GeneratedTeam.swift, private/gen_org.py): the body
 // folds the leaves into a `Paired` chain, and `count` (VerificationIsIdentification) reads its
 // size, the role `Length`/`Proven`/`Hire` used to carry. Three category protocols, one per
-// shape; `Open` is a protocol per Law §0″, so each instance (`Company`, `FinanceTeam`, …)
+// shape, and `Open` is a protocol per Law §0″, so each instance (`Company`, `FinanceTeam`, …)
 // conforms to one of these rather than writing `: Open` directly.
 
 /// This names the whole company as one type: every employee a leaf in the body. `Company.count`

@@ -10,7 +10,7 @@ import VerificationIsIdentification
 // `Length` is the count, a type, folded for free. Nothing runs, nothing is collected.
 //
 // The chain is written by the same mechanism that writes the roster (the generator, Law §3): it
-// proposes the members, the compiler verifies each, the View reads the count. The filter lives in
+// proposes the members, the compiler verifies each, the View reads the count. The filter is in
 // the lattice, our world: `Pair`/`Null`, all the way down.
 // ═══════════════════════════════════════════════════════════════
 
@@ -62,9 +62,9 @@ extension ManagersHere: Pair {
 // ── Filter by department, rank, and work arrangement: a marker per leaf, composed through `body`. ──
 //
 // The old cons (`AlsoInDepartment` and its rank/site twins) formed only when the head's property
-// matched the chain's — verified link by link. The same proof now sits on one marker per member,
+// matched the chain's — verified link by link. The same proof is on one marker per member,
 // declared with the where-clause directly on the type, so a wrong pairing does not just fail a
-// conformance, it fails to NAME the type at all. The marker is the leaf a `body` block lists; the
+// conformance, it fails to NAME the type at all. The marker is the leaf a `body` block lists, and the
 // builder folds the leaves and `count` reads the size — the cons-chain's job, without the chain.
 
 /// This names an employee verified to belong to one department: forms only when `E.Home == D`.

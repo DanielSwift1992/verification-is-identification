@@ -8,9 +8,9 @@ import DocumentKit
 // states the walkable reading, top-down: the ten places regrouped into halves, each half a
 // plain composed body, so the fork at every step is `Pair` itself and the doors' faces are
 // witnesses (`RollCall`, `Tally`) of the very halves they open. Nothing here is a second
-// list of pages: a place stands in a half by being composed into it, and the walk pages
+// list of pages: a place is in a half by being composed into it, and the walk pages
 // (View/WalkPages.swift) read these types, so a door cannot say what its half does not
-// hold. The walker brings the one thing the system cannot know, which half the wanted
+// contain. The walker brings the one thing the system cannot know, which half the wanted
 // page is in, and four choices at most land anywhere.
 // ═══════════════════════════════════════════════════════════════
 

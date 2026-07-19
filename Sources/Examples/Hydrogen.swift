@@ -7,7 +7,7 @@ import VerificationIsIdentification
 // An electric-dipole (E1) transition is allowed exactly when the orbital
 // angular momentum changes by one step: Δℓ = ±1. The compiler reduces each
 // orbital's ℓ on the IntegerValued ladder and admits a line only when the rule
-// holds. The headline result falls out: 2s → 1s has Δℓ = 0, so no line exists,
+// is met. The headline result falls out: 2s → 1s has Δℓ = 0, so no line exists,
 // the 2s state is METASTABLE, the reason it lives ~0.1 s instead of ~1 ns.
 // ═══════════════════════════════════════════════════════════════
 

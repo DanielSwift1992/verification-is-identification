@@ -8,14 +8,14 @@ import VerificationIsIdentification
 // under Welch made it famous as "rank and yank".
 //
 // This demo does NOT rank anyone or compute the cut. A real system would, from the
-// performance scores it holds, and if it did, you would derive the cut from those
+// performance scores it has, and if it did, you would derive the cut from those
 // scores. Here the score is a given and the decision (who is let go) is recorded as
 // data. What the types model is two things:
 //   • the RULE: a below-bar review puts you on an improvement plan, proved by the
 //     ImprovementPlan gate below.
 //   • the ENFORCEMENT: the year cannot close until the cut is committed, proved by
 //     the interlock in ReviewCycle.swift. The next year is a type you cannot form
-//     without recording who was cut, so a policy like this holds by construction,
+//     without recording who was cut, so a policy like this is in force by construction,
 //     not by a process you hope someone runs.
 // ═══════════════════════════════════════════════════════════════
 

@@ -117,7 +117,7 @@ public enum ReportsPage: Screen {
     }
 }
 
-// ── Return to office — its own page, a policy in its own right (Reports audits it; this is the
+// ── Return to office — its own page, a policy in its own right (Reports audits it, and this is the
 // policy the audit reads), the same standing Cycles already has. ──
 
 enum ReturnToOfficeHeader: Fragment {

@@ -5,11 +5,11 @@ import DocumentKit
 // CAPABILITY CELLS names a gate's verdict, rendered by conditional dispatch, not `decide()`.
 //
 // A cell is `Close`: nothing to compose, only a derived verdict string. Three `typeName`
-// overrides sit at three `where`-specificities on the SAME cell type, and Swift picks the most
-// specific one that holds, the same cascade `count`'s `Open where Body == Never` exception
+// overrides are at three `where`-specificities on the SAME cell type, and Swift picks the most
+// specific one that fires, the same cascade `count`'s `Open where Body == Never` exception
 // uses, applied to a verdict instead of a size. This works for `typeName` (an ordinary
 // `static var String` witness) but NOT for `Open`'s `Body` (an associated type Swift resolves
-// once, not per conditional extension), verified directly, so verdict cells stay `Close`.
+// once, not per conditional extension), verified directly, so verdict cells remain `Close`.
 //
 // A SECOND limit, also checked directly: `Capability<Administer<Alice,FinanceVault>,…>.typeName`
 // resolves correctly at a literal call site, but the SAME reference embedded as `TableCell`'s
@@ -42,8 +42,8 @@ where ReachesAdmin<Who>: Decidable {
 }
 // `Gate: Decidable` alone is not, to Swift, a refinement of `ReachesAdmin<Who>: Decidable`:
 // they constrain different types, so without the redundant clause the two `where`s are
-// unordered and a site where BOTH hold (a real grant) is an ambiguity error, not a resolved
-// "most specific wins" (checked directly). Naming both gives Swift the subset it needs; every
+// unordered and a site where BOTH are true (a real grant) is an ambiguity error, not a resolved
+// "most specific wins" (checked directly). Naming both gives Swift the subset it needs, and every
 // real gate's `Decidable` already implies the rank premise, so nothing new is required.
 extension Capability
 where ReachesAdmin<Who>: Decidable, Gate: Decidable {

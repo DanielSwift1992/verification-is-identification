@@ -9,12 +9,12 @@ import VerificationIsIdentification
 // name IS such an atom. It carries no string of its own, the type is the value.
 // Rendering converts the type to text (`label`, in View/ViewModel.swift), nothing here does.
 //
-// Kept as types, not enum cases, on purpose: a type stays open. You can hang a
+// Kept as types, not enum cases, on purpose: a type remains open. You can hang a
 // conformance on `Edsger` later (a claim for analytics, a condition), which a case can
 // not carry. The set is closed only at the render boundary, not in the system.
 //
 // An attribute gains structure (a marker) exactly when a claim needs it: a birth year
-// is an atom here because nothing yet orders it; the day a rule says "born before X",
+// is an atom here because nothing yet orders it. The day a rule says "born before X",
 // it becomes `IntegerValued`. Atom by default, marker on demand.
 // ═══════════════════════════════════════════════════════════════
 

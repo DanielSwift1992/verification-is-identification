@@ -3,7 +3,7 @@ import VerificationIsIdentification
 // ═══════════════════════════════════════════════════════════════
 // WITNESSES names concrete inhabitants that make the proof bite.
 //
-// Never is the TRIVIAL fixpoint: every marker holds there because
+// Never is the TRIVIAL fixpoint: every marker is true there because
 // Left == Right == Never. The types below are NON-trivial: they
 // satisfy the marker relations with distinct sides, yet every one of
 // them presses down to Never as its floor (the §4 base case, the zero).
@@ -139,6 +139,6 @@ public struct ConcreteAgent: HasDistance, HasAlpha {
 
 // Unique needs no non-trivial witness: convergence to ONE is exactly
 // the collapse to a single point, Never is its only inhabitant. The
-// branching markers (Permanent, Decidable, Metric…) have rich models;
+// branching markers (Permanent, Decidable, Metric…) have real models,
 // the one that converges has just the fixpoint. That asymmetry is real:
 // distinction has many shapes, agreement has one.

@@ -4,9 +4,9 @@ import VerificationIsIdentification
 // TASKS, work items as org entities, the same way people are.
 //
 // A task is a TYPE, like `Alice`, not a row of strings a view types out. Its assignee
-// is an `Employee`, so you can only assign work to someone the roster holds: an
+// is an `Employee`, so you can only assign work to someone in the roster: an
 // assignee who is not an employee will not compile. Its status is a typed atom. Its
-// title is the type's own name, read at the render boundary (`label`); nothing here
+// title is the type's own name, read at the render boundary (`label`), and nothing here
 // stores a string of its own (Law §0′). The board (View/Board.swift) reads these tasks
 // and lays them out, it authors none of them.
 //

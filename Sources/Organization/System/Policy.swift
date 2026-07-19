@@ -163,7 +163,7 @@ where Who.Rank: CanAdmin, Of.Owner == Who {
     public typealias Right = Never
 }
 
-// A gate builds nothing: it is a verdict, not an artifact, so its `Body` stays at the floor `Never`.
+// A gate builds nothing: it is a verdict, not an artifact, so its `Body` is at the floor `Never`.
 // (`Pair: Open: Structure`, and a CONDITIONAL `Pair` conformance needs unconditional `Open`.)
 extension View: Open {}
 extension Administer: Open {}

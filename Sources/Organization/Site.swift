@@ -4,10 +4,10 @@ import VerificationIsIdentification
 // THE SITE ORDER names the navigation as types (Order Is Object).
 //
 // The app's page structure, written as types, not authored as a value in the View. Each place
-// names the place above it (`Up`); the dashboard is the root, its own `Up`. This is the OBJECT.
+// names the place above it (`Up`). The dashboard is the root, its own `Up`. This is the OBJECT.
 // The breadcrumb and the children that render it are the READING (View/Navigation.swift), the way
-// `companyRoster` reads `Company`. It is the app's structure, not the company (Σ), so it sits with
-// the architecture, not under System/. State lives in types; the View only reads it.
+// `companyRoster` reads `Company`. It is the app's structure, not the company (Σ), so it is with
+// the architecture, not under System/. State is in types, and the View only reads it.
 // ═══════════════════════════════════════════════════════════════
 
 /// This is a place in the site: a page, knowing the place above it. `Up` is the parent. The root

@@ -11,7 +11,7 @@ import DocumentKit
 // the system, and this page cannot disagree with it.
 // ═══════════════════════════════════════════════════════════════
 
-// ── Readers — a cut derives its row; a cohort derives its line ──
+// ── Readers — a cut derives its row, a cohort derives its line ──
 
 /// This names the year a cut closed, read off the cut's name: `Cut2026` carries "2026" the way a
 /// handle carries its label. The prefix is the one authored convention, dropped at render.

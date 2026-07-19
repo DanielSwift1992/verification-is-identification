@@ -6,7 +6,7 @@ import VerificationIsIdentification
 // level per line. The basis is written by matter — each line IS a dipole-allowed
 // hydrogen transition from Hydrogen.swift, so a forbidden line cannot enter the
 // alphabet: it has no type. The eye is a projection that reads only the visible
-// slots; two beams that differ in the infrared slot land on one visible image,
+// slots, and two beams that differ in the infrared slot land on one visible image,
 // and the compiler checks the sharing (metamerism, |S| > 1). The prism reads
 // every slot, so the same two beams land apart again: the separator returns the
 // lost distinction. Filters are type functions that can only dim or kill a slot,
@@ -22,7 +22,7 @@ public enum Orbital4p: Orbital {
 }
 
 // ── The basis: three lines, each a dipole-allowed transition. H-α and H-β are
-// visible (Balmer, down to the second shell); Paschen-α lands on the third
+// visible (Balmer, down to the second shell). Paschen-α lands on the third
 // shell and is infrared. A transition with Δℓ ≠ ±1 would not compile here. ──
 
 /// The visible red line: the third shell drops to the second, 656 nm.
@@ -146,7 +146,7 @@ public enum LightSeeing: SeparatorIdentifies {
 }
 
 // ── Ranging: the same Seeing pair, worked on directions instead of lines. A
-// matte wall forgets which side its light came from; a mirror keeps the
+// matte wall forgets which side its light came from. A mirror keeps the
 // direction whole. So a glint is the observer written into the image, and the
 // glint path measures the distance to its own eye. ──
 
@@ -224,7 +224,7 @@ public let rangingChecked: HalfOfRoundTrip.Type = Halves<WallDistance, GlintPath
 
 // ── The wave: a contribution is a magnitude with a phase, phase is a residue,
 // and interference is rewriting. Two contributions of equal magnitude and
-// opposite phase annihilate; a dark fringe is a bag that settles to nothing. ──
+// opposite phase annihilate, and a dark fringe is a bag that settles to nothing. ──
 
 /// The two residues of the half-turn cycle: in phase, and opposite.
 public enum Phase0 {}
@@ -253,7 +253,7 @@ public let darkFringe: SettlesToDark.Type = OppositePair<
 public typealias BrightNode = Twice<Lit1>
 
 // ── Polarization: the tick carries two orthogonal slots. A polarizer kills
-// one slot; crossed polarizers compile to darkness; the diagonal pane halves,
+// one slot. Crossed polarizers compile to darkness, and the diagonal pane halves,
 // and the halvings are checked, not computed. ──
 
 /// Polarized light: one magnitude per orthogonal slot.

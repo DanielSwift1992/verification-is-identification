@@ -4,9 +4,9 @@ import VerificationIsIdentification
 // The Higgs mechanism at the TYPE LEVEL: the encoding fixes the degeneracy.
 //
 // Electroweak SU(2)×U(1) breaks to the photon's U(1): of four generators one
-// stays unbroken and three break, so the vacuum manifold carries three Goldstone
+// remains unbroken and three break, so the vacuum manifold carries three Goldstone
 // directions, the modes eaten by W⁺, W⁻, Z. On the field-component encoding the
-// vacuum IS that three-dimensional manifold, |S| > 1; on the gauge-invariant
+// vacuum IS that three-dimensional manifold, |S| > 1. On the gauge-invariant
 // |φ| = v it is a single point, |S| = 1. Same vacuum, two lenses, two verdicts:
 // the ice lesson in field theory. [Matter §5]
 // ═══════════════════════════════════════════════════════════════

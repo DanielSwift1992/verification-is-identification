@@ -9,7 +9,7 @@ import VerificationIsIdentification
 // returns the eigenvalue yet cannot say which eigenstate. The encoding (which
 // observables are read) fixes |S|, as the oxygen/hydrogen lens did for ice.
 // Hydrogen's n=2 level is four-fold degenerate (n² = 4): energy alone leaves
-// |S| = 4; the complete set of commuting observables lifts it to |S| = 1. [Matter §5]
+// |S| = 4, and the complete set of commuting observables lifts it to |S| = 1. [Matter §5]
 // ═══════════════════════════════════════════════════════════════
 
 /// This is One: the eigenspace dimension a non-degenerate eigenvalue collapses to. [Matter §5]

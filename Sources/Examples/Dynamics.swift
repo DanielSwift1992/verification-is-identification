@@ -1,7 +1,7 @@
 import VerificationIsIdentification
 
 // ═══════════════════════════════════════════════════════════════
-// THE DYNAMICS TERMS: the worlds a state file can hold, as pure types. The lamp's
+// THE DYNAMICS TERMS: the worlds a state file can carry, as pure types. The lamp's
 // two faces, the counter's floor and wrap, the keypad's three stages. The rules
 // that move a world between these terms are triples beside the world itself
 // (DynamicsDemo/Rules.swift) on the dynamics medium (DocumentKit/Dynamics.swift):

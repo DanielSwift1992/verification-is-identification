@@ -9,7 +9,7 @@ import VerificationIsIdentification
 //   NULL      featureless lattice (all sites equivalent)
 //   I1        finite lattice → finitely many configs        ✓
 //   I2        Hamiltonian fixed at constant T                 ✓
-//   I3        excluded configs stay excluded (Boltzmann)      ✓
+//   I3        excluded configs are excluded for good (Boltzmann)      ✓
 //   A4        unique ground state Ih, depends on the encoding:
 //               oxygen positions   → |S| = 1   (conforms)
 //               hydrogen positions → |S| > 1   (Pauling residual entropy)

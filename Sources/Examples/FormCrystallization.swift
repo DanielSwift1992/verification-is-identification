@@ -1,7 +1,7 @@
 import VerificationIsIdentification
 
 // ═══════════════════════════════════════════════════════════════
-// A DOMAIN names crystallization of code form. [Matter §5 shape; measurements: the curve]
+// A DOMAIN names crystallization of code form. [Matter §5 shape, measurements: the curve]
 //
 //   Σ         packings of one generated statement (fanout 16, 32, 64 — the measured set)
 //   PAIR      two packings side by side (the pair COMPARE reads)
@@ -10,7 +10,7 @@ import VerificationIsIdentification
 //   NULL      the unpacked statement itself: the content every packing regroups
 //   I1        groupings of a finite statement → finitely many packings          ✓
 //   I2        the content is fixed during comparison (byte-identical renders)    ✓
-//   I3        a packing measured slower stays excluded (the sweep's records)     ✓
+//   I3        a packing measured slower is excluded for good (the sweep's records)     ✓
 //   A4        unique cheapest packing, depends on the encoding:
 //               cost (build seconds)    → |S| = 1   (conforms: fanout 64)
 //               content (rendered bytes) → |S| > 1  (all packings render the same)

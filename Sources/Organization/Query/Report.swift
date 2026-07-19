@@ -11,11 +11,11 @@ import VerificationIsIdentification
 //
 // This is the system, not its rendering: no `label`, no string. A fact here is a TYPE:
 // a projection (`FinanceVault.Owner`) or a where-clause that cannot form when it fails
-// (``OwnedFromWithin``). The render layer reads the names off these types (View/Reading.swift);
+// (``OwnedFromWithin``). The render layer reads the names off these types (View/Reading.swift),
 // the report does not reach toward rendering. Drift becomes a build error, not a stale page.
 // ═══════════════════════════════════════════════════════════════
 
-// ── Standing invariants (the type is well-formed ONLY if the fact holds) ──
+// ── Standing invariants (the type is well-formed ONLY if the fact is true) ──
 
 /// This names a standing invariant: a fact the report re-proves every build. Conforming types are
 /// the proofs. Gathering them as ``Invariant`` keeps them as types, not erased to `Any`.

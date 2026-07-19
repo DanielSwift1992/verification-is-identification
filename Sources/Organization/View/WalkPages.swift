@@ -4,7 +4,7 @@ import DocumentKit
 // The walk pages: one page per halving (Wayfinding.swift), each two doors and a step back
 // up. A door's face is `RollCall` of the very half it opens and its address is the half
 // type itself, so a door cannot mislabel its half and cannot point at a page that does not
-// exist. The titles and the one hint line are the authored voice; everything else is read.
+// exist. The titles and the one hint line are the authored voice. Everything else is read.
 
 public enum WalkHint: Close {}
 extension WalkHint {

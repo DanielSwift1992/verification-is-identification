@@ -226,6 +226,6 @@ extension Y2030: Pair {
 // The chain structure IS the timeline proof. Reading it back (as an array of cuts)
 // is a View concern, not here.
 //   • a cut whose `EnforcedBy` is not a manager: an individual contributor cannot enforce
-//     the policy (`EnforcedBy.Rank: CanAdmin` fails to hold), so the cut will not form.
+//     the policy (`EnforcedBy.Rank: CanAdmin` fails), so the cut will not form.
 //   • There is no `Closed<Y2027>` without a cut argument: the year will not advance.
 //     You cannot close it without firing.

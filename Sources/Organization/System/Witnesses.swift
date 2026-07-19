@@ -7,7 +7,7 @@ import VerificationIsIdentification
 // To conform an org concept to one, you supply a concrete structure that satisfies
 // the relation. These three are reused across the V=I readings (Identification,
 // Saturation, ForcedDistribution). Each is a finite tree of `Pair` floored at
-// `Never` (no-access); they carry distinct sides, so the relations hold for real,
+// `Never` (no-access). They carry distinct sides, so the relations are true for real,
 // not only at the trivial empty fixpoint.
 // ═══════════════════════════════════════════════════════════════
 

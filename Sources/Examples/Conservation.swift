@@ -4,7 +4,7 @@ import VerificationIsIdentification
 // Conservation laws as relations names which processes are allowed. A reaction is
 // allowed exactly when its conserved quantities CLOSE across the arrow: baryon
 // in == baryon out, charge in == charge out. The relation is the function (Law
-// §3); the closing is Null (Law §6, `where X == Y`).
+// §3), and the closing is Null (Law §6, `where X == Y`).
 //
 // Each side accumulates its quantities by the counting fold: concrete sums, no
 // generic addition. The compiler verifies the balance and proves the headline:

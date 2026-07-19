@@ -3,7 +3,7 @@ import VerificationIsIdentification
 // ═══════════════════════════════════════════════════════════════
 // ACCESS IS IDENTIFICATION names the showcase read through V=I's kernel.
 //
-// Policy.swift writes the gates; this file says what they MEAN. A gate is a
+// Policy.swift writes the gates. This file says what they MEAN. A gate is a
 // decidable test over the roster, and the question V=I asks of any test is: how
 // many candidates pass? The answer is the gate's whole nature.
 //
@@ -13,8 +13,8 @@ import VerificationIsIdentification
 //   NULL      no access: the floor where the distinction ends
 //   I1        finite roster → finitely many accesses to weigh          ✓
 //   I2        the policy is fixed: the where-clauses do not move        ✓
-//   I3        a proved access stands: the audit is append-only          ✓
-//   A4        a unique holder, and whether it holds is the gate:
+//   I3        a proved access is there for good: the audit is append-only          ✓
+//   A4        a unique holder, and whether it is true is the gate:
 //               owner-gate  (Of.Owner == Who)  → |S| = 1   (conforms)
 //               department-gate   (Who.Home == Of.Home) → |S| > 1 (refused)
 //
@@ -24,7 +24,7 @@ import VerificationIsIdentification
 // everywhere else. The build is the certificate. [IiI §5]
 // ═══════════════════════════════════════════════════════════════
 
-// The witnesses these conformances use (`Cell`, `Audited`, `Outcome`) live in
+// The witnesses these conformances use (`Cell`, `Audited`, `Outcome`) are in
 // Witnesses.swift names the concrete structures the markers bite on.
 
 // ── The two readings of the policy ──

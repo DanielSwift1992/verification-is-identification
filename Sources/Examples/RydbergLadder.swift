@@ -21,18 +21,8 @@ import VerificationIsIdentification
 // (Hydrogen.swift), the transition rates, and the Rydberg constant itself.
 // ═══════════════════════════════════════════════════════════════
 
-// ── the numerals: powers of two, spelled once ──
-
-public typealias U1 = Unit
-public typealias U2 = Twice<U1>
-public typealias U4 = Twice<U2>
-public typealias U8 = Twice<U4>
-public typealias U16 = Twice<U8>
-public typealias U32 = Twice<U16>
-public typealias U64 = Twice<U32>
-public typealias U128 = Twice<U64>
-
-// ── the recording: one depth per floor, 144/n² ──
+// ── the recording: one depth per floor, 144/n². The numerals U1…U128 are the
+//    lattice's own ladder (Primitive.swift), read from their one written home. ──
 
 /// The depth of the ground floor: 144 of R/144, the whole Rydberg well.
 public typealias FloorOneDepth = Plus<U128, U16>
@@ -66,13 +56,14 @@ public enum EnergySum<
 extension EnergySum: EnergyClosed
 where Whole == Plus<Left, Right> {}
 
-// The stitches: every drop is held to its two floors, and the two roads down
-// from the fourth floor are one drop in energy. The judge reads each use
-// against the gate above and folds both sides to numerals.
-public let thirdFloorStitched = EnergySum<FloorThreeDepth, FloorFourDepth, PaschenAlphaDrop>.self
-public let secondFloorStitched = EnergySum<FloorTwoDepth, FloorThreeDepth, BalmerAlphaDrop>.self
-public let groundFloorStitched = EnergySum<FloorOneDepth, FloorTwoDepth, LymanAlphaDrop>.self
-public let twoRoadsOneDrop = EnergySum<BalmerBetaDrop, PaschenAlphaDrop, BalmerAlphaDrop>.self
+// The stitches, as typealias certificates: every drop is held to its two
+// floors, and the two roads down from the fourth floor are one drop in energy.
+// The judge reads each certificate against the gate above and folds both
+// sides to numerals.
+public typealias ThirdFloorStitch = EnergySum<FloorThreeDepth, FloorFourDepth, PaschenAlphaDrop>
+public typealias SecondFloorStitch = EnergySum<FloorTwoDepth, FloorThreeDepth, BalmerAlphaDrop>
+public typealias GroundFloorStitch = EnergySum<FloorOneDepth, FloorTwoDepth, LymanAlphaDrop>
+public typealias TwoRoadsOneDrop = EnergySum<BalmerBetaDrop, PaschenAlphaDrop, BalmerAlphaDrop>
 
 // ── the compile tier: the ladder spelling, proved by the nominal compiler ──
 

@@ -1014,15 +1014,5 @@ extension GlyphRectFillStroke {
 
 // ── The space ladder — the design system's rungs. Every magnitude in the medium composes
 //    from these by name, and a canvas states proportions, and the seed (`SpaceSeed`) is the one
-//    number that turns a count into pixels. ──
-
-public typealias U1 = Unit
-public typealias U2 = Twice<U1>
-public typealias U4 = Twice<U2>
-public typealias U8 = Twice<U4>
-public typealias U16 = Twice<U8>
-public typealias U32 = Twice<U16>
-public typealias U64 = Twice<U32>
-public typealias U128 = Twice<U64>
-public typealias U256 = Twice<U128>
-public typealias U512 = Twice<U256>
+//    number that turns a count into pixels. The numerals themselves are the lattice's
+//    (Primitive.swift): one ladder, spelled once, read by every target. ──

@@ -1,6 +1,9 @@
 // WHERE JUDGE — the second judge learns the conditional grammar. A world file
 // states enums with typealias tables, top-level and generic typealiases,
-// extensions gated by `where` equalities, and protocols gated the same way.
+// extensions gated by `where` equalities, and protocols gated the same way. A
+// parameterless typealias whose right side names a gated head is a certificate,
+// judged like a use, and extra definition files lend their typealiases so a
+// name's meaning is its one written definition wherever that definition is.
 // This judge reads those statements, normalizes every term to one canon —
 // aliases unfolded, generic parameters substituted, dotted axes resolved
 // through the conformer's own table, Twice opened into Plus — and then judges
@@ -322,14 +325,59 @@ enum WhereJudge {
 
     static func run(_ arguments: [String]) {
         guard let path = arguments.first else {
-            fail("usage: judge where <world.swift>")
+            fail("usage: judge where <world.swift> [definitions.swift ...]")
         }
         guard let text = try? String(contentsOfFile: path, encoding: .utf8) else {
             fail("cannot read \(path)")
         }
-        let world = read(text)
+        var world = read(text)
+        let ownAliases = world.aliases
+        // A name's meaning is its written definition, and the definition may be
+        // written in another file: each extra path contributes its typealiases,
+        // the way the port's judge unfolds a rung from the kit's own source. The
+        // world's own spelling wins a collision, the same shadowing the compiler
+        // reads.
+        for extra in arguments.dropFirst() {
+            guard let more = try? String(contentsOfFile: extra, encoding: .utf8) else {
+                fail("cannot read \(extra)")
+            }
+            for (name, rule) in read(more).aliases
+            where world.aliases[name] == nil {
+                world.aliases[name] = rule
+            }
+        }
         var refusals: [String] = []
         var judged = 0
+
+        // A typealias certificate is a judged point: a parameterless alias in the
+        // world whose right side names a gated head states the gate's equalities
+        // for those arguments, and the refusal names the certificate.
+        for (name, rule) in ownAliases.sorted(by: { $0.key < $1.key })
+        where rule.parameters.isEmpty {
+            let term = Press.parseTerm(Substring(rule.body))
+            let matching = world.gates.filter { $0.head == term.head }
+            guard !matching.isEmpty else { continue }
+            guard let parameters = world.parameters[term.head] else { continue }
+            var bindings: [String: Term] = [:]
+            for (parameter, argument) in zip(parameters, term.args) {
+                bindings[parameter] = argument
+            }
+            for gate in matching {
+                for (left, right) in gate.equalities {
+                    judged += 1
+                    let leftTerm = substitute(Press.parseTerm(Substring(left)), bindings)
+                    let rightTerm = substitute(Press.parseTerm(Substring(right)), bindings)
+                    let leftCanon = Press.serialize(arithmetic(normalize(leftTerm, world)))
+                    let rightCanon = Press.serialize(arithmetic(normalize(rightTerm, world)))
+                    if leftCanon != rightCanon {
+                        refusals.append(
+                            "'\(name) = \(rule.body)' requires the types '\(left)' (aka '\(leftCanon)') and "
+                                + "'\(right)' (aka '\(rightCanon)') be equivalent [\(gate.proto)]"
+                        )
+                    }
+                }
+            }
+        }
 
         for use in world.uses {
             let term = Press.parseTerm(Substring(use))
@@ -379,7 +427,7 @@ enum WhereJudge {
         }
 
         if refusals.isEmpty {
-            print("✓ THE WHERE holds: \(judged) equalities judged across \(world.uses.count) uses and the gated conformers, one canon each side.")
+            print("✓ THE WHERE holds: \(judged) equalities judged across \(world.uses.count) uses, the certificates, and the gated conformers, one canon each side.")
         } else {
             for refusal in refusals { print("✗ \(refusal)") }
             exit(1)

@@ -59,7 +59,7 @@ jobs:
         run: swift run Tools judge where Sources/Examples/Light.swift
 
       - name: The second judge counts the Rydberg ladder
-        run: swift run Tools judge where Sources/Examples/RydbergLadder.swift
+        run: swift run Tools judge where Sources/Examples/RydbergLadder.swift Sources/VerificationIsIdentification/Primitive.swift
 
       - name: The committed artifacts match the types, byte for byte
         run: |

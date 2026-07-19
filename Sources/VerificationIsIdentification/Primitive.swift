@@ -308,6 +308,20 @@ extension Times {
     public static var count: Int { A.count * B.count }
 }
 
+/// The numerals: the powers of two, spelled once as the doubling ladder. Every target
+/// reads these names from here, so a magnitude's meaning is its one written definition,
+/// and a judge unfolds it from this source.
+public typealias U1 = Unit
+public typealias U2 = Twice<U1>
+public typealias U4 = Twice<U2>
+public typealias U8 = Twice<U4>
+public typealias U16 = Twice<U8>
+public typealias U32 = Twice<U16>
+public typealias U64 = Twice<U32>
+public typealias U128 = Twice<U64>
+public typealias U256 = Twice<U128>
+public typealias U512 = Twice<U256>
+
 /// Rest is what remains: the whole minus what was taken, the subtractive witness beside
 /// `Times`' product. Layout divides space (known pieces come off a given whole, and the
 /// rest is handed on), so subtraction enters the lattice the same way multiplication did:

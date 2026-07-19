@@ -191,7 +191,7 @@ Ice, the hydrogen spectrum, the Higgs vacuum, and the packing of this package's 
 
 ### The Rydberg ladder — energy as a judged integer lattice
 
-Hydrogen's energy, recorded as one number per floor (144/n² in units of R/144) and judged as a lattice: every jump's drop is held to its two floors, and the two roads down from the fourth floor are one drop. The arithmetic equalities are judged by the second judge's counting canon (`swift run Tools judge where`), and the ladder spelling is proved by the compiler itself.
+Hydrogen's energy, recorded as one number per floor (144/n² in units of R/144) and judged as a lattice: every jump's drop is held to its two floors, and the two roads down from the fourth floor are one drop. The arithmetic equalities are judged by the second judge's counting canon (`swift run Tools judge where`), the ladder spelling is proved by the compiler itself, and the numerals are the lattice's own ladder, read from `VerificationIsIdentification`.
 
 - ``FloorOneDepth``
 - ``FloorTwoDepth``
@@ -206,14 +206,6 @@ Hydrogen's energy, recorded as one number per floor (144/n² in units of R/144) 
 - ``FloorThreeByLadder``
 - ``LadderStitched``
 - ``LadderStep``
-- ``U1``
-- ``U2``
-- ``U4``
-- ``U8``
-- ``U16``
-- ``U32``
-- ``U64``
-- ``U128``
 
 ### The demo's own hands
 

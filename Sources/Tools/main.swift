@@ -12,6 +12,7 @@ import Foundation
 //              §S22 rules are now this checker's schema, more precisely, per file).
 //   prose      spell Prose.json into Glyph atoms + Open types, run by the ProseGen build plugin.
 //   census     count declarations per target: the "almost no functions" claim, as a number.
+//   voice      the voice-law gate: the prose's residual defect count per scope, held at its pin.
 //   site       build the combined DocC archive and serve it locally (`site fast` skips checks).
 //   curve      the saturation instrument: growing universes, timed builds, the growth law
 //              read off the doublings; `--fanout a,b,c N` sweeps the packing, `--judge`
@@ -41,6 +42,7 @@ case "curve":     Curve.run(Array(CommandLine.arguments.dropFirst(2)))
 case "census":    Census.run(Array(CommandLine.arguments.dropFirst(2)))
 case "judge":     Judge.run(Array(CommandLine.arguments.dropFirst(2)))
 case "readme":    ReadmeCheck.run(Array(CommandLine.arguments.dropFirst(2)))
+case "voice":     VoiceTool.run(Array(CommandLine.arguments.dropFirst(2)))
 case "press":     Press.run(Array(CommandLine.arguments.dropFirst(2)))
 case "generate":
     let sub = Array(CommandLine.arguments.dropFirst(2))
@@ -57,6 +59,6 @@ case "generate":
         exit(2)
     }
 default:
-    FileHandle.standardError.write(Data("usage: Tools <lint|tree-sort|grammar|prose|census|generate|site|curve|readme> ...\n".utf8))
+    FileHandle.standardError.write(Data("usage: Tools <lint|tree-sort|grammar|prose|census|generate|site|curve|readme|voice> ...\n".utf8))
     exit(2)
 }

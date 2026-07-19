@@ -40,6 +40,9 @@ jobs:
       - name: The grammar carries every source file
         run: swift run Tools grammar
 
+      - name: The voice holds at its pins (Tools voice)
+        run: swift run Tools voice
+
       - name: The README's numbers are counted, not remembered
         run: swift run Tools readme
 

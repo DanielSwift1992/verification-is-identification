@@ -3,9 +3,9 @@
 //
 // Difference Is Distance gave the geometry between witnesses (agents).
 // This gives the geometry between the witnessed (structures). A structure
-// IS its set of distinctions (G1); the minimal number of single-distinction
+// IS its set of distinctions (G1), and the minimal number of single-distinction
 // changes from s to t is W(s,t) = |D(s) △ D(t)|, a TRUE metric on Σ (G2),
-// integer-valued, with NULL as origin. Binary COMPARE is its zero test;
+// integer-valued, with NULL as origin. Binary COMPARE is its zero test, and
 // the gradient was always inside the operation, only asked for its sign.
 // W × kT·ln2 is the work of re-formation: distance IS cost.
 //

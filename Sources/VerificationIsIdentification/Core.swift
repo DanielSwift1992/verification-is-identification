@@ -71,7 +71,7 @@ where Right: IntegerValued {}
 public protocol Measurable: Pair
 where Right: Null {}
 
-// Never IS the fixpoint of all functions: every relation holds when
+// Never IS the fixpoint of all functions: every relation is true when
 // both sides are Never (Left == Right == Never). Monotone and Null
 // arrive via Unique (Unique: Monotone, Null), so they are not relisted:
 // - Unique (Monotone ∩ Null): Left: Pair ✓, Left.Left == Right ✓, Never == Never ✓

@@ -6,7 +6,7 @@
 // framework located by which COORDINATES it has: gate (decidable
 // verifier), I3 (append-only record), basis (certified vs pseudo), organ
 // (generator/discriminator), phase (liquid/crystal), α (alignment). The
-// theorems are conditional: each guarantee holds exactly when its
+// theorems are conditional: each guarantee is in force exactly when its
 // coordinate is present (AI1). An LLM has no gate (→ hallucination), no I3
 // (→ forgetting), an uncertified basis, yet α>0, so it astonishes. The
 // instance with all coordinates present is the framework's shape:
@@ -47,7 +47,7 @@ public protocol SaturationMap: GateIsMembrane, MeasuredGeometry {}
 
 // ───────────────────────────────────────────────────────────────
 // AI2–AI5: the projection table, recorded. (Domains/LearningMachines.swift
-// makes the gate live: a machine WITH the coordinates conforms; an LLM
+// makes the gate live: a machine WITH the coordinates conforms, and an LLM
 // WITHOUT them is rejected by the compiler, which names the missing one.)
 //
 //   tablebase       gate ✓ I3 ✓ basis(r=0) → exact, not wrong; doesn't scale

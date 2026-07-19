@@ -1,14 +1,14 @@
 // ═══════════════════════════════════════════════════════════════
 // Reading Is Order (Dynamics).
 //
-// Existence Is Finite froze the static; this reads it in motion. The agent is
+// Existence Is Finite froze the static, and this reads it in motion. The agent is
 // the order in which the standing structure is read — a zipper over Σ whose
 // step is the rule's derivative ∂F = 2X (left or right, no third). The two
 // organs are an F-coalgebra (generate, ν-ward) and an F-algebra (discriminate,
-// μ-ward), dual; the order is the sole freedom and changes no result.
+// μ-ward), dual, and the order is the sole freedom and changes no result.
 //
 // Pure types (§0′). The zipper and the coalgebra/algebra duality are the
-// paper's mathematics; the type level carries the one claim that intersects the
+// paper's mathematics. The type level carries the one claim that intersects the
 // lattice — the reading is time-indexed order that reveals, never creates.
 // ═══════════════════════════════════════════════════════════════
 

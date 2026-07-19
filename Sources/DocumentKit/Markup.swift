@@ -3,24 +3,24 @@ import VerificationIsIdentification
 
 // ═══════════════════════════════════════════════════════════════
 // DOCUMENTKIT composes documents as type-level chains of atoms. A symbol is a `Close`
-// whose `typeName` is its character; a combinator is an `Open` protocol whose body
-// composes atoms through `{ Type.self }`; `typeName` walks the chain and prints the page.
+// whose `typeName` is its character, and a combinator is an `Open` protocol whose body
+// composes atoms through `{ Type.self }`, and `typeName` walks the chain and prints the page.
 //
 // A combinator is used through its `init`: the call takes a `@StructureBuilder` closure,
 // so a nested combinator call composes the same way a bare `X.self` leaf does. The
-// `init` lives once, on the protocol's extension, and every concrete realizer is an
+// `init` is written once, on the protocol's extension, and every concrete realizer is an
 // empty enum that inherits it along with `body`.
 //
 // Walls, each checked directly against the toolchain: the `init` parameter is typed as
 // a builder closure returning a VALUE, since nesting breaks under an `X.Type` parameter.
-// The `init` body is `fatalError()` and never runs; Swift needs the `init` for call
+// The `init` body is `fatalError()` and never runs, and Swift needs the `init` for call
 // syntax and generic inference only, and no reading (`typeName`, `count`, `labels`)
 // ever constructs an instance or executes a getter.
 // ═══════════════════════════════════════════════════════════════
 
 // ── Atoms: Backtick/Hash/Space/Newline/At/Quote come from the shared Alphabet target.
 //    Everything below is a markdown-structural COMPOUND (its own surrounding whitespace baked
-//    in), not a single character, so it stays here. ──
+//    in), not a single character, so it remains here. ──
 
 public enum DoubleHash: Close {}
 extension DoubleHash {
@@ -253,7 +253,7 @@ where Whole.Left: Structure, Whole.Right: Structure {
 
 // ── Picture: ![Alt](Asset), an image embedded IN the body, distinct from `@PageImage`
 // (Metadata, written at the render boundary in OrgDemo): that shows a page's picture only when
-// the page is a TILE in a link grid; this shows it on the page itself, the way a hero image
+// the page is a TILE in a link grid. This shows it on the page itself, the way a hero image
 // reads. Checked directly: a page with only `@PageImage` and no `Picture` in its own body shows
 // no image at all when you navigate to the page directly — the two are not the same door.
 // `Asset` is a plain `Close` naming an asset file (its own `typeName` IS the file's bare name,
@@ -322,7 +322,7 @@ public enum PageTitle<
 
 // ── Section: ## Heading\n\nContent\n\n, no combinator: a page's own body just writes the
 // five atoms directly (`DoubleHash.self; Heading.self; Break.self`, then the content, then
-// `Break.self`). The pattern is five atoms; writing it inline each time is not repetition worth
+// `Break.self`). The pattern is five atoms, and writing it inline each time is not repetition worth
 // a combinator, the same call made for ``CountRow``/``Ratio`` (Organization).
 
 // ── Note ──
@@ -672,11 +672,11 @@ public enum CodeSample<
     Content: Structure
 >: CodeFence {}
 
-// ── Spacer: a column that holds only width, no content. `Content` is fixed to `Never` (the
+// ── Spacer: a column of width alone, no content. `Content` is fixed to `Never` (the
 // lattice's own empty leaf, `typeName = ""`), so there is nothing to compose, only a weight to
 // state. No `{ }` door, `Spacer<TextDigit._1>.self` is complete on its own, a bare metatype
 // leaf the same as `Alice.self` anywhere else. Flank real content with two of these to get
-// horizontal padding, the cheapest read of "insert something that holds space."
+// horizontal padding, the cheapest read of "insert something that is only space."
 
 public enum Spacer<
     Weight: Structure
@@ -712,7 +712,7 @@ extension SpaceBetween {
 }
 
 // ── SpacerBetween — the same rule (the pairing chooses, not either neighbor), rendering a
-// real `@Column(size:)` weight instead of text spaces: a `Gap` meant to sit inside a
+// real `@Column(size:)` weight instead of text spaces: a `Gap` meant to be inside a
 // `SideBySide` row, next to `PanelOf`/`SizedPanel`. Default weight 1 (a thin gap, never zero:
 // a zero-weight `@Column` is still a column DocC has to lay out, unlike `SpaceBetween`'s "" for
 // plain text, so the floor here is the thinnest real column, not none at all).
@@ -730,13 +730,13 @@ extension SpacerBetween {
 }
 
 // ── TwoRowGrid: several `SideBySide` rows read as ONE grid only when they agree on how wide
-// they are, total: `2 3 5` and `3 1 6` sit in the same grid because both add to 10, whatever
+// they are, total: `2 3 5` and `3 1 6` are in the same grid because both add to 10, whatever
 // they each split it into. There is no type-level ADDITION here to check that a row's
 // weights truly sum to what it claims (`IntegerValued`'s `Right` is an ASSOCIATED type, and
 // Swift resolves an associated type once per concrete type, never per `where` clause: the
 // same wall §S12 already names for a static witness, harder still for a type derived by
 // recursion). What IS checked, for real: each row states its own `Total` by hand (the same
-// discipline `Y2029: Cycle { Length = Three }` already uses, ReviewCycle.swift; the script
+// discipline `Y2029: Cycle { Length = Three }` already uses, ReviewCycle.swift. The script
 // decides only WHEN, never derives WHICH), and `TwoRowGrid` requires `Row1.Total == Row2.Total`
 // as a `where` clause on its own `body`. A row whose declared total does not match its
 // partner's does not get a `body` at all, so the grid fails to compile, not fails to align.

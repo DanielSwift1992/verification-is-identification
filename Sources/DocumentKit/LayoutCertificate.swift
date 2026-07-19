@@ -4,7 +4,7 @@ import VerificationIsIdentification
 // and building this file is the check. The engine was not invented beside the theory: a
 // slice is a pair, a magnitude is a count, adjacency shares its cut, and the reading at
 // the edge discretizes. Each claim below is a conformance the compiler verifies, the same
-// door `SpellingGate` already stands on: no test runs, the build IS the certificate.
+// door `SpellingGate` is already on: no test runs, the build IS the certificate.
 
 /// Two adjacent slices of one row share their cut: the left leg ends exactly where the
 /// right begins, because the walk hands the second part a prefix that already contains the

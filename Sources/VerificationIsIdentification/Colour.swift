@@ -4,8 +4,8 @@ import Swift
 // COLOUR pins the two claims of Colour Is a Quotient: a colour is a fiber of
 // the eye's projection — the class of all beams sharing one image — and a
 // display's reach is the cone of its stated primaries, so a colour outside the
-// cone is refused, never clipped. The paper's worked instance is light; the
-// claims stand for any encoding's quotient and any presented generator.
+// cone is refused, never clipped. The paper's worked instance is light, and the
+// claims are true for any encoding's quotient and any presented generator.
 // ═══════════════════════════════════════════════════════════════
 
 /// A colour is a quotient's point: the fiber of the encoding over one image,

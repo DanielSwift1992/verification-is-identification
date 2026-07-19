@@ -4,8 +4,8 @@ import Swift
 // RULER pins the two claims of Light Is a Ruler: a unit of measure is the tick
 // of a presented law with one survivor, and measuring is counting those ticks
 // along a path. The paper's worked instance is light — the second's definition
-// already counts an atomic transition's periods — but the claims stand for any
-// standard over any structure, so they live here, beside the distance axis.
+// already counts an atomic transition's periods — but the claims are true for any
+// standard over any structure, so they are here, beside the distance axis.
 // ═══════════════════════════════════════════════════════════════
 
 /// A standard is a type, never a stored value: the unit is the tick of a

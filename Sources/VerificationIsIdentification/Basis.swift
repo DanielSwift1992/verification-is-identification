@@ -5,10 +5,10 @@
 // recompositions of structure already certified. The genuinely new
 // entries, the domain's ATOMS, are defined as the primes are: by
 // survival of a sieve. A rule is atomic iff no composition of
-// strictly-smaller certified rules reaches it (B4); the atom basis is the
+// strictly-smaller certified rules reaches it (B4). The atom basis is the
 // residue of running the composition-sieve in norm order (Eratosthenes,
 // lifted from multiplication to composition). The basis generates the
-// reachable domain; the true generating count is |A| ≤ K (B7); a domain
+// reachable domain. The true generating count is |A| ≤ K (B7), and a domain
 // is saturable at finite cost iff its atom basis is finite (B8).
 //
 // Pure types (§0′). Grounds HasBasis / BasisIsFinite with the sieve. [Basis]
@@ -59,7 +59,7 @@ public protocol AtomnessIsTrajectory: AtomBasis, NoInverse {}
 // reach), HORN (finite basis, INFINITE reach: ℕ-under-+: one atom, every
 // numeral), or PRIMES (infinite basis). The HORN's infinite reach is the
 // unbounded Pair-type itself (each element finite, the closure not), not
-// expressible as a finite axis, so it stays prose.
+// expressible as a finite axis, so it remains prose.
 //
 // B11: the sieve COMPUTES the basis (terminates by I1), but whether the residue
 // is COMPRESSIBLE, foreseeable more cheaply than running the sieve, is open

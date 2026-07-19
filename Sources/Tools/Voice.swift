@@ -32,7 +32,7 @@ enum VoiceTool {
         ("papers", 0),
         ("lattice", 6),
         ("kit", 18),
-        ("pages", 312),
+        ("pages", 308),
         ("readme", 2),
     ]
 

@@ -4,8 +4,8 @@ import Swift
 // WAVE pins the two claims of Interference Is Substitution: adding waves is
 // rewriting a bag of contributions, and what a detector reads is that bag's
 // normal form. The paper's worked instance is light — a dark fringe, crossed
-// polarizers, the two-slit node — but the claims stand for any presented law
-// whose contributions carry a cyclic remainder, so they live here, beside the
+// polarizers, the two-slit node — but the claims are true for any presented law
+// whose contributions carry a cyclic remainder, so they are here, beside the
 // presented half of the dynamics axis.
 // ═══════════════════════════════════════════════════════════════
 

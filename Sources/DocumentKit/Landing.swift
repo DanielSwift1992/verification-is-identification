@@ -20,7 +20,7 @@ import VerificationIsIdentification
 // render target does not have (no row-height primitive, GFM has no cell merging), and one
 // depended on a monospace font this viewer does not guarantee. The one mechanism that survived
 // every check is TEXT flowing on its default (`Gap`/`SpaceBetween`, below), so that is
-// where the real richness lives now: not a drawn shape, a RULE TABLE.
+// where the real richness is: not a drawn shape, a RULE TABLE.
 // ═══════════════════════════════════════════════════════════════
 
 public protocol GallerySection: Open {}
@@ -280,7 +280,7 @@ enum CombinatorTableRows: GallerySection {
 }
 
 // ── The one rendering path — unchanged, except the same stray link the section above already
-// dropped: the old sentence ended by pointing at the gallery's own former, separate page; the
+// dropped: the old sentence ended by pointing at the gallery's own former, separate page. The
 // gallery is now this same page's own last section, so the close reads "gallery included"
 // instead, a self-reference rather than a link out. ──
 
@@ -341,7 +341,7 @@ extension SymbolCode {
     static var typeName: String { "Symbol { ExampleTarget.self }" }
 }
 
-// ── Page / Link — Page names a target by its own name; Link chooses the display text. ──
+// ── Page / Link — Page names a target by its own name, and Link chooses the display text. ──
 
 enum PageCaption: Close {}
 extension PageCaption {
@@ -408,7 +408,7 @@ extension PictureCode {
 }
 
 // ── Framed — the SAME picture, in a one-cell table. Reads left-aligned, not ringed (checked
-// directly — a table cell's own styling does not draw a visible border here); kept as the
+// directly — a table cell's own styling does not draw a visible border here), kept as the
 // honest version of "put something in a table," not as a border technique. ──
 
 enum FramedCaption: Close {}
@@ -431,7 +431,7 @@ extension FramedCode {
 }
 
 // ── Spacer — flanking real content with two of these gives horizontal padding: an inserted
-// object that only holds width, the cheapest read of "insert something that just holds space." ──
+// object of width alone, the cheapest read of "insert something that is only space." ──
 
 enum SpacerCaption: Close {}
 extension SpacerCaption {
@@ -471,7 +471,7 @@ extension SpacerCode {
 // skips or backslides gets a named, wider gap. Five rules, five literal call sites (`Gap`'s own
 // warning, Markup.swift, and §S17 — each proxy resolves its OWN pairing, once, with nothing
 // generic in between) — the mechanism does not care whether it is asked to model two states or
-// five; the richness is in how large a rule table you are willing to write by hand. ──
+// five. The richness is in how large a rule table you are willing to write by hand. ──
 
 enum ToDo: Close {}
 extension ToDo {
@@ -586,7 +586,7 @@ enum GapCode: Close {}
 extension GapCode {
     static var typeName: String {
         """
-        // the rule lives on the SPACE, stated once per pairing:
+        // the rule is on the SPACE, stated once per pairing:
         extension SpaceBetween where Left == ToDo, Right == Doing {
             static var typeName: String { " -> " }
         }
@@ -608,7 +608,7 @@ extension GapCode {
 
 // ── SpacerBetween — the same rule table, rendering a real `@Column(size:)` weight instead of
 // text: the gap next to `Loud` is wider than the gap between two `Quiet`s. Two rows, same
-// shape, different weight — the behavior lives in which two things are adjacent, never in a
+// shape, different weight — the behavior is in which two things are adjacent, never in a
 // property either one carries. ──
 
 enum Quiet: Close {}
@@ -1721,7 +1721,7 @@ enum SelfShowingExample: GallerySection {
 
 // ── Example 5 — a linked tour: two canvases, each `Linked` to the OTHER's own page (`Target`
 //    is a page path from the site's own closed set, never an arbitrary URL). The gallery below
-//    previews Station A; visiting either station's own page and clicking its dot is the real
+//    previews Station A. Visiting either station's own page and clicking its dot is the real
 //    tour — the click navigates to the OTHER station, whose own dot navigates back. ──
 
 enum VectorTourStationA {}   // bare name-tokens — PageSlug only reads String(describing:)
@@ -1899,7 +1899,7 @@ extension VectorTourStationBAsset {
 
 // ── Example 6 — RolesPlate, both themes: the eight roles table above, drawn instead of only
 //    tabulated. Mechanism (A)'s second consumer (DESIGN11) — a `Palette`, instantiated twice,
-//    the same edge substitution `LightCardPalette`/`DarkCardPalette` already stands on, written
+//    the same edge substitution `LightCardPalette`/`DarkCardPalette` is already on, written
 //    to `roles-plate.svg`/`roles-plate~dark.svg`, DocC's own native asset-swap for a grid tile.
 //    Associated-type names carry a `Color` suffix so a palette's OWN requirement never collides
 //    with the global role atom of the (almost) same name it is bound to. ──

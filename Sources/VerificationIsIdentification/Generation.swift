@@ -6,11 +6,11 @@
 // always delegated. This derives it and proves it orthogonal. A solve is
 // iterate(discriminate ∘ generate), and the two have disjoint inputs: the
 // discriminator is the cut (Z-axis, the sole source of identification bits,
-// §5.21-22); the generator is the order (Y-axis, zero new bits, InI S2). The
+// §5.21-22). The generator is the order (Y-axis, zero new bits, InI S2). The
 // deepest result is an asymmetry: the inevitability the series proved is the
-// DISCRIMINATOR's; the generator is conditional on alignment α, which
+// DISCRIMINATOR's, and the generator is conditional on alignment α, which
 // saturation cannot manufacture. The organ carrying all the information is the
-// one proved inevitable; the organ carrying none is where domains are hard.
+// one proved inevitable, and the organ carrying none is where domains are hard.
 //
 // Pure types (§0′). The cut's silent twin. [Gen]
 // ═══════════════════════════════════════════════════════════════
@@ -60,12 +60,12 @@ public protocol OrgansAreOneCompare: DiscriminatorAndGenerator, Decidable {}
 // GD7 / GD9: connections, recorded.
 //
 // GD7: E2's encoder/backend split IS generator/discriminator. The backend (D)
-// is proven-safe and inevitable; the encoder (G) is the open problem. C2
-// (discrimination) is the D-condition; C1/C3/C4/C5 are G-conditions. All
+// is proven-safe and inevitable, and the encoder (G) is the open problem. C2
+// (discrimination) is the D-condition, and C1/C3/C4/C5 are G-conditions. All
 // irreducible difficulty localizes to G because D is proven (see Spec.swift).
 //
 // GD9: on a HORN (K=∞, Basis Is Residue) the generator is the ONLY mode, no finite
 // library stores the confusion matrix, so learned-optimal ordering is
-// unreachable; generation from the certified basis with per-task certification
+// unreachable, so generation from the certified basis with per-task certification
 // is forced. Intelligence strips to generation-from-basis.
 // ───────────────────────────────────────────────────────────────

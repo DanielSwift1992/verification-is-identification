@@ -86,7 +86,7 @@ public protocol GaugeCollapse: LinearArbiter, ContentIsGaugeInvariant {}
 // THE SECOND JUDGE. The collapse's witness is a checker whose whole work is the
 // linear pass, seated beside the standing arbiter as a second encoding of one
 // verdict (§5.4). A disagreement is decidable and finite, so it bisects to a minimal
-// witness naming the defect in one judge or the other. The standing arbiter stays
+// witness naming the defect in one judge or the other. The standing arbiter remains
 // external, and the small judge is auditable by reading it: the gate it must carry
 // is a handful of markers, each a simple relation on Pair (Path.swift, closing
 // note). [FiG6]

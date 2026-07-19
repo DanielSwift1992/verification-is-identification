@@ -79,6 +79,6 @@ public protocol PlayIsProof: TowerSelfPlay, RevealsNotCreates {}
 // exclusive (Cantor/Lawvere: no surjection Σ → 2^Σ). The agent grounds its
 // rules, encodings, and strategies in its own certified record, but not the
 // comparison it runs on. The floor is structural, and you can see it: every
-// arrow points up to Pair, and Pair points to nothing. It makes proofs; it
+// arrow points up to Pair, and Pair points to nothing. It makes proofs, and it
 // cannot make the prover prove itself.
 // ───────────────────────────────────────────────────────────────

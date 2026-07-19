@@ -5,10 +5,10 @@ import VerificationIsIdentification
 // a screen's light, three wavelength bands at full power. Matter absorbs part of that light,
 // and the colour an eye receives is the part that SURVIVES, so a colour here is a walk: for
 // each band, eight halvings of its brightness, each door naming which half lived. Eight
-// halvings settle a band to one of 256 levels; three settled bands name one of 16,777,216
+// halvings settle a band to one of 256 levels, and three settled bands name one of 16,777,216
 // colours. Every colour is 24 doors from White.
 //
-// The first cut of White parts the long waves (the red band) from the short; the second cut
+// The first cut of White parts the long waves (the red band) from the short. The second cut
 // parts the short into the middle band (green) and the blue. A cut makes two doors, and the
 // two doors of one cut are COMPLEMENTS: eat the red band and the survivor is cyan, eat the
 // green and it is magenta, eat the blue and it is yellow. The colour wheel's opposite pairs
@@ -121,7 +121,7 @@ public typealias White = Lit<Undimmed, Undimmed, Undimmed>
 public typealias Black = Lit<Quenched, Quenched, Quenched>
 
 // ── The covers: how much of the ground a veiled colour hides, in hundredths. Seven rungs
-// exist because seven are used; a component states no cover these do not own. ──
+// exist because seven are used, and a component states no cover these do not own. ──
 
 public enum Cover06: Close {}
 extension Cover06 {
@@ -154,7 +154,7 @@ extension Cover90 {
 
 // ── The spectral bridge: mixing is a type. A line's weight per rung is a
 // stated magnitude (256ths of one full pour), a level is a stated rung, and a
-// pour is Plus of Times — the sum lives in the structure and Tally's own count
+// pour is Plus of Times — the sum is in the structure and Tally's own count
 // reads it. Nothing computes outside the one edge write that prints three
 // counts, the same class of door as ``Lit``'s radix print. No chart is wired
 // into the pour and nothing is clamped here: a value always exists, and the

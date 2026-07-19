@@ -10,11 +10,11 @@ import VerificationIsIdentification
 //
 // There is deliberately no node protocol here. The fork is `Pair` itself: any composed
 // body in the system is already a walkable space, so a second ontology would be a second
-// artifact. This file holds only what a walk adds to the lattice:
+// artifact. This file has only what a walk adds to the lattice:
 //
-//   readings  a door must show what stands behind it, and the reading is a witness of the
-//             subtree (`labels`, `count`), so a door cannot say what its half does not hold.
-//   letters   the two moves. A finished walk is a word in them; the word is the path, the
+//   readings  a door must show what is behind it, and the reading is a witness of the
+//             subtree (`labels`, `count`), so a door cannot say what its half does not contain.
+//   letters   the two moves. A finished walk is a word in them, and the word is the path, the
 //             path is an object (Program Is Path), and its length is the distance the
 //             metric papers already measure. A step page spells its word back, read off
 //             the position: a tree gives every node exactly one path from the root.

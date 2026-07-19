@@ -1,11 +1,11 @@
 // ═══════════════════════════════════════════════════════════════
 // Law Is Target (Dynamics).
 //
-// The framework demands a fixed target (I2); a moving state violates it,
+// The framework demands a fixed target (I2), and a moving state violates it,
 // the series' explicit boundary since PiR M6. This paper removes the
 // boundary by RELOCATING the target: the state is not the target, the law
-// is. A finite deterministic transition law f is a structure in Σ;
-// observed transitions are examples; identifying the law is an ordinary
+// is. A finite deterministic transition law f is a structure in Σ.
+// Observed transitions are examples, and identifying the law is an ordinary
 // V=I game with every guarantee intact. Once the law is certified, motion
 // becomes substrate: planning is navigation, goals are balls, behavior is
 // structure, and the whole stack composes by substitution.

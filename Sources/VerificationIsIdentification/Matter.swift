@@ -4,7 +4,7 @@
 // What the crystallized output IS. Three properties define matter:
 //   permanent   (I3,   append-only library)
 //   irreducible (Thm2, each entry is the unique f*)
-//   resistant   (I2,   fixed target; COMPARE returns not_equal)
+//   resistant   (I2,   fixed target, COMPARE returns not_equal)
 // "One structural fact from three angles", so Matter is their intersect.
 //
 // Plus: the tower (each crystal is the next level's matter), discrete

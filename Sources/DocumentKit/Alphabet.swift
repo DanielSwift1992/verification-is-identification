@@ -4,16 +4,16 @@ import VerificationIsIdentification
 // ═══════════════════════════════════════════════════════════════
 // THE ALPHABET spells prose from atoms, the way `Numeral` spells a number from digits.
 //
-// `Glyph` and the punctuation/medium atoms come from the shared `Alphabet` target;
+// `Glyph` and the punctuation/medium atoms come from the shared `Alphabet` target.
 // GrammarLexicon reads the same declarations, so a character's identifier and its rendered
 // content cannot drift apart the way three separate copies once did. Only letters and digits
-// stay here: this common set (`Letter.a`...`z`, `TextDigit`) is named by hand, so generated
+// remain here: this common set (`Letter.a`...`z`, `TextDigit`) is named by hand, so generated
 // prose reads as `Letter.t; Letter.h; Letter.e` rather than opaque code points, and the stream
 // reads whole word runs instead of one character at a time. Anything outside this set (an em
 // dash, …) the ProseGen plugin generates on demand, named by Unicode scalar (`Char8212`) into
-// GeneratedAlphabet.swift, so the alphabet stays exactly as big as the content needs and no
+// GeneratedAlphabet.swift, so the alphabet remains exactly as big as the content needs and no
 // bigger. Only readability is traded away for the rare case, not coverage. A word is an `Open`
-// type whose `body` chains glyphs; a sentence chains words the same way `Numeral` chains
+// type whose `body` chains glyphs, and a sentence chains words the same way `Numeral` chains
 // digits. No string is hand-set on a sentence: every character is a real, checked atom. A hole
 // in a template (`{count}`) becomes a generic parameter, filled at the call site by a real
 // `Structure` (``Tally``, ``Reference``).

@@ -2,10 +2,10 @@ import Swift
 
 // ═══════════════════════════════════════════════════════════════
 // SEEING pins the two claims of Seeing Is Encoding: a projection into a smaller
-// carrier can hold two sources to one image, and a presented separator hands the
+// carrier can carry two sources to one image, and a presented separator hands the
 // lost distinction back. The paper's worked instance is light — a beam is a tree,
-// an eye is the projection, a prism is the separator — but the claims stand for
-// any sensor over any structure, so they live here, on the encoding axis.
+// an eye is the projection, a prism is the separator — but the claims are true for
+// any sensor over any structure, so they are here, on the encoding axis.
 // ═══════════════════════════════════════════════════════════════
 
 /// An encoding can forget: two distinct sources share one image under it, so the

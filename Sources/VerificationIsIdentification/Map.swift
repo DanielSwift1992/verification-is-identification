@@ -2,11 +2,11 @@
 // Navigation Is Geometry (Map).
 //
 // Distance Is Cost gave the library a metric. A metric space is not yet a
-// map. The library under W is a finite metric space; a radius ρ makes it a
-// graph (N1); greedy descent toward any comparable target terminates in at
+// map. The library under W is a finite metric space, and a radius ρ makes it a
+// graph (N1). Greedy descent toward any comparable target terminates in at
 // most W(start,target) hops, because W is integer-valued and every hop pays
-// at least one distinction (N5); failure is an address, not a verdict (N6);
-// repairs are permanent and the holes themselves are the curriculum (N17).
+// at least one distinction (N5). Failure is an address, not a verdict (N6).
+// Repairs are permanent and the holes themselves are the curriculum (N17).
 // Learning, generalization, and navigation are three faces of one measurable
 // property: the clustering of the W-matrix (N18).
 //

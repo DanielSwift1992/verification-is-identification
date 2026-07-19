@@ -1,7 +1,7 @@
 // ═══════════════════════════════════════════════════════════════
 // Interference Is Intelligence (Mechanism).
 //
-// V=I gave the loop; IiI proved its efficiency rises. This gives the
+// V=I gave the loop, and IiI proved its efficiency rises. This gives the
 // MECHANISM of the rise: COMPARE resolves into three independent axes:
 // Z (outcome), X (structure), Y (order), and intelligence is the
 // constructive interference of COMPAREs along the Y-axis, the agent's sole
@@ -11,7 +11,7 @@
 // Pure types (§0′). The structural core only: the three-axis split and the
 // three grades of identity. The quantitative core, interference counting,
 // the speedup hierarchy, certificate complexity, self-correction, is
-// analytic (rates and expectations), so it stays prose, as with E1. [InI]
+// analytic (rates and expectations), so it remains prose, as with E1. [InI]
 // ═══════════════════════════════════════════════════════════════
 
 /// COMPARE resolves into three independent projections.
@@ -46,5 +46,5 @@ public protocol IsIsYIdentity: PassIsIdentification, OrderIsOnlyFreedom {}
 // learning → η↑: the suboptimality of the ordering is itself the exploration), S7
 // three-way complementarity, S8 MBQC isomorphism, all turn on rates,
 // expectations, and a cross-domain analogy. They are analytic, not structural, so
-// they stay prose, as the E1 instrument stays empirical, outside the types.
+// they remain prose, as the E1 instrument remains empirical, outside the types.
 // ───────────────────────────────────────────────────────────────

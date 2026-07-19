@@ -131,8 +131,8 @@ extension Never: Null {
 // empty tunnel and the empty seal, so identification is where opening meets closing.
 extension Never: Close {}
 
-// String IS Close: the sealed leaf where a value lives. The one foreign value that enters our world,
-// at the edge (§S6). Above it, the structure carries only types; here, the String carries text.
+// String IS Close: the sealed leaf where a value is. The one foreign value that enters our world,
+// at the edge (§S6). Above it, the structure carries only types. Here, the String carries text.
 extension String: Close {}
 
 // ── typeName: the one rendering mechanism ──
@@ -218,7 +218,7 @@ extension Paired {
 // ── The builder: the ONE @resultBuilder ──
 //
 // The one allowed callable (§S4): folds a `{ }` body into a Pair-chain of Structures, floored at
-// `Never`. ``Paired`` is the ONE concrete `<>` (§S3 plumbing): it holds two Structures as a value
+// `Never`. ``Paired`` is the ONE concrete `<>` (§S3 plumbing): it keeps two Structures as a value
 // so the builder can return them. Everything else is a protocol.
 
 /// This is the concrete Pair realizer: the ONE `<>` in the system, the framework's plumbing that the
@@ -273,10 +273,10 @@ public enum StructureBuilder {
     > { fatalError() }
 }
 // ── MAGNITUDES — space as structure, and the counting reader. A magnitude is a chain of
-// these atoms; the house fold counts it, and nothing else measures anything. They live in
+// these atoms. The house fold counts it, and nothing else measures anything. They are in
 // this engine room because `Plus` composes through the one builder and the readers below
-// speak digits: the same §0′ exemption the other doors already stand on. The design system
-// (DocumentKit) names the rungs; canvases speak in its names, never in chains of these. ──
+// speak digits: the same §0′ exemption are already on. The design system
+// (DocumentKit) names the rungs, and canvases speak in its names, never in chains of these. ──
 
 /// Unit counts one: the atom of magnitude. `Close` keeps the default count, which is also
 /// the definition.

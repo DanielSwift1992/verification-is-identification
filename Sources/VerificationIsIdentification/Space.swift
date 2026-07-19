@@ -5,7 +5,7 @@
 // target produce a metric space from the difference in their histories.
 // Central result (S7): distance = the symmetric difference of two
 // agents' comparison caches, |G₁ △ G₂|, a metric. Distance is not a
-// primitive; it is the difference in what two agents have witnessed.
+// primitive: it is the difference in what two agents have witnessed.
 //
 // Pure types (§0′). Grounds the Distance / MetricProperty machinery the
 // markers already name. Physical instances (§9, S18–S24) are analogical

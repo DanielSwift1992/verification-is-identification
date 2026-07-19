@@ -1,8 +1,8 @@
 # Atlas, unfolded
 
-The lists behind every count of the <doc:Atlas>. A claim's **cone** is the full set of claims that rest on it, directly or through others, and every Carries number on the map links to its cone here.
+The lists behind every count of the <doc:Atlas>. A claim's **cone** is the full set of claims it carries, directly or through others, and every Carries number on the map links to its cone here.
 
-Each section repeats the same table over its cone, heaviest first. Numbers inside a cone open further cones, each strictly smaller than the one above, so the descent ends at bare zeros. Cone inside cone stays acyclic for the same reason the theory does: the compiler refuses a circular hierarchy.
+Each section repeats the same table over its cone, heaviest first. Numbers inside a cone open further cones, each strictly smaller than the one above, so the descent ends at bare zeros. Cone inside cone is acyclic for the same reason the theory is: the compiler refuses a circular hierarchy.
 
 ## The cones
 
@@ -10,7 +10,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HasSigma`` carries 155 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``StructuresFinite`` | kernel | ``HasSigma``, ``Pair`` | [117](<doc:AtlasUnfolded#StructuresFinite>) | Identification |
 | ``HasCache`` | axis | ``HasSigma`` | [86](<doc:AtlasUnfolded#HasCache>) | Core |
@@ -172,7 +172,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``Structure`` carries 143 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``Open`` | kernel | ``Structure`` | [141](<doc:AtlasUnfolded#Open>) | Primitive |
 | ``Pair`` | seed | ``Open`` | [139](<doc:AtlasUnfolded#Pair>) | Primitive |
@@ -322,7 +322,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``Open`` carries 141 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``Pair`` | seed | ``Open`` | [139](<doc:AtlasUnfolded#Pair>) | Primitive |
 | ``StructuresFinite`` | kernel | ``HasSigma``, ``Pair`` | [117](<doc:AtlasUnfolded#StructuresFinite>) | Identification |
@@ -470,7 +470,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``Pair`` carries 139 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``StructuresFinite`` | kernel | ``HasSigma``, ``Pair`` | [117](<doc:AtlasUnfolded#StructuresFinite>) | Identification |
 | ``OperationsClosed`` | kernel | ``Pair`` | [99](<doc:AtlasUnfolded#OperationsClosed>) | Identification |
@@ -616,7 +616,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``StructuresFinite`` carries 117 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``CachePermanent`` | theorem | ``HasCache``, ``OperationsClosed``, ``StructuresFinite`` | [82](<doc:AtlasUnfolded#CachePermanent>) | Identification |
 | ``DistanceOnStructures`` | theorem | ``HasDistance``, ``StructuresFinite`` | [61](<doc:AtlasUnfolded#DistanceOnStructures>) | Gradient |
@@ -740,7 +740,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``OperationsClosed`` carries 99 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``CachePermanent`` | theorem | ``HasCache``, ``OperationsClosed``, ``StructuresFinite`` | [82](<doc:AtlasUnfolded#CachePermanent>) | Identification |
 | ``ResultDeterministic`` | kernel | ``OperationsClosed`` | [67](<doc:AtlasUnfolded#ResultDeterministic>) | Identification |
@@ -846,7 +846,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HasCache`` carries 86 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``CachePermanent`` | theorem | ``HasCache``, ``OperationsClosed``, ``StructuresFinite`` | [82](<doc:AtlasUnfolded#CachePermanent>) | Identification |
 | ``KnowledgeAccumulates`` | bridge | ``CachePermanent``, ``HasLibrary`` | [45](<doc:AtlasUnfolded#KnowledgeAccumulates>) | Intelligence |
@@ -939,7 +939,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``CachePermanent`` carries 82 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``KnowledgeAccumulates`` | bridge | ``CachePermanent``, ``HasLibrary`` | [45](<doc:AtlasUnfolded#KnowledgeAccumulates>) | Intelligence |
 | ``LibrarySaturates`` | bridge | ``CachePermanent``, ``HasSaturation`` | [38](<doc:AtlasUnfolded#LibrarySaturates>) | Intelligence |
@@ -1028,7 +1028,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HasDistance`` carries 79 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``DistanceOnStructures`` | theorem | ``HasDistance``, ``StructuresFinite`` | [61](<doc:AtlasUnfolded#DistanceOnStructures>) | Gradient |
 | ``Resistant`` | theorem | ``Decidable``, ``HasDistance`` | [28](<doc:AtlasUnfolded#Resistant>) | Matter |
@@ -1114,7 +1114,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HasSolutions`` carries 67 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``ExactlyOneSurvives`` | theorem | ``EqualityDecidable``, ``HasSolutions`` | [42](<doc:AtlasUnfolded#ExactlyOneSurvives>) | Identification |
 | ``PassIsIdentification`` | theorem | ``ExactlyOneSurvives``, ``PassImpliesMembership`` | [37](<doc:AtlasUnfolded#PassIsIdentification>) | Identification |
@@ -1188,7 +1188,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``ResultDeterministic`` carries 67 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``PassImpliesMembership`` | kernel | ``PipelineTotal``, ``ResultDeterministic`` | [51](<doc:AtlasUnfolded#PassImpliesMembership>) | Identification |
 | ``PassIsIdentification`` | theorem | ``ExactlyOneSurvives``, ``PassImpliesMembership`` | [37](<doc:AtlasUnfolded#PassIsIdentification>) | Identification |
@@ -1262,7 +1262,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HasLibrary`` carries 66 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``KnowledgeAccumulates`` | bridge | ``CachePermanent``, ``HasLibrary`` | [45](<doc:AtlasUnfolded#KnowledgeAccumulates>) | Intelligence |
 | ``HasSaturation`` | axis | ``HasLibrary`` | [39](<doc:AtlasUnfolded#HasSaturation>) | Core |
@@ -1335,7 +1335,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``DistanceOnStructures`` carries 61 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``AnchorGraph`` | bridge | ``DistanceOnStructures``, ``HasLibrary`` | [22](<doc:AtlasUnfolded#AnchorGraph>) | Map |
 | ``BallSaturation`` | bridge | ``DistanceOnStructures``, ``LibrarySaturates`` | [15](<doc:AtlasUnfolded#BallSaturation>) | Gradient |
@@ -1403,7 +1403,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``StepsTerminate`` carries 54 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``PipelineTotal`` | kernel | ``StepsTerminate`` | [52](<doc:AtlasUnfolded#PipelineTotal>) | Identification |
 | ``PassImpliesMembership`` | kernel | ``PipelineTotal``, ``ResultDeterministic`` | [51](<doc:AtlasUnfolded#PassImpliesMembership>) | Identification |
@@ -1464,7 +1464,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``PipelineTotal`` carries 52 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``PassImpliesMembership`` | kernel | ``PipelineTotal``, ``ResultDeterministic`` | [51](<doc:AtlasUnfolded#PassImpliesMembership>) | Identification |
 | ``PassIsIdentification`` | theorem | ``ExactlyOneSurvives``, ``PassImpliesMembership`` | [37](<doc:AtlasUnfolded#PassIsIdentification>) | Identification |
@@ -1523,7 +1523,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``EqualityDecidable`` carries 51 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``ExactlyOneSurvives`` | theorem | ``EqualityDecidable``, ``HasSolutions`` | [42](<doc:AtlasUnfolded#ExactlyOneSurvives>) | Identification |
 | ``PassIsIdentification`` | theorem | ``ExactlyOneSurvives``, ``PassImpliesMembership`` | [37](<doc:AtlasUnfolded#PassIsIdentification>) | Identification |
@@ -1581,7 +1581,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``PassImpliesMembership`` carries 51 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``PassIsIdentification`` | theorem | ``ExactlyOneSurvives``, ``PassImpliesMembership`` | [37](<doc:AtlasUnfolded#PassIsIdentification>) | Identification |
 | ``Matter`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification``, ``Resistant`` | [26](<doc:AtlasUnfolded#Matter>) | Matter |
@@ -1639,7 +1639,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``KnowledgeAccumulates`` carries 45 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``Matter`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification``, ``Resistant`` | [26](<doc:AtlasUnfolded#Matter>) | Matter |
 | ``Ignites`` | bridge | ``LibrarySaturates``, ``Matter`` | [22](<doc:AtlasUnfolded#Ignites>) | Matter |
@@ -1691,7 +1691,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``ExactlyOneSurvives`` carries 42 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``PassIsIdentification`` | theorem | ``ExactlyOneSurvives``, ``PassImpliesMembership`` | [37](<doc:AtlasUnfolded#PassIsIdentification>) | Identification |
 | ``Matter`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification``, ``Resistant`` | [26](<doc:AtlasUnfolded#Matter>) | Matter |
@@ -1740,7 +1740,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HasSaturation`` carries 39 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``LibrarySaturates`` | bridge | ``CachePermanent``, ``HasSaturation`` | [38](<doc:AtlasUnfolded#LibrarySaturates>) | Intelligence |
 | ``Ignites`` | bridge | ``LibrarySaturates``, ``Matter`` | [22](<doc:AtlasUnfolded#Ignites>) | Matter |
@@ -1786,7 +1786,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``Decidable`` carries 38 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``Resistant`` | theorem | ``Decidable``, ``HasDistance`` | [28](<doc:AtlasUnfolded#Resistant>) | Matter |
 | ``Matter`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification``, ``Resistant`` | [26](<doc:AtlasUnfolded#Matter>) | Matter |
@@ -1831,7 +1831,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``LibrarySaturates`` carries 38 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``Ignites`` | bridge | ``LibrarySaturates``, ``Matter`` | [22](<doc:AtlasUnfolded#Ignites>) | Matter |
 | ``Tower`` | bridge | ``HasCost``, ``HasTime``, ``Ignites`` | [18](<doc:AtlasUnfolded#Tower>) | Matter |
@@ -1876,7 +1876,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``PassIsIdentification`` carries 37 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``Matter`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification``, ``Resistant`` | [26](<doc:AtlasUnfolded#Matter>) | Matter |
 | ``Ignites`` | bridge | ``LibrarySaturates``, ``Matter`` | [22](<doc:AtlasUnfolded#Ignites>) | Matter |
@@ -1920,7 +1920,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``Null`` carries 32 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``IdentityCollapse`` | theorem | ``HasSolutions``, ``Null`` | [28](<doc:AtlasUnfolded#IdentityCollapse>) | Core |
 | ``OrderIsOnlyFreedom`` | bridge | ``AxesCoOriented``, ``IdentityCollapse`` | [26](<doc:AtlasUnfolded#OrderIsOnlyFreedom>) | Identification |
@@ -1959,7 +1959,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``IdentityCollapse`` carries 28 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``OrderIsOnlyFreedom`` | bridge | ``AxesCoOriented``, ``IdentityCollapse`` | [26](<doc:AtlasUnfolded#OrderIsOnlyFreedom>) | Identification |
 | ``StrategyLivesInSigma`` | bridge | ``DistanceOnStructures``, ``OrderIsOnlyFreedom`` | [12](<doc:AtlasUnfolded#StrategyLivesInSigma>) | Strategy |
@@ -1994,7 +1994,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``Resistant`` carries 28 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``Matter`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification``, ``Resistant`` | [26](<doc:AtlasUnfolded#Matter>) | Matter |
 | ``Ignites`` | bridge | ``LibrarySaturates``, ``Matter`` | [22](<doc:AtlasUnfolded#Ignites>) | Matter |
@@ -2029,7 +2029,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``AxesCoOriented`` carries 27 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``OrderIsOnlyFreedom`` | bridge | ``AxesCoOriented``, ``IdentityCollapse`` | [26](<doc:AtlasUnfolded#OrderIsOnlyFreedom>) | Identification |
 | ``StrategyLivesInSigma`` | bridge | ``DistanceOnStructures``, ``OrderIsOnlyFreedom`` | [12](<doc:AtlasUnfolded#StrategyLivesInSigma>) | Strategy |
@@ -2063,7 +2063,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``Matter`` carries 26 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``Ignites`` | bridge | ``LibrarySaturates``, ``Matter`` | [22](<doc:AtlasUnfolded#Ignites>) | Matter |
 | ``Tower`` | bridge | ``HasCost``, ``HasTime``, ``Ignites`` | [18](<doc:AtlasUnfolded#Tower>) | Matter |
@@ -2096,7 +2096,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``OrderIsOnlyFreedom`` carries 26 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``StrategyLivesInSigma`` | bridge | ``DistanceOnStructures``, ``OrderIsOnlyFreedom`` | [12](<doc:AtlasUnfolded#StrategyLivesInSigma>) | Strategy |
 | ``SkillsAreBalls`` | bridge | ``BallSaturation``, ``StrategyLivesInSigma`` | [6](<doc:AtlasUnfolded#SkillsAreBalls>) | Strategy |
@@ -2129,7 +2129,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HasTime`` carries 24 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``Tower`` | bridge | ``HasCost``, ``HasTime``, ``Ignites`` | [18](<doc:AtlasUnfolded#Tower>) | Matter |
 | ``CompressionCriterion`` | bridge | ``DistanceOnStructures``, ``Tower`` | [14](<doc:AtlasUnfolded#CompressionCriterion>) | Gradient |
@@ -2160,7 +2160,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``AnchorGraph`` carries 22 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``OneBoundaryThreeFaces`` | bridge | ``AnchorGraph``, ``BallSaturation``, ``CompressionCriterion`` | [10](<doc:AtlasUnfolded#OneBoundaryThreeFaces>) | Map |
 | ``HolesCarryAddresses`` | bridge | ``AnchorGraph``, ``Decidable`` | [9](<doc:AtlasUnfolded#HolesCarryAddresses>) | Map |
@@ -2189,7 +2189,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``Ignites`` carries 22 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``Tower`` | bridge | ``HasCost``, ``HasTime``, ``Ignites`` | [18](<doc:AtlasUnfolded#Tower>) | Matter |
 | ``CompressionCriterion`` | bridge | ``DistanceOnStructures``, ``Tower`` | [14](<doc:AtlasUnfolded#CompressionCriterion>) | Gradient |
@@ -2218,7 +2218,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HasEncoding`` carries 21 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``EncodingForgets`` | axis | ``HasEncoding`` | [3](<doc:AtlasUnfolded#EncodingForgets>) | Seeing |
 | ``EncoderConditions`` | bridge | ``BallSaturation``, ``CompressionCriterion``, ``HasEncoding`` | [2](<doc:AtlasUnfolded#EncoderConditions>) | Spec |
@@ -2246,7 +2246,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HasCost`` carries 20 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``Tower`` | bridge | ``HasCost``, ``HasTime``, ``Ignites`` | [18](<doc:AtlasUnfolded#Tower>) | Matter |
 | ``CompressionCriterion`` | bridge | ``DistanceOnStructures``, ``Tower`` | [14](<doc:AtlasUnfolded#CompressionCriterion>) | Gradient |
@@ -2273,7 +2273,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``Tower`` carries 18 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``CompressionCriterion`` | bridge | ``DistanceOnStructures``, ``Tower`` | [14](<doc:AtlasUnfolded#CompressionCriterion>) | Gradient |
 | ``OneBoundaryThreeFaces`` | bridge | ``AnchorGraph``, ``BallSaturation``, ``CompressionCriterion`` | [10](<doc:AtlasUnfolded#OneBoundaryThreeFaces>) | Map |
@@ -2298,7 +2298,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``BallSaturation`` carries 15 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``OneBoundaryThreeFaces`` | bridge | ``AnchorGraph``, ``BallSaturation``, ``CompressionCriterion`` | [10](<doc:AtlasUnfolded#OneBoundaryThreeFaces>) | Map |
 | ``SkillsAreBalls`` | bridge | ``BallSaturation``, ``StrategyLivesInSigma`` | [6](<doc:AtlasUnfolded#SkillsAreBalls>) | Strategy |
@@ -2320,7 +2320,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HasLaw`` carries 15 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [7](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
 | ``LawLivesInSigma`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [6](<doc:AtlasUnfolded#LawLivesInSigma>) | Dynamics |
@@ -2342,7 +2342,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``CompressionCriterion`` carries 14 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``OneBoundaryThreeFaces`` | bridge | ``AnchorGraph``, ``BallSaturation``, ``CompressionCriterion`` | [10](<doc:AtlasUnfolded#OneBoundaryThreeFaces>) | Map |
 | ``NavigationInevitable`` | bridge | ``OneBoundaryThreeFaces`` | [4](<doc:AtlasUnfolded#NavigationInevitable>) | Map |
@@ -2363,7 +2363,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HasPath`` carries 13 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``EmissionAccumulates`` | theorem | ``HasPath`` | [5](<doc:AtlasUnfolded#EmissionAccumulates>) | Path |
 | ``CostIsPathLength`` | bridge | ``HasDistance``, ``HasPath`` | [2](<doc:AtlasUnfolded#CostIsPathLength>) | Path |
@@ -2383,7 +2383,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``GateIsZeroOfLoss`` carries 12 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``AlignmentCoefficient`` | bridge | ``GateIsZeroOfLoss``, ``HasAlpha`` | [11](<doc:AtlasUnfolded#AlignmentCoefficient>) | Search |
 | ``SearchFlow`` | bridge | ``AlignmentCoefficient``, ``LiquidPhase`` | [5](<doc:AtlasUnfolded#SearchFlow>) | Liquid |
@@ -2402,7 +2402,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HasAlpha`` carries 12 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``AlignmentCoefficient`` | bridge | ``GateIsZeroOfLoss``, ``HasAlpha`` | [11](<doc:AtlasUnfolded#AlignmentCoefficient>) | Search |
 | ``SearchFlow`` | bridge | ``AlignmentCoefficient``, ``LiquidPhase`` | [5](<doc:AtlasUnfolded#SearchFlow>) | Liquid |
@@ -2421,7 +2421,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``StrategyLivesInSigma`` carries 12 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``SkillsAreBalls`` | bridge | ``BallSaturation``, ``StrategyLivesInSigma`` | [6](<doc:AtlasUnfolded#SkillsAreBalls>) | Strategy |
 | ``StrategyGate`` | bridge | ``PassImpliesMembership``, ``StrategyLivesInSigma`` | [4](<doc:AtlasUnfolded#StrategyGate>) | Strategy |
@@ -2440,7 +2440,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``AlignmentCoefficient`` carries 11 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``SearchFlow`` | bridge | ``AlignmentCoefficient``, ``LiquidPhase`` | [5](<doc:AtlasUnfolded#SearchFlow>) | Liquid |
 | ``StefanCoupling`` | bridge | ``CrystallizationFront``, ``SearchFlow`` | [4](<doc:AtlasUnfolded#StefanCoupling>) | Liquid |
@@ -2458,7 +2458,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``NoInverse`` carries 11 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``CrystallizationFront`` | bridge | ``DistanceOnStructures``, ``LiquidPhase``, ``NoInverse`` | [5](<doc:AtlasUnfolded#CrystallizationFront>) | Liquid |
 | ``StefanCoupling`` | bridge | ``CrystallizationFront``, ``SearchFlow`` | [4](<doc:AtlasUnfolded#StefanCoupling>) | Liquid |
@@ -2476,7 +2476,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HasBasis`` carries 10 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``BasisIsFinite`` | bridge | ``HasBasis``, ``LibrarySaturates`` | [7](<doc:AtlasUnfolded#BasisIsFinite>) | Intelligence |
 | ``SelfPlaySaturates`` | bridge | ``AmbiguityNamesInput``, ``BasisIsFinite`` | [4](<doc:AtlasUnfolded#SelfPlaySaturates>) | Play |
@@ -2493,7 +2493,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``Monotone`` carries 10 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``LiquidPhase`` | bridge | ``KnowledgeAccumulates``, ``Monotone`` | [7](<doc:AtlasUnfolded#LiquidPhase>) | Liquid |
 | ``CrystallizationFront`` | bridge | ``DistanceOnStructures``, ``LiquidPhase``, ``NoInverse`` | [5](<doc:AtlasUnfolded#CrystallizationFront>) | Liquid |
@@ -2510,7 +2510,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``OneBoundaryThreeFaces`` carries 10 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``NavigationInevitable`` | bridge | ``OneBoundaryThreeFaces`` | [4](<doc:AtlasUnfolded#NavigationInevitable>) | Map |
 | ``SearchableIffClusteredAndAligned`` | bridge | ``AlignmentCoefficient``, ``OneBoundaryThreeFaces`` | [3](<doc:AtlasUnfolded#SearchableIffClusteredAndAligned>) | Search |
@@ -2527,7 +2527,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HolesCarryAddresses`` carries 9 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``AmbiguityNamesInput`` | bridge | ``CertifiedRuleGenerates``, ``HolesCarryAddresses`` | [5](<doc:AtlasUnfolded#AmbiguityNamesInput>) | Play |
 | ``SelfPlaySaturates`` | bridge | ``AmbiguityNamesInput``, ``BasisIsFinite`` | [4](<doc:AtlasUnfolded#SelfPlaySaturates>) | Play |
@@ -2543,7 +2543,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``Measurable`` carries 9 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``RevealsNotCreates`` | kernel | ``Measurable``, ``OperationsClosed`` | [7](<doc:AtlasUnfolded#RevealsNotCreates>) | Identification |
 | ``Reading`` | bridge | ``HasTime``, ``OrderIsOnlyFreedom``, ``RevealsNotCreates`` | [2](<doc:AtlasUnfolded#Reading>) | Reading |
@@ -2559,7 +2559,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``BasisIsFinite`` carries 7 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``SelfPlaySaturates`` | bridge | ``AmbiguityNamesInput``, ``BasisIsFinite`` | [4](<doc:AtlasUnfolded#SelfPlaySaturates>) | Play |
 | ``TowerSelfPlay`` | bridge | ``Ignites``, ``SelfPlaySaturates`` | [2](<doc:AtlasUnfolded#TowerSelfPlay>) | Play |
@@ -2573,7 +2573,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``CandidatesOnlyLeave`` carries 7 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``SystemCrystallizes`` | bridge | ``CandidatesOnlyLeave``, ``MembershipDecidable``, ``ResultsIrreversible`` | [6](<doc:AtlasUnfolded#SystemCrystallizes>) | Intelligence |
 | ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
@@ -2587,7 +2587,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``LiquidPhase`` carries 7 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``CrystallizationFront`` | bridge | ``DistanceOnStructures``, ``LiquidPhase``, ``NoInverse`` | [5](<doc:AtlasUnfolded#CrystallizationFront>) | Liquid |
 | ``SearchFlow`` | bridge | ``AlignmentCoefficient``, ``LiquidPhase`` | [5](<doc:AtlasUnfolded#SearchFlow>) | Liquid |
@@ -2601,7 +2601,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``MembershipDecidable`` carries 7 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``SystemCrystallizes`` | bridge | ``CandidatesOnlyLeave``, ``MembershipDecidable``, ``ResultsIrreversible`` | [6](<doc:AtlasUnfolded#SystemCrystallizes>) | Intelligence |
 | ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
@@ -2615,7 +2615,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``PresentedLaw`` carries 7 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``InterferenceIsSubstitution`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#InterferenceIsSubstitution>) | Wave |
 | ``StandardIsType`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#StandardIsType>) | Ruler |
@@ -2629,7 +2629,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``ResultsIrreversible`` carries 7 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``SystemCrystallizes`` | bridge | ``CandidatesOnlyLeave``, ``MembershipDecidable``, ``ResultsIrreversible`` | [6](<doc:AtlasUnfolded#SystemCrystallizes>) | Intelligence |
 | ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
@@ -2643,7 +2643,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``RevealsNotCreates`` carries 7 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``Reading`` | bridge | ``HasTime``, ``OrderIsOnlyFreedom``, ``RevealsNotCreates`` | [2](<doc:AtlasUnfolded#Reading>) | Reading |
 | ``ContentIsGaugeInvariant`` | bridge | ``HasEncoding``, ``HasGauge``, ``RevealsNotCreates`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
@@ -2657,7 +2657,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``CertifiedRuleGenerates`` carries 6 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``AmbiguityNamesInput`` | bridge | ``CertifiedRuleGenerates``, ``HolesCarryAddresses`` | [5](<doc:AtlasUnfolded#AmbiguityNamesInput>) | Play |
 | ``SelfPlaySaturates`` | bridge | ``AmbiguityNamesInput``, ``BasisIsFinite`` | [4](<doc:AtlasUnfolded#SelfPlaySaturates>) | Play |
@@ -2670,7 +2670,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``LawLivesInSigma`` carries 6 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``LawIsTarget`` | bridge | ``LawLivesInSigma``, ``PassIsIdentification`` | [5](<doc:AtlasUnfolded#LawIsTarget>) | Dynamics |
 | ``PlanningIsNavigation`` | bridge | ``LawIsTarget``, ``NavigationInevitable`` | [2](<doc:AtlasUnfolded#PlanningIsNavigation>) | Dynamics |
@@ -2683,7 +2683,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``SkillsAreBalls`` carries 6 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``FourthFace`` | bridge | ``OneBoundaryThreeFaces``, ``SkillsAreBalls`` | [2](<doc:AtlasUnfolded#FourthFace>) | Strategy |
 | ``MeasuredGeometry`` | bridge | ``FourthFace``, ``SearchableIffClusteredAndAligned`` | [1](<doc:AtlasUnfolded#MeasuredGeometry>) | Spec |
@@ -2696,7 +2696,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``SystemCrystallizes`` carries 6 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
 | ``Converges`` | bridge | ``NoInverse``, ``SystemCrystallizes`` | 0 | Matter |
@@ -2709,7 +2709,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``AmbiguityNamesInput`` carries 5 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``SelfPlaySaturates`` | bridge | ``AmbiguityNamesInput``, ``BasisIsFinite`` | [4](<doc:AtlasUnfolded#SelfPlaySaturates>) | Play |
 | ``TowerSelfPlay`` | bridge | ``Ignites``, ``SelfPlaySaturates`` | [2](<doc:AtlasUnfolded#TowerSelfPlay>) | Play |
@@ -2721,7 +2721,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``CrystallizationFront`` carries 5 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``StefanCoupling`` | bridge | ``CrystallizationFront``, ``SearchFlow`` | [4](<doc:AtlasUnfolded#StefanCoupling>) | Liquid |
 | ``GateIsMembrane`` | bridge | ``StefanCoupling`` | [3](<doc:AtlasUnfolded#GateIsMembrane>) | Liquid |
@@ -2733,7 +2733,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``DiscriminatorAndGenerator`` carries 5 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``FreeGeneration`` | bridge | ``DiscriminatorAndGenerator``, ``EmissionAccumulates`` | 0 | Path |
 | ``GateWrapper`` | bridge | ``DiscriminatorAndGenerator``, ``GateIsMembrane`` | 0 | Projection |
@@ -2745,7 +2745,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``EmissionAccumulates`` carries 5 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
 | ``ConstructionIsReading`` | bridge | ``EmissionAccumulates``, ``Reading`` | 0 | Path |
@@ -2757,7 +2757,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``LawIsTarget`` carries 5 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``PlanningIsNavigation`` | bridge | ``LawIsTarget``, ``NavigationInevitable`` | [2](<doc:AtlasUnfolded#PlanningIsNavigation>) | Dynamics |
 | ``AmbiguityIsExperiment`` | bridge | ``HolesCarryAddresses``, ``LawIsTarget`` | [1](<doc:AtlasUnfolded#AmbiguityIsExperiment>) | Dynamics |
@@ -2769,7 +2769,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``ScopeBoundedByEncoding`` carries 5 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``EmissionIsAutoregressive`` | bridge | ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding`` | [1](<doc:AtlasUnfolded#EmissionIsAutoregressive>) | Path |
 | ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
@@ -2781,7 +2781,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``SearchFlow`` carries 5 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``StefanCoupling`` | bridge | ``CrystallizationFront``, ``SearchFlow`` | [4](<doc:AtlasUnfolded#StefanCoupling>) | Liquid |
 | ``GateIsMembrane`` | bridge | ``StefanCoupling`` | [3](<doc:AtlasUnfolded#GateIsMembrane>) | Liquid |
@@ -2793,7 +2793,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HasEfficiency`` carries 4 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``IntelligenceRises`` | bridge | ``HasEfficiency``, ``LibrarySaturates`` | [3](<doc:AtlasUnfolded#IntelligenceRises>) | Intelligence |
 | ``AlignmentEnablesIntelligence`` | bridge | ``AlignmentCoefficient``, ``IntelligenceRises`` | 0 | Search |
@@ -2804,7 +2804,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HasGauge`` carries 4 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``ContentIsGaugeInvariant`` | bridge | ``HasEncoding``, ``HasGauge``, ``RevealsNotCreates`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
 | ``CostReadsGauge`` | bridge | ``HasDistance``, ``HasGauge`` | [1](<doc:AtlasUnfolded#CostReadsGauge>) | Gauge |
@@ -2815,7 +2815,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``NavigationInevitable`` carries 4 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``PlanningIsNavigation`` | bridge | ``LawIsTarget``, ``NavigationInevitable`` | [2](<doc:AtlasUnfolded#PlanningIsNavigation>) | Dynamics |
 | ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
@@ -2826,7 +2826,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``SelfPlaySaturates`` carries 4 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``TowerSelfPlay`` | bridge | ``Ignites``, ``SelfPlaySaturates`` | [2](<doc:AtlasUnfolded#TowerSelfPlay>) | Play |
 | ``PlayIsProof`` | bridge | ``RevealsNotCreates``, ``TowerSelfPlay`` | [1](<doc:AtlasUnfolded#PlayIsProof>) | Play |
@@ -2837,7 +2837,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``StefanCoupling`` carries 4 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``GateIsMembrane`` | bridge | ``StefanCoupling`` | [3](<doc:AtlasUnfolded#GateIsMembrane>) | Liquid |
 | ``AllCoordinatesPresent`` | bridge | ``GateIsMembrane``, ``PlayIsProof`` | 0 | Projection |
@@ -2848,7 +2848,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``StrategyGate`` carries 4 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``StrategyIsUnique`` | bridge | ``ExactlyOneSurvives``, ``StrategyGate`` | [3](<doc:AtlasUnfolded#StrategyIsUnique>) | Strategy |
 | ``StrategyCrystallizes`` | bridge | ``Matter``, ``StrategyIsUnique`` | [2](<doc:AtlasUnfolded#StrategyCrystallizes>) | Strategy |
@@ -2859,7 +2859,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``ComparisonsAreBounded`` carries 3 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``CommunicationBounded`` | theorem | ``ComparisonsAreBounded``, ``HasCache`` | 0 | Space |
 | ``FiniteDiscovery`` | bridge | ``ComparisonsAreBounded``, ``Tower`` | 0 | Matter |
@@ -2869,7 +2869,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``EncodingForgets`` carries 3 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``ColourIsQuotient`` | axis | ``EncodingForgets`` | [1](<doc:AtlasUnfolded#ColourIsQuotient>) | Colour |
 | ``GamutIsCone`` | axis | ``ColourIsQuotient`` | 0 | Colour |
@@ -2879,7 +2879,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``GateIsMembrane`` carries 3 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``AllCoordinatesPresent`` | bridge | ``GateIsMembrane``, ``PlayIsProof`` | 0 | Projection |
 | ``GateWrapper`` | bridge | ``DiscriminatorAndGenerator``, ``GateIsMembrane`` | 0 | Projection |
@@ -2889,7 +2889,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``IntelligenceRises`` carries 3 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``AlignmentEnablesIntelligence`` | bridge | ``AlignmentCoefficient``, ``IntelligenceRises`` | 0 | Search |
 | ``InevitabilityIsDiscriminator`` | bridge | ``AlignmentCoefficient``, ``DiscriminatorAndGenerator``, ``IntelligenceRises`` | 0 | Generation |
@@ -2899,7 +2899,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``SearchableIffClusteredAndAligned`` carries 3 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``MeasuredGeometry`` | bridge | ``FourthFace``, ``SearchableIffClusteredAndAligned`` | [1](<doc:AtlasUnfolded#MeasuredGeometry>) | Spec |
 | ``OrthogonalOrgans`` | bridge | ``DiscriminatorAndGenerator``, ``SearchableIffClusteredAndAligned`` | 0 | Generation |
@@ -2909,7 +2909,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``StrategyIsUnique`` carries 3 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``StrategyCrystallizes`` | bridge | ``Matter``, ``StrategyIsUnique`` | [2](<doc:AtlasUnfolded#StrategyCrystallizes>) | Strategy |
 | ``PhaseBecomesAmplitude`` | bridge | ``StrategyCrystallizes`` | [1](<doc:AtlasUnfolded#PhaseBecomesAmplitude>) | Strategy |
@@ -2919,7 +2919,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``CostIsPathLength`` carries 2 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``LinearArbiter`` | bridge | ``CostIsPathLength`` | [1](<doc:AtlasUnfolded#LinearArbiter>) | Gauge |
 | ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
@@ -2928,7 +2928,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``EncoderConditions`` carries 2 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``ConditionalSolving`` | bridge | ``EncoderConditions`` | [1](<doc:AtlasUnfolded#ConditionalSolving>) | Spec |
 | ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
@@ -2937,7 +2937,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``FourthFace`` carries 2 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``MeasuredGeometry`` | bridge | ``FourthFace``, ``SearchableIffClusteredAndAligned`` | [1](<doc:AtlasUnfolded#MeasuredGeometry>) | Spec |
 | ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
@@ -2946,7 +2946,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HasCompositionalNorm`` carries 2 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``AtomBasis`` | bridge | ``BasisIsFinite``, ``HasCompositionalNorm``, ``RulesCompose`` | [1](<doc:AtlasUnfolded#AtomBasis>) | Basis |
 | ``AtomnessIsTrajectory`` | bridge | ``AtomBasis``, ``NoInverse`` | 0 | Basis |
@@ -2955,7 +2955,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``HasGrammar`` carries 2 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``DepthIsBounded`` | bridge | ``HasGrammar``, ``Tower`` | 0 | Space |
 | ``SpaceFromDifference`` | bridge | ``DistanceIsMetric``, ``HasGrammar`` | 0 | Space |
@@ -2964,7 +2964,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``PlanningIsNavigation`` carries 2 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
 | ``InteractiveDecomposition`` | bridge | ``AmbiguityIsExperiment``, ``MotorSkillsAreStrategies`` | 0 | Dynamics |
@@ -2973,7 +2973,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``Reading`` carries 2 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``CompletionIsSolutionSet`` | bridge | ``HasPath``, ``Reading`` | 0 | Path |
 | ``ConstructionIsReading`` | bridge | ``EmissionAccumulates``, ``Reading`` | 0 | Path |
@@ -2982,7 +2982,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``RulesCompose`` carries 2 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``AtomBasis`` | bridge | ``BasisIsFinite``, ``HasCompositionalNorm``, ``RulesCompose`` | [1](<doc:AtlasUnfolded#AtomBasis>) | Basis |
 | ``AtomnessIsTrajectory`` | bridge | ``AtomBasis``, ``NoInverse`` | 0 | Basis |
@@ -2991,7 +2991,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``StrategyCrystallizes`` carries 2 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``PhaseBecomesAmplitude`` | bridge | ``StrategyCrystallizes`` | [1](<doc:AtlasUnfolded#PhaseBecomesAmplitude>) | Strategy |
 | ``CompleteEntry`` | bridge | ``HasEncoding``, ``PhaseBecomesAmplitude`` | 0 | Strategy |
@@ -3000,7 +3000,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``TowerSelfPlay`` carries 2 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``PlayIsProof`` | bridge | ``RevealsNotCreates``, ``TowerSelfPlay`` | [1](<doc:AtlasUnfolded#PlayIsProof>) | Play |
 | ``AllCoordinatesPresent`` | bridge | ``GateIsMembrane``, ``PlayIsProof`` | 0 | Projection |
@@ -3009,7 +3009,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``AmbiguityIsExperiment`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``InteractiveDecomposition`` | bridge | ``AmbiguityIsExperiment``, ``MotorSkillsAreStrategies`` | 0 | Dynamics |
 
@@ -3017,7 +3017,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``AtomBasis`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``AtomnessIsTrajectory`` | bridge | ``AtomBasis``, ``NoInverse`` | 0 | Basis |
 
@@ -3025,7 +3025,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``BehaviorIsStructure`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``EdgesCarryTheJudgement`` | bridge | ``BehaviorIsStructure``, ``PresentedLaw`` | 0 | Presentation |
 
@@ -3033,7 +3033,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``ColourIsQuotient`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``GamutIsCone`` | axis | ``ColourIsQuotient`` | 0 | Colour |
 
@@ -3041,7 +3041,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``ConditionalSolving`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
 
@@ -3049,7 +3049,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``ContentIsGaugeInvariant`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
 
@@ -3057,7 +3057,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``CostReadsGauge`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``GaugeFixing`` | bridge | ``CostReadsGauge``, ``SystemCrystallizes`` | 0 | Gauge |
 
@@ -3065,7 +3065,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``DistanceIsMetric`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``SpaceFromDifference`` | bridge | ``DistanceIsMetric``, ``HasGrammar`` | 0 | Space |
 
@@ -3073,7 +3073,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``EmissionIsAutoregressive`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
 
@@ -3081,7 +3081,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``GatedConstruction`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
 
@@ -3089,7 +3089,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``IntegerValued`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``QualitiesAreFinite`` | theorem | ``HasEncoding``, ``IntegerValued`` | 0 | Space |
 
@@ -3097,7 +3097,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``InterferenceIsSubstitution`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``DarknessIsNormalForm`` | bridge | ``InterferenceIsSubstitution`` | 0 | Wave |
 
@@ -3105,7 +3105,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``LinearArbiter`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
 
@@ -3113,7 +3113,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``MeasuredGeometry`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
 
@@ -3121,7 +3121,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``MotorSkillsAreStrategies`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``InteractiveDecomposition`` | bridge | ``AmbiguityIsExperiment``, ``MotorSkillsAreStrategies`` | 0 | Dynamics |
 
@@ -3129,7 +3129,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``PhaseBecomesAmplitude`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``CompleteEntry`` | bridge | ``HasEncoding``, ``PhaseBecomesAmplitude`` | 0 | Strategy |
 
@@ -3137,7 +3137,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``PlayIsProof`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``AllCoordinatesPresent`` | bridge | ``GateIsMembrane``, ``PlayIsProof`` | 0 | Projection |
 
@@ -3145,7 +3145,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``ReachIsPath`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
 
@@ -3153,7 +3153,7 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``RepairsPermanent`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``FailureCurriculum`` | bridge | ``HolesCarryAddresses``, ``RepairsPermanent`` | 0 | Map |
 
@@ -3161,6 +3161,6 @@ Each section repeats the same table over its cone, heaviest first. Numbers insid
 
 ``StandardIsType`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``MeasureIsCount`` | bridge | ``StandardIsType`` | 0 | Ruler |

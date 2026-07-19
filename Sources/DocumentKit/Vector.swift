@@ -15,8 +15,8 @@ import VerificationIsIdentification
 // slice and the remainder derives), the SPANS (leaves drawn into the slice they are handed),
 // and the PEN (a path as constrained motion: straight until a named line, so corners
 // derive). Every number a drawing speaks is a rung of the dictionary (Design.swift) or a
-// magnitude of the lattice, read through `Tally`, `SpanPx`, `Halfway`, `Under`; the stated
-// remainders are named holes (text baselines, glyph art), each argued where it stands.
+// magnitude of the lattice, read through `Tally`, `SpanPx`, `Halfway`, `Under`, and the stated
+// remainders are named holes (text baselines, glyph art), each argued in place.
 // Per-instance content (a glyph's path data, a line's text) is a `Structure` hole, exactly
 // like `Symbol`'s target or `TableCell`'s content.
 // ═══════════════════════════════════════════════════════════════
@@ -32,7 +32,7 @@ import VerificationIsIdentification
 //
 // NOT GUARANTEED. The absolute on-screen size: markdown offers no pixel pin,
 // so the canvas renders at container width. Right SHAPE always, exact screen
-// pixels never promised. Text metrics: glyph width is the platform font's;
+// pixels never promised. Text metrics: glyph width is the platform font's, and
 // the craft is a fixed font-family and generous boxes (§S15's discipline:
 // state the box, never compute the fit).
 // ═══════════════════════════════════════════════════════════════
@@ -150,7 +150,7 @@ extension ItalicLabel {
 // is a start and a chain of moves, each move running straight UNTIL a named line — the
 // stopping condition is a rung of the dictionary, so the endpoint DERIVES, and the free
 // part of the drawing is exactly what the constraints leave free. Horizontal position is
-// a fraction of the surface (read through `SpanPx`, the row's own coordinate language);
+// a fraction of the surface (read through `SpanPx`, the row's own coordinate language), and
 // vertical position is a magnitude (read by count). A diagonal is `SlideTo`: a straight
 // line to a point both of whose coordinates already derive. Any arrow eats a pen chain
 // whole — the chain's `typeName` IS the path's `d`. ═══
@@ -558,13 +558,13 @@ extension PlacedScaled {
 // over-promises: a grant is a fact about the ATOM, GLOBAL and permanent (`extension N100:
 // WithinBounds {}` reads as legal everywhere `WithinBounds` is asked for, on any canvas, not
 // scoped to the one that checked it) — the same way granting `Paper: LegibleOnInk` is a global
-// fact about `Paper`, not a per-call-site promise. The floor stays shared; what must NOT be
+// fact about `Paper`, not a per-call-site promise. The floor remains shared, and what must NOT be
 // shared is the thing that actually gets CHECKED (a drop whose vertical is
 // bound). That belongs to each canvas, declared locally — `CyclesLowered` (CyclesHero.swift)
 // requires `X`/`Y`: `WithinCyclesHero`, not the bare floor, so a position only ONE canvas
 // vetted cannot satisfy a DIFFERENT canvas's placement by accident. No shared `GriddedPlaced`
-// lives here for that reason — copying its four lines per canvas is the cost of the guarantee
-// actually holding; at a second canvas the pattern above is already the right shape to repeat.
+// is here for that reason: copying its four lines per canvas is the price of a guarantee
+// that is real. At a second canvas the pattern above is already the right shape to repeat.
 public protocol WithinBounds: Structure {}   // law:allow — the §S25 floor: a per-case grant certificate, conformance IS the vetting, refined per canvas as the comment above states
 
 /// This wraps a subtree in a real link. `Target` is a page path from the site's closed set of
@@ -832,12 +832,12 @@ extension ArrowMarkers {
 
 // THE STATE SWITCH — a canvas's own walk, read by `:target`, not a second page per position
 // (DESIGN19 §2). A fragment link (`Linked`, above) already reaches an id anywhere in the
-// document; `StateGroup` gives that id a group to hide until it is the current one, and
+// document, and `StateGroup` gives that id a group to hide until it is the current one, and
 // `StateSwitchStyle` gives the whole canvas its resting position, the state nothing else
 // has targeted yet. Checked directly, in an actual inlined SVG (DESIGN19 §4 probes 1-2):
 // `:target` switches a sibling group, and `svg:not(:has(.vi-state:target)) #k0` is exactly
 // the fallback CSS `:has()` makes possible. Inert inside a plain `<img>` (DocC's own
-// fallback), the same progressive floor `Linked`'s click already stands on.
+// fallback), the same progressive floor `Linked`'s click is already on.
 
 /// This is one addressable position in a canvas's walk: hidden until `Id` is the page's
 /// current fragment. `Id` is the BARE name (`"k0"`, the `<g id="...">` the browser matches
@@ -920,9 +920,9 @@ extension RuleKey: Spanning {
         // The leaf names out of a chord's cons: a `Chord` node splits at its top-level
         // comma and both halves return to the pile (right first, so declaration order
         // survives the pops). An `Exactly` leaf is spelled whole, spaces shed, because
-        // the press supplies the atom and the atom travels with the press; any other
+        // the press supplies the atom and the atom travels with the press. Any other
         // leaf is named bare, its placeholder tail dropped. A stack walk, not a
-        // helper: the witness stays one body.
+        // helper: the witness remains one body.
         var names: [String] = []
         var pile: [Substring] = [Substring(String(describing: R.self))]
         while let term = pile.popLast() {
@@ -988,9 +988,9 @@ extension FragmentOf {
     public static var typeName: String { "#" + X.typeName }
 }
 
-// THE MAGNITUDES live in the lattice's engine room now (VerificationIsIdentification,
+// THE MAGNITUDES are in the lattice's engine room (VerificationIsIdentification,
 // Primitive.swift): Unit, Plus, Twice, Times, and Tally, the counting read. The design
-// system's ladder (Design.swift) names the rungs; the walk below only ever slices them.
+// system's ladder (Design.swift) names the rungs, and the walk below only ever slices them.
 
 /// A fraction is any pair of structures: the left side counts the numerator, the right side
 /// the denominator. Nothing else exists to know about it.
@@ -1046,11 +1046,11 @@ public typealias RowStart = Paired<
 >
 
 // THE DIVIDED AXIS — layout as the division of space (DESIGN21 v10). A canvas never
-// states a number, a weight, or a position: it lists what stands on the axis, in order.
-// A fixed member takes its dictionary magnitude off the given whole; a space takes the
-// policy's; whatever remains belongs to the flexible members, equally. The rest is a
+// states a number, a weight, or a position: it lists what is on the axis, in order.
+// A fixed member takes its dictionary magnitude off the given whole, a space takes the
+// policy's, and whatever remains belongs to the flexible members, equally. The rest is a
 // lattice witness (`Rest`), counted only at the read, where taking too much is refused.
-// The two axes are one mechanism turned; a vertical axis with no flexible member HAS its
+// The two axes are one mechanism turned, and a vertical axis with no flexible member HAS its
 // own height — the sum of what its members take — so a canvas built of such axes derives
 // its frame instead of stating it.
 

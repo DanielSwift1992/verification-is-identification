@@ -237,7 +237,7 @@ func landingTopics(_ trailheads: [String]) -> String {
     topics += group("The floor: what it delegates, where it stops", symbols(names(floor)))
     let proj = byDepth(protos.filter { PROJ_FILES.contains(file($0)) })
     topics += group("Projection: the framework instantiated on machines", symbols(names(proj)))
-    topics += group("The atlas: what stands on what", ["<doc:Atlas>", "<doc:AtlasUnfolded>"])
+    topics += group("The atlas: what carries what", ["<doc:Atlas>", "<doc:AtlasUnfolded>"])
     topics += group("The papers: the routes", ["<doc:Sources>"])
     return topics
 }
@@ -273,7 +273,7 @@ func atlasRows() -> [String] {
 // hierarchy the compiler already keeps acyclic), so the drilling bottoms out
 // at bare zeros.
 func atlasTable(_ members: [String]) -> String {
-    var out = "| Claim | Kind | Stands on | Carries | Home |\n"
+    var out = "| Claim | Kind | Premises | Carries | Home |\n"
     out += "| --- | --- | --- | --- | --- |\n"
     let ordered = members.sorted {
         (atlasCarries($0).count, title($1)) > (atlasCarries($1).count, title($0))

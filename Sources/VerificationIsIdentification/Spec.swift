@@ -15,7 +15,7 @@
 // It also names the measured boundary: the load-bearing CONDITIONAL claims,
 // modulus (G10), clustering (G12), alignment (α, GA), strategy compression
 // (O18), are NOT derivable from I1–I3, but are measurable properties a domain
-// has or lacks. The proven core (Theorems 1–5) holds unconditionally; the
+// has or lacks. The proven core (Theorems 1–5) is in force unconditionally, and the
 // measured core is settled by an instrument, and that instrument is empirical:
 // the E1 measurement is empirical: a separate tool, not in these types.
 //
@@ -75,6 +75,6 @@ public protocol MeasuredGeometry: SearchableIffClusteredAndAligned, FourthFace {
 // feature grammar) is delegated all the way down to an agent-given base and is
 // only CONDITIONALLY derivable above it (the crystallization tower, terminating
 // at the first metrically-uniform level, O19/G12). So: the postulate floors the
-// medium; perception is the standing debt, closable above its base up to where
+// medium. Perception is the standing debt, closable above its base up to where
 // the domain stops compressing, a measurable number. Same floor PP15 names.
 // ───────────────────────────────────────────────────────────────

@@ -5,7 +5,7 @@
 // atom, every numeral", and left it as prose: "the unbounded Pair-type itself, not
 // expressible as a finite axis" (B8b). This expresses it. The HORN's reach is a
 // PATH: a chain of atoms whose every element is finite (the path has a length) while
-// the closure stays open (the alphabet is a hollow space). One mechanism carries
+// the closure remains open (the alphabet is a hollow space). One mechanism carries
 // strings, numbers, pinpads, and programs: each is a path of token-atoms, the same
 // cons the roster and the secret are built from.
 //
@@ -169,13 +169,13 @@ public protocol ErasureIsRecession: EmissionAccumulates, NoInverse {}
 // their base, only when its tokens are themselves numerals. Length is universal, Value is gated on
 // the alphabet, and that gate IS the user-visible fact that a letter-path has no integer reading
 // while a digit-path does: the projection is the conformance, not a runtime test. Swift cannot
-// quantify "every token is a numeral" over an open Path, so the Value fold stays prose, the
+// quantify "every token is a numeral" over an open Path, so the Value fold remains prose, the
 // soundest witness is the digit path (``HollowReach``), whose tokens ARE counts. [Basis B8b]
 //
 // NUMBER AND WORD. The numeral one and the word o·n·e are two paths over two alphabets, joined by a
 // determined coercion (one settled value each way), not an identity: the numeral carries the Value
 // fold, the word does not, so identifying them would erase the gate. The bridge is named and crossed
-// on purpose, atoms stay distinct, relations stay explicit, the directory law. [Basis]
+// on purpose, atoms remain distinct, relations remain explicit, the directory law. [Basis]
 //
 // DROP THE COMPILER? The System/Reading split answers it (Architecture §1-2). NAVIGATION is yours:
 // walking the trie of realized paths (insert at a boundary, recede the head on erasure, offer the

@@ -5,12 +5,12 @@ import VerificationIsIdentification
 // program. A state file is a form whose slots are `typealias <Slot> = <term>`
 // lines, and a rule names one slot, one expected pattern, one replacement
 // template. Pressing compares and substitutes: one match or none, and a
-// mismatch leaves the file byte-identical. The one applier lives in Tools
+// mismatch leaves the file byte-identical. The one applier is in Tools
 // (`swift run Tools press <Rule>`), is the same few lines for every domain,
 // and no domain logic is ever written as code: a system's behaviour is its
 // triples.
 //
-// The judge sits on the edges, not the states: a rule with a variable is a
+// The judge is on the edges, not the states: a rule with a variable is a
 // generic declaration, so the compiler admits every application at once, and
 // every reachable state of a chain is well-typed before the first press. In
 // the theory's own axis this is the Law relocated one step further: where

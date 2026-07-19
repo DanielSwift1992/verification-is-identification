@@ -8,7 +8,7 @@
 // coefficient α (GA3). High α: the geometry points at solutions, descent
 // is ballistic. Zero α: the geometry is real but useless, no order beats
 // enumeration, exactly IiI's distribution-relativity boundary as landscape
-// ruggedness (GA6). Clustering is whether the space has geometry; alignment
+// ruggedness (GA6). Clustering is whether the space has geometry, and alignment
 // is whether the geometry is FOR you (GA7).
 //
 // Pure types (§0′). Grounds the Alpha axis (HasAlpha) with its content. [Search]
@@ -59,6 +59,6 @@ public protocol SearchableIffClusteredAndAligned: AlignmentCoefficient, OneBound
 //
 // GA8: clustering (amortizes), alignment (orders), and SYMMETRY (shrinks the
 // space by quotient (the √n divisor-pairing) are three orthogonal levers. A
-// domain's profile is a triple (cluster, align, symmetry); primes have only
+// domain's profile is a triple (cluster, align, symmetry), and primes have only
 // symmetry. A third axis worth its own pin in a later pass.
 // ───────────────────────────────────────────────────────────────

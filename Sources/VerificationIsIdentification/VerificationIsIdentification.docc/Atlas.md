@@ -1,8 +1,8 @@
 # Atlas
 
-One row per claim of the theory: what it stands on, and how much stands on it. The table is printed from the compiler's own dependency record, never drawn or edited by hand.
+One row per claim of the theory: its premises, and how much it carries. The table is printed from the compiler's own dependency record, never drawn or edited by hand.
 
-Each claim is one Swift protocol, and one claim standing on another is that protocol refining it. The compiler therefore already holds the full dependency graph of the theory, and this page prints it as a table. **Stands on** lists the claim's direct premises. **Carries** counts every claim that rests on it, directly or through others: remove this row and that many claims stop compiling. The heaviest rows are the assumptions the theory leans on. **Kind** is computed from the row's shape, not assigned: a *seed* is one of the two primitives everything is built from, an *axis* opens a coordinate the theory can vary along, a *bridge* joins axes into a theorem, a *marker* names a property used as a constraint, a *kernel* is core machinery between the seed and the axes.
+Each claim is one Swift protocol, and a premise is a protocol the claim refines. The compiler therefore already has the full dependency graph of the theory, and this page prints it as a table. **Premises** lists the claim's direct parents. **Carries** counts every claim it carries, directly or through others: remove this row and that many claims stop compiling. The heaviest rows are the theory's load-bearing assumptions. **Kind** is computed from the row's shape, not assigned: a *seed* is one of the two primitives everything is built from, an *axis* opens a coordinate the theory can vary along, a *bridge* joins axes into a theorem, a *marker* names a property used as a constraint, a *kernel* is core machinery between the seed and the axes.
 
 The table is testable. Delete any claim's declaration from the source and build: the compiler lists every claim that falls, and the length of that list is this table's Carries number. The table and the compiler read the same source, so the two counts cannot drift apart.
 
@@ -10,7 +10,7 @@ A cycle between claims cannot exist here: a circular protocol hierarchy does not
 
 ## The load, heaviest first
 
-| Claim | Kind | Stands on | Carries | Home |
+| Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``HasSigma`` | axis | — | [155](<doc:AtlasUnfolded#HasSigma>) | Core |
 | ``Structure`` | marker | — | [143](<doc:AtlasUnfolded#Structure>) | Primitive |

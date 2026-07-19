@@ -40,8 +40,8 @@ public protocol EncodingSelectionSaturates: LibrarySaturates,
     where Encoding: Permanent {}
 
 // §5 A1: S₀ ⊇ S₁ ⊇ ..., solution set only shrinks. This IS the V=I
-// inner-loop result CandidatesOnlyLeave (§5.22); IiI reuses it directly
-// (Law §1: the claim lives once, in Identification.swift, no rename here).
+// inner-loop result CandidatesOnlyLeave (§5.22), and IiI reuses it directly
+// (Law §1: the claim is written once, in Identification.swift, no rename here).
 
 /// A2: the system never retracts a result. ``CachePermanent`` (I3) plus
 /// ``EqualityDecidable`` makes each individual membership result permanent.

@@ -8,7 +8,7 @@
 //
 // This is the decimal system expressed in the lattice. The digits are domain-agnostic:
 // a password, a band count, a year, all are chains of the same ten atoms. The unary
-// Peano successor (IntegerValued: Right: IntegerValued) is the COUNTING mechanism;
+// Peano successor (IntegerValued: Right: IntegerValued) is the COUNTING mechanism, and
 // these digits are the NAMING mechanism. Both are valid: one counts by folding,
 // the other names by composing atoms.
 // ═══════════════════════════════════════════════════════════════

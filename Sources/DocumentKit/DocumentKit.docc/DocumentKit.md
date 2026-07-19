@@ -158,7 +158,7 @@ A gap belongs to which two states are adjacent, not to either state alone. Below
 Used like this:
 
 ```swift
-// the rule lives on the SPACE, stated once per pairing:
+// the rule is on the SPACE, stated once per pairing:
 extension SpaceBetween where Left == ToDo, Right == Doing {
     static var typeName: String { " -> " }
 }

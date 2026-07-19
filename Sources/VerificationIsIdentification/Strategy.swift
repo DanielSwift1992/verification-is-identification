@@ -1,7 +1,7 @@
 // ═══════════════════════════════════════════════════════════════
 // Order Is Object (Strategy).
 //
-// V=I proved the agent's sole freedom is the order of COMPAREs (§5.25);
+// V=I proved the agent's sole freedom is the order of COMPAREs (§5.25), and
 // that order carries zero identification bits at its level (pure
 // phase). IiI noted strategy state is mutable: a caveat. This paper
 // removes the caveat by changing its level: a strategy is a finite
@@ -11,8 +11,8 @@
 // library entry completes into (f*, E, σ*): WHAT, through which lens,
 // HOW to reach it fastest. The path itself becomes a certified object.
 //
-// Pure types (§0′). The Y-axis was the last unowned degree of freedom;
-// it now enters the library, with a proof attached, like everything else.
+// Pure types (§0′). The Y-axis was the last unowned degree of freedom, and
+// it enters the library, with a proof attached, like everything else.
 // ═══════════════════════════════════════════════════════════════
 
 /// A strategy (an order-choosing decision tree) is a finite structure in Σ, so

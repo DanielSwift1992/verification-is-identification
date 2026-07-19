@@ -5,7 +5,7 @@ import Swift
 //    below reach the same fixed target from the author's side: the law is
 //    WRITTEN — a finite transition table as a structure in Σ — and the judge
 //    checks the written claims before any step is taken. Identification and
-//    presentation meet at the same object; only the direction of travel
+//    presentation meet at the same object, and only the direction of travel
 //    differs. Lived first as the rewrite-triple medium (a button over a state
 //    file is a triple, pressed and judged), then lifted here. ──
 

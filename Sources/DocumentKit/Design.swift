@@ -58,9 +58,9 @@ import VerificationIsIdentification
 // the driver's edge, never a component's own decision.
 //
 // TRANSPARENCY. A canvas ground is transparent: the host's page shows through, and the
-// composition must survive any host theme. Therefore text NEVER floats: every label sits on a
+// composition must survive any host theme. Therefore text NEVER floats: every label is on a
 // surface role (card, track, chip). A floating label is legible on exactly one host theme,
-// a bug wearing a style. Where a diagram's content cannot all sit on surfaces, the
+// a bug wearing a style. Where a diagram's content cannot all be on surfaces, the
 // canvas earns an explicit backdrop role instead (architecture's case), stated, not defaulted.
 // ═══════════════════════════════════════════════════════════════
 
@@ -126,10 +126,10 @@ extension Line {
 }
 
 // Black at two opacities, not a third grey, the reference's own move: `InkSecondary` is the
-// light-surface secondary text. `Muted` stays for dark surfaces (`Ink`-backed panels),
+// light-surface secondary text. `Muted` remains for dark surfaces (`Ink`-backed panels),
 // unchanged.
 //
-// Every atom on this page stays exactly as it was. They remain the LIGHT half of
+// Every atom on this page remains exactly as it was. They remain the LIGHT half of
 // mechanism (A)'s two literal files (`Cards.swift`'s `LightCardPalette` reads them directly)
 // and the light fallback baked into mechanism (B)'s role atoms below. Nothing here is deleted.
 // The role atoms are new names ADDED alongside, not a replacement of this vocabulary.
@@ -186,7 +186,7 @@ extension FontStack {
 }
 
 // ── The dark HALF of mechanism (A)'s two literal files. The nine cards and the avatar need
-// only two colours with a dark counterpart (the rest lives in footer.html's CSS only,
+// only two colours with a dark counterpart (the rest is in footer.html's CSS only,
 // mechanism (B)). RolesPlate is mechanism (A)'s second consumer, drawing all eight
 // roles as a grid tile, so the remaining six get their dark half here too, from footer.html's
 // OWN `@media (prefers-color-scheme: dark)` block: the SAME values that CSS block already
@@ -439,7 +439,7 @@ extension S32 {
 }
 
 // ── Stroke voices: the two widths every line in the system speaks, the dash of a
-// dependency, and the one arrowhead every arrow shares. Named once; a combinator reads
+// dependency, and the one arrowhead every arrow shares. Named once, and a combinator reads
 // its voice, never a bare number. ──
 public enum HairlineWidth: Close {}
 extension HairlineWidth {
@@ -526,7 +526,7 @@ extension Display {
 //    one conformance, even with different conditional bounds"
 // Confirmed with as few as two extensions, so no rephrasing of the `where` clause escapes it.
 //
-// The gate still lives at the type level, checked by the compiler, not a linter. It just
+// The gate is still at the type level, checked by the compiler, not a linter. It just
 // routes through the BACKGROUND's identity instead of a shared generic pair: each
 // background states which foregrounds read against it, once, as an ordinary (unconditional)
 // conformance on the concrete colour. There is no limit on how many DIFFERENT protocols one
@@ -538,11 +538,11 @@ extension Display {
 // The gates name the ROLE a mechanism-B component actually reads
 // (`LegibleOnSurfaceCard`, not `LegibleOnPaper`): `Paper`/`Mist`/`Accent` are mechanism (A)'s
 // own literal hexes (`Cards.swift` draws no gated text at all, so they never needed the gate).
-// `SurfaceCard`/`SurfaceTrack`/`AccentRole` are the role atoms mechanism-B components hold. The
+// `SurfaceCard`/`SurfaceTrack`/`AccentRole` are the role atoms mechanism-B components carry. The
 // legible PAIR itself is unchanged, same light-mode contrast the reference checked, only the
 // name moves to match what is actually being paired now. `LegibleOnInk`/`LegibleOnNavyTint`
-// stay untouched: no component reads them (`Ink` marks the architecture
-// diagram's own fixed dark anchor, deliberately outside the role system, see `Diagram.swift`;
+// remain untouched: no component reads them (`Ink` marks the architecture
+// diagram's own fixed dark anchor, deliberately outside the role system, see `Diagram.swift`, and
 // `NavyTint` is unused infrastructure), so there is nothing here to rename. ──
 
 /// This marks a foreground legible against an `Ink` background, unused (see above), kept as-is.
@@ -576,14 +576,14 @@ extension InkSecondary: LegibleOnNavyTint {}
 // pairing law — an unreadable (foreground, background) pair is still not a granted pair —
 // but the per-piece text wrappers that once carried the constraint died with their last
 // consumers. A span label states its role colour and its slice carries no surface type
-// for a constraint to bind against; binding one needs surface-typed slices, the Canon
+// for a constraint to bind against. Binding one needs surface-typed slices, the Canon
 // engine's own next step, stated here so the gap reads as a decision, not an oversight. ──
 
 // ── Gated text: the design system's own `Label`. `Fg` is constrained to a background's
 // legible-foreground protocol, so an off-palette pair does not conform to the associated type
 // at all. The type does not compile, the same way an access without `Authorized` does not
-// (Policy.swift). Built only where a component actually needs it (§S8): card text sits on
-// `SurfaceCard`, track text sits on `SurfaceTrack`. ──
+// (Policy.swift). Built only where a component actually needs it (§S8): card text is on
+// `SurfaceCard`, track text on `SurfaceTrack`. ──
 
 public protocol GatedBoldTextOnInk: Open {
     associatedtype Fg: LegibleOnInk
@@ -629,9 +629,9 @@ extension GatedTextOnSurfaceCard {
 }
 
 // ── Card metrics: the heights and baselines the span-drawn KPI cards read. The card art
-// itself lives on the span engine (`SpanCardFace`/`SpanHeroFace` and `SpanLabel`); what the
-// design system keeps is the vertical word: how tall a metric tile stands, where its title
-// and value sit. `AccentRole`'s only legal foreground stays `OnAccent`: one hero per screen. ──
+// itself is on the span engine (`SpanCardFace`/`SpanHeroFace` and `SpanLabel`). What the
+// design system keeps is the vertical word: how tall a metric tile is, where its title
+// and value are. `AccentRole`'s only legal foreground remains `OnAccent`: one hero per screen. ──
 
 public typealias KpiCardHeight = Plus<
     U64,
@@ -665,8 +665,8 @@ extension AnchorMiddle {
 }
 
 // ── AXIS POLICY AND ELEMENT EXTENTS — the dictionary a divided axis speaks. A canvas
-// names these; only this file spells them in rungs. `EdgeMargin` stands at a canvas's
-// edges, `Breath` between neighbours; an element's extent is the width it takes off the
+// names these, and only this file spells them in rungs. `EdgeMargin` is at a canvas's
+// edges, `Breath` between neighbours. An element's extent is the width it takes off the
 // axis, one named step per element kind. ──
 
 // `EdgeMargin` and `Breath` share a rung by decision, and keep two names: the edge of a
@@ -817,7 +817,7 @@ public typealias ArchCaptionWide = Plus<U256, Plus<U16, Plus<U8, Plus<U2, U1>>>>
 // ── The gate's vertical fascia: the row's drop, the box, the fall to dead, and the reset
 // swing — every horizontal line of the diagram, named once, so the pen's stopping
 // conditions and the boxes' faces read the same rungs. `GateArrowDrop` states half the box
-// (the medium has no division of a rung); `GateFallTall` is the one free height the fall
+// (the medium has no division of a rung). `GateFallTall` is the one free height the fall
 // takes. ──
 // ── The architecture's row rungs: the bar, the box, the gap an arrow falls through, the
 // nose it stops short by, and the footer line. The drops are sums the canvas composes. ──
@@ -977,15 +977,15 @@ public typealias VaultZoneTall = Times<
 >   // the sign-in zone under a named header
 
 // ── Track metrics: THE standard track. One height, one baseline, for every 32-tall bar,
-// chip, and split the medium draws; three canvases used to hold three names for this one
-// fact. The bar itself is span-drawn; the design system keeps the vertical word. ──
+// chip, and split the medium draws. Three canvases once carried three names for this one
+// fact. The bar itself is span-drawn, and the design system keeps the vertical word. ──
 
 public typealias TrackHeight = U32
 // The CENTRED class of baselines derives now: `CenteredBaseline` (Vector.swift) reads the
 // zone's middle plus half the font's own capital height (GeneratedFontMetrics), and this
 // rung is its first conversion — the derived value reproduces the old stated "21" to the
 // pixel. STACKED baselines (a title over a subtitle) remain stated per canvas: they are
-// design choices, not centrings, and the hole they keep open is named where they stand.
+// design choices, not centrings, and the hole they keep open is named in place.
 public typealias TrackBaseline = CenteredBaseline<TrackHeight, TextS>
 
 public enum N0: Close {}
@@ -1013,7 +1013,7 @@ extension GlyphRectFillStroke {
 }
 
 // ── The space ladder — the design system's rungs. Every magnitude in the medium composes
-//    from these by name; a canvas states proportions, and the seed (`SpaceSeed`) is the one
+//    from these by name, and a canvas states proportions, and the seed (`SpaceSeed`) is the one
 //    number that turns a count into pixels. ──
 
 public typealias U1 = Unit

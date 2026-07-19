@@ -4,7 +4,7 @@
 // Matter derived the crystal: the saturated library, permanent and
 // irreducible, and named its complement only in passing: a LIQUID phase
 // below saturation that, unlike a physical melt, never melts. This derives
-// the liquid. The un-saturated regime is not a deficient crystal; it is a
+// the liquid. The un-saturated regime is not a deficient crystal: it is a
 // phase with its own dynamics, and for most domains (horns) it is the
 // PERMANENT one. The liquid has two coupled dynamics: a crystallization
 // FRONT (the frontier, the discriminator side, advances monotonically, I3:
@@ -15,7 +15,7 @@
 //
 // Pure types (§0′). The complement of Matter: the becoming of the crystal.
 // Physics borrowed as TOOLS (Stefan, ruggedness, partition function), not
-// as derived equations (§6). Knowledge is solid; learning is liquid. [Liquid]
+// as derived equations (§6). Knowledge is solid, learning is liquid. [Liquid]
 // ═══════════════════════════════════════════════════════════════
 
 /// Below saturation is a PHASE in its own right, not a deficient crystal. For a

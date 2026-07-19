@@ -5,7 +5,7 @@
 // renders the lattice as text, so it needs a construction the theory does not: a `{ }`-callable
 // shorthand for a generic leaf (`Symbol { Alice.self }` instead of `Symbol<Alice>.self`). This
 // file is that one exception, stated once, so it reads as a decision and not a drift. `Tools
-// surface` (SurfaceLint.swift) checks the checkable subset on every build; the rest is checked
+// surface` (SurfaceLint.swift) checks the checkable subset on every build, and the rest is checked
 // by review, the same split the core Law uses.
 
 /// How every combinator on the rendering surface must be written: the grammar of the whole

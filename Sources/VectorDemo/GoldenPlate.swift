@@ -86,7 +86,7 @@ func runGoldens() {
 
     plateLine("PerceptualRung(Undimmed)", PerceptualRung<Undimmed>.typeName)
     plateLine("PerceptualRung(Quenched)", PerceptualRung<Quenched>.typeName)
-    plateLine("PerceptualRung(HBetaZ walk 00010011)", PerceptualRung<Dimmer<Dimmer<Dimmer<Brighter<Dimmer<Dimmer<Brighter<Brighter<Settled>>>>>>>>>.typeName)
+    plateLine("PerceptualRung(walk 00010011)", PerceptualRung<Dimmer<Dimmer<Dimmer<Brighter<Dimmer<Dimmer<Brighter<Brighter<Settled>>>>>>>>>.typeName)
 
     plateLine("EdgeSame(equal)", EdgeSame<Rung4, Rung4, PlateFace>.rendered(atX: RowStart.self, width: GivenSpan<WideSurface>.self))
     plateLine("EdgeSame(unequal)", EdgeSame<Rung4, Rung5, PlateFace>.rendered(atX: RowStart.self, width: GivenSpan<WideSurface>.self))

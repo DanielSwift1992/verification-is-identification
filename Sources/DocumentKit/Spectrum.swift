@@ -166,7 +166,9 @@ extension Cover90 {
 /// in 256ths of one full pour. Stating them is the bridge's whole job. Every
 /// weight below carries its pedigree: the line weights read the CIE 1931 2°
 /// observer (cvrl.org, 1 nm table) at their wavelengths, rounded to the
-/// nearest lattice pair preserving chromaticity. The display primaries are the
+/// nearest lattice pair preserving chromaticity. Each weight carries its check,
+/// the stated chromaticity against the table's, so a rounding that drifts is
+/// visible at the line that states it. The display primaries are the
 /// columns of their standards' published matrices, rounded once.
 public protocol CanonicalWeights {
     associatedtype XShare: Structure
@@ -198,11 +200,13 @@ extension HAlphaGlow {
 }
 
 /// The H-β line, 486 nm, per rung: CIE 1931 2° reads 0.0519, 0.1762, 0.5823.
+/// The stated triple keeps x = 0.065 against the table's 0.0640 and y = 0.217
+/// against its 0.2174.
 public enum HBetaGlow: CanonicalWeights, Close {}
 extension HBetaGlow {
-    public typealias XShare = Twice<Unit>
-    public typealias YShare = Twice<Plus<Twice<Unit>, Unit>>
-    public typealias ZShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Unit>, Unit>>
+    public typealias XShare = Plus<Twice<Unit>, Unit>
+    public typealias YShare = Plus<Twice<Twice<Twice<Unit>>>, Twice<Unit>>
+    public typealias ZShare = Plus<Twice<Twice<Twice<Twice<Twice<Unit>>>>>, Unit>
     public static var typeName: String { "h-beta" }
 }
 

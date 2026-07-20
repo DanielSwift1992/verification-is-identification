@@ -5,7 +5,11 @@ import Foundation
 // their verdicts are compared, clean and under planted lies. Agreement is the
 // expected reading. A lie must be refused by BOTH, and both refusals must name the
 // same facts — the person, the coordinate values in conflict — so the comparison is
-// over named premises, never over exit codes alone.
+// over named premises, never over exit codes alone. The gate lie is the one check
+// with the opposite expectation: the normative layer itself is edited, the compiler
+// holds the loosened gate, and only the second record refuses — the seat's signal
+// that the law moved, not the data (Play Is Proof PP15: the human read of the
+// policy file is the floor beneath both records).
 //
 // `Tools judge diff [N]`   — generate a company of N in a disposable worktree, run
 //                            both judges clean, then under each planted lie.
@@ -195,8 +199,53 @@ enum JudgeDiff {
                 print("      swift said: \(tail.prefix(400))")
             }
         }
+        // ── the gate lie: the law is edited, and only the second record objects ──
+        // Loosening `VerifiedView`'s `where` makes the cross-department entry legal
+        // Swift, so the compiler holds. The second record does not move with the
+        // edit, so the judge still refuses by name. The expected verdict is
+        // DIVERGENCE, and aligning the two records takes two edits in two
+        // encodings — the price the seat puts on touching the law.
+        let filtering = worktree + "/Sources/Organization/System/Filtering.swift"
+        let gateWhole = ">: Close\nwhere Who.Home == Of.Home {}"
+        let gateLoose = ">: Close {}"
+        if let law = try? String(contentsOfFile: filtering, encoding: .utf8),
+           law.contains(gateWhole),
+           let planted = lies[0].apply(original, clean) {
+            try? law.replacingOccurrences(of: gateWhole, with: gateLoose)
+                .write(toFile: filtering, atomically: true, encoding: .utf8)
+            try? planted.text.write(toFile: corpus, atomically: true, encoding: .utf8)
+            let judged = Judge.judge(paths: [corpus])!
+            let swifted = standingArbiter(in: worktree)
+            try? law.write(toFile: filtering, atomically: true, encoding: .utf8)
+            try? original.write(toFile: corpus, atomically: true, encoding: .utf8)
+
+            let premises = judged.refusals.map { $0.premise }.joined(separator: " ")
+            var judgeNames = judged.refusals.isEmpty == false
+            for token in planted.tokens
+            where premises.contains(token) == false {
+                judgeNames = false
+            }
+            let diverged = swifted.passed && judgeNames
+            if diverged == false { disagreements += 1 }
+            print("  the gate loosened, the same cross-department entry planted:")
+            print("      judge \(judged.refusals.count) refusal(s) in "
+                + "\(String(format: "%.0f", judged.milliseconds)) ms · swift "
+                + "\(swifted.passed ? "holds" : "REFUSES") in "
+                + "\(String(format: "%.0f", swifted.seconds)) s · "
+                + (diverged
+                    ? "✓ diverges by design: the law moved, the second record did not"
+                    : "✗ NO DIVERGENCE"))
+            if diverged == false {
+                print("      tokens wanted: \(planted.tokens.joined(separator: ", "))")
+                print("      judge said: \(premises.prefix(160))")
+            }
+        } else {
+            print("  the gate lie found no gate to loosen, skipped")
+            disagreements += 1
+        }
+
         if disagreements == 0 {
-            print("\n✓ THE SEAT holds: every verdict agreed, every refusal named the same facts.")
+            print("\n✓ THE SEAT holds: every verdict agreed, every refusal named the same facts, and the loosened gate diverged by design.")
             return
         }
         print("\n✗ THE SEAT found \(disagreements) disagreement(s): a defect in one judge or the other.")

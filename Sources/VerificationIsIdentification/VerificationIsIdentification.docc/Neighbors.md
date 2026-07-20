@@ -1,6 +1,6 @@
 # The neighbors
 
-Four known results are beside this package. Each section names one in plain words, then states the exact point of difference.
+Five known results are beside this package. Each section names one in plain words, then states the exact point of difference.
 
 ## Overview
 
@@ -19,6 +19,10 @@ In Agda, Coq, or Idris, every program provably terminates, and non-termination i
 ### Automaton minimization
 
 The login keypad in the Organization showcase accepts one four-digit code out of 9⁴ = 6561. Drawn as a tree, that is thousands of states. Every wrong digit, at any depth, has the same future: the dead state. States with the same future are one state under bisimulation, the standard equivalence on state machines, and the keypad ships that quotient: five states. The papers call the move a fold (Program Is Path), the automata literature calls it minimization. One mechanism, two vocabularies.
+
+### Policy engines
+
+Policy-as-code engines state access rules as data and answer requests against them: OPA evaluates Rego policies at request time, and AWS's Cedar adds an analyzer beside the engine that proves properties of a policy with a solver. In both, the policy is one artifact and the system it governs is another, met at request time. Here the policy and the system are one text: people, documents, and rules are types in one file, an access is a type instantiation, and an illegal access is not rejected when requested: it is unwritable. The check is exhaustive over the declared space, because every access the code states is decided at build. The certificate replays byte for byte, and every refusal names the failed premise: the address an agent learns from.
 
 ### The combination
 

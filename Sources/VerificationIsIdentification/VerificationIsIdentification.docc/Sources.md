@@ -40,7 +40,7 @@ The readings above are the structure. This one is for the reader with a goal: pi
 | matter and dynamics — what the loop leaves, and how it moves | <doc:permanence_is_resistance> → <doc:difference_is_distance> → <doc:distance_is_cost> → <doc:interference_is_intelligence> |
 | learning machines — the agent, and how it trains itself | <doc:intelligence_is_inevitable> → <doc:play_is_proof> → <doc:architecture_of_learning_machines>, then <doc:basis_is_residue>, <doc:gradient_is_alignment>, <doc:proposal_is_order>, <doc:learning_is_liquid>, <doc:solvability_criterion> |
 | order and reading — the one free variable, made object | <doc:order_is_object> → <doc:reading_is_order> → <doc:navigation_is_geometry> |
-| software — the artifact, and the path it is written along | <doc:record_is_system> → <doc:program_is_path> → <doc:permission_is_existence> |
+| software — the artifact, and the path it is written along | <doc:record_is_system> → <doc:merge_is_commutation> → <doc:program_is_path> → <doc:permission_is_existence> |
 
 ## The tag legend
 
@@ -68,6 +68,7 @@ The tag in each symbol's discussion decodes here. Every paper is readable in ful
 | `Spec` | [The Solvability Criterion](doc:solvability_criterion) |
 | `FiG` | [Form Is Gauge](doc:form_is_gauge) |
 | `Projection` | [The Architecture of Learning Machines](doc:architecture_of_learning_machines) |
+| `MiC` | [Merge Is Commutation](doc:merge_is_commutation) |
 
 > Tip: A section code inside a tag is the paper's own numbering: `§5.22`, `G2c`, `N5`, `O9`, `LT3`, `PP10`, `B4`. In the paper, that code lands you on the exact claim.
 
@@ -98,6 +99,7 @@ The tag in each symbol's discussion decodes here. Every paper is readable in ful
 - <doc:architecture_of_learning_machines>
 - <doc:program_is_path>
 - <doc:record_is_system>
+- <doc:merge_is_commutation>
 - <doc:halt_is_ignition>
 - <doc:permission_is_existence>
 - <doc:form_is_gauge>

@@ -38,3 +38,16 @@ public protocol EdgesCarryTheJudgement: PresentedLaw, BehaviorIsStructure {}
 public protocol FormIsInvariant: PresentedLaw {
     associatedtype Form: Pair
 }
+
+// ───────────────────────────────────────────────────────────────
+// Recorded, not pinned (the house pattern, beside Basis B8b and Gen GD7).
+//
+// MERGE IS COMMUTATION. Two edits of one record are independent when their
+// written entries are disjoint and no law's support meets both reaches. Then
+// the edits commute into one merged position, the merged verdict is the
+// conjunction of the parts' verdicts carried whole, and the judge of an edit
+// re-reads exactly the touched laws. The commutation is a statement about two
+// trajectories of one record, and the lattice admits no trajectory as a value
+// on an axis, so the claim is recorded here, beside the edge judgement its
+// lemma leans on. [MiC]
+// ───────────────────────────────────────────────────────────────

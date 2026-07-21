@@ -189,6 +189,32 @@ Ice, the hydrogen spectrum, the Higgs vacuum, and the packing of this package's 
 - ``PackingUnderCost``
 - ``PackingUnderContent``
 
+### The grant world — the domain genre on one page
+
+Access over declared realms: a realm is an atom (the fourth is one line, not a schema change), a verb set is a protocol class whose containment is conformance, and one gate carries two tiers at once. The compiler decides the key's class, and the second judge decides the posting equality from the world's own declarations.
+
+- ``Reads``
+- ``Writes``
+- ``Administers``
+- ``ReaderKey``
+- ``WriterKey``
+- ``WardenKey``
+- ``Realm``
+- ``Archive``
+- ``Foundry``
+- ``Harbor``
+- ``Keeper``
+- ``Room``
+- ``Ledger``
+- ``Anvil``
+- ``Clerk``
+- ``Smith``
+- ``Warden``
+- ``Entered``
+- ``Enter``
+- ``SmithAtTheAnvil``
+- ``ClerkAtTheLedger``
+
 ### The Rydberg ladder — energy as a judged integer lattice
 
 Hydrogen's energy, recorded as one number per floor (144/n² in units of R/144) and judged as a lattice: every jump's drop is held to its two floors, and the two roads down from the fourth floor are one drop. The arithmetic equalities are judged by the second judge's counting canon (`swift run Tools judge where`), the ladder spelling is proved by the compiler itself, and the numerals are the lattice's own ladder, read from `VerificationIsIdentification`.

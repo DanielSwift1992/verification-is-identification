@@ -23,6 +23,11 @@ import Foundation
 enum WhereJudge {
     typealias Term = Press.Term
 
+    /// The canon's version, printed in the verdict. The port mirrors the canon,
+    /// and the number is the cheap handshake: one glance tells both sides they
+    /// fold terms the same way. Version two is the counting canon.
+    static let canonVersion = 2
+
     struct Conformer {
         let name: String
         let parameters: [String]
@@ -427,7 +432,7 @@ enum WhereJudge {
         }
 
         if refusals.isEmpty {
-            print("✓ THE WHERE holds: \(judged) equalities judged across \(world.uses.count) uses, the certificates, and the gated conformers, one canon each side.")
+            print("✓ THE WHERE holds: \(judged) equalities judged across \(world.uses.count) uses, the certificates, and the gated conformers, one canon each side (canon v\(canonVersion)).")
         } else {
             for refusal in refusals { print("✗ \(refusal)") }
             exit(1)

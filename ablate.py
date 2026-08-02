@@ -56,10 +56,10 @@ green_ok, _ = build()
 out = ["# Which premises the build needs",
        "",
        f"Cut {len(rows)} premises one at a time in {time.time()-t0:.0f}s on "
-       f"{datetime.date.today()}. Each row cuts one declared arrow, rebuilds",
+       f"{datetime.date.today()}. Each row cuts one declared premise, rebuilds",
        "the core module, and restores the file. `build fails` lists the names",
-       "the compiler refused without the arrow. `builds green` says the module",
-       "compiles without it: the arrow still carries meaning for a reader, and",
+       "the compiler refused without the premise. `builds green` says the module",
+       "compiles without it: the premise still carries meaning for a reader, and",
        "the papers, not this table, argue it.",
        "",
        "| claim | premise | cut result | names refused |",

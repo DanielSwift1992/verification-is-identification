@@ -1,9 +1,9 @@
 # Which premises the build needs
 
-Cut 12 premises one at a time in 24s on 2026-08-02. Each row cuts one declared arrow, rebuilds
+Cut 12 premises one at a time in 24s on 2026-08-02. Each row cuts one declared premise, rebuilds
 the core module, and restores the file. `build fails` lists the names
-the compiler refused without the arrow. `builds green` says the module
-compiles without it: the arrow still carries meaning for a reader, and
+the compiler refused without the premise. `builds green` says the module
+compiles without it: the premise still carries meaning for a reader, and
 the papers, not this table, argue it.
 
 | claim | premise | cut result | names refused |

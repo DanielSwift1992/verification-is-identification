@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-# Ablation over the core lattice: cut one declared premise, rebuild, record
-# what the compiler refuses. The declared graph says every arrow matters;
-# this measures which arrows the build actually leans on. A premise whose
-# cut builds green is STRUCTURALLY DECORATIVE FOR THE COMPILER: the words
-# still carry meaning for a reader, but no type in the module needs the
-# arrow to exist. That wording is deliberate: the compiler measures
-# structure, never logical necessity.
+# Cut one declared premise, rebuild the core module, record the result,
+# restore the file. The Atlas draws every arrow; this table says which
+# arrows the build fails without. An arrow the build passes without still
+# carries meaning for a reader: the compiler only says that no type needs
+# it. The papers, not this table, argue those arrows.
 #
 # Usage: python3 ablate.py [N]     # ablate the first N premises (default all)
 # Writes ATLAS_ABLATION.md next to this file. Restores every file it cuts.
@@ -32,7 +30,7 @@ if LIMIT:
 
 ok, err = build()
 if not ok:
-    sys.exit("the tree does not build before any cut; fix that first")
+    sys.exit("the module does not build before any cut; fix that first")
 
 rows, t0 = [], time.time()
 for f, proto, parent in premises:
@@ -51,25 +49,24 @@ for f, proto, parent in premises:
     green, err = build()
     f.write_text(kept)
     broken = sorted(set(re.findall(r"error: .*?'(\w+)'", err)))[:12] if not green else []
-    rows.append((proto, parent, "decorative" if green else "load-bearing", broken))
-    print(f"{proto}: {parent} -> {'green' if green else f'{len(broken)} names break'}")
+    rows.append((proto, parent, "builds green" if green else "build fails", broken))
+    print(f"{proto}: {parent} -> {'builds green' if green else f'build fails ({len(broken)} names)'}")
 
 green_ok, _ = build()
-out = ["# Atlas ablation: declared against measured",
+out = ["# Every Atlas arrow, cut once and rebuilt",
        "",
-       f"Measured {len(rows)} premises in {time.time()-t0:.0f}s on "
-       f"{datetime.date.today()}. Each row cuts one declared arrow and rebuilds",
-       "the core module. `load-bearing` means the compiler refused the tree",
-       "without the arrow, and the names it named are listed. `decorative`",
-       "means the build stayed green: the arrow is structurally decorative",
-       "for the compiler, which measures structure, never logical necessity;",
-       "the prose case for such an arrow rests on the papers alone.",
+       f"Cut {len(rows)} premises one at a time in {time.time()-t0:.0f}s on "
+       f"{datetime.date.today()}. Each row cuts one declared arrow, rebuilds",
+       "the core module, and restores the file. `build fails` lists the names",
+       "the compiler refused without the arrow. `builds green` says the module",
+       "compiles without it: the arrow still carries meaning for a reader, and",
+       "the papers, not this table, argue it.",
        "",
-       "| claim | premise | measured | breaks |",
+       "| claim | premise | cut result | names refused |",
        "|---|---|---|---|"]
 for proto, parent, verdict, broken in rows:
     out.append(f"| {proto} | {parent} | {verdict} | {', '.join(broken)} |")
 out.append("")
-out.append(f"The tree builds green after every restoration: {green_ok}.")
+out.append(f"The module builds green after the last restoration: {green_ok}.")
 (HERE / "ATLAS_ABLATION.md").write_text("\n".join(out) + "\n")
 print(f"wrote ATLAS_ABLATION.md, tree green after restore: {green_ok}")

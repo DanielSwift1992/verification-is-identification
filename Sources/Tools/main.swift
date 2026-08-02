@@ -44,6 +44,7 @@ case "judge":     Judge.run(Array(CommandLine.arguments.dropFirst(2)))
 case "readme":    ReadmeCheck.run(Array(CommandLine.arguments.dropFirst(2)))
 case "voice":     VoiceTool.run(Array(CommandLine.arguments.dropFirst(2)))
 case "press":     Press.run(Array(CommandLine.arguments.dropFirst(2)))
+case "ablate":    Ablate.run(Array(CommandLine.arguments.dropFirst(2)))
 case "generate":
     let sub = Array(CommandLine.arguments.dropFirst(2))
     let rest = Array(sub.dropFirst())

@@ -1,24 +1,25 @@
 # Which premises the build needs
 
-Cut 12 premises one at a time in 24s on 2026-08-02. Each row cuts one declared premise, rebuilds
-the core module, and restores the file. `build fails` lists the names
-the compiler refused without the premise. `builds green` says the module
-compiles without it: the premise still carries meaning for a reader, and
-the papers, not this table, argue it.
+Cut 12 premises one at a time in 22s. The premise list is the compiler's own symbol graph, the file tree-sort
+reads, so the lattice has one reader. Each row cuts one declared premise,
+rebuilds the core module, and restores the file. `build fails` lists the
+names the compiler refused without the premise. `builds green` says the
+module compiles without it: the premise still carries meaning for a
+reader, and the papers, not this table, argue it.
 
 | claim | premise | cut result | names refused |
 |---|---|---|---|
+| RulesCompose | CachePermanent | builds green |  |
+| RulesCompose | HasCache | builds green |  |
+| RulesCompose | HasLibrary | builds green |  |
+| RulesCompose | HasSigma | builds green |  |
 | RulesCompose | KnowledgeAccumulates | builds green |  |
+| RulesCompose | Open | builds green |  |
 | RulesCompose | OperationsClosed | builds green |  |
+| RulesCompose | Pair | builds green |  |
+| RulesCompose | Structure | builds green |  |
+| RulesCompose | StructuresFinite | builds green |  |
 | HasCompositionalNorm | HasDistance | build fails |  |
-| AtomBasis | RulesCompose | builds green |  |
-| AtomBasis | BasisIsFinite | builds green |  |
-| AtomBasis | HasCompositionalNorm | build fails |  |
-| AtomnessIsTrajectory | AtomBasis | builds green |  |
-| AtomnessIsTrajectory | NoInverse | builds green |  |
-| ColourIsQuotient | EncodingForgets | builds green |  |
-| GamutIsCone | ColourIsQuotient | builds green |  |
-| Unique | Monotone | builds green |  |
-| Unique | Null | builds green |  |
+| HasCompositionalNorm | HasSigma | builds green |  |
 
-The module builds green after the last restoration: True.
+The module builds green after the last restoration: true.

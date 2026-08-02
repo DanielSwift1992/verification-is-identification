@@ -1,4 +1,4 @@
-# Every Atlas arrow, cut once and rebuilt
+# Which premises the build needs
 
 Cut 12 premises one at a time in 24s on 2026-08-02. Each row cuts one declared arrow, rebuilds
 the core module, and restores the file. `build fails` lists the names

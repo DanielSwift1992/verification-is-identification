@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-# Cut one declared premise, rebuild the core module, record the result,
-# restore the file. The Atlas draws every arrow; this table says which
-# arrows the build fails without. An arrow the build passes without still
+# Which premises the build needs. Cut one declared premise, rebuild the
+# core module, record the result, restore the file. The Atlas draws every
+# dependency; this table says which ones the build fails without. An arrow the build passes without still
 # carries meaning for a reader: the compiler only says that no type needs
 # it. The papers, not this table, argue those arrows.
 #
@@ -53,7 +53,7 @@ for f, proto, parent in premises:
     print(f"{proto}: {parent} -> {'builds green' if green else f'build fails ({len(broken)} names)'}")
 
 green_ok, _ = build()
-out = ["# Every Atlas arrow, cut once and rebuilt",
+out = ["# Which premises the build needs",
        "",
        f"Cut {len(rows)} premises one at a time in {time.time()-t0:.0f}s on "
        f"{datetime.date.today()}. Each row cuts one declared arrow, rebuilds",

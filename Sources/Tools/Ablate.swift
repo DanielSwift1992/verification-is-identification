@@ -96,6 +96,9 @@ enum Ablate {
         out.append("module compiles without it: the premise still carries meaning for a")
         out.append("reader, and the papers, not this table, argue it.")
         out.append("")
+        out.append("The map this table measures is <doc:Atlas>, and the cone behind")
+        out.append("every count there is <doc:AtlasUnfolded>.")
+        out.append("")
         out.append("| claim | premise | declared at | build without it | names refused |")
         out.append("|---|---|---|---|---|")
         for (p, verdict, refused) in rows {

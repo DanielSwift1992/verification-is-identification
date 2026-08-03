@@ -237,7 +237,8 @@ func landingTopics(_ trailheads: [String]) -> String {
     topics += group("The floor: what it delegates, where it stops", symbols(names(floor)))
     let proj = byDepth(protos.filter { PROJ_FILES.contains(file($0)) })
     topics += group("Projection: the framework instantiated on machines", symbols(names(proj)))
-    topics += group("The atlas: what carries what", ["<doc:Atlas>", "<doc:AtlasUnfolded>"])
+    topics += group("The atlas: what carries what",
+                ["<doc:Atlas>", "<doc:AtlasUnfolded>", "<doc:AtlasAblation>"])
     topics += group("The papers: the routes", ["<doc:Sources>"])
     return topics
 }

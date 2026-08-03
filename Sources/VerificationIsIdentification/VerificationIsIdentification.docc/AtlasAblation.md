@@ -7,6 +7,9 @@ names the compiler refused without the premise. `builds green` says the
 module compiles without it: the premise still carries meaning for a
 reader, and the papers, not this table, argue it.
 
+The map this table measures is <doc:Atlas>, and the cone behind
+every count there is <doc:AtlasUnfolded>.
+
 | claim | premise | declared at | build without it | names refused |
 |---|---|---|---|---|
 | ``RulesCompose`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Basis.swift:21 | builds green |  |

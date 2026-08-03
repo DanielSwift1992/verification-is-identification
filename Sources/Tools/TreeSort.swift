@@ -238,7 +238,8 @@ func landingTopics(_ trailheads: [String]) -> String {
     let proj = byDepth(protos.filter { PROJ_FILES.contains(file($0)) })
     topics += group("Projection: the framework instantiated on machines", symbols(names(proj)))
     topics += group("The atlas: what carries what",
-                ["<doc:Atlas>", "<doc:AtlasUnfolded>", "<doc:AtlasAblation>"])
+                ["<doc:Atlas>", "<doc:AtlasUnfolded>", "<doc:AtlasAblation>",
+                 "<doc:AtlasRepeats>"])
     topics += group("The papers: the routes", ["<doc:Sources>"])
     return topics
 }
@@ -288,6 +289,45 @@ func atlasTable(_ members: [String]) -> String {
     }
     return out
 }
+// ── premises that repeat: a claim declares a premise its other premise
+// already carries, so the lattice holds one dependency twice. The count comes
+// from the same parents the Atlas prints, and a row names the shorter way.
+func carriedFrom(_ p: String) -> Set<String> {
+    var seen: Set<String> = []
+    var front = par[p] ?? []
+    while let q = front.popLast() {
+        if seen.insert(q).inserted { front += par[q] ?? [] }
+    }
+    return seen
+}
+func repeatRows() -> [(claim: String, premise: String, through: String)] {
+    var out: [(String, String, String)] = []
+    for p in protos.sorted(by: { title($0) < title($1) }) {
+        let declared = par[p] ?? []
+        for premise in declared {
+            for other in declared where other != premise {
+                if carriedFrom(other).contains(premise) {
+                    out.append((title(p), title(premise), title(other)))
+                    break
+                }
+            }
+        }
+    }
+    return out
+}
+func repeatsBlock() -> String {
+    let rows = repeatRows()
+    var out = "## The premises stated twice\n\n"
+    if rows.isEmpty {
+        return out + "No claim declares a premise another of its premises already carries.\n"
+    }
+    out += "| claim | premise | already carried by |\n|---|---|---|\n"
+    for r in rows {
+        out += "| ``\(r.claim)`` | ``\(r.premise)`` | ``\(r.through)`` |\n"
+    }
+    return out
+}
+
 func atlasBlock() -> String {
     "## The load, heaviest first\n\n" + atlasTable(atlasRows())
 }
@@ -370,6 +410,7 @@ func eachFile() -> [(String, String)] {
     for (doc, block) in PAPERS { out.append(((docc as NSString).appendingPathComponent("Papers/\(doc).md"), block)) }
     out.append(((docc as NSString).appendingPathComponent("Atlas.md"), atlasBlock()))
     out.append(((docc as NSString).appendingPathComponent("AtlasUnfolded.md"), atlasUnfoldedBlock()))
+    out.append(((docc as NSString).appendingPathComponent("AtlasRepeats.md"), repeatsBlock()))
     return out
 }
 

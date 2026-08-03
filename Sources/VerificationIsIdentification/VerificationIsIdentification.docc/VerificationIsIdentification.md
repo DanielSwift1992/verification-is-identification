@@ -155,6 +155,7 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - <doc:Atlas>
 - <doc:AtlasUnfolded>
 - <doc:AtlasAblation>
+- <doc:AtlasRepeats>
 ### The papers: the routes
 
 - <doc:Sources>

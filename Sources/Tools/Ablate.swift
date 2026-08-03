@@ -14,7 +14,8 @@ import Foundation
 // this table, argue it.
 //
 // Usage: Tools ablate <VerificationIsIdentification.symbols.json> [N]
-// Writes ATLAS_ABLATION.md at the package root. Restores every cut.
+// Writes AtlasAblation.md into the docc catalog, a page of the site
+// beside the Atlas, with claim and premise as symbol links. Restores every cut.
 // ═══════════════════════════════════════════════════════
 
 enum Ablate {
@@ -51,6 +52,7 @@ enum Ablate {
                                     line: line))
         }
         premises.sort { ($0.file, $0.line, $0.parent) < ($1.file, $1.line, $1.parent) }
+        let total = premises.count
         if let limit { premises = Array(premises.prefix(limit)) }
 
         guard build(at: packageRoot).green else {
@@ -79,7 +81,11 @@ enum Ablate {
 
         let restored = build(at: packageRoot).green
         var out = ["# Which premises the build needs", ""]
-        out.append("Cut \(rows.count) premises one at a time in \(Int(-started.timeIntervalSinceNow))s. "
+        out.append("Cut \(rows.count) of \(total) premises, one at a time, in "
+                   + "\(Int(-started.timeIntervalSinceNow))s. "
+                   + "Rerun it yourself: `swift build --product Tools && .build/debug/Tools "
+                   + "ablate <symbols.json>`; the graph file sits under "
+                   + "`.build/*/extracted-symbols/`. "
                    + "The premise list is the compiler's own symbol graph, the file tree-sort")
         out.append("reads, so the lattice has one reader. Each row cuts one declared premise,")
         out.append("rebuilds the core module, and restores the file. `build fails` lists the")
@@ -87,16 +93,19 @@ enum Ablate {
         out.append("module compiles without it: the premise still carries meaning for a")
         out.append("reader, and the papers, not this table, argue it.")
         out.append("")
-        out.append("| claim | premise | cut result | names refused |")
-        out.append("|---|---|---|---|")
+        out.append("| claim | premise | declared at | cut result | names refused |")
+        out.append("|---|---|---|---|---|")
         for (p, verdict, refused) in rows {
-            out.append("| \(p.child) | \(p.parent) | \(verdict) | \(refused.joined(separator: ", ")) |")
+            let rel = p.file.replacingOccurrences(of: packageRoot.path + "/", with: "")
+            out.append("| ``\(p.child)`` | ``\(p.parent)`` | \(rel):\(p.line + 1) "
+                       + "| \(verdict) | \(refused.joined(separator: ", ")) |")
         }
         out.append("")
         out.append("The module builds green after the last restoration: \(restored).")
-        let target = packageRoot.appendingPathComponent("ATLAS_ABLATION.md")
+        let target = packageRoot.appendingPathComponent(
+            "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/AtlasAblation.md")
         try? (out.joined(separator: "\n") + "\n").write(to: target, atomically: true, encoding: .utf8)
-        print("wrote ATLAS_ABLATION.md, module green after restore: \(restored)")
+        print("wrote docc/AtlasAblation.md, module green after restore: \(restored)")
     }
 
     // the declaration line names its parents after the colon; remove one,
@@ -122,11 +131,11 @@ enum Ablate {
         p.currentDirectoryURL = root
         let pipe = Pipe()
         p.standardError = pipe
-        p.standardOutput = Pipe()
+        p.standardOutput = pipe
         try? p.run()
-        p.waitUntilExit()
         let err = String(data: pipe.fileHandleForReading.readDataToEndOfFile(),
                          encoding: .utf8) ?? ""
+        p.waitUntilExit()
         return (p.terminationStatus == 0, err)
     }
 

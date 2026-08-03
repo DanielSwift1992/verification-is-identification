@@ -12,6 +12,10 @@ the premises its claim declares itself. Everything deeper than those is
 at an earlier step by the same rule, so the row is the whole of what is
 new to check.
 
+A step counts moves in the type lattice, not depth in an argument. Two
+claims at one step share a distance from the claims with no premises, and
+nothing more.
+
 <doc:Atlas> gives the same claims by load, heaviest first, which answers a
 different question: what falls if one of them falls. This page answers
 where to start.

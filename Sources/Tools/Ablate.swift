@@ -33,7 +33,7 @@ enum Ablate {
             FileHandle.standardError.write(Data("usage: Tools ablate <symbols.json> [N]\n".utf8))
             exit(2)
         }
-        let limit = args.count > 1 ? Int(args[1]) : nil
+        let limit = args.count > 1 ? Int(args[1]) : nil   // a number, or --check
         let root = URL(fileURLWithPath: graphPath)
         let packageRoot = findPackageRoot(from: root)
 
@@ -55,6 +55,11 @@ enum Ablate {
         premises.sort { ($0.file, $0.line, $0.parent) < ($1.file, $1.line, $1.parent) }
         let total = premises.count
         if let limit { premises = Array(premises.prefix(limit)) }
+
+        if args.contains("--check") {
+            check(premises, packageRoot.appendingPathComponent(
+                "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/AtlasAblation.md").path)
+        }
 
         guard build(at: packageRoot).green else {
             FileHandle.standardError.write(Data("the module does not build before any cut; fix that first\n".utf8))
@@ -114,7 +119,8 @@ enum Ablate {
         out.append("there is <doc:AtlasUnfolded>.")
         out.append("")
         out.append("The premise list is the compiler's own symbol graph, the file tree-sort")
-        out.append("reads, so the lattice has one reader. The run took \(seconds)s. Rerun it")
+        out.append("reads, so the lattice has one reader. The run took \(seconds)s over the")
+        out.append("lattice at revision \(latticeRevision()). Rerun it")
         out.append("yourself: `swift build --product Tools && .build/debug/Tools ablate")
         out.append("<symbols.json>`. The build writes the graph file under")
         out.append("`.build/*/extracted-symbols/`.")
@@ -131,6 +137,50 @@ enum Ablate {
             "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/AtlasAblation.md")
         try? (out.joined(separator: "\n") + "\n").write(to: target, atomically: true, encoding: .utf8)
         print("wrote docc/AtlasAblation.md, module green after restore: \(restored)")
+    }
+
+
+    // the revision of the lattice the run measured, so a reader can tell a
+    // fresh page from one the theory has moved past
+    static func latticeRevision() -> String {
+        let p = Process()
+        p.executableURL = URL(fileURLWithPath: "/usr/bin/env")
+        p.arguments = ["git", "log", "-1", "--format=%h", "--",
+                       "Sources/VerificationIsIdentification/*.swift"]
+        let pipe = Pipe()
+        p.standardOutput = pipe
+        p.standardError = Pipe()
+        try? p.run()
+        let out = String(data: pipe.fileHandleForReading.readDataToEndOfFile(),
+                         encoding: .utf8) ?? ""
+        p.waitUntilExit()
+        return out.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    // `ablate --check` asks one question: does the page still name the premises
+    // the lattice declares? The run itself takes an hour, the question takes a
+    // moment, so the page cannot go stale in silence between runs.
+    static func check(_ premises: [Premise], _ pagePath: String) -> Never {
+        let text = (try? String(contentsOfFile: pagePath, encoding: .utf8)) ?? ""
+        var onPage: Set<String> = []
+        for line in text.components(separatedBy: "\n")
+        where line.hasPrefix("| ``") {
+            let cells = line.components(separatedBy: "|").map {
+                $0.trimmingCharacters(in: .whitespaces).replacingOccurrences(of: "`", with: "") }
+            if cells.count > 2 { onPage.insert(cells[1] + " " + cells[2]) }
+        }
+        let now = Set(premises.map { $0.child + " " + $0.parent })
+        let gone = onPage.subtracting(now).sorted()
+        let fresh = now.subtracting(onPage).sorted()
+        if gone.isEmpty && fresh.isEmpty {
+            print("✓ THE ABLATION page names the \(now.count) premises the lattice declares.")
+            exit(0)
+        }
+        print("✗ THE ABLATION page and the lattice part: \(fresh.count) premise(s) "
+              + "the page misses, \(gone.count) it keeps after the lattice dropped them.")
+        for x in (fresh + gone).prefix(6) { print("    \(x)") }
+        print("    rerun: .build/debug/Tools ablate <symbols.json>")
+        exit(1)
     }
 
     // the declaration line names its parents after the colon; remove one,

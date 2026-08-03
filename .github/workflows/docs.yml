@@ -53,6 +53,13 @@ jobs:
       - name: Topics stay equal to the type lattice
         run: swift package --allow-writing-to-package-directory tree-sort check
 
+      - name: The ablation page names the premises the lattice declares
+        run: |
+          swift build --product Tools
+          swift package dump-symbol-graph >/dev/null 2>&1 || true
+          GRAPH=$(find .build -name VerificationIsIdentification.symbols.json | head -1)
+          .build/debug/Tools ablate "$GRAPH" --check
+
       - name: The second judge agrees with the compiler
         run: swift run Tools judge diff 200
 

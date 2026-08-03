@@ -24,7 +24,8 @@ The map behind this table is <doc:Atlas>, and the cone behind every count
 there is <doc:AtlasUnfolded>.
 
 The premise list is the compiler's own symbol graph, the file tree-sort
-reads, so the lattice has one reader. The run took 4158s. Rerun it
+reads, so the lattice has one reader. The run took 4158s over the
+lattice at revision 95014c7. Rerun it
 yourself: `swift build --product Tools && .build/debug/Tools ablate
 <symbols.json>`. The build writes the graph file under
 `.build/*/extracted-symbols/`.

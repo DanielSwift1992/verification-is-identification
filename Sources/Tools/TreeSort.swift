@@ -300,21 +300,43 @@ func carriedFrom(_ p: String) -> Set<String> {
     }
     return seen
 }
-func repeatRows() -> [(claim: String, premise: String, through: String)] {
+func repeatsIn(_ parents: [String: [String]], _ names: [String])
+    -> [(claim: String, premise: String, through: String)] {
+    func reach(_ p: String) -> Set<String> {
+        var seen: Set<String> = []
+        var front = parents[p] ?? []
+        while let q = front.popLast() {
+            if seen.insert(q).inserted { front += parents[q] ?? [] }
+        }
+        return seen
+    }
     var out: [(String, String, String)] = []
-    for p in protos.sorted(by: { title($0) < title($1) }) {
-        let declared = par[p] ?? []
+    for p in names {
+        let declared = parents[p] ?? []
         for premise in declared {
             for other in declared
             where other != premise {
-                if carriedFrom(other).contains(premise) {
-                    out.append((title(p), title(premise), title(other)))
+                if reach(other).contains(premise) {
+                    out.append((p, premise, other))
                     break
                 }
             }
         }
     }
     return out
+}
+// the walk tried on a lattice made for it: A states B and C, B states C, so
+// C is stated twice. A count of zero over the corpus means the corpus, not a
+// walk that never looks.
+func repeatsWalkFires() -> Bool {
+    let toy = ["A": ["B", "C"], "B": ["C"], "C": []]
+    let found = repeatsIn(toy, ["A", "B", "C"])
+    return found.count == 1 && found[0].claim == "A" && found[0].premise == "C"
+}
+func repeatRows() -> [(claim: String, premise: String, through: String)] {
+    var byTitle: [String: [String]] = [:]
+    for p in protos { byTitle[title(p)] = (par[p] ?? []).map { title($0) } }
+    return repeatsIn(byTitle, protos.sorted(by: { title($0) < title($1) }).map { title($0) })
 }
 func repeatsBlock() -> String {
     let rows = repeatRows()
@@ -444,6 +466,11 @@ case "write":
     print("wrote landing + \(PAPERS.count) paper routes." + (orphan.isEmpty ? "  (no orphans)" : "  ORPHANS: \(orphan)"))
 
 case "check":
+    if !repeatsWalkFires() {
+        print("✗ the repeats walk misses a repeat made for it: the count on "
+              + "AtlasRepeats.md means nothing until this passes")
+        exit(1)
+    }
     let drift = eachFile().filter { (path, block) in
         ((try? String(contentsOfFile: path, encoding: .utf8)) ?? "") != target(path, block)
     }.map { ($0.0 as NSString).lastPathComponent }

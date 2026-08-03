@@ -94,37 +94,11 @@ enum Ablate {
         let seconds = Int(-started.timeIntervalSinceNow)
         let shown = { (p: Premise) in
             p.file.replacingOccurrences(of: packageRoot.path + "/", with: "") }
-        // the reader's order: the question, the finding, how to read a row,
-        // the rows the build needs, the map, and the method last
-        var out = ["# Which premises the build needs", ""]
-        out.append("Every claim in the theory rests on premises. This page asks which of them")
-        out.append("the compiler needs. Each premise was cut from its declaration, the module")
-        out.append("was rebuilt, and the file was put back.")
-        out.append("")
-        out.append("Of \(rows.count) premises the module needs \(failing.count). It builds without the other \(greenRows),")
-        out.append("and \(inherited) name a premise the compiler inherits, so they have no line to cut.")
-        out.append("")
-        out.append("A row reads as a sentence: this claim names this premise, declared at that")
-        out.append("line, and the module without the premise either still builds or fails.")
-        out.append("When it fails, the last column lists what stops compiling. A row that")
-        out.append("still builds asks a reader instead, and the papers carry its case.")
-        out.append("")
-        out.append("The premises the module needs:")
-        out.append("")
-        for (p, _, _) in failing {
-            out.append("- ``\(p.child)`` needs ``\(p.parent)``, at \(shown(p)):\(p.line + 1)")
-        }
-        out.append("")
-        out.append("The map behind this table is <doc:Atlas>, and the cone behind every count")
-        out.append("there is <doc:AtlasUnfolded>.")
-        out.append("")
-        out.append("The premise list is the compiler's own symbol graph, the file tree-sort")
-        out.append("reads, so the lattice has one reader. The run took \(seconds)s over the")
-        out.append("lattice at revision \(latticeRevision()). Rerun it")
-        out.append("yourself: `swift build --product Tools && .build/debug/Tools ablate")
-        out.append("<symbols.json>`. The build writes the graph file under")
-        out.append("`.build/*/extracted-symbols/`.")
-        out.append("")
+        let bullets = failing.map {
+            "- ``\($0.0.child)`` needs ``\($0.0.parent)``, at \(shown($0.0)):\($0.0.line + 1)" }
+        var out = headLines(total: rows.count, needs: failing.count, green: greenRows,
+                            inherited: inherited, bullets: bullets,
+                            seconds: "\(seconds)", revision: latticeRevision())
         out.append("| claim | premise | declared at | the module without it | what stops compiling |")
         out.append("|---|---|---|---|---|")
         for (p, verdict, refused) in rows {
@@ -139,6 +113,42 @@ enum Ablate {
         print("wrote docc/AtlasAblation.md, module green after restore: \(restored)")
     }
 
+
+    // THE HEAD IS ONE TEXT. The page carried a head written by hand while this
+    // file wrote another, so the next hour-long run would have replaced the
+    // page's words with the generator's. Both now ask here, and `--check`
+    // rebuilds this head from the page's own rows and refuses a difference.
+    static func headLines(total: Int, needs: Int, green: Int, inherited: Int,
+                          bullets: [String], seconds: String, revision: String) -> [String] {
+        var out = ["# Which premises the build needs", ""]
+        out.append("Each claim declares premises. This page records which of them the")
+        out.append("compiler needs. Each premise was removed from its declaration, the")
+        out.append("module was rebuilt, and the file was restored.")
+        out.append("")
+        out.append("Of \(total) premises the module needs \(needs). It builds without the other \(green),")
+        out.append("and \(inherited) name a premise the compiler inherits, so they have no line to cut.")
+        out.append("")
+        out.append("Row format: the claim, the premise, the line where the premise is")
+        out.append("declared, whether the module builds without it, and, when the build")
+        out.append("fails, the symbols the compiler reports. A premise the build does not")
+        out.append("need is not therefore redundant: its justification is in the papers.")
+        out.append("")
+        out.append("The premises the module needs:")
+        out.append("")
+        out += bullets
+        out.append("")
+        out.append("The map behind this table is <doc:Atlas>, and the cone behind every count")
+        out.append("there is <doc:AtlasUnfolded>.")
+        out.append("")
+        out.append("The premise list is the compiler's own symbol graph, the file tree-sort")
+        out.append("reads, so the lattice has one reader. The run took \(seconds)s over the")
+        out.append("lattice at revision \(revision). Rerun it")
+        out.append("yourself: `swift build --product Tools && .build/debug/Tools ablate")
+        out.append("<symbols.json>`. The build writes the graph file under")
+        out.append("`.build/*/extracted-symbols/`.")
+        out.append("")
+        return out
+    }
 
     // the revision of the lattice the run measured, so a reader can tell a
     // fresh page from one the theory has moved past
@@ -180,9 +190,11 @@ enum Ablate {
         var onPage: Set<String> = []
         var said: [Int] = []
         var counted = ["fails": 0, "still builds": 0, "inherited": 0]
+        var bulletsOnPage: [String] = []
         for line in text.components(separatedBy: "\n") {
             if line.hasPrefix("Of ") && line.contains("the module needs") { said += numbers(line) }
             if line.hasPrefix("and ") && line.contains("compiler inherits") { said += numbers(line) }
+            if line.hasPrefix("- ``") { bulletsOnPage.append(line) }
             guard line.hasPrefix("| ``") else { continue }
             let cells = line.components(separatedBy: "|").map {
                 $0.trimmingCharacters(in: .whitespaces).replacingOccurrences(of: "`", with: "") }
@@ -203,6 +215,39 @@ enum Ablate {
             print("✗ THE ABLATION page counts one way and says another. "
                   + "The head says \(said), the rows give \(fromRows) "
                   + "for premises, fails, still builds, inherited.")
+            exit(1)
+        }
+        // and the head itself is rebuilt from those rows, so the words on the
+        // page and the words this file writes cannot part between runs
+        let pageLines = text.components(separatedBy: "\n")
+        let tableAt = pageLines.firstIndex { $0.hasPrefix("| claim |") } ?? pageLines.count
+        let onHead = Array(pageLines[0..<tableAt])
+        var seconds = ""
+        var revision = ""
+        for line in onHead
+        where line.contains("The run took") {
+            let words = line.components(separatedBy: " ")
+            seconds = (words.first { $0.hasSuffix("s") && Int($0.dropLast()) != nil }
+                       ?? "").replacingOccurrences(of: "s", with: "")
+        }
+        for line in onHead
+        where line.hasPrefix("lattice at revision ") {
+            revision = line.replacingOccurrences(of: "lattice at revision ", with: "")
+                .components(separatedBy: ".").first ?? ""
+        }
+        let asWritten = headLines(total: fromRows[0], needs: fromRows[1], green: fromRows[2],
+                                  inherited: fromRows[3], bullets: bulletsOnPage,
+                                  seconds: seconds, revision: revision)
+        if asWritten != onHead {
+            var n = min(asWritten.count, onHead.count)
+            for i in 0..<min(asWritten.count, onHead.count)
+            where asWritten[i] != onHead[i] {
+                n = i
+                break
+            }
+            print("✗ THE ABLATION page and this generator write different heads, from line \(n + 1).")
+            print("    page:      \(n < onHead.count ? onHead[n] : "(nothing)")")
+            print("    generator: \(n < asWritten.count ? asWritten[n] : "(nothing)")")
             exit(1)
         }
         if gone.isEmpty && fresh.isEmpty {

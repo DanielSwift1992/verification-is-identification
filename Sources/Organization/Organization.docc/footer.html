@@ -284,10 +284,18 @@
   // in this template never reaches the live document (the note at the top
   // of this file), and the click listener sits on document, so a table
   // rendered by any later SPA navigation is covered without a rescan.
+  // the hint that a header answers a click is on the header itself: every
+  // sortable header wears a dim double arrow, the sorted one wears the
+  // direction, and hover tints the cell. A cursor change alone is a hint
+  // only the mouse sees.
   var css = document.createElement("style");
   css.textContent =
     ".content table, article table { display: block; overflow-x: auto; max-width: 100%; }" +
-    ".content th, article th { cursor: pointer; }";
+    ".content th, article th { cursor: pointer; white-space: nowrap; }" +
+    ".content th::after, article th::after { content: ' \\2195'; opacity: 0.35; font-size: 0.85em; }" +
+    ".content th:hover, article th:hover { background: rgba(128,128,128,0.12); }" +
+    ".content th[data-vi-sort=down]::after, article th[data-vi-sort=down]::after { content: ' \\2193'; opacity: 0.9; }" +
+    ".content th[data-vi-sort=up]::after, article th[data-vi-sort=up]::after { content: ' \\2191'; opacity: 0.9; }";
   document.head.appendChild(css);
   function keyOf(row, index) {
     var cell = row.cells[index];

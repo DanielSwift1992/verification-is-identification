@@ -13,9 +13,14 @@ One postulate. One loop. 26 proven properties plus information-theoretic bounds.
 2. A finite structure is not nothing. *[from 1: if structure = nothing, "a finite structure exists" = "nothing exists" = no postulate. The reading is self-refuting.]*
 3. Structure ≠ nothing → a distinction exists between them. *[from 2: "not" IS the distinction.]*
 4. Structural equality on finite structures is decidable. *[from 1 + 3: distinction has two sides (step 3). The structure is finite (step 1) → binary distinctions recurse to finite depth → finitely many components. Comparing two finite structures = finitely many component comparisons → terminates → decidable.]* Decidability follows from the inductive structure of finite distinction itself: two sides (step 3) with finite termination (step 1) yield an inductive type, traversable by structural recursion. The author assumes no external representation: traversability is a consequence of the structure, and no premise.
+
+> Argues: ``EqualityDecidable`` needs ``StructuresFinite``.
 5. The test halts. *[from 4: decidable ⊂ halting.]*
 6. A halting test examines finite data. *[from 1 + 5: finite structure → finite data.]*
 7. Finite data of bounded size is in a finite space F. *[from 1 + 6: the structure has finite size n over its finite set of distinct components. All structures over those components up to size n form a finite set by combinatorics.]*
+
+> Argues: ``StructuresFinite`` needs ``HasSigma``.
+> Argues: ``StructuresFinite`` needs ``Pair``.
 8. S = {y ∈ F : COMPARE(y, target) = EQUAL} is computable. *[from 4 + 7: structural equality is decidable (step 4) + finite space (step 7) = enumerate F and check each.]*
 9. The structure is representable in F. *[from 1 + 7: it is finite (step 1) and F contains all finite structures up to its size (step 7) → it is in F.]* Under an encoding whose test recognizes it, it passes and enters S.
 10. |S| is computable. *[from 8: counting a computed finite set.]*
@@ -114,6 +119,8 @@ The author derives I1–I3 from the postulate and the representation. Any finite
 
 One act: distinction. Three derived aspects: where it ends (boundary), whether two histories match (identity), which side you examine (access). The author keeps NULL and COMPARE as notation: they name structural properties of distinction, never independent entities. This is uniqueness of the primitive; see the note on uniqueness at the end of §0.
 
+> Argues: ``OperationsClosed`` needs ``Pair``.
+
 
 ## §3. Problem
 
@@ -136,11 +143,16 @@ The agent makes any finite deterministic task basis-selectable by embedding the 
 
 **3.4. Example consistency.** S = {f ∈ F : f(Iₖ) = Oₖ for all k}.
 
+> Argues: ``HasSolutions`` needs ``HasSigma``.
+
 **3.5. Encoding adequacy (R4).** |S| = 1. A decidable property of the encoding: the system computes |S| and reports the result (§3.6). Denote the unique element f*.
 
 |S| > 1: encoding insufficient, and the system returns this as a diagnostic (§1). Each additional example can only drop candidates from S, never add one. |S| = 1: the encoding resolves the task.
 
 **3.6. R4 is decidable.** F is finite (3.3). S is computable by exhaustive check. |S| is therefore computable. (Cost: O(|F| · T · N²), exponential in |O| but finite.)
+
+> Argues: ``ExactlyOneSurvives`` needs ``EqualityDecidable``.
+> Argues: ``ExactlyOneSurvives`` needs ``HasSolutions``.
 
 **3.7. Applicability.** Consider a task as a relation R(x, y): "y is a valid solution of x". The derivation (§0) is from one postulate: a finite structure exists. From this, decidable structural equality follows as a theorem (§0 step 4), and the author derives three conditions:
 
@@ -269,9 +281,15 @@ OUT:  Theorems 1–5, Properties, Totality
 
 *Proof.* PASS is f'(Iₖ) = Oₖ for all k (§4.7), and that is the membership condition of S. QED
 
+> Argues: ``PassImpliesMembership`` needs ``PipelineTotal``.
+> Argues: ``PassImpliesMembership`` needs ``ResultDeterministic``.
+
 **Theorem 2 (Safety).** If |S| = 1 and result = PASS, then f' = f*.
 
 *Proof.* f' ∈ S (Theorem 1). S = {f*} (R4). f' ∈ {f*} → f' = f*. QED
+
+> Argues: ``PassIsIdentification`` needs ``ExactlyOneSurvives``.
+> Argues: ``PassIsIdentification`` needs ``PassImpliesMembership``.
 
 **Corollary.** Given R4: any compiling output equals f*. Without R4: compilation guarantees example consistency, not uniqueness. Compilation failure: no output.
 
@@ -303,6 +321,8 @@ Theorems 1–2: soundness (PASS → correct). Theorem 5: completeness (precondit
 
 **5.1. Termination.** Every algorithm step operates on a finite domain (I1). No step contains unbounded loops. The algorithm terminates for any valid input. QED
 
+> Argues: ``StepsTerminate`` needs ``StructuresFinite``.
+
 **5.2. Complexity.** The algorithm terminates on all finite inputs (5.1). Each step processes a finite domain bounded by atoms, features, and example count. For the reference implementation with T <= 5, N <= 30, F = 5 and bounded-depth Peano encoding, the formal guarantee is termination, and empirically the execution completes in negligible time for these bounds.
 
 **5.3. Cache monotonicity.** I3 → G_n ⊆ G_{n+1}. A cached comparison is permanent. `work(game, G) = |needed| − |cached|` is an estimate of the uncached comparison work. Monotonically decreasing for overlapping domains.
@@ -310,6 +330,8 @@ Theorems 1–2: soundness (PASS → correct). Theorem 5: completeness (precondit
 **5.4. Encoding independence.** Each encoding defines its own function space F and its own f*. Under R4, compilation yields f* for that encoding (Theorem 2). Cross-encoding agreement (that two encodings of the same task produce the same decoded test output) requires an additional premise: both encodings must be semantics-preserving (they represent the same target function on the same domain). This premise is external to the formal system.
 
 **5.5. Totality.** The inner pipeline is linear: ENCODE → VALIDATE → EXTRACT → COMPILE → EXECUTE. Two binary gates (basis validation, compilation) are the only conditional transitions. Every path terminates at one of four states: PASS, REJECT(basis), REJECT(compile), MISMATCH. No execution path diverges, hangs, or reaches an undefined state. *Proof.* Each step operates on finite data (I1, §2). Each comparison is decidable (I2, §2). Ambiguity is resolved by deterministic scoring. QED
+
+> Argues: ``PipelineTotal`` needs ``StepsTerminate``.
 
 ### Loop Properties
 
@@ -320,6 +342,8 @@ The following properties are true of the full loop (agent + system). §5.6–§5
 **5.7. Monotonicity of information.** Each REJECT adds diagnostic information: which encoding failed, at which gate, at which position. The agent's knowledge of "what doesn't work" strictly grows, and no loop iteration reduces available information. With I3: both the system's comparison cache and the agent's rejection history are monotonically non-decreasing.
 
 **5.8. Full loop determinism.** If the agent follows a fixed protocol (enumeration order over E), then: same task + same grammar + same protocol → same sequence of iterations → same result. The full loop is a deterministic function from (task, grammar, protocol) to {PASS(f*), REJECT}.
+
+> Argues: ``ResultDeterministic`` needs ``OperationsClosed``.
 
 **5.9. Loop termination.** E finite (grammar bounded) + inner half terminates (§5.1) → outer loop terminates. At most |E| iterations, each finite. *Proof.* |E| is finite. Each iteration terminates (§5.1). Finite sum of finite steps is finite. QED
 

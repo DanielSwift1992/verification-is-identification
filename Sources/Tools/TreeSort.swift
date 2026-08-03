@@ -239,7 +239,8 @@ func landingTopics(_ trailheads: [String]) -> String {
     topics += group("Projection: the framework instantiated on machines", symbols(names(proj)))
     topics += group("The atlas: what carries what",
                 ["<doc:Atlas>", "<doc:AtlasUnfolded>", "<doc:AtlasAblation>",
-                 "<doc:AtlasRepeats>", "<doc:AtlasOrder>", "<doc:AtlasReview>"])
+                 "<doc:AtlasRepeats>", "<doc:AtlasOrder>", "<doc:AtlasArgued>",
+                 "<doc:AtlasReview>"])
     topics += group("The papers: the routes", ["<doc:Sources>"])
     return topics
 }
@@ -338,6 +339,76 @@ func repeatRows() -> [(claim: String, premise: String, through: String)] {
     for p in protos { byTitle[title(p)] = (par[p] ?? []).map { title($0) } }
     return repeatsIn(byTitle, protos.sorted(by: { title($0) < title($1) }).map { title($0) })
 }
+// ── the argued edges: a paper paragraph that argues an edge carries a
+//    record, `> Argues: ``Child`` needs ``Parent``.`, and this is the one
+//    reader of those records. A record naming anything but a declared
+//    direct edge refuses by file and line: a claim about the lattice that
+//    the lattice does not make is a broken pair, not a footnote. ──
+func arguesParse(_ text: String) -> [(child: String, parent: String, line: Int)] {
+    var out: [(String, String, Int)] = []
+    let lines = text.components(separatedBy: "\n")
+    for (i, raw) in lines.enumerated() {
+        let line = raw.trimmingCharacters(in: .whitespaces)
+        guard line.hasPrefix("> Argues: ``") else { continue }
+        let pieces = line.components(separatedBy: "``")
+        if pieces.count >= 5 && pieces[2] == " needs " {
+            out.append((pieces[1], pieces[3], i + 1))
+        }
+    }
+    return out
+}
+func arguesWalkFires() -> Bool {
+    let toy = arguesParse("prose\n> Argues: ``B`` needs ``A``.\nmore")
+    return toy.count == 1 && toy[0].child == "B" && toy[0].parent == "A" && toy[0].line == 2
+}
+func arguesRecords() -> [(child: String, parent: String, paper: String, line: Int)] {
+    var out: [(String, String, String, Int)] = []
+    let papersDir = (docc as NSString).appendingPathComponent("Papers")
+    let names = (try? FileManager.default.contentsOfDirectory(atPath: papersDir)) ?? []
+    for name in names.sorted()
+    where name.hasSuffix(".md") {
+        let path = (papersDir as NSString).appendingPathComponent(name)
+        guard let text = try? String(contentsOfFile: path, encoding: .utf8) else { continue }
+        for r in arguesParse(text) {
+            out.append((r.child, r.parent, name, r.line))
+        }
+    }
+    return out
+}
+func arguesBroken() -> [String] {
+    var bad: [String] = []
+    for r in arguesRecords() {
+        guard let child = pidOf[r.child], protos.contains(child) else {
+            bad.append("\(r.paper):\(r.line) argues for ``\(r.child)``, which is not a claim of the lattice")
+            continue
+        }
+        let parents = (par[child] ?? []).map { title($0) }
+        if !parents.contains(r.parent) {
+            bad.append("\(r.paper):\(r.line) argues ``\(r.child)`` needs ``\(r.parent)``, an edge the lattice does not declare")
+        }
+    }
+    return bad
+}
+func arguedBlock() -> String {
+    let records = arguesRecords()
+    var edgeCount = 0
+    for p in protos { edgeCount += (par[p] ?? []).count }
+    var argued = Set<String>()
+    var rows: [String] = []
+    for r in records.sorted(by: { ($0.child, $0.parent) < ($1.child, $1.parent) }) {
+        argued.insert(r.child + "|" + r.parent)
+        let page = (r.paper as NSString).deletingPathExtension
+        rows.append("| ``\(r.child)`` | ``\(r.parent)`` | <doc:\(page)> |")
+    }
+    var out = "## The edges argued so far\n\n"
+    out += "The lattice declares \(edgeCount) direct edges, and \(argued.count) of them "
+    out += "carry an argument record in a paper. The rest wait.\n\n"
+    if rows.isEmpty { return out + "No paper carries a record yet.\n" }
+    out += "| claim | premise | argued in |\n|---|---|---|\n"
+    out += rows.joined(separator: "\n") + "\n"
+    return out
+}
+
 func repeatsBlock() -> String {
     let rows = repeatRows()
     var out = "## The premises stated twice\n\n"
@@ -454,6 +525,7 @@ func eachFile() -> [(String, String)] {
     out.append(((docc as NSString).appendingPathComponent("AtlasUnfolded.md"), atlasUnfoldedBlock()))
     out.append(((docc as NSString).appendingPathComponent("AtlasRepeats.md"), repeatsBlock()))
     out.append(((docc as NSString).appendingPathComponent("AtlasOrder.md"), orderBlock()))
+    out.append(((docc as NSString).appendingPathComponent("AtlasArgued.md"), arguedBlock()))
     return out
 }
 
@@ -466,6 +538,17 @@ case "write":
     print("wrote landing + \(PAPERS.count) paper routes." + (orphan.isEmpty ? "  (no orphans)" : "  ORPHANS: \(orphan)"))
 
 case "check":
+    if !arguesWalkFires() {
+        print("✗ the argues parser misses a record made for it: the counts on "
+              + "AtlasArgued.md mean nothing until this passes")
+        exit(1)
+    }
+    let bad = arguesBroken()
+    if !bad.isEmpty {
+        print("✗ a paper argues an edge the lattice does not have:")
+        for b in bad.prefix(6) { print("    \(b)") }
+        exit(1)
+    }
     if !repeatsWalkFires() {
         print("✗ the repeats walk misses a repeat made for it: the count on "
               + "AtlasRepeats.md means nothing until this passes")

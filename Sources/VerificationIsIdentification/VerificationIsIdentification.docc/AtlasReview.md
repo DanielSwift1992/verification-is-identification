@@ -22,5 +22,6 @@ questions are marked open.
   names in each claim's documentation against its premise closure.
 - Open: semantic cycles through prose. The compiler excludes cycles in
   the protocol hierarchy and nothing else. The same audit applies.
-- Open: a link from each premise the build does not need to the paper
-  section that argues it.
+- The link from a premise to the paragraph that argues it:
+  <doc:AtlasArgued> counts argument records against declared edges, and
+  the two chains under review are seeded. Open for the other edges.

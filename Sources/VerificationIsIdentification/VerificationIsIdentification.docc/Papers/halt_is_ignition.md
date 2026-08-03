@@ -42,6 +42,8 @@ The horn is the one lawful "no halt": the system is finite at every moment (each
 
 **HF5 (Terminals classify by what they ignite, and a unique successor makes birth an identification).** Let Ignites(σ) be the set of successor games whose board is σ's crystal: the encodings over the saturated library, the meta-level IiI §4 already names. Then a terminal is one of three:
 
+> Argues: ``Tower`` needs ``Ignites``.
+
 - **sterile**, Ignites(σ) = ∅: a true end, and nothing is on this crystal.
 - **ambiguous**, \|Ignites(σ)\| > 1: succession needs a tie-break the halt cannot supply, and uniqueness is only by an imposed criterion (OiO O8), which is a design act, never a dynamical one.
 - **reincarnating**, \|Ignites(σ)\| = 1: the successor is identified by the same act that verifies the halt. This is R4 lifted to the space of worlds: exactly one candidate game passes the succession constraint, so checking that the old world is finished IS naming where the new one begins.

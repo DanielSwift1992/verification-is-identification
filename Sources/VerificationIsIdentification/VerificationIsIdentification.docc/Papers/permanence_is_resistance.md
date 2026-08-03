@@ -29,17 +29,25 @@ Why can the agent not leave the game? Structurally, the agent *is* the caller (I
 
 The agent cannot modify the target (I2: fixed). The agent cannot retract a result (I3: append-only). The only thing the agent can change is its own next submission. Every not_equal modifies the agent, never the world. The agent encounters its own distance from the invariant: through the system, on itself.
 
+> Argues: ``Resistant`` needs ``Decidable``.
+> Argues: ``Resistant`` needs ``HasDistance``.
+
 Resistance within the framework is a relation, not a property of the target. The agent encounters it when its current form does not match the invariant. Without the agent, resistance has no referent: the target is in Σ, inert, with no one to return not_equal to. Both sides are required: the invariant structure and the form that fails to match it.
 
 The system's invariants (I1: finite space, I2: fixed operations, I3: append-only cache) are what the agent encounters as constraints. The compilation gate is the densest constraint: every incorrect encoding hits it. It returns REJECT(where, why), a diagnostic of the mismatch. Each diagnostic is information about the agent's encoding, not about the target (V=I §5.24: the pipeline sees only the encoding).
 
 Definition: matter is the pattern encountered as resistance, the irreducible cost when the agent's form does not yet match the invariant. The word names a structural role: what is permanent (I3), irreducible (Theorem 2), and resistant (I2) within the framework. The role is derived here, and §5 then tests where physical systems instantiate the same axioms.
 
+> Argues: ``Matter`` needs ``PassIsIdentification``.
+> Argues: ``Matter`` needs ``Resistant``.
+
 ## §2. What the Library Is
 
 Before the agent runs: L = NULL. No rules stored. Each task requires full derivation from scratch.
 
 The agent runs. Tasks arrive. Some produce PASS. Each PASS crystallizes (Intelligence Is Inevitable §1): the agent-path becomes a system-path. The result enters L.
+
+> Argues: ``Matter`` needs ``KnowledgeAccumulates``.
 
 After saturation (Intelligence Is Inevitable §3): L contains K entries. Each entry is a pair:
 
@@ -123,6 +131,8 @@ The three properties rotate through the tower. Level N crystallizes: L_N is perm
 
 **M4 (Level-relative time).** One tick at level N+1 = one complete level-N process. The number of level-0 COMPAREs inside one level-N+1 tick depends on the level-N game.
 
+> Argues: ``Tower`` needs ``HasTime``.
+
 | Level | One tick = | Level-0 COMPAREs inside one tick |
 |-------|------------|----------------------------------|
 | 0 | One COMPARE | 1 |
@@ -131,6 +141,8 @@ The three properties rotate through the tower. Level N crystallizes: L_N is perm
 | N+1 | One level-N saturation | K_N × T_N |
 
 **M5 (Time-nesting bound).** Let T_N = maximum number of level-0 COMPAREs inside one level-N tick. Then T₀ = 1, T_(N+1) ≤ K_N · T_N. By induction: T_N ≤ ∏_{i=0}^{N-1} K_i.
+
+> Argues: ``Tower`` needs ``HasCost``.
 
 Higher levels are exponentially slower in level-0 time. One level-3 tick contains K₀ · K₁ · K₂ level-0 COMPAREs. The level-3 agent experiences one tick.
 
@@ -141,6 +153,9 @@ Higher levels are exponentially slower in level-0 time. One level-3 tick contain
 **M7 (Stable target).** After saturation, L_N is permanent (I3), complete (Saturation Theorem, Intelligence Is Inevitable §3), and irreducible (each entry is f*, Theorem 2). L_N does not change. I2 is true for L_N as target.
 
 **Theorem M8 (Ignition).** The transition from "L_N cannot be a V=I target" to "L_N can be a V=I target" occurs at the saturation point |L_N| = K_N. It is discrete.
+
+> Argues: ``Ignites`` needs ``LibrarySaturates``.
+> Argues: ``Ignites`` needs ``Matter``.
 
 *Proof.* Before saturation: |L_N| < K_N, the next task may extend L_N, violating I2 at the N+1 scale. After saturation: |L_N| = K_N, no entries can be added, L_N is fixed. The three conditions for a V=I game at level N+1:
 

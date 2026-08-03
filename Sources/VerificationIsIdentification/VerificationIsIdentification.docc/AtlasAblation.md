@@ -5,9 +5,9 @@ reads, so the lattice has one reader. Each row cuts one declared premise,
 rebuilds the core module, and restores the file. `build fails` lists the
 names the compiler refused without the premise. `builds green` says the
 module compiles without it: the premise still carries meaning for a
-reader, and the papers, not this table, argue it.
+reader, and the papers, not this table, carry the argument.
 
-The map this table measures is <doc:Atlas>, and the cone behind
+The map behind this table is <doc:Atlas>, and the cone behind
 every count there is <doc:AtlasUnfolded>.
 
 | claim | premise | declared at | build without it | names refused |

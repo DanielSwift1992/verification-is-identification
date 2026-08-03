@@ -109,7 +109,7 @@ enum Ablate {
         out.append("When it fails, the last column lists what stops compiling. A row that")
         out.append("still builds asks a reader instead, and the papers carry its case.")
         out.append("")
-        out.append("The \(failing.count == 5 ? "five" : String(failing.count)) the module needs:")
+        out.append("The premises the module needs:")
         out.append("")
         for (p, _, _) in failing {
             out.append("- ``\(p.child)`` needs ``\(p.parent)``, at \(shown(p)):\(p.line + 1)")
@@ -160,20 +160,54 @@ enum Ablate {
     // `ablate --check` asks one question: does the page still name the premises
     // the lattice declares? The run itself takes an hour, the question takes a
     // moment, so the page cannot go stale in silence between runs.
+    static func numbers(_ s: String) -> [Int] {
+        var out: [Int] = []
+        var digits = ""
+        for ch in s {
+            if ch.isNumber {
+                digits.append(ch)
+            } else if !digits.isEmpty {
+                out.append(Int(digits) ?? 0)
+                digits = ""
+            }
+        }
+        if !digits.isEmpty { out.append(Int(digits) ?? 0) }
+        return out
+    }
+
     static func check(_ premises: [Premise], _ pagePath: String) -> Never {
         let text = (try? String(contentsOfFile: pagePath, encoding: .utf8)) ?? ""
         var onPage: Set<String> = []
-        for line in text.components(separatedBy: "\n")
-        where line.hasPrefix("| ``") {
+        var said: [Int] = []
+        var counted = ["fails": 0, "still builds": 0, "inherited": 0]
+        for line in text.components(separatedBy: "\n") {
+            if line.hasPrefix("Of ") && line.contains("the module needs") { said += numbers(line) }
+            if line.hasPrefix("and ") && line.contains("compiler inherits") { said += numbers(line) }
+            guard line.hasPrefix("| ``") else { continue }
             let cells = line.components(separatedBy: "|").map {
                 $0.trimmingCharacters(in: .whitespaces).replacingOccurrences(of: "`", with: "") }
             if cells.count > 2 { onPage.insert(cells[1] + " " + cells[2]) }
+            if cells.count > 4 {
+                let verdict = cells[4].hasPrefix("inherited") ? "inherited" : cells[4]
+                counted[verdict, default: 0] += 1
+            }
         }
         let now = Set(premises.map { $0.child + " " + $0.parent })
         let gone = onPage.subtracting(now).sorted()
         let fresh = now.subtracting(onPage).sorted()
+        // the head states four numbers, and the rows below it are where those
+        // numbers come from, so the page is asked to agree with itself
+        let fromRows = [onPage.count, counted["fails"]!, counted["still builds"]!,
+                        counted["inherited"]!]
+        if said != fromRows {
+            print("✗ THE ABLATION page counts one way and says another. "
+                  + "The head says \(said), the rows give \(fromRows) "
+                  + "for premises, fails, still builds, inherited.")
+            exit(1)
+        }
         if gone.isEmpty && fresh.isEmpty {
-            print("✓ THE ABLATION page names the \(now.count) premises the lattice declares.")
+            print("✓ THE ABLATION page names the \(now.count) premises the lattice "
+                  + "declares, and its head counts what its rows hold.")
             exit(0)
         }
         print("✗ THE ABLATION page and the lattice part: \(fresh.count) premise(s) "

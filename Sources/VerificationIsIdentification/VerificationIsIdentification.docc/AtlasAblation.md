@@ -12,7 +12,7 @@ line, and the module without the premise either still builds or fails.
 When it fails, the last column lists what stops compiling. A row that
 still builds asks a reader instead, and the papers carry its case.
 
-The five the module needs:
+The premises the module needs:
 
 - ``HasCompositionalNorm`` needs ``HasDistance``, at Sources/VerificationIsIdentification/Basis.swift:27
 - ``KnowledgeAccumulates`` needs ``HasLibrary``, at Sources/VerificationIsIdentification/Intelligence.swift:15

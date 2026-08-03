@@ -70,7 +70,7 @@ enum Ablate {
             }
             var lines = kept.components(separatedBy: "\n")
             guard p.line < lines.count, let cutLine = cutParent(lines[p.line], p.parent) else {
-                rows.append((p, "nothing to cut: inherited, not written", []))
+                rows.append((p, "inherited, no line to cut", []))
                 continue
             }
             lines[p.line] = cutLine
@@ -78,51 +78,55 @@ enum Ablate {
             let result = build(at: packageRoot)
             try? kept.write(toFile: p.file, atomically: true, encoding: .utf8)
             let refused = result.green ? [] : refusedNames(result.err)
-            rows.append((p, result.green ? "builds green" : "build fails", refused))
-            print("\(p.child): \(p.parent) -> \(result.green ? "builds green" : "build fails (\(refused.count) names)")")
+            rows.append((p, result.green ? "still builds" : "fails", refused))
+            print("\(p.child): \(p.parent) -> \(result.green ? "still builds" : "fails (\(refused.count) names)")")
         }
 
         let restored = build(at: packageRoot).green
+        let greenRows = rows.filter { $0.1 == "still builds" }.count
+        let failing = rows.filter { $0.1 == "fails" }
+        let inherited = rows.filter { $0.1.hasPrefix("inherited") }.count
+        let seconds = Int(-started.timeIntervalSinceNow)
+        let shown = { (p: Premise) in
+            p.file.replacingOccurrences(of: packageRoot.path + "/", with: "") }
+        // the reader's order: the question, the finding, how to read a row,
+        // the rows the build needs, the map, and the method last
         var out = ["# Which premises the build needs", ""]
-        out.append("Cut \(rows.count) of \(total) premises, one at a time, in "
-                   + "\(Int(-started.timeIntervalSinceNow))s. "
-                   + "Rerun it yourself: `swift build --product Tools && .build/debug/Tools "
-                   + "ablate <symbols.json>`. The build writes the graph file under "
-                   + "`.build/*/extracted-symbols/`. "
-                   + "The premise list is the compiler's own symbol graph, the file tree-sort")
-        out.append("reads, so the lattice has one reader. Each row cuts one declared premise,")
-        out.append("rebuilds the core module, and restores the file. `build fails` lists the")
-        out.append("names the compiler refused without the premise. `builds green` says the")
-        out.append("module compiles without it: the premise still carries meaning for a")
-        out.append("reader, and the papers, not this table, carry the argument.")
-        let greenRows = rows.filter { $0.1 == "builds green" }.count
-        let failing = rows.filter { $0.1 == "build fails" }
-        let inherited = rows.filter { $0.1.hasPrefix("nothing to cut") }.count
+        out.append("Every claim in the theory rests on premises. This page asks which of them")
+        out.append("the compiler needs. Each premise was cut from its declaration, the module")
+        out.append("was rebuilt, and the file was put back.")
         out.append("")
-        out.append("Of \(rows.count) premises, \(greenRows) build green, \(failing.count) "
-                   + "fail the build, and \(inherited) state a premise the compiler inherits "
-                   + "rather than a line to cut. A reader judges a green row, and the papers "
-                   + "carry its case.")
+        out.append("Of \(rows.count) premises the module needs \(failing.count). It builds without the other \(greenRows),")
+        out.append("and \(inherited) name a premise the compiler inherits, so they have no line to cut.")
         out.append("")
-        out.append("The build needs these:")
+        out.append("A row reads as a sentence: this claim names this premise, declared at that")
+        out.append("line, and the module without the premise either still builds or fails.")
+        out.append("When it fails, the last column lists what stops compiling. A row that")
+        out.append("still builds asks a reader instead, and the papers carry its case.")
+        out.append("")
+        out.append("The \(failing.count == 5 ? "five" : String(failing.count)) the module needs:")
         out.append("")
         for (p, _, _) in failing {
-            let rel = p.file.replacingOccurrences(of: packageRoot.path + "/", with: "")
-            out.append("- ``\(p.child)`` needs ``\(p.parent)``, at \(rel):\(p.line + 1)")
+            out.append("- ``\(p.child)`` needs ``\(p.parent)``, at \(shown(p)):\(p.line + 1)")
         }
         out.append("")
-        out.append("The map behind this table is <doc:Atlas>, and the cone behind")
-        out.append("every count there is <doc:AtlasUnfolded>.")
+        out.append("The map behind this table is <doc:Atlas>, and the cone behind every count")
+        out.append("there is <doc:AtlasUnfolded>.")
         out.append("")
-        out.append("| claim | premise | declared at | build without it | names refused |")
+        out.append("The premise list is the compiler's own symbol graph, the file tree-sort")
+        out.append("reads, so the lattice has one reader. The run took \(seconds)s. Rerun it")
+        out.append("yourself: `swift build --product Tools && .build/debug/Tools ablate")
+        out.append("<symbols.json>`. The build writes the graph file under")
+        out.append("`.build/*/extracted-symbols/`.")
+        out.append("")
+        out.append("| claim | premise | declared at | the module without it | what stops compiling |")
         out.append("|---|---|---|---|---|")
         for (p, verdict, refused) in rows {
-            let rel = p.file.replacingOccurrences(of: packageRoot.path + "/", with: "")
-            out.append("| ``\(p.child)`` | ``\(p.parent)`` | \(rel):\(p.line + 1) "
+            out.append("| ``\(p.child)`` | ``\(p.parent)`` | \(shown(p)):\(p.line + 1) "
                        + "| \(verdict) | \(refused.joined(separator: ", ")) |")
         }
         out.append("")
-        out.append("The module builds green after the last restoration: \(restored).")
+        out.append("Every file was put back after its cut, and the module builds: \(restored).")
         let target = packageRoot.appendingPathComponent(
             "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/AtlasAblation.md")
         try? (out.joined(separator: "\n") + "\n").write(to: target, atomically: true, encoding: .utf8)

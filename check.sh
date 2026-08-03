@@ -27,9 +27,11 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-# The second judge checks out HEAD into a worktree, so it answers only over a
-# committed tree. A run with work in progress says so and holds the rest.
-NEEDS_CLEAN="judge"
+# Two laws read only a committed tree: the second judge checks out HEAD into
+# a worktree, and the artifacts law regenerates files and diffs them, which
+# over work in progress would mix your edits into its answer. A run with work
+# in progress names them as not asked and holds the rest.
+NEEDS_CLEAN="judge artifacts"
 
 # tag | what it holds | how to ask
 LAWS=(
@@ -39,7 +41,8 @@ LAWS=(
 "readme|the numbers are counted, not remembered|swift run Tools readme"
 "rules|a rule is one substitution|swift run Tools lint Sources/DynamicsDemo/Rules.swift --strict"
 "topics|the Topics tree equals the type lattice|swift package --allow-writing-to-package-directory tree-sort check"
-"ablation|the ablation page names the premises the lattice declares|swift build --product Tools >/dev/null && GRAPH=\$(find .build -name VerificationIsIdentification.symbols.json | head -1) && .build/debug/Tools ablate \"\$GRAPH\" --check"
+"ablation|the ablation page names the premises the lattice declares|swift build --product Tools >/dev/null && { swift package dump-symbol-graph >/dev/null 2>&1 || true; } && GRAPH=\$(find .build -name VerificationIsIdentification.symbols.json | head -1) && .build/debug/Tools ablate \"\$GRAPH\" --check"
+"artifacts|the committed artifacts match the types, byte for byte|swift package --allow-writing-to-package-directory generate >/dev/null && swift run OrgDemo render-doc >/dev/null && swift run DocumentKitDemo render-doc >/dev/null && swift run VectorDemo all >/dev/null && git diff --exit-code"
 "judge|the second judge agrees with the compiler|swift run Tools judge diff 200"
 "light|the second judge reads the conditional grammar|swift run Tools judge where Sources/Examples/Light.swift"
 "ladder|the second judge counts the Rydberg ladder|swift run Tools judge where Sources/Examples/RydbergLadder.swift Sources/VerificationIsIdentification/Primitive.swift"
@@ -56,7 +59,7 @@ for entry in "${LAWS[@]}"; do
     cmd="${rest#*|}"
     [ -n "$MODE_ONLY" ] && [ "$tag" != "$MODE_ONLY" ] && continue
     [ -n "$MODE_SKIP" ] && [ "$tag" = "$MODE_SKIP" ] && continue
-    if [ "$tag" = "$NEEDS_CLEAN" ] && [ -n "$(git status --porcelain)" ]; then
+    if [[ " $NEEDS_CLEAN " == *" $tag "* ]] && [ -n "$(git status --porcelain)" ]; then
         echo "── $tag: $said"
         echo "   not asked: this law reads a committed tree, and yours has work in it"
         skipped+=("$tag")

@@ -34,14 +34,6 @@ jobs:
       - name: Every law but the grammar mirror
         run: ./check.sh --skip law
 
-      - name: The committed artifacts match the types, byte for byte
-        run: |
-          swift package --allow-writing-to-package-directory generate
-          swift run OrgDemo render-doc
-          swift run DocumentKitDemo render-doc
-          swift run VectorDemo all
-          git diff --exit-code
-
       - name: Generate the combined documentation site
         run: >
           swift package

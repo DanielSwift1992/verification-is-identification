@@ -11,7 +11,7 @@ Take a finite set of candidates and a test. If exactly one candidate passes, "it
 - term **Try it:** [the playground](https://danielswift1992.github.io/typed-playground/) runs in the browser, nothing to install: Swift types on the left, their reading on the right, and the judge names every broken claim at the keystroke. In the compiler, the scheduler in [Examples](https://danielswift1992.github.io/verification-is-identification/documentation/examples) is a proof in nine lines: it derives the one consistent schedule and refuses an impossible one by name. Five minutes either way.
 - term **See it at scale:** [Organization](https://danielswift1992.github.io/verification-is-identification/documentation/organization) is a whole company in the notation: browse the site its build rendered, walk a login keypad, read the access verdicts. <doc:Curve> measures the build as the company grows, to 12800 employees.
 - term **See why it is true:** <doc:verification_is_identification> proves the result from one postulate, <doc:existence_is_finite> grounds it, and <doc:intelligence_is_inevitable> follows one consequence out. <doc:Neighbors> sets the result beside partial evaluation, Datalog, and total languages.
-- term **Check it:** <doc:AtlasOrder> orders every claim after its premises. <doc:Atlas> counts each claim's dependents, <doc:AtlasAblation> records which premises the core build enforces (5 of 2396), <doc:AtlasRepeats> counts premises declared twice, and <doc:AtlasReview> lists the review's questions beside their answers.
+- term **Check it:** <doc:AtlasOrder> orders every claim after its premises. <doc:Atlas> counts each claim's dependents, <doc:AtlasAblation> records which premises the core build enforces (5 of 2396), <doc:AtlasRepeats> counts premises declared twice, <doc:AtlasArgued> counts the edges whose argument carries a record, and <doc:AtlasReview> lists the review's questions beside their answers.
 - term **Build your own:** <doc:Purpose> states what the notation buys and where it stops, <doc:Encoding> maps your part of a system onto it, and ``Law`` is the grammar you write in. These pages are themselves rendered by [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit): the site is written in the notation it documents.
 
 Two longer threads run through the papers: learning machines, <doc:intelligence_is_inevitable> → <doc:play_is_proof> → <doc:architecture_of_learning_machines>, and the emitted path (token by token, gated or not), <doc:program_is_path>. The type pages under Topics are reference.
@@ -154,12 +154,6 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 ### The atlas: what carries what
 
 - <doc:Atlas>
-- <doc:AtlasUnfolded>
-- <doc:AtlasAblation>
-- <doc:AtlasRepeats>
-- <doc:AtlasOrder>
-- <doc:AtlasArgued>
-- <doc:AtlasReview>
 ### The papers: the routes
 
 - <doc:Sources>

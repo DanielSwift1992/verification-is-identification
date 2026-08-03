@@ -237,10 +237,7 @@ func landingTopics(_ trailheads: [String]) -> String {
     topics += group("The floor: what it delegates, where it stops", symbols(names(floor)))
     let proj = byDepth(protos.filter { PROJ_FILES.contains(file($0)) })
     topics += group("Projection: the framework instantiated on machines", symbols(names(proj)))
-    topics += group("The atlas: what carries what",
-                ["<doc:Atlas>", "<doc:AtlasUnfolded>", "<doc:AtlasAblation>",
-                 "<doc:AtlasRepeats>", "<doc:AtlasOrder>", "<doc:AtlasArgued>",
-                 "<doc:AtlasReview>"])
+    topics += group("The atlas: what carries what", ["<doc:Atlas>"])
     topics += group("The papers: the routes", ["<doc:Sources>"])
     return topics
 }
@@ -442,7 +439,13 @@ func orderBlock() -> String {
 }
 
 func atlasBlock() -> String {
+    // the Atlas is the node of its family: the six readings of the same
+    // lattice are curated here, under the map they unfold, and the door
+    // carries one entry instead of seven
     "## The load, heaviest first\n\n" + atlasTable(atlasRows())
+    + "\n## Topics\n\n### The same lattice, read six ways\n\n"
+    + "- <doc:AtlasUnfolded>\n- <doc:AtlasAblation>\n- <doc:AtlasRepeats>\n"
+    + "- <doc:AtlasOrder>\n- <doc:AtlasArgued>\n- <doc:AtlasReview>\n"
 }
 func atlasUnfoldedBlock() -> String {
     var out = "## The cones\n"

@@ -1,14 +1,33 @@
 # Atlas
 
-One row per claim of the theory: its premises, and how much it carries. The table is printed from the compiler's own dependency record, never drawn or edited by hand.
+One row per claim of the theory: its premises, and the count of claims
+that depend on it. The table is generated from the compiler's dependency
+record.
 
-Each claim is one Swift protocol, and a premise is a protocol the claim refines. The compiler therefore already has the full dependency graph of the theory, and this page prints it as a table. **Premises** lists the claim's direct parents. **Carries** counts every claim it carries, directly or through others: remove this row and that many claims stop compiling. The heaviest rows are the theory's load-bearing assumptions. **Kind** is computed from the row's shape, not assigned: a *seed* is one of the two primitives everything is built from, an *axis* opens a coordinate the theory can vary along, a *bridge* joins axes into a theorem, a *marker* names a property used as a constraint, a *kernel* is core machinery between the seed and the axes.
+Each claim is one Swift protocol. A premise is a protocol the claim
+refines, so the compiler already has the full dependency graph, and this
+page prints it. **Premises** lists the direct parents. **Carries** counts
+the claims that depend on this one, directly or through others: the
+claim's cone in the graph. **Kind** is computed from the row's position,
+not assigned: a *seed* is one of the two base primitives, an *axis* opens
+a coordinate, a *bridge* joins two or more axes, a *marker* names a
+property used as a constraint, a *kernel* is machinery between the seed
+and the axes.
 
-The table is testable. Remove any claim's declaration and the module stops building. The count itself comes from the compiler's dependency record: Carries is the claim's cone in that record, and the check that keeps this page recounts every cone from both ends on every run, down the children and up the parents. <doc:AtlasAblation> measures the premises one at a time: each is cut from its line, the module is rebuilt, and the page records whether the build needs it.
+The table is checked two ways. Remove a claim's declaration and the
+module fails to build. And tree-sort check recounts every cone in both
+directions, down the children and up the parents, on every run: when the
+two counts differ, the check fails and the page is not reported.
+<doc:AtlasAblation> tests the premises one at a time: each is cut from
+its line, the module is rebuilt, and the result is recorded.
 
-Carries weighs structure, not meaning. It counts the claims that rest on this one in the record, and a claim with a small cone can still carry an idea the papers lean on. The number says where a cut spreads, and the papers say why a claim matters.
+Carries measures structure, not importance. It is the number of
+dependents in the type graph. A claim with a small cone can be central
+to a paper's argument, and that judgement is made in the papers, not by
+this number.
 
-A cycle between claims cannot exist here: a circular protocol hierarchy does not compile. Acyclicity is built into the language.
+A cycle between claims cannot exist here: a circular protocol hierarchy
+does not compile. Acyclicity is built into the language.
 
 ## The load, heaviest first
 

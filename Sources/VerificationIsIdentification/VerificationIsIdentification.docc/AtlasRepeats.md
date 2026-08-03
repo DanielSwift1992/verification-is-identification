@@ -1,21 +1,19 @@
 # Which premises repeat
 
-A claim states the premises it rests on. When one of those premises is
-already carried by another, the claim states one dependency twice, once
-on its own line and once through that other premise. This page prints
-every such pair, read from the same parents <doc:Atlas> prints.
+Each claim declares its premises. When one declared premise is reachable
+from another, the dependency is stated twice: directly, and through the
+other premise. This page lists every such pair, computed from the same
+parents <doc:Atlas> prints.
 
-A repeat costs nothing at the build. It matters to a reader, who counts
-the premises of a claim to see what the claim asks for. The rows below are
-the places where that count is larger than the claim needs, and a page
-with no rows says every set is minimal.
+A repeat does not affect the build. It affects reading: the premise list
+is longer than the dependency graph requires. An empty table means no
+claim declares a redundant premise.
 
-This page counts the premises a claim declares in Swift. A paper may
-rest its argument on more than that, and this page says nothing about
-those.
+This page counts premises declared in Swift. A paper may use premises
+the declaration does not list. Those are not counted here.
 
-The map behind this page is <doc:Atlas>, and the premises the build needs
-are in <doc:AtlasAblation>.
+The map behind this page is <doc:Atlas>, and the premises the build
+needs are in <doc:AtlasAblation>.
 
 ## The premises stated twice
 

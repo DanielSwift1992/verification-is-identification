@@ -1,26 +1,25 @@
 # What the review asked
 
-A review of 29.07.2026 read the lattice through the Atlas and asked its
-questions. This page keeps them beside their answers, so the closed ones
-point at what closed them and the open ones are named instead of
-forgotten.
+A review dated 29.07.2026 examined the lattice through the Atlas. This
+page lists its questions beside the pages that answer them. Open
+questions are marked open.
 
-- Are a claim's premises minimal, or does one state what another already
-  carries? <doc:AtlasRepeats> counts every such pair on every run, and
-  the count today is zero.
-- Which premises does the build need? <doc:AtlasAblation> cuts each one
-  from its line and records the answer: the module needs 5 of 2396. The
-  page names the revision it measured, and a check compares its rows
-  with the lattice of the day.
-- In what order can the whole lattice be reviewed, premises first?
-  <doc:AtlasOrder> prints that order for all 174 claims in 17 steps.
-- Does Carries measure importance? It measures structure: the cone of
-  claims that rest on a row in the compiler's record. <doc:Atlas> says
-  that limit on the page, and the papers argue meaning.
-- Open: a premise a paper uses without the lattice declaring it. Every
-  page here counts declared premises and says so. A name audit over each
-  claim's own text against its premise closure is the next measure.
-- Open: semantic cycles through prose, which no compiler forbids. The
-  same audit is the road to seeing them.
-- Open: the argument behind each premise the build does not need, as an
-  address into the papers at the edge itself.
+- Are premise sets minimal? <doc:AtlasRepeats> computes every premise
+  reachable from a sibling premise, on every run. The current count is
+  zero.
+- Which premises does the build need? <doc:AtlasAblation> removes each
+  premise and rebuilds: the module needs 5 of 2396. The page records
+  the revision it measured, and a check compares its rows with the
+  current lattice.
+- In what order can the lattice be reviewed? <doc:AtlasOrder> orders
+  all 174 claims in 17 steps, premises before dependents.
+- Does Carries measure importance? It measures the number of dependents
+  in the type graph. <doc:Atlas> states this limit on the page.
+  Conceptual importance is argued in the papers.
+- Open: premises a paper uses that the lattice does not declare. Every
+  page here counts declared premises only. A planned audit compares the
+  names in each claim's documentation against its premise closure.
+- Open: semantic cycles through prose. The compiler excludes cycles in
+  the protocol hierarchy and nothing else. The same audit applies.
+- Open: a link from each premise the build does not need to the paper
+  section that argues it.

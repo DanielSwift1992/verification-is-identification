@@ -1,23 +1,21 @@
 # In what order to read
 
-A claim can be judged once its premises are judged. This page puts the
-whole lattice in that order. A claim at a step rests only on claims from
-earlier steps, so a reader who takes the steps from the first meets every
-premise before the claim that asks for it.
+A claim can be checked once its premises are checked. This page orders
+the whole lattice that way: every claim appears after all of its
+premises.
 
-Step 0 has the claims with no premises. A claim's step is the length of
-its longest way down to step 0, so one move above a step 0 claim is step
-1. A row names the premises its claim declares itself. Everything deeper than those is
-at an earlier step by the same rule, so the row is the whole of what is
-new to check.
+Step 0 contains the claims with no premises. A claim's step is the
+length of its longest path down to step 0. A row lists the claim and its
+declared premises. Premises of premises are at earlier steps by the same
+rule, so each row is the only new material at its step.
 
-A step counts moves in the type lattice, not depth in an argument. Two
-claims at one step share a distance from the claims with no premises, and
-nothing more.
+A step is a distance in the type graph, not a measure of difficulty or
+of depth of argument. Claims at one step share that distance and
+nothing else.
 
-<doc:Atlas> gives the same claims by load, heaviest first, which answers a
-different question: what falls if one of them falls. This page answers
-where to start.
+<doc:Atlas> sorts the same claims by cone size, which answers a
+different question: how many claims depend on this one. This page
+answers where to start reading.
 
 ## The order, premises before what they carry
 

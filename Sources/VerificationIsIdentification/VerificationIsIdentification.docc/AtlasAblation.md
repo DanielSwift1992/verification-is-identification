@@ -1,16 +1,16 @@
 # Which premises the build needs
 
-Every claim in the theory rests on premises. This page asks which of them
-the compiler needs. Each premise was cut from its declaration, the module
-was rebuilt, and the file was put back.
+Each claim declares premises. This page records which of them the
+compiler needs. Each premise was removed from its declaration, the
+module was rebuilt, and the file was restored.
 
 Of 2396 premises the module needs 5. It builds without the other 2184,
 and 207 name a premise the compiler inherits, so they have no line to cut.
 
-A row reads as a sentence: this claim names this premise, declared at that
-line, and the module without the premise either still builds or fails.
-When it fails, the last column lists what stops compiling. A row that
-still builds asks a reader instead, and the papers carry its case.
+Row format: the claim, the premise, the line where the premise is
+declared, whether the module builds without it, and, when the build
+fails, the symbols the compiler reports. A premise the build does not
+need is not therefore redundant: its justification is in the papers.
 
 The premises the module needs:
 

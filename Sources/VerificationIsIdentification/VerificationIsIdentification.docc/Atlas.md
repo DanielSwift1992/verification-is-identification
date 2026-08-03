@@ -19,7 +19,7 @@ module fails to build. And tree-sort check recounts every cone in both
 directions, down the children and up the parents, on every run: when the
 two counts differ, the check fails and the page is not reported.
 <doc:AtlasAblation> tests the premises one at a time: each is cut from
-its line, the module is rebuilt, and the result is recorded.
+its line, the core module is rebuilt, and the result is recorded.
 
 Carries measures structure, not importance. It is the number of
 dependents in the type graph. A claim with a small cone can be central

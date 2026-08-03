@@ -1,19 +1,24 @@
 # Which premises the build needs
 
 Each claim declares premises, and this page records which of them
-the compiler needs: each premise was removed from its declaration,
-the module was rebuilt, and the file was put back.
+the core module's build enforces: each premise was removed from its
+declaration, the core module was rebuilt, and the file was put back.
 
 Of 2396 premises the module needs 5. It builds without the other 2184,
 and 207 come from a premise the compiler inherits: an inherited premise
 is not written on a line of its own, so there is nothing to remove.
 
-Row format: the claim, the premise, the line where the premise is
-declared, whether the module builds without it, and, when the build
-fails, the symbols the compiler reports. A premise the build does not
-need is not therefore redundant: its justification is in the papers.
+The cut rebuilds the core module alone: witnesses, examples and the
+modules downstream are outside this measure. Builds without it is a
+fact about the core build, not a verdict that the premise is
+unnecessary: the failures are a lower bound on necessity, and what
+the argument needs is a different question, answered in the papers.
 
-The premises the module needs:
+Row format: the claim, the premise, the line where the premise is
+declared, whether the core module builds without it, and, when the
+build fails, the symbols the compiler reports.
+
+The premises the core build enforces:
 
 - ``HasCompositionalNorm`` needs ``HasDistance``, at Basis.swift:27
 - ``KnowledgeAccumulates`` needs ``HasLibrary``, at Intelligence.swift:15

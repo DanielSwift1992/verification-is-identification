@@ -8,9 +8,10 @@ questions are marked open.
   reachable from a sibling premise, on every run. The current count is
   zero.
 - Which premises does the build need? <doc:AtlasAblation> removes each
-  premise and rebuilds: the module needs 5 of 2396. The page records
-  the revision it measured, and a check compares its rows with the
-  current lattice.
+  premise and rebuilds the core module: its build fails without 5 of
+  2396. The other edges are outside that measure, not shown
+  unnecessary. The page records the revision it measured, and a check
+  compares its rows with the current lattice.
 - In what order can the lattice be reviewed? <doc:AtlasOrder> orders
   all 174 claims in 17 steps, premises before dependents.
 - Does Carries measure importance? It measures the number of dependents

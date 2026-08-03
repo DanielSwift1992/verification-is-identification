@@ -28,49 +28,11 @@ jobs:
         with:
           xcode-version: latest-stable
 
-      - name: Build (LawCheck enforces the law) and test
-        run: |
-          swift --version
-          swift build
-          swift test
-
-      - name: Count declarations per target (Tools census)
-        run: swift run Tools census
-
-      # The grammar mirror stands in the `law` job below, which runs beside
-      # this one instead of inside it. It cost 744s of a 1509s run, and every
-      # second of that was spent waiting rather than deploying.
-
-      - name: The voice holds at its pins (Tools voice)
-        run: swift run Tools voice
-
-      - name: The README's numbers are counted, not remembered
-        run: swift run Tools readme
-
-      - name: A rule is one substitution (§S28, the triples dictionary)
-        run: swift run Tools lint Sources/DynamicsDemo/Rules.swift --strict
-
-      - name: Topics stay equal to the type lattice
-        run: swift package --allow-writing-to-package-directory tree-sort check
-
-      - name: The ablation page names the premises the lattice declares
-        run: |
-          swift build --product Tools
-          swift package dump-symbol-graph >/dev/null 2>&1 || true
-          GRAPH=$(find .build -name VerificationIsIdentification.symbols.json | head -1)
-          .build/debug/Tools ablate "$GRAPH" --check
-
-      - name: The second judge agrees with the compiler
-        run: swift run Tools judge diff 200
-
-      - name: The second judge reads the conditional grammar
-        run: swift run Tools judge where Sources/Examples/Light.swift
-
-      - name: The second judge counts the Rydberg ladder
-        run: swift run Tools judge where Sources/Examples/RydbergLadder.swift Sources/VerificationIsIdentification/Primitive.swift
-
-      - name: The second judge reads the grant world
-        run: swift run Tools judge where Sources/Examples/Grants.swift
+      # every law this repository holds itself to lives in ./check.sh, so a
+      # person at a desk and this runner ask for the same list. The mirror
+      # runs in the `law` job beside this one, and skips here.
+      - name: Every law but the grammar mirror
+        run: ./check.sh --skip law
 
       - name: The committed artifacts match the types, byte for byte
         run: |
@@ -135,7 +97,7 @@ jobs:
           xcode-version: latest-stable
 
       - name: The grammar carries every source file
-        run: swift run Tools grammar
+        run: ./check.sh --only law
 
   deploy:
     needs: [build, law]

@@ -8,10 +8,10 @@ every such pair, read from the same parents <doc:Atlas> prints.
 A repeat costs nothing at the build. It matters to a reader, who counts
 the premises of a claim to see what the claim asks for. The rows below are
 the places where that count is larger than the claim needs, and a page
-with no rows is the lattice keeping every set minimal.
+with no rows says every set is minimal.
 
-The premises counted here are the ones a claim declares in Swift. A paper
-may rest its argument on more than that, and this page says nothing about
+This page counts the premises a claim declares in Swift. A paper may
+rest its argument on more than that, and this page says nothing about
 those.
 
 The map behind this page is <doc:Atlas>, and the premises the build needs

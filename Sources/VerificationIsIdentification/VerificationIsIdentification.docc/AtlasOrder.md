@@ -5,10 +5,9 @@ whole lattice in that order. A claim at a step rests only on claims from
 earlier steps, so a reader who takes the steps from the first meets every
 premise before the claim that asks for it.
 
-Step 0 has the claims with no premises. A claim appears at the step that
-counts the longest way down from it to step 0, so one move above a step 0
-claim is step 1. A row names
-the premises its claim declares itself. Everything deeper than those is
+Step 0 has the claims with no premises. A claim's step is the length of
+its longest way down to step 0, so one move above a step 0 claim is step
+1. A row names the premises its claim declares itself. Everything deeper than those is
 at an earlier step by the same rule, so the row is the whole of what is
 new to check.
 

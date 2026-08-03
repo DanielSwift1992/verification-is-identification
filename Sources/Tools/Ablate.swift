@@ -95,6 +95,21 @@ enum Ablate {
         out.append("names the compiler refused without the premise. `builds green` says the")
         out.append("module compiles without it: the premise still carries meaning for a")
         out.append("reader, and the papers, not this table, carry the argument.")
+        let greenRows = rows.filter { $0.1 == "builds green" }.count
+        let failing = rows.filter { $0.1 == "build fails" }
+        let inherited = rows.filter { $0.1.hasPrefix("nothing to cut") }.count
+        out.append("")
+        out.append("Of \(rows.count) premises, \(greenRows) build green, \(failing.count) "
+                   + "fail the build, and \(inherited) state a premise the compiler inherits "
+                   + "rather than a line to cut. A reader judges a green row, and the papers "
+                   + "carry its case.")
+        out.append("")
+        out.append("The build needs these:")
+        out.append("")
+        for (p, _, _) in failing {
+            let rel = p.file.replacingOccurrences(of: packageRoot.path + "/", with: "")
+            out.append("- ``\(p.child)`` needs ``\(p.parent)``, at \(rel):\(p.line + 1)")
+        }
         out.append("")
         out.append("The map behind this table is <doc:Atlas>, and the cone behind")
         out.append("every count there is <doc:AtlasUnfolded>.")

@@ -7,6 +7,16 @@ names the compiler refused without the premise. `builds green` says the
 module compiles without it: the premise still carries meaning for a
 reader, and the papers, not this table, carry the argument.
 
+Of 2396 premises, 2184 build green, 5 fail the build, and 207 state a premise the compiler inherits rather than a line to cut. A reader judges a green row, and the papers carry its case.
+
+The build needs these:
+
+- ``HasCompositionalNorm`` needs ``HasDistance``, at Sources/VerificationIsIdentification/Basis.swift:27
+- ``KnowledgeAccumulates`` needs ``HasLibrary``, at Sources/VerificationIsIdentification/Intelligence.swift:15
+- ``Open`` needs ``Structure``, at Sources/VerificationIsIdentification/Primitive.swift:70
+- ``Close`` needs ``Structure``, at Sources/VerificationIsIdentification/Primitive.swift:88
+- ``Pair`` needs ``Open``, at Sources/VerificationIsIdentification/Primitive.swift:102
+
 The map behind this table is <doc:Atlas>, and the cone behind
 every count there is <doc:AtlasUnfolded>.
 

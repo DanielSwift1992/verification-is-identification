@@ -305,7 +305,8 @@ func repeatRows() -> [(claim: String, premise: String, through: String)] {
     for p in protos.sorted(by: { title($0) < title($1) }) {
         let declared = par[p] ?? []
         for premise in declared {
-            for other in declared where other != premise {
+            for other in declared
+            where other != premise {
                 if carriedFrom(other).contains(premise) {
                     out.append((title(p), title(premise), title(other)))
                     break

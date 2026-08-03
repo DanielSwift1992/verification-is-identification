@@ -6,7 +6,10 @@ earlier steps, so a reader who takes the steps from the first meets every
 premise before the claim that asks for it.
 
 Step 0 has the claims with no premises at all. Each later step adds the
-claims whose longest way down to step 0 is that many moves.
+claims whose longest way down to step 0 is that many moves. A row names
+the premises its claim declares itself. Everything deeper than those is
+at an earlier step by the same rule, so the row is the whole of what is
+new to check.
 
 <doc:Atlas> gives the same claims by load, heaviest first, which answers a
 different question: what falls if one of them falls. This page answers

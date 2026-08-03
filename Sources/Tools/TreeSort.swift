@@ -239,7 +239,7 @@ func landingTopics(_ trailheads: [String]) -> String {
     topics += group("Projection: the framework instantiated on machines", symbols(names(proj)))
     topics += group("The atlas: what carries what",
                 ["<doc:Atlas>", "<doc:AtlasUnfolded>", "<doc:AtlasAblation>",
-                 "<doc:AtlasRepeats>"])
+                 "<doc:AtlasRepeats>", "<doc:AtlasOrder>"])
     topics += group("The papers: the routes", ["<doc:Sources>"])
     return topics
 }
@@ -328,6 +328,25 @@ func repeatsBlock() -> String {
     return out
 }
 
+// ── the reading order: every claim comes after the claims it rests on. The
+// step of a claim is the longest way down to a claim with no premises, so a
+// reader who takes the steps in order meets no premise twice and none late.
+func orderBlock() -> String {
+    var byStep: [Int: [String]] = [:]
+    for p in protos { byStep[depth(p), default: []].append(p) }
+    var out = "## The order, premises before what they carry\n\n"
+    for step in byStep.keys.sorted() {
+        let members = byStep[step]!.sorted { title($0) < title($1) }
+        out += "### Step \(step)\n\n"
+        for m in members {
+            let rests = (par[m] ?? []).map { "``\(title($0))``" }.sorted().joined(separator: ", ")
+            out += "- ``\(title(m))``" + (rests.isEmpty ? "" : ", after \(rests)") + "\n"
+        }
+        out += "\n"
+    }
+    return out
+}
+
 func atlasBlock() -> String {
     "## The load, heaviest first\n\n" + atlasTable(atlasRows())
 }
@@ -411,6 +430,7 @@ func eachFile() -> [(String, String)] {
     out.append(((docc as NSString).appendingPathComponent("Atlas.md"), atlasBlock()))
     out.append(((docc as NSString).appendingPathComponent("AtlasUnfolded.md"), atlasUnfoldedBlock()))
     out.append(((docc as NSString).appendingPathComponent("AtlasRepeats.md"), repeatsBlock()))
+    out.append(((docc as NSString).appendingPathComponent("AtlasOrder.md"), orderBlock()))
     return out
 }
 

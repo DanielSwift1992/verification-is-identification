@@ -14,7 +14,7 @@ much argument is still prose without an address.
 The build enforces 5 edges of 2396 premises (<doc:AtlasAblation>), so
 for almost every edge the argument is the only thing that needs it.
 This page is where that need becomes a record, edge by edge. Seeding
-starts with the two chains under review, identification and matter.
+starts with the identification and matter chains.
 
 ## The edges argued so far
 

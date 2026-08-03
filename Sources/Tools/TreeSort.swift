@@ -443,9 +443,9 @@ func atlasBlock() -> String {
     // lattice are curated here, under the map they unfold, and the door
     // carries one entry instead of seven
     "## The load, heaviest first\n\n" + atlasTable(atlasRows())
-    + "\n## Topics\n\n### The same lattice, read six ways\n\n"
+    + "\n## Topics\n\n### The same lattice, read five ways\n\n"
     + "- <doc:AtlasUnfolded>\n- <doc:AtlasAblation>\n- <doc:AtlasRepeats>\n"
-    + "- <doc:AtlasOrder>\n- <doc:AtlasArgued>\n- <doc:AtlasReview>\n"
+    + "- <doc:AtlasOrder>\n- <doc:AtlasArgued>\n"
 }
 func atlasUnfoldedBlock() -> String {
     var out = "## The cones\n"

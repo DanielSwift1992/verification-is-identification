@@ -4,13 +4,12 @@ The Atlas is one table with one row per claim of the theory: the claim's
 premises, and the count of claims that depend on it. The table is
 generated from the compiler's dependency record.
 
-Six companion pages read the same lattice, each for one question:
+Five companion pages read the same lattice, each for one question:
 
 - <doc:AtlasOrder> puts every claim after its premises: the reading order.
 - <doc:AtlasAblation> records which premises the core build enforces.
 - <doc:AtlasRepeats> counts premises declared twice.
 - <doc:AtlasArgued> ties each argued edge to the paragraph that argues it.
-- <doc:AtlasReview> lists the review's questions with their answers.
 - <doc:AtlasUnfolded> expands every Carries count into its list.
 
 Each claim is one Swift protocol. A premise is a protocol the claim
@@ -219,11 +218,10 @@ does not compile. Acyclicity is built into the language.
 
 ## Topics
 
-### The same lattice, read six ways
+### The same lattice, read five ways
 
 - <doc:AtlasUnfolded>
 - <doc:AtlasAblation>
 - <doc:AtlasRepeats>
 - <doc:AtlasOrder>
 - <doc:AtlasArgued>
-- <doc:AtlasReview>

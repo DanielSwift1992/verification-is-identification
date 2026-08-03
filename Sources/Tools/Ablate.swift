@@ -40,7 +40,8 @@ enum Ablate {
         var byId: [String: Symbol] = [:]
         for s in graph.symbols { byId[s.identifier.precise] = s }
         var premises: [Premise] = []
-        for r in graph.relationships where r.kind == "conformsTo" {
+        for r in graph.relationships
+        where r.kind == "conformsTo" {
             guard let child = byId[r.source], let parent = byId[r.target],
                   child.kind.identifier.hasSuffix("protocol"),
                   parent.kind.identifier.hasSuffix("protocol"),
@@ -64,11 +65,13 @@ enum Ablate {
         let started = Date()
         for p in premises {
             guard let kept = try? String(contentsOfFile: p.file, encoding: .utf8) else {
-                rows.append((p, "unread", [])); continue
+                rows.append((p, "unread", []))
+                continue
             }
             var lines = kept.components(separatedBy: "\n")
             guard p.line < lines.count, let cutLine = cutParent(lines[p.line], p.parent) else {
-                rows.append((p, "nothing to cut: inherited, not written", [])); continue
+                rows.append((p, "nothing to cut: inherited, not written", []))
+                continue
             }
             lines[p.line] = cutLine
             try? lines.joined(separator: "\n").write(toFile: p.file, atomically: true, encoding: .utf8)
@@ -84,7 +87,7 @@ enum Ablate {
         out.append("Cut \(rows.count) of \(total) premises, one at a time, in "
                    + "\(Int(-started.timeIntervalSinceNow))s. "
                    + "Rerun it yourself: `swift build --product Tools && .build/debug/Tools "
-                   + "ablate <symbols.json>`; the graph file sits under "
+                   + "ablate <symbols.json>`. The build writes the graph file under "
                    + "`.build/*/extracted-symbols/`. "
                    + "The premise list is the compiler's own symbol graph, the file tree-sort")
         out.append("reads, so the lattice has one reader. Each row cuts one declared premise,")
@@ -141,7 +144,8 @@ enum Ablate {
 
     static func refusedNames(_ err: String) -> [String] {
         var names = Set<String>()
-        for line in err.components(separatedBy: "\n") where line.contains("error:") {
+        for line in err.components(separatedBy: "\n")
+        where line.contains("error:") {
             for m in line.components(separatedBy: "'").enumerated()
             where m.offset % 2 == 1 && !m.element.isEmpty {
                 names.insert(m.element)

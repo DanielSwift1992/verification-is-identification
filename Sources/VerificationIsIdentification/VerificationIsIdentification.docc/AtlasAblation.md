@@ -1,6 +1,6 @@
 # Which premises the build needs
 
-Cut 2396 of 2396 premises, one at a time, in 4158s. Rerun it yourself: `swift build --product Tools && .build/debug/Tools ablate <symbols.json>`; the graph file sits under `.build/*/extracted-symbols/`. The premise list is the compiler's own symbol graph, the file tree-sort
+Cut 2396 of 2396 premises, one at a time, in 4158s. Rerun it yourself: `swift build --product Tools && .build/debug/Tools ablate <symbols.json>`. The build writes the graph file under `.build/*/extracted-symbols/`. The premise list is the compiler's own symbol graph, the file tree-sort
 reads, so the lattice has one reader. Each row cuts one declared premise,
 rebuilds the core module, and restores the file. `build fails` lists the
 names the compiler refused without the premise. `builds green` says the

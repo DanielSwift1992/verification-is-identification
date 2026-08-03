@@ -37,8 +37,9 @@ jobs:
       - name: Count declarations per target (Tools census)
         run: swift run Tools census
 
-      - name: The grammar carries every source file
-        run: swift run Tools grammar
+      # The grammar mirror stands in the `law` job below, which runs beside
+      # this one instead of inside it. It cost 744s of a 1509s run, and every
+      # second of that was spent waiting rather than deploying.
 
       - name: The voice holds at its pins (Tools voice)
         run: swift run Tools voice
@@ -109,8 +110,28 @@ jobs:
         with:
           path: _site
 
+  # THE LAW, JUDGED BESIDE THE SITE RATHER THAN AHEAD OF IT. Every source file
+  # is re-spelled in the typed vocabulary and handed to the compiler: a
+  # semicolon or a mid-line `where` has no grant and fails to build (Permission
+  # Is Existence §1). It is the slowest step here and it stays on every push,
+  # because the one push it caught is the one that took the site down. What it
+  # stops doing is holding the other steps up: nothing below it read its
+  # result, so it never belonged in the same line of work. Run it locally
+  # before pushing source: swift run Tools grammar
+  law:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: The grammar carries every source file
+        run: swift run Tools grammar
+
   deploy:
-    needs: build
+    needs: [build, law]
     runs-on: ubuntu-latest
     environment:
       name: github-pages

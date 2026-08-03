@@ -396,7 +396,7 @@ V=I §5.25: order is the sole dynamic variable. Correctness is order-invariant. 
 
 Search is elimination. The agent starts with all of F and removes what does not survive. Each REJECT removes candidates from S (V=I §5.22: S is monotonically non-increasing). Each step subtracts from the agent's uncertainty, not adds to the domain.
 
-Encoding is lens selection. The structure (the target in Σ) is the same under every lens (V=I §5.14: the target does not change). The lens determines which part of the structure is visible. A richer lens exposes more structure, and a poorer one hides it.
+Encoding is lens selection. The structure (the target in Σ) is the same under every lens (V=I §5.20: the structures exist before the call). The lens determines which part of the structure is visible. A richer lens exposes more structure, and a poorer one hides it.
 
 This applies at every level. Level-2 encoding selection uncovers the meta-library. Level-3 grammar selection uncovers the grammar map. At every level, the same act of distinction and the same elimination process.
 

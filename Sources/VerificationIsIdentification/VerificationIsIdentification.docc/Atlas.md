@@ -4,7 +4,9 @@ One row per claim of the theory: its premises, and how much it carries. The tabl
 
 Each claim is one Swift protocol, and a premise is a protocol the claim refines. The compiler therefore already has the full dependency graph of the theory, and this page prints it as a table. **Premises** lists the claim's direct parents. **Carries** counts every claim it carries, directly or through others: remove this row and that many claims stop compiling. The heaviest rows are the theory's load-bearing assumptions. **Kind** is computed from the row's shape, not assigned: a *seed* is one of the two primitives everything is built from, an *axis* opens a coordinate the theory can vary along, a *bridge* joins axes into a theorem, a *marker* names a property used as a constraint, a *kernel* is core machinery between the seed and the axes.
 
-The table is testable. Delete any claim's declaration from the source and build: the compiler lists every claim that falls, and the length of that list is this table's Carries number. The table and the compiler read the same source, so the two counts cannot drift apart. <doc:AtlasAblation> runs that test over every premise on this page, one cut at a time, and records whether the module still builds without it.
+The table is testable. Remove any claim's declaration and the module stops building. The count itself comes from the compiler's dependency record: Carries is the claim's cone in that record, and the check that keeps this page recounts every cone from both ends on every run, down the children and up the parents. <doc:AtlasAblation> measures the premises one at a time: each is cut from its line, the module is rebuilt, and the page records whether the build needs it.
+
+Carries weighs structure, not meaning. It counts the claims that rest on this one in the record, and a claim with a small cone can still carry an idea the papers lean on. The number says where a cut spreads, and the papers say why a claim matters.
 
 A cycle between claims cannot exist here: a circular protocol hierarchy does not compile. Acyclicity is built into the language.
 

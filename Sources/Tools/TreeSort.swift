@@ -239,7 +239,7 @@ func landingTopics(_ trailheads: [String]) -> String {
     topics += group("Projection: the framework instantiated on machines", symbols(names(proj)))
     topics += group("The atlas: what carries what",
                 ["<doc:Atlas>", "<doc:AtlasUnfolded>", "<doc:AtlasAblation>",
-                 "<doc:AtlasRepeats>", "<doc:AtlasOrder>"])
+                 "<doc:AtlasRepeats>", "<doc:AtlasOrder>", "<doc:AtlasReview>"])
     topics += group("The papers: the routes", ["<doc:Sources>"])
     return topics
 }
@@ -470,6 +470,24 @@ case "check":
         print("✗ the repeats walk misses a repeat made for it: the count on "
               + "AtlasRepeats.md means nothing until this passes")
         exit(1)
+    }
+    // the Carries promise, recounted from the other end: a claim's cone is
+    // the set of claims whose ancestors include it. The table counts down
+    // the children, this counts up the parents, and the walks share only
+    // the parent edges, so a bend in either closure parts the two counts
+    // and the page refuses to report.
+    _ = atlasRows()
+    for p in protos {
+        let down = atlasCarries(p).count
+        var up = 0
+        for q in protos
+        where anc(q).contains(p) { up += 1 }
+        if down != up {
+            print("✗ the cone of \(title(p)) counts \(down) down the children "
+                  + "and \(up) up the parents: Carries on Atlas.md means "
+                  + "nothing until the two walks agree")
+            exit(1)
+        }
     }
     let drift = eachFile().filter { (path, block) in
         ((try? String(contentsOfFile: path, encoding: .utf8)) ?? "") != target(path, block)

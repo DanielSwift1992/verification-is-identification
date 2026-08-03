@@ -68,7 +68,7 @@ enum Ablate {
             }
             var lines = kept.components(separatedBy: "\n")
             guard p.line < lines.count, let cutLine = cutParent(lines[p.line], p.parent) else {
-                rows.append((p, "uncut", [])); continue
+                rows.append((p, "nothing to cut: inherited, not written", [])); continue
             }
             lines[p.line] = cutLine
             try? lines.joined(separator: "\n").write(toFile: p.file, atomically: true, encoding: .utf8)
@@ -93,7 +93,7 @@ enum Ablate {
         out.append("module compiles without it: the premise still carries meaning for a")
         out.append("reader, and the papers, not this table, argue it.")
         out.append("")
-        out.append("| claim | premise | declared at | cut result | names refused |")
+        out.append("| claim | premise | declared at | build without it | names refused |")
         out.append("|---|---|---|---|---|")
         for (p, verdict, refused) in rows {
             let rel = p.file.replacingOccurrences(of: packageRoot.path + "/", with: "")

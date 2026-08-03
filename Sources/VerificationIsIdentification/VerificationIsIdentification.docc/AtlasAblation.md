@@ -7,7 +7,7 @@ names the compiler refused without the premise. `builds green` says the
 module compiles without it: the premise still carries meaning for a
 reader, and the papers, not this table, argue it.
 
-| claim | premise | declared at | cut result | names refused |
+| claim | premise | declared at | build without it | names refused |
 |---|---|---|---|---|
 | ``RulesCompose`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Basis.swift:21 | builds green |  |
 | ``RulesCompose`` | ``HasCache`` | Sources/VerificationIsIdentification/Basis.swift:21 | builds green |  |
@@ -21,23 +21,23 @@ reader, and the papers, not this table, argue it.
 | ``RulesCompose`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Basis.swift:21 | builds green |  |
 | ``HasCompositionalNorm`` | ``HasDistance`` | Sources/VerificationIsIdentification/Basis.swift:27 | build fails | Distance |
 | ``HasCompositionalNorm`` | ``HasSigma`` | Sources/VerificationIsIdentification/Basis.swift:27 | builds green |  |
-| ``AtomBasis`` | ``BasisIsFinite`` | Sources/VerificationIsIdentification/Basis.swift:44 | uncut |  |
-| ``AtomBasis`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Basis.swift:44 | uncut |  |
-| ``AtomBasis`` | ``HasBasis`` | Sources/VerificationIsIdentification/Basis.swift:44 | uncut |  |
-| ``AtomBasis`` | ``HasCache`` | Sources/VerificationIsIdentification/Basis.swift:44 | uncut |  |
-| ``AtomBasis`` | ``HasCompositionalNorm`` | Sources/VerificationIsIdentification/Basis.swift:44 | uncut |  |
-| ``AtomBasis`` | ``HasDistance`` | Sources/VerificationIsIdentification/Basis.swift:44 | uncut |  |
-| ``AtomBasis`` | ``HasLibrary`` | Sources/VerificationIsIdentification/Basis.swift:44 | uncut |  |
-| ``AtomBasis`` | ``HasSaturation`` | Sources/VerificationIsIdentification/Basis.swift:44 | uncut |  |
-| ``AtomBasis`` | ``HasSigma`` | Sources/VerificationIsIdentification/Basis.swift:44 | uncut |  |
-| ``AtomBasis`` | ``KnowledgeAccumulates`` | Sources/VerificationIsIdentification/Basis.swift:44 | uncut |  |
-| ``AtomBasis`` | ``LibrarySaturates`` | Sources/VerificationIsIdentification/Basis.swift:44 | uncut |  |
-| ``AtomBasis`` | ``Open`` | Sources/VerificationIsIdentification/Basis.swift:44 | uncut |  |
-| ``AtomBasis`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Basis.swift:44 | uncut |  |
-| ``AtomBasis`` | ``Pair`` | Sources/VerificationIsIdentification/Basis.swift:44 | uncut |  |
-| ``AtomBasis`` | ``RulesCompose`` | Sources/VerificationIsIdentification/Basis.swift:44 | uncut |  |
-| ``AtomBasis`` | ``Structure`` | Sources/VerificationIsIdentification/Basis.swift:44 | uncut |  |
-| ``AtomBasis`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Basis.swift:44 | uncut |  |
+| ``AtomBasis`` | ``BasisIsFinite`` | Sources/VerificationIsIdentification/Basis.swift:44 | nothing to cut: inherited, not written |  |
+| ``AtomBasis`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Basis.swift:44 | nothing to cut: inherited, not written |  |
+| ``AtomBasis`` | ``HasBasis`` | Sources/VerificationIsIdentification/Basis.swift:44 | nothing to cut: inherited, not written |  |
+| ``AtomBasis`` | ``HasCache`` | Sources/VerificationIsIdentification/Basis.swift:44 | nothing to cut: inherited, not written |  |
+| ``AtomBasis`` | ``HasCompositionalNorm`` | Sources/VerificationIsIdentification/Basis.swift:44 | nothing to cut: inherited, not written |  |
+| ``AtomBasis`` | ``HasDistance`` | Sources/VerificationIsIdentification/Basis.swift:44 | nothing to cut: inherited, not written |  |
+| ``AtomBasis`` | ``HasLibrary`` | Sources/VerificationIsIdentification/Basis.swift:44 | nothing to cut: inherited, not written |  |
+| ``AtomBasis`` | ``HasSaturation`` | Sources/VerificationIsIdentification/Basis.swift:44 | nothing to cut: inherited, not written |  |
+| ``AtomBasis`` | ``HasSigma`` | Sources/VerificationIsIdentification/Basis.swift:44 | nothing to cut: inherited, not written |  |
+| ``AtomBasis`` | ``KnowledgeAccumulates`` | Sources/VerificationIsIdentification/Basis.swift:44 | nothing to cut: inherited, not written |  |
+| ``AtomBasis`` | ``LibrarySaturates`` | Sources/VerificationIsIdentification/Basis.swift:44 | nothing to cut: inherited, not written |  |
+| ``AtomBasis`` | ``Open`` | Sources/VerificationIsIdentification/Basis.swift:44 | nothing to cut: inherited, not written |  |
+| ``AtomBasis`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Basis.swift:44 | nothing to cut: inherited, not written |  |
+| ``AtomBasis`` | ``Pair`` | Sources/VerificationIsIdentification/Basis.swift:44 | nothing to cut: inherited, not written |  |
+| ``AtomBasis`` | ``RulesCompose`` | Sources/VerificationIsIdentification/Basis.swift:44 | nothing to cut: inherited, not written |  |
+| ``AtomBasis`` | ``Structure`` | Sources/VerificationIsIdentification/Basis.swift:44 | nothing to cut: inherited, not written |  |
+| ``AtomBasis`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Basis.swift:44 | nothing to cut: inherited, not written |  |
 | ``AtomnessIsTrajectory`` | ``AtomBasis`` | Sources/VerificationIsIdentification/Basis.swift:53 | builds green |  |
 | ``AtomnessIsTrajectory`` | ``BasisIsFinite`` | Sources/VerificationIsIdentification/Basis.swift:53 | builds green |  |
 | ``AtomnessIsTrajectory`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Basis.swift:53 | builds green |  |
@@ -69,24 +69,24 @@ reader, and the papers, not this table, argue it.
 | ``Unique`` | ``Open`` | Sources/VerificationIsIdentification/Core.swift:25 | builds green |  |
 | ``Unique`` | ``Pair`` | Sources/VerificationIsIdentification/Core.swift:25 | builds green |  |
 | ``Unique`` | ``Structure`` | Sources/VerificationIsIdentification/Core.swift:25 | builds green |  |
-| ``Permanent`` | ``Open`` | Sources/VerificationIsIdentification/Core.swift:32 | uncut |  |
-| ``Permanent`` | ``Pair`` | Sources/VerificationIsIdentification/Core.swift:32 | uncut |  |
-| ``Permanent`` | ``Structure`` | Sources/VerificationIsIdentification/Core.swift:32 | uncut |  |
-| ``Monotone`` | ``Open`` | Sources/VerificationIsIdentification/Core.swift:40 | uncut |  |
-| ``Monotone`` | ``Pair`` | Sources/VerificationIsIdentification/Core.swift:40 | uncut |  |
-| ``Monotone`` | ``Structure`` | Sources/VerificationIsIdentification/Core.swift:40 | uncut |  |
-| ``Decidable`` | ``Open`` | Sources/VerificationIsIdentification/Core.swift:47 | uncut |  |
-| ``Decidable`` | ``Pair`` | Sources/VerificationIsIdentification/Core.swift:47 | uncut |  |
-| ``Decidable`` | ``Structure`` | Sources/VerificationIsIdentification/Core.swift:47 | uncut |  |
-| ``MetricProperty`` | ``Open`` | Sources/VerificationIsIdentification/Core.swift:55 | uncut |  |
-| ``MetricProperty`` | ``Pair`` | Sources/VerificationIsIdentification/Core.swift:55 | uncut |  |
-| ``MetricProperty`` | ``Structure`` | Sources/VerificationIsIdentification/Core.swift:55 | uncut |  |
-| ``IntegerValued`` | ``Open`` | Sources/VerificationIsIdentification/Core.swift:64 | uncut |  |
-| ``IntegerValued`` | ``Pair`` | Sources/VerificationIsIdentification/Core.swift:64 | uncut |  |
-| ``IntegerValued`` | ``Structure`` | Sources/VerificationIsIdentification/Core.swift:64 | uncut |  |
-| ``Measurable`` | ``Open`` | Sources/VerificationIsIdentification/Core.swift:71 | uncut |  |
-| ``Measurable`` | ``Pair`` | Sources/VerificationIsIdentification/Core.swift:71 | uncut |  |
-| ``Measurable`` | ``Structure`` | Sources/VerificationIsIdentification/Core.swift:71 | uncut |  |
+| ``Permanent`` | ``Open`` | Sources/VerificationIsIdentification/Core.swift:32 | nothing to cut: inherited, not written |  |
+| ``Permanent`` | ``Pair`` | Sources/VerificationIsIdentification/Core.swift:32 | nothing to cut: inherited, not written |  |
+| ``Permanent`` | ``Structure`` | Sources/VerificationIsIdentification/Core.swift:32 | nothing to cut: inherited, not written |  |
+| ``Monotone`` | ``Open`` | Sources/VerificationIsIdentification/Core.swift:40 | nothing to cut: inherited, not written |  |
+| ``Monotone`` | ``Pair`` | Sources/VerificationIsIdentification/Core.swift:40 | nothing to cut: inherited, not written |  |
+| ``Monotone`` | ``Structure`` | Sources/VerificationIsIdentification/Core.swift:40 | nothing to cut: inherited, not written |  |
+| ``Decidable`` | ``Open`` | Sources/VerificationIsIdentification/Core.swift:47 | nothing to cut: inherited, not written |  |
+| ``Decidable`` | ``Pair`` | Sources/VerificationIsIdentification/Core.swift:47 | nothing to cut: inherited, not written |  |
+| ``Decidable`` | ``Structure`` | Sources/VerificationIsIdentification/Core.swift:47 | nothing to cut: inherited, not written |  |
+| ``MetricProperty`` | ``Open`` | Sources/VerificationIsIdentification/Core.swift:55 | nothing to cut: inherited, not written |  |
+| ``MetricProperty`` | ``Pair`` | Sources/VerificationIsIdentification/Core.swift:55 | nothing to cut: inherited, not written |  |
+| ``MetricProperty`` | ``Structure`` | Sources/VerificationIsIdentification/Core.swift:55 | nothing to cut: inherited, not written |  |
+| ``IntegerValued`` | ``Open`` | Sources/VerificationIsIdentification/Core.swift:64 | nothing to cut: inherited, not written |  |
+| ``IntegerValued`` | ``Pair`` | Sources/VerificationIsIdentification/Core.swift:64 | nothing to cut: inherited, not written |  |
+| ``IntegerValued`` | ``Structure`` | Sources/VerificationIsIdentification/Core.swift:64 | nothing to cut: inherited, not written |  |
+| ``Measurable`` | ``Open`` | Sources/VerificationIsIdentification/Core.swift:71 | nothing to cut: inherited, not written |  |
+| ``Measurable`` | ``Pair`` | Sources/VerificationIsIdentification/Core.swift:71 | nothing to cut: inherited, not written |  |
+| ``Measurable`` | ``Structure`` | Sources/VerificationIsIdentification/Core.swift:71 | nothing to cut: inherited, not written |  |
 | ``HasSolutions`` | ``HasSigma`` | Sources/VerificationIsIdentification/Core.swift:111 | builds green |  |
 | ``HasLibrary`` | ``HasSigma`` | Sources/VerificationIsIdentification/Core.swift:119 | builds green |  |
 | ``HasCache`` | ``HasSigma`` | Sources/VerificationIsIdentification/Core.swift:127 | builds green |  |
@@ -98,12 +98,12 @@ reader, and the papers, not this table, argue it.
 | ``HasBasis`` | ``HasSigma`` | Sources/VerificationIsIdentification/Core.swift:162 | builds green |  |
 | ``HasSaturation`` | ``HasLibrary`` | Sources/VerificationIsIdentification/Core.swift:171 | builds green |  |
 | ``HasSaturation`` | ``HasSigma`` | Sources/VerificationIsIdentification/Core.swift:171 | builds green |  |
-| ``IdentityCollapse`` | ``HasSigma`` | Sources/VerificationIsIdentification/Core.swift:196 | uncut |  |
-| ``IdentityCollapse`` | ``HasSolutions`` | Sources/VerificationIsIdentification/Core.swift:196 | uncut |  |
-| ``IdentityCollapse`` | ``Null`` | Sources/VerificationIsIdentification/Core.swift:196 | uncut |  |
-| ``IdentityCollapse`` | ``Open`` | Sources/VerificationIsIdentification/Core.swift:196 | uncut |  |
-| ``IdentityCollapse`` | ``Pair`` | Sources/VerificationIsIdentification/Core.swift:196 | uncut |  |
-| ``IdentityCollapse`` | ``Structure`` | Sources/VerificationIsIdentification/Core.swift:196 | uncut |  |
+| ``IdentityCollapse`` | ``HasSigma`` | Sources/VerificationIsIdentification/Core.swift:196 | nothing to cut: inherited, not written |  |
+| ``IdentityCollapse`` | ``HasSolutions`` | Sources/VerificationIsIdentification/Core.swift:196 | nothing to cut: inherited, not written |  |
+| ``IdentityCollapse`` | ``Null`` | Sources/VerificationIsIdentification/Core.swift:196 | nothing to cut: inherited, not written |  |
+| ``IdentityCollapse`` | ``Open`` | Sources/VerificationIsIdentification/Core.swift:196 | nothing to cut: inherited, not written |  |
+| ``IdentityCollapse`` | ``Pair`` | Sources/VerificationIsIdentification/Core.swift:196 | nothing to cut: inherited, not written |  |
+| ``IdentityCollapse`` | ``Structure`` | Sources/VerificationIsIdentification/Core.swift:196 | nothing to cut: inherited, not written |  |
 | ``HasLaw`` | ``HasSigma`` | Sources/VerificationIsIdentification/Dynamics.swift:21 | builds green |  |
 | ``LawLivesInSigma`` | ``DistanceOnStructures`` | Sources/VerificationIsIdentification/Dynamics.swift:31 | builds green |  |
 | ``LawLivesInSigma`` | ``HasDistance`` | Sources/VerificationIsIdentification/Dynamics.swift:31 | builds green |  |
@@ -476,20 +476,20 @@ reader, and the papers, not this table, argue it.
 | ``OrgansAreOneCompare`` | ``StepsTerminate`` | Sources/VerificationIsIdentification/Generation.swift:57 | builds green |  |
 | ``OrgansAreOneCompare`` | ``Structure`` | Sources/VerificationIsIdentification/Generation.swift:57 | builds green |  |
 | ``OrgansAreOneCompare`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Generation.swift:57 | builds green |  |
-| ``DistanceOnStructures`` | ``HasDistance`` | Sources/VerificationIsIdentification/Gradient.swift:26 | uncut |  |
-| ``DistanceOnStructures`` | ``HasSigma`` | Sources/VerificationIsIdentification/Gradient.swift:26 | uncut |  |
-| ``DistanceOnStructures`` | ``Open`` | Sources/VerificationIsIdentification/Gradient.swift:26 | uncut |  |
-| ``DistanceOnStructures`` | ``Pair`` | Sources/VerificationIsIdentification/Gradient.swift:26 | uncut |  |
-| ``DistanceOnStructures`` | ``Structure`` | Sources/VerificationIsIdentification/Gradient.swift:26 | uncut |  |
-| ``DistanceOnStructures`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Gradient.swift:26 | uncut |  |
-| ``DistanceIsCost`` | ``DistanceOnStructures`` | Sources/VerificationIsIdentification/Gradient.swift:33 | uncut |  |
-| ``DistanceIsCost`` | ``HasCost`` | Sources/VerificationIsIdentification/Gradient.swift:33 | uncut |  |
-| ``DistanceIsCost`` | ``HasDistance`` | Sources/VerificationIsIdentification/Gradient.swift:33 | uncut |  |
-| ``DistanceIsCost`` | ``HasSigma`` | Sources/VerificationIsIdentification/Gradient.swift:33 | uncut |  |
-| ``DistanceIsCost`` | ``Open`` | Sources/VerificationIsIdentification/Gradient.swift:33 | uncut |  |
-| ``DistanceIsCost`` | ``Pair`` | Sources/VerificationIsIdentification/Gradient.swift:33 | uncut |  |
-| ``DistanceIsCost`` | ``Structure`` | Sources/VerificationIsIdentification/Gradient.swift:33 | uncut |  |
-| ``DistanceIsCost`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Gradient.swift:33 | uncut |  |
+| ``DistanceOnStructures`` | ``HasDistance`` | Sources/VerificationIsIdentification/Gradient.swift:26 | nothing to cut: inherited, not written |  |
+| ``DistanceOnStructures`` | ``HasSigma`` | Sources/VerificationIsIdentification/Gradient.swift:26 | nothing to cut: inherited, not written |  |
+| ``DistanceOnStructures`` | ``Open`` | Sources/VerificationIsIdentification/Gradient.swift:26 | nothing to cut: inherited, not written |  |
+| ``DistanceOnStructures`` | ``Pair`` | Sources/VerificationIsIdentification/Gradient.swift:26 | nothing to cut: inherited, not written |  |
+| ``DistanceOnStructures`` | ``Structure`` | Sources/VerificationIsIdentification/Gradient.swift:26 | nothing to cut: inherited, not written |  |
+| ``DistanceOnStructures`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Gradient.swift:26 | nothing to cut: inherited, not written |  |
+| ``DistanceIsCost`` | ``DistanceOnStructures`` | Sources/VerificationIsIdentification/Gradient.swift:33 | nothing to cut: inherited, not written |  |
+| ``DistanceIsCost`` | ``HasCost`` | Sources/VerificationIsIdentification/Gradient.swift:33 | nothing to cut: inherited, not written |  |
+| ``DistanceIsCost`` | ``HasDistance`` | Sources/VerificationIsIdentification/Gradient.swift:33 | nothing to cut: inherited, not written |  |
+| ``DistanceIsCost`` | ``HasSigma`` | Sources/VerificationIsIdentification/Gradient.swift:33 | nothing to cut: inherited, not written |  |
+| ``DistanceIsCost`` | ``Open`` | Sources/VerificationIsIdentification/Gradient.swift:33 | nothing to cut: inherited, not written |  |
+| ``DistanceIsCost`` | ``Pair`` | Sources/VerificationIsIdentification/Gradient.swift:33 | nothing to cut: inherited, not written |  |
+| ``DistanceIsCost`` | ``Structure`` | Sources/VerificationIsIdentification/Gradient.swift:33 | nothing to cut: inherited, not written |  |
+| ``DistanceIsCost`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Gradient.swift:33 | nothing to cut: inherited, not written |  |
 | ``NullIsOrigin`` | ``DistanceOnStructures`` | Sources/VerificationIsIdentification/Gradient.swift:40 | builds green |  |
 | ``NullIsOrigin`` | ``HasDistance`` | Sources/VerificationIsIdentification/Gradient.swift:40 | builds green |  |
 | ``NullIsOrigin`` | ``HasSigma`` | Sources/VerificationIsIdentification/Gradient.swift:40 | builds green |  |
@@ -589,21 +589,21 @@ reader, and the papers, not this table, argue it.
 | ``StructuresFinite`` | ``Open`` | Sources/VerificationIsIdentification/Identification.swift:27 | builds green |  |
 | ``StructuresFinite`` | ``Pair`` | Sources/VerificationIsIdentification/Identification.swift:27 | builds green |  |
 | ``StructuresFinite`` | ``Structure`` | Sources/VerificationIsIdentification/Identification.swift:27 | builds green |  |
-| ``OperationsClosed`` | ``Open`` | Sources/VerificationIsIdentification/Identification.swift:33 | uncut |  |
-| ``OperationsClosed`` | ``Pair`` | Sources/VerificationIsIdentification/Identification.swift:33 | uncut |  |
-| ``OperationsClosed`` | ``Structure`` | Sources/VerificationIsIdentification/Identification.swift:33 | uncut |  |
+| ``OperationsClosed`` | ``Open`` | Sources/VerificationIsIdentification/Identification.swift:33 | nothing to cut: inherited, not written |  |
+| ``OperationsClosed`` | ``Pair`` | Sources/VerificationIsIdentification/Identification.swift:33 | nothing to cut: inherited, not written |  |
+| ``OperationsClosed`` | ``Structure`` | Sources/VerificationIsIdentification/Identification.swift:33 | nothing to cut: inherited, not written |  |
 | ``EqualityDecidable`` | ``HasSigma`` | Sources/VerificationIsIdentification/Identification.swift:45 | builds green |  |
 | ``EqualityDecidable`` | ``Open`` | Sources/VerificationIsIdentification/Identification.swift:45 | builds green |  |
 | ``EqualityDecidable`` | ``Pair`` | Sources/VerificationIsIdentification/Identification.swift:45 | builds green |  |
 | ``EqualityDecidable`` | ``Structure`` | Sources/VerificationIsIdentification/Identification.swift:45 | builds green |  |
 | ``EqualityDecidable`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Identification.swift:45 | builds green |  |
-| ``CachePermanent`` | ``HasCache`` | Sources/VerificationIsIdentification/Identification.swift:56 | uncut |  |
-| ``CachePermanent`` | ``HasSigma`` | Sources/VerificationIsIdentification/Identification.swift:56 | uncut |  |
-| ``CachePermanent`` | ``Open`` | Sources/VerificationIsIdentification/Identification.swift:56 | uncut |  |
-| ``CachePermanent`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Identification.swift:56 | uncut |  |
-| ``CachePermanent`` | ``Pair`` | Sources/VerificationIsIdentification/Identification.swift:56 | uncut |  |
-| ``CachePermanent`` | ``Structure`` | Sources/VerificationIsIdentification/Identification.swift:56 | uncut |  |
-| ``CachePermanent`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Identification.swift:56 | uncut |  |
+| ``CachePermanent`` | ``HasCache`` | Sources/VerificationIsIdentification/Identification.swift:56 | nothing to cut: inherited, not written |  |
+| ``CachePermanent`` | ``HasSigma`` | Sources/VerificationIsIdentification/Identification.swift:56 | nothing to cut: inherited, not written |  |
+| ``CachePermanent`` | ``Open`` | Sources/VerificationIsIdentification/Identification.swift:56 | nothing to cut: inherited, not written |  |
+| ``CachePermanent`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Identification.swift:56 | nothing to cut: inherited, not written |  |
+| ``CachePermanent`` | ``Pair`` | Sources/VerificationIsIdentification/Identification.swift:56 | nothing to cut: inherited, not written |  |
+| ``CachePermanent`` | ``Structure`` | Sources/VerificationIsIdentification/Identification.swift:56 | nothing to cut: inherited, not written |  |
+| ``CachePermanent`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Identification.swift:56 | nothing to cut: inherited, not written |  |
 | ``StepsTerminate`` | ``HasSigma`` | Sources/VerificationIsIdentification/Identification.swift:66 | builds green |  |
 | ``StepsTerminate`` | ``Open`` | Sources/VerificationIsIdentification/Identification.swift:66 | builds green |  |
 | ``StepsTerminate`` | ``Pair`` | Sources/VerificationIsIdentification/Identification.swift:66 | builds green |  |
@@ -637,15 +637,15 @@ reader, and the papers, not this table, argue it.
 | ``DiagnosticsAccumulate`` | ``ResultDeterministic`` | Sources/VerificationIsIdentification/Identification.swift:96 | builds green |  |
 | ``DiagnosticsAccumulate`` | ``Structure`` | Sources/VerificationIsIdentification/Identification.swift:96 | builds green |  |
 | ``DiagnosticsAccumulate`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Identification.swift:96 | builds green |  |
-| ``CandidatesOnlyLeave`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Identification.swift:103 | uncut |  |
-| ``CandidatesOnlyLeave`` | ``HasCache`` | Sources/VerificationIsIdentification/Identification.swift:103 | uncut |  |
-| ``CandidatesOnlyLeave`` | ``HasSigma`` | Sources/VerificationIsIdentification/Identification.swift:103 | uncut |  |
-| ``CandidatesOnlyLeave`` | ``HasSolutions`` | Sources/VerificationIsIdentification/Identification.swift:103 | uncut |  |
-| ``CandidatesOnlyLeave`` | ``Open`` | Sources/VerificationIsIdentification/Identification.swift:103 | uncut |  |
-| ``CandidatesOnlyLeave`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Identification.swift:103 | uncut |  |
-| ``CandidatesOnlyLeave`` | ``Pair`` | Sources/VerificationIsIdentification/Identification.swift:103 | uncut |  |
-| ``CandidatesOnlyLeave`` | ``Structure`` | Sources/VerificationIsIdentification/Identification.swift:103 | uncut |  |
-| ``CandidatesOnlyLeave`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Identification.swift:103 | uncut |  |
+| ``CandidatesOnlyLeave`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Identification.swift:103 | nothing to cut: inherited, not written |  |
+| ``CandidatesOnlyLeave`` | ``HasCache`` | Sources/VerificationIsIdentification/Identification.swift:103 | nothing to cut: inherited, not written |  |
+| ``CandidatesOnlyLeave`` | ``HasSigma`` | Sources/VerificationIsIdentification/Identification.swift:103 | nothing to cut: inherited, not written |  |
+| ``CandidatesOnlyLeave`` | ``HasSolutions`` | Sources/VerificationIsIdentification/Identification.swift:103 | nothing to cut: inherited, not written |  |
+| ``CandidatesOnlyLeave`` | ``Open`` | Sources/VerificationIsIdentification/Identification.swift:103 | nothing to cut: inherited, not written |  |
+| ``CandidatesOnlyLeave`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Identification.swift:103 | nothing to cut: inherited, not written |  |
+| ``CandidatesOnlyLeave`` | ``Pair`` | Sources/VerificationIsIdentification/Identification.swift:103 | nothing to cut: inherited, not written |  |
+| ``CandidatesOnlyLeave`` | ``Structure`` | Sources/VerificationIsIdentification/Identification.swift:103 | nothing to cut: inherited, not written |  |
+| ``CandidatesOnlyLeave`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Identification.swift:103 | nothing to cut: inherited, not written |  |
 | ``NoSelfReference`` | ``Open`` | Sources/VerificationIsIdentification/Identification.swift:117 | builds green |  |
 | ``NoSelfReference`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Identification.swift:117 | builds green |  |
 | ``NoSelfReference`` | ``Pair`` | Sources/VerificationIsIdentification/Identification.swift:117 | builds green |  |
@@ -655,13 +655,13 @@ reader, and the papers, not this table, argue it.
 | ``ScopeBoundedByEncoding`` | ``Pair`` | Sources/VerificationIsIdentification/Identification.swift:124 | builds green |  |
 | ``ScopeBoundedByEncoding`` | ``ResultDeterministic`` | Sources/VerificationIsIdentification/Identification.swift:124 | builds green |  |
 | ``ScopeBoundedByEncoding`` | ``Structure`` | Sources/VerificationIsIdentification/Identification.swift:124 | builds green |  |
-| ``ExactlyOneSurvives`` | ``EqualityDecidable`` | Sources/VerificationIsIdentification/Identification.swift:136 | uncut |  |
-| ``ExactlyOneSurvives`` | ``HasSigma`` | Sources/VerificationIsIdentification/Identification.swift:136 | uncut |  |
-| ``ExactlyOneSurvives`` | ``HasSolutions`` | Sources/VerificationIsIdentification/Identification.swift:136 | uncut |  |
-| ``ExactlyOneSurvives`` | ``Open`` | Sources/VerificationIsIdentification/Identification.swift:136 | uncut |  |
-| ``ExactlyOneSurvives`` | ``Pair`` | Sources/VerificationIsIdentification/Identification.swift:136 | uncut |  |
-| ``ExactlyOneSurvives`` | ``Structure`` | Sources/VerificationIsIdentification/Identification.swift:136 | uncut |  |
-| ``ExactlyOneSurvives`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Identification.swift:136 | uncut |  |
+| ``ExactlyOneSurvives`` | ``EqualityDecidable`` | Sources/VerificationIsIdentification/Identification.swift:136 | nothing to cut: inherited, not written |  |
+| ``ExactlyOneSurvives`` | ``HasSigma`` | Sources/VerificationIsIdentification/Identification.swift:136 | nothing to cut: inherited, not written |  |
+| ``ExactlyOneSurvives`` | ``HasSolutions`` | Sources/VerificationIsIdentification/Identification.swift:136 | nothing to cut: inherited, not written |  |
+| ``ExactlyOneSurvives`` | ``Open`` | Sources/VerificationIsIdentification/Identification.swift:136 | nothing to cut: inherited, not written |  |
+| ``ExactlyOneSurvives`` | ``Pair`` | Sources/VerificationIsIdentification/Identification.swift:136 | nothing to cut: inherited, not written |  |
+| ``ExactlyOneSurvives`` | ``Structure`` | Sources/VerificationIsIdentification/Identification.swift:136 | nothing to cut: inherited, not written |  |
+| ``ExactlyOneSurvives`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Identification.swift:136 | nothing to cut: inherited, not written |  |
 | ``PassImpliesMembership`` | ``HasSigma`` | Sources/VerificationIsIdentification/Identification.swift:146 | builds green |  |
 | ``PassImpliesMembership`` | ``Open`` | Sources/VerificationIsIdentification/Identification.swift:146 | builds green |  |
 | ``PassImpliesMembership`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Identification.swift:146 | builds green |  |
@@ -671,19 +671,19 @@ reader, and the papers, not this table, argue it.
 | ``PassImpliesMembership`` | ``StepsTerminate`` | Sources/VerificationIsIdentification/Identification.swift:146 | builds green |  |
 | ``PassImpliesMembership`` | ``Structure`` | Sources/VerificationIsIdentification/Identification.swift:146 | builds green |  |
 | ``PassImpliesMembership`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Identification.swift:146 | builds green |  |
-| ``PassIsIdentification`` | ``EqualityDecidable`` | Sources/VerificationIsIdentification/Identification.swift:156 | uncut |  |
-| ``PassIsIdentification`` | ``ExactlyOneSurvives`` | Sources/VerificationIsIdentification/Identification.swift:156 | uncut |  |
-| ``PassIsIdentification`` | ``HasSigma`` | Sources/VerificationIsIdentification/Identification.swift:156 | uncut |  |
-| ``PassIsIdentification`` | ``HasSolutions`` | Sources/VerificationIsIdentification/Identification.swift:156 | uncut |  |
-| ``PassIsIdentification`` | ``Open`` | Sources/VerificationIsIdentification/Identification.swift:156 | uncut |  |
-| ``PassIsIdentification`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Identification.swift:156 | uncut |  |
-| ``PassIsIdentification`` | ``Pair`` | Sources/VerificationIsIdentification/Identification.swift:156 | uncut |  |
-| ``PassIsIdentification`` | ``PassImpliesMembership`` | Sources/VerificationIsIdentification/Identification.swift:156 | uncut |  |
-| ``PassIsIdentification`` | ``PipelineTotal`` | Sources/VerificationIsIdentification/Identification.swift:156 | uncut |  |
-| ``PassIsIdentification`` | ``ResultDeterministic`` | Sources/VerificationIsIdentification/Identification.swift:156 | uncut |  |
-| ``PassIsIdentification`` | ``StepsTerminate`` | Sources/VerificationIsIdentification/Identification.swift:156 | uncut |  |
-| ``PassIsIdentification`` | ``Structure`` | Sources/VerificationIsIdentification/Identification.swift:156 | uncut |  |
-| ``PassIsIdentification`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Identification.swift:156 | uncut |  |
+| ``PassIsIdentification`` | ``EqualityDecidable`` | Sources/VerificationIsIdentification/Identification.swift:156 | nothing to cut: inherited, not written |  |
+| ``PassIsIdentification`` | ``ExactlyOneSurvives`` | Sources/VerificationIsIdentification/Identification.swift:156 | nothing to cut: inherited, not written |  |
+| ``PassIsIdentification`` | ``HasSigma`` | Sources/VerificationIsIdentification/Identification.swift:156 | nothing to cut: inherited, not written |  |
+| ``PassIsIdentification`` | ``HasSolutions`` | Sources/VerificationIsIdentification/Identification.swift:156 | nothing to cut: inherited, not written |  |
+| ``PassIsIdentification`` | ``Open`` | Sources/VerificationIsIdentification/Identification.swift:156 | nothing to cut: inherited, not written |  |
+| ``PassIsIdentification`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Identification.swift:156 | nothing to cut: inherited, not written |  |
+| ``PassIsIdentification`` | ``Pair`` | Sources/VerificationIsIdentification/Identification.swift:156 | nothing to cut: inherited, not written |  |
+| ``PassIsIdentification`` | ``PassImpliesMembership`` | Sources/VerificationIsIdentification/Identification.swift:156 | nothing to cut: inherited, not written |  |
+| ``PassIsIdentification`` | ``PipelineTotal`` | Sources/VerificationIsIdentification/Identification.swift:156 | nothing to cut: inherited, not written |  |
+| ``PassIsIdentification`` | ``ResultDeterministic`` | Sources/VerificationIsIdentification/Identification.swift:156 | nothing to cut: inherited, not written |  |
+| ``PassIsIdentification`` | ``StepsTerminate`` | Sources/VerificationIsIdentification/Identification.swift:156 | nothing to cut: inherited, not written |  |
+| ``PassIsIdentification`` | ``Structure`` | Sources/VerificationIsIdentification/Identification.swift:156 | nothing to cut: inherited, not written |  |
+| ``PassIsIdentification`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Identification.swift:156 | nothing to cut: inherited, not written |  |
 | ``ComparisonsAreBounded`` | ``HasSigma`` | Sources/VerificationIsIdentification/Identification.swift:163 | builds green |  |
 | ``ComparisonsAreBounded`` | ``Open`` | Sources/VerificationIsIdentification/Identification.swift:163 | builds green |  |
 | ``ComparisonsAreBounded`` | ``Pair`` | Sources/VerificationIsIdentification/Identification.swift:163 | builds green |  |
@@ -766,40 +766,40 @@ reader, and the papers, not this table, argue it.
 | ``KnowledgeAccumulates`` | ``Pair`` | Sources/VerificationIsIdentification/Intelligence.swift:15 | builds green |  |
 | ``KnowledgeAccumulates`` | ``Structure`` | Sources/VerificationIsIdentification/Intelligence.swift:15 | builds green |  |
 | ``KnowledgeAccumulates`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Intelligence.swift:15 | builds green |  |
-| ``LibrarySaturates`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | uncut |  |
-| ``LibrarySaturates`` | ``HasCache`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | uncut |  |
-| ``LibrarySaturates`` | ``HasLibrary`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | uncut |  |
-| ``LibrarySaturates`` | ``HasSaturation`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | uncut |  |
-| ``LibrarySaturates`` | ``HasSigma`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | uncut |  |
-| ``LibrarySaturates`` | ``Open`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | uncut |  |
-| ``LibrarySaturates`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | uncut |  |
-| ``LibrarySaturates`` | ``Pair`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | uncut |  |
-| ``LibrarySaturates`` | ``Structure`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | uncut |  |
-| ``LibrarySaturates`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | uncut |  |
-| ``BasisIsFinite`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | uncut |  |
-| ``BasisIsFinite`` | ``HasBasis`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | uncut |  |
-| ``BasisIsFinite`` | ``HasCache`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | uncut |  |
-| ``BasisIsFinite`` | ``HasLibrary`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | uncut |  |
-| ``BasisIsFinite`` | ``HasSaturation`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | uncut |  |
-| ``BasisIsFinite`` | ``HasSigma`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | uncut |  |
-| ``BasisIsFinite`` | ``LibrarySaturates`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | uncut |  |
-| ``BasisIsFinite`` | ``Open`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | uncut |  |
-| ``BasisIsFinite`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | uncut |  |
-| ``BasisIsFinite`` | ``Pair`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | uncut |  |
-| ``BasisIsFinite`` | ``Structure`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | uncut |  |
-| ``BasisIsFinite`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | uncut |  |
-| ``EncodingSelectionSaturates`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | uncut |  |
-| ``EncodingSelectionSaturates`` | ``HasCache`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | uncut |  |
-| ``EncodingSelectionSaturates`` | ``HasEncoding`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | uncut |  |
-| ``EncodingSelectionSaturates`` | ``HasLibrary`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | uncut |  |
-| ``EncodingSelectionSaturates`` | ``HasSaturation`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | uncut |  |
-| ``EncodingSelectionSaturates`` | ``HasSigma`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | uncut |  |
-| ``EncodingSelectionSaturates`` | ``LibrarySaturates`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | uncut |  |
-| ``EncodingSelectionSaturates`` | ``Open`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | uncut |  |
-| ``EncodingSelectionSaturates`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | uncut |  |
-| ``EncodingSelectionSaturates`` | ``Pair`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | uncut |  |
-| ``EncodingSelectionSaturates`` | ``Structure`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | uncut |  |
-| ``EncodingSelectionSaturates`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | uncut |  |
+| ``LibrarySaturates`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | nothing to cut: inherited, not written |  |
+| ``LibrarySaturates`` | ``HasCache`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | nothing to cut: inherited, not written |  |
+| ``LibrarySaturates`` | ``HasLibrary`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | nothing to cut: inherited, not written |  |
+| ``LibrarySaturates`` | ``HasSaturation`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | nothing to cut: inherited, not written |  |
+| ``LibrarySaturates`` | ``HasSigma`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | nothing to cut: inherited, not written |  |
+| ``LibrarySaturates`` | ``Open`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | nothing to cut: inherited, not written |  |
+| ``LibrarySaturates`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | nothing to cut: inherited, not written |  |
+| ``LibrarySaturates`` | ``Pair`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | nothing to cut: inherited, not written |  |
+| ``LibrarySaturates`` | ``Structure`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | nothing to cut: inherited, not written |  |
+| ``LibrarySaturates`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Intelligence.swift:23 | nothing to cut: inherited, not written |  |
+| ``BasisIsFinite`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | nothing to cut: inherited, not written |  |
+| ``BasisIsFinite`` | ``HasBasis`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | nothing to cut: inherited, not written |  |
+| ``BasisIsFinite`` | ``HasCache`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | nothing to cut: inherited, not written |  |
+| ``BasisIsFinite`` | ``HasLibrary`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | nothing to cut: inherited, not written |  |
+| ``BasisIsFinite`` | ``HasSaturation`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | nothing to cut: inherited, not written |  |
+| ``BasisIsFinite`` | ``HasSigma`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | nothing to cut: inherited, not written |  |
+| ``BasisIsFinite`` | ``LibrarySaturates`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | nothing to cut: inherited, not written |  |
+| ``BasisIsFinite`` | ``Open`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | nothing to cut: inherited, not written |  |
+| ``BasisIsFinite`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | nothing to cut: inherited, not written |  |
+| ``BasisIsFinite`` | ``Pair`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | nothing to cut: inherited, not written |  |
+| ``BasisIsFinite`` | ``Structure`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | nothing to cut: inherited, not written |  |
+| ``BasisIsFinite`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Intelligence.swift:31 | nothing to cut: inherited, not written |  |
+| ``EncodingSelectionSaturates`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | nothing to cut: inherited, not written |  |
+| ``EncodingSelectionSaturates`` | ``HasCache`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | nothing to cut: inherited, not written |  |
+| ``EncodingSelectionSaturates`` | ``HasEncoding`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | nothing to cut: inherited, not written |  |
+| ``EncodingSelectionSaturates`` | ``HasLibrary`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | nothing to cut: inherited, not written |  |
+| ``EncodingSelectionSaturates`` | ``HasSaturation`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | nothing to cut: inherited, not written |  |
+| ``EncodingSelectionSaturates`` | ``HasSigma`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | nothing to cut: inherited, not written |  |
+| ``EncodingSelectionSaturates`` | ``LibrarySaturates`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | nothing to cut: inherited, not written |  |
+| ``EncodingSelectionSaturates`` | ``Open`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | nothing to cut: inherited, not written |  |
+| ``EncodingSelectionSaturates`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | nothing to cut: inherited, not written |  |
+| ``EncodingSelectionSaturates`` | ``Pair`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | nothing to cut: inherited, not written |  |
+| ``EncodingSelectionSaturates`` | ``Structure`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | nothing to cut: inherited, not written |  |
+| ``EncodingSelectionSaturates`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Intelligence.swift:38 | nothing to cut: inherited, not written |  |
 | ``ResultsIrreversible`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Intelligence.swift:49 | builds green |  |
 | ``ResultsIrreversible`` | ``EqualityDecidable`` | Sources/VerificationIsIdentification/Intelligence.swift:49 | builds green |  |
 | ``ResultsIrreversible`` | ``HasCache`` | Sources/VerificationIsIdentification/Intelligence.swift:49 | builds green |  |
@@ -809,26 +809,26 @@ reader, and the papers, not this table, argue it.
 | ``ResultsIrreversible`` | ``Pair`` | Sources/VerificationIsIdentification/Intelligence.swift:49 | builds green |  |
 | ``ResultsIrreversible`` | ``Structure`` | Sources/VerificationIsIdentification/Intelligence.swift:49 | builds green |  |
 | ``ResultsIrreversible`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Intelligence.swift:49 | builds green |  |
-| ``MembershipDecidable`` | ``EqualityDecidable`` | Sources/VerificationIsIdentification/Intelligence.swift:53 | uncut |  |
-| ``MembershipDecidable`` | ``HasSigma`` | Sources/VerificationIsIdentification/Intelligence.swift:53 | uncut |  |
-| ``MembershipDecidable`` | ``HasSolutions`` | Sources/VerificationIsIdentification/Intelligence.swift:53 | uncut |  |
-| ``MembershipDecidable`` | ``Open`` | Sources/VerificationIsIdentification/Intelligence.swift:53 | uncut |  |
-| ``MembershipDecidable`` | ``Pair`` | Sources/VerificationIsIdentification/Intelligence.swift:53 | uncut |  |
-| ``MembershipDecidable`` | ``Structure`` | Sources/VerificationIsIdentification/Intelligence.swift:53 | uncut |  |
-| ``MembershipDecidable`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Intelligence.swift:53 | uncut |  |
-| ``SystemCrystallizes`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | uncut |  |
-| ``SystemCrystallizes`` | ``CandidatesOnlyLeave`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | uncut |  |
-| ``SystemCrystallizes`` | ``EqualityDecidable`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | uncut |  |
-| ``SystemCrystallizes`` | ``HasCache`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | uncut |  |
-| ``SystemCrystallizes`` | ``HasSigma`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | uncut |  |
-| ``SystemCrystallizes`` | ``HasSolutions`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | uncut |  |
-| ``SystemCrystallizes`` | ``MembershipDecidable`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | uncut |  |
-| ``SystemCrystallizes`` | ``Open`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | uncut |  |
-| ``SystemCrystallizes`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | uncut |  |
-| ``SystemCrystallizes`` | ``Pair`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | uncut |  |
-| ``SystemCrystallizes`` | ``ResultsIrreversible`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | uncut |  |
-| ``SystemCrystallizes`` | ``Structure`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | uncut |  |
-| ``SystemCrystallizes`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | uncut |  |
+| ``MembershipDecidable`` | ``EqualityDecidable`` | Sources/VerificationIsIdentification/Intelligence.swift:53 | nothing to cut: inherited, not written |  |
+| ``MembershipDecidable`` | ``HasSigma`` | Sources/VerificationIsIdentification/Intelligence.swift:53 | nothing to cut: inherited, not written |  |
+| ``MembershipDecidable`` | ``HasSolutions`` | Sources/VerificationIsIdentification/Intelligence.swift:53 | nothing to cut: inherited, not written |  |
+| ``MembershipDecidable`` | ``Open`` | Sources/VerificationIsIdentification/Intelligence.swift:53 | nothing to cut: inherited, not written |  |
+| ``MembershipDecidable`` | ``Pair`` | Sources/VerificationIsIdentification/Intelligence.swift:53 | nothing to cut: inherited, not written |  |
+| ``MembershipDecidable`` | ``Structure`` | Sources/VerificationIsIdentification/Intelligence.swift:53 | nothing to cut: inherited, not written |  |
+| ``MembershipDecidable`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Intelligence.swift:53 | nothing to cut: inherited, not written |  |
+| ``SystemCrystallizes`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | nothing to cut: inherited, not written |  |
+| ``SystemCrystallizes`` | ``CandidatesOnlyLeave`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | nothing to cut: inherited, not written |  |
+| ``SystemCrystallizes`` | ``EqualityDecidable`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | nothing to cut: inherited, not written |  |
+| ``SystemCrystallizes`` | ``HasCache`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | nothing to cut: inherited, not written |  |
+| ``SystemCrystallizes`` | ``HasSigma`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | nothing to cut: inherited, not written |  |
+| ``SystemCrystallizes`` | ``HasSolutions`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | nothing to cut: inherited, not written |  |
+| ``SystemCrystallizes`` | ``MembershipDecidable`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | nothing to cut: inherited, not written |  |
+| ``SystemCrystallizes`` | ``Open`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | nothing to cut: inherited, not written |  |
+| ``SystemCrystallizes`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | nothing to cut: inherited, not written |  |
+| ``SystemCrystallizes`` | ``Pair`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | nothing to cut: inherited, not written |  |
+| ``SystemCrystallizes`` | ``ResultsIrreversible`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | nothing to cut: inherited, not written |  |
+| ``SystemCrystallizes`` | ``Structure`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | nothing to cut: inherited, not written |  |
+| ``SystemCrystallizes`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Intelligence.swift:68 | nothing to cut: inherited, not written |  |
 | ``PipelineCrystallizes`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Intelligence.swift:74 | builds green |  |
 | ``PipelineCrystallizes`` | ``CandidatesOnlyLeave`` | Sources/VerificationIsIdentification/Intelligence.swift:74 | builds green |  |
 | ``PipelineCrystallizes`` | ``EqualityDecidable`` | Sources/VerificationIsIdentification/Intelligence.swift:74 | builds green |  |
@@ -1208,16 +1208,16 @@ reader, and the papers, not this table, argue it.
 | ``Matter`` | ``StepsTerminate`` | Sources/VerificationIsIdentification/Matter.swift:50 | builds green |  |
 | ``Matter`` | ``Structure`` | Sources/VerificationIsIdentification/Matter.swift:50 | builds green |  |
 | ``Matter`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Matter.swift:50 | builds green |  |
-| ``NoInverse`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Matter.swift:57 | uncut |  |
-| ``NoInverse`` | ``HasCache`` | Sources/VerificationIsIdentification/Matter.swift:57 | uncut |  |
-| ``NoInverse`` | ``HasLibrary`` | Sources/VerificationIsIdentification/Matter.swift:57 | uncut |  |
-| ``NoInverse`` | ``HasSigma`` | Sources/VerificationIsIdentification/Matter.swift:57 | uncut |  |
-| ``NoInverse`` | ``KnowledgeAccumulates`` | Sources/VerificationIsIdentification/Matter.swift:57 | uncut |  |
-| ``NoInverse`` | ``Open`` | Sources/VerificationIsIdentification/Matter.swift:57 | uncut |  |
-| ``NoInverse`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Matter.swift:57 | uncut |  |
-| ``NoInverse`` | ``Pair`` | Sources/VerificationIsIdentification/Matter.swift:57 | uncut |  |
-| ``NoInverse`` | ``Structure`` | Sources/VerificationIsIdentification/Matter.swift:57 | uncut |  |
-| ``NoInverse`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Matter.swift:57 | uncut |  |
+| ``NoInverse`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Matter.swift:57 | nothing to cut: inherited, not written |  |
+| ``NoInverse`` | ``HasCache`` | Sources/VerificationIsIdentification/Matter.swift:57 | nothing to cut: inherited, not written |  |
+| ``NoInverse`` | ``HasLibrary`` | Sources/VerificationIsIdentification/Matter.swift:57 | nothing to cut: inherited, not written |  |
+| ``NoInverse`` | ``HasSigma`` | Sources/VerificationIsIdentification/Matter.swift:57 | nothing to cut: inherited, not written |  |
+| ``NoInverse`` | ``KnowledgeAccumulates`` | Sources/VerificationIsIdentification/Matter.swift:57 | nothing to cut: inherited, not written |  |
+| ``NoInverse`` | ``Open`` | Sources/VerificationIsIdentification/Matter.swift:57 | nothing to cut: inherited, not written |  |
+| ``NoInverse`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Matter.swift:57 | nothing to cut: inherited, not written |  |
+| ``NoInverse`` | ``Pair`` | Sources/VerificationIsIdentification/Matter.swift:57 | nothing to cut: inherited, not written |  |
+| ``NoInverse`` | ``Structure`` | Sources/VerificationIsIdentification/Matter.swift:57 | nothing to cut: inherited, not written |  |
+| ``NoInverse`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Matter.swift:57 | nothing to cut: inherited, not written |  |
 | ``Converges`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Matter.swift:66 | builds green |  |
 | ``Converges`` | ``CandidatesOnlyLeave`` | Sources/VerificationIsIdentification/Matter.swift:66 | builds green |  |
 | ``Converges`` | ``EqualityDecidable`` | Sources/VerificationIsIdentification/Matter.swift:66 | builds green |  |
@@ -1318,24 +1318,24 @@ reader, and the papers, not this table, argue it.
 | ``Digit`` | ``Open`` | Sources/VerificationIsIdentification/Numeral.swift:20 | builds green |  |
 | ``Digit`` | ``Structure`` | Sources/VerificationIsIdentification/Numeral.swift:20 | builds green |  |
 | ``HasPath`` | ``HasSigma`` | Sources/VerificationIsIdentification/Path.swift:32 | builds green |  |
-| ``EmissionAccumulates`` | ``HasPath`` | Sources/VerificationIsIdentification/Path.swift:42 | uncut |  |
-| ``EmissionAccumulates`` | ``HasSigma`` | Sources/VerificationIsIdentification/Path.swift:42 | uncut |  |
-| ``CostIsPathLength`` | ``HasDistance`` | Sources/VerificationIsIdentification/Path.swift:52 | uncut |  |
-| ``CostIsPathLength`` | ``HasPath`` | Sources/VerificationIsIdentification/Path.swift:52 | uncut |  |
-| ``CostIsPathLength`` | ``HasSigma`` | Sources/VerificationIsIdentification/Path.swift:52 | uncut |  |
-| ``ReachIsPath`` | ``HasBasis`` | Sources/VerificationIsIdentification/Path.swift:67 | uncut |  |
-| ``ReachIsPath`` | ``HasLibrary`` | Sources/VerificationIsIdentification/Path.swift:67 | uncut |  |
-| ``ReachIsPath`` | ``HasPath`` | Sources/VerificationIsIdentification/Path.swift:67 | uncut |  |
-| ``ReachIsPath`` | ``HasSigma`` | Sources/VerificationIsIdentification/Path.swift:67 | uncut |  |
-| ``EmissionIsAutoregressive`` | ``HasEncoding`` | Sources/VerificationIsIdentification/Path.swift:78 | uncut |  |
-| ``EmissionIsAutoregressive`` | ``HasPath`` | Sources/VerificationIsIdentification/Path.swift:78 | uncut |  |
-| ``EmissionIsAutoregressive`` | ``HasSigma`` | Sources/VerificationIsIdentification/Path.swift:78 | uncut |  |
-| ``EmissionIsAutoregressive`` | ``Open`` | Sources/VerificationIsIdentification/Path.swift:78 | uncut |  |
-| ``EmissionIsAutoregressive`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Path.swift:78 | uncut |  |
-| ``EmissionIsAutoregressive`` | ``Pair`` | Sources/VerificationIsIdentification/Path.swift:78 | uncut |  |
-| ``EmissionIsAutoregressive`` | ``ResultDeterministic`` | Sources/VerificationIsIdentification/Path.swift:78 | uncut |  |
-| ``EmissionIsAutoregressive`` | ``ScopeBoundedByEncoding`` | Sources/VerificationIsIdentification/Path.swift:78 | uncut |  |
-| ``EmissionIsAutoregressive`` | ``Structure`` | Sources/VerificationIsIdentification/Path.swift:78 | uncut |  |
+| ``EmissionAccumulates`` | ``HasPath`` | Sources/VerificationIsIdentification/Path.swift:42 | nothing to cut: inherited, not written |  |
+| ``EmissionAccumulates`` | ``HasSigma`` | Sources/VerificationIsIdentification/Path.swift:42 | nothing to cut: inherited, not written |  |
+| ``CostIsPathLength`` | ``HasDistance`` | Sources/VerificationIsIdentification/Path.swift:52 | nothing to cut: inherited, not written |  |
+| ``CostIsPathLength`` | ``HasPath`` | Sources/VerificationIsIdentification/Path.swift:52 | nothing to cut: inherited, not written |  |
+| ``CostIsPathLength`` | ``HasSigma`` | Sources/VerificationIsIdentification/Path.swift:52 | nothing to cut: inherited, not written |  |
+| ``ReachIsPath`` | ``HasBasis`` | Sources/VerificationIsIdentification/Path.swift:67 | nothing to cut: inherited, not written |  |
+| ``ReachIsPath`` | ``HasLibrary`` | Sources/VerificationIsIdentification/Path.swift:67 | nothing to cut: inherited, not written |  |
+| ``ReachIsPath`` | ``HasPath`` | Sources/VerificationIsIdentification/Path.swift:67 | nothing to cut: inherited, not written |  |
+| ``ReachIsPath`` | ``HasSigma`` | Sources/VerificationIsIdentification/Path.swift:67 | nothing to cut: inherited, not written |  |
+| ``EmissionIsAutoregressive`` | ``HasEncoding`` | Sources/VerificationIsIdentification/Path.swift:78 | nothing to cut: inherited, not written |  |
+| ``EmissionIsAutoregressive`` | ``HasPath`` | Sources/VerificationIsIdentification/Path.swift:78 | nothing to cut: inherited, not written |  |
+| ``EmissionIsAutoregressive`` | ``HasSigma`` | Sources/VerificationIsIdentification/Path.swift:78 | nothing to cut: inherited, not written |  |
+| ``EmissionIsAutoregressive`` | ``Open`` | Sources/VerificationIsIdentification/Path.swift:78 | nothing to cut: inherited, not written |  |
+| ``EmissionIsAutoregressive`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Path.swift:78 | nothing to cut: inherited, not written |  |
+| ``EmissionIsAutoregressive`` | ``Pair`` | Sources/VerificationIsIdentification/Path.swift:78 | nothing to cut: inherited, not written |  |
+| ``EmissionIsAutoregressive`` | ``ResultDeterministic`` | Sources/VerificationIsIdentification/Path.swift:78 | nothing to cut: inherited, not written |  |
+| ``EmissionIsAutoregressive`` | ``ScopeBoundedByEncoding`` | Sources/VerificationIsIdentification/Path.swift:78 | nothing to cut: inherited, not written |  |
+| ``EmissionIsAutoregressive`` | ``Structure`` | Sources/VerificationIsIdentification/Path.swift:78 | nothing to cut: inherited, not written |  |
 | ``ConstructionIsReading`` | ``AxesCoOriented`` | Sources/VerificationIsIdentification/Path.swift:90 | builds green |  |
 | ``ConstructionIsReading`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Path.swift:90 | builds green |  |
 | ``ConstructionIsReading`` | ``EmissionAccumulates`` | Sources/VerificationIsIdentification/Path.swift:90 | builds green |  |
@@ -1356,12 +1356,12 @@ reader, and the papers, not this table, argue it.
 | ``ConstructionIsReading`` | ``RevealsNotCreates`` | Sources/VerificationIsIdentification/Path.swift:90 | builds green |  |
 | ``ConstructionIsReading`` | ``Structure`` | Sources/VerificationIsIdentification/Path.swift:90 | builds green |  |
 | ``ConstructionIsReading`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Path.swift:90 | builds green |  |
-| ``InvalidStepFolds`` | ``HasPath`` | Sources/VerificationIsIdentification/Path.swift:101 | uncut |  |
-| ``InvalidStepFolds`` | ``HasSigma`` | Sources/VerificationIsIdentification/Path.swift:101 | uncut |  |
-| ``InvalidStepFolds`` | ``Null`` | Sources/VerificationIsIdentification/Path.swift:101 | uncut |  |
-| ``InvalidStepFolds`` | ``Open`` | Sources/VerificationIsIdentification/Path.swift:101 | uncut |  |
-| ``InvalidStepFolds`` | ``Pair`` | Sources/VerificationIsIdentification/Path.swift:101 | uncut |  |
-| ``InvalidStepFolds`` | ``Structure`` | Sources/VerificationIsIdentification/Path.swift:101 | uncut |  |
+| ``InvalidStepFolds`` | ``HasPath`` | Sources/VerificationIsIdentification/Path.swift:101 | nothing to cut: inherited, not written |  |
+| ``InvalidStepFolds`` | ``HasSigma`` | Sources/VerificationIsIdentification/Path.swift:101 | nothing to cut: inherited, not written |  |
+| ``InvalidStepFolds`` | ``Null`` | Sources/VerificationIsIdentification/Path.swift:101 | nothing to cut: inherited, not written |  |
+| ``InvalidStepFolds`` | ``Open`` | Sources/VerificationIsIdentification/Path.swift:101 | nothing to cut: inherited, not written |  |
+| ``InvalidStepFolds`` | ``Pair`` | Sources/VerificationIsIdentification/Path.swift:101 | nothing to cut: inherited, not written |  |
+| ``InvalidStepFolds`` | ``Structure`` | Sources/VerificationIsIdentification/Path.swift:101 | nothing to cut: inherited, not written |  |
 | ``GatedConstruction`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Path.swift:111 | builds green |  |
 | ``GatedConstruction`` | ``CandidatesOnlyLeave`` | Sources/VerificationIsIdentification/Path.swift:111 | builds green |  |
 | ``GatedConstruction`` | ``EmissionAccumulates`` | Sources/VerificationIsIdentification/Path.swift:111 | builds green |  |
@@ -1422,25 +1422,25 @@ reader, and the papers, not this table, argue it.
 | ``ProgramIsPath`` | ``Structure`` | Sources/VerificationIsIdentification/Path.swift:136 | builds green |  |
 | ``ProgramIsPath`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Path.swift:136 | builds green |  |
 | ``ProgramIsPath`` | ``SystemCrystallizes`` | Sources/VerificationIsIdentification/Path.swift:136 | builds green |  |
-| ``CompletionIsSolutionSet`` | ``AxesCoOriented`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``HasCache`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``HasPath`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``HasSigma`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``HasSolutions`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``HasTime`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``IdentityCollapse`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``Measurable`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``Null`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``Open`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``OrderIsOnlyFreedom`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``Pair`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``Reading`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``ResultDeterministic`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``RevealsNotCreates`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``Structure`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
-| ``CompletionIsSolutionSet`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Path.swift:148 | uncut |  |
+| ``CompletionIsSolutionSet`` | ``AxesCoOriented`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``HasCache`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``HasPath`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``HasSigma`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``HasSolutions`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``HasTime`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``IdentityCollapse`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``Measurable`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``Null`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``Open`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``OperationsClosed`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``OrderIsOnlyFreedom`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``Pair`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``Reading`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``ResultDeterministic`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``RevealsNotCreates`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``Structure`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
+| ``CompletionIsSolutionSet`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Path.swift:148 | nothing to cut: inherited, not written |  |
 | ``ErasureIsRecession`` | ``CachePermanent`` | Sources/VerificationIsIdentification/Path.swift:160 | builds green |  |
 | ``ErasureIsRecession`` | ``EmissionAccumulates`` | Sources/VerificationIsIdentification/Path.swift:160 | builds green |  |
 | ``ErasureIsRecession`` | ``HasCache`` | Sources/VerificationIsIdentification/Path.swift:160 | builds green |  |
@@ -1675,9 +1675,9 @@ reader, and the papers, not this table, argue it.
 | ``Close`` | ``Structure`` | Sources/VerificationIsIdentification/Primitive.swift:88 | build fails | Structure, U1, Unit |
 | ``Pair`` | ``Open`` | Sources/VerificationIsIdentification/Primitive.swift:102 | build fails | Paired<A, B>, Structure, body |
 | ``Pair`` | ``Structure`` | Sources/VerificationIsIdentification/Primitive.swift:102 | builds green |  |
-| ``Null`` | ``Open`` | Sources/VerificationIsIdentification/Primitive.swift:114 | uncut |  |
-| ``Null`` | ``Pair`` | Sources/VerificationIsIdentification/Primitive.swift:114 | uncut |  |
-| ``Null`` | ``Structure`` | Sources/VerificationIsIdentification/Primitive.swift:114 | uncut |  |
+| ``Null`` | ``Open`` | Sources/VerificationIsIdentification/Primitive.swift:114 | nothing to cut: inherited, not written |  |
+| ``Null`` | ``Pair`` | Sources/VerificationIsIdentification/Primitive.swift:114 | nothing to cut: inherited, not written |  |
+| ``Null`` | ``Structure`` | Sources/VerificationIsIdentification/Primitive.swift:114 | nothing to cut: inherited, not written |  |
 | ``AllCoordinatesPresent`` | ``AlignmentCoefficient`` | Sources/VerificationIsIdentification/Projection.swift:29 | builds green |  |
 | ``AllCoordinatesPresent`` | ``AmbiguityNamesInput`` | Sources/VerificationIsIdentification/Projection.swift:29 | builds green |  |
 | ``AllCoordinatesPresent`` | ``AnchorGraph`` | Sources/VerificationIsIdentification/Projection.swift:29 | builds green |  |
@@ -1933,9 +1933,9 @@ reader, and the papers, not this table, argue it.
 | ``PerspectiveIsEncoding`` | ``ResultDeterministic`` | Sources/VerificationIsIdentification/Space.swift:30 | builds green |  |
 | ``PerspectiveIsEncoding`` | ``ScopeBoundedByEncoding`` | Sources/VerificationIsIdentification/Space.swift:30 | builds green |  |
 | ``PerspectiveIsEncoding`` | ``Structure`` | Sources/VerificationIsIdentification/Space.swift:30 | builds green |  |
-| ``DistanceIsMetric`` | ``HasCache`` | Sources/VerificationIsIdentification/Space.swift:43 | uncut |  |
-| ``DistanceIsMetric`` | ``HasDistance`` | Sources/VerificationIsIdentification/Space.swift:43 | uncut |  |
-| ``DistanceIsMetric`` | ``HasSigma`` | Sources/VerificationIsIdentification/Space.swift:43 | uncut |  |
+| ``DistanceIsMetric`` | ``HasCache`` | Sources/VerificationIsIdentification/Space.swift:43 | nothing to cut: inherited, not written |  |
+| ``DistanceIsMetric`` | ``HasDistance`` | Sources/VerificationIsIdentification/Space.swift:43 | nothing to cut: inherited, not written |  |
+| ``DistanceIsMetric`` | ``HasSigma`` | Sources/VerificationIsIdentification/Space.swift:43 | nothing to cut: inherited, not written |  |
 | ``SpaceFromDifference`` | ``DistanceIsMetric`` | Sources/VerificationIsIdentification/Space.swift:49 | builds green |  |
 | ``SpaceFromDifference`` | ``HasCache`` | Sources/VerificationIsIdentification/Space.swift:49 | builds green |  |
 | ``SpaceFromDifference`` | ``HasDistance`` | Sources/VerificationIsIdentification/Space.swift:49 | builds green |  |

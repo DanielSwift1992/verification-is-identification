@@ -106,7 +106,9 @@ enum Ablate {
                        + "| \(verdict) | \(refused.joined(separator: ", ")) |")
         }
         out.append("")
-        out.append("Every file was put back after its cut, and the module builds: \(restored).")
+        out.append(restored
+            ? "Every file was put back after its cut, and the module builds."
+            : "THE RESTORE FAILED: a file did not go back. Fix the tree before committing this page.")
         let target = packageRoot.appendingPathComponent(
             "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/AtlasAblation.md")
         try? (out.joined(separator: "\n") + "\n").write(to: target, atomically: true, encoding: .utf8)
@@ -248,6 +250,15 @@ enum Ablate {
             print("✗ THE ABLATION page and this generator write different heads, from line \(n + 1).")
             print("    page:      \(n < onHead.count ? onHead[n] : "(nothing)")")
             print("    generator: \(n < asWritten.count ? asWritten[n] : "(nothing)")")
+            exit(1)
+        }
+        // the tail after the table is the run's own attestation: a committed
+        // page comes from a green run, so the page must say the restore held,
+        // in words, with no printed Bool for a reader to decode
+        let greenTail = "Every file was put back after its cut, and the module builds."
+        if !pageLines.contains(greenTail) {
+            print("✗ THE ABLATION page does not attest its restore: the line after "
+                  + "the table must read: \(greenTail)")
             exit(1)
         }
         if gone.isEmpty && fresh.isEmpty {

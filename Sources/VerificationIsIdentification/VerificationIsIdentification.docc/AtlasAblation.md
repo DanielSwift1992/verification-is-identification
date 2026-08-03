@@ -2429,4 +2429,4 @@ yourself: `swift build --product Tools && .build/debug/Tools ablate
 | ``DarknessIsNormalForm`` | ``Structure`` | Sources/VerificationIsIdentification/Wave.swift:29 | still builds |  |
 | ``DarknessIsNormalForm`` | ``StructuresFinite`` | Sources/VerificationIsIdentification/Wave.swift:29 | still builds |  |
 
-Every file was put back after its cut, and the module builds: true.
+Every file was put back after its cut, and the module builds.

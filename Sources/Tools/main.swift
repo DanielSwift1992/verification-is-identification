@@ -1,4 +1,5 @@
 import Foundation
+import Court
 
 // Tools is the package's build-time helpers as one executable with several subcommands,
 // so the docs build has a single support module instead of one per tool.

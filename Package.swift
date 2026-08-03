@@ -32,6 +32,12 @@ let package = Package(
         // name can never drift between the two the way three separate copies once did.
         .library(name: "Alphabet", targets: ["Alphabet"]),
 
+        // Court: the second arbiter as a linkable library: the plain judge, the where
+        // judge, the differential seat, and the term language they share (Press). A
+        // consumer links the same judge this repository runs instead of mirroring it:
+        // one source of judgement, and executables are views of it.
+        .library(name: "Court", targets: ["Court"]),
+
     ],
     dependencies: [
         // Docs only — Swift-DocC renders the lattice's doc-comments + protocol
@@ -50,7 +56,12 @@ let package = Package(
         // GrammarLexicon and Alphabet: Linter.swift (DESIGN15) reads the `Alphabet` registry at
         // runtime — the mechanism's only way to know what atoms exist without naming any of
         // them itself.
-        .executableTarget(name: "Tools", dependencies: ["GrammarLexicon", "Alphabet", "VerificationIsIdentification"]),
+        // The second arbiter as its own module: Judge, WhereJudge, JudgeDiff, and the
+        // term language (Press). Foundation only, so a consumer links the judge without
+        // pulling the package's tooling behind it.
+        .target(name: "Court"),
+
+        .executableTarget(name: "Tools", dependencies: ["GrammarLexicon", "Alphabet", "VerificationIsIdentification", "Court"]),
 
         // The linter's own vocabulary (DESIGN15) — protocols, empty enums, conformances, the
         // LawCheck spirit (§0′ pure types) applied to the linter itself, checked BY HAND

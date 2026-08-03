@@ -30,14 +30,14 @@ import Foundation
 // same chain flat, so depth is priced like everything else — by the token.
 // ═══════════════════════════════════════════════════════════════
 
-enum Judge {
+public enum Judge {
 
     // ── the verdict ──
 
-    struct Refusal {
-        let file: String
-        let line: Int
-        let premise: String
+    public struct Refusal {
+        public let file: String
+        public let line: Int
+        public let premise: String
     }
 
     // ── the parsed record ──
@@ -499,16 +499,16 @@ enum Judge {
 
     // ── one full judgment, reusable by the differential harness ──
 
-    struct Judgment {
-        let declarations: Int
-        let lookups: Int
-        let premises: Int
-        let milliseconds: Double
-        let refusals: [Refusal]
-        let coordinates: [String: [String: String]]
+    public struct Judgment {
+        public let declarations: Int
+        public let lookups: Int
+        public let premises: Int
+        public let milliseconds: Double
+        public let refusals: [Refusal]
+        public let coordinates: [String: [String: String]]
     }
 
-    static func judge(paths: [String]) -> Judgment? {
+    public static func judge(paths: [String]) -> Judgment? {
         let started = DispatchTime.now()
         var declarations: [String: Declaration] = [:]
         var order: [String] = []
@@ -545,7 +545,7 @@ enum Judge {
 
     // ── the door ──
 
-    static func run(_ arguments: [String]) {
+    public static func run(_ arguments: [String]) {
         if arguments.first == "diff" || arguments.first == "chain" {
             JudgeDiff.run(arguments)
             return

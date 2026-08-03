@@ -22,6 +22,7 @@ enum Census {
         Target(name: "DocumentKit", paths: ["Sources/DocumentKit"]),
         Target(name: "Organization", paths: ["Sources/Organization"]),
         Target(name: "Examples", paths: ["Sources/Examples"]),
+        Target(name: "Court", paths: ["Sources/Court"]),
         Target(name: "Tools+Plugins", paths: ["Sources/Tools", "Plugins"]),
     ]
 
@@ -160,6 +161,7 @@ enum Census {
         "VerificationIsIdentification": "Lattice",
         "DocumentKit": "Engine",
         "Organization": "Company",
+        "Court": "Court",
         "Tools+Plugins": "Tooling",
     ]
 

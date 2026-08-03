@@ -11,7 +11,7 @@ import Foundation
 // when it compiled the rule's generic declaration.
 // ═══════════════════════════════════════════════════════
 
-enum Press {
+public enum Press {
     static let dictionaryPath = "Sources/DynamicsDemo/Rules.swift"
     static let defaultStatePath = "Sources/DynamicsDemo/WorldState.swift"
 
@@ -231,7 +231,7 @@ enum Press {
         fail("no literal slot \(slotName) in \(statePath)")
     }
 
-    static func run(_ args: [String]) {
+    public static func run(_ args: [String]) {
         var arguments = args
         var statePath = defaultStatePath
         if let flag = arguments.firstIndex(of: "--file"), flag + 1 < arguments.count {

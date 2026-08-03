@@ -81,7 +81,8 @@ extension ArchFooterText {
         "Nothing above runs at runtime: \(CensusLatticeRuntimeFunctions.typeName) functions in the core, "
             + "\(CensusEngineRuntimeFunctions.typeName) in the engine, "
             + "\(CensusCompanyRuntimeFunctions.typeName) in the demo, no structs, no classes. The "
-            + "\(CensusToolingRuntimeFunctions.typeName) functions that do execute are the build tools, counted by this build."
+            + "\(CensusToolingRuntimeFunctions.typeName) functions that do execute are the build tools, "
+            + "and \(CensusCourtRuntimeFunctions.typeName) more are the second arbiter, counted by this build."
     }
 }
 

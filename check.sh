@@ -47,6 +47,7 @@ LAWS=(
 "light|the second judge reads the conditional grammar|swift run Tools judge where Sources/Examples/Light.swift"
 "ladder|the second judge counts the Rydberg ladder|swift run Tools judge where Sources/Examples/RydbergLadder.swift Sources/VerificationIsIdentification/Primitive.swift"
 "grants|the second judge reads the grant world|swift run Tools judge where Sources/Examples/Grants.swift"
+"court|the judge builds as a library a consumer links|swift build --product Court"
 "law|the grammar carries every source file|swift run Tools grammar"
 )
 

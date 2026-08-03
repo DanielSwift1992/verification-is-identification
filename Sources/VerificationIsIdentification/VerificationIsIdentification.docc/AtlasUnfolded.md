@@ -1,8 +1,15 @@
 # Atlas, unfolded
 
-The lists behind every count of the <doc:Atlas>. A claim's **cone** is the full set of claims it carries, directly or through others, and every Carries number on the map links to its cone here.
+This page expands every Carries number of the <doc:Atlas> into its list.
+A claim's **cone** is the full set of claims that depend on it, directly
+or through others, and every Carries number on the Atlas links to its
+cone here.
 
-Each section repeats the same table over its cone, heaviest first. Numbers inside a cone open further cones, each strictly smaller than the one above, so the descent ends at bare zeros. Cone inside cone is acyclic for the same reason the theory is: the compiler refuses a circular hierarchy.
+Each section repeats the same table over its cone, largest first. A
+number inside a cone opens a further cone, strictly smaller than the one
+above, so the descent ends at claims nothing depends on. A cycle of
+cones cannot appear, because a circular protocol hierarchy does not
+compile.
 
 ## The cones
 

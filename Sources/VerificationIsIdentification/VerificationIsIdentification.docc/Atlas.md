@@ -1,8 +1,8 @@
 # Atlas
 
-One row per claim of the theory: its premises, and the count of claims
-that depend on it. The table is generated from the compiler's dependency
-record.
+The Atlas is one table with one row per claim of the theory: the claim's
+premises, and the count of claims that depend on it. The table is
+generated from the compiler's dependency record.
 
 Each claim is one Swift protocol. A premise is a protocol the claim
 refines, so the compiler already has the full dependency graph, and this

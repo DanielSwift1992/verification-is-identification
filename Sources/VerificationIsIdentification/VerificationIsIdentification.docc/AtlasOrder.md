@@ -1,7 +1,7 @@
 # In what order to read
 
-A claim can be checked once its premises are checked. This page orders
-the whole lattice that way: every claim appears after all of its
+A claim can be checked once its premises are checked, so this page
+orders the whole lattice that way: every claim appears after all of its
 premises.
 
 Step 0 contains the claims with no premises. A claim's step is the

@@ -93,7 +93,8 @@ enum Ablate {
         let inherited = rows.filter { $0.1.hasPrefix("inherited") }.count
         let seconds = Int(-started.timeIntervalSinceNow)
         let shown = { (p: Premise) in
-            p.file.replacingOccurrences(of: packageRoot.path + "/", with: "") }
+            p.file.replacingOccurrences(
+                of: packageRoot.path + "/Sources/VerificationIsIdentification/", with: "") }
         let bullets = failing.map {
             "- ``\($0.0.child)`` needs ``\($0.0.parent)``, at \(shown($0.0)):\($0.0.line + 1)" }
         var out = headLines(total: rows.count, needs: failing.count, green: greenRows,
@@ -123,12 +124,13 @@ enum Ablate {
     static func headLines(total: Int, needs: Int, green: Int, inherited: Int,
                           bullets: [String], seconds: String, revision: String) -> [String] {
         var out = ["# Which premises the build needs", ""]
-        out.append("Each claim declares premises. This page records which of them the")
-        out.append("compiler needs. Each premise was removed from its declaration, the")
-        out.append("module was rebuilt, and the file was restored.")
+        out.append("Each claim declares premises, and this page records which of them")
+        out.append("the compiler needs: each premise was removed from its declaration,")
+        out.append("the module was rebuilt, and the file was put back.")
         out.append("")
         out.append("Of \(total) premises the module needs \(needs). It builds without the other \(green),")
-        out.append("and \(inherited) name a premise the compiler inherits, so they have no line to cut.")
+        out.append("and \(inherited) come from a premise the compiler inherits: an inherited premise")
+        out.append("is not written on a line of its own, so there is nothing to remove.")
         out.append("")
         out.append("Row format: the claim, the premise, the line where the premise is")
         out.append("declared, whether the module builds without it, and, when the build")
@@ -139,11 +141,12 @@ enum Ablate {
         out.append("")
         out += bullets
         out.append("")
-        out.append("The map behind this table is <doc:Atlas>, and the cone behind every count")
-        out.append("there is <doc:AtlasUnfolded>.")
+        out.append("<doc:Atlas> ranks these claims by how many others depend on them, and")
+        out.append("<doc:AtlasUnfolded> expands every such count into its list.")
         out.append("")
-        out.append("The premise list is the compiler's own symbol graph, the file tree-sort")
-        out.append("reads, so the lattice has one reader. The run took \(seconds)s over the")
+        out.append("The premise list comes from the symbol graph the compiler emits, and")
+        out.append("tree-sort reads the same file, so the lattice has one reader.")
+        out.append("The run took \(seconds)s over the")
         out.append("lattice at revision \(revision). Rerun it")
         out.append("yourself: `swift build --product Tools && .build/debug/Tools ablate")
         out.append("<symbols.json>`. The build writes the graph file under")

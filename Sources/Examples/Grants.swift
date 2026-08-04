@@ -40,7 +40,7 @@ public enum Harbor: Realm {}
 
 public protocol Keeper {
     associatedtype Post: Realm
-    associatedtype Key
+    associatedtype Key: Reads
 }
 public protocol Room {
     associatedtype Place: Realm

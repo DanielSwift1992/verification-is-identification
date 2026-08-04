@@ -44,11 +44,15 @@ enum WhereJudge {
         let head: String
         let proto: String
         let equalities: [(String, String)]
+        let memberships: [(String, String)]
+        let unjudged: [String]
     }
 
     struct GatedProtocol {
         let name: String
         let equalities: [(String, String)]
+        let memberships: [(String, String)]
+        let unjudged: [String]
     }
 
     static func fail(_ message: String) -> Never {
@@ -114,7 +118,15 @@ enum WhereJudge {
         }
     }
 
-    static func splitEqualities(_ clause: String) -> [(String, String)] {
+    // A gate's where carries three kinds of conjunct. An equality is judged
+    // against the canon. A membership, a colon and a bare protocol name, is
+    // judged against the conformer's declared protocols, closed over the
+    // refinements the file presents. Anything else used to be dropped in
+    // silence, and a court may not drop a condition in silence: it is named
+    // at its gate instead, so a half-read law is a refusal, never a verdict
+    // that counts what it never read.
+    static func splitConjuncts(_ clause: String)
+        -> (equalities: [(String, String)], memberships: [(String, String)], unjudged: [String]) {
         var parts: [String] = []
         var depth = 0
         var piece = ""
@@ -129,17 +141,33 @@ enum WhereJudge {
             }
         }
         parts.append(piece)
-        var pairs: [(String, String)] = []
+        var equalities: [(String, String)] = []
+        var memberships: [(String, String)] = []
+        var unjudged: [String] = []
         for part in parts {
+            let bare = part.trimmingCharacters(in: .whitespacesAndNewlines)
+            if bare.isEmpty { continue }
             let sides = part.components(separatedBy: "==")
             if sides.count == 2 {
-                pairs.append((
+                equalities.append((
                     sides[0].trimmingCharacters(in: .whitespacesAndNewlines),
                     sides[1].trimmingCharacters(in: .whitespacesAndNewlines)
                 ))
+                continue
             }
+            let claim = bare.components(separatedBy: ":")
+            if claim.count == 2 {
+                let lhs = claim[0].trimmingCharacters(in: .whitespacesAndNewlines)
+                let proto = claim[1].trimmingCharacters(in: .whitespacesAndNewlines)
+                if lhs.isEmpty == false,
+                   proto.range(of: #"^\w+$"#, options: .regularExpression) != nil {
+                    memberships.append((lhs, proto))
+                    continue
+                }
+            }
+            unjudged.append(bare)
         }
-        return pairs
+        return (equalities, memberships, unjudged)
     }
 
     struct World {
@@ -147,6 +175,7 @@ enum WhereJudge {
         var aliases: [String: AliasRule] = [:]
         var gates: [GatedExtension] = []
         var gatedProtocols: [String: GatedProtocol] = [:]
+        var protocolParents: [String: [String]] = [:]
         var parameters: [String: [String]] = [:]
         var uses: [String] = []
     }
@@ -197,17 +226,39 @@ enum WhereJudge {
         for hit in captures(
             #"extension\s+(\w+)\s*:\s*(\w+)\s*\n\s*where\s+([^{]+)\{"#, clean
         ) {
+            let conjuncts = splitConjuncts(hit[2])
             world.gates.append(GatedExtension(
-                head: hit[0], proto: hit[1], equalities: splitEqualities(hit[2])
+                head: hit[0], proto: hit[1],
+                equalities: conjuncts.equalities,
+                memberships: conjuncts.memberships,
+                unjudged: conjuncts.unjudged
             ))
         }
 
         for hit in captures(
             #"protocol\s+(\w+)\s*:\s*[\w,\s]+?\n\s*where\s+([^{]+)\{"#, clean
         ) {
+            let conjuncts = splitConjuncts(hit[1])
             world.gatedProtocols[hit[0]] = GatedProtocol(
-                name: hit[0], equalities: splitEqualities(hit[1])
+                name: hit[0],
+                equalities: conjuncts.equalities,
+                memberships: conjuncts.memberships,
+                unjudged: conjuncts.unjudged
             )
+        }
+
+        // the refinement ladder, read from what is presented: a protocol's
+        // parents are the material the membership walk closes over
+        for hit in captures(
+            #"protocol\s+(\w+)\s*:\s*([\w,\s]+?)\s*(?:\n\s*where|\{)"#, clean
+        ) {
+            world.protocolParents[hit[0]] = hit[1]
+                .split(separator: ",")
+                .map { $0.trimmingCharacters(in: .whitespaces) }
+        }
+        for hit in captures(#"protocol\s+(\w+)\s*\{"#, clean)
+        where world.protocolParents[hit[0]] == nil {
+            world.protocolParents[hit[0]] = []
         }
 
         for hit in captures(#"([\w<>,\. ]+?)\s*\.self"#, clean) {
@@ -326,6 +377,53 @@ enum WhereJudge {
         Press.serialize(arithmetic(normalize(Press.parseTerm(Substring(text)), world)))
     }
 
+    // does the conformer wear the protocol: its declared list, closed over
+    // the refinement ladder the file presents
+    static func wears(_ conformer: Conformer, _ proto: String, _ world: World) -> Bool {
+        var seen = Set<String>()
+        var pile = conformer.protocols
+        while let name = pile.popLast() {
+            if name == proto { return true }
+            if seen.insert(name).inserted {
+                pile.append(contentsOf: world.protocolParents[name] ?? [])
+            }
+        }
+        return false
+    }
+
+    // one membership judged: the left side resolves through the same canon
+    // the equalities use, the resolved name must be a presented conformer,
+    // and the conformer must wear the protocol through the ladder. Either
+    // failure is a refusal in this court's own voice, at the site that
+    // required it.
+    static func judgeMemberships(
+        _ memberships: [(String, String)], site: String, tag: String?,
+        bindings: [String: Term], world: World,
+        counted: inout Int, refusals: inout [String]
+    ) {
+        let mark = tag.map { " [\($0)]" } ?? ""
+        for (lhs, proto) in memberships {
+            counted += 1
+            let lhsTerm = substitute(Press.parseTerm(Substring(lhs)), bindings)
+            let resolved = arithmetic(normalize(lhsTerm, world))
+            let spelled = Press.serialize(resolved)
+            guard resolved.args.isEmpty, let wearer = world.conformers[resolved.head] else {
+                refusals.append(
+                    "'\(site)' requires the type '\(lhs)' (aka '\(spelled)') conform to "
+                        + "'\(proto)', and no conformer of that name is presented\(mark)"
+                )
+                continue
+            }
+            if wears(wearer, proto, world) == false {
+                let worn = wearer.protocols.joined(separator: ", ")
+                refusals.append(
+                    "'\(site)' requires the type '\(lhs)' (aka '\(resolved.head)') conform to "
+                        + "'\(proto)', and '\(resolved.head): \(worn)' does not carry it\(mark)"
+                )
+            }
+        }
+    }
+
     // ── the judgement ──
 
     static func run(_ arguments: [String]) {
@@ -353,6 +451,26 @@ enum WhereJudge {
         }
         var refusals: [String] = []
         var judged = 0
+        var members = 0
+
+        // a gate that carries what no court here judges is named at once:
+        // the defect is the law's own spelling, not any use of it
+        for gate in world.gates {
+            for part in gate.unjudged {
+                refusals.append(
+                    "the gate '\(gate.head): \(gate.proto)' carries '\(part)', "
+                        + "a conjunct this court does not judge"
+                )
+            }
+        }
+        for gated in world.gatedProtocols.values.sorted(by: { $0.name < $1.name }) {
+            for part in gated.unjudged {
+                refusals.append(
+                    "the gated protocol '\(gated.name)' carries '\(part)', "
+                        + "a conjunct this court does not judge"
+                )
+            }
+        }
 
         // A typealias certificate is a judged point: a parameterless alias in the
         // world whose right side names a gated head states the gate's equalities
@@ -381,6 +499,11 @@ enum WhereJudge {
                         )
                     }
                 }
+                judgeMemberships(
+                    gate.memberships, site: "\(name) = \(rule.body)", tag: gate.proto,
+                    bindings: bindings, world: world,
+                    counted: &members, refusals: &refusals
+                )
             }
         }
 
@@ -407,6 +530,11 @@ enum WhereJudge {
                         )
                     }
                 }
+                judgeMemberships(
+                    gate.memberships, site: use, tag: gate.proto,
+                    bindings: bindings, world: world,
+                    counted: &members, refusals: &refusals
+                )
             }
         }
 
@@ -428,11 +556,19 @@ enum WhereJudge {
                         )
                     }
                 }
+                let owned = gated.memberships.map { pair in
+                    (pair.0.contains(".") ? pair.0 : conformer.name + "." + pair.0, pair.1)
+                }
+                judgeMemberships(
+                    owned, site: "\(conformer.name): \(protoName)", tag: nil,
+                    bindings: [:], world: world,
+                    counted: &members, refusals: &refusals
+                )
             }
         }
 
         if refusals.isEmpty {
-            print("✓ THE WHERE holds: \(judged) equalities judged across \(world.uses.count) uses, the certificates, and the gated conformers, one canon each side (canon v\(canonVersion)).")
+            print("✓ THE WHERE holds: \(judged) equalities and \(members) memberships judged across \(world.uses.count) uses, the certificates, and the gated conformers, one canon each side (canon v\(canonVersion)).")
         } else {
             for refusal in refusals { print("✗ \(refusal)") }
             exit(1)

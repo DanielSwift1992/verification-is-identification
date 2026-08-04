@@ -57,6 +57,10 @@ public enum Clerk: Keeper {
     public typealias Post = Archive
     public typealias Key = ReaderKey
 }
+public enum Scribe: Keeper {
+    public typealias Post = Archive
+    public typealias Key = WriterKey
+}
 public enum Smith: Keeper {
     public typealias Post = Foundry
     public typealias Key = WriterKey
@@ -69,8 +73,10 @@ public enum Warden: Keeper {
 // ── the gate: two tiers in one where ──
 
 /// Entry to work a room: the keeper's key must write, and the keeper must be
-/// posted where the room is. The compiler decides the key's class, and the
-/// judge decides the posting equality from the declarations above.
+/// posted where the room is. The compiler decides the key's class wherever a
+/// conformance is asked of it, and the judge holds both conjuncts from the
+/// declarations above: the posting equality folded to one canon, and the
+/// key's class walked through the presented ladder.
 public protocol Entered {}
 public enum Enter<
     Who: Keeper,
@@ -79,10 +85,12 @@ public enum Enter<
 extension Enter: Entered
 where Who.Key: Writes, Who.Post == Into.Place {}
 
-// The certificates: each names one entry, and the judge folds both sides of
-// the posting equality from the world's own tables.
+// The certificates: each names one entry, and the judge holds both tiers
+// from the world's own tables. The scribe stands here because the clerk
+// cannot: a reading key at a ledger that requires writing was this file's
+// own latent lie, caught by the membership court on its first run.
 public typealias SmithAtTheAnvil = Enter<Smith, Anvil>
-public typealias ClerkAtTheLedger = Enter<Clerk, Ledger>
+public typealias ScribeAtTheLedger = Enter<Scribe, Ledger>
 
 /// The compiled witness: the smith writes and is posted at the foundry, so the
 /// conformance is granted by the compiler itself.

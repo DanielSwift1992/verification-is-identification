@@ -208,12 +208,13 @@ Access over declared realms: a realm is an atom (the fourth is one line, not a s
 - ``Ledger``
 - ``Anvil``
 - ``Clerk``
+- ``Scribe``
 - ``Smith``
 - ``Warden``
 - ``Entered``
 - ``Enter``
 - ``SmithAtTheAnvil``
-- ``ClerkAtTheLedger``
+- ``ScribeAtTheLedger``
 
 ### The Rydberg ladder — energy as a judged integer lattice
 

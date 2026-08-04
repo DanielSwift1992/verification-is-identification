@@ -26,7 +26,7 @@ No new postulate. The author derives everything below from V=I §2 and Permanenc
 
 *Proof.* Well-defined: by induction on t. D(NULL) = ∅. D(PAIR(a, b)) = {ε} ∪ L·D(a) ∪ R·D(b), finite, and prefix-closed because every proper prefix of an internal address passes through PAIR nodes. Injective and surjective: given a finite prefix-closed A, reconstruct the unique tree whose nodes are A ∪ children(A), where an address is a PAIR iff it is in A and a NULL otherwise. Every PAIR has exactly its two children present, so the tree is valid, D of this tree is A, and two trees with the same D reconstruct identically. QED
 
-Under D, a structure *is* its distinctions (a finite set of boundary-drawing acts, each at an address) rather than a thing they describe. This is V=I §2.5 ("PAIR is the act of distinction") made extensional.
+Under D, a structure *is* its distinctions (a finite set of boundary-drawing acts, each at an address) rather than a thing they describe. This is V=I §2.5 ("PAIR is the sole structural primitive: the act of distinction") made extensional.
 
 *Example.* peano(2) = PAIR(PAIR(NULL, NULL), NULL) has D = {ε, L}: one distinction at the root, one down its left side. ‖peano(2)‖ = 2. A cell atom(r, c, v) = PAIR(PAIR(row, col), value) has the skeleton {ε, L} plus the distinctions of its three numerals, and §6 computes with exactly these sets.
 

@@ -20,6 +20,8 @@ No new postulate. The author reads every claim below off invariants and results 
 
 **HF2 (Without the record the system cannot end, only repeat).** Suppose I3 is dropped and the cache retracts. The system's total state (structure, cache) now ranges over a finite set with no monotone component. An unbounded run must revisit some total state (pigeonhole), and determinism (I2, §5.8) then forces the same successor from it, forever: a cycle. So a finite closed system without a permanent record has no terminal states at all: its only fate is return. This sharpens AX3's counterfactual: without I3 the monotone axes do worse than disalign, and time closes on itself.
 
+> Argues: ``Converges`` needs ``NoInverse``.
+
 *Proof.* Finitely many total states. An infinite run visits one twice. The step function is deterministic, so the segment between the two visits repeats verbatim. QED. **[solid** for the discrete pigeonhole, and Poincaré recurrence is the measure-theoretic elder: I3 has the role dissipation has there, precedent not reduction**]**
 
 ## §3. The Trichotomy of Fates

@@ -18,10 +18,11 @@ starts with the identification and matter chains.
 
 ## The edges argued so far
 
-The lattice declares 302 direct edges, and 24 of them carry an argument record in a paper. The rest wait.
+The lattice declares 302 direct edges, and 25 of them carry an argument record in a paper. The rest wait.
 
 | claim | premise | argued in |
 |---|---|---|
+| ``Converges`` | ``NoInverse`` | <doc:halt_is_ignition> |
 | ``EqualityDecidable`` | ``StructuresFinite`` | <doc:verification_is_identification> |
 | ``ExactlyOneSurvives`` | ``EqualityDecidable`` | <doc:verification_is_identification> |
 | ``ExactlyOneSurvives`` | ``HasSolutions`` | <doc:verification_is_identification> |

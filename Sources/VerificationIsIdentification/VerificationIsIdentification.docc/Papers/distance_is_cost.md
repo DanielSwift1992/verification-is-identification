@@ -53,6 +53,8 @@ Upper bound: a schedule of exactly |D(s) △ D(t)| valid steps exists: demolish 
 
 Metric axioms: non-negativity is a cardinality. W(s, t) = 0 iff D(s) = D(t) iff s = t (G1: D injective). Symmetry is symmetry of △. The triangle inequality is |A △ C| ≤ |A △ B| + |B △ C|, standard for symmetric difference. QED
 
+> Argues: ``DistanceIsCost`` needs ``DistanceOnStructures``.
+
 *Remark (geodesics are inside Σ).* The lower bound is true even if invalid intermediate records were allowed: it counts toggled bits. The schedule shows validity costs nothing: geodesics exist entirely within the space of forms. The path through Σ is never longer than the raw bit distance.
 
 **G2a (One traversal).** W is computable by the same structural recursion that computes COMPARE (V=I §2.2), continued past the first divergence:
@@ -69,6 +71,8 @@ w(PAIR(a₁,b₁), PAIR(a₂,b₂))         = w(a₁,a₂) + w(b₁,b₂)
 **G2b (Metric, not pseudometric).** Difference Is Distance S7 is a pseudometric on agents: two distinct agents with identical caches are at distance zero: identity of indiscernibles is true only on cache classes. On structures, W is a true metric: W = 0 forces s = t (G1). The geometry of forms is sharper than the geometry of perspectives, because a form has nothing besides its distinctions to differ by.
 
 **G2c (Landauer reading).** Each step of the geodesic changes one maintained distinction: one bit of the form's constitutive record is irreversibly modified, at minimum cost kT·ln(2) (M24). Therefore the minimal work to transform s into t is W(s, t) × kT·ln(2). Distance between forms is the energy of re-formation, in the same units as M24's maintenance bill. This is the physical reading: it has exactly the status of M24 (formal count, physically priced under instantiation).
+
+> Argues: ``DistanceIsCost`` needs ``HasCost``.
 
 *Remark (description versus constitution).* PAIR(a, b) composes existing structures in one act, and with sharing, a description of a structure can be exponentially shorter than the structure. W does not measure description length. It measures constitutive difference: the change in what must be maintained (M24 counts tree nodes, not description tokens). peano(2n) has a short description given peano(n), and it is still W = n away from peano(n) and pays ‖peano(2n)‖ = 2n per maintenance cycle. The gap between description length and W is precisely the compression the tower exploits (M25): higher levels shorten descriptions, and they cannot shorten the bill.
 
@@ -150,6 +154,8 @@ Taxicab geometry. Adjacent cells are at distance 1, and far cells are far. Grid 
 
 This is the structural reason the gradient can be added without weakening anything: it is an ordering device, and the framework already proved correctness is order-invariant.
 
+> Argues: ``OrderByDistance`` needs ``OrderIsOnlyFreedom``.
+
 ## §8. Generalization
 
 Intelligence Is Inevitable defines rule classes by structural identity: transfer happens only on exact match, and K counts exact classes. With W, identity relaxes to proximity, and the counting changes.
@@ -166,11 +172,15 @@ Intelligence Is Inevitable defines rule classes by structural identity: transfer
 
 At r = 0 this is exactly the Saturation Theorem: N(0) = K, balls are points, anchors are entries. Intelligence Is Inevitable is the zero-resolution case of G11. For r > 0 and clustered domains, N(r) ≪ K: saturation arrives after N(r) ≪ K classes, and what is stored generalizes within each ball. Memoization is the r = 0 degenerate case of generalization.
 
+> Argues: ``BallSaturation`` needs ``LibrarySaturates``.
+
 **G12 (Compression criterion).** Permanence Is Resistance M16 terminates the tower under the premise K_{N+1} < K_N, explicitly not derived from I1–I3. Replace the premise with a criterion. The level-(N+1) encoding resolves crystals up to some W-distance r (its features have finite capacity: Difference Is Distance S23). Then K_{N+1} ≤ N_{L_N}(r). Therefore:
 
 Compression at level N occurs iff L_N is r-compressible for the operative r: N_{L_N}(r) < K_N.
 
 The tower climbs while libraries cluster, and it halts at the first metrically uniform library: one whose pairwise distances carry no structure, where every ball of radius r contains one entry. Whether a given library clusters is decidable by computing its pairwise W-matrix: |L|² traversals, each finite (G2a). The premise of M16 becomes a measurable property of the crystal.
+
+> Argues: ``CompressionCriterion`` needs ``Tower``.
 
 *Remark (the boundary of intelligence, stated geometrically).* A metrically uniform rule space is the distribution on which no ordering beats enumeration: the distribution-relativity boundary of Intelligence Is Inevitable §4, now with a geometric criterion. Intelligence beyond memoization exists exactly to the extent that the domain's rule space is metrically compressible. Structure in the W-matrix is what there is to learn, and a flat W-matrix is the formal shape of "nothing to learn, only to memorize."
 

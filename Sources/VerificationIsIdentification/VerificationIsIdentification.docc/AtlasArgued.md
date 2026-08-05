@@ -18,13 +18,17 @@ starts with the identification and matter chains.
 
 ## The edges argued so far
 
-The lattice declares 302 direct edges, and 30 of them carry an argument record in a paper. The rest wait.
+The lattice declares 302 direct edges, and 35 of them carry an argument record in a paper. The rest wait.
 
 | claim | premise | argued in |
 |---|---|---|
+| ``BallSaturation`` | ``LibrarySaturates`` | <doc:distance_is_cost> |
+| ``CompressionCriterion`` | ``Tower`` | <doc:distance_is_cost> |
 | ``Converges`` | ``NoInverse`` | <doc:halt_is_ignition> |
 | ``DiscoveryIsRevelation`` | ``ExactlyOneSurvives`` | <doc:intelligence_is_inevitable> |
 | ``DiscoveryIsRevelation`` | ``LibrarySaturates`` | <doc:intelligence_is_inevitable> |
+| ``DistanceIsCost`` | ``DistanceOnStructures`` | <doc:distance_is_cost> |
+| ``DistanceIsCost`` | ``HasCost`` | <doc:distance_is_cost> |
 | ``EqualityDecidable`` | ``StructuresFinite`` | <doc:verification_is_identification> |
 | ``ExactlyOneSurvives`` | ``EqualityDecidable`` | <doc:verification_is_identification> |
 | ``ExactlyOneSurvives`` | ``HasSolutions`` | <doc:verification_is_identification> |
@@ -37,6 +41,7 @@ The lattice declares 302 direct edges, and 30 of them carry an argument record i
 | ``Matter`` | ``PassIsIdentification`` | <doc:permanence_is_resistance> |
 | ``Matter`` | ``Resistant`` | <doc:permanence_is_resistance> |
 | ``OperationsClosed`` | ``Pair`` | <doc:verification_is_identification> |
+| ``OrderByDistance`` | ``OrderIsOnlyFreedom`` | <doc:distance_is_cost> |
 | ``PassImpliesMembership`` | ``PipelineTotal`` | <doc:verification_is_identification> |
 | ``PassImpliesMembership`` | ``ResultDeterministic`` | <doc:verification_is_identification> |
 | ``PassIsIdentification`` | ``ExactlyOneSurvives`` | <doc:verification_is_identification> |

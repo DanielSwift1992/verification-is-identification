@@ -170,6 +170,8 @@ The conditions for this are: finite space (I1), decidable check (I2), permanent 
 | I2 (decidable) | Verification may not halt, and entries may be wrong |
 | I3 (append-only) | Results can be retracted, and entries may be lost |
 
+> Argues: ``LibrarySaturates`` needs ``CachePermanent``.
+
 **Comparison with mutable-state accumulation.** The comparison is architectural: which properties the accumulation carries, not how much useful knowledge each substrate holds. A gradient-trained model accumulates plenty, and what it operates without is I3. Weights are mutable: each training step overwrites previous values. Catastrophic forgetting is the structural consequence of mutable state. Without I3, the cache is not append-only. Without append-only, saturation is not guaranteed (V=I §5.22 breaks: eliminated candidates can re-enter S). Without guaranteed saturation, the accumulation has no convergence proof.
 
 Consequences: (1) different training seeds produce different weights: the result is not unique. (2) No entry carries a proof: the result is not certified. (3) Continued training changes all entries: the result is not permanent. (4) The system always produces an output, even when the answer is unknown: honest REJECT is absent.
@@ -219,11 +221,15 @@ A1–A3 are structural prerequisites. A4 is the phase transition. When |Sₙ| = 
 
 *Proof.* S₀ = F, the finite space of candidates (I1). Each COMPARE result defines a predicate Pₙ: "candidate x is consistent with the n-th comparison." V=I §5.22: S is monotonically non-increasing. Each COMPARE can only eliminate candidates from S or leave S unchanged → A1. I3: the cache is append-only. A COMPARE result, once recorded, cannot be retracted → A2. I2: structural equality on finite structures is decidable → A3. Theorem 2 + R4: when |S| = 1 and PASS, f' = f*. For any finite deterministic task, an encoding producing |S| = 1 exists (Theorem 4), so the pipeline reaches |S| ≤ 1 → A4. QED
 
+> Argues: ``PipelineCrystallizes`` needs ``PassIsIdentification``.
+
 **Lemma 2 (Agent learning).** Library accumulation under the Saturation Theorem is a crystallizing system.
 
 Lemma 2 views the same process through its complement: no new construction, §3's accumulation re-counted. A1 is defined as shrinkage: S₀ ⊇ S₁ ⊇ S₂ ⊇ ... In Lemma 1 the shrinking object is obvious: S, the candidate set, loses members with each COMPARE. In §3, agent learning is described as L growing: rules are added, the library expands. The complement is what shrinks: rule classes in D_id not yet covered by L. Every new PASS removes one class from that set. It never grows back (I3). This is the object Lemma 2 uses as S₀.
 
 *Proof.* S₀ = the set of rule classes in D_id not yet covered by L. This set is finite (I1 + finite D_id → finitely many rule classes). Each solved task whose rule is new defines a predicate Pₙ: "class k is covered." I3 for the agent (§2): entries are never removed from L, so a covered class is covered for good. Uncovered classes can only decrease → A1. Covered classes cannot become uncovered → A2. Whether a new task matches an existing entry in L is decidable: compare features of τ against each stored rule, O(K × F) COMPAREs → A3. Saturation Theorem (§3): after K tasks with distinct rules, every class in D_id is covered. |uncovered| = 0 → A4 (terminal state: no candidates remain in S₀). QED
+
+> Argues: ``LibraryCrystallizes`` needs ``LibrarySaturates``.
 
 *Remark.* A4 in Lemma 1 terminates at |S| = 1 (one candidate survives). A4 in Lemma 2 terminates at |uncovered| = 0 (no class remains). Both are terminal: no further predicate changes the outcome. Lemma 1 crystallizes an answer. Lemma 2 crystallizes a library.
 
@@ -269,7 +275,11 @@ The same applies to the pipeline as a whole and to the agent: neither creates th
 
 **Corollary (Pre-existence).** f* exists before the agent starts. S = {y ∈ F : passes verification} is determined by the task's structure and the encoding's test. The agent's COMPARE sequence does not construct f*: it eliminates every other candidate until f* is the only one left.
 
+> Argues: ``DiscoveryIsRevelation`` needs ``ExactlyOneSurvives``.
+
 **Corollary (Library invariance).** The saturated library L is determined by (D, E), not by the agent (§3: uniqueness). Two agents with different protocols, different orderings, different histories arrive at the same L. The agent reveals L: it does not construct it.
+
+> Argues: ``DiscoveryIsRevelation`` needs ``LibrarySaturates``.
 
 These two corollaries shift the question from "what does the agent build?" to "how efficiently does the agent uncover what is already there?"
 

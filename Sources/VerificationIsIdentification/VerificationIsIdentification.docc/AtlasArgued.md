@@ -18,17 +18,21 @@ starts with the identification and matter chains.
 
 ## The edges argued so far
 
-The lattice declares 302 direct edges, and 25 of them carry an argument record in a paper. The rest wait.
+The lattice declares 302 direct edges, and 30 of them carry an argument record in a paper. The rest wait.
 
 | claim | premise | argued in |
 |---|---|---|
 | ``Converges`` | ``NoInverse`` | <doc:halt_is_ignition> |
+| ``DiscoveryIsRevelation`` | ``ExactlyOneSurvives`` | <doc:intelligence_is_inevitable> |
+| ``DiscoveryIsRevelation`` | ``LibrarySaturates`` | <doc:intelligence_is_inevitable> |
 | ``EqualityDecidable`` | ``StructuresFinite`` | <doc:verification_is_identification> |
 | ``ExactlyOneSurvives`` | ``EqualityDecidable`` | <doc:verification_is_identification> |
 | ``ExactlyOneSurvives`` | ``HasSolutions`` | <doc:verification_is_identification> |
 | ``HasSolutions`` | ``HasSigma`` | <doc:verification_is_identification> |
 | ``Ignites`` | ``LibrarySaturates`` | <doc:permanence_is_resistance> |
 | ``Ignites`` | ``Matter`` | <doc:permanence_is_resistance> |
+| ``LibraryCrystallizes`` | ``LibrarySaturates`` | <doc:intelligence_is_inevitable> |
+| ``LibrarySaturates`` | ``CachePermanent`` | <doc:intelligence_is_inevitable> |
 | ``Matter`` | ``KnowledgeAccumulates`` | <doc:permanence_is_resistance> |
 | ``Matter`` | ``PassIsIdentification`` | <doc:permanence_is_resistance> |
 | ``Matter`` | ``Resistant`` | <doc:permanence_is_resistance> |
@@ -37,6 +41,7 @@ The lattice declares 302 direct edges, and 25 of them carry an argument record i
 | ``PassImpliesMembership`` | ``ResultDeterministic`` | <doc:verification_is_identification> |
 | ``PassIsIdentification`` | ``ExactlyOneSurvives`` | <doc:verification_is_identification> |
 | ``PassIsIdentification`` | ``PassImpliesMembership`` | <doc:verification_is_identification> |
+| ``PipelineCrystallizes`` | ``PassIsIdentification`` | <doc:intelligence_is_inevitable> |
 | ``PipelineTotal`` | ``StepsTerminate`` | <doc:verification_is_identification> |
 | ``Resistant`` | ``Decidable`` | <doc:permanence_is_resistance> |
 | ``Resistant`` | ``HasDistance`` | <doc:permanence_is_resistance> |

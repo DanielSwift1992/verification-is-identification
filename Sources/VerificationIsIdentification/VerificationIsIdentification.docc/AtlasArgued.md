@@ -18,28 +18,37 @@ starts with the identification and matter chains.
 
 ## The edges argued so far
 
-The lattice declares 302 direct edges, and 35 of them carry an argument record in a paper. The rest wait.
+The lattice declares 302 direct edges, and 47 of them carry an argument record in a paper. The rest wait.
 
 | claim | premise | argued in |
 |---|---|---|
 | ``BallSaturation`` | ``LibrarySaturates`` | <doc:distance_is_cost> |
+| ``ColourIsQuotient`` | ``EncodingForgets`` | <doc:colour_is_a_quotient> |
 | ``CompressionCriterion`` | ``Tower`` | <doc:distance_is_cost> |
 | ``Converges`` | ``NoInverse`` | <doc:halt_is_ignition> |
+| ``DarknessIsNormalForm`` | ``InterferenceIsSubstitution`` | <doc:interference_is_substitution> |
 | ``DiscoveryIsRevelation`` | ``ExactlyOneSurvives`` | <doc:intelligence_is_inevitable> |
 | ``DiscoveryIsRevelation`` | ``LibrarySaturates`` | <doc:intelligence_is_inevitable> |
 | ``DistanceIsCost`` | ``DistanceOnStructures`` | <doc:distance_is_cost> |
 | ``DistanceIsCost`` | ``HasCost`` | <doc:distance_is_cost> |
+| ``EdgesCarryTheJudgement`` | ``PresentedLaw`` | <doc:dynamics_is_substitution> |
+| ``EncodingForgets`` | ``HasEncoding`` | <doc:seeing_is_encoding> |
+| ``EncodingInvents`` | ``HasEncoding`` | <doc:a_verb_is_an_act> |
 | ``EqualityDecidable`` | ``StructuresFinite`` | <doc:verification_is_identification> |
 | ``ExactlyOneSurvives`` | ``EqualityDecidable`` | <doc:verification_is_identification> |
 | ``ExactlyOneSurvives`` | ``HasSolutions`` | <doc:verification_is_identification> |
+| ``FormIsInvariant`` | ``PresentedLaw`` | <doc:dynamics_is_substitution> |
+| ``GamutIsCone`` | ``ColourIsQuotient`` | <doc:colour_is_a_quotient> |
 | ``HasSolutions`` | ``HasSigma`` | <doc:verification_is_identification> |
 | ``Ignites`` | ``LibrarySaturates`` | <doc:permanence_is_resistance> |
 | ``Ignites`` | ``Matter`` | <doc:permanence_is_resistance> |
+| ``InterferenceIsSubstitution`` | ``PresentedLaw`` | <doc:interference_is_substitution> |
 | ``LibraryCrystallizes`` | ``LibrarySaturates`` | <doc:intelligence_is_inevitable> |
 | ``LibrarySaturates`` | ``CachePermanent`` | <doc:intelligence_is_inevitable> |
 | ``Matter`` | ``KnowledgeAccumulates`` | <doc:permanence_is_resistance> |
 | ``Matter`` | ``PassIsIdentification`` | <doc:permanence_is_resistance> |
 | ``Matter`` | ``Resistant`` | <doc:permanence_is_resistance> |
+| ``MeasureIsCount`` | ``StandardIsType`` | <doc:light_is_a_ruler> |
 | ``OperationsClosed`` | ``Pair`` | <doc:verification_is_identification> |
 | ``OrderByDistance`` | ``OrderIsOnlyFreedom`` | <doc:distance_is_cost> |
 | ``PassImpliesMembership`` | ``PipelineTotal`` | <doc:verification_is_identification> |
@@ -48,9 +57,12 @@ The lattice declares 302 direct edges, and 35 of them carry an argument record i
 | ``PassIsIdentification`` | ``PassImpliesMembership`` | <doc:verification_is_identification> |
 | ``PipelineCrystallizes`` | ``PassIsIdentification`` | <doc:intelligence_is_inevitable> |
 | ``PipelineTotal`` | ``StepsTerminate`` | <doc:verification_is_identification> |
+| ``PressIsIdentification`` | ``PassIsIdentification`` | <doc:dynamics_is_substitution> |
 | ``Resistant`` | ``Decidable`` | <doc:permanence_is_resistance> |
 | ``Resistant`` | ``HasDistance`` | <doc:permanence_is_resistance> |
 | ``ResultDeterministic`` | ``OperationsClosed`` | <doc:verification_is_identification> |
+| ``SeparatorIdentifies`` | ``EncodingForgets`` | <doc:seeing_is_encoding> |
+| ``StandardIsType`` | ``PresentedLaw`` | <doc:light_is_a_ruler> |
 | ``StepsTerminate`` | ``StructuresFinite`` | <doc:verification_is_identification> |
 | ``StructuresFinite`` | ``HasSigma`` | <doc:verification_is_identification> |
 | ``StructuresFinite`` | ``Pair`` | <doc:verification_is_identification> |

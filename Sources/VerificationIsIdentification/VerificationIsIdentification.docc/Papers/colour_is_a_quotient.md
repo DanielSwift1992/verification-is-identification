@@ -10,6 +10,8 @@ No new postulate. From Seeing Is Encoding: the projection and its kernel. From F
 
 **CiQ1 (The quotient).** The eye's projection partitions all beams: two beams are one colour exactly when their images coincide. A colour is a fiber of that projection (the metameric class whole), and the space of colours is the quotient of light by the eye's kernel. Every colour coordinate ever written parameterizes the quotient, never the light: the chart reads nothing inside the fiber, and what it cannot read, no arithmetic on coordinates recovers. **[solid: ``ColourIsQuotient``]**
 
+> Argues: ``ColourIsQuotient`` needs ``EncodingForgets``.
+
 ## §2. Colour spaces are charts
 
 **CiQ2 (One quotient, many gauges).** RGB triples, XYZ, Lab, OKLCH: charts on one three-channel quotient, related by re-parameterization, the same content under different spellings, which is the gauge freedom of forms. The linear charts respect mixing, and the bent ones are for something else. One chart is canonical for mixing: the linear one, where the sum of lights is the sum of coordinates. Mixing is there, and every other chart is a spelling at the edge. A perceptually uniform chart bends its coordinates until the perceptual distance is flat along them: equal steps, equal felt difference. And one coordinate is not like the others: hue closes on itself. Hue is a residue (a position on a finite ring, the same carrier as a wave's phase), so complements are the half-turn, and the complement of the complement is the hue itself, an involution checked once for the whole ring.
@@ -17,6 +19,8 @@ No new postulate. From Seeing Is Encoding: the projection and its kernel. From F
 ## §3. A display is a cone
 
 **CiQ3 (Gamut is a cone, and outside it S is empty).** A display is a stated source: finitely many primaries, each a written spectrum, with nonnegative levels. Its reach in the quotient is the cone the primaries span. A colour inside the cone is matched by stated levels: the certificate is the levels themselves, and membership never needs an inverse matrix, because the witness is the decomposition. A colour outside has no matching levels at all: the candidate set is empty, and the display refuses by name instead of clipping in silence. The refusal is decidable before anything shines, because the primaries are written whole. **[solid: ``GamutIsCone``]**
+
+> Argues: ``GamutIsCone`` needs ``ColourIsQuotient``.
 
 **CiQ4 (Three primaries never suffice).** The visible colours of single lines are a curve whose region is convex, and any three primaries span a triangle inside it: some pure line is always outside. Wider gamuts have their corners nearer the curve (the widest stated primaries are single lines themselves), and still the triangle is a triangle. Reaching every colour needs more primaries, or the identity encoder: a display that states the spectrum itself. The limit is convexity, never engineering.
 

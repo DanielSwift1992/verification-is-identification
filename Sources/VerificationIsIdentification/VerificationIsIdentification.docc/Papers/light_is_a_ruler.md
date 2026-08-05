@@ -12,9 +12,13 @@ No new postulate. A path has a length (Program Is Path), a presented law is dete
 
 **LiR1 (A unit is a tick with one survivor).** A standard is a presented law whose repeating tick admits exactly one trajectory: deterministic, so any two realizations of the tick are the same tick, and the unit is reproducible wherever the law can be written. A pendulum fails the bar: its period is a function of free parameters, |S| > 1, and the unit drifts with the instance. An atomic transition passes: the levels are discrete, the tick is fixed by the law alone. An artifact standard (the kept bar) is an instance: singular, stored, wearing. The history of standards is the move from the instance to the type. **[solid: ``StandardIsType``]**
 
+> Argues: ``StandardIsType`` needs ``PresentedLaw``.
+
 ## §2. The ruler is a homomorphism
 
 **LiR2 (Measuring is counting).** To measure a path with a unit is to tally the unit's ticks along it: a reading, never a making. Where paths concatenate, the tallies add. So a ruler is a homomorphism from the monoid of paths to the naturals, and the arithmetic of measurement (sums of lengths, differences, comparisons) is inherited from addition, never postulated. **[solid: ``MeasureIsCount``]**
+
+> Argues: ``MeasureIsCount`` needs ``StandardIsType``.
 
 ## §3. The metric axioms are theorems of transport
 

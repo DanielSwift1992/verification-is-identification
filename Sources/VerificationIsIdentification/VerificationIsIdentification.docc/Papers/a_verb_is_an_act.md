@@ -44,6 +44,8 @@ A structure is a source of sameness and of nothing else.
 
 The two failures are the two wrongs of encodings: the open image is the inventing image, and the cut label is the forgetting image. The compiler checks the first. **[solid: ``EncodingInvents``]**
 
+> Argues: ``EncodingInvents`` needs ``HasEncoding``.
+
 ## §4. Properties of the sentence
 
 **P1 (four forms).** The faithful sentence forms of a structure are the images of the four admitted shapes: the copula for an identity edge, the passive for an act edge (the reader reads the edge from its patient side, with the actor at the verb), the prepositional for a composition identity, and the existential for a vertex alone. And the typing admits a fifth shape for no structure.

@@ -16,6 +16,8 @@ No new postulate. A press is V=I's Theorem 2 applied to one slot: the pattern id
 
 **DiS2 (|S| ≤ 1 per press).** A linear pattern matches a closed term in at most one way: induction on the pattern, and by linearity there are no binding conflicts. The candidate set of a press has at most one member, so matching is a comparison, never a search. A chord (several rules on one slot with pairwise distinct patterns) keeps the bound: at most one pattern matches any given term, and a chord whose patterns overlap is refused when it is written, never when it fires. **[solid: ``PressIsIdentification``]**
 
+> Argues: ``PressIsIdentification`` needs ``PassIsIdentification``.
+
 ## §3. One word, one file
 
 **DiS3 (Determinism).** The rule fired is named by the press, the binding is unique (DiS2), and the template is a function of the binding. So the file after any word of presses is unique. A trajectory is replayable from its word alone, and a log of presses is a complete history.
@@ -24,9 +26,13 @@ No new postulate. A press is V=I's Theorem 2 applied to one slot: the pattern id
 
 **DiS4 (Form invariance).** A press rewrites one slot's term and nothing else. The form (the slots and the rules) is identical in every reachable state, and the difference between neighbouring states is inside one term. The set of available moves never changes along a trajectory. **[solid: ``FormIsInvariant``, the form is itself a structure]**
 
+> Argues: ``FormIsInvariant`` needs ``PresentedLaw``.
+
 ## §5. The judgement is on the edges
 
 **DiS5 (Edges, not states).** A rule with a variable is a universally quantified claim: one check covers every binding at once. A judged start state and judged rules give judged reachable states, by induction on the press word. Finitely many checks cover infinitely many trajectories. Per-state checking cannot reach this bound, because the reachable states may be infinite while the rules are finite. **[solid: ``EdgesCarryTheJudgement``]**
+
+> Argues: ``EdgesCarryTheJudgement`` needs ``PresentedLaw``.
 
 ## §6. Races and reversal
 

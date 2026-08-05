@@ -16,7 +16,11 @@ No new postulate. From Dynamics Is Substitution: the rule class and its judgemen
 
 **IiS2 (Interference is substitution).** Waves are not summed by arithmetic here. They are settled by a rule: find two contributions of equal magnitude and opposite phase, remove the pair. The rule is a triple of the presented class (one slot, a pattern, a template), so it is judged once, on its edge, for every magnitude at once. Superposition is the exhaustive application of that rule to the bag. **[solid: ``InterferenceIsSubstitution``]**
 
+> Argues: ``InterferenceIsSubstitution`` needs ``PresentedLaw``.
+
 **IiS3 (Darkness is a normal form).** The rewriting terminates: every step removes a pair, and the bag is finite. Independent removals commute, so the residue is one: each bag settles to a single normal form, and the detector reads the residue, never the history. A dark fringe is the bag that settles to nothing: emptiness reached by cancellation, never measured by an instrument. A bright fringe is the bag whose survivors agree, and agreement doubles: the settled magnitude is the pair of the contribution with itself. **[solid: ``DarknessIsNormalForm``]**
+
+> Argues: ``DarknessIsNormalForm`` needs ``InterferenceIsSubstitution``.
 
 ## §3. The fringe conditions are modular arithmetic
 

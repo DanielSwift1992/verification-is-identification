@@ -20,9 +20,13 @@ No new postulate. The encoding axis already bounds what a reader can reach (V=I 
 
 **SiE3 (Metamerism is |S| > 1 at the image).** An eye reads some slots of the beam and drops the rest, then sums what it reads into few channels. Both moves have kernels: a dropped slot is an invisible coordinate, and a sum forgets its split. So two distinct beams can land on one image (a metameric pair), and the pair is presentable: state two beams differing in a dropped slot, and the sharing of their image is a checkable identity. Downstream of the eye, the image is the whole evidence, and identification stops: |S| > 1, by the encoding, not by any fault of the reader. **[solid: ``EncodingForgets``, witnessed by the pair and its shared image]**
 
+> Argues: ``EncodingForgets`` needs ``HasEncoding``.
+
 ## §4. The prism recalls
 
 **SiE4 (A presented separator restores identification).** A prism reads every slot: each line lands at its own place, so the spread image is the beam itself, and any two distinct beams land apart. The prism returns the lost distinction to the metameric pair: the same pair that shares an eye-image refuses to share a prism-image, and the refusal names the slot where the twins differ. The separator is presented, never searched for: the author states the instrument, the judge checks it parts the pair. **[solid: ``SeparatorIdentifies``]**
+
+> Argues: ``SeparatorIdentifies`` needs ``EncodingForgets``.
 
 ## §5. Transport is counted
 

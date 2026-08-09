@@ -545,6 +545,82 @@ public enum Judge {
 
     // ── the door ──
 
+    // ── the parse door: pass 1, printed ──
+    //
+    // `judge parse FILE...` prints the dictionary the courts read from, as
+    // JSON in document order, and judges nothing. A carrier draws its views
+    // (a bare form, a table) over this door instead of growing a second
+    // grammar: the judge owns the reading, the carrier owns the shape. One
+    // object per declaration: the fields of the record above, spelled out.
+    static func printParsed(_ paths: [String]) {
+        if paths.isEmpty {
+            FileHandle.standardError.write(Data("✗ THE JUDGE parses named files\n".utf8))
+            exit(2)
+        }
+        var declarations: [String: Declaration] = [:]
+        var order: [String] = []
+        var refusals: [Refusal] = []
+        for path in paths {
+            guard let text = try? String(contentsOfFile: path, encoding: .utf8) else {
+                FileHandle.standardError.write(Data("✗ THE JUDGE cannot read \(path)\n".utf8))
+                exit(2)
+            }
+            parse(file: path, text: text, into: &declarations, order: &order,
+                  refusals: &refusals)
+        }
+        func quoted(_ string: String) -> String {
+            var out = "\""
+            for scalar in string.unicodeScalars {
+                switch scalar {
+                case "\"": out += "\\\""
+                case "\\": out += "\\\\"
+                case "\n": out += "\\n"
+                case "\t": out += "\\t"
+                default:
+                    if scalar.value < 0x20 {
+                        out += String(format: "\\u%04x", scalar.value)
+                    } else {
+                        out.unicodeScalars.append(scalar)
+                    }
+                }
+            }
+            return out + "\""
+        }
+        func list(_ items: [String]) -> String {
+            "[" + items.joined(separator: ",") + "]"
+        }
+        var objects: [String] = []
+        for qualified in order {
+            guard let declaration = declarations[qualified] else { continue }
+            let aliases = declaration.aliases
+                .sorted { $0.value.line < $1.value.line }
+                .map {
+                    "{\"name\":\(quoted($0.key))"
+                        + ",\"target\":\(quoted($0.value.target))"
+                        + ",\"line\":\($0.value.line)}"
+                }
+            let entries = declaration.entries.map {
+                "{\"head\":\(quoted($0.head))"
+                    + ",\"arguments\":\(list($0.arguments.map(quoted)))"
+                    + ",\"line\":\($0.line)}"
+            }
+            objects.append(
+                "{\"name\":\(quoted(declaration.name))"
+                    + ",\"qualified\":\(quoted(declaration.qualified))"
+                    + ",\"parent\":\(declaration.parent.map(quoted) ?? "null")"
+                    + ",\"conformances\":\(list(declaration.conformances.map(quoted)))"
+                    + ",\"line\":\(declaration.line)"
+                    + ",\"aliases\":\(list(aliases))"
+                    + ",\"entries\":\(list(entries))}")
+        }
+        print(list(objects))
+        for refusal in refusals {
+            FileHandle.standardError.write(
+                Data("    \(refusal.file):\(refusal.line)  \(refusal.premise)\n".utf8))
+        }
+        if refusals.isEmpty == false { exit(1) }
+    }
+
     public static func run(_ arguments: [String]) {
         if arguments.first == "diff" || arguments.first == "chain" {
             JudgeDiff.run(arguments)
@@ -552,6 +628,10 @@ public enum Judge {
         }
         if arguments.first == "where" {
             WhereJudge.run(Array(arguments.dropFirst()))
+            return
+        }
+        if arguments.first == "parse" {
+            printParsed(Array(arguments.dropFirst()))
             return
         }
         let paths = arguments.isEmpty

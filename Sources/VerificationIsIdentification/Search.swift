@@ -28,13 +28,16 @@
 /// > only with the encoding.
 public protocol AlignmentCoefficient: HasAlpha, DistanceOnStructures, GateIsZeroOfLoss {}
 
-/// Intelligence exceeds enumeration iff α > 0. The advantage η = T_min/T_actual
-/// (``IntelligenceRises``) beats brute force exactly when the ``AlignmentCoefficient``
-/// loss has a usable gradient. The α=0 case is IiI's distribution-relativity
-/// boundary: a rugged loss and no-free-lunch are one wall seen from two sides. [Search GA6]
+/// Loss-built order exceeds enumeration as far as the landscape is aligned:
+/// the theorem-form of alignment is the basin condition (GA1), and α estimates
+/// it. The advantage η = T_min/T_actual (``IntelligenceRises``) beats brute
+/// force where the ``AlignmentCoefficient`` loss points at solutions.
+/// Uniformity over games is the no-free-lunch wall, and α = 0 alone is not:
+/// a signal can survive zero correlation undecoded by descent. [Search GA6]
 ///
-/// > Note: α > 0 is the single hinge. Above it the loss is a map. At zero it is
-/// > noise and only enumeration remains.
+/// > Note: α is the measurement, never the hinge itself. High, the loss is a
+/// > map for descent. Zero, the correlational signal is gone, and whether any
+/// > signal remains is a further question α does not answer.
 public protocol AlignmentEnablesIntelligence: AlignmentCoefficient, IntelligenceRises {}
 
 /// A domain is efficiently searchable by descent iff it is BOTH clustered AND

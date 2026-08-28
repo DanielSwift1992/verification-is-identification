@@ -53,7 +53,7 @@ QED. *(Structural identification: the shared structure is (one-sided, rate-bound
 
 **LQ5 (The search is laminar or turbulent, by alignment).** The generator flows through the liquid by descending the loss (GA, DiC G13). Where α > 0 (aligned) the flow is **laminar**: smooth descent reaches the solution with no spurious minima (GA1). Where α ≈ 0 (rugged) the flow is **turbulent**: multi-scale roughness, no usable gradient, the search wanders and stalls (GA3, GA6).
 
-*Proof.* GA1: descent reaches a solution iff no loss-local-minimum separates start from solution. GA6: an order beats enumeration iff α > 0. So smooth-and-solving (laminar) ⟺ α high, and rough-and-wandering (turbulent) ⟺ α low. QED.
+*Proof.* GA1: descent reaches a solution iff no loss-local-minimum separates start from solution. GA6: loss-built order beats enumeration as far as the landscape is aligned, and α estimates it. So smooth-and-solving (laminar) goes with α high, and rough-and-wandering (turbulent) with α low. QED.
 
 **LQ6 (Ruggedness is measurable as a spectrum).** The loss-landscape autocorrelation C(d) = corr(loss(R), loss(R′)) for W(R, R′) = d (GA3) measures how fast loss decorrelates with structural distance: the spectral signature of the landscape's roughness. Two derived facts and one named analogy:
 

@@ -23,13 +23,18 @@ enum VoiceTool {
         ("FILLER", "\\bhonest|\\bmerely\\b|\\bsimply\\b|\\belegant|\\bcrucial|\\bseamless"),
     ]
 
-    // The pinned residue per scope: the audited fixed point of 2026-07-18.
-    // The papers' prose is clean outside fences and tables, the lattice keeps its
-    // instrument holds and name dashes, the kit its law terms and quoted code, the
-    // pages the generats' own residue, the README its live playground and its one
-    // instrument hold. A rise is a regression or a pin to move.
+    // The pinned residue per scope. The papers scope was unexercised until
+    // 2026-08-28: the filter asked the relative path for a ".docc" its own base
+    // had already consumed, so the scan carried nothing and its zero verified
+    // nothing. The filter now reads the full path, and the measured residue of
+    // the papers is their own formal voice: semicolons in stated theorems, the
+    // corpus's dashes, holds as the verdict word. The lattice keeps its
+    // instrument holds and name dashes, the kit its law terms and quoted code,
+    // the pages the generats' own residue, the README its live playground and
+    // its one instrument hold. A rise is a regression or a pin to move, with
+    // the count from `voice --counts`.
     static let pins: [(scope: String, count: Int)] = [
-        ("papers", 0),
+        ("papers", 184),
         ("lattice", 6),
         ("kit", 18),
         ("pages", 308),
@@ -89,7 +94,7 @@ enum VoiceTool {
         let base = root + "/" + directory
         let paths = (FileManager.default.enumerator(atPath: base)?.allObjects as? [String]) ?? []
         for path in paths
-        where path.hasSuffix(".md") && path.contains(".docc") {
+        where path.hasSuffix(".md") && (base + "/" + path).contains(".docc") {
             if let ex = excluding, path.contains(ex) { continue }
             total += scanMarkdownFile(base + "/" + path)
         }

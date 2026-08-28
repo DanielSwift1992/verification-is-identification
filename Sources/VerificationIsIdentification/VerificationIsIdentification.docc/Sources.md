@@ -40,7 +40,8 @@ The readings above are the structure. This one is for the reader with a goal: pi
 | matter and dynamics — what the loop leaves, and how it moves | <doc:permanence_is_resistance> → <doc:difference_is_distance> → <doc:distance_is_cost> → <doc:interference_is_intelligence> |
 | learning machines — the agent, and how it trains itself | <doc:intelligence_is_inevitable> → <doc:play_is_proof> → <doc:architecture_of_learning_machines>, then <doc:basis_is_residue>, <doc:gradient_is_alignment>, <doc:proposal_is_order>, <doc:learning_is_liquid>, <doc:solvability_criterion> |
 | order and reading — the one free variable, made object | <doc:order_is_object> → <doc:reading_is_order> → <doc:navigation_is_geometry> |
-| software — the artifact, and the path it is written along | <doc:record_is_system> → <doc:merge_is_commutation> → <doc:program_is_path> → <doc:permission_is_existence> → <doc:seam_is_game> → <doc:agreement_is_comparison> |
+| software — the artifact, and the path it is written along | <doc:record_is_system> → <doc:merge_is_commutation> → <doc:program_is_path> → <doc:permission_is_existence> → <doc:seam_is_game> → <doc:agreement_is_comparison> → <doc:verdict_is_invariant> |
+| light, and the eye that reads it | <doc:dynamics_is_substitution> → <doc:seeing_is_encoding> → <doc:light_is_a_ruler> → <doc:interference_is_substitution> → <doc:colour_is_a_quotient> |
 
 ## The tag legend
 
@@ -69,6 +70,12 @@ The tag in each symbol's discussion decodes here. Every paper is readable in ful
 | `FiG` | [Form Is Gauge](doc:form_is_gauge) |
 | `Projection` | [The Architecture of Learning Machines](doc:architecture_of_learning_machines) |
 | `MiC` | [Merge Is Commutation](doc:merge_is_commutation) |
+| `DiS` | [Dynamics Is Substitution](doc:dynamics_is_substitution) |
+| `SiE` | [Seeing Is Encoding](doc:seeing_is_encoding) |
+| `LiR` | [Light Is a Ruler](doc:light_is_a_ruler) |
+| `IiS` | [Interference Is Substitution](doc:interference_is_substitution) |
+| `CiQ` | [Colour Is a Quotient](doc:colour_is_a_quotient) |
+| `ViA` | [A Verb Is an Act](doc:a_verb_is_an_act) |
 | `SiG` | [Seam Is Game](doc:seam_is_game) |
 | `AiC` | [Agreement Is Comparison](doc:agreement_is_comparison) |
 
@@ -105,5 +112,12 @@ The tag in each symbol's discussion decodes here. Every paper is readable in ful
 - <doc:halt_is_ignition>
 - <doc:permission_is_existence>
 - <doc:form_is_gauge>
+- <doc:dynamics_is_substitution>
+- <doc:seeing_is_encoding>
+- <doc:light_is_a_ruler>
+- <doc:interference_is_substitution>
+- <doc:colour_is_a_quotient>
+- <doc:a_verb_is_an_act>
 - <doc:seam_is_game>
 - <doc:agreement_is_comparison>
+- <doc:verdict_is_invariant>

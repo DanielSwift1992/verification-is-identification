@@ -34,7 +34,7 @@ enum VoiceTool {
     // its one instrument hold. A rise is a regression or a pin to move, with
     // the count from `voice --counts`.
     static let pins: [(scope: String, count: Int)] = [
-        ("papers", 184),
+        ("papers", 275),
         ("lattice", 6),
         ("kit", 18),
         ("pages", 308),

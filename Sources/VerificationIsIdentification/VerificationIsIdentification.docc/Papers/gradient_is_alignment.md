@@ -40,7 +40,7 @@ This is the premise hidden inside N5's "ballistic" promise. N5 proved descent *t
 α ∈ [−1, 1] grades the landscape:
 
 - **α → 1:** loss rises smoothly with distance from the solution. Descent is optimal, ball search at small r works, and the geometry points at the answer.
-- **α → 0:** loss is uncorrelated with distance. The landscape is *rugged*, descent is no better than random, and W carries no search signal even if W carries structure.
+- **α → 0:** loss is uncorrelated with distance. Correlation is a linear, region-averaged read, so α = 0 rules out the correlational signal, never every signal: a loss that permutes distance decodes exactly at zero correlation. The landscape is rugged for descent and for every more-similar-is-nearer order, and whether any signal at all remains is a further question α does not answer.
 - **α < 0:** *deceptive*. Moving structurally toward the solution raises loss: descent actively misleads, worse than random (the optimization-pathology regime).
 
 α is encoding-relative (a poor encoding can rugged-ify an alignable domain, DiC §11): the same domain under a better lens may have higher α. The invariant is the construction, and the number is per encoding.
@@ -60,13 +60,11 @@ Primality is mode 2, the deeper failure. "Is n prime" is binary, pass/fail, no g
 
 **GA5 (A graded loss puts a domain in the shallower mode).** A domain whose loss is graded and cheap (e.g. pixel-distance of a candidate's output from the target, G13, one traversal, a near-miss scoring lower than a wild one) is in a strictly better position than primes: mode-1, not mode-2 (GA4). It *has* a cheap graded loss to descend. The entire open question is its **alignment** α: does lowering loss move the candidate structurally toward the solution, or is the surface ridged and deceptive? This is grounded, not wishful: the reason to expect such a domain may be searchable is concrete (its loss is graded where primality's is binary), and the reason it might still fail is equally concrete and measurable (its α may be low).
 
-**GA6 (Alignment is the precondition for intelligence).** Intelligence (IiI: η = T_min/T_actual > brute-force efficiency) exceeds enumeration iff α > 0.
+**GA6 (Alignment is the precondition of loss-built order, and α is its measurement).** An order built on the loss exceeds enumeration exactly as far as the landscape is aligned, and the theorem-grade form of alignment is GA1's basin condition; α estimates it and does not supply it. The earlier form of this claim, an iff on α > 0, said more than its proof carried, in both directions, and two finite landscapes retire it. One has α = 0.477 and a spurious minimum holding greedy descent from a majority of starts while enumeration succeeds within |F| tests: positive correlation without the basin condition decides nothing about descent. The other has a loss that is a multiplicative permutation of distance: α ≈ 0 with full information at zero correlation, and the order that decodes the loss tests the solution first. What stands, proved as before: where solutions are exactly the loss-minimal candidates, testing lower-loss candidates first beats enumeration (InI S5), and where the generating distribution is uniform-over-games, every signal is dead, correlational and decodable alike, which is the distribution-relativity boundary of IiI §4. Uniformity is that wall; α = 0 alone is not.
 
-*Proof.* If α > 0, loss carries signal about distance-to-solution. An order that follows the gradient (test lower-loss candidates first) reaches loss-zero in fewer steps than random: η > brute (InI S5, the gradient is the exploitable structure). If α = 0, loss is uncorrelated with proximity, no fixed ordering of candidates beats another in expectation, T_actual = T_brute, and η is at its floor. The α = 0 case *is* the distribution-relativity boundary of IiI §4: a uniform-over-games distribution is exactly one with no exploitable landscape structure, a rugged loss. Ruggedness and no-free-lunch are the same wall seen from two sides. QED
+This unifies three things the series stated separately: InI's "optimal order is intelligence," IiI's "intelligence is distribution-relative," and DiC's ball search. Their one precondition is alignment, whose theorem-form is the basin condition (GA1) and whose measurement is α; the canonical violation is the rugged landscape, of which primes are the limit.
 
-This unifies three things the series stated separately: InI's "optimal order is intelligence," IiI's "intelligence is distribution-relative," and DiC's ball search. All three have one precondition (α > 0) and one canonical violation (the rugged landscape, of which primes are the limit).
-
-**GA7 (Searchability = clustered AND aligned, sharpening N18).** A domain is efficiently searchable by descent iff it is **both** clustered (G12: hierarchical W-structure exists) **and** aligned (α > 0: that structure points at solutions). The two are independent:
+**GA7 (Searchability = clustered AND aligned, sharpening N18).** A domain is efficiently searchable by descent iff it is **both** clustered (G12: hierarchical W-structure exists) **and** aligned (GA1's basin condition, estimated by α: that structure points at solutions). The two are independent:
 
 | Clustered | Aligned | Domain |
 |---|---|---|
@@ -89,10 +87,10 @@ A domain can have any subset. Primes have only symmetry (√n), no clustering of
 
 1. Every search in the framework assumed loss aligns with distance, and here the author names the premise and makes it measurable (GA1–GA3).
 2. Descent solves iff loss has no spurious minima along W: N5's ballistic walk arrives at a solution only when the landscape is aligned, else at a wall (GA1).
-3. Alignment is a coefficient α: high ⇒ descent optimal, zero ⇒ rugged (search-useless geometry), negative ⇒ deceptive (GA3).
+3. Alignment is a coefficient α: high ⇒ descent favoured, zero ⇒ no correlational signal, with a decodable one still possible, negative ⇒ deceptive (GA3).
 4. Primes are hard in the deeper of two modes (no cheap graded loss exists, the predicate is binary and gradient-free), which corrects the "void"/"synchronization" framings and replaces them with a measurable property (GA4, GA4a).
 5. A graded-loss domain is in the shallower, better mode: it *has* a gradient. The open question is whether that gradient is aligned, measured as α (GA5).
-6. Alignment is the shared precondition of intelligence, distribution-relativity, and ball search, and ruggedness and no-free-lunch are one wall from two sides (GA6).
+6. Alignment is the shared precondition of intelligence, distribution-relativity, and ball search; its theorem-form is the basin condition, α its measurement, uniformity the no-free-lunch wall, and zero correlation alone is not that wall (GA6).
 7. Searchability decomposes into clustered AND aligned (independent properties, both required), sharpening the one-boundary claim: clustering is geometry, alignment is whether the geometry is for you (GA7).
 8. Symmetry is a third, orthogonal lever: it shrinks the space without ordering the search (the √n reduction), so a domain's profile is a triple (cluster, align, symmetry), each measured (GA8).
 

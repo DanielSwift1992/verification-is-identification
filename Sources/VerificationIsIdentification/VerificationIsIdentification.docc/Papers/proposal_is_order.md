@@ -60,7 +60,7 @@ So neither easiness implies the other. QED.
 
 *Corollary (the load-bearing asymmetry).* Saturation bootstraps D unconditionally, bootstraps G only where the domain clusters, and **never manufactures the alignment G needs**. The one precondition intelligence's own engine cannot produce is the alignment of its generator.
 
-**GD5 (Generator-power = ordering-visibility = alignment).** G beats enumeration iff ordering its proposals matters, iff the Y-axis is visible (InI S4a), iff α > 0 (GA6). Three statements from two prior papers are one quantity. At α = 0 (Y-invisible, rugged) the generator collapses to enumeration and the discriminator alone carries the solve.
+**GD5 (Generator-power = ordering-visibility = alignment).** G beats enumeration iff ordering its proposals matters, iff the Y-axis is visible (InI S4a): the alignment GA grounds in the basin condition and estimates by α (GA1, GA6). Three statements from two prior papers are one quantity. Where no signal is visible, correlational or decodable, the generator collapses to enumeration and the discriminator alone carries the solve.
 
 *Proof.* (i) InI S4a: the Y-axis speedup is T_{ZX}/T_{ZXY} ≈ H_max/H̄, which equals 1 (ordering irrelevant) iff all features have equal entropy, i.e., the landscape is flat, with no feature more informative than another. (ii) GA6: descent beats enumeration iff α > 0, i.e., loss correlates with distance-to-solution: the landscape has structure exploitable by ordering. (iii) The two conditions coincide: a landscape with H̄ = H_max (all features equally informative) is one where no direction in candidate space is preferred, exactly the α = 0 condition (uncorrelated loss). Conversely, H̄ < H_max (some features carry more signal) creates a preferred direction, exactly α > 0. The three statements (generator-power, ordering-visibility, alignment) are one quantity measured three ways. QED.
 
@@ -101,7 +101,7 @@ On a horn (B8b: K = ∞, finite basis, infinite reach): (1) is true: the gate is
 1. A solve is discriminate ∘ generate, and the two have disjoint inputs (S1 lifted to organs).
 2. The discriminator is the cut (Z, all the information), and the generator is the order (Y, none): difficulty and information on opposite organs (GD1).
 3. Two geometries (confusion-cover and loss-over-W), independent: all four easy/hard quadrants inhabited (GD3, completing GA7).
-4. The inevitability is the discriminator's, and the generator is conditional on α, which saturation cannot manufacture (GD4): generator-power is exactly ordering-visibility, exactly α (GD5).
+4. The inevitability is the discriminator's, and the generator is conditional on α, which saturation cannot manufacture (GD4): generator-power is exactly ordering-visibility, the alignment α estimates (GD5).
 5. Two failures, two ledger terminals. E2's encoder/backend is this split, and both organs are one COMPARE at different scope (GD6–GD8).
 6. On a horn the generator is the only mode: generation from a certified basis with per-task certification, no lookup intelligence (GD9).
 
@@ -116,7 +116,7 @@ On a horn (B8b: K = ∞, finite basis, infinite reach): (1) is true: the gate is
 | V=I | §1 (loop, encoding delegated), §2.5 (COMPARE the sole act), §4.7 (gate), §5.21 (COMPARE sole source of facts), §5.22 (S non-increasing), §5.25 (order the sole free variable), Theorem 2, outcome corollary |
 | IiI | §3 (Saturation Theorem, finiteness-of-classes remark), §4 (NFL / distribution-relativity) |
 | InI | §0 (Z/X/Y axes), S1 (axis independence), S2 (Y carries zero bits), S4a (Y-axis visibility), S5b (cert / confusion-cover), S6 (ordering optimal at saturation) |
-| GA | GA3 (α), GA4 (primes mode-2), GA6 (order beats enumeration iff α>0), GA7 (clustered ∧ aligned, completed here) |
+| GA | GA3 (α), GA4 (primes mode-2), GA6 (alignment as the generator's precondition, α its measurement), GA7 (clustered ∧ aligned, completed here) |
 | DiC | G13 (loss over W), §11 (encoding-locality) |
 | NiG | N19 (inevitability under population / clustering) |
 | B | B8 (saturability), B8a (primes), B8b (horn: K = ∞) |

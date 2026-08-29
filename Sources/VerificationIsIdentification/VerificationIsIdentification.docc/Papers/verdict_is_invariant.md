@@ -127,7 +127,9 @@ birth structure.
 *Proof.* For m₀, m₁ ∈ I₀, the composite m₀⁻¹ ∘ m₁ is defined because
 both are bijections onto the same written R_B, and it preserves G and
 ν_A, so it lies in Aut(X₀); the action is transitive. Freeness is the
-injectivity of m₀. ∎
+injectivity of m₀. ∎ **[solid: ``AmbiguityIsSymmetry``]**
+
+> Argues: ``AmbiguityIsSymmetry`` needs ``EncodingForgets``.
 
 *Remark (both sides act).* Aut(Y₀) acts on the other side, and the two
 groups have equal order: the structure is a bitorsor. Nothing below
@@ -211,7 +213,10 @@ for s = |{m ∈ K : J(m)}| and K ≠ ∅, the set {0, …, |K|} is
 holds. SG supplies the vocabulary and the licence to lift; the
 completeness of the lift is this one-line partition, never SG1's own.
 *Numerics:* on a class of three, a predicate true at exactly one
-candidate lands open, never identified. The corollary is the paper's
+candidate lands open, never identified. **[solid:
+``VerdictIsInvariant``]**
+
+> Argues: ``VerdictIsInvariant`` needs ``EncodingForgets``. The corollary is the paper's
 title: **identification is
 sufficient for judgment and never necessary; invariance is
 sufficient.** A court that cannot name the correspondence may still
@@ -509,3 +514,10 @@ over any of them, and the derivation above uses none of their steps.
 | Distance Is Cost | G2 |
 | Record Is System | SW1, SW3, SW4, §8 |
 | Declared here | torsors of finite group actions; linear isomorphism of rooted unordered trees (Aho, Hopcroft, and Ullman, 1974); ordered tree edit distance in polynomial time (Zhang and Shasha, 1989); unordered tree edit distance NP-complete (Zhang, Statman, and Shasha, 1992); the forgetful-map argument of §5 |
+
+## Topics
+
+### Theorems this paper proves
+
+- ``AmbiguityIsSymmetry``
+- ``VerdictIsInvariant``

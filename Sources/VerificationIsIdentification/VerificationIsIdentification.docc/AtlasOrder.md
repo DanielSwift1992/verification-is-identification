@@ -59,6 +59,7 @@ answers where to start reading.
 
 ### Step 3
 
+- ``AmbiguityIsSymmetry``, after ``EncodingForgets``
 - ``ColourIsQuotient``, after ``EncodingForgets``
 - ``Decidable``, after ``Pair``
 - ``IntegerValued``, after ``Pair``
@@ -73,6 +74,7 @@ answers where to start reading.
 - ``SeparatorIdentifies``, after ``EncodingForgets``
 - ``SpaceFromDifference``, after ``DistanceIsMetric``, ``HasGrammar``
 - ``StructuresFinite``, after ``HasSigma``, ``Pair``
+- ``VerdictIsInvariant``, after ``EncodingForgets``
 
 ### Step 4
 

@@ -18,10 +18,11 @@ starts with the identification and matter chains.
 
 ## The edges argued so far
 
-The lattice declares 302 direct edges, and 47 of them carry an argument record in a paper. The rest wait.
+The lattice declares 304 direct edges, and 49 of them carry an argument record in a paper. The rest wait.
 
 | claim | premise | argued in |
 |---|---|---|
+| ``AmbiguityIsSymmetry`` | ``EncodingForgets`` | <doc:verdict_is_invariant> |
 | ``BallSaturation`` | ``LibrarySaturates`` | <doc:distance_is_cost> |
 | ``ColourIsQuotient`` | ``EncodingForgets`` | <doc:colour_is_a_quotient> |
 | ``CompressionCriterion`` | ``Tower`` | <doc:distance_is_cost> |
@@ -69,3 +70,4 @@ The lattice declares 302 direct edges, and 47 of them carry an argument record i
 | ``Tower`` | ``HasCost`` | <doc:permanence_is_resistance> |
 | ``Tower`` | ``HasTime`` | <doc:permanence_is_resistance> |
 | ``Tower`` | ``Ignites`` | <doc:halt_is_ignition> |
+| ``VerdictIsInvariant`` | ``EncodingForgets`` | <doc:verdict_is_invariant> |

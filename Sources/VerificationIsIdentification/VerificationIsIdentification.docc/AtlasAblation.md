@@ -4,8 +4,8 @@ Each claim declares premises, and this page records which of them
 the core module's build enforces: each premise was removed from its
 declaration, the core module was rebuilt, and the file was put back.
 
-Of 2396 premises the module needs 5. It builds without the other 2184,
-and 207 come from a premise the compiler inherits: an inherited premise
+Of 2402 premises the module needs 5. It builds without the other 2189,
+and 208 come from a premise the compiler inherits: an inherited premise
 is not written on a line of its own, so there is nothing to remove.
 
 The cut rebuilds the core module alone: witnesses, examples and the
@@ -31,8 +31,8 @@ The premises the core build enforces:
 
 The premise list comes from the symbol graph the compiler emits, and
 tree-sort reads the same file, so the lattice has one reader.
-The run took 4158s over the
-lattice at revision 95014c7. Rerun it
+The run took 5431s over the
+lattice at revision 6462c1f. Rerun it
 yourself: `swift build --product Tools && .build/debug/Tools ablate
 <symbols.json>`. The build writes the graph file under
 `.build/*/extracted-symbols/`.
@@ -117,7 +117,7 @@ yourself: `swift build --product Tools && .build/debug/Tools ablate
 | ``Measurable`` | ``Open`` | Core.swift:71 | inherited, no line to cut |  |
 | ``Measurable`` | ``Pair`` | Core.swift:71 | inherited, no line to cut |  |
 | ``Measurable`` | ``Structure`` | Core.swift:71 | inherited, no line to cut |  |
-| ``HasSolutions`` | ``HasSigma`` | Core.swift:111 | still builds |  |
+| ``HasSolutions`` | ``HasSigma`` | Core.swift:111 | inherited, no line to cut |  |
 | ``HasLibrary`` | ``HasSigma`` | Core.swift:119 | still builds |  |
 | ``HasCache`` | ``HasSigma`` | Core.swift:127 | still builds |  |
 | ``HasDistance`` | ``HasSigma`` | Core.swift:136 | still builds |  |
@@ -1889,64 +1889,64 @@ yourself: `swift build --product Tools && .build/debug/Tools ablate
 | ``AlignmentCoefficient`` | ``StepsTerminate`` | Search.swift:29 | still builds |  |
 | ``AlignmentCoefficient`` | ``Structure`` | Search.swift:29 | still builds |  |
 | ``AlignmentCoefficient`` | ``StructuresFinite`` | Search.swift:29 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``AlignmentCoefficient`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``CachePermanent`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``DistanceOnStructures`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``GateIsZeroOfLoss`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``HasAlpha`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``HasCache`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``HasDistance`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``HasEfficiency`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``HasLibrary`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``HasSaturation`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``HasSigma`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``IntelligenceRises`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``LibrarySaturates`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``Open`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``OperationsClosed`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``Pair`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``PassImpliesMembership`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``PipelineTotal`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``ResultDeterministic`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``StepsTerminate`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``Structure`` | Search.swift:38 | still builds |  |
-| ``AlignmentEnablesIntelligence`` | ``StructuresFinite`` | Search.swift:38 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``AlignmentCoefficient`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``AnchorGraph`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``BallSaturation`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``CachePermanent`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``CompressionCriterion`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``Decidable`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``DistanceOnStructures`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``EqualityDecidable`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``ExactlyOneSurvives`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``GateIsZeroOfLoss`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``HasAlpha`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``HasCache`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``HasCost`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``HasDistance`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``HasLibrary`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``HasSaturation`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``HasSigma`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``HasSolutions`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``HasTime`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``Ignites`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``KnowledgeAccumulates`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``LibrarySaturates`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``Matter`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``OneBoundaryThreeFaces`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``Open`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``OperationsClosed`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``Pair`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``PassImpliesMembership`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``PassIsIdentification`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``PipelineTotal`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``Resistant`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``ResultDeterministic`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``StepsTerminate`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``Structure`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``StructuresFinite`` | Search.swift:50 | still builds |  |
-| ``SearchableIffClusteredAndAligned`` | ``Tower`` | Search.swift:50 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``AlignmentCoefficient`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``CachePermanent`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``DistanceOnStructures`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``GateIsZeroOfLoss`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``HasAlpha`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``HasCache`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``HasDistance`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``HasEfficiency`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``HasLibrary`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``HasSaturation`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``HasSigma`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``IntelligenceRises`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``LibrarySaturates`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``Open`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``OperationsClosed`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``Pair`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``PassImpliesMembership`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``PipelineTotal`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``ResultDeterministic`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``StepsTerminate`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``Structure`` | Search.swift:41 | still builds |  |
+| ``AlignmentEnablesIntelligence`` | ``StructuresFinite`` | Search.swift:41 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``AlignmentCoefficient`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``AnchorGraph`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``BallSaturation`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``CachePermanent`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``CompressionCriterion`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``Decidable`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``DistanceOnStructures`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``EqualityDecidable`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``ExactlyOneSurvives`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``GateIsZeroOfLoss`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``HasAlpha`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``HasCache`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``HasCost`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``HasDistance`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``HasLibrary`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``HasSaturation`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``HasSigma`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``HasSolutions`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``HasTime`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``Ignites`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``KnowledgeAccumulates`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``LibrarySaturates`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``Matter`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``OneBoundaryThreeFaces`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``Open`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``OperationsClosed`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``Pair`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``PassImpliesMembership`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``PassIsIdentification`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``PipelineTotal`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``Resistant`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``ResultDeterministic`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``StepsTerminate`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``Structure`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``StructuresFinite`` | Search.swift:53 | still builds |  |
+| ``SearchableIffClusteredAndAligned`` | ``Tower`` | Search.swift:53 | still builds |  |
 | ``EncodingForgets`` | ``HasEncoding`` | Seeing.swift:17 | still builds |  |
 | ``EncodingForgets`` | ``HasSigma`` | Seeing.swift:17 | still builds |  |
 | ``SeparatorIdentifies`` | ``EncodingForgets`` | Seeing.swift:29 | still builds |  |
@@ -2412,6 +2412,12 @@ yourself: `swift build --product Tools && .build/debug/Tools ablate
 | ``FourthFace`` | ``Structure`` | Strategy.swift:88 | still builds |  |
 | ``FourthFace`` | ``StructuresFinite`` | Strategy.swift:88 | still builds |  |
 | ``FourthFace`` | ``Tower`` | Strategy.swift:88 | still builds |  |
+| ``AmbiguityIsSymmetry`` | ``EncodingForgets`` | Verdict.swift:19 | still builds |  |
+| ``AmbiguityIsSymmetry`` | ``HasEncoding`` | Verdict.swift:19 | still builds |  |
+| ``AmbiguityIsSymmetry`` | ``HasSigma`` | Verdict.swift:19 | still builds |  |
+| ``VerdictIsInvariant`` | ``EncodingForgets`` | Verdict.swift:29 | still builds |  |
+| ``VerdictIsInvariant`` | ``HasEncoding`` | Verdict.swift:29 | still builds |  |
+| ``VerdictIsInvariant`` | ``HasSigma`` | Verdict.swift:29 | still builds |  |
 | ``EncodingInvents`` | ``HasEncoding`` | Voice.swift:20 | still builds |  |
 | ``EncodingInvents`` | ``HasSigma`` | Voice.swift:20 | still builds |  |
 | ``FaithfulEncoding`` | ``HasEncoding`` | Voice.swift:31 | still builds |  |

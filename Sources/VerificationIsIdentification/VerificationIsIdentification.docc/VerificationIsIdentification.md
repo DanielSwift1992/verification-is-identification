@@ -124,6 +124,7 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 ### The axes: pure generators
 
 - ``HasSigma``
+- ``AmbiguityIsSymmetry``
 - ``ColourIsQuotient``
 - ``EncodingForgets``
 - ``EncodingInvents``
@@ -140,6 +141,7 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``HasSaturation``
 - ``HasTime``
 - ``SeparatorIdentifies``
+- ``VerdictIsInvariant``
 ### The floor: what it delegates, where it stops
 
 - ``EncoderConditions``

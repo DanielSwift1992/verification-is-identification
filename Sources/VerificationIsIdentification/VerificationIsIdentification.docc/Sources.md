@@ -76,6 +76,7 @@ The tag in each symbol's discussion decodes here. Every paper is readable in ful
 | `IiS` | [Interference Is Substitution](doc:interference_is_substitution) |
 | `CiQ` | [Colour Is a Quotient](doc:colour_is_a_quotient) |
 | `ViA` | [A Verb Is an Act](doc:a_verb_is_an_act) |
+| `VI` | [Verdict Is Invariant](doc:verdict_is_invariant) |
 | `SiG` | [Seam Is Game](doc:seam_is_game) |
 | `AiC` | [Agreement Is Comparison](doc:agreement_is_comparison) |
 

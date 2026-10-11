@@ -387,7 +387,7 @@ enum Linter {
 
         let lexiconDir = NSString(string: repoPath).appendingPathComponent("Sources/GrammarLexicon")
         let alphabetDir = NSString(string: repoPath).appendingPathComponent("Sources/Alphabet")
-        let scratch = NSString(string: NSTemporaryDirectory()).appendingPathComponent("grammar-mirror")
+        let scratch = NSString(string: NSTemporaryDirectory()).appendingPathComponent("grammar-mirror-\(UUID().uuidString)")
         let sourcesDir = NSString(string: scratch).appendingPathComponent("Sources/MirrorSource")
         try? FileManager.default.removeItem(atPath: scratch)
         try? FileManager.default.createDirectory(atPath: sourcesDir, withIntermediateDirectories: true)

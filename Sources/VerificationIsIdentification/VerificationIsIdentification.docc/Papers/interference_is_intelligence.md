@@ -1,285 +1,165 @@
 # Interference Is Intelligence (Mechanism)
 
-V=I defines the loop. Intelligence Is Inevitable proves that the loop's efficiency grows irreversibly. Permanence Is Resistance derives what the loop produces. Difference Is Distance derives the geometry between multiple loops. Here the author derives HOW efficiency grows: through constructive interference between COMPAREs. The optimal ordering of comparisons (the agent's sole degree of freedom, V=I §5.25) is the mechanism of intelligence. Intelligence is the interference pattern of the loop's own operations, rather than a heuristic added on top.
+The value of a question depends on what can be asked after its answer. A query that removes the most candidates now can leave a harder problem than a less balanced query. A short certificate for each possible target also need not yield one strategy that finds every target at its certificate cost. This paper separates local information, instance certificates and adaptive policy cost.
 
-## §0. Three Axes of COMPARE
+The mechanism studied here is finite decision-tree search. It is an established mathematical model, made explicit in VI so that claims about ordering can be checked. Retention and acquisition have the separate premises of Liquid LQ3 and LQ11. The term interference names relationships between query partitions. It does not establish quantum interference or automatic growth of intelligence.
 
-COMPARE(f, τ) under encoding E returns structured information. This information decomposes into three independent components.
+## §0. Outcomes, Feedback and Choice
 
-**Definition (Z-projection).** The outcome axis:
+Fix a finite nonempty candidate set K, an unknown actual x ∈ K, a target question q, and static total queries f_i: K → {0,1}. Each query costs one call, leaves the source unchanged, and remains available after every history. The full query table is known for policy synthesis. An executing policy reads its internal state and query outcomes, not the unknown index x. A sound history determines a compatible set B containing x. A policy may stop when q is constant on B.
 
-Z(C) ∈ {equal, not_equal}
+For the closed-whole interpretation, source, controller, memory and clock remain internal. The nine-state source example is also executed inside finite closed permutation windows containing the source and its controller history: 45 whole configurations for a worst-optimal policy and 54 for the forced-greedy-root policy. Preparation and a later history-recovery step are explicit. These are bounded abstract realizations, not an indefinitely growing memory or a physical cost model.
 
-Information: 1 bit per COMPARE. This is the binary result: what V=I formalizes as the compilation gate.
+For expected costs, also fix a full-support prior π on K. Conditional probabilities below refer to π restricted to B. Worst-case costs use no prior. Computation, lookup and memory-management costs are excluded from query counts. Stateful interventions require the richer dynamics and original-question transport of Verdict VC30–VC34.
 
-**Definition (X-projection).** The structure axis. When Z = not_equal, COMPARE returns localized feedback (V=I §2.4):
+**Z-projection.** A binary comparison verdict Z ∈ {equal, not_equal} has entropy at most one bit. A deterministic or highly biased verdict may carry less. A binary alphabet is not a guarantee of one bit gained on every call.
 
-X(C) = (path_to_mismatch, expected_value, actual_value)
+**X-projection.** Structured feedback can include a mismatch address, expected value and observed value. Its information bound depends on the full outcome alphabet and conditional distribution. The number of addresses alone does not bound information in their attached values. If the verdict is determined by the feedback, their entropies must not be added as independent contributions.
 
-Information: up to log₂(|nodes(f)|) bits, the position and nature of the first structural divergence.
+**Y-projection.** Query choice is a policy Y = P(H) based on available history H. An adaptive policy is a tree of choices, not one fixed permutation. Structural COMPARE feedback can be represented by a multi-outcome partition, but binary depth bounds apply only to the binary-query model used below.
 
-**Definition (Y-projection).** The ordering axis. The agent's choice of which COMPARE to perform next (V=I §5.25):
+A bandwidth β may count exposed feature values if the interface specifies which values are returned. Fresh keys, value count and information in bits are different quantities. Neither n/β queries to identification nor a speedup ratio follows from this count alone.
 
-Y = σ, the ordering of COMPAREs: which one runs at each step
+## §1. What the Policy Knows
 
-Information: 0 new bits. Y does not change what the agent learns, only when. This is the analog of phase: it carries no amplitude (no new information) but determines interference.
+**S1 (Conditional information in a deterministic choice).** When Y = P(H), I(x; Y | H) = 0: knowing H already determines Y. This does not imply that Y is unconditionally independent of x, since H may contain information about x. Nor are the verdict and mismatch feedback independent because software computes them in different roles.
 
-*Example.* COMPARE a candidate against the target under a four-feature encoding. Z: not_equal, one bit. X: the first divergence is at the rank feature, expected 0, actual 2, one address. Y: the agent chose to run this COMPARE before any other, zero new bits, and the choice decides how many COMPAREs the whole identification takes.
+*Proof.* A deterministic function of H has zero conditional entropy given H, so H(Y | H) = H(Y | x,H) = 0. Their difference is the conditional mutual information. A policy can affect what the next observation reveals without its choice itself adding information beyond H.
 
-**Definition (Feedback bandwidth).** The X-information yield per COMPARE:
+**S2 (The phase comparison is an analogy).** Reordering static observations can change the cost and intermediate compatible sets. If the same queries and answers are eventually retained, their final intersection is order-independent. Early stopping can instead produce different transcript partitions with the same final target answer (System IQ4–IQ6). None of these statements supplies complex amplitudes, a quantum state or an isomorphism to quantum phase.
 
-β ∈ [1, n]
+**S2a (Acting observations can make order informative).** S2 concerns queries that leave the source unchanged. When an observation acts on the source, the next observation reads the changed source, and the final record can depend on the order. The phase-gate chain of [OG78](../../../../Research/2026-10-10-gate-order-and-address-commutator.md) is an exact continuous example. Under its class conditions, an unknown source state Z passes two gates that differ only in their address operators A₁ and A₂. Gate k reads the quadratic form G_k(Z)=½⟨Z,A_kZ⟩ of its address operator A_k and rotates Z by an angle proportional to a prepared action parameter π₀. Its duration τ(G_k) enters one shared clock record. With π₀=0 the gates do not rotate Z, the record is a function of G₁(Z) and G₂(Z), and the two orders give the same record. With π₀≠0 the two records differ by 2π₀τ′(G₁)τ′(G₂)K(Z)+O(π₀²), where K(Z)=½⟨Z,i[A₁,A₂]Z⟩. For every sufficiently small π₀≠0, some admissible source receives different records from the two orders exactly when A₁ and A₂ do not commute. On a given source with K(Z)≠0 the two records differ for every π₀≠0 below a threshold that depends on that source. Even for noncommuting addresses, at a fixed π₀≠0 the condition K(Z)≠0 alone need not make the records different. One acting program also separates two sources with equal G₁ and G₂. The record then depends on the source beyond the forms that the gates read without acting, and only through the action on the source. This is one specified model class. It supplies neither quantum amplitudes nor an order effect for the static decision trees studied here.
 
-β = 1: each COMPARE reveals one feature value (pure query). β = n: structural recursion (V=I §2.4) checks all features in sequence and reveals every match before the first mismatch. β determines the relative importance of the Y-axis (S4a): high β saturates the agent's information need from X alone, and low β forces the agent to choose WHICH feature to observe.
+## §2. Immediate Elimination and Future Cost
 
-## §1. Independence
+For a possible answer b to query i, write B_iᵇ = {y ∈ B: f_i(y) = b}. The realized counting gain is log₂|B| − log₂|B_iᵇ|. Before seeing the answer, a uniform-prior information-gain heuristic maximizes the binary answer entropy. This selects the most balanced available split. These are different optimization rules: one is evaluated on an actual branch, the other averages over possible branches.
 
-**S1 (Axis independence).** Z and X are determined by COMPARE inputs (f, τ, E). Y is determined by the agent's protocol: a function of state (L, G), independent of any specific COMPARE outcome.
+Two queries can be redundant on a branch when the second is constant on the compatible set left by the first. Pairwise overlap alone does not determine the cost of a complete policy. Under uniform sampling from B, |A ∩ C| = |A||C|/|B| expresses independence of two particular events. A smaller intersection expresses negative association of those events, not global search optimality.
 
-*Proof.* Z, X are outputs of COMPARE, which is a pure function of its inputs (V=I §2.4: determinism). Y is the agent's choice, made before the COMPARE executes, based on the agent's current state (L, G). The choice function and the comparison function have disjoint inputs. QED
+**S3 (Optimal continuation, replacing the local-optimality claim).** Let W(B) be minimum worst-case remaining query count and V_π(B) minimum expected remaining query count for an exact policy. Both are zero when q is constant on B. Otherwise, minimizing over queries with two nonempty branches:
 
-**S2 (Phase analogy).** Y carries 0 bits of new information per COMPARE but determines the total COMPAREs to identification. This is structurally identical to quantum phase: |e^{iθ}|² = 1 (no probability change) but θ determines interference patterns.
+```
+W(B) = min_i [1 + max_b W(B_iᵇ)]
+V_π(B) = min_i [1 + Σ_b π(B_iᵇ | B) V_π(B_iᵇ)].
+```
 
-## §2. Interference
+If no query has feasible continuations on all branches, the value is ∞. Queries constant on B can be removed from any finite successful policy in this static model. Every retained query strictly reduces each branch's candidate set, so these recurrences terminate over proper subsets.
 
-The candidate set S shrinks with each informative COMPARE (V=I §5.22). But the RATE of shrinkage is set by the ORDER.
+*Proof.* Every nonterminal policy selects a first query and then a policy in each answer branch. Its continuation cost is at least that branch's optimum, giving the lower bound. Conversely, choose a minimizing root and minimizing policies on its branches to attain the expression. Induction on |B| establishes both equalities. The two objectives may select different trees.
 
-Write S_a for the candidates that survive COMPARE C_a: those consistent with its outcome. If C_a and C_b cut independently, their joint survivors would number about |S_a| · |S_b| / |S|.
+Maximizing the immediate counting gain or answer entropy does not minimize either recurrence in general. The earlier S3 proof established only the immediate comparison and therefore did not prove its conclusion about total calls.
 
-**Definition (Constructive interference).** COMPAREs C_a and C_b constructively interfere if they are anti-correlated in elimination:
+**S3a (A uniquely best local split can be globally worse).** Let K = {0,…,8}, q(x) = x and π uniform. Five queries have the following tables:
 
-|S_a ∩ S_b| ≪ |S_a| · |S_b| / |S|
+| State | A | B | C | D | E |
+|---|---|---|---|---|---|
+| 0 | 0 | 0 | 0 | 0 | 0 |
+| 1 | 1 | 1 | 0 | 1 | 0 |
+| 2 | 1 | 0 | 1 | 0 | 1 |
+| 3 | 1 | 0 | 0 | 0 | 1 |
+| 4 | 1 | 0 | 1 | 1 | 0 |
+| 5 | 0 | 1 | 0 | 0 | 0 |
+| 6 | 0 | 0 | 1 | 0 | 0 |
+| 7 | 0 | 0 | 0 | 1 | 0 |
+| 8 | 0 | 0 | 0 | 0 | 1 |
 
-Each eliminates what the other leaves. Together they narrow S faster than the product of their individual contributions.
+A splits 4/5, uniquely maximizing answer entropy. B splits 2/7, and C, D, E each split 3/6. Even with optimal continuations, starting with A gives worst cost 5 and mean 31/9. The C-first tree below attains the minimum worst cost 4 and mean 10/3.
 
-**Definition (Destructive interference).** C_a and C_b destructively interfere if:
+After A = 0, the remaining five candidates can only be tested one at a time by B, C, D, E. Four further queries may be necessary. The split preserved five candidates with a difficult remaining query structure. A cardinality or entropy score omitted that structure.
 
-S_a ⊆ S_b or S_b ⊆ S_a
+The costs follow directly from the table. Under A = 0, singleton tests on five candidates have remaining depths (1,2,3,4,4), so their total depths sum to 19. Under A = 1, C then E distinguish the four candidates in two further queries, contributing 12. Thus the best A-first mean is 31/9 and its worst depth is five.
 
-One is redundant given the other. One COMPARE is wasted.
+A tree beginning with C attains total depth 30 and worst depth four. On C = 1, use E to separate state 2, then D to separate 4 and 6. On C = 0, use D. Its positive branch {1,7} is separated by B. Its negative branch {0,3,5,8} is split by E, then B on {0,5} or A on {3,8}. The leaf depths are one at depth two, four at depth three and four at depth four.
 
-**S3 (Interference theorem).** The total COMPAREs to |S| = 1 is minimized when each successive COMPARE is maximally constructively interfering with all previous COMPAREs.
+For completeness, a binary tree with three leaves has total depth at least 5, with six at least 16, with two at least 2, and with seven at least 20. These bounds follow by repeatedly splitting a shortest leaf, or by the binary prefix inequality. Any C-, D- or E-first tree therefore has total depth at least 9 + 5 + 16 = 30. A B-first tree has at least 9 + 2 + 20 = 31. Together with the A-first bound, the displayed C-first tree attains the global mean minimum. Nine distinct leaves also require worst depth at least four. The entropy choice has no tie.
 
-*Proof.* At step k, the agent has S_k. The next COMPARE C_{k+1} reduces S to S_k ∩ S_{k+1}. The information gain ΔI_k = log₂|S_k| − log₂|S_k ∩ S_{k+1}| is maximized when |S_k ∩ S_{k+1}| is minimized: when C_{k+1} eliminates candidates that survived all previous COMPAREs. This is the definition of maximal constructive interference with history. QED
+## §3. What Speed Bounds Require
 
-**Corollary.** η = T_min / T_actual (Intelligence Is Inevitable §3) equals 1 if and only if every COMPARE in the sequence constructively interferes with all previous COMPAREs. η < 1 measures the degree of destructive interference (wasted COMPAREs).
+**S4 (Capability inclusion bounds optima).** If one policy class can simulate another with the same observations and costs, its optimal cost cannot be higher. This is the valid basis for a richer-feedback or larger-vocabulary hierarchy. It compares optima. A particular implementation can perform worse despite having more available information.
 
-**S3a (Redundancy sources).** Two mechanisms produce destructive interference. Let S_k be the candidate set after k COMPAREs, and let g₁, ..., g_k be the tested features. H(f | S) denotes the entropy of feature f's value across the candidates in S: one bit when the value splits S evenly, near zero when almost all of S agrees on it.
+For N candidates and binary queries, a complete identification tree has worst depth at least ceil(log₂N). Under uniform targets its mean depth is at least log₂N, not generally ceil(log₂N). Attaining these lower bounds requires suitable available partitions. For three equally likely candidates with all identity tests, an optimal tree has depths (1,2,2), mean 5/3 and worst depth 2.
 
-1. *Heterogeneous entropy.* Features with H(f | S₀) ≪ 1 contribute less per COMPARE than features with H ≈ 1, at every step. A random ordering tests both types equally, and a greedy ordering tests high-H features first.
+If every reachable nonterminal candidate set has an available split with each branch of size at most ceil(|B|/2), repeatedly choosing such a split reaches identity in at most ceil(log₂N) queries. This is a recursive availability condition. High entropy at the initial state does not establish it at later states. Query alphabets and goals also matter: a particular binary question may settle without identifying all N candidates.
 
-2. *Conditional redundancy.* By the chain rule, the expected entropy of an untested feature decreases with conditioning: E[H(f | g₁ = v₁, ..., g_k = v_k)] = H(f | g₁, ..., g_k) ≤ H(f | S₀), with strict inequality when f is correlated with any g_i. After testing a correlated feature, f becomes partially or fully redundant. A greedy ordering detects this (by recomputing H over the current S_k) and moves to uncorrelated features. A random ordering does not.
+Testing candidates in a uniformly random order until an explicit positive match has expected position (N+1)/2. If one instead stops once the last untested candidate is logically forced, the expectation is smaller by 1/N. The stopping rule must therefore accompany the formula.
 
-*Consequence.* Source 1 produces a constant speedup factor throughout identification: the ratio H_max / H̄ where H̄ is average feature entropy. Source 2 adds a dynamic factor: as more features are tested, more untested features fall into the redundant category. Together they produce the Y-axis speedup characterized in S4a. The dynamic factor explains why the empirical speedup exceeds the static prediction: features that appeared marginally informative over S₀ become fully redundant over S_k.
+**S4a (Exact random-order accounting).** Suppose the entire finite query vocabulary of size m separates the target answer for actual x. Draw a uniformly random permutation without replacement, query in that order, and stop when q is constant on the compatible set. Then:
 
-## §3. Speedup Hierarchy
+```
+E[T_x] = Σ_{k=0}^{m−1} Pr(a uniform k-subset has not settled q(x)).
+```
 
-**S4 (Hierarchy).** Let T_Z, T_{ZX}, T_{ZXY} be COMPAREs to identification using Z only, Z+X, and Z+X+optimal Y:
+*Proof.* For integer T_x between zero and m, E[T_x] = Σ_{k=0}^{m−1} Pr(T_x > k). Static answers and retaining intersection make the first k queries' effect depend on their set, whose distribution is uniform. Each unresolved event is an exact finite subset count. If the full vocabulary cannot settle the answer, exhaustion and successful stopping must be distinguished.
 
-T_{ZXY} ≤ T_{ZX} ≤ T_Z
+This identity uses a specified random-order distribution. Replacing it with a renewal approximation needs assumptions about the increments, dependence and stopping rule. Query information normally changes with the history, so the earlier entropy-moment formula and its claimed universal overestimate are withdrawn. The reported speedup factor H_max/H̄ is not a general theorem.
 
-Exact bounds:
+These limitations do not make greedy search useless. [Dasgupta's analysis of greedy active learning](https://proceedings.neurips.cc/paper/2636-analysis-of-a-greedy-active-learning-strategy.pdf) proves approximation guarantees in its finite identification setting. Approximation under explicit assumptions is different from exact optimality or automatic convergence to η = 1.
 
-| Axes | Bound | Mechanism |
-|---|---|---|
-| Z | E[T_Z] = (\|S₀\| + 1)/2 | Random candidate from S, discard on mismatch (uniform draw, coupon at random position) |
-| Z+X | E[T_{ZX}] ≈ n/β | Each COMPARE reveals β features, and n/β COMPAREs learn all n |
-| Z+X+Y | E[T_{ZXY}] = ⌈log₂\|S₀\|⌉ | Optimal: each COMPARE yields 1 bit (when H_max = 1) |
+## §4. Certificates and Implementable Strategies
 
-*Proof.* Z: the agent draws candidates uniformly without replacement from S. The target is at a uniformly random position in the draw order. Expected position: (|S₀| + 1)/2. Z+X: each COMPARE reveals β feature values on average. After n/β COMPAREs, all n features are known → |S| = 1. Z+X+Y: optimal ordering selects the feature maximizing H(f | S_k) ≈ 1 bit. Each step halves S. Total: ⌈log₂|S₀|⌉. QED
+**S5 (Efficiency requires a common objective).** For a finite positive cost C(P) of an exact policy and the corresponding optimum C*, define η = C*/C(P). The objective, prior where applicable, query vocabulary, initial knowledge and cost units must match. Then η = 1 means that P attains that optimum. It does not mean that every query is most informative locally or that every executed query adds a new useful record.
 
-**S4a (Y-axis visibility).** The Y-axis speedup depends on two independent factors: entropy heterogeneity and feedback bandwidth.
+**S5a (Trajectory counting gain telescopes).** Along any sound static-query trajectory B₀ ⊇ … ⊇ B_T, the sum of log₂|B_{k−1}| − log₂|B_k| equals log₂|B₀| − log₂|B_T|. For full identification from a uniform initial compatible set it equals log₂|B₀|, regardless of trajectory length. This is a counting identity. For a coarser target q, the terminal set may have several members and different successful policies can disclose different additional distinctions.
 
-*Factor 1: Entropy heterogeneity.* Under pure queries (β = 1), each COMPARE reveals one feature value. The Y-axis speedup is:
+A rare binary answer can leave a singleton from a large B and have realized counting gain above one bit. Binary answer entropy is still at most one bit in expectation. These quantities must not be substituted for each other. Nor does gain-per-call generally equal η: their numerators differ unless a separately established optimum matches the counting gain.
 
-T_{ZX} / T_{ZXY} ≈ H_max / H̄
+**S5b (The instance-to-policy quantifier gap).** Let cert_B(x,q) be the minimum number of query keys whose answers on x exclude every y ∈ B with q(y) ≠ q(x). These are covers of wrong-answer candidates, or equivalently hitting sets of their distinguishing-key sets (Liquid LQ3/LQ11). Every correct policy's path on x has length at least cert_B(x,q).
 
-where H_max = max_f H(f | S_k) and H̄ = (1/n) Σ H(f_i | S_k) is the average feature entropy over S_k. When all features are equally informative (H̄ = H_max), the ratio is 1: ordering is irrelevant. When features have heterogeneous entropy (H̄ ≪ H_max), the ratio grows: ordering becomes critical.
+If the full vocabulary distinguishes the required answers on all of B, each x has some globally correct policy whose path on x attains its certificate. Query that certificate first along x's answer sequence and use the remaining vocabulary as a fallback on other branches. This proves a separate existence statement for each x. It does not give one policy attaining all instance certificates.
 
-*Factor 2: Feedback bandwidth.* When β > 1, structural recursion reveals additional features per COMPARE. These bonus features compensate for suboptimal ordering: a random agent that tests a low-H feature may incidentally learn high-H features that happened to match. This bonus helps the random agent more than the greedy agent: the greedy agent already knows the matched features (it used them to craft the candidate). High β therefore suppresses the Y-axis effect.
+Three distinct objects and the queries “is it object i?” show the gap. Each object's certificate has size one. A policy must choose its first query without knowing which object is actual. Its negative branch still contains two objects, so worst cost is two and the minimum uniform mean is 5/3. The vector (1,1,1) of separate certificate minima is not the depth vector of any correct policy.
 
-| Regime | Condition | Y-axis effect |
-|---|---|---|
-| Invisible | H̄ ≈ H_max, or β ≈ n | Ordering irrelevant |
-| Visible | H̄ < H_max, β small | Ordering matters, speedup ≈ H_max / H̄ |
-| Dominant | H̄ ≪ H_max, β = 1 | Ordering IS identification |
+Even a rule allowed to inspect the actual branch can fail to find its shortest certificate greedily. For x = 0 and six wrong-answer candidates, query A excludes {1,2,3,4}, B excludes {1,2,5}, and C excludes {3,4,6}. A uniquely excludes the most first, but then both B and C are needed. B and C alone suffice in two calls.
 
-*Quantitative prediction (pure-query, β = 1).* Each COMPARE tests one feature. Define the per-test information random variable h: its value is set by which feature is tested and which value is the target's.
+The distinction between instance certificates and decision-tree complexity is standard. See [Buhrman and de Wolf, §4.1](https://homepages.cwi.nl/~rdewolf/publ/qc/dectree.pdf). Saturating the query table makes the optimization problem specified. It does not collapse its quantifiers or make its solution computationally free.
 
-For the greedy agent: always tests the max-entropy feature. T_{ZXY} = ⌈log₂|S₀|⌉ (= I).
+**S6 (What a library can contribute to ordering).** A retained library can supply query models, scoped certificates or previously synthesized policies. Whether it contains a complete current query table is a separate premise. With that table and the declared costs, S3 computes optimal policies by finite search. The search may be expensive, and a deployed policy may be approximate. Library growth alone does not guarantee a better table, better query choices or greater η.
 
-For the random agent: tests features in random order. By renewal theory, the accounting of how many random-sized steps it takes to cross a fixed total (Wald's identity, with overshoot correction):
+**S11 (Refinement preserves optional capability).** Suppose initial observation r refines observation s on B: s = h ∘ r there. The source is static, both observations have the same acquisition cost, all later queries and costs remain available, and local decoding is uncharged in this model. Then the optimal total worst-case and expected costs after obtaining r are no greater than those after obtaining s.
 
-T_{ZX} = I / H̄₁ + (H̄₂ / (2 · H̄₁²) − ½)
+*Proof.* A policy receiving r can compute s and simulate every subsequent choice of the s-policy. It can ignore the extra distinctions. Thus the richer observation permits every old policy at the same query cost. Taking the infimum gives the inequalities. This is an operational comparison between partitions, not a comparison between their entropy values. A and C in S3a are incomparable partitions, so the theorem does not rank them.
 
-where H̄₁ = E[h] is the mean information per test and H̄₂ = E[h²] is the second moment.
+If a richer observation changes the source, consumes a future resource, restricts available actions or costs more to acquire or decode, this simulation needs a new argument. S11 does not cross those boundaries.
 
-The first term I/H̄₁ is the *rate prediction*: how many tests at the mean rate to accumulate I bits. The second term (H̄₂/(2H̄₁²) − ½) is the *variance correction*: when the distribution of h is heavy-tailed (noise features give 0.01 bits usually but 6.6 bits rarely), the random walk overshoots the target, adding COMPAREs.
+**S12 (A useful first observation can give no immediate target information).** Let a,b be independent uniform bits and q = a XOR b. The only queries read a or b. Each read alone leaves q equally likely to be zero or one, so I(q;a) = I(q;b) = 0. Reading both determines q, giving I(q;a,b) = 1 bit. Every exact policy needs both reads.
 
-*Closed form.* For n_s balanced features (H = 1) and n_n biased features (P(minority) = ε):
+*Proof.* For either first reading, its two compatible states have opposite q values. Each joint reading identifies one pair and hence q. A policy that rejects every zero-immediate-target-information query would reject both possible first steps and never solve this task.
 
-H̄₁ = (n_s + n_n · h(ε)) / n
+The first observation prepares an interpretation of the second. This is a relation between questions in a history. For VI and The Cut, it motivates evaluating what a distinction makes accessible next, alongside what it resolves immediately. It suggests training against continuation cost or certified residual structure. An advantage of a learned policy under that objective remains an experimental question.
 
-H̄₂ = (n_s + n_n · ((1−ε)(log₂ 1/(1−ε))² + ε(log₂ 1/ε)²)) / n
+**S6a (Observation, record and elimination).** Fix the static-query model of Liquid §0: a sound compatible set B, an actual x ∈ B, a question q and immutable keyed queries. A query can both restrict B and add a retained keyed answer. These effects need not both be positive, and retention requires an implemented update.
 
-with h(ε) = ε log₂(1/ε) + (1−ε) log₂(1/(1−ε)), the entropy of one biased feature.
+For a query outcome leaving B′, define h_id = log₂|B| − log₂|B′|. This is a nonnegative counting measure and telescopes over an episode to log₂|B_initial| − log₂|B_final|. Under a uniform prior on the compatible set it is also the branch reduction in hypothesis entropy. For a general prior, conditional entropy can increase on a particular branch (System IQ1–IQ3). Settling q does not require |B_final| = 1.
 
-Speedup = T_{ZX} / T_{ZXY}. For the tight bound: n_s = ⌈log₂|S₀|⌉, n_n features with ε → 0. Then H̄₁ → n_s/n, giving speedup → n/n_s = n/⌈log₂|S₀|⌉. QED
+Let h_str count distinct new retained keys, in records rather than bits. Over T calls, 0 ≤ Σh_str ≤ T. Equality on the right needs every call to use an uncached distinct key and the store to retain it. A newly encountered target alone does not prevent repeated queries. Zero growth does not require its full feature vector to be cached: the episode may repeat one known query forever, or q may already be settled.
 
-*Remark (Finite exact form).* In a finite domain, the renewal formula is a continuous approximation of an exact combinatorial quantity. The exact T_{ZX} for target τ is:
+**S6b (Relative certificate bound).** Liquid LQ3 proves cert_G(x, q) ≤ d ≤ T for a settling episode that retains d distinct new answers relative to sound initial cache G. Liquid LQ11 identifies the sufficient key sets as covers of the remaining wrong-answer candidates. The bound becomes the usual empty-cache certificate bound when G is empty. This is an instance lower bound, not a proof that an unknown target can be located by an equally cheap adaptive policy.
 
-T_{ZX}(τ) = Σ_{k=0}^{n−1} P(random k-subset of features fails to identify τ)
+No physical dissipation bound follows from a count of records. Record volume, logical elimination, Shannon information and dissipated energy have different definitions. Reusing a sufficient partial certificate can require zero new observations even while other features remain unknown. The former Landauer corollary and the claim that full feature coverage is necessary for zero new records are withdrawn.
 
-where "fails" is: exists s ≠ τ agreeing with τ on every feature in the subset. This is a finite sum over C(n, k) subsets: no distributions, no approximation. The renewal formula replaces this sum with entropy moments (H̄₁, H̄₂), introducing an error that (a) is always positive (overestimate, because without-replacement sampling anti-correlates steps, reducing variance below the i.i.d. assumption), and (b) shrinks with domain size (empirically: +6% to +7% at n = 12, +15% to +17% at n = 8). The exact value also varies per target: for a fixed domain, different targets have different T_{ZX}(τ), while the renewal formula gives a single number for all targets.
+**S6c (Acquisition requires progress).** More calls can mean more repeated observations or more redundant records. Neither forces improved ordering. The implication from inefficient search to self-correction therefore needs additional premises: the policy eventually selects distinguishing queries, observations are retained with a sound interpretation, and the implementation can exploit them at an acceptable cost.
 
-The "exact parameters" that replace the distribution are the *confusion matrix* (the sets D(τ, s) = {features distinguishing τ from s} for all s ∈ S₀) where the renewal formula used entropy moments. At saturation (S6), the agent has this matrix and computes the minimum set cover (the optimal ordering) directly, without any formula. The gap T_{ZX}(τ) − T_{ZXY}(τ) is the *cost of ignorance*: COMPAREs wasted by not knowing which features to test first.
+For fixed finite B and q, eventual separation of every wrong-answer candidate is necessary and sufficient for finite completion (Liquid LQ11). Repeating a known answer is an unresolved fixed point of the cache update when that answer does not settle q. Saturation is not the only possible fixed point. Comparing policies also requires a common query vocabulary and cost convention (IiI §3), not the assumption that every observed value is new useful knowledge.
 
-*Remark.* The Y-invisible regime explains why V=I's structural recursion (high β) makes identification "easy": the X-axis does most of the work, and any ordering suffices. The Y-dominant regime (β = 1) is the setting of most real-world intelligence: large feature spaces, bounded observations per step, and the necessity of choosing where to look. Intelligence as a phenomenon is most visible (and most valuable) precisely where β is small.
+*Remark (COMPARE as a clock).* Counting comparisons defines an operational clock. Its tick count can increase while retained knowledge and the compatible set remain unchanged. Nothing in this count forces a thermodynamic arrow or a shift to a higher level. In The Cut's closed whole, the observer, source and clock are internal. Their interactions can change accessible correlations without increasing whole-state information, and local retention still needs its own mechanism (Liquid LQ9, PiR M38–M41).
 
-## §4. Intelligence Is Optimal Ordering
+## §5. Complementarity as a Research Question
 
-**S5 (Intelligence = interference optimization).** An agent achieves η = 1 iff its ordering maximizes constructive interference at every step.
+**S7 (Resource trade-offs need a model).** Library coverage, observation resolution and policy flexibility are different coordinates. No universal three-way impossibility has been proved here. Optional stored information can be ignored under S11's simulation premises, so greater knowledge alone does not force a locked encoding or fewer useful choices. A trade-off would need an explicit shared resource budget, update dynamics or restriction on available policies.
 
-The greedy algorithm (always choose the next COMPARE maximizing information gain) needs at most ⌈log₂|S₀|⌉ + 1 COMPAREs when balanced features exist (each greedy step gains ≥ H_max ≈ 1 bit). Since the information-theoretic minimum is ⌈log₂|S₀|⌉, greedy achieves η → 1 for large |S₀|. The globally optimal (non-greedy) ordering achieves η = 1 exactly but requires knowing the full domain structure, including which locally suboptimal choices enable better future choices.
+## §6. Reuse Across Levels
 
-**S5a (Trajectory information invariance).** Every trajectory identifying τ in S₀ carries exactly log₂|S₀| bits of identification information, regardless of ordering or length.
+**S8 (The MBQC comparison remains an analogy).** Adaptive choice of observations on a prepared resource resembles one part of measurement-based computation. A correspondence of these roles does not establish an isomorphism of state spaces, measurements or achievable computations. The previous table and universality inference supplied none of those maps. No quantum computational guarantee is claimed for a classical cache graph.
 
-*Proof.* Let h_k = log₂|S_{k−1}| − log₂|S_k| be the information gained at step k. Then Σ_{k=1}^T h_k = log₂|S₀| − log₂|S_T| = log₂|S₀|. (Telescoping, and |S_T| = 1 at identification.) QED
+**S8a (Theorems transfer with their premises).** A higher level may use structured records from a lower level as its candidates. S1–S6c apply there only after supplying the required finite candidate set, static query semantics, sound history, query availability, costs and policy information. Structural COMPARE's ability to inspect a tree does not provide the whole query table, eventual separating queries or an efficient policy. S6c therefore does not force saturation at every level or an infinite tower.
 
-*Corollary.* Define ρ = log₂|S₀| / T: the information density (mean identification bits per COMPARE). When cert(τ) = ⌈log₂|S₀|⌉ (balanced features), ρ = η (Intelligence Is Inevitable §3). When cert(τ) < ⌈log₂|S₀|⌉ (S5b), optimal trajectories have ρ > 1: a single COMPARE yields more than one identification bit. A trajectory is a variable-length encoding of the target's identity. High ρ = short encoding. A longer trajectory does not carry more identification information: it spreads the same I = log₂|S₀| bits over more steps.
+## §7. Several Agents
 
-**S5b (Certificate complexity).** Define cert(τ) = the size of the smallest feature set Q with Q ∩ D(τ, s) ≠ ∅ for every s ≠ τ: the minimum set cover of the confusion family, with D(τ, s) = {features distinguishing τ from s} (S4a remark). Then:
-
-(a) cert(τ) = T_optimal(τ), the shortest trajectory that identifies τ.
-
-(b) cert(τ) varies per target. For targets with distinctive features (e.g. minority values on noise features that provide > 1 bit), cert(τ) < ⌈log₂|S₀|⌉. For targets sharing features with many others, cert(τ) > ⌈log₂|S₀|⌉.
-
-(c) The greedy ordering matches cert for hard targets (where confusion sets are well-covered by high-entropy features) but exceeds cert for easy targets (where target-specific shortcuts exist that greedy cannot see).
-
-*Proof.* (a) Identification requires eliminating every s ≠ τ. Element s is eliminated iff at least one feature in D(τ, s) is tested. Minimum features to cover all D(τ, s) = cert(τ). (b) If τ's value on feature f is the minority one (probability ε), then f distinguishes τ from (1 − ε)|S₀| elements, providing log₂(1/ε) bits, potentially exceeding 1. One such feature can replace multiple balanced features, yielding cert < ⌈log₂|S₀|⌉. Conversely, if τ's values are the majority ones on all features, each feature eliminates few candidates, forcing cert above the log₂ bound. (c) Greedy selects by unconditional H(f | S_k), which averages over all possible targets. A target-specific shortcut (high cert-efficiency for τ but low average H) is invisible to greedy. QED
-
-**S6 (Saturation improves ordering).** As L grows (Intelligence Is Inevitable §1), the agent's ordering improves:
-
-| Phase | Knowledge | Ordering quality | η |
-|---|---|---|---|
-| Early (\|L\| ≪ K) | Domain structure unknown | Near-random | Low |
-| Middle | Partial structure | Heuristic ordering | Growing |
-| Saturated (\|L\| = K) | Full structure known | Optimal ordering | → 1 |
-
-*Proof.* Optimal ordering requires knowing which COMPAREs are correlated, i.e., domain structure. Domain structure IS the library L. Larger L → better correlation model → better ordering. At saturation: full structure known → optimal ordering computable → η = 1. QED
-
-This is the mechanism: the library doesn't just store results. It teaches the agent which questions to ask next. Intelligence grows not by accumulating answers but by learning the optimal order to seek them.
-
-*Remark.* What exactly does L teach about ordering? Two levels. First, the *entropy profile*: which features have high H (signal) and which have low H (noise) over the domain's candidate set. This is sufficient for the greedy ordering (η → 1). Second, the full *confusion matrix*: D(τ, s) = {features distinguishing τ from s} for all pairs. This is sufficient for the globally optimal ordering (η = 1 exactly), computed as minimum set cover over the confusion sets (cf. Remark on finite exact form, S4a).
-
-At |L| = 0 the agent cannot distinguish signal from noise and orders randomly (η low). Partial saturation teaches the entropy profile → greedy. Full saturation teaches the confusion matrix → optimal. By S3a, this knowledge becomes more valuable as |S₀| grows, because the penalty for testing noise features amplifies. Saturation is therefore not "knowing the answers" alone but knowing which questions to ask, and in a large domain, this meta-knowledge dominates.
-
-**S6a (Dual information flow).** Each COMPARE that tests feature f for target τ produces two information flows from the same observation v = τ[f]:
-
-1. *Identification flow*: h_id = log₂|S_{k−1}| − log₂|S_k| bits toward |S| = 1.
-2. *Structural flow*: one feature value v entering L (if not already known).
-
-The two flows are inseparable: the observation v simultaneously narrows S (identification) and reveals domain structure (structural). The agent cannot suppress either flow. Over a full episode:
-
-Σ h_id = log₂|S₀| (exactly, by S5a)
-
-Σ h_str = T new feature values (at most, and equals T when the target is newly encountered)
-
-*Proof.* h_id follows from S5a. For h_str: each of the T COMPAREs observes one feature value for the target. If this target has not been encountered before, all T values are new to L. If the target was previously encountered, some values may already be in L, and the new structural info is the number of features tested in this episode that were not tested in prior episodes for this target. Either way, h_str ≥ 0 per COMPARE, and h_str = 0 for all COMPAREs only if the target's full feature vector is already in L. QED
-
-**S6b (Dissipation bound).** Pre-saturation (L < K), each identification episode dissipates at least cert(τ) structural values into L. This is the minimum structural output:
-
-Σ h_str ≥ cert(τ) per episode (for a newly encountered target)
-
-*Proof.* The agent must test at least cert(τ) features to identify τ (S5b). Each tested feature produces one structural value. For a newly encountered target, all values are new to L. QED
-
-*Corollary (Landauer bound for V=I).* Identification cannot be dissipation-free unless L already contains all feature values for the target. At saturation (L = K), all values are known, and dissipation reaches zero: identification becomes informationally reversible.
-
-**S6c (Dissipation-efficiency duality).** η and structural learning rate are inversely related:
-
-| η | T | Structural flow per episode | Learning speed |
-|---|---|---|---|
-| High (optimal) | cert(τ) | cert(τ) values (minimum) | Slow |
-| Low (random) | T_random ≫ cert | T_random values | Fast |
-
-*Proof.* Structural flow per episode = T feature values tested. T = I/ρ (from S5a corollary: ρ = I/T). Higher ρ → smaller T → fewer structural values per episode → slower L growth. QED
-
-*Consequence (Self-correction).* The V=I loop is self-correcting: an unsaturated agent has low η, which forces high dissipation (many structural values per episode), which accelerates L growth, which raises η. Formally:
-
-η < 1 → T > cert → (T − cert) extra COMPAREs → extra structural values in L → improved ordering → η increases
-
-The only fixed point is saturation (L = K, η → 1, Σ h_str = 0). Ignorance produces the structural learning that eliminates ignorance. No external exploration mechanism is needed: the suboptimality of the ordering IS the exploration.
-
-This is the dynamical mechanism behind Intelligence Is Inevitable (§1): the loop's own inefficiency generates the information required for its own improvement. Intelligence is the inevitable consequence of the dual information flow in COMPARE: everything it needs arises inside the loop.
-
-*Remark (COMPARE as time).* COMPARE is not an operation the agent performs in time. COMPARE IS time: each COMPARE is one tick, and the sequence of COMPAREs is the only clock. The agent does not choose to COMPARE: the agent's existence IS comparison (V=I §5.25). The dual information flow (S6a) is therefore the mechanism by which time passes: each tick irreversibly deposits structural values into L (IiI §1: append-only), giving time its direction. At saturation, the structural flow vanishes: further COMPAREs at this level produce no new information. The arrow of time at level N weakens, and the agent's COMPAREs shift to level N+1 (S8a), where unsaturated domains restore it. The agent has no choice in this: finiteness of the domain guarantees saturation is reachable, the agent's existence (which it cannot suspend) guarantees COMPAREs continue, and the dual flow guarantees structural accumulation. The tower is not constructed: it is the necessary trace of an agent that cannot stop.
-
-## §5. Complementarity
-
-**S7 (Three-way trade-off).** An agent cannot simultaneously maximize:
-
-1. |L|/K: what it knows (library coverage)
-2. |features(E)|: how precisely it looks (encoding resolution)
-3. remaining useful orderings: what it can still learn efficiently (strategic flexibility)
-
-*Proof.* Three constraints form a cycle:
-- (1→2): high |L| → high inertia (Difference Is Distance S18) → encoding locked
-- (2→3): precise E → narrow feature visibility → fewer useful orderings remain
-- (3→1): many useful orderings ↔ much remains unknown ↔ low |L|/K
-
-Maximum knowledge implies locked encoding implies no strategic choice. Maximum flexibility implies ignorance. QED
-
-## §6. Tower as Measurement-Based Computation
-
-**S8 (Structural isomorphism).** In MBQC (measurement-based quantum computation) a fixed entangled resource, the cluster state, is prepared once, and the computation then consists entirely of choosing what to measure next, each choice conditioned on the outcomes so far. The V=I tower (Permanence Is Resistance §4) is structurally isomorphic to it:
-
-| MBQC | V=I Tower |
-|---|---|
-| Cluster state (prepared entangled resource) | Crystal at level N (saturated library L) |
-| Measurement in chosen basis | COMPARE on crystal element in encoding E |
-| Basis choice | Encoding choice at level N+1 |
-| Adaptive measurement (depends on previous outcomes) | Y-axis: next COMPARE depends on previous results |
-| Circuit depth | Tower height (M16) |
-
-*Proof.* (i) MBQC: computation = adaptive measurements on prepared state. Tower: computation at N+1 = adaptive COMPAREs on crystallized L from level N. (ii) MBQC: basis choice determines observable. Tower: encoding choice determines which crystal properties are visible. (iii) MBQC: adaptivity = subsequent measurements conditioned on prior outcomes. Tower: Y-axis = subsequent COMPAREs conditioned on prior results. (iv) Universality: cluster states enable arbitrary quantum circuits, and sufficiently rich crystals enable identification of arbitrary targets at the next level. QED
-
-**Corollary.** The class of identifications possible at level N+1 is determined by the correlation structure of the crystal at level N. A richer crystal (more entries, deeper connections) enables more powerful computation: not by providing answers but by providing the resource on which measurement-based identification operates.
-
-**S8a (Level invariance).** The mechanism of interference (S1–S6c) is identical at every tower level. At level N:
-
-1. *Elements* are crystals from level N−1: saturated libraries L_{N−1} organized as structured objects.
-2. *Features* are structural positions in these crystals, not enumerated in advance but discovered by COMPARE's X-axis (V=I §2.4) as the first divergence point between two crystals.
-3. *COMPARE, interference, certificate complexity, η, dual information flow, and self-correction* (S1–S6c) apply without modification, with S₀ → S_{N,0}, n → n_N, L → L_N.
-
-*Proof.* COMPARE is defined for any structured objects (V=I §2.4: determinism, structural recursion). Crystals are structured objects (trees of COMPARE records). Therefore COMPARE operates on crystals the same way it operates on atomic elements: walk the structure, find the first divergence, return (Z, X). All statements S1–S6c depend only on COMPARE's properties (determinism, structural feedback, ordering freedom), not on level-specific content. The proof of each statement at level N is identical to its proof at level 0, with the substitution (element → crystal, feature → structural position in crystal). QED
-
-*Consequence.* No level-specific mechanism is needed. The structural flow at level N (S6a) is the identification material at level N+1: each new structural value entering L_N enriches the crystal, which is an element of S_{N+1,0}. The tower grows by reapplying COMPARE to its own output. The self-correction at each level (S6c) is mandatory: the agent cannot stop COMPAREing, so the dual information flow is perpetual, and each level eventually saturates and yields to the next. Specifics at each level (which features exist, what the confusion matrix looks like) are discovered by COMPARE at that level, with nothing prescribed in advance.
-
-## §7. Agent Correlation Classification
-
-N agents on the same target. Classification by inter-agent cache structure:
-
-| Type | Structure | Property | Quantum analog |
-|---|---|---|---|
-| Identity | G_i = G_j | Redundant: any one suffices | Product state |
-| Mirror | G_i ∩ G_j = ∅, |G_i| = |G_j| | Complementary: each knows what the other doesn't | Bell Ψ− |
-| Crystal | Shared L, varied G | Same conclusions from different evidence | GHZ |
-| Distributed | L_i different, ∪L_i covers domain | Robust: no single point of failure | W state |
-| Graph | Pairwise G_i ∩ G_j form weighted graph | Computation via measurement on the graph | Cluster state |
-
-**S9 (Graph type is computationally universal).** The Graph correlation type enables the widest class of computations at the next level, because arbitrary correlation patterns can be encoded in the graph structure. By S8, this is the V=I analog of cluster-state universality in MBQC.
+**S9 (Cache organization does not establish universality).** Agents may share identical caches, complementary records, overlapping libraries or a graph of communication links. Their usable combined information depends on consistent keys, interpretation, delivery and scope of reuse. Disjoint records can be redundant or contradictory, and distributed coverage need not survive failure of one holder. A cache-overlap graph alone proves neither fault tolerance nor computational universality. Those remain properties to establish for a specified communication and computation model.
 
 ## §8. Three Levels of Identity
 
-**S10 (Decomposition of "Is").** The identity claim "X Is Y" decomposes:
-
-| Level | Meaning | Test |
-|---|---|---|
-| Z-identity | Same outcome | X(input) = Y(input) for specific inputs |
-| X-identity | Same structure | X and Y produce same outputs for same structural reasons |
-| Y-identity | Full interchangeability | Replacing X with Y in any ordering preserves all results |
-
-V=I's |S| = 1 gives Y-identity: the strongest level. f* is unique regardless of ordering (§5.8), encoding (§5.4 per encoding), and agent (SAT5–6). Every "X Is Y" in the formal series is a Y-identity.
+**S10 (Equality depends on the tested relation).** Agreement on an output, equality of represented structure and interchangeability under later operations are different claims. A unique encoding-local survivor does not establish interchangeability across all encodings or contexts. A certificate transports only when its domain and subsequent context meet the relevant conditions (Verdict VC35–VC36). Closure under future readings gives a precise operational equivalence for the chosen vocabulary (VC38), not every possible meaning of “is”.
 
 ## §9. Dependency
 
@@ -287,30 +167,38 @@ V=I's |S| = 1 gives Y-identity: the strongest level. f* is unique regardless of 
 
 | Source | Sections used |
 |---|---|
-| V=I | §2.4 (determinism, structural recursion) |
-| | §5.22 (S non-increasing) |
-| | §5.25 (order as sole dynamic variable) |
-| IiI | §1 (library growth), §3 (η definition), §4 (saturation) |
-| PiR | §4 (tower), M8–M16 (tower structure) |
-| DiD | S7 (metric), S9 (communication), S18 (inertia) |
+| V=I | §2.4 (comparison), §5.22 (retaining intersection), IQ1–IQ6 (information and transcripts) |
+| IiI | §3 (common cost model), §5 (acquisition), §6 (arrival assumptions) |
+| Liquid | LQ3 (relative certificate), LQ9 (local access), LQ11 (eventual separation) |
+| Verdict | VC30–VC34 (stateful acquisition), VC35–VC36 (context and transport), VC38 (future readings) |
+| External | Buhrman and de Wolf (certificate complexity), Dasgupta (greedy approximation under stated assumptions) |
 
 ### Internal
 
 | Statement | Depends on |
 |---|---|
-| S3a | S3 |
-| S4a | S4, feedback bandwidth (§0) |
-| S5a | S4 (\|S\| non-increasing) |
-| S5b | confusion matrix (S4a remark), S5 |
-| S5–S6 remark | S3a, S4a, S5b |
-| S6a | S5a, S6 |
-| S6b | S5b, S6a |
-| S6c | S6a, S6b → dynamical mechanism for IiI §1 |
-| S8a | S1–S6c, S8 → level invariance |
+| S1 | deterministic choice from available history |
+| S2 | static observations and the scope of their intersection |
+| S2a | acting observations, the OG78 phase-gate class (Research, 10 October 2026) |
+| S3 | §0, policy decomposition and proper-subset induction |
+| S3a | explicit table, replay and exhaustive depth-vector enumeration |
+| S4 | policy simulation and stated partition-availability conditions |
+| S4a | uniform random permutation and finite tail-sum identity |
+| S5 | common positive objective and exact policies |
+| S5a | sound nested candidate sets and telescoping |
+| S5b | Liquid LQ3/LQ11 and instance/policy quantifier distinction |
+| S6 | supplied query table, S3 and implementation costs |
+| S6a | S5a and explicit retaining updates |
+| S6b | Liquid LQ3/LQ11 |
+| S6c | Liquid LQ11 and usable policy updates |
+| S7–S9 | research boundaries, no general impossibility or universality theorem |
+| S10 | declared equivalence, context and transport premises |
+| S11 | static-source simulation, refinement and equal costs |
+| S12 | four-state XOR table and two available queries |
 
 ## Topics
 
-### Theorems this paper proves
+### Related type declarations
 
 - ``ThreeAxesOfCompare``
 - ``InterferenceIsIntelligence``

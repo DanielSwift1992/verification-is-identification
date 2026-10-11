@@ -1,72 +1,97 @@
 # Reading Is Order (Dynamics)
 
-In Existence Is Finite the author froze the static (Σ, COMPARE, and the verification corollary are all timeless) and deferred the dynamics in Part III: time as the track reading leaves, learning as the settling of order back into Σ. This is that study. The agent is not a second space. It is the *active face* of the one space, a **reading** of the standing structure, and the reading is the one thing left free: the order.
+A fixed structure can be traversed in different orders. Whether those orders give the same answer depends on the question, the reading operation and what the traversal preserves. This paper separates the representation of a reading position from the relations that make an answer independent of its schedule.
 
-The mathematics is already to hand. A reading-head is a **zipper** whose step is the derivative of the rule. The two organs of a solve are **unfold and fold**, a coalgebra and an algebra, dual. The verdict's indifference to order is **anamorphism uniqueness**, the asymmetry of inevitability is **initiality**, and crystallization is a μ-object precipitating from a ν-process.
+The grammar supplies a zipper and fold/unfold constructions. It does not choose the question or prove that every physical reading leaves its source unchanged. R3 states the conditions for an invariant answer. R4 excludes a proposed derivation of the discriminator from initiality. R5 gives a precise accumulation result and distinguishes the questions asked of a cyclic process.
 
-The static is `μF`, and the reading is the ν-side that deposits into it. The author postulates nothing new: the dynamics is the static, read.
+## §0. Scope
 
-## §0. Derivation
+Work in sets with `F(X) = 1 + X²`. Its initial algebra `Σ = μF` consists of finite ordered binary trees. Its final coalgebra `νF` consists of finite and infinite ordered binary trees. These are specified mathematical carriers. Finiteness of an individual tree does not make Σ a finite set, and the two carriers do not classify everything actual and everything possible in reality.
 
-No new postulate. The author reads everything below off `F(X) = 1 + X²`, its initial algebra `Σ = μF` (Existence Is Finite, Thm 1), its final coalgebra `νF`, and the order-is-sole-freedom result (V=I §5.25). The agent is the order of reading (EiF Part III), and this document is that order's shape.
+Existence Is Finite's distinction between a space and a process applies here: changing the candidate domain, predicate, available observations or stopping rule changes the problem. Fixing an encoding alone does not fix all these relations.
 
-## §1. The Reading-Head Is a Zipper
+## §1. The Reading Position
 
-**R1 (The step is the derivative ∂F = 2X).** A position in a Σ-tree is a one-hole context, and for a polynomial functor the one-hole contexts are its *derivative* ∂F (McBride 2001). For `F(X) = 1 + X²`,
+**R1 (Two one-layer contexts).** Removing one child of a binary node leaves its sibling and the side of the hole. Thus `∂F(X) = 2X`. A position inside a finite tree retains a finite stack of such layers back to its root:
 
-> ∂F(X) = ∂(1) + ∂(X²) = 0 + 2X = **2X**.
+> `Zip(Σ) = Σ × (2 × Σ)*`.
 
-The hole is in the left or the right child of a node (the **2**), and the sibling is in the context (the **X**). The reading-head is a **zipper** (Huet 1997): a focus, plus a stack of these contexts back to the root, `Zip(Σ) = Σ × (2 × Σ)*`. Moves are {down-left, down-right, up}. **Time is the trace of the walk.** So the agent's local freedom is exactly **two, left or right, no third**: C5's binary distinction, read at the level of *motion* rather than of structure. **[solid]** (Huet 1997, McBride 2001, and ∂(1+X²)=2X is arithmetic.)
+The focus and stack reconstruct the whole tree by successively filling each hole. This is the binary instance of [Huet's zipper](https://gallium.inria.fr/~huet/PUBLIC/zip.pdf) and the one-hole interpretation developed by [McBride](https://citeseerx.ist.psu.edu/document?doi=7de4f6fddb11254d1fd5f8adfd67b6e0c9439eaa&repid=rep1&type=pdf).
 
-## §2. The Two Organs Are Unfold and Fold
+The two context constructors do not imply exactly two possible actions. At an internal focus with a parent, down-left, down-right and up are three distinct available navigations. Descent requires a branch and ascent requires a nonempty context. Editing or stopping requires further specified operations. A recorded walk has an order, but this representation alone neither supplies physical duration nor proves that every agent is only a traversal policy.
 
-**R2 (Generator = coalgebra, discriminator = algebra, dual).** A **generator** is an F-*coalgebra* (A, c : A → F A), *unfold*: from a state, stop or branch into two. Its image is in `νF`, the possible. A **discriminator** is the F-*algebra* structure of Σ, *fold*. COMPARE is its decidable equality, and its home is `μF = Σ`, the actual. Algebra (F A → A) and coalgebra (A → F A) are **dual** (one arrow reversed), so the two organs of *Proposal Is Order* are the two directions of one functor: **generate = unfold (ν-ward), discriminate = fold (μ-ward)**, joined by the canonical map `μF → νF` that embeds the deposited actual into the generated possible. **[solid]** (Category theory, and the algebra is Σ's structure map, EiF Thm 1.)
+## §2. Specified Generators and Readers
 
-## §3. Order Is the Sole Freedom, by Anamorphism Uniqueness
+**R2 (Unfold and fold require their respective structures).** A coalgebra `c:A→FA` gives a unique unfolding `h:A→νF` satisfying `out ∘ h = Fh ∘ c`. An algebra `a:FB→B` gives a unique fold `k:Σ→B` satisfying `k ∘ in = a ∘ Fk`. The equations specify how observations or constructors are preserved. The standard recursion schemes are developed in [Meijer, Fokkinga and Paterson](https://maartenfokkinga.github.io/utwente/mmf91m.pdf).
 
-**R3 (The verdict is order-independent).** By V=I §5.25, the encoding fixed, the only free variable is the order of COMPAREs, and correctness is order-invariant. Coalgebraically this is **finality**: from a generator (A, c) there is a *unique* anamorphism `A → νF`, independent of any traversal schedule. So any fair reading deposits the *same* limit. The order is free and alters no result: the dynamic carries no fact the static lacks. **[solid]** (Finality of νF, and V=I §5.25 is its V=I face.) Time, then, is real but inert: it is the residue a reading leaves, never a term in the verdict.
+A chosen algebra can express a structural answer. The constructor `in:FΣ→Σ` does not by itself select a predicate on trees. A claim that a particular discriminator is such a fold must provide its answer algebra and show agreement with the intended question. Likewise a proposed generator needs its coalgebra, not just the name unfold.
 
-## §4. The Asymmetry of Inevitability Is Initiality
+The canonical map `μF→νF` embeds finite trees while preserving their structure. It supplies neither a cost bound nor a division of all tasks into one inevitable discriminator and freely chosen generators. Reversing the direction of the structure map explains the algebra/coalgebra distinction. No adjunction between the proposed generator and discriminator is constructed here.
 
-**R4 (Initiality, not an adjunction).** `μF = Σ` is *initial*: a unique homomorphism *from* Σ *to* every F-algebra. So the fold/discriminator is **canonical**: one COMPARE, domain-independent, the same gate everywhere. F-coalgebras (A, c) are **many**, with no canonical choice: the unfold/generator is a *free parameter*, and the domain's alignment α is in it. Two prior claims follow:
+## §3. Which Answers Ignore Order
 
-- **Orthogonality** (Proposal Is Order GD3): a fixed constant (the gate) is independent of a free variable (the unfold), so every easy/hard quadrant is inhabited.
-- **The inevitability asymmetry** (GD4): *initiality is the inevitability*: the discriminator's structure is the unique initial algebra, and the generator has no co-initial counterpart to be inevitable by.
+**R3 (Uniqueness within a fixed reading contract).** Finality equates two maps from the *same* coalgebra when both satisfy its homomorphism equation. To use this for two schedules, each schedule must first be shown to implement that coalgebra with the specified output interpretation. Fairness alone does not establish this premise.
 
-The relation is **duality**, not an adjunction: there is no adjoint pair `gen ⊣ disc`, and the duality plus the initial/free asymmetry already yields both prior claims. **[solid** for the duality and the fixed/free asymmetry, **interpretive** for the one bridge: that categorical canonicity *is* GD4's information-theoretic inevitability ("at saturation the library teaches the ordering")**]**
+For the finite verification case a direct argument suffices. Fix a finite candidate set C and a total predicate p whose answer for each candidate is unchanged by reading it. Every complete enumeration, retaining exactly the candidates with p(c)=true, gives the same survivor set S. Indeed, membership in S is exactly membership in C together with the fixed predicate answer, neither of which depends on enumeration order.
 
-## §5. Crystallization Is μ From ν
+Selecting the first survivor can still depend on order. If both a and b pass, the complete orders (a,b) and (b,a) have different first survivors. A question q has the same answer under every selection from nonempty S exactly when q is constant on S. This is the answer-level criterion of Verdict Is Invariant. It does not require a unique candidate.
 
-**R5 (Learning settles ν into μ).** A reading is a ν-process, an unfold, possibly unbounded. Each closed subterm **folds** (deposits) into `μF = Σ`. **Crystallization is the μ-object precipitating from the ν-process**: the Stefan front of Learning Is Liquid is the μ/ν boundary, solid behind, liquid ahead. Two faces:
+The schedule can change work and the time at which an answer becomes available. A reading that changes its source, obtains a new observation or changes its predicate falls outside the fixed contract. Outside that contract the order can change the answer itself. InI S2a gives a model in which the order of two acting observations enters their record, at leading order, through the commutator of their address operators. Neither the finite argument nor finality makes time globally inert.
 
-- **Learning = convergence.** Saturation is the *colimit* of the deposit chain `X₀ → X₁ → ⋯`, each step folding new closed subterms into Σ: the directed union `⋃ₙ Xₙ = cl_G`, the least fixpoint of the closure operator (Basis Is Residue B8f). A fair reading reaches it, and the limit is **order-independent**: a directed union is the same in any order of accumulation (Kleene). **[solid** given a fair reading**]**
-- **The μ → ν flip.** A reading *with cycles* (draw-by-repetition, an agent that may go on forever) is genuinely ν: "can continue" is coinductive. Its value is a *greatest-fixpoint / retrograde* computation, never well-founded recursion. Self-play is fixpoint iteration, and the cycle turns μ into ν. **[solid** that a cyclic value is a coinductive fixpoint, **interpretive** that this is "the flip"**]**
+Verdict VC92 and VC94a provide a constructive contrast. One resident phase
+distinction permits a locally chosen path to the original answer; without
+that access both constant actions remain in closed quiet orbits. The words
+ab and aaab have the same working endpoint, but the latter needs an additional
+order record to choose different actions at a repeated working state. Its
+resident tape supplies that record and retains the consumed commands.
+Irrelevance of order to a particular final answer does not make order freely
+available to an executor, or identify the two complete execution histories.
+
+## §4. Initiality Does Not Choose the Question
+
+**R4 (Canonical map to a chosen algebra).** Initiality states `∀(B,a) ∃!k` with the fold equation. It does not state `∃!(B,a)`. Two algebras on B={0,1} show the missing implication even with the same leaf answer. Let both return 0 on a leaf. Let the first return 0 at every branch and the second return 1 at every branch. Each has its unique fold. On `node(leaf,leaf)` their answers are 0 and 1.
+
+Thus neither the grammar nor its initiality chooses a discriminator. Finality also supplies a canonical carrier for fixed F while leaving many source coalgebras. There is no initial/free asymmetry establishing inevitable checking semantics on one side. Proposal Is Order GD3–GD4 separately distinguish coverage, dispatch and cost. Their premises cannot be replaced by uniqueness of a map after its algebra has been chosen.
+
+This objection does not prevent relations from forcing an answer. It locates the required work: specify the relations that exclude the second algebra for this question. The generic existence of folds does not exclude it.
+
+## §5. Accumulation and Cycles
+
+**R5 (Fair accumulation under fixed finitary rules).** Start with a finite seed set D₀ and fixed inference rules, each with finitely many premises. Suppose D₀⊆D₁⊆… retains earlier facts and each stage adds finitely many conclusions of rule instances whose premises belong to the preceding stage. Require that every rule instance whose premises become available eventually has its conclusion added. Then `⋃ₙDₙ` is exactly the set of facts with finite derivations from D₀.
+
+*Proof.* Every addition has a finite derivation, by induction over additions. Conversely, induct on a finite proof tree. Its finitely many premise proofs occur by some common finite stage. Retention keeps them available and fairness eventually adds their conclusion. Both inclusions follow. The union is therefore independent of the fair schedule under these rules. Basis Is Residue B8f's closure under finite products is one instance.
+
+This gives no finite completion time for an infinite closure and no procedure recognizing that nothing remains. Finitary rules matter: take seed p₀, rules pᵢ→pᵢ₊₁, and an additional rule requiring every pᵢ to conclude r. The stages Dₙ={p₀,…,pₙ} never enable the last rule. Their union contains every pᵢ but omits r. Fairness on enabled rules alone does not repair this failure of closure.
+
+Nor can every infinite tree be deposited as a finite tree with its full branching structure preserved. For `T=node(T,T)`, a shape-preserving image t in Σ would require `t=node(t,t)`, impossible for a finite tree. A finite observation or truncation answers a smaller question.
+
+A cycle does not select least or greatest fixpoint semantics. On a single safe self-loop s with no goal, eventual goal reachability is the least fixpoint of `X↦X`, namely ∅. Indefinite safety is the greatest fixpoint of the same map, namely {s}. Both questions concern the same graph. Their different answers follow from their different obligations, not from the mere presence of a cycle.
 
 ## §6. Statement
 
-1. The reading-head is a zipper, and its step is the rule's derivative ∂F = 2X: two directions, no third (R1).
-2. Generator and discriminator are unfold and fold, an F-coalgebra and an F-algebra, dual: generate is ν-ward, discriminate μ-ward (R2).
-3. The verdict is order-independent: the anamorphism into νF is unique, so the dynamic adds order, never facts (R3).
-4. The inevitability is the discriminator's because μF is initial, and the generator is a free coalgebra-parameter: duality and initiality, not an adjunction (R4).
-5. Crystallization is a μ-object precipitating from a ν-process, and cyclic readings flip μ to ν (R5).
+1. A binary zipper retains a focus and its surrounding context. Two layer constructors do not exhaust its navigation actions (R1).
+2. A coalgebra specifies unfolding and an algebra specifies folding. The grammar does not select either application (R2).
+3. Fixed complete verification preserves the survivor set. A selected answer is invariant exactly when the question is constant over the survivors (R3).
+4. Initiality determines a map to a chosen algebra. It does not make the choice of discriminator inevitable (R4).
+5. Fair justified accumulation under fixed finitary rules has a common closure. Infinite behavior and cyclic questions require their own semantics (R5).
 
-> **The static is the least fixpoint, and the dynamic is its reading. The agent is the order in which the standing structure is read: a zipper walking Σ, unfolding candidates and folding verdicts, and the one freedom it has, the order, is the one thing that changes no result. Time is the track the reading leaves. Learning is the track settling back into the space it never left.**
+> **Order can vary without changing an answer when the preserved relations already determine that answer. Finding those relations is the proof obligation. A representation of traversal does not discharge it.**
 
-## §7. Dependency
+## §7. Dependency and Representation
 
 | Source | Used |
 |---|---|
-| EiF | Σ = μF (Thm 1), the actual/potential = μ/ν, Part III (the agent is the order of reading) |
-| V=I | §5.25 (order is the sole freedom), Theorem 2 (the fold), the outcome corollary |
-| GD | the generator/discriminator organs, GD3 (orthogonality), GD4 (the inevitability asymmetry) |
-| B | B8f (a math is a sub-fixpoint, the trichotomy is fixpoint-reachability) |
-| LL | the liquid/crystal front (the μ/ν boundary, physics-as-tools, LL §6) |
-| External | Huet 1997 (the zipper), McBride 2001 (the derivative of a regular type is its one-hole context), initial-algebra / final-coalgebra duality |
+| Existence Is Finite | Finite tree grammar, the distinction between a space and a process |
+| Verdict Is Invariant | An invariant answer need not identify the complete candidate |
+| Proposal Is Order | Fixed verification versus acquisition, coverage versus dispatch and cost |
+| Basis Is Residue B8f | Closure under finite products as a finitary accumulation instance |
+| Huet, McBride | Zippers and one-hole contexts |
+| Meijer, Fokkinga, Paterson | Fold/unfold equations for specified structures |
 
-In Existence Is Finite the author proved that to be is to inhabit the least fixpoint. Here the author reads that fixpoint in motion: the dynamics is the static traversed, the agent a zipper whose only freedom is order, the two organs the two directions of one functor. Every fact is where it was, in the space, and the reading leaves nothing behind but its track.
+The `Reading` protocol retains historical time, order and revelation interfaces. Their intersection does not implement a zipper, a coalgebra law or a fairness proof. The mathematical arguments above state these separate conditions. Static applications can bind actual readings and their equal answers with `VerdictIsInvariant`, and actual source/image changes with `CommutingTransition`.
 
 ## Topics
 
-### Theorems this paper proves
+### Related type declarations
 
 - ``Reading``

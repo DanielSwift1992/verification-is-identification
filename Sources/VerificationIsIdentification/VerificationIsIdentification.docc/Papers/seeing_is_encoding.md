@@ -1,67 +1,108 @@
 # Seeing Is Encoding (Sensor)
 
-A sensor does not hand over the world. It hands over an image in a smaller carrier, and the image is all a reader downstream can ever compare. Here the author derives what follows for light: a beam is a finite structure, matter is a presented law over it, the eye is an encoding that can hold two beams to one image, and a prism is a presented separator that hands the lost distinction back. The claim, pinned: seeing is encoding. Identification stops at the image, a presented separator restores it, and with a stated basis the whole of ray transport is exact, counted arithmetic. The author pinned the two claims in the lattice first (`Seeing.swift`) and wrote this paper against that encoding.
+A reader receives an image through a specified interaction. Which question does that image settle? For a deterministic encoding, the answer must agree across every source that produces the same image. For a stochastic measurement, every possible record must admit only one answer, even when different sources assign that record different probabilities. Light and the qubit test these two conditions.
 
-The claims are not about light alone. Any sensor over any structure encodes, any encoding with a kernel forgets, and any presented separator restores. Light is the worked instance because physics fixes every piece: the basis by transition rules, the projection by the eye, the separator by glass.
+## §0. Premises
 
-## §0. Derivation
+State the source domain X, the accessible record and the measurement conditions. All sources, instruments, observers and records belong to the same whole. Specifying which record a reader can access does not introduce anything outside that whole. The mathematical map describes that access. Its agreement with an actual instrument needs calibration or a physical derivation.
 
-No new postulate. The encoding axis already bounds what a reader can reach (V=I §5.24), a beam is a finite structure (Existence Is Finite), and matter acting on light is a presented law (Dynamics Is Substitution). Below the author applies those three to one instance.
+The finite spectral example below is a model choice. Existence Is Finite distinguishes a finite description from a proof that every physical object has finitely many degrees of freedom. Neither that paper nor the encoding axis derives a spectral basis, a detector response or the Born rule.
 
 ## §1. The beam
 
-**SiE1 (Light is a structure, and matter writes its alphabet).** A beam is a stated finite basis of spectral lines with one brightness level per line: a finite tree, whole. The basis is not the author's free choice. A line is an allowed transition of some substance (the selection rule admits it or it does not exist), so the alphabet of light is written by matter, and a forbidden line cannot enter a beam: it has no type. A continuous spectrum is no structure here: it is the standing possibility of finer bases, placed outside, never a finished individual.
+**SiE1 (A declared spectral carrier).** In the finite model, a source is a tuple of nonnegative levels on named spectral channels. A physical interpretation additionally specifies wavelengths or band profiles, units and the admitted source family. The hydrogen example uses three selected dipole-allowed transitions. Its selection rule checks membership in that transition model. It does not establish that every beam consists of those lines, exclude other emission mechanisms or represent a continuous spectrum exactly.
 
-## §2. Matter is a passive law
+## §2. Matter and transport
 
-**SiE2 (A filter can only narrow).** Passive matter is a dictionary of rules over beams, and every rule's output level is the input's or the floor: absorption is compress. The class is closed by construction: the dictionary contains no rule that raises a level or adds a line, so "a filter that amplifies" is an unwritable program, never a rejected one. Emission is the one expand, and it is bounded by §1: a substance emits exactly its allowed transitions.
+**SiE2 (A restricted filter family).** The supplied slot filters either preserve a level or replace it with zero. Such a filter cannot increase any slot, by its definition. A diagonal attenuator with coefficients between zero and one extends this model. General passive optical interactions need not preserve spectral channels, and the slot rule is not a derivation of all matter-light interactions. A zero output in this record says nothing by itself about information retained in the material or other parts of the whole.
 
-## §3. The eye forgets
+## §3. The image
 
-**SiE3 (Metamerism is |S| > 1 at the image).** An eye reads some slots of the beam and drops the rest, then sums what it reads into few channels. Both moves have kernels: a dropped slot is an invisible coordinate, and a sum forgets its split. So two distinct beams can land on one image (a metameric pair), and the pair is presentable: state two beams differing in a dropped slot, and the sharing of their image is a checkable identity. Downstream of the eye, the image is the whole evidence, and identification stops: |S| > 1, by the encoding, not by any fault of the reader. **[solid: ``EncodingForgets``, witnessed by the pair and its shared image]**
+**SiE3 (Exact metameric equality).** Fix a deterministic encoder E:X→Y. Define x∼y exactly when E(x)=E(y). Equality makes this relation reflexive, symmetric and transitive. Distinct sources in one fiber cannot be identified from their common image alone. A question q:X→A can nevertheless be answered: a decoder d:E(X)→A with q=d∘E exists exactly when q is constant on every fiber. Necessity follows by substitution. For sufficiency, define d(z) as the common q-value on the nonempty fiber over z.
 
-> Argues: ``EncodingForgets`` needs ``HasEncoding``.
+The existing `VisibleReading` and `JoinedVerdict` bind the actual source, question, context and computed image of each supplied branch. Their finite joins certify agreement on those branches. They do not enumerate an unspecified source family. `EncodingForgets` now binds its two source fields and shared image to the supplied readings and their common answer. This certifies the addressed pair, without requiring distinct sources or enumerating a whole fiber. The deterministic source-family interpretation remains a premise.
 
-## §4. The prism recalls
+Physical metamerism concerns distinct visible spectral stimuli with equal tristimulus values under specified conditions. Changing the observer or, for reflecting objects, the illuminant can break a match, as specified by [CIE](https://www.cie.co.at/publications/special-metamerism-index-change-observer). The infrared-only difference in `RedBeamWithIR` demonstrates a discarded coordinate. It is not yet that stronger visible-spectrum experiment.
 
-**SiE4 (A presented separator restores identification).** A prism reads every slot: each line lands at its own place, so the spread image is the beam itself, and any two distinct beams land apart. The prism returns the lost distinction to the metameric pair: the same pair that shares an eye-image refuses to share a prism-image, and the refusal names the slot where the twins differ. The separator is presented, never searched for: the author states the instrument, the judge checks it parts the pair. **[solid: ``SeparatorIdentifies``]**
+## §4. A separator needs access
 
-> Argues: ``SeparatorIdentifies`` needs ``EncodingForgets``.
+**SiE4 (Separation of a supplied pair).** Given x≠y with E(x)=E(y), a second specified reading F separates this pair exactly when F(x)≠F(y). It need not identify every source. Conversely, no deterministic processing h of the common image can separate the pair: h(E(x))=h(E(y)). A separator therefore needs an accessible distinction beyond that image.
 
-## §5. Transport is counted
+`PrismImage` is an ideal readout of all three declared slots. Its injectivity on these tuples follows from coordinate equality. This does not prove that an actual prism and detector resolve every physical spectral difference. The new reading applies to the retained source or an adequate record, not to information reconstructed from the coarse image alone. `SeparatorIdentifies` now binds its additional reading pair to exactly those source addresses. Inequality of the resulting answers and physical availability of those readings remain separate obligations. Its legacy name does not establish them.
 
-**SiE5 (Exactness on a stated basis).** A scene is a finite graph of sources, matter, and screens. A ray is a path. A chain of filters is a written chain, its depth in the type. The image at a screen is a finite sum over finitely many paths. There is no sampling and no convergence: the sum is exact, because the author closed both classical infinities by statement, the continuous spectrum by the finite basis, the unbounded recursion by the counted depth. Sampling in spectral rendering is the tax on an unstated basis. With the basis stated, the tax is zero.
+## §5. Exact finite transport
 
-**SiE6 (Reversal where nothing is erased).** A passive rule that erases nothing reverses by swapping its pattern and its template: the reversibility of the ray path is the reversal theorem of presented laws, inherited, never re-proved. A killing filter erases, and does not reverse: what reached the floor has no record of its height.
+**SiE5 (Exactness within a finite model).** A finite sum of declared path contributions can be evaluated exactly when its coefficients and arithmetic admit exact representation. A finite graph alone can have infinitely many walks. A declared finite path list or a depth bound supplies the required restriction. Neither a spectral basis nor a depth bound proves that omitted physical contributions vanish. Finite sums may also remain expensive to enumerate, so specifying the basis does not eliminate every reason to use sampling.
 
-## §6. Mixing before the edge
+**SiE6 (Source recovery requires injectivity).** An inverse on the image exists for a deterministic map exactly when it is injective. A zeroing filter fails that condition on a domain containing different erased levels. Recovering a symbolic map's input requires this premise on its stated domain. An inverse step, a reversal of traversal and optical path reciprocity are different relations. Space §5k reconstructs a reversing involution only with the relevant internal reading and admission conditions. Swapping this filter's input and output labels establishes none of those physical contacts.
 
-**SiE7 (The sum of light is a monoid, and the screen is not).** Mixing beams is slotwise addition over the basis: commutative, associative, with darkness as the unit. The linear part of a sensor respects it. The display's edge does not: its response curve is nonlinear, so the image of a mix is not the mix of the images. Mixing after the edge is the standard mistake, and mixing before it is exact by construction. The edge is where numbers belong, and where they stop being algebra.
+## §6. Mixing
+
+**SiE7 (Linear readings preserve addition).** For a linear spectral sensor E, E(s+t)=E(s)+E(t). Nonlinear encoding, clipping and quantization require their own laws and generally do not preserve that equality. The premise concerns the sensor response and its domain, rather than the name of a colour coordinate system.
 
 ## §7. Distance
 
-**SiE8 (Colour difference is structural distance).** The distance between two beams is the structural distance between their trees, and it is positive for every metameric pair: what the eye calls equal is apart in the structure. Perceptual difference is a property of the encoding, and structural difference is a property of the light. The two agree only where the encoding is faithful, and the gap between them is the measured loss of the eye.
+**SiE8 (Equality does not determine a metric).** An encoder induces an equivalence relation, but it supplies no perceptual distance. Even an injective encoder can rescale distances. A proposed distance on source representations must be independent of equivalent representations before it can describe a physical spectrum. A distance on images requires its own definition and any empirical interpretation.
 
-## §8. Statement
+## §8. Records with several possible outcomes
 
-Seeing is encoding. A beam is a finite structure whose alphabet matter writes. Passive matter narrows it, emission extends it along allowed transitions, and both are presented laws. The eye projects the beam into a smaller image and thereby forgets: metameric pairs exist and are presentable. A prism, presented, tells every pair apart. On a stated basis, transport is a counted, exact sum, reversal is true wherever no rule erases, and mixing is a monoid until the display's edge. What the image cannot decide is decidable on the structure, and the structure is what this notation writes.
+**SiE9 (An exact answer from one finite outcome).** Let X be a nonempty source domain, Z a finite outcome set and p(z|x) a normalized response law. A decoder d:Z→A answers q:X→A with probability one for every admitted x exactly when
 
-## §9. Dependency
+```
+p(z|x)>0 and p(z|y)>0  imply  q(x)=q(y).
+```
 
-| Source | Used |
-|---|---|
-| V=I | §5.24 (the encoding bounds the reader's scope), Theorem 2 (the cut), the |S| reading |
-| Existence Is Finite | the actual is finite, the continuous spectrum is placed outside as potential |
-| Dynamics Is Substitution | matter as a presented law, the counted chain, reversal by swapping, the class boundary |
-| Program Is Path | a ray is a path: finite, permanent, priced by length |
-| Distance Is Cost, Difference Is Distance | structural distance between beams, cost counted in written rules |
-| Form Is Gauge | the prism's spread is a form of the same content, and the reading it enables |
+Necessity: any shared possible z would require d(z) to equal both answers. Sufficiency: assign each possible z the common answer of all sources that can produce it. Unused outcomes can be assigned arbitrarily. Equivalently, q must be constant on connected components of the graph joining sources whose outcome supports overlap. This graph condition does not assume that overlap itself is transitive. A finite deterministic encoder is the special case with one possible outcome per source, recovering SiE3.
 
-The worked instance is beside the hydrogen spectrum in the examples: the basis is three dipole-allowed transitions, the metameric pair differs in the infrared slot, the prism refusal names that slot, and a two-pane transport chain is checked equal to the clean beam. The author pinned the two claims in the lattice before stating them in prose, and this document exists so the sensor half of the encoding axis is one in prose and in types.
+Equality of whole response distributions is a different equivalence relation. Different distributions can still overlap and prevent a certain answer from one outcome. Repeating a preparation changes the available record. For a fixed nonadaptive protocol with independent repetitions, two sources sharing a possible outcome still share a possible finite repeated record, so repetition alone need not give an exact universal answer. Statistical estimation with a stated error probability asks a different question. Continuous outcome spaces need a measure-theoretic formulation rather than this positive-point-probability criterion.
+
+Matter §5's qubit calculation shows why this distinction matters physically. The response law, accessible system and allowed measurement must be stated. No probability law follows from the mere presence of several candidates.
+
+## §9. A finite sensor with no invisible channel
+
+**SiE10 (Mixing alone can hide a distinction).** Consider the declared three-channel linear sensor
+
+```
+E(a,b,c,d) = (a+d, b+d, c+d).
+```
+
+Every source channel contributes to the image. Nevertheless x=(1,1,1,0) and y=(0,0,0,1) both produce (1,1,1). Measuring the fourth channel separates them. More generally, adding one unit to each of the first three channels has the same image as adding one unit to the fourth channel, for every starting source. This follows by substituting the four increments into E.
+
+For real nonnegative levels, the full fiber over (u,v,w) is
+
+```
+(a,b,c,d) = (u-t,v-t,w-t,t),   0 ≤ t ≤ min(u,v,w).
+```
+
+Thus an additional exact reading of d identifies the whole tuple in that fiber. Over nonnegative integer levels, restrict t to integers. For a linear scalar question q=αa+βb+γc+δd, substitution gives αu+βv+γw+(δ−α−β−γ)t. It is determined by E for every source exactly when δ=α+β+γ. Necessity follows already from the displayed pair, and sufficiency gives the decoder explicitly. Many questions therefore need no fourth-channel reading.
+
+The static constructors in `SpectralSensor.swift` derive channel counts and sensor responses from the same increments. `Checks/Seeing.swift` checks the generic image equality, the concrete mixed pair and refusal to equate their fourth-channel readings. This is an exact finite sensor model, not a calibrated CIE observer or a claim about four chosen physical wavelengths. A physical demonstration must supply the actual response coefficients and measurement uncertainty.
+
+**SiE11 (A response matrix supplies a physical test contract).** The particular coefficients in SiE10 are unnecessary for the existence of a mixed pair. Let R be any real 3×4 response matrix with nonnegative entries and no zero column. Its four columns are linearly dependent, so choose v≠0 with Rv=0. The vector v has both positive and negative entries: if all were nonnegative, a positive entry and its nonzero column would make at least one response positive, and the nonpositive case follows by reversing the sign. Write v=v⁺−v⁻. These are distinct nonnegative spectra with Rv⁺=Rv⁻, and every input channel still affects at least one output. This constructs a pair for the declared linear model without requiring a channel invisible to every detector.
+
+For the full nonnegative source domain, a linear question c·s factors through R exactly when c belongs to the row space of R. A row combination c=wR gives the decoder w·(Rs). Conversely, invariance across every equal-image pair implies c·v=0 for every v in ker R, since each such v is the difference of its nonnegative parts. The annihilator of ker R is the row space. Restricted source families can permit further questions, so that domain is part of the claim.
+
+Calibration uncertainty can enter the certificate explicitly. Suppose the actual coefficients differ from R by at most εᵢⱼ in each entry. For the fixed pair just constructed, its actual response difference in channel i then has absolute value at most Σⱼεᵢⱼ|vⱼ|, by the triangle inequality. An extra analyzer with nominal row f and coefficient error bounds ηⱼ has a nonzero response difference whenever |f·v|>Σⱼηⱼ|vⱼ|. If each of its two recorded readings also has error at most ν, the stronger bound |f·v|>Σⱼηⱼ|vⱼ|+2ν guarantees separation of the recorded values. These are conditional bounds for the specified linear and bounded-error model. They distinguish exact metamerism in the nominal matrix from agreement within a measured tolerance. No calibration data or generic Swift matrix certificate is supplied yet.
+
+## §10. A Contact Can Exclude Every Hidden Mode
+
+**SiE12 (A local zero constraint can certify the whole declared graph).** Let H be a finite Hermitian matrix, with an edge ij exactly when Hᵢⱼ≠0 for i≠j. Let S be the independently read coordinates. Start with S marked. Whenever a marked vertex has exactly one unmarked neighbor, mark that neighbor. If a finite sequence marks every vertex, no nonzero eigenvector of H vanishes on S.
+
+To prove this, suppose Hu=λu and u vanishes on every currently marked vertex. At a marked vertex i with just one unmarked neighbor j, its row reduces to Hᵢⱼuⱼ=0. All other terms vanish, including (Hᵢᵢ−λ)uᵢ. The nonzero edge forces uⱼ=0. Each step preserves the conclusion until u=0. The certificate uses the actual rows and a finite sequence of forced zeros. It needs neither the eigenvalues nor equal edge magnitudes, signs or phases. The graph rule is known as zero forcing. [Burgarth et al., §4](https://arxiv.org/html/1111.1475) connect it with network controllability. The eigenvector argument here does not assert their stronger Lie-algebra result or discard its additional premises.
+
+For every eigenspace K, restriction to S is therefore injective and dim K≤|S|. In LiR13's notation, if B supplies independent nonzero coordinate contacts at S, then K∩ker B†={0}. There is no hidden resonant ambiguity at those contacts. One endpoint of a path forces the entire path, so every eigenvalue is simple and every mode reaches that endpoint. The conclusion permits arbitrary onsite detunings and nonzero Hermitian nearest-neighbor couplings. It certifies visibility within the given graph, without claiming that every frequency lies in an attached lead's propagating band.
+
+**An added connection can remove this guarantee.** For the three-site path, an endpoint forces all three coordinates. Closing it into a unit-coupling triangle permits u=(0,1,−1) with Hu=−u. The two branches cancel at the same endpoint. More edges have produced an invisible eigenvector. `TriangleHiddenMode` in `Checks/Seeing.swift` derives the image of (0,A,−A) from those neighboring fields and its equality to the reversed mode. The unit instance is distinct from silence. Removing the closing edge refuses the same zero contact equation. The internal eigenvalue can still have another mode visible there: invisible vectors, invisible entire eigenspaces and absence of a scattering response are different claims.
+
+Failure of the marking rule does not prove that a hidden mode exists. For the unit-coupling four-site path with zero diagonals, the single contact S={2} cannot begin a mark. Nevertheless an eigenvector with u₂=0 must vanish. If λ≠0, the first row forces u₁=0, the second u₃=0 and the third u₄=0. If λ=0, the fourth row forces u₃=0, the second u₁=0 and the third u₄=0. Thus the rule is sufficient, not necessary for each fixed matrix.
+
+No uniform sensitivity bound follows just from nonzero edges. A coupling can approach zero while the exact graph and the forcing sequence are preserved. LiR13 gives an explicit vanishing overlap. Nor does the proof establish that a physical graph has no omitted edges or channels. Its useful demand is narrower: each forcing step must justify why exactly one uncancelled neighbor remains in the actual row. A small unknown term cannot be silently replaced by an exact zero.
+
+**Even complete boundary scattering need not identify the internal dimension.** In LiR13, take N side sites with H=ωI and w=(g/√N,…,g/√N), where real g≠0. Each site is connected to the same lead junction, so the full graph is connected. For λ≠ω the feedback is U=g²/(λ−ω), independent of N. At an in-band λ=ω, every member also gives t=0,r=−1. Thus the full complex reflection and transmission functions at this contact agree for all N, while N−1 independent modes are orthogonal to w. A contact at a single leaf can reveal a distinction that the common junction cannot. Arbitrarily accurate readings over the whole band do not count those hidden modes. A unitary boundary map recovers its incident source. It does not identify every internal state or certify all physically possible contacts. This is the distinction between one accessible reading and every possible interaction in The Cut, Step 3.
 
 ## Topics
 
-### Theorems this paper proves
+### Related type declarations
 
 - ``EncodingForgets``
 - ``SeparatorIdentifies``

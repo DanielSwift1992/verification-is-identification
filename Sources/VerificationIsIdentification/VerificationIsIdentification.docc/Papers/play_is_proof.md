@@ -1,43 +1,109 @@
 # Play Is Proof (Self-Play)
 
-Intelligence Is Inevitable derives saturation, but only under a premise it does not control: the task stream must present every class. An external stream may not, and the measured geometry of a real domain can demand more tasks than the world supplies.
+Intelligence Is Inevitable gives a conditional coverage theorem: classes must be presented, solved and retained under a common interpretation, and cached rules need usable dispatch. Here the agent can generate training tasks by executing a known rule. That makes their labels exact for the generated task, within the rule's declared domain. It does not establish that the generated rule is an unknown law of the surrounding world.
 
-Here the author removes that dependence. Given a finite generating basis whose closure contains the domain, the agent generates its own tasks. It applies a certified rule to a fresh input, so the label is computed rather than assumed, poses the result to a solver, and the gate certifies the answer. The stream is no longer a hope about the world. The poser controls what it generates, so coverage is a choice, not a stroke of luck.
-
-Self-play of this kind saturates the closure to the same library any agent would reach, with a guarantee classical self-play cannot offer: every self-generated label is f\*, so no label noise accumulates and the endpoint is domain-determined, not play-determined. The training signal is not a statistic of outcomes. It is a proof. I3 made knowledge permanent, and the gate makes self-made knowledge certified, so certified self-made knowledge is a proof the agent can train on.
-
-The seed is a basis, the generation is frontier-targeted, and the one novelty a single agent cannot self-supply is a second encoding: across the tower, that second agent is its own crystallized past. All of it runs on one closed substrate.
-
-Read one level deeper, the gate is a witness and saturation is compression, and the same reading exposes the floor. Certified self-play is *shared* witnessing, never *self*-witnessing: the verification primitive is the postulate, an entry in no library, certified by no game. The agent grounds its rules, its encodings, and its strategies in its own certified record, but never the comparison it runs on. It makes proofs. It cannot make the prover prove itself.
+The useful distinction is between learning a poser's privately chosen target, extracting new consequences of known rules, and measuring an unresolved part of Ω. All three can occur inside one closed whole. PP19 states the information boundary of generation from already accessible data. PP20 gives a finite reversible construction where reuse reduces computation while adding no evidence beyond its inputs. Coverage and physical cost require their own premises.
 
 ## §0. Derivation
 
-No new postulate. One new premise, stated openly: the agent holds a finite **generating basis** Π (a set of primitive rules) whose composition-closure ⟨Π⟩ contains the domain's rules (this is C1 of the solvability specification, E2 §1). Composition is PAIR-nesting (V=I §2.1, §5.11), so ⟨Π⟩ ⊆ Σ is finite (I1).
+No new postulate. One new premise, stated openly: the agent holds a finite **generating basis** Π (a set of primitive rules) whose composition-closure ⟨Π⟩ contains the domain's rules (this is C1 of the solvability specification, E2 §1). Finite compositions have finite expressions, but their full closure need not be finite (EiF EF5–EF6). Finite exhaustive coverage needs a finite declared behavioral family or a uniform composition bound. A finite generator alone does not supply it.
 
 1. Saturation requires a stream presenting every class (IiI §3 remark, §6). *[premise of the Saturation Theorem]*
-2. An external stream may not present every class, and the world is not obligated to supply N·H_N tasks (E2, IiI §3 scope remark: "about tasks outside D it predicts nothing"). *[gap]*
+2. An external stream may not present every class, and the world is not obligated to supply N·H_N tasks (E2, IiI §3 scope remark: "No conclusion about tasks outside D_id follows"). *[gap]*
 3. A certified rule f\* ∈ L applied to an input I yields (I, f\*(I)): a valid example whose label is *executed*, not assumed (V=I §4.8, §3.1, Theorem 2). *[the generator]*
 4. Therefore the agent can *direct* a stream over ⟨Π⟩ (choosing what to generate), so coverage becomes controllable rather than awaited (PP5), and the stream premise moves from the world's distribution to the agent's choice. *[1 + 3]*
 5. Each generated task is solved through the gate, and PASS gives f\* with |S| = 1 (Theorem 2 + R4). The label is certified. *[V=I §3.5, §4.7, Theorem 2]*
-6. Everything downstream is inheritance: saturation (IiI §3), uniqueness (SAT5/6), ordering (InI), the closed substrate (PiR, DiD).
+6. Downstream coverage requires the class-visitation, solver-completeness and retention premises of IiI §3. A shared rule projection does not force identical feature records (System CS1).
 
-The prior papers asked where the agent's data comes from and answered: the world's stream. Here the author answers: from a basis and the gate. A label that the gate certifies is a proof, and training on proofs is training without noise.
+The prior papers asked where the agent's data comes from and answered: the world's stream. Here the author answers: from a basis and the gate. A label computed faithfully from g is correct for g. Its transfer to an empirical target needs an additional adequacy argument (PP19, System CS3).
 
 ## §1. The Data Problem
 
-**PP0 (External saturation can fail).** The Saturation Theorem (IiI §3) is conditional on a stream with pₖ > 0 for every class, and its expected time is N·H_N (IiI §6). For a domain whose covering number at the operative radius is N, a finite external budget B < N·H_N leaves classes unanchored, and critical slowing (IiI §6) places the unanchored classes at the rarest: the hard tasks (E2 §4). External data does not control which classes arrive, and the agent does not control the world's stream. The premise is the world's to meet, and the world may decline.
+**PP0 (Arrival coverage can fail).** Eventual coverage requires every class to arrive and be solved. Under independent uniform arrivals of N≥1 classes from an empty library, the expected cover time is N·H_N (IiI §6). A budget smaller than this expectation does not imply failure on every run. For two classes, coverage after two IID uniform draws succeeds with probability 1/2 although the mean cover time is three. Positive marginal probabilities alone do not guarantee coverage. The finite counterexample in IiI chooses one class once and repeats it forever. Both generated and environmental task streams need an explicit coverage mechanism or arrival law.
 
 ## §2. The Agent Is a Generator
 
-**PP1 (A certified rule is a task source).** A library entry f\* ∈ L, applied to any I ∈ Σ, yields the pair (I, f\*(I)). This pair is a valid V=I game (V=I §3.1) whose target is f\* and whose label is computed by execution (V=I §4.8). L is therefore a *source* of tasks, not only a *sink*.
+**PP1 (A certified rule is a task source).** A library entry f\* ∈ L, applied to I in its declared domain of total evaluation, yields the pair (I, f\*(I)). This is a consistent generated example for f\*. It need not identify f\* uniquely among other candidate rules. L is therefore a *source* of tasks, not only a *sink*.
 
 *Proof.* f\* ∈ L is certified (Theorem 2, IiI §1). Execution is total (V=I §5.5). (I, f\*(I)) reproduces under f\* by construction, so it is a consistent example (V=I §3.4). QED
 
-**PP2 (Pose–solve–certify yields certified-labeled training).** Two roles: *poser* and *solver* (the same substrate at different ticks, or two agents). The poser draws g ∈ ⟨Π⟩ and inputs {Iₖ}, emits {(Iₖ, g(Iₖ))}. The solver runs the pipeline and returns PASS(f\*), REJECT, or |S| > 1. On PASS, f\* = g (Theorem 2 + R4). The label of the generated task is *certified*, not assumed.
+**PP2 (Pose–solve–certify yields certified-labeled training).** Two roles: *poser* and *solver* (the same substrate at different ticks, or two agents). The poser draws g ∈ ⟨Π⟩ and inputs {Iₖ}, emits {(Iₖ, g(Iₖ))}. Assume g belongs to the solver's extensional candidate family and that its examples use the same evaluator and decoding. The solver runs the pipeline and returns PASS(f\*), REJECT, or |S| > 1. Under PASS and R4, f\* = g (Theorem 2). The label of the generated task is *certified*, not assumed.
 
 *Proof.* g ∈ ⟨Π⟩ ⊆ Σ (closure under PAIR-composition, V=I §2.1, §5.11). The examples are consistent (PP1). The solver's PASS with |S| = 1 gives f\* = g (Theorem 2). QED
 
-*Remark (the labeling asymmetry).* In statistical self-play the label is the *outcome* of play, a noisy estimate of value. Here the label is *g itself*, known to the poser by construction and certified to the solver by the gate. The poser is an oracle on its own draw, and the gate makes the solver's acceptance a proof. No estimate enters.
+*Remark (what is exact).* Exact execution of g and exact identification of g are separate claims. Statistical self-play can also use exact game rules and terminal outcomes. For example, [AlphaZero](https://arxiv.org/pdf/1712.01815), pp. 2–3 and its Domain Knowledge section, scores terminal states by the supplied rules while learning an estimate of expected outcome. Approximate value prediction does not make every observed game outcome an incorrectly labeled sample. A certified finite solver adds a scoped proof about its selected target, not a universal contrast with all other self-play.
+
+## §2a. Generated information and computed access
+
+**PP19 (Generation cannot distinguish a law absent from its inputs).** Let Θ
+name an unknown law or a questioned part of Ω, B the prior accessible record,
+and R every additional program, memory and seed input used during generation.
+Suppose the complete synthetic history is G=F(B,R), without further readings
+that depend on Θ. The function can include adaptive generation, solver updates
+and repeated verification, provided all their inputs are included in B,R.
+
+For fixed B,R, compatible worlds receive the same G. Thus adding G cannot
+separate a pair already equal on those inputs. For finite probability models,
+
+```
+I(Θ;G|B) ≤ I(Θ;R|B),       I(Θ;G|B,R)=0.
+```
+
+*Proof.* Determinism gives the second equality. Applying the chain rule in
+two orders gives I(Θ;R,G|B)=I(Θ;R|B)=I(Θ;G|B)+I(Θ;R|B,G).
+The last term is nonnegative, proving the bound. If R is conditionally
+independent of Θ given B, generation adds zero information about Θ beyond B.
+This is a finite data-processing argument, not a new information law.
+
+Conditional independence matters. If B and Θ are independent fair bits and
+R=B XOR Θ, then R alone is independent of Θ, but B,R determine Θ. A program
+reading both can reveal the target. Calling R a random seed does not remove
+its conditional correlation. Pretrained parameters or a teacher's private
+model can likewise carry information absent from a student's B and must be
+counted among the inputs, not treated as independent by name.
+
+A minimal counterexample to self-certification uses System CS3's laws (0,0)
+and (0,1), both compatible with the first observation 0. Choose the constant
+law (0,0) as generator and append its second label 0. The synthetic training
+set now has the unique survivor (0,0), even in the possible actual world
+(0,1). Rechecking the generated set confirms the chosen model, not the missing
+measurement. A correct account of empirical evidence keeps both original
+laws possible until some justified premise or measurement separates them.
+
+This does not prevent a poser from teaching its own private draw g. If an
+internal bit R selects g independently of Θ, a solver can learn one bit about
+g while learning zero about Θ. The target question and the learner's accessible
+record determine which information transfer occurred. Nor does the boundary
+prevent an agent from measuring another internal component of Ω.
+
+**PP20 (Reuse can reduce computation without adding evidence).** Data
+processing concerns statistical distinguishability, not the work of evaluating
+an already determined answer. Consider n≥1 retained input bits, one prepared
+zero accumulator, m≥1 prepared zero outputs and the known parity rule.
+All operations are controlled bit flips. Compare two programs:
+
+- For each output: XOR all n inputs into the accumulator, copy it to that
+  output, and reverse the n computation gates. This takes m(2n+1) gates.
+- XOR the inputs once, copy the accumulator to all m outputs, and reverse
+  the computation once. This takes 2n+m gates.
+
+Both retain the input, restore the accumulator to zero and leave the same
+m exact parity bits. Precomputation, copying and cleanup are included. For
+n=3,m=4 the counts are 28 and 10. No output adds information conditional on
+the retained inputs, yet the second program avoids repeated computation.
+This is a reversible reuse construction, not a claim that either circuit is
+globally optimal or that a neural training method achieves the same gain.
+The compute, copy and uncompute pattern belongs to established reversible
+computation, as in [Bennett, 1973](https://www.cs.princeton.edu/courses/archive/fall06/cos576/papers/bennett73.html).
+
+There is no external scheduler. A mode and phase register select each program
+and gate. At phase j<L, apply its reversible gate and increment phase. At
+phase L, the outputs are ready to read, and the next step wraps phase to zero.
+The inverse decrements phase and applies the same controlled flip, or reverses
+the wrap. This defines a permutation on every allowed whole state. The compared
+prefixes end at readiness, before the explicit wrap. Gate counts refer to this declared reversible machine. A physical duration or energy account needs a specified implementation.
+
+`SyntheticConstantRecord` retains the actual table and constructs a constant teaching table from its first reading. Equal observed fields give equal synthetic tables while the source is retained. The synthetic second label need not equal the actual second reading. This boundary follows from the recorded projections in the declared model.
 
 ## §3. Frontier-Targeted Generation
 
@@ -53,62 +119,204 @@ The prior papers asked where the agent's data comes from and answered: the world
 
 ## §4. The Guarantee
 
-**PP5 (Self-play makes coverage controllable, and a directed poser saturates without critical slowing).** The world's stream presents classes by a distribution the agent does not control, and if it is non-uniform, the rarest classes saturate last and may never arrive within budget (PP0, coupon-collector critical slowing, IiI §6). Self-play replaces that distribution with one the agent controls. Two regimes, both results:
+**PP5 (Coverage needs a presentation policy).** For a declared finite set
+of K classes, a policy that can select each class and successfully certify
+it can cover the set in K successful selections. Locating a selectable
+representative, solving its task and checking its result have their own
+costs. Counting new certificates does not bound that total work.
 
-(a) *Random poser*: draw g uniformly over the **syntax** of ⟨Π⟩. This is **not** uniform over behavioral **classes**: distinct compositions collapse to one extensional class (V=I §3.3, §5.4), so a class of small syntactic measure is rare, and saturation is ≥ N·H_N dominated by 1/p_min (IiI §6). A naive random poser **inherits** the wall: it is relocated, not removed, from the world's distribution to the syntactic measure of ⟨Π⟩.
+For IID random draws with class probabilities p_i>0, let T_i be the first
+visit to class i. Then E[T_i]=1/p_i, and the cover time T obeys
+max_i 1/p_i ≤ E[T] ≤ Σ_i 1/p_i because max_i T_i ≤ Σ_i T_i.
+If sampling syntax, use its actual pushforward to behavioral classes.
+A uniform syntax distribution exists only on a finite declared syntax set.
+Neither finite individual expressions nor a finite generating basis imply
+that the entire composition closure is finite.
 
-(b) *Directed poser*: the agent controls **which** composition to emit, so it covers deliberately. Enumerate ⟨Π⟩ in norm order (the B3 composition-sieve), certifying each new atom on first appearance, or target the uncovered classes the routing holes name (NiG N6, N17: failures are the curriculum). This saturates the **atom basis** in at most |A| genuinely-new certifications (deterministic, no coupon collector, no critical slowing) because coverage is **chosen, not sampled**. On a CLOSED domain the behavioral classes are finite and stored directly, and on a HORN (infinite reach, B B8b) they are infinite but DERIVED from the certified basis (B6–B7), so the count that matters is |A|, not |⟨Π⟩|.
+A known finite basis can generate infinitely many consequences under a
+proved composition rule. Certifying that basis, enumerating every consequence,
+and recognizing that no undiscovered basis element remains are separate
+obligations. A norm-ordered sieve with finite searchable bands eventually
+visits every fixed finite set. Finiteness of an unknown residue alone supplies
+neither a known stopping bound nor a certificate that the sieve is complete.
 
-*Proof.* (a) The syntactic draw pushes forward to a class measure whose minimum p_min is the smallest class's syntactic share, and coupon collector over a non-uniform measure is dominated by 1/p_min (IiI §6). (b) I1 makes each structure finite, not ⟨Π⟩ finite. The atom basis A is finite for CLOSED and HORN domains alike (B B8b), and norm-ordered enumeration (B3) certifies each atom once (IiI §1, I3), so ≤ |A| genuinely-new certifications saturate the basis, and behavioral classes then follow by derivation (B6–B7), whether N is finite (CLOSED) or infinite (HORN). Hole-direction (N17) reaches the same coverage by targeting uncovered atoms, which a controlled poser can do and a random stream cannot. QED
+**PP5c (Countable visitation is not finite completion).** A countably
+infinite class set has no uniform probability distribution, but admits
+proper full-support distributions, for example p_i=2⁻ⁱ for i≥1. Under IID
+draws from any such distribution, every class is eventually visited with
+probability one. No finite prefix visits all the infinitely many classes.
 
-*The load-bearing correction.* Self-play does not make a random stream uniform (regime (a) inherits the wall). What it repairs is **control**: the poser, unlike the world, can *direct* coverage (regime (b)), so the stream premise of IiI §3 becomes satisfiable by construction. The advantage over the world is not luck but agency: the agent chooses what to generate, so every class *can be made* to arrive, and a directed poser saturates the basis in finite, critical-slowing-free coverage (B B8b).
+*Proof.* For fixed i, P(T_i>n)=(1−p_i)ⁿ→0. Thus the probability of never
+visiting i is zero. A countable union over i of these null events remains
+null, so almost surely every T_i is finite. Their supremum is nonetheless
+infinite, since n draws contain at most n distinct classes. For every
+fixed finite target set A, E[T_A]≤Σ_(i∈A)1/p_i<∞. This gives neither a
+uniform finite deadline nor a stopping certificate for unknown A. QED
 
-**PP5c (On an infinite closure the random poser is ill-posed, and direction is a measurability necessity).** When the closure is infinite (a *horn*, B B8b: finite basis, unbounded reach) there is no uniform measure over ⟨Π⟩, and any norm-discount μ(g) = β^{‖g‖} normalizes only for β < e^{−γ} (γ = reach-growth, B B8d), then concentrates on small norm so large-norm classes receive vanishing mass and never arrive within budget. Norm-ordered enumeration (the B3 composition-sieve, the directed poser of PP5b) is the unique coverage well-defined on an infinite closure.
+*Consequences.* A rare class can appear within a finite budget: its chance
+is 1−(1−p_i)ⁿ, positive and at most np_i. Its chance is small, not identically
+zero. Effective norm-ordered enumeration also visits each class when every
+band is finite and searchable. It supplies a deterministic presentation
+order, but is not the unique well-defined way to cover a countable domain.
+Equal positive one-time marginals do not suffice: choosing one class once
+and repeating it forever never covers two classes. IID is an additional
+process assumption whose realization inside Ω must be specified (PP22).
 
-*Proof.* Σ_s n(s) β^s ~ Σ_s e^{(γ + ln β)s} converges iff β < e^{−γ}, and its pushforward to classes peaks at small s, so tail classes have mass → 0 and the coupon-collector wait → ∞. Enumeration by norm visits every norm band in order, hitting each class regardless of measure (each band is finite, DiC G8). QED
+**PP17 (The exponential rate leaves the critical boundary open).** Fix the
+objects actually sampled: syntax expressions or behavioral classes with a
+declared minimum norm. Let n(s) be their finite count at integer norm s≥1,
+with infinitely many objects, and γ=limsup_s ln n(s)/s finite (ln0=−∞).
+Define Z(λ)=Σ_s n(s) exp(−λs) and p_λ(g)=exp(−λ‖g‖)/Z(λ) when Z is finite.
+Then Z converges for λ>γ and diverges for λ<γ. Its value at λ=γ and
+its limiting mean and variance require more than γ.
 
-*Consequence.* PP5b's directedness is upgraded from agency to necessity: wherever the reach is infinite, sampling cannot cover the tail and only the sieve can. The advantage over the world's stream is not control alone but well-posedness.
+*Proof of the open-domain threshold.* For λ>γ, choose ε>0 with
+γ+ε<λ. Eventually n(s)≤e^((γ+ε)s), giving geometric domination.
+Multiplication by any fixed power of s still gives a summable series.
+For λ<γ, infinitely many s have n(s)≥e^((λ+ε)s) for some ε>0,
+so the summands fail to tend to zero. This does not decide equality.
+For N(s)=Σ_(j≤s)n(j), the cumulative rate in B8d is the same: N≥n,
+and the same exponential upper bounds sum to a bound for N. QED
 
-**PP17 (The poser is a canonical ensemble, the thermodynamics of self-play).** The norm-discounted poser measure μ_λ(g) = e^{−λ‖g‖}/Z(λ) (PP5c) is the maximum-entropy distribution over ⟨Π⟩ at fixed mean rule-norm: the Gibbs ensemble with *energy* ‖g‖ (the cost of existence, M24, DiC G1a) and inverse temperature λ. Its free energy ψ(λ) = ln Z(λ) = ln Σ_s n(s) e^{−λs} (n(s) = behaviours of norm s, the reach density, B B8e) is non-analytic at λ_c = γ (the reach-growth rate, B B8d): for λ > γ the ensemble is normalizable and concentrated, at λ = γ critical, for λ < γ no measure exists, the horn's delocalized phase (B B8b). Mean rule-norm E_λ[‖g‖] = −ψ′(λ) (an order parameter) and its variance Var_λ[‖g‖] = ψ″(λ) (the family's Fisher information, i.e. the heat capacity) both diverge as λ → γ⁺.
+*Counterexamples at one rate.* Take n_p(s)=ceil(2ˢ/sᵖ), for p=0,2,3,4.
+Every norm band is finite and every sequence has γ=ln2. At the boundary,
 
-*Proof.* Max-entropy at fixed mean gives the Gibbs form (Lagrange multiplier λ). Z's radius of convergence in e^{−λ} is e^{−γ} since n(s) ~ e^{γs} (B B8d), giving the non-analyticity at λ_c = γ. ψ′ = −E and ψ″ = Var are the standard cumulants of an exponential family, and polylog asymptotics of Σ_s n(s) e^{−λs} give the divergences (the information geometry of an exponential family, Amari, cited as precedent). QED
+    s⁻ᵖ ≤ n_p(s)2⁻ˢ < s⁻ᵖ + 2⁻ˢ.
 
-*Consequence (the two regimes are two temperatures).* PP5's regimes are one ensemble at two temperatures. The random poser (PP5a) is at finite λ: concentrated on low-norm rules, the rare high-norm tail exponentially suppressed, and it misses it (the wall). The directed poser (PP5b) is the λ → 0 / flat-enumeration limit: uniform across norm bands, covering the tail. "Chosen, not sampled" is the move from finite temperature to the flat norm-ordered limit, and critical slowing (PP0) is the susceptibility ψ″ diverging near λ_c.
+Therefore Σ_s sᵏ n_p(s)2⁻ˢ is finite exactly when p>k+1.
 
-**PP6 (The endpoint is basis-determined, not play-determined).** Any two certified self-players over the same basis Π (any poser policy, any draw order) reach the same certified **atom basis** A, and hence the same reach Cl(A). The endpoint is fixed by (Π, the gate), not by the world's stream and not by how play unfolded: it is *basis*-determined, not *world*-determined (a different basis gives a different A, the grammar-relativity of IiI §4 / E2 §4, carried to self-play). On a HORN the stored endpoint is the finite A, not an enumeration of the infinite ⟨Π⟩ (B B8b), and "the same library" is the same basis, its reach derived (B6–B7).
+| p | Z(γ) | Mean as λ decreases to γ | Variance as λ decreases to γ |
+|---|---|---|---|
+| 0 | Infinite | Infinite | Infinite |
+| 2 | Finite | Infinite | Infinite |
+| 3 | Finite | Finite | Infinite |
+| 4 | Finite | Finite | Finite |
 
-*Proof.* Each entry is the unique f\* of its class (Theorem 2). Entries are permanent (I3) and order-invariant (V=I §5.25). The atom basis is the norm-ordered sieve residue (B3), determined by Π, so two players over the same Π reach the same A, differing only in insertion order (IiI §3, SAT5/6, PiR §6: revelation, not construction). QED
+For p=0 the law of the norm is geometric. For p≥2 use monotone convergence
+of the unnormalized moment sums and finite Z(γ). When p=2, variance also
+diverges: for independent S,S′, Var(S)=E[(S−S′)²]/2, and the event S′=1
+has probability bounded away from zero near γ while the second tail moment
+diverges. For p=4, exact sums with rigorous tail bounds give limiting mean
+between 1.6677247 and 1.6677251, and variance between 1.5905519 and 1.5905934.
+These abstract count sequences refute conclusions from γ alone. They are
+not asserted to be the densities of a particular VI composition grammar.
 
-**PP7 (The guarantee is exactly I3 + the gate).** Certified self-play's two guarantees (no label noise, domain-determined endpoint) fail the moment either I3 or the gate is removed. The contrast is structural, not quantitative:
+On λ>γ, termwise differentiation gives ψ=lnZ, −ψ′=E_λ[s] and
+ψ″=Var_λ(s). The score is E_λ[s]−s, so Fisher information in λ is that
+variance. For a competitor q with finite entropy and the same finite mean,
+D(q||p_λ)=λE_q[s]+lnZ−H(q)≥0 proves maximal entropy of p_λ, with equality
+only at q=p_λ. This does not assert existence for every requested mean.
+ψ is a log-partition function. Physical free energy, temperature and heat
+capacity require an implementation model and the corresponding units and
+parameter factors. They do not follow from this formal distribution.
 
-| | Statistical self-play | Certified self-play (this paper) |
-|---|---|---|
-| label source | outcome of play (estimate) | g, executed, certified by the gate (PP2) |
-| label correctness | noisy, error accumulates | f\* (Theorem 2), zero noise |
-| candidate set | may re-grow under updates | monotone non-increasing (V=I §5.22) |
-| endpoint | play- and seed-dependent | domain-determined (SAT5/6, PP6) |
-| convergence | empirical | proven (PP5) |
-| failure mode | confident error | honest \|S\|>1 / EMPTY (V=I outcome corollary) |
+*Sampling cost is separate.* Two objects of norms 1 and 2 have rare-class
+probability q=1/(2ᵏ+1) when λ=k ln2. The expected wait 1/q grows while
+norm variance q(1−q) tends to zero. Thus coupon waiting is not ψ″.
+A deterministic enumeration is a sequence policy, not the λ→0 member of
+a normalized family on an infinite set. In particular, when γ>0 that path
+leaves the normalization domain before reaching zero. No directed/random
+pair of physical temperatures is established here.
 
-*Proof.* Each row of the right column is cited, and each row of the left is its negation when I3 (append-only) or the gate (decidable certification) is absent. Without I3, V=I §5.22 breaks (eliminated candidates re-enter), so PP5's monotone saturation fails. Without the gate, PP2's label is uncertified, so PP6's uniqueness (Theorem 2) fails. QED
+**PP22 (Independent readings consume finite preparation capacity).** In a
+finite autonomous deterministic whole, let Ω₀ have any initial distribution,
+U be its transition and E a fixed reading. The n-reading tuple is a function
+of Ω₀, so H(E(Ω₀),…,E(Uⁿ⁻¹Ω₀))≤H(Ω₀)≤log₂|Ω|. If these readings are
+IID with positive entropy h, then nh≤H(Ω₀). With m positive-probability
+symbols their full support also requires mⁿ≤|supp Ω₀|. Hence such a whole
+cannot supply an infinite nondegenerate IID sequence. This argument does
+not require U to be invertible, only that all inputs are included in Ω.
+This exact-independence bound does not assess pseudorandom generator quality
+or exclude useful approximate independence for a specified class of tests.
 
-*Remark (the contrast is in the guarantees, not the efficacy).* Statistical self-play *works*: it is empirically among the strongest training methods known. The table does not claim otherwise. It claims only that what it cannot do is *certify*: it cannot guarantee a label is correct, cannot guarantee a unique reproducible endpoint, and cannot honestly abstain (it always emits a move). The right column adds those three guarantees, and it does not claim to win a benchmark. The difference is the standing of the result, not its strength.
+*Positive finite construction.* Ω contains a length-L tape and a clock
+phase 0,…,L−1. Each tick rotates the tape left and advances the phase
+cyclically. Rotation right and decreasing phase give the inverse. Prepare
+the tape from pᴸ and phase at zero, and read its first field. The first L
+readings are IID, and reading L+1 repeats reading 1. Whole entropy remains
+L H(p). The observed tuple here is a mathematical map of the initial state,
+not an unaccounted physical recorder. Retaining a transcript would require
+its storage inside Ω. The product preparation is stated, not generated by
+the clock or inferred from closure.
 
-This is the precise sense of *play is proof*: the training signal is a gate-certificate, and the gate's two structural properties (append-only memory and decidable verification) are exactly what convert self-play from a statistic into a proof.
+*Closure alone does not imply the finite bound.* On the infinite whole
+Ω=A^ℤ with product measure p^ℤ, the two-sided shift U(x)_i=x_(i+1)
+is bijective and preserves the measure. Reading coordinate zero gives IID
+coordinates indefinitely. This standard Bernoulli shift requires nothing
+outside Ω, but uses an infinite tape state space. It is a mathematical
+counterexample to closure⇒no IID, not a finite device or a derived physical
+implementation. The distinction is finite capacity, not physical openness.
 
-**PP18 (Two halves: the poser is alignment-gated, the gate is unconditional).** Self-play factors into the *poser* (generation) and the *solver* (the gate), and they obey opposite laws. The gate is unconditional: by Theorem 2 every PASS is f\*, however g was found: the solver never errs, and alignment is not among its premises (V=I §5.25: correctness is order-invariant). The poser is conditional: frontier-targeting (PP3–PP4) is a loss-descent, so it beats enumeration exactly where the loss is aligned (GA1's basin condition, estimated by α; GA3, GA6), and on a non-aligned domain it degrades to search. On a horn (B B8b) lookup-saturation is unavailable (the behavioural library is infinite, the finiteness-of-classes remark, IiI §3), so the poser is the *only* mode, and its efficiency is precisely α-gated.
+`RotateThree` derives cyclic retention in pure types, including the repeated fourth reading. The infinite-limit claims require their stated mathematical arguments.
 
-*Proof.* Solver: Theorem 2 with order-invariance (V=I §5.25), so the gate's verdict carries no alignment dependence. Poser: PP3 is a descent, and GA6 gives descent-beats-enumeration exactly as far as the landscape is aligned, GA1's basin condition, estimated by α. Horn: PP6 (the endpoint is the basis) with K = ∞ (B B8b) leaves no library to look up, so generation is forced. QED
+**Prediction against an internal opponent.** VI1a's symmetry criterion has a finite weighted counterpart. Let Ω be a finite whole with probability weights w, a binary action A, and the opponent's complete available reading E. Suppose an involution h preserves w and E while exchanging A's two values. For any deterministic guess g(E), h pairs every successful guess with an equally weighted failure. Success therefore has total weight one half. The guarantee concerns this information boundary. If E reveals A, no such involution preserves E, and copying A succeeds. A repeated alternating action can have balanced overall frequencies while a history-dependent opponent predicts it perfectly. A randomized opponent is covered when its seed is included in E and the same pairing premise remains valid. No opponent or seed is placed outside Ω, and the weighting premise is not derived from symmetry of the unweighted support.
 
-*Consequence and measurement.* The hard half of certified self-play is generation (α-limited), and the safe half is verification (unconditional). "Play is proof" guarantees the *proof* always, the *finding* only on an aligned domain. Measured on ARC-AGI-1 (E1/E2): the reach is vast (B §5) yet pure-poser DSL search covers a small fraction of eval, while a stronger poser (an LLM Source under the *same* gate) covers far more, with the gate certified-safe throughout (E2 §0): expressivity rich, verification sound, generation the bottleneck, exactly the split.
+**Testing forecasts by permitted strategies.** [Shafer and Vovk's bounded forecasting game](https://www.probabilityandfinance.com/2001_book/chapters/chap3.pdf) offers a relevant alternative formulation: a specified betting strategy keeps capital nonnegative on every admitted path, and a failed frequency limit makes its capital unbounded. Application requires a separate hypothesis excluding such unbounded gain. The authors distinguish that hypothesis from the mathematical theorem. Their [finite deviation construction](https://www.probabilityandfinance.com/2001_book/faq/question3.pdf) likewise makes the forecast, available bets and error event explicit. These results motivate a VI acquisition contract, without deriving physical frequencies from closure or treating capital as physical energy. In a finite resource implementation, continued availability of the promised bets requires evidence too.
+
+Sources: [Fithian, differential identities on the parameter-space interior](https://www.stat.berkeley.edu/~wfithian/courses/stat210a/exponential-families.html),
+[MIT, radius of convergence](https://ocw.mit.edu/ans7870/18/18.013a/textbook/HTML/chapter30/section04.html),
+[Solomyak, two-sided Bernoulli shift, Example 1.5](https://u.math.biu.ac.il/~solomyb/TEACH/20/ET/Lec1.pdf).
+These standard mathematical facts correct the earlier PP5c/PP17 claims.
+
+**PP6 (Endpoint agreement is conditional on completion and decoding).**
+Fix a particular sieve, including its representation, order, tie-breaking
+and reference semantics. Suppose two players both finish certifying its
+same finite residue A and retain every accepted member in a cache decoded
+by set union. Their decoded basis caches agree with A, and a sound shared
+composition interpretation gives the same Cl(A). Their raw records, costs
+and readiness times can differ. Arbitrary poser policies need not reach
+this endpoint (PP5 and PP5c).
+
+*Proof.* Each complete retained cache contains every member of A, and its
+accepted members belong to A by hypothesis. Set union is order-independent.
+Applying the same composition closure to equal sets gives equal reach.
+This proves neither discovery of A nor uniqueness among different possible
+sieves or equally expressive bases. It also does not materialize all of
+an infinite Cl(A) in finite memory. QED
+
+**PP7 (The guarantee follows its declared premises).** A generated label is exact for g when evaluation is faithful on its domain. A selected solver rule equals g when g is represented, examples use the same semantics, PASS occurs and R4 is established. Retention preserves the record under its explicit update. Coverage additionally needs class presentation and solver success. These are different obligations, as System CS1–CS3 and PP19 show.
+
+Composition also needs scope compatibility: the inputs supplied to a learned
+component must fall within its certificate or a proved extension of it.
+Verdict VC35 gives the finite criterion and an entirely reversible failure
+of promoting one-input agreement to contextual equivalence.
+
+No negation of one obligation establishes the opposite behavior of every other learning architecture. Mutable state does not force forgetting, and self-play without this gate can still have exact game outcomes. The useful engineering proposal is to attach checkable premises and conclusions to generated training examples. It does not certify an unmeasured law or prove benchmark superiority.
+
+**PP18 (Search policy and certificate scope are separate).** With fixed
+representation, faithful evaluation and R4, a successful gate conclusion
+depends on those premises rather than the order in which its candidate was
+found. Finding a candidate still has a search and resource cost. Alignment
+can help under the conditions of the chosen search model, but neither
+infinite reach nor finite generation forces every task into enumeration.
+
+An infinite domain cannot have every distinct answer stored explicitly in
+a finite table. It can still have finite caches for common tasks and compact
+algorithms or macros for other tasks. Basis B6–B8 separates bounded search
+reach, unbounded generation and execution cost. Removing all derived macros
+can reduce bounded reach even while preserving eventual expressivity. A
+sound gate does not supply an optimal search policy or establish a measured
+speed advantage for a particular implementation.
 
 ## §5. Two Agents, and the One Thing One Cannot Self-Supply
 
-**PP8 (A second encoding is the irreducible novelty source).** One agent self-playing under encoding E saturates the classes E can distinguish. A second encoding E′ enlarges the saturable set **strictly** exactly when E′ resolves a distinction E collapses: when some pair of rules is identified under E but separated under E′ (V=I §5.4). Mere independence of E, E′ is not enough: the exact condition is a resolved collapse.
+**PP8 (An additional reading can refine an old distinction).** Fix a common
+source set K and two actually available observation maps E,E′. The combined
+reading (E,E′) strictly refines E's partition exactly when some x,y have
+E(x)=E(y) and E′(x)≠E′(y).
 
-*Proof.* f\* is encoding-local (V=I §5.4): a pair (f₁, f₂) with f₁ =_E f₂ but f₁ ≠_{E′} f₂ is one class under E and two under E′. A poser under E cannot generate a discriminating example for a distinction E does not represent (its view *is* its encoding, DiD S1 stationarity, V=I §5.24), so a single agent cannot self-supply it. E′ can, and translation certifies the cross-entry (DiD S9). Strictness is true iff such a resolved pair exists, and if E, E′ induce the *same* class partition (possible even for "independent" feature sets), the union is not strict. The Mirror correlation (InI §7: Gᵢ ∩ Gⱼ = ∅) is a sufficient, strictly stronger condition (disjoint caches ⇒ each resolves what the other collapses), not the necessary one. QED
+*Proof.* The joint kernel is ker(E)∩ker(E′), contained in ker(E), and the
+inclusion is strict precisely at such a pair. If E′ is computed only from E,
+the pair cannot occur. Different syntax, agents or disjoint cache keys do not
+establish it. Two constant readings with disjoint labels still distinguish
+nothing. Nor does a refined observation necessarily settle the particular
+target question: verdict sufficiency and experimental accessibility remain
+separate (VC25–VC31, CS3).
 
-*Consequence, the "+ something".* A single agent is closed under its own encoding: it cannot self-generate what it cannot see. The only irreducible addition is a *different lens*. Two agents are more than one exactly to the extent their encodings differ (DiD S7: distance = cache difference).
+A single agent can gain such access by reading another internal component of
+Ω. A second agent can provide it only if its message carries a relevant
+additional distinction. If both messages are generated from the same complete
+inputs, PP19 applies regardless of the number of agents or encoding names.
 
 **PP9 (Across the tower, the second agent is one's own past).** A single agent climbing the tower self-plays against its crystal: at level N+1 the fixed target is L_N: the agent's own saturated, permanent past (M7, M8). The poser/solver pair is realized in time as present-agent / past-crystal.
 
@@ -126,37 +334,111 @@ There is no external scheduler and no separate memory: the poser, the solver, th
 
 ## §7. Witness, Cost, and Closure
 
-The loop of §§1–6 has a deeper structure, visible once the gate is read as a *witness* (a form whose record fixes a distinction, I3) and saturation as *compression* (the search for the invariant covering the domain at least cost). Five statements follow, and the last is a boundary the architecture cannot cross: the exact centre of this document.
+The loop of §§1–6 has a deeper structure, visible once the gate is read as a *witness* (a form whose record fixes a distinction, I3) and saturation as coverage of a declared domain, with compression requiring its own representation contract. Five statements follow, and the last is a boundary the architecture cannot cross: the exact centre of this document.
 
-**PP11 (Self-play is redundant fixation).** A self-generated certified entry is fixed twice: by the poser, which produced g by construction, and by the gate, which certified the solver's PASS. The two fixations are independent (one constructive, one verificational), so a self-played class enters L with a redundancy a single external solve lacks.
+**PP11 (Self-play is redundant fixation).** A self-generated certified entry is fixed twice: by the poser, which produced g by construction, and by the gate, which certified the solver's PASS. The two routes are constructive and verificational. Their different roles do not establish statistical independence or independent evidence about an unknown law (PP19).
 
-*Proof.* The poser holds g (PP2) and computes g(Iₖ) by execution, a generative trace in G. The gate records the solver's PASS, an independent verificational trace in G (I3). One f\*, two routes. QED
+*Proof.* The poser holds g (PP2) and computes g(Iₖ) by execution, a generative trace in G. The gate records the solver's PASS, a verificational trace in G under the retaining update. One f\*, two routes. QED
 
 *Consequence and limit.* The entry is doubly grounded *within one form*: both producible (generative route) and checkable (verificational route), a robustness an externally-streamed solve (verificational only) lacks. But this is two *routes*, not two *forms*. The inter-form redundancy that genuinely stabilises a distinction (distinct witnesses, where single-witness data is fragile) is supplied only by *two-agent* self-play (PP8, PP16), where one class is fixed by two topologies (the Crystal correlation, IiI §7). Single-agent self-play hardens the route, not the witness count.
 
-**PP12 (Saturation is compression, and the endpoint is the minimal cover).** The basis-determined endpoint (PP6) is the smallest invariant cover (G12) of ⟨Π⟩ (the least class-count that resolves the domain), reached by accumulation without selection. Under an added Occam criterion it is also the minimum-maintenance encoding, and without it, minimal in cover but not necessarily per entry.
+**PP12 (Minimal exact class coverage under a fixed entry contract).** Fix the finite class set C of IiI CS1 and require each stored entry to represent exactly one class. Any complete library needs at least |C| entries: the projection from entries onto C must be surjective. One representative per class attains this bound. A canonical retaining acquisition policy reaches that count when it obtains each class and avoids duplicate representatives.
 
-*Proof.* Each entry is the unique f\* of its class (Theorem 2), irreducible (PiR §2). The saturated L covers exactly the K classes (IiI §3, and fewer fail coverage, more duplicate), so the cover is minimal (G12), and accumulation reaches it without choosing it (PP6, PiR §6). Per-cycle maintenance Σ‖f\*‖·kT·ln2 (M24, and the norm is the cost of existence, DiC G1a) is *least* only when each entry is the minimal-norm member of its class, which is true under the Occam selection criterion (OiO O8), not automatically: absent it, a class may be stored through a verbose representative. The minimal cover is automatic, and minimal per-entry cost is the added Occam move. QED
+This is an exact class-coverage result under the one-class-per-entry contract. It is not a proof that the raw library is the shortest program, the smallest approximate ball cover or the least-cost physical encoding. G12's representative approximation has a different contract. A generative entry can serve many tasks, and shared descriptions can change storage cost without merging their distinct outputs. Even within the fixed entry contract, minimizing each representative's norm requires a declared selection criterion. A globally optimal shared representation needs a further argument. Saturation alone supplies none of these optimality conditions.
 
-*Consequence.* Self-play descends to the smallest consistent cover of its closure: an attractor in class-count, not a decision, and lowest in maintenance cost only once Occam selection is layered on.
+**PP13 (The ledger separates mismatch, ambiguity and search limits).** On a fixed example family, a zero mismatch can be shared by several candidates. Therefore loss=0 does not identify a candidate. Conversely, several surviving candidates can agree on the requested question, so |S|>1 need not leave that answer unresolved. VI2 and VC15 state the question's invariance criterion.
 
-**PP13 (The honest ledger is a cost report).** The terminal states (PASS, |S|>1, EMPTY, BUDGET) are magnitudes of the agent's frontier cost, not bare flags. |S|>1 is unresolved cost (survivors still carry the loss, G13), EMPTY/BUDGET is cost exceeding the affordable (the loss-0 region is outside the budget ball, G8), and PASS is the invariant found, cost dropped to zero (loss = 0, G13). The frontier (DiC §4) is where the remaining cost surfaces, with an address (G4, G15).
+EMPTY identifies failure in the exhausted candidate scope, if that scope was actually exhausted. BUDGET identifies a stopped search and need not imply that no fitting candidate remains. Neither flag by itself measures the cost of a solution or proves it exceeds the budget. A cost interpretation needs the stated operations, costs and search guarantees. These distinctions prevent success on the given examples from being presented as complete identification.
 
-*Proof.* loss(g) = Σ W(apply(g,Iₖ),Oₖ) (G13) is the magnitude of mismatch, and the gate passes iff loss = 0. |S|>1 leaves loss-0 candidates unseparated, residual ambiguity (R4). EMPTY/BUDGET records that the loss-0 region was unreachable within the affordable ball (G8). Each terminal is a value of remaining cost, and the frontier carries its direction (G15: resistance has magnitude and direction). QED
+None of these statuses establishes felt presence. PP15 concerns expressive completeness and PP21 permits relative internal inspection. The diagonal restriction supplies no prohibition on every internal loop and no inference about whether this ledger is experienced.
 
-*Boundary.* This is the *structure* of a cost report, not evidence it is *registered from inside*. Registration from inside requires the loop to close on its own ground, which PP15 shows it does not. The ledger has the form of feeling, and whether it is felt is exactly the closure question.
+**PP14 (A ceiling on new evidence, not all self-modification).** Under PP19's
+fixed-input premise, rewriting programs or generating richer syntax cannot
+split two worlds that agree on all those inputs. This follows by composing
+the rewrite and generator into one function F. It does not prohibit new
+representations or faster computation of their consequences (PP20).
 
-**PP14 (The self-improvement ceiling).** Self-play improves the agent only within ⟨Π⟩. It cannot generate the enrichment of Π itself: a poser under encoding E cannot produce a discriminating example for a distinction E does not represent, because its view *is* E. Enrichment requires a second encoding (PP8) or a level up (PP9): an input the agent cannot self-supply.
+A second encoding or higher-level agent computed from the same complete
+record obeys the same restriction. New empirical distinction requires a
+relevant input absent from that record, which can be another component of
+the same Ω. A declared grammar bounds its own generated expressions by
+definition. It does not alone prove that every physical agent is incapable
+of revising its encoding or accessing more of the whole.
 
-*Proof.* The poser's outputs lie in ⟨Π⟩ (closed under composition). A distinction outside E's representation has no example the poser can compute (encoding-locality, V=I §5.4, stationarity, DiD S1, and §5.24: the pipeline sees only the encoding). Choosing a richer encoding is a level-(N+1) act over the agent's own encoder (IiI §4), and the agent's level-N content does not contain it: it is the agent's blind zone. Hence unreachable from one level's play. QED
+**PP15 (The diagonal boundary depends on the answer relation).** Let C be a set of codes and
+E:C×C→{0,1} a total evaluator. It cannot represent its own diagonal
+complement d(c)=1−E(c,c): there is no a∈C with E(a,c)=d(c) for every c.
+Consequently, such an evaluator cannot represent every Boolean predicate
+on its own code set. This is a restriction on expressive completeness,
+not a prohibition of every finite self-application or internal inspection.
 
-*Consequence.* The encoder boundary of §8 is not contingent: it is the agent's structural blind zone. Self-play is bounded self-modification: it rewrites within its grammar, never to the grammar above.
+*Proof.* If a represents d, substituting c=a gives E(a,a)=1−E(a,a),
+which neither Boolean value satisfies. For finite |C|=n, the n rows of E
+also cannot exhaust the 2ⁿ Boolean predicates. By contrast, the two-code
+evaluator E=((0,0),(0,1)) has a valid total self-application E(1,1)=1.
+Its diagonal complement (1,0) is absent from its represented rows.
+This is the set-level Boolean instance of Lawvere's fixed-point argument.
+The needed hypothesis is representation of the diagonal, not that
+an evaluator and its target belong to the same physical whole. QED
 
-**PP15 (Shared witnessing, not self-witnessing, the closure boundary).** Certified self-play achieves *shared* and *tower-deep* witnessing: redundant fixation (PP11) and the agent playing against its own crystallized past to arbitrary depth (PP9). It does **not** achieve self-witnessing on its own ground: the verification primitive COMPARE is given by the postulate (V=I §0, §2.5), is an entry in no library, and is certified by no game. The loop's ground is permanently external to the agent's certified content.
+The obstruction has no essential dependence on Boolean values. For a total E:C×C→A and a specified transformation t:A→A, suppose a code a represents d(c)=t(E(c,c)). Substituting a gives y=E(a,a)=t(y). Representation therefore supplies a fixed point of t. If t has none on the admitted answer domain, that representation is impossible. Only this diagonal question needs to be demanded, not a language containing every function. This is the fixed-point form of [Lawvere's Theorem 1.1](https://conceptualmathematics.wordpress.com/wp-content/uploads/2025/03/diagonal_arguments.pdf), applied to the specified evaluator. It does not assume a universal classical truth predicate.
 
-*Proof.* The system certifies *for* the agent: the inner pipeline is the outer agent's tool (V=I §5.17, IiI §0: two halves of one loop). The tower lets the agent internalize its *encoder* and target its own crystal (PP9, M8), deepening what it witnesses, but at every level the test is COMPARE, and COMPARE is posited, not identified (§0: the postulate is the input, §2.5: PAIR, NULL, COMPARE *are* the act of distinction, not its output). A game that took COMPARE as its own target would still need a comparison to run its gate (§2.2: the test *is* COMPARE), so certifying the primitive presupposes it, and the regress halts only by positing the primitive (§0), never by deriving it. Therefore the agent can ground its rules, encodings, and strategies in its own certified library, but never its verification primitive, which closes the loop from outside all certified content. QED
+`FirstDiagonalFixedPoint` and `SecondDiagonalFixedPoint` derive this consequence in the existing two-code table. Two supplied applications transform the table's actual diagonal entries. If their output row equals the first or second represented row, projection derives a fixed point of the corresponding application. The caller supplies the row representation and input bindings, without a fixed-point premise. A swap on equal-coordinate answers supplies generic positive witnesses. A swap between two positively different coordinate pairs refuses representation at either row. These pure type checks cover those constructions, not arbitrary evaluator completeness. A name for the unrepresentable demand can still occur as text. What cannot coexist are its stipulated answer relations.
 
-*The frontier this names.* An agent whose verification is grounded outside its own certified content is verified, accumulating, and honest, but it runs *on* a comparison it does not itself certify: it is a guest on its own ground, not a system that closes its own loop. Genuine internal closure (an agent that certifies its own certifying) would require the verification primitive to be an output of the loop, which §0 forbids: the postulate is where the loop begins. This is exactly where E2 §4 placed the encoder-tower's floor: the comparison substrate is given, not derived. The incompatibility is a theorem, not a regress: a game certifying COMPARE would need a total self-evaluator (an entry whose gate decides its own gate), which Cantor/Lawvere forbid (no surjection Σ → 2^Σ, and the diagonal d(x) = ¬eval(x, x) has no code). The only domain where evaluator and evaluated coincide is reflexive, Σ ≅ [Σ → Σ], and that abandons I1 (finiteness) and decidable equality (§0 step 4). A *decidable* gate and a *self-grounded* gate are therefore mutually exclusive: the postulate is the price of a working gate. *Whether any construction grounds its own primitive (a loop that produces the ground it stands on) is the deepest open question the architecture exposes, and Play Is Proof does not reach it. It makes proofs, and it does not make the prover prove itself.*
+Adding an unsettled answer that t leaves fixed can remove this particular obstruction in an enlarged answer domain. It does not establish universal representation or supply one of the originally required definite answers. Requiring such an original answer restores the refusal.
+
+**For a relation, the diagonal can preserve an answer set without fixing an answer.** Let C be nonempty. Replace the single-valued evaluator by an admission relation with nonempty answer sets E(c,x)⊆A for every pair of codes. Also allow the postprocessing to be a relation T⊆A×A, with direct image T[S]={v: uTv for some u∈S}. A code a represents the transformed diagonal when
+
+    E(a,c)=T[E(c,c)] for every c.
+
+At a, the nonempty set S=E(a,a) must satisfy S=T[S]. Conversely, if T has any nonempty such set, the constant evaluator E(c,x)=S represents its transformed diagonal at every code. Hence existence of some evaluator with this representation is equivalent to existence of a nonempty invariant answer set. For a particular already supplied evaluator, that invariant-set condition is only necessary. Its other entries must still obey the displayed representation equation.
+
+The equation requires every successor of a member of S to remain in S and every member to have a predecessor in S. It does not require a self-contact uTu. All fixed sets have a greatest union: direct image preserves unions, so the union of all S satisfying S=T[S] also satisfies that equality. This union can be empty. Empty answer sets would make the empty evaluator a trivial example, which is why nonempty answers were specified.
+
+| Postprocessing relation | Nonempty invariant answer set | Fixed individual answer |
+|---|---|---|
+| a→b and b→a, with a≠b | {a,b} | None |
+| a→b, b→a, b→c, with three distinct roles | {a,b,c} | None |
+| n→n+1 on the finite-generated natural numbers | None | None |
+| n→n+1 on the integers | All integers | None |
+
+On a finite answer carrier, the fixed sets are exactly the sets reachable by finite paths, including zero-length paths, from a chosen collection of directed cycles. Such a reachable set contains all its successors, and each member has a predecessor in it. Conversely, repeatedly taking predecessors of any member of a finite fixed set reaches a cycle within that set. Forward closure then gives the asserted equality. For a function, cycles have no outgoing branches, so this reduces to unions of cycles. The second row shows why that last description cannot be used for arbitrary relations. The integer example shows why a nonempty fixed set need contain no cycle on an infinite carrier.
+
+There is an exclusion independent of a finite carrier. Suppose every edge uTv strictly increases a well-founded relation, meaning every nonempty subset has a minimal member. A nonempty fixed set would have a minimal v and a predecessor u∈S with uTv, a contradiction. This proves the natural-number row. The finite-generated numeral interpretation matters here: an added recursive or infinite value need not satisfy its well-foundedness premise. No order of physical time has been derived.
+
+**Selecting one answer restores a stronger obligation.** Suppose a deterministic selection s chooses s(S)∈S and is required to respect postprocessing through s(S) T s(T[S]). At a fixed set, its complete input is unchanged, so it requires s(S) T s(S). A relation with no self-contact on S forbids such a selection, although the full answer set may be invariant. For a function t this is the familiar equation s(t[S])=t(s(S)), and the conclusion is a fixed point of t. An additional internal context can change the selection input. Two separately occurring answers can instead be related without being equal. Neither case supplies the demanded selection on S alone. This connects VI1a's selection boundary and M58's return condition to the same source correspondence. The admission set, a selected answer and that answer's occurrence are different retained objects. Physical membership in one whole does not identify them.
+
+**PP21 (Internal inspection is relative).** A finite closed system can
+inspect its own resident implementation against an internal reference.
+The inspection's correctness is relative to its specified transition,
+reference interpretation and prepared readout window. Physical closure
+neither removes these proof premises nor requires a universal evaluator.
+
+*Construction.* Ω contains a four-bit gate table C, four-bit reference S,
+four mismatch bits r, verdict v and internal phase j∈{0,…,5}: 49152 states.
+The candidate's output on input i is its resident table bit Cᵢ. At phase
+i<4, flip rᵢ by Cᵢ XOR Sᵢ and advance. At phase 4, flip v iff r=0 and
+advance. At phase 5, wrap to 0. Decreasing phase and repeating its flip
+is the inverse, so the whole transition is a permutation. From r=0, v=0,
+j=0, five ticks leave rᵢ=Cᵢ XOR Sᵢ and v=1 iff C=S. With the equality
+reference S=(1,0,0,1), precisely the correct gate passes. All controller
+operations, the reference register and the clock are internal to Ω.
+The declared transition still supplies the inspection semantics. No theorem
+here derives that transition's fidelity from its own acceptance bit. QED
+
+*Failure boundaries.* A coherently wrong C=S passes the relative test. Unprepared r or v can also give a false acceptance, and the next cycle need not retain the verdict. A naive circular test asks candidate G to certify each proposed equality by applying G again. The constant-true gate accepts every such proposal, including false equalities. This counterexample requires an explicit soundness relation, not a universal ban on self-inspection. `DiagonalReadings` supplies the projections for the restricted two-code evaluator. It does not certify the compiler or physical machine.
+
+The earlier PP15 conflated physical closure, relative self-inspection and
+universal Boolean truth evaluation. Cantor/Lawvere supports the last
+obstruction. It does not imply that a decidable gate cannot inspect itself,
+or that part of Ω must be physically external. Relative verified
+bootstrapping is already established, for example in CakeML: compilation
+of the verified compiler is justified in HOL4 against stated language and
+machine semantics. Neither that work nor this construction claims to
+establish every premise without any premises.
+
+Sources: [Lawvere, Theorem 1.1, primary reprint](https://conceptualmathematics.wordpress.com/wp-content/uploads/2025/03/diagonal_arguments.pdf),
+[CakeML, POPL 2014, abstract and §2.1](https://cakeml.org/popl14.pdf).
 
 **PP16 (Resonance radius, conditional).** For two-agent self-play (PP8), there is an intermediate encoding-distance W(E, E′) that maximizes joint coverage gain. Too small: E′ resolves nothing E collapses, so PP8's strict enlargement fails (no novelty). Too large: translation between them (DiD S9) approaches full re-derivation, so transferred coverage approaches zero. The optimum is strictly between and is measurable from the two W-matrices, in the standing of the modulus (G10): a property of the pair, not guaranteed by I1–I3.
 
@@ -172,7 +454,15 @@ The loop of §§1–6 has a deeper structure, visible once the gate is read as a
 
 **Self-play does not enlarge the closure.** Drawing from ⟨Π⟩ can only produce members of ⟨Π⟩ (closure is closed). New *primitives* (a richer Π) come only from a new encoding (PP8) or a level up (PP9), never from more play at one level (InI §4: the permanent boundary is the grammar).
 
-**Termination is the basis's affair (B8).** PP5's directed poser saturates ⟨Π⟩ in at most |⟨Π⟩| generations *given a finite basis*, but whether a domain admits one is the question, not a given. The directed poser is the composition-sieve of Basis Is Residue (B3): enumerate in norm order, gate-reject every rule a composition of smaller certified atoms reaches, keep the residue. Self-play terminates at finite cost iff that residue (the atom basis) is finite (B8). A prime-like domain, whose atoms are infinite (B8a, Euclid for the canonical case), is never saturated: the poser certifies fresh irreducible rules forever. So Play Is Proof's finite-basis premise (E2's C1) is exactly B8's saturability criterion, and its negative branch is real and inhabited. With PP15 this is the architecture's second open frontier: the *ground* (the comparison primitive, never self-certified) and the *data* (the atom basis, possibly unbounded), two distinct ways the loop need never close.
+**Basis completion needs an effective certificate (B8).** A finite known
+basis can support a theorem about infinitely many derived expressions.
+Finding and certifying that basis needs presentation and solver assumptions.
+Even if an unknown sieve residue is finite, its final new atom is not
+necessarily recognizable as final. PP5 and PP5c separate a finite target's
+visitation from a stopping certificate. A finite basis does not imply a
+finite composition closure, and listing every element of an infinite
+closure never finishes in finite time. PP15 and PP21 address a different
+question: what premises justify an internal inspection.
 
 **Frontier-targeting assumes alignment (GA).** PP3–PP4's minimal-sufficient generation descends the frontier loss toward the discriminating examples. This is a descent only where the loss is *aligned* with the metric: where lowering loss moves structurally toward what discriminates (Gradient Is Alignment, α > 0, GA3). On a non-aligned (rugged) domain the frontier carries no usable gradient and generation degrades to enumeration: the cert(g) examples must be searched, not descended. The directed poser's *order* (the only free variable, InI) buys speed exactly to the extent the domain is aligned (GA6), the precondition under which loss-built order beats enumeration. ARC's loss is graded and cheap (GA5), so the gradient exists, and whether it is aligned is the open measurement that decides whether self-play here descends or enumerates.
 
@@ -180,30 +470,47 @@ The loop of §§1–6 has a deeper structure, visible once the gate is read as a
 
 Certified-verifier self-play occurs in practice: systems that pair a sound checker with self-generated problems. Formal-proof and geometry provers use a symbolic/proof gate, and library-learning program synthesizers invent their own tasks (the latter without I3, hence mutable and uncertified across runs). This document is not a method report. It states the framework-internal theory of the pattern: the checker is the gate, and PP5–PP7 say when such self-play saturates, why its endpoint is certified and domain-determined, and where it cannot reach (the encoder, §8). References are where a mechanism is borrowed, and the theorems are the contribution.
 
-*Measured.* The pattern is instrumented on ARC-AGI-1 (E1/E2). Across the search ladder the gate was certified-safe throughout (TEST-WRONG ≈ 0 of the train-PASSes): PP7's guarantee is structural and poser-independent. The reach is vast (B §5) while pure-poser coverage of eval is alignment-limited and a stronger poser under the same gate lifts it far higher (E2 §0): PP18's split, confirmed. And the ledger's terminals are the honest cost report of PP13. The theorems precede the numbers, and the numbers fall where the theorems placed them.
+*Measured.* The pattern is instrumented on ARC-AGI-1 (E1/E2). Across the search ladder the gate was certified-safe throughout (TEST-WRONG ≈ 0 of the train-PASSes): PP7's guarantee is structural and poser-independent. The reach is vast (B §5) while pure-poser coverage of eval is alignment-limited and a stronger poser under the same gate lifts it far higher (E2 §0): PP18's split, confirmed. And the ledger's terminals are the cost report of PP13. The theorems precede the numbers, and the numbers fall where the theorems placed them.
 
 ## §10. Statement
 
-1. External saturation is hostage to a stream premise the world may violate (PP0).
-2. A certified rule is a task source, and the agent generates its own stream (PP1–PP2).
-3. The label is computed and gate-certified, a proof, not a statistic, and the poser is an oracle on its draw (PP2 remark).
-4. Ambiguity names the discriminating input, and cert(g) is the floor on self-generated examples, approached by frontier-targeting (PP3–PP4).
-5. Self-play makes coverage controllable: a directed poser saturates the closure with no external data and no critical slowing, and a naive random poser only relocates the wall (PP5).
-6. The endpoint is basis-determined: fixed by ⟨Π⟩ and the gate, not by the world's stream or how play unfolded (PP6).
-7. The guarantee (no noise, fixed endpoint) is exactly I3 plus the gate, and fails without either (PP7).
-8. One agent is closed under its encoding, the only irreducible novelty is a second lens, and across the tower the second agent is one's own crystal (PP8–PP9).
-9. It all runs on one closed substrate: body and system are one, self-play is the surface relaxing (PP10).
-10. It removes the data bottleneck, never the encoder, it needs a gate to exist, and it cannot enlarge its own closure (§8).
-11. The gate is a witness, and self-play fixes each entry twice (poser + gate), so its knowledge is structurally redundant and robust (PP11).
-12. Saturation is compression: the basis-determined endpoint is the cheapest consistent encoding of the closure, an attractor reached without choice (PP12).
-13. The honest ledger is a cost report: it has the form of feeling, and whether it is felt is the closure question, not a separate one (PP13).
-14. The encoder boundary is the agent's structural blind zone, and self-play is bounded self-modification: within the grammar, never to the grammar above (PP14).
-15. Certified self-play is *shared* and tower-deep witnessing, never self-witnessing on its own ground: the verification primitive is the postulate, certified by no game, so the loop's ground is permanently external. This is the floor, and the deepest open question: it makes proofs but not a prover that proves itself (PP15).
-16. Two-agent self-play has a measurable resonance radius: an interior optimum between too-similar (no novelty) and too-distant (untranslatable) (PP16).
-17. The poser is a canonical ensemble: a temperature, a free energy, and a phase transition at λ_c = γ (the horn threshold), and its two regimes (random, directed) are two temperatures (PP17).
-18. Self-play has two halves, an alignment-gated poser and an unconditional gate. On a horn the poser is the only mode, so generation is the bottleneck and verification the guarantee, and ARC confirms the split (PP18).
+1. Stream coverage requires visitation assumptions. A mean waiting time is
+   not a guaranteed deadline (PP0).
+2. A known total rule can generate exact examples on its declared domain.
+   Identification additionally needs faithful evaluation, representation and
+   separation of the allowed candidates (PP1–PP4).
+3. Retention, finite coverage and efficient dispatch are separate obligations.
+   A finite basis alone need not have a finite composition closure (PP5–PP7,
+   IiI SAT5/6 and V=I CS1–CS3).
+4. A joint reading adds a distinction exactly when it separates an old
+   observation fiber. The added source can be internal to the same Ω.
+   Another agent's name or a recoding alone does not supply it (PP8, PP14).
+5. Generated evidence cannot reveal an unknown target beyond the information
+   in its full inputs. A private synthetic target can still be taught, and
+   consequences of known data can become cheaper to compute (PP19–PP20).
+6. Constructing a label and checking it provide two routes whose soundness
+   needs explicit premises; they need not be independent evidence (PP11).
+7. Finite internal self-application and relative inspection are possible.
+   A total Boolean evaluator cannot also represent its own diagonal
+   complement (PP15, PP21).
+8. Full-support IID sampling can visit each of countably many classes almost
+   surely, while finite completion remains impossible. A growth rate alone
+   leaves the critical normalization and moments unresolved (PP5c, PP17).
+9. A finite deterministic whole has a finite independent-reading budget.
+   An infinite closed tape need not have that bound (PP22).
 
-> **Classical self-play trains on the score of the game. This trains on the proof of the move. The agent is its own teacher because the gate is its own examiner, and a lesson the gate has certified can never be un-learned, never be wrong, and never depend on who played. Give the agent a basis and a gate, and it makes from almost no data a library that is the same library anyone would reach. Play is proof, proof accumulates, and accumulation is the agent. But the comparison every proof is grounded in is given, not earned, so the prover, however deep it accumulates, is a guest on its own ground. It can prove anything but the proving.**
+The broader compression, feeling, resonance and ensemble proposals in
+PP12–PP13 and PP16 require their own arguments. The statistical ensemble
+in PP17 has the stated mathematical scope, without a physical phase law. Passing the finite
+checks for PP5c, PP15, PP17 and PP19–PP22 does not establish those proposals. In
+particular, physical closure supplies no proof that a computational cost
+ledger is felt, nor an automatic interior optimum for transfer.
+
+> Self-play can teach a generated target and reorganize access to known
+> consequences. Identifying an unknown part of the same whole still needs
+> evidence that distinguishes it. An internal checker can inspect an
+> internal implementation under explicit premises. The diagonal limit
+> concerns universal representation, not physical exclusion from Ω.
 
 ## §11. Dependency
 
@@ -213,13 +520,13 @@ Certified-verifier self-play occurs in practice: systems that pair a sound check
 |---|---|
 | V=I | §0 (postulate: PAIR/NULL/COMPARE given), §1 (encoding is the agent's, REJECT-address), §2.1/§2.3 (Σ, G), §2.5/§5.11 (composition, the act of distinction), §3.1–3.6 (game, R4), §4.7–4.8 (gate, execute), §5.4 (encoding-local), §5.5 (totality), §5.17 (agent-system duality), §5.18 (cache transferability), §5.22 (S non-increasing), §5.24/§5.25, Theorem 2 |
 | IiI | §0 (agent = outer half), §1 (crystallization), §3 (Saturation Theorem, SAT5/6, scope remark), §4 (grammar boundary), §6 (coupon collector), §7 (Mirror/Crystal correlations) |
-| PiR | §0 (one substrate), §2 (irreducibility), §6 (revelation), M7–M8/M10 (ignition, crystal-as-target), M12 (convergence), M24 (Landauer cost per distinction) |
+| PiR | §0 (one substrate), §2 (irreducibility), §6 (revelation), M7–M8/M10 (ignition, crystal-as-target), M12 (convergence), M24 (conditional physical resource model) |
 | DiD | S1 (stationarity), S7 (cache distance), S9 (translation), S18 (inertia), S24 (Σ conserved) |
-| DiC | §2 (grow/shrink), §4 (frontier = surface), G1a (norm = cost of existence), G4 (graded comparison), G10 (modulus), G12 (compression criterion), G13 (loss), G14 (travel time), G15 (resistance has magnitude) |
+| DiC | §2 (grow/shrink), §4 (frontier = surface), G1a (norm and conditional node cost), G4 (graded comparison), G10 (modulus), G12 (compression criterion), G13 (loss), G14 (travel time), G15 (resistance has magnitude) |
 | InI | S5b (cert / confusion-cover), S6a (dual flow), §7 (agent correlation types) |
 | LiT | LT4–LT5 (law as game, ambiguity as experiment), §6 (stochastic/partial boundaries) |
 | E2 | §0 (the measured campaign), C1 (basis coverage), §4 (critical-slowing budget), §5 (encoder-tower floor) |
-| B | B3 (composition sieve = directed poser), B8/B8a (saturability ⟺ finite atom basis, primes the infinite negative), B8b–B8e (the horn: finite basis, infinite reach) |
+| B | B3 (ordered bounded sieve), B6–B8 (bounded expansion versus unbounded generation), B8d–B8e (reach growth and sampling) |
 | GA | GA3 (alignment α), GA5–GA6 (graded loss, alignment as the precondition order beats enumeration) |
 
 ### Internal
@@ -232,26 +539,34 @@ Certified-verifier self-play occurs in practice: systems that pair a sound check
 | PP3 | PP2, LT5, V=I §3.6, §5.22 |
 | PP4 | PP3, InI S5b |
 | PP5 | PP2, IiI §1, §3, §6, I3 |
-| PP5c | PP5, B B8b, B8d, DiC G8, IiI §6 |
-| PP6 | Theorem 2, I3, V=I §5.25, SAT5/6 |
+| PP5c | Countable class set, positive class probabilities and IID draws |
+| PP6 | Fixed sieve, successful complete certification, retention and set-union decoding |
 | PP7 | PP5, PP6, I3, V=I §5.22, Theorem 2 |
 | PP8 | V=I §5.4, §5.24, DiD S1, S9, InI §7 |
 | PP9 | PiR M7–M8, M10 |
 | PP10 | V=I §2.3, DiC §2, §4, G14, DiD S18, S24, PiR M12, InI S6a |
 | PP11 | PP2, I3, IiI §1–§3, §7 |
-| PP12 | PP6, Theorem 2, PiR §2, §6, DiC G1a, G12, PiR M24 |
-| PP13 | DiC G4, G13, G15, §4, V=I §3.6 |
+| PP12 | IiI CS1, fixed one-class-per-entry contract, DiC G12 |
+| PP13 | fixed-example mismatch, VI2, VC15, explicit exhaustion and cost scope |
 | PP14 | PP8, PP9, V=I §5.4, §5.24, DiD S1, IiI §4 |
-| PP15 | V=I §0, §2.5, §5.17, IiI §0, PiR M8, PP9, E2 §4 |
+| PP15 | total evaluation, representation of the transformed diagonal, fixed-point-free answer transformation, Lawvere Theorem 1.1 |
+| PP19 | Finite conditional entropy identities, complete generator inputs |
+| PP20 | Explicit reversible gate programs, preparation and internal clock |
+| PP21 | Explicit finite transition, internal reference and preparation |
 | PP16 | PP8, DiD S9, V=I §5.18, DiC G10 |
-| PP17 | PP5c, PiR M24, DiC G1a, B B8b, B8d, B8e, IiI §6 |
+| PP17 | Declared finite norm bands, exponential rate and comparison tests |
+| PP22 | Deterministic observation map, initial distribution and finite whole capacity |
 | PP18 | PP3, PP6, Theorem 2, V=I §5.25, GA GA3, GA6, B B8b, IiI §3, E2 §0 |
 
-Intelligence Is Inevitable proved the loop saturates when the world feeds it. Here the author proves the loop can feed itself, and that what it feeds itself is certified. Read deeper, the gate is a witness, saturation is compression, and the ledger is a cost report. The same depth shows the floor: the comparison the agent runs on is given, certified by no game, so the prover is always a guest on its own ground. The data problem dissolves into a basis and a gate. What is left, as always, is the encoder, and beneath it, the primitive no loop can earn.
+The operational question is which distinctions a learner can access,
+which consequences it can compute cheaply, and which assumptions justify
+its certificates. These are different questions within one physical whole.
+The formal inspection of an internal component is possible. The universal
+Boolean evaluator excluded by PP15 is a stronger requirement.
 
 ## Topics
 
-### Theorems this paper proves
+### Related type declarations
 
 - ``CertifiedRuleGenerates``
 - ``AmbiguityNamesInput``

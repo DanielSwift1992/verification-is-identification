@@ -1,78 +1,84 @@
 # Form Is Gauge (Gauge)
 
-One content admits many spellings: the author can spell the same declarations flat in one body, folded into slices, sharded across files, or with their coordinates stated directly, and every spelling renders the same artifact. Here the author names that freedom the **gauge** (the class of forms that render one content) and derives what can and cannot read it. The claim, pinned: form is to the artifact what order is to the check, the parameter correctness never reads (V=I §5.25), and an arbiter priced by the token never reads it either. A checker's cost knee, its fanout constant, its depth wall are then properties of the arbiter, never of the structure it checks: they are gauge-fixing, and they dissolve with the arbiter. The author pinned every statement below in the lattice (`Gauge.swift`) and wrote this paper against that encoding.
+A rendered artifact can have several source representations. Call two forms equivalent when a specified renderer gives them identical bytes. This paper studies that equivalence, transformations that preserve it and the cost of checking particular representatives. The renderer, candidate domain, workload and cost law must be specified. Gauge.swift names interfaces, while the equations and conditional arguments below establish their intended scope.
 
-Experiments raised the question, the measurement page is their record (<doc:Curve>), and the derivation is here.
+The historical measurements are recorded in <doc:Curve>. They motivate the question without proving a universal preferred packing.
 
 ## §0. Derivation
 
-No new postulate. The move is §5.25's, performed on form instead of order. There: once the agent fixes the encoding, the only freedom left to the run is the order in which the agent reveals facts, so correctness is order-invariant and efficiency order-determined. Here: once the author fixes the content, the only freedom left to the emission is its grouping, so content is form-invariant (step 1) and cost is form-determined exactly as far as the arbiter is superlinear (steps 2–6).
-
-1. Regrouping independent declarations preserves rendered content: the reading reveals the content and reveals nothing else (V=I §5.8, `RevealsNotCreates`). *[the packing domain's content verdict, compiled]*
-2. Call the equivalence class of forms rendering one content the **gauge class**, and a choice within it a **gauge choice**. *[definition over 1]*
-3. A standing arbiter has organs whose cost reads the grouping: a solver superlinear in body size, a deserializer recursive in derivation depth. Body size and depth are form coordinates, so one content has many prices. *[1 with 3: the prices differ while the bytes agree]*
-4. A cost sweep over a finite gauge class satisfies the crystallization axioms (IiI C1–C4): candidates are finite, the clock's ordering is decidable, a slower form is excluded permanently, one survivor is left. The sweep therefore crystallizes, and its survivor is a constant of the arbiter's cost function. *[`SystemCrystallizes` on the packing space, compiled]*
-5. An arbiter whose whole work is one dictionary pass and one lookup per reference is priced by the token (`Distance == Path`, PiP3). A regrouping is, to such an arbiter, only the grouping skeleton's own tokens, a linear term. *[construction, and the pin is Program Is Path's]*
-6. Under that arbiter the cost ordering of step 4 is flat, so the cost encoding refuses to crystallize and joins the content encoding, which refused from step 1. The two encodings disagree exactly where the arbiter is superlinear. *[5 with the paired verdicts of `FormCrystallization`]*
-7. The gauge-fixing constant is thereby identified as the arbiter's property: it expires with the arbiter's version, and the election procedure outlives every elected number. *[4 with 6]*
-
-The gauge was never added to the crystal. Byte-identity implied it, and this document only names it.
+1. Fix a renderer R and define f ~ g exactly when R(f)=R(g).
+2. To establish preservation of a class by a transformation, prove R(T(f))=R(f) on its admitted domain. Naming the class does not prove this equation.
+3. Fix a nonempty finite candidate set F and a cost function C for a specified workload and environment. A minimum exists, but need not be unique.
+4. If one candidate has strictly smaller cost than every other candidate, it is the unique minimum in F. Coverage and the strict comparisons are the necessary links.
+5. If cost is constant on each R-class, equivalent forms have equal cost. Linear asymptotic growth alone does not establish this invariance.
 
 ## §1. Content Is the Invariant
 
-**FiG1 (Content is gauge-invariant).** Every form in one gauge class renders the same bytes. The mechanism is step 1: regrouping permutes independent declarations and adds a grouping skeleton, the reading is closed over both, and the instrument that checks it is byte comparison of the rendered artifact. Writing the comparison down is the proof, in the repository's own signature. **[solid: the packing domain's content verdict is the compiled witness, and the record has the runs]**
+**FiG1 (Content equivalence and preservation).** Equality of rendered bytes is an equivalence relation. A concrete preservation argument is available when ordered leaves render strings, a grouping node renders the concatenation of its children and an empty group renders the empty string. Associativity of concatenation proves that reassociation preserves the rendered string. Induction on a grouping tree gives the concatenation of its leaves in order, independent of parenthesization.
 
-**FiG2 (Cost reads the gauge under a standing arbiter).** One content has many prices when the arbiter's cost function has form-sized terms. Each organ names its coordinate: a solver superlinear in body size prices the flat spelling above the folded one, and a deserializer recursive in derivation depth prices a chained spelling above the stated one. No organ prices the content, since the content is what every form shares. **[solid as derivation from step 3, and the record has the measured spread]**
+This does not authorize arbitrary permutation: concatenation need not commute. Nor does it cover a grouping node that emits additional markup. Such transformations require their own renderer equations. Byte comparisons validate the compared artifacts. A compiled PackingUnderContent declaration with a chosen SolutionSet is not a proof of all regroupings. Equality of rendered bytes also concerns that renderer's answer, without asserting equal compile cost or every other behavior.
 
-## §2. The Sweep Is Gauge-Fixing
+Interference Is Substitution IiS10 supplies a physical model of this scope requirement. Unitaries U and −U induce one standalone quantum channel, yet diag(I,U) and diag(I,−U) differ. This particular controlled extension requires a relation absent from the channel description. Controlling the order of two channel inputs is different: the fixed quantum switch is well-defined on those inputs. In the unitary case, each primitive phase appears equally in both orders and cancels from their relative operation. IiS10 derives this balance and its signed-mode static instance. An insufficient interface for one continuation can therefore suffice for another. VC15 asks for the actual preservation equation.
 
-**FiG3 (The dictionary is a ledger of votes).** A cost sweep over the gauge class crystallizes (step 4), and the survivor is a constant of the arbiter's cost function. A form dictionary with the survivor is therefore the record of a vote, and the vote belongs to the voter: a new arbiter version may order the class differently, so the author ships the dictionary with its election procedure rather than with a defense of the number. **[solid for the identification: the crystallization is compiled, and the expiry is projection until a version change is recorded]**
+**FiG2 (Cost may distinguish equivalent forms).** Fixing rendered content permits study of cost differences between its forms. It does not make cost independent of content across other equivalence classes. A cost C(f,w,e) may depend jointly on form f, workload w and environment e. Holding w and e fixed defines the particular comparison. Changes in either can change its ordering.
 
-**FiG4 (The constant tracks the arbiter).** The ordering that elects the survivor is computed from the arbiter's cost function alone, so sweeps over corpora sharing one arbiter should elect one constant. The record, read that way, is two ballots of one voter, and further corpora sharpen the reading or break it. **[projection: stated as the falsifiable reading of the record]**
+## §2. The Sweep Is a Scoped Selection
 
-**FiG5 (The arbiter's failure modes are on the gauge axis).** An organ recursive in a form coordinate can exhaust itself on a legal spelling: depth is a gauge choice, so the failure names the judge, never the sentence. The gauge move that removes the coordinate (stating directly what was derived by chain) keeps content fixed by FiG1 and walks through the wall. **[solid: the record has the dissolved crash]**
+**FiG3 (A checked minimum requires strict dominance and coverage).** For a nonempty finite F and a real-valued fixed C, let S be the set of its minimizers. It is nonempty. It is a singleton exactly when some f* satisfies C(f*)<C(g) for every g in F distinct from f*. This follows directly in both directions from the definition of a minimum. Finite candidates alone do not imply strictness. A tie-breaker defines another selection criterion.
 
-## §3. The Collapse
+A timing sweep supplies recorded observations. A unique least recorded duration identifies that entry within the recorded comparison. It does not establish an immutable cost ordering for future runs. The record in Curve and the comments in CodeForm describe several timings, not one context-free cost function. No new timings are inferred here. PackingUnderCost's Never coordinate contains neither the candidates nor those comparisons.
 
-**FiG6 (A token-priced arbiter collapses the gauge).** For the arbiter of step 5 the gauge axis has no cost signal beyond the skeleton's own tokens: the sweep is flat, the knee is gone, the dictionary has nothing to record. Packing then answers both encodings the same way, refusal to crystallize, and the certified domain closes symmetrically: **cost crystallizes exactly where the arbiter is superlinear**. The sweep never measures the crystal. It measures the judge. **[solid: verified differentially, a second arbiter of the step-5 shape, linear in the artifact, seated beside the token-priced one, returns a flat sweep, spelling against spelling]**
+**FiG3a (Exact robustness criterion for interval evidence).** Suppose F has at least two members and each candidate's cost can independently take any value in its nonempty closed finite interval [l(f),u(f)]. Then f* is the unique minimizer for every admitted cost assignment exactly when
 
-**FiG7 (The freed dimension returns to the author).** Once cost reads no form, form is spendable on the axes no arbiter prices: diff-locality, navigation (NiG), the read-order (Reading Is Order). What the sweep spent on the compiler returns to the reader. **[projection: names what the collapse opens]**
+```
+u(f*) < min { l(g) : g ∈ F, g ≠ f* }.
+```
 
-## §4. Recorded, Not Pinned
+*Proof.* Strict separation puts every admitted C(f*) below every competing C(g). Conversely, if it fails for some g, the admitted choice C(f*)=u(f*) and C(g)=l(g) makes g no more expensive than f*, so f* is not the unique minimizer. QED
 
-Two corollaries the type system cannot pin as an axis, kept as prose the way B8b and GD7 are:
+This condition exposes what uncertain measurements would need to establish. Overlapping intervals do not establish a robust unique winner under these premises. Correlated cost constraints can admit fewer assignments and need their own comparison. Neither arbitrary intervals nor their coverage are inferred from a single timing.
 
-- **The vote expires.** Gauge-fixing binds a constant to an arbiter version, and no type names a version. The author therefore ships the dictionary with its election procedure: the record is one command from fresh, and the command outlives every number it prints.
-- **The second judge.** The witness of FiG6 is a checker whose whole work is the linear pass of step 5, seated beside the standing arbiter as a second encoding of one verdict (V=I §5.4). Agreement is the expected reading, checked over named premises: a lie refused by both judges must be refused by the same names, since an exit code agrees too easily. A disagreement is decidable and finite, so the reader bisects it to a minimal witness naming the defect in one judge or the other: the formal answer to "you wrote your own judge." The standing arbiter is external and worldwide, and the small judge is auditable by reading it, since the gate it must have is a handful of markers, each a simple relation on `Pair` (Program Is Path, closing note).
+**FiG4 (A selected constant belongs to its full comparison context).** The selected fanout can depend on the corpus and environment even with the compiler version fixed. It can also change with compiler version. A reusable result therefore needs a relation between the old and new comparison contexts, as M64 requires for calibration reuse. Shipping a reproduction command makes a comparison inspectable without proving the winner invariant.
+
+**FiG5 (A representation change can avoid a specific failure).** A proven content-preserving transformation can change depth, grouping or file layout. If the tested checker succeeds on the transformed source, this demonstrates a way around that observed failure. It does not prove every legal source tractable or every future failure a form-only phenomenon.
+
+## §3. When Cost Ignores the Class Representative
+
+**FiG6 (Cost invariance requires factorization).** If C(f)=c(R(f)) for a function c, then f~g implies C(f)=C(g). Conversely, if C is constant on every R-class, define c on realized outputs by c(R(f))=C(f). Class constancy makes this well-defined. Thus factorization through content is exactly the condition for cost invariance on these classes.
+
+Linear growth does not imply that condition. If equivalent forms have different source-token counts, a cost equal to that count is linear and distinguishes them. Even a linear bound can contain form-dependent constants. Conversely, a cost equal to the square of the rendered length is nonlinear and constant on each rendered-content class. Therefore neither a unique packing minimum nor its absence characterizes superlinearity. The former claim that cost crystallizes exactly where the arbiter is superlinear is withdrawn. CostIsPathLength's coordinate equality does not supply a complexity proof (PiP3).
+
+A nearly flat finite timing sweep is evidence about those runs. It does not establish exact factorization over every admitted form. Verdict's existing factorization relations state the relevant kind of mathematical obligation. `ContentIsGaugeInvariant` binds its form to the actual observation source of `ReadingFactors`. `CostReadsGauge` binds its form and distance to an actual cost reading's input and answer. These supplied-reading equations do not establish a complete measured cost family. `LinearArbiter` was an unused synonym of `CostIsPathLength` and is retired. `GaugeCollapse` names the original parent directly.
+
+**FiG7 (Choice after the checked requirements).** When several forms satisfy the requested semantic and cost conditions, other criteria can choose among them: navigation, readable diffs or a stable convention. Such selection does not weaken the properties already checked. Multiple admissible choices need not be errors (PiP7).
+
+## §4. Comparing Checkers
+
+Agreement on a finite corpus and targeted refusals tests the represented cases. Matching the same conflicting coordinates is stronger evidence than matching exit codes alone. It still does not prove equivalence over an unrestricted source language. A reduced disagreement can expose a defect relative to a stated specification. The number of primitive markers does not bound the cost of solving their constraint system, and a version can be represented explicitly when needed.
 
 ## §5. Statement
 
-1. Content is gauge-invariant: every form in one gauge class renders the same bytes (FiG1).
-2. Cost reads the gauge under a standing arbiter, one organ per form coordinate, and no organ reads the content (FiG2).
-3. A cost sweep crystallizes, its survivor is the arbiter's constant, and the dictionary with the survivor is a ledger of votes with an election procedure (FiG3–FiG4).
-4. An arbiter's failure modes are on the gauge axis, and a gauge move walks through them with content held fixed (FiG5).
-5. A token-priced arbiter collapses the gauge: both encodings refuse to crystallize, and the free dimension returns to the author (FiG6–FiG7).
-
-> **Form is the gauge of an emitted artifact: content never reads it, a superlinear judge alone does. Fix the judge, and the knee, the sweep, the wall retire to what they always were: one arbiter's way of holding a crystal that never needed holding.**
+1. A specified renderer defines content classes. Actual transformations require preservation proofs (FiG1).
+2. Cost belongs to a complete comparison context (FiG2, FiG4).
+3. Coverage and strict dominance establish a finite unique minimum. Interval separation gives its robust form under stated uncertainty (FiG3–FiG3a).
+4. Content-preserving changes can avoid particular observed checker failures (FiG5).
+5. Factorization through rendered content, rather than a linear complexity label, establishes cost invariance (FiG6).
 
 ## §6. Dependency
 
 | Source | Used |
 |---|---|
-| V=I | §5.25 (order is the sole freedom, the move lifted to form), §5.4 (two encodings of one verdict, the second judge), §5.8 (the reading reveals) |
-| IiI | C1–C4 (the crystallization axioms the sweep satisfies), §5 (`SystemCrystallizes` idiom) |
-| PiP | PiP3 / `CostIsPathLength` (priced by the token, `Distance == Path`), the closing note (the small prover, sized) |
-| DiC | G2c (distance is an integer count of steps) |
-| The record | <doc:Curve> (the measurements that raised the question), `FormCrystallization` (the paired verdicts, compiled) |
-
-The measurement page is the campaign's record and the Examples target certified its safety, and neither names the dimension the campaign moved along. Here the author names it, pins its invariance and its collapse, and seats the witness that retires its constants. The author pinned each claim in the lattice before stating it in prose, and this document exists so the record and its theory are one.
+| V=I | U2–U2b (supported uniqueness), Theorem 2 (membership and identification) |
+| Verdict | ReadingFactors and question-specific agreement |
+| PiP | PiP3 (cost units), PiP7 (admissibility and uniqueness) |
+| Matter | M64 (reuse requires a relation between comparison occasions) |
+| The record | <doc:Curve> (historical measurements), CodeForm (selected parameters) |
 
 ## Topics
 
-### Theorems this paper proves
+### Related type declarations
 
 - ``ContentIsGaugeInvariant``
 - ``CostReadsGauge``
 - ``GaugeFixing``
-- ``LinearArbiter``
 - ``GaugeCollapse``

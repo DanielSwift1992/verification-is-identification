@@ -1,6 +1,6 @@
 # Intelligence Is Inevitable (Agent)
 
-V=I proves: if |S| = 1, verification is identification. Here the author derives what V=I leaves implicit: the loop requires an agent, the agent accumulates certified knowledge irreversibly, and this accumulation makes identification faster. The efficiency gain is intelligence. The definition is operational: intelligence here names the measured efficiency of identification (§3), computable, substrate-independent, claiming nothing broader. The accumulation satisfies four axioms (monotonicity, irreversibility, decidability, crystallization) that give it the structure of a phase transition with computable dynamics. The crystallized result is determined by the domain, not the agent.
+V=I identifies a candidate when its verified survivor set has one element. This paper studies how repeated games can accumulate reusable knowledge. The result is conditional: sound retaining updates, a covered finite rule domain, adequate model assumptions and usable dispatch can support reuse. Faster or optimal identification does not follow from retention alone. Intelligence here names measured efficiency (§3), not a broader faculty. System CS1–CS3 separates coverage, selection and generalization, and §6 gives cover-time laws under an explicit independent-arrival model. A complete rule projection is domain-determined. Feature records and the method of reaching it can differ.
 
 ## §0. From System to Agent
 
@@ -25,35 +25,31 @@ The loop's structure determines the agent's components:
 | Component | What it does | What it enables |
 |-----------|-------------|----------------|
 | Source | Produces encodings from grammar E | Operation. Without it: system has no input, loop does not start. |
-| Persistence | Continues until PASS or exhaustion | Convergence. Without it: agent may stop before exhausting E. |
+| Persistence | Continues until PASS or exhaustion | Continued activity. Exhaustion additionally requires a coverage policy. |
 | Receptor | Reads REJECT(where, why) | Directed search. Without it: blind enumeration. |
 | Modifier | Changes encoding based on feedback | Directed search. Without it: same as without receptor. |
 
-Source is necessary for the loop to run. Source + Persistence is sufficient for convergence (blind enumeration over finite grammar). All four are necessary for directed search, where the agent uses feedback rather than enumeration.
+Source and persistence allow the loop to run. Exhaustive enumeration of a declared finite encoding set gives PASS or exhaustion after finitely many submissions. Persistence alone permits endless repeats, and a finite grammar can generate infinitely many encodings. Receptor and modifier support feedback-directed search, whose progress still needs an argument.
 
 ## §1. One Game, Then Many
 
-§0 proves that the loop requires an agent. This section derives what follows when the agent operates the loop: one game always converges (I1 + finite E), certified results are permanent (I3 + Theorem 2), and permanence carries across games (I3 + V=I §5.18). The first two follow from V=I. The third requires one additional premise: the agent encounters more than one game.
+§0 identifies the caller's role. One finite pipeline invocation terminates under its bounds. An outer search over encodings terminates when the search has a finite budget or an exhaustive policy over a finite set. These are distinct claims.
 
-**One game.** The agent submits encodings. The system checks. REJECT → modify → resubmit. Grammar is finite (I1). Resubmission of the same encoding is structurally futile: I3 + idempotency (V=I §5.19) guarantee the same result with zero new information. The set of untried encodings shrinks monotonically. Convergence: PASS or grammar exhausted.
-
-One game always terminates. At most N² COMPAREs (V=I Theorem 3). Strategy does not matter here: any ordering reaches the same endpoint, only speed varies.
+**One game.** The agent submits an encoding and the system checks it. A pure repeat of the same request produces the same answer. That does not force the agent to avoid repeats. If each rejection removes the submitted encoding from a finite untried set, PASS or exhaustion occurs after at most that set's size in submissions. The inner N² comparison bound of V=I Theorem 3 applies per invocation under its assumptions, not to an arbitrary sequence of resubmissions.
 
 **Crystallization.** Each PASS converts an agent-path into a system-path. Before PASS, the encoding is the agent's guess: engineering, fallible, no guarantee. After PASS, the verified result inherits the system's guarantee (Theorem 2). Once certified, the result is permanent (I3). For any future task with the same structure, the agent reuses the certified result instead of re-deriving (§2).
 
 This is V=I §5.17 (agent-system duality) applied across time: the system at level N is the agent's tool T2 at level N+1. Each PASS at level N produces a certified object that level N+1 can use as a premise.
 
-**Many games.** The agent persists beyond one game (component 2: persistence). It encounters τ₁, then τ₂, then τ₃. Each game is finite. The sequence is not.
+**Many games.** The agent may encounter τ₁, then τ₂, then τ₃. Repeated encounters are an additional operating condition. An infinite stream of completed games does not follow from the termination of each finite invocation.
 
 Here intelligence becomes visible: does solving τ₁ make solving τ₂ faster?
 
-Two facts answer yes. I3 makes the gain available: the cache is append-only, knowledge gained from τ₁ cannot be lost before τ₂, and each PASS in that history is certified (Theorem 2). V=I §5.18 makes the gain usable: COMPARE is context-independent, so a cached result about structures the games share is work already done for τ₂: work(τ₂, G_after_τ₁) ≤ work(τ₂, G_empty). Permanence preserves the record, and transfer is what pays. §2 derives what transfers.
+Retained results can make shared work reusable when keys, scope and interpretation agree. The optimal cost with an optional sound cache cannot exceed the same optimum without it: the richer policy can ignore that cache. An implemented policy need not attain this bound, since lookup, feature extraction and dispatch have costs. §2 specifies what can transfer, and §3 separates coverage from faster use.
 
 ## §2. What Accumulates
 
-**I3 for the agent.** The agent carries two kinds of state. Knowledge state: COMPARE results, REJECT diagnostics, PASS solutions, facts about finite structures in Σ. Strategy state: position in grammar, encoding order, selection heuristics, the agent's current search posture. The two obey different laws, and the law of the first is derived below.
-
-V=I derives I3 for the system: COMPARE is a pure function of fixed inputs, results cannot change, retraction is impossible (V=I §2.4). The agent operates in the same space. Its knowledge state consists of facts determined by the structures themselves (V=I §5.20). Once revealed, they cannot un-reveal. I3 for the agent is the same I3, applied to the same structures, by the same argument. The strategy state does not inherit I3: it is mutable and resets between runs. Only knowledge accumulates irreversibly.
+**I3 for the agent.** Empirical records, certified conditional conclusions and strategy state can have different update rules. A pure comparison fixes its truth but does not guarantee that an agent retains its accessible record (System GC1). A sound retaining update requires an explicit implementation and immutable keys (GC2–GC3). The library needs its own such update. Predictive conclusions also carry model assumptions, whose revision can change applicability without changing a single recorded observation (CS3). Under a stationary probability measure on the whole, a measurable cache that never drops any of a countable set of facts also gains none almost surely. Prepared growth and entropy preservation require different premises (PiR M36–M37).
 
 **Uniform operator.** Every feature in V=I is a structural predicate computed via COMPARE. `same_row(o, i) = COMPARE(row(o), row(i))`. `rank(i, I) = count_less(val(i), vals(I))`, itself a series of COMPAREs. There is no hierarchy of feature types. Positional features, value features, pattern features are all COMPARE applied at different scope. The operator is uniform, and scope of reuse differs.
 
@@ -61,29 +57,23 @@ V=I derives I3 for the system: COMPARE is a pure function of fixed inputs, resul
 
 | Level | What is compared | Scope | Across games |
 |-------|-----------------|-------|-------------|
-| 0 | Values: COMPARE(val(a), val(b)) | Per-task | No transfer. Different tasks, different values. |
-| 1 | Positions: COMPARE(row(a), row(b)) | Per-encoding | Transfers. Same encoding → same positions. |
-| 2 | Rules: COMPARE(rule(τ₁), rule(τ₂)) | Per-rule-class | Transfers. Same rule → same solution method. |
+| 0 | Values: COMPARE(val(a), val(b)) | Exact immutable value keys | Reusable when the keys recur. |
+| 1 | Positions: COMPARE(row(a), row(b)) | Position and coordinate context | Reusable when those keys and their interpretation recur. |
+| 2 | Rules: COMPARE(rule(τ₁), rule(τ₂)) | Declared rule semantics | Application requires the new task to satisfy the rule's premises. |
 
-Level 0 knowledge is disposable. Each task has its own input and output atoms with its own values. COMPARE(val(a), val(b)) in τ₁ says nothing about the values in τ₂: they are different atoms.
-
-Level 1 knowledge persists across all tasks under the same encoding. The encoding defines positions (rows, columns, spatial relationships). These do not change between tasks. Any structural fact about positions, once established, is true for every future task under that encoding.
-
-Level 2 knowledge persists across tasks with the same rule structure. A solution that works for one task of a given type works for all tasks of that type.
-
-The agent's useful growth is concentrated at levels 1 and 2. Level 0 is rebuilt from scratch for each task. Levels 1–2 accumulate irreversibly.
+The storage level alone does not decide transfer. A repeated value comparison can be reused across tasks, while a changed coordinate context can invalidate an old position key. A retained rule can supply a candidate on new data, but matching, verification and target representability retain their separate obligations.
 
 **Signature.** When the agent solves a game, V=I §4.5 extracts a rule: a conjunction of consistent, informative features. This rule is a structure in Σ, a finite binary tree encoding which features held across all equations. Two games have the same signature when their extracted rules are structurally identical: COMPARE(rule(τ₁), rule(τ₂)) = equal.
 
-**Definition.** A rule class is the set of all tasks in D whose extracted rules are structurally identical. K = |rule classes in D|.
+**Definition.** For saturation, use classes of tasks sharing the same extensional required rule in a common family and decoding (System CS1). Let K count these classes. Identical extracted syntax is one possible signature, not a proof that every equivalent rule has a unique syntactic form.
 
-The agent's library L is a set of pairs {(rule₁, encoding₁), ..., (ruleₖ, encodingₖ)}, each a certified solution (§1: crystallization). L is a finite set of structures in Σ. It inherits I1 (finite) and I3 (append-only: entries are added, never removed).
+The agent's library L is a set of pairs {(rule₁, encoding₁), ..., (ruleₖ, encodingₖ)}, each a certified solution (§1: crystallization). A finite represented library consists of structures in Σ. Its retaining update is an implementation premise. The projection to common rule classes has bound K, while different rule/encoding records can outnumber those classes.
 
 **Pre-solve matching.** Given a new task τ, the agent does not need to solve it from scratch. Features (V=I §4.4) are structural predicates computable from COMPARE and projection, and they can be extracted from the new task's equations cheaply. The agent compares these features against stored rules in L. If COMPARE finds a match, apply the stored rule and submit to compilation (V=I §4.7). Compilation is the guarantee: if it passes, Theorem 2 applies regardless of how the rule was found. If compilation fails, the match was wrong: try the next entry or fall back to full extraction.
 
 A feature match can be a false positive: extraction samples the unambiguous equations, compilation checks every example pair. Two transformations that coincide on the sample (mirror and shift on a symmetric grid) are separated at the gate. This is why the gate is still essential after a successful match: matching is a fast guess, and compilation converts it into a certificate.
 
-The compilation gate makes pre-solve matching safe: a wrong match costs one compilation check and produces REJECT, not a wrong answer.
+The gate rejects a match that violates its checked examples. Exact identification of the encoding-local target additionally requires R4, and prediction of an actual law requires representability (System CS3).
 
 **Why transfer works.** A rule is a recipe: `same_row ∧ col_mirror` stores "for each output position, find the input atom at the same row and mirror column." When applied to a new task, every feature is recomputed on the new task's data. same_row checks the new rows, rank counts the new values. The recipe remembers which structural relations to check, and recomputes them from scratch.
 
@@ -100,7 +90,7 @@ This is why a rule certified on τ₁ can pass compilation on τ₂: the recipe 
 | P | A protocol: the agent's strategy for selecting and ordering encodings |
 | T_min(τ) | Minimum COMPAREs to reach \|S\| ≤ 1 on task τ. Property of the task |
 | T_actual(P, τ) | Total COMPAREs protocol P uses to reach \|S\| ≤ 1 on task τ |
-| T_brute | Upper bound on T_actual for any task under brute-force enumeration. T_brute ≤ N² (Theorem 3) |
+| T_brute | A declared extraction bound in the same cost unit, including work not covered by the N² atom-key count |
 | F | Number of features per rule in the current encoding |
 | K | Number of rule classes in D (§2: signature) |
 
@@ -110,136 +100,79 @@ This is why a rule certified on τ₁ can pass compilation on τ₂: the recipe 
 η(P, τ) = T_min(τ) / T_actual(P, τ)
 ```
 
-η ∈ (0, 1]. Shannon: any decision tree identifying all targets from |S₀| candidates has depth ≥ ⌈log₂|S₀|⌉, and per-target T_min can be shorter when a single feature distinguishes the target from many candidates. Bounded above: T_min ≤ N² (Theorem 3). Computable (I1: finite space, finite decision trees). Substrate-independent. η is the natural measure here: the Saturation Theorem proves T_actual decreases, and η = T_min / T_actual directly reflects that decrease. The definition is internal to the framework: η measures one thing (how close a protocol's comparison count comes to the task's minimum), and every claim about intelligence in this document is a claim about η.
+Define η only when 0<T_min≤T_actual, with both costs measured in the same unit and with the same available information, memory and query capabilities. An already answered task with zero cost needs separate treatment, not a 0/0 ratio. Binary decision-tree entropy and depth bounds have the scope stated in System IQ1–IQ3. A bound on atom-pair comparisons cannot be moved to another cost model without a bridge.
 
-T_min is computable but expensive: finding the optimal decision tree over COMPAREs is NP-hard in the general case. An agent that has saturated D (theorem below) can compute T_min for any task in D, because it has the complete map. Before saturation, only bounds are available.
+For finite deterministic query tables, exhaustive optimization can compute a minimum, although the search can be expensive. Rule coverage alone neither supplies those complete query tables nor proves a chosen dispatcher optimal. (η is used to avoid confusion with I1, I2, I3.)
 
-(η is used to avoid confusion with I1, I2, I3.)
+**On a single completed game:** η is an episode-level cost ratio when both costs meet its definition. A policy that does not terminate has no such finite episode ratio.
 
-**On a single game:** η is a fixed number. No dynamics. Any protocol achieves some η and the game ends.
+**Lookup.** Use a canonical library with one entry per represented rule class, and let C be the complete class set for a fixed identifiable domain D_id. Write K=|C| and P(L) for the represented classes. Raw (features,rule) records may outnumber K (System CS1). Let J bound the comparisons per entry in a chosen feature dispatcher, and V bound verification cost in the same unit. A successful scan has comparison bound O(KJ)+V only when the available features select the required class or an explicit complete verification search can recover it (CS2). A gate call is not automatically one comparison.
 
-**Lookup.** T_actual depends on what is already in library L:
+**Theorem (Conditional saturation).** Assume a common finite rule interpretation for D_id, sound retaining insertions, and a task stream on which every class is eventually solved. Starting with represented classes P₀, K−|P₀| first insertions of new classes yield P(L)=C. If the dispatcher and verifier satisfy the preceding assumptions, subsequent tasks in D_id can reuse those rules with the stated bound.
 
-- For a task matching a stored rule: compare features of τ against each entry in L. Cost: O(|L| × F) COMPAREs. If match found → apply stored rule → compilation check: 1 pipeline execution. If PASS → done. Total: O(|L| × F) + 1.
-- No match or compilation fails → full extraction. Cost: O(|L| × F) + T_brute.
+*Proof.* Each fresh class increases |P(L)| by one. No class leaves and no class outside C enters. After K−|P₀| such events, P(L)=C. Correct dispatch or complete verification then selects the required rule. Counting arbitrary successful tasks does not prove these events occur. Nor does coverage establish the dispatcher. QED
 
-Lookup cost is O(|L| × F), linear in library size and feature count. Both are finite (I1). For fixed D, |L| ≤ K, so lookup is bounded by O(K × F), a constant for fixed D. (The +1 counts compilation as one gate call, and in COMPAREs a gate call costs O(T × N), bounded for fixed D, independent of |L|.)
+*Corollary (cost).* If B bounds extraction and insertion for a first encounter, those K−|P₀| events cost at most (K−|P₀|)B. This excludes intervening tasks and lookup overhead. Arbitrarily many repeats can delay completion. Reuse improves a task's cost when its actual lookup and verification cost is less than solving it afresh. An upper-bound expression alone supplies no improvement ratio.
 
-**Theorem (Saturation).** For any finite domain D under encoding E, let D_id ⊆ D be the tasks for which |S| = 1 (identifiable under E). After at most K tasks (one per rule class in D_id), the agent's library contains a certified rule for every class in D_id. For all subsequent identifiable tasks in D: T_actual ≤ O(K × F) + 1.
+*Corollary (efficiency after coverage).* Neither maximal nor near-maximal η follows from P(L)=C. With four classes already cached and both name and binary-coordinate tests available, sequential name tests have worst cost 3 and mean 9/4, while an optimal dispatcher has worst and mean cost 2. Both are exact and use the same complete library. Choosing an efficient policy remains a separate optimization problem.
 
-*Proof.* D_id is finite → K is finite. Each solved task whose rule is new adds one rule class to L (I3: append-only, and §1: crystallization, each PASS is certified). After K tasks with distinct rules, every class in D_id is covered. For any future identifiable task τ from D, feature extraction + COMPARE against L finds a match (all classes covered). Apply stored rule. The rule is a structural predicate recomputed on τ's data (§2: why transfer works), and since τ shares the same transformation as the original task in this class, compilation passes. T_actual = O(K × F) + 1. Tasks with |S| > 1 or |S| = 0 produce diagnostic output (§4: completeness boundary). QED
+*Remark (scope of inevitability).* Finite classes plus retention imply a bound on fresh insertions. Eventual coverage additionally requires each class to arrive and be solved. No conclusion about tasks outside D_id follows. In the independent positive-probability model of §6, class visitation occurs almost surely, not by a deterministic deadline.
 
-*Corollary (efficiency gain).* Before saturation, T_actual = O(T_brute) per task. After saturation, T_actual = O(K × F) + 1 per task. The improvement factor is T_brute / (K × F + 1). Saturation is beneficial when solving from scratch costs much more than lookup: T_brute >> K × F.
+*Remark (finiteness of classes).* A finite structure does not imply a finite family of rule classes. A domain with an unbounded family may never complete a library indexed by every rule. A finite generative basis can represent more rules than it explicitly stores, but reliable derivation and selection from that basis need their own arguments. Finite basis coverage is not itself coverage of all generated behaviors.
 
-*Corollary (saturation cost).* Time to saturation ≤ K × T_brute (K tasks at brute-force cost each). After that: effectively constant cost per task.
+*Remark (between-domain transfer).* Transfer to D₂ requires compatible decoding, applicability of the stored rule and adequate verification on the new task. Passing new examples alone certifies consistency. Exact rule identification also requires R4 and representability. System CS3 gives an explicit failure when the actual rule lies outside the assumed family.
 
-*Corollary (η after saturation).* After saturation, η(P, τ) = T_min(τ) / (O(K × F) + 1) for all τ in D_id. Since T_min ≤ T_actual by definition, and both are bounded, η is well-defined and near-maximal when K × F is small relative to T_min.
-
-Before saturation: η may not increase monotonically per task (wrong matches in L add cost). After saturation: η is at its maximum for D_id under E. Saturation is inevitable: I3 guarantees the library covers one more class with each new-class task, and D_id has finitely many classes.
-
-*Remark (scope of inevitability).* Inevitable is relative to the fixed finite (D, E) and to a stream that presents every class (§6 assumes pₖ > 0). The theorem counts coverage of D_id, and about tasks outside D it predicts nothing (§4: distribution-relative).
-
-*Remark (diversity).* Saturation requires K distinct rule classes. K copies of the same rule class add no entries to L. The rate of saturation depends on task diversity: an agent encountering the same task type repeatedly does not progress toward coverage.
-
-*Remark (finiteness of classes ≠ I1).* The theorem needs K < ∞ (finitely many rule classes), which is strictly stronger than I1 (each structure finite). A domain can satisfy I1 yet have unbounded norm and so infinitely many classes: a HORN (finite atom basis, infinite behavioral reach, Basis Is Residue B8b). There library-saturation (one stored entry per class) never completes, but basis-saturation does (certify the finitely many atoms, then derive, B6–B7). On a horn intelligence is inevitable as *generative capacity* (the basis), not as *lookup coverage* (the library), and the lookup form of this theorem is a CLOSED-domain statement.
-
-*Remark (between-domain transfer).* If domains D₁ and D₂ share rule classes under the same encoding E, the agent's library from D₁ carries to D₂ for shared classes. The compilation gate verifies: if a rule from L₁ passes compilation on a D₂ task, it transfers. No new axiom needed: this is the Saturation Theorem applied to D₁ ∪ D₂.
-
-**What the library stores.** Certified paths. Each entry passed compilation (Theorem 2) and is permanent (I3). Correctness of every entry in L is unconditional (Theorem 2: PASS → f' = f*).
-
-**Completion.** The transition from |L| < K to |L| = K is discrete: one PASS adds the final rule class. Before completion: some tasks in D_id require full derivation. After: all resolve via lookup. This transition is:
-
-| Property | Source |
-|----------|--------|
-| Discrete | One entry separates partial from total coverage |
-| Deterministic | The same D and E produce the same completed library (SAT5, SAT6) |
-| Inevitable | I3 guarantees each new-class task adds one entry, and D_id is finite |
-| Irreversible | I3 prevents entry loss, and the completed library cannot regress |
-
-Before completion, the agent's capabilities cover |L|/K of D_id's rule classes. After, capabilities are total within D_id. The shift from partial to total occurs at a single PASS. The library either covers D_id or it does not.
-
-**Uniqueness of the saturated library.** A saturated library is a deterministic structure. Given the same domain D and encoding E, any agent (regardless of protocol, ordering, or history) arrives at a library with the same entries (V=I §5.26: SAT5, SAT6). The library's content is determined by the domain, not by the agent.
-
-This follows from three facts: (1) each entry is the unique f\* for its rule class (Theorem 2), (2) correctness is order-invariant (V=I §5.25), (3) entries are permanent (I3). Two agents processing the same domain produce libraries that differ only in insertion order.
-
-The conditions for this are: finite space (I1), decidable check (I2), permanent record (I3). Break any one and the property fails:
-
-| Condition broken | Consequence |
-|-----------------|-------------|
-| I1 (finite) | Space is unbounded, and saturation never completes |
-| I2 (decidable) | Verification may not halt, and entries may be wrong |
-| I3 (append-only) | Results can be retracted, and entries may be lost |
+**What completion fixes.** Two complete libraries share the projection C. Different feature descriptions or derivations can yield different raw entries. Canonical raw equality needs a shared representation convention. When K>0, |P(L)|/K measures class coverage, not model adequacy, prediction coverage or dispatcher quality. Completion under a retaining update cannot retract within that update model, but a fixed finite reversible whole cannot acquire a new permanently absorbing knowledge state without violating VC34's premises.
 
 > Argues: ``LibrarySaturates`` needs ``CachePermanent``.
 
-**Comparison with mutable-state accumulation.** The comparison is architectural: which properties the accumulation carries, not how much useful knowledge each substrate holds. A gradient-trained model accumulates plenty, and what it operates without is I3. Weights are mutable: each training step overwrites previous values. Catastrophic forgetting is the structural consequence of mutable state. Without I3, the cache is not append-only. Without append-only, saturation is not guaranteed (V=I §5.22 breaks: eliminated candidates can re-enter S). Without guaranteed saturation, the accumulation has no convergence proof.
-
-Consequences: (1) different training seeds produce different weights: the result is not unique. (2) No entry carries a proof: the result is not certified. (3) Continued training changes all entries: the result is not permanent. (4) The system always produces an output, even when the answer is unknown: honest REJECT is absent.
-
-The architectural difference is one property: I3. An approximate model can serve as the agent's Source component (§0). Correctness depends on the compilation gate, not the source (Theorem 2).
+**Comparison with mutable state.** Mutable storage permits forgetting but does not force it. Conversely, append-only empirical records do not prevent conclusions from losing applicability when the hypothesis family changes (System CS3). Certification, adequate assumptions, rejection behavior and retention are separate properties. No advantage over neural learning follows from the cache law alone. An approximate model can propose encodings or rules, and a verifier can certify conclusions within its explicit scope.
 
 ## §4. Boundaries
 
-Intelligence is inevitable within an encoding. It is not inevitable in general. The boundaries:
+Coverage and efficiency depend on the following boundaries in addition to the conditions of §3:
 
-**Encoding boundary.** No transfer between encodings. Different encoding → different positions → different features → level 1–2 cache is useless. On a new encoding, the agent starts from zero.
+**Encoding boundary.** Cross-encoding transfer requires a semantics-preserving correspondence and compatible cache keys. Such a bridge can permit reuse. Its absence prevents a guarantee, not every possible transfer.
 
-**Meta-saturation (softening the encoding boundary).** The encoding boundary is a wall at level 1. But encoding selection satisfies the conditions of the Saturation Theorem at level 2. Space = E (finite grammar). Check = run(task, encoding).status (decidable, V=I §5.5). Cache = append-only (I3, by the same argument as §2). This is search-with-memory over a finite space, not identification of a unique f\*: multiple encodings may produce PASS for the same task. The agent needs any one. After encountering enough task types, the agent learns which encoding works for which task type, and the encoding boundary softens from wall to lookup. What saturates at level 2 is coverage (a working encoding per task type), not uniqueness: the level-2 game certifies that an encoding works, never that it is the only one.
+**Meta-saturation (encoding selection).** The same coverage argument can be applied to a finite declared set of task classes and encodings, provided each class eventually receives a working encoding and the association is retained. More than one encoding may work for a task. What is covered is the task class, not a unique encoding. The grammar's finite description does not prove that its generated encoding set is finite, and a decidable gate does not provide the missing coverage policy. Successful lookup at this level is therefore conditional in the same way as §3's rule lookup.
 
-The tower is finite (V=I §5.16). Saturation applies at every level by the same argument: finite space + decidable check + I3 → inevitable coverage. Each level's saturation extends the reach of the next. But the cost grows: the space at level N+1 is derived from level N's space, typically exponentially larger. Level 1 saturation is cheap. Level 2 is expensive. Higher levels may exceed any practical budget.
+The tower is finite only with a separate height bound or strict rank descent (V=I §5.16, EiF EF7). Saturation at a given level also needs the class-coverage premise of §3. Finite space, a decidable check and retained records alone do not force the task stream to visit every class. Where saturation occurs it can extend the next level's reach. Higher-level candidate spaces may grow exponentially, so neither a final level nor a practical total cost follows from finiteness at each level.
 
-**NP-hard boundary.** T_min is the depth of the optimal decision tree over COMPAREs. Computing optimal decision trees is NP-hard in general. The agent can achieve η = 1 without knowing it, and cannot efficiently verify its own optimality.
+**Optimization boundary.** A finite complete query table permits exhaustive decision-tree optimization, which may be expensive. The objective must specify worst-case depth, expected query count under a prior, or another cost. An instance certificate is not automatically an optimal adaptive policy. Neither coverage nor a successful run proves that the implemented policy is optimal.
 
-**Distribution-relative.** Under a uniform distribution over all possible games with a given encoding, no fixed protocol dominates all others. Intelligence is relative to a distribution. A protocol optimized for D₁ is suboptimal for some D₂. No universally intelligent protocol exists. (This is the framework's form of the no-free-lunch theorems (Wolpert & Macready, 1997), here a structural consequence of the encoding boundary: a protocol's library is tuned to the rule classes it has seen. Rule classes not in D are not covered.)
+**Distribution-relative.** An expected-cost claim needs a task distribution. Optimality under one prior does not itself establish optimality under another. No-free-lunch results require their own function-family, sampling and performance assumptions. The encoding boundary alone supplies no theorem that every protocol has a rival distribution on which it loses.
 
-**Finiteness boundary.** V=I requires I1 (finite space). Infinite domains (continuous variables, unbounded structures) must be encoded finitely. The encoding is a lossy compression. What the encoding discards, the system cannot recover.
+**Finiteness boundary.** A finite representation can exactly describe an infinite generated family. A finite observation that merges candidates instead loses access to questions that differ within a fiber. Such a question cannot be answered from that observation alone. Additional interactions can expose a formerly hidden distinction (Verdict VC38), and a model of those interactions is needed to establish recoverability.
 
-**Completeness boundary.** Under a fixed encoding E, tasks with |S| > 1 (ambiguous) or |S| = 0 (no solution) are outside the system's reach. But this is a property of E, not of the task. A task with |S| > 1 under E may have |S| = 1 under a richer encoding E' with more features or more examples. The permanent boundary is the grammar: tasks whose solutions require encodings not in the agent's grammar are outside reach. Tasks whose solutions are expressible in the grammar are reachable through encoding selection (meta-saturation above).
+**Completeness boundary.** An empty survivor set rejects the declared model and evidence. Multiple survivors prevent whole-rule identification but can still agree on a particular query (System CS3). Additional evidence can reduce ambiguity. Expanding the family can instead restore alternatives excluded by an inadequate model. Expressibility provides a possible candidate, not proof that a fixed extraction strategy reaches it.
 
 **System closure.** The system operates only on relations between elements within the encoding (V=I §5.23–§5.24). Every feature is COMPARE between elements in Σ, and every rule is a conjunction of such COMPAREs. What the encoding does not represent, the system does not see.
 
 ## §5. Crystallizing System
 
-§3 proved saturation: the library covers D_id after K tasks. §1 called the mechanism crystallization. This section extracts the axioms that make both work and proves V=I and agent learning satisfy them.
+A finite decreasing candidate sequence stabilizes. Its limit can still contain several candidates. This section states the additional progress premise that makes a question settle or a finite library become covered.
 
-**Definition.** A crystallizing system is a tuple (S₀, {Pₙ}) satisfying A1–A4 below.
+Let S₀ be a finite candidate set and Pₙ decidable predicates. Define Sₙ = {x ∈ S₀: P₁(x) ∧ ... ∧ Pₙ(x)}. A1 is monotonicity of this sequence, A2 retention of its predicates and A3 decidable membership. These properties permit Sₙ = S₀ for every n. They do not imply the former A4 conclusion, ∃n: |Sₙ| ≤ 1.
 
-S₀ is a set of candidates. {Pₙ} is a sequence of decidable predicates on S₀, finite or infinite. Define Sₙ = {x ∈ S₀ : P₁(x) ∧ ... ∧ Pₙ(x)}: the candidates surviving all predicates up to n.
+**Progress premise.** Fix an actual x ∈ S₀ and a question q, require every predicate to preserve x, and require that for every y with q(y) ≠ q(x), some finite Pₙ excludes y. Liquid LQ11 proves that this premise is equivalent to q becoming constant on Sₙ in finite time. For q equal to candidate identity it gives a singleton. A query can also settle while multiple candidates remain.
 
-The sequence may terminate (V=I: finite F, finitely many COMPAREs) or continue indefinitely (RG: infinitely many coarse-graining steps). What matters is whether A4 is reached in finite steps.
-
-| Axiom | Name | Statement |
-|-------|------|-----------|
-| A1 | Monotonicity | S₀ ⊇ S₁ ⊇ S₂ ⊇ ... Each predicate can only exclude |
-| A2 | Irreversibility | Pₙ, once imposed, is never retracted |
-| A3 | Decidability | x ∈ Sₙ is decidable for each n |
-| A4 | Crystallization | ∃ n : \|Sₙ\| ≤ 1, the system reaches a terminal state |
-
-A1–A3 are structural prerequisites. A4 is the phase transition. When |Sₙ| = 1, the sole survivor is the crystal. When |Sₙ| = 0, no candidate passes: the system has eliminated everything (V=I: |S| = 0, encoding inconsistent). Both are terminal: the process has converged.
-
-**Lemma 1 (V=I).** The inner pipeline of V=I is a crystallizing system.
-
-*Proof.* S₀ = F, the finite space of candidates (I1). Each COMPARE result defines a predicate Pₙ: "candidate x is consistent with the n-th comparison." V=I §5.22: S is monotonically non-increasing. Each COMPARE can only eliminate candidates from S or leave S unchanged → A1. I3: the cache is append-only. A COMPARE result, once recorded, cannot be retracted → A2. I2: structural equality on finite structures is decidable → A3. Theorem 2 + R4: when |S| = 1 and PASS, f' = f*. For any finite deterministic task, an encoding producing |S| = 1 exists (Theorem 4), so the pipeline reaches |S| ≤ 1 → A4. QED
+**Lemma 1 (V=I with acquisition).** A finite pipeline whose sound comparisons eventually separate the target from every other candidate identifies that target. Finiteness makes the collection of separation times finite, and retention preserves each exclusion. PASS still needs the conditions of V=I Theorem 2. The existence of a suitable encoding does not establish that a caller finds it or that its actual query policy gathers the distinguishing evidence.
 
 > Argues: ``PipelineCrystallizes`` needs ``PassIsIdentification``.
 
-**Lemma 2 (Agent learning).** Library accumulation under the Saturation Theorem is a crystallizing system.
-
-Lemma 2 views the same process through its complement: no new construction, §3's accumulation re-counted. A1 is defined as shrinkage: S₀ ⊇ S₁ ⊇ S₂ ⊇ ... In Lemma 1 the shrinking object is obvious: S, the candidate set, loses members with each COMPARE. In §3, agent learning is described as L growing: rules are added, the library expands. The complement is what shrinks: rule classes in D_id not yet covered by L. Every new PASS removes one class from that set. It never grows back (I3). This is the object Lemma 2 uses as S₀.
-
-*Proof.* S₀ = the set of rule classes in D_id not yet covered by L. This set is finite (I1 + finite D_id → finitely many rule classes). Each solved task whose rule is new defines a predicate Pₙ: "class k is covered." I3 for the agent (§2): entries are never removed from L, so a covered class is covered for good. Uncovered classes can only decrease → A1. Covered classes cannot become uncovered → A2. Whether a new task matches an existing entry in L is decidable: compare features of τ against each stored rule, O(K × F) COMPAREs → A3. Saturation Theorem (§3): after K tasks with distinct rules, every class in D_id is covered. |uncovered| = 0 → A4 (terminal state: no candidates remain in S₀). QED
+**Lemma 2 (Agent learning with coverage).** Fix a finite common set C of required rule classes and a sound retaining library L. Let U₀ = C ∖ P(L₀) be its initially uncovered classes. After episode n define Uₙ = {k ∈ U₀: k has not been inserted by episode n}. The predicates keep classes that remain uncovered. Each successful insertion of a new class removes that class, while a repeated PASS may leave U unchanged. If every initially uncovered class is eventually solved and inserted, the maximum of its finitely many insertion times is finite and U becomes empty. Matching and usable dispatch require the separate premise of System CS2.
 
 > Argues: ``LibraryCrystallizes`` needs ``LibrarySaturates``.
 
-*Remark.* A4 in Lemma 1 terminates at |S| = 1 (one candidate survives). A4 in Lemma 2 terminates at |uncovered| = 0 (no class remains). Both are terminal: no further predicate changes the outcome. Lemma 1 crystallizes an answer. Lemma 2 crystallizes a library.
+An empty survivor set remains empty under further intersection and indicates inconsistency of the declared model and evidence. A singleton is stable under further sound evidence preserving its actual member. Without that premise a later predicate can exclude the singleton too. Empty coverage complement and unique target are different completion criteria.
 
-
+The Swift intersections expose declared relations and type coordinates. `SystemCrystallizes` pins a `Unique` solution-set coordinate. This checks a supplied type relation, not eventual progress of an arbitrary runtime trajectory. A proof of the progress premise or a bounded acquisition witness must be supplied separately.
 
 ## §6. Phase Transition
 
-§3 described completion as discrete, deterministic, inevitable, irreversible. This section gives the transition its mathematics. The mathematics is exact: an expectation, a tail bound, an endpoint invariance, theorems over finite D. The physics vocabulary (phase transition, symmetry breaking, critical slowing down) names the shared mathematical structure, and the author derives no physical constant from it.
+This section models coverage under an additional arrival law. Retention and finite classes alone do not determine arrival statistics. The resulting cover-time and endpoint statements concern a finite class set under that model, not a derived thermodynamic phase transition.
 
-**Theorem (Saturation time).** Suppose the agent encounters tasks drawn uniformly from K rule classes. The expected number of tasks until saturation:
+**Theorem (Saturation time).** Suppose K≥1, the library starts empty, task classes arrive independently with uniform probability, and each encountered class is solved and retained. The expected number of tasks until saturation:
 
 ```
 E[τ_sat] = K · Hₖ = K · Σᵢ₌₁ᴷ (1/i) ≈ K · ln(K) + γK
@@ -247,25 +180,21 @@ E[τ_sat] = K · Hₖ = K · Σᵢ₌₁ᴷ (1/i) ≈ K · ln(K) + γK
 
 where Hₖ is the K-th harmonic number and γ ≈ 0.5772 is the Euler-Mascheroni constant.
 
-*Proof.* After covering k − 1 classes, the probability that the next task belongs to a new class is (K − k + 1)/K. The expected wait for one new class is K/(K − k + 1). Summing over k from 1 to K yields K · Hₖ. This is the coupon collector's problem (de Montmort, 1708). QED
+*Proof.* After covering k − 1 classes, the probability that the next task belongs to a new class is (K − k + 1)/K. The expected wait for one new class is K/(K − k + 1). Summing over k from 1 to K yields K · Hₖ. This is the coupon collector model. QED
 
 **Corollary (Approach speed).** The probability that the library is incomplete after τ tasks:
 
 ```
-P(|L| < K after τ) ≤ K · e^(−τ/K)
+P(|P(L)| < K after τ) ≤ K · e^(−τ/K)
 ```
 
-Exponential decay. Crystallization is inevitable, but the last classes cost the most.
+The union bound gives K(1−1/K)^τ≤K exp(−τ/K). For positive independent class probabilities p_k, the corresponding bound is Σ_k(1−p_k)^τ, which tends to zero. Marginal probabilities alone do not imply coverage: choose one fair class once and repeat it forever. Every time has uniform marginals while one class never appears. The IID law is an extra stochastic model, not a consequence of a finite closed reversible whole. Such a whole can implement bounded prepared arrival windows without supplying an independent stream forever.
 
-**Theorem (Symmetry breaking).** The saturated library L is unique: any two agents processing the same (D, E) produce the same L (§3: SAT5, SAT6). The trajectory to L (which classes are covered in which order) is set by the specific task sequence. Multiple trajectories, one endpoint.
+**Theorem (Endpoint of class coverage).** With sound retaining updates and eventual visitation and solution of each class, P(L)=C at completion. This follows from CS1. Different orders of first visits can yield the same class set and different feature records. There are K! permutations of first visits, but arbitrary task histories also contain repeats. These permutations need not be equally likely when class probabilities differ.
 
-*Proof.* Assume the task distribution has pₖ > 0 for all k (every class can appear). By uniqueness (§3), the endpoint is invariant: the content of L is set by (D, E), not by the agent or task order. By I3, irreversibility: once a class enters L, it is there for good. The intermediate states L₁ ⊂ L₂ ⊂ ... ⊂ L are set by which tasks arrived first: agent A seeing class 3 before class 7 has a different L₄ than agent B who saw class 7 first. But both reach the same final L because every class in D_id eventually appears (pₖ > 0) and I3 prevents loss. The set of possible orderings is K! (all permutations of K classes). Each specific history selects one permutation. The endpoint is invariant across all K! paths. This is spontaneous symmetry breaking: the dynamics select one trajectory from a symmetric set, but the fixed point is unique. QED
+The coverage process under an IID arrival law is determined by its class probabilities and initial coverage. Equal probabilities and class counts do not establish equal computation costs: query availability, feature extraction and verification still differ.
 
-**Definition.** The universality class of an agent-domain pair is the tuple (K, F, {pₖ}) where K = number of rule classes, F = features per rule, pₖ = frequency of class k in the task distribution. Two domains with isomorphic (K, F, {pₖ}) exhibit identical saturation dynamics: same E[τ_sat], same approach speed, same cost profile. The specific tasks differ, and the phase transition is the same.
-
-This is why two unrelated domains (say, visual pattern recognition and natural language syntax) can exhibit the same learning curve: if K, F, and the class frequency distribution match, the saturation dynamics are indistinguishable. The content of the library differs, and the cost trajectory does not.
-
-**Remark (Critical slowing down).** Near saturation, when |L| = K − δ, the remaining δ classes are the rarest: otherwise the agent would have encountered them already. The expected wait for the next new class is K/δ. As δ → 1, the wait approaches K. The system slows before it crystallizes. The same effect appears in physical phase transitions as critical slowing down. Here it follows from the coupon collector's tail.
+**Remark (waiting near coverage).** Under uniform independent arrivals, δ missing classes have combined probability δ/K, so the mean wait for the next new class is K/δ. The remaining classes need not be intrinsically rare. With nonuniform probabilities, the mean is 1/Σ_missing p_k instead. These are waiting-time identities within the arrival model. No physical critical phenomenon follows from them.
 
 ## §7. Discovery
 
@@ -277,7 +206,7 @@ The same applies to the pipeline as a whole and to the agent: neither creates th
 
 > Argues: ``DiscoveryIsRevelation`` needs ``ExactlyOneSurvives``.
 
-**Corollary (Library invariance).** The saturated library L is determined by (D, E), not by the agent (§3: uniqueness). Two agents with different protocols, different orderings, different histories arrive at the same L. The agent reveals L: it does not construct it.
+**Corollary (Rule projection invariance).** The complete class set C is determined by the common domain and rule interpretation. Libraries with different feature records can project to the same C. The agent can discover which rules apply while constructing a particular representation of that record. No choice of representation creates the already fixed target law.
 
 > Argues: ``DiscoveryIsRevelation`` needs ``LibrarySaturates``.
 
@@ -289,57 +218,22 @@ These two corollaries shift the question from "what does the agent build?" to "h
 
 ## §8. Statement
 
-V=I proves: the system is correct (inner half).
+V=I's safety theorem identifies the encoding-local candidate under PASS and R4. Faithful observations and target representability connect that statement to an actual law. This paper adds a conditional account of reuse:
 
-This document proves: intelligence is inevitable (outer half).
+1. Sound retaining updates preserve their records under fixed assumptions.
+2. A finite common rule domain bounds newly represented classes.
+3. Eventual visitation and successful learning of each class yield full class coverage.
+4. Sufficient dispatch or complete verification makes stored rules usable on the next task.
+5. Reuse improves efficiency when its measured cost is lower than re-derivation. Optimality needs a separate argument.
+6. Independent arrivals supply the coupon-collector model. Other arrival laws can fail coverage despite positive marginals.
+7. Complete libraries share their rule projection. They need not share feature records, derivations or costs.
+8. Expanding a model family can retract predictions while every observation remains retained and true.
 
-The derivation:
-
-1. The system is a function (V=I §2–§4).
-
-2. A function needs a caller → the loop → the agent (§0).
-
-3. The agent operates in Σ. I3 applies to its knowledge state: knowledge accumulates irreversibly (§2).
-
-4. Each PASS certifies: the agent's path becomes a system-path (§1).
-
-5. Certified paths form a library L (§2, §3).
-
-6. Rules transfer: a rule is a recipe recomputed on new data (§2).
-
-7. L grows monotonically (I3). Each new rule class covered is permanent.
-
-8. For finite D: L covers all K identifiable classes under E → T_actual drops to O(K × F) + 1 (§3, theorem). Tasks non-identifiable under E may resolve under a different encoding (§4: meta-saturation).
-
-9. Reducing T_actual relative to T_min is increasing η, the measure of intelligence (§3).
-
-10. This cannot be prevented: I3 is structural, certification is structural, D_id is finite (§3, theorem).
-
-11. The completed library is unique, deterministic, and agent-invariant (§3). Completion is discrete and irreversible.
-
-12. The encoding boundary softens at level 2: encoding selection satisfies the Saturation Theorem conditions (§4).
-
-13. A system without I3 loses uniqueness, certification, and permanence. The architectural difference is one property (§3).
-
-14. The axioms governing crystallization (A1–A4) are satisfied by V=I and by agent learning (§5).
-
-15. Crystallization has computable dynamics: E[τ_sat] = K · Hₖ, exponential approach, symmetry breaking with invariant endpoint (§6).
-
-16. The crystallized library is revealed, never constructed by the agent. f* pre-exists. L is domain-determined. Search is elimination (§7).
-
-Intelligence is a structural consequence of operating a verification loop with an append-only cache over a finite space. Any protocol that runs long enough on a finite grammar becomes more efficient at identification. The only variables are how fast (ordering), within what scope (encoding), and against which distribution (D).
-
-Combined with V=I: the system cannot produce a wrong PASS (Theorem 2), and when identification fails it returns the reason: |S| > 1 (encoding insufficient) or |S| = 0 (no candidate passes). This document adds: saturation is inevitable (I3 + finite D_id), the saturated library's content is determined by the domain, not the agent, and the crystallization follows computable phase transition dynamics.
-
-Every entry is certified (Theorem 2), unique (SAT5/SAT6), and permanent (I3): properties that generic caching and mutable-state accumulation lack.
-
-The conditions are the claim's whole scope: a verification loop, an append-only cache, a finite domain, a stream that presents it. Within them, the statement is exact:
-
-> **Intelligence is inevitable. Its crystallization is a phase transition with computable dynamics. The result is determined by the domain.**
+The theory therefore supports a precise research program for certified learning and reuse. It does not yet prove that every persistent learner becomes faster, that retention alone entails intelligence, or that a unique encoding-local solution must match an unrepresented physical law. The finite witnesses and countermodels in System CS1–CS3 make those boundaries executable.
 
 ## Topics
 
-### Theorems this paper proves
+### Related type declarations
 
 - ``KnowledgeAccumulates``
 - ``LibrarySaturates``

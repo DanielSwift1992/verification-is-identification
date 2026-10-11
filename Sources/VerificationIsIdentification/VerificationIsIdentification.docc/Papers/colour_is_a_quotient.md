@@ -1,77 +1,59 @@
 # Colour Is a Quotient (Gamut)
 
-Colour is not a property of light. It is a class of lights: everything the eye maps to one image is one colour, however many beams the class holds. From that one move, the quotient, the author derives the colour stack and closes the pipeline: coordinates as charts on the quotient, hue as a residue, the display as a stated source whose reach is a cone, out-of-gamut as an empty candidate set, and bit depth as the length of a walk. The claim, pinned: colour is a quotient, and every colour space, gamut, and depth question is a question about the quotient's charts, cones, and ladders. The author pinned the two claims in the lattice first (`Colour.swift`) and wrote this paper against that encoding.
+Exact equality under a specified colour encoder forms a quotient. Approximate discrimination, display reach and perceptual distance require further relations. Keeping these premises separate makes colour a test of identification rather than an assumed identity between every use of the word.
 
-## §0. Derivation
+## §0. Domain
 
-No new postulate. From Seeing Is Encoding: the projection and its kernel. From Form Is Gauge: one content under many charts. From Light Is a Ruler: the residue and the two-tier distance. From Dynamics Is Substitution: the stated source. Colour is those four, composed on the eye.
+Fix the observer model, viewing conditions, spectral domain and encoder E. Seeing Is Encoding proves the fiber criterion for a deterministic reading and distinguishes it from overlap of stochastic outcome supports. Colour coordinates below refer to this declared model. They do not describe every perceptual context at once.
 
-## §1. A colour is a fiber
+## §1. Exact equality
 
-**CiQ1 (The quotient).** The eye's projection partitions all beams: two beams are one colour exactly when their images coincide. A colour is a fiber of that projection (the metameric class whole), and the space of colours is the quotient of light by the eye's kernel. Every colour coordinate ever written parameterizes the quotient, never the light: the chart reads nothing inside the fiber, and what it cannot read, no arithmetic on coordinates recovers. **[solid: ``ColourIsQuotient``]**
+**CiQ1 (The quotient).** Define x∼y iff E(x)=E(y). The quotient X/∼ is in bijection with E(X): send each fiber to its common image. This is well-defined and bijective by the definition of a fiber. Any question constant on those fibers factors through E. No decoder of E can recover a question that differs inside one fiber.
 
-> Argues: ``ColourIsQuotient`` needs ``EncodingForgets``.
+`ColourIsQuotient` represents the exact fiber by its common image and binds that code to the supplied image certificate. It does not enumerate the complete fiber or establish a physical encoder's domain. The mathematical proof above and actual computed-image certificates in `JoinedVerdict` carry the stated content. Exact colorimetric equality is relative to the observer and illuminant, as the [CIE metamerism definition](https://www.cie.co.at/publications/special-metamerism-index-change-observer) makes explicit.
 
-## §2. Colour spaces are charts
+## §2. Coordinates
 
-**CiQ2 (One quotient, many gauges).** RGB triples, XYZ, Lab, OKLCH: charts on one three-channel quotient, related by re-parameterization, the same content under different spellings, which is the gauge freedom of forms. The linear charts respect mixing, and the bent ones are for something else. One chart is canonical for mixing: the linear one, where the sum of lights is the sum of coordinates. Mixing is there, and every other chart is a spelling at the edge. A perceptually uniform chart bends its coordinates until the perceptual distance is flat along them: equal steps, equal felt difference. And one coordinate is not like the others: hue closes on itself. Hue is a residue (a position on a finite ring, the same carrier as a wave's phase), so complements are the half-turn, and the complement of the complement is the hue itself, an involution checked once for the whole ring.
+**CiQ2 (An invertible chart preserves fibers).** If f is injective on E(X), then f(E(x))=f(E(y)) iff E(x)=E(y). Thus invertible coordinate changes preserve exact identification on their admitted domains. Clipping and quantization generally do not. RGB requires a specified set of primaries and transfer law. Other colour coordinates likewise require their reference conditions. No common quotient across unspecified contexts follows from three coordinates alone.
 
-## §3. A display is a cone
+An invertible chart need not preserve mixing or distance. Perceptual uniformity is a further modeling goal, not a theorem of reparameterization. A finite hue ring can be a useful discretization. If its size is even, adding half its size twice returns the starting residue. This arithmetic involution does not establish physical or perceptual complementarity for every colour.
 
-**CiQ3 (Gamut is a cone, and outside it S is empty).** A display is a stated source: finitely many primaries, each a written spectrum, with nonnegative levels. Its reach in the quotient is the cone the primaries span. A colour inside the cone is matched by stated levels: the certificate is the levels themselves, and membership never needs an inverse matrix, because the witness is the decomposition. A colour outside has no matching levels at all: the candidate set is empty, and the display refuses by name instead of clipping in silence. The refusal is decidable before anything shines, because the primaries are written whole. **[solid: ``GamutIsCone``]**
+## §3. Reach of a declared source
 
-> Argues: ``GamutIsCone`` needs ``ColourIsQuotient``.
+**CiQ3 (The unbounded linear model gives a cone).** Let p₁,…,pₙ be fixed primary vectors in a linear output space and let drives λᵢ range independently over all nonnegative real values. The reachable set is {Σλᵢpᵢ:λᵢ≥0}, the cone generated by those primaries. A decomposition certifies membership by direct substitution. The witness need not have been found by an inverse matrix.
 
-**CiQ4 (Three primaries never suffice).** The visible colours of single lines are a curve whose region is convex, and any three primaries span a triangle inside it: some pure line is always outside. Wider gamuts have their corners nearer the curve (the widest stated primaries are single lines themselves), and still the triangle is a triangle. Reaching every colour needs more primaries, or the identity encoder: a display that states the spectrum itself. The limit is convexity, never engineering.
+With physical drive bounds 0≤λᵢ≤bᵢ, the reachable set is instead the linear image of that box, a bounded convex polytope. With quantized drives it is a finite set. Neither case is the entire unbounded cone. Nonlinear or interacting primaries require another source law.
 
-## §4. Depth is a walk
+For the unbounded model, a supplied linear functional ℓ with ℓ(pᵢ)≥0 for every primary and ℓ(c)<0 certifies that target c is unreachable: applying ℓ to any admitted decomposition gives a nonnegative result. For bounded drives, ℓ(c)>Σbᵢ max(0,ℓ(pᵢ)) is a sufficient refusal certificate. Failure to find a decomposition alone proves neither refusal. The legacy `GamutIsCone`/`Primaries` interface is retired because it enforced neither these equations nor the drive domain. Concrete finite gamut constructors remain in the examples. The generic cone theorem is the proof above.
 
-**CiQ5 (Bits are halvings).** A channel's depth is the length of its walk: each bit halves the remaining brightness interval, eight bits are eight halvings, and a high-dynamic-range channel is the same walk grown longer. Precision of colour and precision of measurement are one form (a walk down stated divisions), and the display's finest step is the walk's last door, stated, never approximated. And the walk is more than storage. The eye reads brightness by ratios, a halving is one ratio, so the rung of the highest lit door is the level's logarithm: the walk's depth is the perceptually flat coordinate, and felt distance is a difference of rungs, never of counts.
+**CiQ4 (Chromaticity is a separate normalization).** Let L be a linear normalization with L(pᵢ)>0. For any nonzero nonnegative mixture c, its normalized coordinate c/L(c) is a convex combination of pᵢ/L(pᵢ), with weights λᵢL(pᵢ)/L(c). Three primaries therefore reach a triangle in that normalized space. A target outside that triangle is unreachable with those primaries. To conclude that no triangle covers a specified physical colour domain, the geometry of that domain must also be supplied. Three coordinates alone do not prove it.
 
-## §5. Two distances, one hierarchy
+## §4. Precision
 
-**CiQ6 (Structural below, perceptual above).** The structural distance is on beams, and the perceptual distance is on the quotient. The projection maps the first onto the second and forgets the rest: a metameric pair is far below and at zero above. Every colour-difference formula is a metric on the quotient, so none of them can price what the eye already lost. The perceptually flat chart is exactly the gauge in which the upper metric is flat along coordinates. The hierarchy is the account of colour difference, never either floor alone.
+**CiQ5 (Bits bound code words).** A b-bit channel has at most 2ᵇ code words. A specified binary subdivision can interpret them as interval addresses. Their physical levels and spacing depend on the transfer map. Bit depth alone establishes neither dynamic range, logarithmic sensitivity nor perceptually equal steps. Exact arithmetic on code words remains distinct from uncertainty in the device's response.
 
-## §6. The eye bounds the record
+## §5. Distances
 
-**CiQ7 (The felt step is data too).** The eye has a resolution: below one just-noticeable difference, two stimuli are one percept. The threshold is measured physiology, and it enters like every magnitude here: stated data with a pedigree, an experiment's rather than a committee's. Telling apart is then an edge comparison against the stated step. The two pedigrees never mix: physiology bounds a record's reach, and committees only name regions of it.
+**CiQ6 (A quotient does not choose its distance).** Given a metric d on the image space, d(E(x),E(y)) is a pseudometric on sources and descends to a metric on the quotient by exact image equality. This follows from the metric axioms for d. The original structural distance on sources need not descend: replacing a source by another member of its fiber can change that distance. A colour-difference formula needs its own properties checked rather than receiving metric axioms from its name. A perceptual interpretation additionally needs evidence under the stated viewing conditions.
 
-**CiQ8 (The perceptual quotient is finite, so completeness is a file).** Walk the ladder until adjacent rungs are one felt step apart: on deeper rungs there is nothing the quotient can carry, so the eye, not the lattice, sets the depth of a finished record. Across chromaticity the same threshold tiles the visible region into finitely many distinguishable cells: millions of them, and finite. A finite set is a file: every colour a human can tell apart is recordable whole, and "all the colours" is no figure of speech. The displays are then regions of that one field, sRGB inside P3 inside Rec.2020 inside the eye: markers on the eye's own map, useful for comparison and nothing else. The outermost cone is no standard's: it is the eye's, and the record covers it.
+## §6. Discrimination is not necessarily equivalence
 
-## §7. Standards enter as data
+**CiQ7 (A threshold defines a comparison).** A declared tolerance ε can define x≈y by d(E(x),E(y))≤ε. Even for a genuine metric, this relation need not be transitive. On the real line with ε=1, positions 0 and 3/5 compare within tolerance, as do 3/5 and 6/5, while 0 and 6/5 do not. Thus pairwise subthreshold comparison cannot in general replace the equivalence relation in CiQ1. This is a mathematical counterexample to that replacement, not a quantitative model of human thresholds.
 
-**CiQ9 (No committee number is inside a mechanism).** A colour standard (a white point, a threshold, a transfer curve) is a committee's stated agreement, and it enters this system the way any agreement does: as named data with a pedigree, never as a constant inside an operation. The engine keeps four operations forever (sum, product, and the two edge comparisons), and every standard reduces to them in one of three ways.
+**CiQ8 (Finite packing needs a domain).** In a totally bounded metric domain, every set of points mutually more than ε apart is finite: cover the domain by finitely many balls of radius ε/2, each of which contains at most one such point. This proves a finite bound for that packing problem. It does not partition the domain into perceptually identical cells. Taking the transitive closure of threshold comparisons can join endpoints that are readily distinguishable. Human discrimination also requires an experimental response criterion and context. A universal file of all percepts does not follow from one positive threshold.
 
-A rational bound dissolves by cross-multiplication. A ratio like 4.5:1 is nine against two, and an offset like 0.05 is one twentieth. Multiply the whole inequality through by the common denominator, and both sides are then sums and products of integers on the lattice, compared at the edge. No lattice is ever the wrong size for a rational standard, because the scaling is itself a composition.
+## §7. Data and certificates
 
-A curve (a display's transfer function, transcendental by its formula) enters as a stated table on the ladder: one pair per rung, precision stated by depth, monotonicity a judged chain of edge comparisons. The formula is outside, as the table's generator. The system judges the table, and a table is also what the physical device has of the same curve.
+**CiQ9 (A standard enters with its interpretation).** Primaries, reference whites, transfer functions and experimental response data enter with their units, domain and provenance. Exact rational inequalities can be checked by cross-multiplication when denominator signs are known. A finite table represents its stated entries exactly. Its agreement with a continuous formula between entries or with physical measurements needs further bounds. A table cannot certify that agreement by being finite.
 
-Membership in a cone is a witness, never an inverse. A colour is inside a chart's gamut exactly when a decomposition over the stated primaries exists, and the decomposition is the certificate, checked against the primaries' own stated weights, so the inverse matrix exists nowhere. Outside is the empty candidate set, the same refusal every question in this system ends in.
-
-## §8. Statement
-
-Colour is a quotient. The eye's kernel makes the class, the class is the colour, and the charts (RGB, OKLCH, all of them) parameterize classes, with hue a residue on its ring. A display is a stated source whose reach is a cone in the quotient: inside, levels certify the match, and outside, the candidate set is empty and the refusal is named. Three primaries never cover the curve, by convexity. Depth is a walk of halvings, and colour difference is a two-storey affair: structural on the light, perceptual on the quotient, related by the projection that forgets. Standards enter as data on the lattice (rational bounds by cross-multiplication, curves by stated tables, membership by witness), and the engine's operations never grow. The whole pipeline loses information at exactly one point, the device's own cone, and the system names that point instead of hiding it: a colour here is a projected fact, never a clipped number. The outermost cone belongs to no standard: it is the eye's, the perceptual quotient inside it is finite, and a finished record is at the eye's own resolution. From the spectral line to the screen's last bit, every storey is the same mathematics: a finite structure, a stated law, a decided question.
+For a display, a positive certificate includes the drive values, their bounds and the resulting target. A negative certificate includes an obstruction such as CiQ3's separating functional. For a sensor, the certificate includes the actual response law and the question whose answer is claimed. These obligations let the same VI relations handle different calibrated models without hiding the model's assumptions in a universal colour claim.
 
 ## Scope
 
-Claimed: the quotient, its charts, hue as a residue with its involution, the cone of stated primaries, refusal outside the cone, the convexity limit, depth as halvings, the entry of standards as data (rational bounds, stated curve tables, witness membership), and the eye as the outer bound: a stated felt step, a finite perceptual quotient, depth finished at the eye's resolution. The felt step's values and the unevenness of real discrimination ellipses are experimental data at the edge. The stated instance here is one isotropic step, named as such. Not claimed: the numerical weights of any real observer (they are at the edge), individual variation and adaptation, white points and tone mapping, and the smooth geometry of real chromaticity: the theorems are on stated instances, and numbers are at the reading edge.
-
-## §9. Dependency
-
-| Source | Used |
-|---|---|
-| Seeing Is Encoding | the projection, its kernel, the metameric class, the identity encoder |
-| Form Is Gauge | one content under many charts, the gauge that flattens a metric |
-| Light Is a Ruler | the residue as a cyclic coordinate, the two-tier distance, walks as precision |
-| Dynamics Is Substitution | the stated source, decidability before the first act |
-| Existence Is Finite | finite bases, finite rings, finite walks |
-| V=I | the empty candidate set as the form of refusal |
-
-The worked instance is beside the light domain in the examples: the metameric twins as one fiber, a one-primary display that reaches equal channels and refuses unequal ones by name, and the six-spoke hue ring with its complement involution checked generically. The author pinned the two claims in the lattice before stating them in prose, and this document exists so the colour half of the quotient is one in prose and in types.
+The quotient and its factorization, the linear source cone with its bounded-drive correction, the chromaticity normalization, and the threshold counterexample are derived above. The existing examples exercise finite projections, a restricted primary and a discrete hue ring. They do not yet implement calibrated observer functions, empirical discrimination or generic linear inequality certificates. Seeing Is Encoding SiE10 gives the next exact sensor example without an invisible source channel. Matter §5 supplies the quantum boundary between response equality and certain discrimination from one specimen.
 
 ## Topics
 
-### Theorems this paper proves
+### Related type declarations
 
 - ``ColourIsQuotient``
-- ``GamutIsCone``

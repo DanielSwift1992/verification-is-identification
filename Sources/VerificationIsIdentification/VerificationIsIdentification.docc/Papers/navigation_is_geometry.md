@@ -2,15 +2,13 @@
 
 Distance Is Cost gave the library a metric: every pair of entries has a distance W, computable by one traversal. A metric space is not yet a map. Here the author derives the map.
 
-The library under W is a finite metric space, and connecting entries within radius ρ makes it a graph. The graph is connected exactly above a computable threshold, and greedy descent toward a target terminates in at most W(start, target) hops, because the metric is integer-valued and every hop strictly decreases it. Where greedy descent fails, it fails at an address: a named node, a named target, a named radius, a hole that says where an anchor is missing. Holes are repaired by insertion, repairs are permanent, and inserting an anchor never creates a hole where none was: the router's failures are the acquisition curriculum.
+A declared finite library under W and a chosen radius define a graph. A walk taking strict W-decreases has a finite bound, while arrival additionally requires accessible improving transitions. A missing transition can be stated as a question about a start, target and radius. Insertion preserves existing edges but can introduce new routing obligations.
 
-Above that unconditional core are the conditional theorems, in the same standing as the modulus and the compression criterion. A library whose geometry is hierarchically separated is navigable at small radius in logarithmic hops, the cost of building the map amortizes over queries with a computable crossover, and a populating library navigates inevitably, for the same reason intelligence is inevitable: append-only accumulation over a finite clustered space. Learning, generalization, and navigation are three readings of one measurable property of the W-matrix.
-
-The map is not added to the library. It is implied by the metric, and here the author only draws it.
+The conditional results distinguish a supplied routing certificate, the cost of using it and the acquisition of the required anchors. N12 requires actual access for its hop bound. N18 separates approximation, anchored recovery and navigation. N19 shows why a global routing threshold can increase when the domain expands.
 
 ## §0. Derivation
 
-No new postulate. The author derives everything below from the metric (DiC G2), the library (IiI §3, PiR §2), and the invariants I1–I3.
+The graph arguments assume a declared finite library, the specified W metric and the chosen radius. Routing policies, access and acquisition premises are stated separately.
 
 1. The saturated library L is a finite set of structures in Σ. *[IiI §3; PiR §2]*
 2. W is a metric on Σ, integer-valued, computable by one traversal. *[DiC G2, G2a]*
@@ -19,7 +17,7 @@ No new postulate. The author derives everything below from the metric (DiC G2), 
 5. Routing toward any W-computable target is greedy descent on this graph, and descent strictly decreases an integer quantity bounded below: it terminates. *[N5]*
 6. Termination is arrival or a local minimum, and a local minimum carries its own address. *[N6]*
 7. Every routing question over the finite graph is decidable offline. *[N7; I1]*
-8. Append-only insertion (I3) makes the graph's failures monotonically removable and its repairs permanent. *[N15–N16]*
+8. Retaining insertion preserves supplied improving edges at fixed start/target coordinates. New vertices can add new obligations. *[N15–N19]*
 
 The earlier papers built the entries. This document is about getting between them without scanning all of them.
 
@@ -65,11 +63,11 @@ The statements so far are unconditional. The useful regime (small ρ_nav, few ho
 
 **N11 (Nested separated covers).** Premise: L admits a nested sequence of covers C₀ ⊃ C₁ ⊃ ... ⊃ C_m at scales r₀ > r₁ > ... > r_m, where C₀ is one ball of radius diam, each cluster at scale i is contained in a cluster at scale i−1, distinct clusters at scale i are separated by ≥ λ·rᵢ with λ > 2, and every cluster contains at least one anchor. This is the dendrogram condition: the library's hierarchical clustering has well-separated levels. Decidable for a given L by inspection of the W-matrix, and its empirical signature is a Gromov four-point constant δ small relative to the diameter (tree-likeness).
 
-**N12 (Logarithmic hops).** Under N11, greedy descent at radius ρ ≥ 2·r₀/λ..., the condition in full: at each scale i, separation λ > 2 makes the target's cluster strictly closer than any sibling cluster, so a greedy step from an anchor in the wrong scale-i cluster moves into the target's scale-i cluster within one inter-cluster hop, and the walk descends one scale level per bounded number of hops. Total hops = O(m) = O(log(diam)) for geometrically decreasing scales: logarithmic in the diameter, sub-linear in |L|.
+**N12 (A routing bound needs actual access).** Fix a target t in a finite graph and a level assignment ℓ_t with values in {0,…,m}, zero exactly at t. Suppose every other node has an actual permitted neighbor of lower level, and the routing policy selects such a neighbor. Then routing reaches t in at most m hops, because each hop strictly decreases a nonnegative integer. This is a bound from the supplied access and level relations. For finite tree outputs, G2h already supplies a stronger addressed form of progress: strict inclusion of the remaining differences to the same target. Its finite-chain proof does not require a separately represented scalar level.
 
-*Proof sketch.* From anchor a in a sibling cluster at scale i, every anchor b in the target's cluster satisfies W(b, τ) ≤ rᵢ and W(a, τ) ≥ λ·rᵢ − rᵢ > rᵢ (separation, λ > 2): b is strictly closer, and any neighbor in the target's cluster is a strict improvement. Nested containment repeats the argument at scale i+1. The bounded-hops-per-scale constant is a function of cluster occupancy, part of the premise, measured. QED
+A nested metric cover alone does not supply the necessary graph edges, a policy that finds them or a logarithmic depth bound. Separation can compare distances between clusters, but it cannot make a missing neighbor accessible. The previous proof of logarithmic routing implicitly used precisely that missing step. A hierarchy yields O(log |L|) hops only after its depth and the accessible transitions supporting that routing bound are established. The work of selecting each transition is an additional cost.
 
-**Degenerate case, exact.** A metrically uniform library (all pairwise distances comparable) admits no separated nesting: ρ_nav ≈ diam, the graph is only navigable when complete, and routing degenerates to scanning. The map of a flat geometry is a list.
+*Exact equal-distance case.* If every distinct pair in L has distance d>0, the radius graph has no edges for ρ<d and is complete for ρ≥d. This follows directly from N1. A policy comparing all neighbors pays for a scan in the complete case. A direct task-to-target reader need not scan those neighbors, so this graph fact is not a lower bound on every solver or a prohibition on reuse.
 
 ## §5. Economics
 
@@ -79,31 +77,27 @@ The statements so far are unconditional. The useful regime (small ρ_nav, few ho
 
 ## §6. Repair
 
-**N15 (Holes are repairable, constructively).** Given a hole (s, τ, ρ): any new anchor a with W(s, a) ≤ ρ and W(a, τ) < W(s, τ) removes it. Such structures exist in Σ: every geodesic from s toward τ passes through valid structures at every intermediate distance (DiC G2: the schedule is inside Σ throughout), so the required region is never empty as a region of Σ. Whether the region contains a *certifiable entry* (a rule some task can certify) is the domain's affair: the hole names what to look for, and finding a task that crystallizes there is acquisition, not deduction.
+**N15 (Holes are repairable, constructively).** Given a hole (s, τ, ρ) with s≠τ and integer ρ≥1: any new anchor a with W(s, a) ≤ ρ and W(a, τ) < W(s, τ) removes it. Such structures exist in Σ: every geodesic from s toward τ passes through valid structures at every intermediate distance (DiC G2: the schedule is inside Σ throughout), so the required region is never empty as a region of Σ. For ρ=0 no distinct tree is accessible, so this repair claim does not apply. Whether the region contains a *certifiable entry* (a rule some task can certify) is the domain's affair: the hole names what to look for, and finding a task that crystallizes there is acquisition, not deduction.
 
-**N16 (Repairs are permanent, and insertion is safe).** Inserted anchors never leave (I3, PiR M21), so a removed hole is removed for good. And insertion cannot damage the rest of the map: a node that had a strictly-closer neighbor still has it after any insertion: stuckness only shrinks under anchor addition. Walks may re-route through new anchors, and they cannot newly strand.
+**N16 (Existing improving edges are retained).** Under an insertion policy retaining old vertices and edges at a fixed radius, a strictly closer neighbor for a fixed pair (s,τ) remains available. A supplied path using old edges also remains available. New vertices can create new start/target pairs, and a changed routing policy can choose different paths. This local preservation result does not bound every walk in the expanded graph.
 
 *Proof.* Stuckness at (s, τ) is "no neighbor strictly closer." Insertion adds candidate neighbors and removes none, and an existing strict improvement persists. QED
 
-**N17 (The failure curriculum).** N6 gives every routing failure an address, N15 makes the address actionable, and N16 makes acting on it monotone progress. Therefore the set of current holes IS the acquisition agenda: each hole names the region where navigability is one certified entry away, and hole-directed acquisition strictly reduces the hole count, while undirected acquisition only might. The router's failures are the curriculum, the navigation-level instance of the series' one pattern: the failure names its own cure.
+**N17 (A failure can specify an acquisition question).** A witnessed missing improving neighbor gives a concrete region to examine. Supplying an admissible anchor in that region removes this particular hole, as N15–N16 show. It does not prove such a rule can be acquired or that the total number of holes decreases when new start/target pairs are added. A useful curriculum must therefore retain the failure coordinates, the actual repair witness and the domain over which progress is measured.
 
 ## §7. The Profile
 
-Between ρ\* (connectivity, N2) and diam (trivial completeness), the graph has a measurable profile: greedy success rate over (start, target) pairs, stretch distribution (N4), hole count and hole addresses (N6–N7), degree histogram (N14), each as a function of ρ. The profile is the domain's navigability made visible: success rising to 1 at ρ_nav, stretch falling toward 1 as shortcuts appear, holes draining as anchors populate. Two libraries with identical K and identical covering numbers can carry different profiles, and the profile is finer than the cover. All of it is offline, exact, and reproducible from the W-matrix alone: the map's quality is itself a certified measurement, never an impression.
+For a fixed finite library, target set and deterministic tie-breaking policy, the W-matrix determines a routing profile at each radius: success rate, stretch for arriving distinct start/target pairs (N4), hole count and addresses (N6–N7), and degree histogram. Increasing radius removes holes at fixed coordinates (N8), and all pairs over L succeed at ρ_nav. This does not prove monotonicity of every individual walk's success or stretch. Enlarging L changes the pairs being measured and can worsen the global threshold (N19). Exact comparison of profiles must therefore retain the domain, radius, target set and policy alongside the matrix.
 
-## §8. One Boundary, and Inevitability
+## §8. Shared Metric, Distinct Obligations
 
-**N18 (One boundary, three faces).** Three conditional capacities of the framework are grounded in one object, the structure of the W-matrix:
+**N18 (Different contracts sharing a metric).** Approximation, anchored recovery and navigation can use the same W, but require different relations. G12 gives the least number of representatives for a specified approximation error. G10–G11 require a task-to-rule bound or covered anchors and access to a containing search region. A navigation claim additionally names an edge radius, permitted moves, targets and a routing policy. Sharing the metric does not make these premises equivalent.
 
-| Face | Capacity | Criterion | Flat case |
-|---|---|---|---|
-| Learning | compression beyond memoization | G12: N(r) < K | every class its own entry |
-| Generalization | transfer within balls | G10–G11: modulus, anchored balls | r = 0, exact match only |
-| Navigation | sub-linear routing | N11: separated nesting, small ρ_nav | scan the library |
+G12's flat family has a one-center radius-1 cover and an exact direct reader. Thus a constant off-diagonal matrix excludes neither representative economy nor exact reuse. Conversely a small cover supplies no edges at an arbitrarily small navigation radius and no dispatcher from tasks to anchors. For a fixed finite library, its pairwise matrix can determine a chosen radius graph. It does not specify what task observations or operations are available outside that graph. There is no single clustering number deciding all three capacities.
 
-The three criteria are not three assumptions: they are three consumers of one measurable property, whether the domain's rule space clusters. A flat W-matrix denies all three at once, and a clustered one offers all three at once. There is one boundary, and it is a number you can compute.
+**N19 (Population preserves witnesses, not every global routing score).** Under an explicit arrival and acquisition model establishing eventual coverage of a fixed finite rule set, retained entries eventually represent that set. G11 gives one IID sufficient model. Positive marginal probabilities alone are insufficient, as IiI §6 shows. Once the required anchors and transitions for a supplied routing certificate are present and retained, those paths remain available.
 
-**N19 (Inevitability under population).** Premises: a task stream with positive probability for every class (IiI §6), a modulus (G10), and clustered geometry (G12). Then: every ball of the cover eventually receives an anchor (coupon collector over N(r) balls, IiI §6), stuck-sets shrink monotonically with each insertion and never grow (N16), and ρ_nav(L_t) is non-increasing in t and converges. The limit navigability is set by the geometry, and it is reached and kept: I3 forbids regression. Navigation becomes inevitable for the same structural reason intelligence does: append-only accumulation over a finite clustered space leaves the system nowhere to go but covered. The Saturation Theorem populated the library, and this statement says the populated library is, eventually and permanently, a place you can move around in.
+The global navigability threshold over a growing vertex set need not decrease. With unary trees encoding 0 and 1, the threshold is 1. Add the tree encoding 100. At any radius below 99, that new node is isolated. At radius 99, the chain 0–1–100 supports greedy progress to every target in this three-node library, so the new threshold is 99. G6 supplies these actual tree distances. Old edges were preserved, but a new start and target introduced a harder obligation. Retention therefore preserves existing path witnesses without proving monotonicity of an aggregate score over an expanded domain.
 
 ## §9. Boundaries
 
@@ -122,13 +116,13 @@ The three criteria are not three assumptions: they are three consumers of one me
 2. Greedy descent toward any comparable target terminates in at most the initial distance: the metric is integer-valued and every hop pays at least one distinction (N5).
 3. Failure is an address, not a verdict: a stuck walk names the node, the target, and the blank region (N6–N7).
 4. Navigability has a threshold, monotone in radius and capability, computable by binary search (N8–N10).
-5. Hierarchically separated libraries are navigable at small radius in logarithmic hops, and flat libraries are lists: both cases exact (N11–N12).
+5. A supplied routing level and actual descending transitions bound hops. Nested covers alone do not establish logarithmic routing (N11–N12).
 6. The map amortizes over queries with a computable crossover, and clustered growth leaves a degree signature (N13–N14).
-7. Holes are constructively repairable, repairs are permanent, insertion is safe, and the holes themselves are the curriculum (N15–N17).
-8. Learning, generalization, and navigation are three faces of one measurable boundary: the clustering of the W-matrix (N18).
-9. Under population, navigation is inevitable, and permanent (N19).
+7. An admissible improving anchor repairs its addressed hole. Retaining old edges preserves that improvement, while new pairs require their own routing witnesses (N15–N17).
+8. Approximation, anchored recovery and navigation share a metric but have different premises (N18).
+9. Population and retention preserve supplied paths. Global navigability on an expanding domain need not improve (N19).
 
-> **The metric was the map all along. Drawing it costs a matrix, reading it costs a walk, failing on it produces an address, and every anchor added makes it permanently better. A library you can search is a cache. A library you can navigate is a territory.**
+> **A routing claim names its starts, targets and permitted moves. Retaining its path preserves that witness. Adding an anchor can repair a named failure while making navigation over the enlarged domain harder.**
 
 ## §11. Dependency
 
@@ -170,7 +164,7 @@ Distance Is Cost gave every pair of forms a number. Here the author gives the nu
 
 ## Topics
 
-### Theorems this paper proves
+### Related type declarations
 
 - ``AnchorGraph``
 - ``GreedyDescentTerminates``

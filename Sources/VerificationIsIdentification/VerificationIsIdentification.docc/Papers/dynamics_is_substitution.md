@@ -75,7 +75,7 @@ In Law Is Target the author proved the law identifiable from examples, with the 
 
 ## Topics
 
-### Theorems this paper proves
+### Related type declarations
 
 - ``PresentedLaw``
 - ``PressIsIdentification``

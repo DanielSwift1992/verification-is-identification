@@ -60,24 +60,17 @@ Primality is mode 2, the deeper failure. "Is n prime" is binary, pass/fail, no g
 
 **GA5 (A graded loss puts a domain in the shallower mode).** A domain whose loss is graded and cheap (e.g. pixel-distance of a candidate's output from the target, G13, one traversal, a near-miss scoring lower than a wild one) is in a strictly better position than primes: mode-1, not mode-2 (GA4). It *has* a cheap graded loss to descend. The entire open question is its **alignment** α: does lowering loss move the candidate structurally toward the solution, or is the surface ridged and deceptive? This is grounded, not wishful: the reason to expect such a domain may be searchable is concrete (its loss is graded where primality's is binary), and the reason it might still fail is equally concrete and measurable (its α may be low).
 
-**GA6 (Alignment is the precondition of loss-built order, and α is its measurement).** An order built on the loss exceeds enumeration exactly as far as the landscape is aligned, and the theorem-grade form of alignment is GA1's basin condition; α estimates it and does not supply it. The earlier form of this claim, an iff on α > 0, said more than its proof carried, in both directions, and two finite landscapes retire it. One has α = 0.477 and a spurious minimum holding greedy descent from a majority of starts while enumeration succeeds within |F| tests: positive correlation without the basin condition decides nothing about descent. The other has a loss that is a multiplicative permutation of distance: α ≈ 0 with full information at zero correlation, and the order that decodes the loss tests the solution first. What stands, proved as before: where solutions are exactly the loss-minimal candidates, testing lower-loss candidates first beats enumeration (InI S5), and where the generating distribution is uniform-over-games, every signal is dead, correlational and decodable alike, which is the distribution-relativity boundary of IiI §4. Uniformity is that wall; α = 0 alone is not.
+**GA6 (Alignment is the precondition of loss-built order, and α is its measurement).** An order built on the loss exceeds enumeration exactly as far as the landscape is aligned, and the theorem-grade form of alignment is GA1's basin condition; α estimates it and does not supply it. The earlier form of this claim, an iff on α > 0, said more than its proof carried, in both directions, and two finite landscapes retire it. One has α = 0.477 and a spurious minimum holding greedy descent from a majority of starts while enumeration succeeds within |F| tests: positive correlation without the basin condition decides nothing about descent. The other has a loss that is a multiplicative permutation of distance: α ≈ 0 with full information at zero correlation, and the order that decodes the loss tests the solution first. The following claims retain their earlier proofs: where solutions are exactly the loss-minimal candidates, testing lower-loss candidates first beats enumeration (InI S5), and where the generating distribution is uniform-over-games, every signal is dead, correlational and decodable alike, which is the distribution-relativity boundary of IiI §4. Uniformity is that wall; α = 0 alone is not.
 
 This unifies three things the series stated separately: InI's "optimal order is intelligence," IiI's "intelligence is distribution-relative," and DiC's ball search. Their one precondition is alignment, whose theorem-form is the basin condition (GA1) and whose measurement is α; the canonical violation is the rugged landscape, of which primes are the limit.
 
-**GA7 (Searchability = clustered AND aligned, sharpening N18).** A domain is efficiently searchable by descent iff it is **both** clustered (G12: hierarchical W-structure exists) **and** aligned (GA1's basin condition, estimated by α: that structure points at solutions). The two are independent:
+**GA7 (Descent, approximation and reuse have separate premises).** G12 characterizes representative approximation. It does not prove that clustering is necessary for efficient descent. On a finite candidate graph, a supplied loss with a strictly decreasing admissible move from every non-solution, together with a policy that takes such a move, permits descent to a solution. Finiteness excludes an infinite strictly descending path. The work of locating each move and evaluating loss still needs a cost model. GA6 already separates this condition from a correlation coefficient.
 
-| Clustered | Aligned | Domain |
-|---|---|---|
-| yes | yes | searchable: ball search is fast, η → high (the hoped-for case) |
-| yes | no | structured but search-useless: navigation exists, but not toward solutions, and the geometry is real and orthogonal to the answer |
-| no | yes | smooth but flat: a gradient exists but no hierarchy to amortize, descent works, and navigation does not help |
-| no | no | hard: enumeration only (primes' neighborhood) |
-
-NiG N18 identified clustering with searchability. GA7 corrects it: clustering is *necessary* for fast navigation but not *sufficient* for search, and alignment is the missing conjunct. A space can have perfect hierarchical structure that is orthogonal to what you are searching for. This is the keystone: **clustering is whether the space has geometry, and alignment is whether the geometry is for you.**
+Conversely a small metric cover gives neither a descending move nor evidence that its endpoint satisfies the task. G12's shared-reader construction also permits exact reuse without a metric search. Therefore neither “clustered AND aligned” nor a flat-matrix test is a necessary-and-sufficient criterion for all efficient search. These properties can support particular algorithms once their operational premises and costs are supplied.
 
 **GA8 (Structural reduction is a third, orthogonal lever).** Even at α = 0, a domain's *symmetries* can shrink the candidate space below brute force without supplying any gradient. Primality: α ≈ 0 (no descent), yet divisor-pairing (any factor above √n forces a partner below it) folds the search to √n, a quadratic cut, from structure, with no ordering of the search. So three distinct reductions, three distinct domain properties:
 
-- *Clustering* (G12): amortizes repeated search via hierarchy.
+- *Representative approximation* (G12): bounds the number of representatives at a specified error. Amortized savings need additional costs and reuse.
 - *Alignment* (α): orders the search via gradient.
 - *Symmetry* (GA8): shrinks the search via quotient.
 
@@ -91,7 +84,7 @@ A domain can have any subset. Primes have only symmetry (√n), no clustering of
 4. Primes are hard in the deeper of two modes (no cheap graded loss exists, the predicate is binary and gradient-free), which corrects the "void"/"synchronization" framings and replaces them with a measurable property (GA4, GA4a).
 5. A graded-loss domain is in the shallower, better mode: it *has* a gradient. The open question is whether that gradient is aligned, measured as α (GA5).
 6. Alignment is the shared precondition of intelligence, distribution-relativity, and ball search; its theorem-form is the basin condition, α its measurement, uniformity the no-free-lunch wall, and zero correlation alone is not that wall (GA6).
-7. Searchability decomposes into clustered AND aligned (independent properties, both required), sharpening the one-boundary claim: clustering is geometry, alignment is whether the geometry is for you (GA7).
+7. Descent, approximation and exact reuse require different contracts and cannot be classified by one clustering test (GA7).
 8. Symmetry is a third, orthogonal lever: it shrinks the space without ordering the search (the √n reduction), so a domain's profile is a triple (cluster, align, symmetry), each measured (GA8).
 
 > **Distance tells you how far. Alignment tells you whether far is the same as wrong. The framework knew the first and assumed the second. Primes are the proof that the assumption can fail completely, and a domain's whole hope is one number: whether its geometry, where it is real, is also pointed the right way.**
@@ -105,7 +98,7 @@ A domain can have any subset. Primes have only symmetry (√n), no clustering of
 | V=I | §2.2 (gate = loss-zero), I1 |
 | IiI | §3 (η, T_min), §4 (distribution-relativity = ruggedness, GA6) |
 | DiC | G2 (W, integer loss), G10 (ball search precondition, GA2), G13 (cheap graded loss, frontier), §9 (descent proposes), §11 (alignment is grammar-relative) |
-| NiG | N1 (W-neighbor graph), N4–N6 (descent, local minima, the hidden premise GA1 supplies), N18 (one boundary, sharpened by GA7) |
+| NiG | N1 (W-neighbor graph), N4–N6 (descent and local minima), N12 (actual routing access), N18 (distinct metric contracts) |
 | InI | S5 (gradient-following order = intelligence) |
 | B | the sieve and basis (primes as the α≈0 / mode-2 reference, GA4) |
 | External | fitness-landscape ruggedness / NK-landscapes (α and autocorrelation are the standard measures), trial division to √n (GA8), prime gaps' irregularity (GA4) |
@@ -128,7 +121,7 @@ The series is a metric, then a geometry, then a navigation, each step assuming t
 
 ## Topics
 
-### Theorems this paper proves
+### Related type declarations
 
 - ``AlignmentCoefficient``
 - ``AlignmentEnablesIntelligence``

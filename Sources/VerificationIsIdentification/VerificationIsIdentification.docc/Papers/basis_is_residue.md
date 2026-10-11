@@ -1,151 +1,258 @@
 # Basis Is Residue (Basis)
 
-Intelligence Is Inevitable proves the library saturates after one task per rule class, K tasks. Here the author sharpens K. Most rule classes are not new: they are recompositions of structure already certified. The new entries (those no recomposition of prior entries reproduces) are the domain's *atoms*, defined exactly as the prime numbers are, by survival of a sieve.
+A library can contain both necessary generators and useful composite macros.
+Removing every derivable entry can preserve eventual expressive power while
+reducing what a learner reaches within a fixed composition budget. The
+ordered sieve below computes a bounded residue. That residue is not in
+general a minimal algebraic basis, a collection of cost-saving primitives,
+or a certificate of finite total learning cost.
 
-A number is prime iff no product of strictly-smaller numbers reaches it, and a rule is atomic iff no composition of strictly-smaller certified rules reaches it. The atom set is the residue of running the composition-sieve over the library in norm order: Eratosthenes, lifted from multiplication to rule composition. The atom basis generates the reachable domain, the library saturates at the atom level, and the true generating count is |basis| ≤ K.
+The distinction matters inside one closed Ω. A macro definition, its stored
+name, the expanded operations and the controller that executes them must
+be accounted for within the whole. Changing the level of description can
+change a search budget without adding information about an unknown law.
 
-This yields a decidable criterion for the question open since Distance Is Cost: a domain is saturable at finite cost iff its atom basis is finite. Numbers under multiplication are the canonical negative: the basis is the primes, which are infinite (Euclid), so the domain never saturates. Whether a domain's rule basis is finite is not a matter of opinion but of running the sieve and reading the residue curve.
+## §0. Declared model
 
-Atom-ness is not a static property of a rule read in isolation. It is a property of the sieve trajectory, revealed by the process, depth-relative and library-relative. This resolves the static/dynamic tension exactly as it does for primes: statically a residue looks structureless, and dynamically, in a finite window, every survivor has a witnessed cause and the residue is fully determined. The open question is not whether the residue is computable (it is) but whether it is *compressible*: predictable more cheaply than the sieve that produces it. That is the prime-distribution question in the framework's vocabulary, and it is named, not solved.
+Choose an ambient monoid M, an effective representation, a finite ordered
+library L, and a positive integer word budget e. Membership tests require
+an exact equality procedure on the represented products. Finite full truth
+tables or a sound equivalence proof can supply it. Finitely many candidate
+programs alone do not make arbitrary semantic equality decidable. A task
+PASS supplies equivalence only under that task's separation premises.
 
-## §0. Derivation
+Every finite run below terminates when product evaluation and equality
+terminate. An infinite library additionally needs an effective presentation.
+Each finite expression can coexist with an infinite generated domain.
 
-No new postulate. One new operation, already implicit: rules compose. The author derives everything below from the W metric (DiC G1a, G2), the composition of certified rules, the Saturation Theorem (IiI §3), the ball cover (DiC G11), and the navigation graph (NiG N1).
+## §1. The composition sieve
 
-1. A certified rule is a structure in Σ that denotes a function (grid → grid, or the domain's transformation type). *[V=I §4; I1]*
-2. Functions compose: R∘Q applies Q then R. Composition is total, associative, has an identity. Certified rules under composition form a monoid. *[from 1]*
-3. The composition of two certified rules is itself a candidate rule, gate-checkable on any task. *[V=I §2.2]*
-4. The set of compositions of a finite atom set up to bounded depth is finite (|A|^≤d candidates), so "is R reachable by composition from A within depth d" is decidable. *[I1]*
-5. A rule has a norm ‖R‖ (cost of existence) and rules have pairwise distance W. *[DiC G1a, G2]*
-6. The norm orders the library, and "strictly-smaller" is well-defined by norm (ties broken lexicographically). *[DiC G1a; V=I §3.7]*
-7. A sieve processing the library in norm order, marking each rule derived-or-atomic by the decidable test of step 4, terminates over a finite library. *[I1]*
-8. The residue (rules never marked derived) is the atom basis. Permanent (I3): an atom certified is an atom kept. *[I3]*
+**B1 (Composition needs a common interpretation).** Total endofunctions on
+one domain form a monoid under composition, with identity. A particular
+certified library is a subset, not necessarily closed under composition or
+containing identity. Compiling a composite faithfully and certifying its
+meaning require the stated representation and evaluation premises. The
+protocol `RulesCompose` intersects existing axes but supplies no concrete
+composition operator, identity or general equivalence procedure.
+A local certificate can be reused only on inputs covered by its proof.
+Precomposition may leave that domain even when every component is reversible.
+Verdict VC35 computes the reachable input scope required by a declared
+context family. A training agreement does not supply that scope by itself.
 
-Eratosthenes' sieve is the special case where the structures are unary numbers and composition is multiplication. The construction below is that sieve with the operation generalized.
+**B2 (Bounded products).** Define Cl_d(A) as products of at most d elements
+of A, with repetition and the empty product as identity. Here d counts
+factors, as in the original definition. It is not binary-tree height.
+For finite A, at most Σ_(j=0)^d |A|^j words are enumerated, although distinct
+words can denote the same element. Cl_0(A)={identity}. The notation Cl_d
+names bounded reach, not an idempotent closure operator.
 
-## §1. The Composition Sieve
-
-**B1 (Composition).** For certified rules R, Q denoting functions on the domain, R∘Q is the rule denoting "apply Q, then R," gate-checkable on any task by compiling the composite and COMPARE-ing outputs (V=I §2.2). Composition is total and associative, and the identity rule is the no-op. (Certified rules, ∘) is a monoid: the algebraic substrate added to the framework here, derived from function composition, never postulated.
-
-**B2 (Wave and closure).** For an atom set A and depth d, the *wave* of A is the set of all rules expressible as a composition of ≤ d elements of A (with repetition). The depth-d *closure* Cl_d(A) is the union of waves up to d. Both are finite (B0.4). A rule R is *derived from A within d* iff R ∈ Cl_d(A): equivalently, some bounded composition of A-atoms passes R's task gate (V=I §2.2). Reading through the navigation lens: Cl_d(A) is exactly the depth-d ball around A in the composition graph (NiG N1, edges = "compose with one atom"). The sieve and the navigation stack share one graph.
-
-**B3 (The sieve).** Process the certified library L in non-decreasing norm order R₁, R₂, …, R_{|L|} (ties lexicographic, V=I §3.7). Maintain A, initially empty:
+**B3 (Ordered bounded sieve).** Process L in a declared total order, for
+example norm followed by a fixed tie-break. Maintain A initially empty:
 
 ```
-for each Rᵢ in norm order:
-    if Rᵢ ∈ Cl_d(A):  mark Rᵢ DERIVED        # reachable by composing strictly-smaller atoms
-    else:             add Rᵢ to A, mark ATOM  # irreducible: no compositional shortcut
+for R in L:
+    if R is in Cl_e(A): mark R DERIVED and retain a factorization witness
+    else:              add R to A and mark it RESIDUE
 return A
 ```
 
-This is Eratosthenes verbatim with "product of smaller primes" replaced by "composition of smaller atoms." A number survives the number-sieve iff no smaller prime's multiplicative wave struck it, and a rule survives this sieve iff no smaller atom's compositional wave reaches it.
+The test uses earlier residue entries. Equal-norm earlier entries are not
+strictly smaller in norm. If strict norm is intended, it requires a separate
+filter. The labels state bounded reachability relative to this run. They
+are not automatically proofs of cost irreducibility or primality.
 
-## §2. The Atom Characterization
+## §2. Reachability and cost
 
-**B4 (Atom = no compositional shortcut).** Define the *compositional norm* of R relative to atoms A at depth d:
+**B4 (Residue is a failure of bounded representation).** Before R is
+processed, it is residue exactly when no word of length at most e over
+the current A equals R. Given positive finite atom costs, the corresponding
+minimum summed word cost is infinity when no such word exists.
 
-```
-‖R‖_comp = min { Σ ‖aⱼ‖ : composition of aⱼ ∈ A, depth ≤ d, equals R }   (∞ if none)
-```
+This is different from asking whether a representation is strictly cheaper
+than R's own cost. Under addition and cost(n)=n, 2=1+1 is derived at e=2,
+yet its cost equals 2. Thus equality of compositional and intrinsic cost
+does not characterize B3's residue.
 
-R is an **atom** iff ‖R‖_comp ≥ ‖R‖: no description of R as a composition of strictly-smaller certified rules is cheaper than R itself.
+**B5 (Two cost conventions must be stated).** A declared intrinsic cost
+and the minimum cost of a bounded representation can be compared after
+fixing the candidate set, word budget and per-atom costs. A cost-aware sieve
+would use that comparison as an additional test. B3 does not. The existing
+`AtomBasis` protocol pins `CompositionalNorm == Distance` and inherits a
+finite-basis axis. That type equality alone computes neither the sieve
+residue nor a minimum generator set.
 
-*This is the prime characterization, generalized.* For unary numbers under multiplication: ‖n‖_× (cheapest description as a product of strictly-smaller numbers) versus ‖n‖_+ (n's own length). A number is prime iff ‖n‖_× ≥ ‖n‖_+: iff multiplication offers no shortcut over the bare additive chain. Primality is the equality of the two axial norms: atom-ness is the point where the compositional axis offers no compression over the intrinsic axis.
+## §3. What the residue preserves
 
-**B5 (The two axes, made precise).** Every domain with a composition operation has two norms on its structures: the *intrinsic* norm ‖·‖ (DiC G1a, the structure's own size) and the *compositional* norm ‖·‖_comp (cheapest build from atoms). Atoms are the fixed points where the two coincide, and composites are where the compositional norm drops strictly below the intrinsic: they have a shortcut, a cheaper name (DiC G2 remark: the path crystallized into a name). The atom basis is the set on which no such name exists. The objectification ladder (OiO O17) has its floor here: a composite is a path folded into an object, and an atom is a path that does not fold, already at the floor of its norm.
+**B6 (Unbounded generation and bounded expansion).** For B3 with e≥1,
+its final residue satisfies A⊆L⊆Cl_e(A). Consequently, for every d≥0,
 
-## §3. Generation and Saturation
+    Cl_d(A) ⊆ Cl_d(L) ⊆ Cl_(de)(A),
+    Cl_infinity(A) = Cl_infinity(L).
 
-**B6 (The basis generates the reachable domain).** Let A be the sieve residue (B3). Then Cl_d(A) = Cl_d(L): every certified rule is reachable by composing atoms within depth d.
+*Proof.* A is selected from L. Every omitted member had an at-most-e-factor
+witness over a subset of the final A, and every selected member has its
+one-factor representation. Replacing each occurrence of an L-member by
+its witness multiplies the uniform factor bound by e. Conversely A⊆L
+preserves every A-word. Taking the union over all finite budgets gives
+equality of the unbounded generated monoids. QED
 
-*Proof.* By construction, every Rᵢ marked DERIVED is in Cl_d(A) at the moment it is processed (B3's test), and A only grows (I3), so Rᵢ ∈ Cl_d(A) for the final A. Every Rᵢ marked ATOM is in A ⊆ Cl_d(A). Hence L ⊆ Cl_d(A), and the reverse is true since atoms are certified rules. QED
+More exactly, Cl_d(Cl_e(A))=Cl_(de)(A) in any monoid. Flatten at most d
+blocks of at most e factors for one inclusion. Split any word of length
+at most de into at most d blocks of at most e factors for the other.
+If d or e is zero, both sides contain only identity. Associativity justifies
+flattening, and identity supplies the empty word. A tree-height convention
+would be a different cost model and cannot replace B2 silently.
 
-**B7 (Atom-level saturation, a sharpening of IiI §3).** The Saturation Theorem certifies the library after one task per rule class (K tasks). B6 sharpens the generating count: once every atom is certified, every further rule in the depth-d-reachable domain is DERIVED: a composition, requiring no new certificate beyond the gate check. The effective generating count is |A| ≤ K, and is strictly smaller whenever any rule class is a nontrivial composition (the common case under a compositional grammar). Atoms are the ultimate anchors of the ball cover (DiC G11): G11 covers the library with balls around anchors, and B7 identifies the irreducible anchors: the ones not themselves inside another anchor's compositional ball.
+*Counterexample to the earlier equality.* In the free monoid on a, let
+L={a,aa} and e=2. B3 retains A={a}. But Cl_2(A)={empty,a,aa}, whereas
+Cl_2(L) also contains aaa and aaaa. The missing products appear in Cl_4(A).
+Thus the earlier claim Cl_e(A)=Cl_e(L) was false. The same counterexample
+occurs among reversible increments modulo five: a is +1, aa is +2.
 
-**B8 (Saturability criterion).** A domain is **saturable at finite cost** iff its atom basis A is finite.
+**B7 (A generator count is not a total execution budget).** Certifying a
+specified finite generator set and a sound composition rule can justify
+many derived expressions. This does not mean that evaluating, constructing,
+searching for or storing all those expressions costs nothing. Replacing a
+macro word by definitions gives exact primitive length Σ_j length(def_j),
+counting every occurrence. A uniform per-definition bound e gives de.
 
-*Proof.* (⇐) Finite A: certify each atom (finite work, IiI §6 coupon collector over |A| classes), then every reachable rule is DERIVED by B6, with no further certificates. Saturation in finite total cost. (⇒) Infinite A: the atoms are by B4 mutually non-derivable (no atom is a composition of strictly-smaller atoms, else it would have been marked DERIVED, not added). An infinite set of mutually non-derivable rules cannot be covered by finitely many certificates, since each atom requires its own (it is in no closure of the others). Not saturable at finite cost. QED
+In an increment-only instruction basis, expansion of two two-increment macros contains four primitive increments. This cost follows from the declared primitive word. A different native basis gives a different resource account.
 
-**B8a (The canonical negative).** Numbers under multiplication: the atom basis is the primes. By Euclid the primes are infinite. By B8 the domain is not saturable at finite cost: no finite set of multiplicative atoms generates all numbers. This is not a defect of the framework: it is the framework correctly reporting that arithmetic-by-multiplication is an *open* domain, one where new irreducible structure never stops arriving. The prime numbers are the proof that B8's negative case is real and inhabited.
+Shorter descriptions do not automatically reduce search attempts. To find
+aaaa, length-first lexical enumeration tests five words over {a}, including
+the empty word, and seven over {a,aa}. Yet at a two-factor bound only the
+larger library reaches the target. Bounded reach, branching, execution and
+stored definition size are separate costs.
 
-**B8b (The trichotomy, and the horn between).** By (basis, reach) every composition domain is exactly one of: **CLOSED** (|A| < ∞, behavioral reach N bounded), **HORN** (|A| < ∞, N → ∞), **PRIMES** (|A| = ∞). The fourth cell (infinite basis, bounded reach) is empty: atoms are in the reach, and infinitely many distinct atoms force unbounded norm (a bounded norm admits finitely many structures, DiC G8), so |A| = ∞ ⇒ N → ∞. ℕ under addition is the canonical horn: one atom (the successor, V=I §4.1), infinite reach (every numeral), all DERIVED (Peano). ℕ under multiplication is the primes (B8a). The same set is a horn under + and a prime-thicket under ×, so horn-ness is a property of the **composition operator**, not the domain (the two axes of B5).
+**B8 (A fixed finite word bound cannot yield finite residue on infinite L).**
+Suppose B3 processes infinitely many distinct elements with fixed finite
+e≥1. Its accumulated residue must be infinite. If the final A were finite,
+Cl_e(A) would be finite but would have to contain every processed element
+by B6, a contradiction. This remains true when the unbounded domain has
+a one-element generating set. Therefore finite bounded-sieve residue is
+not a criterion for finite algebraic generation of an infinite domain.
 
-**B8c (The painter's paradox is B7, with a sharp cutoff).** A horn has finite basis cost yet infinite reach: finite paint, infinite surface (Torricelli). The resolution is B6–B7: let s₀ = max{‖a‖ : a ∈ A} (finite, since A is finite). Every composite of norm > s₀ is DERIVED (B6), zero new certificate. So the marginal certification cost is 0 past s₀, and total cost Σ_{a∈A}‖a‖ ≤ |A|·s₀ < ∞. The finite basis "coats" the infinite reach not by thinning paint to zero but by a sharp cutoff at s₀: pay below it, derive above it.
+For positive integers under addition, increasing order and word bound d≥1,
+the residue is exactly A_d={1+kd:k≥0}. Inductively earlier atoms are 1 modulo
+d. A sum of 2,…,d of them cannot be 1 modulo d, and one earlier atom cannot
+equal a new integer. Every other n is an earlier atom plus at most d−1
+copies of 1. Thus the residue is infinite, while {1} generates every
+nonnegative integer with no word bound. The explicit formula also shows
+that a trajectory-defined residue need not be hard to predict.
 
-**B8d (The invariant is the reach-growth rate γ, and the metaphor understates it).** Define γ = lim sup_s (ln N(s)) / s. CLOSED: N bounded. HORN: N → ∞, graded by γ: γ = 0 *thin* (ℕ-under-+ grows linearly, and Torricelli's surface diverges only logarithmically, the thinnest horn), γ > 0 *fat* (a branching grammar, N ~ e^{γs}). The literal horn profile (volume ∫x⁻², surface ∫x⁻¹) does **not** transfer: the framework's reach *grows* rather than decaying-and-marginally-diverging, so Torricelli is the slowest possible horn, not the model. The entropy of the composition monoid, γ, is the quantity, not the 1/x profile.
+**B8a (The prime analogy needs a different test).** Under multiplication,
+a prime cannot be made from smaller positive nonunit factors. But B3 with
+bound two also retains composite 8: 4 was omitted as 2×2, and expressing
+8 using the retained primes requires three factors. This bounded test is
+not literally Eratosthenes. The usual multiplicative monoid of positive
+integers has no finite generating set, since each prime requires a generator
+containing that prime factor. That algebraic fact is separate from B3.
 
-**B8e (Two residue curves).** The residue curve splits in two: |atoms|(s) [the volume] and N(s) [the behavioral surface]. Both bounded ⇒ CLOSED. |atoms| plateaus while N(s) → ∞ ⇒ HORN (finite priors, unbounded recombination: an evaluation set that defeats r = 0 is, formally, *a horn*). |atoms| grows ⇒ PRIMES (B8a). The log-slope of N(s) measures γ. Sampling caveat for self-play: on an infinite-reach horn no uniform measure over ⟨Π⟩ exists, and any norm-discount β^{‖g‖} normalizes only for β < e^{−γ}, concentrating on small norm, so coverage must be enumerated by norm, never sampled (Play Is Proof PP5c).
+**B8b (Algebraic generation and bounded residue are different classifications).**
+For a specified generating set G with M=Cl_infinity(G), one can classify
+finite G with finite M, finite G with infinite M, or infinite G. An infinite
+set of distinct generators forces infinite M. To classify whether a monoid
+is finitely generated, ask whether some finite G exists, not whether one
+chosen G is infinite. The HORN label can describe finite algebraic generation
+with infinite reach, but a fixed-budget sieve does not recover such a finite
+G from an infinite library. Addition with G={1} demonstrates this difference.
 
-**B8f (The trichotomy is fixpoint-reachability).** A domain's closure under composition is a *sub-fixpoint of Σ*: the least set containing its atoms and closed under the operation, the same construction that makes Σ the least fixpoint of the bare rule (*Existence Is Finite*), one signature richer. The three cells are three ways that fixpoint is reached: CLOSED with a finite carrier. HORN only *as the rule*, the carrier unbounded (ℕ-under-+). PRIMES never, no finite basis. Saturability is fixpoint-reachability. The sub-fixpoints of Σ, ordered by inclusion and closed under intersection, form the lattice of all maths, each a choice of atoms and axioms, and this framework is the one that closes around COMPARE.
+**B8c (Finite description is not completion of infinite work).** A finite
+set of definitions and a proved composition rule can describe infinitely
+many consequences. It does not enumerate them in finite time, give a
+uniform bounded-length representation, or make their evaluation cost zero.
+Even when all needed generators have appeared in a run, recognizing that
+no more are needed requires a separate completeness certificate. The earlier
+finite-cost equivalence and zero marginal execution reading are withdrawn.
 
-## §4. Static and Dynamic
+**B8d (Exponential reach rate).** With finite counts n(s) at each integer
+norm, let N(s)=Σ_(j≤s)n(j) and γ=limsup_s ln N(s)/s. A bounded reach has
+γ=0. An unbounded reach can have zero, finite positive or infinite rate.
+Zero rate includes polynomial and subexponential growth, not only linear
+growth. A finite positive rate alone does not imply N(s)~e^(γs), determine
+subexponential factors, or measure the physical speed of generation.
+For infinite reach, the cumulative rate equals the rate computed from
+n(s), with ln0=−∞. Play PP17 supplies the comparison proof and shows
+why γ leaves normalization and norm moments at the boundary unresolved.
 
-**B9 (Atom-ness is a property of the trajectory, not the rule).** Whether R is an atom is not readable from R alone. It is the outcome of the sieve (B3): R is an atom relative to (the library scanned before it in norm order, the depth bound d). Two relativities, both named and both measurable:
+**B8e (Two residue curves).** For a specified generator choice, count generators and reachable behavioral classes
+within each norm bound separately. If both counts remain bounded, the
+case is CLOSED. A finite atom set with unbounded reach is HORN, and an
+unbounded atom count is PRIMES, under the stated sieve and composition
+premises. On an infinite countable reach no uniform probability exists,
+but nonuniform full-support sampling is well defined. IID sampling visits
+every class almost surely over an infinite sequence, without completing
+all visits at any finite time (Play PP5c). Discount weights normalize for
+λ>γ, fail for λ<γ, and require a separate boundary test at λ=γ (PP17).
+An enumeration is one presentation policy, not a necessity of measurability.
+These rate statements do not identify a bounded sieve residue with a finite
+algebraic generating set (B8).
 
-- *Library-relative:* R atomic against a small library may become derived against a larger one that contains the atoms composing it. (For primes this relativity vanishes, "product of strictly-smaller" is fixed by magnitude, because the number domain's atoms are already all present below n. For a rule domain still under construction, the relativity is real and is measurable.)
-- *Depth-relative:* an atom at depth d may be derived at depth d+1. Reported as a curve over d, exactly as encoding-relativity is reported per encoding (IiI §4, DiC §11).
+**B8f (Only unbounded generated closure is idempotent).** On a fixed
+ambient monoid, Cl_infinity is the least submonoid containing its input.
+It is monotone, extensive and idempotent, and submonoids are closed under
+intersection. B6 gives the composition law for the bounded family instead.
+Neither construction identifies its elements with every physical state of Ω.
 
-**B10 (The static/dynamic resolution).** Statically (reading rules in isolation) the basis looks structureless: there is no surface predicate on a rule that announces "atom." Dynamically (running the sieve over a finite window) every atom has a witnessed cause: it was added precisely because the gate rejected every bounded composition of its predecessors (B3). In a finite domain the sieve terminates and the residue is fully determined: no randomness, only the determined pattern of which compositional waves failed to cover which rules. This is the framework's account of why primes look random but are not: the residue of a sieve is causally determined yet has no description simpler than the sieve until proven otherwise (B11). The exact formulation is *statically undecidable-looking, dynamically determined in finite space*: I1 guarantees the sieve halts, and a halted sieve has named every survivor's reason.
+## §4. The trajectory and the next experiment
 
-## §5. The Open Question, Named
+**B9 (Residue depends on the run).** B3 depends on the presented library,
+its order, the word bound, equality and representation. These parameters
+must accompany any reported atom count. More permitted factors can make
+a previously unrepresentable object representable, while rerunning the sieve
+can also change which earlier entries remain available.
 
-**B11 (Computable, not yet compressible).** The sieve computes the basis (B3, terminating by I1). This is *constructive* definability: to know the atoms up to norm n, run the sieve to norm n. It is not *compressed* definability: no method is known to predict the residue more cheaply than running the sieve. The two are different (the framework's standing distinction, G12: a path computed is not a path compressed). For primes, this gap is the prime-distribution problem: the sieve computes them, the prime-number theorem compresses their *density* (≈ n/ln n, a found axis for the statistics), but their *exact sequence* has no known compression: the Riemann Hypothesis is the question of whether a deeper regularity axis exists. For a rule domain the identical gap is present: the sieve computes the residue, and whether it has a generating formula cheaper than the sieve is open per domain. The framework does not solve this. It *locates* it precisely (as the compressibility of a sieve's residue) and refuses the mysticism: the residue is not random (B10), it is determined-but-possibly-incompressible, a sharp and exact status.
+**B10 (Finite audit is possible under the declared decision premises).**
+For finite L and terminating exact evaluation/equality, every candidate
+has either a factorization witness or a complete finite refusal over the
+allowed words. This certifies the specified run. It establishes neither
+an infinite stopping rule nor that predicting this residue is intrinsically
+as hard as enumerating it.
 
-**B12 (Why this is the right open question).** One tempting phrasing of the puzzle is "why are primes irreducible / a void." Both framings are wrong (a prime is not a void: it is an atom, the densest object, not the emptiest, PiR's irreducibility M-property, not NiG's hole). The sieve reframes the live question correctly: not *why* atoms resist composition (they resist by definition, that is what atom is), but *whether the pattern of atoms is compressible*. That question is identical across domains (primes, ARC rules, any compositional structure), and the answer is a measurable property of each domain's residue curve, with one domain (primes) known to be hard and one domain (ARC) the open experimental bet. The framework's contribution is the unification: irreducibility, saturability, and generalization are three readings of one object (the atom basis), and its size and compressibility are measured, never assumed.
+**B11 (Compression is a separate resource question).** Some residue patterns
+have short formulas, such as A_d above. Other libraries may be difficult.
+A complexity claim needs an input family, encoding and cost model, not the
+fact that a sieve was used. No equivalence with a general prime-distribution
+question or with the Riemann Hypothesis is established here.
 
-## §6. Statement
+**B12 (What a useful learned library should be tested for).** Measure the
+reachable answers at a declared word budget, search attempts, primitive
+execution work and retained definition size. A nonminimal library can be
+useful because it supplies short names for common compositions. Whether
+that gain outweighs branching and storage is an experimental question.
+This is consistent with established library learning, for example
+[DreamCoder, PLDI 2021, §§1–2](https://people.csail.mit.edu/asolar/papers/EllisWNSMHCST21.pdf),
+where learned components change tractability within an already expressive
+base language. No new neural performance result is claimed by this audit.
 
-1. Rules compose, certified rules form a monoid, and the composition sieve is Eratosthenes with multiplication replaced by composition (B1–B3).
-2. An atom is a rule with no compositional shortcut: the equality of intrinsic and compositional norm, the prime characterization generalized (B4–B5).
-3. The atom basis generates the reachable domain and is the true generating count, |A| ≤ K: a sharpening of saturation, the irreducible anchors of the ball cover (B6–B7).
-4. A domain is saturable at finite cost iff its atom basis is finite, and numbers-under-multiplication are the canonical infinite-basis negative, proven by Euclid (B8–B8a).
-5. Atom-ness is a property of the sieve trajectory (library- and depth-relative), which resolves the static/dynamic tension: a residue is structureless statically but causally determined dynamically in finite space (B9–B10).
-6. The residue is computable but possibly incompressible, and that gap, not the irreducibility itself, is the live open question, identical for primes and for ARC, and measured per domain (B11–B12).
-7. Over a domain's certified library, the sieve's residue curve and the train-atom coverage of held-out tasks measure basis size and transfer: the number that subsumes saturation, clustering, and generalization.
+`TwoMacroExpansion` expands two resident two-field definitions into four primitive fields in pure Swift, retaining their original definitions through `RetainedWhole`. Its four-field terminator follows by substitution. Arbitrary semantic equality and recursive macro termination require their own relations.
 
-> **A prime is what survives the sieve of products, an atom is what survives the sieve of compositions, and a basis is the residue: a domain can be learned to the end exactly when that residue is finite. Running the sieve always finds it. Whether the finding can be foreseen is the one question left, named precisely, and left open.**
+## §5. Statement
 
-## §7. Dependency
+A bounded residue answers what failed to fit one particular presentation
+budget. An algebraic generating set answers what can eventually be composed.
+A useful macro library answers what becomes accessible at acceptable cost.
+The three can differ even in a one-generator monoid. These differences
+must survive a change of representation if the theory is to explain the
+engineering value of compression.
 
-### External
+## §6. Dependency
 
-| Source | Used |
+| Claim | Required premises |
 |---|---|
-| V=I | §2.2 (gate checks any candidate), §3.7 (norm order, tie-break), §4 (rules as structures), I1, I3 |
-| IiI | §3 (Saturation Theorem, K, sharpened by B7), §4 (encoding boundary), §6 (coupon collector over the basis) |
-| PiR | irreducibility M-property (atom = irreducible entry), I3 (atom permanence) |
-| DiC | G1a (intrinsic norm), G2 (W, path-into-name remark), G6 (additive axis carries the metric), G11 (ball cover, anchors), G12 (computable ≠ compressible), §11 (encoding-relativity) |
-| NiG | N1 (composition graph = the sieve's graph), N18 (one boundary) |
-| OiO | O17 (objectification ladder, atom = unfoldable path) |
-| External | Eratosthenes (the sieve, multiplicative case), Euclid (infinitude of primes = B8a), prime number theorem & Riemann Hypothesis (the density-compressible / sequence-open gap, B11) |
-
-### Internal
-
-| Statement | Depends on |
-|---|---|
-| B1 | V=I §2.2, function composition |
-| B2 | B1, I1, NiG N1 |
-| B3 | B2, DiC G1a, V=I §3.7, I1, I3 |
-| B4 | B3, DiC G1a, G6 |
-| B5 | B4, DiC G2, OiO O17 |
-| B6 | B3, I3 |
-| B7 | B6, IiI §3, DiC G11 |
-| B8 | B6, B7, IiI §6 |
-| B8a | B8, Euclid |
-| B8b | B8, B8a, DiC G8, B5, V=I §4.1 |
-| B8c | B6, B7, DiC G1a |
-| B8d | B8b, DiC G12 |
-| B8e | B8d, PP PP5c |
-| B9 | B3, IiI §4, DiC §11 |
-| B10 | B9, I1, DiC G12 |
-| B11 | B3, DiC G12, PNT/RH |
-| B12 | B11, PiR irreducibility, NiG N18 |
-
-Distance Is Cost asks what the magnitude of a comparison is. Intelligence Is Inevitable asks when the library is complete. Here the author answers both at once: the library is complete when its atoms are certified, the atoms are the residue of a sieve, and the only thing the sieve cannot promise is that its own residue was foreseeable. The prime numbers are the warning that some residues are not, and the same sieve, pointed at a new domain, asks whether it was kinder.
+| B1–B3 | Ambient composition, effective representation, exact equality, finite run and word budget |
+| B4–B5 | Declared candidate set and costs, distinct from membership alone |
+| B6 | B3 with e≥1, associative substitution and identity |
+| B7 | B6 and the explicitly charged representation or machine |
+| B8–B8c | Finite bounded reach versus unbounded generation |
+| B8d–B8e | Finite norm bands and Play PP5c/PP17 |
+| B8f | Fixed ambient monoid and unbounded closure |
+| B9–B11 | Fixed run parameters and a separate complexity model |
+| B12 | Declared evaluation tasks and separate resource measurements |
 
 ## Topics
 
-### Theorems this paper proves
+### Related type declarations
 
 - ``RulesCompose``
 - ``AtomBasis``

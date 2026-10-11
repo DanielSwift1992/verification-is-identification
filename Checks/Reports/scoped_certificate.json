@@ -1,0 +1,127 @@
+{
+  "audit": {
+    "consistent_contexts": 95,
+    "issued_certificates": 156,
+    "restriction_transfers": 3092,
+    "out_of_scope_refusals": 11728
+  },
+  "lifecycle": {
+    "first": {
+      "format": "vi.finite-question.v1",
+      "family": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "evidence": [
+        [
+          0,
+          0
+        ]
+      ],
+      "query": 0,
+      "compatible": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "answer": 0
+    },
+    "conditional_second": {
+      "format": "vi.finite-question.v1",
+      "family": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "evidence": [
+        [
+          0,
+          0
+        ]
+      ],
+      "query": 1,
+      "compatible": [
+        [
+          0,
+          0
+        ]
+      ],
+      "answer": 0
+    },
+    "after_new_observation": {
+      "format": "vi.finite-question.v1",
+      "family": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "evidence": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "query": 1,
+      "compatible": [
+        [
+          0,
+          1
+        ]
+      ],
+      "answer": 1
+    },
+    "refusals": [
+      "question changed",
+      "current alternatives exceed certified scope",
+      "inconsistent model and observations",
+      "unresolved answer"
+    ],
+    "corruption_refusals": 5,
+    "actual_outside_conditional_family": [
+      0,
+      1
+    ],
+    "scope": "Reuse by restriction is sufficient, not necessary. Other valid extensions require new verification. No certificate proves its model matches reality."
+  }
+}

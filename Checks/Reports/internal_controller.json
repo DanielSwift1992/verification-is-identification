@@ -1,0 +1,177 @@
+{
+  "title": "An internal controller reads observations, not original-answer tags",
+  "program": {
+    "boot": [
+      {
+        "observation": "quiet",
+        "memory": 0
+      },
+      {
+        "observation": "signal",
+        "memory": 1
+      }
+    ],
+    "states": [
+      {
+        "action": "ask_A",
+        "answer": null,
+        "branches": [
+          {
+            "observation": "quiet",
+            "memory": 2
+          },
+          {
+            "observation": "signal",
+            "memory": 3
+          }
+        ]
+      },
+      {
+        "action": null,
+        "answer": "was_not_A",
+        "branches": []
+      },
+      {
+        "action": null,
+        "answer": "was_not_A",
+        "branches": []
+      },
+      {
+        "action": null,
+        "answer": "was_A",
+        "branches": []
+      }
+    ]
+  },
+  "annotations": [
+    {
+      "belief": [
+        [
+          0,
+          "was_A"
+        ],
+        [
+          1,
+          "was_not_A"
+        ],
+        [
+          2,
+          "was_not_A"
+        ]
+      ],
+      "rank": 1
+    },
+    {
+      "belief": [
+        [
+          3,
+          "was_not_A"
+        ]
+      ],
+      "rank": 0
+    },
+    {
+      "belief": [
+        [
+          0,
+          "was_not_A"
+        ]
+      ],
+      "rank": 0
+    },
+    {
+      "belief": [
+        [
+          3,
+          "was_A"
+        ]
+      ],
+      "rank": 0
+    }
+  ],
+  "horizon_including_boot": 2,
+  "whole_states": 12,
+  "cycle_length": 3,
+  "traces": [
+    {
+      "origin": "A",
+      "configurations": [
+        {
+          "scene": "A",
+          "memory": -1,
+          "answer": null
+        },
+        {
+          "scene": "A",
+          "memory": 0,
+          "answer": null
+        },
+        {
+          "scene": "signal",
+          "memory": 3,
+          "answer": "was_A"
+        }
+      ]
+    },
+    {
+      "origin": "B",
+      "configurations": [
+        {
+          "scene": "B",
+          "memory": -1,
+          "answer": null
+        },
+        {
+          "scene": "B",
+          "memory": 0,
+          "answer": null
+        },
+        {
+          "scene": "A",
+          "memory": 2,
+          "answer": "was_not_A"
+        }
+      ]
+    },
+    {
+      "origin": "C",
+      "configurations": [
+        {
+          "scene": "C",
+          "memory": -1,
+          "answer": null
+        },
+        {
+          "scene": "C",
+          "memory": 0,
+          "answer": null
+        },
+        {
+          "scene": "A",
+          "memory": 2,
+          "answer": "was_not_A"
+        }
+      ]
+    },
+    {
+      "origin": "signal",
+      "configurations": [
+        {
+          "scene": "signal",
+          "memory": -1,
+          "answer": null
+        },
+        {
+          "scene": "signal",
+          "memory": 1,
+          "answer": "was_not_A"
+        },
+        {
+          "scene": "signal",
+          "memory": 1,
+          "answer": "was_not_A"
+        }
+      ]
+    }
+  ]
+}

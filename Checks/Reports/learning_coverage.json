@@ -1,0 +1,93 @@
+{
+  "rule_classes": 2,
+  "raw_entries": [
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      2,
+      0
+    ]
+  ],
+  "covered_rules": [
+    0
+  ],
+  "complete_library_a": [
+    [
+      0,
+      0
+    ],
+    [
+      3,
+      1
+    ]
+  ],
+  "complete_library_b": [
+    [
+      1,
+      0
+    ],
+    [
+      3,
+      1
+    ]
+  ],
+  "dispatch_collision": {
+    "features": [
+      0,
+      0
+    ],
+    "required_rules": [
+      0,
+      1
+    ]
+  },
+  "observations": [
+    [
+      0,
+      0
+    ]
+  ],
+  "assumed_family": [
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "restricted_survivor": [
+    0,
+    0
+  ],
+  "actual_outside_family": [
+    0,
+    1
+  ],
+  "expanded_survivors": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "restricted_prediction": 0,
+  "actual_second_answer": 1,
+  "rejected_prediction_certificates": 4,
+  "complete_library_dispatch": {
+    "sequential_worst": 3,
+    "sequential_mean": "9/4",
+    "optimal_worst": 2,
+    "optimal_mean": "2"
+  }
+}

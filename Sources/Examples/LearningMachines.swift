@@ -3,39 +3,39 @@ import VerificationIsIdentification
 // ═══════════════════════════════════════════════════════════════
 // LEARNING MACHINES names domains, the projection made live. [Projection]
 //
-// A learning system is located by which coordinates it has. The gate
-// coordinate is, at the type level, |S|=1 (SolutionSet collapses to one,
-// Unique). A machine WITH the gate (and I3) conforms to the certified
-// lattice. A machine WITHOUT it cannot, and the compiler names the missing
-// coordinate. The same conformance gate that certified quantum measurement
-// now separates a certified learner from a hallucinating one.
+// These are illustrative declarations with historical architecture names.
+// The compiler checks their chosen coordinates. It does not execute a
+// learning process or infer properties of actual neural systems.
+// In particular, Never axes are uninhabited and provide no observed
+// memory update, output coverage or empirical accuracy measurement.
+// See Projection AI6–AI7 for the separate semantic obligations.
 // ═══════════════════════════════════════════════════════════════
 
-/// This is certified self-play (this series): gate ✓, I3 ✓, certified basis. The
-/// solution set collapses to one (|S|=1), the cache is append-only: all
-/// coordinates present, so it conforms to the crystallizing lattice. Certified
-/// by the build. [Projection AI6]
+/// Historical self-play-shaped conformance using uninhabited axes.
+/// This declaration has no generator, checker implementation or learning loop.
+/// It witnesses the supplied type relation, not empirical self-play or
+/// retention of accessible records. [Projection §7]
 public struct CertifiedSelfPlay: SystemCrystallizes {
     public typealias Sigma = Never
     public typealias Left = Never
     public typealias Right = Never
-    public typealias Cache = Never        // I3, append-only record
-    public typealias SolutionSet = Never  // gate, |S| = 1, the verdict collapses
-    public typealias Equality = Never     // decidable verifier
+    public typealias Cache = Never        // declared uninhabited cache coordinate
+    public typealias SolutionSet = Never  // declared uninhabited solution coordinate
+    public typealias Equality = Never     // declared equality coordinate
 }
 
-/// This is a large language model: gate ✗, I3 ✗, uncertified basis. It is a generator
-/// in pure liquid: its solution set does not collapse to one (no gate → |S|>1 →
-/// it emits the guess as if certified = hallucination).
+/// A toy non-Unique coordinate, not an implementation of a language model.
+/// Its selected SolutionSet has no authority over the capabilities of
+/// statistical proposal combined with a real verifier. [Projection §7]
 public struct LanguageModel {
     public typealias SolutionSet = Cell<
         Three,
         Never
-    >   // |S| > 1, no gate, not Unique
+    >   // deliberately non-Unique toy coordinate
 }
-// Adding `extension LanguageModel: SystemCrystallizes {}` is REJECTED by the
-// compiler: SolutionSet does not conform to Unique. No gate = no |S|=1 = the
-// machine cannot tell a proof from a guess. The missing coordinate is named,
-// exactly as the degenerate eigenvalue was (QuantumMeasurement). Give it a gate
-// and I3 (CertifiedSelfPlay) and the same flow becomes a machine that answers
-// or remains silent, not a confident lie.
+// Adding `extension LanguageModel: SystemCrystallizes {}` does not satisfy
+// the required coordinates. This is a fact about this particular toy type.
+// A richer implementation can provide a different relation and a checker.
+// Neither conformance nor its absence proves runtime soundness, coverage,
+// reproducibility or learning performance without the corresponding
+// semantic and operational witnesses. [Projection AI1, AI6]

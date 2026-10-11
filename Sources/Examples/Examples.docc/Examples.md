@@ -1,30 +1,30 @@
 # ``Examples``
 
-Worked examples of the framework: physics reproduced as types, learning machines located by their coordinates, the concrete models that inhabit the markers, and a working solver, each one checked by the compiler, nothing run.
+Worked examples of the framework: supplied physical encodings, learning interfaces, structural witnesses and a constraint-derived schedule. The compiler checks their actual type equations. Physical interpretation and any mathematical domain argument must be established separately.
 
 ## Overview
 
 **Start with the scheduler.** It asks for no physics: tasks, two machines, and
-conflicts that force each task onto the opposite machine. The compiler propagates
-the one consistent assignment and certifies it, or refuses an impossible schedule
-by name: ``Pinned``, ``Conflicts``, ``Require``, all in `Coloring.swift`. Read it
-first: every other example is the same three operations on a harder board.
+conflicts that force each task onto the opposite machine. PinnedScheduleIsForced
+derives the assignment of arbitrary tasks satisfying the pin and chain edges.
+ClosingConflict separately checks the remaining edge. Start with ``Pinned``,
+``Conflicts`` and ``Require`` in `Coloring.swift`. This example has a direct
+uniqueness proof, independently of its legacy SystemCrystallizes witness.
 
-**Then dive in.** Every example here is a finished result you can read on its own:
-the residual entropy of ice, hydrogen's metastable 2s, the stable proton. The one
-idea underneath, that checking a single-survivor answer is the same act as finding
-it, is in
-[`VerificationIsIdentification`](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification), but the examples do not wait on it.
+**Then inspect the domain examples.** Their type equations have different scopes:
+a supplied count, an admitted transition or an interface witness. Matter §5
+separates them from the physical claims and gives explicit conditional calculations
+for a projective measurement branch and the Higgs scalar potential. The central
+membership-to-identification result is in
+[`VerificationIsIdentification`](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification).
 
-**What you can do here.** You do not need the physics. Each example is a real, known
-result, and the point is that the compiler reproduces it by type-checking, with no
-program run:
+**What you can check here.** Each example exposes its stated type constraints:
 
-- **Reproduce the residual entropy of ice.** Ice keeps a little disorder even when cooled to absolute zero, a fact known since the 1930s. The compiler counts the allowed arrangements of its atoms and gets the number: `|S| = 6` per vertex.
+- **Inspect the ice-rule vertices.** The example declares six local two-in/two-out patterns. A local vertex count alone does not derive the entropy of a complete lattice.
 - **Show why hydrogen's 2s state is long-lived.** The jump that would empty it is forbidden by a rule on which light an atom can emit, so it survives far longer than its neighbours. The compiler rejects the `2s → 1s` transition for breaking the rule (`Δℓ = 0`, not `±1`).
-- **Show why the proton never decays**, the reason ordinary matter holds together. Its one possible decay would break a conservation law. The compiler finds `p → e⁺ + π⁰` does not conserve baryon number.
-- **Solve a constraint graph.** It reduces to one forced assignment, or the compiler proves that none exists.
-- **Locate a learning machine by its coordinates.** A gated, append-only learner conforms to the crystallizing lattice. One without a gate (a language model, `|S| > 1`) is rejected, with the missing coordinate named.
+- **Check the declared baryon-number rule.** The proposed `p → e⁺ + π⁰` transition fails that constraint. This does not prove an unrestricted physical prohibition of proton decay.
+- **Derive a pinned schedule.** The conflict equations force its assignment. A conflicting additional edge is rejected. Without the pin, two assignments can both be valid.
+- **Check a learning interface's coordinates.** The compiler accepts or rejects its actual type constraints. A missing Unique conformance does not establish a language model's candidate count or correctness. Program Is Path PiP7 separates admissibility from identification.
 
 **How it works.** The type checker performs three operations on a finite structure,
 and each corresponds to a question.
@@ -33,21 +33,23 @@ and each corresponds to a question.
 | --- | --- | --- | --- |
 | count | How many? | a fold that adds one per structural step | degeneracy `n² = 4`, Goldstones `= 3`, `\|S\| = 6` |
 | select | Is it allowed? | a `where` clause on a relation | `Δℓ = ±1`, `2-in/2-out`, `baryon in == baryon out` |
-| propagate | What is forced? | a chain reduced to its forced value | the conflict graph, `\|S\| = 0/1/>1` |
+| propagate | What is forced? | a chain reduced to its forced value | the pinned conflict graph |
 
 A count reduces a `Succ`-chain to a number. A select compiles when the case is
 allowed, or is rejected with the violated rule named. A propagation gives the
-forced value when one is determined, and otherwise reports the result as ambiguous
-or impossible.
+forced value under its input equations. A rejection concerns the attempted
+construction. A complete ambiguity or impossibility result needs the domain
+argument, such as the pinned schedule's forced coordinates and closing edge.
 
 **How to use it.** There are three steps.
 
-1. Run the demos. `swift test` exercises them and pins the numbers the build
-   produced: the residual entropy of ice, the hydrogen spectrum, the scheduler.
+1. Run the demos. `swift test` checks the declared examples and presentation
+   data. The focused checks in Checks verify generic implications and refusals.
 2. See a rejection. Rebuild with a flag and read the named error:
    `swift build -Xswiftc -DSHOW_FORBIDDEN` for the forbidden spectral lines and
-   proton decay, `-DSHOW_REJECT` for the `|S| > 1` gates, `-DSHOW_UNSAT` or
-   `-DSHOW_AMBIGUOUS` for the solver.
+   proton decay, `-DSHOW_REJECT` for the legacy interface gates, or
+   `-DSHOW_UNSAT` for the incompatible schedule edge. `-DSHOW_AMBIGUOUS`
+   checks an incompatible Unique coordinate, without counting schedules.
 3. Encode your own question. Choose the operation, write it as types, and read the
    build. A selection rule is a `where` clause. The cases that satisfy it compile,
    and one that does not is rejected. The `Lowers` and `Orbital` types below are real,
@@ -71,6 +73,523 @@ magnitude into a finite structure. The type checker verifies. The encoder search
 
 ## Topics
 
+### Verdicts — an answer without source identification
+
+Two beams share a visible answer while their infrared answers differ. The
+certificates join finite groups, retain an actual member, and reorder branches.
+`bash Checks/verdict.sh` checks the generic implications and requires the
+compiler to reject broken premises independently.
+The same check probes the finite-structure boundary with two explicit floor
+refusals, recorded in `Checks/FiniteBoundary.swift`.
+
+- ``JoinedVerdict``
+- ``DirectAnswerRecord``
+- ``SingletonVerdict``
+- ``CertifiedGroup``
+- ``ReversedVerdict``
+- ``ReorderVerdict``
+- ``RetainLeftVerdict``
+- ``RetainRightVerdict``
+- ``VisibleReading``
+- ``InfraredReading``
+- ``VisibleVerdict``
+- ``ThreeBeamVerdict``
+
+### Coverage and sufficient observations
+
+A declared three-beam tree rejects missing and repeated replacements even
+when their answers agree. A generic factorization recovers the alpha answer
+from the visible image for any beam. An entire red-visible family shares one
+answer without enumerating its hidden coordinate. A symbolic operation that
+exposes that coordinate demonstrates the limit of reusing an invariant.
+`Checks/Coverage.swift` checks these boundaries alongside the verdict checks.
+
+The [published visible claim](doc:CoveredVisibleClaim) reads its support,
+question, encoding and answer from a root-bound coverage application.
+`swift run DocumentKitDemo claim --write` regenerates that page.
+
+- ``CandidateLeaf``
+- ``CandidateNode``
+- ``CandidateSiblingRemovalsCommute``
+- ``CandidateFork``
+- ``CoveredLeaf``
+- ``CoveredJoin``
+- ``CoveredGroup``
+- ``CheckedCoverage``
+- ``ThreeBeamsCovered``
+- ``AlphaFactors``
+- ``SharedVisibleImage``
+- ``AnswersThroughSharedDecoder``
+- ``RedVisibleBeam``
+- ``RedWithHidden``
+- ``RedFamilyVerdict``
+- ``ExposeHidden``
+- ``SwapVisible``
+- ``SwapFactors``
+- ``SharedSwappedImage``
+
+### Transport between representation codes
+
+A native pair, a reversed wire pair and a scalar preserve one payload
+question. The original codes remain in tagged input addresses. A generic
+join derives the final factorization through the same actual intermediate
+reading. `Checks/Transport.swift` checks the implications and independent
+refusals. The factorization arguments are in Verdict Is Invariant.
+
+- ``AddressedRepresentation``
+- ``AddressedReading``
+- ``JoinedFactorization``
+- ``IdentityFactorization``
+- ``LayoutFactorization``
+- ``PayloadFactorization``
+
+### Certified saturation under mixed operations
+
+Two coordinate swaps are separately compatible with smaller observations.
+Their mixed continuations require all three active coordinates. The completed
+image retains the alpha question and supports both image updates. Generic
+path constructors cover every finite interleaving. `Checks/Saturation.swift`
+checks these implications and refuses the insufficient image and wrong order.
+VI VC44–VC45 prove closure and future-question factorization directly.
+
+- ``FullSpectrumReading``
+- ``SpectrumAlphaFactors``
+- ``SpectrumFirstTransition``
+- ``SpectrumSecondTransition``
+- ``AppendSpectrumFirst``
+- ``AppendSpectrumSecond``
+- ``SpectrumFirstAgreement``
+- ``SpectrumSecondAgreement``
+
+### Interactions with a resident condition
+
+Liquid LQ13 derives the boundary that an internal replacement must preserve.
+The exchange uses a resident reserve and retains the actual partner. Three
+equality contacts force the fourth corner, while the vacancy constructors
+retain a relation that cannot be represented by shared equality alone.
+
+- ``PairRecombination``
+- ``ReversedCutAgreement``
+- ``ResidentCutExchange``
+- ``EqualityContactCut``
+- ``ThreeContactsForceFourth``
+- ``IndependentContactOrders``
+- ``AdjacentSwapConjugation``
+- ``FramePolarityFlip``
+- ``LowerFrameFlip``
+- ``PairedQuarterTurn``
+- ``CrossedQuarterTurn``
+- ``SameCommutatorDifferentSquares``
+- ``ResidentContactExchange``
+- ``RetainedPartnerForcesBoundary``
+- ``FirstVacancy``
+- ``SecondVacancy``
+- ``ThirdVacancy``
+
+LQ16 recovers two roles from exact self-contact and contextual substitution.
+The pair constructors derive its field identities without a runtime. Keeping
+both complementary outputs recovers the canonical resident sources. In the
+vacancy relation one crossed output can be admitted while its complement is
+forbidden; shared equality forces that complement from the other three contacts.
+
+A partial swap is available where two source fields agree. The complete
+image carries that same relation, while the visible pair can conflate an
+available source with an unavailable one. The next step checks the condition
+at its actual successor. VI VC46–VC49 give exact descent and the minimal
+six-class image of the binary fragment.
+
+- ``MatchedSwapOperation``
+- ``MatchedSwapSource``
+- ``MatchedSwapImage``
+- ``MatchedSwapTransition``
+- ``TwiceMatchedSwap``
+- ``AlphaAfterMatchedSwap``
+- ``ZeroSuccessorDistinction``
+- ``BlockedAlpha``
+- ``ReadyAlpha``
+- ``InteractionClassQuestion``
+- ``ReadySpectrumClass``
+- ``ZeroBlockedSpectrumClass``
+- ``SuccessorBlockedSpectrumClass``
+- ``ReadyClassFactors``
+- ``ZeroBlockedClassFactors``
+- ``SuccessorBlockedClassFactors``
+- ``ReadyClassReading``
+- ``ZeroBlockedClassReading``
+- ``SuccessorBlockedClassReading``
+- ``RepeatReadyImage``
+- ``ZeroToSuccessorImage``
+- ``SuccessorToZeroImage``
+
+### Knowledge through a minimal interaction image
+
+A fact of the complete image supplies the minimal class and every certified
+future question through existing evidence composition. Changing representation
+before or after composing a path gives the same boundary readings. Adding the
+total swap splits the old six classes into eight. The retained complete fact
+can answer the newly exposed question. VI VC50–VC54 contain the arguments.
+
+- ``RepeatSpectrumClassTransition``
+- ``ZeroSuccessorSpectrumClassTransition``
+- ``SuccessorZeroSpectrumClassTransition``
+- ``RepeatClassTransition``
+- ``ZeroSuccessorClassTransition``
+- ``SuccessorZeroClassTransition``
+- ``ReadyAlphaFactors``
+- ``ZeroBlockedAlphaFactors``
+- ``SuccessorBlockedAlphaFactors``
+- ``AppendRepeatClass``
+
+### An internal participant acquires a missing distinction
+
+The old ready class already determines the complete source image. A blocked
+class needs one beta reading, placed in a prepared slot beside the retained
+source and old memory. The output supplies the new image and its future
+questions. VC55–VC57 prove the acquisition and least refinement. M43–M44
+separate accessible knowledge, whole entropy and the order of records.
+
+- ``BetaQuestion``
+- ``SpectrumBetaSource``
+- ``ChannelOf``
+- ``PreparedTraceExtension``
+- ``RewindPreparedTrace``
+- ``PreparedPredecessor``
+- ``AnswerInReadyWhole``
+- ``ReadyClassTrace``
+- ``ZeroBlockedTrace``
+- ``OneBlockedTrace``
+- ``AcquireZeroBlockedBeta``
+- ``AcquireOneBlockedBeta``
+- ``ReadyObserverWhole``
+- ``KeepReadyKnowledge``
+- ``ReadyClassSpectrum``
+- ``ReadyClassRecoversSpectrum``
+- ``ReadySpectrumFromOldTrace``
+- ``ZeroBlockedMemorySpectrum``
+- ``OneBlockedMemorySpectrum``
+- ``ZeroBlockedPreparedSpectrum``
+- ``OneBlockedPreparedSpectrum``
+
+### Resident resources and retained experimental answers
+
+A decision reads the acquired class before selecting the declared channel.
+An occupied workspace is prepared by moving its content to a resident slot.
+The acquired fact then moves to another slot, leaving the instrument ready
+and the answer accessible. VC58–VC59 and M45 separate this finite storage
+account from entropy and from the retention of every historical occurrence.
+
+- ``AcquisitionChoice``
+- ``ChooseBlockedBeta``
+- ``ChooseReadyReuse``
+- ``SelectedTraceExtension``
+- ``StepBeside``
+- ``PrepareTraceFromResidentSlot``
+- ``ParkAcquiredTrace``
+- ``ResidentTraceMemory``
+- ``AnswerFromResidentArchive``
+
+### Recoverable construction with an admitted boundary
+
+The retained predecessor contains context and two addressed operands. Its
+record recovers the operand answer even when histories or local results
+differ. A local result can merge inputs while the complete record separates
+them. A diagonal family admits only equal operands. EiF EF8–EF9 distinguish
+unique decomposition, constructor availability and fresh occurrence.
+
+- ``RetainedConstruction``
+- ``RecordedOperands``
+- ``ConstructionRecoversOperands``
+- ``SameBoundaryForcesOperands``
+- ``RetainedOutputIdentifiesSource``
+- ``DiagonalConstruction``
+
+### A common answer determines its admissible boundary
+
+A uniform verdict constructs a shared fact decoder. A shared decoder in
+turn forces a verdict. Both actual sources remain in the retained record.
+Ordered constructor obstructions certify incompatible answers. The binary
+common-answer interface has three classes while its full records retain
+the direction of disagreement. VI VC60–VC61 state the exact contracts.
+
+- ``SharedFactFromVerdict``
+- ``CommonFactConstruction``
+- ``CommonFactFromSharedDecoder``
+- ``CommonAnswerAcrossRealizations``
+- ``ZeroSuccessorBoundary``
+- ``SuccessorZeroBoundary``
+- ``ZeroSuccessorBoundaryRecord``
+- ``SuccessorZeroBoundaryRecord``
+- ``ZeroSuccessorBoundaryImage``
+- ``SuccessorZeroBoundaryImage``
+
+### Acquire a common answer inside the whole
+
+An established agreement between two applications on the same resident source
+lets one acquired trace answer both. Preparation and archive access use the
+existing resident relations. The first fact alone does not establish that
+agreement on an unrestricted source family. VI VC62–VC63 separate these duties.
+
+- ``BoundaryFirstAlpha``
+- ``BoundarySecondAlpha``
+- ``AnswerThroughAgreement``
+- ``PreparedCommonTrace``
+- ``CommonAnswerFromTrace``
+
+### Establish agreement from acquired memory
+
+The two component readings use initially resident slots. Their memory
+decoders derive source agreement or a positive obstruction through the same
+actual observation. Three classification images suffice for the common-answer
+request while the full trace retains orientation. VI VC64–VC65 prove the
+transfer and the exact second-reading requirement on the binary domain.
+
+- ``AdvancePreparedTrace``
+- ``AgreementFromMemory``
+- ``ZeroSuccessorFromMemory``
+- ``CommonBoundaryQuestion``
+- ``AgreedMemoryBoundary``
+- ``ZeroSuccessorMemoryBoundary``
+- ``SuccessorZeroMemoryBoundary``
+
+### Transport a boundary through an intervention
+
+An acquired pair of answers determines a scoped future class through a
+source-bound square. Side exchange preserves the three-class image. An
+exchange with a resident zero separates the old failure orientations, while
+the displaced answer remains available in the changed source. VI VC66–VC67
+state the exact initial domain and distinguish it from repeated operation.
+
+- ``JointEvidenceFromMemory``
+- ``BoundaryPairReading``
+- ``SwapBoundaryReading``
+- ``SwapBoundaryTransition``
+- ``KeepBoundaryUnderSwap``
+- ``FirstFieldsOperation``
+- ``ExchangedBoundaryFirst``
+- ``ExchangeBoundaryFirst``
+- ``BoundaryFirstZeroImage``
+- ``BoundaryFirstZeroTransition``
+- ``SecondEvidenceImage``
+- ``AgreedBoundaryPairClass``
+- ``ZeroSuccessorBoundaryPairClass``
+- ``SuccessorZeroBoundaryPairClass``
+- ``AgreedBoundarySwap``
+- ``ZeroSuccessorBoundarySwap``
+- ``SuccessorZeroBoundarySwap``
+
+### Close the common-answer object under internal interactions
+
+VC68–VC72 derive the coordinate and comparison-table updates, the exact
+15/13 behavioral images, acquired future answers and a new internal
+connection that forces 16/14 without changing the common question.
+The source, command tape and retained evidence are internal components.
+`Checks/BoundaryClosure.swift` checks the generic compositions, complete
+binary table family, separating continuations and acquisition boundaries.
+
+- ``BoundaryCoordinates``
+- ``BoundaryCoordinatesQuestion``
+- ``BoundaryTableQuestion``
+- ``ExchangeFirstImage``
+- ``BoundaryCoordinatesExchange``
+- ``BoundaryCoordinatesSwap``
+- ``BoundaryTable``
+- ``ExchangeTableRows``
+- ``TransposeBoundaryTable``
+- ``ReverseBoundaryComparison``
+- ``BoundaryTableExchange``
+- ``BoundaryTableSwap``
+- ``ReadBoundaryTable``
+- ``ResidentBoundaryCommand``
+- ``RecordedBoundaryCommand``
+- ``CrossBoundaryOperation``
+- ``CrossBoundaryReading``
+- ``CrossBoundaryImage``
+- ``BoundaryCoordinatesCross``
+- ``BoundaryBeam``
+- ``BoundaryWorking``
+- ``Boundary00``
+- ``Boundary01``
+- ``Boundary10``
+- ``Boundary11``
+- ``Boundary0000``
+- ``Boundary0001``
+- ``Boundary0010``
+- ``Boundary0011``
+- ``Boundary0100``
+- ``Boundary0101``
+- ``Boundary0110``
+- ``Boundary0111``
+- ``Boundary1000``
+- ``Boundary1001``
+- ``Boundary1010``
+- ``Boundary1011``
+- ``Boundary1100``
+- ``Boundary1101``
+- ``Boundary1110``
+- ``Boundary1111``
+- ``BoundaryReverse00``
+- ``BoundaryReverse01``
+- ``BoundaryReverse10``
+- ``BoundaryReverse11``
+- ``BoundaryFirstBeta``
+- ``BoundarySecondBeta``
+- ``AcquiredBoundaryCoordinates``
+- ``IdentityCoordinateImage``
+- ``PreparedBoundaryCoordinatesImage``
+- ``PreparedBoundaryCoordinatesFromAlpha``
+
+### Acquire a law from a prepared probe
+
+VC73 factors the E/K law through one common output question. The acquired
+fact contains the response without the mechanism's tag. Preparation, the
+admitted law family and the actual application remain explicit premises.
+
+- ``MechanismOutputQuestion``
+- ``MechanismLawQuestion``
+- ``MechanismOutput``
+- ``MechanismLaw``
+- ``ExchangeFromZeroProbe``
+- ``CrossFromOneProbe``
+- ``ExchangeLawFromProbe``
+- ``CrossLawFromProbe``
+- ``AcquiredExchangeLaw``
+- ``AcquiredCrossLaw``
+- ``PreparedMechanismProbe``
+- ``ExchangeLawFromTrace``
+- ``CrossLawFromTrace``
+
+### Recover four-address routing from two probe images
+
+VC74 derives routing coordinates from two complete, addressed binary images.
+The generic decoder also covers repeated address selections. Fixed routing
+across probes is required. A changing internal schedule can mimic a valid
+permutation's record. Reconstruction does not identify the whole mechanism.
+
+- ``RoutingQuestion``
+- ``FirstRoutingProbeQuestion``
+- ``SecondRoutingProbeQuestion``
+- ``RoutingCoordinates``
+- ``FirstRoutingProbe``
+- ``SecondRoutingProbe``
+- ``RoutingProbeImages``
+- ``RoutingFromProbeImages``
+- ``RoutingFromProbes``
+- ``AcquiredRouting``
+- ``RoutingAddress00``
+- ``RoutingAddress01``
+- ``RoutingAddress10``
+- ``RoutingAddress11``
+- ``IdentityRouting``
+- ``RoutingProbeP``
+- ``RoutingProbeQ``
+- ``SelectionCalibration00``
+- ``SelectionCalibration01``
+- ``SelectionCalibration10``
+- ``SelectionCalibration11``
+- ``CalibratedRoutingBasis``
+
+### Reuse routing with read input data
+
+VC75 transports a factorization beside an explicitly supplied input. Four
+address clauses select arbitrary data values from acquired routing evidence.
+The decoder receives both the law record and data, and can supply the existing
+common-answer table at its actual new input.
+
+- ``SuppliedInputQuestion``
+- ``RoutedValueQuestion``
+- ``RoutedOutputQuestion``
+- ``ReadingBesideInput``
+- ``EvidenceBesideInput``
+- ``Route00``
+- ``Route01``
+- ``Route10``
+- ``Route11``
+- ``RoutingApplication``
+- ``RoutingApplicationFromProbes``
+- ``RoutingMemoryBesideInput``
+
+### Acquire two probe records inside one prepared whole
+
+VC76 retains one source and both instruments through acquisition, internal
+focus exchange and acquisition. The two records supply routing and reuse.
+M48 counts conditional law uncertainty under explicit finite preparations.
+
+- ``FollowedPair``
+- ``ExchangeResidentInstruments``
+- ``TwoResidentReadings``
+- ``ResidentProbeFacts``
+- ``TwoRecordedAnswers``
+- ``ObserveTwoResidentFacts``
+- ``TwoResidentAnswers``
+- ``AnswerInResidentProbePair``
+
+### Transport acquired law through an internal mechanism change
+
+VC77 derives law preservation while internal module state changes. A source
+pullback preserves the decoder, and a commuting square carries its evidence
+to a new application. Replacing the routing itself from a resident reserve
+provides the contrasting future-law boundary counted by M49.
+
+- ``FactorOnSource``
+- ``RoutingModule``
+- ``ResidentRoutingSource``
+- ``ResidentRoutingFactors``
+- ``ModuleStateExchangeOperation``
+- ``ExchangeModuleState``
+- ``KeepRoutingOnModuleExchange``
+- ``RoutingModuleExchange``
+- ``TransitionBesideInput``
+- ``RoutingReserveExchangeOperation``
+- ``ExchangeRoutingWithReserve``
+
+### Derive the input demand of an acquired routing
+
+VC78 factors the repeated-first application through its law record and one
+input coordinate. Unused values and branch structure disappear from the
+decoder. The restricted observation fails for the identity route.
+
+- ``PairedSourceReadings``
+- ``FirstDataCoordinateQuestion``
+- ``FirstDataCoordinate``
+- ``RepeatedFirstRouting``
+- ``RepeatFromFirstRecord``
+- ``RepeatedFirstFromObservation``
+
+### Identify routing through an internal output frame
+
+VC79 derives equal probe records when an exchange moves between the module
+routing and the instrument's output connection. The composite remains
+predictable while its decomposition requires a calibration relation.
+
+- ``DirectOutputFrame``
+- ``CrossedOutputFrame``
+- ``ProbeThroughDirectFrame``
+- ``ProbeThroughCrossedFrame``
+- ``RoutingFrameAgreement``
+
+### Objects and action paths
+
+A source step and an image step agree by a commuting square. A generic join
+composes two certified squares, and an identity supplies the empty path. Swap,
+hidden erasure and a second swap return the original image while losing a
+source coordinate. The exact action-domain condition is VI VC46. VC54 shows
+how an added action splits the previously sufficient operational objects.
+
+- ``OperationSequence``
+- ``TwoMacroExpansion``
+- ``PostPairReading``
+- ``PostPairAgreement``
+- ``SequentialReading``
+- ``JoinedTransition``
+- ``ReobservedTransition``
+- ``IdentityTransition``
+- ``SwapTransition``
+- ``ForgetTransition``
+- ``AppendSwap``
+- ``QuestionAlongTransition``
+- ``FutureOnEvidence``
+- ``ExposeHiddenAsBeta``
+
 ### The solver — a certified scheduler
 
 Constraints propagate to one forced assignment (`|S| = 1`), or the graph reports as ambiguous (`|S| > 1`) or impossible (`|S| = 0`). Nothing is searched at runtime. The answer is a type reduction.
@@ -89,7 +608,7 @@ Constraints propagate to one forced assignment (`|S| = 1`), or the graph reports
 
 ### Ice — residual entropy, counted
 
-Ice keeps a little disorder even at absolute zero, and this counts it. Six of sixteen proton arrangements obey the two-in/two-out ice rule, a fold that counts them to `|S| = 6` per vertex. ``IceOxygen`` crystallizes (`|S| = 1`) while the residual is in the hydrogen positions.
+IceVertex requires two In and two Out slots. Induction on the finite constructor grammar and choosing two of four positions gives exactly the six listed local words. Matter §5 separately characterizes global configurations by agreement on shared edges and states which probability law turns their count into entropy. IceOxygen's interface does not derive a unique physical ground state.
 
 - ``IceOxygen``
 - ``IceHydrogen``
@@ -117,7 +636,7 @@ Some jumps an electron could make are forbidden, which is why parts of an atom's
 
 ### The Higgs vacuum — broken symmetry, counted
 
-When a symmetry of nature breaks, some directions cost nothing to shift, and this counts them. Electroweak breaking leaves three massless Goldstone directions, counted to `= 3`. ``HiggsGaugeInvariant`` is the gauge-invariant vacuum (`|S| = 1`) while the residual is in the field components.
+Broken adds one slot to a supplied count, and Electroweak supplies three. Matter §5 separately proves the unique norm at the minimum of the stated scalar potential and shows that each nonzero norm labels one pointwise doublet orbit under SU(2). HiggsGaugeInvariant's interface does not derive those facts or determine the complete gauge-field configuration. The three broken directions are not three additional physical massless scalar particles.
 
 - ``HiggsGaugeInvariant``
 - ``HiggsFieldComponents``
@@ -129,7 +648,7 @@ When a symmetry of nature breaks, some directions cost nothing to shift, and thi
 
 ### Quantum measurement — degeneracy
 
-A measurement with a single possible outcome pins down one state. When several states share an outcome, a residual remains. A non-degenerate eigenvalue identifies a single state (`|S| = 1`). A degenerate level leaves a residual of `n²`, read by the same gate that certifies the other domains.
+For the ideal Lüders update on an unrestricted input domain, a nonzero projector gives the same conditional output for every admitted input exactly when it has rank one. Matter §5 proves this and distinguishes the resulting ray from the pre-measurement state. One certain outcome does not suffice: the identity projector leaves every input unchanged. Quantum.swift checks supplied dimension expressions. Dimension g counts basis directions, not all state rays.
 
 - ``QuantumMeasurement``
 - ``DegenerateMeasurement``
@@ -179,7 +698,7 @@ The terms allowed in a state file's slots: the lamp's two faces, the counter's f
 
 ### One lattice, many domains
 
-Ice, the hydrogen spectrum, the Higgs vacuum, and the packing of this package's own generated code each certify the same `SystemCrystallizes` structure, so one construction written over it covers all of them at once, and the four crystals below prove it by compiling. It is one game on four boards, and the fourth board is the package itself: under the cost encoding the measured packings crystallize to one survivor, and under the content encoding they refuse to, because every packing renders the same bytes.
+The following declarations share the SystemCrystallizes interface, allowing a generic construction to use its equations. This does not establish identical physical dynamics across their intended domains. Chosen SolutionSet coordinates do not certify candidate counts. Matter §5 separates the physical obligations, while V=I U2–U2b supplies actual support and constraint-derived identification constructions.
 
 - ``CrystallizingDomain``
 - ``IceCrystal``
@@ -284,7 +803,7 @@ Ordinary-Swift witnesses beside the pure types: the learners the projection loca
 
 ### The witnesses — concrete models of the markers
 
-Non-trivial inhabitants, so no proof is vacuous: the markers have real models, not only the empty `Never`.
+These ordinary Swift witnesses give concrete models beside the pure type relations.
 
 - ``Cell``
 - ``Succ``
@@ -294,3 +813,163 @@ Non-trivial inhabitants, so no proof is vacuous: the markers have real models, n
 - ``Measured``
 - ``Verdict``
 - ``ConcreteAgent``
+
+### The closed whole
+
+- ``ReadyLawState``
+- ``RecordedLawState``
+- ``ReadPreparedLawSource``
+- ``ExtendLawRecord``
+- ``RetainedWhole``
+- ``RecordedSwapReturn``
+- ``RetainedOccurrenceContrast``
+- ``MutualRecordUpdate``
+- ``ConstantResetQuestion``
+- ``ConstantResetReading``
+- ``DuplicateParityOperation``
+- ``EqualPairParity``
+- ``ZeroOneParity``
+- ``OneZeroParity``
+- ``ReadingWithResidentLaw``
+- ``EarlierFirstQuestion``
+- ``EarlierSecondQuestion``
+- ``EarlierFirstThroughSwap``
+- ``EarlierSecondThroughSwap``
+- ``EarlierPairThroughSwap``
+- ``SelfRetainingRecord``
+- ``StationaryRetention``
+- ``InternalSwap``
+- ``RotateThree``
+- ``ExposeNext``
+- ``RewindExposure``
+- ``BeamWithResidual``
+- ``SwapWindow``
+- ``GluedEqualities``
+- ``AnswerWithItsEvidence``
+- ``SpendSuccessor``
+- ``ZeroInputClaimTail``
+- ``AppendedCacheReading``
+- ``CacheByAppending``
+
+### Discovering an initial state
+
+- ``ExperimentQuiet``
+- ``ExperimentSignal``
+- ``TrapExperiment``
+- ``ReversibleExperiment``
+- ``TwoQuestionTrace``
+- ``RecordedFirstQuestion``
+- ``AdvanceQuestionTag``
+- ``RecordedControllerStep``
+- ``PreparedObservation``
+
+### Learning a declared law
+
+- ``ConstantTable``
+- ``SecondTableQuestion``
+- ``FirstTableQuestion``
+- ``FirstTableReading``
+- ``SecondTableReading``
+- ``PredictionsFromConstantTables``
+- ``SyntheticConstantRecord``
+- ``DiagonalReadings``
+
+### Acquisition and reuse without runtime
+
+The question, record, refinement and repeated answer are type relations. The compiler derives the consequences and rejects the broken premises in `Checks/Acquisition.swift`.
+
+- ``AnswerFact``
+- ``RecordReading``
+- ``AcquireAnswer``
+- ``QuestionOnObservation``
+- ``AnswerFromAcquiredObservation``
+- ``RefineAnswer``
+- ``JointEvidenceRetainsFirst``
+- ``ConstantSecondFactors``
+- ``StartObservations``
+- ``AppendObservation``
+- ``TraceEvidenceIn``
+- ``TraceEvidence``
+- ``LastAnswerFromTrace``
+- ``ConstantSecondFromTrace``
+- ``AnswerInTrace``
+- ``RetainTraceAnswer``
+
+### When existing knowledge is sufficient
+
+One resident acquisition chain separates memory reuse, a required new reading and closure under mixed coordinate exchanges. See `Checks/KnowledgeClosure.swift`.
+
+- <doc:KnowledgeClosure>
+
+- ``HiddenCoordinateQuestion``
+- ``HiddenCoordinateReading``
+- ``FocusThirdInstrument``
+- ``ThreeResidentReadings``
+- ``ResidentThreeFacts``
+- ``KnowledgeAcquisition``
+- ``KnowledgeOldObservation``
+- ``KnowledgeObservation``
+- ``KnowledgeCoordinates``
+- ``KnowledgeFromThree``
+- ``KnowledgeOldFacts``
+- ``KnowledgeRetainsOld``
+- ``KnowledgeCurrent``
+- ``KnowledgeSwapDecoder``
+- ``KnowledgeSwapFromTwo``
+- ``KnowledgeMixedPath``
+- ``KnowledgeMixedQuestion``
+- ``KnowledgeMixedFromThree``
+- ``FocusKnowledgeCommand``
+- ``KnowledgeResidentRun``
+
+### Data determines sufficient law evidence
+
+- ``FirstSelectionProbe``
+- ``SelectionWithResidentProbe``
+- ``RowRepeatedData``
+- ``SelectionProbeMemory``
+- ``FirstRowFromRecord``
+- ``SecondRowFromRecord``
+- ``RowSelection00``
+- ``RowSelection01``
+- ``RowSelection10``
+- ``RowSelection11``
+- ``ConstantSelectionEvidence``
+- ``ConstantSelectionAnswer``
+- ``ExchangeSelectionReserve``
+- ``SelectionAfterReserveChange``
+- ``SelectionChangeDecoder``
+- ``RowLawChangePreservesAnswer``
+- ``ExchangeObservedSelection``
+- ``ScopedLawResidentRun``
+
+### Relational return forces an answer
+
+- ``SwapReturnForcesAgreement``
+- ``DiagonalSwapReturn``
+- ``SwapReturnBoundary``
+- ``IdentityPairReturn``
+- ``DoubleSwapReturn``
+- ``ResidentTransportContact``
+- ``ThreePhaseContactsForceCollapse``
+
+### Relative agreement without absolute frame calibration
+
+- ``PairRelationQuestion``
+- ``SharedDirectPairFrame``
+- ``SharedCrossedPairFrame``
+- ``SharedFrameAgreement``
+- ``MixedPairFrame``
+- ``ReversedMixedPairFrame``
+- ``SecondPairReaddressing``
+- ``RelativeFrameQuestion``
+- ``RelativeProbeBit``
+- ``FrameConnectionExchange``
+- ``ExchangeFrameConnections``
+- ``CommonFirstFrameSource``
+- ``SharedFrameFactDecoder``
+- ``MixedFrameFactDecoder``
+- ``MixedFrameReplayAfterExchange``
+- ``ReaddressSecondPair``
+- ``MixedFrameCorrection``
+- ``ReversedMixedFrameCorrection``

@@ -1,0 +1,453 @@
+{
+  "adaptive": {
+    "questions": [
+      [
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        0,
+        1
+      ]
+    ],
+    "target": [
+      0,
+      0,
+      1,
+      2
+    ],
+    "prior": [
+      "1/4",
+      "1/4",
+      "1/4",
+      "1/4"
+    ],
+    "target_entropy": 1.5,
+    "attainable_reduced_partitions": 2,
+    "zero_excess": true,
+    "frontier": [
+      {
+        "partition": [
+          [
+            0,
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        "mean": "3/2",
+        "excess": 0.0,
+        "policy": {
+          "question": 0,
+          "zero": {
+            "answer": 0
+          },
+          "one": {
+            "question": 1,
+            "zero": {
+              "answer": 1
+            },
+            "one": {
+              "answer": 2
+            }
+          }
+        }
+      }
+    ]
+  },
+  "membership": {
+    "questions": [
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
+    ],
+    "target": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "prior": [
+      "1/8",
+      "1/8",
+      "1/8",
+      "1/8",
+      "1/8",
+      "1/8",
+      "1/8",
+      "1/8"
+    ],
+    "target_entropy": 0.5435644431995964,
+    "attainable_reduced_partitions": 1,
+    "zero_excess": false,
+    "frontier": [
+      {
+        "partition": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ]
+        ],
+        "mean": "35/8",
+        "excess": 2.4564355568004035,
+        "policy": {
+          "question": 0,
+          "zero": {
+            "question": 1,
+            "zero": {
+              "question": 2,
+              "zero": {
+                "question": 3,
+                "zero": {
+                  "question": 4,
+                  "zero": {
+                    "question": 5,
+                    "zero": {
+                      "question": 6,
+                      "zero": {
+                        "answer": 1
+                      },
+                      "one": {
+                        "answer": 0
+                      }
+                    },
+                    "one": {
+                      "answer": 0
+                    }
+                  },
+                  "one": {
+                    "answer": 0
+                  }
+                },
+                "one": {
+                  "answer": 0
+                }
+              },
+              "one": {
+                "answer": 0
+              }
+            },
+            "one": {
+              "answer": 0
+            }
+          },
+          "one": {
+            "answer": 0
+          }
+        }
+      }
+    ]
+  },
+  "direct": {
+    "questions": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "target": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "prior": [
+      "1/8",
+      "1/8",
+      "1/8",
+      "1/8",
+      "1/8",
+      "1/8",
+      "1/8",
+      "1/8"
+    ],
+    "target_entropy": 0.5435644431995964,
+    "attainable_reduced_partitions": 1,
+    "zero_excess": true,
+    "frontier": [
+      {
+        "partition": [
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          [
+            7
+          ]
+        ],
+        "mean": "1",
+        "excess": 0.0,
+        "policy": {
+          "question": 0,
+          "zero": {
+            "answer": 0
+          },
+          "one": {
+            "answer": 1
+          }
+        }
+      }
+    ]
+  },
+  "tradeoff": {
+    "questions": [
+      [
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        0,
+        1
+      ]
+    ],
+    "target": [
+      0,
+      1,
+      0,
+      0,
+      1
+    ],
+    "prior": [
+      "1/5",
+      "1/5",
+      "1/5",
+      "1/5",
+      "1/5"
+    ],
+    "target_entropy": 0.9709505944546686,
+    "attainable_reduced_partitions": 5,
+    "zero_excess": false,
+    "frontier": [
+      {
+        "partition": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            3
+          ]
+        ],
+        "mean": "8/5",
+        "excess": 0.5509775004326936,
+        "policy": {
+          "question": 0,
+          "zero": {
+            "answer": 0
+          },
+          "one": {
+            "question": 3,
+            "zero": {
+              "answer": 0
+            },
+            "one": {
+              "answer": 1
+            }
+          }
+        }
+      },
+      {
+        "partition": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2
+          ]
+        ],
+        "mean": "8/5",
+        "excess": 0.5509775004326936,
+        "policy": {
+          "question": 3,
+          "zero": {
+            "answer": 0
+          },
+          "one": {
+            "question": 0,
+            "zero": {
+              "answer": 0
+            },
+            "one": {
+              "answer": 1
+            }
+          }
+        }
+      },
+      {
+        "partition": [
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            1
+          ],
+          [
+            4
+          ]
+        ],
+        "mean": "9/5",
+        "excess": 0.40000000000000013,
+        "policy": {
+          "question": 1,
+          "zero": {
+            "question": 2,
+            "zero": {
+              "answer": 0
+            },
+            "one": {
+              "answer": 1
+            }
+          },
+          "one": {
+            "answer": 1
+          }
+        }
+      }
+    ]
+  }
+}

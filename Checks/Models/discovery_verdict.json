@@ -1,0 +1,8 @@
+{
+  "name": "A verdict is discoverable even when initial identity is not",
+  "states": ["A", "B", "C", "signal"],
+  "observation": ["quiet", "quiet", "quiet", "signal"],
+  "operations": {"ask_A": [3, 0, 0, 0], "ask_B": [0, 3, 0, 0]},
+  "question": ["was_A", "was_not_A", "was_not_A", "was_not_A"],
+  "scope": "The target is whether the original state was A. This is a reduced evolving scene, with no reset or fresh specimen. Current-state identity is a different question."
+}

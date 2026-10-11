@@ -1,17 +1,9 @@
 import VerificationIsIdentification
 
-// ═══════════════════════════════════════════════════════════════
-// LIGHT works the Seeing Is Encoding claims on a real physical instance. A beam
-// is a finite structure: a stated basis of spectral lines with one brightness
-// level per line. The basis is written by matter — each line IS a dipole-allowed
-// hydrogen transition from Hydrogen.swift, so a forbidden line cannot enter the
-// alphabet: it has no type. The eye is a projection that reads only the visible
-// slots, and two beams that differ in the infrared slot land on one visible image,
-// and the compiler checks the sharing (metamerism, |S| > 1). The prism reads
-// every slot, so the same two beams land apart again: the separator returns the
-// lost distinction. Filters are type functions that can only dim or kill a slot,
-// and a chain of filters is a counted transport: its depth is in the type.
-// ═══════════════════════════════════════════════════════════════
+// Finite slot and path models used by Seeing Is Encoding and related papers.
+// Their response rules are declared here, not derived for all physical light.
+// The infrared pair demonstrates a discarded coordinate. SpectralSensor.swift
+// supplies a separate mixing example in which every input channel contributes.
 
 /// The fourth-shell p orbital extends the hydrogen set upward: ℓ = 1, one step
 /// above s, the same ladder every orbital rides.
@@ -69,8 +61,8 @@ public enum RedBeamWithIR: BeamShape {
 /// compare.
 public typealias EyeImage<B: BeamShape> = Paired<B.AlphaLevel, B.BetaLevel>
 
-/// The prism reads every slot: each line lands at its own place, so the image
-/// is the beam itself, spread out. Nothing is forgotten.
+/// The ideal slot readout retains every declared coordinate. Physical
+/// spectral resolution and detector response are additional premises.
 public typealias PrismImage<B: BeamShape> = Paired<B.AlphaLevel, Paired<B.BetaLevel, B.PaschenLevel>>
 
 /// Two beams the eye cannot tell apart: the claim compiles exactly when their
@@ -105,7 +97,7 @@ public enum BlockBeta<B: BeamShape>: BeamShape {
     public typealias PaschenLevel = B.PaschenLevel
 }
 
-/// A filter that kills the infrared slot: hot glass.
+/// An ideal rule that zeroes the infrared slot.
 public enum BlockIR<B: BeamShape>: BeamShape {
     public typealias AlphaLevel = B.AlphaLevel
     public typealias BetaLevel = B.BetaLevel
@@ -133,16 +125,19 @@ public enum EyeEncoding {}
 /// The prism, named as the presented separator.
 public enum PrismSeparator {}
 
-/// Light instantiates ``SeparatorIdentifies``: the eye forgets (the twins and
-/// their shared image stand above), and the prism, presented, tells the twins
-/// apart. Compiling this conformance is the certificate.
+/// The common image is bound to the two computed visible readings. The prism
+/// pair reads these same sources. Distinctness is checked separately above.
 public enum LightSeeing: SeparatorIdentifies {
     public typealias Sigma = BeamSpace
     public typealias Encoding = EyeEncoding
     public typealias LeftSource = RedBeam
     public typealias RightSource = RedBeamWithIR
     public typealias SharedImage = EyeImage<RedBeam>
-    public typealias Separator = PrismSeparator
+    public typealias Predicate = VisibleQuestion
+    public typealias Answer = EyeImage<RedBeam>
+    public typealias Left = VisibleReading<RedBeam>
+    public typealias Right = VisibleReading<RedBeamWithIR>
+    public typealias Separator = SuppliedReadingPair<PrismReading<RedBeam>, PrismReading<RedBeamWithIR>>
 }
 
 // ── Ranging: the same Seeing pair, worked on directions instead of lines. A
@@ -200,7 +195,11 @@ public enum DirectionSeeing: SeparatorIdentifies {
     public typealias LeftSource = LitFromEast
     public typealias RightSource = LitFromWest
     public typealias SharedImage = MatteImage<LitFromEast>
-    public typealias Separator = MirrorSeparator
+    public typealias Predicate = MatteQuestion
+    public typealias Answer = MatteImage<LitFromEast>
+    public typealias Left = MatteReading<LitFromEast>
+    public typealias Right = MatteReading<LitFromWest>
+    public typealias Separator = SuppliedReadingPair<MirrorReading<LitFromEast>, MirrorReading<LitFromWest>>
 }
 
 // ── The glint measures: a round trip is twice the distance, and the compiler
@@ -231,7 +230,10 @@ public enum Phase0 {}
 public enum PhaseHalf {}
 
 /// One contribution to a wave: a magnitude on the ladder, a phase residue.
-public enum Contribution<Magnitude: IntegerValued, Phase> {}
+public enum Contribution<Magnitude: IntegerValued, Phase>: Pair {
+    public typealias Left = Magnitude
+    public typealias Right = Phase
+}
 
 /// The annihilation schema, generic over magnitude: two contributions of equal
 /// magnitude and opposite phase settle to darkness. The claim compiles for
@@ -239,7 +241,8 @@ public enum Contribution<Magnitude: IntegerValued, Phase> {}
 public protocol SettlesToDark {}
 public enum OppositePair<A, B> {}
 extension OppositePair: SettlesToDark
-where A == Contribution<Lit1, Phase0>, B == Contribution<Lit1, PhaseHalf> {}
+where A: Pair, B: Pair, A.Left: IntegerValued, B.Left == A.Left,
+      A.Right == Phase0, B.Right == PhaseHalf {}
 
 /// The two-slit dark node: the two paths to it differ by half a tick, so their
 /// contributions arrive opposite and cancel. Darkness is reached, not measured.
@@ -256,7 +259,8 @@ public typealias BrightNode = Twice<Lit1>
 // one slot. Crossed polarizers compile to darkness, and the diagonal pane halves,
 // and the halvings are checked, not computed. ──
 
-/// Polarized light: one magnitude per orthogonal slot.
+/// Two component intensity coordinates. Relative phase is absent, so this
+/// record is insufficient for a general diagonal analyzer. [IiS6]
 public protocol PolarizedLight {
     associatedtype Horizontal
     associatedtype Vertical
@@ -290,10 +294,9 @@ extension Extinct: AllDark
 where P.Horizontal == Never, P.Vertical == Never {}
 public let crossedPanesGoDark: AllDark.Type = Extinct<Crossed>.self
 
-/// The diagonal pane, presented on the stated 45° angle: it passes half the
-/// arriving light and turns it, so each output slot carries half of the sum.
-/// The pane is presented with its concrete levels, and the halving is checked
-/// by the same identity ranging uses.
+/// Supplied diagonal-polarizer output for LampH alone, in intensity units.
+/// The equalities below check its proportions. They do not derive a general
+/// diagonal operator from two component intensities. See IiS6's Jones proof.
 public enum DiagonalAfterLampH: PolarizedLight {
     public typealias Horizontal = Twice<Lit1>
     public typealias Vertical = Twice<Lit1>
@@ -332,14 +335,18 @@ extension SaltB {
 /// the light.
 public typealias SaltedImage<B: BeamShape, Salt: Structure> = Paired<EyeImage<B>, Salt>
 
-/// The compiled phantom: one beam, two salted images, and the two are
-/// distinct types — a difference downstream with no difference upstream.
+/// Two actual readings of the same represented beam with explicit salt
+/// parameters. Distinct image types alone do not prove invention in the whole
+/// source world, whose interpretation must include those preparation choices.
 public enum SaltedSeeing: EncodingInvents {
     public typealias Sigma = BeamSpace
     public typealias Encoding = EyeEncoding
     public typealias OneSource = RedBeam
     public typealias FirstImage = SaltedImage<RedBeam, SaltA>
     public typealias SecondImage = SaltedImage<RedBeam, SaltB>
+    public typealias Predicate = VisibleQuestion
+    public typealias Left = SaltedVisibleReading<RedBeam, SaltA>
+    public typealias Right = SaltedVisibleReading<RedBeam, SaltB>
 }
 
 // ── Colour and gamut: a colour is the class of beams behind one image, and a
@@ -406,8 +413,8 @@ public let complementInvolutes: SelfInverse.Type = DoubleComplement<HueRed>.self
 public enum ColourSpace {}
 public enum GrayPrimaryMark {}
 
-/// Colour instantiates ``ColourIsQuotient``: the metameric twins above are two
-/// beams in one fiber, so the fiber is the colour and the beams stay two.
+/// The two visible readings agree, and their image is the exact fiber code.
+/// This certificate does not enumerate the full physical source family.
 public enum ColourWorld: ColourIsQuotient {
     public typealias Sigma = BeamSpace
     public typealias Encoding = EyeEncoding
@@ -415,11 +422,16 @@ public enum ColourWorld: ColourIsQuotient {
     public typealias RightSource = RedBeamWithIR
     public typealias SharedImage = EyeImage<RedBeam>
     public typealias Fiber = EyeImage<RedBeam>
+    public typealias Predicate = VisibleQuestion
+    public typealias Answer = EyeImage<RedBeam>
+    public typealias Left = VisibleReading<RedBeam>
+    public typealias Right = VisibleReading<RedBeamWithIR>
 }
 
-/// The gray display instantiates ``GamutIsCone``: one stated primary, a reach
-/// of equal-channel images, and everything off the ray refused by name.
-public enum GrayDisplay: GamutIsCone {
+/// Legacy display data with an explicit primary. The unbound GamutIsCone
+/// protocol is retired. GrayPrimaryAt and the gamut constructors below supply
+/// the actual finite response checks, rather than this data declaration.
+public enum GrayDisplay: HasEncoding {
     public typealias Sigma = BeamSpace
     public typealias Encoding = EyeEncoding
     public typealias LeftSource = RedBeam

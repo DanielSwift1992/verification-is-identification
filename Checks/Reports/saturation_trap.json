@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "model_sha256": "456725a3b60e9baf77edb11457bd95d07c3be3825e9616deba100630ae86750d",
+  "steps": [
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "operation": "ask_A",
+      "suffix_feature": 0,
+      "word": [
+        "ask_A"
+      ]
+    },
+    {
+      "pair": [
+        1,
+        2
+      ],
+      "operation": "ask_B",
+      "suffix_feature": 0,
+      "word": [
+        "ask_B"
+      ]
+    }
+  ],
+  "classes": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "quotient": {
+    "observation": [
+      "quiet",
+      "quiet",
+      "quiet",
+      "signal"
+    ],
+    "operations": {
+      "ask_A": [
+        3,
+        0,
+        0,
+        0
+      ],
+      "ask_B": [
+        0,
+        3,
+        0,
+        0
+      ]
+    }
+  }
+}

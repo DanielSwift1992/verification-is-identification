@@ -1,0 +1,17 @@
+{
+  "checker_stream_cases": 7744,
+  "sound_cases": 3267,
+  "complete_cases": 3267,
+  "finite_tape_laws": 255,
+  "hazard_horizons": 765,
+  "closed_whole_states": 48,
+  "counterexamples": [
+    "sound but incomplete checker",
+    "decidable unsound checker",
+    "repeated fixed seed has constant success marginals without IID coverage",
+    "checking reduces proposals affordable in a time budget",
+    "checked sample does not identify untested output",
+    "current coverage can change while the historical ledger grows"
+  ],
+  "scope": "Finite output sets, exact checker tables and prepared internal proposal tapes. No global physical entropy or real-model adequacy theorem."
+}

@@ -27,25 +27,25 @@ public struct EmittingPath: EmissionAccumulates {
     >     // after ⊇ before, a real accumulation
 }
 
-// ── Cost is path length: a 3-token path costs exactly 3 ──
+// ── Two coordinates carry the same three-successor numeral ──
 
-/// This is a construction of three tokens. `Path = Three` is a real count and `Distance == Path`, so the
-/// cost the compiler reads off the type IS the path length: three. Witnesses `CostIsPathLength`.
+/// Both coordinates use the same concrete three-successor numeral. This
+/// witnesses their equality, without recording three actual emissions or
+/// deriving a physical charge. PiP3 separates these meanings.
 public struct CountedPath: CostIsPathLength {
     public typealias Sigma = Cell<
         Never,
         Never
     >
-    public typealias Path = Three                  // : IntegerValued, three tokens
-    public typealias Distance = Three              // == Path, the cost is the length
+    public typealias Path = Three                  // chosen numeral coordinate
+    public typealias Distance = Three              // equal to that coordinate
 }
 
 // ── Reach is path: the HORN made concrete: one atom, a finite walk in an open reach ──
 
-/// This gives the HORN as a model: a basis of ONE atom (`Succ<Never>`, the successor) and a path of
-/// length three reached over it. The basis is finite, the reach is open, every walk is counted. This is
-/// exactly Basis Is Residue's B8b ("ℕ-under-+: one atom, every numeral") that the paper left as
-/// prose, here it compiles. Witnesses `ReachIsPath`.
+/// Concrete finite numeral coordinates for Basis and Path. The interface
+/// does not bind a path's tokens to the basis or establish an infinite reach.
+/// Those claims use the explicit finite-list grammar of PiP1.
 public struct HollowReach: ReachIsPath {
     public typealias Sigma = Cell<
         Never,
@@ -61,11 +61,12 @@ public struct HollowReach: ReachIsPath {
 
 // ── The gate that distinguishes construction from hallucination ──
 //
-// The capstone's deepest claim is the gap between GatedConstruction (sound, |S|=1) and
-// FreeGeneration (total, |S|>1). Its essence is one coordinate: SolutionSet: Unique. These two
-// witnesses isolate exactly that coordinate, and the #if proves the compiler NAMES it.
+// These legacy witnesses isolate the Unique projection constraint. Its refusal
+// does not prove a candidate count or a behavioral property of a generator.
+// V=I U2–U2b supplies actual singleton and assignment proofs. PiP7 distinguishes
+// correctness of an admitted choice from uniqueness of the admissible choice.
 
-/// This gives two distinct survivors: a candidate set that was never cut to one. `|S| = 2`, not `Unique`.
+/// One nominal label used in a two-sided interface countermodel.
 public enum LeftSurvivor {}
 /// This is the other survivor.
 public enum RightSurvivor {}
@@ -75,8 +76,8 @@ public enum TwoSurvivors: Pair {
     public typealias Right = RightSurvivor
 }
 
-/// This is a GATED solver: it crystallizes to one survivor. `SolutionSet = Never` is `Unique`
-/// (|S|=1), so it conforms `ExactlyOneSurvives`, the gate `GatedConstruction` carries. It identifies.
+/// A legacy ExactlyOneSurvives witness with SolutionSet=Never. Its coordinates
+/// satisfy the interface, without supplying candidate coverage or membership.
 public struct GatedSolver: ExactlyOneSurvives {
     public typealias Left = Never
     public typealias Right = Never
@@ -84,13 +85,13 @@ public struct GatedSolver: ExactlyOneSurvives {
         Never,
         Never
     >
-    public typealias Equality = Verdict<Never>     // a real two-way test
-    public typealias SolutionSet = Never           // : Unique, collapsed to one
+    public typealias Equality = Verdict<Never>     // declared paired answer
+    public typealias SolutionSet = Never           // satisfies Unique's equations
 }
 
-/// A FREE babbler: a finite, decidable system that still holds two survivors. It has a solution
-/// set (`HasSolutions`) but never cut it to one (`SolutionSet = TwoSurvivors`, not `Unique`).
-/// This is the language model's coordinate: total, ungated. It conforms generation, not the gate.
+/// An interface witness whose solution coordinate has unequal projections.
+/// It cannot satisfy Unique for that coordinate. The name FreeBabbler does not
+/// make the witness a language-model implementation or establish its behavior.
 public struct FreeBabbler: EqualityDecidable, HasSolutions {
     public typealias Left = Never
     public typealias Right = Never
@@ -99,12 +100,11 @@ public struct FreeBabbler: EqualityDecidable, HasSolutions {
         Never
     >
     public typealias Equality = Verdict<Never>
-    public typealias SolutionSet = TwoSurvivors    // |S| = 2, proposed, not identified
+    public typealias SolutionSet = TwoSurvivors    // unequal nominal projections
 }
 
 #if HALLUCINATE
-// Build with -DHALLUCINATE and this fails: the compiler NAMES the missing coordinate: a free
-// generation cannot be gated without the uniqueness it does not have (TwoSurvivors is not Unique).
-// That refusal IS "hallucination is the ungated generator", checked, not asserted. [PiP · Gen GD9]
+// The historical flag rejects TwoSurvivors under Unique's equalities. It is an
+// interface incompatibility test, not a demonstration of hallucination. [PiP7]
 extension FreeBabbler: ExactlyOneSurvives {}
 #endif

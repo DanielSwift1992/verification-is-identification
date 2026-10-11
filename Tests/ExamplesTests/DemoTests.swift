@@ -1,13 +1,12 @@
 import XCTest
 import Examples
 
-// The demos are proofs, not programs: each type below exists only because it
-// type-checked when `Examples` compiled. `swift test` runs that proof in CI and
-// pins the numbers the build settles. The full presentation lives in the Examples
-// docs — here the compiler is the witness.
+// Smoke checks for supplied examples and runtime presentation data. Generic
+// implications and targeted refusals are checked in Checks/*.swift. These
+// tests do not establish a physical model from its interface name.
 final class DemoTests: XCTestCase {
 
-    // Matter §5 — three physical instances, each a gate that crystallizes at |S| = 1.
+    // Interface witnesses and the declared local vertex list.
     func testInstancesCrystallize() throws {
         _ = IceOxygen.self
         _ = QuantumMeasurement.self
@@ -19,13 +18,14 @@ final class DemoTests: XCTestCase {
         XCTAssertEqual(iceSurvivors.count, 6, "ice admits 6 of 16 two-in/two-out vertices")
         XCTAssertFalse(hydrogenLines.isEmpty, "the E1 rule Δℓ = ±1 admits a spectrum")
         XCTAssertFalse(allowedReactions.isEmpty, "baryon number admits the conserving reactions")
-        print("instances: ice |S|=6 · hydrogen n²=4 · Higgs 3 Goldstones — gates crystallize at |S|=1")
+        print("examples: interface witnesses, six declared ice vertices, admitted rule examples")
     }
 
     // The V=I loop as a scheduler — one forced assignment, |S| = 1.
     func testSchedulerCrystallizes() throws {
         _ = CrystallizedSchedule.self
         _ = ClosingConflict.self
+        _ = PinnedScheduleIsForced<T0, T1, T2, T3>.self
         print("scheduler: assignment forced, |S|=1 — verification is identification")
     }
 }

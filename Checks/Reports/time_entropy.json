@@ -1,0 +1,76 @@
+{
+  "audit": {
+    "transition_partitions": 395,
+    "macro_pairs": 2519,
+    "prior_transports": 13071,
+    "autonomous_partitions": 143
+  },
+  "clock": {
+    "whole_states": 8,
+    "rows": [
+      {
+        "fine": 1.584962500721,
+        "coarse": 1.584962500721,
+        "macro": -0.0,
+        "mean_boltzmann": 1.584962500721,
+        "within_cell_divergence": 0.0,
+        "phase": 0,
+        "iterated_coarse": 1.584962500721
+      },
+      {
+        "fine": 1.584962500721,
+        "coarse": 1.974937501202,
+        "macro": 0.918295834054,
+        "mean_boltzmann": 1.056641667147,
+        "within_cell_divergence": 0.389975000481,
+        "phase": 1,
+        "iterated_coarse": 1.974937501202
+      },
+      {
+        "fine": 1.584962500721,
+        "coarse": 1.584962500721,
+        "macro": -0.0,
+        "mean_boltzmann": 1.584962500721,
+        "within_cell_divergence": 0.0,
+        "phase": 0,
+        "iterated_coarse": 1.996953118181
+      }
+    ],
+    "autonomous_refined_cells": 6,
+    "actual_small_after_two": "0",
+    "iterated_small_after_two": "2/9"
+  },
+  "history": {
+    "checked_history_states": 56,
+    "rows": [
+      {
+        "history_length": 1,
+        "coarse": 1.584962500721
+      },
+      {
+        "history_length": 2,
+        "coarse": 1.974937501202
+      },
+      {
+        "history_length": 3,
+        "coarse": 1.584962500721
+      },
+      {
+        "history_length": 4,
+        "coarse": 1.974937501202
+      },
+      {
+        "history_length": 5,
+        "coarse": 1.584962500721
+      },
+      {
+        "history_length": 6,
+        "coarse": 1.974937501202
+      },
+      {
+        "history_length": 7,
+        "coarse": 1.584962500721
+      }
+    ]
+  }
+}

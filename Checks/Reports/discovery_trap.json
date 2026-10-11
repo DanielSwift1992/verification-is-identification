@@ -1,0 +1,142 @@
+{
+  "model": {
+    "name": "Pairwise separation without a successful single-run experiment",
+    "states": [
+      "A",
+      "B",
+      "C",
+      "signal"
+    ],
+    "observation": [
+      "quiet",
+      "quiet",
+      "quiet",
+      "signal"
+    ],
+    "operations": {
+      "ask_A": [
+        3,
+        0,
+        0,
+        0
+      ],
+      "ask_B": [
+        0,
+        3,
+        0,
+        0
+      ]
+    },
+    "scope": "A finite non-injective reduced model. It is not a complete finite reversible whole. No reset, fresh specimen, residual access or extra operation is available."
+  },
+  "behavior": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "predictive_residual_values": 3,
+  "separators": [
+    {
+      "left": 0,
+      "right": 1,
+      "word": [
+        "ask_A"
+      ]
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "word": [
+        "ask_A"
+      ]
+    },
+    {
+      "left": 0,
+      "right": 3,
+      "word": []
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "word": [
+        "ask_B"
+      ]
+    },
+    {
+      "left": 1,
+      "right": 3,
+      "word": []
+    },
+    {
+      "left": 2,
+      "right": 3,
+      "word": []
+    }
+  ],
+  "policy": {
+    "identifiable": false,
+    "winning": [
+      {
+        "belief": [
+          0
+        ],
+        "rank": 0,
+        "action": null
+      },
+      {
+        "belief": [
+          0,
+          1
+        ],
+        "rank": 1,
+        "action": "ask_A"
+      },
+      {
+        "belief": [
+          0,
+          2
+        ],
+        "rank": 1,
+        "action": "ask_A"
+      },
+      {
+        "belief": [
+          1
+        ],
+        "rank": 0,
+        "action": null
+      },
+      {
+        "belief": [
+          1,
+          2
+        ],
+        "rank": 1,
+        "action": "ask_B"
+      },
+      {
+        "belief": [
+          2
+        ],
+        "rank": 0,
+        "action": null
+      },
+      {
+        "belief": [
+          3
+        ],
+        "rank": 0,
+        "action": null
+      }
+    ],
+    "losing": [
+      [
+        0,
+        1,
+        2
+      ]
+    ]
+  },
+  "traces": []
+}

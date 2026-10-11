@@ -1,0 +1,67 @@
+{
+  "critical": {
+    "exact_comparison_cases": 3072,
+    "critical_raw_moments_finite": {
+      "0": [
+        false,
+        false,
+        false
+      ],
+      "2": [
+        true,
+        false,
+        false
+      ],
+      "3": [
+        true,
+        true,
+        false
+      ],
+      "4": [
+        true,
+        true,
+        true
+      ]
+    },
+    "power4_critical_intervals": {
+      "Z": [
+        1.500066467083156,
+        1.5000664707509879
+      ],
+      "mean": [
+        1.6677247310078476,
+        1.6677250492762787
+      ],
+      "variance": [
+        1.5905519063691167,
+        1.590593351515197
+      ]
+    }
+  },
+  "coverage_identities": 30,
+  "ensemble_identities": 810,
+  "waiting_counterexamples": [
+    {
+      "lambda_over_log2": 1,
+      "rare_wait": 3,
+      "norm_variance": 0.2222222222222222
+    },
+    {
+      "lambda_over_log2": 2,
+      "rare_wait": 5,
+      "norm_variance": 0.16
+    },
+    {
+      "lambda_over_log2": 4,
+      "rare_wait": 17,
+      "norm_variance": 0.05536332179930796
+    },
+    {
+      "lambda_over_log2": 8,
+      "rare_wait": 257,
+      "norm_variance": 0.0038759103090130055
+    }
+  ],
+  "whole_states": 622,
+  "whole_models": 12
+}

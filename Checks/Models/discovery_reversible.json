@@ -1,0 +1,10 @@
+{
+  "name": "The same questions as reversible internal exchanges",
+  "states": ["A", "B", "C", "signal"],
+  "observation": ["quiet", "quiet", "quiet", "signal"],
+  "operations": {
+    "ask_A": [3, 1, 2, 0],
+    "ask_B": [0, 3, 2, 1]
+  },
+  "scope": "A finite reversible transition model. Executing a word physically still requires an internal prepared controller and recording resources."
+}

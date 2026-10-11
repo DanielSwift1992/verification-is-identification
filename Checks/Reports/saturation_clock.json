@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "model_sha256": "e93d6aeac638f260dc00a23d23902b0eb9df5e6cfb0cad4b9b644e62f5fb6c48",
+  "steps": [
+    {
+      "pair": [
+        2,
+        4
+      ],
+      "operation": "tick",
+      "suffix_feature": 0,
+      "word": [
+        "tick"
+      ]
+    }
+  ],
+  "classes": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    4,
+    5
+  ],
+  "quotient": {
+    "observation": [
+      [
+        0,
+        "small"
+      ],
+      [
+        1,
+        "small"
+      ],
+      [
+        0,
+        "large"
+      ],
+      [
+        1,
+        "large"
+      ],
+      [
+        0,
+        "large"
+      ],
+      [
+        1,
+        "large"
+      ]
+    ],
+    "operations": {
+      "tick": [
+        3,
+        2,
+        1,
+        0,
+        5,
+        4
+      ]
+    }
+  }
+}

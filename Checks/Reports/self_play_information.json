@@ -1,0 +1,47 @@
+{
+  "evidence": [
+    [
+      0,
+      0
+    ]
+  ],
+  "compatible_actual_laws": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "generated_label": [
+    [
+      1,
+      0
+    ]
+  ],
+  "synthetically_narrowed": [
+    [
+      0,
+      0
+    ]
+  ],
+  "possible_actual_countermodel": [
+    0,
+    1
+  ],
+  "observation_whole_states": 2048,
+  "reuse_machine": {
+    "input_bits": 3,
+    "answer_copies": 4,
+    "whole_states": 10240,
+    "recompute_ticks": 28,
+    "reuse_ticks": 10,
+    "whole_entropy_bits": 3,
+    "accumulator_final": 0
+  },
+  "synthetic_target_information_bits": 1,
+  "independent_actual_target_information_bits": 0,
+  "direct_internal_measurement_gain_bits": 1
+}

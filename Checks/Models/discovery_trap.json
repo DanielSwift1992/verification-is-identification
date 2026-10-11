@@ -1,0 +1,10 @@
+{
+  "name": "Pairwise separation without a successful single-run experiment",
+  "states": ["A", "B", "C", "signal"],
+  "observation": ["quiet", "quiet", "quiet", "signal"],
+  "operations": {
+    "ask_A": [3, 0, 0, 0],
+    "ask_B": [0, 3, 0, 0]
+  },
+  "scope": "A finite non-injective reduced model. It is not a complete finite reversible whole. No reset, fresh specimen, residual access or extra operation is available."
+}

@@ -1,0 +1,51 @@
+{
+  "prior": [
+    "9/10",
+    "1/20",
+    "1/20"
+  ],
+  "prior_entropy": 0.5689955935892812,
+  "branches": [
+    {
+      "reading": 0,
+      "probability": "9/10",
+      "support": [
+        0
+      ],
+      "posterior": [
+        "1"
+      ],
+      "entropy": -0.0,
+      "information_gain": 0.15200309344505006
+    },
+    {
+      "reading": 1,
+      "probability": "1/10",
+      "support": [
+        1,
+        2
+      ],
+      "posterior": [
+        "1/2",
+        "1/2"
+      ],
+      "entropy": 1.0,
+      "information_gain": 3.321928094887362
+    }
+  ],
+  "mean_conditional_entropy": 0.1,
+  "mutual_information": 0.4689955935892812,
+  "whole_states": 12,
+  "whole_entropy_before": 0.5689955935892812,
+  "whole_entropy_after": 0.5689955935892812,
+  "eight_states": {
+    "identity_entropy": 3,
+    "verdict_entropy": 0.5435644431995964,
+    "membership_worst": 7,
+    "membership_mean": "35/8",
+    "binary_coordinate_worst": 3,
+    "direct_verdict_worst": 1,
+    "membership_verdict_transcript_information": 3.0,
+    "direct_verdict_transcript_information": 0.5435644431995964
+  }
+}

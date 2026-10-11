@@ -1,0 +1,72 @@
+{
+  "exhaustive": {
+    "systems": 1919,
+    "candidate_quotients": 9521
+  },
+  "worked": {
+    "clock_classes": 6,
+    "separate_classes": [
+      4,
+      2
+    ],
+    "joined_separate_classes": 4,
+    "mixed_classes": 8,
+    "mixed_states": 16,
+    "added_residual_question_classes": 16,
+    "internal_classes": 24,
+    "internal_states": 48,
+    "internal_witness_trace": [
+      [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    ]
+  },
+  "corruptions_refused": [
+    "already_distinguished_pair",
+    "changed_base_answer",
+    "different_model",
+    "future_suffix_reference",
+    "invalid_pair",
+    "merged_classes",
+    "missing_operation",
+    "missing_state",
+    "premature_stop_with_consistent_tables",
+    "unjustified_word",
+    "unnecessary_distinctions_despite_valid_dynamics",
+    "wrong_successor"
+  ],
+  "fixed_prior_entropy": {
+    "nested_partition_priors": 2296,
+    "strict_coarse_decreases": 1416,
+    "strict_macro_increases": 867
+  },
+  "acquisition_boundary": {
+    "behavioral_classes": 4,
+    "single_run_identification": false
+  }
+}

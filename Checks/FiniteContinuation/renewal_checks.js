@@ -1,0 +1,40 @@
+"use strict";
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const court=require('./renewal_court.js');
+const [file,out]=process.argv.slice(2),cases=JSON.parse(fs.readFileSync(file,'utf8')),data=court.current();
+const original=cases.find(c=>c.profile==='arbitrary'&&c.old_key.join('')==='000');
+assert(original);assert.equal(court.check(data,original).verdict.judged,32);
+const refusals=[];
+function reject(name,change){const p=structuredClone(original);change(p);assert.throws(()=>court.check(data,p),undefined,name);refusals.push(name);}
+reject('reachable current source omitted',p=>p.family.pop());
+reject('old-source alternative omitted',p=>p.old_family.pop());
+reject('unavailable stronger change relation',p=>p.allowed_changes=[['I','I']]);
+reject('wrong acquired old key',p=>p.old_key=[1,1,1]);
+reject('wrong initial current family',p=>p.plan.initial.pop());
+reject('terminal question substituted for full recovery key',p=>p.request='terminal X answer');
+reject('old key returned despite arbitrary changes',p=>p.plan.tree={kind:'act',action:'key:000'});
+reject('missing actual observation branch',p=>delete p.plan.tree.branches['1']);
+reject('individual-module probe bypasses the middle-slot interface',p=>p.plan.tree.probe='A:Z:Z');
+reject('stale source fingerprints',p=>p.source_sha256['Sources/Examples/FinitePauliTSource.swift']='stale');
+reject('wrong shared refreshed leaf',p=>{
+  let node=p.plan.tree;while(node.kind==='probe')node=node.branches['0'];
+  node.action=node.action.slice(0,-1)+(1-Number(node.action.slice(-1)));
+});
+const changed={...data,ctx:{...data.ctx,source:data.ctx.source.replace('public typealias ForZ = QBit0','public typealias ForZ = QBit1')}};
+assert.notEqual(changed.ctx.source,data.ctx.source);assert.throws(()=>court.check(changed,original));
+refusals.push('changed current type fields invalidate the old applications');
+
+const checked=court.check(data,original);
+const line=checked.source.split('\n').find(s=>s.startsWith('public typealias RefreshLeaf0 ='));
+assert(line);const bad=line.replace(/QBit([01])(?![\s\S]*QBit)/,(_,b)=>'QBit'+(1-Number(b)));
+assert.notEqual(line,bad);
+const forged=path.join(path.dirname(out),'WrongRefresh.swift');
+fs.writeFileSync(forged,checked.source.replace(line,bad));
+const {spawnSync}=require('node:child_process');
+const root=path.resolve(__dirname,'../..');
+const native=spawnSync(path.join(root,'.build/arm64-apple-macosx/debug/Tools'),['judge','where',forged],{encoding:'utf8',timeout:10000});
+const diagnostic=native.stdout+native.stderr;assert.equal(native.status,1);
+assert(diagnostic.includes('RenewalEdge')&&diagnostic.includes('requires the types'));
+refusals.push('native court rejects the changed common refresh result');
+const result={refusals,native_refusal:diagnostic.trim(),source_sha256:data.ctx.fingerprints};
+fs.writeFileSync(out,JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));

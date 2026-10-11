@@ -1,0 +1,907 @@
+{
+  "audit": {
+    "prior_models": 3840,
+    "distinct_tree_depth_vectors": 9613,
+    "feasible_models_with_no_joint_certificate_policy": 914,
+    "refinement_comparisons": 3600
+  },
+  "greedy_root": {
+    "queries": [
+      [
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "target": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "prior": [
+      "1/9",
+      "1/9",
+      "1/9",
+      "1/9",
+      "1/9",
+      "1/9",
+      "1/9",
+      "1/9",
+      "1/9"
+    ],
+    "rows": [
+      {
+        "root": 0,
+        "split": [
+          5,
+          4
+        ],
+        "answer_entropy": 0.9910760598382222,
+        "worst": 5,
+        "mean": "31/9",
+        "mean_policy": {
+          "question": 0,
+          "zero": {
+            "question": 1,
+            "zero": {
+              "question": 2,
+              "zero": {
+                "question": 3,
+                "zero": {
+                  "question": 4,
+                  "zero": {
+                    "answer": 0
+                  },
+                  "one": {
+                    "answer": 8
+                  }
+                },
+                "one": {
+                  "answer": 7
+                }
+              },
+              "one": {
+                "answer": 6
+              }
+            },
+            "one": {
+              "answer": 5
+            }
+          },
+          "one": {
+            "question": 2,
+            "zero": {
+              "question": 1,
+              "zero": {
+                "answer": 3
+              },
+              "one": {
+                "answer": 1
+              }
+            },
+            "one": {
+              "question": 3,
+              "zero": {
+                "answer": 2
+              },
+              "one": {
+                "answer": 4
+              }
+            }
+          }
+        },
+        "worst_policy": {
+          "question": 0,
+          "zero": {
+            "question": 1,
+            "zero": {
+              "question": 2,
+              "zero": {
+                "question": 3,
+                "zero": {
+                  "question": 4,
+                  "zero": {
+                    "answer": 0
+                  },
+                  "one": {
+                    "answer": 8
+                  }
+                },
+                "one": {
+                  "answer": 7
+                }
+              },
+              "one": {
+                "answer": 6
+              }
+            },
+            "one": {
+              "answer": 5
+            }
+          },
+          "one": {
+            "question": 2,
+            "zero": {
+              "question": 1,
+              "zero": {
+                "answer": 3
+              },
+              "one": {
+                "answer": 1
+              }
+            },
+            "one": {
+              "question": 3,
+              "zero": {
+                "answer": 2
+              },
+              "one": {
+                "answer": 4
+              }
+            }
+          }
+        }
+      },
+      {
+        "root": 1,
+        "split": [
+          7,
+          2
+        ],
+        "answer_entropy": 0.7642045065086203,
+        "worst": 4,
+        "mean": "31/9",
+        "mean_policy": {
+          "question": 1,
+          "zero": {
+            "question": 2,
+            "zero": {
+              "question": 4,
+              "zero": {
+                "question": 3,
+                "zero": {
+                  "answer": 0
+                },
+                "one": {
+                  "answer": 7
+                }
+              },
+              "one": {
+                "question": 0,
+                "zero": {
+                  "answer": 8
+                },
+                "one": {
+                  "answer": 3
+                }
+              }
+            },
+            "one": {
+              "question": 0,
+              "zero": {
+                "answer": 6
+              },
+              "one": {
+                "question": 3,
+                "zero": {
+                  "answer": 2
+                },
+                "one": {
+                  "answer": 4
+                }
+              }
+            }
+          },
+          "one": {
+            "question": 0,
+            "zero": {
+              "answer": 5
+            },
+            "one": {
+              "answer": 1
+            }
+          }
+        },
+        "worst_policy": {
+          "question": 1,
+          "zero": {
+            "question": 2,
+            "zero": {
+              "question": 4,
+              "zero": {
+                "question": 3,
+                "zero": {
+                  "answer": 0
+                },
+                "one": {
+                  "answer": 7
+                }
+              },
+              "one": {
+                "question": 0,
+                "zero": {
+                  "answer": 8
+                },
+                "one": {
+                  "answer": 3
+                }
+              }
+            },
+            "one": {
+              "question": 0,
+              "zero": {
+                "answer": 6
+              },
+              "one": {
+                "question": 3,
+                "zero": {
+                  "answer": 2
+                },
+                "one": {
+                  "answer": 4
+                }
+              }
+            }
+          },
+          "one": {
+            "question": 0,
+            "zero": {
+              "answer": 5
+            },
+            "one": {
+              "answer": 1
+            }
+          }
+        }
+      },
+      {
+        "root": 2,
+        "split": [
+          6,
+          3
+        ],
+        "answer_entropy": 0.9182958340544896,
+        "worst": 4,
+        "mean": "10/3",
+        "mean_policy": {
+          "question": 2,
+          "zero": {
+            "question": 1,
+            "zero": {
+              "question": 4,
+              "zero": {
+                "question": 3,
+                "zero": {
+                  "answer": 0
+                },
+                "one": {
+                  "answer": 7
+                }
+              },
+              "one": {
+                "question": 0,
+                "zero": {
+                  "answer": 8
+                },
+                "one": {
+                  "answer": 3
+                }
+              }
+            },
+            "one": {
+              "question": 0,
+              "zero": {
+                "answer": 5
+              },
+              "one": {
+                "answer": 1
+              }
+            }
+          },
+          "one": {
+            "question": 0,
+            "zero": {
+              "answer": 6
+            },
+            "one": {
+              "question": 3,
+              "zero": {
+                "answer": 2
+              },
+              "one": {
+                "answer": 4
+              }
+            }
+          }
+        },
+        "worst_policy": {
+          "question": 2,
+          "zero": {
+            "question": 1,
+            "zero": {
+              "question": 4,
+              "zero": {
+                "question": 3,
+                "zero": {
+                  "answer": 0
+                },
+                "one": {
+                  "answer": 7
+                }
+              },
+              "one": {
+                "question": 0,
+                "zero": {
+                  "answer": 8
+                },
+                "one": {
+                  "answer": 3
+                }
+              }
+            },
+            "one": {
+              "question": 0,
+              "zero": {
+                "answer": 5
+              },
+              "one": {
+                "answer": 1
+              }
+            }
+          },
+          "one": {
+            "question": 0,
+            "zero": {
+              "answer": 6
+            },
+            "one": {
+              "question": 3,
+              "zero": {
+                "answer": 2
+              },
+              "one": {
+                "answer": 4
+              }
+            }
+          }
+        }
+      },
+      {
+        "root": 3,
+        "split": [
+          6,
+          3
+        ],
+        "answer_entropy": 0.9182958340544896,
+        "worst": 4,
+        "mean": "10/3",
+        "mean_policy": {
+          "question": 3,
+          "zero": {
+            "question": 2,
+            "zero": {
+              "question": 4,
+              "zero": {
+                "question": 1,
+                "zero": {
+                  "answer": 0
+                },
+                "one": {
+                  "answer": 5
+                }
+              },
+              "one": {
+                "question": 0,
+                "zero": {
+                  "answer": 8
+                },
+                "one": {
+                  "answer": 3
+                }
+              }
+            },
+            "one": {
+              "question": 0,
+              "zero": {
+                "answer": 6
+              },
+              "one": {
+                "answer": 2
+              }
+            }
+          },
+          "one": {
+            "question": 0,
+            "zero": {
+              "answer": 7
+            },
+            "one": {
+              "question": 1,
+              "zero": {
+                "answer": 4
+              },
+              "one": {
+                "answer": 1
+              }
+            }
+          }
+        },
+        "worst_policy": {
+          "question": 3,
+          "zero": {
+            "question": 2,
+            "zero": {
+              "question": 4,
+              "zero": {
+                "question": 1,
+                "zero": {
+                  "answer": 0
+                },
+                "one": {
+                  "answer": 5
+                }
+              },
+              "one": {
+                "question": 0,
+                "zero": {
+                  "answer": 8
+                },
+                "one": {
+                  "answer": 3
+                }
+              }
+            },
+            "one": {
+              "question": 0,
+              "zero": {
+                "answer": 6
+              },
+              "one": {
+                "answer": 2
+              }
+            }
+          },
+          "one": {
+            "question": 0,
+            "zero": {
+              "answer": 7
+            },
+            "one": {
+              "question": 1,
+              "zero": {
+                "answer": 4
+              },
+              "one": {
+                "answer": 1
+              }
+            }
+          }
+        }
+      },
+      {
+        "root": 4,
+        "split": [
+          6,
+          3
+        ],
+        "answer_entropy": 0.9182958340544896,
+        "worst": 4,
+        "mean": "10/3",
+        "mean_policy": {
+          "question": 4,
+          "zero": {
+            "question": 1,
+            "zero": {
+              "question": 2,
+              "zero": {
+                "question": 3,
+                "zero": {
+                  "answer": 0
+                },
+                "one": {
+                  "answer": 7
+                }
+              },
+              "one": {
+                "question": 0,
+                "zero": {
+                  "answer": 6
+                },
+                "one": {
+                  "answer": 4
+                }
+              }
+            },
+            "one": {
+              "question": 0,
+              "zero": {
+                "answer": 5
+              },
+              "one": {
+                "answer": 1
+              }
+            }
+          },
+          "one": {
+            "question": 0,
+            "zero": {
+              "answer": 8
+            },
+            "one": {
+              "question": 2,
+              "zero": {
+                "answer": 3
+              },
+              "one": {
+                "answer": 2
+              }
+            }
+          }
+        },
+        "worst_policy": {
+          "question": 4,
+          "zero": {
+            "question": 1,
+            "zero": {
+              "question": 2,
+              "zero": {
+                "question": 3,
+                "zero": {
+                  "answer": 0
+                },
+                "one": {
+                  "answer": 7
+                }
+              },
+              "one": {
+                "question": 0,
+                "zero": {
+                  "answer": 6
+                },
+                "one": {
+                  "answer": 4
+                }
+              }
+            },
+            "one": {
+              "question": 0,
+              "zero": {
+                "answer": 5
+              },
+              "one": {
+                "answer": 1
+              }
+            }
+          },
+          "one": {
+            "question": 0,
+            "zero": {
+              "answer": 8
+            },
+            "one": {
+              "question": 2,
+              "zero": {
+                "answer": 3
+              },
+              "one": {
+                "answer": 2
+              }
+            }
+          }
+        }
+      }
+    ],
+    "depth_vectors": 163,
+    "optimal": {
+      "worst": 4,
+      "mean": "10/3",
+      "worst_policy": {
+        "question": 1,
+        "zero": {
+          "question": 2,
+          "zero": {
+            "question": 4,
+            "zero": {
+              "question": 3,
+              "zero": {
+                "answer": 0
+              },
+              "one": {
+                "answer": 7
+              }
+            },
+            "one": {
+              "question": 0,
+              "zero": {
+                "answer": 8
+              },
+              "one": {
+                "answer": 3
+              }
+            }
+          },
+          "one": {
+            "question": 0,
+            "zero": {
+              "answer": 6
+            },
+            "one": {
+              "question": 3,
+              "zero": {
+                "answer": 2
+              },
+              "one": {
+                "answer": 4
+              }
+            }
+          }
+        },
+        "one": {
+          "question": 0,
+          "zero": {
+            "answer": 5
+          },
+          "one": {
+            "answer": 1
+          }
+        }
+      },
+      "mean_policy": {
+        "question": 2,
+        "zero": {
+          "question": 1,
+          "zero": {
+            "question": 4,
+            "zero": {
+              "question": 3,
+              "zero": {
+                "answer": 0
+              },
+              "one": {
+                "answer": 7
+              }
+            },
+            "one": {
+              "question": 0,
+              "zero": {
+                "answer": 8
+              },
+              "one": {
+                "answer": 3
+              }
+            }
+          },
+          "one": {
+            "question": 0,
+            "zero": {
+              "answer": 5
+            },
+            "one": {
+              "answer": 1
+            }
+          }
+        },
+        "one": {
+          "question": 0,
+          "zero": {
+            "answer": 6
+          },
+          "one": {
+            "question": 3,
+            "zero": {
+              "answer": 2
+            },
+            "one": {
+              "answer": 4
+            }
+          }
+        }
+      }
+    },
+    "closed_optimal": {
+      "states": 45,
+      "prepared_starts": 9,
+      "internal_steps_before_recovery": 4,
+      "scope": "One prepared acquisition window. Source, history and phase are internal; recovery resets accessible history."
+    },
+    "closed_greedy_root": {
+      "states": 54,
+      "prepared_starts": 9,
+      "internal_steps_before_recovery": 5,
+      "scope": "One prepared acquisition window. Source, history and phase are internal; recovery resets accessible history."
+    }
+  },
+  "certificate_gap": {
+    "queries": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "certificates": [
+      1,
+      1,
+      1
+    ],
+    "attainable_depth_vectors": [
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        2,
+        1,
+        2
+      ],
+      [
+        2,
+        2,
+        1
+      ]
+    ]
+  },
+  "clairvoyant_greedy": {
+    "queries": [
+      [
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1
+      ]
+    ],
+    "target": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "actual": 0,
+    "greedy_actual_path": [
+      0,
+      1,
+      2
+    ],
+    "short_certificate": [
+      1,
+      2
+    ],
+    "random_permutation_mean": "8/3"
+  },
+  "xor_preparation": {
+    "queries": [
+      [
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        0,
+        1
+      ]
+    ],
+    "target": [
+      0,
+      1,
+      1,
+      0
+    ],
+    "single_query_target_information": 0,
+    "joint_target_information": 1,
+    "policy": {
+      "question": 0,
+      "zero": {
+        "question": 1,
+        "zero": {
+          "answer": 0
+        },
+        "one": {
+          "answer": 1
+        }
+      },
+      "one": {
+        "question": 1,
+        "zero": {
+          "answer": 1
+        },
+        "one": {
+          "answer": 0
+        }
+      }
+    }
+  }
+}

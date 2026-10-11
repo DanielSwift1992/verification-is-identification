@@ -27,12 +27,14 @@ public struct Cell<
 
 // ── IntegerValued: the Peano chain, floored at Never (zero) ──
 // Never is 0. Succ<N> is n+1, its predecessor Right = N is again a
-// count. Every number presses down to Never: this IS finite depth (§4).
+// count in a finite expression ending at Never. The open bound on N also
+// accepts cyclic conformers, so it does not prove finite depth (§4).
 /// The successor: `n+1` as a non-trivial witness for `IntegerValued`.
 ///
 /// `Succ<N>` is one step above its predecessor `N`. The chain bottoms out at
 /// `Never` (zero, aliased ``Zero``). ``Three`` is `Succ<Succ<Succ<Never>>>`.
-/// Every count presses down to the floor in finitely many steps, finite depth, made concrete.
+/// The finite Never/Succ grammar gives this interpretation. An arbitrary
+/// IntegerValued predecessor need not reach the floor. [EiF EF10]
 public struct Succ<
     N: IntegerValued
 >: Pair, IntegerValued {
@@ -77,11 +79,14 @@ public struct Shrank<
     public typealias Right = After
 }
 
-// ── MetricProperty: two legs (a→b)(b→c) sharing the midpoint b ──
-/// This gives two legs through a shared midpoint: a non-trivial witness for `MetricProperty`.
+// ── MetricProperty: two legs (a→b)(b→c) sharing the endpoint b ──
+/// Two legs share one endpoint, satisfying the addressed `MetricProperty` seam.
 ///
 /// `Left = Cell<A, B>` and `Right = Cell<B, C>` meet at `B`, so
-/// `Left.Right == Right.Left == B`. The shared point is what forces the triangle inequality.
+/// `Left.Right == Right.Left == B`. This is a shared-field diagram.
+/// It asserts neither equal leg lengths nor that B bisects the interval A to C.
+/// G2d obtains the metric bound when its fields are the actual disjoint
+/// difference partitions; a diagram of arbitrary vertices does not suffice.
 public struct Path<
     A,
     B,
@@ -97,21 +102,21 @@ public struct Path<
     >              // Left.Right == Right.Left == B ✓
 }
 
-// ── Measurable: settles to one value (Right is Null) ──
-/// This gives one input, one settled value: a non-trivial witness for `Measurable`.
+// ── Measurable: a chosen Null output ──
+/// A fixed-output family satisfying Measurable's addressed shape.
 ///
-/// `Left = Input` varies. `Right = Never` is `Null`, the determined value
-/// collapsed to a point. The structure fixes the answer with no room for choice.
+/// Left names Input while Right is always Never. It does not calculate
+/// a property of Input or bind a physical measurement to that source.
 public struct Measured<Input>: Pair, Measurable {
     public typealias Left = Input
     public typealias Right = Never                   // the determined value, collapsed
 }
 
-// ── Decidable: the verdict branches two ways (in | out) ──
-/// This gives a two-way verdict on an element: a non-trivial witness for `Decidable`.
+// ── Decidable: a chosen Pair output ──
+/// A paired output shape satisfying Decidable, without a membership reader.
 ///
-/// `Left = Elem` is the element under test. `Right = Cell<Never, Never>` is the
-/// `Pair` that branches `(in \| out)`. Membership always resolves to one side.
+/// Left names Elem and Right is Cell<Never,Never>. The two fields alone
+/// do not choose a verdict or establish a terminating membership procedure.
 public struct Verdict<Elem>: Pair, Decidable {
     public typealias Left = Elem
     public typealias Right = Cell<
@@ -126,8 +131,8 @@ public struct Verdict<Elem>: Pair, Decidable {
 /// This is an agent carrying real coordinates: a non-trivial witness for `HasDistance` and `HasAlpha`.
 ///
 /// `Distance = Three` is an actual count, not the `Never` floor. `Alpha = Measured<Three>`
-/// is an actual settled value. The §2 axis pins (`IntegerValued`, `Measurable`) bite here,
-/// proving the axes have models with genuine dimension.
+/// supplies the fixed-output Measurable shape at input Three. These satisfy
+/// the declared axis constraints without implementing a measurement law.
 public struct ConcreteAgent: HasDistance, HasAlpha {
     public typealias Sigma = Cell<
         Never,
@@ -137,8 +142,7 @@ public struct ConcreteAgent: HasDistance, HasAlpha {
     public typealias Alpha = Measured<Three>         // : Measurable ✓
 }
 
-// Unique needs no non-trivial witness: convergence to ONE is exactly
-// the collapse to a single point, Never is its only inhabitant. The
-// branching markers (Permanent, Decidable, Metric…) have real models,
-// the one that converges has just the fixpoint. That asymmetry is real:
-// distinction has many shapes, agreement has one.
+// Unique equates two sides and fixes their common Left projection. Never
+// is one conformer, not the only nominal type with this relation. The
+// existing EqualSidesWitness in Checks also conforms while remaining a
+// distinct type. Candidate cardinality needs a stated support. [V=I U1–U2]

@@ -1,24 +1,15 @@
 import VerificationIsIdentification
 
-// ═══════════════════════════════════════════════════════════════
-// A DOMAIN names the Higgs mechanism. [Matter §5]
-//
-//   Σ               field configurations φ
-//   COMPARE         energy test: V(φ) at a candidate minimum
-//   crystallization symmetry breaking: symmetric minimum → asymmetric vacuum
-//   I2              V(φ) fixed (the Lagrangian does not change)   ✓
-//   I3              the vacuum does not return to the symmetric state ✓
-//   A4              the vacuum manifold is degenerate, encoding-dependent:
-//                     field components → |S| > 1 (Goldstone directions)
-//                     gauge-invariant  → |φ| = v ≈ 246 GeV, |S| = 1
-// ═══════════════════════════════════════════════════════════════
+// Legacy interface coordinates for two questions about the Higgs field.
+// Matter §5 proves a unique radial minimum and one pointwise doublet orbit
+// under a specified potential and SU(2) action. These declarations do not
+// determine the complete gauge-field configuration or its history.
 
-/// This is the Higgs vacuum under the GAUGE-INVARIANT encoding: |φ| = v is the
-/// unique minimum → |S| = 1 → a crystallizing system. Certified by the
-/// build. Same physics as the field-component view, opposite verdict:
-/// exactly the ice lesson: the lens, not the target, fixes |S|.
+/// A legacy SystemCrystallizes witness for the intended radial question.
+/// The scalar minimum and its pointwise orbit identification are proved in
+/// Matter §5. SolutionSet=Never does not contain those relations.
 public struct HiggsGaugeInvariant: SystemCrystallizes {
-    public typealias Sigma       = Three              // field configurations
+    public typealias Sigma       = Three // supplied coordinate
     public typealias Left        = Cell<
         Never,
         Never
@@ -30,19 +21,18 @@ public struct HiggsGaugeInvariant: SystemCrystallizes {
     public typealias Cache       = Grew<
         Never,
         Never
-    > // broken-symmetry history ACCUMULATES, irreversible (I3)
-    public typealias SolutionSet = Never              // |φ| = v, the unique minimum (|S| = 1)
-    public typealias Equality    = Verdict<Never>     // V(φ) energy test (decidable)
+    > // supplied retaining or pair shape
+    public typealias SolutionSet = Never // legacy interface coordinate
+    public typealias Equality    = Verdict<Never> // supplied coordinate
 }
 
-/// This is the Higgs vacuum under the FIELD-COMPONENT encoding: the vacuum manifold holds
-/// three Goldstone directions, so `|S| > 1`. Same vacuum as the gauge-invariant
-/// view, opposite verdict: the lens fixes |S|, the case `Unique` excludes. [Matter §5]
+/// A legacy coordinate with unequal projections. Its failed Unique
+/// conformance is not a count of field configurations or gauge orbits.
 public struct HiggsFieldComponents {
     public typealias SolutionSet = Cell<
         Three,
         Never
-    > // |S| > 1: the Goldstone manifold
+    > // supplied retaining or pair shape
 }
 // `extension HiggsFieldComponents: SystemCrystallizes {}` is rejected: SolutionSet
-// is not Unique. The Instances target counts the Goldstones (SU(2)×U(1) → U(1): 3).
+// has unequal projections. Higgs.swift separately checks a supplied count of three.

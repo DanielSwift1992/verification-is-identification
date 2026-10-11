@@ -1,0 +1,60 @@
+{
+  "name": "Repairing the entropy example",
+  "states": [
+    "0@0",
+    "0@1",
+    "1@0",
+    "1@1",
+    "2@0",
+    "2@1",
+    "3@0",
+    "3@1"
+  ],
+  "observation": [
+    [
+      0,
+      "small"
+    ],
+    [
+      1,
+      "small"
+    ],
+    [
+      0,
+      "large"
+    ],
+    [
+      1,
+      "large"
+    ],
+    [
+      0,
+      "large"
+    ],
+    [
+      1,
+      "large"
+    ],
+    [
+      0,
+      "large"
+    ],
+    [
+      1,
+      "large"
+    ]
+  ],
+  "operations": {
+    "tick": [
+      3,
+      2,
+      1,
+      0,
+      5,
+      4,
+      7,
+      6
+    ]
+  },
+  "scope": "The eight complete states include an internal two-phase clock. This is the finite model of M38-M40, with a fixed reading and a permutation."
+}

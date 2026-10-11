@@ -1,0 +1,191 @@
+{
+  "model": {
+    "name": "The same questions as reversible internal exchanges",
+    "states": [
+      "A",
+      "B",
+      "C",
+      "signal"
+    ],
+    "observation": [
+      "quiet",
+      "quiet",
+      "quiet",
+      "signal"
+    ],
+    "operations": {
+      "ask_A": [
+        3,
+        1,
+        2,
+        0
+      ],
+      "ask_B": [
+        0,
+        3,
+        2,
+        1
+      ]
+    },
+    "scope": "A finite reversible transition model. Executing a word physically still requires an internal prepared controller and recording resources."
+  },
+  "behavior": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "predictive_residual_values": 3,
+  "separators": [
+    {
+      "left": 0,
+      "right": 1,
+      "word": [
+        "ask_A"
+      ]
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "word": [
+        "ask_A"
+      ]
+    },
+    {
+      "left": 0,
+      "right": 3,
+      "word": []
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "word": [
+        "ask_B"
+      ]
+    },
+    {
+      "left": 1,
+      "right": 3,
+      "word": []
+    },
+    {
+      "left": 2,
+      "right": 3,
+      "word": []
+    }
+  ],
+  "policy": {
+    "identifiable": true,
+    "winning": [
+      {
+        "belief": [
+          0
+        ],
+        "rank": 0,
+        "action": null
+      },
+      {
+        "belief": [
+          0,
+          1
+        ],
+        "rank": 1,
+        "action": "ask_A"
+      },
+      {
+        "belief": [
+          0,
+          1,
+          2
+        ],
+        "rank": 2,
+        "action": "ask_A"
+      },
+      {
+        "belief": [
+          0,
+          2
+        ],
+        "rank": 1,
+        "action": "ask_A"
+      },
+      {
+        "belief": [
+          1
+        ],
+        "rank": 0,
+        "action": null
+      },
+      {
+        "belief": [
+          1,
+          2
+        ],
+        "rank": 1,
+        "action": "ask_B"
+      },
+      {
+        "belief": [
+          2
+        ],
+        "rank": 0,
+        "action": null
+      },
+      {
+        "belief": [
+          3
+        ],
+        "rank": 0,
+        "action": null
+      }
+    ],
+    "losing": []
+  },
+  "traces": [
+    {
+      "origin": 0,
+      "actions": [
+        "ask_A"
+      ],
+      "observations": [
+        "quiet",
+        "signal"
+      ]
+    },
+    {
+      "origin": 1,
+      "actions": [
+        "ask_A",
+        "ask_B"
+      ],
+      "observations": [
+        "quiet",
+        "quiet",
+        "signal"
+      ]
+    },
+    {
+      "origin": 2,
+      "actions": [
+        "ask_A",
+        "ask_B"
+      ],
+      "observations": [
+        "quiet",
+        "quiet",
+        "quiet"
+      ]
+    },
+    {
+      "origin": 3,
+      "actions": [],
+      "observations": [
+        "signal"
+      ]
+    }
+  ],
+  "preset_word": [
+    "ask_A",
+    "ask_B"
+  ]
+}

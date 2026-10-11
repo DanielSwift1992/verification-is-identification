@@ -1,0 +1,16 @@
+{
+  "models": 4368,
+  "sound_cache_contexts": 102528,
+  "extensions": 346032,
+  "settling_extensions": 256048,
+  "repeat_transcripts": 364,
+  "closed_whole_states": 8,
+  "scope": "All binary targets and ordered triples of binary queries on 1..3 states, all sound caches and new-key subsets.",
+  "controls": [
+    "repeat with zero novelty",
+    "distinct redundant query",
+    "persistent unresolved loop",
+    "internal reversible acquisition and loss"
+  ],
+  "limits": "Static total queries and sound fixed models. No physical entropy law, adaptive-cost optimum or runtime speedup inferred."
+}

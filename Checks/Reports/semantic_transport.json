@@ -1,0 +1,230 @@
+{
+  "composition": {
+    "cases": 311296,
+    "compatible_certificates": 46112,
+    "compatible_nonempty": 12704,
+    "unsafe_scope_failures": 15136
+  },
+  "representations": {
+    "cases": [
+      {
+        "native": [
+          0,
+          0
+        ],
+        "wire": [
+          0,
+          0
+        ],
+        "scalar": 0
+      },
+      {
+        "native": [
+          0,
+          1
+        ],
+        "wire": [
+          1,
+          0
+        ],
+        "scalar": 0
+      },
+      {
+        "native": [
+          1,
+          0
+        ],
+        "wire": [
+          0,
+          1
+        ],
+        "scalar": 1
+      },
+      {
+        "native": [
+          1,
+          1
+        ],
+        "wire": [
+          1,
+          1
+        ],
+        "scalar": 1
+      }
+    ],
+    "same_raw_pair": [
+      0,
+      1
+    ],
+    "native_answer": 0,
+    "wire_answer": 1
+  },
+  "whole": {
+    "states": 96,
+    "prepared": [
+      {
+        "source": [
+          0,
+          0
+        ],
+        "wire": [
+          0,
+          0
+        ],
+        "scalar": 0,
+        "ready_whole": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2
+        ]
+      },
+      {
+        "source": [
+          0,
+          1
+        ],
+        "wire": [
+          1,
+          0
+        ],
+        "scalar": 0,
+        "ready_whole": [
+          0,
+          1,
+          1,
+          0,
+          0,
+          2
+        ]
+      },
+      {
+        "source": [
+          1,
+          0
+        ],
+        "wire": [
+          0,
+          1
+        ],
+        "scalar": 1,
+        "ready_whole": [
+          1,
+          0,
+          0,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "source": [
+          1,
+          1
+        ],
+        "wire": [
+          1,
+          1
+        ],
+        "scalar": 1,
+        "ready_whole": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      }
+    ],
+    "preparation_scope": {
+      "starts": 32,
+      "first_payload_correct": 16,
+      "final_payload_correct": 16,
+      "both_payloads_correct": 8,
+      "cancelled_errors": 8
+    },
+    "counterexamples": {
+      "unprepared_wire": [
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          1,
+          2
+        ]
+      ],
+      "unprepared_receiver": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          2
+        ]
+      ],
+      "cancelled_errors": [
+        [
+          0,
+          0,
+          0,
+          1,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          2
+        ]
+      ]
+    }
+  }
+}

@@ -1,17 +1,11 @@
 import VerificationIsIdentification
 
 // ═══════════════════════════════════════════════════════════════
-// A certified scheduler names the V=I loop as a working tool.
-//
-// Declare tasks and conflicts, and pin one task. The compiler PROPAGATES the forced
-// assignment (each conflicting task takes the opposite machine) and reports the
-// V=I trichotomy: |S| = 1 derived and certified, |S| = 0 proven impossible (it
-// does not compile), |S| > 1 ambiguous (not Unique, search is the encoder's).
-//
-// Nothing runs. Propagation is type reduction, the constraint is a `where`, and the
-// gate is SystemCrystallizes. Because a pinned, connected graph forces one
-// assignment, the compiler CHECKING it is the compiler FINDING it: verification
-// is identification. [V=I Thm 2]
+// A pinned two-machine schedule, derived through actual conflict equations.
+// PinnedScheduleIsForced proves uniqueness of the assignment for arbitrary
+// tasks satisfying the pin and three chain edges. ClosingConflict separately
+// checks that the derived assignment satisfies the fourth edge. The legacy
+// SystemCrystallizes declaration below does not provide either proof. [V=I U2b]
 // ═══════════════════════════════════════════════════════════════
 
 /// This names one of two machines. Each names its opposite: the unary type function
@@ -49,9 +43,9 @@ public struct Conflicts<
 >: Task {
 public typealias Assigned = Prev.Assigned.Opposite }
 
-/// This names a conflict edge that must hold: the two tasks land on different machines.
-/// The constraint is the `where`. An edge whose endpoints share a machine cannot
-/// conform, so the schedule that violates it cannot be built. [V=I §3.5]
+/// A directed opposite equation. On MachineA/MachineB this means different
+/// machines. Machine alone does not exclude self-opposites or longer cycles.
+/// The conditional conformance checks the actual assigned coordinates. [V=I §3.5]
 public protocol Separated {}
 public enum Conflict<
     U: Task,
@@ -60,8 +54,8 @@ public enum Conflict<
 extension Conflict: Separated
 where V.Assigned == U.Assigned.Opposite {}
 
-/// This is a satisfied constraint, certified by the type checker: it forms only when its
-/// conflict edge separates its endpoints. [V=I Thm 1]
+/// Requires the edge certificate. Conflict's conditional conformance supplies
+/// it from the actual opposite equation. [V=I Thm 1]
 public enum Require<
     Edge: Separated
 > {}
@@ -78,14 +72,31 @@ public typealias ClosingConflict = Require<Conflict<
     T0
 >>   // B vs A, satisfied, compiles
 
+/// Represent the four assigned coordinates, independently of task wrapper names.
+public typealias ScheduleAssignment<A: Task, B: Task, C: Task, D: Task> = Cell<
+    Cell<A.Assigned, B.Assigned>, Cell<C.Assigned, D.Assigned>
+>
+
+/// Every assignment satisfying this pin and these three edges equals the
+/// derived assignment. No equality to that complete assignment is a premise.
+/// The fourth edge is unnecessary for uniqueness, but must be checked for
+/// existence of a valid cycle. Task wrapper identity is not claimed. [V=I U2b]
+public enum PinnedScheduleIsForced<A: Task, B: Task, C: Task, D: Task>: Null
+where A.Assigned == MachineA, B.Assigned == A.Assigned.Opposite,
+      C.Assigned == B.Assigned.Opposite, D.Assigned == C.Assigned.Opposite {
+    public typealias Left = ScheduleAssignment<A, B, C, D>
+    public typealias Right = ScheduleAssignment<T0, T1, T2, T3>
+}
+
 /// This reads the derived machine name of a task, back from the type the compiler
 /// reduced. The propagation is the proof. This only labels it. [V=I §5.20]
 public func machineName<
     T: Task
 >(_: T.Type) -> String { T.Assigned.name }
 
-/// |S| = 1: the pinned, connected, consistent schedule is forced to one
-/// assignment, so it crystallizes. The build is the certificate. [V=I Thm 2]
+/// Legacy interface witness. PinnedScheduleIsForced and ClosingConflict prove
+/// the schedule claim through its actual tasks. SolutionSet does not encode
+/// that assignment or certify its cardinality. [V=I U1, U2b]
 public struct CrystallizedSchedule: SystemCrystallizes {
     public typealias Sigma       = Three
     public typealias Left        = Cell<
@@ -99,14 +110,14 @@ public struct CrystallizedSchedule: SystemCrystallizes {
     public typealias Cache       = Grew<
         Never,
         Never
-    >   // resolved conflicts ACCUMULATE (I3)
-    public typealias SolutionSet = Never                // the forced unique assignment (|S| = 1)
-    public typealias Equality    = Verdict<Never>       // same-machine test (decidable)
+    >   // retaining shape, without an encoded conflict history
+    public typealias SolutionSet = Never                // legacy Unique coordinate
+    public typealias Equality    = Verdict<Never>       // legacy answer coordinate
 }
 
-/// This gives |S| > 1: the SAME graph with `T0` left free admits two assignments (swap A↔B).
-/// Its solution set is a genuine `Pair`, the case `Unique` excludes, the
-/// determined part is delegated to search (the encoder, E2). [V=I §5.14]
+/// With no pin, this four-cycle has two MachineA/MachineB assignments, exchanged
+/// by swapping the machines. That conclusion uses the binary machine domain.
+/// The Pair below is a legacy interface countermodel, not a survivor census.
 public struct AmbiguousSchedule {
     public typealias Sigma       = Three
     public typealias Left        = Cell<
@@ -124,13 +135,13 @@ public struct AmbiguousSchedule {
     public typealias SolutionSet = Cell<
         Three,
         Never
-    >   // |S| = 2, not Unique
+    >   // unequal projections exclude Unique, without counting candidates
     public typealias Equality    = Verdict<Never>
 }
 
-// Build with the flags to make the compiler rule on the other two verdicts:
-//   -DSHOW_UNSAT       add conflict T0–T2 (both forced to A) → |S| = 0, refused
-//   -DSHOW_AMBIGUOUS   claim the unpinned graph crystallizes → |S| > 1, refused
+// SHOW_UNSAT rejects the additional edge T0–T2 between actual A assignments.
+// SHOW_AMBIGUOUS rejects the legacy coordinate's Unique conformance. It does
+// not discover or count the unpinned graph's assignments.
 #if SHOW_UNSAT
 public typealias ImpossibleConflict = Require<Conflict<
     T0,

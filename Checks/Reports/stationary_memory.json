@@ -1,0 +1,48 @@
+{
+  "finite": {
+    "rank_models": 10935,
+    "monotone_models": 6453,
+    "stationary_pairs": 69,
+    "retaining_cache_models": 29952
+  },
+  "ring_states": 320,
+  "ring4": {
+    "length": 4,
+    "whole_states": 80,
+    "trajectory": [
+      {
+        "phase": 0,
+        "whole_entropy_bits": 4,
+        "accessible_information_bits": 0.0
+      },
+      {
+        "phase": 1,
+        "whole_entropy_bits": 4,
+        "accessible_information_bits": 1.0
+      },
+      {
+        "phase": 2,
+        "whole_entropy_bits": 4,
+        "accessible_information_bits": 2.0
+      },
+      {
+        "phase": 3,
+        "whole_entropy_bits": 4,
+        "accessible_information_bits": 3.0
+      },
+      {
+        "phase": 4,
+        "whole_entropy_bits": 4,
+        "accessible_information_bits": 4.0
+      },
+      {
+        "phase": 0,
+        "whole_entropy_bits": 4,
+        "accessible_information_bits": 0.0
+      }
+    ],
+    "tight_tv": "1/4",
+    "tight_progress": "1/4"
+  },
+  "unbounded_clock_windows": 278
+}

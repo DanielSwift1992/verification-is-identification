@@ -1,0 +1,276 @@
+{
+  "model": {
+    "name": "A verdict is discoverable even when initial identity is not",
+    "states": [
+      "A",
+      "B",
+      "C",
+      "signal"
+    ],
+    "observation": [
+      "quiet",
+      "quiet",
+      "quiet",
+      "signal"
+    ],
+    "operations": {
+      "ask_A": [
+        3,
+        0,
+        0,
+        0
+      ],
+      "ask_B": [
+        0,
+        3,
+        0,
+        0
+      ]
+    },
+    "question": [
+      "was_A",
+      "was_not_A",
+      "was_not_A",
+      "was_not_A"
+    ],
+    "scope": "The target is whether the original state was A. This is a reduced evolving scene, with no reset or fresh specimen. Current-state identity is a different question."
+  },
+  "behavior": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "predictive_residual_values": 3,
+  "separators": [
+    {
+      "left": 0,
+      "right": 1,
+      "word": [
+        "ask_A"
+      ]
+    },
+    {
+      "left": 0,
+      "right": 2,
+      "word": [
+        "ask_A"
+      ]
+    },
+    {
+      "left": 0,
+      "right": 3,
+      "word": []
+    },
+    {
+      "left": 1,
+      "right": 2,
+      "word": [
+        "ask_B"
+      ]
+    },
+    {
+      "left": 1,
+      "right": 3,
+      "word": []
+    },
+    {
+      "left": 2,
+      "right": 3,
+      "word": []
+    }
+  ],
+  "policy": {
+    "identifiable": false,
+    "winning": [
+      {
+        "belief": [
+          0
+        ],
+        "rank": 0,
+        "action": null
+      },
+      {
+        "belief": [
+          0,
+          1
+        ],
+        "rank": 1,
+        "action": "ask_A"
+      },
+      {
+        "belief": [
+          0,
+          2
+        ],
+        "rank": 1,
+        "action": "ask_A"
+      },
+      {
+        "belief": [
+          1
+        ],
+        "rank": 0,
+        "action": null
+      },
+      {
+        "belief": [
+          1,
+          2
+        ],
+        "rank": 1,
+        "action": "ask_B"
+      },
+      {
+        "belief": [
+          2
+        ],
+        "rank": 0,
+        "action": null
+      },
+      {
+        "belief": [
+          3
+        ],
+        "rank": 0,
+        "action": null
+      }
+    ],
+    "losing": [
+      [
+        0,
+        1,
+        2
+      ]
+    ]
+  },
+  "traces": [],
+  "question_discovery": {
+    "certificate": {
+      "answerable": true,
+      "winning": [
+        {
+          "belief": [
+            [
+              0,
+              "was_A"
+            ],
+            [
+              1,
+              "was_not_A"
+            ],
+            [
+              2,
+              "was_not_A"
+            ]
+          ],
+          "rank": 1,
+          "action": "ask_A",
+          "answer": null
+        },
+        {
+          "belief": [
+            [
+              0,
+              "was_not_A"
+            ]
+          ],
+          "rank": 0,
+          "action": null,
+          "answer": "was_not_A"
+        },
+        {
+          "belief": [
+            [
+              3,
+              "was_A"
+            ]
+          ],
+          "rank": 0,
+          "action": null,
+          "answer": "was_A"
+        },
+        {
+          "belief": [
+            [
+              3,
+              "was_not_A"
+            ]
+          ],
+          "rank": 0,
+          "action": null,
+          "answer": "was_not_A"
+        }
+      ],
+      "losing": [
+        [
+          [
+            0,
+            "was_A"
+          ],
+          [
+            0,
+            "was_not_A"
+          ]
+        ]
+      ]
+    },
+    "traces": [
+      {
+        "origin": 0,
+        "answer": "was_A",
+        "actions": [
+          "ask_A"
+        ],
+        "observations": [
+          "quiet",
+          "signal"
+        ],
+        "possible_origins": [
+          0
+        ]
+      },
+      {
+        "origin": 1,
+        "answer": "was_not_A",
+        "actions": [
+          "ask_A"
+        ],
+        "observations": [
+          "quiet",
+          "quiet"
+        ],
+        "possible_origins": [
+          1,
+          2
+        ]
+      },
+      {
+        "origin": 2,
+        "answer": "was_not_A",
+        "actions": [
+          "ask_A"
+        ],
+        "observations": [
+          "quiet",
+          "quiet"
+        ],
+        "possible_origins": [
+          1,
+          2
+        ]
+      },
+      {
+        "origin": 3,
+        "answer": "was_not_A",
+        "actions": [],
+        "observations": [
+          "signal"
+        ],
+        "possible_origins": [
+          3
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,2067 @@
+{
+  "assumptions": "Fixed adequate noiseless Boolean family, uniform actual source, static source across two identical requests; all sensors cost one call. Optimal means minimum expected calls to full completion, not maximum success probability at each truncated budget. Random means exact uniform permutation, represented by an internal prepared tape.",
+  "accounting": "Metrics sum two requests. completed_requests and settled_answer_events count successful request events, not novel semantic facts. new_records counts writes including reacquisition; retained_records counts final distinct sensor records. checker_table_cells counts input table volume per semantic pass, not CPU instructions. Compilation is charged once per prepared policy; supports and partition_entries describe only that algorithm, not total runtime or energy. JSON, hashing, allocation, target scans, prior arithmetic and setup costs are not included.",
+  "closure": "Closed cycle checks establish a finite abstract joint permutation on trajectory histories. Preparation, program, family and enough history are premises. Recovery removes accessible progress. No permanent learning, locality or thermodynamic cost theorem follows.",
+  "rows": [
+    {
+      "model": "two_independent_bits",
+      "strategy": "random_order",
+      "budget_per_request": 0,
+      "exact_runs": 8,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "4",
+        "reuse_checks": "0",
+        "checker_table_cells": "32",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "7",
+        "partition_entries": "16"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 40
+    },
+    {
+      "model": "two_independent_bits",
+      "strategy": "random_order",
+      "budget_per_request": 1,
+      "exact_runs": 8,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "8",
+        "reuse_checks": "0",
+        "checker_table_cells": "64",
+        "policy_dispatches": "2",
+        "retained_records": "1",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "7",
+        "partition_entries": "16"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 56
+    },
+    {
+      "model": "two_independent_bits",
+      "strategy": "random_order",
+      "budget_per_request": 2,
+      "exact_runs": 8,
+      "mean": {
+        "source_calls": "4",
+        "new_records": "4",
+        "completed_requests": "2",
+        "settled_answer_events": "4",
+        "issue_checks": "12",
+        "reuse_checks": "0",
+        "checker_table_cells": "96",
+        "policy_dispatches": "4",
+        "retained_records": "2",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "7",
+        "partition_entries": "16"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 2,
+      "closed_whole_states": 72
+    },
+    {
+      "model": "two_independent_bits",
+      "strategy": "greedy_entropy",
+      "budget_per_request": 0,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "4",
+        "reuse_checks": "0",
+        "checker_table_cells": "32",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "7",
+        "partition_entries": "28"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 20
+    },
+    {
+      "model": "two_independent_bits",
+      "strategy": "greedy_entropy",
+      "budget_per_request": 1,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "8",
+        "reuse_checks": "0",
+        "checker_table_cells": "64",
+        "policy_dispatches": "2",
+        "retained_records": "1",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "7",
+        "partition_entries": "28"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 28
+    },
+    {
+      "model": "two_independent_bits",
+      "strategy": "greedy_entropy",
+      "budget_per_request": 2,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "4",
+        "new_records": "4",
+        "completed_requests": "2",
+        "settled_answer_events": "4",
+        "issue_checks": "12",
+        "reuse_checks": "0",
+        "checker_table_cells": "96",
+        "policy_dispatches": "4",
+        "retained_records": "2",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "7",
+        "partition_entries": "28"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 2,
+      "closed_whole_states": 36
+    },
+    {
+      "model": "two_independent_bits",
+      "strategy": "optimal_mean",
+      "budget_per_request": 0,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "4",
+        "reuse_checks": "0",
+        "checker_table_cells": "32",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 20
+    },
+    {
+      "model": "two_independent_bits",
+      "strategy": "optimal_mean",
+      "budget_per_request": 1,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "8",
+        "reuse_checks": "0",
+        "checker_table_cells": "64",
+        "policy_dispatches": "2",
+        "retained_records": "1",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 28
+    },
+    {
+      "model": "two_independent_bits",
+      "strategy": "optimal_mean",
+      "budget_per_request": 2,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "4",
+        "new_records": "4",
+        "completed_requests": "2",
+        "settled_answer_events": "4",
+        "issue_checks": "12",
+        "reuse_checks": "0",
+        "checker_table_cells": "96",
+        "policy_dispatches": "4",
+        "retained_records": "2",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 2,
+      "closed_whole_states": 36
+    },
+    {
+      "model": "two_independent_bits",
+      "strategy": "optimal_with_evidence",
+      "budget_per_request": 0,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "4",
+        "reuse_checks": "0",
+        "checker_table_cells": "32",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 20
+    },
+    {
+      "model": "two_independent_bits",
+      "strategy": "optimal_with_evidence",
+      "budget_per_request": 1,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "1",
+        "settled_answer_events": "2",
+        "issue_checks": "8",
+        "reuse_checks": "0",
+        "checker_table_cells": "64",
+        "policy_dispatches": "2",
+        "retained_records": "2",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 28
+    },
+    {
+      "model": "two_independent_bits",
+      "strategy": "optimal_with_evidence",
+      "budget_per_request": 2,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "2",
+        "settled_answer_events": "4",
+        "issue_checks": "8",
+        "reuse_checks": "0",
+        "checker_table_cells": "64",
+        "policy_dispatches": "2",
+        "retained_records": "2",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 2,
+      "closed_whole_states": 28
+    },
+    {
+      "model": "two_independent_bits",
+      "strategy": "optimal_with_certificates",
+      "budget_per_request": 0,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "4",
+        "reuse_checks": "0",
+        "checker_table_cells": "32",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 20
+    },
+    {
+      "model": "two_independent_bits",
+      "strategy": "optimal_with_certificates",
+      "budget_per_request": 1,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "1",
+        "settled_answer_events": "2",
+        "issue_checks": "6",
+        "reuse_checks": "2",
+        "checker_table_cells": "80",
+        "policy_dispatches": "2",
+        "retained_records": "2",
+        "stored_certificates": "2"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 28
+    },
+    {
+      "model": "two_independent_bits",
+      "strategy": "optimal_with_certificates",
+      "budget_per_request": 2,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "2",
+        "settled_answer_events": "4",
+        "issue_checks": "5",
+        "reuse_checks": "3",
+        "checker_table_cells": "88",
+        "policy_dispatches": "2",
+        "retained_records": "2",
+        "stored_certificates": "2"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 2,
+      "closed_whole_states": 28
+    },
+    {
+      "model": "declared_constant_family",
+      "strategy": "random_order",
+      "budget_per_request": 0,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "2",
+        "reuse_checks": "0",
+        "checker_table_cells": "8",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "3",
+        "partition_entries": "4"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 20
+    },
+    {
+      "model": "declared_constant_family",
+      "strategy": "random_order",
+      "budget_per_request": 1,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "2",
+        "settled_answer_events": "2",
+        "issue_checks": "4",
+        "reuse_checks": "0",
+        "checker_table_cells": "16",
+        "policy_dispatches": "2",
+        "retained_records": "1",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "3",
+        "partition_entries": "4"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 28
+    },
+    {
+      "model": "declared_constant_family",
+      "strategy": "random_order",
+      "budget_per_request": 2,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "2",
+        "settled_answer_events": "2",
+        "issue_checks": "4",
+        "reuse_checks": "0",
+        "checker_table_cells": "16",
+        "policy_dispatches": "2",
+        "retained_records": "1",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "3",
+        "partition_entries": "4"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 28
+    },
+    {
+      "model": "declared_constant_family",
+      "strategy": "greedy_entropy",
+      "budget_per_request": 0,
+      "exact_runs": 2,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "2",
+        "reuse_checks": "0",
+        "checker_table_cells": "8",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "3",
+        "partition_entries": "8"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 10
+    },
+    {
+      "model": "declared_constant_family",
+      "strategy": "greedy_entropy",
+      "budget_per_request": 1,
+      "exact_runs": 2,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "2",
+        "settled_answer_events": "2",
+        "issue_checks": "4",
+        "reuse_checks": "0",
+        "checker_table_cells": "16",
+        "policy_dispatches": "2",
+        "retained_records": "1",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "3",
+        "partition_entries": "8"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 14
+    },
+    {
+      "model": "declared_constant_family",
+      "strategy": "greedy_entropy",
+      "budget_per_request": 2,
+      "exact_runs": 2,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "2",
+        "settled_answer_events": "2",
+        "issue_checks": "4",
+        "reuse_checks": "0",
+        "checker_table_cells": "16",
+        "policy_dispatches": "2",
+        "retained_records": "1",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "3",
+        "partition_entries": "8"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 14
+    },
+    {
+      "model": "declared_constant_family",
+      "strategy": "optimal_mean",
+      "budget_per_request": 0,
+      "exact_runs": 2,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "2",
+        "reuse_checks": "0",
+        "checker_table_cells": "8",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "3",
+        "partition_entries": "8"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 10
+    },
+    {
+      "model": "declared_constant_family",
+      "strategy": "optimal_mean",
+      "budget_per_request": 1,
+      "exact_runs": 2,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "2",
+        "settled_answer_events": "2",
+        "issue_checks": "4",
+        "reuse_checks": "0",
+        "checker_table_cells": "16",
+        "policy_dispatches": "2",
+        "retained_records": "1",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "3",
+        "partition_entries": "8"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 14
+    },
+    {
+      "model": "declared_constant_family",
+      "strategy": "optimal_mean",
+      "budget_per_request": 2,
+      "exact_runs": 2,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "2",
+        "settled_answer_events": "2",
+        "issue_checks": "4",
+        "reuse_checks": "0",
+        "checker_table_cells": "16",
+        "policy_dispatches": "2",
+        "retained_records": "1",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "3",
+        "partition_entries": "8"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 14
+    },
+    {
+      "model": "declared_constant_family",
+      "strategy": "optimal_with_evidence",
+      "budget_per_request": 0,
+      "exact_runs": 2,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "2",
+        "reuse_checks": "0",
+        "checker_table_cells": "8",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "3",
+        "partition_entries": "8"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 10
+    },
+    {
+      "model": "declared_constant_family",
+      "strategy": "optimal_with_evidence",
+      "budget_per_request": 1,
+      "exact_runs": 2,
+      "mean": {
+        "source_calls": "1",
+        "new_records": "1",
+        "completed_requests": "2",
+        "settled_answer_events": "2",
+        "issue_checks": "3",
+        "reuse_checks": "0",
+        "checker_table_cells": "12",
+        "policy_dispatches": "1",
+        "retained_records": "1",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "3",
+        "partition_entries": "8"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 12
+    },
+    {
+      "model": "declared_constant_family",
+      "strategy": "optimal_with_evidence",
+      "budget_per_request": 2,
+      "exact_runs": 2,
+      "mean": {
+        "source_calls": "1",
+        "new_records": "1",
+        "completed_requests": "2",
+        "settled_answer_events": "2",
+        "issue_checks": "3",
+        "reuse_checks": "0",
+        "checker_table_cells": "12",
+        "policy_dispatches": "1",
+        "retained_records": "1",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "3",
+        "partition_entries": "8"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 12
+    },
+    {
+      "model": "declared_constant_family",
+      "strategy": "optimal_with_certificates",
+      "budget_per_request": 0,
+      "exact_runs": 2,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "2",
+        "reuse_checks": "0",
+        "checker_table_cells": "8",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "3",
+        "partition_entries": "8"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 10
+    },
+    {
+      "model": "declared_constant_family",
+      "strategy": "optimal_with_certificates",
+      "budget_per_request": 1,
+      "exact_runs": 2,
+      "mean": {
+        "source_calls": "1",
+        "new_records": "1",
+        "completed_requests": "2",
+        "settled_answer_events": "2",
+        "issue_checks": "2",
+        "reuse_checks": "1",
+        "checker_table_cells": "16",
+        "policy_dispatches": "1",
+        "retained_records": "1",
+        "stored_certificates": "1"
+      },
+      "compilation_mean": {
+        "supports": "3",
+        "partition_entries": "8"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 12
+    },
+    {
+      "model": "declared_constant_family",
+      "strategy": "optimal_with_certificates",
+      "budget_per_request": 2,
+      "exact_runs": 2,
+      "mean": {
+        "source_calls": "1",
+        "new_records": "1",
+        "completed_requests": "2",
+        "settled_answer_events": "2",
+        "issue_checks": "2",
+        "reuse_checks": "1",
+        "checker_table_cells": "16",
+        "policy_dispatches": "1",
+        "retained_records": "1",
+        "stored_certificates": "1"
+      },
+      "compilation_mean": {
+        "supports": "3",
+        "partition_entries": "8"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 12
+    },
+    {
+      "model": "xor_from_components",
+      "strategy": "random_order",
+      "budget_per_request": 0,
+      "exact_runs": 8,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "2",
+        "reuse_checks": "0",
+        "checker_table_cells": "24",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "7",
+        "partition_entries": "16"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 40
+    },
+    {
+      "model": "xor_from_components",
+      "strategy": "random_order",
+      "budget_per_request": 1,
+      "exact_runs": 8,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "4",
+        "reuse_checks": "0",
+        "checker_table_cells": "48",
+        "policy_dispatches": "2",
+        "retained_records": "1",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "7",
+        "partition_entries": "16"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 56
+    },
+    {
+      "model": "xor_from_components",
+      "strategy": "random_order",
+      "budget_per_request": 2,
+      "exact_runs": 8,
+      "mean": {
+        "source_calls": "4",
+        "new_records": "4",
+        "completed_requests": "2",
+        "settled_answer_events": "2",
+        "issue_checks": "6",
+        "reuse_checks": "0",
+        "checker_table_cells": "72",
+        "policy_dispatches": "4",
+        "retained_records": "2",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "7",
+        "partition_entries": "16"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 2,
+      "closed_whole_states": 72
+    },
+    {
+      "model": "xor_from_components",
+      "strategy": "greedy_entropy",
+      "budget_per_request": 0,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "2",
+        "reuse_checks": "0",
+        "checker_table_cells": "24",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "7",
+        "partition_entries": "28"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 20
+    },
+    {
+      "model": "xor_from_components",
+      "strategy": "greedy_entropy",
+      "budget_per_request": 1,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "4",
+        "reuse_checks": "0",
+        "checker_table_cells": "48",
+        "policy_dispatches": "2",
+        "retained_records": "1",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "7",
+        "partition_entries": "28"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 28
+    },
+    {
+      "model": "xor_from_components",
+      "strategy": "greedy_entropy",
+      "budget_per_request": 2,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "4",
+        "new_records": "4",
+        "completed_requests": "2",
+        "settled_answer_events": "2",
+        "issue_checks": "6",
+        "reuse_checks": "0",
+        "checker_table_cells": "72",
+        "policy_dispatches": "4",
+        "retained_records": "2",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "7",
+        "partition_entries": "28"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 2,
+      "closed_whole_states": 36
+    },
+    {
+      "model": "xor_from_components",
+      "strategy": "optimal_mean",
+      "budget_per_request": 0,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "2",
+        "reuse_checks": "0",
+        "checker_table_cells": "24",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 20
+    },
+    {
+      "model": "xor_from_components",
+      "strategy": "optimal_mean",
+      "budget_per_request": 1,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "4",
+        "reuse_checks": "0",
+        "checker_table_cells": "48",
+        "policy_dispatches": "2",
+        "retained_records": "1",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 28
+    },
+    {
+      "model": "xor_from_components",
+      "strategy": "optimal_mean",
+      "budget_per_request": 2,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "4",
+        "new_records": "4",
+        "completed_requests": "2",
+        "settled_answer_events": "2",
+        "issue_checks": "6",
+        "reuse_checks": "0",
+        "checker_table_cells": "72",
+        "policy_dispatches": "4",
+        "retained_records": "2",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 2,
+      "closed_whole_states": 36
+    },
+    {
+      "model": "xor_from_components",
+      "strategy": "optimal_with_evidence",
+      "budget_per_request": 0,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "2",
+        "reuse_checks": "0",
+        "checker_table_cells": "24",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 20
+    },
+    {
+      "model": "xor_from_components",
+      "strategy": "optimal_with_evidence",
+      "budget_per_request": 1,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "1",
+        "settled_answer_events": "1",
+        "issue_checks": "4",
+        "reuse_checks": "0",
+        "checker_table_cells": "48",
+        "policy_dispatches": "2",
+        "retained_records": "2",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 28
+    },
+    {
+      "model": "xor_from_components",
+      "strategy": "optimal_with_evidence",
+      "budget_per_request": 2,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "2",
+        "settled_answer_events": "2",
+        "issue_checks": "4",
+        "reuse_checks": "0",
+        "checker_table_cells": "48",
+        "policy_dispatches": "2",
+        "retained_records": "2",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 2,
+      "closed_whole_states": 28
+    },
+    {
+      "model": "xor_from_components",
+      "strategy": "optimal_with_certificates",
+      "budget_per_request": 0,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "2",
+        "reuse_checks": "0",
+        "checker_table_cells": "24",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 20
+    },
+    {
+      "model": "xor_from_components",
+      "strategy": "optimal_with_certificates",
+      "budget_per_request": 1,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "1",
+        "settled_answer_events": "1",
+        "issue_checks": "4",
+        "reuse_checks": "0",
+        "checker_table_cells": "48",
+        "policy_dispatches": "2",
+        "retained_records": "2",
+        "stored_certificates": "1"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 28
+    },
+    {
+      "model": "xor_from_components",
+      "strategy": "optimal_with_certificates",
+      "budget_per_request": 2,
+      "exact_runs": 4,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "2",
+        "settled_answer_events": "2",
+        "issue_checks": "3",
+        "reuse_checks": "1",
+        "checker_table_cells": "60",
+        "policy_dispatches": "2",
+        "retained_records": "2",
+        "stored_certificates": "1"
+      },
+      "compilation_mean": {
+        "supports": "9",
+        "partition_entries": "48"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 2,
+      "closed_whole_states": 28
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "random_order",
+      "budget_per_request": 0,
+      "exact_runs": 1080,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "10",
+        "reuse_checks": "0",
+        "checker_table_cells": "450",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "183/10",
+        "partition_entries": "339/5"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 5400
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "random_order",
+      "budget_per_request": 1,
+      "exact_runs": 1080,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "20",
+        "reuse_checks": "0",
+        "checker_table_cells": "900",
+        "policy_dispatches": "2",
+        "retained_records": "1",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "183/10",
+        "partition_entries": "339/5"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 7560
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "random_order",
+      "budget_per_request": 2,
+      "exact_runs": 1080,
+      "mean": {
+        "source_calls": "4",
+        "new_records": "4",
+        "completed_requests": "13/45",
+        "settled_answer_events": "13/9",
+        "issue_checks": "30",
+        "reuse_checks": "0",
+        "checker_table_cells": "1350",
+        "policy_dispatches": "4",
+        "retained_records": "2",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "183/10",
+        "partition_entries": "339/5"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 2,
+      "closed_whole_states": 9720
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "random_order",
+      "budget_per_request": 3,
+      "exact_runs": 1080,
+      "mean": {
+        "source_calls": "257/45",
+        "new_records": "257/45",
+        "completed_requests": "17/15",
+        "settled_answer_events": "17/3",
+        "issue_checks": "347/9",
+        "reuse_checks": "0",
+        "checker_table_cells": "1735",
+        "policy_dispatches": "257/45",
+        "retained_records": "257/90",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "183/10",
+        "partition_entries": "339/5"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 3,
+      "closed_whole_states": 11568
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "random_order",
+      "budget_per_request": 4,
+      "exact_runs": 1080,
+      "mean": {
+        "source_calls": "296/45",
+        "new_records": "296/45",
+        "completed_requests": "76/45",
+        "settled_answer_events": "76/9",
+        "issue_checks": "386/9",
+        "reuse_checks": "0",
+        "checker_table_cells": "1930",
+        "policy_dispatches": "296/45",
+        "retained_records": "148/45",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "183/10",
+        "partition_entries": "339/5"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 4,
+      "closed_whole_states": 12504
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "random_order",
+      "budget_per_request": 5,
+      "exact_runs": 1080,
+      "mean": {
+        "source_calls": "62/9",
+        "new_records": "62/9",
+        "completed_requests": "2",
+        "settled_answer_events": "10",
+        "issue_checks": "400/9",
+        "reuse_checks": "0",
+        "checker_table_cells": "2000",
+        "policy_dispatches": "62/9",
+        "retained_records": "31/9",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "183/10",
+        "partition_entries": "339/5"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 5,
+      "closed_whole_states": 12840
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "greedy_entropy",
+      "budget_per_request": 0,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "10",
+        "reuse_checks": "0",
+        "checker_table_cells": "450",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "17",
+        "partition_entries": "175"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 45
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "greedy_entropy",
+      "budget_per_request": 1,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "20",
+        "reuse_checks": "0",
+        "checker_table_cells": "900",
+        "policy_dispatches": "2",
+        "retained_records": "1",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "17",
+        "partition_entries": "175"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 63
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "greedy_entropy",
+      "budget_per_request": 2,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "4",
+        "new_records": "4",
+        "completed_requests": "2/9",
+        "settled_answer_events": "10/9",
+        "issue_checks": "30",
+        "reuse_checks": "0",
+        "checker_table_cells": "1350",
+        "policy_dispatches": "4",
+        "retained_records": "2",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "17",
+        "partition_entries": "175"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 2,
+      "closed_whole_states": 81
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "greedy_entropy",
+      "budget_per_request": 3,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "52/9",
+        "new_records": "52/9",
+        "completed_requests": "4/3",
+        "settled_answer_events": "20/3",
+        "issue_checks": "350/9",
+        "reuse_checks": "0",
+        "checker_table_cells": "1750",
+        "policy_dispatches": "52/9",
+        "retained_records": "26/9",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "17",
+        "partition_entries": "175"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 3,
+      "closed_whole_states": 97
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "greedy_entropy",
+      "budget_per_request": 4,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "58/9",
+        "new_records": "58/9",
+        "completed_requests": "14/9",
+        "settled_answer_events": "70/9",
+        "issue_checks": "380/9",
+        "reuse_checks": "0",
+        "checker_table_cells": "1900",
+        "policy_dispatches": "58/9",
+        "retained_records": "29/9",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "17",
+        "partition_entries": "175"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 4,
+      "closed_whole_states": 103
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "greedy_entropy",
+      "budget_per_request": 5,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "62/9",
+        "new_records": "62/9",
+        "completed_requests": "2",
+        "settled_answer_events": "10",
+        "issue_checks": "400/9",
+        "reuse_checks": "0",
+        "checker_table_cells": "2000",
+        "policy_dispatches": "62/9",
+        "retained_records": "31/9",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "17",
+        "partition_entries": "175"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 5,
+      "closed_whole_states": 107
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_mean",
+      "budget_per_request": 0,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "10",
+        "reuse_checks": "0",
+        "checker_table_cells": "450",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 45
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_mean",
+      "budget_per_request": 1,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "20",
+        "reuse_checks": "0",
+        "checker_table_cells": "900",
+        "policy_dispatches": "2",
+        "retained_records": "1",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 63
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_mean",
+      "budget_per_request": 2,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "4",
+        "new_records": "4",
+        "completed_requests": "2/9",
+        "settled_answer_events": "10/9",
+        "issue_checks": "30",
+        "reuse_checks": "0",
+        "checker_table_cells": "1350",
+        "policy_dispatches": "4",
+        "retained_records": "2",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 2,
+      "closed_whole_states": 81
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_mean",
+      "budget_per_request": 3,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "52/9",
+        "new_records": "52/9",
+        "completed_requests": "10/9",
+        "settled_answer_events": "50/9",
+        "issue_checks": "350/9",
+        "reuse_checks": "0",
+        "checker_table_cells": "1750",
+        "policy_dispatches": "52/9",
+        "retained_records": "26/9",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 3,
+      "closed_whole_states": 97
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_mean",
+      "budget_per_request": 4,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "20/3",
+        "new_records": "20/3",
+        "completed_requests": "2",
+        "settled_answer_events": "10",
+        "issue_checks": "130/3",
+        "reuse_checks": "0",
+        "checker_table_cells": "1950",
+        "policy_dispatches": "20/3",
+        "retained_records": "10/3",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 4,
+      "closed_whole_states": 105
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_mean",
+      "budget_per_request": 5,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "20/3",
+        "new_records": "20/3",
+        "completed_requests": "2",
+        "settled_answer_events": "10",
+        "issue_checks": "130/3",
+        "reuse_checks": "0",
+        "checker_table_cells": "1950",
+        "policy_dispatches": "20/3",
+        "retained_records": "10/3",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 4,
+      "closed_whole_states": 105
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_with_evidence",
+      "budget_per_request": 0,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "10",
+        "reuse_checks": "0",
+        "checker_table_cells": "450",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 45
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_with_evidence",
+      "budget_per_request": 1,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "1/9",
+        "settled_answer_events": "5/9",
+        "issue_checks": "20",
+        "reuse_checks": "0",
+        "checker_table_cells": "900",
+        "policy_dispatches": "2",
+        "retained_records": "2",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 63
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_with_evidence",
+      "budget_per_request": 2,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "10/3",
+        "new_records": "10/3",
+        "completed_requests": "10/9",
+        "settled_answer_events": "50/9",
+        "issue_checks": "80/3",
+        "reuse_checks": "0",
+        "checker_table_cells": "1200",
+        "policy_dispatches": "10/3",
+        "retained_records": "10/3",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 2,
+      "closed_whole_states": 75
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_with_evidence",
+      "budget_per_request": 3,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "10/3",
+        "new_records": "10/3",
+        "completed_requests": "14/9",
+        "settled_answer_events": "70/9",
+        "issue_checks": "80/3",
+        "reuse_checks": "0",
+        "checker_table_cells": "1200",
+        "policy_dispatches": "10/3",
+        "retained_records": "10/3",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 3,
+      "closed_whole_states": 75
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_with_evidence",
+      "budget_per_request": 4,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "10/3",
+        "new_records": "10/3",
+        "completed_requests": "2",
+        "settled_answer_events": "10",
+        "issue_checks": "80/3",
+        "reuse_checks": "0",
+        "checker_table_cells": "1200",
+        "policy_dispatches": "10/3",
+        "retained_records": "10/3",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 4,
+      "closed_whole_states": 75
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_with_evidence",
+      "budget_per_request": 5,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "10/3",
+        "new_records": "10/3",
+        "completed_requests": "2",
+        "settled_answer_events": "10",
+        "issue_checks": "80/3",
+        "reuse_checks": "0",
+        "checker_table_cells": "1200",
+        "policy_dispatches": "10/3",
+        "retained_records": "10/3",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 4,
+      "closed_whole_states": 75
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_with_certificates",
+      "budget_per_request": 0,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "0",
+        "new_records": "0",
+        "completed_requests": "0",
+        "settled_answer_events": "0",
+        "issue_checks": "10",
+        "reuse_checks": "0",
+        "checker_table_cells": "450",
+        "policy_dispatches": "0",
+        "retained_records": "0",
+        "stored_certificates": "0"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 0,
+      "closed_whole_states": 45
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_with_certificates",
+      "budget_per_request": 1,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "2",
+        "new_records": "2",
+        "completed_requests": "1/9",
+        "settled_answer_events": "5/9",
+        "issue_checks": "52/3",
+        "reuse_checks": "8/3",
+        "checker_table_cells": "1020",
+        "policy_dispatches": "2",
+        "retained_records": "2",
+        "stored_certificates": "25/9"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 1,
+      "closed_whole_states": 63
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_with_certificates",
+      "budget_per_request": 2,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "10/3",
+        "new_records": "10/3",
+        "completed_requests": "10/9",
+        "settled_answer_events": "50/9",
+        "issue_checks": "167/9",
+        "reuse_checks": "73/9",
+        "checker_table_cells": "1565",
+        "policy_dispatches": "10/3",
+        "retained_records": "10/3",
+        "stored_certificates": "5"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 2,
+      "closed_whole_states": 75
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_with_certificates",
+      "budget_per_request": 3,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "10/3",
+        "new_records": "10/3",
+        "completed_requests": "14/9",
+        "settled_answer_events": "70/9",
+        "issue_checks": "151/9",
+        "reuse_checks": "89/9",
+        "checker_table_cells": "1645",
+        "policy_dispatches": "10/3",
+        "retained_records": "10/3",
+        "stored_certificates": "5"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": false,
+      "max_calls_per_request": 3,
+      "closed_whole_states": 75
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_with_certificates",
+      "budget_per_request": 4,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "10/3",
+        "new_records": "10/3",
+        "completed_requests": "2",
+        "settled_answer_events": "10",
+        "issue_checks": "49/3",
+        "reuse_checks": "31/3",
+        "checker_table_cells": "1665",
+        "policy_dispatches": "10/3",
+        "retained_records": "10/3",
+        "stored_certificates": "5"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 4,
+      "closed_whole_states": 75
+    },
+    {
+      "model": "nine_source_counterexample",
+      "strategy": "optimal_with_certificates",
+      "budget_per_request": 5,
+      "exact_runs": 9,
+      "mean": {
+        "source_calls": "10/3",
+        "new_records": "10/3",
+        "completed_requests": "2",
+        "settled_answer_events": "10",
+        "issue_checks": "49/3",
+        "reuse_checks": "31/3",
+        "checker_table_cells": "1665",
+        "policy_dispatches": "10/3",
+        "retained_records": "10/3",
+        "stored_certificates": "5"
+      },
+      "compilation_mean": {
+        "supports": "50",
+        "partition_entries": "1410"
+      },
+      "all_requests_complete": true,
+      "max_calls_per_request": 4,
+      "closed_whole_states": 75
+    }
+  ],
+  "demonstration": {
+    "metrics": {
+      "source_calls": 2,
+      "new_records": 2,
+      "completed_requests": 2,
+      "settled_answer_events": 2,
+      "issue_checks": 3,
+      "reuse_checks": 1,
+      "checker_table_cells": 60,
+      "policy_dispatches": 2,
+      "retained_records": 2,
+      "stored_certificates": 1
+    },
+    "requests": [
+      {
+        "complete": true,
+        "answers": [
+          0
+        ],
+        "calls": 2
+      },
+      {
+        "complete": true,
+        "answers": [
+          0
+        ],
+        "calls": 0
+      }
+    ],
+    "trace": [
+      {
+        "event": "prepared",
+        "evidence": [],
+        "certified_questions": [],
+        "counters": {
+          "source_calls": 0,
+          "new_records": 0,
+          "completed_requests": 0,
+          "settled_answer_events": 0,
+          "issue_checks": 0,
+          "reuse_checks": 0,
+          "checker_table_cells": 0,
+          "policy_dispatches": 0
+        }
+      },
+      {
+        "event": "request",
+        "evidence": [],
+        "certified_questions": [],
+        "counters": {
+          "source_calls": 0,
+          "new_records": 0,
+          "completed_requests": 0,
+          "settled_answer_events": 0,
+          "issue_checks": 0,
+          "reuse_checks": 0,
+          "checker_table_cells": 0,
+          "policy_dispatches": 0
+        }
+      },
+      {
+        "event": "observe",
+        "evidence": [
+          [
+            0,
+            1
+          ]
+        ],
+        "certified_questions": [],
+        "counters": {
+          "source_calls": 1,
+          "new_records": 1,
+          "completed_requests": 0,
+          "settled_answer_events": 0,
+          "issue_checks": 1,
+          "reuse_checks": 0,
+          "checker_table_cells": 12,
+          "policy_dispatches": 1
+        }
+      },
+      {
+        "event": "observe",
+        "evidence": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "certified_questions": [],
+        "counters": {
+          "source_calls": 2,
+          "new_records": 2,
+          "completed_requests": 0,
+          "settled_answer_events": 0,
+          "issue_checks": 2,
+          "reuse_checks": 0,
+          "checker_table_cells": 24,
+          "policy_dispatches": 2
+        }
+      },
+      {
+        "event": "complete",
+        "evidence": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "certified_questions": [
+          2
+        ],
+        "counters": {
+          "source_calls": 2,
+          "new_records": 2,
+          "completed_requests": 1,
+          "settled_answer_events": 1,
+          "issue_checks": 3,
+          "reuse_checks": 0,
+          "checker_table_cells": 36,
+          "policy_dispatches": 2
+        }
+      },
+      {
+        "event": "request",
+        "evidence": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "certified_questions": [
+          2
+        ],
+        "counters": {
+          "source_calls": 2,
+          "new_records": 2,
+          "completed_requests": 1,
+          "settled_answer_events": 1,
+          "issue_checks": 3,
+          "reuse_checks": 0,
+          "checker_table_cells": 36,
+          "policy_dispatches": 2
+        }
+      },
+      {
+        "event": "complete",
+        "evidence": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "certified_questions": [
+          2
+        ],
+        "counters": {
+          "source_calls": 2,
+          "new_records": 2,
+          "completed_requests": 2,
+          "settled_answer_events": 2,
+          "issue_checks": 3,
+          "reuse_checks": 1,
+          "checker_table_cells": 60,
+          "policy_dispatches": 2
+        }
+      }
+    ]
+  },
+  "negative_policy_refusals": 2
+}

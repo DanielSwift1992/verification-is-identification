@@ -1,0 +1,26 @@
+{
+  "scope": {
+    "pair_context_cases": 157464,
+    "unsafe_precompositions": 11178,
+    "universal_domain_checks": 216
+  },
+  "reach": {
+    "reachable_scope_models": 512,
+    "contextual_pair_checks": 373248
+  },
+  "closed": {
+    "whole_states": 36,
+    "answers_without_context": [
+      0,
+      0
+    ],
+    "answers_after_context": [
+      1,
+      2
+    ],
+    "separating_word": [
+      1
+    ],
+    "separating_input": 0
+  }
+}

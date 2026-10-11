@@ -89,4 +89,68 @@ if ! swiftc -typecheck -I "$ladder_bin/Modules" \
     exit 1
 fi
 
-echo "✓ THE LADDER holds: actual count readings agree; four nominal grants are refused by both courts; the written type witness compiles."
+# The count question's controls, compiler side. A false direct drop and a forged
+# common answer have a legal shape; only the count reading can refuse them. Two
+# different declared answers do not share one image, and Swift refuses that.
+for ladder_shape in false-direct-drop fake-shared-answer; do
+    if ! swiftc -typecheck -I "$ladder_bin/Modules" \
+        -module-cache-path "$ladder_tmp/cache" "Checks/rydberg-count/$ladder_shape.swift" \
+        >"$ladder_tmp/$ladder_shape.log" 2>&1; then
+        cat "$ladder_tmp/$ladder_shape.log"
+        echo "Rydberg: the count control $ladder_shape does not even have a legal shape" >&2
+        exit 1
+    fi
+done
+if swiftc -typecheck -I "$ladder_bin/Modules" \
+    -module-cache-path "$ladder_tmp/cache" "Checks/rydberg-count/different-answers.swift" \
+    >"$ladder_tmp/different-answers.log" 2>&1; then
+    echo "Rydberg: Swift accepted two different answers as one shared image" >&2
+    exit 1
+fi
+if ! grep -q "requirement specified as 'Self.Left.Answer' == 'Self.Right.Answer'" \
+    "$ladder_tmp/different-answers.log"; then
+    cat "$ladder_tmp/different-answers.log"
+    echo "Rydberg: different answers failed for another reason" >&2
+    exit 1
+fi
+
+# The count question, judged. The first file is the world whose readings are
+# checked; the rest supply definitions. Every branch of the five level bindings
+# is derived, and each forged control is refused with both numbers named.
+count_args=(--predicate TickCountQuestion --encoding UnaryArithmeticEncoding --sigma RydbergLevels)
+if ! "$ladder_bin/Tools" judge count Sources/Examples/RydbergLadder.swift \
+    Sources/VerificationIsIdentification/Primitive.swift "${count_args[@]}" \
+    >"$ladder_tmp/count-world.log" 2>&1; then
+    cat "$ladder_tmp/count-world.log"
+    echo "Rydberg: the count court refused a level binding" >&2
+    exit 1
+fi
+if ! grep -q "^✓ COUNT holds: 10 source-bound readings checked" "$ladder_tmp/count-world.log"; then
+    cat "$ladder_tmp/count-world.log"
+    echo "Rydberg: the count court did not check exactly the ten binding branches" >&2
+    exit 1
+fi
+count_refusal() {
+    local control="$1" expected="$2"
+    if "$ladder_bin/Tools" judge count "Checks/rydberg-count/$control.swift" \
+        Sources/Examples/RydbergLadder.swift Sources/VerificationIsIdentification/Primitive.swift \
+        "${count_args[@]}" >"$ladder_tmp/count-$control.log" 2>&1; then
+        cat "$ladder_tmp/count-$control.log"
+        echo "Rydberg: the count court accepted the forged control $control" >&2
+        exit 1
+    fi
+    local got
+    got=$(grep '^✗ COUNT:' "$ladder_tmp/count-$control.log" | sort)
+    if [ "$got" != "$(printf '%s\n' "$expected" | sort)" ]; then
+        cat "$ladder_tmp/count-$control.log"
+        echo "Rydberg: the count court refused $control for another reason" >&2
+        exit 1
+    fi
+}
+count_refusal false-direct-drop \
+    "✗ COUNT: 'FalseBalmerBetaBinding.Right' count Left = 37, but Answer = 36 [TickCountQuestion]"
+count_refusal fake-shared-answer "$(printf '%s\n%s' \
+    "✗ COUNT: 'ForgedFloorTwo.Left' count Left = 36, but Answer = 32 [TickCountQuestion]" \
+    "✗ COUNT: 'ForgedFloorTwo.Right' count Left = 36, but Answer = 32 [TickCountQuestion]")"
+
+echo "✓ THE LADDER holds: count readings agree in tests and in the count court; five level bindings are derived; a false drop and a forged image are refused with both numbers; two different answers do not share one image; four nominal grants are refused by both courts; the written type witness compiles."

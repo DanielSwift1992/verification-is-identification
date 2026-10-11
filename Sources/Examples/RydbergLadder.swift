@@ -14,6 +14,15 @@ import VerificationIsIdentification
 // written type (the LadderStep witness below). Equal counts do not identify
 // those types. The where judge therefore refuses the numerical stitches as
 // type equalities; RydbergCountTests checks their distinct count question.
+//
+// The count question has its own readings below. Each drop is bound to its two
+// recorded levels: the lower level and the upper level plus the drop are two
+// readings with one shared image in the declared tick R/144 (SiE3, LiR1). The
+// compiler checks the shape of each binding; `Tools judge count` derives the
+// count of every branch from its Unit/Never/Plus spelling. The two roads from
+// the fourth floor end at the same recorded floor, so 7 + 20 = 27 follows from
+// the level bindings; it is not a separate equation. The combination principle
+// itself is supplied physics here, not derived.
 // What is not here is not derivable in this genre and
 // is recorded as written law where it is used: the selection rule Δℓ = ±1
 // (Hydrogen.swift), the transition rates, and the Rydberg constant itself.
@@ -62,6 +71,62 @@ public typealias ThirdFloorStitch = EnergySum<FloorThreeDepth, FloorFourDepth, P
 public typealias SecondFloorStitch = EnergySum<FloorTwoDepth, FloorThreeDepth, BalmerAlphaDrop>
 public typealias GroundFloorStitch = EnergySum<FloorOneDepth, FloorTwoDepth, LymanAlphaDrop>
 public typealias TwoRoadsOneDrop = EnergySum<BalmerBetaDrop, PaschenAlphaDrop, BalmerAlphaDrop>
+
+// ── the count question: two readings of one level in the declared tick ──
+
+/// The space of the ladder: the recorded depths and the drops between them.
+public enum RydbergLevels: Close {}
+
+/// The count question: how many ticks of R/144 a construction carries.
+public enum TickCountQuestion: Close {}
+
+/// One count reading: a source construction and its declared count in ticks.
+/// The compiler checks the shape only. The count judge derives the count of the
+/// source from its spelling and compares it with the declared answer.
+public enum TickCount<
+    Source: Structure,
+    Count: Structure
+>: PredicateReading {
+    public typealias Left = Source
+    public typealias Right = Count
+    public typealias Sigma = RydbergLevels
+    public typealias Encoding = UnaryArithmeticEncoding
+    public typealias Predicate = TickCountQuestion
+    public typealias Answer = Count
+}
+
+/// A drop bound to its two levels. The recorded lower level and the upper level
+/// plus the drop are two readings of the count question with one shared image,
+/// the recorded lower level. The image is declared once; each branch's count is
+/// derived from its own source by the count judge. [SiE SiE3, LiR LiR1]
+public enum LevelDrop<
+    Lower: Structure,
+    Upper: Structure,
+    Drop: Structure
+>: EncodingForgets {
+    public typealias Left = TickCount<Lower, Lower>
+    public typealias Right = TickCount<Plus<Upper, Drop>, Lower>
+    public typealias Sigma = RydbergLevels
+    public typealias Encoding = UnaryArithmeticEncoding
+    public typealias Predicate = TickCountQuestion
+    public typealias Answer = Lower
+    public typealias LeftSource = Lower
+    public typealias RightSource = Plus<Upper, Drop>
+    public typealias SharedImage = Lower
+}
+
+/// Paschen-α binds floor four to floor three: 9 + 7 reads as the recorded 16.
+public typealias PaschenAlphaBinding = LevelDrop<FloorThreeDepth, FloorFourDepth, PaschenAlphaDrop>
+/// Balmer-α binds floor three to floor two: 16 + 20 reads as the recorded 36.
+public typealias BalmerAlphaBinding = LevelDrop<FloorTwoDepth, FloorThreeDepth, BalmerAlphaDrop>
+/// Lyman-α binds floor two to the ground: 36 + 108 reads as the recorded 144.
+public typealias LymanAlphaBinding = LevelDrop<FloorOneDepth, FloorTwoDepth, LymanAlphaDrop>
+/// Balmer-β binds floor four directly to floor two: 9 + 27 reads as the recorded 36.
+public typealias BalmerBetaBinding = LevelDrop<FloorTwoDepth, FloorFourDepth, BalmerBetaDrop>
+/// The road through floor three: 9 + (7 + 20) reads as the same recorded 36 the
+/// direct Balmer-β road reaches. Both roads end at one recorded floor.
+public typealias ThroughFloorThreeBinding =
+    LevelDrop<FloorTwoDepth, FloorFourDepth, Plus<PaschenAlphaDrop, BalmerAlphaDrop>>
 
 // ── the compile tier: the ladder spelling, proved by the nominal compiler ──
 

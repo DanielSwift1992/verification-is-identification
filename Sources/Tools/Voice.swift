@@ -1,12 +1,12 @@
-// VOICE CHECK — the prose's defect count is pinned, not remembered.
+// VOICE CHECK — a lexical baseline, with its scope and limits recorded.
 //
-// The voice law (Papers/a_verb_is_an_act.md) fixes the grammar of a faithful record,
-// and the corpus is audited to its fixed point: what remains of each scanned class is
-// the law's own residue (table cells, rubricator headings, instrument contracts, the
-// terms of the machine). This gate re-counts that residue per scope and compares it to
-// the pinned number. A rise fails the gate by scope and by class: a new defect, or a
-// new legal use whose pin the author must move deliberately. The numbers expire the
-// way every vote here expires: re-count with `voice --counts`, then move the pin.
+// The voice law (Papers/a_verb_is_an_act.md) defines source and actor obligations.
+// These regex classes count candidate occurrences, not that semantic defect count.
+// A semicolon, a mathematical truth predicate and a duration-free label can match
+// without establishing a violation of the law. This gate compares the lexical count
+// with an authored baseline. A rise requires review; a passing count proves neither
+// source recovery nor faithfulness. The 2026-10-11 paper rebase and the complete hit
+// inventory are in Research/Desk/theory-dark/voice-audit/decision-codex.md.
 
 import Foundation
 
@@ -23,18 +23,18 @@ enum VoiceTool {
         ("FILLER", "\\bhonest|\\bmerely\\b|\\bsimply\\b|\\belegant|\\bcrucial|\\bseamless"),
     ]
 
-    // The pinned residue per scope. The papers scope was unexercised until
+    // The pinned lexical count per scope. The papers scope was unexercised until
     // 2026-08-28: the filter asked the relative path for a ".docc" its own base
     // had already consumed, so the scan carried nothing and its zero verified
-    // nothing. The filter now reads the full path, and the measured residue of
-    // the papers is their own formal voice: semicolons in stated theorems, the
-    // corpus's dashes, holds as the verdict word. The lattice keeps its
-    // instrument holds and name dashes, the kit its law terms and quoted code,
-    // the pages the generats' own residue, the README its live playground and
-    // its one instrument hold. A rise is a regression or a pin to move, with
-    // the count from `voice --counts`.
+    // nothing. The filter now reads the full path. The old paper pin was 275.
+    // On 2026-10-11 the author removed 131 FILLER/POSE/LIVE occurrences from
+    // the current corpus, then measured the 35-paper residue at 1393:
+    // SEMI 1288, HOLD 87, DASH 18. FILLER, POSE and LIVE are each zero.
+    // This records the expanded corpus as the review baseline. It does not
+    // certify every residual match or claim a completed semantic audit.
+    // Other scope pins are unchanged. A rise still fails until explicitly reviewed.
     static let pins: [(scope: String, count: Int)] = [
-        ("papers", 275),
+        ("papers", 1393),
         ("lattice", 6),
         ("kit", 18),
         ("pages", 308),
@@ -65,7 +65,7 @@ enum VoiceTool {
             exit(1)
         }
         let total = counts.reduce(0) { $0 + $1.1 }
-        print("✓ THE VOICE holds: \(total) residual hits across five scopes, every one at or under its pin.")
+        print("✓ VOICE BASELINE: \(total) lexical hits across five scopes, every one at or under its pin. Semantic faithfulness is not certified.")
     }
 
     // Prose lines of `///` doc-comments, code spans stripped, fenced blocks skipped.

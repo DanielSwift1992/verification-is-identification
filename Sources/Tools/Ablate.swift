@@ -14,8 +14,8 @@ import Foundation
 // this table, argue it.
 //
 // Usage: Tools ablate <VerificationIsIdentification.symbols.json> [N]
-// Writes AtlasAblation.md into the docc catalog, a page of the site
-// beside the Atlas, with claim and premise as symbol links. Restores every cut.
+// Writes Research/ablation/current.md as an optional experiment record.
+// The mathematical corpus does not depend on this report. Restores every cut.
 // ═══════════════════════════════════════════════════════
 
 enum Ablate {
@@ -27,6 +27,10 @@ enum Ablate {
     }
 
     static func run(_ args: [String]) {
+        if args == ["--self-test"] {
+            checkCuts()
+            return
+        }
         guard let graphPath = args.first,
               let data = FileManager.default.contents(atPath: graphPath),
               let graph = try? JSONDecoder().decode(Graph.self, from: data) else {
@@ -53,41 +57,79 @@ enum Ablate {
                                     line: line))
         }
         premises.sort { ($0.file, $0.line, $0.parent) < ($1.file, $1.line, $1.parent) }
-        let total = premises.count
         if let limit { premises = Array(premises.prefix(limit)) }
 
         if args.contains("--check") {
             check(premises, packageRoot.appendingPathComponent(
-                "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/AtlasAblation.md").path)
+                "Research/ablation/current.md").path)
         }
 
-        guard build(at: packageRoot).green else {
-            FileHandle.standardError.write(Data("the module does not build before any cut; fix that first\n".utf8))
-            exit(1)
+        // Snapshot every measured source before any mutation. A hard interruption
+        // can bypass restoration, so the recovery copy must already exist on disk.
+        let recovery = packageRoot.appendingPathComponent(".build/ablation-recovery/" + UUID().uuidString)
+        var originals: [String: String] = [:]
+        do {
+            try FileManager.default.createDirectory(at: recovery, withIntermediateDirectories: true)
+            for path in Set(premises.map { $0.file }).sorted() {
+                let original = try String(contentsOfFile: path, encoding: .utf8)
+                originals[path] = original
+                try original.write(to: recovery.appendingPathComponent(URL(fileURLWithPath: path).lastPathComponent),
+                                   atomically: true, encoding: .utf8)
+            }
+            let manifest = try JSONSerialization.data(withJSONObject: Array(originals.keys).sorted())
+            try manifest.write(to: recovery.appendingPathComponent("sources.json"), options: .atomic)
+        } catch {
+            abort("cannot prepare recovery snapshot: \(error)")
+        }
+        let baseline = build(at: packageRoot)
+        guard baseline.green else {
+            abort("the module does not build before any cut:\n\(baseline.err)")
         }
 
         var rows: [(Premise, String, [String])] = []
         let started = Date()
         for p in premises {
-            guard let kept = try? String(contentsOfFile: p.file, encoding: .utf8) else {
-                rows.append((p, "unread", []))
-                continue
+            guard let kept = originals[p.file],
+                  (try? String(contentsOfFile: p.file, encoding: .utf8)) == kept else {
+                abort("source changed outside the probe: \(p.file). Snapshot: \(recovery.path)")
             }
             var lines = kept.components(separatedBy: "\n")
-            guard p.line < lines.count, let cutLine = cutParent(lines[p.line], p.parent) else {
+            guard p.line < lines.count else {
+                abort("stale source location for \(p.child). Regenerate the symbol graph.")
+            }
+            var end = p.line
+            while end + 1 < lines.count && !lines[end].contains("{") { end += 1 }
+            let declaration = lines[p.line...end].joined(separator: "\n")
+            guard let cut = cutParent(declaration, p.parent) else {
                 rows.append((p, "inherited, no line to cut", []))
                 continue
             }
-            lines[p.line] = cutLine
-            try? lines.joined(separator: "\n").write(toFile: p.file, atomically: true, encoding: .utf8)
-            let result = build(at: packageRoot)
-            try? kept.write(toFile: p.file, atomically: true, encoding: .utf8)
+            lines.replaceSubrange(p.line...end, with: cut.components(separatedBy: "\n"))
+            let result: (green: Bool, err: String)
+            do {
+                result = try withCut(path: p.file, original: kept,
+                                     cut: lines.joined(separator: "\n")) { build(at: packageRoot) }
+            } catch {
+                abort("probe or restoration failed: \(error). Recovery snapshot: \(recovery.path)")
+            }
+            guard result.green || isTypeRefusal(result.err) else {
+                abort("build failed without a reliable type refusal. No report published. "
+                      + "Sources restored, snapshot: \(recovery.path)\n\(result.err)")
+            }
             let refused = result.green ? [] : refusedNames(result.err)
             rows.append((p, result.green ? "still builds" : "fails", refused))
             print("\(p.child): \(p.parent) -> \(result.green ? "still builds" : "fails (\(refused.count) names)")")
         }
 
-        let restored = build(at: packageRoot).green
+        guard originals.allSatisfy({ path, original in
+            (try? String(contentsOfFile: path, encoding: .utf8)) == original
+        }) else {
+            abort("source verification failed after restoration. Snapshot: \(recovery.path)")
+        }
+        let restoredBuild = build(at: packageRoot)
+        guard restoredBuild.green else {
+            abort("restored module does not build. No report published.\n\(restoredBuild.err)")
+        }
         let greenRows = rows.filter { $0.1 == "still builds" }.count
         let failing = rows.filter { $0.1 == "fails" }
         let inherited = rows.filter { $0.1.hasPrefix("inherited") }.count
@@ -107,13 +149,18 @@ enum Ablate {
                        + "| \(verdict) | \(refused.joined(separator: ", ")) |")
         }
         out.append("")
-        out.append(restored
-            ? "Every file was put back after its cut, and the module builds."
-            : "THE RESTORE FAILED: a file did not go back. Fix the tree before committing this page.")
+        out.append("Every file was put back after its cut, and the module builds.")
         let target = packageRoot.appendingPathComponent(
-            "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/AtlasAblation.md")
-        try? (out.joined(separator: "\n") + "\n").write(to: target, atomically: true, encoding: .utf8)
-        print("wrote docc/AtlasAblation.md, module green after restore: \(restored)")
+            "Research/ablation/current.md")
+        do {
+            try FileManager.default.createDirectory(at: target.deletingLastPathComponent(),
+                                                    withIntermediateDirectories: true)
+            try (out.joined(separator: "\n") + "\n").write(to: target, atomically: true, encoding: .utf8)
+        } catch {
+            abort("cannot publish ablation report: \(error)")
+        }
+        try? FileManager.default.removeItem(at: recovery)
+        print("wrote Research/ablation/current.md, source bytes verified and module green after restore")
     }
 
 
@@ -125,7 +172,7 @@ enum Ablate {
                           bullets: [String], seconds: String, revision: String) -> [String] {
         var out = ["# Which premises the build needs", ""]
         out.append("Each claim declares premises, and this page records which of them")
-        out.append("the core module's build enforces: each premise was removed from its")
+        out.append("the core module's build enforces: each explicit premise was removed from its")
         out.append("declaration, the core module was rebuilt, and the file was put back.")
         out.append("")
         out.append("Of \(total) premises the module needs \(needs). It builds without the other \(green),")
@@ -174,7 +221,18 @@ enum Ablate {
         let out = String(data: pipe.fileHandleForReading.readDataToEndOfFile(),
                          encoding: .utf8) ?? ""
         p.waitUntilExit()
-        return out.trimmingCharacters(in: .whitespacesAndNewlines)
+        let revision = out.trimmingCharacters(in: .whitespacesAndNewlines)
+        let status = Process()
+        status.executableURL = URL(fileURLWithPath: "/usr/bin/env")
+        status.arguments = ["git", "status", "--porcelain", "--",
+                            "Sources/VerificationIsIdentification/*.swift"]
+        let changes = Pipe()
+        status.standardOutput = changes
+        status.standardError = Pipe()
+        try? status.run()
+        let dirty = changes.fileHandleForReading.readDataToEndOfFile()
+        status.waitUntilExit()
+        return dirty.isEmpty ? revision : revision + "+working-tree"
     }
 
     // `ablate --check` asks one question: does the page still name the premises
@@ -281,20 +339,97 @@ enum Ablate {
         exit(1)
     }
 
-    // the declaration line names its parents after the colon; remove one,
-    // keep the rest, drop the colon when the last parent goes
+    // Only an explicitly written parent can be cut. Symbol graphs also emit
+    // inherited conformances: returning an unchanged declaration for one used
+    // to count a successful build as an ablation without removing anything.
+    // Stop before `where`, whose constraints must survive the cut unchanged.
     static func cutParent(_ line: String, _ parent: String) -> String? {
         guard let colon = line.range(of: ": ") else { return nil }
         let head = String(line[..<colon.lowerBound])
         let tailStart = line[colon.upperBound...]
-        guard let brace = tailStart.range(of: " {") ?? tailStart.range(of: "{") else { return nil }
-        let list = String(tailStart[..<brace.lowerBound])
-        let rest = String(tailStart[brace.lowerBound...])
-        let parents = list.components(separatedBy: ",")
+        guard let brace = tailStart.firstIndex(of: "{") else { return nil }
+        let whereStart = tailStart.range(of: #"\bwhere\b"#, options: .regularExpression)?.lowerBound
+        let boundary = whereStart.map { min($0, brace) } ?? brace
+        let list = String(tailStart[..<boundary])
+        let rest = String(tailStart[boundary...])
+        let original = list.components(separatedBy: ",")
             .map { $0.trimmingCharacters(in: .whitespaces) }
-            .filter { !$0.isEmpty && $0 != parent }
-        if parents.isEmpty { return rest.hasPrefix(" ") ? head + rest : head + " " + rest }
-        return head + ": " + parents.joined(separator: ", ") + rest
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
+        guard original.contains(parent) else { return nil }
+        let parents = original.filter { $0 != parent }
+        if parents.isEmpty { return head + " " + rest }
+        return head + ": " + parents.joined(separator: ", ") + " " + rest
+    }
+
+    static func checkCuts() {
+        let cases: [(String, String, String?)] = [
+            ("public protocol P: A, B {}", "A", "public protocol P: B {}"),
+            ("public protocol P: A, B {}", "Ancestor", nil),
+            ("public protocol P: A\nwhere X: B, X.Y == Y {}", "A",
+             "public protocol P where X: B, X.Y == Y {}"),
+            ("public protocol P: A\nwhere X: B, X.Y == Y {}", "B", nil),
+            ("public protocol P: A,\n    B\nwhere X == Y {}", "A",
+             "public protocol P: B where X == Y {}"),
+            ("public protocol P {}", "A", nil),
+        ]
+        for (declaration, parent, expected) in cases {
+            guard cutParent(declaration, parent) == expected else {
+                print("ablation: incorrect cut of \(parent) in \(declaration)")
+                exit(1)
+            }
+        }
+        let typeError = "Core.swift:4:1: error: cannot find type 'Pair' in scope"
+        let faults = ["error: no space left on device", "error: emit-module command failed",
+                      typeError + "\nerror: unable to write output", "failed to launch build"]
+        guard isTypeRefusal(typeError), faults.allSatisfy({ !isTypeRefusal($0) }) else {
+            abort("infrastructure failure was confused with a type refusal")
+        }
+        let scratch = FileManager.default.temporaryDirectory.appendingPathComponent("ablation-test-" + UUID().uuidString)
+        do {
+            try "original".write(to: scratch, atomically: true, encoding: .utf8)
+            defer { try? FileManager.default.removeItem(at: scratch) }
+            let result = try withCut(path: scratch.path, original: "original", cut: "cut") {
+                guard (try? String(contentsOf: scratch, encoding: .utf8)) == "cut" else {
+                    abort("probe did not read the cut")
+                }
+                return (false, "error: no space left on device")
+            }
+            guard !result.green, !isTypeRefusal(result.err),
+                  try String(contentsOf: scratch, encoding: .utf8) == "original" else {
+                abort("failed probe did not restore its source")
+            }
+        } catch {
+            abort("restoration self-test failed: \(error)")
+        }
+        print("ablation: cuts, infrastructure rejection and restoration checked")
+    }
+
+    static func abort(_ message: String) -> Never {
+        FileHandle.standardError.write(Data(("ablation: " + message + "\n").utf8))
+        exit(1)
+    }
+
+    static func withCut(path: String, original: String, cut: String,
+                        probe: () -> (green: Bool, err: String)) throws -> (green: Bool, err: String) {
+        // Atomic writes preserve the last complete file if allocation fails.
+        // Never begin another probe before this one has restored its source.
+        try cut.write(toFile: path, atomically: true, encoding: .utf8)
+        let result = probe()
+        try original.write(toFile: path, atomically: true, encoding: .utf8)
+        guard try String(contentsOfFile: path, encoding: .utf8) == original else {
+            throw NSError(domain: "AblationRestore", code: 1)
+        }
+        return result
+    }
+
+    static func isTypeRefusal(_ diagnostic: String) -> Bool {
+        let lower = diagnostic.lowercased()
+        let infrastructure = ["no space left", "disk quota", "unable to write", "cannot write",
+                              "permission denied", "please submit a bug report", "stack dump",
+                              "segmentation fault", "failed to launch"]
+        guard infrastructure.allSatisfy({ !lower.contains($0) }) else { return false }
+        return diagnostic.range(of: #"\.swift:\d+:\d+: error:"#, options: .regularExpression) != nil
     }
 
     static func build(at root: URL) -> (green: Bool, err: String) {
@@ -305,7 +440,11 @@ enum Ablate {
         let pipe = Pipe()
         p.standardError = pipe
         p.standardOutput = pipe
-        try? p.run()
+        do {
+            try p.run()
+        } catch {
+            return (false, "failed to launch build: \(error)")
+        }
         let err = String(data: pipe.fileHandleForReading.readDataToEndOfFile(),
                          encoding: .utf8) ?? ""
         p.waitUntilExit()

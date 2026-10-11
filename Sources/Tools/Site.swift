@@ -4,7 +4,8 @@ import Foundation
 // Site serves the current site locally: `swift run Tools site [fast]`.
 //
 // Kills whatever held its port, rebuilds the package, regenerates the drawings and the
-// pages (`fast` skips that), renders the combined documentation for every module, and
+// pages (`fast` skips the drawings and general pages, but regenerates the claim),
+// renders the combined documentation for every module, and
 // serves it at http://localhost:4141 with caching disabled — a reload always shows the
 // build you just made, byte-for-byte what the deploy would publish. The SPM-native twin
 // of the docs workflow; Xcode's own preview shows one module and misses the combined
@@ -24,7 +25,12 @@ enum Site {
         let process = Process()
         process.executableURL = URL(fileURLWithPath: executable)
         process.arguments = arguments
-        try? process.run()
+        do {
+            try process.run()
+        } catch {
+            FileHandle.standardError.write(Data("site: cannot start \(executable): \(error)\n".utf8))
+            return 1
+        }
         process.waitUntilExit()
         return process.terminationStatus
     }
@@ -39,9 +45,23 @@ enum Site {
             exit(1)
         }
         if !fast {
-            step(".build/debug/VectorDemo", ["all"])
-            step(".build/debug/OrgDemo", ["render-doc"])
-            step(".build/debug/DocumentKitDemo", ["render-doc"])
+            for (executable, arguments) in [
+                (".build/debug/VectorDemo", ["all"]),
+                (".build/debug/OrgDemo", ["render-doc"]),
+                (".build/debug/DocumentKitDemo", ["render-doc"]),
+            ] {
+                guard step(executable, arguments) == 0 else {
+                    FileHandle.standardError.write(Data("site: artifact rendering failed\n".utf8))
+                    exit(1)
+                }
+            }
+        }
+
+        // The statement is an application of the just-built root. Even a
+        // fast preview must not substitute the previous rendered claim.
+        guard step(".build/debug/DocumentKitDemo", ["claim", "--write"]) == 0 else {
+            FileHandle.standardError.write(Data("site: current claim rendering failed\n".utf8))
+            exit(1)
         }
 
         try? FileManager.default.removeItem(atPath: siteDirectory)

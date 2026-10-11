@@ -622,6 +622,22 @@ public enum Judge {
     }
 
     public static func run(_ arguments: [String]) {
+        if arguments.first == "replay-continuation" {
+            ContinuationCourt.run(Array(arguments.dropFirst()),replay:true)
+            return
+        }
+        if arguments.first == "continue" {
+            ContinuationCourt.run(Array(arguments.dropFirst()))
+            return
+        }
+        if arguments.first == "coverage" {
+            FiniteCoverageCourt.run(Array(arguments.dropFirst()))
+            return
+        }
+        if arguments.first == "apply" {
+            ApplicationCourt.run(Array(arguments.dropFirst()))
+            return
+        }
         if arguments.first == "diff" || arguments.first == "chain" {
             JudgeDiff.run(arguments)
             return

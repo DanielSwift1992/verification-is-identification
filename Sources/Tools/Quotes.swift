@@ -36,6 +36,8 @@ enum Quotes {
         ("\\bOiO\\b|Order Is Object", "order_is_object.md"),
         ("\\bLiT\\b|Law Is Target", "law_is_target.md"),
         ("Halt Is Ignition", "halt_is_ignition.md"),
+        ("Acquisition Keeps Its Question", "acquisition_keeps_its_question.md"),
+        ("Continuation Carries the Relation", "continuation_carries_the_relation.md"),
         ("\\bE2\\b|Solvability Criterion", "solvability_criterion.md"),
         ("Proposal Is Order", "proposal_is_order.md"),
         ("Gradient Is Alignment", "gradient_is_alignment.md"),

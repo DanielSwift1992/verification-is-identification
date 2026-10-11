@@ -128,7 +128,7 @@ let package = Package(
         // `swift run DocumentKitDemo render-doc` — writes Gallery.typeName into DocumentKit's
         // own .docc catalog: the engine documents itself, scoped entirely to DocumentKit, no
         // Organization dependency.
-        .executableTarget(name: "DocumentKitDemo", dependencies: ["VerificationIsIdentification", "DocumentKit"]),
+        .executableTarget(name: "DocumentKitDemo", dependencies: ["VerificationIsIdentification", "DocumentKit", "Examples"]),
 
         // `swift run VectorDemo cards|diagram|chart|all` — the card art, the architecture
         // diagram, and the headcount chart, composed from real `Vector` atoms (DESIGN7). The

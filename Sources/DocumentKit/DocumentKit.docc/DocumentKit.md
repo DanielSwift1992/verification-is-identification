@@ -1,6 +1,6 @@
 # ``DocumentKit``
 
-A render engine with no runtime. A page is a type: its `body` composes other types, and reading `typeName` (`Structure`, VerificationIsIdentification) walks the composition once into markdown. There is no second pass and no node tree to interpret — the type is the page, and reading its name is the render.
+A render engine with no runtime. A page is a type: its `body` composes other types, and reading `typeName` (`Structure`, VerificationIsIdentification) walks the composition once into markdown. There is no second pass and no node tree to interpret. The type is the page, and reading its name is the render.
 
 ## Build a page
 

@@ -10,6 +10,8 @@
 #   ./check.sh              every law
 #   ./check.sh --skip law   every law but the grammar mirror
 #   ./check.sh --only law   the grammar mirror alone
+#   ./check.sh --research-only  historical finite experiments, not type proofs
+#   ./check.sh --only ablation  optional audit of the saved deletion experiment
 #
 # The mirror carries every source file through a second compiler and takes
 # minutes, so CI runs it in a job of its own and this file is how both jobs
@@ -19,10 +21,12 @@ cd "$(dirname "$0")"
 
 MODE_SKIP=""
 MODE_ONLY=""
+MODE_RESEARCH=""
 while [ $# -gt 0 ]; do
     case "$1" in
         --skip) MODE_SKIP="$2"; shift 2 ;;
         --only) MODE_ONLY="$2"; shift 2 ;;
+        --research-only) MODE_RESEARCH="yes"; shift ;;
         *) echo "check.sh: unknown argument $1" >&2; exit 2 ;;
     esac
 done
@@ -36,13 +40,48 @@ NEEDS_CLEAN="judge artifacts"
 # tag | what it holds | how to ask
 LAWS=(
 "build|the package builds and its tests pass|swift build && swift test"
+"verdict|finite verdict certificates hold and broken premises are refused|bash Checks/verdict.sh"
+)
+
+# These programs explore finite models and preserve earlier counterexamples.
+# They are not the implementation or proof authority for the type relations.
+# They run only when explicitly selected. Publishing the theory does not
+# depend on replaying a finite experiment.
+RESEARCH=(
+"question|discovery preserves a fixed question about the original state|python3 Checks/verdict_discovery_audit.py"
+"controller|an internal controller uses observations and its whole completion preserves origins|python3 Checks/internal_controller_audit.py"
+"finite|finite members, finite candidate spaces and finite towers have separate bounds|python3 Checks/finite_scope.py"
+"cache|truth, accessible storage and semantic cache growth obey separate laws|python3 Checks/cache_law.py"
+"entropy|conditional information and admissible questions obey separate bounds|python3 Checks/entropy_questions.py"
+"transcript|attainable experiments certify excess distinctions and query costs|python3 Checks/transcript_partitions.py"
+"learning|retention, class coverage, dispatch and prediction have separate premises|python3 Checks/learning_coverage.py"
+"progress|relative certificates separate record novelty from question completion|python3 Checks/learning_progress.py"
+"strategy|local query gain, instance certificates and adaptive policy optima have distinct witnesses|python3 Checks/query_strategy.py"
+"wrapper|scoped checking separates soundness, coverage, trial laws and retained history|python3 Checks/gate_wrapper.py"
+"scope|finite certificates replay within their stated question and candidate scope|python3 Checks/scoped_certificate.py"
+"loop|internal acquisition, scoped reuse and equal-budget strategies replay|python3 Checks/vi_loop.py"
+"selfplay|synthetic information, internal measurement and reversible reuse obey distinct bounds|python3 Checks/self_play_information.py"
+"reflection|internal inspection and universal Boolean evaluation have separate boundaries|python3 Checks/self_inspection.py"
+"sampling|countable coverage, critical moments and internal IID windows obey separate bounds|python3 Checks/sampling_boundary.py"
+"stationarity|stationary retention, prepared growth and entropy preservation have distinct premises|python3 Checks/stationary_memory.py"
+"arrow|exact reversible transport and repeated coarse updating have different entropy laws|python3 Checks/time_entropy.py"
+"basis|bounded composition, generator residue and macro expansion preserve explicit budgets|python3 Checks/bounded_basis.py"
+"context|component certificates remain valid only within their declared reuse scope|python3 Checks/context_reuse.py"
+"transport|a question survives compatible coded transfers inside a declared whole|python3 Checks/semantic_transport.py"
+"discovery|finite discovery policies and impossibility certificates replay correctly|python3 Checks/discovery_audit.py"
+"dynamics|closed dynamics, memory and global compatibility obey their boundaries|python3 Checks/closed_dynamics.py"
+"information|closed finite models distinguish retention, correlation and entropy|python3 Checks/closed_information.py"
+"quotient|finite operational quotients obey their declared boundaries|python3 Checks/operational_quotient.py"
+"saturation|future-reading witnesses certify the coarsest autonomous refinement|python3 Checks/saturation_audit.py"
+)
+
+LAWS+=(
 "census|the declaration count per target|swift run Tools census"
-"voice|the prose holds at its pins|swift run Tools voice"
+"voice|lexical counts do not exceed their authored pins|swift run Tools voice"
 "readme|the numbers are counted, not remembered|swift run Tools readme"
 "rules|a rule is one substitution|swift run Tools lint Sources/DynamicsDemo/Rules.swift --strict"
 "topics|the Topics tree equals the type lattice|swift package --allow-writing-to-package-directory tree-sort check"
-"ablation|the ablation page names the premises the lattice declares|swift build --product Tools >/dev/null && { swift package dump-symbol-graph >/dev/null 2>&1 || true; } && GRAPH=\$(find .build -name VerificationIsIdentification.symbols.json | head -1) && .build/debug/Tools ablate \"\$GRAPH\" --check"
-"artifacts|the committed artifacts match the types, byte for byte|swift package --allow-writing-to-package-directory generate >/dev/null && swift run OrgDemo render-doc >/dev/null && swift run DocumentKitDemo render-doc >/dev/null && swift run VectorDemo all >/dev/null && git diff --exit-code"
+"artifacts|the committed artifacts match the types, byte for byte|swift package --allow-writing-to-package-directory generate >/dev/null && swift run OrgDemo render-doc >/dev/null && swift run DocumentKitDemo render-doc >/dev/null && swift run DocumentKitDemo claim --write >/dev/null && swift run VectorDemo all >/dev/null && git diff --exit-code"
 "judge|the second judge agrees with the compiler|swift run Tools judge diff 200"
 "light|the second judge reads the conditional grammar|swift run Tools judge where Sources/Examples/Light.swift"
 "ladder|the second judge counts the Rydberg ladder|swift run Tools judge where Sources/Examples/RydbergLadder.swift Sources/VerificationIsIdentification/Primitive.swift"
@@ -51,6 +90,27 @@ LAWS=(
 "quotes|a quote of a sibling paper is that paper's sentence|swift run Tools quotes"
 "law|the grammar carries every source file|swift run Tools grammar"
 )
+
+RESEARCH+=(
+"ablation-faults|tooling recovers from simulated I/O and compiler failures|swift build --product Tools >/dev/null && python3 Checks/ablation_failure.py .build/debug/Tools"
+)
+
+if [ "$MODE_RESEARCH" = "yes" ]; then
+    LAWS=("${RESEARCH[@]}")
+elif [ "$MODE_ONLY" = "ablation" ]; then
+    LAWS=("ablation|the saved deletion experiment matches the current premise list|swift build --product Tools >/dev/null && .build/debug/Tools ablate --self-test && swift package dump-symbol-graph >/dev/null 2>&1 && GRAPH=\$(find .build -name VerificationIsIdentification.symbols.json | head -1) && .build/debug/Tools ablate \"\$GRAPH\" --check")
+fi
+
+if [ -n "$MODE_ONLY" ]; then
+    found=""
+    for entry in "${LAWS[@]}"; do
+        [ "${entry%%|*}" = "$MODE_ONLY" ] && found="yes"
+    done
+    if [ -z "$found" ]; then
+        echo "check.sh: no selected check named $MODE_ONLY; finite experiments use --research-only" >&2
+        exit 2
+    fi
+fi
 
 failed=()
 skipped=()
@@ -78,7 +138,12 @@ if [ ${#failed[@]} -gt 0 ]; then
     exit 1
 fi
 if [ ${#skipped[@]} -gt 0 ]; then
-    echo "✓ EVERY LAW ASKED HOLDS, and ${skipped[*]} waits for a committed tree"
+    echo "◐ PARTIAL: every law asked holds, but ${skipped[*]} was not asked (it reads a committed tree, and yours has work in it)."
+    echo "  This is not a green verdict. Commit or stash the work, then run ./check.sh again."
+    exit 3
+fi
+if [ "$MODE_RESEARCH" = "yes" ]; then
+    echo "✓ RESEARCH EXPERIMENTS REPLAY; this is not a type-proof verdict"
     exit 0
 fi
 echo "✓ ALL LAWS HOLD"

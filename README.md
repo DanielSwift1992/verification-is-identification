@@ -1,5 +1,9 @@
 # Verification Is Identification
 
+For the ongoing VI research, start with the [connected account](Research/VI-whole-picture.md),
+its [source map](Research/VI-source-map.md), and the [continuation context](Research/VI-continuation-context.md).
+These distinguish established constructions, their scope, and the current open work.
+
 **Zero-runtime programming.** The compiler enumerates every state a system can reach. It checks each one against every stated rule. A renderer writes each one to disk as a web page. An action is a link. Nothing is left to run: **the build is the run**.
 
 [![The playground: Swift types on the left, the judged and drawn page on the right.](https://raw.githubusercontent.com/DanielSwift1992/typed-playground/main/screenshot.png)](https://danielswift1992.github.io/typed-playground/)
@@ -12,12 +16,14 @@
 git clone https://github.com/DanielSwift1992/verification-is-identification && cd verification-is-identification && swift build
 ```
 
-The package ships a worked system: a 204-person company, its access policy, and its whole intranet site, all written as types. A green build proves every stated claim: the theory the package is built on, the policy, the company, and every page of the site. A clean build takes 27 seconds on a laptop. An incremental build takes seconds. Four things to try:
+The package ships a worked system: a 204-person company, its access policy, and its whole intranet site, all written as types. A green build checks its concrete and generic constructions against their declared type relations. Each proof derives its conclusion from the source-bound construction. A clean build takes 27 seconds on a laptop. An incremental build takes seconds. Four things to try:
 
 - Break a rule in [`Sources/Organization/System/Policy.swift`](Sources/Organization/System/Policy.swift) and rebuild. The error names what you broke.
-- `swift test` runs the worked demos: two from physics (ice's residual entropy, hydrogen's spectrum) and a task scheduler. It prints "Executed 17 tests". The trailing "0 tests" line is expected: the newer Swift Testing harness finds no `@Test` functions there.
+- `swift test` runs the worked demos: two from physics (ice's residual entropy, hydrogen's spectrum) and a task scheduler. It prints "Executed 19 tests". The trailing "0 tests" line is expected: the newer Swift Testing harness finds no `@Test` functions there.
 - `swift build -Xswiftc -DSHOW_UNSAT` rejects an impossible schedule by name. `-DSHOW_FORBIDDEN` rejects a forbidden spectral line. `-DSHOW_METAMER_SPLIT` splits a metameric pair of lights: the refusal names the infrared slot no eye reads.
 - `swift run Tools site` builds and serves the whole documentation site locally.
+
+For a research proof about acquired knowledge, see [When does a new question require a new observation?](Sources/Examples/Examples.docc/KnowledgeClosure.md). Run `bash Checks/verdict.sh knowledgeclosure` to check one resident acquisition chain, reuse of old memory, a necessary new reading and closure under its declared coordinate exchanges.
 
 ## One rule, three positions
 
@@ -51,7 +57,7 @@ No test names Carol. None is needed. The compiler checks every access the code s
 | A question | a call | a call | a type instantiation |
 | A change of state | mutation | mutation, or a new value | a new type |
 | A decision | at runtime | at runtime | at compile time |
-| A green build means | it parsed | the types line up | every stated claim is proved |
+| A green build means | the configured checks passed | the declared type constraints hold | the written constructions satisfy their declared relations |
 | In production | everything runs | everything runs | nothing runs: the build already was the run |
 
 ## What is happening
@@ -68,7 +74,7 @@ Generating every state should blow up the memory. In ordinary code it would. A s
 
 Two moves solve both.
 
-First, state exists only as a written type. Everything that can vary is declared as a type, so it is finite. The state space is exactly what you stated: small enough to enumerate, check, and render on every build. When exactly one candidate can pass every check, the check does two jobs at once: it approves, and it picks out. Verifying and identifying are the same act: **verification is identification**. The package is named for this theorem. The papers derive it.
+First, the example declares a bounded set of states as types and renders that set. Finiteness comes from that declared bound, not from using types: a generic constructor can describe an infinite family. A generic proof can cover its admitted family without enumerating every member. When exactly one candidate in a declared family passes the test, acceptance also identifies that candidate: **verification is identification**. The papers state the coverage and representation conditions for this result.
 
 Second, change is navigation. A renderer writes every checked state to disk as an address: a page, or a fragment inside a page. An action is a link. Navigation is the only operation. Every transition was checked at build time. The current state is the current address. No variable stores it: the URL does.
 
@@ -92,7 +98,7 @@ Here one step of computation is a find-and-replace. A rule says: find this patte
 
 Loops are therefore outside. A generator runs the loop and writes each result down. Every result is a file. The build checks the whole file.
 
-So everything you can write down, the compiler can decide. It says yes by compiling, or no with the reason. Proof languages like Agda prove a program will terminate, and then the program still runs, on input that arrives later. Here the input is already written, so the answer arrives at build time.
+An answer derived from the written input and type relations is available at build time. A finite source file does not make every semantic question decidable. The worked constructors show what their actual fields force, and the refusal checks attempt nearby incompatible constructions. General mathematical claims and their premises are developed in the papers.
 
 What you cannot write exactly remains outside, yours to handle. The build checks one thing: the system agrees with what you wrote. Whether you wrote the right rule is still your judgment. [Purpose](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/purpose) draws the boundary in full.
 
@@ -108,11 +114,15 @@ The diagram is generated by the build it describes. The layout is computed from 
 
 ## The map
 
-[`Sources/VerificationIsIdentification`](Sources/VerificationIsIdentification) is the theory: 176 protocols, one per claim. The compiler is the proof checker. The theory prints its dependency map, [the atlas](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/atlas/): one row per claim, the most depended-on first.
+[`Sources/VerificationIsIdentification`](Sources/VerificationIsIdentification) is the theory: 198 protocols, one per claim. The compiler is the proof checker. The theory prints its dependency map, [the atlas](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/atlas/): one row per claim, the most depended-on first.
+
+[`Acquisition.swift`](Sources/Examples/Acquisition.swift) expresses recording and evidence refinement through generic constructors. Retained access needs only `AnswerInTrace`: a constrained name for the certificate's existing decoder. Its source and memory must fit, and its entire reading type is already present. No application object or runtime evaluator supplies the answer. [`Checks/Acquisition.swift`](Checks/Acquisition.swift) presents the generic consequences and nearby false constructions.
+
+Run `bash Checks/verdict.sh acquisition` for the acquisition proofs and fourteen named refusals, `./check.sh --only verdict` when shared proof relations change, or `./check.sh` for integration. Mathematical arguments state their premises and derivations in the corpus. Optional experiments and their results belong under `Checks` and `Research`, and run separately with `./check.sh --research-only`. They do not gate publication of the theory. The deletion report is also a separate experiment: `./check.sh --only ablation` checks its recorded premise list when explicitly requested. A normal edit does not require a new deletion sweep.
 
 [`Sources/Organization`](Sources/Organization) is the showcase: 204 people, the access policy, and the whole site as types. Files named `Generated*` are build products. Read the policy, not the generated people. [`Sources/DocumentKit`](Sources/DocumentKit) is the engine: pages, tables, SVG, and text metrics, written in the notation it renders.
 
-The 33 papers derive the theory step by step. They are in [`Papers`](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers) and render into [the documentation site](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification). The [Curve](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/curve) page has the measurement: build time against company size, to 12,800 employees.
+The 35 papers derive the theory step by step. They are in [`Papers`](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers) and render into [the documentation site](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification). The [Curve](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/curve) page has the measurement: build time against company size, to 12,800 employees.
 
 ## The gates
 
@@ -128,7 +138,7 @@ The repository checks itself. Each command is a gate. Green is a pass:
 
 ## Documentation
 
-The whole site is generated from this package. The 33 papers build the theory step by step. Two of them say where it ends: a system that only checks will eventually contain every answer and stop computing, and the distance between two such systems is measurable.
+The whole site is generated from this package. The 35 papers build the theory step by step. Two of them say where it ends: a system that only checks will eventually contain every answer and stop computing, and the distance between two such systems is measurable.
 
 - **[VerificationIsIdentification](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification)** has the framework: the protocols, the papers, [the atlas](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/atlas/).
 - **[Examples](https://danielswift1992.github.io/verification-is-identification/documentation/examples)** applies it: the physics demos and a working solver.

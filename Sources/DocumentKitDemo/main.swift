@@ -8,6 +8,27 @@ import DocumentKit
 
 let catalog = "Sources/DocumentKit/DocumentKit.docc/"
 
+// Only the rendering boundary reads strings. The statement's applicability
+// and covered answer have already been checked in Claim.swift.
+if CommandLine.arguments.dropFirst().first == "claim" {
+    let statement = "# A Covered Visible Answer\n\n" + PublishedVisibleClaim.typeName
+    if CommandLine.arguments.contains("--write") {
+        do {
+            try statement.write(
+                toFile: "Sources/Examples/Examples.docc/CoveredVisibleClaim.md",
+                atomically: true,
+                encoding: .utf8
+            )
+        } catch {
+            FileHandle.standardError.write(Data("claim: cannot write the current statement: \(error)\n".utf8))
+            exit(1)
+        }
+    } else {
+        print(statement, terminator: "")
+    }
+    exit(0)
+}
+
 func write(_ content: String, _ name: String) {
     try? content.write(toFile: catalog + name + ".md", atomically: true, encoding: .utf8)
 }
@@ -17,7 +38,7 @@ func writeSVG(_ content: String, _ name: String) {
 }
 
 guard CommandLine.arguments.contains("render-doc") else {
-    print("usage: swift run DocumentKitDemo render-doc")
+    print("usage: swift run DocumentKitDemo <render-doc|claim>")
     exit(0)
 }
 
@@ -46,8 +67,5 @@ write(VectorTourStationBPage.typeName, "VectorTourStationB")
 write(Landing.typeName, "DocumentKit")
 
 print("rendered 4 pages: DocumentKit + SelfShowingExampleSource + 2 tour stations, 5 Vector-section examples")
-
-
-
 
 

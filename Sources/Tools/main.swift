@@ -13,7 +13,7 @@ import Court
 //              §S22 rules are now this checker's schema, more precisely, per file).
 //   prose      spell Prose.json into Glyph atoms + Open types, run by the ProseGen build plugin.
 //   census     count declarations per target: the "almost no functions" claim, as a number.
-//   voice      the voice-law gate: the prose's residual defect count per scope, held at its pin.
+//   voice      the lexical baseline gate: candidate counts per scope do not exceed authored pins.
 //   site       build the combined DocC archive and serve it locally (`site fast` skips checks).
 //   curve      the saturation instrument: growing universes, timed builds, the growth law
 //              read off the doublings; `--fanout a,b,c N` sweeps the packing, `--judge`

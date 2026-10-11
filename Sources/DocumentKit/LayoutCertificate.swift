@@ -1,16 +1,12 @@
 import VerificationIsIdentification
 
-// THE LAYOUT CERTIFICATE: the span engine instantiates the lattice's own space axioms,
-// and building this file is the check. The engine was not invented beside the theory: a
-// slice is a pair, a magnitude is a count, adjacency shares its cut, and the reading at
-// the edge discretizes. Each claim below is a conformance the compiler verifies, the same
-// door `SpellingGate` is already on: no test runs, the build IS the certificate.
+// These declarations check the layout vocabulary's type relations. Their scope is
+// the encoded endpoint and carrier shapes. The rendering walk, numeric counts and
+// fit checks have separate implementations in Vector.swift and Primitive.swift.
 
-/// Two adjacent slices of one row share their cut: the left leg ends exactly where the
-/// right begins, because the walk hands the second part a prefix that already contains the
-/// first. That shared midpoint is `MetricProperty`'s whole shape, the triangle law's two
-/// legs joined at one point, so the row's geometry satisfies the lattice's metric axiom
-/// by construction, and this witness states it as a conformance, not a sentence.
+/// Constructs two legs sharing the supplied Cut. MetricProperty checks exactly
+/// Left.Right == Right.Left. This establishes the encoded seam, not a triangle
+/// inequality or a proof that a rendering walk supplies these endpoints.
 public enum AdjacentSlices<
     A: Structure,
     Cut: Structure,
@@ -29,26 +25,25 @@ public enum AdjacentSlices<
 //         typealias Right = Paired<U16, U4>          // U8 is not U16: no shared midpoint
 //     }
 
-/// The medium's distances are counts of unit steps: a magnitude presses down to nothing in
-/// finitely many units, so the surface carries an integer-valued distance: `HasDistance`
-/// over the surface as its sigma, the unit step its `Distance`. `SpanPx`, the one
-/// reading, is where that discretization meets the page.
+/// Supplies Surface and a unit-step numeral as coordinates of HasDistance.
+/// No distance function on Surface is constructed here. SpanPx separately reads
+/// fraction counts and rounds them when generating the rendered coordinates.
 public enum SpanDistance<Surface: Structure>: HasDistance {
     public typealias Sigma = Surface
     public typealias Distance = Succ<Zero>
 }
 
-/// Whether a part fits its row is decided, in or out, every time: weights either sum
-/// within the span or the row does not build, a predicate that always halts: `Decidable`,
-/// with the verdict pair on its output side.
+/// Retains Parts and a paired output shape. Decidable requires that pair shape,
+/// not a fit decision. This declaration has no row capacity to compare with Parts.
+/// Rest.count checks underflow when read, and HFlow checks its stretch count when
+/// rendering. Those generation-time checks are not established by this conformance.
 public enum FitVerdict<Parts: Structure>: Pair, Decidable {
     public typealias Left = Parts
     public typealias Right = Paired<Unit, Never>
 }
 
-/// The gate itself: one name with a live instantiation of every claim, so none of the
-/// witnesses above can drift into dead code. A layout engine that stopped satisfying the
-/// space axioms would stop compiling here first.
+/// Concrete instantiations of the checked shapes. Changes to a renderer that
+/// preserve these types need their own verification against the layout contract.
 public enum LayoutGate {
     public typealias Triangle = AdjacentSlices<U4, U8, U16>
     public typealias Metric = SpanDistance<
@@ -68,10 +63,8 @@ public enum LayoutGate {
     >
     public typealias Verdict = FitVerdict<Plus<U4, U8>>
 
-    /// The measured magnitude is in the axis: a slot sized by its own words. `TextWidth`
-    /// is a magnitude like any rung, so `Fixed` takes it directly: the door the text cycle
-    /// opened, certified here as an instantiation, adopted wherever a box should hug its
-    /// words rather than take a uniform extent.
+    /// Checks that the measured-width type can supply a fixed slot. Its numeric
+    /// text measurement and the renderer's use of that value are separate readings.
     public typealias WordsSizeTheSlot = Fixed<TextWidth<MeasuredWord, TextS>, SpanNothing>
 }
 

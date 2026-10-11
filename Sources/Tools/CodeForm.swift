@@ -1,22 +1,15 @@
 import Foundation
 
-// ═══════════════════════════════════════════════════════════════
-// THE FORM DICTIONARY names how generated code is packed, in one place.
-//
-// The content of the generated company never depends on these numbers: every reading is
-// a fold sum over Pair, so any regrouping renders byte-identical pages (proved by diff,
-// DESIGN21 v29–v33). What the numbers set is the PRICE the compiler pays to read the
-// code — chain depth, file parallelism, function emission — the same way Design.swift's
-// rungs set where a drawing's ink falls. The curve tool measures a form, and
-// `generate org N fanout=F` overrides the fanout for one run, so the best value is
-// found by sweep, not by taste.
-// ═══════════════════════════════════════════════════════════════
+// Packing parameters for generated code. Curve records historical comparisons.
+// Reassociation preserves content under the renderer conditions in FiG1.
+// A selected fanout belongs to its workload and environment, without a
+// universal optimum implied by the interface witnesses.
 
 enum CodeForm {
-    /// Members per slice inside a generated body: the chain becomes a tree of this
-    /// fanout, so a reader walks log-fanout levels instead of N members. Sixty-four is
-    /// the compiler's own vote: the sweep at N=3200 read 79s for sixteen, 66s for
-    /// sixty-four, and no gain past it beyond the run-to-run noise (DESIGN21 v35).
+    /// Members per generated slice. The historical DESIGN21 v35 comment
+    /// reports 79 seconds at sixteen and 66 at sixty-four for N=3200, with
+    /// no reported gain beyond that run's variation. This is the selected
+    /// default, not a certified universal or permanent minimum. [FiG3–FiG4]
     static var sliceFanout = 64
 
     /// A body longer than this nests into slices; a shorter one stays flat, because a

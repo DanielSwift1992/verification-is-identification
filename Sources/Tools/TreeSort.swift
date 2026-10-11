@@ -15,7 +15,9 @@ import Foundation
 //   LANDING (VerificationIsIdentification.md ## Topics) = the SPINE (seed, markers, kernel, the axes
 //     and their private theorems, the generators, the floor, the projection,
 //     witnesses). EACH PAPER PAGE (Papers/*.md ## Topics) = a ROUTE: the WEB
-//     bridges it proves. Σ (HasSigma) is the trunk, excluded from intersect counts.
+//     type declarations mapped to its source file. This mapping does not
+//     prove the paper's semantic claims. Σ (HasSigma) is the trunk, excluded
+//     from intersect counts.
 //
 //   ATLAS (Atlas.md + AtlasUnfolded.md) = the same lattice read as a LOAD TABLE:
 //     one row per claim, Carries counting the transitive cone, every count a door
@@ -194,6 +196,8 @@ let PAPER: [String: String] = [
     "Seeing.swift": "seeing_is_encoding", "Ruler.swift": "light_is_a_ruler",
     "Wave.swift": "interference_is_substitution", "Colour.swift": "colour_is_a_quotient",
     "Voice.swift": "a_verb_is_an_act",
+    "Verdict.swift": "verdict_is_invariant",
+    "Transition.swift": "verdict_is_invariant",
     "Projection.swift": "architecture_of_learning_machines",
 ]
 let FLOOR_FILES: Set<String> = ["Spec.swift"]        // -> landing "The floor"
@@ -469,7 +473,7 @@ func paperTopics() -> [String: String] {
     var out: [String: String] = [:]
     for (doc, ps) in by {
         let ordered = ps.sorted { line($0) < line($1) }
-        out[doc] = "## Topics\n\n" + group("Theorems this paper proves", symbols(names(ordered)))
+        out[doc] = "## Topics\n\n" + group("Related type declarations", symbols(names(ordered)))
     }
     return out
 }

@@ -15,4 +15,3 @@ derivation: Examples.CoveredJoin<Examples.CoveredGroup<Examples.CoveredJoin<Exam
 derived operation: Examples.VisibleQuestion
 answer: VerificationIsIdentification.Paired<Examples.Succ<Swift.Never>, Swift.Never>
 ```
-

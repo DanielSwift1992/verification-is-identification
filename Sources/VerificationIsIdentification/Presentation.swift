@@ -42,12 +42,10 @@ public protocol FormIsInvariant: PresentedLaw {
 // ───────────────────────────────────────────────────────────────
 // Recorded, not pinned (the house pattern, beside Basis B8b and Gen GD7).
 //
-// MERGE IS COMMUTATION. Two edits of one record are independent when their
-// written entries are disjoint and no law's support meets both reaches. Then
-// the edits commute into one merged position, the merged verdict is the
-// conjunction of the parts' verdicts carried whole, and the judge of an edit
-// re-reads exactly the touched laws. The commutation is a statement about two
-// trajectories of one record, and the lattice admits no trajectory as a value
-// on an axis, so the claim is recorded here, beside the edge judgement its
-// lemma leans on. [MiC]
+// MERGE IS COMMUTATION. Preserved read inputs and disjoint writes suffice for
+// commuting edits. Under separate law-support conditions, the merge inherits
+// each applicable group of verdicts. The two complete branch verdicts need
+// not already be green. Locality bounds sufficient rechecks, not necessary
+// work. IndependentReadingOrders constructs the disjoint pair case with
+// actual applications. The general finite-interface proof is in MiC1-MiC4.
 // ───────────────────────────────────────────────────────────────

@@ -14,14 +14,11 @@
 // the endpoint of every function.
 // ═══════════════════════════════════════════════════════
 
-/// This is convergence to one: all distinctions resolve. `|S| = 1`.
-///
-/// The fixpoint of elimination, shrunk by ``Monotone`` to a point at
-/// ``Null``. An intersect of the two, not a rename of either. [V=I R4]
-///
-/// > Note: This is what verification delivers: a solution set of size one.
-/// > Identification *is* this collapse. ``IdentityCollapse`` names the same point
-/// > from the solution-set side.
+/// A fixed point of the addressed elimination relation. The two sides
+/// agree at a type T whose own Left is T: Left == Right and Left.Left == Left.
+/// This constrains projections, not the cardinality of a candidate domain.
+/// Multiple nominal conformers can satisfy it. Relating this coordinate
+/// to R4 requires an explicit candidate interpretation. [V=I U1–U2]
 public protocol Unique: Monotone, Null {}
 
 /// This is accumulation: after ⊇ before. It only grows.
@@ -29,6 +26,15 @@ public protocol Unique: Monotone, Null {}
 /// `Right` unfolds to contain `Left`: `Right = (Left, delta)`, so the later
 /// state contains the earlier whole plus an increment. The relation, not a tag:
 /// strip the `where` and ``Permanent`` collapses into its mirror ``Monotone``. [V=I I3]
+/// The represented object must be specified: retaining a history representation
+/// does not establish recovery from its current-state projection. Nor does
+/// this relation supply an internal instrument that reads the retained axis.
+/// Matter M50 separates these obligations within the same whole.
+/// Recoverable rearrangement can instead be expressed by ``ReadingFactors``
+/// without this literal append layout. M54 derives joint recovery from a
+/// complete set of local temporal witnesses.
+/// Strict growth additionally needs a well-founded record interpretation.
+/// M55 exhibits an admitted recursive record with equal endpoints.
 public protocol Permanent: Pair
 where Right: Pair, Right.Left == Left {}
 
@@ -40,34 +46,34 @@ where Right: Pair, Right.Left == Left {}
 public protocol Monotone: Pair
 where Left: Pair, Left.Left == Right {}
 
-/// Decision: membership is computable, in or out, every time.
+/// A paired output shape used for a decision interface. [EiF Thm 3]
 ///
-/// The output side branches two ways: `Right` is a `Pair`, the verdict
-/// `(in \| out)`. A predicate that always halts with one of two answers. [EiF Thm 3]
+/// The checked constraint supplies `Right: Pair`. It does not restrict that
+/// pair to two verdicts or establish a terminating membership procedure.
+/// Those properties require the actual reading law and its declared domain.
 public protocol Decidable: Pair
 where Right: Pair {}
 
-/// The triangle inequality is in force: `d(a,c) ≤ d(a,b) + d(b,c)`.
+/// Two addressed legs share one endpoint. [DiC G2]
 ///
-/// Two legs share a midpoint: `Left = (a,b)`, `Right = (b,c)`, joined where
-/// `Left.Right == Right.Left`. The shared point `b` is what makes the detour
-/// cost at least the direct path: this is what makes a difference a distance. [DiC G2]
+/// `Left = (a,b)` and `Right = (b,c)` are joined by their common b.
+/// This protocol has no distance values, addition or ordering relation.
+/// The triangle inequality belongs to G2's specified symmetric-difference
+/// metric. This endpoint constraint proves neither that inequality nor equal legs.
 public protocol MetricProperty: Pair
 where Left: Pair, Right: Pair, Left.Right == Right.Left {}
 
-/// Distance takes integer values only. Discretization carries the continuous
-/// onto the lattice.
-///
-/// A chain: the predecessor `Right` is again a count, and the floor is ``Null``
-/// (zero). Every value presses down to that floor in finitely many unit steps,
-/// so distance is a count of steps, a cost. [DiC G2c]
+/// A recursive Right axis. A finite expression in the specified Never/Succ
+/// grammar can interpret it as a unary count. This open protocol itself
+/// supplies no terminal, unit-step constraint on Left, or finite depth.
+/// CyclicNumeral in Checks/FiniteBoundary.swift is an admitted cycle. [EiF EF10]
 public protocol IntegerValued: Pair
 where Right: IntegerValued {}
 
-/// This is computable from structure alone: input maps to one determined value.
-///
-/// The output side settles: `Right` is ``Null``, collapsed to a point. One
-/// input, one answer, fixed by the structure. [EiF C3]
+/// The output carries equality of its two addressed sides: Right is Null.
+/// This constrains one represented result. It supplies neither a reading
+/// law from Left nor agreement between separate results with the same input.
+/// Actual application constructors must establish that dependence. [EiF EF10]
 public protocol Measurable: Pair
 where Right: Null {}
 
@@ -106,8 +112,9 @@ public protocol HasSigma {
 
 /// This names the solution set: the candidates that survive verification.
 ///
-/// A sub-space of ``HasSigma``. Verification shrinks it. ``IdentityCollapse`` pins it
-/// to what identification finds, and ``Unique`` is the case where it has one.
+/// A coordinate beside ``HasSigma``. Its representation must specify what
+/// counts as a candidate and as membership. ``Unique`` constrains this type's
+/// projections, so a singleton interpretation needs additional support. [V=I U1]
 public protocol HasSolutions: HasSigma {
     associatedtype SolutionSet
 }
@@ -141,6 +148,9 @@ public protocol HasDistance: HasSigma {
 ///
 /// Perspective is a choice of encoding, and the encoding fixes what is reachable:
 /// it bounds the scope of every search the agent can run.
+/// A declaration certificate applies to behavior through an established
+/// relation to its implementation. This coordinate alone supplies no such
+/// relation or acquisition. [SiG SG3]
 public protocol HasEncoding: HasSigma {
     associatedtype Encoding
 }
@@ -175,23 +185,15 @@ public protocol HasSaturation: HasLibrary {
 // ═══════════════════════════════════════════════════════
 // V=I at the type level.
 //
-// Theorem 2 is Null applied to the solution set:
-//   Left (what verification examines)
-//   == SolutionSet
-//   == Right (what identification finds).
+// This interface equates Left == SolutionSet == Right.
 //
-// Three free axes collapsed to one. The compiler
-// checking this conformance IS the V=I loop.
+// The compiler checks these axes. Theorem 2 additionally needs
+// membership, a singleton interpretation and target adequacy.
 // ═══════════════════════════════════════════════════════
 
-/// Verification is identification: the theorem, at the type level.
-///
-/// ``Null`` applied to the solution set: `Left` (what verification examines)
-/// `== SolutionSet == Right` (what identification finds). Three free axes
-/// collapsed to one. [V=I Thm 2]
-///
-/// > Important: The compiler checking this conformance *is* the V=I loop. When
-/// > the constraint is met, verification and identification have been proven the
-/// > same act, and ``Unique`` is the point they meet.
+/// Identifies three represented axes: Left == SolutionSet == Right.
+/// The compiler verifies those equalities. They do not themselves bind a
+/// passing candidate, its membership evidence or the intended target to
+/// these axes. Theorem 2 needs those premises and a singleton domain. [V=I U2]
 public protocol IdentityCollapse: Null, HasSolutions
 where Left == SolutionSet {}

@@ -30,14 +30,13 @@ public protocol HasLaw: HasSigma {
 /// pin.) [Law LT2]
 public protocol LawLivesInSigma: HasLaw, DistanceOnStructures {}
 
-/// The law is the fixed target. The state is free to move. When the target is relocated
-/// from state to law, identifying f becomes an ordinary V=I game: observed
-/// transitions are examples, Theorems 1–5 are in force unchanged (no theorem reads
-/// WHEN the examples arrive). The state violates I2. The law does not. This is
-/// the central move of the paper. [Law LT3, LT4]
+/// A fixed law on an adequate state/action representation can be the target
+/// while states change. Identification still requires a declared family
+/// containing the actual law and evidence that separates it. A fixed whole
+/// law need not descend to an autonomous local one. [Law LT3–LT4, Matter M70]
 ///
-/// > Note: One relocation lifts the entire dynamics stack. ``PlanningIsNavigation``,
-/// > ``AmbiguityIsExperiment``, and ``LawfulDrift`` all build on a fixed target.
+/// > Note: ``PlanningIsNavigation``, ``AmbiguityIsExperiment`` and
+/// > ``LawfulDrift`` retain their own acquisition and availability premises.
 public protocol LawIsTarget: LawLivesInSigma, PassIsIdentification {}
 
 /// Exploration is the `|S|>1` diagnostic read back as an experiment plan. The
@@ -46,10 +45,10 @@ public protocol LawIsTarget: LawLivesInSigma, PassIsIdentification {}
 /// dynamics-level instance of "the failure names its own cure". [Law LT5]
 public protocol AmbiguityIsExperiment: LawIsTarget, HolesCarryAddresses {}
 
-/// Behavior is a structure: a trajectory is a finite tree in Σ unfolding over
-/// discrete ticks, with a norm ‖T‖ and a distance W(T₁,T₂). Behavioral
-/// inertia, the cost of redirecting a plan mid-flight, is structural inertia at
-/// the trajectory scale: ≥ W ticks, one distinction per tick. [Law LT7, LT8]
+/// A finite encoded trajectory has a norm and edit distance. Its edit count
+/// bounds ticks only under a one-edit-per-tick interface. Compatible rounds
+/// have a different count in G14a. This intersection does not determine
+/// execution time or the cost of redirecting an actual process. [Law LT7–LT8]
 public protocol BehaviorIsStructure: DistanceOnStructures, HasTime {}
 
 /// Planning is navigation. Under the certified ``LawIsTarget``, the state space
@@ -71,16 +70,15 @@ public protocol PlanningIsNavigation: LawIsTarget, NavigationInevitable {}
 /// primitives with no new axioms. [Law LT13]
 public protocol MotorSkillsAreStrategies: PlanningIsNavigation, SkillsAreBalls {}
 
-/// Any task in a finite deterministic environment decomposes into IDENTIFY the
-/// law (a V=I game) → PLAN (navigation, offline) → EXECUTE (prediction =
-/// execution). Each stage is certified or returns an addressed failure that
-/// re-enters with strictly more information. The loop is not silently wrong,
-/// only explicitly incomplete, with the gap named. [Law LT14]
+/// Identify, plan and execute form one sufficient route under the actual
+/// acquisition, model and navigation premises. A contradicted prediction can
+/// refute the candidate family or its continued interpretation. This
+/// intersection alone does not detect every such failure. [Law LT14]
 public protocol InteractiveDecomposition: AmbiguityIsExperiment, MotorSkillsAreStrategies {}
 
-/// When the law itself drifts but lawfully (parameterized by a slow
-/// deterministic variable), the META-law is the fixed target, and the whole
-/// construction is in force one level up: recursion, the framework's standing move.
-/// A world is learnable iff it is lawful at some finite level. On an unlawful world
-/// the diagnostic reports `|S|>1` persisting, not a confident wrong answer. [Law LT15]
+/// A changing local rule can have a fixed law on a larger internal state.
+/// That larger law can be a target under its own model and access premises.
+/// A fixed finite level alone supplies neither a bounded candidate family nor
+/// attainable distinguishing evidence. This open intersection does not prove
+/// that a learner can reach or identify such a level. [Law LT15, Matter M70]
 public protocol LawfulDrift: LawIsTarget, Tower {}

@@ -7,43 +7,43 @@
 // changes from s to t is W(s,t) = |D(s) △ D(t)|, a TRUE metric on Σ (G2),
 // integer-valued, with NULL as origin. Binary COMPARE is its zero test, and
 // the gradient was always inside the operation, only asked for its sign.
-// W × kT·ln2 is the work of re-formation: distance IS cost.
+// W counts edits. A physical energy conversion needs an implementation model.
 //
 // Pure types (§0′). A gradient layer threading Distance, Cost, Tower,
 // Resistance. Internal instances (§6 Peano/grid) and §9–§10 omitted as
 // before. [DiC]
 // ═══════════════════════════════════════════════════════════════
 
-/// W(s,t) = |D(s) △ D(t)| is a TRUE metric on Σ itself: the geometry of forms,
-/// sharper than the geometry of perspectives. Distance is a ``MetricProperty``
-/// over a finite structure space (``StructuresFinite``): W=0 forces s=t (G1: D is
-/// a bijection), and the count is integer-valued (G2b). This sharpens DiD S7, which
-/// gave only a pseudometric on agents. [DiC G2]
+/// Names a distance axis and two legs with a shared endpoint over structures.
+/// G2 proves that the specified W(s,t) = |D(s) △ D(t)| is a metric, using
+/// G1's injective address-set representation. This declaration does not bind
+/// an arbitrary Distance conformer to W or encode its triangle inequality.
+/// That binding remains a type-level proof obligation. [DiC G2]
 ///
 /// > Note: This is the central type of the gradient layer: every other protocol
-/// > here threads through ``HasDistance``. The metric exists the moment the
-/// > structures are finite and distinctions are countable.
+/// > here threads through ``HasDistance``. Finitude and a count do not alone
+/// > identify this axis with the particular metric proved in G2.
 public protocol DistanceOnStructures: HasDistance, StructuresFinite
 where Distance: MetricProperty {}
 
-/// The minimal work to transform s into t is W(s,t) × kT·ln2: distance *is* cost,
-/// two readings of one integer count. The ``DistanceOnStructures`` metric and the
-/// thermodynamic ``HasCost`` are the same quantity. The conclusion is pinned (§T)
-/// as a collapse: `where Distance == Cost`. This is the title claim. [DiC G2c]
+/// An implementation chooses to charge the edit count as ``HasCost``.
+/// The equality is a declared identification of discrete axes, not a proof
+/// of a joule conversion or a Landauer charge for every edit. It is pinned
+/// as `where Distance == Cost` under that cost model. [DiC G2c]
 public protocol DistanceIsCost: DistanceOnStructures, HasCost
 where Distance == Cost {}
 
-/// ``Null`` is the unique structure of norm 0: the only form that costs nothing.
-/// (Σ, W, ``Null``) is a pointed metric space over ``DistanceOnStructures``:
-/// distance from the origin is the norm is the cost, and the origin is the
-/// boundary. [DiC G1b]
+/// Combines the distance interface with equality of this Pair's own sides.
+/// G1b identifies the syntax leaf NULL as the unique zero-norm finite tree.
+/// A Null conformance alone does not identify its carrier with that leaf.
+/// G2f binds zero distance to actual endpoints in its constructor grammar.
 public protocol NullIsOrigin: DistanceOnStructures, Null {}
 
-/// One traversal yields three readings of COMPARE: Z (the sign, 1 bit: is W=0?),
-/// X (one frontier address: where to repair), Δ (the full magnitude W). The
-/// ``Decidable`` COMPARE on a ``DistanceOnStructures`` space is the sign of the
-/// gradient. The magnitude was always present, priced above the default budget.
-/// [DiC G4]
+/// Names the decision interface beside the distance axis. G4 separates a
+/// zero question, a frontier address and the magnitude of W. G2f constructs
+/// the zero relation directly from source-bound partitions, without reading
+/// a numerical cardinality first. This intersection alone provides neither
+/// that construction nor a terminating comparator. [DiC G4]
 public protocol GradientInComparison: DistanceOnStructures, Decidable {}
 
 /// Ordering proposals by W (nearest first) tunes efficiency while adding zero
@@ -52,29 +52,27 @@ public protocol GradientInComparison: DistanceOnStructures, Decidable {}
 /// The gate is untouched (Thm 2: correctness from verification, not search). [DiC G9]
 public protocol OrderByDistance: DistanceOnStructures, OrderIsOnlyFreedom {}
 
-/// Compilation passes iff loss = 0: the gate is the zero of the W-loss. Descent
-/// reduces loss (proposes, fallible: the agent). ``PassImpliesMembership``
-/// certifies at zero on the ``DistanceOnStructures`` metric (exact, permanent: the
-/// system). Y-axis and Z-axis of one COMPARE. [DiC G13]
+/// Names membership beside the distance axis. G13 proves zero loss exactly
+/// when every actual output equals its declared target, for a fixed finite
+/// family of defined applications. This protocol alone binds neither those
+/// applications nor their coverage. G2f and G2h supply scalar-free zero and
+/// strict-progress constructions for finite output trees. [DiC G13]
 public protocol GateIsZeroOfLoss: PassImpliesMembership, DistanceOnStructures {}
 
-/// Cover the rule space by N(r) W-balls. After N(r)·H_{N(r)} tasks each is
-/// anchored, and every task then resolves within 2r of an anchor. Generalization
-/// is ``LibrarySaturates`` measured at radius r on the ``DistanceOnStructures``
-/// metric: at r=0 this *is* the Saturation Theorem (balls are points), and
-/// memoization is its degenerate case. [DiC G11]
+/// G11 bounds covered rules within 2r of retained anchors in the same balls.
+/// Recovery needs a suitable dispatcher or search over all anchored balls.
+/// Cover time depends on the arrival law, as in Intelligence §6. This
+/// interface alone constructs neither the cover nor its anchors. [DiC G11]
 public protocol BallSaturation: LibrarySaturates, DistanceOnStructures {}
 
-/// The ``Tower``'s compression premise (M16, K_{N+1}<K_N, once underived) becomes
-/// a MEASURABLE criterion on the ``DistanceOnStructures`` metric: compression at
-/// level N iff the library is r-compressible, N_{L_N}(r) < K_N. The tower halts at
-/// the first metrically uniform library, a flat W-matrix is the shape of "nothing
-/// to learn". [DiC G12]
+/// Names a tower beside the distance axis. G12 proves the minimum number
+/// of representatives under a specified approximation error. An arbitrary
+/// tower need not implement that assignment, and exact generic reuse
+/// does not require a nontrivial metric grouping.
 public protocol CompressionCriterion: Tower, DistanceOnStructures {}
 
-/// Resistance acquires magnitude: it is W(candidate, target), the minimal work
-/// remaining. The ``Resistant`` relation (Matter §1) gains direction on the
-/// ``DistanceOnStructures`` metric: "the agent must yield" becomes yield along the
-/// steepest descent the frontier reveals. Inertia is the same quantity at the
-/// library scale. [DiC G15]
+/// Names resistance beside a distance axis. G15 distinguishes the edit
+/// count from duration, rule-discovery cost and physical response. Actual
+/// transitions and resource laws must bind those interpretations. G2h can
+/// certify addressed progress without choosing a steepest step. [DiC G15]
 public protocol ResistanceHasMagnitude: Resistant, DistanceOnStructures {}

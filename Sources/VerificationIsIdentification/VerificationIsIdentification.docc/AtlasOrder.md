@@ -28,6 +28,7 @@ answers where to start reading.
 
 - ``Close``, after ``Structure``
 - ``HasCache``, after ``HasSigma``
+- ``HasCandidates``, after ``HasSigma``
 - ``HasCost``, after ``HasSigma``
 - ``HasDistance``, after ``HasSigma``
 - ``HasEfficiency``, after ``HasSigma``
@@ -37,61 +38,75 @@ answers where to start reading.
 - ``HasLibrary``, after ``HasSigma``
 - ``HasPath``, after ``HasSigma``
 - ``HasSolutions``, after ``HasSigma``
+- ``HasStrategy``, after ``HasSigma``
 - ``HasTime``, after ``HasSigma``
 - ``Open``, after ``Structure``
 
 ### Step 2
 
 - ``CostIsPathLength``, after ``HasDistance``, ``HasPath``
-- ``CostReadsGauge``, after ``HasDistance``, ``HasGauge``
 - ``Digit``, after ``Open``
 - ``DistanceIsMetric``, after ``HasCache``, ``HasDistance``
 - ``EmissionAccumulates``, after ``HasPath``
-- ``EncodingForgets``, after ``HasEncoding``
-- ``EncodingInvents``, after ``HasEncoding``
-- ``FaithfulEncoding``, after ``HasEncoding``
 - ``HasAlpha``, after ``HasDistance``
 - ``HasBasis``, after ``HasLibrary``
 - ``HasCompositionalNorm``, after ``HasDistance``
 - ``HasGrammar``, after ``HasEncoding``
 - ``HasSaturation``, after ``HasLibrary``
+- ``HasVerdict``, after ``HasEncoding``
 - ``Pair``, after ``Open``
+- ``StrategyBecomesTarget``, after ``HasStrategy``
 
 ### Step 3
 
-- ``AmbiguityIsSymmetry``, after ``EncodingForgets``
-- ``ColourIsQuotient``, after ``EncodingForgets``
+- ``ComparedReadings``, after ``Pair``
+- ``CoverageMatchesDeclaration``, after ``Pair``
 - ``Decidable``, after ``Pair``
+- ``EvidenceRefinesQuestion``, after ``Pair``
 - ``IntegerValued``, after ``Pair``
-- ``LinearArbiter``, after ``CostIsPathLength``
 - ``Measurable``, after ``Pair``
 - ``MetricProperty``, after ``Pair``
 - ``Monotone``, after ``Pair``
 - ``Null``, after ``Pair``
+- ``ObservationTrace``, after ``Pair``
+- ``ObservedTransition``, after ``HasEncoding``, ``Pair``
 - ``OperationsClosed``, after ``Pair``
 - ``Permanent``, after ``Pair``
+- ``PredicateReading``, after ``HasVerdict``, ``Pair``
 - ``ReachIsPath``, after ``HasBasis``, ``HasPath``
-- ``SeparatorIdentifies``, after ``EncodingForgets``
+- ``SharedDeclaredTick``, after ``Pair``
+- ``SharedDecoder``, after ``Pair``
 - ``SpaceFromDifference``, after ``DistanceIsMetric``, ``HasGrammar``
 - ``StructuresFinite``, after ``HasSigma``, ``Pair``
-- ``VerdictIsInvariant``, after ``EncodingForgets``
+- ``VerdictReorders``, after ``Pair``
+- ``VerdictRetainsLeft``, after ``Pair``
+- ``VerdictRetainsRight``, after ``Pair``
 
 ### Step 4
 
 - ``CachePermanent``, after ``HasCache``, ``OperationsClosed``, ``StructuresFinite``
+- ``CandidateReading``, after ``HasCandidates``, ``PredicateReading``
+- ``CommutingTransition``, after ``ObservedTransition``
 - ``ComparisonsAreBounded``, after ``StructuresFinite``
+- ``CostReadsGauge``, after ``HasDistance``, ``HasGauge``, ``PredicateReading``
 - ``DistanceOnStructures``, after ``HasDistance``, ``StructuresFinite``
+- ``EmptyObservationTrace``, after ``ObservationTrace``
+- ``EncodingInvents``, after ``ComparedReadings``, ``HasEncoding``
 - ``EqualityDecidable``, after ``StructuresFinite``
-- ``GamutIsCone``, after ``ColourIsQuotient``
+- ``ExtendedObservationTrace``, after ``ObservationTrace``
 - ``IdentityCollapse``, after ``HasSolutions``, ``Null``
 - ``InvalidStepFolds``, after ``HasPath``, ``Null``
 - ``NoSelfReference``, after ``OperationsClosed``
 - ``QualitiesAreFinite``, after ``HasEncoding``, ``IntegerValued``
+- ``RecordedAnswerReading``, after ``PredicateReading``
+- ``RefinementPreservesAnswer``, after ``EvidenceRefinesQuestion``
 - ``Resistant``, after ``Decidable``, ``HasDistance``
 - ``ResultDeterministic``, after ``OperationsClosed``
+- ``RetainedReadingRecord``, after ``Permanent``
 - ``RevealsNotCreates``, after ``Measurable``, ``OperationsClosed``
 - ``StepsTerminate``, after ``StructuresFinite``
 - ``Unique``, after ``Monotone``, ``Null``
+- ``VerdictIsInvariant``, after ``ComparedReadings``, ``HasVerdict``
 
 ### Step 5
 
@@ -99,11 +114,13 @@ answers where to start reading.
 - ``AxesCoOriented``, after ``CachePermanent``, ``ResultDeterministic``
 - ``BehaviorIsStructure``, after ``DistanceOnStructures``, ``HasTime``
 - ``CacheOnlyGrows``, after ``CachePermanent``, ``StepsTerminate``
+- ``CandidateGroupReading``, after ``CandidateReading``
+- ``CandidateLeafReading``, after ``CandidateReading``
 - ``CandidatesOnlyLeave``, after ``CachePermanent``, ``HasSolutions``
 - ``CommunicationBounded``, after ``ComparisonsAreBounded``, ``HasCache``
-- ``ContentIsGaugeInvariant``, after ``HasEncoding``, ``HasGauge``, ``RevealsNotCreates``
 - ``DiagnosticsAccumulate``, after ``CachePermanent``, ``ResultDeterministic``
 - ``DistanceIsCost``, after ``DistanceOnStructures``, ``HasCost``
+- ``EncodingForgets``, after ``VerdictIsInvariant``
 - ``ExactlyOneSurvives``, after ``EqualityDecidable``, ``HasSolutions``
 - ``GradientInComparison``, after ``Decidable``, ``DistanceOnStructures``
 - ``KnowledgeAccumulates``, after ``CachePermanent``, ``HasLibrary``
@@ -113,25 +130,29 @@ answers where to start reading.
 - ``NullIsOrigin``, after ``DistanceOnStructures``, ``Null``
 - ``PipelineTotal``, after ``StepsTerminate``
 - ``PresentedLaw``, after ``DistanceOnStructures``, ``HasLaw``
+- ``ReadingFactors``, after ``VerdictIsInvariant``
 - ``ResistanceHasMagnitude``, after ``DistanceOnStructures``, ``Resistant``
 - ``ResultsIrreversible``, after ``CachePermanent``, ``EqualityDecidable``
 - ``SaturationIncorruptible``, after ``CachePermanent``
 - ``ScopeBoundedByEncoding``, after ``ResultDeterministic``
+- ``VerdictCoversBranches``, after ``HasCandidates``, ``VerdictIsInvariant``
 
 ### Step 6
 
+- ``AcquiresAnswer``, after ``ReadingFactors``
 - ``BallSaturation``, after ``DistanceOnStructures``, ``LibrarySaturates``
 - ``BasisIsFinite``, after ``HasBasis``, ``LibrarySaturates``
+- ``ColourIsQuotient``, after ``EncodingForgets``
+- ``ContentIsGaugeInvariant``, after ``HasGauge``, ``ReadingFactors``
 - ``DiscoveryIsRevelation``, after ``ExactlyOneSurvives``, ``LibrarySaturates``
 - ``EdgesCarryTheJudgement``, after ``BehaviorIsStructure``, ``PresentedLaw``
 - ``EmissionIsAutoregressive``, after ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding``
 - ``EncodingSelectionSaturates``, after ``HasEncoding``, ``LibrarySaturates``
+- ``FaithfulEncoding``, after ``ReadingFactors``
 - ``FormIsInvariant``, after ``PresentedLaw``
-- ``GaugeCollapse``, after ``ContentIsGaugeInvariant``, ``LinearArbiter``
 - ``GreedyDescentTerminates``, after ``AnchorGraph``, ``Monotone``
 - ``HolesCarryAddresses``, after ``AnchorGraph``, ``Decidable``
 - ``IntelligenceRises``, after ``HasEfficiency``, ``LibrarySaturates``
-- ``InterferenceIsSubstitution``, after ``PresentedLaw``
 - ``LiquidPhase``, after ``KnowledgeAccumulates``, ``Monotone``
 - ``NoInverse``, after ``KnowledgeAccumulates``
 - ``OrderIsOnlyFreedom``, after ``AxesCoOriented``, ``IdentityCollapse``
@@ -140,6 +161,7 @@ answers where to start reading.
 - ``PreconditionsGuaranteePass``, after ``ExactlyOneSurvives``
 - ``RulesCompose``, after ``KnowledgeAccumulates``
 - ``SaturationDynamics``, after ``ComparisonsAreBounded``, ``LibrarySaturates``
+- ``SeparatorIdentifies``, after ``EncodingForgets``
 - ``StandardIsType``, after ``PresentedLaw``
 - ``SystemCrystallizes``, after ``CandidatesOnlyLeave``, ``MembershipDecidable``, ``ResultsIrreversible``
 - ``Universality``, after ``ExactlyOneSurvives``, ``HasEncoding``
@@ -149,11 +171,11 @@ answers where to start reading.
 - ``AtomBasis``, after ``BasisIsFinite``, ``HasCompositionalNorm``, ``RulesCompose``
 - ``Converges``, after ``NoInverse``, ``SystemCrystallizes``
 - ``CrystallizationFront``, after ``DistanceOnStructures``, ``LiquidPhase``, ``NoInverse``
-- ``DarknessIsNormalForm``, after ``InterferenceIsSubstitution``
 - ``DiscriminatorAndGenerator``, after ``OrderIsOnlyFreedom``, ``PassImpliesMembership``
 - ``ErasureIsRecession``, after ``EmissionAccumulates``, ``NoInverse``
 - ``GateIsZeroOfLoss``, after ``DistanceOnStructures``, ``PassImpliesMembership``
 - ``GatedConstruction``, after ``EmissionAccumulates``, ``SystemCrystallizes``
+- ``GaugeCollapse``, after ``ContentIsGaugeInvariant``, ``CostIsPathLength``
 - ``GaugeFixing``, after ``CostReadsGauge``, ``SystemCrystallizes``
 - ``InterferenceIsIntelligence``, after ``IntelligenceRises``, ``OrderIsOnlyFreedom``
 - ``LibraryCrystallizes``, after ``LibrarySaturates``, ``SystemCrystallizes``

@@ -1,51 +1,51 @@
 // ═══════════════════════════════════════════════════════════════
 // Play Is Proof (Self-Play).
 //
-// Saturation (IiI §3) needs a stream the world may not supply. This paper
-// removes the dependence: given a finite generating basis, the agent makes
-// its stream: apply a certified rule to fresh inputs (the label is
-// EXECUTED, not labelled), pose to a solver, gate the answer. Every
-// self-made label is f* (Theorem 2): no label noise, the endpoint is
-// basis-determined, not play-determined. The training signal is not a
-// statistic of outcomes: it is a PROOF. The data problem dissolves into a
-// basis and a gate.
+// Self-play can make examples exact for a known generated rule. Identifying
+// that rule needs compatible representation, faithful evaluation and R4.
+// Such examples do not alone identify an unknown empirical law. PP19
+// separates generated information from new access within the closed whole.
+// PP20 gives reversible reuse with a complete finite clock and cost model.
+// Coverage still needs a declared class set, a successful solver and visits.
+// A finite generating basis does not itself make the full closure finite.
+// The data and computational obligations therefore remain distinct.
 //
 // Pure types (§0′). The capstone of the numbered series: it composes the
-// whole stack, and it names the floor (PP15): the comparison the agent
-// runs on is given, certified by no game. [Play]
+// whole stack. PP15 bounds universal Boolean evaluation; PP21 constructs
+// relative inspection with the reference and checker inside the whole. [Play]
 // ═══════════════════════════════════════════════════════════════
 
-/// A certified rule f* ∈ L, applied to any input, yields a task whose label is
-/// executed, not assumed. The gate certifies it: PASS gives f* = g
-/// (Theorem 2). The library is a SOURCE of certified-labelled tasks, not only a
-/// sink. The label is a proof. The poser is an oracle on its draw.
-/// [Play PP1-2]
+/// A known total rule can supply exact examples on its declared input domain.
+/// Identification of its draw requires representability, faithful evaluation
+/// and R4. This intersection alone supplies neither an evaluator nor evidence
+/// that the generated target equals an unmeasured actual law.
+/// [Play PP1-2, PP19]
 public protocol CertifiedRuleGenerates: PassIsIdentification, KnowledgeAccumulates {}
 
-/// The ambiguity `|S|>1` names the discriminating input: the poser, knowing g,
-/// generates it and eliminates the survivors (LT5 lifted from state-action to
-/// example-input space). cert(g), the minimum discriminating set, is the floor,
-/// approached by frontier-targeting. The failure names the next datum.
-/// [Play PP3-4]
+/// Finite distinct extensional candidates have a separating input. Finding it
+/// and reading the target there are separate capabilities. A poser knowing g
+/// can evaluate its draw, but an unknown actual law may require another
+/// internal measurement. This intersection does not construct that query.
+/// [Play PP3-4, PP19]
 public protocol AmbiguityNamesInput: CertifiedRuleGenerates, HolesCarryAddresses {}
 
-/// A directed poser saturates the closure with no external data and no critical
-/// slowing: coverage is CHOSEN, not sampled. Any two self-players over the same
-/// basis reach the SAME certified basis: the endpoint is basis-determined, not
-/// play-determined. The whole guarantee (no noise, fixed endpoint) is exactly
-/// I3 plus the gate, and fails without either. This is the central result of the
-/// paper. [Play PP5-7]
+/// A declared basis and a generation axis. Coverage needs a finite class set
+/// or a separate generative completeness argument, actual visits and successful
+/// certification. Retention alone does not provide them. Raw endpoints need
+/// not coincide even when their rule projections do. Generated evidence is
+/// exact for its own task under the evaluation and representation premises.
+/// [Play PP5-7, PP19]
 ///
-/// > Note: The agent makes its stream, so saturation no longer waits on the
-/// > world. ``TowerSelfPlay`` realises the poser/solver pair in time, present
-/// > agent against past crystal.
+/// > Note: ``TowerSelfPlay`` names a temporal poser/solver relation. Neither
+/// > this relation nor generation supplies an unmeasured law. The full
+/// > information inputs and observation window must be stated.
 public protocol SelfPlaySaturates: AmbiguityNamesInput, BasisIsFinite {}
 
-/// One agent is closed under its encoding: it cannot self-generate a
-/// distinction its lens collapses (its view *is* its encoding). The only
-/// irreducible novelty is a SECOND encoding that resolves what the first
-/// collapses. Self-play is bounded self-modification: within the grammar, never
-/// to the grammar above. [Play PP8, PP14]
+/// Combining available readings refines their common observation partition
+/// only when the added reading separates an old fiber. Recoding the same
+/// complete inputs cannot create such a split. A new correlated internal
+/// source can, without a second body or anything outside the whole.
+/// [Play PP8, PP14, PP19]
 public protocol SecondEncodingIsNovelty: SelfPlaySaturates, ScopeBoundedByEncoding {}
 
 /// A single agent climbing the tower self-plays against its crystal: at
@@ -54,31 +54,36 @@ public protocol SecondEncodingIsNovelty: SelfPlaySaturates, ScopeBoundedByEncodi
 /// past-crystal. Temporal self-play needs no second body. [Play PP9]
 public protocol TowerSelfPlay: SelfPlaySaturates, Ignites {}
 
-/// When a system learns by playing against itself, each thing it certifies is a proof,
-/// and the pile of proofs is the learner, so learning and proving are one activity.
-/// Every input is something already there, brought into the record by a comparison
-/// rather than imported from outside. This is the capstone of the numbered series.
+/// A sound gate certifies a generated example relative to its rule, encoding
+/// and evaluation premises. Preserving that certificate and making it
+/// accessible require the stated memory and reading conditions. The same
+/// whole may contain both the generated target and its checking machinery.
 ///
-/// Mechanically, the training signal is a gate-certificate, proof accumulates, and the
-/// accumulation is the agent, all on one closed substrate: Σ with the append-only
-/// journal G, revealed by COMPARE, not imported. [Play PP10]
+/// This protocol composes the declared tower and revelation relations.
+/// Their intersection alone supplies neither physical implementation fidelity
+/// nor new evidence about an unmeasured target. [Play PP19, PP21]
 ///
-/// > Note: A decidable gate and a self-grounded one are mutually exclusive
-/// > (Cantor/Lawvere: no surjection Σ → 2^Σ), so the loop makes proofs but cannot make
-/// > the prover prove itself. The floor it runs on (PP15), the comparison itself, is
-/// > given, certified by no game.
+/// > Note: A total Boolean evaluator cannot represent its own diagonal
+/// > complement (PP15). Finite self-application and relative internal inspection
+/// > remain possible (PP21). Their soundness requires stated transition and
+/// > reference premises. Physical closure alone does not discharge them.
 public protocol PlayIsProof: TowerSelfPlay, RevealsNotCreates {}
 
 // ───────────────────────────────────────────────────────────────
-// PP15: the floor. Certified self-play is SHARED and tower-deep witnessing,
-// not SELF-witnessing on its ground. Trace any protocol above up its
-// parents: it ends at Pair (Primitive.swift), the act of distinction, the
-// postulate (V=I §0, §2.5). Pair is the one thing this whole lattice rests on
-// and the one thing no protocol in it derives: an entry in no library,
-// certified by no game. A decidable gate and a self-grounded gate are mutually
-// exclusive (Cantor/Lawvere: no surjection Σ → 2^Σ). The agent grounds its
-// rules, encodings, and strategies in its own certified record, but not the
-// comparison it runs on. The floor is structural, and you can see it: every
-// arrow points up to Pair, and Pair points to nothing. It makes proofs, and it
-// cannot make the prover prove itself.
+// PP15 bounds expressive completeness, not physical closure. If a total
+// E:C×C→{0,1} represents d(c)=1−E(c,c) at code a, evaluating a at itself
+// gives E(a,a)=1−E(a,a), a contradiction. A restricted finite table may
+// still apply a code to itself.
+// PP15 also gives the answer-domain form: representing t(E(c,c)) forces
+// a fixed point of t. FirstDiagonalFixedPoint and SecondDiagonalFixedPoint
+// derive that equality from actual applications and a represented row.
+// Neither requires a fixed-point equality as a caller premise.
+// PP21 places a candidate implementation,
+// reference, mismatch register, verdict and clock in one finite whole.
+// Relative correctness follows from that specified transition and prepared
+// state. It does not establish the transition semantics without premises.
+// Pair remains a declared primitive of this grammar. The lattice does not
+// derive every premise of its interpretation, but this logical dependence
+// neither places an object outside Ω nor excludes every internal self-test.
+// No universal evaluator or axiom-free justification is constructed here.
 // ───────────────────────────────────────────────────────────────

@@ -13,19 +13,547 @@ compile.
 
 ## The cones
 
-### HasSigma
+### Structure
 
-``HasSigma`` carries 157 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+``Structure`` carries 171 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
 | Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
-| ``StructuresFinite`` | kernel | ``HasSigma``, ``Pair`` | [117](<doc:AtlasUnfolded#StructuresFinite>) | Identification |
+| ``Open`` | kernel | ``Structure`` | [169](<doc:AtlasUnfolded#Open>) | Primitive |
+| ``Pair`` | seed | ``Open`` | [167](<doc:AtlasUnfolded#Pair>) | Primitive |
+| ``StructuresFinite`` | kernel | ``HasSigma``, ``Pair`` | [115](<doc:AtlasUnfolded#StructuresFinite>) | Identification |
+| ``OperationsClosed`` | kernel | ``Pair`` | [97](<doc:AtlasUnfolded#OperationsClosed>) | Identification |
+| ``CachePermanent`` | theorem | ``HasCache``, ``OperationsClosed``, ``StructuresFinite`` | [82](<doc:AtlasUnfolded#CachePermanent>) | Identification |
+| ``ResultDeterministic`` | kernel | ``OperationsClosed`` | [67](<doc:AtlasUnfolded#ResultDeterministic>) | Identification |
+| ``DistanceOnStructures`` | theorem | ``HasDistance``, ``StructuresFinite`` | [59](<doc:AtlasUnfolded#DistanceOnStructures>) | Gradient |
+| ``StepsTerminate`` | kernel | ``StructuresFinite`` | [54](<doc:AtlasUnfolded#StepsTerminate>) | Identification |
+| ``PipelineTotal`` | kernel | ``StepsTerminate`` | [52](<doc:AtlasUnfolded#PipelineTotal>) | Identification |
+| ``EqualityDecidable`` | kernel | ``StructuresFinite`` | [51](<doc:AtlasUnfolded#EqualityDecidable>) | Identification |
+| ``PassImpliesMembership`` | kernel | ``PipelineTotal``, ``ResultDeterministic`` | [51](<doc:AtlasUnfolded#PassImpliesMembership>) | Identification |
+| ``KnowledgeAccumulates`` | bridge | ``CachePermanent``, ``HasLibrary`` | [45](<doc:AtlasUnfolded#KnowledgeAccumulates>) | Intelligence |
+| ``ExactlyOneSurvives`` | theorem | ``EqualityDecidable``, ``HasSolutions`` | [42](<doc:AtlasUnfolded#ExactlyOneSurvives>) | Identification |
+| ``Decidable`` | marker | ``Pair`` | [38](<doc:AtlasUnfolded#Decidable>) | Core |
+| ``LibrarySaturates`` | bridge | ``CachePermanent``, ``HasSaturation`` | [38](<doc:AtlasUnfolded#LibrarySaturates>) | Intelligence |
+| ``PassIsIdentification`` | theorem | ``ExactlyOneSurvives``, ``PassImpliesMembership`` | [37](<doc:AtlasUnfolded#PassIsIdentification>) | Identification |
+| ``Null`` | seed | ``Pair`` | [32](<doc:AtlasUnfolded#Null>) | Primitive |
+| ``IdentityCollapse`` | theorem | ``HasSolutions``, ``Null`` | [28](<doc:AtlasUnfolded#IdentityCollapse>) | Core |
+| ``Resistant`` | theorem | ``Decidable``, ``HasDistance`` | [28](<doc:AtlasUnfolded#Resistant>) | Matter |
+| ``AxesCoOriented`` | theorem | ``CachePermanent``, ``ResultDeterministic`` | [27](<doc:AtlasUnfolded#AxesCoOriented>) | Identification |
+| ``Matter`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification``, ``Resistant`` | [26](<doc:AtlasUnfolded#Matter>) | Matter |
+| ``OrderIsOnlyFreedom`` | bridge | ``AxesCoOriented``, ``IdentityCollapse`` | [26](<doc:AtlasUnfolded#OrderIsOnlyFreedom>) | Identification |
+| ``AnchorGraph`` | bridge | ``DistanceOnStructures``, ``HasLibrary`` | [22](<doc:AtlasUnfolded#AnchorGraph>) | Map |
+| ``Ignites`` | bridge | ``LibrarySaturates``, ``Matter`` | [22](<doc:AtlasUnfolded#Ignites>) | Matter |
+| ``Tower`` | bridge | ``HasCost``, ``HasTime``, ``Ignites`` | [18](<doc:AtlasUnfolded#Tower>) | Matter |
+| ``BallSaturation`` | bridge | ``DistanceOnStructures``, ``LibrarySaturates`` | [15](<doc:AtlasUnfolded#BallSaturation>) | Gradient |
+| ``CompressionCriterion`` | bridge | ``DistanceOnStructures``, ``Tower`` | [14](<doc:AtlasUnfolded#CompressionCriterion>) | Gradient |
+| ``GateIsZeroOfLoss`` | theorem | ``DistanceOnStructures``, ``PassImpliesMembership`` | [12](<doc:AtlasUnfolded#GateIsZeroOfLoss>) | Gradient |
+| ``StrategyLivesInSigma`` | bridge | ``DistanceOnStructures``, ``OrderIsOnlyFreedom`` | [12](<doc:AtlasUnfolded#StrategyLivesInSigma>) | Strategy |
+| ``AlignmentCoefficient`` | bridge | ``GateIsZeroOfLoss``, ``HasAlpha`` | [11](<doc:AtlasUnfolded#AlignmentCoefficient>) | Search |
+| ``ComparedReadings`` | marker | ``Pair`` | [11](<doc:AtlasUnfolded#ComparedReadings>) | Verdict |
+| ``NoInverse`` | bridge | ``KnowledgeAccumulates`` | [11](<doc:AtlasUnfolded#NoInverse>) | Matter |
+| ``Monotone`` | marker | ``Pair`` | [10](<doc:AtlasUnfolded#Monotone>) | Core |
+| ``OneBoundaryThreeFaces`` | bridge | ``AnchorGraph``, ``BallSaturation``, ``CompressionCriterion`` | [10](<doc:AtlasUnfolded#OneBoundaryThreeFaces>) | Map |
+| ``HolesCarryAddresses`` | bridge | ``AnchorGraph``, ``Decidable`` | [9](<doc:AtlasUnfolded#HolesCarryAddresses>) | Map |
+| ``VerdictIsInvariant`` | bridge | ``ComparedReadings``, ``HasVerdict`` | [9](<doc:AtlasUnfolded#VerdictIsInvariant>) | Verdict |
+| ``BasisIsFinite`` | bridge | ``HasBasis``, ``LibrarySaturates`` | [7](<doc:AtlasUnfolded#BasisIsFinite>) | Intelligence |
+| ``CandidatesOnlyLeave`` | bridge | ``CachePermanent``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#CandidatesOnlyLeave>) | Identification |
+| ``LiquidPhase`` | bridge | ``KnowledgeAccumulates``, ``Monotone`` | [7](<doc:AtlasUnfolded#LiquidPhase>) | Liquid |
+| ``Measurable`` | marker | ``Pair`` | [7](<doc:AtlasUnfolded#Measurable>) | Core |
+| ``MembershipDecidable`` | theorem | ``EqualityDecidable``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#MembershipDecidable>) | Intelligence |
+| ``ResultsIrreversible`` | theorem | ``CachePermanent``, ``EqualityDecidable`` | [7](<doc:AtlasUnfolded#ResultsIrreversible>) | Intelligence |
+| ``CertifiedRuleGenerates`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification`` | [6](<doc:AtlasUnfolded#CertifiedRuleGenerates>) | Play |
+| ``LawLivesInSigma`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [6](<doc:AtlasUnfolded#LawLivesInSigma>) | Dynamics |
+| ``PredicateReading`` | bridge | ``HasVerdict``, ``Pair`` | [6](<doc:AtlasUnfolded#PredicateReading>) | Verdict |
+| ``SkillsAreBalls`` | bridge | ``BallSaturation``, ``StrategyLivesInSigma`` | [6](<doc:AtlasUnfolded#SkillsAreBalls>) | Strategy |
+| ``SystemCrystallizes`` | bridge | ``CandidatesOnlyLeave``, ``MembershipDecidable``, ``ResultsIrreversible`` | [6](<doc:AtlasUnfolded#SystemCrystallizes>) | Intelligence |
+| ``AmbiguityNamesInput`` | bridge | ``CertifiedRuleGenerates``, ``HolesCarryAddresses`` | [5](<doc:AtlasUnfolded#AmbiguityNamesInput>) | Play |
+| ``CrystallizationFront`` | bridge | ``DistanceOnStructures``, ``LiquidPhase``, ``NoInverse`` | [5](<doc:AtlasUnfolded#CrystallizationFront>) | Liquid |
+| ``DiscriminatorAndGenerator`` | bridge | ``OrderIsOnlyFreedom``, ``PassImpliesMembership`` | [5](<doc:AtlasUnfolded#DiscriminatorAndGenerator>) | Generation |
+| ``LawIsTarget`` | bridge | ``LawLivesInSigma``, ``PassIsIdentification`` | [5](<doc:AtlasUnfolded#LawIsTarget>) | Dynamics |
+| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [5](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
+| ``RevealsNotCreates`` | kernel | ``Measurable``, ``OperationsClosed`` | [5](<doc:AtlasUnfolded#RevealsNotCreates>) | Identification |
+| ``ScopeBoundedByEncoding`` | kernel | ``ResultDeterministic`` | [5](<doc:AtlasUnfolded#ScopeBoundedByEncoding>) | Identification |
+| ``SearchFlow`` | bridge | ``AlignmentCoefficient``, ``LiquidPhase`` | [5](<doc:AtlasUnfolded#SearchFlow>) | Liquid |
+| ``NavigationInevitable`` | bridge | ``OneBoundaryThreeFaces`` | [4](<doc:AtlasUnfolded#NavigationInevitable>) | Map |
+| ``ReadingFactors`` | bridge | ``VerdictIsInvariant`` | [4](<doc:AtlasUnfolded#ReadingFactors>) | Verdict |
+| ``SelfPlaySaturates`` | bridge | ``AmbiguityNamesInput``, ``BasisIsFinite`` | [4](<doc:AtlasUnfolded#SelfPlaySaturates>) | Play |
+| ``StefanCoupling`` | bridge | ``CrystallizationFront``, ``SearchFlow`` | [4](<doc:AtlasUnfolded#StefanCoupling>) | Liquid |
+| ``StrategyGate`` | bridge | ``PassImpliesMembership``, ``StrategyLivesInSigma`` | [4](<doc:AtlasUnfolded#StrategyGate>) | Strategy |
+| ``ComparisonsAreBounded`` | kernel | ``StructuresFinite`` | [3](<doc:AtlasUnfolded#ComparisonsAreBounded>) | Identification |
+| ``GateIsMembrane`` | bridge | ``StefanCoupling`` | [3](<doc:AtlasUnfolded#GateIsMembrane>) | Liquid |
+| ``IntelligenceRises`` | bridge | ``HasEfficiency``, ``LibrarySaturates`` | [3](<doc:AtlasUnfolded#IntelligenceRises>) | Intelligence |
+| ``SearchableIffClusteredAndAligned`` | bridge | ``AlignmentCoefficient``, ``OneBoundaryThreeFaces`` | [3](<doc:AtlasUnfolded#SearchableIffClusteredAndAligned>) | Search |
+| ``StrategyIsUnique`` | bridge | ``ExactlyOneSurvives``, ``StrategyGate`` | [3](<doc:AtlasUnfolded#StrategyIsUnique>) | Strategy |
+| ``CandidateReading`` | bridge | ``HasCandidates``, ``PredicateReading`` | [2](<doc:AtlasUnfolded#CandidateReading>) | Verdict |
+| ``EncoderConditions`` | bridge | ``BallSaturation``, ``CompressionCriterion``, ``HasEncoding`` | [2](<doc:AtlasUnfolded#EncoderConditions>) | Spec |
+| ``EncodingForgets`` | bridge | ``VerdictIsInvariant`` | [2](<doc:AtlasUnfolded#EncodingForgets>) | Seeing |
+| ``FourthFace`` | bridge | ``OneBoundaryThreeFaces``, ``SkillsAreBalls`` | [2](<doc:AtlasUnfolded#FourthFace>) | Strategy |
+| ``ObservationTrace`` | marker | ``Pair`` | [2](<doc:AtlasUnfolded#ObservationTrace>) | Verdict |
+| ``PlanningIsNavigation`` | bridge | ``LawIsTarget``, ``NavigationInevitable`` | [2](<doc:AtlasUnfolded#PlanningIsNavigation>) | Dynamics |
+| ``Reading`` | bridge | ``HasTime``, ``OrderIsOnlyFreedom``, ``RevealsNotCreates`` | [2](<doc:AtlasUnfolded#Reading>) | Reading |
+| ``RulesCompose`` | bridge | ``KnowledgeAccumulates`` | [2](<doc:AtlasUnfolded#RulesCompose>) | Basis |
+| ``StrategyCrystallizes`` | bridge | ``Matter``, ``StrategyIsUnique`` | [2](<doc:AtlasUnfolded#StrategyCrystallizes>) | Strategy |
+| ``TowerSelfPlay`` | bridge | ``Ignites``, ``SelfPlaySaturates`` | [2](<doc:AtlasUnfolded#TowerSelfPlay>) | Play |
+| ``AmbiguityIsExperiment`` | bridge | ``HolesCarryAddresses``, ``LawIsTarget`` | [1](<doc:AtlasUnfolded#AmbiguityIsExperiment>) | Dynamics |
+| ``AtomBasis`` | bridge | ``BasisIsFinite``, ``HasCompositionalNorm``, ``RulesCompose`` | [1](<doc:AtlasUnfolded#AtomBasis>) | Basis |
+| ``BehaviorIsStructure`` | bridge | ``DistanceOnStructures``, ``HasTime`` | [1](<doc:AtlasUnfolded#BehaviorIsStructure>) | Dynamics |
+| ``ConditionalSolving`` | bridge | ``EncoderConditions`` | [1](<doc:AtlasUnfolded#ConditionalSolving>) | Spec |
+| ``ContentIsGaugeInvariant`` | bridge | ``HasGauge``, ``ReadingFactors`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
+| ``CostReadsGauge`` | bridge | ``HasDistance``, ``HasGauge``, ``PredicateReading`` | [1](<doc:AtlasUnfolded#CostReadsGauge>) | Gauge |
+| ``EmissionIsAutoregressive`` | bridge | ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding`` | [1](<doc:AtlasUnfolded#EmissionIsAutoregressive>) | Path |
+| ``EvidenceRefinesQuestion`` | kernel | ``Pair`` | [1](<doc:AtlasUnfolded#EvidenceRefinesQuestion>) | Verdict |
+| ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
+| ``IntegerValued`` | marker | ``Pair`` | [1](<doc:AtlasUnfolded#IntegerValued>) | Core |
+| ``MeasuredGeometry`` | bridge | ``FourthFace``, ``SearchableIffClusteredAndAligned`` | [1](<doc:AtlasUnfolded#MeasuredGeometry>) | Spec |
+| ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
+| ``ObservedTransition`` | theorem | ``HasEncoding``, ``Pair`` | [1](<doc:AtlasUnfolded#ObservedTransition>) | Transition |
+| ``Permanent`` | marker | ``Pair`` | [1](<doc:AtlasUnfolded#Permanent>) | Core |
+| ``PhaseBecomesAmplitude`` | bridge | ``StrategyCrystallizes`` | [1](<doc:AtlasUnfolded#PhaseBecomesAmplitude>) | Strategy |
+| ``PlayIsProof`` | bridge | ``RevealsNotCreates``, ``TowerSelfPlay`` | [1](<doc:AtlasUnfolded#PlayIsProof>) | Play |
+| ``RepairsPermanent`` | bridge | ``AnchorGraph``, ``NoInverse`` | [1](<doc:AtlasUnfolded#RepairsPermanent>) | Map |
+| ``StandardIsType`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#StandardIsType>) | Ruler |
+| ``AcquiresAnswer`` | bridge | ``ReadingFactors`` | 0 | Verdict |
+| ``AgentPathCertified`` | theorem | ``IdentityCollapse``, ``PassIsIdentification`` | 0 | Intelligence |
+| ``AlignmentEnablesIntelligence`` | bridge | ``AlignmentCoefficient``, ``IntelligenceRises`` | 0 | Search |
+| ``AllCoordinatesPresent`` | bridge | ``GateIsMembrane``, ``PlayIsProof`` | 0 | Projection |
+| ``AtomnessIsTrajectory`` | bridge | ``AtomBasis``, ``NoInverse`` | 0 | Basis |
+| ``CacheOnlyGrows`` | theorem | ``CachePermanent``, ``StepsTerminate`` | 0 | Identification |
+| ``CandidateGroupReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
+| ``CandidateLeafReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
+| ``Close`` | kernel | ``Structure`` | 0 | Primitive |
+| ``ColourIsQuotient`` | bridge | ``EncodingForgets`` | 0 | Colour |
+| ``CommunicationBounded`` | theorem | ``ComparisonsAreBounded``, ``HasCache`` | 0 | Space |
+| ``CommutingTransition`` | theorem | ``ObservedTransition`` | 0 | Transition |
+| ``CompleteEntry`` | bridge | ``HasEncoding``, ``PhaseBecomesAmplitude`` | 0 | Strategy |
+| ``CompletionIsSolutionSet`` | bridge | ``HasPath``, ``Reading`` | 0 | Path |
+| ``ConstructionIsReading`` | bridge | ``EmissionAccumulates``, ``Reading`` | 0 | Path |
+| ``Converges`` | bridge | ``NoInverse``, ``SystemCrystallizes`` | 0 | Matter |
+| ``CoverageMatchesDeclaration`` | kernel | ``Pair`` | 0 | Verdict |
+| ``DepthIsBounded`` | bridge | ``HasGrammar``, ``Tower`` | 0 | Space |
+| ``DiagnosticsAccumulate`` | theorem | ``CachePermanent``, ``ResultDeterministic`` | 0 | Identification |
+| ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
+| ``Digit`` | kernel | ``Open`` | 0 | Numeral |
+| ``DiscoveryIsRevelation`` | bridge | ``ExactlyOneSurvives``, ``LibrarySaturates`` | 0 | Intelligence |
+| ``DistanceIsCost`` | bridge | ``DistanceOnStructures``, ``HasCost`` | 0 | Gradient |
+| ``EdgesCarryTheJudgement`` | bridge | ``BehaviorIsStructure``, ``PresentedLaw`` | 0 | Presentation |
+| ``EmptyObservationTrace`` | kernel | ``ObservationTrace`` | 0 | Verdict |
+| ``EncodingInvents`` | theorem | ``ComparedReadings``, ``HasEncoding`` | 0 | Voice |
+| ``EncodingSelectionSaturates`` | bridge | ``HasEncoding``, ``LibrarySaturates`` | 0 | Intelligence |
+| ``ErasureIsRecession`` | bridge | ``EmissionAccumulates``, ``NoInverse`` | 0 | Path |
+| ``ExtendedObservationTrace`` | kernel | ``ObservationTrace`` | 0 | Verdict |
+| ``FailureCurriculum`` | bridge | ``HolesCarryAddresses``, ``RepairsPermanent`` | 0 | Map |
+| ``FaithfulEncoding`` | bridge | ``ReadingFactors`` | 0 | Voice |
+| ``FiniteDiscovery`` | bridge | ``ComparisonsAreBounded``, ``Tower`` | 0 | Matter |
+| ``FormIsInvariant`` | bridge | ``PresentedLaw`` | 0 | Presentation |
+| ``FreeGeneration`` | bridge | ``DiscriminatorAndGenerator``, ``EmissionAccumulates`` | 0 | Path |
+| ``GateWrapper`` | bridge | ``DiscriminatorAndGenerator``, ``GateIsMembrane`` | 0 | Projection |
+| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``CostIsPathLength`` | 0 | Gauge |
+| ``GaugeFixing`` | bridge | ``CostReadsGauge``, ``SystemCrystallizes`` | 0 | Gauge |
+| ``GradientInComparison`` | theorem | ``Decidable``, ``DistanceOnStructures`` | 0 | Gradient |
+| ``GreedyDescentTerminates`` | bridge | ``AnchorGraph``, ``Monotone`` | 0 | Map |
+| ``InevitabilityIsDiscriminator`` | bridge | ``AlignmentCoefficient``, ``DiscriminatorAndGenerator``, ``IntelligenceRises`` | 0 | Generation |
+| ``InteractiveDecomposition`` | bridge | ``AmbiguityIsExperiment``, ``MotorSkillsAreStrategies`` | 0 | Dynamics |
+| ``InterferenceIsIntelligence`` | bridge | ``IntelligenceRises``, ``OrderIsOnlyFreedom`` | 0 | Interference |
+| ``InvalidStepFolds`` | theorem | ``HasPath``, ``Null`` | 0 | Path |
+| ``IsIsYIdentity`` | bridge | ``OrderIsOnlyFreedom``, ``PassIsIdentification`` | 0 | Interference |
+| ``LawfulDrift`` | bridge | ``LawIsTarget``, ``Tower`` | 0 | Dynamics |
+| ``LibraryCrystallizes`` | bridge | ``LibrarySaturates``, ``SystemCrystallizes`` | 0 | Intelligence |
+| ``MeasureIsCount`` | bridge | ``StandardIsType`` | 0 | Ruler |
+| ``MetricProperty`` | marker | ``Pair`` | 0 | Core |
+| ``NoSelfReference`` | kernel | ``OperationsClosed`` | 0 | Identification |
+| ``NullIsOrigin`` | theorem | ``DistanceOnStructures``, ``Null`` | 0 | Gradient |
+| ``OrderByDistance`` | bridge | ``DistanceOnStructures``, ``OrderIsOnlyFreedom`` | 0 | Gradient |
+| ``OrgansAreOneCompare`` | bridge | ``Decidable``, ``DiscriminatorAndGenerator`` | 0 | Generation |
+| ``OrthogonalOrgans`` | bridge | ``DiscriminatorAndGenerator``, ``SearchableIffClusteredAndAligned`` | 0 | Generation |
+| ``PerspectiveIsEncoding`` | theorem | ``HasEncoding``, ``Measurable``, ``ScopeBoundedByEncoding`` | 0 | Space |
+| ``PipelineCrystallizes`` | bridge | ``PassIsIdentification``, ``SystemCrystallizes`` | 0 | Intelligence |
+| ``PreconditionsGuaranteePass`` | theorem | ``ExactlyOneSurvives`` | 0 | Identification |
+| ``PressIsIdentification`` | bridge | ``PassIsIdentification``, ``PresentedLaw`` | 0 | Presentation |
+| ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
+| ``QualitiesAreFinite`` | theorem | ``HasEncoding``, ``IntegerValued`` | 0 | Space |
+| ``RecordedAnswerReading`` | bridge | ``PredicateReading`` | 0 | Verdict |
+| ``RefinementPreservesAnswer`` | kernel | ``EvidenceRefinesQuestion`` | 0 | Verdict |
+| ``ResistanceHasMagnitude`` | theorem | ``DistanceOnStructures``, ``Resistant`` | 0 | Gradient |
+| ``RetainedReadingRecord`` | marker | ``Permanent`` | 0 | Verdict |
+| ``SaturationDynamics`` | bridge | ``ComparisonsAreBounded``, ``LibrarySaturates`` | 0 | Intelligence |
+| ``SaturationIncorruptible`` | theorem | ``CachePermanent`` | 0 | Identification |
+| ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
+| ``SecondEncodingIsNovelty`` | bridge | ``ScopeBoundedByEncoding``, ``SelfPlaySaturates`` | 0 | Play |
+| ``SeparatorIdentifies`` | bridge | ``EncodingForgets`` | 0 | Seeing |
+| ``SharedDeclaredTick`` | kernel | ``Pair`` | 0 | Ruler |
+| ``SharedDecoder`` | kernel | ``Pair`` | 0 | Verdict |
+| ``StrategyNavigation`` | bridge | ``NavigationInevitable``, ``SkillsAreBalls`` | 0 | Strategy |
+| ``ThreeAxesOfCompare`` | bridge | ``Decidable``, ``OrderIsOnlyFreedom`` | 0 | Interference |
+| ``Unique`` | marker | ``Monotone``, ``Null`` | 0 | Core |
+| ``Universality`` | bridge | ``ExactlyOneSurvives``, ``HasEncoding`` | 0 | Identification |
+| ``VerdictCoversBranches`` | bridge | ``HasCandidates``, ``VerdictIsInvariant`` | 0 | Verdict |
+| ``VerdictReorders`` | kernel | ``Pair`` | 0 | Verdict |
+| ``VerdictRetainsLeft`` | kernel | ``Pair`` | 0 | Verdict |
+| ``VerdictRetainsRight`` | kernel | ``Pair`` | 0 | Verdict |
+
+### Open
+
+``Open`` carries 169 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``Pair`` | seed | ``Open`` | [167](<doc:AtlasUnfolded#Pair>) | Primitive |
+| ``StructuresFinite`` | kernel | ``HasSigma``, ``Pair`` | [115](<doc:AtlasUnfolded#StructuresFinite>) | Identification |
+| ``OperationsClosed`` | kernel | ``Pair`` | [97](<doc:AtlasUnfolded#OperationsClosed>) | Identification |
+| ``CachePermanent`` | theorem | ``HasCache``, ``OperationsClosed``, ``StructuresFinite`` | [82](<doc:AtlasUnfolded#CachePermanent>) | Identification |
+| ``ResultDeterministic`` | kernel | ``OperationsClosed`` | [67](<doc:AtlasUnfolded#ResultDeterministic>) | Identification |
+| ``DistanceOnStructures`` | theorem | ``HasDistance``, ``StructuresFinite`` | [59](<doc:AtlasUnfolded#DistanceOnStructures>) | Gradient |
+| ``StepsTerminate`` | kernel | ``StructuresFinite`` | [54](<doc:AtlasUnfolded#StepsTerminate>) | Identification |
+| ``PipelineTotal`` | kernel | ``StepsTerminate`` | [52](<doc:AtlasUnfolded#PipelineTotal>) | Identification |
+| ``EqualityDecidable`` | kernel | ``StructuresFinite`` | [51](<doc:AtlasUnfolded#EqualityDecidable>) | Identification |
+| ``PassImpliesMembership`` | kernel | ``PipelineTotal``, ``ResultDeterministic`` | [51](<doc:AtlasUnfolded#PassImpliesMembership>) | Identification |
+| ``KnowledgeAccumulates`` | bridge | ``CachePermanent``, ``HasLibrary`` | [45](<doc:AtlasUnfolded#KnowledgeAccumulates>) | Intelligence |
+| ``ExactlyOneSurvives`` | theorem | ``EqualityDecidable``, ``HasSolutions`` | [42](<doc:AtlasUnfolded#ExactlyOneSurvives>) | Identification |
+| ``Decidable`` | marker | ``Pair`` | [38](<doc:AtlasUnfolded#Decidable>) | Core |
+| ``LibrarySaturates`` | bridge | ``CachePermanent``, ``HasSaturation`` | [38](<doc:AtlasUnfolded#LibrarySaturates>) | Intelligence |
+| ``PassIsIdentification`` | theorem | ``ExactlyOneSurvives``, ``PassImpliesMembership`` | [37](<doc:AtlasUnfolded#PassIsIdentification>) | Identification |
+| ``Null`` | seed | ``Pair`` | [32](<doc:AtlasUnfolded#Null>) | Primitive |
+| ``IdentityCollapse`` | theorem | ``HasSolutions``, ``Null`` | [28](<doc:AtlasUnfolded#IdentityCollapse>) | Core |
+| ``Resistant`` | theorem | ``Decidable``, ``HasDistance`` | [28](<doc:AtlasUnfolded#Resistant>) | Matter |
+| ``AxesCoOriented`` | theorem | ``CachePermanent``, ``ResultDeterministic`` | [27](<doc:AtlasUnfolded#AxesCoOriented>) | Identification |
+| ``Matter`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification``, ``Resistant`` | [26](<doc:AtlasUnfolded#Matter>) | Matter |
+| ``OrderIsOnlyFreedom`` | bridge | ``AxesCoOriented``, ``IdentityCollapse`` | [26](<doc:AtlasUnfolded#OrderIsOnlyFreedom>) | Identification |
+| ``AnchorGraph`` | bridge | ``DistanceOnStructures``, ``HasLibrary`` | [22](<doc:AtlasUnfolded#AnchorGraph>) | Map |
+| ``Ignites`` | bridge | ``LibrarySaturates``, ``Matter`` | [22](<doc:AtlasUnfolded#Ignites>) | Matter |
+| ``Tower`` | bridge | ``HasCost``, ``HasTime``, ``Ignites`` | [18](<doc:AtlasUnfolded#Tower>) | Matter |
+| ``BallSaturation`` | bridge | ``DistanceOnStructures``, ``LibrarySaturates`` | [15](<doc:AtlasUnfolded#BallSaturation>) | Gradient |
+| ``CompressionCriterion`` | bridge | ``DistanceOnStructures``, ``Tower`` | [14](<doc:AtlasUnfolded#CompressionCriterion>) | Gradient |
+| ``GateIsZeroOfLoss`` | theorem | ``DistanceOnStructures``, ``PassImpliesMembership`` | [12](<doc:AtlasUnfolded#GateIsZeroOfLoss>) | Gradient |
+| ``StrategyLivesInSigma`` | bridge | ``DistanceOnStructures``, ``OrderIsOnlyFreedom`` | [12](<doc:AtlasUnfolded#StrategyLivesInSigma>) | Strategy |
+| ``AlignmentCoefficient`` | bridge | ``GateIsZeroOfLoss``, ``HasAlpha`` | [11](<doc:AtlasUnfolded#AlignmentCoefficient>) | Search |
+| ``ComparedReadings`` | marker | ``Pair`` | [11](<doc:AtlasUnfolded#ComparedReadings>) | Verdict |
+| ``NoInverse`` | bridge | ``KnowledgeAccumulates`` | [11](<doc:AtlasUnfolded#NoInverse>) | Matter |
+| ``Monotone`` | marker | ``Pair`` | [10](<doc:AtlasUnfolded#Monotone>) | Core |
+| ``OneBoundaryThreeFaces`` | bridge | ``AnchorGraph``, ``BallSaturation``, ``CompressionCriterion`` | [10](<doc:AtlasUnfolded#OneBoundaryThreeFaces>) | Map |
+| ``HolesCarryAddresses`` | bridge | ``AnchorGraph``, ``Decidable`` | [9](<doc:AtlasUnfolded#HolesCarryAddresses>) | Map |
+| ``VerdictIsInvariant`` | bridge | ``ComparedReadings``, ``HasVerdict`` | [9](<doc:AtlasUnfolded#VerdictIsInvariant>) | Verdict |
+| ``BasisIsFinite`` | bridge | ``HasBasis``, ``LibrarySaturates`` | [7](<doc:AtlasUnfolded#BasisIsFinite>) | Intelligence |
+| ``CandidatesOnlyLeave`` | bridge | ``CachePermanent``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#CandidatesOnlyLeave>) | Identification |
+| ``LiquidPhase`` | bridge | ``KnowledgeAccumulates``, ``Monotone`` | [7](<doc:AtlasUnfolded#LiquidPhase>) | Liquid |
+| ``Measurable`` | marker | ``Pair`` | [7](<doc:AtlasUnfolded#Measurable>) | Core |
+| ``MembershipDecidable`` | theorem | ``EqualityDecidable``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#MembershipDecidable>) | Intelligence |
+| ``ResultsIrreversible`` | theorem | ``CachePermanent``, ``EqualityDecidable`` | [7](<doc:AtlasUnfolded#ResultsIrreversible>) | Intelligence |
+| ``CertifiedRuleGenerates`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification`` | [6](<doc:AtlasUnfolded#CertifiedRuleGenerates>) | Play |
+| ``LawLivesInSigma`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [6](<doc:AtlasUnfolded#LawLivesInSigma>) | Dynamics |
+| ``PredicateReading`` | bridge | ``HasVerdict``, ``Pair`` | [6](<doc:AtlasUnfolded#PredicateReading>) | Verdict |
+| ``SkillsAreBalls`` | bridge | ``BallSaturation``, ``StrategyLivesInSigma`` | [6](<doc:AtlasUnfolded#SkillsAreBalls>) | Strategy |
+| ``SystemCrystallizes`` | bridge | ``CandidatesOnlyLeave``, ``MembershipDecidable``, ``ResultsIrreversible`` | [6](<doc:AtlasUnfolded#SystemCrystallizes>) | Intelligence |
+| ``AmbiguityNamesInput`` | bridge | ``CertifiedRuleGenerates``, ``HolesCarryAddresses`` | [5](<doc:AtlasUnfolded#AmbiguityNamesInput>) | Play |
+| ``CrystallizationFront`` | bridge | ``DistanceOnStructures``, ``LiquidPhase``, ``NoInverse`` | [5](<doc:AtlasUnfolded#CrystallizationFront>) | Liquid |
+| ``DiscriminatorAndGenerator`` | bridge | ``OrderIsOnlyFreedom``, ``PassImpliesMembership`` | [5](<doc:AtlasUnfolded#DiscriminatorAndGenerator>) | Generation |
+| ``LawIsTarget`` | bridge | ``LawLivesInSigma``, ``PassIsIdentification`` | [5](<doc:AtlasUnfolded#LawIsTarget>) | Dynamics |
+| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [5](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
+| ``RevealsNotCreates`` | kernel | ``Measurable``, ``OperationsClosed`` | [5](<doc:AtlasUnfolded#RevealsNotCreates>) | Identification |
+| ``ScopeBoundedByEncoding`` | kernel | ``ResultDeterministic`` | [5](<doc:AtlasUnfolded#ScopeBoundedByEncoding>) | Identification |
+| ``SearchFlow`` | bridge | ``AlignmentCoefficient``, ``LiquidPhase`` | [5](<doc:AtlasUnfolded#SearchFlow>) | Liquid |
+| ``NavigationInevitable`` | bridge | ``OneBoundaryThreeFaces`` | [4](<doc:AtlasUnfolded#NavigationInevitable>) | Map |
+| ``ReadingFactors`` | bridge | ``VerdictIsInvariant`` | [4](<doc:AtlasUnfolded#ReadingFactors>) | Verdict |
+| ``SelfPlaySaturates`` | bridge | ``AmbiguityNamesInput``, ``BasisIsFinite`` | [4](<doc:AtlasUnfolded#SelfPlaySaturates>) | Play |
+| ``StefanCoupling`` | bridge | ``CrystallizationFront``, ``SearchFlow`` | [4](<doc:AtlasUnfolded#StefanCoupling>) | Liquid |
+| ``StrategyGate`` | bridge | ``PassImpliesMembership``, ``StrategyLivesInSigma`` | [4](<doc:AtlasUnfolded#StrategyGate>) | Strategy |
+| ``ComparisonsAreBounded`` | kernel | ``StructuresFinite`` | [3](<doc:AtlasUnfolded#ComparisonsAreBounded>) | Identification |
+| ``GateIsMembrane`` | bridge | ``StefanCoupling`` | [3](<doc:AtlasUnfolded#GateIsMembrane>) | Liquid |
+| ``IntelligenceRises`` | bridge | ``HasEfficiency``, ``LibrarySaturates`` | [3](<doc:AtlasUnfolded#IntelligenceRises>) | Intelligence |
+| ``SearchableIffClusteredAndAligned`` | bridge | ``AlignmentCoefficient``, ``OneBoundaryThreeFaces`` | [3](<doc:AtlasUnfolded#SearchableIffClusteredAndAligned>) | Search |
+| ``StrategyIsUnique`` | bridge | ``ExactlyOneSurvives``, ``StrategyGate`` | [3](<doc:AtlasUnfolded#StrategyIsUnique>) | Strategy |
+| ``CandidateReading`` | bridge | ``HasCandidates``, ``PredicateReading`` | [2](<doc:AtlasUnfolded#CandidateReading>) | Verdict |
+| ``EncoderConditions`` | bridge | ``BallSaturation``, ``CompressionCriterion``, ``HasEncoding`` | [2](<doc:AtlasUnfolded#EncoderConditions>) | Spec |
+| ``EncodingForgets`` | bridge | ``VerdictIsInvariant`` | [2](<doc:AtlasUnfolded#EncodingForgets>) | Seeing |
+| ``FourthFace`` | bridge | ``OneBoundaryThreeFaces``, ``SkillsAreBalls`` | [2](<doc:AtlasUnfolded#FourthFace>) | Strategy |
+| ``ObservationTrace`` | marker | ``Pair`` | [2](<doc:AtlasUnfolded#ObservationTrace>) | Verdict |
+| ``PlanningIsNavigation`` | bridge | ``LawIsTarget``, ``NavigationInevitable`` | [2](<doc:AtlasUnfolded#PlanningIsNavigation>) | Dynamics |
+| ``Reading`` | bridge | ``HasTime``, ``OrderIsOnlyFreedom``, ``RevealsNotCreates`` | [2](<doc:AtlasUnfolded#Reading>) | Reading |
+| ``RulesCompose`` | bridge | ``KnowledgeAccumulates`` | [2](<doc:AtlasUnfolded#RulesCompose>) | Basis |
+| ``StrategyCrystallizes`` | bridge | ``Matter``, ``StrategyIsUnique`` | [2](<doc:AtlasUnfolded#StrategyCrystallizes>) | Strategy |
+| ``TowerSelfPlay`` | bridge | ``Ignites``, ``SelfPlaySaturates`` | [2](<doc:AtlasUnfolded#TowerSelfPlay>) | Play |
+| ``AmbiguityIsExperiment`` | bridge | ``HolesCarryAddresses``, ``LawIsTarget`` | [1](<doc:AtlasUnfolded#AmbiguityIsExperiment>) | Dynamics |
+| ``AtomBasis`` | bridge | ``BasisIsFinite``, ``HasCompositionalNorm``, ``RulesCompose`` | [1](<doc:AtlasUnfolded#AtomBasis>) | Basis |
+| ``BehaviorIsStructure`` | bridge | ``DistanceOnStructures``, ``HasTime`` | [1](<doc:AtlasUnfolded#BehaviorIsStructure>) | Dynamics |
+| ``ConditionalSolving`` | bridge | ``EncoderConditions`` | [1](<doc:AtlasUnfolded#ConditionalSolving>) | Spec |
+| ``ContentIsGaugeInvariant`` | bridge | ``HasGauge``, ``ReadingFactors`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
+| ``CostReadsGauge`` | bridge | ``HasDistance``, ``HasGauge``, ``PredicateReading`` | [1](<doc:AtlasUnfolded#CostReadsGauge>) | Gauge |
+| ``EmissionIsAutoregressive`` | bridge | ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding`` | [1](<doc:AtlasUnfolded#EmissionIsAutoregressive>) | Path |
+| ``EvidenceRefinesQuestion`` | kernel | ``Pair`` | [1](<doc:AtlasUnfolded#EvidenceRefinesQuestion>) | Verdict |
+| ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
+| ``IntegerValued`` | marker | ``Pair`` | [1](<doc:AtlasUnfolded#IntegerValued>) | Core |
+| ``MeasuredGeometry`` | bridge | ``FourthFace``, ``SearchableIffClusteredAndAligned`` | [1](<doc:AtlasUnfolded#MeasuredGeometry>) | Spec |
+| ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
+| ``ObservedTransition`` | theorem | ``HasEncoding``, ``Pair`` | [1](<doc:AtlasUnfolded#ObservedTransition>) | Transition |
+| ``Permanent`` | marker | ``Pair`` | [1](<doc:AtlasUnfolded#Permanent>) | Core |
+| ``PhaseBecomesAmplitude`` | bridge | ``StrategyCrystallizes`` | [1](<doc:AtlasUnfolded#PhaseBecomesAmplitude>) | Strategy |
+| ``PlayIsProof`` | bridge | ``RevealsNotCreates``, ``TowerSelfPlay`` | [1](<doc:AtlasUnfolded#PlayIsProof>) | Play |
+| ``RepairsPermanent`` | bridge | ``AnchorGraph``, ``NoInverse`` | [1](<doc:AtlasUnfolded#RepairsPermanent>) | Map |
+| ``StandardIsType`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#StandardIsType>) | Ruler |
+| ``AcquiresAnswer`` | bridge | ``ReadingFactors`` | 0 | Verdict |
+| ``AgentPathCertified`` | theorem | ``IdentityCollapse``, ``PassIsIdentification`` | 0 | Intelligence |
+| ``AlignmentEnablesIntelligence`` | bridge | ``AlignmentCoefficient``, ``IntelligenceRises`` | 0 | Search |
+| ``AllCoordinatesPresent`` | bridge | ``GateIsMembrane``, ``PlayIsProof`` | 0 | Projection |
+| ``AtomnessIsTrajectory`` | bridge | ``AtomBasis``, ``NoInverse`` | 0 | Basis |
+| ``CacheOnlyGrows`` | theorem | ``CachePermanent``, ``StepsTerminate`` | 0 | Identification |
+| ``CandidateGroupReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
+| ``CandidateLeafReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
+| ``ColourIsQuotient`` | bridge | ``EncodingForgets`` | 0 | Colour |
+| ``CommunicationBounded`` | theorem | ``ComparisonsAreBounded``, ``HasCache`` | 0 | Space |
+| ``CommutingTransition`` | theorem | ``ObservedTransition`` | 0 | Transition |
+| ``CompleteEntry`` | bridge | ``HasEncoding``, ``PhaseBecomesAmplitude`` | 0 | Strategy |
+| ``CompletionIsSolutionSet`` | bridge | ``HasPath``, ``Reading`` | 0 | Path |
+| ``ConstructionIsReading`` | bridge | ``EmissionAccumulates``, ``Reading`` | 0 | Path |
+| ``Converges`` | bridge | ``NoInverse``, ``SystemCrystallizes`` | 0 | Matter |
+| ``CoverageMatchesDeclaration`` | kernel | ``Pair`` | 0 | Verdict |
+| ``DepthIsBounded`` | bridge | ``HasGrammar``, ``Tower`` | 0 | Space |
+| ``DiagnosticsAccumulate`` | theorem | ``CachePermanent``, ``ResultDeterministic`` | 0 | Identification |
+| ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
+| ``Digit`` | kernel | ``Open`` | 0 | Numeral |
+| ``DiscoveryIsRevelation`` | bridge | ``ExactlyOneSurvives``, ``LibrarySaturates`` | 0 | Intelligence |
+| ``DistanceIsCost`` | bridge | ``DistanceOnStructures``, ``HasCost`` | 0 | Gradient |
+| ``EdgesCarryTheJudgement`` | bridge | ``BehaviorIsStructure``, ``PresentedLaw`` | 0 | Presentation |
+| ``EmptyObservationTrace`` | kernel | ``ObservationTrace`` | 0 | Verdict |
+| ``EncodingInvents`` | theorem | ``ComparedReadings``, ``HasEncoding`` | 0 | Voice |
+| ``EncodingSelectionSaturates`` | bridge | ``HasEncoding``, ``LibrarySaturates`` | 0 | Intelligence |
+| ``ErasureIsRecession`` | bridge | ``EmissionAccumulates``, ``NoInverse`` | 0 | Path |
+| ``ExtendedObservationTrace`` | kernel | ``ObservationTrace`` | 0 | Verdict |
+| ``FailureCurriculum`` | bridge | ``HolesCarryAddresses``, ``RepairsPermanent`` | 0 | Map |
+| ``FaithfulEncoding`` | bridge | ``ReadingFactors`` | 0 | Voice |
+| ``FiniteDiscovery`` | bridge | ``ComparisonsAreBounded``, ``Tower`` | 0 | Matter |
+| ``FormIsInvariant`` | bridge | ``PresentedLaw`` | 0 | Presentation |
+| ``FreeGeneration`` | bridge | ``DiscriminatorAndGenerator``, ``EmissionAccumulates`` | 0 | Path |
+| ``GateWrapper`` | bridge | ``DiscriminatorAndGenerator``, ``GateIsMembrane`` | 0 | Projection |
+| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``CostIsPathLength`` | 0 | Gauge |
+| ``GaugeFixing`` | bridge | ``CostReadsGauge``, ``SystemCrystallizes`` | 0 | Gauge |
+| ``GradientInComparison`` | theorem | ``Decidable``, ``DistanceOnStructures`` | 0 | Gradient |
+| ``GreedyDescentTerminates`` | bridge | ``AnchorGraph``, ``Monotone`` | 0 | Map |
+| ``InevitabilityIsDiscriminator`` | bridge | ``AlignmentCoefficient``, ``DiscriminatorAndGenerator``, ``IntelligenceRises`` | 0 | Generation |
+| ``InteractiveDecomposition`` | bridge | ``AmbiguityIsExperiment``, ``MotorSkillsAreStrategies`` | 0 | Dynamics |
+| ``InterferenceIsIntelligence`` | bridge | ``IntelligenceRises``, ``OrderIsOnlyFreedom`` | 0 | Interference |
+| ``InvalidStepFolds`` | theorem | ``HasPath``, ``Null`` | 0 | Path |
+| ``IsIsYIdentity`` | bridge | ``OrderIsOnlyFreedom``, ``PassIsIdentification`` | 0 | Interference |
+| ``LawfulDrift`` | bridge | ``LawIsTarget``, ``Tower`` | 0 | Dynamics |
+| ``LibraryCrystallizes`` | bridge | ``LibrarySaturates``, ``SystemCrystallizes`` | 0 | Intelligence |
+| ``MeasureIsCount`` | bridge | ``StandardIsType`` | 0 | Ruler |
+| ``MetricProperty`` | marker | ``Pair`` | 0 | Core |
+| ``NoSelfReference`` | kernel | ``OperationsClosed`` | 0 | Identification |
+| ``NullIsOrigin`` | theorem | ``DistanceOnStructures``, ``Null`` | 0 | Gradient |
+| ``OrderByDistance`` | bridge | ``DistanceOnStructures``, ``OrderIsOnlyFreedom`` | 0 | Gradient |
+| ``OrgansAreOneCompare`` | bridge | ``Decidable``, ``DiscriminatorAndGenerator`` | 0 | Generation |
+| ``OrthogonalOrgans`` | bridge | ``DiscriminatorAndGenerator``, ``SearchableIffClusteredAndAligned`` | 0 | Generation |
+| ``PerspectiveIsEncoding`` | theorem | ``HasEncoding``, ``Measurable``, ``ScopeBoundedByEncoding`` | 0 | Space |
+| ``PipelineCrystallizes`` | bridge | ``PassIsIdentification``, ``SystemCrystallizes`` | 0 | Intelligence |
+| ``PreconditionsGuaranteePass`` | theorem | ``ExactlyOneSurvives`` | 0 | Identification |
+| ``PressIsIdentification`` | bridge | ``PassIsIdentification``, ``PresentedLaw`` | 0 | Presentation |
+| ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
+| ``QualitiesAreFinite`` | theorem | ``HasEncoding``, ``IntegerValued`` | 0 | Space |
+| ``RecordedAnswerReading`` | bridge | ``PredicateReading`` | 0 | Verdict |
+| ``RefinementPreservesAnswer`` | kernel | ``EvidenceRefinesQuestion`` | 0 | Verdict |
+| ``ResistanceHasMagnitude`` | theorem | ``DistanceOnStructures``, ``Resistant`` | 0 | Gradient |
+| ``RetainedReadingRecord`` | marker | ``Permanent`` | 0 | Verdict |
+| ``SaturationDynamics`` | bridge | ``ComparisonsAreBounded``, ``LibrarySaturates`` | 0 | Intelligence |
+| ``SaturationIncorruptible`` | theorem | ``CachePermanent`` | 0 | Identification |
+| ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
+| ``SecondEncodingIsNovelty`` | bridge | ``ScopeBoundedByEncoding``, ``SelfPlaySaturates`` | 0 | Play |
+| ``SeparatorIdentifies`` | bridge | ``EncodingForgets`` | 0 | Seeing |
+| ``SharedDeclaredTick`` | kernel | ``Pair`` | 0 | Ruler |
+| ``SharedDecoder`` | kernel | ``Pair`` | 0 | Verdict |
+| ``StrategyNavigation`` | bridge | ``NavigationInevitable``, ``SkillsAreBalls`` | 0 | Strategy |
+| ``ThreeAxesOfCompare`` | bridge | ``Decidable``, ``OrderIsOnlyFreedom`` | 0 | Interference |
+| ``Unique`` | marker | ``Monotone``, ``Null`` | 0 | Core |
+| ``Universality`` | bridge | ``ExactlyOneSurvives``, ``HasEncoding`` | 0 | Identification |
+| ``VerdictCoversBranches`` | bridge | ``HasCandidates``, ``VerdictIsInvariant`` | 0 | Verdict |
+| ``VerdictReorders`` | kernel | ``Pair`` | 0 | Verdict |
+| ``VerdictRetainsLeft`` | kernel | ``Pair`` | 0 | Verdict |
+| ``VerdictRetainsRight`` | kernel | ``Pair`` | 0 | Verdict |
+
+### Pair
+
+``Pair`` carries 167 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``StructuresFinite`` | kernel | ``HasSigma``, ``Pair`` | [115](<doc:AtlasUnfolded#StructuresFinite>) | Identification |
+| ``OperationsClosed`` | kernel | ``Pair`` | [97](<doc:AtlasUnfolded#OperationsClosed>) | Identification |
+| ``CachePermanent`` | theorem | ``HasCache``, ``OperationsClosed``, ``StructuresFinite`` | [82](<doc:AtlasUnfolded#CachePermanent>) | Identification |
+| ``ResultDeterministic`` | kernel | ``OperationsClosed`` | [67](<doc:AtlasUnfolded#ResultDeterministic>) | Identification |
+| ``DistanceOnStructures`` | theorem | ``HasDistance``, ``StructuresFinite`` | [59](<doc:AtlasUnfolded#DistanceOnStructures>) | Gradient |
+| ``StepsTerminate`` | kernel | ``StructuresFinite`` | [54](<doc:AtlasUnfolded#StepsTerminate>) | Identification |
+| ``PipelineTotal`` | kernel | ``StepsTerminate`` | [52](<doc:AtlasUnfolded#PipelineTotal>) | Identification |
+| ``EqualityDecidable`` | kernel | ``StructuresFinite`` | [51](<doc:AtlasUnfolded#EqualityDecidable>) | Identification |
+| ``PassImpliesMembership`` | kernel | ``PipelineTotal``, ``ResultDeterministic`` | [51](<doc:AtlasUnfolded#PassImpliesMembership>) | Identification |
+| ``KnowledgeAccumulates`` | bridge | ``CachePermanent``, ``HasLibrary`` | [45](<doc:AtlasUnfolded#KnowledgeAccumulates>) | Intelligence |
+| ``ExactlyOneSurvives`` | theorem | ``EqualityDecidable``, ``HasSolutions`` | [42](<doc:AtlasUnfolded#ExactlyOneSurvives>) | Identification |
+| ``Decidable`` | marker | ``Pair`` | [38](<doc:AtlasUnfolded#Decidable>) | Core |
+| ``LibrarySaturates`` | bridge | ``CachePermanent``, ``HasSaturation`` | [38](<doc:AtlasUnfolded#LibrarySaturates>) | Intelligence |
+| ``PassIsIdentification`` | theorem | ``ExactlyOneSurvives``, ``PassImpliesMembership`` | [37](<doc:AtlasUnfolded#PassIsIdentification>) | Identification |
+| ``Null`` | seed | ``Pair`` | [32](<doc:AtlasUnfolded#Null>) | Primitive |
+| ``IdentityCollapse`` | theorem | ``HasSolutions``, ``Null`` | [28](<doc:AtlasUnfolded#IdentityCollapse>) | Core |
+| ``Resistant`` | theorem | ``Decidable``, ``HasDistance`` | [28](<doc:AtlasUnfolded#Resistant>) | Matter |
+| ``AxesCoOriented`` | theorem | ``CachePermanent``, ``ResultDeterministic`` | [27](<doc:AtlasUnfolded#AxesCoOriented>) | Identification |
+| ``Matter`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification``, ``Resistant`` | [26](<doc:AtlasUnfolded#Matter>) | Matter |
+| ``OrderIsOnlyFreedom`` | bridge | ``AxesCoOriented``, ``IdentityCollapse`` | [26](<doc:AtlasUnfolded#OrderIsOnlyFreedom>) | Identification |
+| ``AnchorGraph`` | bridge | ``DistanceOnStructures``, ``HasLibrary`` | [22](<doc:AtlasUnfolded#AnchorGraph>) | Map |
+| ``Ignites`` | bridge | ``LibrarySaturates``, ``Matter`` | [22](<doc:AtlasUnfolded#Ignites>) | Matter |
+| ``Tower`` | bridge | ``HasCost``, ``HasTime``, ``Ignites`` | [18](<doc:AtlasUnfolded#Tower>) | Matter |
+| ``BallSaturation`` | bridge | ``DistanceOnStructures``, ``LibrarySaturates`` | [15](<doc:AtlasUnfolded#BallSaturation>) | Gradient |
+| ``CompressionCriterion`` | bridge | ``DistanceOnStructures``, ``Tower`` | [14](<doc:AtlasUnfolded#CompressionCriterion>) | Gradient |
+| ``GateIsZeroOfLoss`` | theorem | ``DistanceOnStructures``, ``PassImpliesMembership`` | [12](<doc:AtlasUnfolded#GateIsZeroOfLoss>) | Gradient |
+| ``StrategyLivesInSigma`` | bridge | ``DistanceOnStructures``, ``OrderIsOnlyFreedom`` | [12](<doc:AtlasUnfolded#StrategyLivesInSigma>) | Strategy |
+| ``AlignmentCoefficient`` | bridge | ``GateIsZeroOfLoss``, ``HasAlpha`` | [11](<doc:AtlasUnfolded#AlignmentCoefficient>) | Search |
+| ``ComparedReadings`` | marker | ``Pair`` | [11](<doc:AtlasUnfolded#ComparedReadings>) | Verdict |
+| ``NoInverse`` | bridge | ``KnowledgeAccumulates`` | [11](<doc:AtlasUnfolded#NoInverse>) | Matter |
+| ``Monotone`` | marker | ``Pair`` | [10](<doc:AtlasUnfolded#Monotone>) | Core |
+| ``OneBoundaryThreeFaces`` | bridge | ``AnchorGraph``, ``BallSaturation``, ``CompressionCriterion`` | [10](<doc:AtlasUnfolded#OneBoundaryThreeFaces>) | Map |
+| ``HolesCarryAddresses`` | bridge | ``AnchorGraph``, ``Decidable`` | [9](<doc:AtlasUnfolded#HolesCarryAddresses>) | Map |
+| ``VerdictIsInvariant`` | bridge | ``ComparedReadings``, ``HasVerdict`` | [9](<doc:AtlasUnfolded#VerdictIsInvariant>) | Verdict |
+| ``BasisIsFinite`` | bridge | ``HasBasis``, ``LibrarySaturates`` | [7](<doc:AtlasUnfolded#BasisIsFinite>) | Intelligence |
+| ``CandidatesOnlyLeave`` | bridge | ``CachePermanent``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#CandidatesOnlyLeave>) | Identification |
+| ``LiquidPhase`` | bridge | ``KnowledgeAccumulates``, ``Monotone`` | [7](<doc:AtlasUnfolded#LiquidPhase>) | Liquid |
+| ``Measurable`` | marker | ``Pair`` | [7](<doc:AtlasUnfolded#Measurable>) | Core |
+| ``MembershipDecidable`` | theorem | ``EqualityDecidable``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#MembershipDecidable>) | Intelligence |
+| ``ResultsIrreversible`` | theorem | ``CachePermanent``, ``EqualityDecidable`` | [7](<doc:AtlasUnfolded#ResultsIrreversible>) | Intelligence |
+| ``CertifiedRuleGenerates`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification`` | [6](<doc:AtlasUnfolded#CertifiedRuleGenerates>) | Play |
+| ``LawLivesInSigma`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [6](<doc:AtlasUnfolded#LawLivesInSigma>) | Dynamics |
+| ``PredicateReading`` | bridge | ``HasVerdict``, ``Pair`` | [6](<doc:AtlasUnfolded#PredicateReading>) | Verdict |
+| ``SkillsAreBalls`` | bridge | ``BallSaturation``, ``StrategyLivesInSigma`` | [6](<doc:AtlasUnfolded#SkillsAreBalls>) | Strategy |
+| ``SystemCrystallizes`` | bridge | ``CandidatesOnlyLeave``, ``MembershipDecidable``, ``ResultsIrreversible`` | [6](<doc:AtlasUnfolded#SystemCrystallizes>) | Intelligence |
+| ``AmbiguityNamesInput`` | bridge | ``CertifiedRuleGenerates``, ``HolesCarryAddresses`` | [5](<doc:AtlasUnfolded#AmbiguityNamesInput>) | Play |
+| ``CrystallizationFront`` | bridge | ``DistanceOnStructures``, ``LiquidPhase``, ``NoInverse`` | [5](<doc:AtlasUnfolded#CrystallizationFront>) | Liquid |
+| ``DiscriminatorAndGenerator`` | bridge | ``OrderIsOnlyFreedom``, ``PassImpliesMembership`` | [5](<doc:AtlasUnfolded#DiscriminatorAndGenerator>) | Generation |
+| ``LawIsTarget`` | bridge | ``LawLivesInSigma``, ``PassIsIdentification`` | [5](<doc:AtlasUnfolded#LawIsTarget>) | Dynamics |
+| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [5](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
+| ``RevealsNotCreates`` | kernel | ``Measurable``, ``OperationsClosed`` | [5](<doc:AtlasUnfolded#RevealsNotCreates>) | Identification |
+| ``ScopeBoundedByEncoding`` | kernel | ``ResultDeterministic`` | [5](<doc:AtlasUnfolded#ScopeBoundedByEncoding>) | Identification |
+| ``SearchFlow`` | bridge | ``AlignmentCoefficient``, ``LiquidPhase`` | [5](<doc:AtlasUnfolded#SearchFlow>) | Liquid |
+| ``NavigationInevitable`` | bridge | ``OneBoundaryThreeFaces`` | [4](<doc:AtlasUnfolded#NavigationInevitable>) | Map |
+| ``ReadingFactors`` | bridge | ``VerdictIsInvariant`` | [4](<doc:AtlasUnfolded#ReadingFactors>) | Verdict |
+| ``SelfPlaySaturates`` | bridge | ``AmbiguityNamesInput``, ``BasisIsFinite`` | [4](<doc:AtlasUnfolded#SelfPlaySaturates>) | Play |
+| ``StefanCoupling`` | bridge | ``CrystallizationFront``, ``SearchFlow`` | [4](<doc:AtlasUnfolded#StefanCoupling>) | Liquid |
+| ``StrategyGate`` | bridge | ``PassImpliesMembership``, ``StrategyLivesInSigma`` | [4](<doc:AtlasUnfolded#StrategyGate>) | Strategy |
+| ``ComparisonsAreBounded`` | kernel | ``StructuresFinite`` | [3](<doc:AtlasUnfolded#ComparisonsAreBounded>) | Identification |
+| ``GateIsMembrane`` | bridge | ``StefanCoupling`` | [3](<doc:AtlasUnfolded#GateIsMembrane>) | Liquid |
+| ``IntelligenceRises`` | bridge | ``HasEfficiency``, ``LibrarySaturates`` | [3](<doc:AtlasUnfolded#IntelligenceRises>) | Intelligence |
+| ``SearchableIffClusteredAndAligned`` | bridge | ``AlignmentCoefficient``, ``OneBoundaryThreeFaces`` | [3](<doc:AtlasUnfolded#SearchableIffClusteredAndAligned>) | Search |
+| ``StrategyIsUnique`` | bridge | ``ExactlyOneSurvives``, ``StrategyGate`` | [3](<doc:AtlasUnfolded#StrategyIsUnique>) | Strategy |
+| ``CandidateReading`` | bridge | ``HasCandidates``, ``PredicateReading`` | [2](<doc:AtlasUnfolded#CandidateReading>) | Verdict |
+| ``EncoderConditions`` | bridge | ``BallSaturation``, ``CompressionCriterion``, ``HasEncoding`` | [2](<doc:AtlasUnfolded#EncoderConditions>) | Spec |
+| ``EncodingForgets`` | bridge | ``VerdictIsInvariant`` | [2](<doc:AtlasUnfolded#EncodingForgets>) | Seeing |
+| ``FourthFace`` | bridge | ``OneBoundaryThreeFaces``, ``SkillsAreBalls`` | [2](<doc:AtlasUnfolded#FourthFace>) | Strategy |
+| ``ObservationTrace`` | marker | ``Pair`` | [2](<doc:AtlasUnfolded#ObservationTrace>) | Verdict |
+| ``PlanningIsNavigation`` | bridge | ``LawIsTarget``, ``NavigationInevitable`` | [2](<doc:AtlasUnfolded#PlanningIsNavigation>) | Dynamics |
+| ``Reading`` | bridge | ``HasTime``, ``OrderIsOnlyFreedom``, ``RevealsNotCreates`` | [2](<doc:AtlasUnfolded#Reading>) | Reading |
+| ``RulesCompose`` | bridge | ``KnowledgeAccumulates`` | [2](<doc:AtlasUnfolded#RulesCompose>) | Basis |
+| ``StrategyCrystallizes`` | bridge | ``Matter``, ``StrategyIsUnique`` | [2](<doc:AtlasUnfolded#StrategyCrystallizes>) | Strategy |
+| ``TowerSelfPlay`` | bridge | ``Ignites``, ``SelfPlaySaturates`` | [2](<doc:AtlasUnfolded#TowerSelfPlay>) | Play |
+| ``AmbiguityIsExperiment`` | bridge | ``HolesCarryAddresses``, ``LawIsTarget`` | [1](<doc:AtlasUnfolded#AmbiguityIsExperiment>) | Dynamics |
+| ``AtomBasis`` | bridge | ``BasisIsFinite``, ``HasCompositionalNorm``, ``RulesCompose`` | [1](<doc:AtlasUnfolded#AtomBasis>) | Basis |
+| ``BehaviorIsStructure`` | bridge | ``DistanceOnStructures``, ``HasTime`` | [1](<doc:AtlasUnfolded#BehaviorIsStructure>) | Dynamics |
+| ``ConditionalSolving`` | bridge | ``EncoderConditions`` | [1](<doc:AtlasUnfolded#ConditionalSolving>) | Spec |
+| ``ContentIsGaugeInvariant`` | bridge | ``HasGauge``, ``ReadingFactors`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
+| ``CostReadsGauge`` | bridge | ``HasDistance``, ``HasGauge``, ``PredicateReading`` | [1](<doc:AtlasUnfolded#CostReadsGauge>) | Gauge |
+| ``EmissionIsAutoregressive`` | bridge | ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding`` | [1](<doc:AtlasUnfolded#EmissionIsAutoregressive>) | Path |
+| ``EvidenceRefinesQuestion`` | kernel | ``Pair`` | [1](<doc:AtlasUnfolded#EvidenceRefinesQuestion>) | Verdict |
+| ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
+| ``IntegerValued`` | marker | ``Pair`` | [1](<doc:AtlasUnfolded#IntegerValued>) | Core |
+| ``MeasuredGeometry`` | bridge | ``FourthFace``, ``SearchableIffClusteredAndAligned`` | [1](<doc:AtlasUnfolded#MeasuredGeometry>) | Spec |
+| ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
+| ``ObservedTransition`` | theorem | ``HasEncoding``, ``Pair`` | [1](<doc:AtlasUnfolded#ObservedTransition>) | Transition |
+| ``Permanent`` | marker | ``Pair`` | [1](<doc:AtlasUnfolded#Permanent>) | Core |
+| ``PhaseBecomesAmplitude`` | bridge | ``StrategyCrystallizes`` | [1](<doc:AtlasUnfolded#PhaseBecomesAmplitude>) | Strategy |
+| ``PlayIsProof`` | bridge | ``RevealsNotCreates``, ``TowerSelfPlay`` | [1](<doc:AtlasUnfolded#PlayIsProof>) | Play |
+| ``RepairsPermanent`` | bridge | ``AnchorGraph``, ``NoInverse`` | [1](<doc:AtlasUnfolded#RepairsPermanent>) | Map |
+| ``StandardIsType`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#StandardIsType>) | Ruler |
+| ``AcquiresAnswer`` | bridge | ``ReadingFactors`` | 0 | Verdict |
+| ``AgentPathCertified`` | theorem | ``IdentityCollapse``, ``PassIsIdentification`` | 0 | Intelligence |
+| ``AlignmentEnablesIntelligence`` | bridge | ``AlignmentCoefficient``, ``IntelligenceRises`` | 0 | Search |
+| ``AllCoordinatesPresent`` | bridge | ``GateIsMembrane``, ``PlayIsProof`` | 0 | Projection |
+| ``AtomnessIsTrajectory`` | bridge | ``AtomBasis``, ``NoInverse`` | 0 | Basis |
+| ``CacheOnlyGrows`` | theorem | ``CachePermanent``, ``StepsTerminate`` | 0 | Identification |
+| ``CandidateGroupReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
+| ``CandidateLeafReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
+| ``ColourIsQuotient`` | bridge | ``EncodingForgets`` | 0 | Colour |
+| ``CommunicationBounded`` | theorem | ``ComparisonsAreBounded``, ``HasCache`` | 0 | Space |
+| ``CommutingTransition`` | theorem | ``ObservedTransition`` | 0 | Transition |
+| ``CompleteEntry`` | bridge | ``HasEncoding``, ``PhaseBecomesAmplitude`` | 0 | Strategy |
+| ``CompletionIsSolutionSet`` | bridge | ``HasPath``, ``Reading`` | 0 | Path |
+| ``ConstructionIsReading`` | bridge | ``EmissionAccumulates``, ``Reading`` | 0 | Path |
+| ``Converges`` | bridge | ``NoInverse``, ``SystemCrystallizes`` | 0 | Matter |
+| ``CoverageMatchesDeclaration`` | kernel | ``Pair`` | 0 | Verdict |
+| ``DepthIsBounded`` | bridge | ``HasGrammar``, ``Tower`` | 0 | Space |
+| ``DiagnosticsAccumulate`` | theorem | ``CachePermanent``, ``ResultDeterministic`` | 0 | Identification |
+| ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
+| ``DiscoveryIsRevelation`` | bridge | ``ExactlyOneSurvives``, ``LibrarySaturates`` | 0 | Intelligence |
+| ``DistanceIsCost`` | bridge | ``DistanceOnStructures``, ``HasCost`` | 0 | Gradient |
+| ``EdgesCarryTheJudgement`` | bridge | ``BehaviorIsStructure``, ``PresentedLaw`` | 0 | Presentation |
+| ``EmptyObservationTrace`` | kernel | ``ObservationTrace`` | 0 | Verdict |
+| ``EncodingInvents`` | theorem | ``ComparedReadings``, ``HasEncoding`` | 0 | Voice |
+| ``EncodingSelectionSaturates`` | bridge | ``HasEncoding``, ``LibrarySaturates`` | 0 | Intelligence |
+| ``ErasureIsRecession`` | bridge | ``EmissionAccumulates``, ``NoInverse`` | 0 | Path |
+| ``ExtendedObservationTrace`` | kernel | ``ObservationTrace`` | 0 | Verdict |
+| ``FailureCurriculum`` | bridge | ``HolesCarryAddresses``, ``RepairsPermanent`` | 0 | Map |
+| ``FaithfulEncoding`` | bridge | ``ReadingFactors`` | 0 | Voice |
+| ``FiniteDiscovery`` | bridge | ``ComparisonsAreBounded``, ``Tower`` | 0 | Matter |
+| ``FormIsInvariant`` | bridge | ``PresentedLaw`` | 0 | Presentation |
+| ``FreeGeneration`` | bridge | ``DiscriminatorAndGenerator``, ``EmissionAccumulates`` | 0 | Path |
+| ``GateWrapper`` | bridge | ``DiscriminatorAndGenerator``, ``GateIsMembrane`` | 0 | Projection |
+| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``CostIsPathLength`` | 0 | Gauge |
+| ``GaugeFixing`` | bridge | ``CostReadsGauge``, ``SystemCrystallizes`` | 0 | Gauge |
+| ``GradientInComparison`` | theorem | ``Decidable``, ``DistanceOnStructures`` | 0 | Gradient |
+| ``GreedyDescentTerminates`` | bridge | ``AnchorGraph``, ``Monotone`` | 0 | Map |
+| ``InevitabilityIsDiscriminator`` | bridge | ``AlignmentCoefficient``, ``DiscriminatorAndGenerator``, ``IntelligenceRises`` | 0 | Generation |
+| ``InteractiveDecomposition`` | bridge | ``AmbiguityIsExperiment``, ``MotorSkillsAreStrategies`` | 0 | Dynamics |
+| ``InterferenceIsIntelligence`` | bridge | ``IntelligenceRises``, ``OrderIsOnlyFreedom`` | 0 | Interference |
+| ``InvalidStepFolds`` | theorem | ``HasPath``, ``Null`` | 0 | Path |
+| ``IsIsYIdentity`` | bridge | ``OrderIsOnlyFreedom``, ``PassIsIdentification`` | 0 | Interference |
+| ``LawfulDrift`` | bridge | ``LawIsTarget``, ``Tower`` | 0 | Dynamics |
+| ``LibraryCrystallizes`` | bridge | ``LibrarySaturates``, ``SystemCrystallizes`` | 0 | Intelligence |
+| ``MeasureIsCount`` | bridge | ``StandardIsType`` | 0 | Ruler |
+| ``MetricProperty`` | marker | ``Pair`` | 0 | Core |
+| ``NoSelfReference`` | kernel | ``OperationsClosed`` | 0 | Identification |
+| ``NullIsOrigin`` | theorem | ``DistanceOnStructures``, ``Null`` | 0 | Gradient |
+| ``OrderByDistance`` | bridge | ``DistanceOnStructures``, ``OrderIsOnlyFreedom`` | 0 | Gradient |
+| ``OrgansAreOneCompare`` | bridge | ``Decidable``, ``DiscriminatorAndGenerator`` | 0 | Generation |
+| ``OrthogonalOrgans`` | bridge | ``DiscriminatorAndGenerator``, ``SearchableIffClusteredAndAligned`` | 0 | Generation |
+| ``PerspectiveIsEncoding`` | theorem | ``HasEncoding``, ``Measurable``, ``ScopeBoundedByEncoding`` | 0 | Space |
+| ``PipelineCrystallizes`` | bridge | ``PassIsIdentification``, ``SystemCrystallizes`` | 0 | Intelligence |
+| ``PreconditionsGuaranteePass`` | theorem | ``ExactlyOneSurvives`` | 0 | Identification |
+| ``PressIsIdentification`` | bridge | ``PassIsIdentification``, ``PresentedLaw`` | 0 | Presentation |
+| ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
+| ``QualitiesAreFinite`` | theorem | ``HasEncoding``, ``IntegerValued`` | 0 | Space |
+| ``RecordedAnswerReading`` | bridge | ``PredicateReading`` | 0 | Verdict |
+| ``RefinementPreservesAnswer`` | kernel | ``EvidenceRefinesQuestion`` | 0 | Verdict |
+| ``ResistanceHasMagnitude`` | theorem | ``DistanceOnStructures``, ``Resistant`` | 0 | Gradient |
+| ``RetainedReadingRecord`` | marker | ``Permanent`` | 0 | Verdict |
+| ``SaturationDynamics`` | bridge | ``ComparisonsAreBounded``, ``LibrarySaturates`` | 0 | Intelligence |
+| ``SaturationIncorruptible`` | theorem | ``CachePermanent`` | 0 | Identification |
+| ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
+| ``SecondEncodingIsNovelty`` | bridge | ``ScopeBoundedByEncoding``, ``SelfPlaySaturates`` | 0 | Play |
+| ``SeparatorIdentifies`` | bridge | ``EncodingForgets`` | 0 | Seeing |
+| ``SharedDeclaredTick`` | kernel | ``Pair`` | 0 | Ruler |
+| ``SharedDecoder`` | kernel | ``Pair`` | 0 | Verdict |
+| ``StrategyNavigation`` | bridge | ``NavigationInevitable``, ``SkillsAreBalls`` | 0 | Strategy |
+| ``ThreeAxesOfCompare`` | bridge | ``Decidable``, ``OrderIsOnlyFreedom`` | 0 | Interference |
+| ``Unique`` | marker | ``Monotone``, ``Null`` | 0 | Core |
+| ``Universality`` | bridge | ``ExactlyOneSurvives``, ``HasEncoding`` | 0 | Identification |
+| ``VerdictCoversBranches`` | bridge | ``HasCandidates``, ``VerdictIsInvariant`` | 0 | Verdict |
+| ``VerdictReorders`` | kernel | ``Pair`` | 0 | Verdict |
+| ``VerdictRetainsLeft`` | kernel | ``Pair`` | 0 | Verdict |
+| ``VerdictRetainsRight`` | kernel | ``Pair`` | 0 | Verdict |
+
+### HasSigma
+
+``HasSigma`` carries 166 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``StructuresFinite`` | kernel | ``HasSigma``, ``Pair`` | [115](<doc:AtlasUnfolded#StructuresFinite>) | Identification |
 | ``HasCache`` | axis | ``HasSigma`` | [86](<doc:AtlasUnfolded#HasCache>) | Core |
 | ``CachePermanent`` | theorem | ``HasCache``, ``OperationsClosed``, ``StructuresFinite`` | [82](<doc:AtlasUnfolded#CachePermanent>) | Identification |
-| ``HasDistance`` | axis | ``HasSigma`` | [79](<doc:AtlasUnfolded#HasDistance>) | Core |
+| ``HasDistance`` | axis | ``HasSigma`` | [76](<doc:AtlasUnfolded#HasDistance>) | Core |
 | ``HasSolutions`` | axis | ``HasSigma`` | [67](<doc:AtlasUnfolded#HasSolutions>) | Core |
 | ``HasLibrary`` | axis | ``HasSigma`` | [66](<doc:AtlasUnfolded#HasLibrary>) | Core |
-| ``DistanceOnStructures`` | theorem | ``HasDistance``, ``StructuresFinite`` | [61](<doc:AtlasUnfolded#DistanceOnStructures>) | Gradient |
+| ``DistanceOnStructures`` | theorem | ``HasDistance``, ``StructuresFinite`` | [59](<doc:AtlasUnfolded#DistanceOnStructures>) | Gradient |
 | ``StepsTerminate`` | kernel | ``StructuresFinite`` | [54](<doc:AtlasUnfolded#StepsTerminate>) | Identification |
 | ``PipelineTotal`` | kernel | ``StepsTerminate`` | [52](<doc:AtlasUnfolded#PipelineTotal>) | Identification |
 | ``EqualityDecidable`` | kernel | ``StructuresFinite`` | [51](<doc:AtlasUnfolded#EqualityDecidable>) | Identification |
@@ -35,49 +563,53 @@ compile.
 | ``HasSaturation`` | axis | ``HasLibrary`` | [39](<doc:AtlasUnfolded#HasSaturation>) | Core |
 | ``LibrarySaturates`` | bridge | ``CachePermanent``, ``HasSaturation`` | [38](<doc:AtlasUnfolded#LibrarySaturates>) | Intelligence |
 | ``PassIsIdentification`` | theorem | ``ExactlyOneSurvives``, ``PassImpliesMembership`` | [37](<doc:AtlasUnfolded#PassIsIdentification>) | Identification |
+| ``HasEncoding`` | axis | ``HasSigma`` | [34](<doc:AtlasUnfolded#HasEncoding>) | Core |
 | ``IdentityCollapse`` | theorem | ``HasSolutions``, ``Null`` | [28](<doc:AtlasUnfolded#IdentityCollapse>) | Core |
 | ``Resistant`` | theorem | ``Decidable``, ``HasDistance`` | [28](<doc:AtlasUnfolded#Resistant>) | Matter |
 | ``AxesCoOriented`` | theorem | ``CachePermanent``, ``ResultDeterministic`` | [27](<doc:AtlasUnfolded#AxesCoOriented>) | Identification |
 | ``Matter`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification``, ``Resistant`` | [26](<doc:AtlasUnfolded#Matter>) | Matter |
 | ``OrderIsOnlyFreedom`` | bridge | ``AxesCoOriented``, ``IdentityCollapse`` | [26](<doc:AtlasUnfolded#OrderIsOnlyFreedom>) | Identification |
 | ``HasTime`` | axis | ``HasSigma`` | [24](<doc:AtlasUnfolded#HasTime>) | Matter |
-| ``HasEncoding`` | axis | ``HasSigma`` | [23](<doc:AtlasUnfolded#HasEncoding>) | Core |
 | ``AnchorGraph`` | bridge | ``DistanceOnStructures``, ``HasLibrary`` | [22](<doc:AtlasUnfolded#AnchorGraph>) | Map |
 | ``Ignites`` | bridge | ``LibrarySaturates``, ``Matter`` | [22](<doc:AtlasUnfolded#Ignites>) | Matter |
 | ``HasCost`` | axis | ``HasSigma`` | [20](<doc:AtlasUnfolded#HasCost>) | Matter |
 | ``Tower`` | bridge | ``HasCost``, ``HasTime``, ``Ignites`` | [18](<doc:AtlasUnfolded#Tower>) | Matter |
+| ``HasVerdict`` | axis | ``HasEncoding`` | [17](<doc:AtlasUnfolded#HasVerdict>) | Verdict |
 | ``BallSaturation`` | bridge | ``DistanceOnStructures``, ``LibrarySaturates`` | [15](<doc:AtlasUnfolded#BallSaturation>) | Gradient |
-| ``HasLaw`` | axis | ``HasSigma`` | [15](<doc:AtlasUnfolded#HasLaw>) | Dynamics |
 | ``CompressionCriterion`` | bridge | ``DistanceOnStructures``, ``Tower`` | [14](<doc:AtlasUnfolded#CompressionCriterion>) | Gradient |
-| ``HasPath`` | axis | ``HasSigma`` | [13](<doc:AtlasUnfolded#HasPath>) | Path |
+| ``HasLaw`` | axis | ``HasSigma`` | [13](<doc:AtlasUnfolded#HasLaw>) | Dynamics |
 | ``GateIsZeroOfLoss`` | theorem | ``DistanceOnStructures``, ``PassImpliesMembership`` | [12](<doc:AtlasUnfolded#GateIsZeroOfLoss>) | Gradient |
 | ``HasAlpha`` | axis | ``HasDistance`` | [12](<doc:AtlasUnfolded#HasAlpha>) | Core |
+| ``HasPath`` | axis | ``HasSigma`` | [12](<doc:AtlasUnfolded#HasPath>) | Path |
 | ``StrategyLivesInSigma`` | bridge | ``DistanceOnStructures``, ``OrderIsOnlyFreedom`` | [12](<doc:AtlasUnfolded#StrategyLivesInSigma>) | Strategy |
 | ``AlignmentCoefficient`` | bridge | ``GateIsZeroOfLoss``, ``HasAlpha`` | [11](<doc:AtlasUnfolded#AlignmentCoefficient>) | Search |
 | ``NoInverse`` | bridge | ``KnowledgeAccumulates`` | [11](<doc:AtlasUnfolded#NoInverse>) | Matter |
 | ``HasBasis`` | axis | ``HasLibrary`` | [10](<doc:AtlasUnfolded#HasBasis>) | Core |
 | ``OneBoundaryThreeFaces`` | bridge | ``AnchorGraph``, ``BallSaturation``, ``CompressionCriterion`` | [10](<doc:AtlasUnfolded#OneBoundaryThreeFaces>) | Map |
 | ``HolesCarryAddresses`` | bridge | ``AnchorGraph``, ``Decidable`` | [9](<doc:AtlasUnfolded#HolesCarryAddresses>) | Map |
+| ``VerdictIsInvariant`` | bridge | ``ComparedReadings``, ``HasVerdict`` | [9](<doc:AtlasUnfolded#VerdictIsInvariant>) | Verdict |
 | ``BasisIsFinite`` | bridge | ``HasBasis``, ``LibrarySaturates`` | [7](<doc:AtlasUnfolded#BasisIsFinite>) | Intelligence |
 | ``CandidatesOnlyLeave`` | bridge | ``CachePermanent``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#CandidatesOnlyLeave>) | Identification |
 | ``LiquidPhase`` | bridge | ``KnowledgeAccumulates``, ``Monotone`` | [7](<doc:AtlasUnfolded#LiquidPhase>) | Liquid |
 | ``MembershipDecidable`` | theorem | ``EqualityDecidable``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#MembershipDecidable>) | Intelligence |
-| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [7](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
 | ``ResultsIrreversible`` | theorem | ``CachePermanent``, ``EqualityDecidable`` | [7](<doc:AtlasUnfolded#ResultsIrreversible>) | Intelligence |
 | ``CertifiedRuleGenerates`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification`` | [6](<doc:AtlasUnfolded#CertifiedRuleGenerates>) | Play |
 | ``LawLivesInSigma`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [6](<doc:AtlasUnfolded#LawLivesInSigma>) | Dynamics |
+| ``PredicateReading`` | bridge | ``HasVerdict``, ``Pair`` | [6](<doc:AtlasUnfolded#PredicateReading>) | Verdict |
 | ``SkillsAreBalls`` | bridge | ``BallSaturation``, ``StrategyLivesInSigma`` | [6](<doc:AtlasUnfolded#SkillsAreBalls>) | Strategy |
 | ``SystemCrystallizes`` | bridge | ``CandidatesOnlyLeave``, ``MembershipDecidable``, ``ResultsIrreversible`` | [6](<doc:AtlasUnfolded#SystemCrystallizes>) | Intelligence |
 | ``AmbiguityNamesInput`` | bridge | ``CertifiedRuleGenerates``, ``HolesCarryAddresses`` | [5](<doc:AtlasUnfolded#AmbiguityNamesInput>) | Play |
 | ``CrystallizationFront`` | bridge | ``DistanceOnStructures``, ``LiquidPhase``, ``NoInverse`` | [5](<doc:AtlasUnfolded#CrystallizationFront>) | Liquid |
 | ``DiscriminatorAndGenerator`` | bridge | ``OrderIsOnlyFreedom``, ``PassImpliesMembership`` | [5](<doc:AtlasUnfolded#DiscriminatorAndGenerator>) | Generation |
 | ``EmissionAccumulates`` | theorem | ``HasPath`` | [5](<doc:AtlasUnfolded#EmissionAccumulates>) | Path |
-| ``EncodingForgets`` | axis | ``HasEncoding`` | [5](<doc:AtlasUnfolded#EncodingForgets>) | Seeing |
 | ``LawIsTarget`` | bridge | ``LawLivesInSigma``, ``PassIsIdentification`` | [5](<doc:AtlasUnfolded#LawIsTarget>) | Dynamics |
+| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [5](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
 | ``SearchFlow`` | bridge | ``AlignmentCoefficient``, ``LiquidPhase`` | [5](<doc:AtlasUnfolded#SearchFlow>) | Liquid |
+| ``HasCandidates`` | axis | ``HasSigma`` | [4](<doc:AtlasUnfolded#HasCandidates>) | Verdict |
 | ``HasEfficiency`` | axis | ``HasSigma`` | [4](<doc:AtlasUnfolded#HasEfficiency>) | Intelligence |
 | ``HasGauge`` | axis | ``HasSigma`` | [4](<doc:AtlasUnfolded#HasGauge>) | Gauge |
 | ``NavigationInevitable`` | bridge | ``OneBoundaryThreeFaces`` | [4](<doc:AtlasUnfolded#NavigationInevitable>) | Map |
+| ``ReadingFactors`` | bridge | ``VerdictIsInvariant`` | [4](<doc:AtlasUnfolded#ReadingFactors>) | Verdict |
 | ``SelfPlaySaturates`` | bridge | ``AmbiguityNamesInput``, ``BasisIsFinite`` | [4](<doc:AtlasUnfolded#SelfPlaySaturates>) | Play |
 | ``StefanCoupling`` | bridge | ``CrystallizationFront``, ``SearchFlow`` | [4](<doc:AtlasUnfolded#StefanCoupling>) | Liquid |
 | ``StrategyGate`` | bridge | ``PassImpliesMembership``, ``StrategyLivesInSigma`` | [4](<doc:AtlasUnfolded#StrategyGate>) | Strategy |
@@ -86,8 +618,9 @@ compile.
 | ``IntelligenceRises`` | bridge | ``HasEfficiency``, ``LibrarySaturates`` | [3](<doc:AtlasUnfolded#IntelligenceRises>) | Intelligence |
 | ``SearchableIffClusteredAndAligned`` | bridge | ``AlignmentCoefficient``, ``OneBoundaryThreeFaces`` | [3](<doc:AtlasUnfolded#SearchableIffClusteredAndAligned>) | Search |
 | ``StrategyIsUnique`` | bridge | ``ExactlyOneSurvives``, ``StrategyGate`` | [3](<doc:AtlasUnfolded#StrategyIsUnique>) | Strategy |
-| ``CostIsPathLength`` | bridge | ``HasDistance``, ``HasPath`` | [2](<doc:AtlasUnfolded#CostIsPathLength>) | Path |
+| ``CandidateReading`` | bridge | ``HasCandidates``, ``PredicateReading`` | [2](<doc:AtlasUnfolded#CandidateReading>) | Verdict |
 | ``EncoderConditions`` | bridge | ``BallSaturation``, ``CompressionCriterion``, ``HasEncoding`` | [2](<doc:AtlasUnfolded#EncoderConditions>) | Spec |
+| ``EncodingForgets`` | bridge | ``VerdictIsInvariant`` | [2](<doc:AtlasUnfolded#EncodingForgets>) | Seeing |
 | ``FourthFace`` | bridge | ``OneBoundaryThreeFaces``, ``SkillsAreBalls`` | [2](<doc:AtlasUnfolded#FourthFace>) | Strategy |
 | ``HasCompositionalNorm`` | axis | ``HasDistance`` | [2](<doc:AtlasUnfolded#HasCompositionalNorm>) | Basis |
 | ``HasGrammar`` | axis | ``HasEncoding`` | [2](<doc:AtlasUnfolded#HasGrammar>) | Space |
@@ -99,51 +632,53 @@ compile.
 | ``AmbiguityIsExperiment`` | bridge | ``HolesCarryAddresses``, ``LawIsTarget`` | [1](<doc:AtlasUnfolded#AmbiguityIsExperiment>) | Dynamics |
 | ``AtomBasis`` | bridge | ``BasisIsFinite``, ``HasCompositionalNorm``, ``RulesCompose`` | [1](<doc:AtlasUnfolded#AtomBasis>) | Basis |
 | ``BehaviorIsStructure`` | bridge | ``DistanceOnStructures``, ``HasTime`` | [1](<doc:AtlasUnfolded#BehaviorIsStructure>) | Dynamics |
-| ``ColourIsQuotient`` | axis | ``EncodingForgets`` | [1](<doc:AtlasUnfolded#ColourIsQuotient>) | Colour |
 | ``ConditionalSolving`` | bridge | ``EncoderConditions`` | [1](<doc:AtlasUnfolded#ConditionalSolving>) | Spec |
-| ``ContentIsGaugeInvariant`` | bridge | ``HasEncoding``, ``HasGauge``, ``RevealsNotCreates`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
-| ``CostReadsGauge`` | bridge | ``HasDistance``, ``HasGauge`` | [1](<doc:AtlasUnfolded#CostReadsGauge>) | Gauge |
+| ``ContentIsGaugeInvariant`` | bridge | ``HasGauge``, ``ReadingFactors`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
+| ``CostIsPathLength`` | bridge | ``HasDistance``, ``HasPath`` | [1](<doc:AtlasUnfolded#CostIsPathLength>) | Path |
+| ``CostReadsGauge`` | bridge | ``HasDistance``, ``HasGauge``, ``PredicateReading`` | [1](<doc:AtlasUnfolded#CostReadsGauge>) | Gauge |
 | ``DistanceIsMetric`` | bridge | ``HasCache``, ``HasDistance`` | [1](<doc:AtlasUnfolded#DistanceIsMetric>) | Space |
 | ``EmissionIsAutoregressive`` | bridge | ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding`` | [1](<doc:AtlasUnfolded#EmissionIsAutoregressive>) | Path |
 | ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
-| ``InterferenceIsSubstitution`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#InterferenceIsSubstitution>) | Wave |
-| ``LinearArbiter`` | bridge | ``CostIsPathLength`` | [1](<doc:AtlasUnfolded#LinearArbiter>) | Gauge |
+| ``HasStrategy`` | axis | ``HasSigma`` | [1](<doc:AtlasUnfolded#HasStrategy>) | Level |
 | ``MeasuredGeometry`` | bridge | ``FourthFace``, ``SearchableIffClusteredAndAligned`` | [1](<doc:AtlasUnfolded#MeasuredGeometry>) | Spec |
 | ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
+| ``ObservedTransition`` | theorem | ``HasEncoding``, ``Pair`` | [1](<doc:AtlasUnfolded#ObservedTransition>) | Transition |
 | ``PhaseBecomesAmplitude`` | bridge | ``StrategyCrystallizes`` | [1](<doc:AtlasUnfolded#PhaseBecomesAmplitude>) | Strategy |
 | ``PlayIsProof`` | bridge | ``RevealsNotCreates``, ``TowerSelfPlay`` | [1](<doc:AtlasUnfolded#PlayIsProof>) | Play |
 | ``ReachIsPath`` | bridge | ``HasBasis``, ``HasPath`` | [1](<doc:AtlasUnfolded#ReachIsPath>) | Path |
 | ``RepairsPermanent`` | bridge | ``AnchorGraph``, ``NoInverse`` | [1](<doc:AtlasUnfolded#RepairsPermanent>) | Map |
 | ``StandardIsType`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#StandardIsType>) | Ruler |
+| ``AcquiresAnswer`` | bridge | ``ReadingFactors`` | 0 | Verdict |
 | ``AgentPathCertified`` | theorem | ``IdentityCollapse``, ``PassIsIdentification`` | 0 | Intelligence |
 | ``AlignmentEnablesIntelligence`` | bridge | ``AlignmentCoefficient``, ``IntelligenceRises`` | 0 | Search |
 | ``AllCoordinatesPresent`` | bridge | ``GateIsMembrane``, ``PlayIsProof`` | 0 | Projection |
-| ``AmbiguityIsSymmetry`` | axis | ``EncodingForgets`` | 0 | Verdict |
 | ``AtomnessIsTrajectory`` | bridge | ``AtomBasis``, ``NoInverse`` | 0 | Basis |
 | ``CacheOnlyGrows`` | theorem | ``CachePermanent``, ``StepsTerminate`` | 0 | Identification |
+| ``CandidateGroupReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
+| ``CandidateLeafReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
+| ``ColourIsQuotient`` | bridge | ``EncodingForgets`` | 0 | Colour |
 | ``CommunicationBounded`` | theorem | ``ComparisonsAreBounded``, ``HasCache`` | 0 | Space |
+| ``CommutingTransition`` | theorem | ``ObservedTransition`` | 0 | Transition |
 | ``CompleteEntry`` | bridge | ``HasEncoding``, ``PhaseBecomesAmplitude`` | 0 | Strategy |
 | ``CompletionIsSolutionSet`` | bridge | ``HasPath``, ``Reading`` | 0 | Path |
 | ``ConstructionIsReading`` | bridge | ``EmissionAccumulates``, ``Reading`` | 0 | Path |
 | ``Converges`` | bridge | ``NoInverse``, ``SystemCrystallizes`` | 0 | Matter |
-| ``DarknessIsNormalForm`` | bridge | ``InterferenceIsSubstitution`` | 0 | Wave |
 | ``DepthIsBounded`` | bridge | ``HasGrammar``, ``Tower`` | 0 | Space |
 | ``DiagnosticsAccumulate`` | theorem | ``CachePermanent``, ``ResultDeterministic`` | 0 | Identification |
 | ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
 | ``DiscoveryIsRevelation`` | bridge | ``ExactlyOneSurvives``, ``LibrarySaturates`` | 0 | Intelligence |
 | ``DistanceIsCost`` | bridge | ``DistanceOnStructures``, ``HasCost`` | 0 | Gradient |
 | ``EdgesCarryTheJudgement`` | bridge | ``BehaviorIsStructure``, ``PresentedLaw`` | 0 | Presentation |
-| ``EncodingInvents`` | axis | ``HasEncoding`` | 0 | Voice |
+| ``EncodingInvents`` | theorem | ``ComparedReadings``, ``HasEncoding`` | 0 | Voice |
 | ``EncodingSelectionSaturates`` | bridge | ``HasEncoding``, ``LibrarySaturates`` | 0 | Intelligence |
 | ``ErasureIsRecession`` | bridge | ``EmissionAccumulates``, ``NoInverse`` | 0 | Path |
 | ``FailureCurriculum`` | bridge | ``HolesCarryAddresses``, ``RepairsPermanent`` | 0 | Map |
-| ``FaithfulEncoding`` | theorem | ``HasEncoding`` | 0 | Voice |
+| ``FaithfulEncoding`` | bridge | ``ReadingFactors`` | 0 | Voice |
 | ``FiniteDiscovery`` | bridge | ``ComparisonsAreBounded``, ``Tower`` | 0 | Matter |
 | ``FormIsInvariant`` | bridge | ``PresentedLaw`` | 0 | Presentation |
 | ``FreeGeneration`` | bridge | ``DiscriminatorAndGenerator``, ``EmissionAccumulates`` | 0 | Path |
-| ``GamutIsCone`` | axis | ``ColourIsQuotient`` | 0 | Colour |
 | ``GateWrapper`` | bridge | ``DiscriminatorAndGenerator``, ``GateIsMembrane`` | 0 | Projection |
-| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
+| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``CostIsPathLength`` | 0 | Gauge |
 | ``GaugeFixing`` | bridge | ``CostReadsGauge``, ``SystemCrystallizes`` | 0 | Gauge |
 | ``GradientInComparison`` | theorem | ``Decidable``, ``DistanceOnStructures`` | 0 | Gradient |
 | ``GreedyDescentTerminates`` | bridge | ``AnchorGraph``, ``Monotone`` | 0 | Map |
@@ -165,470 +700,28 @@ compile.
 | ``PressIsIdentification`` | bridge | ``PassIsIdentification``, ``PresentedLaw`` | 0 | Presentation |
 | ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
 | ``QualitiesAreFinite`` | theorem | ``HasEncoding``, ``IntegerValued`` | 0 | Space |
+| ``RecordedAnswerReading`` | bridge | ``PredicateReading`` | 0 | Verdict |
 | ``ResistanceHasMagnitude`` | theorem | ``DistanceOnStructures``, ``Resistant`` | 0 | Gradient |
 | ``SaturationDynamics`` | bridge | ``ComparisonsAreBounded``, ``LibrarySaturates`` | 0 | Intelligence |
 | ``SaturationIncorruptible`` | theorem | ``CachePermanent`` | 0 | Identification |
 | ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
 | ``SecondEncodingIsNovelty`` | bridge | ``ScopeBoundedByEncoding``, ``SelfPlaySaturates`` | 0 | Play |
-| ``SeparatorIdentifies`` | axis | ``EncodingForgets`` | 0 | Seeing |
+| ``SeparatorIdentifies`` | bridge | ``EncodingForgets`` | 0 | Seeing |
 | ``SpaceFromDifference`` | bridge | ``DistanceIsMetric``, ``HasGrammar`` | 0 | Space |
+| ``StrategyBecomesTarget`` | axis | ``HasStrategy`` | 0 | Level |
 | ``StrategyNavigation`` | bridge | ``NavigationInevitable``, ``SkillsAreBalls`` | 0 | Strategy |
 | ``ThreeAxesOfCompare`` | bridge | ``Decidable``, ``OrderIsOnlyFreedom`` | 0 | Interference |
 | ``Universality`` | bridge | ``ExactlyOneSurvives``, ``HasEncoding`` | 0 | Identification |
-| ``VerdictIsInvariant`` | axis | ``EncodingForgets`` | 0 | Verdict |
-
-### Structure
-
-``Structure`` carries 143 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
-
-| Claim | Kind | Premises | Carries | Home |
-| --- | --- | --- | --- | --- |
-| ``Open`` | kernel | ``Structure`` | [141](<doc:AtlasUnfolded#Open>) | Primitive |
-| ``Pair`` | seed | ``Open`` | [139](<doc:AtlasUnfolded#Pair>) | Primitive |
-| ``StructuresFinite`` | kernel | ``HasSigma``, ``Pair`` | [117](<doc:AtlasUnfolded#StructuresFinite>) | Identification |
-| ``OperationsClosed`` | kernel | ``Pair`` | [99](<doc:AtlasUnfolded#OperationsClosed>) | Identification |
-| ``CachePermanent`` | theorem | ``HasCache``, ``OperationsClosed``, ``StructuresFinite`` | [82](<doc:AtlasUnfolded#CachePermanent>) | Identification |
-| ``ResultDeterministic`` | kernel | ``OperationsClosed`` | [67](<doc:AtlasUnfolded#ResultDeterministic>) | Identification |
-| ``DistanceOnStructures`` | theorem | ``HasDistance``, ``StructuresFinite`` | [61](<doc:AtlasUnfolded#DistanceOnStructures>) | Gradient |
-| ``StepsTerminate`` | kernel | ``StructuresFinite`` | [54](<doc:AtlasUnfolded#StepsTerminate>) | Identification |
-| ``PipelineTotal`` | kernel | ``StepsTerminate`` | [52](<doc:AtlasUnfolded#PipelineTotal>) | Identification |
-| ``EqualityDecidable`` | kernel | ``StructuresFinite`` | [51](<doc:AtlasUnfolded#EqualityDecidable>) | Identification |
-| ``PassImpliesMembership`` | kernel | ``PipelineTotal``, ``ResultDeterministic`` | [51](<doc:AtlasUnfolded#PassImpliesMembership>) | Identification |
-| ``KnowledgeAccumulates`` | bridge | ``CachePermanent``, ``HasLibrary`` | [45](<doc:AtlasUnfolded#KnowledgeAccumulates>) | Intelligence |
-| ``ExactlyOneSurvives`` | theorem | ``EqualityDecidable``, ``HasSolutions`` | [42](<doc:AtlasUnfolded#ExactlyOneSurvives>) | Identification |
-| ``Decidable`` | marker | ``Pair`` | [38](<doc:AtlasUnfolded#Decidable>) | Core |
-| ``LibrarySaturates`` | bridge | ``CachePermanent``, ``HasSaturation`` | [38](<doc:AtlasUnfolded#LibrarySaturates>) | Intelligence |
-| ``PassIsIdentification`` | theorem | ``ExactlyOneSurvives``, ``PassImpliesMembership`` | [37](<doc:AtlasUnfolded#PassIsIdentification>) | Identification |
-| ``Null`` | seed | ``Pair`` | [32](<doc:AtlasUnfolded#Null>) | Primitive |
-| ``IdentityCollapse`` | theorem | ``HasSolutions``, ``Null`` | [28](<doc:AtlasUnfolded#IdentityCollapse>) | Core |
-| ``Resistant`` | theorem | ``Decidable``, ``HasDistance`` | [28](<doc:AtlasUnfolded#Resistant>) | Matter |
-| ``AxesCoOriented`` | theorem | ``CachePermanent``, ``ResultDeterministic`` | [27](<doc:AtlasUnfolded#AxesCoOriented>) | Identification |
-| ``Matter`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification``, ``Resistant`` | [26](<doc:AtlasUnfolded#Matter>) | Matter |
-| ``OrderIsOnlyFreedom`` | bridge | ``AxesCoOriented``, ``IdentityCollapse`` | [26](<doc:AtlasUnfolded#OrderIsOnlyFreedom>) | Identification |
-| ``AnchorGraph`` | bridge | ``DistanceOnStructures``, ``HasLibrary`` | [22](<doc:AtlasUnfolded#AnchorGraph>) | Map |
-| ``Ignites`` | bridge | ``LibrarySaturates``, ``Matter`` | [22](<doc:AtlasUnfolded#Ignites>) | Matter |
-| ``Tower`` | bridge | ``HasCost``, ``HasTime``, ``Ignites`` | [18](<doc:AtlasUnfolded#Tower>) | Matter |
-| ``BallSaturation`` | bridge | ``DistanceOnStructures``, ``LibrarySaturates`` | [15](<doc:AtlasUnfolded#BallSaturation>) | Gradient |
-| ``CompressionCriterion`` | bridge | ``DistanceOnStructures``, ``Tower`` | [14](<doc:AtlasUnfolded#CompressionCriterion>) | Gradient |
-| ``GateIsZeroOfLoss`` | theorem | ``DistanceOnStructures``, ``PassImpliesMembership`` | [12](<doc:AtlasUnfolded#GateIsZeroOfLoss>) | Gradient |
-| ``StrategyLivesInSigma`` | bridge | ``DistanceOnStructures``, ``OrderIsOnlyFreedom`` | [12](<doc:AtlasUnfolded#StrategyLivesInSigma>) | Strategy |
-| ``AlignmentCoefficient`` | bridge | ``GateIsZeroOfLoss``, ``HasAlpha`` | [11](<doc:AtlasUnfolded#AlignmentCoefficient>) | Search |
-| ``NoInverse`` | bridge | ``KnowledgeAccumulates`` | [11](<doc:AtlasUnfolded#NoInverse>) | Matter |
-| ``Monotone`` | marker | ``Pair`` | [10](<doc:AtlasUnfolded#Monotone>) | Core |
-| ``OneBoundaryThreeFaces`` | bridge | ``AnchorGraph``, ``BallSaturation``, ``CompressionCriterion`` | [10](<doc:AtlasUnfolded#OneBoundaryThreeFaces>) | Map |
-| ``HolesCarryAddresses`` | bridge | ``AnchorGraph``, ``Decidable`` | [9](<doc:AtlasUnfolded#HolesCarryAddresses>) | Map |
-| ``Measurable`` | marker | ``Pair`` | [9](<doc:AtlasUnfolded#Measurable>) | Core |
-| ``BasisIsFinite`` | bridge | ``HasBasis``, ``LibrarySaturates`` | [7](<doc:AtlasUnfolded#BasisIsFinite>) | Intelligence |
-| ``CandidatesOnlyLeave`` | bridge | ``CachePermanent``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#CandidatesOnlyLeave>) | Identification |
-| ``LiquidPhase`` | bridge | ``KnowledgeAccumulates``, ``Monotone`` | [7](<doc:AtlasUnfolded#LiquidPhase>) | Liquid |
-| ``MembershipDecidable`` | theorem | ``EqualityDecidable``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#MembershipDecidable>) | Intelligence |
-| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [7](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
-| ``ResultsIrreversible`` | theorem | ``CachePermanent``, ``EqualityDecidable`` | [7](<doc:AtlasUnfolded#ResultsIrreversible>) | Intelligence |
-| ``RevealsNotCreates`` | kernel | ``Measurable``, ``OperationsClosed`` | [7](<doc:AtlasUnfolded#RevealsNotCreates>) | Identification |
-| ``CertifiedRuleGenerates`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification`` | [6](<doc:AtlasUnfolded#CertifiedRuleGenerates>) | Play |
-| ``LawLivesInSigma`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [6](<doc:AtlasUnfolded#LawLivesInSigma>) | Dynamics |
-| ``SkillsAreBalls`` | bridge | ``BallSaturation``, ``StrategyLivesInSigma`` | [6](<doc:AtlasUnfolded#SkillsAreBalls>) | Strategy |
-| ``SystemCrystallizes`` | bridge | ``CandidatesOnlyLeave``, ``MembershipDecidable``, ``ResultsIrreversible`` | [6](<doc:AtlasUnfolded#SystemCrystallizes>) | Intelligence |
-| ``AmbiguityNamesInput`` | bridge | ``CertifiedRuleGenerates``, ``HolesCarryAddresses`` | [5](<doc:AtlasUnfolded#AmbiguityNamesInput>) | Play |
-| ``CrystallizationFront`` | bridge | ``DistanceOnStructures``, ``LiquidPhase``, ``NoInverse`` | [5](<doc:AtlasUnfolded#CrystallizationFront>) | Liquid |
-| ``DiscriminatorAndGenerator`` | bridge | ``OrderIsOnlyFreedom``, ``PassImpliesMembership`` | [5](<doc:AtlasUnfolded#DiscriminatorAndGenerator>) | Generation |
-| ``LawIsTarget`` | bridge | ``LawLivesInSigma``, ``PassIsIdentification`` | [5](<doc:AtlasUnfolded#LawIsTarget>) | Dynamics |
-| ``ScopeBoundedByEncoding`` | kernel | ``ResultDeterministic`` | [5](<doc:AtlasUnfolded#ScopeBoundedByEncoding>) | Identification |
-| ``SearchFlow`` | bridge | ``AlignmentCoefficient``, ``LiquidPhase`` | [5](<doc:AtlasUnfolded#SearchFlow>) | Liquid |
-| ``NavigationInevitable`` | bridge | ``OneBoundaryThreeFaces`` | [4](<doc:AtlasUnfolded#NavigationInevitable>) | Map |
-| ``SelfPlaySaturates`` | bridge | ``AmbiguityNamesInput``, ``BasisIsFinite`` | [4](<doc:AtlasUnfolded#SelfPlaySaturates>) | Play |
-| ``StefanCoupling`` | bridge | ``CrystallizationFront``, ``SearchFlow`` | [4](<doc:AtlasUnfolded#StefanCoupling>) | Liquid |
-| ``StrategyGate`` | bridge | ``PassImpliesMembership``, ``StrategyLivesInSigma`` | [4](<doc:AtlasUnfolded#StrategyGate>) | Strategy |
-| ``ComparisonsAreBounded`` | kernel | ``StructuresFinite`` | [3](<doc:AtlasUnfolded#ComparisonsAreBounded>) | Identification |
-| ``GateIsMembrane`` | bridge | ``StefanCoupling`` | [3](<doc:AtlasUnfolded#GateIsMembrane>) | Liquid |
-| ``IntelligenceRises`` | bridge | ``HasEfficiency``, ``LibrarySaturates`` | [3](<doc:AtlasUnfolded#IntelligenceRises>) | Intelligence |
-| ``SearchableIffClusteredAndAligned`` | bridge | ``AlignmentCoefficient``, ``OneBoundaryThreeFaces`` | [3](<doc:AtlasUnfolded#SearchableIffClusteredAndAligned>) | Search |
-| ``StrategyIsUnique`` | bridge | ``ExactlyOneSurvives``, ``StrategyGate`` | [3](<doc:AtlasUnfolded#StrategyIsUnique>) | Strategy |
-| ``EncoderConditions`` | bridge | ``BallSaturation``, ``CompressionCriterion``, ``HasEncoding`` | [2](<doc:AtlasUnfolded#EncoderConditions>) | Spec |
-| ``FourthFace`` | bridge | ``OneBoundaryThreeFaces``, ``SkillsAreBalls`` | [2](<doc:AtlasUnfolded#FourthFace>) | Strategy |
-| ``PlanningIsNavigation`` | bridge | ``LawIsTarget``, ``NavigationInevitable`` | [2](<doc:AtlasUnfolded#PlanningIsNavigation>) | Dynamics |
-| ``Reading`` | bridge | ``HasTime``, ``OrderIsOnlyFreedom``, ``RevealsNotCreates`` | [2](<doc:AtlasUnfolded#Reading>) | Reading |
-| ``RulesCompose`` | bridge | ``KnowledgeAccumulates`` | [2](<doc:AtlasUnfolded#RulesCompose>) | Basis |
-| ``StrategyCrystallizes`` | bridge | ``Matter``, ``StrategyIsUnique`` | [2](<doc:AtlasUnfolded#StrategyCrystallizes>) | Strategy |
-| ``TowerSelfPlay`` | bridge | ``Ignites``, ``SelfPlaySaturates`` | [2](<doc:AtlasUnfolded#TowerSelfPlay>) | Play |
-| ``AmbiguityIsExperiment`` | bridge | ``HolesCarryAddresses``, ``LawIsTarget`` | [1](<doc:AtlasUnfolded#AmbiguityIsExperiment>) | Dynamics |
-| ``AtomBasis`` | bridge | ``BasisIsFinite``, ``HasCompositionalNorm``, ``RulesCompose`` | [1](<doc:AtlasUnfolded#AtomBasis>) | Basis |
-| ``BehaviorIsStructure`` | bridge | ``DistanceOnStructures``, ``HasTime`` | [1](<doc:AtlasUnfolded#BehaviorIsStructure>) | Dynamics |
-| ``ConditionalSolving`` | bridge | ``EncoderConditions`` | [1](<doc:AtlasUnfolded#ConditionalSolving>) | Spec |
-| ``ContentIsGaugeInvariant`` | bridge | ``HasEncoding``, ``HasGauge``, ``RevealsNotCreates`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
-| ``EmissionIsAutoregressive`` | bridge | ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding`` | [1](<doc:AtlasUnfolded#EmissionIsAutoregressive>) | Path |
-| ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
-| ``IntegerValued`` | marker | ``Pair`` | [1](<doc:AtlasUnfolded#IntegerValued>) | Core |
-| ``InterferenceIsSubstitution`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#InterferenceIsSubstitution>) | Wave |
-| ``MeasuredGeometry`` | bridge | ``FourthFace``, ``SearchableIffClusteredAndAligned`` | [1](<doc:AtlasUnfolded#MeasuredGeometry>) | Spec |
-| ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
-| ``PhaseBecomesAmplitude`` | bridge | ``StrategyCrystallizes`` | [1](<doc:AtlasUnfolded#PhaseBecomesAmplitude>) | Strategy |
-| ``PlayIsProof`` | bridge | ``RevealsNotCreates``, ``TowerSelfPlay`` | [1](<doc:AtlasUnfolded#PlayIsProof>) | Play |
-| ``RepairsPermanent`` | bridge | ``AnchorGraph``, ``NoInverse`` | [1](<doc:AtlasUnfolded#RepairsPermanent>) | Map |
-| ``StandardIsType`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#StandardIsType>) | Ruler |
-| ``AgentPathCertified`` | theorem | ``IdentityCollapse``, ``PassIsIdentification`` | 0 | Intelligence |
-| ``AlignmentEnablesIntelligence`` | bridge | ``AlignmentCoefficient``, ``IntelligenceRises`` | 0 | Search |
-| ``AllCoordinatesPresent`` | bridge | ``GateIsMembrane``, ``PlayIsProof`` | 0 | Projection |
-| ``AtomnessIsTrajectory`` | bridge | ``AtomBasis``, ``NoInverse`` | 0 | Basis |
-| ``CacheOnlyGrows`` | theorem | ``CachePermanent``, ``StepsTerminate`` | 0 | Identification |
-| ``Close`` | kernel | ``Structure`` | 0 | Primitive |
-| ``CommunicationBounded`` | theorem | ``ComparisonsAreBounded``, ``HasCache`` | 0 | Space |
-| ``CompleteEntry`` | bridge | ``HasEncoding``, ``PhaseBecomesAmplitude`` | 0 | Strategy |
-| ``CompletionIsSolutionSet`` | bridge | ``HasPath``, ``Reading`` | 0 | Path |
-| ``ConstructionIsReading`` | bridge | ``EmissionAccumulates``, ``Reading`` | 0 | Path |
-| ``Converges`` | bridge | ``NoInverse``, ``SystemCrystallizes`` | 0 | Matter |
-| ``DarknessIsNormalForm`` | bridge | ``InterferenceIsSubstitution`` | 0 | Wave |
-| ``DepthIsBounded`` | bridge | ``HasGrammar``, ``Tower`` | 0 | Space |
-| ``DiagnosticsAccumulate`` | theorem | ``CachePermanent``, ``ResultDeterministic`` | 0 | Identification |
-| ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
-| ``Digit`` | kernel | ``Open`` | 0 | Numeral |
-| ``DiscoveryIsRevelation`` | bridge | ``ExactlyOneSurvives``, ``LibrarySaturates`` | 0 | Intelligence |
-| ``DistanceIsCost`` | bridge | ``DistanceOnStructures``, ``HasCost`` | 0 | Gradient |
-| ``EdgesCarryTheJudgement`` | bridge | ``BehaviorIsStructure``, ``PresentedLaw`` | 0 | Presentation |
-| ``EncodingSelectionSaturates`` | bridge | ``HasEncoding``, ``LibrarySaturates`` | 0 | Intelligence |
-| ``ErasureIsRecession`` | bridge | ``EmissionAccumulates``, ``NoInverse`` | 0 | Path |
-| ``FailureCurriculum`` | bridge | ``HolesCarryAddresses``, ``RepairsPermanent`` | 0 | Map |
-| ``FiniteDiscovery`` | bridge | ``ComparisonsAreBounded``, ``Tower`` | 0 | Matter |
-| ``FormIsInvariant`` | bridge | ``PresentedLaw`` | 0 | Presentation |
-| ``FreeGeneration`` | bridge | ``DiscriminatorAndGenerator``, ``EmissionAccumulates`` | 0 | Path |
-| ``GateWrapper`` | bridge | ``DiscriminatorAndGenerator``, ``GateIsMembrane`` | 0 | Projection |
-| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
-| ``GaugeFixing`` | bridge | ``CostReadsGauge``, ``SystemCrystallizes`` | 0 | Gauge |
-| ``GradientInComparison`` | theorem | ``Decidable``, ``DistanceOnStructures`` | 0 | Gradient |
-| ``GreedyDescentTerminates`` | bridge | ``AnchorGraph``, ``Monotone`` | 0 | Map |
-| ``InevitabilityIsDiscriminator`` | bridge | ``AlignmentCoefficient``, ``DiscriminatorAndGenerator``, ``IntelligenceRises`` | 0 | Generation |
-| ``InteractiveDecomposition`` | bridge | ``AmbiguityIsExperiment``, ``MotorSkillsAreStrategies`` | 0 | Dynamics |
-| ``InterferenceIsIntelligence`` | bridge | ``IntelligenceRises``, ``OrderIsOnlyFreedom`` | 0 | Interference |
-| ``InvalidStepFolds`` | theorem | ``HasPath``, ``Null`` | 0 | Path |
-| ``IsIsYIdentity`` | bridge | ``OrderIsOnlyFreedom``, ``PassIsIdentification`` | 0 | Interference |
-| ``LawfulDrift`` | bridge | ``LawIsTarget``, ``Tower`` | 0 | Dynamics |
-| ``LibraryCrystallizes`` | bridge | ``LibrarySaturates``, ``SystemCrystallizes`` | 0 | Intelligence |
-| ``MeasureIsCount`` | bridge | ``StandardIsType`` | 0 | Ruler |
-| ``MetricProperty`` | marker | ``Pair`` | 0 | Core |
-| ``NoSelfReference`` | kernel | ``OperationsClosed`` | 0 | Identification |
-| ``NullIsOrigin`` | theorem | ``DistanceOnStructures``, ``Null`` | 0 | Gradient |
-| ``OrderByDistance`` | bridge | ``DistanceOnStructures``, ``OrderIsOnlyFreedom`` | 0 | Gradient |
-| ``OrgansAreOneCompare`` | bridge | ``Decidable``, ``DiscriminatorAndGenerator`` | 0 | Generation |
-| ``OrthogonalOrgans`` | bridge | ``DiscriminatorAndGenerator``, ``SearchableIffClusteredAndAligned`` | 0 | Generation |
-| ``Permanent`` | marker | ``Pair`` | 0 | Core |
-| ``PerspectiveIsEncoding`` | theorem | ``HasEncoding``, ``Measurable``, ``ScopeBoundedByEncoding`` | 0 | Space |
-| ``PipelineCrystallizes`` | bridge | ``PassIsIdentification``, ``SystemCrystallizes`` | 0 | Intelligence |
-| ``PreconditionsGuaranteePass`` | theorem | ``ExactlyOneSurvives`` | 0 | Identification |
-| ``PressIsIdentification`` | bridge | ``PassIsIdentification``, ``PresentedLaw`` | 0 | Presentation |
-| ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
-| ``QualitiesAreFinite`` | theorem | ``HasEncoding``, ``IntegerValued`` | 0 | Space |
-| ``ResistanceHasMagnitude`` | theorem | ``DistanceOnStructures``, ``Resistant`` | 0 | Gradient |
-| ``SaturationDynamics`` | bridge | ``ComparisonsAreBounded``, ``LibrarySaturates`` | 0 | Intelligence |
-| ``SaturationIncorruptible`` | theorem | ``CachePermanent`` | 0 | Identification |
-| ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
-| ``SecondEncodingIsNovelty`` | bridge | ``ScopeBoundedByEncoding``, ``SelfPlaySaturates`` | 0 | Play |
-| ``StrategyNavigation`` | bridge | ``NavigationInevitable``, ``SkillsAreBalls`` | 0 | Strategy |
-| ``ThreeAxesOfCompare`` | bridge | ``Decidable``, ``OrderIsOnlyFreedom`` | 0 | Interference |
-| ``Unique`` | marker | ``Monotone``, ``Null`` | 0 | Core |
-| ``Universality`` | bridge | ``ExactlyOneSurvives``, ``HasEncoding`` | 0 | Identification |
-
-### Open
-
-``Open`` carries 141 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
-
-| Claim | Kind | Premises | Carries | Home |
-| --- | --- | --- | --- | --- |
-| ``Pair`` | seed | ``Open`` | [139](<doc:AtlasUnfolded#Pair>) | Primitive |
-| ``StructuresFinite`` | kernel | ``HasSigma``, ``Pair`` | [117](<doc:AtlasUnfolded#StructuresFinite>) | Identification |
-| ``OperationsClosed`` | kernel | ``Pair`` | [99](<doc:AtlasUnfolded#OperationsClosed>) | Identification |
-| ``CachePermanent`` | theorem | ``HasCache``, ``OperationsClosed``, ``StructuresFinite`` | [82](<doc:AtlasUnfolded#CachePermanent>) | Identification |
-| ``ResultDeterministic`` | kernel | ``OperationsClosed`` | [67](<doc:AtlasUnfolded#ResultDeterministic>) | Identification |
-| ``DistanceOnStructures`` | theorem | ``HasDistance``, ``StructuresFinite`` | [61](<doc:AtlasUnfolded#DistanceOnStructures>) | Gradient |
-| ``StepsTerminate`` | kernel | ``StructuresFinite`` | [54](<doc:AtlasUnfolded#StepsTerminate>) | Identification |
-| ``PipelineTotal`` | kernel | ``StepsTerminate`` | [52](<doc:AtlasUnfolded#PipelineTotal>) | Identification |
-| ``EqualityDecidable`` | kernel | ``StructuresFinite`` | [51](<doc:AtlasUnfolded#EqualityDecidable>) | Identification |
-| ``PassImpliesMembership`` | kernel | ``PipelineTotal``, ``ResultDeterministic`` | [51](<doc:AtlasUnfolded#PassImpliesMembership>) | Identification |
-| ``KnowledgeAccumulates`` | bridge | ``CachePermanent``, ``HasLibrary`` | [45](<doc:AtlasUnfolded#KnowledgeAccumulates>) | Intelligence |
-| ``ExactlyOneSurvives`` | theorem | ``EqualityDecidable``, ``HasSolutions`` | [42](<doc:AtlasUnfolded#ExactlyOneSurvives>) | Identification |
-| ``Decidable`` | marker | ``Pair`` | [38](<doc:AtlasUnfolded#Decidable>) | Core |
-| ``LibrarySaturates`` | bridge | ``CachePermanent``, ``HasSaturation`` | [38](<doc:AtlasUnfolded#LibrarySaturates>) | Intelligence |
-| ``PassIsIdentification`` | theorem | ``ExactlyOneSurvives``, ``PassImpliesMembership`` | [37](<doc:AtlasUnfolded#PassIsIdentification>) | Identification |
-| ``Null`` | seed | ``Pair`` | [32](<doc:AtlasUnfolded#Null>) | Primitive |
-| ``IdentityCollapse`` | theorem | ``HasSolutions``, ``Null`` | [28](<doc:AtlasUnfolded#IdentityCollapse>) | Core |
-| ``Resistant`` | theorem | ``Decidable``, ``HasDistance`` | [28](<doc:AtlasUnfolded#Resistant>) | Matter |
-| ``AxesCoOriented`` | theorem | ``CachePermanent``, ``ResultDeterministic`` | [27](<doc:AtlasUnfolded#AxesCoOriented>) | Identification |
-| ``Matter`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification``, ``Resistant`` | [26](<doc:AtlasUnfolded#Matter>) | Matter |
-| ``OrderIsOnlyFreedom`` | bridge | ``AxesCoOriented``, ``IdentityCollapse`` | [26](<doc:AtlasUnfolded#OrderIsOnlyFreedom>) | Identification |
-| ``AnchorGraph`` | bridge | ``DistanceOnStructures``, ``HasLibrary`` | [22](<doc:AtlasUnfolded#AnchorGraph>) | Map |
-| ``Ignites`` | bridge | ``LibrarySaturates``, ``Matter`` | [22](<doc:AtlasUnfolded#Ignites>) | Matter |
-| ``Tower`` | bridge | ``HasCost``, ``HasTime``, ``Ignites`` | [18](<doc:AtlasUnfolded#Tower>) | Matter |
-| ``BallSaturation`` | bridge | ``DistanceOnStructures``, ``LibrarySaturates`` | [15](<doc:AtlasUnfolded#BallSaturation>) | Gradient |
-| ``CompressionCriterion`` | bridge | ``DistanceOnStructures``, ``Tower`` | [14](<doc:AtlasUnfolded#CompressionCriterion>) | Gradient |
-| ``GateIsZeroOfLoss`` | theorem | ``DistanceOnStructures``, ``PassImpliesMembership`` | [12](<doc:AtlasUnfolded#GateIsZeroOfLoss>) | Gradient |
-| ``StrategyLivesInSigma`` | bridge | ``DistanceOnStructures``, ``OrderIsOnlyFreedom`` | [12](<doc:AtlasUnfolded#StrategyLivesInSigma>) | Strategy |
-| ``AlignmentCoefficient`` | bridge | ``GateIsZeroOfLoss``, ``HasAlpha`` | [11](<doc:AtlasUnfolded#AlignmentCoefficient>) | Search |
-| ``NoInverse`` | bridge | ``KnowledgeAccumulates`` | [11](<doc:AtlasUnfolded#NoInverse>) | Matter |
-| ``Monotone`` | marker | ``Pair`` | [10](<doc:AtlasUnfolded#Monotone>) | Core |
-| ``OneBoundaryThreeFaces`` | bridge | ``AnchorGraph``, ``BallSaturation``, ``CompressionCriterion`` | [10](<doc:AtlasUnfolded#OneBoundaryThreeFaces>) | Map |
-| ``HolesCarryAddresses`` | bridge | ``AnchorGraph``, ``Decidable`` | [9](<doc:AtlasUnfolded#HolesCarryAddresses>) | Map |
-| ``Measurable`` | marker | ``Pair`` | [9](<doc:AtlasUnfolded#Measurable>) | Core |
-| ``BasisIsFinite`` | bridge | ``HasBasis``, ``LibrarySaturates`` | [7](<doc:AtlasUnfolded#BasisIsFinite>) | Intelligence |
-| ``CandidatesOnlyLeave`` | bridge | ``CachePermanent``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#CandidatesOnlyLeave>) | Identification |
-| ``LiquidPhase`` | bridge | ``KnowledgeAccumulates``, ``Monotone`` | [7](<doc:AtlasUnfolded#LiquidPhase>) | Liquid |
-| ``MembershipDecidable`` | theorem | ``EqualityDecidable``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#MembershipDecidable>) | Intelligence |
-| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [7](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
-| ``ResultsIrreversible`` | theorem | ``CachePermanent``, ``EqualityDecidable`` | [7](<doc:AtlasUnfolded#ResultsIrreversible>) | Intelligence |
-| ``RevealsNotCreates`` | kernel | ``Measurable``, ``OperationsClosed`` | [7](<doc:AtlasUnfolded#RevealsNotCreates>) | Identification |
-| ``CertifiedRuleGenerates`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification`` | [6](<doc:AtlasUnfolded#CertifiedRuleGenerates>) | Play |
-| ``LawLivesInSigma`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [6](<doc:AtlasUnfolded#LawLivesInSigma>) | Dynamics |
-| ``SkillsAreBalls`` | bridge | ``BallSaturation``, ``StrategyLivesInSigma`` | [6](<doc:AtlasUnfolded#SkillsAreBalls>) | Strategy |
-| ``SystemCrystallizes`` | bridge | ``CandidatesOnlyLeave``, ``MembershipDecidable``, ``ResultsIrreversible`` | [6](<doc:AtlasUnfolded#SystemCrystallizes>) | Intelligence |
-| ``AmbiguityNamesInput`` | bridge | ``CertifiedRuleGenerates``, ``HolesCarryAddresses`` | [5](<doc:AtlasUnfolded#AmbiguityNamesInput>) | Play |
-| ``CrystallizationFront`` | bridge | ``DistanceOnStructures``, ``LiquidPhase``, ``NoInverse`` | [5](<doc:AtlasUnfolded#CrystallizationFront>) | Liquid |
-| ``DiscriminatorAndGenerator`` | bridge | ``OrderIsOnlyFreedom``, ``PassImpliesMembership`` | [5](<doc:AtlasUnfolded#DiscriminatorAndGenerator>) | Generation |
-| ``LawIsTarget`` | bridge | ``LawLivesInSigma``, ``PassIsIdentification`` | [5](<doc:AtlasUnfolded#LawIsTarget>) | Dynamics |
-| ``ScopeBoundedByEncoding`` | kernel | ``ResultDeterministic`` | [5](<doc:AtlasUnfolded#ScopeBoundedByEncoding>) | Identification |
-| ``SearchFlow`` | bridge | ``AlignmentCoefficient``, ``LiquidPhase`` | [5](<doc:AtlasUnfolded#SearchFlow>) | Liquid |
-| ``NavigationInevitable`` | bridge | ``OneBoundaryThreeFaces`` | [4](<doc:AtlasUnfolded#NavigationInevitable>) | Map |
-| ``SelfPlaySaturates`` | bridge | ``AmbiguityNamesInput``, ``BasisIsFinite`` | [4](<doc:AtlasUnfolded#SelfPlaySaturates>) | Play |
-| ``StefanCoupling`` | bridge | ``CrystallizationFront``, ``SearchFlow`` | [4](<doc:AtlasUnfolded#StefanCoupling>) | Liquid |
-| ``StrategyGate`` | bridge | ``PassImpliesMembership``, ``StrategyLivesInSigma`` | [4](<doc:AtlasUnfolded#StrategyGate>) | Strategy |
-| ``ComparisonsAreBounded`` | kernel | ``StructuresFinite`` | [3](<doc:AtlasUnfolded#ComparisonsAreBounded>) | Identification |
-| ``GateIsMembrane`` | bridge | ``StefanCoupling`` | [3](<doc:AtlasUnfolded#GateIsMembrane>) | Liquid |
-| ``IntelligenceRises`` | bridge | ``HasEfficiency``, ``LibrarySaturates`` | [3](<doc:AtlasUnfolded#IntelligenceRises>) | Intelligence |
-| ``SearchableIffClusteredAndAligned`` | bridge | ``AlignmentCoefficient``, ``OneBoundaryThreeFaces`` | [3](<doc:AtlasUnfolded#SearchableIffClusteredAndAligned>) | Search |
-| ``StrategyIsUnique`` | bridge | ``ExactlyOneSurvives``, ``StrategyGate`` | [3](<doc:AtlasUnfolded#StrategyIsUnique>) | Strategy |
-| ``EncoderConditions`` | bridge | ``BallSaturation``, ``CompressionCriterion``, ``HasEncoding`` | [2](<doc:AtlasUnfolded#EncoderConditions>) | Spec |
-| ``FourthFace`` | bridge | ``OneBoundaryThreeFaces``, ``SkillsAreBalls`` | [2](<doc:AtlasUnfolded#FourthFace>) | Strategy |
-| ``PlanningIsNavigation`` | bridge | ``LawIsTarget``, ``NavigationInevitable`` | [2](<doc:AtlasUnfolded#PlanningIsNavigation>) | Dynamics |
-| ``Reading`` | bridge | ``HasTime``, ``OrderIsOnlyFreedom``, ``RevealsNotCreates`` | [2](<doc:AtlasUnfolded#Reading>) | Reading |
-| ``RulesCompose`` | bridge | ``KnowledgeAccumulates`` | [2](<doc:AtlasUnfolded#RulesCompose>) | Basis |
-| ``StrategyCrystallizes`` | bridge | ``Matter``, ``StrategyIsUnique`` | [2](<doc:AtlasUnfolded#StrategyCrystallizes>) | Strategy |
-| ``TowerSelfPlay`` | bridge | ``Ignites``, ``SelfPlaySaturates`` | [2](<doc:AtlasUnfolded#TowerSelfPlay>) | Play |
-| ``AmbiguityIsExperiment`` | bridge | ``HolesCarryAddresses``, ``LawIsTarget`` | [1](<doc:AtlasUnfolded#AmbiguityIsExperiment>) | Dynamics |
-| ``AtomBasis`` | bridge | ``BasisIsFinite``, ``HasCompositionalNorm``, ``RulesCompose`` | [1](<doc:AtlasUnfolded#AtomBasis>) | Basis |
-| ``BehaviorIsStructure`` | bridge | ``DistanceOnStructures``, ``HasTime`` | [1](<doc:AtlasUnfolded#BehaviorIsStructure>) | Dynamics |
-| ``ConditionalSolving`` | bridge | ``EncoderConditions`` | [1](<doc:AtlasUnfolded#ConditionalSolving>) | Spec |
-| ``ContentIsGaugeInvariant`` | bridge | ``HasEncoding``, ``HasGauge``, ``RevealsNotCreates`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
-| ``EmissionIsAutoregressive`` | bridge | ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding`` | [1](<doc:AtlasUnfolded#EmissionIsAutoregressive>) | Path |
-| ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
-| ``IntegerValued`` | marker | ``Pair`` | [1](<doc:AtlasUnfolded#IntegerValued>) | Core |
-| ``InterferenceIsSubstitution`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#InterferenceIsSubstitution>) | Wave |
-| ``MeasuredGeometry`` | bridge | ``FourthFace``, ``SearchableIffClusteredAndAligned`` | [1](<doc:AtlasUnfolded#MeasuredGeometry>) | Spec |
-| ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
-| ``PhaseBecomesAmplitude`` | bridge | ``StrategyCrystallizes`` | [1](<doc:AtlasUnfolded#PhaseBecomesAmplitude>) | Strategy |
-| ``PlayIsProof`` | bridge | ``RevealsNotCreates``, ``TowerSelfPlay`` | [1](<doc:AtlasUnfolded#PlayIsProof>) | Play |
-| ``RepairsPermanent`` | bridge | ``AnchorGraph``, ``NoInverse`` | [1](<doc:AtlasUnfolded#RepairsPermanent>) | Map |
-| ``StandardIsType`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#StandardIsType>) | Ruler |
-| ``AgentPathCertified`` | theorem | ``IdentityCollapse``, ``PassIsIdentification`` | 0 | Intelligence |
-| ``AlignmentEnablesIntelligence`` | bridge | ``AlignmentCoefficient``, ``IntelligenceRises`` | 0 | Search |
-| ``AllCoordinatesPresent`` | bridge | ``GateIsMembrane``, ``PlayIsProof`` | 0 | Projection |
-| ``AtomnessIsTrajectory`` | bridge | ``AtomBasis``, ``NoInverse`` | 0 | Basis |
-| ``CacheOnlyGrows`` | theorem | ``CachePermanent``, ``StepsTerminate`` | 0 | Identification |
-| ``CommunicationBounded`` | theorem | ``ComparisonsAreBounded``, ``HasCache`` | 0 | Space |
-| ``CompleteEntry`` | bridge | ``HasEncoding``, ``PhaseBecomesAmplitude`` | 0 | Strategy |
-| ``CompletionIsSolutionSet`` | bridge | ``HasPath``, ``Reading`` | 0 | Path |
-| ``ConstructionIsReading`` | bridge | ``EmissionAccumulates``, ``Reading`` | 0 | Path |
-| ``Converges`` | bridge | ``NoInverse``, ``SystemCrystallizes`` | 0 | Matter |
-| ``DarknessIsNormalForm`` | bridge | ``InterferenceIsSubstitution`` | 0 | Wave |
-| ``DepthIsBounded`` | bridge | ``HasGrammar``, ``Tower`` | 0 | Space |
-| ``DiagnosticsAccumulate`` | theorem | ``CachePermanent``, ``ResultDeterministic`` | 0 | Identification |
-| ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
-| ``Digit`` | kernel | ``Open`` | 0 | Numeral |
-| ``DiscoveryIsRevelation`` | bridge | ``ExactlyOneSurvives``, ``LibrarySaturates`` | 0 | Intelligence |
-| ``DistanceIsCost`` | bridge | ``DistanceOnStructures``, ``HasCost`` | 0 | Gradient |
-| ``EdgesCarryTheJudgement`` | bridge | ``BehaviorIsStructure``, ``PresentedLaw`` | 0 | Presentation |
-| ``EncodingSelectionSaturates`` | bridge | ``HasEncoding``, ``LibrarySaturates`` | 0 | Intelligence |
-| ``ErasureIsRecession`` | bridge | ``EmissionAccumulates``, ``NoInverse`` | 0 | Path |
-| ``FailureCurriculum`` | bridge | ``HolesCarryAddresses``, ``RepairsPermanent`` | 0 | Map |
-| ``FiniteDiscovery`` | bridge | ``ComparisonsAreBounded``, ``Tower`` | 0 | Matter |
-| ``FormIsInvariant`` | bridge | ``PresentedLaw`` | 0 | Presentation |
-| ``FreeGeneration`` | bridge | ``DiscriminatorAndGenerator``, ``EmissionAccumulates`` | 0 | Path |
-| ``GateWrapper`` | bridge | ``DiscriminatorAndGenerator``, ``GateIsMembrane`` | 0 | Projection |
-| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
-| ``GaugeFixing`` | bridge | ``CostReadsGauge``, ``SystemCrystallizes`` | 0 | Gauge |
-| ``GradientInComparison`` | theorem | ``Decidable``, ``DistanceOnStructures`` | 0 | Gradient |
-| ``GreedyDescentTerminates`` | bridge | ``AnchorGraph``, ``Monotone`` | 0 | Map |
-| ``InevitabilityIsDiscriminator`` | bridge | ``AlignmentCoefficient``, ``DiscriminatorAndGenerator``, ``IntelligenceRises`` | 0 | Generation |
-| ``InteractiveDecomposition`` | bridge | ``AmbiguityIsExperiment``, ``MotorSkillsAreStrategies`` | 0 | Dynamics |
-| ``InterferenceIsIntelligence`` | bridge | ``IntelligenceRises``, ``OrderIsOnlyFreedom`` | 0 | Interference |
-| ``InvalidStepFolds`` | theorem | ``HasPath``, ``Null`` | 0 | Path |
-| ``IsIsYIdentity`` | bridge | ``OrderIsOnlyFreedom``, ``PassIsIdentification`` | 0 | Interference |
-| ``LawfulDrift`` | bridge | ``LawIsTarget``, ``Tower`` | 0 | Dynamics |
-| ``LibraryCrystallizes`` | bridge | ``LibrarySaturates``, ``SystemCrystallizes`` | 0 | Intelligence |
-| ``MeasureIsCount`` | bridge | ``StandardIsType`` | 0 | Ruler |
-| ``MetricProperty`` | marker | ``Pair`` | 0 | Core |
-| ``NoSelfReference`` | kernel | ``OperationsClosed`` | 0 | Identification |
-| ``NullIsOrigin`` | theorem | ``DistanceOnStructures``, ``Null`` | 0 | Gradient |
-| ``OrderByDistance`` | bridge | ``DistanceOnStructures``, ``OrderIsOnlyFreedom`` | 0 | Gradient |
-| ``OrgansAreOneCompare`` | bridge | ``Decidable``, ``DiscriminatorAndGenerator`` | 0 | Generation |
-| ``OrthogonalOrgans`` | bridge | ``DiscriminatorAndGenerator``, ``SearchableIffClusteredAndAligned`` | 0 | Generation |
-| ``Permanent`` | marker | ``Pair`` | 0 | Core |
-| ``PerspectiveIsEncoding`` | theorem | ``HasEncoding``, ``Measurable``, ``ScopeBoundedByEncoding`` | 0 | Space |
-| ``PipelineCrystallizes`` | bridge | ``PassIsIdentification``, ``SystemCrystallizes`` | 0 | Intelligence |
-| ``PreconditionsGuaranteePass`` | theorem | ``ExactlyOneSurvives`` | 0 | Identification |
-| ``PressIsIdentification`` | bridge | ``PassIsIdentification``, ``PresentedLaw`` | 0 | Presentation |
-| ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
-| ``QualitiesAreFinite`` | theorem | ``HasEncoding``, ``IntegerValued`` | 0 | Space |
-| ``ResistanceHasMagnitude`` | theorem | ``DistanceOnStructures``, ``Resistant`` | 0 | Gradient |
-| ``SaturationDynamics`` | bridge | ``ComparisonsAreBounded``, ``LibrarySaturates`` | 0 | Intelligence |
-| ``SaturationIncorruptible`` | theorem | ``CachePermanent`` | 0 | Identification |
-| ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
-| ``SecondEncodingIsNovelty`` | bridge | ``ScopeBoundedByEncoding``, ``SelfPlaySaturates`` | 0 | Play |
-| ``StrategyNavigation`` | bridge | ``NavigationInevitable``, ``SkillsAreBalls`` | 0 | Strategy |
-| ``ThreeAxesOfCompare`` | bridge | ``Decidable``, ``OrderIsOnlyFreedom`` | 0 | Interference |
-| ``Unique`` | marker | ``Monotone``, ``Null`` | 0 | Core |
-| ``Universality`` | bridge | ``ExactlyOneSurvives``, ``HasEncoding`` | 0 | Identification |
-
-### Pair
-
-``Pair`` carries 139 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
-
-| Claim | Kind | Premises | Carries | Home |
-| --- | --- | --- | --- | --- |
-| ``StructuresFinite`` | kernel | ``HasSigma``, ``Pair`` | [117](<doc:AtlasUnfolded#StructuresFinite>) | Identification |
-| ``OperationsClosed`` | kernel | ``Pair`` | [99](<doc:AtlasUnfolded#OperationsClosed>) | Identification |
-| ``CachePermanent`` | theorem | ``HasCache``, ``OperationsClosed``, ``StructuresFinite`` | [82](<doc:AtlasUnfolded#CachePermanent>) | Identification |
-| ``ResultDeterministic`` | kernel | ``OperationsClosed`` | [67](<doc:AtlasUnfolded#ResultDeterministic>) | Identification |
-| ``DistanceOnStructures`` | theorem | ``HasDistance``, ``StructuresFinite`` | [61](<doc:AtlasUnfolded#DistanceOnStructures>) | Gradient |
-| ``StepsTerminate`` | kernel | ``StructuresFinite`` | [54](<doc:AtlasUnfolded#StepsTerminate>) | Identification |
-| ``PipelineTotal`` | kernel | ``StepsTerminate`` | [52](<doc:AtlasUnfolded#PipelineTotal>) | Identification |
-| ``EqualityDecidable`` | kernel | ``StructuresFinite`` | [51](<doc:AtlasUnfolded#EqualityDecidable>) | Identification |
-| ``PassImpliesMembership`` | kernel | ``PipelineTotal``, ``ResultDeterministic`` | [51](<doc:AtlasUnfolded#PassImpliesMembership>) | Identification |
-| ``KnowledgeAccumulates`` | bridge | ``CachePermanent``, ``HasLibrary`` | [45](<doc:AtlasUnfolded#KnowledgeAccumulates>) | Intelligence |
-| ``ExactlyOneSurvives`` | theorem | ``EqualityDecidable``, ``HasSolutions`` | [42](<doc:AtlasUnfolded#ExactlyOneSurvives>) | Identification |
-| ``Decidable`` | marker | ``Pair`` | [38](<doc:AtlasUnfolded#Decidable>) | Core |
-| ``LibrarySaturates`` | bridge | ``CachePermanent``, ``HasSaturation`` | [38](<doc:AtlasUnfolded#LibrarySaturates>) | Intelligence |
-| ``PassIsIdentification`` | theorem | ``ExactlyOneSurvives``, ``PassImpliesMembership`` | [37](<doc:AtlasUnfolded#PassIsIdentification>) | Identification |
-| ``Null`` | seed | ``Pair`` | [32](<doc:AtlasUnfolded#Null>) | Primitive |
-| ``IdentityCollapse`` | theorem | ``HasSolutions``, ``Null`` | [28](<doc:AtlasUnfolded#IdentityCollapse>) | Core |
-| ``Resistant`` | theorem | ``Decidable``, ``HasDistance`` | [28](<doc:AtlasUnfolded#Resistant>) | Matter |
-| ``AxesCoOriented`` | theorem | ``CachePermanent``, ``ResultDeterministic`` | [27](<doc:AtlasUnfolded#AxesCoOriented>) | Identification |
-| ``Matter`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification``, ``Resistant`` | [26](<doc:AtlasUnfolded#Matter>) | Matter |
-| ``OrderIsOnlyFreedom`` | bridge | ``AxesCoOriented``, ``IdentityCollapse`` | [26](<doc:AtlasUnfolded#OrderIsOnlyFreedom>) | Identification |
-| ``AnchorGraph`` | bridge | ``DistanceOnStructures``, ``HasLibrary`` | [22](<doc:AtlasUnfolded#AnchorGraph>) | Map |
-| ``Ignites`` | bridge | ``LibrarySaturates``, ``Matter`` | [22](<doc:AtlasUnfolded#Ignites>) | Matter |
-| ``Tower`` | bridge | ``HasCost``, ``HasTime``, ``Ignites`` | [18](<doc:AtlasUnfolded#Tower>) | Matter |
-| ``BallSaturation`` | bridge | ``DistanceOnStructures``, ``LibrarySaturates`` | [15](<doc:AtlasUnfolded#BallSaturation>) | Gradient |
-| ``CompressionCriterion`` | bridge | ``DistanceOnStructures``, ``Tower`` | [14](<doc:AtlasUnfolded#CompressionCriterion>) | Gradient |
-| ``GateIsZeroOfLoss`` | theorem | ``DistanceOnStructures``, ``PassImpliesMembership`` | [12](<doc:AtlasUnfolded#GateIsZeroOfLoss>) | Gradient |
-| ``StrategyLivesInSigma`` | bridge | ``DistanceOnStructures``, ``OrderIsOnlyFreedom`` | [12](<doc:AtlasUnfolded#StrategyLivesInSigma>) | Strategy |
-| ``AlignmentCoefficient`` | bridge | ``GateIsZeroOfLoss``, ``HasAlpha`` | [11](<doc:AtlasUnfolded#AlignmentCoefficient>) | Search |
-| ``NoInverse`` | bridge | ``KnowledgeAccumulates`` | [11](<doc:AtlasUnfolded#NoInverse>) | Matter |
-| ``Monotone`` | marker | ``Pair`` | [10](<doc:AtlasUnfolded#Monotone>) | Core |
-| ``OneBoundaryThreeFaces`` | bridge | ``AnchorGraph``, ``BallSaturation``, ``CompressionCriterion`` | [10](<doc:AtlasUnfolded#OneBoundaryThreeFaces>) | Map |
-| ``HolesCarryAddresses`` | bridge | ``AnchorGraph``, ``Decidable`` | [9](<doc:AtlasUnfolded#HolesCarryAddresses>) | Map |
-| ``Measurable`` | marker | ``Pair`` | [9](<doc:AtlasUnfolded#Measurable>) | Core |
-| ``BasisIsFinite`` | bridge | ``HasBasis``, ``LibrarySaturates`` | [7](<doc:AtlasUnfolded#BasisIsFinite>) | Intelligence |
-| ``CandidatesOnlyLeave`` | bridge | ``CachePermanent``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#CandidatesOnlyLeave>) | Identification |
-| ``LiquidPhase`` | bridge | ``KnowledgeAccumulates``, ``Monotone`` | [7](<doc:AtlasUnfolded#LiquidPhase>) | Liquid |
-| ``MembershipDecidable`` | theorem | ``EqualityDecidable``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#MembershipDecidable>) | Intelligence |
-| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [7](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
-| ``ResultsIrreversible`` | theorem | ``CachePermanent``, ``EqualityDecidable`` | [7](<doc:AtlasUnfolded#ResultsIrreversible>) | Intelligence |
-| ``RevealsNotCreates`` | kernel | ``Measurable``, ``OperationsClosed`` | [7](<doc:AtlasUnfolded#RevealsNotCreates>) | Identification |
-| ``CertifiedRuleGenerates`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification`` | [6](<doc:AtlasUnfolded#CertifiedRuleGenerates>) | Play |
-| ``LawLivesInSigma`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [6](<doc:AtlasUnfolded#LawLivesInSigma>) | Dynamics |
-| ``SkillsAreBalls`` | bridge | ``BallSaturation``, ``StrategyLivesInSigma`` | [6](<doc:AtlasUnfolded#SkillsAreBalls>) | Strategy |
-| ``SystemCrystallizes`` | bridge | ``CandidatesOnlyLeave``, ``MembershipDecidable``, ``ResultsIrreversible`` | [6](<doc:AtlasUnfolded#SystemCrystallizes>) | Intelligence |
-| ``AmbiguityNamesInput`` | bridge | ``CertifiedRuleGenerates``, ``HolesCarryAddresses`` | [5](<doc:AtlasUnfolded#AmbiguityNamesInput>) | Play |
-| ``CrystallizationFront`` | bridge | ``DistanceOnStructures``, ``LiquidPhase``, ``NoInverse`` | [5](<doc:AtlasUnfolded#CrystallizationFront>) | Liquid |
-| ``DiscriminatorAndGenerator`` | bridge | ``OrderIsOnlyFreedom``, ``PassImpliesMembership`` | [5](<doc:AtlasUnfolded#DiscriminatorAndGenerator>) | Generation |
-| ``LawIsTarget`` | bridge | ``LawLivesInSigma``, ``PassIsIdentification`` | [5](<doc:AtlasUnfolded#LawIsTarget>) | Dynamics |
-| ``ScopeBoundedByEncoding`` | kernel | ``ResultDeterministic`` | [5](<doc:AtlasUnfolded#ScopeBoundedByEncoding>) | Identification |
-| ``SearchFlow`` | bridge | ``AlignmentCoefficient``, ``LiquidPhase`` | [5](<doc:AtlasUnfolded#SearchFlow>) | Liquid |
-| ``NavigationInevitable`` | bridge | ``OneBoundaryThreeFaces`` | [4](<doc:AtlasUnfolded#NavigationInevitable>) | Map |
-| ``SelfPlaySaturates`` | bridge | ``AmbiguityNamesInput``, ``BasisIsFinite`` | [4](<doc:AtlasUnfolded#SelfPlaySaturates>) | Play |
-| ``StefanCoupling`` | bridge | ``CrystallizationFront``, ``SearchFlow`` | [4](<doc:AtlasUnfolded#StefanCoupling>) | Liquid |
-| ``StrategyGate`` | bridge | ``PassImpliesMembership``, ``StrategyLivesInSigma`` | [4](<doc:AtlasUnfolded#StrategyGate>) | Strategy |
-| ``ComparisonsAreBounded`` | kernel | ``StructuresFinite`` | [3](<doc:AtlasUnfolded#ComparisonsAreBounded>) | Identification |
-| ``GateIsMembrane`` | bridge | ``StefanCoupling`` | [3](<doc:AtlasUnfolded#GateIsMembrane>) | Liquid |
-| ``IntelligenceRises`` | bridge | ``HasEfficiency``, ``LibrarySaturates`` | [3](<doc:AtlasUnfolded#IntelligenceRises>) | Intelligence |
-| ``SearchableIffClusteredAndAligned`` | bridge | ``AlignmentCoefficient``, ``OneBoundaryThreeFaces`` | [3](<doc:AtlasUnfolded#SearchableIffClusteredAndAligned>) | Search |
-| ``StrategyIsUnique`` | bridge | ``ExactlyOneSurvives``, ``StrategyGate`` | [3](<doc:AtlasUnfolded#StrategyIsUnique>) | Strategy |
-| ``EncoderConditions`` | bridge | ``BallSaturation``, ``CompressionCriterion``, ``HasEncoding`` | [2](<doc:AtlasUnfolded#EncoderConditions>) | Spec |
-| ``FourthFace`` | bridge | ``OneBoundaryThreeFaces``, ``SkillsAreBalls`` | [2](<doc:AtlasUnfolded#FourthFace>) | Strategy |
-| ``PlanningIsNavigation`` | bridge | ``LawIsTarget``, ``NavigationInevitable`` | [2](<doc:AtlasUnfolded#PlanningIsNavigation>) | Dynamics |
-| ``Reading`` | bridge | ``HasTime``, ``OrderIsOnlyFreedom``, ``RevealsNotCreates`` | [2](<doc:AtlasUnfolded#Reading>) | Reading |
-| ``RulesCompose`` | bridge | ``KnowledgeAccumulates`` | [2](<doc:AtlasUnfolded#RulesCompose>) | Basis |
-| ``StrategyCrystallizes`` | bridge | ``Matter``, ``StrategyIsUnique`` | [2](<doc:AtlasUnfolded#StrategyCrystallizes>) | Strategy |
-| ``TowerSelfPlay`` | bridge | ``Ignites``, ``SelfPlaySaturates`` | [2](<doc:AtlasUnfolded#TowerSelfPlay>) | Play |
-| ``AmbiguityIsExperiment`` | bridge | ``HolesCarryAddresses``, ``LawIsTarget`` | [1](<doc:AtlasUnfolded#AmbiguityIsExperiment>) | Dynamics |
-| ``AtomBasis`` | bridge | ``BasisIsFinite``, ``HasCompositionalNorm``, ``RulesCompose`` | [1](<doc:AtlasUnfolded#AtomBasis>) | Basis |
-| ``BehaviorIsStructure`` | bridge | ``DistanceOnStructures``, ``HasTime`` | [1](<doc:AtlasUnfolded#BehaviorIsStructure>) | Dynamics |
-| ``ConditionalSolving`` | bridge | ``EncoderConditions`` | [1](<doc:AtlasUnfolded#ConditionalSolving>) | Spec |
-| ``ContentIsGaugeInvariant`` | bridge | ``HasEncoding``, ``HasGauge``, ``RevealsNotCreates`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
-| ``EmissionIsAutoregressive`` | bridge | ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding`` | [1](<doc:AtlasUnfolded#EmissionIsAutoregressive>) | Path |
-| ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
-| ``IntegerValued`` | marker | ``Pair`` | [1](<doc:AtlasUnfolded#IntegerValued>) | Core |
-| ``InterferenceIsSubstitution`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#InterferenceIsSubstitution>) | Wave |
-| ``MeasuredGeometry`` | bridge | ``FourthFace``, ``SearchableIffClusteredAndAligned`` | [1](<doc:AtlasUnfolded#MeasuredGeometry>) | Spec |
-| ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
-| ``PhaseBecomesAmplitude`` | bridge | ``StrategyCrystallizes`` | [1](<doc:AtlasUnfolded#PhaseBecomesAmplitude>) | Strategy |
-| ``PlayIsProof`` | bridge | ``RevealsNotCreates``, ``TowerSelfPlay`` | [1](<doc:AtlasUnfolded#PlayIsProof>) | Play |
-| ``RepairsPermanent`` | bridge | ``AnchorGraph``, ``NoInverse`` | [1](<doc:AtlasUnfolded#RepairsPermanent>) | Map |
-| ``StandardIsType`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#StandardIsType>) | Ruler |
-| ``AgentPathCertified`` | theorem | ``IdentityCollapse``, ``PassIsIdentification`` | 0 | Intelligence |
-| ``AlignmentEnablesIntelligence`` | bridge | ``AlignmentCoefficient``, ``IntelligenceRises`` | 0 | Search |
-| ``AllCoordinatesPresent`` | bridge | ``GateIsMembrane``, ``PlayIsProof`` | 0 | Projection |
-| ``AtomnessIsTrajectory`` | bridge | ``AtomBasis``, ``NoInverse`` | 0 | Basis |
-| ``CacheOnlyGrows`` | theorem | ``CachePermanent``, ``StepsTerminate`` | 0 | Identification |
-| ``CommunicationBounded`` | theorem | ``ComparisonsAreBounded``, ``HasCache`` | 0 | Space |
-| ``CompleteEntry`` | bridge | ``HasEncoding``, ``PhaseBecomesAmplitude`` | 0 | Strategy |
-| ``CompletionIsSolutionSet`` | bridge | ``HasPath``, ``Reading`` | 0 | Path |
-| ``ConstructionIsReading`` | bridge | ``EmissionAccumulates``, ``Reading`` | 0 | Path |
-| ``Converges`` | bridge | ``NoInverse``, ``SystemCrystallizes`` | 0 | Matter |
-| ``DarknessIsNormalForm`` | bridge | ``InterferenceIsSubstitution`` | 0 | Wave |
-| ``DepthIsBounded`` | bridge | ``HasGrammar``, ``Tower`` | 0 | Space |
-| ``DiagnosticsAccumulate`` | theorem | ``CachePermanent``, ``ResultDeterministic`` | 0 | Identification |
-| ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
-| ``DiscoveryIsRevelation`` | bridge | ``ExactlyOneSurvives``, ``LibrarySaturates`` | 0 | Intelligence |
-| ``DistanceIsCost`` | bridge | ``DistanceOnStructures``, ``HasCost`` | 0 | Gradient |
-| ``EdgesCarryTheJudgement`` | bridge | ``BehaviorIsStructure``, ``PresentedLaw`` | 0 | Presentation |
-| ``EncodingSelectionSaturates`` | bridge | ``HasEncoding``, ``LibrarySaturates`` | 0 | Intelligence |
-| ``ErasureIsRecession`` | bridge | ``EmissionAccumulates``, ``NoInverse`` | 0 | Path |
-| ``FailureCurriculum`` | bridge | ``HolesCarryAddresses``, ``RepairsPermanent`` | 0 | Map |
-| ``FiniteDiscovery`` | bridge | ``ComparisonsAreBounded``, ``Tower`` | 0 | Matter |
-| ``FormIsInvariant`` | bridge | ``PresentedLaw`` | 0 | Presentation |
-| ``FreeGeneration`` | bridge | ``DiscriminatorAndGenerator``, ``EmissionAccumulates`` | 0 | Path |
-| ``GateWrapper`` | bridge | ``DiscriminatorAndGenerator``, ``GateIsMembrane`` | 0 | Projection |
-| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
-| ``GaugeFixing`` | bridge | ``CostReadsGauge``, ``SystemCrystallizes`` | 0 | Gauge |
-| ``GradientInComparison`` | theorem | ``Decidable``, ``DistanceOnStructures`` | 0 | Gradient |
-| ``GreedyDescentTerminates`` | bridge | ``AnchorGraph``, ``Monotone`` | 0 | Map |
-| ``InevitabilityIsDiscriminator`` | bridge | ``AlignmentCoefficient``, ``DiscriminatorAndGenerator``, ``IntelligenceRises`` | 0 | Generation |
-| ``InteractiveDecomposition`` | bridge | ``AmbiguityIsExperiment``, ``MotorSkillsAreStrategies`` | 0 | Dynamics |
-| ``InterferenceIsIntelligence`` | bridge | ``IntelligenceRises``, ``OrderIsOnlyFreedom`` | 0 | Interference |
-| ``InvalidStepFolds`` | theorem | ``HasPath``, ``Null`` | 0 | Path |
-| ``IsIsYIdentity`` | bridge | ``OrderIsOnlyFreedom``, ``PassIsIdentification`` | 0 | Interference |
-| ``LawfulDrift`` | bridge | ``LawIsTarget``, ``Tower`` | 0 | Dynamics |
-| ``LibraryCrystallizes`` | bridge | ``LibrarySaturates``, ``SystemCrystallizes`` | 0 | Intelligence |
-| ``MeasureIsCount`` | bridge | ``StandardIsType`` | 0 | Ruler |
-| ``MetricProperty`` | marker | ``Pair`` | 0 | Core |
-| ``NoSelfReference`` | kernel | ``OperationsClosed`` | 0 | Identification |
-| ``NullIsOrigin`` | theorem | ``DistanceOnStructures``, ``Null`` | 0 | Gradient |
-| ``OrderByDistance`` | bridge | ``DistanceOnStructures``, ``OrderIsOnlyFreedom`` | 0 | Gradient |
-| ``OrgansAreOneCompare`` | bridge | ``Decidable``, ``DiscriminatorAndGenerator`` | 0 | Generation |
-| ``OrthogonalOrgans`` | bridge | ``DiscriminatorAndGenerator``, ``SearchableIffClusteredAndAligned`` | 0 | Generation |
-| ``Permanent`` | marker | ``Pair`` | 0 | Core |
-| ``PerspectiveIsEncoding`` | theorem | ``HasEncoding``, ``Measurable``, ``ScopeBoundedByEncoding`` | 0 | Space |
-| ``PipelineCrystallizes`` | bridge | ``PassIsIdentification``, ``SystemCrystallizes`` | 0 | Intelligence |
-| ``PreconditionsGuaranteePass`` | theorem | ``ExactlyOneSurvives`` | 0 | Identification |
-| ``PressIsIdentification`` | bridge | ``PassIsIdentification``, ``PresentedLaw`` | 0 | Presentation |
-| ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
-| ``QualitiesAreFinite`` | theorem | ``HasEncoding``, ``IntegerValued`` | 0 | Space |
-| ``ResistanceHasMagnitude`` | theorem | ``DistanceOnStructures``, ``Resistant`` | 0 | Gradient |
-| ``SaturationDynamics`` | bridge | ``ComparisonsAreBounded``, ``LibrarySaturates`` | 0 | Intelligence |
-| ``SaturationIncorruptible`` | theorem | ``CachePermanent`` | 0 | Identification |
-| ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
-| ``SecondEncodingIsNovelty`` | bridge | ``ScopeBoundedByEncoding``, ``SelfPlaySaturates`` | 0 | Play |
-| ``StrategyNavigation`` | bridge | ``NavigationInevitable``, ``SkillsAreBalls`` | 0 | Strategy |
-| ``ThreeAxesOfCompare`` | bridge | ``Decidable``, ``OrderIsOnlyFreedom`` | 0 | Interference |
-| ``Unique`` | marker | ``Monotone``, ``Null`` | 0 | Core |
-| ``Universality`` | bridge | ``ExactlyOneSurvives``, ``HasEncoding`` | 0 | Identification |
+| ``VerdictCoversBranches`` | bridge | ``HasCandidates``, ``VerdictIsInvariant`` | 0 | Verdict |
 
 ### StructuresFinite
 
-``StructuresFinite`` carries 117 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+``StructuresFinite`` carries 115 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
 | Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``CachePermanent`` | theorem | ``HasCache``, ``OperationsClosed``, ``StructuresFinite`` | [82](<doc:AtlasUnfolded#CachePermanent>) | Identification |
-| ``DistanceOnStructures`` | theorem | ``HasDistance``, ``StructuresFinite`` | [61](<doc:AtlasUnfolded#DistanceOnStructures>) | Gradient |
+| ``DistanceOnStructures`` | theorem | ``HasDistance``, ``StructuresFinite`` | [59](<doc:AtlasUnfolded#DistanceOnStructures>) | Gradient |
 | ``StepsTerminate`` | kernel | ``StructuresFinite`` | [54](<doc:AtlasUnfolded#StepsTerminate>) | Identification |
 | ``PipelineTotal`` | kernel | ``StepsTerminate`` | [52](<doc:AtlasUnfolded#PipelineTotal>) | Identification |
 | ``EqualityDecidable`` | kernel | ``StructuresFinite`` | [51](<doc:AtlasUnfolded#EqualityDecidable>) | Identification |
@@ -655,7 +748,6 @@ compile.
 | ``CandidatesOnlyLeave`` | bridge | ``CachePermanent``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#CandidatesOnlyLeave>) | Identification |
 | ``LiquidPhase`` | bridge | ``KnowledgeAccumulates``, ``Monotone`` | [7](<doc:AtlasUnfolded#LiquidPhase>) | Liquid |
 | ``MembershipDecidable`` | theorem | ``EqualityDecidable``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#MembershipDecidable>) | Intelligence |
-| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [7](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
 | ``ResultsIrreversible`` | theorem | ``CachePermanent``, ``EqualityDecidable`` | [7](<doc:AtlasUnfolded#ResultsIrreversible>) | Intelligence |
 | ``CertifiedRuleGenerates`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification`` | [6](<doc:AtlasUnfolded#CertifiedRuleGenerates>) | Play |
 | ``LawLivesInSigma`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [6](<doc:AtlasUnfolded#LawLivesInSigma>) | Dynamics |
@@ -665,6 +757,7 @@ compile.
 | ``CrystallizationFront`` | bridge | ``DistanceOnStructures``, ``LiquidPhase``, ``NoInverse`` | [5](<doc:AtlasUnfolded#CrystallizationFront>) | Liquid |
 | ``DiscriminatorAndGenerator`` | bridge | ``OrderIsOnlyFreedom``, ``PassImpliesMembership`` | [5](<doc:AtlasUnfolded#DiscriminatorAndGenerator>) | Generation |
 | ``LawIsTarget`` | bridge | ``LawLivesInSigma``, ``PassIsIdentification`` | [5](<doc:AtlasUnfolded#LawIsTarget>) | Dynamics |
+| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [5](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
 | ``SearchFlow`` | bridge | ``AlignmentCoefficient``, ``LiquidPhase`` | [5](<doc:AtlasUnfolded#SearchFlow>) | Liquid |
 | ``NavigationInevitable`` | bridge | ``OneBoundaryThreeFaces`` | [4](<doc:AtlasUnfolded#NavigationInevitable>) | Map |
 | ``SelfPlaySaturates`` | bridge | ``AmbiguityNamesInput``, ``BasisIsFinite`` | [4](<doc:AtlasUnfolded#SelfPlaySaturates>) | Play |
@@ -687,7 +780,6 @@ compile.
 | ``BehaviorIsStructure`` | bridge | ``DistanceOnStructures``, ``HasTime`` | [1](<doc:AtlasUnfolded#BehaviorIsStructure>) | Dynamics |
 | ``ConditionalSolving`` | bridge | ``EncoderConditions`` | [1](<doc:AtlasUnfolded#ConditionalSolving>) | Spec |
 | ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
-| ``InterferenceIsSubstitution`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#InterferenceIsSubstitution>) | Wave |
 | ``MeasuredGeometry`` | bridge | ``FourthFace``, ``SearchableIffClusteredAndAligned`` | [1](<doc:AtlasUnfolded#MeasuredGeometry>) | Spec |
 | ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
 | ``PhaseBecomesAmplitude`` | bridge | ``StrategyCrystallizes`` | [1](<doc:AtlasUnfolded#PhaseBecomesAmplitude>) | Strategy |
@@ -704,7 +796,6 @@ compile.
 | ``CompletionIsSolutionSet`` | bridge | ``HasPath``, ``Reading`` | 0 | Path |
 | ``ConstructionIsReading`` | bridge | ``EmissionAccumulates``, ``Reading`` | 0 | Path |
 | ``Converges`` | bridge | ``NoInverse``, ``SystemCrystallizes`` | 0 | Matter |
-| ``DarknessIsNormalForm`` | bridge | ``InterferenceIsSubstitution`` | 0 | Wave |
 | ``DepthIsBounded`` | bridge | ``HasGrammar``, ``Tower`` | 0 | Space |
 | ``DiagnosticsAccumulate`` | theorem | ``CachePermanent``, ``ResultDeterministic`` | 0 | Identification |
 | ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
@@ -747,7 +838,7 @@ compile.
 
 ### OperationsClosed
 
-``OperationsClosed`` carries 99 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+``OperationsClosed`` carries 97 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
 | Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
@@ -773,7 +864,6 @@ compile.
 | ``CandidatesOnlyLeave`` | bridge | ``CachePermanent``, ``HasSolutions`` | [7](<doc:AtlasUnfolded#CandidatesOnlyLeave>) | Identification |
 | ``LiquidPhase`` | bridge | ``KnowledgeAccumulates``, ``Monotone`` | [7](<doc:AtlasUnfolded#LiquidPhase>) | Liquid |
 | ``ResultsIrreversible`` | theorem | ``CachePermanent``, ``EqualityDecidable`` | [7](<doc:AtlasUnfolded#ResultsIrreversible>) | Intelligence |
-| ``RevealsNotCreates`` | kernel | ``Measurable``, ``OperationsClosed`` | [7](<doc:AtlasUnfolded#RevealsNotCreates>) | Identification |
 | ``CertifiedRuleGenerates`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification`` | [6](<doc:AtlasUnfolded#CertifiedRuleGenerates>) | Play |
 | ``SkillsAreBalls`` | bridge | ``BallSaturation``, ``StrategyLivesInSigma`` | [6](<doc:AtlasUnfolded#SkillsAreBalls>) | Strategy |
 | ``SystemCrystallizes`` | bridge | ``CandidatesOnlyLeave``, ``MembershipDecidable``, ``ResultsIrreversible`` | [6](<doc:AtlasUnfolded#SystemCrystallizes>) | Intelligence |
@@ -781,6 +871,7 @@ compile.
 | ``CrystallizationFront`` | bridge | ``DistanceOnStructures``, ``LiquidPhase``, ``NoInverse`` | [5](<doc:AtlasUnfolded#CrystallizationFront>) | Liquid |
 | ``DiscriminatorAndGenerator`` | bridge | ``OrderIsOnlyFreedom``, ``PassImpliesMembership`` | [5](<doc:AtlasUnfolded#DiscriminatorAndGenerator>) | Generation |
 | ``LawIsTarget`` | bridge | ``LawLivesInSigma``, ``PassIsIdentification`` | [5](<doc:AtlasUnfolded#LawIsTarget>) | Dynamics |
+| ``RevealsNotCreates`` | kernel | ``Measurable``, ``OperationsClosed`` | [5](<doc:AtlasUnfolded#RevealsNotCreates>) | Identification |
 | ``ScopeBoundedByEncoding`` | kernel | ``ResultDeterministic`` | [5](<doc:AtlasUnfolded#ScopeBoundedByEncoding>) | Identification |
 | ``SearchFlow`` | bridge | ``AlignmentCoefficient``, ``LiquidPhase`` | [5](<doc:AtlasUnfolded#SearchFlow>) | Liquid |
 | ``NavigationInevitable`` | bridge | ``OneBoundaryThreeFaces`` | [4](<doc:AtlasUnfolded#NavigationInevitable>) | Map |
@@ -801,7 +892,6 @@ compile.
 | ``AmbiguityIsExperiment`` | bridge | ``HolesCarryAddresses``, ``LawIsTarget`` | [1](<doc:AtlasUnfolded#AmbiguityIsExperiment>) | Dynamics |
 | ``AtomBasis`` | bridge | ``BasisIsFinite``, ``HasCompositionalNorm``, ``RulesCompose`` | [1](<doc:AtlasUnfolded#AtomBasis>) | Basis |
 | ``ConditionalSolving`` | bridge | ``EncoderConditions`` | [1](<doc:AtlasUnfolded#ConditionalSolving>) | Spec |
-| ``ContentIsGaugeInvariant`` | bridge | ``HasEncoding``, ``HasGauge``, ``RevealsNotCreates`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
 | ``EmissionIsAutoregressive`` | bridge | ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding`` | [1](<doc:AtlasUnfolded#EmissionIsAutoregressive>) | Path |
 | ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
 | ``MeasuredGeometry`` | bridge | ``FourthFace``, ``SearchableIffClusteredAndAligned`` | [1](<doc:AtlasUnfolded#MeasuredGeometry>) | Spec |
@@ -828,7 +918,6 @@ compile.
 | ``FiniteDiscovery`` | bridge | ``ComparisonsAreBounded``, ``Tower`` | 0 | Matter |
 | ``FreeGeneration`` | bridge | ``DiscriminatorAndGenerator``, ``EmissionAccumulates`` | 0 | Path |
 | ``GateWrapper`` | bridge | ``DiscriminatorAndGenerator``, ``GateIsMembrane`` | 0 | Projection |
-| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
 | ``GaugeFixing`` | bridge | ``CostReadsGauge``, ``SystemCrystallizes`` | 0 | Gauge |
 | ``InevitabilityIsDiscriminator`` | bridge | ``AlignmentCoefficient``, ``DiscriminatorAndGenerator``, ``IntelligenceRises`` | 0 | Generation |
 | ``InteractiveDecomposition`` | bridge | ``AmbiguityIsExperiment``, ``MotorSkillsAreStrategies`` | 0 | Dynamics |
@@ -1035,11 +1124,11 @@ compile.
 
 ### HasDistance
 
-``HasDistance`` carries 79 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+``HasDistance`` carries 76 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
 | Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
-| ``DistanceOnStructures`` | theorem | ``HasDistance``, ``StructuresFinite`` | [61](<doc:AtlasUnfolded#DistanceOnStructures>) | Gradient |
+| ``DistanceOnStructures`` | theorem | ``HasDistance``, ``StructuresFinite`` | [59](<doc:AtlasUnfolded#DistanceOnStructures>) | Gradient |
 | ``Resistant`` | theorem | ``Decidable``, ``HasDistance`` | [28](<doc:AtlasUnfolded#Resistant>) | Matter |
 | ``Matter`` | bridge | ``KnowledgeAccumulates``, ``PassIsIdentification``, ``Resistant`` | [26](<doc:AtlasUnfolded#Matter>) | Matter |
 | ``AnchorGraph`` | bridge | ``DistanceOnStructures``, ``HasLibrary`` | [22](<doc:AtlasUnfolded#AnchorGraph>) | Map |
@@ -1053,12 +1142,12 @@ compile.
 | ``AlignmentCoefficient`` | bridge | ``GateIsZeroOfLoss``, ``HasAlpha`` | [11](<doc:AtlasUnfolded#AlignmentCoefficient>) | Search |
 | ``OneBoundaryThreeFaces`` | bridge | ``AnchorGraph``, ``BallSaturation``, ``CompressionCriterion`` | [10](<doc:AtlasUnfolded#OneBoundaryThreeFaces>) | Map |
 | ``HolesCarryAddresses`` | bridge | ``AnchorGraph``, ``Decidable`` | [9](<doc:AtlasUnfolded#HolesCarryAddresses>) | Map |
-| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [7](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
 | ``LawLivesInSigma`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [6](<doc:AtlasUnfolded#LawLivesInSigma>) | Dynamics |
 | ``SkillsAreBalls`` | bridge | ``BallSaturation``, ``StrategyLivesInSigma`` | [6](<doc:AtlasUnfolded#SkillsAreBalls>) | Strategy |
 | ``AmbiguityNamesInput`` | bridge | ``CertifiedRuleGenerates``, ``HolesCarryAddresses`` | [5](<doc:AtlasUnfolded#AmbiguityNamesInput>) | Play |
 | ``CrystallizationFront`` | bridge | ``DistanceOnStructures``, ``LiquidPhase``, ``NoInverse`` | [5](<doc:AtlasUnfolded#CrystallizationFront>) | Liquid |
 | ``LawIsTarget`` | bridge | ``LawLivesInSigma``, ``PassIsIdentification`` | [5](<doc:AtlasUnfolded#LawIsTarget>) | Dynamics |
+| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [5](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
 | ``SearchFlow`` | bridge | ``AlignmentCoefficient``, ``LiquidPhase`` | [5](<doc:AtlasUnfolded#SearchFlow>) | Liquid |
 | ``NavigationInevitable`` | bridge | ``OneBoundaryThreeFaces`` | [4](<doc:AtlasUnfolded#NavigationInevitable>) | Map |
 | ``SelfPlaySaturates`` | bridge | ``AmbiguityNamesInput``, ``BasisIsFinite`` | [4](<doc:AtlasUnfolded#SelfPlaySaturates>) | Play |
@@ -1067,7 +1156,6 @@ compile.
 | ``GateIsMembrane`` | bridge | ``StefanCoupling`` | [3](<doc:AtlasUnfolded#GateIsMembrane>) | Liquid |
 | ``SearchableIffClusteredAndAligned`` | bridge | ``AlignmentCoefficient``, ``OneBoundaryThreeFaces`` | [3](<doc:AtlasUnfolded#SearchableIffClusteredAndAligned>) | Search |
 | ``StrategyIsUnique`` | bridge | ``ExactlyOneSurvives``, ``StrategyGate`` | [3](<doc:AtlasUnfolded#StrategyIsUnique>) | Strategy |
-| ``CostIsPathLength`` | bridge | ``HasDistance``, ``HasPath`` | [2](<doc:AtlasUnfolded#CostIsPathLength>) | Path |
 | ``EncoderConditions`` | bridge | ``BallSaturation``, ``CompressionCriterion``, ``HasEncoding`` | [2](<doc:AtlasUnfolded#EncoderConditions>) | Spec |
 | ``FourthFace`` | bridge | ``OneBoundaryThreeFaces``, ``SkillsAreBalls`` | [2](<doc:AtlasUnfolded#FourthFace>) | Strategy |
 | ``HasCompositionalNorm`` | axis | ``HasDistance`` | [2](<doc:AtlasUnfolded#HasCompositionalNorm>) | Basis |
@@ -1078,10 +1166,9 @@ compile.
 | ``AtomBasis`` | bridge | ``BasisIsFinite``, ``HasCompositionalNorm``, ``RulesCompose`` | [1](<doc:AtlasUnfolded#AtomBasis>) | Basis |
 | ``BehaviorIsStructure`` | bridge | ``DistanceOnStructures``, ``HasTime`` | [1](<doc:AtlasUnfolded#BehaviorIsStructure>) | Dynamics |
 | ``ConditionalSolving`` | bridge | ``EncoderConditions`` | [1](<doc:AtlasUnfolded#ConditionalSolving>) | Spec |
-| ``CostReadsGauge`` | bridge | ``HasDistance``, ``HasGauge`` | [1](<doc:AtlasUnfolded#CostReadsGauge>) | Gauge |
+| ``CostIsPathLength`` | bridge | ``HasDistance``, ``HasPath`` | [1](<doc:AtlasUnfolded#CostIsPathLength>) | Path |
+| ``CostReadsGauge`` | bridge | ``HasDistance``, ``HasGauge``, ``PredicateReading`` | [1](<doc:AtlasUnfolded#CostReadsGauge>) | Gauge |
 | ``DistanceIsMetric`` | bridge | ``HasCache``, ``HasDistance`` | [1](<doc:AtlasUnfolded#DistanceIsMetric>) | Space |
-| ``InterferenceIsSubstitution`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#InterferenceIsSubstitution>) | Wave |
-| ``LinearArbiter`` | bridge | ``CostIsPathLength`` | [1](<doc:AtlasUnfolded#LinearArbiter>) | Gauge |
 | ``MeasuredGeometry`` | bridge | ``FourthFace``, ``SearchableIffClusteredAndAligned`` | [1](<doc:AtlasUnfolded#MeasuredGeometry>) | Spec |
 | ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
 | ``PhaseBecomesAmplitude`` | bridge | ``StrategyCrystallizes`` | [1](<doc:AtlasUnfolded#PhaseBecomesAmplitude>) | Strategy |
@@ -1092,7 +1179,6 @@ compile.
 | ``AllCoordinatesPresent`` | bridge | ``GateIsMembrane``, ``PlayIsProof`` | 0 | Projection |
 | ``AtomnessIsTrajectory`` | bridge | ``AtomBasis``, ``NoInverse`` | 0 | Basis |
 | ``CompleteEntry`` | bridge | ``HasEncoding``, ``PhaseBecomesAmplitude`` | 0 | Strategy |
-| ``DarknessIsNormalForm`` | bridge | ``InterferenceIsSubstitution`` | 0 | Wave |
 | ``DepthIsBounded`` | bridge | ``HasGrammar``, ``Tower`` | 0 | Space |
 | ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
 | ``DistanceIsCost`` | bridge | ``DistanceOnStructures``, ``HasCost`` | 0 | Gradient |
@@ -1101,7 +1187,7 @@ compile.
 | ``FiniteDiscovery`` | bridge | ``ComparisonsAreBounded``, ``Tower`` | 0 | Matter |
 | ``FormIsInvariant`` | bridge | ``PresentedLaw`` | 0 | Presentation |
 | ``GateWrapper`` | bridge | ``DiscriminatorAndGenerator``, ``GateIsMembrane`` | 0 | Projection |
-| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
+| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``CostIsPathLength`` | 0 | Gauge |
 | ``GaugeFixing`` | bridge | ``CostReadsGauge``, ``SystemCrystallizes`` | 0 | Gauge |
 | ``GradientInComparison`` | theorem | ``Decidable``, ``DistanceOnStructures`` | 0 | Gradient |
 | ``GreedyDescentTerminates`` | bridge | ``AnchorGraph``, ``Monotone`` | 0 | Map |
@@ -1342,7 +1428,7 @@ compile.
 
 ### DistanceOnStructures
 
-``DistanceOnStructures`` carries 61 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+``DistanceOnStructures`` carries 59 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
 | Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
@@ -1354,12 +1440,12 @@ compile.
 | ``AlignmentCoefficient`` | bridge | ``GateIsZeroOfLoss``, ``HasAlpha`` | [11](<doc:AtlasUnfolded#AlignmentCoefficient>) | Search |
 | ``OneBoundaryThreeFaces`` | bridge | ``AnchorGraph``, ``BallSaturation``, ``CompressionCriterion`` | [10](<doc:AtlasUnfolded#OneBoundaryThreeFaces>) | Map |
 | ``HolesCarryAddresses`` | bridge | ``AnchorGraph``, ``Decidable`` | [9](<doc:AtlasUnfolded#HolesCarryAddresses>) | Map |
-| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [7](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
 | ``LawLivesInSigma`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [6](<doc:AtlasUnfolded#LawLivesInSigma>) | Dynamics |
 | ``SkillsAreBalls`` | bridge | ``BallSaturation``, ``StrategyLivesInSigma`` | [6](<doc:AtlasUnfolded#SkillsAreBalls>) | Strategy |
 | ``AmbiguityNamesInput`` | bridge | ``CertifiedRuleGenerates``, ``HolesCarryAddresses`` | [5](<doc:AtlasUnfolded#AmbiguityNamesInput>) | Play |
 | ``CrystallizationFront`` | bridge | ``DistanceOnStructures``, ``LiquidPhase``, ``NoInverse`` | [5](<doc:AtlasUnfolded#CrystallizationFront>) | Liquid |
 | ``LawIsTarget`` | bridge | ``LawLivesInSigma``, ``PassIsIdentification`` | [5](<doc:AtlasUnfolded#LawIsTarget>) | Dynamics |
+| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [5](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
 | ``SearchFlow`` | bridge | ``AlignmentCoefficient``, ``LiquidPhase`` | [5](<doc:AtlasUnfolded#SearchFlow>) | Liquid |
 | ``NavigationInevitable`` | bridge | ``OneBoundaryThreeFaces`` | [4](<doc:AtlasUnfolded#NavigationInevitable>) | Map |
 | ``SelfPlaySaturates`` | bridge | ``AmbiguityNamesInput``, ``BasisIsFinite`` | [4](<doc:AtlasUnfolded#SelfPlaySaturates>) | Play |
@@ -1376,7 +1462,6 @@ compile.
 | ``AmbiguityIsExperiment`` | bridge | ``HolesCarryAddresses``, ``LawIsTarget`` | [1](<doc:AtlasUnfolded#AmbiguityIsExperiment>) | Dynamics |
 | ``BehaviorIsStructure`` | bridge | ``DistanceOnStructures``, ``HasTime`` | [1](<doc:AtlasUnfolded#BehaviorIsStructure>) | Dynamics |
 | ``ConditionalSolving`` | bridge | ``EncoderConditions`` | [1](<doc:AtlasUnfolded#ConditionalSolving>) | Spec |
-| ``InterferenceIsSubstitution`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#InterferenceIsSubstitution>) | Wave |
 | ``MeasuredGeometry`` | bridge | ``FourthFace``, ``SearchableIffClusteredAndAligned`` | [1](<doc:AtlasUnfolded#MeasuredGeometry>) | Spec |
 | ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
 | ``PhaseBecomesAmplitude`` | bridge | ``StrategyCrystallizes`` | [1](<doc:AtlasUnfolded#PhaseBecomesAmplitude>) | Strategy |
@@ -1386,7 +1471,6 @@ compile.
 | ``AlignmentEnablesIntelligence`` | bridge | ``AlignmentCoefficient``, ``IntelligenceRises`` | 0 | Search |
 | ``AllCoordinatesPresent`` | bridge | ``GateIsMembrane``, ``PlayIsProof`` | 0 | Projection |
 | ``CompleteEntry`` | bridge | ``HasEncoding``, ``PhaseBecomesAmplitude`` | 0 | Strategy |
-| ``DarknessIsNormalForm`` | bridge | ``InterferenceIsSubstitution`` | 0 | Wave |
 | ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
 | ``DistanceIsCost`` | bridge | ``DistanceOnStructures``, ``HasCost`` | 0 | Gradient |
 | ``EdgesCarryTheJudgement`` | bridge | ``BehaviorIsStructure``, ``PresentedLaw`` | 0 | Presentation |
@@ -1925,6 +2009,47 @@ compile.
 | ``SecondEncodingIsNovelty`` | bridge | ``ScopeBoundedByEncoding``, ``SelfPlaySaturates`` | 0 | Play |
 | ``StrategyNavigation`` | bridge | ``NavigationInevitable``, ``SkillsAreBalls`` | 0 | Strategy |
 
+### HasEncoding
+
+``HasEncoding`` carries 34 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``HasVerdict`` | axis | ``HasEncoding`` | [17](<doc:AtlasUnfolded#HasVerdict>) | Verdict |
+| ``VerdictIsInvariant`` | bridge | ``ComparedReadings``, ``HasVerdict`` | [9](<doc:AtlasUnfolded#VerdictIsInvariant>) | Verdict |
+| ``PredicateReading`` | bridge | ``HasVerdict``, ``Pair`` | [6](<doc:AtlasUnfolded#PredicateReading>) | Verdict |
+| ``ReadingFactors`` | bridge | ``VerdictIsInvariant`` | [4](<doc:AtlasUnfolded#ReadingFactors>) | Verdict |
+| ``CandidateReading`` | bridge | ``HasCandidates``, ``PredicateReading`` | [2](<doc:AtlasUnfolded#CandidateReading>) | Verdict |
+| ``EncoderConditions`` | bridge | ``BallSaturation``, ``CompressionCriterion``, ``HasEncoding`` | [2](<doc:AtlasUnfolded#EncoderConditions>) | Spec |
+| ``EncodingForgets`` | bridge | ``VerdictIsInvariant`` | [2](<doc:AtlasUnfolded#EncodingForgets>) | Seeing |
+| ``HasGrammar`` | axis | ``HasEncoding`` | [2](<doc:AtlasUnfolded#HasGrammar>) | Space |
+| ``ConditionalSolving`` | bridge | ``EncoderConditions`` | [1](<doc:AtlasUnfolded#ConditionalSolving>) | Spec |
+| ``ContentIsGaugeInvariant`` | bridge | ``HasGauge``, ``ReadingFactors`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
+| ``CostReadsGauge`` | bridge | ``HasDistance``, ``HasGauge``, ``PredicateReading`` | [1](<doc:AtlasUnfolded#CostReadsGauge>) | Gauge |
+| ``EmissionIsAutoregressive`` | bridge | ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding`` | [1](<doc:AtlasUnfolded#EmissionIsAutoregressive>) | Path |
+| ``ObservedTransition`` | theorem | ``HasEncoding``, ``Pair`` | [1](<doc:AtlasUnfolded#ObservedTransition>) | Transition |
+| ``AcquiresAnswer`` | bridge | ``ReadingFactors`` | 0 | Verdict |
+| ``CandidateGroupReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
+| ``CandidateLeafReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
+| ``ColourIsQuotient`` | bridge | ``EncodingForgets`` | 0 | Colour |
+| ``CommutingTransition`` | theorem | ``ObservedTransition`` | 0 | Transition |
+| ``CompleteEntry`` | bridge | ``HasEncoding``, ``PhaseBecomesAmplitude`` | 0 | Strategy |
+| ``DepthIsBounded`` | bridge | ``HasGrammar``, ``Tower`` | 0 | Space |
+| ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
+| ``EncodingInvents`` | theorem | ``ComparedReadings``, ``HasEncoding`` | 0 | Voice |
+| ``EncodingSelectionSaturates`` | bridge | ``HasEncoding``, ``LibrarySaturates`` | 0 | Intelligence |
+| ``FaithfulEncoding`` | bridge | ``ReadingFactors`` | 0 | Voice |
+| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``CostIsPathLength`` | 0 | Gauge |
+| ``GaugeFixing`` | bridge | ``CostReadsGauge``, ``SystemCrystallizes`` | 0 | Gauge |
+| ``PerspectiveIsEncoding`` | theorem | ``HasEncoding``, ``Measurable``, ``ScopeBoundedByEncoding`` | 0 | Space |
+| ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
+| ``QualitiesAreFinite`` | theorem | ``HasEncoding``, ``IntegerValued`` | 0 | Space |
+| ``RecordedAnswerReading`` | bridge | ``PredicateReading`` | 0 | Verdict |
+| ``SeparatorIdentifies`` | bridge | ``EncodingForgets`` | 0 | Seeing |
+| ``SpaceFromDifference`` | bridge | ``DistanceIsMetric``, ``HasGrammar`` | 0 | Space |
+| ``Universality`` | bridge | ``ExactlyOneSurvives``, ``HasEncoding`` | 0 | Identification |
+| ``VerdictCoversBranches`` | bridge | ``HasCandidates``, ``VerdictIsInvariant`` | 0 | Verdict |
+
 ### Null
 
 ``Null`` carries 32 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
@@ -2165,36 +2290,6 @@ compile.
 | ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
 | ``StrategyNavigation`` | bridge | ``NavigationInevitable``, ``SkillsAreBalls`` | 0 | Strategy |
 
-### HasEncoding
-
-``HasEncoding`` carries 23 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
-
-| Claim | Kind | Premises | Carries | Home |
-| --- | --- | --- | --- | --- |
-| ``EncodingForgets`` | axis | ``HasEncoding`` | [5](<doc:AtlasUnfolded#EncodingForgets>) | Seeing |
-| ``EncoderConditions`` | bridge | ``BallSaturation``, ``CompressionCriterion``, ``HasEncoding`` | [2](<doc:AtlasUnfolded#EncoderConditions>) | Spec |
-| ``HasGrammar`` | axis | ``HasEncoding`` | [2](<doc:AtlasUnfolded#HasGrammar>) | Space |
-| ``ColourIsQuotient`` | axis | ``EncodingForgets`` | [1](<doc:AtlasUnfolded#ColourIsQuotient>) | Colour |
-| ``ConditionalSolving`` | bridge | ``EncoderConditions`` | [1](<doc:AtlasUnfolded#ConditionalSolving>) | Spec |
-| ``ContentIsGaugeInvariant`` | bridge | ``HasEncoding``, ``HasGauge``, ``RevealsNotCreates`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
-| ``EmissionIsAutoregressive`` | bridge | ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding`` | [1](<doc:AtlasUnfolded#EmissionIsAutoregressive>) | Path |
-| ``AmbiguityIsSymmetry`` | axis | ``EncodingForgets`` | 0 | Verdict |
-| ``CompleteEntry`` | bridge | ``HasEncoding``, ``PhaseBecomesAmplitude`` | 0 | Strategy |
-| ``DepthIsBounded`` | bridge | ``HasGrammar``, ``Tower`` | 0 | Space |
-| ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
-| ``EncodingInvents`` | axis | ``HasEncoding`` | 0 | Voice |
-| ``EncodingSelectionSaturates`` | bridge | ``HasEncoding``, ``LibrarySaturates`` | 0 | Intelligence |
-| ``FaithfulEncoding`` | theorem | ``HasEncoding`` | 0 | Voice |
-| ``GamutIsCone`` | axis | ``ColourIsQuotient`` | 0 | Colour |
-| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
-| ``PerspectiveIsEncoding`` | theorem | ``HasEncoding``, ``Measurable``, ``ScopeBoundedByEncoding`` | 0 | Space |
-| ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
-| ``QualitiesAreFinite`` | theorem | ``HasEncoding``, ``IntegerValued`` | 0 | Space |
-| ``SeparatorIdentifies`` | axis | ``EncodingForgets`` | 0 | Seeing |
-| ``SpaceFromDifference`` | bridge | ``DistanceIsMetric``, ``HasGrammar`` | 0 | Space |
-| ``Universality`` | bridge | ``ExactlyOneSurvives``, ``HasEncoding`` | 0 | Identification |
-| ``VerdictIsInvariant`` | axis | ``EncodingForgets`` | 0 | Verdict |
-
 ### AnchorGraph
 
 ``AnchorGraph`` carries 22 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
@@ -2305,6 +2400,30 @@ compile.
 | ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
 | ``StrategyNavigation`` | bridge | ``NavigationInevitable``, ``SkillsAreBalls`` | 0 | Strategy |
 
+### HasVerdict
+
+``HasVerdict`` carries 17 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``VerdictIsInvariant`` | bridge | ``ComparedReadings``, ``HasVerdict`` | [9](<doc:AtlasUnfolded#VerdictIsInvariant>) | Verdict |
+| ``PredicateReading`` | bridge | ``HasVerdict``, ``Pair`` | [6](<doc:AtlasUnfolded#PredicateReading>) | Verdict |
+| ``ReadingFactors`` | bridge | ``VerdictIsInvariant`` | [4](<doc:AtlasUnfolded#ReadingFactors>) | Verdict |
+| ``CandidateReading`` | bridge | ``HasCandidates``, ``PredicateReading`` | [2](<doc:AtlasUnfolded#CandidateReading>) | Verdict |
+| ``EncodingForgets`` | bridge | ``VerdictIsInvariant`` | [2](<doc:AtlasUnfolded#EncodingForgets>) | Seeing |
+| ``ContentIsGaugeInvariant`` | bridge | ``HasGauge``, ``ReadingFactors`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
+| ``CostReadsGauge`` | bridge | ``HasDistance``, ``HasGauge``, ``PredicateReading`` | [1](<doc:AtlasUnfolded#CostReadsGauge>) | Gauge |
+| ``AcquiresAnswer`` | bridge | ``ReadingFactors`` | 0 | Verdict |
+| ``CandidateGroupReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
+| ``CandidateLeafReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
+| ``ColourIsQuotient`` | bridge | ``EncodingForgets`` | 0 | Colour |
+| ``FaithfulEncoding`` | bridge | ``ReadingFactors`` | 0 | Voice |
+| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``CostIsPathLength`` | 0 | Gauge |
+| ``GaugeFixing`` | bridge | ``CostReadsGauge``, ``SystemCrystallizes`` | 0 | Gauge |
+| ``RecordedAnswerReading`` | bridge | ``PredicateReading`` | 0 | Verdict |
+| ``SeparatorIdentifies`` | bridge | ``EncodingForgets`` | 0 | Seeing |
+| ``VerdictCoversBranches`` | bridge | ``HasCandidates``, ``VerdictIsInvariant`` | 0 | Verdict |
+
 ### BallSaturation
 
 ``BallSaturation`` carries 15 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
@@ -2327,28 +2446,6 @@ compile.
 | ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
 | ``StrategyNavigation`` | bridge | ``NavigationInevitable``, ``SkillsAreBalls`` | 0 | Strategy |
 
-### HasLaw
-
-``HasLaw`` carries 15 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
-
-| Claim | Kind | Premises | Carries | Home |
-| --- | --- | --- | --- | --- |
-| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [7](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
-| ``LawLivesInSigma`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [6](<doc:AtlasUnfolded#LawLivesInSigma>) | Dynamics |
-| ``LawIsTarget`` | bridge | ``LawLivesInSigma``, ``PassIsIdentification`` | [5](<doc:AtlasUnfolded#LawIsTarget>) | Dynamics |
-| ``PlanningIsNavigation`` | bridge | ``LawIsTarget``, ``NavigationInevitable`` | [2](<doc:AtlasUnfolded#PlanningIsNavigation>) | Dynamics |
-| ``AmbiguityIsExperiment`` | bridge | ``HolesCarryAddresses``, ``LawIsTarget`` | [1](<doc:AtlasUnfolded#AmbiguityIsExperiment>) | Dynamics |
-| ``InterferenceIsSubstitution`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#InterferenceIsSubstitution>) | Wave |
-| ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
-| ``StandardIsType`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#StandardIsType>) | Ruler |
-| ``DarknessIsNormalForm`` | bridge | ``InterferenceIsSubstitution`` | 0 | Wave |
-| ``EdgesCarryTheJudgement`` | bridge | ``BehaviorIsStructure``, ``PresentedLaw`` | 0 | Presentation |
-| ``FormIsInvariant`` | bridge | ``PresentedLaw`` | 0 | Presentation |
-| ``InteractiveDecomposition`` | bridge | ``AmbiguityIsExperiment``, ``MotorSkillsAreStrategies`` | 0 | Dynamics |
-| ``LawfulDrift`` | bridge | ``LawIsTarget``, ``Tower`` | 0 | Dynamics |
-| ``MeasureIsCount`` | bridge | ``StandardIsType`` | 0 | Ruler |
-| ``PressIsIdentification`` | bridge | ``PassIsIdentification``, ``PresentedLaw`` | 0 | Presentation |
-
 ### CompressionCriterion
 
 ``CompressionCriterion`` carries 14 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
@@ -2370,25 +2467,25 @@ compile.
 | ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
 | ``StrategyNavigation`` | bridge | ``NavigationInevitable``, ``SkillsAreBalls`` | 0 | Strategy |
 
-### HasPath
+### HasLaw
 
-``HasPath`` carries 13 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+``HasLaw`` carries 13 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
 | Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
-| ``EmissionAccumulates`` | theorem | ``HasPath`` | [5](<doc:AtlasUnfolded#EmissionAccumulates>) | Path |
-| ``CostIsPathLength`` | bridge | ``HasDistance``, ``HasPath`` | [2](<doc:AtlasUnfolded#CostIsPathLength>) | Path |
-| ``EmissionIsAutoregressive`` | bridge | ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding`` | [1](<doc:AtlasUnfolded#EmissionIsAutoregressive>) | Path |
-| ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
-| ``LinearArbiter`` | bridge | ``CostIsPathLength`` | [1](<doc:AtlasUnfolded#LinearArbiter>) | Gauge |
-| ``ReachIsPath`` | bridge | ``HasBasis``, ``HasPath`` | [1](<doc:AtlasUnfolded#ReachIsPath>) | Path |
-| ``CompletionIsSolutionSet`` | bridge | ``HasPath``, ``Reading`` | 0 | Path |
-| ``ConstructionIsReading`` | bridge | ``EmissionAccumulates``, ``Reading`` | 0 | Path |
-| ``ErasureIsRecession`` | bridge | ``EmissionAccumulates``, ``NoInverse`` | 0 | Path |
-| ``FreeGeneration`` | bridge | ``DiscriminatorAndGenerator``, ``EmissionAccumulates`` | 0 | Path |
-| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
-| ``InvalidStepFolds`` | theorem | ``HasPath``, ``Null`` | 0 | Path |
-| ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
+| ``LawLivesInSigma`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [6](<doc:AtlasUnfolded#LawLivesInSigma>) | Dynamics |
+| ``LawIsTarget`` | bridge | ``LawLivesInSigma``, ``PassIsIdentification`` | [5](<doc:AtlasUnfolded#LawIsTarget>) | Dynamics |
+| ``PresentedLaw`` | bridge | ``DistanceOnStructures``, ``HasLaw`` | [5](<doc:AtlasUnfolded#PresentedLaw>) | Presentation |
+| ``PlanningIsNavigation`` | bridge | ``LawIsTarget``, ``NavigationInevitable`` | [2](<doc:AtlasUnfolded#PlanningIsNavigation>) | Dynamics |
+| ``AmbiguityIsExperiment`` | bridge | ``HolesCarryAddresses``, ``LawIsTarget`` | [1](<doc:AtlasUnfolded#AmbiguityIsExperiment>) | Dynamics |
+| ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
+| ``StandardIsType`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#StandardIsType>) | Ruler |
+| ``EdgesCarryTheJudgement`` | bridge | ``BehaviorIsStructure``, ``PresentedLaw`` | 0 | Presentation |
+| ``FormIsInvariant`` | bridge | ``PresentedLaw`` | 0 | Presentation |
+| ``InteractiveDecomposition`` | bridge | ``AmbiguityIsExperiment``, ``MotorSkillsAreStrategies`` | 0 | Dynamics |
+| ``LawfulDrift`` | bridge | ``LawIsTarget``, ``Tower`` | 0 | Dynamics |
+| ``MeasureIsCount`` | bridge | ``StandardIsType`` | 0 | Ruler |
+| ``PressIsIdentification`` | bridge | ``PassIsIdentification``, ``PresentedLaw`` | 0 | Presentation |
 
 ### GateIsZeroOfLoss
 
@@ -2428,6 +2525,25 @@ compile.
 | ``OrthogonalOrgans`` | bridge | ``DiscriminatorAndGenerator``, ``SearchableIffClusteredAndAligned`` | 0 | Generation |
 | ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
 
+### HasPath
+
+``HasPath`` carries 12 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``EmissionAccumulates`` | theorem | ``HasPath`` | [5](<doc:AtlasUnfolded#EmissionAccumulates>) | Path |
+| ``CostIsPathLength`` | bridge | ``HasDistance``, ``HasPath`` | [1](<doc:AtlasUnfolded#CostIsPathLength>) | Path |
+| ``EmissionIsAutoregressive`` | bridge | ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding`` | [1](<doc:AtlasUnfolded#EmissionIsAutoregressive>) | Path |
+| ``GatedConstruction`` | bridge | ``EmissionAccumulates``, ``SystemCrystallizes`` | [1](<doc:AtlasUnfolded#GatedConstruction>) | Path |
+| ``ReachIsPath`` | bridge | ``HasBasis``, ``HasPath`` | [1](<doc:AtlasUnfolded#ReachIsPath>) | Path |
+| ``CompletionIsSolutionSet`` | bridge | ``HasPath``, ``Reading`` | 0 | Path |
+| ``ConstructionIsReading`` | bridge | ``EmissionAccumulates``, ``Reading`` | 0 | Path |
+| ``ErasureIsRecession`` | bridge | ``EmissionAccumulates``, ``NoInverse`` | 0 | Path |
+| ``FreeGeneration`` | bridge | ``DiscriminatorAndGenerator``, ``EmissionAccumulates`` | 0 | Path |
+| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``CostIsPathLength`` | 0 | Gauge |
+| ``InvalidStepFolds`` | theorem | ``HasPath``, ``Null`` | 0 | Path |
+| ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
+
 ### StrategyLivesInSigma
 
 ``StrategyLivesInSigma`` carries 12 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
@@ -2464,6 +2580,24 @@ compile.
 | ``InevitabilityIsDiscriminator`` | bridge | ``AlignmentCoefficient``, ``DiscriminatorAndGenerator``, ``IntelligenceRises`` | 0 | Generation |
 | ``OrthogonalOrgans`` | bridge | ``DiscriminatorAndGenerator``, ``SearchableIffClusteredAndAligned`` | 0 | Generation |
 | ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
+
+### ComparedReadings
+
+``ComparedReadings`` carries 11 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``VerdictIsInvariant`` | bridge | ``ComparedReadings``, ``HasVerdict`` | [9](<doc:AtlasUnfolded#VerdictIsInvariant>) | Verdict |
+| ``ReadingFactors`` | bridge | ``VerdictIsInvariant`` | [4](<doc:AtlasUnfolded#ReadingFactors>) | Verdict |
+| ``EncodingForgets`` | bridge | ``VerdictIsInvariant`` | [2](<doc:AtlasUnfolded#EncodingForgets>) | Seeing |
+| ``ContentIsGaugeInvariant`` | bridge | ``HasGauge``, ``ReadingFactors`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
+| ``AcquiresAnswer`` | bridge | ``ReadingFactors`` | 0 | Verdict |
+| ``ColourIsQuotient`` | bridge | ``EncodingForgets`` | 0 | Colour |
+| ``EncodingInvents`` | theorem | ``ComparedReadings``, ``HasEncoding`` | 0 | Voice |
+| ``FaithfulEncoding`` | bridge | ``ReadingFactors`` | 0 | Voice |
+| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``CostIsPathLength`` | 0 | Gauge |
+| ``SeparatorIdentifies`` | bridge | ``EncodingForgets`` | 0 | Seeing |
+| ``VerdictCoversBranches`` | bridge | ``HasCandidates``, ``VerdictIsInvariant`` | 0 | Verdict |
 
 ### NoInverse
 
@@ -2550,21 +2684,21 @@ compile.
 | ``InteractiveDecomposition`` | bridge | ``AmbiguityIsExperiment``, ``MotorSkillsAreStrategies`` | 0 | Dynamics |
 | ``SecondEncodingIsNovelty`` | bridge | ``ScopeBoundedByEncoding``, ``SelfPlaySaturates`` | 0 | Play |
 
-### Measurable
+### VerdictIsInvariant
 
-``Measurable`` carries 9 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+``VerdictIsInvariant`` carries 9 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
 | Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
-| ``RevealsNotCreates`` | kernel | ``Measurable``, ``OperationsClosed`` | [7](<doc:AtlasUnfolded#RevealsNotCreates>) | Identification |
-| ``Reading`` | bridge | ``HasTime``, ``OrderIsOnlyFreedom``, ``RevealsNotCreates`` | [2](<doc:AtlasUnfolded#Reading>) | Reading |
-| ``ContentIsGaugeInvariant`` | bridge | ``HasEncoding``, ``HasGauge``, ``RevealsNotCreates`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
-| ``PlayIsProof`` | bridge | ``RevealsNotCreates``, ``TowerSelfPlay`` | [1](<doc:AtlasUnfolded#PlayIsProof>) | Play |
-| ``AllCoordinatesPresent`` | bridge | ``GateIsMembrane``, ``PlayIsProof`` | 0 | Projection |
-| ``CompletionIsSolutionSet`` | bridge | ``HasPath``, ``Reading`` | 0 | Path |
-| ``ConstructionIsReading`` | bridge | ``EmissionAccumulates``, ``Reading`` | 0 | Path |
-| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
-| ``PerspectiveIsEncoding`` | theorem | ``HasEncoding``, ``Measurable``, ``ScopeBoundedByEncoding`` | 0 | Space |
+| ``ReadingFactors`` | bridge | ``VerdictIsInvariant`` | [4](<doc:AtlasUnfolded#ReadingFactors>) | Verdict |
+| ``EncodingForgets`` | bridge | ``VerdictIsInvariant`` | [2](<doc:AtlasUnfolded#EncodingForgets>) | Seeing |
+| ``ContentIsGaugeInvariant`` | bridge | ``HasGauge``, ``ReadingFactors`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
+| ``AcquiresAnswer`` | bridge | ``ReadingFactors`` | 0 | Verdict |
+| ``ColourIsQuotient`` | bridge | ``EncodingForgets`` | 0 | Colour |
+| ``FaithfulEncoding`` | bridge | ``ReadingFactors`` | 0 | Voice |
+| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``CostIsPathLength`` | 0 | Gauge |
+| ``SeparatorIdentifies`` | bridge | ``EncodingForgets`` | 0 | Seeing |
+| ``VerdictCoversBranches`` | bridge | ``HasCandidates``, ``VerdictIsInvariant`` | 0 | Verdict |
 
 ### BasisIsFinite
 
@@ -2608,6 +2742,20 @@ compile.
 | ``GateWrapper`` | bridge | ``DiscriminatorAndGenerator``, ``GateIsMembrane`` | 0 | Projection |
 | ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
 
+### Measurable
+
+``Measurable`` carries 7 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``RevealsNotCreates`` | kernel | ``Measurable``, ``OperationsClosed`` | [5](<doc:AtlasUnfolded#RevealsNotCreates>) | Identification |
+| ``Reading`` | bridge | ``HasTime``, ``OrderIsOnlyFreedom``, ``RevealsNotCreates`` | [2](<doc:AtlasUnfolded#Reading>) | Reading |
+| ``PlayIsProof`` | bridge | ``RevealsNotCreates``, ``TowerSelfPlay`` | [1](<doc:AtlasUnfolded#PlayIsProof>) | Play |
+| ``AllCoordinatesPresent`` | bridge | ``GateIsMembrane``, ``PlayIsProof`` | 0 | Projection |
+| ``CompletionIsSolutionSet`` | bridge | ``HasPath``, ``Reading`` | 0 | Path |
+| ``ConstructionIsReading`` | bridge | ``EmissionAccumulates``, ``Reading`` | 0 | Path |
+| ``PerspectiveIsEncoding`` | theorem | ``HasEncoding``, ``Measurable``, ``ScopeBoundedByEncoding`` | 0 | Space |
+
 ### MembershipDecidable
 
 ``MembershipDecidable`` carries 7 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
@@ -2622,20 +2770,6 @@ compile.
 | ``PipelineCrystallizes`` | bridge | ``PassIsIdentification``, ``SystemCrystallizes`` | 0 | Intelligence |
 | ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
 
-### PresentedLaw
-
-``PresentedLaw`` carries 7 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
-
-| Claim | Kind | Premises | Carries | Home |
-| --- | --- | --- | --- | --- |
-| ``InterferenceIsSubstitution`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#InterferenceIsSubstitution>) | Wave |
-| ``StandardIsType`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#StandardIsType>) | Ruler |
-| ``DarknessIsNormalForm`` | bridge | ``InterferenceIsSubstitution`` | 0 | Wave |
-| ``EdgesCarryTheJudgement`` | bridge | ``BehaviorIsStructure``, ``PresentedLaw`` | 0 | Presentation |
-| ``FormIsInvariant`` | bridge | ``PresentedLaw`` | 0 | Presentation |
-| ``MeasureIsCount`` | bridge | ``StandardIsType`` | 0 | Ruler |
-| ``PressIsIdentification`` | bridge | ``PassIsIdentification``, ``PresentedLaw`` | 0 | Presentation |
-
 ### ResultsIrreversible
 
 ``ResultsIrreversible`` carries 7 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
@@ -2649,20 +2783,6 @@ compile.
 | ``LibraryCrystallizes`` | bridge | ``LibrarySaturates``, ``SystemCrystallizes`` | 0 | Intelligence |
 | ``PipelineCrystallizes`` | bridge | ``PassIsIdentification``, ``SystemCrystallizes`` | 0 | Intelligence |
 | ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
-
-### RevealsNotCreates
-
-``RevealsNotCreates`` carries 7 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
-
-| Claim | Kind | Premises | Carries | Home |
-| --- | --- | --- | --- | --- |
-| ``Reading`` | bridge | ``HasTime``, ``OrderIsOnlyFreedom``, ``RevealsNotCreates`` | [2](<doc:AtlasUnfolded#Reading>) | Reading |
-| ``ContentIsGaugeInvariant`` | bridge | ``HasEncoding``, ``HasGauge``, ``RevealsNotCreates`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
-| ``PlayIsProof`` | bridge | ``RevealsNotCreates``, ``TowerSelfPlay`` | [1](<doc:AtlasUnfolded#PlayIsProof>) | Play |
-| ``AllCoordinatesPresent`` | bridge | ``GateIsMembrane``, ``PlayIsProof`` | 0 | Projection |
-| ``CompletionIsSolutionSet`` | bridge | ``HasPath``, ``Reading`` | 0 | Path |
-| ``ConstructionIsReading`` | bridge | ``EmissionAccumulates``, ``Reading`` | 0 | Path |
-| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
 
 ### CertifiedRuleGenerates
 
@@ -2689,6 +2809,19 @@ compile.
 | ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
 | ``InteractiveDecomposition`` | bridge | ``AmbiguityIsExperiment``, ``MotorSkillsAreStrategies`` | 0 | Dynamics |
 | ``LawfulDrift`` | bridge | ``LawIsTarget``, ``Tower`` | 0 | Dynamics |
+
+### PredicateReading
+
+``PredicateReading`` carries 6 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``CandidateReading`` | bridge | ``HasCandidates``, ``PredicateReading`` | [2](<doc:AtlasUnfolded#CandidateReading>) | Verdict |
+| ``CostReadsGauge`` | bridge | ``HasDistance``, ``HasGauge``, ``PredicateReading`` | [1](<doc:AtlasUnfolded#CostReadsGauge>) | Gauge |
+| ``CandidateGroupReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
+| ``CandidateLeafReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
+| ``GaugeFixing`` | bridge | ``CostReadsGauge``, ``SystemCrystallizes`` | 0 | Gauge |
+| ``RecordedAnswerReading`` | bridge | ``PredicateReading`` | 0 | Verdict |
 
 ### SkillsAreBalls
 
@@ -2764,18 +2897,6 @@ compile.
 | ``FreeGeneration`` | bridge | ``DiscriminatorAndGenerator``, ``EmissionAccumulates`` | 0 | Path |
 | ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
 
-### EncodingForgets
-
-``EncodingForgets`` carries 5 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
-
-| Claim | Kind | Premises | Carries | Home |
-| --- | --- | --- | --- | --- |
-| ``ColourIsQuotient`` | axis | ``EncodingForgets`` | [1](<doc:AtlasUnfolded#ColourIsQuotient>) | Colour |
-| ``AmbiguityIsSymmetry`` | axis | ``EncodingForgets`` | 0 | Verdict |
-| ``GamutIsCone`` | axis | ``ColourIsQuotient`` | 0 | Colour |
-| ``SeparatorIdentifies`` | axis | ``EncodingForgets`` | 0 | Seeing |
-| ``VerdictIsInvariant`` | axis | ``EncodingForgets`` | 0 | Verdict |
-
 ### LawIsTarget
 
 ``LawIsTarget`` carries 5 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
@@ -2787,6 +2908,30 @@ compile.
 | ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
 | ``InteractiveDecomposition`` | bridge | ``AmbiguityIsExperiment``, ``MotorSkillsAreStrategies`` | 0 | Dynamics |
 | ``LawfulDrift`` | bridge | ``LawIsTarget``, ``Tower`` | 0 | Dynamics |
+
+### PresentedLaw
+
+``PresentedLaw`` carries 5 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``StandardIsType`` | bridge | ``PresentedLaw`` | [1](<doc:AtlasUnfolded#StandardIsType>) | Ruler |
+| ``EdgesCarryTheJudgement`` | bridge | ``BehaviorIsStructure``, ``PresentedLaw`` | 0 | Presentation |
+| ``FormIsInvariant`` | bridge | ``PresentedLaw`` | 0 | Presentation |
+| ``MeasureIsCount`` | bridge | ``StandardIsType`` | 0 | Ruler |
+| ``PressIsIdentification`` | bridge | ``PassIsIdentification``, ``PresentedLaw`` | 0 | Presentation |
+
+### RevealsNotCreates
+
+``RevealsNotCreates`` carries 5 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``Reading`` | bridge | ``HasTime``, ``OrderIsOnlyFreedom``, ``RevealsNotCreates`` | [2](<doc:AtlasUnfolded#Reading>) | Reading |
+| ``PlayIsProof`` | bridge | ``RevealsNotCreates``, ``TowerSelfPlay`` | [1](<doc:AtlasUnfolded#PlayIsProof>) | Play |
+| ``AllCoordinatesPresent`` | bridge | ``GateIsMembrane``, ``PlayIsProof`` | 0 | Projection |
+| ``CompletionIsSolutionSet`` | bridge | ``HasPath``, ``Reading`` | 0 | Path |
+| ``ConstructionIsReading`` | bridge | ``EmissionAccumulates``, ``Reading`` | 0 | Path |
 
 ### ScopeBoundedByEncoding
 
@@ -2812,6 +2957,17 @@ compile.
 | ``GateWrapper`` | bridge | ``DiscriminatorAndGenerator``, ``GateIsMembrane`` | 0 | Projection |
 | ``SaturationMap`` | bridge | ``GateIsMembrane``, ``MeasuredGeometry`` | 0 | Projection |
 
+### HasCandidates
+
+``HasCandidates`` carries 4 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``CandidateReading`` | bridge | ``HasCandidates``, ``PredicateReading`` | [2](<doc:AtlasUnfolded#CandidateReading>) | Verdict |
+| ``CandidateGroupReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
+| ``CandidateLeafReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
+| ``VerdictCoversBranches`` | bridge | ``HasCandidates``, ``VerdictIsInvariant`` | 0 | Verdict |
+
 ### HasEfficiency
 
 ``HasEfficiency`` carries 4 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
@@ -2829,9 +2985,9 @@ compile.
 
 | Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
-| ``ContentIsGaugeInvariant`` | bridge | ``HasEncoding``, ``HasGauge``, ``RevealsNotCreates`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
-| ``CostReadsGauge`` | bridge | ``HasDistance``, ``HasGauge`` | [1](<doc:AtlasUnfolded#CostReadsGauge>) | Gauge |
-| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
+| ``ContentIsGaugeInvariant`` | bridge | ``HasGauge``, ``ReadingFactors`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
+| ``CostReadsGauge`` | bridge | ``HasDistance``, ``HasGauge``, ``PredicateReading`` | [1](<doc:AtlasUnfolded#CostReadsGauge>) | Gauge |
+| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``CostIsPathLength`` | 0 | Gauge |
 | ``GaugeFixing`` | bridge | ``CostReadsGauge``, ``SystemCrystallizes`` | 0 | Gauge |
 
 ### NavigationInevitable
@@ -2844,6 +3000,17 @@ compile.
 | ``MotorSkillsAreStrategies`` | bridge | ``PlanningIsNavigation``, ``SkillsAreBalls`` | [1](<doc:AtlasUnfolded#MotorSkillsAreStrategies>) | Dynamics |
 | ``InteractiveDecomposition`` | bridge | ``AmbiguityIsExperiment``, ``MotorSkillsAreStrategies`` | 0 | Dynamics |
 | ``StrategyNavigation`` | bridge | ``NavigationInevitable``, ``SkillsAreBalls`` | 0 | Strategy |
+
+### ReadingFactors
+
+``ReadingFactors`` carries 4 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``ContentIsGaugeInvariant`` | bridge | ``HasGauge``, ``ReadingFactors`` | [1](<doc:AtlasUnfolded#ContentIsGaugeInvariant>) | Gauge |
+| ``AcquiresAnswer`` | bridge | ``ReadingFactors`` | 0 | Verdict |
+| ``FaithfulEncoding`` | bridge | ``ReadingFactors`` | 0 | Voice |
+| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``CostIsPathLength`` | 0 | Gauge |
 
 ### SelfPlaySaturates
 
@@ -2928,14 +3095,14 @@ compile.
 | ``PhaseBecomesAmplitude`` | bridge | ``StrategyCrystallizes`` | [1](<doc:AtlasUnfolded#PhaseBecomesAmplitude>) | Strategy |
 | ``CompleteEntry`` | bridge | ``HasEncoding``, ``PhaseBecomesAmplitude`` | 0 | Strategy |
 
-### CostIsPathLength
+### CandidateReading
 
-``CostIsPathLength`` carries 2 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+``CandidateReading`` carries 2 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
 
 | Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
-| ``LinearArbiter`` | bridge | ``CostIsPathLength`` | [1](<doc:AtlasUnfolded#LinearArbiter>) | Gauge |
-| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
+| ``CandidateGroupReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
+| ``CandidateLeafReading`` | bridge | ``CandidateReading`` | 0 | Verdict |
 
 ### EncoderConditions
 
@@ -2945,6 +3112,15 @@ compile.
 | --- | --- | --- | --- | --- |
 | ``ConditionalSolving`` | bridge | ``EncoderConditions`` | [1](<doc:AtlasUnfolded#ConditionalSolving>) | Spec |
 | ``DifficultyIsEncoder`` | bridge | ``ConditionalSolving``, ``ScopeBoundedByEncoding`` | 0 | Spec |
+
+### EncodingForgets
+
+``EncodingForgets`` carries 2 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``ColourIsQuotient`` | bridge | ``EncodingForgets`` | 0 | Colour |
+| ``SeparatorIdentifies`` | bridge | ``EncodingForgets`` | 0 | Seeing |
 
 ### FourthFace
 
@@ -2972,6 +3148,15 @@ compile.
 | --- | --- | --- | --- | --- |
 | ``DepthIsBounded`` | bridge | ``HasGrammar``, ``Tower`` | 0 | Space |
 | ``SpaceFromDifference`` | bridge | ``DistanceIsMetric``, ``HasGrammar`` | 0 | Space |
+
+### ObservationTrace
+
+``ObservationTrace`` carries 2 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``EmptyObservationTrace`` | kernel | ``ObservationTrace`` | 0 | Verdict |
+| ``ExtendedObservationTrace`` | kernel | ``ObservationTrace`` | 0 | Verdict |
 
 ### PlanningIsNavigation
 
@@ -3042,14 +3227,6 @@ compile.
 | --- | --- | --- | --- | --- |
 | ``EdgesCarryTheJudgement`` | bridge | ``BehaviorIsStructure``, ``PresentedLaw`` | 0 | Presentation |
 
-### ColourIsQuotient
-
-``ColourIsQuotient`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
-
-| Claim | Kind | Premises | Carries | Home |
-| --- | --- | --- | --- | --- |
-| ``GamutIsCone`` | axis | ``ColourIsQuotient`` | 0 | Colour |
-
 ### ConditionalSolving
 
 ``ConditionalSolving`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
@@ -3064,7 +3241,15 @@ compile.
 
 | Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
-| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
+| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``CostIsPathLength`` | 0 | Gauge |
+
+### CostIsPathLength
+
+``CostIsPathLength`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``CostIsPathLength`` | 0 | Gauge |
 
 ### CostReadsGauge
 
@@ -3090,6 +3275,14 @@ compile.
 | --- | --- | --- | --- | --- |
 | ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
 
+### EvidenceRefinesQuestion
+
+``EvidenceRefinesQuestion`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``RefinementPreservesAnswer`` | kernel | ``EvidenceRefinesQuestion`` | 0 | Verdict |
+
 ### GatedConstruction
 
 ``GatedConstruction`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
@@ -3098,6 +3291,14 @@ compile.
 | --- | --- | --- | --- | --- |
 | ``ProgramIsPath`` | bridge | ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath`` | 0 | Path |
 
+### HasStrategy
+
+``HasStrategy`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``StrategyBecomesTarget`` | axis | ``HasStrategy`` | 0 | Level |
+
 ### IntegerValued
 
 ``IntegerValued`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
@@ -3105,22 +3306,6 @@ compile.
 | Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``QualitiesAreFinite`` | theorem | ``HasEncoding``, ``IntegerValued`` | 0 | Space |
-
-### InterferenceIsSubstitution
-
-``InterferenceIsSubstitution`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
-
-| Claim | Kind | Premises | Carries | Home |
-| --- | --- | --- | --- | --- |
-| ``DarknessIsNormalForm`` | bridge | ``InterferenceIsSubstitution`` | 0 | Wave |
-
-### LinearArbiter
-
-``LinearArbiter`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
-
-| Claim | Kind | Premises | Carries | Home |
-| --- | --- | --- | --- | --- |
-| ``GaugeCollapse`` | bridge | ``ContentIsGaugeInvariant``, ``LinearArbiter`` | 0 | Gauge |
 
 ### MeasuredGeometry
 
@@ -3137,6 +3322,22 @@ compile.
 | Claim | Kind | Premises | Carries | Home |
 | --- | --- | --- | --- | --- |
 | ``InteractiveDecomposition`` | bridge | ``AmbiguityIsExperiment``, ``MotorSkillsAreStrategies`` | 0 | Dynamics |
+
+### ObservedTransition
+
+``ObservedTransition`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``CommutingTransition`` | theorem | ``ObservedTransition`` | 0 | Transition |
+
+### Permanent
+
+``Permanent`` carries 1 claims, listed heaviest first. Every number below opens a further cone, strictly smaller than this one.
+
+| Claim | Kind | Premises | Carries | Home |
+| --- | --- | --- | --- | --- |
+| ``RetainedReadingRecord`` | marker | ``Permanent`` | 0 | Verdict |
 
 ### PhaseBecomesAmplitude
 

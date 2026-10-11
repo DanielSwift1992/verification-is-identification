@@ -1,31 +1,21 @@
 import Swift
 
-// ═══════════════════════════════════════════════════════════════
-// SEEING pins the two claims of Seeing Is Encoding: a projection into a smaller
-// carrier can carry two sources to one image, and a presented separator hands the
-// lost distinction back. The paper's worked instance is light — a beam is a tree,
-// an eye is the projection, a prism is the separator — but the claims are true for
-// any sensor over any structure, so they are here, on the encoding axis.
-// ═══════════════════════════════════════════════════════════════
-
-/// An encoding can forget: two distinct sources share one image under it, so the
-/// image alone leaves `|S| > 1` and identification stops at the reading edge. The
-/// claim is in its witnesses: the conformer presents the twin sources and
-/// their shared image, and the compiler checks the sharing. Builds on
-/// ``HasEncoding``: the encoding bounds what a reader of images can ever
-/// distinguish. [SiE 4]
-public protocol EncodingForgets: HasEncoding {
+/// Two supplied readings of one question have the same encoded answer.
+/// Their actual source and answer addresses bind the old coordinates.
+/// Distinctness of the sources and coverage of an entire fiber remain
+/// separate obligations. [SiE SiE3]
+public protocol EncodingForgets: VerdictIsInvariant
+where LeftSource == Left.Left, RightSource == Right.Left, SharedImage == Answer {
     associatedtype LeftSource
     associatedtype RightSource
     associatedtype SharedImage
 }
 
-/// A presented separator returns the distinction the encoding forgot: routed
-/// through it, the twin sources land on distinct images, and identification is
-/// restored without touching the sources. The separator is presented, never
-/// searched for: the same author's move a presented law makes. Builds on
-/// ``EncodingForgets``: the forgetting names the pair the separator must part.
-/// [SiE 5]
-public protocol SeparatorIdentifies: EncodingForgets {
-    associatedtype Separator
+/// The additional readings use exactly those two retained source addresses.
+/// The supplied pair does not require unequal answers or identify every
+/// source. SiE4 needs the actual distinguishing outputs as well. The legacy
+/// name does not discharge that extra obligation. [SiE SiE4]
+public protocol SeparatorIdentifies: EncodingForgets
+where Separator.Left.Left == LeftSource, Separator.Right.Left == RightSource {
+    associatedtype Separator: ComparedReadings
 }

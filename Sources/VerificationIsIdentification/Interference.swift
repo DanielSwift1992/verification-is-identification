@@ -1,50 +1,50 @@
 // ═══════════════════════════════════════════════════════════════
 // Interference Is Intelligence (Mechanism).
 //
-// V=I gave the loop, and IiI proved its efficiency rises. This gives the
-// MECHANISM of the rise: COMPARE resolves into three independent axes:
-// Z (outcome), X (structure), Y (order), and intelligence is the
-// constructive interference of COMPAREs along the Y-axis, the agent's sole
-// freedom (§5.25). The order carries zero identification bits at its
-// level yet sets the total count, so optimizing it is intelligence.
+// V=I gives the comparison loop. This paper studies finite query policies.
+// A policy uses its history and actual readings, not the unknown target index.
+// Immediate information gain, an instance certificate and the optimum
+// of a complete adaptive policy are different quantities.
+// A uniquely most balanced first query can worsen both mean and worst cost.
+// Correct optimization accounts for each possible continuation (S3).
 //
-// Pure types (§0′). The structural core only: the three-axis split and the
-// three grades of identity. The quantitative core, interference counting,
-// the speedup hierarchy, certificate complexity, self-correction, is
-// analytic (rates and expectations), so it remains prose, as with E1. [InI]
+// Pure types (§0′). These intersections expose shared coordinates.
+// They do not encode probability independence, policy optimality, quantum
+// interference or unrestricted interchangeability. Those claims need
+// their own models and witnesses. [InI S1–S12]
 // ═══════════════════════════════════════════════════════════════
 
-/// COMPARE resolves into three independent projections.
-/// - term Z: the outcome, one bit (the ``Decidable`` verdict).
-/// - term X: the structure, the recursive form it walks to the first divergence (``OperationsClosed``).
-/// - term Y: the order, which COMPARE runs next (``OrderIsOnlyFreedom``).
-/// Z and X are fixed by the inputs. Y is the agent's choice on a disjoint input, so
-/// the three are independent. [InI S1]
+/// Three declared roles: verdict, structural operations and query order.
+/// - term Z: a ``Decidable`` verdict, with at most one bit for binary output.
+/// - term X: structural feedback (``OperationsClosed``), with its own alphabet.
+/// - term Y: query choice (``OrderIsOnlyFreedom``) from available history.
+/// A deterministic choice adds no information conditional on that history.
+/// The roles need not be statistically independent. [InI S1]
 public protocol ThreeAxesOfCompare: Decidable, OperationsClosed, OrderIsOnlyFreedom {}
 
-/// Intelligence is the interference pattern of the loop's COMPAREs: the
-/// efficiency gain η rises (``IntelligenceRises``) entirely along the Y-axis, the
-/// order (``OrderIsOnlyFreedom``), as saturation teaches the optimal sequence.
-/// Constructive interference of comparisons is the mechanism, a property of the
-/// ordering rather than a heuristic added on top. [InI S5, S6]
+/// An efficiency axis beside a declared query-order axis.
+/// ``IntelligenceRises`` supplies no inequality between policy costs.
+/// ``OrderIsOnlyFreedom`` supplies no optimal adaptive decision tree.
+/// Correct continuation costs need the finite policy model of S3.
+/// Greedy gains and instance certificates do not supply it. [InI S3–S6]
 public protocol InterferenceIsIntelligence: IntelligenceRises, OrderIsOnlyFreedom {}
 
-/// "X is Y" has three grades: Z-identity (same outcome), X-identity (same
-/// structure), Y-identity (interchangeable under every order). V=I's |S|=1 delivers
-/// the strongest: f* is the unique survivor whatever the order
-/// (``PassIsIdentification`` over ``OrderIsOnlyFreedom``), so every "is" the series
-/// proves is a Y-identity. [InI S10]
+/// PASS-to-identification beside a declared query-order axis.
+/// Output agreement, represented equality and interchangeability under later
+/// operations have different scopes. ``PassIsIdentification`` with
+/// ``OrderIsOnlyFreedom`` does not prove equality under every context.
+/// Context and encoding bridges need separate witnesses. [InI S10, VC35–VC38]
 public protocol IsIsYIdentity: PassIsIdentification, OrderIsOnlyFreedom {}
 
 // ───────────────────────────────────────────────────────────────
-// The quantitative core (S3, S4, S5a–b, S6a–c, S7, S8): recorded, not type-level.
+// S3 uses optimal continuation costs. S3a gives a unique greedy-root failure.
 //
-// S3 interference theorem (total COMPAREs minimised by maximal constructive
-// interference), S4 speedup hierarchy (Z / Z+X / Z+X+Y bounds), S5a trajectory-
-// information invariance (Σ h_k = log₂|S₀|, the same content however ordered), S5b
-// certificate complexity cert(τ), S6c self-correction (η<1 → dissipation →
-// learning → η↑: the suboptimality of the ordering is itself the exploration), S7
-// three-way complementarity, S8 MBQC isomorphism, all turn on rates,
-// expectations, and a cross-domain analogy. They are analytic, not structural, so
-// they remain prose, as the E1 instrument remains empirical, outside the types.
+// S5b separates one certificate for each target from one policy for all targets.
+// S6a separates counting information, fresh records and retained observations.
+// S6b gives a relative certificate bound. S6c requires eventual separation.
+// S11 proves optional capability under refinement with unchanged future costs.
+// S12 shows a useful query can reveal zero immediate target information.
+// The finite audit independently enumerates attainable depth vectors and
+// replays policies. S7–S9 remain research boundaries rather than quantum or
+// universal computational guarantees. See Research/query-strategy-2026-09-05.md.
 // ───────────────────────────────────────────────────────────────

@@ -3,9 +3,9 @@
 //
 // To be one of our things is to be a STRUCTURE. A structure is OPEN (a protocol
 // that opens a tunnel) or CLOSE (an empty enum that seals). The sole structural
-// primitive is PAIR: two sides, one boundary, and its fixpoint is NULL (where
-// the two sides collapse). Every structure in Σ is a finite binary tree of Pair,
-// terminating at Null. [EiF C5]
+// primitive is PAIR: two named sides. NULL equates their types. A finite-tree
+// interpretation requires separate constructor and termination premises,
+// including a syntax leaf distinct from constructed pairs. [EiF EF2, EF4]
 //
 // The Swift compiler checking `where Left == Right` IS verification. The
 // constraint holding IS identification. The compiler IS the V=I loop.
@@ -36,9 +36,9 @@
 
 /// This names the root ability: what it is to participate in the world. A new name is not written
 /// `: Structure` directly: it is ``Open`` (a `protocol` tunnel, still extensible) or ``Close`` (an
-/// empty `enum` seal, concrete). Trace any structure up its parents and it reaches here. Trace it down
-/// and it reaches a ``Close`` floor, so every structure opens and closes, finite by construction
-/// (Existence Is Finite).
+/// empty `enum` seal, concrete). These are the repository's construction rules. Swift permits
+/// recursive associated types, so conformance does not guarantee that following components
+/// reaches a terminal. The finite-tree interpretation requires that additional premise (EiF EF4).
 public protocol Structure {
     /// This gives the name of this type: the edge reading. Dynamic dispatch ensures overrides are
     /// called through generic contexts (Paired chains, associated types).
@@ -89,9 +89,11 @@ public protocol Close: Structure {}   // law:allow: the seal half of Open/Close,
 
 // ── Pair / Null ──
 
-/// This is the act of distinction: two sides, one boundary. The sole structural primitive.
-/// Every structure in the lattice is a finite binary tree of ``Pair`` terminating
-/// at ``Null``. ``Pair`` is ``Open``: it opens two tunnels (`Left`, `Right`). [EiF C5]
+/// This provides two named roles for representing a distinction. It is the chosen structural primitive.
+/// Their contents can agree: every ``Null`` is also a ``Pair``. A realized contrast
+/// needs an actual separating relation, not just these two names. [Matter M71]
+/// Its unconstrained axes alone guarantee neither recursive structure nor finite depth.
+/// ``Pair`` is ``Open``: it opens two tunnels (`Left`, `Right`). [EiF EF2, EF4]
 ///
 /// - term Left: one side of the distinction.
 /// - term Right: the other side.
@@ -104,9 +106,9 @@ public protocol Pair: Open {
     associatedtype Right
 }
 
-/// This is the fixpoint of ``Pair``: distinction self-terminates when the two sides close.
-/// The constraint `where Left == Right` *is* the boundary. Its inhabitant is
-/// `Never`: uninhabited, because nothing remains to be distinguished. [EiF C5]
+/// This requires equality of ``Pair``'s two associated types at the declared addresses.
+/// It does not identify the conforming type with either side or with the syntax leaf.
+/// `Never` is one conformer. Other nominal equality witnesses remain distinct. [EiF EF4]
 ///
 /// > Note: Every theorem that says "A = B" is ``Null`` at that level. The compiler
 /// > checking `where Left == Right` is the verification. The met constraint is
@@ -114,8 +116,8 @@ public protocol Pair: Open {
 public protocol Null: Pair
 where Left == Right {}
 
-// Never IS Null: the uninhabited type is the fixpoint
-// where nothing remains to be distinguished.
+// Never conforms to Null by choosing equal associated types.
+// Equality of these sides is not a claim that every Null conformer is Never.
 // typeName = "" / count = 0 / labels = [] break recursion (Never: Open, Open.typeName =
 // Body.typeName, Open.count = Body.count, Open.labels = Body.labels, Never.Body = Never).
 extension Never: Null {
@@ -361,4 +363,3 @@ public enum Tally<Of: Structure>: Close {}
 extension Tally {
     public static var typeName: String { String(Of.count) }
 }
-

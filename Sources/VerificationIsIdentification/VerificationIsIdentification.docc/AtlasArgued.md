@@ -11,45 +11,52 @@ check outright, so a paper cannot argue a lattice that does not exist.
 An edge with no record waits: the count of waiting edges measures how
 much argument is still prose without an address.
 
-The build enforces 5 edges of 2396 premises (<doc:AtlasAblation>), so
-for almost every edge the argument is the only thing that needs it.
-This page is where that need becomes a record, edge by edge. Seeding
-starts with the identification and matter chains.
+<doc:AtlasAblation> asks whether the core declarations still compile after
+each parent premise is removed. That probe does not compile the generic
+constructors in Examples or their consequence witnesses in Checks. A core
+build surviving a cut therefore does not establish that the premise has no
+proof role. The constructors supply derivations under stated premises, and
+the negative witnesses test refusals. This page records the written argument
+for each edge alongside those different compiler checks.
 
 ## The edges argued so far
 
-The lattice declares 304 direct edges, and 49 of them carry an argument record in a paper. The rest wait.
+The lattice declares 332 direct edges, and 64 of them carry an argument record in a paper. The rest wait.
 
 | claim | premise | argued in |
 |---|---|---|
-| ``AmbiguityIsSymmetry`` | ``EncodingForgets`` | <doc:verdict_is_invariant> |
+| ``AcquiresAnswer`` | ``ReadingFactors`` | <doc:verdict_is_invariant> |
 | ``BallSaturation`` | ``LibrarySaturates`` | <doc:distance_is_cost> |
-| ``ColourIsQuotient`` | ``EncodingForgets`` | <doc:colour_is_a_quotient> |
+| ``CandidateGroupReading`` | ``CandidateReading`` | <doc:verdict_is_invariant> |
+| ``CandidateLeafReading`` | ``CandidateReading`` | <doc:verdict_is_invariant> |
+| ``CandidateReading`` | ``HasCandidates`` | <doc:verdict_is_invariant> |
+| ``CandidateReading`` | ``PredicateReading`` | <doc:verdict_is_invariant> |
+| ``CommutingTransition`` | ``ObservedTransition`` | <doc:verdict_is_invariant> |
+| ``ComparedReadings`` | ``Pair`` | <doc:verdict_is_invariant> |
 | ``CompressionCriterion`` | ``Tower`` | <doc:distance_is_cost> |
-| ``Converges`` | ``NoInverse`` | <doc:halt_is_ignition> |
-| ``DarknessIsNormalForm`` | ``InterferenceIsSubstitution`` | <doc:interference_is_substitution> |
+| ``CoverageMatchesDeclaration`` | ``Pair`` | <doc:verdict_is_invariant> |
 | ``DiscoveryIsRevelation`` | ``ExactlyOneSurvives`` | <doc:intelligence_is_inevitable> |
 | ``DiscoveryIsRevelation`` | ``LibrarySaturates`` | <doc:intelligence_is_inevitable> |
 | ``DistanceIsCost`` | ``DistanceOnStructures`` | <doc:distance_is_cost> |
 | ``DistanceIsCost`` | ``HasCost`` | <doc:distance_is_cost> |
 | ``EdgesCarryTheJudgement`` | ``PresentedLaw`` | <doc:dynamics_is_substitution> |
-| ``EncodingForgets`` | ``HasEncoding`` | <doc:seeing_is_encoding> |
-| ``EncodingInvents`` | ``HasEncoding`` | <doc:a_verb_is_an_act> |
+| ``EmptyObservationTrace`` | ``ObservationTrace`` | <doc:verdict_is_invariant> |
 | ``EqualityDecidable`` | ``StructuresFinite`` | <doc:verification_is_identification> |
+| ``EvidenceRefinesQuestion`` | ``Pair`` | <doc:verdict_is_invariant> |
 | ``ExactlyOneSurvives`` | ``EqualityDecidable`` | <doc:verification_is_identification> |
 | ``ExactlyOneSurvives`` | ``HasSolutions`` | <doc:verification_is_identification> |
+| ``ExtendedObservationTrace`` | ``ObservationTrace`` | <doc:verdict_is_invariant> |
 | ``FormIsInvariant`` | ``PresentedLaw`` | <doc:dynamics_is_substitution> |
-| ``GamutIsCone`` | ``ColourIsQuotient`` | <doc:colour_is_a_quotient> |
+| ``HasCandidates`` | ``HasSigma`` | <doc:verdict_is_invariant> |
 | ``HasSolutions`` | ``HasSigma`` | <doc:verification_is_identification> |
 | ``Ignites`` | ``LibrarySaturates`` | <doc:permanence_is_resistance> |
 | ``Ignites`` | ``Matter`` | <doc:permanence_is_resistance> |
-| ``InterferenceIsSubstitution`` | ``PresentedLaw`` | <doc:interference_is_substitution> |
 | ``LibraryCrystallizes`` | ``LibrarySaturates`` | <doc:intelligence_is_inevitable> |
 | ``LibrarySaturates`` | ``CachePermanent`` | <doc:intelligence_is_inevitable> |
 | ``Matter`` | ``KnowledgeAccumulates`` | <doc:permanence_is_resistance> |
-| ``Matter`` | ``PassIsIdentification`` | <doc:permanence_is_resistance> |
-| ``Matter`` | ``Resistant`` | <doc:permanence_is_resistance> |
-| ``MeasureIsCount`` | ``StandardIsType`` | <doc:light_is_a_ruler> |
+| ``ObservationTrace`` | ``Pair`` | <doc:verdict_is_invariant> |
+| ``ObservedTransition`` | ``HasEncoding`` | <doc:verdict_is_invariant> |
+| ``ObservedTransition`` | ``Pair`` | <doc:verdict_is_invariant> |
 | ``OperationsClosed`` | ``Pair`` | <doc:verification_is_identification> |
 | ``OrderByDistance`` | ``OrderIsOnlyFreedom`` | <doc:distance_is_cost> |
 | ``PassImpliesMembership`` | ``PipelineTotal`` | <doc:verification_is_identification> |
@@ -58,16 +65,27 @@ The lattice declares 304 direct edges, and 49 of them carry an argument record i
 | ``PassIsIdentification`` | ``PassImpliesMembership`` | <doc:verification_is_identification> |
 | ``PipelineCrystallizes`` | ``PassIsIdentification`` | <doc:intelligence_is_inevitable> |
 | ``PipelineTotal`` | ``StepsTerminate`` | <doc:verification_is_identification> |
+| ``PredicateReading`` | ``HasVerdict`` | <doc:verdict_is_invariant> |
+| ``PredicateReading`` | ``Pair`` | <doc:verdict_is_invariant> |
 | ``PressIsIdentification`` | ``PassIsIdentification`` | <doc:dynamics_is_substitution> |
+| ``ReadingFactors`` | ``VerdictIsInvariant`` | <doc:verdict_is_invariant> |
+| ``RecordedAnswerReading`` | ``PredicateReading`` | <doc:verdict_is_invariant> |
+| ``RefinementPreservesAnswer`` | ``EvidenceRefinesQuestion`` | <doc:verdict_is_invariant> |
 | ``Resistant`` | ``Decidable`` | <doc:permanence_is_resistance> |
 | ``Resistant`` | ``HasDistance`` | <doc:permanence_is_resistance> |
 | ``ResultDeterministic`` | ``OperationsClosed`` | <doc:verification_is_identification> |
-| ``SeparatorIdentifies`` | ``EncodingForgets`` | <doc:seeing_is_encoding> |
-| ``StandardIsType`` | ``PresentedLaw`` | <doc:light_is_a_ruler> |
+| ``RetainedReadingRecord`` | ``Permanent`` | <doc:verdict_is_invariant> |
+| ``SharedDecoder`` | ``Pair`` | <doc:verdict_is_invariant> |
 | ``StepsTerminate`` | ``StructuresFinite`` | <doc:verification_is_identification> |
 | ``StructuresFinite`` | ``HasSigma`` | <doc:verification_is_identification> |
 | ``StructuresFinite`` | ``Pair`` | <doc:verification_is_identification> |
 | ``Tower`` | ``HasCost`` | <doc:permanence_is_resistance> |
 | ``Tower`` | ``HasTime`` | <doc:permanence_is_resistance> |
 | ``Tower`` | ``Ignites`` | <doc:halt_is_ignition> |
-| ``VerdictIsInvariant`` | ``EncodingForgets`` | <doc:verdict_is_invariant> |
+| ``VerdictCoversBranches`` | ``HasCandidates`` | <doc:verdict_is_invariant> |
+| ``VerdictCoversBranches`` | ``VerdictIsInvariant`` | <doc:verdict_is_invariant> |
+| ``VerdictIsInvariant`` | ``ComparedReadings`` | <doc:verdict_is_invariant> |
+| ``VerdictIsInvariant`` | ``HasVerdict`` | <doc:verdict_is_invariant> |
+| ``VerdictReorders`` | ``Pair`` | <doc:verdict_is_invariant> |
+| ``VerdictRetainsLeft`` | ``Pair`` | <doc:verdict_is_invariant> |
+| ``VerdictRetainsRight`` | ``Pair`` | <doc:verdict_is_invariant> |

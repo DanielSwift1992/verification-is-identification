@@ -1,9 +1,9 @@
 // ═══════════════════════════════════════════════════════════════
 // Order Is Object (Strategy).
 //
-// V=I proved the agent's sole freedom is the order of COMPAREs (§5.25), and
-// that order carries zero identification bits at its level (pure
-// phase). IiI noted strategy state is mutable: a caveat. This paper
+// Fixed complete verification permits different comparison orders with
+// the same survivor set. This does not exhaust every agent's choices.
+// IiI noted strategy state is mutable: a caveat. This paper
 // removes the caveat by changing its level: a strategy is a finite
 // decision tree, a finite decision tree is a structure in Σ, and
 // structures in Σ can be verified, identified, certified, crystallized.
@@ -16,17 +16,17 @@
 // ═══════════════════════════════════════════════════════════════
 
 /// A strategy (an order-choosing decision tree) is a finite structure in Σ, so
-/// the order, the sole free parameter (``OrderIsOnlyFreedom``, §5.25), has a
+/// an order in the restricted scope of ``OrderIsOnlyFreedom`` (§5.25) has a
 /// norm ‖σ‖ and a distance W. Strategy geometry is inherited from
 /// ``DistanceOnStructures``, not constructed, the moment the order enters Σ.
 /// [Order O1, O2]
 public protocol StrategyLivesInSigma: DistanceOnStructures, OrderIsOnlyFreedom {}
 
-/// The strategy gate certifies an efficiency claim (PASS ∧ cost ≤ c) ON TOP OF
-/// unconditional safety. Because ``StrategyLivesInSigma`` only reorders COMPAREs,
-/// no strategy can produce a wrong PASS, two gates: ``PassImpliesMembership``
-/// answers "is it right", the strategy gate "is it fast". A failed strategy costs
-/// budget, never correctness. [Order O5, O6]
+/// Joins a strategy description and an acceptance interface. O6's soundness
+/// argument additionally restricts strategy access: it may choose readings
+/// but cannot falsify evidence or bypass the fixed PASS rule. O5 checks cost
+/// and completion on its listed tasks. These interfaces alone neither encode
+/// those permissions nor establish class-wide performance. [Order O5–O6]
 public protocol StrategyGate: StrategyLivesInSigma, PassImpliesMembership {}
 
 /// Among the strategies passing the ``StrategyGate`` at the minimal budget, argmin
@@ -45,14 +45,16 @@ public protocol StrategyIsUnique: StrategyGate, ExactlyOneSurvives {}
 /// > library object. Raising the level is what turns mutable phase into matter.
 public protocol StrategyCrystallizes: StrategyIsUnique, Matter {}
 
-/// The ordering carries zero identification bits at its level (InI S2, the
-/// Y-axis, pure phase) yet is the ENTIRE identified content one level up: the
-/// strategy game's target is σ*. Once ``StrategyCrystallizes``, the strategy gate
-/// becomes a ``PassIsIdentification``, the Y-axis of level N is the Z-axis of
-/// level N+1. Phase becomes amplitude. [Order O10]
+/// At level N a deterministic comparison choice adds no information beyond the
+/// known history (InI S1), and the same retained static evidence gives the same
+/// final compatible set under every order (InI S2). One level up the strategy
+/// itself can be the ENTIRE identified content: the strategy game's target is σ*.
+/// Once ``StrategyCrystallizes``, the strategy gate becomes a
+/// ``PassIsIdentification``, and the Y-axis of level N becomes the Z-axis of
+/// level N+1. The phase name is an analogy. [Order O10]
 ///
-/// > Note: What is free phase below is identified content above, the same order,
-/// > read one level up, becomes the very thing the gate certifies.
+/// > Note: The order chosen below becomes identified content above. Read one
+/// > level up, it is the very thing the gate certifies.
 public protocol PhaseBecomesAmplitude: StrategyCrystallizes, PassIsIdentification {}
 
 /// After rule and strategy saturation, a ``HasLibrary`` entry is the triple
@@ -62,11 +64,9 @@ public protocol PhaseBecomesAmplitude: StrategyCrystallizes, PassIsIdentificatio
 /// [Order O12]
 public protocol CompleteEntry: PhaseBecomesAmplitude, HasEncoding, HasLibrary {}
 
-/// A skill is formally a ball in strategy space: one strategy family covering
-/// many rule classes, per-class adjustment bounded by r. ``BallSaturation`` over
-/// ``StrategyLivesInSigma`` puts skills exactly where the strategy W-matrix is
-/// compressible. A flat strategy matrix has no skills (per-class memoization).
-/// [Order O15]
+/// A metric ball can represent a family of nearby strategy codes. Exact
+/// generic strategy reuse also depends on its actual applications and
+/// can serve new inputs without a metric grouping. [Order O15]
 public protocol SkillsAreBalls: StrategyLivesInSigma, BallSaturation {}
 
 /// The strategy library under W is an anchor graph: ``NavigationInevitable``
@@ -76,13 +76,7 @@ public protocol SkillsAreBalls: StrategyLivesInSigma, BallSaturation {}
 /// [Order O16]
 public protocol StrategyNavigation: SkillsAreBalls, NavigationInevitable {}
 
-/// Strategy compressibility is the FOURTH face of the ``OneBoundaryThreeFaces``
-/// boundary: learning, generalization, and navigation gain a sibling. Even when
-/// everything transfers at the WHAT level, nothing transfers at the HOW level
-/// unless the strategy matrix (``SkillsAreBalls``) clusters too. Cluster at both
-/// levels → skills that route. [Order O18]
-///
-/// > Tip: Transfer at the WHAT level does not imply transfer at the HOW level, the
-/// > strategy matrix has its clustering, and skills route only where that
-/// > clustering is present.
+/// Historical name for strategy and rule geometry interfaces. Their
+/// shared metric does not imply equivalent learning or routing criteria.
+/// Strategy transfer needs its own application contract. [Order O18]
 public protocol FourthFace: OneBoundaryThreeFaces, SkillsAreBalls {}

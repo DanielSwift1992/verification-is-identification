@@ -1,65 +1,65 @@
 // ═══════════════════════════════════════════════════════════════
 // Difference Is Distance (Space).
 //
-// One agent has state but no position. Multiple agents on the same
-// target produce a metric space from the difference in their histories.
-// Central result (S7): distance = the symmetric difference of two
-// agents' comparison caches, |G₁ △ G₂|, a metric. Distance is not a
-// primitive: it is the difference in what two agents have witnessed.
+// One form can already contain distinctions and internal references.
+// S7 derives a metric on finite caches of commonly addressed records.
+// S8 separates this count from an ambient Euclidean space. Section 5a
+// asks which geometry is already expressed by the contact relations.
+// Sections 5c–5e test Einstein's premises against internal comparisons:
+// invariant readings under transport and clock content beyond light incidence.
 //
-// Pure types (§0′). Grounds the Distance / MetricProperty machinery the
-// markers already name. Physical instances (§9, S18–S24) are analogical
-// not encoded, as with Matter §5.
+// Pure types (§0′). These legacy coordinates do not construct that
+// metric or derive its physical interpretation. The actual finite-tree
+// distance constructors and their generic consequences are in Distance.
 // ═══════════════════════════════════════════════════════════════
 
 // ── New axis: the grammar and its dimension ──
 
-/// The perceptual space's dimensionality is the number of independent axes of the
-/// grammar, a finite count. It is the grammar's property (``HasEncoding``), not the
-/// target's or the agent's. [DiD S5, S14]
+/// Names a proposed dimension. S3 requires joint freedom of coordinate roles.
+/// Pairwise nondetermination is insufficient. A metric, a topology or an actual
+/// product interpretation must establish the intended meaning of this count.
+/// The recursive numeral interface alone establishes none of them. [DiD S5, S14]
 public protocol HasGrammar: HasEncoding {
     associatedtype Dimension: IntegerValued
 }
 
 // ── §0–§2 · one agent: perspective is encoding ──
 
-/// The agent's perspective *is* its encoding: determined by E alone, gauge-
-/// invariant (``HasEncoding``, bounded by ``ScopeBoundedByEncoding``). One agent
-/// has only its frame, so an encoding-preserving transform is invisible to it,
-/// a ``Measurable`` fact. [DiD S1, S2]
+/// Joins scope and encoding coordinates with Measurable. S1 requires equal
+/// actual encoded inputs to the same reading. An unchanged encoder can receive
+/// different inputs.
+/// Internal references and records can already belong to one form. [DiD S1, S2]
 public protocol PerspectiveIsEncoding: ScopeBoundedByEncoding, HasEncoding, Measurable {}
 
 // ── §5 · two agents: distance ──
 
-/// Distance between two agents is the symmetric difference of their caches,
-/// `|G₁ △ G₂|`. On cache states it is a true metric (identity, symmetry, triangle,
-/// bounded `≤ |Σ|²`). On agents it is a pseudometric, since equal caches are at
-/// distance zero. ``HasDistance`` over ``HasCache``, with `Distance` (a finite count,
-/// ``IntegerValued``) here pinned ``MetricProperty``. [DiD S7]
-///
-/// > Note: Distance is not a primitive: it is the difference in what two agents
-/// > have witnessed. Space is built from comparison history, so the metric axioms
-/// > are theorems of the cache, not assumptions.
+/// S7 proves that finite cache symmetric difference is a metric, and a
+/// pseudometric on holders through their caches. Records need common source,
+/// question and context addresses. A uniform bound needs a finite vocabulary.
+/// This interface pins only a MetricProperty endpoint seam. It neither
+/// computes the cache difference nor supplies the metric inequalities.
 public protocol DistanceIsMetric: HasDistance, HasCache
 where Distance: MetricProperty {}
 
-/// Space is the set of all perspective-distances. One agent is a point (zero
-/// distance, S1), and n agents span up to `(n−1)` dimensions. A metric
-/// (``DistanceIsMetric``) over the grammar's axes (``HasGrammar``). [DiD S8]
+/// Joins a distance coordinate and a proposed grammar dimension. Two cache
+/// classes supply two points, not a whole line. S8's four-cache example has
+/// no Euclidean embedding preserving its unmodified distances. Contact roles
+/// and their actual relations supply the earlier structural question. [DiD S8]
 public protocol SpaceFromDifference: DistanceIsMetric, HasGrammar {}
 
 // ── §8 · theorems ──
 
-/// The distinguishable qualities ("colors") of an agent are bounded by `|E|`, a
-/// finite count (``IntegerValued``). Every agent perceives finitely many, fixed by
-/// its encoding (``HasEncoding``). [DiD S13]
+/// Names an encoding and a numeral coordinate. S13 bounds a joint image by
+/// the product of its finite answer-set sizes. A count of encoding names or
+/// a finite constructor alphabet does not supply that bound.
 public protocol QualitiesAreFinite: HasEncoding, IntegerValued {}
 
-/// Full agreement between two agents costs at most `|Σ|² × 2` COMPAREs, bounded
-/// comparisons (``ComparisonsAreBounded``) over their caches (``HasCache``).
-/// [DiD S16]
+/// Names comparison and cache coordinates. S16's exact transfer count uses
+/// an interface that delivers and retains one missing record per transfer.
+/// These inherited coordinates do not supply that interface or its costs.
 public protocol CommunicationBounded: ComparisonsAreBounded, HasCache {}
 
-/// Maximum perceptual depth is the saturated tower height, `M ≤ K₀` (M16). Depth
-/// is the grammar's reach (``HasGrammar``) through the finite ``Tower``. [DiD S17]
+/// Names a tower and grammar. S17's finite bound requires a strictly decreasing
+/// nonnegative integer across the relevant levels, as in Matter M16. These
+/// coordinates alone do not prove that every possible tower terminates.
 public protocol DepthIsBounded: Tower, HasGrammar {}

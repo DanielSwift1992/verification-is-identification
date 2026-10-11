@@ -1,67 +1,20 @@
-// ═══════════════════════════════════════════════════════════════
-// Gradient Is Alignment (Search).
-//
-// The whole search story assumed one thing it never named: that getting
-// closer in structure gets you closer to the answer. This names it. A
-// domain is searchable by descent iff its loss has no spurious minima
-// along W: iff loss and distance-to-solution are correlated, a measurable
-// coefficient α (GA3). High α: the geometry points at solutions, descent
-// is ballistic. Zero α: the geometry is real but useless, no order beats
-// enumeration, exactly IiI's distribution-relativity boundary as landscape
-// ruggedness (GA6). Clustering is whether the space has geometry, and alignment
-// is whether the geometry is FOR you (GA7).
-//
-// Pure types (§0′). Grounds the Alpha axis (HasAlpha) with its content. [Search]
-// ═══════════════════════════════════════════════════════════════
+// Gradient Is Alignment. A correlation statistic and a supplied descending
+// transition are different relations. GA6–GA7 state the relevant boundaries.
 
-/// The premise of every search is that loss aligns with distance. α measures whether it does.
-/// α = correlation( W(R,R*), loss(R) ) names the assumption: α→1 descent
-/// optimal, α→0 rugged (no signal), α<0 deceptive. Descent reaches a solution
-/// iff no spurious loss-minimum is along the ``DistanceOnStructures`` metric W
-/// (the premise hidden in N5's "ballistic" promise: it arrives at a solution
-/// only when the landscape is aligned, else at a wall, the wall being the
-/// ``GateIsZeroOfLoss`` zero it can no longer reach). α is the measured
-/// alignment, encoding-relative. [Search GA1-GA3]
-///
-/// > Note: α is on the ``HasAlpha`` axis: a property of the (domain,
-/// > encoding) pair, not of the searcher. α changes with the encoding, and
-/// > only with the encoding.
+/// Names Alpha beside the distance and zero-test interfaces. A correlation
+/// requires a specified candidate domain, loss and weighting law. It does
+/// not alone certify a descending path or the absence of local minima.
+/// This protocol also does not compute that statistic. [GA GA3, GA6]
 public protocol AlignmentCoefficient: HasAlpha, DistanceOnStructures, GateIsZeroOfLoss {}
 
-/// Loss-built order exceeds enumeration as far as the landscape is aligned:
-/// the theorem-form of alignment is the basin condition (GA1), and α estimates
-/// it. The advantage η = T_min/T_actual (``IntelligenceRises``) beats brute
-/// force where the ``AlignmentCoefficient`` loss points at solutions.
-/// Uniformity over games is the no-free-lunch wall, and α = 0 alone is not:
-/// a signal can survive zero correlation undecoded by descent. [Search GA6]
-///
-/// > Note: α is the measurement, never the hinge itself. High, the loss is a
-/// > map for descent. Zero, the correlational signal is gone, and whether any
-/// > signal remains is a further question α does not answer.
+/// Names the statistic beside efficiency. Actual proposal ranks, checking
+/// costs and transition access determine the comparison with enumeration.
+/// GA6 permits information at zero correlation. A generic performance
+/// implication is not supplied by this intersection. [GA GA6, G10a]
 public protocol AlignmentEnablesIntelligence: AlignmentCoefficient, IntelligenceRises {}
 
-/// A domain is efficiently searchable by descent iff it is BOTH clustered AND
-/// aligned. Clustered (G12: hierarchical W-structure exists) and aligned (α>0:
-/// that structure leads to solutions) are independent ``AlignmentCoefficient``
-/// properties, both required. This sharpens the one-boundary claim
-/// (``OneBoundaryThreeFaces``, N18): clustering is whether the space has
-/// geometry. Alignment is whether the geometry is for you. [Search GA7]
-///
-/// > Tip: Two knobs, not one. A space can have geometry that leads
-/// > nowhere useful (clustered, α≈0) or a clear gradient over a structureless
-/// > space (aligned, unclustered), and descent pays only when both are there.
+/// Historical name for combined search interfaces. GA7 separates descent
+/// from representative approximation and exact reuse. Clustering alone
+/// supplies no descending transition, and efficient constructive solutions
+/// need not search a metric hierarchy. No universal iff follows here.
 public protocol SearchableIffClusteredAndAligned: AlignmentCoefficient, OneBoundaryThreeFaces {}
-
-// ───────────────────────────────────────────────────────────────
-// GA4 (why primes are hard) and GA8 (symmetry, a third lever): recorded.
-//
-// GA4: primes fail in the DEEPER mode, not "graded but misaligned" (α≈0) but
-// "no cheap graded loss at all": the predicate is binary, the one graded
-// surrogate (distance to nearest prime) is as expensive as the problem. The
-// α≈0 calibration point (Basis Is Residue's primes).
-//
-// GA8: clustering (amortizes), alignment (orders), and SYMMETRY (shrinks the
-// space by quotient (the √n divisor-pairing) are three orthogonal levers. A
-// domain's profile is a triple (cluster, align, symmetry), and primes have only
-// symmetry. A third axis worth its own pin in a later pass.
-// ───────────────────────────────────────────────────────────────

@@ -1,63 +1,63 @@
 // ═══════════════════════════════════════════════════════════════
 // The Architecture of Learning Machines (Projection).
 //
-// PiR §5 projects the framework onto physical systems. This is the same
-// move on LEARNING MACHINES. A learning system is an instance of the
-// framework located by which COORDINATES it has: gate (decidable
-// verifier), I3 (append-only record), basis (certified vs pseudo), organ
-// (generator/discriminator), phase (liquid/crystal), α (alignment). The
-// theorems are conditional: each guarantee is in force exactly when its
-// coordinate is present (AI1). An LLM has no gate (→ hallucination), no I3
-// (→ forgetting), an uncertified basis, yet α>0, so it astonishes. The
-// instance with all coordinates present is the framework's shape:
-// certified self-play. The projection derives, does not assess.
+// A projection asks what a generator, verifier and store actually guarantee.
+// Soundness, completeness, retention, proposal coverage and cost are
+// separate premises. Decidability alone proves neither checker soundness
+// nor acceptance of every correct proposal.
 //
-// Pure types (§0′). The coordinate system, applied to machines. [Projection]
+// AI6 preserves correct-hit events only over the same processed proposals
+// with a complete checking interface. Trial probability needs its own law.
+// A time budget can admit fewer proposals after checking is added.
+//
+// These pure type intersections expose declared coordinates. They do not
+// establish every premise of an implemented learning architecture.
+//
 // ═══════════════════════════════════════════════════════════════
 
-/// The framework's guarantees ARE coordinates. Each is in force exactly when its
-/// coordinate is present. A system can CERTIFY iff it has a ``GateIsMembrane``
-/// gate (Theorem 2), does NOT FORGET iff it has I3 (else §5.22 breaks), is
-/// REPRODUCIBLE iff gate+I3 (SAT5/6), has IRREDUCIBLE transferable knowledge iff
-/// its basis is certified (B). A missing coordinate costs exactly its
-/// guarantee. The instance with ALL coordinates present is the framework's
-/// shape: certified self-play (``PlayIsProof``). [Projection AI1, AI6]
+/// A declared self-play relation beside a gate/membrane relation.
+/// ``PlayIsProof`` and ``GateIsMembrane`` supply their type constraints.
+/// The intersection is not an iff classification of learning systems.
+/// Reproducibility, soundness, coverage and accessible memory have separate
+/// semantic and operational premises. [Projection AI1, AI6]
 ///
-/// > Note: This is a coordinate system, not a scorecard. Locate any learning
-/// > machine by which coordinates it has. The theorems it earns and the failures
-/// > it suffers both fall out of that placement.
+/// > Note: Missing this declaration does not establish hallucination,
+/// > forgetting or inability to abstain in a real system. Those properties
+/// > must be checked for its actual implementation and task scope.
+///
+///
 public protocol AllCoordinatesPresent: PlayIsProof, GateIsMembrane {}
 
-/// A generator wrapped with a ``GateIsMembrane`` gate and an append-only store
-/// gains three guarantees: (i) does not emit a wrong answer (0 false positives,
-/// Theorem 2), (ii) preserves the generator's coverage (errors filtered, reach
-/// untouched), (iii) monotonically accumulates (I3, the crystal only grows). A
-/// better ``DiscriminatorAndGenerator`` generator moves coverage. The gate moves
-/// correctness, orthogonal (GD3). Not a new learner, a wrapper: the AlphaProof
-/// shape, generalized. [Projection AI6]
+/// Generator/discriminator coordinates beside a gate/membrane relation.
+/// ``DiscriminatorAndGenerator`` and ``GateIsMembrane`` do not encode
+/// accepted/correct-set inclusion, a proposal law or a retaining update.
+/// A sound implemented checker filters scoped outputs. Preserving coverage
+/// needs completeness and the same processed proposals. Comparing budgets
+/// additionally counts checking cost. [Projection AI6]
+///
 public protocol GateWrapper: DiscriminatorAndGenerator, GateIsMembrane {}
 
-/// A ``GateIsMembrane`` gate maps any system's CRYSTAL (the tasks it passes)
-/// against its LIQUID (the rest): certified-here / uncertain-there. The crystal
-/// fraction is the system's effective saturation: a measurable scalar
-/// (``MeasuredGeometry``), comparable across systems, monotone under improvement
-/// (I3). The system need not be modified. The gate is external. The ledger
-/// machinery (E2) projected onto any box. [Projection AI7]
+/// A declared gate/membrane relation beside a measured-geometry axis.
+/// ``GateIsMembrane`` and ``MeasuredGeometry`` specify coordinates, not an
+/// evaluation run. A current coverage sample differs from a historical
+/// retaining ledger. Fixed tasks, checking scope and a terminating budget
+/// are required to compare either measurement. [Projection AI7]
+///
 public protocol SaturationMap: GateIsMembrane, MeasuredGeometry {}
 
 // ───────────────────────────────────────────────────────────────
-// AI2–AI5: the projection table, recorded. (Domains/LearningMachines.swift
-// makes the gate live: a machine WITH the coordinates conforms, and an LLM
-// WITHOUT them is rejected by the compiler, which names the missing one.)
+// AI2–AI5 classify inspection questions, not universal architecture facts.
+// A neural proposal component may be composed with formal checking.
+// Reinforcement learning may use formally checked outcomes.
+// A retained record still needs provenance, interpretation and scope.
 //
-//   tablebase       gate ✓ I3 ✓ basis(r=0) → exact, not wrong; doesn't scale
-//   LLM             gate ✗ I3 ✗ pseudo, generator, pure liquid → hallucinate,
-//                   forget, irreproducible, yet strong where α>0 (AI2, AI4)
-//   reinforcement   reward ≠ gate → label is an estimate, seed-dependent (AI3)
-//   AlphaProof      gate ✓ (checker) generator+gate → the framework's shape
-//   certified play  all coordinates → exact where gated, honest silence where not
+// Examples/LearningMachines.swift contains illustrative declarations.
+// Its historical CertifiedSelfPlay name uses uninhabited Never axes.
+// That conformance does not run a learner or certify its performance.
+// The toy LanguageModel coordinate is chosen in the example. Its missing
+// conformance proves no impossibility about actual language models.
 //
-// AI5: every system is a front-and-flow configuration (Liquid). The LLM is flow
-// without a front (no I3 → nothing freezes): its power (flows anywhere) and its
-// fragility (solidifies nowhere) are one fact.
+// Checks/gate_wrapper.py verifies AI6/AI7 finite cases and a closed
+// proposal-tape model with an explicit bounded recording window.
+//
 // ───────────────────────────────────────────────────────────────

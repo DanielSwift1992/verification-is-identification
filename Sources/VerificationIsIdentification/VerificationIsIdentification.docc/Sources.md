@@ -39,7 +39,8 @@ The readings above are the structure. This one is for the reader with a goal: pi
 | the foundations — what is, and the one result | <doc:existence_is_finite> → <doc:verification_is_identification> → <doc:law_is_target> |
 | matter and dynamics — what the loop leaves, and how it moves | <doc:permanence_is_resistance> → <doc:difference_is_distance> → <doc:distance_is_cost> → <doc:interference_is_intelligence> |
 | learning machines — the agent, and how it trains itself | <doc:intelligence_is_inevitable> → <doc:play_is_proof> → <doc:architecture_of_learning_machines>, then <doc:basis_is_residue>, <doc:gradient_is_alignment>, <doc:proposal_is_order>, <doc:learning_is_liquid>, <doc:solvability_criterion> |
-| order and reading — the one free variable, made object | <doc:order_is_object> → <doc:reading_is_order> → <doc:navigation_is_geometry> |
+| acquiring an action, recognizing its end and using its residue | <doc:acquisition_keeps_its_question> → <doc:halt_is_ignition> → <doc:continuation_carries_the_relation>; retained distinctions: <doc:permanence_is_resistance> |
+| order, preserved answers and routing obligations | <doc:order_is_object> → <doc:reading_is_order> → <doc:navigation_is_geometry> |
 | software — the artifact, and the path it is written along | <doc:record_is_system> → <doc:merge_is_commutation> → <doc:program_is_path> → <doc:permission_is_existence> → <doc:seam_is_game> → <doc:agreement_is_comparison> → <doc:verdict_is_invariant> |
 | light, and the eye that reads it | <doc:dynamics_is_substitution> → <doc:seeing_is_encoding> → <doc:light_is_a_ruler> → <doc:interference_is_substitution> → <doc:colour_is_a_quotient> |
 
@@ -64,7 +65,7 @@ The tag in each symbol's discussion decodes here. Every paper is readable in ful
 | `Search` · `GA` | [Gradient Is Alignment](doc:gradient_is_alignment) |
 | `Gen` · `GD` | [Proposal Is Order](doc:proposal_is_order) |
 | `Liquid` | [Learning Is Liquid](doc:learning_is_liquid) |
-| `Read` | [Reading Is Order](doc:reading_is_order) |
+| `Reading` | [Reading Is Order](doc:reading_is_order) |
 | `PiP` | [Program Is Path](doc:program_is_path) |
 | `Spec` | [The Solvability Criterion](doc:solvability_criterion) |
 | `FiG` | [Form Is Gauge](doc:form_is_gauge) |
@@ -111,6 +112,8 @@ The tag in each symbol's discussion decodes here. Every paper is readable in ful
 - <doc:record_is_system>
 - <doc:merge_is_commutation>
 - <doc:halt_is_ignition>
+- <doc:acquisition_keeps_its_question>
+- <doc:continuation_carries_the_relation>
 - <doc:permission_is_existence>
 - <doc:form_is_gauge>
 - <doc:dynamics_is_substitution>

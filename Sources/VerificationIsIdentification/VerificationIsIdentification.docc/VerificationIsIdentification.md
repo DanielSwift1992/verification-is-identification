@@ -4,14 +4,14 @@ A theory of when checking an answer is the same act as finding it, written as pu
 
 ## Overview
 
-Take a finite set of candidates and a test. If exactly one candidate passes, "it passed" and "it is the answer" state the same fact: checking the lone survivor identifies it. (Of `a, b, c`, if only `c` passes, "`c` passed" and "the answer is `c`" say one thing.) That collapse is the result, ``PassIsIdentification``, and it is written as pure Swift types: a claim is a protocol, a claim that compiles is true, and nothing runs. Correctness stops being a second artifact kept in sync beside the system: the writing is the proof.
+Take a finite set of candidates and a test. If exactly one candidate passes, "it passed" and "it is the answer" state the same fact: checking the lone survivor identifies it. (Of `a, b, c`, if only `c` passes, "`c` passed" and "the answer is `c`" say one thing.) The interface ``PassIsIdentification`` names this contract. A generic construction proves an implication when it requires the premises and derives the conclusion from its actual fields. The compiler checks that construction without executing a domain program. Stating a protocol requirement alone does not supply its derivation.
 
 **Where to go.** Pick by what you came for.
 
 - term **Try it:** [the playground](https://danielswift1992.github.io/typed-playground/) runs in the browser, nothing to install: Swift types on the left, their reading on the right, and the judge names every broken claim at the keystroke. In the compiler, the scheduler in [Examples](https://danielswift1992.github.io/verification-is-identification/documentation/examples) is a proof in nine lines: it derives the one consistent schedule and refuses an impossible one by name. Five minutes either way.
 - term **See it at scale:** [Organization](https://danielswift1992.github.io/verification-is-identification/documentation/organization) is a whole company in the notation: browse the site its build rendered, walk a login keypad, read the access verdicts. <doc:Curve> measures the build as the company grows, to 12800 employees.
-- term **See why it is true:** <doc:verification_is_identification> proves the result from one postulate, <doc:existence_is_finite> grounds it, and <doc:intelligence_is_inevitable> follows one consequence out. <doc:Neighbors> sets the result beside partial evaluation, Datalog, and total languages.
-- term **Check it:** <doc:AtlasOrder> orders every claim after its premises. <doc:Atlas> counts each claim's dependents, <doc:AtlasAblation> records which premises the core build enforces (5 of 2396), <doc:AtlasRepeats> counts premises declared twice, and <doc:AtlasArgued> counts the edges whose argument carries a record.
+- term **See the grounds:** <doc:verification_is_identification> states the verification contracts, <doc:existence_is_finite> proves representation under explicit constructor and generation premises, and <doc:learning_is_liquid> studies which internal relations determine contacts, roles and permitted changes. <doc:Neighbors> sets the notation beside partial evaluation, Datalog, and total languages.
+- term **Check it:** <doc:AtlasOrder> orders every claim after its premises. <doc:Atlas> counts each claim's dependents, <doc:AtlasAblation> records which premises the core build enforces (58 of 349 explicit premises), <doc:AtlasRepeats> counts premises declared twice, and <doc:AtlasArgued> counts the edges whose argument carries a record.
 - term **Build your own:** <doc:Purpose> states what the notation buys and where it stops, <doc:Encoding> maps your part of a system onto it, and ``Law`` is the grammar you write in. These pages are themselves rendered by [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit): the site is written in the notation it documents.
 
 Two longer threads run through the papers: learning machines, <doc:intelligence_is_inevitable> → <doc:play_is_proof> → <doc:architecture_of_learning_machines>, and the emitted path (token by token, gated or not), <doc:program_is_path>. The type pages under Topics are reference.
@@ -20,7 +20,7 @@ Two longer threads run through the papers: learning machines, <doc:intelligence_
 
 - term **The seed:** a single act of distinction, ``Pair``. Its fixpoint, where the two sides close, is ``Null``.
 - term **The move:** two directions and no third: *expand* opens a degree of freedom (`associatedtype`), *compress* closes one (`where`).
-- term **The floor:** every space is finite: width (``Pair`` has two sides) × depth (every chain reaches ``Null``).
+- term **The floor:** each term in the finite constructor interpretation reaches a declared leaf. Recursive Swift conformances need not terminate, and a family of finite terms can be infinite. Equality of ``Pair``'s sides, expressed by ``Null``, does not identify every such form with the leaf.
 
 ![The construction law: one seed, two moves, one floor.](law)
 
@@ -30,7 +30,7 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 
 (The page is not ordered by paper: the order the papers were written is one walk through the types, while this lists them by the move each one makes. A fuller account of that organization is in ``Law``.)
 
-> Important: The compiler is the engine. A green build is a proof that type-checked, not a test that passed. When a type conforms to ``SystemCrystallizes``, its compilation is the certificate. When a theorem's premise breaks, every dependent stops compiling.
+> Important: The compiler checks the relations expressed in each concrete or generic construction. The source-bound schedule and contact examples derive their conclusions from those relations. The legacy ``SystemCrystallizes`` coordinates alone do not establish a unique actual schedule or completion of an arbitrary search. A refusal identifies the incompatible construction whose premises were changed.
 
 > Note: The whole tree obeys one construction law (see ``Law``), enforced on every build by the package's linter. The spine and routes below are *induced* from the types: `tree-sort` computes each symbol's group from the `associatedtype`/`where` it declares, and `tree-sort --check` holds the page equal to the types. Nothing is grouped by hand.
 
@@ -70,7 +70,10 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``MetricProperty``
 - ``IntegerValued``
 - ``Measurable``
+- ``ComparedReadings``
+- ``ObservationTrace``
 - ``Unique``
+- ``RetainedReadingRecord``
 ### The kernel: the V=I core (Pair / Σ-rooted)
 
 - ``Open``
@@ -78,12 +81,22 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``Digit``
 - ``StructuresFinite``
 - ``OperationsClosed``
+- ``SharedDeclaredTick``
+- ``VerdictRetainsLeft``
+- ``VerdictRetainsRight``
+- ``VerdictReorders``
+- ``CoverageMatchesDeclaration``
+- ``SharedDecoder``
+- ``EvidenceRefinesQuestion``
 - ``EqualityDecidable``
 - ``StepsTerminate``
 - ``ResultDeterministic``
 - ``NoSelfReference``
 - ``ComparisonsAreBounded``
 - ``RevealsNotCreates``
+- ``RefinementPreservesAnswer``
+- ``EmptyObservationTrace``
+- ``ExtendedObservationTrace``
 - ``PipelineTotal``
 - ``ScopeBoundedByEncoding``
 - ``PassImpliesMembership``
@@ -118,19 +131,17 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 ### The lens: the HasEncoding axis
 
 - ``HasEncoding``
-- ``FaithfulEncoding``
+- ``ObservedTransition``
 - ``QualitiesAreFinite``
+- ``CommutingTransition``
+- ``EncodingInvents``
 - ``PerspectiveIsEncoding``
 ### The axes: pure generators
 
 - ``HasSigma``
-- ``AmbiguityIsSymmetry``
-- ``ColourIsQuotient``
-- ``EncodingForgets``
-- ``EncodingInvents``
-- ``GamutIsCone``
 - ``HasAlpha``
 - ``HasBasis``
+- ``HasCandidates``
 - ``HasCompositionalNorm``
 - ``HasCost``
 - ``HasEfficiency``
@@ -139,9 +150,10 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``HasLaw``
 - ``HasLibrary``
 - ``HasSaturation``
+- ``HasStrategy``
 - ``HasTime``
-- ``SeparatorIdentifies``
-- ``VerdictIsInvariant``
+- ``HasVerdict``
+- ``StrategyBecomesTarget``
 ### The floor: what it delegates, where it stops
 
 - ``EncoderConditions``

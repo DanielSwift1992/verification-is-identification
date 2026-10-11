@@ -1,71 +1,23 @@
-// ═══════════════════════════════════════════════════════════════
-// Proposal Is Order (Generation).
-//
-// V=I built the DISCRIMINATOR: the certified cut, |S|=1, not a wrong
-// PASS. The other organ, the GENERATOR that proposes candidates to cut, was
-// always delegated. This derives it and proves it orthogonal. A solve is
-// iterate(discriminate ∘ generate), and the two have disjoint inputs: the
-// discriminator is the cut (Z-axis, the sole source of identification bits,
-// §5.21-22). The generator is the order (Y-axis, zero new bits, InI S2). The
-// deepest result is an asymmetry: the inevitability the series proved is the
-// DISCRIMINATOR's, and the generator is conditional on alignment α, which
-// saturation cannot manufacture. The organ carrying all the information is the
-// one proved inevitable, and the organ carrying none is where domains are hard.
-//
-// Pure types (§0′). The cut's silent twin. [Gen]
-// ═══════════════════════════════════════════════════════════════
+// Proposal Is Order. Selection and checking can share inputs and records.
+// The equations below name interfaces, not an information-free generator
+// or an automatically optimal discriminator. See GD1–GD9 for scope.
 
-/// A solve is iterate(DISCRIMINATE ∘ GENERATE): two organs with disjoint inputs.
-/// The discriminator is the CUT: the Z-axis, each COMPARE eliminates survivors,
-/// the sole source of identification bits (``PassImpliesMembership``). The
-/// generator is the ORDER: the Y-axis, which candidate next, zero new bits yet
-/// it sets the total count (``OrderIsOnlyFreedom``). Information enters only
-/// through D. G only chooses where D looks. [Gen GD1-2]
-///
-/// > Note: The split is the whole paper. Every identification bit comes from the
-/// > cut. The generator spends none yet fixes how many cuts you pay, all the
-/// > information in one organ, all the cost in the other.
+/// Names membership beside proposal order. Reordering given candidates
+/// does not create another observation. A proposer reading further task
+/// structure must account for that application and its evidence. [GD GD1–GD2]
 public protocol DiscriminatorAndGenerator: PassImpliesMembership, OrderIsOnlyFreedom {}
 
-/// Discriminate-easy and generate-easy are INDEPENDENT: all four quadrants of
-/// ``DiscriminatorAndGenerator`` inhabited. Primes: cheap gate (√n), rugged
-/// generator (α≈0). Under-specified tasks: cheap descent, |S|>1 discriminator.
-/// Neither easiness implies the other, this completes
-/// ``SearchableIffClusteredAndAligned`` by adding the discriminator's separation
-/// axis, independent of clustering and alignment. [Gen GD3]
+/// Connects proposal/checking and search interfaces. A fitting candidate
+/// need not identify a unique rule. The intersection does not prove
+/// independent complexity bounds for generation and checking. [GD GD3]
 public protocol OrthogonalOrgans: DiscriminatorAndGenerator, SearchableIffClusteredAndAligned {}
 
-/// The inevitability proven in the series is the DISCRIMINATOR's, not the generator's.
-/// At saturation the library teaches the optimal ordering, η→1
-/// (``IntelligenceRises``), on structural premises alone (I1, I3). The GENERATOR
-/// of ``DiscriminatorAndGenerator`` is conditional on the ``AlignmentCoefficient``
-/// α, which saturation NEVER manufactures: α is a property of (domain, encoding),
-/// invariant under accumulation. Generator-power = ordering-visibility = α: three
-/// statements, one quantity. The one precondition intelligence's own engine
-/// cannot produce is its generator's alignment. [Gen GD4-5]
-///
-/// > Note: The asymmetry is the deepest result. The organ that carries every
-/// > bit is the one proven inevitable in the series. The organ that carries none is
-/// > exactly where domains remain hard, α is given, not grown.
+/// Historical name. GD4–GD5 separate retained coverage, dispatch, actual
+/// proposal cost and correlation. Retention alone does not force optimal
+/// ordering, and Alpha alone does not certify a descending path.
 public protocol InevitabilityIsDiscriminator: DiscriminatorAndGenerator, IntelligenceRises, AlignmentCoefficient {}
 
-/// The two organs are ONE mechanism: both are COMPARE (§2.5). The
-/// ``DiscriminatorAndGenerator`` D is COMPARE read for its outcome (Z). G is the
-/// choice of which COMPARE next (Y). The split is scope on one ``Decidable``
-/// primitive: the framework is monist, consistent with PP15. Both run on the
-/// one given COMPARE, and neither certifies it. [Gen GD8]
+/// Names comparison beside selection and membership. Both roles are
+/// internal to the whole. This interface does not identify every physical
+/// mechanism with a single comparison operation. [GD GD8]
 public protocol OrgansAreOneCompare: DiscriminatorAndGenerator, Decidable {}
-
-// ───────────────────────────────────────────────────────────────
-// GD7 / GD9: connections, recorded.
-//
-// GD7: E2's encoder/backend split IS generator/discriminator. The backend (D)
-// is proven-safe and inevitable, and the encoder (G) is the open problem. C2
-// (discrimination) is the D-condition, and C1/C3/C4/C5 are G-conditions. All
-// irreducible difficulty localizes to G because D is proven (see Spec.swift).
-//
-// GD9: on a HORN (K=∞, Basis Is Residue) the generator is the ONLY mode, no finite
-// library stores the confusion matrix, so learned-optimal ordering is
-// unreachable, so generation from the certified basis with per-task certification
-// is forced. Intelligence strips to generation-from-basis.
-// ───────────────────────────────────────────────────────────────

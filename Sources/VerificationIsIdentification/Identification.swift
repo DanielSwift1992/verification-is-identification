@@ -1,9 +1,9 @@
 // ═══════════════════════════════════════════════════════
 // V=I Proof Chain — §5.15 Structural Recurrence.
 //
-// Each claim is a protocol. Dependencies = protocol inheritance.
-// Remove any protocol → all dependents fail to compile.
-// The Swift compiler IS the proof chain verifier.
+// Each interface records axes and constraints. Protocol inheritance carries
+// those constraints; it does not derive every intended claim in a name.
+// Generic constructions and their exact conclusions are checked separately.
 //
 // 22 claims from §0–§5. Dependency DAG encoded as inheritance.
 //
@@ -21,9 +21,9 @@
 
 // ── §0 Foundations ───────────────────────────────────────
 
-/// Distinction terminates: every chain of ``Pair`` reaches ``Null``.
-/// Introduces the Sigma axis (``HasSigma``) — the finite space of all structures.
-/// [EiF C6, Thm 1]
+/// Names the intended finite-structure interpretation through ``HasSigma``.
+/// Σ itself is infinite (EiF EF5). This open conformance does not prove that
+/// a chain terminates or that a candidate domain has a uniform bound. [EiF EF6]
 public protocol StructuresFinite: Pair, HasSigma {}
 
 /// Distinction is recursive: a structure's components are themselves
@@ -33,26 +33,26 @@ public protocol StructuresFinite: Pair, HasSigma {}
 public protocol OperationsClosed: Pair
 where Left: Pair, Right: Pair {}
 
-// §4 floor: the component recursion bottoms at Null. Never is the
-// reachable base case (Never.Left, Never.Right: Pair via Null) — the
-// witness that "components are Pairs" terminates, not descends forever.
+// Never supplies the declared terminal interpretation. Its associated types
+// point back to Never, so a traversal must recognize the terminal explicitly.
+// OperationsClosed alone supplies neither a stopping rule nor a decreasing rank.
 extension Never: OperationsClosed {}
 
-/// Structural equality on finite structures is decidable: every comparison returns
-/// a verdict, equal or not.
-/// The verdict is two-sided (`Equality: Decidable`), and the test always halts
-/// because the space is finite (``StructuresFinite``). [EiF Thm 3]
+/// Names the equality outcome through `Equality: Decidable`.
+/// Terminating structural comparison is proved for the finite-tree interpretation.
+/// This outcome axis alone supplies neither a comparison algorithm nor a proof
+/// that every ``StructuresFinite`` conformer has finite depth. [EiF Thm 3, EF4]
 public protocol EqualityDecidable: StructuresFinite {
     associatedtype Equality: Decidable
 }
 
 
-// ── §2 Derived Invariant ─────────────────────────────────
+// ── §2 Constructed Invariant ─────────────────────────────
 
-/// The comparison graph is append-only: G' ⊇ G. Cached results are kept for good.
-/// Introduces the Cache axis (``HasCache``) and compresses it: `Cache` must be
-/// ``Permanent``. A pure function on fixed inputs gives fixed results, because the
-/// structures are finite (``StructuresFinite``) and the operations closed (``OperationsClosed``). [V=I §2.4 I3]
+/// Requires a retaining Cache transition through the ``Permanent`` relation.
+/// Fixed comparison truth alone does not provide this transition. An explicit
+/// append can construct it, while decoded retention and sound inserted facts
+/// require the separate compatibility conditions of V=I §2.4 GC1–GC3.
 public protocol CachePermanent: StructuresFinite, OperationsClosed,
     HasCache
     where Cache: Permanent {}
@@ -60,24 +60,26 @@ public protocol CachePermanent: StructuresFinite, OperationsClosed,
 
 // ── §5 Inner Properties ─────────────────────────────────
 
-/// Every step works on a finite domain, so every step terminates.
-/// The step count is a finite chain (`Steps: IntegerValued`), and that finiteness
-/// comes from the finite space it builds on (``StructuresFinite``). [V=I §5.1, EiF C6]
+/// Names a step-count representation through `Steps: IntegerValued`.
+/// This axis does not require an execution to decrease its count. Termination
+/// needs the pipeline's explicit descent argument. [V=I §5.1, EiF EF7]
 public protocol StepsTerminate: StructuresFinite {
     associatedtype Steps: IntegerValued
 }
 
-/// The inner pipeline is total: every path ends at one definite state.
-/// That state is a single measured outcome (`Outcome: Measurable`), reached because
-/// each step terminates (``StepsTerminate``). [V=I §5.5]
+/// Names the intended total pipeline and its `Outcome: Measurable` axis.
+/// The execution and its control-flow proof are stated in the paper. These
+/// associated types alone do not certify an arbitrary implementation. [V=I §5.5]
 public protocol PipelineTotal: StepsTerminate {
     associatedtype Outcome: Measurable
 }
 
-/// The system is deterministic: one input has one answer, the same on every run.
-/// An output could spread across many possible values. This one settles each input
-/// on a single measured value (`Result: Measurable`).
-/// Builds on ``OperationsClosed``: because the operations are fixed, the result is too. [V=I §5.8, EiF C3]
+/// Names an intended deterministic result through `Result: Measurable`.
+/// One result type does not bind every application of an evaluator to one answer.
+/// Functional consistency requires an application construction or a separate proof.
+/// Liquid LQ16 derives it from exact self-contact and contextual substitution.
+/// Those laws are not encoded by the Result axis below.
+/// ``OperationsClosed`` constrains components, not execution behavior. [V=I §5.8]
 public protocol ResultDeterministic: OperationsClosed {
     associatedtype Result: Measurable
 }
@@ -90,9 +92,9 @@ public protocol ResultDeterministic: OperationsClosed {
 /// (``StepsTerminate``), so the cache accumulates step by step. [V=I §5.6]
 public protocol CacheOnlyGrows: CachePermanent, StepsTerminate {}
 
-/// Diagnostics accumulate: collected information only grows.
-/// It joins a permanent cache (``CachePermanent``) to a deterministic result
-/// (``ResultDeterministic``), so each REJECT adds a fact that later steps keep. [V=I §5.7]
+/// Names the intended accumulation of diagnostics across deterministic runs.
+/// These parents alone do not encode a separate diagnostic store's update.
+/// Repeated REJECTs need not add new facts. [V=I §5.7, GC2]
 public protocol DiagnosticsAccumulate: CachePermanent, ResultDeterministic {}
 
 /// The solution set only shrinks: each COMPARE can drop a candidate, and once dropped
@@ -107,13 +109,13 @@ public protocol CandidatesOnlyLeave: CachePermanent,
 
 // ── §5 Structural ────────────────────────────────────────
 
-/// The pipeline is outside its own input: operations never take the pipeline
-/// as argument. [V=I §5.23]
-/// PROXY (§1, §4-through-negation): types cannot spell "X ∉ its own input".
-/// Finite-depth `Input` (``IntegerValued``) excludes the infinite self-nesting that
-/// self-reference would create, the closest sound expression of the bound. The
-/// medium is well-founded (EiF C6): nothing contains itself.
-/// Built on closed operations (``OperationsClosed``), which take only the encoded data.
+/// A legacy name for closed-operation coordinates and an IntegerValued input.
+/// The recursive input axis proves neither finite depth nor absence of
+/// self-reference (EiF EF10). A finite description can refer to its own
+/// interpreter without containing an infinite literal copy of itself.
+/// V=I §5.23 instead states an actual input-access condition. This protocol
+/// does not bind Input to the pipeline's complete configuration or prove
+/// which parts of that configuration are accessible.
 public protocol NoSelfReference: OperationsClosed {
     associatedtype Input: IntegerValued
 }
@@ -126,13 +128,11 @@ public protocol ScopeBoundedByEncoding: OperationsClosed, ResultDeterministic {}
 
 // ── §3 Problem Requirement ───────────────────────────────
 
-/// Exactly one candidate passes verification: |S| = 1. [V=I §3.5 R4]
-/// Conclusion pinned (§T): the requirement *is* a fixpoint on the solution axis
-/// (``HasSolutions``) — `where SolutionSet:` ``Unique``. R4 ASSUMES the collapse (a
-/// decidable property of the encoding, §3.5–3.6). A4 (``SystemCrystallizes``) PROVES
-/// it from A1–A3: the requirement and the theorem meet at the SAME fixpoint,
-/// `SolutionSet: Unique`, the framework's canonical encoding of |S|=1 (the gate
-/// coordinate, Domains). Inherits ``StructuresFinite`` and ``EqualityDecidable``.
+/// Requires a Unique solution coordinate beside the domain and equality axes.
+/// The projection constraints of Unique do not enumerate survivors or prove
+/// their cardinality. U2–U2a derives a common member and identification through
+/// actual membership paths. U2b derives a schedule's forced assignment directly.
+/// Neither this declaration nor SystemCrystallizes derives R4 from its name.
 public protocol ExactlyOneSurvives: StructuresFinite, EqualityDecidable,
     HasSolutions
     where SolutionSet: Unique {}
@@ -140,26 +140,30 @@ public protocol ExactlyOneSurvives: StructuresFinite, EqualityDecidable,
 
 // ── §5 Theorems ──────────────────────────────────────────
 
-/// A passing candidate is a member of the solution set: PASS → f' ∈ S.
-/// It joins a total pipeline (``PipelineTotal``) to a deterministic result
-/// (``ResultDeterministic``), so every PASS is a definite membership fact. [V=I Thm 1]
+/// For a candidate already admitted to the declared F, agreement with every
+/// example gives membership in S. Agreement alone does not admit an arbitrary
+/// proposal to F. These named pipeline interfaces supply neither that membership
+/// witness nor the application equations. See the covered-selection construction
+/// in U2 and the explicit premises of V=I §4.7 and Theorem 1.
 public protocol PassImpliesMembership: PipelineTotal, ResultDeterministic {}
 
 /// To check the answer and to name it are the same act. When exactly one candidate
 /// can pass the test, the one that passes is the one you were looking for, so passing
 /// the check is already knowing which it is. This is the central theorem.
 ///
-/// Formally, with `|S| = 1` a PASS pins the candidate to the unique survivor, `f' = f*`.
-/// Conclusion pinned (§T): `where Left == SolutionSet` *is* that collapse, the same one
-/// ``Null`` makes when `Left == Right`. It joins membership (``PassImpliesMembership``)
-/// to uniqueness (``ExactlyOneSurvives``) on the solution axis (``HasSolutions``). [V=I Thm 2]
+/// With `|S| = 1` and both the candidate and target in S, they agree.
+/// This declaration joins the named interfaces and identifies Left with
+/// SolutionSet. Its constraints alone supply neither membership witnesses
+/// nor the singleton interpretation of that coordinate. IdentifyCoveredCandidates
+/// supplies the membership-to-identity construction for the finite support
+/// grammar. [V=I Thm 2, U1–U2a]
 public protocol PassIsIdentification: PassImpliesMembership, ExactlyOneSurvives,
     HasSolutions
     where Left == SolutionSet {}
 
-/// Comparison is bounded: N atoms settle in at most N² COMPAREs, classifying every pair.
-/// The comparison count is a finite integer (`Comparisons: IntegerValued`), bounded
-/// because the medium is finite (``StructuresFinite``, EiF C6). [V=I Thm 3]
+/// A fixed domain of N atoms has at most N² ordered comparison pairs.
+/// Exhaustive coverage needs at most N² fresh comparisons, with retained results.
+/// The finite atom domain is separate from the unbounded syntax Σ. [V=I Thm 3]
 public protocol ComparisonsAreBounded: StructuresFinite {
     associatedtype Comparisons: IntegerValued
 }
@@ -173,27 +177,28 @@ public protocol PreconditionsGuaranteePass: StructuresFinite, EqualityDecidable,
 
 // ── §5 Axis Alignment ────────────────────────────────────
 
-/// The axes are co-oriented: every monotone property points the same way
-/// (info↑, rejections↑, |S|↓).
-/// AX3 is in this line: AxesCoOriented inherits CachePermanent (I3), and that
-/// edge *is* "permanence generates alignment". Delete CachePermanent here and the
-/// alignment cannot be formed: "remove I3 → axes decouple", executable. So AX3
-/// is the dependency itself, not a separate protocol (Law §1: no rename). [V=I §5 AX1, AX3]
-/// It meets the four monotone axes: ``StructuresFinite``, ``CachePermanent``, ``OperationsClosed``, and ``ResultDeterministic``.
+/// For a fixed candidate set, adding constraints cannot add survivors.
+/// This compatibility uses the definitions of the cache and candidate set.
+/// It does not give an order on arbitrary physical or diagnostic quantities.
+/// The participating structural premises are recorded by these parents.
+/// Their inheritance alone does not derive every claimed information axis.
+/// Retraction of redundant facts need not enlarge the survivor set.
+/// [V=I §5.25, axis-alignment remark]
 public protocol AxesCoOriented: StructuresFinite, CachePermanent, OperationsClosed, ResultDeterministic {}
 
-/// Saturation is an incorruptible progress metric: 1−|S|/|F| only rises.
-/// It joins the finite space (``StructuresFinite``) to the permanent cache
-/// (``CachePermanent``), so each gain in saturation is permanent. [V=I §5 AX2]
+/// The elimination score needs a fixed nonempty F and a defined survivor set.
+/// These parents alone encode neither that score nor successful identification.
+/// Score one means S is empty, not uniquely identified. [V=I §5.25]
 public protocol SaturationIncorruptible: StructuresFinite, CachePermanent {}
 
 
 // ── §5 Universality & Information (§T-generated) ──────────────
 
-/// Universality: any finite deterministic task has an encoding under which exactly one
-/// candidate passes, so |S|=1 is always achievable.
-/// It opens the encoding axis (``HasEncoding``) over a finite space (``StructuresFinite``)
-/// and meets ``ExactlyOneSurvives``: pick the encoding, and the single survivor exists. [V=I §5 Thm 4]
+/// Legacy name for the finite-presentation and singleton premises.
+/// The complete correct graph of a finite function isolates it within a supplied
+/// extensional family containing it. This does not acquire the graph from an unknown
+/// source or implement its law in a particular feature grammar. These parents alone
+/// construct neither that graph nor the required singleton witness. [V=I §5 Thm 4]
 public protocol Universality: StructuresFinite, HasEncoding, ExactlyOneSurvives {}
 
 /// COMPARE reveals a pre-existing fact: its result is fixed by the inputs' structure
@@ -203,13 +208,10 @@ public protocol Universality: StructuresFinite, HasEncoding, ExactlyOneSurvives 
 /// the call reads what the medium already fixes (EiF Part III). [V=I §5.20]
 public protocol RevealsNotCreates: OperationsClosed, Measurable {}
 
-/// Order is the sole freedom (A12): once the encoding is fixed, the only free variable
-/// is the order of COMPAREs, and correctness is intact whatever the order.
-/// Everything else is pinned (``AxesCoOriented``), and the identification fixpoint
-/// (``IdentityCollapse``) is in force atop that, so order is the residue left after every
-/// other collapse. [V=I §5.25]
-///
-/// > Tip: When every axis is co-oriented and the answer is pinned, the one thing
-/// > left to choose is the sequence of comparisons, and that choice changes only the
-/// > path. Freedom survives only where it cannot alter the result.
+/// Historical interface for a verification scope varying only enumeration.
+/// With candidates, predicate and complete retention fixed, every ordering
+/// gives the same survivor set. A fixed encoding alone supplies none of
+/// those conditions. These inherited axes do not encode an enumeration or
+/// prove its coverage. An invariant selected answer needs agreement over
+/// the survivors, as VerdictIsInvariant expresses. [V=I §5.25, Read R3–R4]
 public protocol OrderIsOnlyFreedom: AxesCoOriented, IdentityCollapse {}

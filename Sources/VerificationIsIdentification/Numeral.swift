@@ -8,9 +8,9 @@
 //
 // This is the decimal system expressed in the lattice. The digits are domain-agnostic:
 // a password, a band count, a year, all are chains of the same ten atoms. The unary
-// Peano successor (IntegerValued: Right: IntegerValued) is the COUNTING mechanism, and
-// these digits are the NAMING mechanism. Both are valid: one counts by folding,
-// the other names by composing atoms.
+// Peano successor supplies a unary constructor grammar, while these digits
+// name positional notation. Neither IntegerValued alone nor the default
+// Structure.count reader establishes the natural-number interpretation.
 // ═══════════════════════════════════════════════════════════════
 
 /// This names a digit: one of ten distinguishable atoms, the base of positional notation.
@@ -34,14 +34,16 @@ public enum Numeral {
 }
 
 
-/// Zero names the empty count: the Peano floor, both sides already closed.
+/// A chosen zero numeral with two Never sides. It is nominally distinct
+/// from Never, which other constructor conventions use as their zero.
 public enum Zero: IntegerValued {
     public typealias Left = Never
     public typealias Right = Never
 }
 
-/// Succ names one more than its predecessor: the unary counting step. Where the digits above
-/// NAME a number, this chain COUNTS one, the ladder `IntegerValued` describes.
+/// A unary successor constructor. Finite expressions ending at a declared
+/// zero admit the usual count by induction. The bound on Predecessor alone
+/// also permits cyclic IntegerValued conformers. [EiF EF10]
 public enum Succ<
     Predecessor: IntegerValued
 >: IntegerValued {

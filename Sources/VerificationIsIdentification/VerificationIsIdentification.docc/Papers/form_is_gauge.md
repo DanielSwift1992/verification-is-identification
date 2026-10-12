@@ -16,7 +16,7 @@ The historical measurements are recorded in <doc:Curve>. They motivate the quest
 
 **FiG1 (Content equivalence and preservation).** Equality of rendered bytes is an equivalence relation. A concrete preservation argument is available when ordered leaves render strings, a grouping node renders the concatenation of its children and an empty group renders the empty string. Associativity of concatenation proves that reassociation preserves the rendered string. Induction on a grouping tree gives the concatenation of its leaves in order, independent of parenthesization.
 
-This does not authorize arbitrary permutation: concatenation need not commute. Nor does it cover a grouping node that emits additional markup. Such transformations require their own renderer equations. Byte comparisons validate the compared artifacts. A compiled PackingUnderContent declaration with a chosen SolutionSet is not a proof of all regroupings. Equality of rendered bytes also concerns that renderer's answer, without asserting equal compile cost or every other behavior.
+The argument covers reassociation. It does not authorize arbitrary permutation, since concatenation need not commute, and it does not cover a grouping node that emits additional markup. Such transformations require their own renderer equations. Byte comparisons validate the compared artifacts. A compiled PackingUnderContent declaration with a chosen SolutionSet is not a proof of all regroupings. Equality of rendered bytes also concerns that renderer's answer, without asserting equal compile cost or every other behavior.
 
 Interference Is Substitution IiS10 supplies a physical model of this scope requirement. Unitaries U and −U induce one standalone quantum channel, yet diag(I,U) and diag(I,−U) differ. This particular controlled extension requires a relation absent from the channel description. Controlling the order of two channel inputs is different: the fixed quantum switch is well-defined on those inputs. In the unitary case, each primitive phase appears equally in both orders and cancels from their relative operation. IiS10 derives this balance and its signed-mode static instance. An insufficient interface for one continuation can therefore suffice for another. VC15 asks for the actual preservation equation.
 
@@ -54,7 +54,7 @@ A nearly flat finite timing sweep is evidence about those runs. It does not esta
 
 ## §4. Comparing Checkers
 
-Agreement on a finite corpus and targeted refusals tests the represented cases. Matching the same conflicting coordinates is stronger evidence than matching exit codes alone. It still does not prove equivalence over an unrestricted source language. A reduced disagreement can expose a defect relative to a stated specification. The number of primitive markers does not bound the cost of solving their constraint system, and a version can be represented explicitly when needed.
+Agreement on a finite corpus and targeted refusals test the represented cases. Matching the same conflicting coordinates is stronger evidence than matching exit codes alone. It still does not prove equivalence over an unrestricted source language. A reduced disagreement can expose a defect relative to a stated specification. The number of primitive markers does not bound the cost of solving their constraint system, and a version can be represented explicitly when needed.
 
 ## §5. Statement
 

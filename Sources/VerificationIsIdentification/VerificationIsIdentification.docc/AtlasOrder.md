@@ -122,7 +122,6 @@ answers where to start reading.
 - ``CandidatesOnlyLeave``, after ``CachePermanent``, ``HasSolutions``
 - ``CommunicationBounded``, after ``ComparisonsAreBounded``, ``HasCache``
 - ``ConservedReadingStep``, after ``CommutingTransition``
-- ``DiagnosticsAccumulate``, after ``CachePermanent``, ``ResultDeterministic``
 - ``DistanceIsCost``, after ``DistanceOnStructures``, ``HasCost``
 - ``EncodingForgets``, after ``VerdictIsInvariant``
 - ``ExactlyOneSurvives``, after ``EqualityDecidable``, ``HasSolutions``
@@ -133,7 +132,6 @@ answers where to start reading.
 - ``MembershipDecidable``, after ``EqualityDecidable``, ``HasSolutions``
 - ``NullIsOrigin``, after ``DistanceOnStructures``, ``Null``
 - ``PipelineTotal``, after ``StepsTerminate``
-- ``PresentedLaw``, after ``DistanceOnStructures``, ``HasLaw``
 - ``ReadingFactors``, after ``VerdictIsInvariant``
 - ``ResistanceHasMagnitude``, after ``DistanceOnStructures``, ``Resistant``
 - ``ResultsIrreversible``, after ``CachePermanent``, ``EqualityDecidable``
@@ -150,11 +148,11 @@ answers where to start reading.
 - ``ColourIsQuotient``, after ``EncodingForgets``
 - ``ContentIsGaugeInvariant``, after ``HasGauge``, ``ReadingFactors``
 - ``DiscoveryIsRevelation``, after ``ExactlyOneSurvives``, ``LibrarySaturates``
-- ``EdgesCarryTheJudgement``, after ``BehaviorIsStructure``, ``PresentedLaw``
+- ``EdgesCarryTheJudgement``, after ``BehaviorIsStructure``, ``LawLivesInSigma``
 - ``EmissionIsAutoregressive``, after ``HasEncoding``, ``HasPath``, ``ScopeBoundedByEncoding``
 - ``EncodingSelectionSaturates``, after ``HasEncoding``, ``LibrarySaturates``
 - ``FaithfulEncoding``, after ``ReadingFactors``
-- ``FormIsInvariant``, after ``PresentedLaw``
+- ``FormIsInvariant``, after ``LawLivesInSigma``
 - ``GreedyDescentTerminates``, after ``AnchorGraph``, ``Monotone``
 - ``HolesCarryAddresses``, after ``AnchorGraph``, ``Decidable``
 - ``IntelligenceRises``, after ``HasEfficiency``, ``LibrarySaturates``
@@ -167,7 +165,7 @@ answers where to start reading.
 - ``RulesCompose``, after ``KnowledgeAccumulates``
 - ``SaturationDynamics``, after ``ComparisonsAreBounded``, ``LibrarySaturates``
 - ``SeparatorIdentifies``, after ``EncodingForgets``
-- ``StandardIsType``, after ``PresentedLaw``
+- ``StandardIsType``, after ``LawLivesInSigma``
 - ``SystemCrystallizes``, after ``CandidatesOnlyLeave``, ``MembershipDecidable``, ``ResultsIrreversible``
 - ``Universality``, after ``ExactlyOneSurvives``, ``HasEncoding``
 
@@ -185,7 +183,6 @@ answers where to start reading.
 - ``InterferenceIsIntelligence``, after ``IntelligenceRises``, ``OrderIsOnlyFreedom``
 - ``LibraryCrystallizes``, after ``LibrarySaturates``, ``SystemCrystallizes``
 - ``MeasureIsCount``, after ``StandardIsType``
-- ``OrderByDistance``, after ``DistanceOnStructures``, ``OrderIsOnlyFreedom``
 - ``PassIsIdentification``, after ``ExactlyOneSurvives``, ``PassImpliesMembership``
 - ``Reading``, after ``HasTime``, ``OrderIsOnlyFreedom``, ``RevealsNotCreates``
 - ``RepairsPermanent``, after ``AnchorGraph``, ``NoInverse``
@@ -207,7 +204,6 @@ answers where to start reading.
 - ``Matter``, after ``KnowledgeAccumulates``, ``PassIsIdentification``, ``Resistant``
 - ``OrgansAreOneCompare``, after ``Decidable``, ``DiscriminatorAndGenerator``
 - ``PipelineCrystallizes``, after ``PassIsIdentification``, ``SystemCrystallizes``
-- ``PressIsIdentification``, after ``PassIsIdentification``, ``PresentedLaw``
 - ``ProgramIsPath``, after ``EmissionIsAutoregressive``, ``GatedConstruction``, ``ReachIsPath``
 - ``SkillsAreBalls``, after ``BallSaturation``, ``StrategyLivesInSigma``
 - ``StrategyGate``, after ``PassImpliesMembership``, ``StrategyLivesInSigma``

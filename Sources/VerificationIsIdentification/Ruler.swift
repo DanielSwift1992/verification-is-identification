@@ -2,7 +2,7 @@ import Swift
 
 /// Names a tick in a presented-law interface. A shared declaration checks
 /// notation, not uniqueness or physical calibration. [LiR LiR1]
-public protocol StandardIsType: PresentedLaw {
+public protocol StandardIsType: LawLivesInSigma {
     associatedtype Tick
 }
 

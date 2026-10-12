@@ -92,10 +92,6 @@ public protocol ResultDeterministic: OperationsClosed {
 /// (``StepsTerminate``), so the cache accumulates step by step. [V=I §5.6]
 public protocol CacheOnlyGrows: CachePermanent, StepsTerminate {}
 
-/// Names the intended accumulation of diagnostics across deterministic runs.
-/// These parents alone do not encode a separate diagnostic store's update.
-/// Repeated REJECTs need not add new facts. [V=I §5.7, GC2]
-public protocol DiagnosticsAccumulate: CachePermanent, ResultDeterministic {}
 
 /// The solution set only shrinks: each COMPARE can drop a candidate, and once dropped
 /// it is out for good (|S_{n+1}| ≤ |S_n|).
@@ -184,6 +180,10 @@ public protocol PreconditionsGuaranteePass: StructuresFinite, EqualityDecidable,
 /// Their inheritance alone does not derive every claimed information axis.
 /// Retraction of redundant facts need not enlarge the survivor set.
 /// [V=I §5.25, axis-alignment remark]
+///
+/// The same intersection names the intended accumulation of diagnostics across
+/// deterministic runs. These parents alone do not encode a separate diagnostic
+/// store's update. Repeated REJECTs need not add new facts. [V=I §5.7, GC2]
 public protocol AxesCoOriented: StructuresFinite, CachePermanent, OperationsClosed, ResultDeterministic {}
 
 /// The elimination score needs a fixed nonempty F and a defined survivor set.

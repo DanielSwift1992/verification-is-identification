@@ -14,7 +14,8 @@ import Foundation
 //
 //   THE LAW (Sources/VerificationIsIdentification/Law.swift), the checkable subset:
 //     §0′ PURE TYPES : no runtime, no values, types only.        (per line)
-//     §1  NO RENAME  : no single-parent, empty-body protocol.     (per line)
+//     §1  NO RENAME  : no single-parent, empty-body protocol; no  (whole module)
+//                      repeated empty intersection of parents.
 //     §2  OPEN AXIS  : every axis opened by expand is closed by    (whole module)
 //                      compress somewhere, Σ alone stays free.
 //
@@ -392,7 +393,8 @@ let renameViolations = renameCandidates
     .filter { !consumedAsConstraint.contains($0.name) }
     .map(\.violation)
 
-let violations = lineViolations + renameViolations + axisViolations + provenanceViolations
+let duplicateViolations = duplicateIntersectionViolations(files: files)
+let violations = lineViolations + renameViolations + duplicateViolations + axisViolations + provenanceViolations
 
 // the sentinel lets the build graph skip the check when nothing changed
 if let stamp { try? Data().write(to: URL(fileURLWithPath: stamp)) }

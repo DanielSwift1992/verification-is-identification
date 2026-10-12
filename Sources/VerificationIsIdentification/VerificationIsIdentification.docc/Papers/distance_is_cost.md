@@ -246,7 +246,7 @@ Taxicab geometry. Adjacent cells are at distance 1, and far cells are far. Grid 
 
 This is the structural reason the gradient can be added without weakening anything: it is an ordering device, and the framework already proved correctness is order-invariant.
 
-> Argues: ``OrderByDistance`` needs ``OrderIsOnlyFreedom``.
+> Argues: ``StrategyLivesInSigma`` needs ``OrderIsOnlyFreedom``.
 
 ## §8. Generalization
 
@@ -410,6 +410,5 @@ Difference Is Distance derived the geometry between witnesses. Here the author d
 ### Related type declarations
 
 - ``DistanceIsCost``
-- ``OrderByDistance``
 - ``BallSaturation``
 - ``CompressionCriterion``

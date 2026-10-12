@@ -28,12 +28,25 @@ public protocol HasLaw: HasSigma {
 /// is also ``Measurable`` (deterministic), but that is a relaxable premise, §6,
 /// not part of its identity: stochastic laws exist, so it is outside the inline
 /// pin.) [Law LT2]
+///
+/// The same intersection is the presented law. Its author can write the finite
+/// transition table as a structure in Σ, whole, and the judge verifies the written
+/// claims. Presentation reaches the target of ``LawIsTarget`` from the author's
+/// side: identification with the search already spent. The written table has norm
+/// and distance like any structure in Σ, so presented laws are comparable before
+/// any step. [DiS 1]
 public protocol LawLivesInSigma: HasLaw, DistanceOnStructures {}
 
 /// A fixed law on an adequate state/action representation can be the target
 /// while states change. Identification still requires a declared family
 /// containing the actual law and evidence that separates it. A fixed whole
 /// law need not descend to an autonomous local one. [Law LT3–LT4, Matter M70]
+///
+/// The same intersection is the press of a presented law. One step fires iff its
+/// written pattern IS the state's term: a comparison, not a search, `|S| ≤ 1` by
+/// the pattern's linearity. A chord of steps over one slot with pairwise distinct
+/// patterns keeps the bound: at most one leaf matches at any state, so a key of
+/// many meanings is still an identification, never a priority. [DiS 2]
 ///
 /// > Note: ``PlanningIsNavigation``, ``AmbiguityIsExperiment`` and
 /// > ``LawfulDrift`` retain their own acquisition and availability premises.

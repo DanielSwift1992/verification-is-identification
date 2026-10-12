@@ -10,13 +10,13 @@ No new postulate. A press is V=I's Theorem 2 applied to one slot: the pattern id
 
 ## §1. The objects
 
-**DiS1 (A system is a file).** A file F = (K, σ) is a constant form K with named slots, and an assignment σ of one term per slot. A rule is a triple r = (Slot, From, Into): the one slot it may touch, the pattern it must find there, the template it writes. From is linear: each variable occurs once. A press applies one rule: if σ(Slot) matches From under a binding θ, the slot's term becomes Into[θ], and otherwise the press is a no-op and the file is unchanged. A system is a form, a finite dictionary of rules, and a start state. The dictionary is the whole of the law: no second text is its implementation. **[solid: the axis is ``PresentedLaw``]**
+**DiS1 (A system is a file).** A file F = (K, σ) is a constant form K with named slots, and an assignment σ of one term per slot. A rule is a triple r = (Slot, From, Into): the one slot it may touch, the pattern it must find there, the template it writes. From is linear: each variable occurs once. A press applies one rule: if σ(Slot) matches From under a binding θ, the slot's term becomes Into[θ], and otherwise the press is a no-op and the file is unchanged. A system is a form, a finite dictionary of rules, and a start state. The dictionary is the whole of the law: no second text is its implementation. **[solid: the axis is ``LawLivesInSigma``]**
 
 ## §2. A press identifies
 
-**DiS2 (|S| ≤ 1 per press).** A linear pattern matches a closed term in at most one way: induction on the pattern, and by linearity there are no binding conflicts. The candidate set of a press has at most one member, so matching is a comparison, never a search. A chord (several rules on one slot with pairwise distinct patterns) keeps the bound: at most one pattern matches any given term, and a chord whose patterns overlap is refused when it is written, never when it fires. **[solid: ``PressIsIdentification``]**
+**DiS2 (|S| ≤ 1 per press).** A linear pattern matches a closed term in at most one way: induction on the pattern, and by linearity there are no binding conflicts. The candidate set of a press has at most one member, so matching is a comparison, never a search. A chord (several rules on one slot with pairwise distinct patterns) keeps the bound: at most one pattern matches any given term, and a chord whose patterns overlap is refused when it is written, never when it fires. **[solid: ``LawIsTarget``]**
 
-> Argues: ``PressIsIdentification`` needs ``PassIsIdentification``.
+> Argues: ``LawIsTarget`` needs ``PassIsIdentification``.
 
 ## §3. One word, one file
 
@@ -26,13 +26,13 @@ No new postulate. A press is V=I's Theorem 2 applied to one slot: the pattern id
 
 **DiS4 (Form invariance).** A press rewrites one slot's term and nothing else. The form (the slots and the rules) is identical in every reachable state, and the difference between neighbouring states is inside one term. The set of available moves never changes along a trajectory. **[solid: ``FormIsInvariant``, the form is itself a structure]**
 
-> Argues: ``FormIsInvariant`` needs ``PresentedLaw``.
+> Argues: ``FormIsInvariant`` needs ``LawLivesInSigma``.
 
 ## §5. The judgement is on the edges
 
 **DiS5 (Edges, not states).** A rule with a variable is a universally quantified claim: one check covers every binding at once. A judged start state and judged rules give judged reachable states, by induction on the press word. Finitely many checks cover infinitely many trajectories. Per-state checking cannot reach this bound, because the reachable states may be infinite while the rules are finite. **[solid: ``EdgesCarryTheJudgement``]**
 
-> Argues: ``EdgesCarryTheJudgement`` needs ``PresentedLaw``.
+> Argues: ``EdgesCarryTheJudgement`` needs ``LawLivesInSigma``.
 
 ## §6. Races and reversal
 
@@ -77,7 +77,5 @@ In Law Is Target the author proved the law identifiable from examples, with the 
 
 ### Related type declarations
 
-- ``PresentedLaw``
-- ``PressIsIdentification``
 - ``EdgesCarryTheJudgement``
 - ``FormIsInvariant``

@@ -46,11 +46,6 @@ public protocol NullIsOrigin: DistanceOnStructures, Null {}
 /// that construction nor a terminating comparator. [DiC G4]
 public protocol GradientInComparison: DistanceOnStructures, Decidable {}
 
-/// Ordering proposals by W (nearest first) tunes efficiency while adding zero
-/// identification bits: order is the sole degree of freedom (``OrderIsOnlyFreedom``,
-/// §5.25). The ``DistanceOnStructures`` metric reshuffles the order of attempts.
-/// The gate is untouched (Thm 2: correctness from verification, not search). [DiC G9]
-public protocol OrderByDistance: DistanceOnStructures, OrderIsOnlyFreedom {}
 
 /// Names membership beside the distance axis. G13 proves zero loss exactly
 /// when every actual output equals its declared target, for a fixed finite

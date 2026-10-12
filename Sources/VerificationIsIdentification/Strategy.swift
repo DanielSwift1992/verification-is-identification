@@ -20,6 +20,12 @@
 /// norm ‖σ‖ and a distance W. Strategy geometry is inherited from
 /// ``DistanceOnStructures``, not constructed, the moment the order enters Σ.
 /// [Order O1, O2]
+///
+/// The same intersection is the proposal order of Distance Is Cost. Ordering
+/// proposals by W (nearest first) tunes efficiency while adding zero identification
+/// bits: order is the sole degree of freedom, and the ``DistanceOnStructures`` metric
+/// reshuffles the order of attempts. The gate is untouched (Thm 2: correctness from
+/// verification, not search). [DiC G9]
 public protocol StrategyLivesInSigma: DistanceOnStructures, OrderIsOnlyFreedom {}
 
 /// Joins a strategy description and an acceptance interface. O6's soundness

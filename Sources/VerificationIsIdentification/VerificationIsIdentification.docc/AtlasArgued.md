@@ -21,7 +21,7 @@ for each edge alongside those different compiler checks.
 
 ## The edges argued so far
 
-The lattice declares 337 direct edges, and 64 of them carry an argument record in a paper. The rest wait.
+The lattice declares 329 direct edges, and 64 of them carry an argument record in a paper. The rest wait.
 
 | claim | premise | argued in |
 |---|---|---|
@@ -39,18 +39,19 @@ The lattice declares 337 direct edges, and 64 of them carry an argument record i
 | ``DiscoveryIsRevelation`` | ``LibrarySaturates`` | <doc:intelligence_is_inevitable> |
 | ``DistanceIsCost`` | ``DistanceOnStructures`` | <doc:distance_is_cost> |
 | ``DistanceIsCost`` | ``HasCost`` | <doc:distance_is_cost> |
-| ``EdgesCarryTheJudgement`` | ``PresentedLaw`` | <doc:dynamics_is_substitution> |
+| ``EdgesCarryTheJudgement`` | ``LawLivesInSigma`` | <doc:dynamics_is_substitution> |
 | ``EmptyObservationTrace`` | ``ObservationTrace`` | <doc:verdict_is_invariant> |
 | ``EqualityDecidable`` | ``StructuresFinite`` | <doc:verification_is_identification> |
 | ``EvidenceRefinesQuestion`` | ``Pair`` | <doc:verdict_is_invariant> |
 | ``ExactlyOneSurvives`` | ``EqualityDecidable`` | <doc:verification_is_identification> |
 | ``ExactlyOneSurvives`` | ``HasSolutions`` | <doc:verification_is_identification> |
 | ``ExtendedObservationTrace`` | ``ObservationTrace`` | <doc:verdict_is_invariant> |
-| ``FormIsInvariant`` | ``PresentedLaw`` | <doc:dynamics_is_substitution> |
+| ``FormIsInvariant`` | ``LawLivesInSigma`` | <doc:dynamics_is_substitution> |
 | ``HasCandidates`` | ``HasSigma`` | <doc:verdict_is_invariant> |
 | ``HasSolutions`` | ``HasSigma`` | <doc:verification_is_identification> |
 | ``Ignites`` | ``LibrarySaturates`` | <doc:permanence_is_resistance> |
 | ``Ignites`` | ``Matter`` | <doc:permanence_is_resistance> |
+| ``LawIsTarget`` | ``PassIsIdentification`` | <doc:dynamics_is_substitution> |
 | ``LibraryCrystallizes`` | ``LibrarySaturates`` | <doc:intelligence_is_inevitable> |
 | ``LibrarySaturates`` | ``CachePermanent`` | <doc:intelligence_is_inevitable> |
 | ``Matter`` | ``KnowledgeAccumulates`` | <doc:permanence_is_resistance> |
@@ -58,7 +59,6 @@ The lattice declares 337 direct edges, and 64 of them carry an argument record i
 | ``ObservedTransition`` | ``HasEncoding`` | <doc:verdict_is_invariant> |
 | ``ObservedTransition`` | ``Pair`` | <doc:verdict_is_invariant> |
 | ``OperationsClosed`` | ``Pair`` | <doc:verification_is_identification> |
-| ``OrderByDistance`` | ``OrderIsOnlyFreedom`` | <doc:distance_is_cost> |
 | ``PassImpliesMembership`` | ``PipelineTotal`` | <doc:verification_is_identification> |
 | ``PassImpliesMembership`` | ``ResultDeterministic`` | <doc:verification_is_identification> |
 | ``PassIsIdentification`` | ``ExactlyOneSurvives`` | <doc:verification_is_identification> |
@@ -67,7 +67,6 @@ The lattice declares 337 direct edges, and 64 of them carry an argument record i
 | ``PipelineTotal`` | ``StepsTerminate`` | <doc:verification_is_identification> |
 | ``PredicateReading`` | ``HasVerdict`` | <doc:verdict_is_invariant> |
 | ``PredicateReading`` | ``Pair`` | <doc:verdict_is_invariant> |
-| ``PressIsIdentification`` | ``PassIsIdentification`` | <doc:dynamics_is_substitution> |
 | ``ReadingFactors`` | ``VerdictIsInvariant`` | <doc:verdict_is_invariant> |
 | ``RecordedAnswerReading`` | ``PredicateReading`` | <doc:verdict_is_invariant> |
 | ``RefinementPreservesAnswer`` | ``EvidenceRefinesQuestion`` | <doc:verdict_is_invariant> |
@@ -77,6 +76,7 @@ The lattice declares 337 direct edges, and 64 of them carry an argument record i
 | ``RetainedReadingRecord`` | ``Permanent`` | <doc:verdict_is_invariant> |
 | ``SharedDecoder`` | ``Pair`` | <doc:verdict_is_invariant> |
 | ``StepsTerminate`` | ``StructuresFinite`` | <doc:verification_is_identification> |
+| ``StrategyLivesInSigma`` | ``OrderIsOnlyFreedom`` | <doc:distance_is_cost> |
 | ``StructuresFinite`` | ``HasSigma`` | <doc:verification_is_identification> |
 | ``StructuresFinite`` | ``Pair`` | <doc:verification_is_identification> |
 | ``Tower`` | ``HasCost`` | <doc:permanence_is_resistance> |

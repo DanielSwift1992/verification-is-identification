@@ -34,19 +34,9 @@ For a fixed task, encoding, candidate domain, loss definition and sampling weigh
 
 **GD8 (Both roles belong to the same whole).** Proposal, checking, records and observers are internal relations. Within a chosen comparison-based implementation, different projections of its trace can describe selection and verification. This is consistent with relational closure. It does not derive that every physical mechanism is the same operation or authorize erasing the records and observations on which a proposal depends. PP15's scope and Verdict's application seams remain applicable.
 
-**GD9 (Infinite reach does not eliminate lookup or compilation).** A
-finite table cannot list every distinct member of an infinite reachable
-domain. This does not prevent caching a useful finite subset or applying
-a compact algorithm to infinitely many inputs. A finite generating set
-supplies eventual compositional reach under its semantics, not a fixed
-word budget or a free execution path (Basis B6–B8).
+**GD9 (Infinite reach does not eliminate lookup or compilation).** A finite table cannot list every distinct member of an infinite reachable domain. This does not prevent caching a useful finite subset or applying a compact algorithm to infinitely many inputs. A finite generating set supplies eventual compositional reach under its semantics, not a fixed word budget or a free execution path (Basis B6–B8).
 
-A candidate can be proposed in one attempt even when its primitive word is
-long. Conversely many short candidates can be tried before finding one.
-Thus candidate attempts have no generic lower bound equal to solution word
-length. Efficiency must name its charged operations, search distribution,
-macro definitions and stored records. The bounded-basis counterexample
-makes these costs distinct within a complete reversible machine.
+A candidate can be proposed in one attempt even when its primitive word is long. Conversely many short candidates can be tried before finding one. Thus candidate attempts have no generic lower bound equal to solution word length. Efficiency must name its charged operations, search distribution, macro definitions and stored records. The bounded-basis counterexample makes these costs distinct within a complete reversible machine.
 
 ## §5. Boundaries
 

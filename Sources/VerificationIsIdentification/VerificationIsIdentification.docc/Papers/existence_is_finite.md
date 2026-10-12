@@ -12,46 +12,19 @@
 
 **EF4 (The Swift floor has two roles).** Mathematical tree syntax distinguishes a leaf from every constructed pair. The Swift `Null` protocol instead certifies equality of two associated types. Many nominal types can conform to it without being `Never`. Thus `Null` as an equality witness and the concrete syntax leaf must not be identified. `Checks/ClosedInformation.swift` accepts an equality witness with two `Never` sides and separately rejects its proposed identity with `Never`. The open protocol lattice needs a specified finite constructor interpretation before Theorem 1 applies to it.
 
-**EF5 (A free constructor medium cannot have a finite carrier).** If M has a
-floor and total pairing satisfying EF2, the disjoint constructors give an
-injection `1 + M² → M`. A finite cardinal m would therefore satisfy
-`1 + m² ≤ m`, which fails for every nonnegative integer m. Equivalently,
-start at t₀=⊥ and set t_(n+1)=⟨t_n,⊥⟩. All these elements are distinct:
-an alleged equality can be shortened by constructor injectivity until a
-pair equals the floor. Every t_n is finite, while their carrier is infinite.
-In ordinary set semantics Σ is countably infinite, since finite constructor
-strings enumerate it and this chain supplies infinitely many elements.
+**EF5 (A free constructor medium cannot have a finite carrier).** If M has a floor and total pairing satisfying EF2, the disjoint constructors give an injection `1 + M² → M`. A finite cardinal m would therefore satisfy `1 + m² ≤ m`, which fails for every nonnegative integer m. Equivalently, start at t₀=⊥ and set t_(n+1)=⟨t_n,⊥⟩. All these elements are distinct: an alleged equality can be shortened by constructor injectivity until a pair equals the floor. Every t_n is finite, while their carrier is infinite. In ordinary set semantics Σ is countably infinite, since finite constructor strings enumerate it and this chain supplies infinitely many elements.
 
 Interference Is Substitution IiS17 applies this countability boundary to exact channel descriptions: a fixed-size matrix can contain unrestricted scalar values that no finite constructor string names. A finite symbolic family and an identified member of that family are different records.
 
-**EF6 (A finite search requires a uniform bound).** Let Σ_d contain the
-unlabeled ordered binary trees of height at most d, with leaf height zero.
-Then `|Σ₀|=1` and `|Σ_(d+1)|=1+|Σ_d|²`. The first cardinalities are
-1, 2, 5, 26, 677. Each Σ_d is finite and their union is Σ. Pairing maps
-`Σ_d × Σ_d` into `Σ_(d+1)`, not generally back into Σ_d. A finite search
-may restrict constructor use to keep constructions within its declared bound. It cannot
-retain total free pairing on that same finite carrier.
+**EF6 (A finite search requires a uniform bound).** Let Σ_d contain the unlabeled ordered binary trees of height at most d, with leaf height zero. Then `|Σ₀|=1` and `|Σ_(d+1)|=1+|Σ_d|²`. The first cardinalities are 1, 2, 5, 26, 677. Each Σ_d is finite and their union is Σ. Pairing maps `Σ_d × Σ_d` into `Σ_(d+1)`, not generally back into Σ_d. A finite search may restrict constructor use to keep constructions within its declared bound. It cannot retain total free pairing on that same finite carrier.
 
-The quantifiers matter: `for every t there is a finite height d(t)` does not
-give `one d that bounds every candidate`. A finite target has some height,
-but a search procedure must be supplied a sufficient bound or a separate
-way to obtain one. Reading a finitely presented target may provide it.
-Knowing only that an unknown target is finite does not. Decidable equality
-permits comparing any two supplied trees without making an unrestricted
-enumeration of all trees a terminating negative search.
+The quantifiers matter: `for every t there is a finite height d(t)` does not give `one d that bounds every candidate`. A finite target has some height, but a search procedure must be supplied a sufficient bound or a separate way to obtain one. Reading a finitely presented target may provide it. Knowing only that an unknown target is finite does not. Decidable equality permits comparing any two supplied trees without making an unrestricted enumeration of all trees a terminating negative search.
 
 VC23 separates another pair of quantifiers. For countably many finite-valued addresses with admission specified entirely by finite-address relations, an impossible joint assignment has a finite inconsistent subfamily. Their sizes can still be unbounded across problems. A carrier of finite generated objects need not satisfy that premise: a natural number larger than each stated n exists for every finite list of bounds, while no natural number exceeds all of them. A finite argument using the universal requirement proves impossibility, although no finite list of those individual bounds does. Finite ground evidence and finite generic proof are different resources. The numeral carrier here is fixed to the finite grammar; admitting a new infinite value would change it.
 
 Matter M69 gives a constructive use of this distinction. In its declared balanced graph family, a requested residual bridge with a finite side has a finite cut witness even when the graph is unbounded and other directions remain unresolved. The argument uses finitely many actual incidences for that question, rather than deriving a finite whole from C6. Finite support of a comparison, finite representation of each witness and a uniform bound on all witnesses are different requirements.
 
-**EF7 (Finite levels do not imply a finite tower).** The sequence of levels
-`L_n={t_n}` contains one finite candidate at each level and admits another
-level for every n. Likewise, repeatedly taking a finite power set yields a
-finite next level without producing a last one. Termination follows instead
-if every continued level strictly decreases a natural-number rank supplied
-at the start. A starting rank r allows at most r descents, by induction on r.
-Non-increase alone permits an endless repeated rank. This is the missing
-height premise in Verification Is Identification §5.16.
+**EF7 (Finite levels do not imply a finite tower).** The sequence of levels `L_n={t_n}` contains one finite candidate at each level and admits another level for every n. Likewise, repeatedly taking a finite power set yields a finite next level without producing a last one. Termination follows instead if every continued level strictly decreases a natural-number rank supplied at the start. A starting rank r allows at most r descents, by induction on r. Non-increase alone permits an endless repeated rank. This is the missing height premise in Verification Is Identification §5.16.
 
 **EF8 (Unique decomposition with partial construction).** Let M have a specified floor ⊥ and an ordered constructor p defined on D⊆M×M. Suppose every element has a finite generating tree of admitted applications. Suppose two single-valued readings recover the operands on the constructor range: l(p(a,b))=a and r(p(a,b))=b. Suppose an origin reading distinguishes ⊥ from every constructed output. Then each element of M has exactly one admitted finite constructor tree. Total pairing is not needed for this uniqueness.
 
@@ -259,14 +232,7 @@ the finite binary trees, with ⊥ the leaf and ⟨·,·⟩ the node.
 
 The uniqueness is among media satisfying Definition 1. EF3 shows why an arbitrary finitely generated algebra can instead be a quotient of Σ. A quotient forgets syntactic distinctions according to its evaluation. The physical preservation question is whether the complete whole carries those distinctions elsewhere, as in Permanence Is Resistance M29–M35.
 
-**The least fixpoint.** In the mathematical interpretation, μ means the
-carrier consists of terms built by finitely many constructor applications.
-Every further finite term is already a member of Σ, while an infinite tree
-is not. The structure map `1 + Σ² ≅ Σ` expresses closure under the disjoint
-constructors. EF5 shows that this carrier is infinite despite each member
-being finite. Interpreting the grammar as potential rather than completed
-infinity is a separate ontological position. The initial-algebra theorem
-does not turn the collection of all finite terms into one finite term.
+**The least fixpoint.** In the mathematical interpretation, μ means the carrier consists of terms built by finitely many constructor applications. Every further finite term is already a member of Σ, while an infinite tree is not. The structure map `1 + Σ² ≅ Σ` expresses closure under the disjoint constructors. EF5 shows that this carrier is infinite despite each member being finite. Interpreting the grammar as potential rather than completed infinity is a separate ontological position. The initial-algebra theorem does not turn the collection of all finite terms into one finite term.
 
 **Theorem 2 — Conditional representation.** Every element of a medium satisfying Definition 1 has a unique finite-tree representation. Applying this to every existent additionally requires the ontological thesis and EF2 for the proposed whole.
 
@@ -278,8 +244,7 @@ The mathematical result identifies the specified medium with finite-tree syntax.
 
 *Proof.* Recur on structure: COMPARE(⊥, ⊥) = equal; COMPARE(⟨a,b⟩, ⟨c,d⟩) = equal when COMPARE(a,c) and COMPARE(b,d) are both equal; otherwise unequal. Each call descends into a finite tree under Definition 1's generation premise, so each ends. Induction on the compared trees gives correctness. ∎
 
-Each supplied pair of trees has a terminating comparison. This is a
-decidability result, not a uniform bound on all input sizes or all searches.
+Each supplied pair of trees has a terminating comparison. This is a decidability result, not a uniform bound on all input sizes or all searches.
 
 **Corollary — Verification, and its reach.** Take a finite F ⊆ Σ and a target τ, and let S = { y ∈ F : COMPARE(y, τ) = equal }. Then S is computable, and if |S| = 1, say S = {σ}, then for every y in F the verdict "y passes" and the identity "y is σ" are the same. To verify the lone survivor is to identify it. This is the verification-is-identification result, with its theory on separate ground. The claim applies wherever the finite-tree representation is faithful. A finite syntax for a semantic question does not itself make that question decidable.
 
@@ -289,23 +254,9 @@ decidability result, not a uniform bound on all input sizes or all searches.
 
 Theorem 3 decides structural equality for finite trees. It does not decide every predicate expressible about trees. A Swift conformance checks the constraints actually declared. Open recursive protocols need not enforce finite well-foundedness, as the cycle accepted in `Checks/FiniteBoundary.swift` demonstrates. A green build alone does not discharge the representation and finiteness premises of this paper.
 
-**One whole, different mathematical roles.** A complete current configuration
-ω, its internal components, a carrier K of possible complete configurations,
-and the syntax Σ used to describe them are different objects in the model.
-Describing alternatives does not posit an external reservoir or additional
-actual worlds. Dynamical closure `U:K→K` says that evolution maps K into K.
-It does not require all formal pairings to be physically admissible
-transformations of the current whole. If Ω is modeled as one finite tree,
-its finite set of subtrees cannot also be a medium closed under total free
-pairing, by EF5. If Ω instead names the entire mathematical carrier Σ,
-that carrier is not finite. Neither identification follows just from the
-claim that there is literally nothing outside the whole.
+**One whole, different mathematical roles.** A complete current configuration ω, its internal components, a carrier K of possible complete configurations, and the syntax Σ used to describe them are different objects in the model. Describing alternatives does not posit an external reservoir or additional actual worlds. Dynamical closure `U:K→K` says that evolution maps K into K. It does not require all formal pairings to be physically admissible transformations of the current whole. If Ω is modeled as one finite tree, its finite set of subtrees cannot also be a medium closed under total free pairing, by EF5. If Ω instead names the entire mathematical carrier Σ, that carrier is not finite. Neither identification follows just from the claim that there is literally nothing outside the whole.
 
-The choice is consequential. A fixed finite K with preserved distinctions
-has the recurrence limit of Permanence Is Resistance M33 and Verdict
-VC34. An unbounded family of finite histories can grow without a fixed
-capacity bound. Both have finite configurations at each finite stage,
-but they support different statements about permanent discovery.
+The choice is consequential. A fixed finite K with preserved distinctions has the recurrence limit of Permanence Is Resistance M33 and Verdict VC34. An unbounded family of finite histories can grow without a fixed capacity bound. Both have finite configurations at each finite stage, but they support different statements about permanent discovery.
 
 `SpendSuccessor` supplies a generic step from `Succ<P>` to P. The stopping argument applies to the finite grammar built from `Never` and `Succ`, not to every open `IntegerValued` conformance. The predecessor relation excludes an unchanged budget and a successor step with zero input.
 

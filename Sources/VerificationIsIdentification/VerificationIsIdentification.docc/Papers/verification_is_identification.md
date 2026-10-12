@@ -2,13 +2,7 @@
 
 A finite structure exists. It is not nothing: there is a distinction. Equality on finite trees is decidable by structural recursion. A terminating comparison reads finite data, while a finite candidate space additionally requires a uniform representation bound. If exactly one candidate in that space passes, verification is identification.
 
-The paper studies one loop, 26 properties and five central theorems
-(compilation, safety, identifiability, finite extensional presentation, completeness). Their
-representation, finite-domain, control-flow and memory premises are stated
-separately. The existence of a finite structure alone does not establish an
-append-only cache. The inner pipeline uses finite encodings, fixed features
-and a fixed protocol. Its type constructions express the corresponding
-relations under Law §0′ without a runtime solver.
+The paper studies one loop, 26 properties and five central theorems (compilation, safety, identifiability, finite extensional presentation, completeness). Their representation, finite-domain, control-flow and memory premises are stated separately. The existence of a finite structure alone does not establish an append-only cache. The inner pipeline uses finite encodings, fixed features and a fixed protocol. Its type constructions express the corresponding relations under Law §0′ without a runtime solver.
 
 ## §0. Derivation
 
@@ -29,10 +23,7 @@ relations under Law §0′ without a runtime solver.
 8. S = {y ∈ F : COMPARE(y, target) = EQUAL} is computable. *[from 4 + 7: structural equality is decidable (step 4) + finite space (step 7) = enumerate F and check each.]*
 9. The structure is representable in F. *[from 1 + 7: it is finite (step 1) and F contains all finite structures up to its size (step 7) → it is in F.]* Under an encoding whose test recognizes it, it passes and enters S.
 
-The bound in steps 7–9 belongs to the chosen encoding. A finite target has
-some size, but an executable search needs a sufficient bound it can obtain.
-Finiteness of each possible target does not supply one common bound over
-all targets. Existence Is Finite EF5–EF6 separates these quantifiers.
+The bound in steps 7–9 belongs to the chosen encoding. A finite target has some size, but an executable search needs a sufficient bound it can obtain. Finiteness of each possible target does not supply one common bound over all targets. Existence Is Finite EF5–EF6 separates these quantifiers.
 
 10. |S| is computable. *[from 8: counting a computed finite set.]*
 11. If |S| = 1 and the intended target's encoding y\* belongs to S, a passing representation equals y\*. *[from 9 + 10: y\* ∈ S, |S| = 1, S = {y\*}. Any y passing = y\*.]* Identifying the encoded target does not make its representation literally the physical thing it represents.
@@ -45,12 +36,7 @@ all targets. Existence Is Finite EF5–EF6 separates these quantifiers.
 
 **On encoding.** Under the declared finite-tree representation and a sufficient bound, F contains the target's encoding. Its passing the test is a further premise. A singleton S identifies its one member within the model. Identifying that member with the intended target additionally requires that the target belongs to S. A misspecified candidate family can have one survivor and still exclude the target (CS1–CS3).
 
-**On uniqueness.** Identifying the complete candidate requires |S|=1.
-For a specified question q, a nonempty S needs only |q(S)|=1. The claims about a
-primitive (§2.5) and an equality-classification instruction (§5.21) concern
-the chosen representation and operation vocabulary. They have different
-premises. The former claim that I3 uniquely forces every information axis
-to align is replaced by the specific order-compatibility argument in §5.25.
+**On uniqueness.** Identifying the complete candidate requires |S|=1. For a specified question q, a nonempty S needs only |q(S)|=1. The claims about a primitive (§2.5) and an equality-classification instruction (§5.21) concern the chosen representation and operation vocabulary. They have different premises. The former claim that I3 uniquely forces every information axis to align is replaced by the specific order-compatibility argument in §5.25.
 
 **U1 (A projection fixpoint does not count candidates).** The Swift protocol `Unique: Monotone, Null` entails Left=Right=T and T.Left=T. Its constraints contain no candidate membership relation or counting rule. They do not identify its nominal carrier with Never, and do not constrain T.Right. The existing `EqualSidesWitness` in Checks/ClosedInformation.swift also conforms to Unique while remaining a different type from Never. The generic `UniqueWithResidual<A>` in the same checks satisfies the relation while retaining arbitrary A at its common side's Right address. Its recursive nominal side is not a finite tree of EiF's constructor grammar. These examples establish the scope of the open Swift protocol, not a counterexample to a singleton theorem with an explicit set interpretation.
 
@@ -104,14 +90,7 @@ The same distinction applies to behavior. A relation R(x,y) constrains two joint
 
 IiS25 supplies a finite physical-model instance: nine specified zero-error output-ray constraints and one success probability determine the complete successful quantum operation. Internal implementations and failure outputs can still differ. Those constraints also forbid success above one half for the stated balanced program. Thus an exact answer and an execution limit follow from the same contacts. The calibrated preparation and common quantum map remain premises. IiS26 then shows why the one-use success number alone cannot replace the program's relations when asking about a future joint use.
 
-The verification question is whether a candidate passes. The identification
-question is which candidate it is. When exactly one candidate passes, the two
-predicates agree. Finite enumeration and a decidable fixed test make this
-collapse computable. An append-only comparison cache can avoid repeated work,
-but is not necessary for that result (GC4). Changing the verifier or candidate
-space changes the stated problem. Removing a cache alone need not change its
-answer or decidability. Order independence applies to a traversal with fixed
-candidates, tests and the required coverage, not to arbitrary interventions.
+The verification question is whether a candidate passes. The identification question is which candidate it is. When exactly one candidate passes, the two predicates agree. Finite enumeration and a decidable fixed test make this collapse computable. An append-only comparison cache can avoid repeated work, but is not necessary for that result (GC4). Changing the verifier or candidate space changes the stated problem. Removing a cache alone need not change its answer or decidability. Order independence applies to a traversal with fixed candidates, tests and the required coverage, not to arbitrary interventions.
 
 ## §1. The Loop
 
@@ -123,14 +102,7 @@ AGENT ──> ENCODING ──> VERIFY ──> PASS: solution identified (Theorem
   └── REJECT(where, why) ──┘
 ```
 
-The agent proposes, and the system certifies relative to the supplied encoding.
-Theorem 2 gives correctness under R4 and PASS with the stated algorithm and
-representation. An encoding must make the intended task representable and
-its check adequate. Theorem 4 constructs an identifying presentation from a
-complete finite function graph; it does not acquire that graph from an unknown
-source or supply its execution in every program grammar. Retaining a
-comparison cache additionally requires its update law (GC2) and a compatible
-reading of stored records (GC3).
+The agent proposes, and the system certifies relative to the supplied encoding. Theorem 2 gives correctness under R4 and PASS with the stated algorithm and representation. An encoding must make the intended task representable and its check adequate. Theorem 4 constructs an identifying presentation from a complete finite function graph; it does not acquire that graph from an unknown source or supply its execution in every program grammar. Retaining a comparison cache additionally requires its update law (GC2) and a compatible reading of stored records (GC3).
 
 1. **AGENT** provides an encoding: how to represent the task as finite binary trees. Finite F, decidable verification and adequacy for the intended task remain required grounds. Providing the encoding alone does not establish those grounds. The inner system certifies under them; §§1a–1b state the additional obligation on the agent's transformation.
 2. **SYSTEM** runs the inner pipeline (§2–§4): encode → extract → compile → execute.
@@ -155,16 +127,9 @@ Sections §2–§5 describe the inner half: the author defines the building bloc
 
 ## §1a. Working with content before identifying it
 
-Unknown content can already participate in a constructed relation. An action
-can use that relation without first identifying its contents. A relation
-written about a proposed source and a relation supplied by that source are
-different grounds. The first supports a conditional construction. Applying it
-to the second requires the corresponding source relation, not a repeated name
-or a successful example. The source, construction and reader may all be parts
-of one system; this does not remove their application obligations.
+Unknown content can already participate in a constructed relation. An action can use that relation without first identifying its contents. A relation written about a proposed source and a relation supplied by that source are different grounds. The first supports a conditional construction. Applying it to the second requires the corresponding source relation, not a repeated name or a successful example. The source, construction and reader may all be parts of one system; this does not remove their application obligations.
 
-**U3 (structural transport needs no leaf identification).** Fix finite product
-shapes built from opaque sorts. Admit precisely these typed operations:
+**U3 (structural transport needs no leaf identification).** Fix finite product shapes built from opaque sorts. Admit precisely these typed operations:
 
 ```
 id_T : T → T
@@ -173,36 +138,19 @@ left : T × U → T                 right : T × U → U
 Q ∘ P : T → V                   when P : T → U and Q : U → V
 ```
 
-There are no leaf constants, leaf tests or other primitive operations in this
-fragment. Every finite operation P:T→U determines a sort-preserving map from
-the leaf occurrences of U to those of T. Each output leaf is the corresponding
-input leaf under every interpretation of the opaque sorts.
+There are no leaf constants, leaf tests or other primitive operations in this fragment. Every finite operation P:T→U determines a sort-preserving map from the leaf occurrences of U to those of T. Each output leaf is the corresponding input leaf under every interpretation of the opaque sorts.
 
-*Proof.* Identity retains each address. A projection prefixes its output
-addresses with the selected input side. Pairing combines its two child address
-maps on the disjoint output branches. Composition composes the address maps.
-Induction on the finite construction proves the claim. In particular, for any
-family h of maps between interpretations of the opaque sorts,
+*Proof.* Identity retains each address. A projection prefixes its output addresses with the selected input side. Pairing combines its two child address maps on the disjoint output branches. Composition composes the address maps. Induction on the finite construction proves the claim. In particular, for any family h of maps between interpretations of the opaque sorts,
 
 ```
 P_new ∘ h_T = h_U ∘ P_old.
 ```
 
-Both sides select the same input occurrence and apply the same map to its
-content. No comparison of the contents enters the construction. QED
+Both sides select the same input occurrence and apply the same map to its content. No comparison of the contents enters the construction. QED
 
-This supplies the interpretation law assumed in Matter M65 for this specified
-grammar. M65 classifies the resulting uniform operations under additional
-recovery requirements. U3 does not classify every operation on unknown content:
-additional supplied content relations can support other actions. A symbolic
-pairing can select one input twice, and a projection can omit inputs. Their
-logical meaning supplies no physical copying, erasure or complete-source
-recovery. Nor does the address theorem certify execution time or all possible
-observations of an implementation.
+This supplies the interpretation law assumed in Matter M65 for this specified grammar. M65 classifies the resulting uniform operations under additional recovery requirements. U3 does not classify every operation on unknown content: additional supplied content relations can support other actions. A symbolic pairing can select one input twice, and a projection can omit inputs. Their logical meaning supplies no physical copying, erasure or complete-source recovery. Nor does the address theorem certify execution time or all possible observations of an implementation.
 
-The existing `EqualityContactCut<X>` gives a stronger example than routing
-alone. All four forms belong to the supplied X=((L1,L2),(R1,R2)). Its premises
-are the three addressed relations
+The existing `EqualityContactCut<X>` gives a stronger example than routing alone. All four forms belong to the supplied X=((L1,L2),(R1,R2)). Its premises are the three addressed relations
 
 ```
 L1.Right = L2.Left
@@ -210,83 +158,27 @@ R1.Right = R2.Left
 L1.Right = R2.Left.
 ```
 
-The complementary relation R1.Right=L2.Left follows by symmetry and
-transitivity. The constructor computes the two complementary recombinations
-from X's fields; it does not ask the caller to provide that fourth equality.
-No field's content is identified. The result derives a new usable relation
-among still-unknown fields. The three source equalities remain its premises;
-their physical establishment is not derived by this constructor. This example
-uses equality contacts specifically, rather than treating every admission
-relation as equality (LQ13–LQ16).
+The complementary relation R1.Right=L2.Left follows by symmetry and transitivity. The constructor computes the two complementary recombinations from X's fields; it does not ask the caller to provide that fourth equality. No field's content is identified. The result derives a new usable relation among still-unknown fields. The three source equalities remain its premises; their physical establishment is not derived by this constructor. This example uses equality contacts specifically, rather than treating every admission relation as equality (LQ13–LQ16).
 
-**Applying a conditional result requires its argument.** Law's derivation
-witness already requires a generic constructor whose caller supplies only the
-premises and whose body supplies the conclusion. For a precise minimal proof
-fragment, take atomic propositions, product and function types, and terms
-generated only by typed variables, pairing, projections, abstraction and
-application. Typing uses the corresponding introduction and elimination rules;
-there are no primitive inhabitants of atomic propositions. Named definitions
-must expand to terms in this grammar.
+**Applying a conditional result requires its argument.** Law's derivation witness already requires a generic constructor whose caller supplies only the premises and whose body supplies the conclusion. For a precise minimal proof fragment, take atomic propositions, product and function types, and terms generated only by typed variables, pairing, projections, abstraction and application. Typing uses the corresponding introduction and elimination rules; there are no primitive inhabitants of atomic propositions. Named definitions must expand to terms in this grammar.
 
-If Γ,b:B ⊢ t:Q, abstraction gives Γ ⊢ (λb.t):B→Q. Applying this construction
-requires Γ ⊢ u:B. Substitution then gives Γ ⊢ t[u/b]:Q. Substitution preserves
-typing by induction on t: the variable case substitutes the supplied argument
-or retains another variable; pairing, projection and application inherit the
-induction hypotheses; abstraction first renames its bound variable to avoid
-capture. Naming or packaging λb.t creates no argument of type B. This is a
-property of the stated proof grammar. Q may also have an independent proof
-which does not use B; such a proof need not retain B.
+If Γ,b:B ⊢ t:Q, abstraction gives Γ ⊢ (λb.t):B→Q. Applying this construction requires Γ ⊢ u:B. Substitution then gives Γ ⊢ t[u/b]:Q. Substitution preserves typing by induction on t: the variable case substitutes the supplied argument or retains another variable; pairing, projection and application inherit the induction hypotheses; abstraction first renames its bound variable to avoid capture. Naming or packaging λb.t creates no argument of type B. This is a property of the stated proof grammar. Q may also have an independent proof which does not use B; such a proof need not retain B.
 
-Atomic propositions can address the source relations needed by a task. Their
-meaning and binding to that source remain further obligations. Adding a free
-constructor for a claimed source fact, or treating an unchecked declaration as
-its proof, would extend this grammar and invalidate the claimed exclusion.
-This fragment specifies a restriction on proof construction, not a theorem
-that arbitrary Swift conformances or the complete current VI pipeline enforce
-it. It also does not make a syntactic source address into a physical witness.
+Atomic propositions can address the source relations needed by a task. Their meaning and binding to that source remain further obligations. Adding a free constructor for a claimed source fact, or treating an unchecked declaration as its proof, would extend this grammar and invalidate the claimed exclusion. This fragment specifies a restriction on proof construction, not a theorem that arbitrary Swift conformances or the complete current VI pipeline enforce it. It also does not make a syntactic source address into a physical witness.
 
-**What must enter the outer loop.** A proposed representation change must carry
-its construction and the still-required grounds with it. If an encoding makes
-the requested conclusion follow only under B, the result is a construction
-requiring B. Renaming that result, compiling it, or passing its inner check
-must not turn it into an established conclusion about the source. This is the
-same application obligation as for the generic witnesses, now imposed on the
-agent's own modeling step. CS3 already exhibits the error when the actual law
-is outside the assumed family.
+**What must enter the outer loop.** A proposed representation change must carry its construction and the still-required grounds with it. If an encoding makes the requested conclusion follow only under B, the result is a construction requiring B. Renaming that result, compiling it, or passing its inner check must not turn it into an established conclusion about the source. This is the same application obligation as for the generic witnesses, now imposed on the agent's own modeling step. CS3 already exhibits the error when the actual law is outside the assumed family.
 
-For an action on unknown content, present one admissible program P and derive
-its required effect for every case compatible with the retained grounds.
-Separate programs which would work after learning each hidden case do not
-supply that P. A bare existence proof for P does not supply an executable
-construction either. U2c's unique answer alone does not provide a way to obtain
-it. One constructed program may branch on permitted actual records; it need
-not be one fixed word.
+For an action on unknown content, present one admissible program P and derive its required effect for every case compatible with the retained grounds. Separate programs which would work after learning each hidden case do not supply that P. A bare existence proof for P does not supply an executable construction either. U2c's unique answer alone does not provide a way to obtain it. One constructed program may branch on permitted actual records; it need not be one fixed word.
 
-In a composition, the next construction must receive the actual residual
-produced by the preceding construction together with its applicable relations.
-The same source name, equal displayed answers or independently possible
-remainders cannot substitute for that joint derivation. Thus retaining an
-unknown need not mean acquiring its value: the composition retains the relation
-which makes the next action applicable. Certifying that an implementation
-acquires no other information additionally needs its complete admitted reading
-interface; U3 alone makes no such claim.
+In a composition, the next construction must receive the actual residual produced by the preceding construction together with its applicable relations. The same source name, equal displayed answers or independently possible remainders cannot substitute for that joint derivation. Thus retaining an unknown need not mean acquiring its value: the composition retains the relation which makes the next action applicable. Certifying that an implementation acquires no other information additionally needs its complete admitted reading interface; U3 alone makes no such claim.
 
-This section connects existing structural witnesses to a proposed requirement
-on the outer loop. It does not report an implementation of that requirement.
-For a research step to resolve an earlier obstacle, it must show which former
-open ground was actually constructed, which requirements remain open, and that
-the requested conclusion still concerns the same source and task. A useful
-conditional theorem can leave the obstacle open without being invalid.
+This section connects existing structural witnesses to a proposed requirement on the outer loop. It does not report an implementation of that requirement. For a research step to resolve an earlier obstacle, it must show which former open ground was actually constructed, which requirements remain open, and that the requested conclusion still concerns the same source and task. A useful conditional theorem can leave the obstacle open without being invalid.
 
 ## §1b. Apply VI to the modeling step itself
 
-The agent's choice of representation is another proposed transformation. Its
-result must remain connected to the source and question it claims to serve.
-The meta-level applies Law's existing derivation-witness requirement to that
-transformation. It supplies no additional authority to the agent or judge.
+The agent's choice of representation is another proposed transformation. Its result must remain connected to the source and question it claims to serve. The meta-level applies Law's existing derivation-witness requirement to that transformation. It supplies no additional authority to the agent or judge.
 
-The following distinctions concern what a construction does. They are not
-trust labels attached to its output, and one construction may combine them.
+The following distinctions concern what a construction does. They are not trust labels attached to its output, and one construction may combine them.
 
 | Move | Required connection | Scope of the result |
 | --- | --- | --- |
@@ -295,15 +187,9 @@ trust labels attached to its output, and one construction may combine them.
 | Act on the source | The actual source–residual relation establishes the next premises. | The result can support the declared continuation. |
 | Revise the requirement | The new requirement is connected to its source of revision; any retained obligations are transported. | The new task is stated. Fulfillment of the old task needs its own derivation. |
 
-**U4 (a sufficient rule for transporting an addressed claim).** Let X and Y
-be two declared description domains, with a relation T⊆X×Y. They need not
-describe every distinction of the physical whole. Let B(x) and B′(y) be the
-grounds of the two descriptions, Q(x) the original claim, and Q′(y) the claim
-proved in the second description. Keep these meanings fixed throughout the
-following derivations:
+**U4 (a sufficient rule for transporting an addressed claim).** Let X and Y be two declared description domains, with a relation T⊆X×Y. They need not describe every distinction of the physical whole. Let B(x) and B′(y) be the grounds of the two descriptions, Q(x) the original claim, and Q′(y) the claim proved in the second description. Keep these meanings fixed throughout the following derivations:
 
-All free variables in the premises below are universally quantified over
-their declared domains.
+All free variables in the premises below are universally quantified over their declared domains.
 
 ```
 B(x)                         ⇒ ∃y T(x,y)       (coverage)
@@ -314,200 +200,71 @@ B(x) ∧ T(x,y) ∧ Q′(y)        ⇒ Q(x)           (return to the original cl
 
 Together these give B(x)⇒Q(x).
 
-*Proof.* Assume B(x). Coverage gives a related y. Premise transfer establishes
-B′(y), the inner proof gives Q′(y), and the return derivation gives Q(x).
-The final claim does not depend on which such y was used, so existential
-elimination discharges that witness. Uniqueness of x or y is not required.
-To apply the result at a particular source, its B(x) is still required. QED
+*Proof.* Assume B(x). Coverage gives a related y. Premise transfer establishes B′(y), the inner proof gives Q′(y), and the return derivation gives Q(x). The final claim does not depend on which such y was used, so existential elimination discharges that witness. Uniqueness of x or y is not required. To apply the result at a particular source, its B(x) is still required. QED
 
-Coverage prevents obtaining a source claim solely from universal implications
-over an empty transfer fiber. This is a sufficient rule for the presented
-route, not a necessary form of every proof of Q. A separate derivation may
-avoid this route or discharge some of its grounds.
+Coverage prevents obtaining a source claim solely from universal implications over an empty transfer fiber. This is a sufficient rule for the presented route, not a necessary form of every proof of Q. A separate derivation may avoid this route or discharge some of its grounds.
 
-A logical existence proof can suffice for this conclusion without a procedure
-which obtains y. To claim an executable translation, also supply that
-procedure or a justified witness extraction. At the constructive level, a
-constructor taking x and its B-ground and returning y together with T(x,y)
-can be composed with the three subsequent witnesses. A formal constructor
-does not by itself establish the operations or source relation of a physical
-implementation. U3 separately provides a content-independent fragment; U4
-alone does not certify that a particular translator acquires no hidden content.
+A logical existence proof can suffice for this conclusion without a procedure which obtains y. To claim an executable translation, also supply that procedure or a justified witness extraction. At the constructive level, a constructor taking x and its B-ground and returning y together with T(x,y) can be composed with the three subsequent witnesses. A formal constructor does not by itself establish the operations or source relation of a physical implementation. U3 separately provides a content-independent fragment; U4 alone does not certify that a particular translator acquires no hidden content.
 
-**Composition retains the intermediate occurrence.** Two transfers compose
-through T₀₁(x,y) and T₁₂(y,z) with the same intermediate witness y. The second
-construction must apply to the actual output of the first, on the scope for
-which continued execution is claimed. Separate nonempty relations do not
-supply this. For distinct p,q, T₀₁={(a,p)} and T₁₂={(q,b)} have no composite
-witness at all. Equal displayed readings of p and q would not identify them.
-All four roles can be internal to one whole; the mismatch remains.
+**Composition retains the intermediate occurrence.** Two transfers compose through T₀₁(x,y) and T₁₂(y,z) with the same intermediate witness y. The second construction must apply to the actual output of the first, on the scope for which continued execution is claimed. Separate nonempty relations do not supply this. For distinct p,q, T₀₁={(a,p)} and T₁₂={(q,b)} have no composite witness at all. Equal displayed readings of p and q would not identify them. All four roles can be internal to one whole; the mismatch remains.
 
-**A whole-source construction can change the local representation without
-identifying its contents.** In the canonical pair fragment of §1a, take the
-source ((a,b),c). Its old local pair is (a,b), and the required reading selects
-a. The permutation ((a,b),c)↦((c,a),b) retains each field once and is reversed
-by ((c,a),b)↦((a,b),c). Selecting the right field of the new local pair (c,a)
-returns the original a. This equality is derived from the constructor;
-it is not another constraint requested on a,b,c.
+**A whole-source construction can change the local representation without identifying its contents.** In the canonical pair fragment of §1a, take the source ((a,b),c). Its old local pair is (a,b), and the required reading selects a. The permutation ((a,b),c)↦((c,a),b) retains each field once and is reversed by ((c,a),b)↦((a,b),c). Selecting the right field of the new local pair (c,a) returns the original a. This equality is derived from the constructor; it is not another constraint requested on a,b,c.
 
-When b and c can vary independently while a is held fixed, with at least two
-possibilities for each, neither local pair determines the other: varying c
-preserves (a,b), and varying b preserves (c,a). Thus the preserved reading
-needs no invertible translation
-between these local views. Its translation uses the actual whole, including
-the participating context. A later request for b needs its retained address
-in the residual; the new pair alone does not answer it. This is a structural
-application of U3 and U4, not two physical measurements or a derivation of
-why the source should prefer to preserve a. Additional admission restrictions
-on an implementation must permit the proposed permutation.
+When b and c can vary independently while a is held fixed, with at least two possibilities for each, neither local pair determines the other: varying c preserves (a,b), and varying b preserves (c,a). Thus the preserved reading needs no invertible translation between these local views. Its translation uses the actual whole, including the participating context. A later request for b needs its retained address in the residual; the new pair alone does not answer it. This is a structural application of U3 and U4, not two physical measurements or a derivation of why the source should prefer to preserve a. Additional admission restrictions on an implementation must permit the proposed permutation.
 
-**The strength of the transported question must be retained.** U4 transports
-the specified claim in one direction. Calling two descriptions equivalent
-requires the corresponding stronger result. For a binary reading, both
-answers must transport, or an appropriate equivalence must be derived.
-Operational refusal, unavailable action, divergence and unresolved knowledge
-are not automatically logical negation. Include them in the relation when the
-promised continuation depends on them (VC46–VC47).
+**The strength of the transported question must be retained.** U4 transports the specified claim in one direction. Calling two descriptions equivalent requires the corresponding stronger result. For a binary reading, both answers must transport, or an appropriate equivalence must be derived. Operational refusal, unavailable action, divergence and unresolved knowledge are not automatically logical negation. Include them in the relation when the promised continuation depends on them (VC46–VC47).
 
-**The metarule has the same obligation as its uses.** The displayed proof
-establishes a conditional consequence from its four premises under the stated
-inference rules. It does not derive their applicability to an actual source,
-the adequacy of an arbitrary encoding, or soundness of the entire executing
-judge. A name for T or a `true` field cannot replace a derivation of its
-required relations. In the closed fragment of §1a, an unapplied construction
-requiring B remains a construction requiring B. Giving it another name does
-not supply its argument.
+**The metarule has the same obligation as its uses.** The displayed proof establishes a conditional consequence from its four premises under the stated inference rules. It does not derive their applicability to an actual source, the adequacy of an arbitrary encoding, or soundness of the entire executing judge. A name for T or a `true` field cannot replace a derivation of its required relations. In the closed fragment of §1a, an unapplied construction requiring B remains a construction requiring B. Giving it another name does not supply its argument.
 
-This rule locates several already established checks. `EqualityContactCut`
-derives the complementary contact from the same source fields (U3's example).
-CS3 rejects importing a singleton answer from a family that excludes the
-actual source. Liquid LQ8a distinguishes agreement with a changed target from
-an answer about the original one. Liquid §6h keeps a condition extracted from
-a supplied relation separate from the origin of that relation or a motive to
-maintain it. None of these checks is replaced by a general label of validity.
+This rule locates several already established checks. `EqualityContactCut` derives the complementary contact from the same source fields (U3's example). CS3 rejects importing a singleton answer from a family that excludes the actual source. Liquid LQ8a distinguishes agreement with a changed target from an answer about the original one. Liquid §6h keeps a condition extracted from a supplied relation separate from the origin of that relation or a motive to maintain it. None of these checks is replaced by a general label of validity.
 
-For each claimed advance, identify the former open ground actually derived
-or constructed, the requirements still open, and the relation keeping the
-result attached to the requested source and question. A conditional theorem
-can be useful without closing its application. This section strengthens the
-specification of the outer loop; automatic enforcement over all modeling and
-physical application is not an implemented guarantee of the present system.
+For each claimed advance, identify the former open ground actually derived or constructed, the requirements still open, and the relation keeping the result attached to the requested source and question. A conditional theorem can be useful without closing its application. This section strengthens the specification of the outer loop; automatic enforcement over all modeling and physical application is not an implemented guarantee of the present system.
 
 ## §1c. Construct a continuation from the source relation
 
-U3 normalizes a structural operation to its source addresses. In this fragment,
-that normalization can construct a continuation, rather than only check a
-continuation chosen in advance. The fragment admits unknown, even infinite,
-leaf carriers. Its finite objects are product shapes, operation expressions
-and addressed source relations, not a table of possible payload states.
+U3 normalizes a structural operation to its source addresses. In this fragment, that normalization can construct a continuation, rather than only check a continuation chosen in advance. The fragment admits unknown, even infinite, leaf carriers. Its finite objects are product shapes, operation expressions and addressed source relations, not a table of possible payload states.
 
-Fix a finite source shape T and a finite set E of equalities between same-sort
-leaf occurrences of T. Write i ~E j for the equivalence relation generated by
-E. For each interpretation of the opaque sorts by nonempty sets, X_E consists
-of **all** fillings of T satisfying E. Universality below ranges over these
-interpretations and fillings. A narrower preparation can have further useful
-relations; none is silently imported into X_E. Equal addresses, source-supplied
-equalities and an accidental equality of observed values are distinct grounds.
+Fix a finite source shape T and a finite set E of equalities between same-sort leaf occurrences of T. Write i ~E j for the equivalence relation generated by E. For each interpretation of the opaque sorts by nonempty sets, X_E consists of **all** fillings of T satisfying E. Universality below ranges over these interpretations and fillings. A narrower preparation can have further useful relations; none is silently imported into X_E. Equal addresses, source-supplied equalities and an accidental equality of observed values are distinct grounds.
 
-An independently specified question need not come from an external observer.
-It can select a target already carried by this same source. Independence here
-means that the required relation is not chosen to match the candidate's
-produced output. The origin of that internal target is a separate question;
-its address and its relation to the required result are part of this task.
+An independently specified question need not come from an external observer. It can select a target already carried by this same source. Independence here means that the required relation is not chosen to match the candidate's produced output. The origin of that internal target is a separate question; its address and its relation to the required result are part of this task.
 
-**U5 (constructive structural continuation).** Let P:T→U and Q:T→V be U3
-operations with source-address maps p and q. There is a structural R:U→V
-satisfying R(P(x))=Q(x) on X_E under every interpretation if and only if
+**U5 (constructive structural continuation).** Let P:T→U and Q:T→V be U3 operations with source-address maps p and q. There is a structural R:U→V satisfying R(P(x))=Q(x) on X_E under every interpretation if and only if
 
 ```
 for every leaf v of V, some leaf u of U satisfies p(u) ~E q(v).
 ```
 
-*Construction.* For each requested v, choose such a u and an equality path
-from p(u) to q(v) using E. Project u from U and assemble the resulting leaves
-in V's shape. This is a term of U3. Each output equality follows from the
-addressed source path; the caller supplies neither Q(x)'s value nor the final
-R(P(x))=Q(x) equation. Duplicate suitable addresses can yield different terms
-with the same effect on the actual image P(X_E).
+*Construction.* For each requested v, choose such a u and an equality path from p(u) to q(v) using E. Project u from U and assemble the resulting leaves in V's shape. This is a term of U3. Each output equality follows from the addressed source path; the caller supplies neither Q(x)'s value nor the final R(P(x))=Q(x) equation. Duplicate suitable addresses can yield different terms with the same effect on the actual image P(X_E).
 
-*Necessity.* If a requested class is absent from p, interpret its sort by a
-set with two distinct elements. Choose two fillings constant on every E-class,
-agreeing on all classes except the absent one. They have the same P-image
-and different Q-images. No function of that image alone can return both.
-This rules out even a nonstructural decoder in that interpretation, so in
-particular rules out a universal structural R. It does not rule out a decoder
-on a narrower source domain or for a special singleton carrier. QED
+*Necessity.* If a requested class is absent from p, interpret its sort by a set with two distinct elements. Choose two fillings constant on every E-class, agreeing on all classes except the absent one. They have the same P-image and different Q-images. No function of that image alone can return both. This rules out even a nonstructural decoder in that interpretation, so in particular rules out a universal structural R. It does not rule out a decoder on a narrower source domain or for a special singleton carrier. QED
 
-The construction uses equivalence closure and projection paths, with no
-payload comparison and no enumeration of candidate programs. A certificate
-contains the selected output addresses and their E-paths. Checking it only
-checks those paths and the assembled term. For a refusal, a sort-respecting partition of the
-source leaves that contains every E-edge and separates the missing requested
-leaf from every same-sort P-leaf certifies the obstruction. Such a partition
-can be checked without repeating the construction's search for a decoder.
+The construction uses equivalence closure and projection paths, with no payload comparison and no enumeration of candidate programs. A certificate contains the selected output addresses and their E-paths. Checking it only checks those paths and the assembled term. For a refusal, a sort-respecting partition of the source leaves that contains every E-edge and separates the missing requested leaf from every same-sort P-leaf certifies the obstruction. Such a partition can be checked without repeating the construction's search for a decoder.
 
-**U6 (the least residual is relative to what remains).** Let M select one
-source leaf from every Q-required E-class not represented in P. Then Q factors
-structurally through the same-source joint view ⟨P,M⟩. Every other adequate
-structural residual D contains each missing class, and M factors through D.
-Consequently the number of missing classes is the exact minimum number of
-additional leaves in this grammar. It is not a lower bound in bits or physical
-memory units. If no class is missing, P alone suffices: no new opaque constant
-or payload is introduced to represent the absence of an extra residual.
+**U6 (the least residual is relative to what remains).** Let M select one source leaf from every Q-required E-class not represented in P. Then Q factors structurally through the same-source joint view ⟨P,M⟩. Every other adequate structural residual D contains each missing class, and M factors through D. Consequently the number of missing classes is the exact minimum number of additional leaves in this grammar. It is not a lower bound in bits or physical memory units. If no class is missing, P alone suffices: no new opaque constant or payload is introduced to represent the absence of an extra residual.
 
-There is a stronger conclusion with a different meaning of minimality. Allow
-arbitrary deterministic residual views D and decoders, on a fixed source
-interpretation. Define
+There is a stronger conclusion with a different meaning of minimality. Allow arbitrary deterministic residual views D and decoders, on a fixed source interpretation. Define
 
 ```
 D₁ ≼_P D₂  iff  D₁(x) = f(P(x),D₂(x)) on X_E for some f.
 ```
 
-The function need only be defined on the joint image actually reached. This
-is a preorder of **relative** information; it is not a comparison of D₁ and
-D₂ in isolation. M is least among residuals from which Q can be recovered
-jointly with P. Equivalently, ⟨P,M⟩ and ⟨P,Q⟩ factor through each other, and
-⟨P,Q⟩ factors through every adequate ⟨P,D⟩.
+The function need only be defined on the joint image actually reached. This is a preorder of **relative** information; it is not a comparison of D₁ and D₂ in isolation. M is least among residuals from which Q can be recovered jointly with P. Equivalently, ⟨P,M⟩ and ⟨P,Q⟩ factor through each other, and ⟨P,Q⟩ factors through every adequate ⟨P,D⟩.
 
-*Proof.* U5 constructs Q from ⟨P,M⟩. Each selected leaf of M is also a leaf
-of Q up to an E-path, so M=m∘Q. If Q=d∘⟨P,D⟩, then
-M=m∘d∘⟨P,D⟩. Retaining P on both sides gives the joint factorizations.
-For structural D, U5 forces each missing class to occur in D, giving the
-stronger standalone structural factorization and exact leaf bound. QED
+*Proof.* U5 constructs Q from ⟨P,M⟩. Each selected leaf of M is also a leaf of Q up to an E-path, so M=m∘Q. If Q=d∘⟨P,D⟩, then M=m∘d∘⟨P,D⟩. Retaining P on both sides gives the joint factorizations. For structural D, U5 forces each missing class to occur in D, giving the stronger standalone structural factorization and exact leaf bound. QED
 
-A least adequate residual in the **absolute** information order need not
-exist. On all bit pairs (a,b), retain P=a and request Q=b. Both D₁=b and
-D₂=a XOR b are adequate jointly with a. If C factors through each separately,
-C=f(b)=g(a XOR b); the two arguments vary independently, so C is constant.
-Then (a,C) cannot recover b. Hence there is no least adequate standalone
-residual in this example, although there is a least joint information class.
-XOR here supplies a counterexample in a larger, fixed bit interpretation;
-it is not an added operation of U3's opaque grammar.
+A least adequate residual in the **absolute** information order need not exist. On all bit pairs (a,b), retain P=a and request Q=b. Both D₁=b and D₂=a XOR b are adequate jointly with a. If C factors through each separately, C=f(b)=g(a XOR b); the two arguments vary independently, so C is constant. Then (a,C) cannot recover b. Hence there is no least adequate standalone residual in this example, although there is a least joint information class. XOR here supplies a counterexample in a larger, fixed bit interpretation; it is not an added operation of U3's opaque grammar.
 
-Every joint view above uses the same x. Independently sampled marginals do
-not supply it. Constructing M also requires its source fields to remain
-available, or to be retained as part of P's actual action. U6 cannot restore
-an omitted independent field from P alone. The logical product constructor
-does not establish physical copying or an acquisition interface.
+Every joint view above uses the same x. Independently sampled marginals do not supply it. Constructing M also requires its source fields to remain available, or to be retained as part of P's actual action. U6 cannot restore an omitted independent field from P alone. The logical product constructor does not establish physical copying or an acquisition interface.
 
-**U7 (finite construction for all permitted structural continuations).**
-Let G be a finite family of U3 endomorphisms g:T→T. First require every g to
-preserve X_E. With source-address map σ_g, this is equivalent, universally
-over the declared interpretations, to
+**U7 (finite construction for all permitted structural continuations).** Let G be a finite family of U3 endomorphisms g:T→T. First require every g to preserve X_E. With source-address map σ_g, this is equivalent, universally over the declared interpretations, to
 
 ```
 i ~E j  implies  σ_g(i) ~E σ_g(j).
 ```
 
-It suffices to check the generating E-edges. Only then does g induce the
-class map γ_g([i])=[σ_g(i)]. Notice the direction:
-γ_(g∘h)=γ_h∘γ_g. These maps pull questions back to their source fields.
+It suffices to check the generating E-edges. Only then does g induce the class map γ_g([i])=[σ_g(i)]. Notice the direction: γ_(g∘h)=γ_h∘γ_g. These maps pull questions back to their source fields.
 
-Start with the E-classes selected by Q. Close this set S under all γ_g.
-This terminates after at most the number of source classes have been added.
-Keep, for each added class, a witness consisting of a finite word w in G and
-a leaf v of Q whose pullback selects that class. The empty word is included.
-Let V_S select one representative of every class in the resulting S.
+Start with the E-classes selected by Q. Close this set S under all γ_g. This terminates after at most the number of source classes have been added. Keep, for each added class, a witness consisting of a finite word w in G and a leaf v of Q whose pullback selects that class. The empty word is included. Let V_S select one representative of every class in the resulting S.
 
 For each supplied g construct its image action by
 
@@ -515,91 +272,35 @@ For each supplied g construct its image action by
 (g_S(z))_c = z_(γ_g(c))         for c in S.
 ```
 
-Projections, pairing and the recorded E-paths derive
-V_S∘g=g_S∘V_S on X_E. Q also factors through V_S. Induction on words now
-supplies every requested Q(w(x)), including the present Q(x), without any
-new access to the omitted source classes.
+Projections, pairing and the recorded E-paths derive V_S∘g=g_S∘V_S on X_E. Q also factors through V_S. Induction on words now supplies every requested Q(w(x)), including the present Q(x), without any new access to the omitted source classes.
 
-This view is least in information among **all** views sufficient for these
-questions, beyond structural selections alone. Indeed, suppose H has
-decoders d_w with d_w(H(x))=Q(w(x)) for every finite word w. For each c in S,
-use its witness (w_c,v_c) and set
+This view is least in information among **all** views sufficient for these questions, beyond structural selections alone. Indeed, suppose H has decoders d_w with d_w(H(x))=Q(w(x)) for every finite word w. For each c in S, use its witness (w_c,v_c) and set
 
 ```
 F(h)_c = projection_(v_c)(d_(w_c)(h)).
 ```
 
-Then F(H(x))=V_S(x). Its domain is the actual H-image; totality on unrelated
-values is not required. Existence of these d_w proves informational
-minimality. An executable F additionally requires the finitely used decoder
-constructions. The closure algorithm itself constructs all image actions and
-the Q-decoder directly in U3. QED
+Then F(H(x))=V_S(x). Its domain is the actual H-image; totality on unrelated values is not required. Existence of these d_w proves informational minimality. An executable F additionally requires the finitely used decoder constructions. The closure algorithm itself constructs all image actions and the Q-decoder directly in U3. QED
 
-The finite certificate comprises the chosen classes, their reachable-word
-witnesses, the closure edges, and their source equality paths. Reachability
-prevents gratuitously retaining unrelated classes; closure prevents silently
-dropping a later question. This is a constructive specialization of VC15's
-operational quotient, not a claim that the general quotient was absent.
-Finite source addresses replace potentially infinite enumeration of payloads.
-Partial actions, refusal and state-dependent availability require additional
-grounds; U7 is stated for total structural actions.
+The finite certificate comprises the chosen classes, their reachable-word witnesses, the closure edges, and their source equality paths. Reachability prevents gratuitously retaining unrelated classes; closure prevents silently dropping a later question. This is a constructive specialization of VC15's operational quotient, not a claim that the general quotient was absent. Finite source addresses replace potentially infinite enumeration of payloads. Partial actions, refusal and state-dependent availability require additional grounds; U7 is stated for total structural actions.
 
-**A fixed question and a transported question have different requirements.**
-For g(a,b,c)=(c,a,b), the fixed first-coordinate question after every power of
-g needs a,b,c. After one g, however, the second-coordinate question returns
-the original a. Following that original field asks a different family of
-questions. The updated reading path must itself be supplied by the actual
-action or another established control relation. It is not a free hidden clock
-or an unrecorded choice of decoder. For a noninvertible action, the original
-field may have no remaining output occurrence at all; U5 detects that case.
+**A fixed question and a transported question have different requirements.** For g(a,b,c)=(c,a,b), the fixed first-coordinate question after every power of g needs a,b,c. After one g, however, the second-coordinate question returns the original a. Following that original field asks a different family of questions. The updated reading path must itself be supplied by the actual action or another established control relation. It is not a free hidden clock or an unrecorded choice of decoder. For a noninvertible action, the original field may have no remaining output occurrence at all; U5 detects that case.
 
-**U8 (a hidden action needs a common induced action).** U7 supplies an image
-action for each supplied g. It does not establish that an unknown choice of g
-can be executed on the retained view without access to that choice. Let H be
-a nonempty family of E-preserving structural actions, and let S be a nonempty
-set of E-classes. Universally over the preceding interpretations, one common
-action k satisfying
+**U8 (a hidden action needs a common induced action).** U7 supplies an image action for each supplied g. It does not establish that an unknown choice of g can be executed on the retained view without access to that choice. Let H be a nonempty family of E-preserving structural actions, and let S be a nonempty set of E-classes. Universally over the preceding interpretations, one common action k satisfying
 
 ```
 V_S(g(x)) = k(V_S(x))          for every g in H and every x in X_E
 ```
 
-exists exactly when every γ_g maps S into S and all restrictions γ_g|S
-coincide. In particular, allowing an arbitrary deterministic k does not
-remove either condition.
+exists exactly when every γ_g maps S into S and all restrictions γ_g|S coincide. In particular, allowing an arbitrary deterministic k does not remove either condition.
 
-*Proof.* Closure gives an input coordinate for every output coordinate.
-Agreement gives the same selection independently of the hidden g, constructing
-k. If closure fails, vary the missing source class while holding V_S fixed.
-If agreement fails, choose one filling that distinguishes the two selected
-classes of the same sort. Applying the two actions to that same filling gives
-different required outputs with the very same input to k. Both contradictions
-use an interpretation with two available values of the relevant sort. A
-singleton interpretation alone would not support these necessities. QED
+*Proof.* Closure gives an input coordinate for every output coordinate. Agreement gives the same selection independently of the hidden g, constructing k. If closure fails, vary the missing source class while holding V_S fixed. If agreement fails, choose one filling that distinguishes the two selected classes of the same sort. Applying the two actions to that same filling gives different required outputs with the very same input to k. Both contradictions use an interpretation with two available values of the relevant sort. A singleton interpretation alone would not support these necessities. QED
 
-Adding more source fields cannot repair the second contradiction: it already
-uses the same complete source x. A source-correlated action requires analysis
-of its actual joint relation instead of the full H×X_E domain used here.
-More generally, on R⊆H×X_E a common decoder exists on the realized V_S-image
-exactly when any two R-admitted cases with equal V_S-inputs have equal required
-V_S-outputs. The source–action dependence must not be replaced by separate
-lists of possible sources and actions.
+Adding more source fields cannot repair the second contradiction: it already uses the same complete source x. A source-correlated action requires analysis of its actual joint relation instead of the full H×X_E domain used here. More generally, on R⊆H×X_E a common decoder exists on the realized V_S-image exactly when any two R-admitted cases with equal V_S-inputs have equal required V_S-outputs. The source–action dependence must not be replaced by separate lists of possible sources and actions.
 
-Established relations between repeated actions can suffice at the end of a
-block even when no common intermediate image action exists. For a nonempty
-family J of permitted finite words, apply U8 to their composite source maps.
-On two independent same-sort fields, a hidden fixed H chosen from identity
-and exchange has no common one-step image action on the full pair. The two
-joint words (identity,identity) and (exchange,exchange) nevertheless both
-induce identity. Independent choices would also permit exchange as the total
-action and would destroy this conclusion. No hidden choice was learned in
-the correlated case. The result concerns the end of that block; questions
-asked at intermediate cuts require their own conditions. An execution
-interface supporting these related repetitions remains necessary: the list
-of words does not itself construct that interface.
+Established relations between repeated actions can suffice at the end of a block even when no common intermediate image action exists. For a nonempty family J of permitted finite words, apply U8 to their composite source maps. On two independent same-sort fields, a hidden fixed H chosen from identity and exchange has no common one-step image action on the full pair. The two joint words (identity,identity) and (exchange,exchange) nevertheless both induce identity. Independent choices would also permit exchange as the total action and would destroy this conclusion. No hidden choice was learned in the correlated case. The result concerns the end of that block; questions asked at intermediate cuts require their own conditions. An execution interface supporting these related repetitions remains necessary: the list of words does not itself construct that interface.
 
-**U9 (derive the changed source relation, instead of assuming it persists).**
-For a structural P:T→U, define E_P on U's same-sort leaves by
+**U9 (derive the changed source relation, instead of assuming it persists).** For a structural P:T→U, define E_P on U's same-sort leaves by
 
 ```
 u ~_(E_P) v  iff  p(u) ~E p(v).
@@ -611,51 +312,15 @@ For every interpretation by nonempty sorts,
 P(X_E) = X_(E_P).
 ```
 
-*Proof.* Every output filling satisfies the displayed relations. Conversely,
-an E_P-valid filling assigns a consistent value to each source E-class
-represented by p. Assign that value to the class, and fill each unrepresented
-source class with any member of its nonempty sort. The resulting E-valid
-source maps to the given output. There are finitely many classes. This is
-an existence argument for the exact image; it does not provide access to an
-unknown omitted field or a physical preparation of the chosen source. QED
+*Proof.* Every output filling satisfies the displayed relations. Conversely, an E_P-valid filling assigns a consistent value to each source E-class represented by p. Assign that value to the class, and fill each unrepresented source class with any member of its nonempty sort. The resulting E-valid source maps to the given output. There are finitely many classes. This is an existence argument for the exact image; it does not provide access to an unknown omitted field or a physical preparation of the chosen source. QED
 
-For (a,b,c) with a=b, the permutation (a,b,c)↦(a,c,b) derives first=third at
-the output. First=second need no longer hold. Thus failure to preserve E
-invalidates reuse of that unchanged ground in U7, not the action itself.
-The next step can instead receive E_P, or a richer joint relation. Applying
-the same construction to ⟨id,P⟩ derives the full source–output graph: the
-source satisfies E and output_u=source_(p(u)). Keeping only E_P generally
-loses this provenance: (a,b)↦a and (a,b)↦b have the same unrestricted one-field
-image, but answer different source questions when the sort has two values.
-Equality of marginal image relations cannot replace the joint graph when
-a continuation refers to the original source. Preserving that relation can
-use the actual selector and sufficient output; it does not require storing
-every original field or the entire graph as extra data.
+For (a,b,c) with a=b, the permutation (a,b,c)↦(a,c,b) derives first=third at the output. First=second need no longer hold. Thus failure to preserve E invalidates reuse of that unchanged ground in U7, not the action itself. The next step can instead receive E_P, or a richer joint relation. Applying the same construction to ⟨id,P⟩ derives the full source–output graph: the source satisfies E and output_u=source_(p(u)). Keeping only E_P generally loses this provenance: (a,b)↦a and (a,b)↦b have the same unrestricted one-field image, but answer different source questions when the sort has two values. Equality of marginal image relations cannot replace the joint graph when a continuation refers to the original source. Preserving that relation can use the actual selector and sufficient output; it does not require storing every original field or the entire graph as extra data.
 
-**A relational promise can be weaker than recovering its fields.** If the
-request is only that output equalities C hold, the exact universal criterion
-for a supplied P is C⊆E_P. Sufficiency follows by the source paths; necessity
-again follows by separating distinct source classes. For a hidden P in a
-given family, with every choice admitted on the full X_E, check this inclusion
-for every admitted P. Their output values
-need not agree. For independent a,b of the same sort, identity and exchanging
-the two pairs of (a,a,b,b) both leave the first pair equal, although it can contain a
-or b. This does not guarantee retention of that pair's original value.
-Applying U7 to all participating fields would strengthen this relation-only
-request and could retain unnecessary information. Its least-view theorem is for the
-specified field-reading questions, not for every relational obligation.
+**A relational promise can be weaker than recovering its fields.** If the request is only that output equalities C hold, the exact universal criterion for a supplied P is C⊆E_P. Sufficiency follows by the source paths; necessity again follows by separating distinct source classes. For a hidden P in a given family, with every choice admitted on the full X_E, check this inclusion for every admitted P. Their output values need not agree. For independent a,b of the same sort, identity and exchanging the two pairs of (a,a,b,b) both leave the first pair equal, although it can contain a or b. This does not guarantee retention of that pair's original value. Applying U7 to all participating fields would strengthen this relation-only request and could retain unnecessary information. Its least-view theorem is for the specified field-reading questions, not for every relational obligation.
 
-**U10 (construct a requested agreement and retain an independent question).**
-The previous rules take P as given. A related construction can choose P
-itself. Fix a target output shape U, required same-sort equalities C on U,
-and the independent structural question Q on the original source T. Require
-the output to satisfy C; additional output equalities are allowed. For each
-sort s, let n_s count the distinct source E-classes selected by Q, and let
-m_s count all classes of sort s in the equivalence closure of C on U,
-including the singleton leaves of that sort.
+**U10 (construct a requested agreement and retain an independent question).** The previous rules take P as given. A related construction can choose P itself. Fix a target output shape U, required same-sort equalities C on U, and the independent structural question Q on the original source T. Require the output to satisfy C; additional output equalities are allowed. For each sort s, let n_s count the distinct source E-classes selected by Q, and let m_s count all classes of sort s in the equivalence closure of C on U, including the singleton leaves of that sort.
 
-If a sort occurs in U but nowhere in T, no U3 operation P:T→U exists. Otherwise
-there are structural P, M and R, uniform over the source interpretations, with
+If a sort occurs in U but nowhere in T, no U3 operation P:T→U exists. Otherwise there are structural P, M and R, uniform over the source interpretations, with
 
 ```
 P(x) satisfies C,              R(P(x),M(x)) = Q(x),
@@ -667,144 +332,47 @@ and the minimum number of residual leaves is
 sum over sorts s of max(n_s − m_s, 0).
 ```
 
-*Construction and bound.* Assign each output C-class one source E-class of
-the same sort. Cover as many different Q-required classes as possible; fill
-remaining output classes from any source class of their sort. Every required
-sort is available by the preceding condition. Put each uncovered Q-class
-once in M and construct R by U5. Conversely, all leaves of any output C-class
-must select a single E-class, or a two-element interpretation would violate
-one of the required equalities. Thus P covers at most m_s requested classes
-of sort s. U5 forces all remaining classes into M, proving the bound. QED
+*Construction and bound.* Assign each output C-class one source E-class of the same sort. Cover as many different Q-required classes as possible; fill remaining output classes from any source class of their sort. Every required sort is available by the preceding condition. Put each uncovered Q-class once in M and construct R by U5. Conversely, all leaves of any output C-class must select a single E-class, or a two-element interpretation would violate one of the required equalities. Thus P covers at most m_s requested classes of sort s. U5 forces all remaining classes into M, proving the bound. QED
 
-For three independent same-sort fields a,b,c, requiring an equal local pair
-while retaining all three original fields gives ((a,a),(b,c)): two residual
-leaves are necessary and sufficient. This uses U3's permission to reuse an
-input occurrence. A permutation alone cannot create a guaranteed equality
-between distinct output occurrences whose distinct source occurrences were
-not already E-related. Neither result is a physical cloning or dissipation
-law. For each chosen P, U6 separately establishes relative information
-minimality. The leaf bound above is not a universal information ordering
-between different choices of P. Fixed output assignments, stricter equality
-patterns, linear-use restrictions or unavailable routes change this task.
-As before, a zero residual means no additional carrier is needed.
+For three independent same-sort fields a,b,c, requiring an equal local pair while retaining all three original fields gives ((a,a),(b,c)): two residual leaves are necessary and sufficient. This uses U3's permission to reuse an input occurrence. A permutation alone cannot create a guaranteed equality between distinct output occurrences whose distinct source occurrences were not already E-related. Neither result is a physical cloning or dissipation law. For each chosen P, U6 separately establishes relative information minimality. The leaf bound above is not a universal information ordering between different choices of P. Fixed output assignments, stricter equality patterns, linear-use restrictions or unavailable routes change this task. As before, a zero residual means no additional carrier is needed.
 
-**U10a (retain the requested source binding, not just present agreement).**
-Preserving Q somewhere in the result does not make every new agreement an
-execution of the original request. With independent source fields (a,b),
-both ((a,a),b) and ((b,b),a) produce an equal local pair and retain the whole
-source. Only the first makes that pair equal to the original a.
+**U10a (retain the requested source binding, not just present agreement).** Preserving Q somewhere in the result does not make every new agreement an execution of the original request. With independent source fields (a,b), both ((a,a),b) and ((b,b),a) produce an equal local pair and retain the whole source. Only the first makes that pair equal to the original a.
 
-The request can therefore additionally prescribe source addresses for some
-output leaves: P(x)_u must equal x_i. These are obligations for the constructed
-P to meet, not assumed facts about its output. Within each output C-class,
-all prescribed addresses must have its sort and belong to the same source
-E-class. This compatibility condition is necessary and sufficient for the
-assignments, provided every output sort is available at the source.
+The request can therefore additionally prescribe source addresses for some output leaves: P(x)_u must equal x_i. These are obligations for the constructed P to meet, not assumed facts about its output. Within each output C-class, all prescribed addresses must have its sort and belong to the same source E-class. This compatibility condition is necessary and sufficient for the assignments, provided every output sort is available at the source.
 
-For each sort s let r_s count the distinct Q-required source classes already
-represented by these fixed output classes, and let u_s count the output
-C-classes of that sort with no prescribed source class. Then the exact
-minimum number of residual leaves is
+For each sort s let r_s count the distinct Q-required source classes already represented by these fixed output classes, and let u_s count the output C-classes of that sort with no prescribed source class. Then the exact minimum number of residual leaves is
 
 ```
 sum over sorts s of max(n_s − r_s − u_s, 0).
 ```
 
-*Proof.* Sort mismatches violate the typing requirement; distinct prescribed
-classes of the same sort are separated by a two-element interpretation.
-Compatible fixed classes supply exactly r_s requested
-classes; each free class can supply at most one more. U5 gives the lower
-bound. Assign free classes to still-unrepresented requested classes, fill
-any remaining free classes from the source, and retain the rest in M. U5
-constructs the decoder, attaining the bound. Repeated fixed classes count
-only once; a fixed class outside Q counts toward neither r_s nor u_s. QED
+*Proof.* Sort mismatches violate the typing requirement; distinct prescribed classes of the same sort are separated by a two-element interpretation. Compatible fixed classes supply exactly r_s requested classes; each free class can supply at most one more. U5 gives the lower bound. Assign free classes to still-unrepresented requested classes, fill any remaining free classes from the source, and retain the rest in M. U5 constructs the decoder, attaining the bound. Repeated fixed classes count only once; a fixed class outside Q counts toward neither r_s nor u_s. QED
 
-In the example, requiring the first output leaf to use the original a binds
-the entire equal output pair to a. The construction ((b,b),a) is then refused
-on the full independent source domain, despite retaining a in its residual.
-The request's origin remains a separate ground. This refinement enforces its
-specified relation to the result; it does not derive a motive to choose it.
+In the example, requiring the first output leaf to use the original a binds the entire equal output pair to a. The construction ((b,b),a) is then refused on the full independent source domain, despite retaining a in its residual. The request's origin remains a separate ground. This refinement enforces its specified relation to the result; it does not derive a motive to choose it.
 
-**U11 (derive a repeat block from the required return).** Suppose a nonempty
-finite H of E-preserving structural endomorphisms is specified by its source
-maps. One unknown h in H is fixed throughout a repeatable episode. Each call
-applies that same deterministic function to the current source; all these
-calls are available. The independently fixed question is Q, and its required
-answer refers to the source before an obligatory first call. Let S₀ be the
-classes selected by Q. We seek a common positive total call count k with
+**U11 (derive a repeat block from the required return).** Suppose a nonempty finite H of E-preserving structural endomorphisms is specified by its source maps. One unknown h in H is fixed throughout a repeatable episode. Each call applies that same deterministic function to the current source; all these calls are available. The independently fixed question is Q, and its required answer refers to the source before an obligatory first call. Let S₀ be the classes selected by Q. We seek a common positive total call count k with
 
 ```
 Q(h^k(x)) = Q(x)              for every h in H and every x in X_E.
 ```
 
-Such a k exists exactly when every c in S₀ lies on a cycle of every γ_h.
-When it exists, its least positive value is the least common multiple of
-those cycle lengths. This constructs a block of k calls, or k−1 further
-calls after the obligatory first one, without identifying h or inspecting
-leaf values during construction.
+Such a k exists exactly when every c in S₀ lies on a cycle of every γ_h. When it exists, its least positive value is the least common multiple of those cycle lengths. This constructs a block of k calls, or k−1 further calls after the obligatory first one, without identifying h or inspecting leaf values during construction.
 
-*Proof.* Universal agreement of the two addressed readings is equivalent to
-γ_h^k(c)=c for each h,c: equal classes suffice by E; distinct classes are
-separated by a two-element interpretation. In a finite functional graph,
-a vertex returns to itself under a positive iterate exactly when it lies
-on a cycle. Its positive return lengths are precisely the multiples of that
-cycle's length. Their common positive lengths are therefore the multiples
-of the stated least common multiple. QED
+*Proof.* Universal agreement of the two addressed readings is equivalent to γ_h^k(c)=c for each h,c: equal classes suffice by E; distinct classes are separated by a two-element interpretation. In a finite functional graph, a vertex returns to itself under a positive iterate exactly when it lies on a cycle. Its positive return lengths are precisely the multiples of that cycle's length. Their common positive lengths are therefore the multiples of the stated least common multiple. QED
 
-The graph is of source classes, not of payload states. A class leading
-into a cycle without lying on it does not qualify. For h(a,b)=(a,a), the current output becomes
-fixed immediately, yet no positive repeat recovers the original question b
-on the full source domain. The question a does return after one call; full
-invertibility of h is not required.
+The graph is of source classes, not of payload states. A class leading into a cycle without lying on it does not qualify. For h(a,b)=(a,a), the current output becomes fixed immediately, yet no positive repeat recovers the original question b on the full source domain. The question a does return after one call; full invertibility of h is not required.
 
-As another example, let the hidden action on (a,b,c) be either (a,c,b) or
-(b,c,a), fixed throughout the block. The first-coordinate question has cycle
-lengths 1 and 3, so three calls return its original answer. Returning all three
-coordinates would instead require six calls, since the first action exchanges
-the other two. The weaker question does not require full-source return.
+As another example, let the hidden action on (a,b,c) be either (a,c,b) or (b,c,a), fixed throughout the block. The first-coordinate question has cycle lengths 1 and 3, so three calls return its original answer. Returning all three coordinates would instead require six calls, since the first action exchanges the other two. The weaker question does not require full-source return.
 
-The post-first-call relation is {(h,x,y):y=h(x)}. It is not replaced by
-independent possibilities for h and y, and the target remains Q(x), not Q(y).
-The repeat operation on the whole is (h,y)↦(h,h(y)); it need not descend to
-one common operation on y alone. Thus U11 does not contradict U8's obstruction.
-The successful construction need not physically retain x: its relation to the
-requested answer is retained in the derivation. A repeated procedure name
-alone does not establish fixed h. Mutable hidden memory, restricted domains,
-completion detection and an implementation of the call controller require
-their actual relations. The least call count concerns this repeat-only
-scheme, not informational minimality, elapsed duration or all possible plans.
-An application must include any relevant intervening evolution in the actual
-step relation; the call notation does not identify physical waiting with an
-identity map. If that evolution changes the step, the fixed-h premise must
-be established for the resulting whole step or replaced by a joint model.
+The post-first-call relation is {(h,x,y):y=h(x)}. It is not replaced by independent possibilities for h and y, and the target remains Q(x), not Q(y). The repeat operation on the whole is (h,y)↦(h,h(y)); it need not descend to one common operation on y alone. Thus U11 does not contradict U8's obstruction. The successful construction need not physically retain x: its relation to the requested answer is retained in the derivation. A repeated procedure name alone does not establish fixed h. Mutable hidden memory, restricted domains, completion detection and an implementation of the call controller require their actual relations. The least call count concerns this repeat-only scheme, not informational minimality, elapsed duration or all possible plans. An application must include any relevant intervening evolution in the actual step relation; the call notation does not identify physical waiting with an identity map. If that evolution changes the step, the fixed-h premise must be established for the resulting whole step or replaced by a joint model.
 
-U5–U10a construct previously unspecified actions, suffixes and retained views
-within U3's declared grammar. U11 additionally uses the supplied repeat
-interface: applying an unknown function parameter is not an operation of
-the original opaque-leaf grammar. Each fixed h^k is structural, and the one
-repeat scheme has the proved common effect for all supplied possibilities.
-The native court now implements the alias/product/projection fragment of
-U5/U6 with opaque generic type fields: it constructs a continuation or a
-necessary residual, and replays a saved finite certificate against the current
-source. Repeated type parameters establish type-field identity, not equality
-of independently stored runtime values. Its fixed protocol signatures and
-source admission boundary do not cover arbitrary Swift or every E in U5.
-These results do not yet implement a general interactive synthesizer in the
-resident court. Their source relations, permitted operations and applicability
-to a physical carrier remain the same explicit obligations as in U3 and U4.
+U5–U10a construct previously unspecified actions, suffixes and retained views within U3's declared grammar. U11 additionally uses the supplied repeat interface: applying an unknown function parameter is not an operation of the original opaque-leaf grammar. Each fixed h^k is structural, and the one repeat scheme has the proved common effect for all supplied possibilities. The native court now implements the alias/product/projection fragment of U5/U6 with opaque generic type fields: it constructs a continuation or a necessary residual, and replays a saved finite certificate against the current source. Repeated type parameters establish type-field identity, not equality of independently stored runtime values. Its fixed protocol signatures and source admission boundary do not cover arbitrary Swift or every E in U5. These results do not yet implement a general interactive synthesizer in the resident court. Their source relations, permitted operations and applicability to a physical carrier remain the same explicit obligations as in U3 and U4.
 
 ## §1d. Derive the obligation from a connected use
 
-A receiver's applicability alone does not determine the result due from its
-source. For example, an exchange accepts every pair; supplying (a,a) instead
-of its original (a,b) remains applicable but changes the result when a≠b.
-The relevant ground is the connected source and use, not just the receiver's
-input domain. It also matters whether a replacement answer suffices or the
-same receiver must actually be applicable to the constructed boundary.
+A receiver's applicability alone does not determine the result due from its source. For example, an exchange accepts every pair; supplying (a,a) instead of its original (a,b) remains applicable but changes the result when a≠b. The relevant ground is the connected source and use, not just the receiver's input domain. It also matters whether a replacement answer suffices or the same receiver must actually be applicable to the constructed boundary.
 
-**U12 (preserve a connected partial use).** Let i:T→X and p:T→U be two
-specified readings of one source domain T. Let c:X⇀Y be a specified partial
-use, with domain D. Define its induced applicability and result by
+**U12 (preserve a connected partial use).** Let i:T→X and p:T→U be two specified readings of one source domain T. Let c:X⇀Y be a specified partial use, with domain D. Define its induced applicability and result by
 
 ```
 E = {t in T : i(t) in D},       k(t) = c(i(t)) for t in E.
@@ -822,68 +390,28 @@ exists exactly when the following hold for all t,t′ in T:
 1. If p(t)=p(t′), then t∈E iff t′∈E.
 2. If p(t)=p(t′) and t,t′∈E, then k(t)=k(t′).
 
-Its domain and value are uniquely determined on the reached image p(T).
-There is no uniqueness claim outside that image.
+Its domain and value are uniquely determined on the reached image p(T). There is no uniqueness claim outside that image.
 
-*Proof.* Necessity follows by applying one partial d to the same argument.
-For sufficiency form the graph {(p(t),k(t)):t∈E}. Condition 2 makes this a
-function. If p(t) belongs to its domain, some t′∈E has p(t′)=p(t), and
-condition 1 gives t∈E. The converse holds by construction. On every reached
-argument the required definedness and, where defined, value are forced. QED
+*Proof.* Necessity follows by applying one partial d to the same argument. For sufficiency form the graph {(p(t),k(t)):t∈E}. Condition 2 makes this a function. If p(t) belongs to its domain, some t′∈E has p(t′)=p(t), and condition 1 gives t∈E. The converse holds by construction. On every reached argument the required definedness and, where defined, value are forced. QED
 
-This is a set-theoretic existence result, not an algorithm for acquiring or
-evaluating d. It needs no choice of representatives. If c is total on i(T),
-condition 1 is automatic and the result reduces to factorization of k through
-p. If only successful answers are preserved, condition 2 alone suffices;
-that weaker task need not preserve refusal. For example, reading only a from
-(a,b) cannot decide whether a receiver requiring a=b is applicable on the
-full two-element product, although its successful answer a is already present.
-Undefinedness here is absence of an admitted application, not a measured
-negative answer or a claim about physical nontermination.
+This is a set-theoretic existence result, not an algorithm for acquiring or evaluating d. It needs no choice of representatives. If c is total on i(T), condition 1 is automatic and the result reduces to factorization of k through p. If only successful answers are preserved, condition 2 alone suffices; that weaker task need not preserve refusal. For example, reading only a from (a,b) cannot decide whether a receiver requiring a=b is applicable on the full two-element product, although its successful answer a is already present. Undefinedness here is absence of an admitted application, not a measured negative answer or a claim about physical nontermination.
 
-The result Y must include whatever residual and effects the assertion is
-intended to preserve. Matching only a displayed answer establishes only that
-answer. Any relevant environment or internal receiver condition must occur
-in the connected source and use; an omitted parameter is not thereby fixed.
+The result Y must include whatever residual and effects the assertion is intended to preserve. Matching only a displayed answer establishes only that answer. Any relevant environment or internal receiver condition must occur in the connected source and use; an omitted parameter is not thereby fixed.
 
-**U12a (factorization does not supply reapplication).** Suppose the task
-requires an adapter r:U→X from an explicitly available construction grammar,
-followed by the same c. It must separately establish, on reached arguments,
+**U12a (factorization does not supply reapplication).** Suppose the task requires an adapter r:U→X from an explicitly available construction grammar, followed by the same c. It must separately establish, on reached arguments,
 
 ```
 r(p(t)) in D iff t in E,
 c(r(p(t))) = k(t) for t in E.
 ```
 
-An available r with r∘p=i is sufficient. Full source-input recovery is
-stronger than these requirements and is not generally information-minimal.
-U12 alone supplies neither an admissible r nor its execution.
+An available r with r∘p=i is sufficient. Full source-input recovery is stronger than these requirements and is not generally information-minimal. U12 alone supplies neither an admissible r nor its execution.
 
-For a strict separation let A={0,1}, X=A², D={(0,0),(1,1)}, c(a,a)=a,
-T=D, i the inclusion and p(a,a)=a. Then d=id_A satisfies U12. Limit available
-adapters to identity wires, permutations, deletion/projections, composition
-and parallel composition, optionally including c; neither constants nor
-duplication are provided. Every constructor preserves or decreases wire
-count, so induction excludes any adapter A→A². A mathematical diagonal map
-exists, but this grammar cannot build it. Having a prepared diagonal source
-does not add a duplication operation. This obstruction is grammar-relative.
+For a strict separation let A={0,1}, X=A², D={(0,0),(1,1)}, c(a,a)=a, T=D, i the inclusion and p(a,a)=a. Then d=id_A satisfies U12. Limit available adapters to identity wires, permutations, deletion/projections, composition and parallel composition, optionally including c; neither constants nor duplication are provided. Every constructor preserves or decreases wire count, so induction excludes any adapter A→A². A mathematical diagonal map exists, but this grammar cannot build it. Having a prepared diagonal source does not add a duplication operation. This obstruction is grammar-relative.
 
-`ReapplyReceiverAfterRecovery` implements the sufficient recovery case at the
-level of VI type relations. Its supplied factor F recovers R.Left through
-F.Observation; the constructed suffix is F.Right followed by the same R.
-The seam and resulting R.Answer are derived without a second target field or
-a requested equality of final answers. Exchanging a generic pair twice gives
-such an F. Binding the recovered pair to its first or second projection gives
-the corresponding unknown component. Merely having R.Answer does not supply
-R.Left. This extends the joined-input obligation of `JoinedContinuation`;
-it does not make arbitrary open PredicateReading conformers semantically
-truthful or execute a physical receiver.
+`ReapplyReceiverAfterRecovery` implements the sufficient recovery case at the level of VI type relations. Its supplied factor F recovers R.Left through F.Observation; the constructed suffix is F.Right followed by the same R. The seam and resulting R.Answer are derived without a second target field or a requested equality of final answers. Exchanging a generic pair twice gives such an F. Binding the recovered pair to its first or second projection gives the corresponding unknown component. Merely having R.Answer does not supply R.Left. This extends the joined-input obligation of `JoinedContinuation`; it does not make arbitrary open PredicateReading conformers semantically truthful or execute a physical receiver.
 
-The construction derives an obligation relative to a supplied connected use.
-It does not derive why the system selects this use, performs it, or experiences
-its outcome. An internal account must also represent the selecting and
-enabling relations inside the same whole, rather than leave an external
-operator with an unexplained ability to trigger these constructions.
+The construction derives an obligation relative to a supplied connected use. It does not derive why the system selects this use, performs it, or experiences its outcome. An internal account must also represent the selecting and enabling relations inside the same whole, rather than leave an external operator with an unexplained ability to trigger these constructions.
 
 ## §2. Representation
 
@@ -903,30 +431,13 @@ OUT:  Σ, COMPARE, Graph
 
 The syntax terminal NULL differs from Swift's `Null` protocol. The latter requires equality of two associated types. It neither collapses every equal-child pair to the terminal nor equates every equality witness with `Never` (EiF EF4). A binary serialization also does not require every physical interaction to be intrinsically binary.
 
-**SC1 (Constraint refinement and representation loss).** Fix a model domain K.
-Adding a predicate c to an admissible set D gives D'={x∈D:c(x)}, so D'⊆D.
-Replacing an encoding E by a coarser encoding E'=g∘E instead enlarges its
-equality classes: ker(E)⊆ker(E'). The first operation excludes candidates.
-The second can merge their representations. Both are called compression in
-the project's prose, but their set-theoretic directions differ.
+**SC1 (Constraint refinement and representation loss).** Fix a model domain K. Adding a predicate c to an admissible set D gives D'={x∈D:c(x)}, so D'⊆D. Replacing an encoding E by a coarser encoding E'=g∘E instead enlarges its equality classes: ker(E)⊆ker(E'). The first operation excludes candidates. The second can merge their representations. Both are called compression in the project's prose, but their set-theoretic directions differ.
 
-*Proof.* Every member of D' belongs to D by its definition. If E(x)=E(y),
-applying g gives E'(x)=E'(y). Neither implication establishes the other
-operation, a physical erasure, or an information gain from a new observation.
-In particular, asserting c does not prove that the actual input satisfies c.
+*Proof.* Every member of D' belongs to D by its definition. If E(x)=E(y), applying g gives E'(x)=E'(y). Neither implication establishes the other operation, a physical erasure, or an information gain from a new observation. In particular, asserting c does not prove that the actual input satisfies c.
 
-For a total question q, an encoding is sufficient on D exactly when equal
-images of members of D imply equal q-answers (VI VC9). For x,y∈{0,1},
-E(x,y)=y cannot determine q(x,y)=x on the full domain. Restricting to D={x=y}
-makes the decoder d(y)=y correct. The assumption has selected a domain where
-the answer follows. It has not established x=y for a supplied real input.
-An implementation of that inference needs both the reading construction
-and a justified input scope. VC12 and VC35 add the obligations under change.
+For a total question q, an encoding is sufficient on D exactly when equal images of members of D imply equal q-answers (VI VC9). For x,y∈{0,1}, E(x,y)=y cannot determine q(x,y)=x on the full domain. Restricting to D={x=y} makes the decoder d(y)=y correct. The assumption has selected a domain where the answer follows. It has not established x=y for a supplied real input. An implementation of that inference needs both the reading construction and a justified input scope. VC12 and VC35 add the obligations under change.
 
-This distinguishes two uses of `where`: requesting a premise of a family
-and checking a consequence derived by a constructor. `Law` §T and the
-generic witnesses in Verdict Is Invariant supply the second form. No new
-protocol label alone could establish the semantic adequacy of this encoding.
+This distinguishes two uses of `where`: requesting a premise of a family and checking a consequence derived by a constructor. `Law` §T and the generic witnesses in Verdict Is Invariant supply the second form. No new protocol label alone could establish the semantic adequacy of this encoding.
 
 **2.2. Equality.** Two structures are either structurally identical or not. This is a fact about the structures, never an operation on them. Write the fact COMPARE : Σ × Σ → {equal, not_equal}:
 
@@ -940,8 +451,7 @@ Structural identity is decidable on finite structures: finitely many components,
 
 **2.3. Graph.** A set G ⊆ Σ × Σ × {equal, not_equal} of recorded comparisons.
 
-**2.4. System invariants.** These are separate obligations of the encoding and
-implementation. The fixed truth of a comparison does not derive I3:
+**2.4. System invariants.** These are separate obligations of the encoding and implementation. The fixed truth of a comparison does not derive I3:
 
 | ID | Invariant | Basis |
 |----|-----------|------------|
@@ -949,60 +459,21 @@ implementation. The fixed truth of a comparison does not derive I3:
 | I2 | The chosen operations and comparison semantics are fixed | The declared structural grammar and pure comparison on immutable inputs. Physical interventions require their own model. |
 | I3 | G is append-only: G' ⊇ G at every cache update | An explicit retaining update, such as G'=G∪Δ with verified entries Δ. It is not a consequence of truth stability alone. |
 
-**GC1 (Truth stability does not imply accessible retention).** Consider a
-closed whole `(a,b,C,R)` containing two fixed bits and two internal cache
-registers. Each register contains blank, equal or unequal. The transition
-`(a,b,C,R) → (a,b,R,C)` permutes all 36 whole states. The truth of a=b never
-changes. Starting with C holding that answer and R blank, the next accessible
-cache C is blank while R retains the answer. No distinction has left the whole.
-Thus a pure fixed comparison and whole-system reversibility allow retraction
-from a chosen accessible cache. The comparison can still be performed again.
+**GC1 (Truth stability does not imply accessible retention).** Consider a closed whole `(a,b,C,R)` containing two fixed bits and two internal cache registers. Each register contains blank, equal or unequal. The transition `(a,b,C,R) → (a,b,R,C)` permutes all 36 whole states. The truth of a=b never changes. Starting with C holding that answer and R blank, the next accessible cache C is blank while R retains the answer. No distinction has left the whole. Thus a pure fixed comparison and whole-system reversibility allow retraction from a chosen accessible cache. The comparison can still be performed again.
 
-**GC2 (Exact law of sound retaining updates).** Fix a finite domain D of
-immutable comparison keys and its correct answer map c. Let
-`T={(d,c(d)):d∈D}` be the truth graph. A sound cache is G⊆T. Given such G,
-a next cache G' is both sound and retaining exactly when
-`G'=G∪Δ` for some Δ⊆T.
+**GC2 (Exact law of sound retaining updates).** Fix a finite domain D of immutable comparison keys and its correct answer map c. Let `T={(d,c(d)):d∈D}` be the truth graph. A sound cache is G⊆T. Given such G, a next cache G' is both sound and retaining exactly when `G'=G∪Δ` for some Δ⊆T.
 
-*Proof.* Union with correct entries preserves both inclusion and soundness.
-Conversely, if G⊆G'⊆T, take Δ=G'∖G. Repeating the same insertion is
-idempotent. Strict growth occurs only when Δ contains a previously absent
-entry. The invariant follows by induction over these updates, rather than
-from the existence of T. An encoding revision or mutable input requires a
-new immutable key or a new cache context before this argument applies.
+*Proof.* Union with correct entries preserves both inclusion and soundness. Conversely, if G⊆G'⊆T, take Δ=G'∖G. Repeating the same insertion is idempotent. Strict growth occurs only when Δ contains a previously absent entry. The invariant follows by induction over these updates, rather than from the existence of T. An encoding revision or mutable input requires a new immutable key or a new cache context before this argument applies.
 
-**GC3 (Raw recovery needs a compatible cache decoder).** Suppose a raw update
-retains `(r,e)`, so r is recoverable. This does not alone prove
-`decode(r)⊆decode((r,e))`. A latest-event decoder that returns only decode(e)
-drops the old cache when the event is empty. The compatibility law
-`decode((r,e))=decode(r)∪decode(e)` supplies decoded retention. With sound
-old and inserted facts, GC2 also supplies soundness. This distinguishes the
-`Permanent` relation on a raw record from the semantic cache read from it.
+**GC3 (Raw recovery needs a compatible cache decoder).** Suppose a raw update retains `(r,e)`, so r is recoverable. This does not alone prove `decode(r)⊆decode((r,e))`. A latest-event decoder that returns only decode(e) drops the old cache when the event is empty. The compatibility law `decode((r,e))=decode(r)∪decode(e)` supplies decoded retention. With sound old and inserted facts, GC2 also supplies soundness. This distinguishes the `Permanent` relation on a raw record from the semantic cache read from it.
 
-`AppendedCacheReading` pairs both raw records and their decoded collections.
-Under the stated union interpretation, `CacheByAppending` constructs
-`CachePermanent` from a structural frame and those readings. Its caller does
-not assume `CachePermanent`. Generic equality witnesses check that the raw
-and decoded transition endpoints match and that the old decoded collection
-is recoverable. The initial readings and inserted facts still need correct
-semantics. A bare `Permanent` conformance cannot establish them.
+`AppendedCacheReading` pairs both raw records and their decoded collections. Under the stated union interpretation, `CacheByAppending` constructs `CachePermanent` from a structural frame and those readings. Its caller does not assume `CachePermanent`. Generic equality witnesses check that the raw and decoded transition endpoints match and that the old decoded collection is recoverable. The initial readings and inserted facts still need correct semantics. A bare `Permanent` conformance cannot establish them.
 
-**GC4 (Finite identification does not require a permanent comparison cache).**
-Given finite F and a total fixed test, enumerate every candidate and retain
-the passing set S or its count and unique witness. Every comparison may be
-recomputed without memoization. The procedure still terminates and gives
-the same S, including whether |S|=1. It needs working storage but not an
-append-only store of comparison results. A valid cache can reduce repeated
-comparison work. This does not identify correctness with cache persistence,
-and the absence of a logical cache does not assert physical destruction of
-information in Ω.
+**GC4 (Finite identification does not require a permanent comparison cache).** Given finite F and a total fixed test, enumerate every candidate and retain the passing set S or its count and unique witness. Every comparison may be recomputed without memoization. The procedure still terminates and gives the same S, including whether |S|=1. It needs working storage but not an append-only store of comparison results. A valid cache can reduce repeated comparison work. This does not identify correctness with cache persistence, and the absence of a logical cache does not assert physical destruction of information in Ω.
 
 A retracting cache need not satisfy `CachePermanent`. A latest-only decoder cannot recover every earlier fact from an append. The corresponding type refusals express these two boundaries.
 
-GC2 is a logical cache law. Realizing it inside a fixed finite reversible
-whole for unlimited time is a further requirement, subject to the boundary
-in Verdict Is Invariant VC34. An immutable truth graph, a logical cache and
-a physical memory device are three distinct parts of that claim.
+GC2 is a logical cache law. Realizing it inside a fixed finite reversible whole for unlimited time is a further requirement, subject to the boundary in Verdict Is Invariant VC34. An immutable truth graph, a logical cache and a physical memory device are three distinct parts of that claim.
 
 **2.5. Unity.** PAIR is the sole structural primitive: the act of distinction.
 
@@ -1244,31 +715,17 @@ Theorems 1–2: soundness (PASS → correct). Theorem 5: completeness (precondit
 
 ### Loop Properties
 
-These properties concern the full loop with the stated storage and traversal
-rules. Cache retention, diagnostic retention and nonrepeating enumeration
-must each be supplied. Finiteness alone does not imply any of those rules.
+These properties concern the full loop with the stated storage and traversal rules. Cache retention, diagnostic retention and nonrepeating enumeration must each be supplied. Finiteness alone does not imply any of those rules.
 
-**5.6. Monotone cache order.** Under I3, one execution gives a chain
-`G₀⊆G₁⊆…` in the partial order of caches by inclusion. Distinct caches from
-different executions can be incomparable: {p} and {q} are an example.
-This is not a total order on all system states. A fixed domain of N comparison
-keys permits at most N strict additions, with any number of repetitions.
+**5.6. Monotone cache order.** Under I3, one execution gives a chain `G₀⊆G₁⊆…` in the partial order of caches by inclusion. Distinct caches from different executions can be incomparable: {p} and {q} are an example. This is not a total order on all system states. A fixed domain of N comparison keys permits at most N strict additions, with any number of repetitions.
 
-**5.7. Diagnostic accumulation (conditional).** If the diagnostic set H is
-updated by `H'=H∪{diagnostic}`, it grows weakly. Repeating the same REJECT
-adds no new diagnostic fact. A new timestamp may enlarge an event log without
-eliminating any additional candidate. I3 for comparison cache G does not by
-itself retain a separate H. Even a newly stored correct comparison can be
-redundant for the candidate question and leave S unchanged.
+**5.7. Diagnostic accumulation (conditional).** If the diagnostic set H is updated by `H'=H∪{diagnostic}`, it grows weakly. Repeating the same REJECT adds no new diagnostic fact. A new timestamp may enlarge an event log without eliminating any additional candidate. I3 for comparison cache G does not by itself retain a separate H. Even a newly stored correct comparison can be redundant for the candidate question and leave S unchanged.
 
 **5.8. Full loop determinism.** If the agent follows a fixed protocol (enumeration order over E), then: same task + same grammar + same protocol → same sequence of iterations → same result. The full loop is a deterministic function from (task, grammar, protocol) to {PASS(f*), REJECT}.
 
 > Argues: ``ResultDeterministic`` needs ``OperationsClosed``.
 
-**5.9. Loop termination.** If E is finite, the inner run terminates, and each
-encoding is tried at most once before exhaustion, the outer loop takes at
-most |E| iterations. A finite sum of finite runtimes is finite. Finiteness
-of E without that traversal rule permits repeating one failed encoding forever.
+**5.9. Loop termination.** If E is finite, the inner run terminates, and each encoding is tried at most once before exhaustion, the outer loop takes at most |E| iterations. A finite sum of finite runtimes is finite. Finiteness of E without that traversal rule permits repeating one failed encoding forever.
 
 **5.10. Convergence.** The loop tries every encoding in E (finite enumeration). If any encoding's inner run produces PASS, the loop terminates with PASS. If no encoding produces PASS, the loop exhausts E and reports REJECT. The loop skips no encoding. An encoding may satisfy R4 yet produce REJECT if the extraction heuristic (§4.5–4.6) fails to find f*. An exhausted E without PASS proves only that the extractor failed on every encoding in E, and an R4-valid encoding may still be among them. This is an extraction limitation, never a soundness failure. Soundness (Theorem 2) is unconditional: any PASS is correct.
 
@@ -1286,16 +743,7 @@ of E without that traversal rule permits repeating one failed encoding forever.
 
 **5.15. Structural recurrence across levels.** A candidate game and a game selecting its encoding can share a finite-domain, decidable-check pattern. The higher game needs a supplied finite encoding family E and a terminating check for each member. It need not have a unique passing encoding: different encodings can each identify their own candidate and give the same required decoded answer. Each level needs its own R4 to identify its complete candidate. U2c can settle a shared answer without selecting one encoding.
 
-**5.16. Finite tower (conditional).** Finite games at each level do not by
-themselves bound the number of levels. Termination follows if every creation
-of a further level strictly decreases a supplied natural-number rank r.
-Then at most r descents, and r+1 levels including the initial one, are possible.
-*Proof.* A strict decrease lowers a nonnegative integer by at least one.
-Induct on its initial value. A fixed maximum level count is another sufficient
-premise. Taking finite power sets repeatedly proves finiteness at each stage,
-but gives no last stage. Even one candidate per level permits arbitrarily many
-levels (Existence Is Finite EF7). A proposed compression rule must actually
-establish strict descent of a well-founded rank to use this theorem.
+**5.16. Finite tower (conditional).** Finite games at each level do not by themselves bound the number of levels. Termination follows if every creation of a further level strictly decreases a supplied natural-number rank r. Then at most r descents, and r+1 levels including the initial one, are possible. *Proof.* A strict decrease lowers a nonnegative integer by at least one. Induct on its initial value. A fixed maximum level count is another sufficient premise. Taking finite power sets repeatedly proves finiteness at each stage, but gives no last stage. Even one candidate per level permits arbitrarily many levels (Existence Is Finite EF7). A proposed compression rule must actually establish strict descent of a well-founded rank to use this theorem.
 
 **5.17. Agent-system role duality.** The system at level N has the same functional role as the agent's tool T2 at level N+1. *Proof.* System at level N: takes candidate, returns PASS/REJECT. This is what an agent at level N+1 calls (T2). The agent's encoding-selection process: takes encoding candidate, returns PASS/REJECT via run(). Same functional interface, different level. QED
 
@@ -1317,319 +765,104 @@ establish strict descent of a well-founded rank to use this theorem.
 
 **5.24. Encoding-bounded scope.** The inner pipeline receives only the encoded representation. It has no access to the original task, the agent, the grammar, or any information not present in the encoding. Two different encodings of the same task create two separate, non-communicating pipeline executions. *Proof.* The pipeline's input is (encoded game, feature set). All pipeline operations (§4.1–4.8) reference only this input. No step references the agent, the grammar, or any external state. The pipeline is a pure function of its encoded input. QED
 
-**5.25. Order within a declared traversal.** Fix the encoding, candidate
-space, comparison semantics and traversal rules, and vary only the order of
-a prescribed collection of comparisons. With GC2 updates, complete traversals
-produce the same union of facts, by associativity, commutativity and idempotence
-of union. An order may change how much work precedes a sufficient certificate.
-It is the only varied parameter in this comparison of protocols, not the only
-possible degree of freedom of an arbitrary agent or physical experiment.
+**5.25. Order within a declared traversal.** Fix the encoding, candidate space, comparison semantics and traversal rules, and vary only the order of a prescribed collection of comparisons. With GC2 updates, complete traversals produce the same union of facts, by associativity, commutativity and idempotence of union. An order may change how much work precedes a sufficient certificate. It is the only varied parameter in this comparison of protocols, not the only possible degree of freedom of an arbitrary agent or physical experiment.
 
-For a nonrepeating enumeration of finite E, if at least one encoding returns
-PASS, the first PASS occurs between attempts 1 and |E|, depending on order.
-This counts encoding attempts, not atom comparisons, and depends on the chosen
-grammar and extractor. The N² bound on distinct atom-pair keys is a different
-bound. Repeated diagnostics and redundant comparisons need not prune any new
-candidate (GC2 and §5.7).
+For a nonrepeating enumeration of finite E, if at least one encoding returns PASS, the first PASS occurs between attempts 1 and |E|, depending on order. This counts encoding attempts, not atom comparisons, and depends on the chosen grammar and extractor. The N² bound on distinct atom-pair keys is a different bound. Repeated diagnostics and redundant comparisons need not prune any new candidate (GC2 and §5.7).
 
-*Information-theoretic interpretation.* Three quantities need separate
-premises: the entropy of a distribution, the content of an observed branch,
-and the cost of an available experimental strategy.
+*Information-theoretic interpretation.* Three quantities need separate premises: the entropy of a distribution, the content of an observed branch, and the cost of an available experimental strategy.
 
-**IQ1 (Information gain is conditional and question-specific).** Let X be
-an original candidate with a declared prior, Z=q(X) the required answer, R
-an already available record and Y a binary reading. Then
-`0≤I(Z;Y|R)≤H(Y|R)≤1` bit. Independence is not required. The quantities
-average over possible readings. Conditional entropy in this sense is an
-average of posterior entropies, as defined in
-[Shannon, 1948, §6](https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf).
-Using R and Y as an agent's next knowledge state requires retaining them or
-a sufficient reading of them. A memory update that discards old evidence
-does not inherit this bound on uncertainty reduction (GC3).
+**IQ1 (Information gain is conditional and question-specific).** Let X be an original candidate with a declared prior, Z=q(X) the required answer, R an already available record and Y a binary reading. Then `0≤I(Z;Y|R)≤H(Y|R)≤1` bit. Independence is not required. The quantities average over possible readings. Conditional entropy in this sense is an average of posterior entropies, as defined in [Shannon, 1948, §6](https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf). Using R and Y as an agent's next knowledge state requires retaining them or a sufficient reading of them. A memory update that discards old evidence does not inherit this bound on uncertainty reduction (GC3).
 
-For a given prior, H(X)≤log₂|F|, with equality only for a uniform distribution
-on F. A verdict concerns H(q(X)), which can be smaller. A random-looking
-reading about another coordinate may give no information about this verdict.
-In a binary decision tree with no other uncounted source-dependent readings,
-exact recovery of Z requires mean depth at least H(Z). A worst depth d
-allows at most 2^d leaves, so d≥⌈log₂|q(F)|⌉ when every answer in q(F)
-must be covered. For full identification this uses q(X)=X. These are lower
-bounds on a successful protocol, not a construction of one.
-For the mean bound, complete leaf transcripts form a prefix code and determine
-Z. Their mean length is at least their entropy, which is at least H(Z).
+For a given prior, H(X)≤log₂|F|, with equality only for a uniform distribution on F. A verdict concerns H(q(X)), which can be smaller. A random-looking reading about another coordinate may give no information about this verdict. In a binary decision tree with no other uncounted source-dependent readings, exact recovery of Z requires mean depth at least H(Z). A worst depth d allows at most 2^d leaves, so d≥⌈log₂|q(F)|⌉ when every answer in q(F) must be covered. For full identification this uses q(X)=X. These are lower bounds on a successful protocol, not a construction of one. For the mean bound, complete leaf transcripts form a prefix code and determine Z. Their mean length is at least their entropy, which is at least H(Z).
 
-**IQ2 (Support refinement need not lower entropy on each branch).** Give
-A, B, C probabilities 9/10, 1/20, 1/20, and read Y=1 exactly when X is B
-or C. Initially H(X)≈0.568996 bits. On the rare branch Y=1, the support
-shrinks from three sources to two, but their probabilities become 1/2, 1/2
-and posterior entropy is one bit. Mean conditional entropy is only 0.1 bit.
-Thus the reading gives I(X;Y)≈0.468996 bits on average, while this one
-posterior is more uncertain than the prior in the Shannon sense.
+**IQ2 (Support refinement need not lower entropy on each branch).** Give A, B, C probabilities 9/10, 1/20, 1/20, and read Y=1 exactly when X is B or C. Initially H(X)≈0.568996 bits. On the rare branch Y=1, the support shrinks from three sources to two, but their probabilities become 1/2, 1/2 and posterior entropy is one bit. Mean conditional entropy is only 0.1 bit. Thus the reading gives I(X;Y)≈0.468996 bits on average, while this one posterior is more uncertain than the prior in the Shannon sense.
 
-For a noiseless event of prior probability p, the posterior/prior KL
-divergence is −log₂p: every retained probability is multiplied by 1/p.
-The rare branch here has gain log₂10≈3.321928 bits. This does not violate
-IQ1, whose one-bit bound concerns mean information. With a uniform prior
-and pure support restriction, posterior entropy instead equals the logarithm
-of the smaller support. The counterexample needs the nonuniform weights.
+For a noiseless event of prior probability p, the posterior/prior KL divergence is −log₂p: every retained probability is multiplied by 1/p. The rare branch here has gain log₂10≈3.321928 bits. This does not violate IQ1, whose one-bit bound concerns mean information. With a uniform prior and pure support restriction, posterior entropy instead equals the logarithm of the smaller support. The counterexample needs the nonuniform weights.
 
-This observation can occur entirely inside a closed finite whole. Let the
-whole be `(X,M,P)` with three source values, one memory bit and one readiness
-bit. The fixed map `(X,M,P)→(X,M XOR Y(X),1−P)` permutes its twelve states.
-Prepare M=P=0. One step records Y and marks readiness, the next returns to
-preparation. The joint entropy is unchanged, and memory becomes correlated
-with X during the readout window. The prior describes possible complete
-configurations. It introduces no external source of randomness, reservoir
-or controller. Logical reversibility here gives no thermodynamic cost bound.
+This observation can occur entirely inside a closed finite whole. Let the whole be `(X,M,P)` with three source values, one memory bit and one readiness bit. The fixed map `(X,M,P)→(X,M XOR Y(X),1−P)` permutes its twelve states. Prepare M=P=0. One step records Y and marks readiness, the next returns to preparation. The joint entropy is unchanged, and memory becomes correlated with X during the readout window. The prior describes possible complete configurations. It introduces no external source of randomness, reservoir or controller. Logical reversibility here gives no thermodynamic cost bound.
 
-**IQ3 (The available questions determine cost and excess distinctions).**
-Take eight equiprobable sources. If the three binary-coordinate questions
-are available, full identification takes three questions. If only tests
-“is the source i?” for i=1,…,7 are available, the optimum is seven in the
-worst case and 35/8 on average. Every negative answer rules out at most one
-of those names. Testing each once and stopping at a positive answer attains
-these bounds. Entropy is three bits in both experiments.
+**IQ3 (The available questions determine cost and excess distinctions).** Take eight equiprobable sources. If the three binary-coordinate questions are available, full identification takes three questions. If only tests “is the source i?” for i=1,…,7 are available, the optimum is seven in the worst case and 35/8 on average. Every negative answer rules out at most one of those names. Testing each once and stopping at a positive answer attains these bounds. Entropy is three bits in both experiments.
 
-Now ask only whether the source is the eighth. Its answer entropy is about
-0.543564 bits. The same seven name tests still require seven in the worst
-case and 35/8 on average. Every successful complete transcript also identifies
-the full source: a positive name test identifies that name, and seven negative
-answers identify the eighth. If the target question itself is available,
-one reading suffices instead. A complete transcript can therefore carry more
-source distinctions than the final verdict requires. Whether an agent retains
-that transcript in accessible memory is a separate question (GC3).
+Now ask only whether the source is the eighth. Its answer entropy is about 0.543564 bits. The same seven name tests still require seven in the worst case and 35/8 on average. Every successful complete transcript also identifies the full source: a positive name test identifies that name, and seven negative answers identify the eighth. If the target question itself is available, one reading suffices instead. A complete transcript can therefore carry more source distinctions than the final verdict requires. Whether an agent retains that transcript in accessible memory is a separate question (GC3).
 
-For noiseless deterministic questions ending in full identification,
-conditional event probabilities along the complete transcript multiply to
-the prior probability of the identified source. Their negative logarithms
-therefore sum to −log₂P(X), whatever the successful order. The average is
-H(X). This invariant content need not equal the number or physical cost of
-questions. Restricted queries can be unbalanced or redundant, and destructive
-interventions can prevent successful identification altogether (VC26).
+For noiseless deterministic questions ending in full identification, conditional event probabilities along the complete transcript multiply to the prior probability of the identified source. Their negative logarithms therefore sum to −log₂P(X), whatever the successful order. The average is H(X). This invariant content need not equal the number or physical cost of questions. Restricted queries can be unbalanced or redundant, and destructive interventions can prevent successful identification altogether (VC26).
 
-The former N²≥log₂|F| assertion also fails without a bridge between what
-these quantities count. Two basis values at five output positions permit
-32 selection rules, with log₂|F|=5>N²=4. The four equality facts about the
-two basis values do not identify which rule selected the values at the five
-positions. Positional readings can do so. A supposed dimension bound likewise
-needs a specified candidate family and admissible question model.
+The former N²≥log₂|F| assertion also fails without a bridge between what these quantities count. Two basis values at five output positions permit 32 selection rules, with log₂|F|=5>N²=4. The four equality facts about the two basis values do not identify which rule selected the values at the five positions. Positional readings can do so. A supposed dimension bound likewise needs a specified candidate family and admissible question model.
 
 `PreparedObservation` derives source retention, readiness and the declared reading as pure types. Distinct residuals need not coincide when their observations agree. The entropy and cost results follow from the mathematical arguments above, with their specified distributions and query vocabularies.
 
-**IQ4 (A successful transcript refines the answer).** Fix a finite source set F,
-a positive prior on every source, a target Z=q(X), and a finite vocabulary of
-noiseless nondestructive binary questions. A deterministic successful policy
-chooses each question from previous readings and eventually answers q(X).
-Let T(X) be its complete sequence of question indexes and readings, not just
-its terminal answer. Correctness gives Z=f(T), and determinism gives T=g(X).
-The entropy chain rule therefore yields
+**IQ4 (A successful transcript refines the answer).** Fix a finite source set F, a positive prior on every source, a target Z=q(X), and a finite vocabulary of noiseless nondestructive binary questions. A deterministic successful policy chooses each question from previous readings and eventually answers q(X). Let T(X) be its complete sequence of question indexes and readings, not just its terminal answer. Correctness gives Z=f(T), and determinism gives T=g(X). The entropy chain rule therefore yields
 
 ```
 H(T) = H(Z) + H(T|Z),       I(X;T|Z) = H(T|Z) ≥ 0.
 ```
 
-Define the least excess over successful available policies as
-`e*=min H(T|Z)`. Set it to infinity if none succeeds. This concerns distinctions
-in the complete experimental transcript. It does not require the final
-accessible register to retain that transcript. A later compression can retain
-Z while the residual distinctions remain elsewhere inside Ω (GC3, M34–M35).
-In IQ3's eight-source name experiment, e*=3−h₂(1/8)≈2.456436 bits.
-With the direct target test available, e*=0. The prior describes possible whole
-configurations. It is not an external random input to their dynamics.
+Define the least excess over successful available policies as `e*=min H(T|Z)`. Set it to infinity if none succeeds. This concerns distinctions in the complete experimental transcript. It does not require the final accessible register to retain that transcript. A later compression can retain Z while the residual distinctions remain elsewhere inside Ω (GC3, M34–M35). In IQ3's eight-source name experiment, e*=3−h₂(1/8)≈2.456436 bits. With the direct target test available, e*=0. The prior describes possible whole configurations. It is not an external random input to their dynamics.
 
-This uses standard information identities. The related
-[information bottleneck formulation, §3.1](https://arxiv.org/html/physics/0004057v1)
-optimizes compression while preserving information about a relevance variable.
-Here the extra restriction is that a representation must be a complete
-transcript realizable by the declared query vocabulary. An arbitrary encoder
-X↦q(X) does not supply such an experiment. This distinction is a research
-connection, not a claim of priority over information theory or decision trees.
+This uses standard information identities. The related [information bottleneck formulation, §3.1](https://arxiv.org/html/physics/0004057v1) optimizes compression while preserving information about a relevance variable. Here the extra restriction is that a representation must be a complete transcript realizable by the declared query vocabulary. An arbitrary encoder X↦q(X) does not supply such an experiment. This distinction is a research connection, not a claim of priority over information theory or decision trees.
 
-**IQ5 (Exact criterion for no excess distinctions).** Under IQ4's premises,
-e*=0 exactly when there is a successful policy whose every queried test is
-constant on each target class still possible at that node. The requirement
-is conditional on the branch, not global constancy of every available test
-on every target class.
+**IQ5 (Exact criterion for no excess distinctions).** Under IQ4's premises, e*=0 exactly when there is a successful policy whose every queried test is constant on each target class still possible at that node. The requirement is conditional on the branch, not global constancy of every available test on every target class.
 
-*Proof.* Full support makes H(T|Z)=0 equivalent to equal transcripts for every
-pair with equal target answers. If a queried test splits such a class at a
-reached node, those two paths have different prefixes forever, contradicting
-that equality. Conversely, a policy that never splits a possible target class
-gives every member of that class the same path. Success separates different
-answers, so the transcript partition is exactly the target partition.
-This supplies a finite recursive decision: stop on a single answer class.
-Otherwise choose a class-preserving strict split whose two children succeed.
-Each split reduces the support, so recursion terminates.
+*Proof.* Full support makes H(T|Z)=0 equivalent to equal transcripts for every pair with equal target answers. If a queried test splits such a class at a reached node, those two paths have different prefixes forever, contradicting that equality. Conversely, a policy that never splits a possible target class gives every member of that class the same path. Success separates different answers, so the transcript partition is exactly the target partition. This supplies a finite recursive decision: stop on a single answer class. Otherwise choose a class-preserving strict split whose two children succeed. Each split reduces the support, so recursion terminates.
 
-For example, four sources A₁,A₂,B,C have answers A,A,B,C. Available tests are
-u=(0,0,1,1) and v=(0,1,0,1). Ask u first. After zero answer A. After one
-ask v to decide B or C. Although v separates A₁ and A₂ globally, it is never
-asked on their branch. Thus e*=0. Removing every globally incompatible test
-would remove v and falsely rule out this successful experiment.
+For example, four sources A₁,A₂,B,C have answers A,A,B,C. Available tests are u=(0,0,1,1) and v=(0,1,0,1). Ask u first. After zero answer A. After one ask v to decide B or C. Although v separates A₁ and A₂ globally, it is never asked on their branch. Thus e*=0. Removing every globally incompatible test would remove v and falsely rule out this successful experiment.
 
-**IQ6 (Cost and excess need not select the same experiment).** Consider five
-uniform sources 0,…,4 with target q=(0,1,0,0,1) and four available tests:
+**IQ6 (Cost and excess need not select the same experiment).** Consider five uniform sources 0,…,4 with target q=(0,1,0,0,1) and four available tests:
 
 ```
 u     = (0,1,0,1,1)       v     = (0,1,1,0,1)
 name₁ = (0,1,0,0,0)       name₄ = (0,0,0,0,1)
 ```
 
-Asking u and then v only after a one gives mean cost 8/5 and transcript
-partition {{0,2},{1,4},{3}}. Its excess is (3/5)h₂(1/3)≈0.550978 bits.
-Asking name₄ and then name₁ only after a zero gives mean cost 9/5 and
-partition {{0,2,3},{1},{4}}, with excess 2/5 bits. Both have worst cost two.
-Every root test splits a target class, so zero excess is impossible.
+Asking u and then v only after a one gives mean cost 8/5 and transcript partition {{0,2},{1,4},{3}}. Its excess is (3/5)h₂(1/3)≈0.550978 bits. Asking name₄ and then name₁ only after a zero gives mean cost 9/5 and partition {{0,2,3},{1},{4}}, with excess 2/5 bits. Both have worst cost two. Every root test splits a target class, so zero excess is impossible.
 
-These choices lie on the cost/excess Pareto frontier. For each possible root,
-the unresolved child needs at least one more test: u or v leaves mass 3/5
-unresolved, while either name test leaves mass 4/5. The displayed continuations
-attain those cost bounds. After a root split of the three-source target class,
-excess is already at least (3/5)h₂(1/3). A name root instead splits the two-source
-class and already costs 2/5 bits of excess. Later readings cannot undo a
-distinction in the complete transcript. This proves both frontier values.
+These choices lie on the cost/excess Pareto frontier. For each possible root, the unresolved child needs at least one more test: u or v leaves mass 3/5 unresolved, while either name test leaves mass 4/5. The displayed continuations attain those cost bounds. After a root split of the three-source target class, excess is already at least (3/5)h₂(1/3). A name root instead splits the two-source class and already costs 2/5 bits of excess. Later readings cannot undo a distinction in the complete transcript. This proves both frontier values.
 
-There is also no single coarsest attainable successful transcript partition.
-Any correct common coarsening of the two displayed partitions must merge
-0,2,3 and merge 1,4, giving exactly the unattainable target partition. The
-abstract sufficient quotient exists, but the family of experimentally
-attainable quotients need not contain a least element. This qualifies the
-use of a coarsest representation in VI: realizability is a separate condition.
-It does not contradict VC15, which preserves every declared possible future
-observation. Here one chosen experiment need only settle q, and may avoid
-other available observations. These are different sufficiency requirements.
+There is also no single coarsest attainable successful transcript partition. Any correct common coarsening of the two displayed partitions must merge 0,2,3 and merge 1,4, giving exactly the unattainable target partition. The abstract sufficient quotient exists, but the family of experimentally attainable quotients need not contain a least element. This qualifies the use of a coarsest representation in VI: realizability is a separate condition. It does not contradict VC15, which preserves every declared possible future observation. Here one chosen experiment need only settle q, and may avoid other available observations. These are different sufficiency requirements.
 
 For a finite support, consider the leaf partitions of reduced question trees. At a mixed support, each available strict split combines two child partitions, and mean costs combine with their conditional masses. Induction on support size covers all trees that stop when the answer is fixed. Removing nonsplitting questions and queries after a fixed answer cannot increase excess or cost, so these trees suffice for both minima and the Pareto frontier. Different paths with equal terminal answers remain separate blocks. Zero excess is the exact equality of the answer and transcript partitions.
 
 `DirectAnswerRecord` supplies a pure-type witness when a direct reading is available. Equal certified answers give equal transcript fields, the answer is recoverable, and the actual source is separately retained. Equal transcript fields need not identify the whole records. These relations require the specified direct reading.
 
-Finite decision-tree separation itself is established literature. For example,
-[Minimum Query Set for Decision Tree Construction, §4](https://www.mdpi.com/1099-4300/23/12/1682)
-requires the query family to separate differently classified pairs. That is
-the weaker feasibility condition checked in IQ3, not IQ5's within-class
-transcript condition. The present certificates assume known finite tables.
-Learning them from incomplete observations remains a separate problem. An
-internal controller and finite reversible completion can use VC32–VC34's
-construction. Neither an external observer nor permanent one-way record
-growth is a premise of this experiment model.
+Finite decision-tree separation itself is established literature. For example, [Minimum Query Set for Decision Tree Construction, §4](https://www.mdpi.com/1099-4300/23/12/1682) requires the query family to separate differently classified pairs. That is the weaker feasibility condition checked in IQ3, not IQ5's within-class transcript condition. The present certificates assume known finite tables. Learning them from incomplete observations remains a separate problem. An internal controller and finite reversible completion can use VC32–VC34's construction. Neither an external observer nor permanent one-way record growth is a premise of this experiment model.
 
-*Remark (axis alignment).* Fix F and let S(G) be the candidates satisfying
-every constraint recorded in G. Then G⊆G' implies S(G')⊆S(G), directly by
-the definition of satisfaction. This links these two chosen orders. Retaining
-a separate diagnostic set requires its own update law (§5.7), and no order
-on arbitrary physical or internal quantities follows from I3 alone. Deleting
-a redundant fact can leave S unchanged, so retraction need not reverse
-identification progress.
+*Remark (axis alignment).* Fix F and let S(G) be the candidates satisfying every constraint recorded in G. Then G⊆G' implies S(G')⊆S(G), directly by the definition of satisfaction. This links these two chosen orders. Retaining a separate diagnostic set requires its own update law (§5.7), and no order on arbitrary physical or internal quantities follows from I3 alone. Deleting a redundant fact can leave S unchanged, so retraction need not reverse identification progress.
 
-For nonempty fixed F, `1−|S|/|F|` measures the fraction eliminated. It equals
-one when S is empty, which is rejection, not unique identification. A unique
-survivor gives `1−1/|F|`. Monotonic elimination is therefore not sufficient
-to diagnose successful discovery: the gate must still distinguish |S|=0,
-|S|=1 and |S|>1.
+For nonempty fixed F, `1−|S|/|F|` measures the fraction eliminated. It equals one when S is empty, which is rejection, not unique identification. A unique survivor gives `1−1/|F|`. Monotonic elimination is therefore not sufficient to diagnose successful discovery: the gate must still distinguish |S|=0, |S|=1 and |S|>1.
 
-**5.26. Cross-task saturation.** Fix a finite task collection D whose identified
-rules all belong to one common extensional family F under a shared decoding.
-Write g(t) for the required rule of task t, C=g(D), and K=|C|. These common-domain
-premises are necessary before rules from different games can be counted together.
-Four obligations remain separate: sound entries, retention, class coverage and
-selection of the right rule for the next task.
+**5.26. Cross-task saturation.** Fix a finite task collection D whose identified rules all belong to one common extensional family F under a shared decoding. Write g(t) for the required rule of task t, C=g(D), and K=|C|. These common-domain premises are necessary before rules from different games can be counted together. Four obligations remain separate: sound entries, retention, class coverage and selection of the right rule for the next task.
 
-**CS1 (Count represented classes, not successful records).** Let L contain
-sound pairs (feature record, rule), with a retaining update. Its rule projection
-P(L)⊆C grows monotonically and has size at most K. The number of raw feature/rule
-pairs need not have that bound. Four tasks with rules (a,a,a,b) can produce
-three different feature records for a. Then |L|=3>K=2 while |P(L)|=1. Distinct
-successful tasks are not necessarily distinct represented rule classes.
+**CS1 (Count represented classes, not successful records).** Let L contain sound pairs (feature record, rule), with a retaining update. Its rule projection P(L)⊆C grows monotonically and has size at most K. The number of raw feature/rule pairs need not have that bound. Four tasks with rules (a,a,a,b) can produce three different feature records for a. Then |L|=3>K=2 while |P(L)|=1. Distinct successful tasks are not necessarily distinct represented rule classes.
 
-Starting with coverage P₀, exactly K−|P₀| insertions of previously unrepresented
-classes suffice for full coverage. Repeated classes do not count. An arbitrary
-stream may repeat a forever, so no bound on successful events alone guarantees
-coverage. A stream that eventually visits every class does give eventual
-coverage, but that visitation is an additional premise. Two complete raw
-libraries can differ in their feature records. Their rule projections both
-equal C. Raw equality requires a shared canonical representation as well.
+Starting with coverage P₀, exactly K−|P₀| insertions of previously unrepresented classes suffice for full coverage. Repeated classes do not count. An arbitrary stream may repeat a forever, so no bound on successful events alone guarantees coverage. A stream that eventually visits every class does give eventual coverage, but that visitation is an additional premise. Two complete raw libraries can differ in their feature records. Their rule projections both equal C. Raw equality requires a shared canonical representation as well.
 
-**CS2 (Coverage needs a usable dispatcher).** Suppose the runtime can read
-only a feature map E:D→Z before selecting a cached rule. A deterministic exact
-dispatcher d with g=d∘E exists precisely when
+**CS2 (Coverage needs a usable dispatcher).** Suppose the runtime can read only a feature map E:D→Z before selecting a cached rule. A deterministic exact dispatcher d with g=d∘E exists precisely when
 
 ```
 E(t)=E(u) ⇒ g(t)=g(u).
 ```
 
-*Proof.* A function d returns the same result for the same input. Conversely,
-if each feature fiber has one required rule, assign that rule to its feature.
-The finite table defines d on E(D). A complete library supplies the selected
-rule only after this condition and its implementation are established. Two
-tasks with identical available features and different required rules defeat
-feature-only dispatch even when both rules are cached. This is the same
-factorization obligation used in Verdict §6c, now applied to task selection.
+*Proof.* A function d returns the same result for the same input. Conversely, if each feature fiber has one required rule, assign that rule to its feature. The finite table defines d on E(D). A complete library supplies the selected rule only after this condition and its implementation are established. Two tasks with identical available features and different required rules defeat feature-only dispatch even when both rules are cached. This is the same factorization obligation used in Verdict §6c, now applied to task selection.
 
-An exhaustive search through C with a total verifier accepting exactly the
-required rule can replace that dispatcher. Its verifier and cost are additional
-premises. Passing only new examples supplies exact rule identification only
-under the R4 and representation conditions already stated in §5. Newly encountered
-comparison keys can still require work. Zero new comparisons follows from full
-coverage of the keys actually used, not from coverage of rule classes alone.
+An exhaustive search through C with a total verifier accepting exactly the required rule can replace that dispatcher. Its verifier and cost are additional premises. Passing only new examples supplies exact rule identification only under the R4 and representation conditions already stated in §5. Newly encountered comparison keys can still require work. Zero new comparisons follows from full coverage of the keys actually used, not from coverage of rule classes alone.
 
-**CS3 (Generalization also depends on the candidate family).** Let U be a fixed
-finite input domain, H⊆{0,1}^U a declared family of laws, and B a consistent
-record of input/answer observations. Define
+**CS3 (Generalization also depends on the candidate family).** Let U be a fixed finite input domain, H⊆{0,1}^U a declared family of laws, and B a consistent record of input/answer observations. Define
 
 ```
 V_H(B) = {h∈H : h agrees with every observation in B}.
 ```
 
-If V_H(B) is nonempty and contains the actual law, a prediction at x is
-certain for every compatible law exactly when all h∈V_H(B) agree at x.
-A singleton suffices, but is not necessary for a particular prediction.
-This is a finite version-space specialization of verdict invariance, not a
-new principle of statistical learning. See
-[Mitchell, The Need for Biases in Learning Generalizations, §§2–3](https://www.cs.cmu.edu/~tom/pubs/NeedForBias_1980.pdf).
+If V_H(B) is nonempty and contains the actual law, a prediction at x is certain for every compatible law exactly when all h∈V_H(B) agree at x. A singleton suffices, but is not necessary for a particular prediction. This is a finite version-space specialization of verdict invariance, not a new principle of statistical learning. See [Mitchell, The Need for Biases in Learning Generalizations, §§2–3](https://www.cs.cmu.edu/~tom/pubs/NeedForBias_1980.pdf).
 
-For H={0,1}^U with n=|U|, m distinct observed inputs leave exactly 2^(n−m)
-laws. Every unobserved input has both possible answers among those laws:
-change only that table cell and all observations remain identical. Thus
-observing all n inputs is necessary for guaranteed full identification under
-this unrestricted family and these point queries. A repeated input adds no
-constraint. Restricted families can permit transfer, provided they contain
-the actual law. The assumption that the target is representable, and the
-choice of query capabilities, also appear explicitly in
-[Angluin, Queries and Concept Learning, §1](https://homepages.math.uic.edu/~lreyzin/papers/angluin88.pdf).
+For H={0,1}^U with n=|U|, m distinct observed inputs leave exactly 2^(n−m) laws. Every unobserved input has both possible answers among those laws: change only that table cell and all observations remain identical. Thus observing all n inputs is necessary for guaranteed full identification under this unrestricted family and these point queries. A repeated input adds no constraint. Restricted families can permit transfer, provided they contain the actual law. The assumption that the target is representable, and the choice of query capabilities, also appear explicitly in [Angluin, Queries and Concept Learning, §1](https://homepages.math.uic.edu/~lreyzin/papers/angluin88.pdf).
 
-For two inputs, assume the constant family H={(0,0),(1,1)} and observe the
-first answer 0. The sole survivor (0,0) predicts the second answer 0. But the
-actual law (0,1) also fits that observation and lies outside H. The restricted
-checker cannot discover its missing representability premise from this one
-observation. Enlarging H to all four tables restores uncertainty at the second
-input without deleting or falsifying the first observation. R4 proves uniqueness
-inside its declared family, not that the family covers the actual law.
+For two inputs, assume the constant family H={(0,0),(1,1)} and observe the first answer 0. The sole survivor (0,0) predicts the second answer 0. But the actual law (0,1) also fits that observation and lies outside H. The restricted checker cannot discover its missing representability premise from this one observation. Enlarging H to all four tables restores uncertainty at the second input without deleting or falsifying the first observation. R4 proves uniqueness inside its declared family, not that the family covers the actual law.
 
-More generally, new consistent evidence contracts V and can only enlarge the
-set of unanimously predictable inputs. Enlarging the candidate family expands
-V and can retract such certainty. Empirical records and family-dependent
-conclusions therefore need separate contexts. Retaining an old conclusion
-with its original assumptions is sound, but reusing it as unconditional after
-a model revision need not be. The unknown fixed law, its internal hypothesis
-record, query controller and memory all belong to Ω. Revising the hypothesis
-record does not change the actual law. VC32–VC34 supply a finite experiment
-completion when those controllers and windows are required.
+More generally, new consistent evidence contracts V and can only enlarge the set of unanimously predictable inputs. Enlarging the candidate family expands V and can retract such certainty. Empirical records and family-dependent conclusions therefore need separate contexts. Retaining an old conclusion with its original assumptions is sound, but reusing it as unconditional after a model revision need not be. The unknown fixed law, its internal hypothesis record, query controller and memory all belong to Ω. Revising the hypothesis record does not change the actual law. VC32–VC34 supply a finite experiment completion when those controllers and windows are required.
 
-The pure-type `ConstantTable` supplies an explicit law restriction.
-`PredictionsFromConstantTables` derives equal second-input predictions from
-equal first-input readings and the two constancy premises. It does not assume
-the second answers equal. Swift rejects both transferring this conclusion to
-a nonconstant table with the same training reading and treating that table as
-a member of the constant family. These witnesses expose the assumption that
-permits generalization instead of claiming that syntax established it for an
-unknown environment.
+The pure-type `ConstantTable` supplies an explicit law restriction. `PredictionsFromConstantTables` derives equal second-input predictions from equal first-input readings and the two constancy premises. It does not assume the second answers equal. Swift rejects both transferring this conclusion to a nonconstant table with the same training reading and treating that table as a member of the constant family. These witnesses expose the assumption that permits generalization instead of claiming that syntax established it for an unknown environment.
 
-*Remark (saturation metrics).* For K>0, |P(L)|/K measures represented rule
-classes under the fixed common domain. It reaches one exactly at class coverage.
-It does not measure dispatch sufficiency, empirical coverage of U, or correctness
-of the assumed family H. For K=0 there are no classes to cover and this ratio
-is undefined. Retention remains an explicit cache law over the claimed window,
-not automatic permanent growth inside a finite reversible whole (VC34).
+*Remark (saturation metrics).* For K>0, |P(L)|/K measures represented rule classes under the fixed common domain. It reaches one exactly at class coverage. It does not measure dispatch sufficiency, empirical coverage of U, or correctness of the assumed family H. For K=0 there are no classes to cover and this ratio is undefined. Retention remains an explicit cache law over the claimed window, not automatic permanent growth inside a finite reversible whole (VC34).
 
 ## §6. Interface
 
@@ -1639,10 +872,7 @@ The loop (§1) has two participants with distinct functions, guarantees, and bou
 
 **Function:** Given an encoding, produce a certified answer or a structural diagnostic.
 
-**Guarantees:** Output equals f* under R4 + PASS (Theorem 2). Compilation
-failure produces REJECT. Termination uses the finite-domain and traversal
-premises, determinism uses a fixed protocol, and cache correctness uses
-verified entries and the retaining update law GC2–GC3.
+**Guarantees:** Output equals f* under R4 + PASS (Theorem 2). Compilation failure produces REJECT. Termination uses the finite-domain and traversal premises, determinism uses a fixed protocol, and cache correctness uses verified entries and the retaining update law GC2–GC3.
 
 **Premises of this inner checking procedure**:
 

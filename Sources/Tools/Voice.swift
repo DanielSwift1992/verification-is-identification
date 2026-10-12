@@ -33,8 +33,13 @@ enum VoiceTool {
     // This records the expanded corpus as the review baseline. It does not
     // certify every residual match or claim a completed semantic audit.
     // Other scope pins are unchanged. A rise still fails until explicitly reviewed.
+    // On 2026-10-12 every paper paragraph was joined onto one line; cmark and
+    // pandoc render each paper identically before and after. Two wrapped
+    // continuation lines had begun with |z| and |C|, and the table-row filter
+    // skipped them. Their sentences now count: one semicolon, one "holds".
+    // The same prose measures 1395.
     static let pins: [(scope: String, count: Int)] = [
-        ("papers", 1393),
+        ("papers", 1395),
         ("lattice", 6),
         ("kit", 18),
         ("pages", 308),

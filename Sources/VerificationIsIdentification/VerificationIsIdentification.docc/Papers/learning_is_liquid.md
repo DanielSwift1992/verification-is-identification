@@ -1023,535 +1023,163 @@ This changes the research question. Instead of requiring each preferred part to 
 
 ## §6h. When the requirement belongs to the medium
 
-LQ13 supplies a limited way to derive a requirement from a presented internal
-relation. For its joint admission R⊆A×B, retain the actual counterpart b and
-write A_b={a:(a,b)∈R}. The admitted fillings of role A are then fixed by R and
-b. A target set has not been chosen independently of the rest of the
-construction. This is a requirement of compatibility with that counterpart,
-not yet a motive to preserve it. The decomposition and R remain supplied
-grounds; calling the whole internal does not derive them.
+LQ13 supplies a limited way to derive a requirement from a presented internal relation. For its joint admission R⊆A×B, retain the actual counterpart b and write A_b={a:(a,b)∈R}. The admitted fillings of role A are then fixed by R and b. A target set has not been chosen independently of the rest of the construction. This is a requirement of compatibility with that counterpart, not yet a motive to preserve it. The decomposition and R remain supplied grounds; calling the whole internal does not derive them.
 
-Since B is a projection of R, each such A_b is already nonempty, and an
-actual pair in R already satisfies its condition. Extracting this condition
-does not exhibit an unmet task. Moreover any family of nonempty target sets
-T_b can be encoded as R={(a,b):a∈T_b}. Taking sections of that relation would
-recover the inserted targets. The section construction therefore locates the
-condition's dependence on a counterpart, but does not establish that its
-normative significance originated within the source.
+Since B is a projection of R, each such A_b is already nonempty, and an actual pair in R already satisfies its condition. Extracting this condition does not exhibit an unmet task. Moreover any family of nonempty target sets T_b can be encoded as R={(a,b):a∈T_b}. Taking sections of that relation would recover the inserted targets. The section construction therefore locates the condition's dependence on a counterpart, but does not establish that its normative significance originated within the source.
 
-The dual part of LQ13 also gives the least information needed to retain this
-requirement. If a reading e of B supports R(a,b) iff D(a,e(b)), equal e-images
-must have identical sets A_b. Conversely the class β(b) under equality of A_b
-supports exactly that test. Thus every such e refines β. This is a consequence
-of the existing two-sided boundary theorem, not a new classification. It can
-leave the content of b unidentified while preserving its complete requirement
-at this cut when distinct counterparts share a profile. The map β may also
-be injective; the theorem does not promise compression. It supplies neither
-a procedure for acquiring β nor an action
-which fills the role. An available implementation must come from the actual
-construction. One compatible filling is not necessarily the only one, and a
-unique filling is not necessarily accessible.
+The dual part of LQ13 also gives the least information needed to retain this requirement. If a reading e of B supports R(a,b) iff D(a,e(b)), equal e-images must have identical sets A_b. Conversely the class β(b) under equality of A_b supports exactly that test. Thus every such e refines β. This is a consequence of the existing two-sided boundary theorem, not a new classification. It can leave the content of b unidentified while preserving its complete requirement at this cut when distinct counterparts share a profile. The map β may also be injective; the theorem does not promise compression. It supplies neither a procedure for acquiring β nor an action which fills the role. An available implementation must come from the actual construction. One compatible filling is not necessarily the only one, and a unique filling is not necessarily accessible.
 
-The comparison N(a)⊆N(a′) likewise says exactly that every counterpart
-compatible with a remains compatible with a′. It does not itself say that more counterparts are better
-or that the process will select a′. Those would add a preference or an action
-law. Where the complete input has a symmetry exchanging two candidate
-requirements, VI1a excludes a single equivariant selection between them. A
-joint answer may remain determinate. Actual internal history or another
-distinguishing relation may remove that obstruction.
+The comparison N(a)⊆N(a′) likewise says exactly that every counterpart compatible with a remains compatible with a′. It does not itself say that more counterparts are better or that the process will select a′. Those would add a preference or an action law. Where the complete input has a symmetry exchanging two candidate requirements, VI1a excludes a single equivariant selection between them. A joint answer may remain determinate. Actual internal history or another distinguishing relation may remove that obstruction.
 
-**Internal location does not establish internal formation.** Adding a field
-called goal, satisfaction or feeling does not show how the process produces
-or uses it. A research proposal is to connect the conditions enabling a
-process with the actual transformations which maintain or revise those
-conditions. Its regulation must be exhibited, rather than inferred from a
-drawn dependency cycle. Even a successful such construction would establish
-the stated functional organization, not a universal account of purpose.
+**Internal location does not establish internal formation.** Adding a field called goal, satisfaction or feeling does not show how the process produces or uses it. A research proposal is to connect the conditions enabling a process with the actual transformations which maintain or revise those conditions. Its regulation must be exhibited, rather than inferred from a drawn dependency cycle. Even a successful such construction would establish the stated functional organization, not a universal account of purpose.
 
-**A changed requirement must retain its relation to the question being asked.**
-LQ8a already gives two reversible changes of a joint source which both create
-perfect current agreement. In one, the record answers the original question;
-in the other, the current target has changed to match the old record while the
-original answer remains elsewhere in the whole. Therefore whole recoverability
-and current agreement do not establish fulfillment of an earlier requirement.
-A new requirement can itself be legitimate, but the rule or source authorizing
-that revision needs its own grounds. Putting a revision rule inside the form
-does not derive its authority.
+**A changed requirement must retain its relation to the question being asked.** LQ8a already gives two reversible changes of a joint source which both create perfect current agreement. In one, the record answers the original question; in the other, the current target has changed to match the old record while the original answer remains elsewhere in the whole. Therefore whole recoverability and current agreement do not establish fulfillment of an earlier requirement. A new requirement can itself be legitimate, but the rule or source authorizing that revision needs its own grounds. Putting a revision rule inside the form does not derive its authority.
 
-For an equality requirement, a common injective change of interpretation h
-gives q=x iff h(q)=h(x). This preserves refusal as well as agreement. The fact
-does not extend to every reversible transformation of a pair or to every
-predicate. Nor does it restrict a real repair to preserve refusal: a repair
-may satisfy the same previously unsatisfied requirement. Preserving a question
-under re-description, meeting it by action, and changing the question are
-different relations to the source.
+For an equality requirement, a common injective change of interpretation h gives q=x iff h(q)=h(x). This preserves refusal as well as agreement. The fact does not extend to every reversible transformation of a pair or to every predicate. Nor does it restrict a real repair to preserve refusal: a repair may satisfy the same previously unsatisfied requirement. Preserving a question under re-description, meeting it by action, and changing the question are different relations to the source.
 
-Related proposals must be read with their scope. [Di Paolo (2005)](https://ezequieldipaolo.net/wp-content/uploads/2011/10/autopoiesis_teleology_2005.pdf)
-argues that self-production alone does not explain adaptive regulation relative
-to viability, and does not identify adaptation with one optimal state.
-[Montévil and Mossio (2015)](https://montevil.org/publications/articles/2015-mm-organisation-closure-constraints/)
-study mutually maintained constraints at specified scales. These are accounts
-of biological organization with substantive premises. They do not derive a
-purpose for every transformation or validate VI's source relations.
+Related proposals must be read with their scope. [Di Paolo (2005)](https://ezequieldipaolo.net/wp-content/uploads/2011/10/autopoiesis_teleology_2005.pdf) argues that self-production alone does not explain adaptive regulation relative to viability, and does not identify adaptation with one optimal state. [Montévil and Mossio (2015)](https://montevil.org/publications/articles/2015-mm-organisation-closure-constraints/) study mutually maintained constraints at specified scales. These are accounts of biological organization with substantive premises. They do not derive a purpose for every transformation or validate VI's source relations.
 
-The earlier operational use of perception concerns access to a distinction for
-an action. Experienced feeling remains a further subject of explanation.
-Equating either a record or a regulatory loop with feeling would introduce an
-unproved bridge; omitting a feeling variable would not establish its absence
-in the described source either. No criterion for that bridge is supplied here.
-The concrete next obligation is to construct how a presented medium both
-produces a compatibility requirement and uses changes in its support to alter
-its available continuation, including the source of any requirement revision.
+The earlier operational use of perception concerns access to a distinction for an action. Experienced feeling remains a further subject of explanation. Equating either a record or a regulatory loop with feeling would introduce an unproved bridge; omitting a feeling variable would not establish its absence in the described source either. No criterion for that bridge is supplied here. The concrete next obligation is to construct how a presented medium both produces a compatibility requirement and uses changes in its support to alter its available continuation, including the source of any requirement revision.
 
 ## §6i. Atoms of a whole action
 
-LQ15's blocks are relative to the supplied recombinations. A single admitted
-configuration does not establish them: the singleton containing that
-configuration factors over every partition of its addresses. Nor do the
-separate families of inputs and outputs specify which output continues which
-input. To retain that obligation, apply the same construction to the admitted
-executions, preserving their source–result correspondence. This is an extension
-of the joint relation being tested, not the introduction of a clock outside it.
+LQ15's blocks are relative to the supplied recombinations. A single admitted configuration does not establish them: the singleton containing that configuration factors over every partition of its addresses. Nor do the separate families of inputs and outputs specify which output continues which input. To retain that obligation, apply the same construction to the admitted executions, preserving their source–result correspondence. This is an extension of the joint relation being tested, not the introduction of a clock outside it.
 
-**LQ19 (a family of addressed relations forces one finest common independent
-partition).** Let I be a finite nonempty address set. For each e in a possibly
-infinite family E, let R_e be a nonempty relation in ∏ᵢ Aᵢᵉ. The addresses have
-an established correspondence across these presentations; each presentation
-has LQ15's coordinate splices. A cut S is common-free when it is free for
-every R_e. Then there is a unique finest partition P_E over which every R_e
-factors. Its blocks are the equivalence classes generated by putting addresses
-together whenever they lie in one block of some P_(R_e).
+**LQ19 (a family of addressed relations forces one finest common independent partition).** Let I be a finite nonempty address set. For each e in a possibly infinite family E, let R_e be a nonempty relation in ∏ᵢ Aᵢᵉ. The addresses have an established correspondence across these presentations; each presentation has LQ15's coordinate splices. A cut S is common-free when it is free for every R_e. Then there is a unique finest partition P_E over which every R_e factors. Its blocks are the equivalence classes generated by putting addresses together whenever they lie in one block of some P_(R_e).
 
-*Proof.* The common-free masks form the intersection of the Boolean
-subalgebras C_(R_e), hence a Boolean subalgebra of the finite set 𝒫(I).
-Its atoms partition I. A mask belongs to this intersection precisely when
-it is a union of blocks of every P_(R_e), equivalently a union of the stated
-generated equivalence classes. The resulting blocks are free in each R_e,
-so the finite assembly proof of LQ15 factors each relation over them. Any
-partition doing so has common-free blocks and therefore groups these atoms.
-For an empty E the common partition is the singleton partition. ∎
+*Proof.* The common-free masks form the intersection of the Boolean subalgebras C_(R_e), hence a Boolean subalgebra of the finite set 𝒫(I). Its atoms partition I. A mask belongs to this intersection precisely when it is a union of blocks of every P_(R_e), equivalently a union of the stated generated equivalence classes. The resulting blocks are free in each R_e, so the finite assembly proof of LQ15 factors each relation over them. Any partition doing so has common-free blocks and therefore groups these atoms. For an empty E the common partition is the singleton partition. ∎
 
-The family is a family of obligations, not a supply of independent choices of
-e. An unknown shared choice must remain inside the appropriate joint relation,
-as the example below shows. Nor is this an acquisition algorithm: arbitrary
-relations can have infinite carriers and no given decision procedure.
+The family is a family of obligations, not a supply of independent choices of e. An unknown shared choice must remain inside the appropriate joint relation, as the example below shows. Nor is this an acquisition algorithm: arbitrary relations can have infinite carriers and no given decision procedure.
 
-**There is a finite relational basis for this partition.** At most
-|I|−|P_E| members of E already force P_E. Start with the singleton partition.
-If the partition generated by the members selected so far is finer than P_E,
-some remaining member must join at least two of its blocks; otherwise it would
-already be an upper bound for all P_(R_e). Select such a member. Each selection
-strictly reduces the number of blocks. At equality with P_E stop. This proves
-the bound, including zero for the singleton target partition. The empty
-address set has the separate trivial bound zero.
+**There is a finite relational basis for this partition.** At most |I|−|P_E| members of E already force P_E. Start with the singleton partition. If the partition generated by the members selected so far is finer than P_E, some remaining member must join at least two of its blocks; otherwise it would already be an upper bound for all P_(R_e). Select such a member. Each selection strictly reduces the number of blocks. At equality with P_E stop. This proves the bound, including zero for the singleton target partition. The empty address set has the separate trivial bound zero.
 
-The bound counts whole relations with their laws, not observations, bits,
-execution steps or the size of proofs. A selected relation may require an
-unbounded description. The existence proof does not decide that no unexamined
-relation will require a further joining. It proves finite determination of
-this partition, not finite determination of the whole game.
+The bound counts whole relations with their laws, not observations, bits, execution steps or the size of proofs. A selected relation may require an unbounded description. The existence proof does not decide that no unexamined relation will require a further joining. It proves finite determination of this partition, not finite determination of the whole game.
 
-**The least independent enclosure of specified roles is derived.** For
-J⊆I, take the union of the blocks of P_E which meet J. This is the smallest
-common-free cut containing J: every other such cut is a union of blocks and
-must include each block meeting J. Applying this enclosure twice changes
-nothing. It measures which roles must remain jointly covered if the remainder
-is to be independently recombinable. It is not the amount of content a user
-must acquire, and says nothing yet about distances between those roles.
+**The least independent enclosure of specified roles is derived.** For J⊆I, take the union of the blocks of P_E which meet J. This is the smallest common-free cut containing J: every other such cut is a union of blocks and must include each block meeting J. Applying this enclosure twice changes nothing. It measures which roles must remain jointly covered if the remainder is to be independently recombinable. It is not the amount of content a user must acquire, and says nothing yet about distances between those roles.
 
-**For an action graph, independent blocks are exactly blockwise product actions.**
-Let R⊆∏ᵢ Aᵢ be nonempty and F:R→R total and deterministic. Present its
-graph T={(x,F(x)):x∈R} with one paired role (xᵢ,yᵢ) at each address i.
-For a partition P, T factors over P if and only if
+**For an action graph, independent blocks are exactly blockwise product actions.** Let R⊆∏ᵢ Aᵢ be nonempty and F:R→R total and deterministic. Present its graph T={(x,F(x)):x∈R} with one paired role (xᵢ,yᵢ) at each address i. For a partition P, T factors over P if and only if
 
     R = ∏_{B∈P} π_B(R),    F(x)_B = F_B(x_B) for every B∈P
 
-for total F_B:π_B(R)→π_B(R). Pairing input and output at the same address
-is part of this presentation, not a conclusion that those physical boundaries
-are stationary.
+for total F_B:π_B(R)→π_B(R). Pairing input and output at the same address is part of this presentation, not a conclusion that those physical boundaries are stationary.
 
-*Proof.* A product graph projects to a product input relation. Each projected
-block relation is total on π_B(R). If it assigned two results to one block
-input, combine those two pairs with fixed pairs at the other blocks. Product
-factorization would give two global outputs for one input, contradicting F.
-Thus each block relation is a function F_B. Conversely, a product source and
-the stated block functions give exactly the product of their graphs. ∎
+*Proof.* A product graph projects to a product input relation. Each projected block relation is total on π_B(R). If it assigned two results to one block input, combine those two pairs with fixed pairs at the other blocks. Product factorization would give two global outputs for one input, contradicting F. Thus each block relation is a function F_B. Conversely, a product source and the stated block functions give exactly the product of their graphs. ∎
 
-This connects LQ15 to LQ18's autonomy criterion. For a partial or multivalued
-T the free-cut test still applies to whole execution pairs, but this
-total-function corollary cannot be inserted unchanged. Include an independently
-required source relation R as another obligation if T does not cover all of R.
-Shared controllers, hidden memory and applicability restrictions must remain
-in the described joint relation when they affect its allowed continuations.
+This connects LQ15 to LQ18's autonomy criterion. For a partial or multivalued T the free-cut test still applies to whole execution pairs, but this total-function corollary cannot be inserted unchanged. Include an independently required source relation R as another obligation if T does not cover all of R. Shared controllers, hidden memory and applicability restrictions must remain in the described joint relation when they affect its allowed continuations.
 
-**An exchange gives independent snapshots and an inseparable action.** Let
-R={0,1}×{0,1} and F(a,b)=(b,a). Both the input family and output family
-are complete products. The executions 00→00 and 11→11 are admitted.
-Taking the first role's input and output from the first execution and the
-second role's from the second proposes 01→01, which the exchange refuses.
-The execution graph therefore has one two-role block. F² is the identity,
-whose endpoint graph has two independent blocks. Returning the endpoint can
-remove this obstruction from the endpoint relation while the intermediate
-exchange still carries it. A full two-step history retains the forbidden
-splice at its first exchange. Endpoint return and independence throughout
-the episode are different claims.
+**An exchange gives independent snapshots and an inseparable action.** Let R={0,1}×{0,1} and F(a,b)=(b,a). Both the input family and output family are complete products. The executions 00→00 and 11→11 are admitted. Taking the first role's input and output from the first execution and the second role's from the second proposes 01→01, which the exchange refuses. The execution graph therefore has one two-role block. F² is the identity, whose endpoint graph has two independent blocks. Returning the endpoint can remove this obstruction from the endpoint relation while the intermediate exchange still carries it. A full two-step history retains the forbidden splice at its first exchange. Endpoint return and independence throughout the episode are different claims.
 
-**A shared unknown cannot be replaced by separate local choices.** On the
-same product source, let F₀ leave both bits alone and F₁ flip both. Each
-fixed graph T₀ and T₁ separately factors into the two roles. Their union T
-does not: it contains 00→00 and 00→11 but refuses the mixed 00→01.
-The common partition of the obligations {T₀,T₁} is thus finer than the
-partition of the single relation T. The former asks for factorization
-conditional on the same fixed choice; the latter retains the constraint
-that both roles share one choice. This dependence does not establish a
-direct interaction or force between the roles; a common mode suffices.
+**A shared unknown cannot be replaced by separate local choices.** On the same product source, let F₀ leave both bits alone and F₁ flip both. Each fixed graph T₀ and T₁ separately factors into the two roles. Their union T does not: it contains 00→00 and 00→11 but refuses the mixed 00→01. The common partition of the obligations {T₀,T₁} is thus finer than the partition of the single relation T. The former asks for factorization conditional on the same fixed choice; the latter retains the constraint that both roles share one choice. This dependence does not establish a direct interaction or force between the roles; a common mode suffices.
 
-If the same unknown choice persists for two calls, F_h² is the identity for
-both choices. If the choice may change between calls, F₁F₀ does not return
-the input. Thus repeatability of the procedure name alone loses the return
-law. In general, the relation
+If the same unknown choice persists for two calls, F_h² is the identity for both choices. If the choice may change between calls, F₁F₀ does not return the input. Thus repeatability of the procedure name alone loses the return law. In general, the relation
 
     there is one h with y=F_h(x) and z=F_h(y)
 
-must not be replaced by two independently chosen witnesses h₁,h₂. U11 retains
-this joint dependence and, when its source-map cycle criterion holds, derives
-a repeat count returning the required answer without identifying the unknown
-action or payload. No unit of elapsed duration is
-needed for this algebraic return statement. Actual access to the repeated
-whole step and its completion remains a separate construction obligation.
+must not be replaced by two independently chosen witnesses h₁,h₂. U11 retains this joint dependence and, when its source-map cycle criterion holds, derives a repeat count returning the required answer without identifying the unknown action or payload. No unit of elapsed duration is needed for this algebraic return statement. Actual access to the repeated whole step and its completion remains a separate construction obligation.
 
-**Adding obligations can join atoms; learning a narrower relation need not.**
-If E⊆E′, every common-free cut for E′ was already common-free for E, so
-P_E′ can only join blocks of P_E. This is a comparison of descriptions
-which retain the old obligations, not a law of physical fusion. Replacing
-one relation by a subset has no such monotonicity: on two binary roles, the
-full product has two blocks, its diagonal {00,11} has one, and the singleton
-{00} again has two. Conditioning on a case and adding a relation as an
-additional obligation are different operations.
+**Adding obligations can join atoms; learning a narrower relation need not.** If E⊆E′, every common-free cut for E′ was already common-free for E, so P_E′ can only join blocks of P_E. This is a comparison of descriptions which retain the old obligations, not a law of physical fusion. Replacing one relation by a subset has no such monotonicity: on two binary roles, the full product has two blocks, its diagonal {00,11} has one, and the singleton {00} again has two. Conditioning on a case and adding a relation as an additional obligation are different operations.
 
-**What may remain unknown.** None of these partition results demands reading
-the contents of every role in a block. Unknown contents can be carried and
-transformed through their actual relation. Minimum retained information for
-an independently fixed question and its continuations is instead VC15's
-behavioral quotient, with VC46–47 retaining partial-action availability.
-LQ18's returning-reading construction supplies a periodic case. These two
-minima answer different questions: independent enclosure concerns what must
-remain jointly covered; sufficient information concerns what distinctions a
-particular use must retain. Neither minimum supplies an implementation solely
-by being uniquely determined.
+**What may remain unknown.** None of these partition results demands reading the contents of every role in a block. Unknown contents can be carried and transformed through their actual relation. Minimum retained information for an independently fixed question and its continuations is instead VC15's behavioral quotient, with VC46–47 retaining partial-action availability. LQ18's returning-reading construction supplies a periodic case. These two minima answer different questions: independent enclosure concerns what must remain jointly covered; sufficient information concerns what distinctions a particular use must retain. Neither minimum supplies an implementation solely by being uniquely determined.
 
-The result preserves the positive scope of the proposed atom: every faithful
-realization of these same roles, recombinations, admissions and refusals must
-respect their forbidden separations. Transport of the actual splices, rather than a bijection alone
-of configurations, preserves the atomic partition as in LQ15. The theorem
-does not derive all roles, contacts, finite address coverage, a universal
-clock or a physical particle structure from existence alone. Its present
-contribution is one shared construction for the inseparability of admitted
-forms and admitted actions, including the otherwise hidden common choice.
+The result preserves the positive scope of the proposed atom: every faithful realization of these same roles, recombinations, admissions and refusals must respect their forbidden separations. Transport of the actual splices, rather than a bijection alone of configurations, preserves the atomic partition as in LQ15. The theorem does not derive all roles, contacts, finite address coverage, a universal clock or a physical particle structure from existence alone. Its present contribution is one shared construction for the inseparability of admitted forms and admitted actions, including the otherwise hidden common choice.
 
 ## §6j. What an atom actually preserves
 
-The word atom below means an LQ15 block for the established roles and their
-recombinations. A single role can be a block because no internal cut
-of that role is in this presentation. A block with several roles makes a
-stronger relational statement: each proposed independent separation of its
-roles has an actual forbidden recombination. This does not assert a smallest
-physical object under every possible refinement.
+The word atom below means an LQ15 block for the established roles and their recombinations. A single role can be a block because no internal cut of that role is in this presentation. A block with several roles makes a stronger relational statement: each proposed independent separation of its roles has an actual forbidden recombination. This does not assert a smallest physical object under every possible refinement.
 
-**An internal cut can retain an atom without making its parts independent.**
-For a fixed coordinate cut S | I\S, retain the joint image
+**An internal cut can retain an atom without making its parts independent.** For a fixed coordinate cut S | I\S, retain the joint image
 
     J_S = {(π_S(x), π_(I\S)(x)) : x∈R}.
 
-The paired projection is a bijection from R onto J_S: the two restrictions
-together retain each coordinate of x. Moreover J_S is the full product of
-its projections exactly when S is a free cut. For the forward implication,
-each proposed splice has a pair of restrictions in that product and hence
-comes from an admitted x. Conversely, a free splice realizes every such pair.
-Under LQ15's partition premises, a cut splitting one atomic block therefore
-has a joint image strictly smaller than that product.
+The paired projection is a bijection from R onto J_S: the two restrictions together retain each coordinate of x. Moreover J_S is the full product of its projections exactly when S is a free cut. For the forward implication, each proposed splice has a pair of restrictions in that product and hence comes from an admitted x. Conversely, a free splice realizes every such pair. Under LQ15's partition premises, a cut splitting one atomic block therefore has a joint image strictly smaller than that product.
 
-Thus internal articulation and independent recombination are different
-properties. The parts can jointly describe the atom exactly while their
-compatibility relation remains indispensable. Distinguishing two different
-blocks also does not require independently decomposing each block internally.
-This is a claim about the supplied representations; it does not provide
-physical access to their projections or an operation that cuts their carrier.
+Thus internal articulation and independent recombination are different properties. The parts can jointly describe the atom exactly while their compatibility relation remains indispensable. Distinguishing two different blocks also does not require independently decomposing each block internally. This is a claim about the supplied representations; it does not provide physical access to their projections or an operation that cuts their carrier.
 
-**LQ20 (minimal forbidden fillings determine the independent blocks).** Let
-I be finite and nonempty, R⊆∏ᵢ Aᵢ nonempty, and Aᵢ=πᵢ(R). For J⊆I,
-a partial filling p∈∏ᵢ∈J Aᵢ is forbidden when no member of R restricts to
-p. A forbidden filling is minimally forbidden when every restriction to a proper subset of J
-has an extension in R. Minimality concerns this particular filling, not just
-its address set. Make each such support J a hyperedge on I. Then the connected
-components of this hypergraph, including isolated roles as singleton
-components, are exactly P_R.
+**LQ20 (minimal forbidden fillings determine the independent blocks).** Let I be finite and nonempty, R⊆∏ᵢ Aᵢ nonempty, and Aᵢ=πᵢ(R). For J⊆I, a partial filling p∈∏ᵢ∈J Aᵢ is forbidden when no member of R restricts to p. A forbidden filling is minimally forbidden when every restriction to a proper subset of J has an extension in R. Minimality concerns this particular filling, not just its address set. Make each such support J a hyperedge on I. Then the connected components of this hypergraph, including isolated roles as singleton components, are exactly P_R.
 
-*Proof.* Suppose R factors over a partition P. If a partial filling p is
-forbidden, at least one restriction p|_(J∩B), B∈P, is forbidden: otherwise
-choose an extension at each block and assemble them using the product
-factorization. A minimally forbidden p must therefore have all its support
-inside one block. This applies to every factorization, including P_R.
+*Proof.* Suppose R factors over a partition P. If a partial filling p is forbidden, at least one restriction p|_(J∩B), B∈P, is forbidden: otherwise choose an extension at each block and assemble them using the product factorization. A minimally forbidden p must therefore have all its support inside one block. This applies to every factorization, including P_R.
 
-Conversely, let P be any partition containing each minimally forbidden
-support inside one block. Consider x with x_B∈π_B(R) for all B∈P. If
-x∉R, its full filling is forbidden. Finiteness of I supplies a minimally
-forbidden restriction p=x|_J. Its support lies inside one B, contradicting
-the fact that x_B extends to a member of R. Thus x∈R and R factors over P.
-The components of the hypergraph are precisely the finest partition which
-contains each hyperedge inside one block, proving the claim. ∎
+Conversely, let P be any partition containing each minimally forbidden support inside one block. Consider x with x_B∈π_B(R) for all B∈P. If x∉R, its full filling is forbidden. Finiteness of I supplies a minimally forbidden restriction p=x|_J. Its support lies inside one B, contradicting the fact that x_B extends to a member of R. Thus x∈R and R factors over P. The components of the hypergraph are precisely the finest partition which contains each hyperedge inside one block, proving the claim. ∎
 
-R≠∅ excludes an empty forbidden support. Restricting each carrier to πᵢ(R)
-excludes singleton forbidden supports. No carrier Aᵢ has to be finite. The
-theorem needs established nonextendability, not a pattern absent from a finite
-sample. It describes the exact joint relation; a proposed overapproximation
-can have a different partition.
+R≠∅ excludes an empty forbidden support. Restricting each carrier to πᵢ(R) excludes singleton forbidden supports. No carrier Aᵢ has to be finite. The theorem needs established nonextendability, not a pattern absent from a finite sample. It describes the exact joint relation; a proposed overapproximation can have a different partition.
 
-**One atom can contain several irreducible restrictions.** In the relation
-{000,111}, the minimally forbidden fillings are mismatches on pairs. Their
-overlap joins all three roles into one atom. In the even-parity relation on
-three binary roles, every filling of any pair extends, while an odd complete
-triple does not. Here all minimally forbidden fillings use all three roles.
-Both relations have one atom, but their compatibility laws differ. The atom
-partition therefore preserves the extent of independent decomposition,
-not the entire law of the relation. Even the hyperedge supports omit which
-fillings are forbidden; those fillings must be retained to specify R.
+**One atom can contain several irreducible restrictions.** In the relation {000,111}, the minimally forbidden fillings are mismatches on pairs. Their overlap joins all three roles into one atom. In the even-parity relation on three binary roles, every filling of any pair extends, while an odd complete triple does not. Here all minimally forbidden fillings use all three roles. Both relations have one atom, but their compatibility laws differ. The atom partition therefore preserves the extent of independent decomposition, not the entire law of the relation. Even the hyperedge supports omit which fillings are forbidden; those fillings must be retained to specify R.
 
-For every finite n≥3, even parity on n roles has all proper projections
-equal to those of the full product. Its minimally forbidden fillings are
-exactly the complete odd-parity fillings, so its partition has one block,
-whereas the full product has n singleton blocks. Thus even all proper
-projections need not determine the atomic partition. This identifies an
-arbitrarily high-order joint restriction, without making n=3 a universal
-minimum or assigning a quantum interpretation to the example.
+For every finite n≥3, even parity on n roles has all proper projections equal to those of the full product. Its minimally forbidden fillings are exactly the complete odd-parity fillings, so its partition has one block, whereas the full product has n singleton blocks. Thus even all proper projections need not determine the atomic partition. This identifies an arbitrarily high-order joint restriction, without making n=3 a universal minimum or assigning a quantum interpretation to the example.
 
-**A many-role atom has variation, but not a forced reaction to every change.**
-If πᵢ(R) is a singleton, splicing that coordinate between any two admitted
-forms changes nothing. The singleton mask is free, so i cannot belong to a
-larger atom. Every role in a many-role atom consequently has at least two
-admitted values. This is variation across the admitted family, not a claim
-that any value changes during a particular occurrence.
+**A many-role atom has variation, but not a forced reaction to every change.** If πᵢ(R) is a singleton, splicing that coordinate between any two admitted forms changes nothing. The singleton mask is free, so i cannot belong to a larger atom. Every role in a many-role atom consequently has at least two admitted values. This is variation across the admitted family, not a claim that any value changes during a particular occurrence.
 
-In R={00,01,10}, the two roles form one atom because 11 is excluded while
-both coordinate projections are full. A first-role value 0 allows two
-partners, so atomicity does not give unique determination. The admitted
-forms 00 and 10 also share the same second role. A change between them,
-if available, would require no change there. Compatibility of these endpoints
-does not itself supply the action between them. Indivisibility forbids some
-independent recombinations, not every single-role change.
+In R={00,01,10}, the two roles form one atom because 11 is excluded while both coordinate projections are full. A first-role value 0 allows two partners, so atomicity does not give unique determination. The admitted forms 00 and 10 also share the same second role. A change between them, if available, would require no change there. Compatibility of these endpoints does not itself supply the action between them. Indivisibility forbids some independent recombinations, not every single-role change.
 
-A fixed role being a separate block likewise grants no right to delete its
-physical support. Product factorization retains that role. Withdrawal of a
-support, or a change in action availability, is another relation which must
-be represented if it belongs to the question. A graph of successful cases
-alone must not erase refusals of an attempted continuation (VC46–47).
+A fixed role being a separate block likewise grants no right to delete its physical support. Product factorization retains that role. Withdrawal of a support, or a change in action availability, is another relation which must be represented if it belongs to the question. A graph of successful cases alone must not erase refusals of an attempted continuation (VC46–47).
 
-**Exact local reduction preserves the atomic partition.** Suppose each
-qᵢ:Aᵢ→Bᵢ is onto, q=∏ᵢqᵢ, S=q(R), and the complete admission law is
+**Exact local reduction preserves the atomic partition.** Suppose each qᵢ:Aᵢ→Bᵢ is onto, q=∏ᵢqᵢ, S=q(R), and the complete admission law is
 
     R = q⁻¹(S).
 
-Then C_R=C_S and hence P_R=P_S on the same addresses, even when the qᵢ
-are not injective.
+Then C_R=C_S and hence P_R=P_S on the same addresses, even when the qᵢ are not injective.
 
-*Proof.* Coordinatewise q commutes with every splice. If a cut is free for
-R, lift two members of S to members of R and project their admitted splice;
-the cut is free for S. If a cut is free for S, the image of a splice of
-members of R lies in S. The displayed inverse-image condition makes that
-splice a member of R. This proves the converse. ∎
+*Proof.* Coordinatewise q commutes with every splice. If a cut is free for R, lift two members of S to members of R and project their admitted splice; the cut is free for S. If a cut is free for S, the image of a splice of members of R lies in S. The displayed inverse-image condition makes that splice a member of R. This proves the converse. ∎
 
-Merely setting S=q(R) is insufficient: mapping every coordinate to a constant
-would turn any relation into a singleton and erase every many-role atom. The
-inverse-image condition retains both admissions and refusals on the entire
-declared product. Locality is material too: LQ15's bijective parity encoding
-mixes roles and does not retain their independent splices.
+Merely setting S=q(R) is insufficient: mapping every coordinate to a constant would turn any relation into a singleton and erase every many-role atom. The inverse-image condition retains both admissions and refusals on the entire declared product. Locality is material too: LQ15's bijective parity encoding mixes roles and does not retain their independent splices.
 
-**The least separate contact descriptions supply this exact reduction.**
-For each i, identify a,a′∈Aᵢ exactly when, for every filling z of the other
-roles, (a,z)∈R iff (a′,z)∈R. Write βᵢ for the profile-class map.
-Coordinate replacement inside one such class preserves admission in every
-context. Finitely many coordinate replacements therefore prove
+**The least separate contact descriptions supply this exact reduction.** For each i, identify a,a′∈Aᵢ exactly when, for every filling z of the other roles, (a,z)∈R iff (a′,z)∈R. Write βᵢ for the profile-class map. Coordinate replacement inside one such class preserves admission in every context. Finitely many coordinate replacements therefore prove
 
     R = β⁻¹(β(R)),     β=∏ᵢβᵢ.
 
-Indeed, if β(x)=β(r) with r∈R, replace the coordinates of r by those of
-x one at a time; every intermediate form remains admitted. The reverse
-inclusion is immediate. The preceding result therefore preserves P_R after
-this reduction. LQ13 already proves the two-role instance.
+Indeed, if β(x)=β(r) with r∈R, replace the coordinates of r by those of x one at a time; every intermediate form remains admitted. The reverse inclusion is immediate. The preceding result therefore preserves P_R after this reduction. LQ13 already proves the two-role instance.
 
-If separate encodings eᵢ preserve the complete joint membership test, then
-eᵢ(a)=eᵢ(a′) forces identical admission in every retained context of the
-other roles. Thus βᵢ=dᵢ∘eᵢ for a unique dᵢ on eᵢ(Aᵢ). The profiles are
-the least separate descriptions for this exact contact. No claim is made
-that eᵢ factors through βᵢ, that β is the smallest arbitrary joint code, or
-that a participant has an available procedure for acquiring these profiles.
-Future contacts and distinctions between actual joinings require their own
-inclusion, as in LQ13 and VC15. When R is the whole execution relation of
-LQ19, the reduction concerns that supplied episode and its source binding.
+If separate encodings eᵢ preserve the complete joint membership test, then eᵢ(a)=eᵢ(a′) forces identical admission in every retained context of the other roles. Thus βᵢ=dᵢ∘eᵢ for a unique dᵢ on eᵢ(Aᵢ). The profiles are the least separate descriptions for this exact contact. No claim is made that eᵢ factors through βᵢ, that β is the smallest arbitrary joint code, or that a participant has an available procedure for acquiring these profiles. Future contacts and distinctions between actual joinings require their own inclusion, as in LQ13 and VC15. When R is the whole execution relation of LQ19, the reduction concerns that supplied episode and its source binding.
 
-For example, let A={0,1}×U and B={0,1}×V, where U,V are nonempty
-carriers. Admit ((s,u),(t,v)) exactly when s=t.
-On the supplied two-role cut A/B this is one atom. Reducing each side to its
-s-value preserves every admission and refusal and leaves that same atom.
-The u,v contents need not be read. If further internal cuts exposing u and v
-are admitted, their decomposition becomes another question; the theorem
-does not suppress those additional possible distinctions.
+For example, let A={0,1}×U and B={0,1}×V, where U,V are nonempty carriers. Admit ((s,u),(t,v)) exactly when s=t. On the supplied two-role cut A/B this is one atom. Reducing each side to its s-value preserves every admission and refusal and leaves that same atom. The u,v contents need not be read. If further internal cuts exposing u and v are admitted, their decomposition becomes another question; the theorem does not suppress those additional possible distinctions.
 
-**Preservation of the atom does not select its dynamics.** On
-R={(m,m):m∈ℤ}, both the identity and (m,m)↦(m+1,m+1) are reversible
-and preserve the same one-block relation. The former returns after one
-application, whereas no positive repetition of the latter returns an input.
-Thus atomicity and its preservation do not determine a return rhythm, an
-elapsed duration or one unique action. U11's return criterion and LQ18's
-returning-reading construction address that additional relation. Geometric
-distance, physical force and stability against specified disturbances also
-require their actual relations. The positive invariant established here is
-inseparability under the supplied recombinations, retained even after exact
-local removal of irrelevant distinctions.
+**Preservation of the atom does not select its dynamics.** On R={(m,m):m∈ℤ}, both the identity and (m,m)↦(m+1,m+1) are reversible and preserve the same one-block relation. The former returns after one application, whereas no positive repetition of the latter returns an input. Thus atomicity and its preservation do not determine a return rhythm, an elapsed duration or one unique action. U11's return criterion and LQ18's returning-reading construction address that additional relation. Geometric distance, physical force and stability against specified disturbances also require their actual relations. The positive invariant established here is inseparability under the supplied recombinations, retained even after exact local removal of irrelevant distinctions.
 
-**One whole sets a scope before it supplies a numerical measure.** A given
-whole can serve as the addressed unit of coverage without an inventory of
-its internal constituents. Its articulation into parts must retain J_S;
-calling it one neither makes those parts independently usable nor assigns
-them numerical fractions. If a nonnegative additive measure μ is separately
-established and normalized by μ(W)=1, a complete disjoint division gives
-μ(A)+μ(B)=1. Values 1/2 require the further equality μ(A)=μ(B), for example
-from an established exchange preserving that measure. Normalizing an unknown
-positive finite absolute scale removes its numerical size, not these laws.
+**One whole sets a scope before it supplies a numerical measure.** A given whole can serve as the addressed unit of coverage without an inventory of its internal constituents. Its articulation into parts must retain J_S; calling it one neither makes those parts independently usable nor assigns them numerical fractions. If a nonnegative additive measure μ is separately established and normalized by μ(W)=1, a complete disjoint division gives μ(A)+μ(B)=1. Values 1/2 require the further equality μ(A)=μ(B), for example from an established exchange preserving that measure. Normalizing an unknown positive finite absolute scale removes its numerical size, not these laws.
 
-LiR8 supplies an internal instance with an actual comparison relation:
-its derived additive reading has ρ(A)=1 for the supplied reference action.
-If an available B satisfies Bⁿ=A for n≥1 on that same orbit, then
-nρ(B)=ρ(A)=1, hence ρ(B)=1/n. The reference action alone does not supply
-such a root B. A full return with no retained change cannot serve as the
-strictly advancing reference required by LiR8.
+LiR8 supplies an internal instance with an actual comparison relation: its derived additive reading has ρ(A)=1 for the supplied reference action. If an available B satisfies Bⁿ=A for n≥1 on that same orbit, then nρ(B)=ρ(A)=1, hence ρ(B)=1/n. The reference action alone does not supply such a root B. A full return with no retained change cannot serve as the strictly advancing reference required by LiR8.
 
-The actual residue of one game may subsequently serve as one role in another
-contact, with the distinctions and source relations needed by that contact
-retained. Referring to each game's own whole as one does not identify the
-two carriers or prove that a measured quantity is conserved across their
-handoff. Their continued relation must be supplied by the same actual
-construction. HF4–HF5 already separate that continuation from terminality;
-the existence of a unit does not turn it into a universal saturation ceiling.
+The actual residue of one game may subsequently serve as one role in another contact, with the distinctions and source relations needed by that contact retained. Referring to each game's own whole as one does not identify the two carriers or prove that a measured quantity is conserved across their handoff. Their continued relation must be supplied by the same actual construction. HF4–HF5 already separate that continuation from terminality; the existence of a unit does not turn it into a universal saturation ceiling.
 
 ## §6k. One atomic relation through different manifestations
 
-LQ15 gives a unique finest independent partition for one established contact
-and its cuts. It does not say that every such block has the same law. LQ20
-also separates a block's extent from the forbidden fillings which determine
-its particular contact. To compare manifestations of an atomic relation,
-retain that full contact and the source correspondence, not just their common
-number of blocks or matching isolated readings.
+LQ15 gives a unique finest independent partition for one established contact and its cuts. It does not say that every such block has the same law. LQ20 also separates a block's extent from the forbidden fillings which determine its particular contact. To compare manifestations of an atomic relation, retain that full contact and the source correspondence, not just their common number of blocks or matching isolated readings.
 
-**LQ21 (minimal separate presentations have one source-bound transport).**
-Let I be finite and nonempty, R⊆∏ᵢAᵢ nonempty, and Aᵢ=πᵢ(R). Let
-eᵢ:Aᵢ→Bᵢ and fᵢ:Aᵢ→Cᵢ be onto. Put e=∏ᵢeᵢ, f=∏ᵢfᵢ,
-S=e(R), T=f(R), and require exact admission and refusal:
+**LQ21 (minimal separate presentations have one source-bound transport).** Let I be finite and nonempty, R⊆∏ᵢAᵢ nonempty, and Aᵢ=πᵢ(R). Let eᵢ:Aᵢ→Bᵢ and fᵢ:Aᵢ→Cᵢ be onto. Put e=∏ᵢeᵢ, f=∏ᵢfᵢ, S=e(R), T=f(R), and require exact admission and refusal:
 
     R = e⁻¹(S) = f⁻¹(T).
 
-Require also that every distinct pair of values in any Bᵢ has a context in
-the other B-roles which gives different admission answers in S, and likewise
-for Cᵢ and T. This is absence of redundant local distinctions for the complete
-contact. Then for every i there is exactly one bijection hᵢ:Bᵢ→Cᵢ with
+Require also that every distinct pair of values in any Bᵢ has a context in the other B-roles which gives different admission answers in S, and likewise for Cᵢ and T. This is absence of redundant local distinctions for the complete contact. Then for every i there is exactly one bijection hᵢ:Bᵢ→Cᵢ with
 
     hᵢ(eᵢ(a)) = fᵢ(a) for every a∈Aᵢ.
 
-Their product h transports S exactly to T, preserving refusals, free cuts,
-minimal forbidden fillings and the atomic partition on the retained roles.
+Their product h transports S exactly to T, preserving refusals, free cuts, minimal forbidden fillings and the atomic partition on the retained roles.
 
-*Proof.* Let βᵢ be LQ20's full profile-class map. Exactness gives
-ker(eᵢ)⊆ker(βᵢ). If two equal-profile values a,a′ had distinct eᵢ-images,
-the separation condition would supply a context of B-values distinguishing
-their admission. Lift that context through the onto maps at the other
-finitely many roles. Exactness would then give a context in A distinguishing
-a,a′, contradicting their equal profiles. Thus ker(eᵢ)=ker(βᵢ). The same
-argument gives ker(fᵢ)=ker(βᵢ).
+*Proof.* Let βᵢ be LQ20's full profile-class map. Exactness gives ker(eᵢ)⊆ker(βᵢ). If two equal-profile values a,a′ had distinct eᵢ-images, the separation condition would supply a context of B-values distinguishing their admission. Lift that context through the onto maps at the other finitely many roles. Exactness would then give a context in A distinguishing a,a′, contradicting their equal profiles. Thus ker(eᵢ)=ker(βᵢ). The same argument gives ker(fᵢ)=ker(βᵢ).
 
-Define hᵢ(eᵢ(a))=fᵢ(a). Equal kernels make this well-defined and injective;
-surjectivity of fᵢ makes it onto, and surjectivity of eᵢ makes it unique.
-The product map commutes with each coordinate splice. Since h(e(x))=f(x),
-it sends S onto T; its inverse therefore also retains nonmembership.
-Coordinatewise bijections carry partial fillings and their extensions
-bijectively, hence carry minimal refusals and all free cuts. LQ15/LQ20
-then give the atomic correspondence. ∎
+Define hᵢ(eᵢ(a))=fᵢ(a). Equal kernels make this well-defined and injective; surjectivity of fᵢ makes it onto, and surjectivity of eᵢ makes it unique. The product map commutes with each coordinate splice. Since h(e(x))=f(x), it sends S onto T; its inverse therefore also retains nonmembership. Coordinatewise bijections carry partial fillings and their extensions bijectively, hence carry minimal refusals and all free cuts. LQ15/LQ20 then give the atomic correspondence. ∎
 
-This is the separate-contact instance of the source-bound uniqueness already
-present in LQ13 and VC15's reduced-description corollary. It does not prove
-one universal atom type. With the role correspondence fixed, the common
-source fixes the translation without absolute names for its values. If the
-roles themselves are renamed, their established address correspondence must
-also be retained; equal block counts do not acquire it.
+This is the separate-contact instance of the source-bound uniqueness already present in LQ13 and VC15's reduced-description corollary. It does not prove one universal atom type. With the role correspondence fixed, the common source fixes the translation without absolute names for its values. If the roles themselves are renamed, their established address correspondence must also be retained; equal block counts do not acquire it.
 
-**Several manifestations compose without changing their retained meaning.**
-For three such presentations e,f,g of this same R, the unique translations
-satisfy h_fg h_ef = h_eg, because both composites send eᵢ(a) to gᵢ(a).
-Returning to the same presentation with the same source binding therefore
-gives the identity. This is a law of re-description, not a claim that a loop
-of actual changes returns the source. The whole source relation and its
-correspondences remain part of the statement, not an external controller.
+**Several manifestations compose without changing their retained meaning.** For three such presentations e,f,g of this same R, the unique translations satisfy h_fg h_ef = h_eg, because both composites send eᵢ(a) to gᵢ(a). Returning to the same presentation with the same source binding therefore gives the identity. This is a law of re-description, not a claim that a loop of actual changes returns the source. The whole source relation and its correspondences remain part of the statement, not an external controller.
 
-**Actions require the corresponding continuation law.** If one actual total
-operation U:R→R descends to U_S:S→S and U_T:T→T with
+**Actions require the corresponding continuation law.** If one actual total operation U:R→R descends to U_S:S→S and U_T:T→T with
 
     eU = U_Se,    fU = U_Tf,
 
-then hU_S=U_Th on S. Both sides applied to e(x) equal f(Ux), and e is
-onto S. Thus the translation also carries this action exactly. Existence of
-these descended operations is not a consequence of contact-minimality alone.
-For partial operations their availability must descend as well (VC46–47).
-VC15 instead starts with the entire declared continuation family and derives
-its least sufficient quotient. A present-contact reduction must not silently
-claim that larger scope.
+then hU_S=U_Th on S. Both sides applied to e(x) equal f(Ux), and e is onto S. Thus the translation also carries this action exactly. Existence of these descended operations is not a consequence of contact-minimality alone. For partial operations their availability must descend as well (VC46–47). VC15 instead starts with the entire declared continuation family and derives its least sufficient quotient. A present-contact reduction must not silently claim that larger scope.
 
-**Three different kinds of uniqueness remain distinct.** The finest
-partition is unique for its supplied cuts. The minimal contact description
-is unique up to the source-bound translations just proved. A unique actual
-realization, occurrence or next action is not established by either result.
-If redundant distinctions remain, whole presentations need not be bijective;
-their common least profile description still exists. If the source bindings
-are omitted, structural symmetries can leave several correspondences, as
-VI1 proves. Treating all such correspondences as simultaneous identifications
-would change the relation.
+**Three different kinds of uniqueness remain distinct.** The finest partition is unique for its supplied cuts. The minimal contact description is unique up to the source-bound translations just proved. A unique actual realization, occurrence or next action is not established by either result. If redundant distinctions remain, whole presentations need not be bijective; their common least profile description still exists. If the source bindings are omitted, structural symmetries can leave several correspondences, as VI1 proves. Treating all such correspondences as simultaneous identifications would change the relation.
 
-For a positive illustration, the binary relations x=y and u≠v have the
-same contact form under the specified encoding (u,v)=(x,1−y). It carries
-every admission and refusal. Without that encoding and its source binding,
-those two written predicates do not identify an actual contact. Any other
-retained reading of the second role must also be transported; holding a
-non-invariant reading fixed would change the question. In contrast, {00,11} and
-{00,01,10} both have two roles and one atomic block but have different
-contact laws. Their numbers of admitted pairs differ, so no coordinatewise
-bijections identify them. Both have two profile classes per role;
-counting those classes also misses their difference.
+For a positive illustration, the binary relations x=y and u≠v have the same contact form under the specified encoding (u,v)=(x,1−y). It carries every admission and refusal. Without that encoding and its source binding, those two written predicates do not identify an actual contact. Any other retained reading of the second role must also be transported; holding a non-invariant reading fixed would change the question. In contrast, {00,11} and {00,01,10} both have two roles and one atomic block but have different contact laws. Their numbers of admitted pairs differ, so no coordinatewise bijections identify them. Both have two profile classes per role; counting those classes also misses their difference.
 
-The logical invariant therefore concerns a particular irreducible contact
-with its declared continuations. Additional carrier distinctions can remain
-unknown or be omitted from this description when the exact reduction allows
-it. Several occurrences can instantiate that same contact form; their
-numerical identity still needs an actual occurrence correspondence (Seam
-§4b). No additional entity behind the realizations is inferred. Nor does
-calling their common form one supply a handoff or saturation law: those
-must be carried by the continuing construction as in HF4–HF5.
+The logical invariant therefore concerns a particular irreducible contact with its declared continuations. Additional carrier distinctions can remain unknown or be omitted from this description when the exact reduction allows it. Several occurrences can instantiate that same contact form; their numerical identity still needs an actual occurrence correspondence (Seam §4b). No additional entity behind the realizations is inferred. Nor does calling their common form one supply a handoff or saturation law: those must be carried by the continuing construction as in HF4–HF5.
 
 ## §6l. Comparing atoms: rest, completion, return and carried difference
 
-LQ20–LQ21 distinguish one atomic boundary from its particular law and its
-manifestations. The next comparison keeps that distinction operational:
-specify the admitted relation, say whether the cut concerns forms or whole
-executions, and only then ask what returns. These are constructed mathematical
-models. Their laws are premises of the comparison, not laws acquired from an
-unknown physical carrier. An exponent of an operation counts compositions;
-it supplies neither an external clock nor an elapsed physical duration.
+LQ20–LQ21 distinguish one atomic boundary from its particular law and its manifestations. The next comparison keeps that distinction operational: specify the admitted relation, say whether the cut concerns forms or whole executions, and only then ask what returns. These are constructed mathematical models. Their laws are premises of the comparison, not laws acquired from an unknown physical carrier. An exponent of an operation counts compositions; it supplies neither an external clock nor an elapsed physical duration.
 
-**One contact can support several different kinds of continuation.** Let
-ΔD={(d,d):d∈D}, where D has at least two elements. The displayed values are
-two addressed manifestations of the same admitted choice. Neither singleton
-cut is free: splicing (d,d) with (e,e), for d≠e, gives the refused (d,e).
-Thus ΔD is one two-role atom. Each operation
-(d,d)↦(u(d),u(d)) preserves admission to this contact. An arbitrary u need
-not preserve the atomicity of its image: a constant u leaves a singleton
-product. The examples below specify their actual operation and domain.
+**One contact can support several different kinds of continuation.** Let ΔD={(d,d):d∈D}, where D has at least two elements. The displayed values are two addressed manifestations of the same admitted choice. Neither singleton cut is free: splicing (d,d) with (e,e), for d≠e, gives the refused (d,e). Thus ΔD is one two-role atom. Each operation (d,d)↦(u(d),u(d)) preserves admission to this contact. An arbitrary u need not preserve the atomicity of its image: a constant u leaves a singleton product. The examples below specify their actual operation and domain.
 
 | Model | Given relation and continuation | What the comparison establishes |
 |---|---|---|
@@ -1563,43 +1191,20 @@ product. The examples below specify their actual operation and domain.
 | Shared restriction with remaining choice | R={00,01,10}, with no continuation yet supplied | One atom does not make either role uniquely determine the other. Internal freedom remains. |
 | Joint closure beyond pairs | Even parity on n binary roles, n≥3, with no continuation yet supplied | Every proper projection is a full product although the entire relation is one atom. Pairwise evidence does not reconstruct the restriction. |
 
-For the shared restriction, splice 10 and 01 to obtain the refused 11.
-Yet fixing either role at 0 leaves two possibilities for the other. For the
-last row, any proper filling extends by choosing one omitted bit to obtain
-even parity. Across any nontrivial cut, choose a permitted filling with two
-ones, one on each side, and the all-zero filling. A splice with just one of
-those ones is refused. This verifies one atom across every proposed split;
-it does not derive a preferred three-role primitive or a temporal law.
+For the shared restriction, splice 10 and 01 to obtain the refused 11. Yet fixing either role at 0 leaves two possibilities for the other. For the last row, any proper filling extends by choosing one omitted bit to obtain even parity. Across any nontrivial cut, choose a permitted filling with two ones, one on each side, and the all-zero filling. A splice with just one of those ones is refused. This verifies one atom across every proposed split; it does not derive a preferred three-role primitive or a temporal law.
 
-The table compares these relations; it is not a replacement for them or a
-table inferred from matching observations. In particular, a transition's
-before/after roles are bound by its given graph. Their correspondence is
-not inferred from the shapes of their labels.
+The table compares these relations; it is not a replacement for them or a table inferred from matching observations. In particular, a transition's before/after roles are bound by its given graph. Their correspondence is not inferred from the shapes of their labels.
 
-**A repeating projection of a nonreturning whole.** In the continuing-path
-model, let E(m,m)=(m mod r,m mod r), for fixed r≥2. Then EUʳ=E,
-while Uᵏ(m,m)≠(m,m) for every positive k. The reading has a least positive
-global period r. LQ18 applies to this supplied reading-return law. Its
-period is not a return of the source, and the preservation of Δℤ itself
-is not a period either: that restriction is respected at every step while
-its admitted filling keeps changing.
+**A repeating projection of a nonreturning whole.** In the continuing-path model, let E(m,m)=(m mod r,m mod r), for fixed r≥2. Then EUʳ=E, while Uᵏ(m,m)≠(m,m) for every positive k. The reading has a least positive global period r. LQ18 applies to this supplied reading-return law. Its period is not a return of the source, and the preservation of Δℤ itself is not a period either: that restriction is respected at every step while its admitted filling keeps changing.
 
-**LQ22 (an internal return can carry an exact next act).** Fix r≥2 and put
-K={0,…,r−1}×ℤ, with addressed phase p and residue q. Define one operation
+**LQ22 (an internal return can carry an exact next act).** Fix r≥2 and put K={0,…,r−1}×ℤ, with addressed phase p and residue q. Define one operation
 
     U(p,q) = (p+1,q)    when p<r−1,
     U(p,q) = (0,q+1)    when p=r−1.
 
-This is one total reversible law on the joint carrier. The second clause is
-its internal continuation at the end of the phase range; no separate reader
-observes completion and then authorizes it. The present carrier K is a full
-product. Atomicity here concerns the graph of U on the two grouped roles
-(p,p′) and (q,q′), as required by LQ19.
+This is one total reversible law on the joint carrier. The second clause is its internal continuation at the end of the phase range; no separate reader observes completion and then authorizes it. The present carrier K is a full product. Atomicity here concerns the graph of U on the two grouped roles (p,p′) and (q,q′), as required by LQ19.
 
-The graph is one atom. The executions (0,0)→(1,0) and
-(r−1,0)→(0,1) are admitted, but the first phase execution combined with
-the second residue execution would be (0,0)→(1,1), which is refused.
-This is a witnessed failure of the only nontrivial cut.
+The graph is one atom. The executions (0,0)→(1,0) and (r−1,0)→(0,1) are admitted, but the first phase execution combined with the second residue execution would be (0,0)→(1,1), which is refused. This is a witnessed failure of the only nontrivial cut.
 
 For all p,q, the complete r-step action satisfies
 
@@ -1609,207 +1214,65 @@ For all p,q, the complete r-step action satisfies
 
     H(n) = (n mod r, ⌊n/r⌋),    H⁻¹(p,q) = rq+p.
 
-Transporting the specified successor n↦n+1 through H gives exactly the
-two clauses of U. This also supplies its inverse. Incrementing n by r
-proves the displayed r-step law. In this comparison, n is another exact
-description of the same joint configuration, not an external elapsed time
-or a third reader. The given successor law has not been derived from mere
-atomicity. Once that law and this source correspondence are retained, its
-transport U is unique, as in LQ21's action clause.
+Transporting the specified successor n↦n+1 through H gives exactly the two clauses of U. This also supplies its inverse. Incrementing n by r proves the displayed r-step law. In this comparison, n is another exact description of the same joint configuration, not an external elapsed time or a third reader. The given successor law has not been derived from mere atomicity. Once that law and this source correspondence are retained, its transport U is unique, as in LQ21's action clause.
 
-If the available action is only repetition of U and the requirement is to
-return p while advancing q by exactly one, precisely r applications do so.
-The inverse description increases by k after k applications, and by r at
-the required target. Thus k=r is necessary as well as sufficient. Neither
-initial p nor initial q needs to be learned. The result concerns this given
-action and request, not a universal minimum information content or physical
-cost. Shifting every q by the same integer commutes with U; an absolute
-origin for that internal residue is unnecessary. ∎
+If the available action is only repetition of U and the requirement is to return p while advancing q by exactly one, precisely r applications do so. The inverse description increases by k after k applications, and by r at the required target. Thus k=r is necessary as well as sufficient. Neither initial p nor initial q needs to be learned. The result concerns this given action and request, not a universal minimum information content or physical cost. Shifting every q by the same integer commutes with U; an absolute origin for that internal residue is unnecessary. ∎
 
-This identity of repetitions does not by itself build an autonomous command
-which stops after r applications. Executing exactly that finite composition
-needs its actual executor or internal stopping construction; U itself keeps
-going. With unknown initial p, the first carry can occur at any of the first
-r steps. Consecutive carry events are exactly r steps apart under this law.
-These are different claims from a commanded return to the initial phase.
+This identity of repetitions does not by itself build an autonomous command which stops after r applications. Executing exactly that finite composition needs its actual executor or internal stopping construction; U itself keeps going. With unknown initial p, the first carry can occur at any of the first r steps. Consecutive carry events are exactly r steps apart under this law. These are different claims from a commanded return to the initial phase.
 
-The r-step endpoint graph factors: its phase part is p′=p and its residue
-part is q′=q+1. The full r-step history remains one atom when each role
-retains its own whole trajectory. Starting at p=0 puts the residue increment
-at the last step; starting at p=r−1 puts it at the first. Splicing the former
-phase history with the latter residue history violates U at the first step.
-Endpoint return therefore coexists with inseparable execution, exactly the
-distinction already exposed by LQ19's exchange example.
+The r-step endpoint graph factors: its phase part is p′=p and its residue part is q′=q+1. The full r-step history remains one atom when each role retains its own whole trajectory. Starting at p=0 puts the residue increment at the last step; starting at p=r−1 puts it at the first. Splicing the former phase history with the latter residue history violates U at the first step. Endpoint return therefore coexists with inseparable execution, exactly the distinction already exposed by LQ19's exchange example.
 
-This gives a concrete partial answer to the atom—ceiling—continuation
-question. If the first clause alone is designated the old game's moves,
-p=r−1 has no old move; the very same supplied whole law has its carry move
-there. Completion and the next act are joined in the execution relation.
-The proof does not infer this law from terminality: deleting the carry
-clause leaves a different, stopping model. A unique admitted next act also
-does not prove that an arbitrary physical device will execute it. Here the
-mathematical run is specifically iteration of the supplied total U.
+This gives a concrete partial answer to the atom—ceiling—continuation question. If the first clause alone is designated the old game's moves, p=r−1 has no old move; the very same supplied whole law has its carry move there. Completion and the next act are joined in the execution relation. The proof does not infer this law from terminality: deleting the carry clause leaves a different, stopping model. A unique admitted next act also does not prove that an arbitrary physical device will execute it. Here the mathematical run is specifically iteration of the supplied total U.
 
-**What can count a return.** For a complete autonomous state description x,
-if Uʳx=x, then every current internal reading M of that description satisfies
-M(Uʳx)=M(x). Consequently a retained count which changes across that return
-cannot be part of an otherwise exactly returning complete description. If
-such a count is present, the description that returned omitted it. This does
-not identify two actual occurrences or deny the ordered path between them;
-it concerns what their current retained state distinguishes. LQ22 realizes
-the positive alternative: the phase returns, the joint state does not, and
-the distinction between iterations is carried inside the construction.
+**What can count a return.** For a complete autonomous state description x, if Uʳx=x, then every current internal reading M of that description satisfies M(Uʳx)=M(x). Consequently a retained count which changes across that return cannot be part of an otherwise exactly returning complete description. If such a count is present, the description that returned omitted it. This does not identify two actual occurrences or deny the ordered path between them; it concerns what their current retained state distinguishes. LQ22 realizes the positive alternative: the phase returns, the joint state does not, and the distinction between iterations is carried inside the construction.
 
-The comparison separates preservation of a rule, return of one question,
-return of a complete state, and a record of the traversed path. Calling all
-four a cycle would erase precisely the relation which makes a local rhythm
-usable by another part. Order or change alone does not imply periodicity.
-HF2 supplies eventual periodicity for an infinite deterministic run on a
-finite complete state space; its premises do not follow from a finite list
-of observed answers or from the existence of an atom.
+The comparison separates preservation of a rule, return of one question, return of a complete state, and a record of the traversed path. Calling all four a cycle would erase precisely the relation which makes a local rhythm usable by another part. Order or change alone does not imply periodicity. HF2 supplies eventual periodicity for an infinite deterministic run on a finite complete state space; its premises do not follow from a finite list of observed answers or from the existence of an atom.
 
-The common pattern is a restriction on independent recombination under
-declared cuts. Completion, recurrence, retained history and a next act are
-different ways that restriction can participate in a continuing whole.
-LQ22 is useful because one can guarantee a composed effect while leaving
-the actual filling unknown. The remaining research question is which given
-contact supplies its continuation law, not how to rename every atom a clock.
+The common pattern is a restriction on independent recombination under declared cuts. Completion, recurrence, retained history and a next act are different ways that restriction can participate in a continuing whole. LQ22 is useful because one can guarantee a composed effect while leaving the actual filling unknown. The remaining research question is which given contact supplies its continuation law, not how to rename every atom a clock.
 
-**A supplied cyclic reading leaves a whole return action.** This connection
-with LiR §6 is made precise in [AR4](../../../../Research/2026-09-25-atoms-distinguishability-and-return.md).
-Let K be nonempty, U:K→K bijective, and p:K→ℤ/r satisfy pU=p+1,
-for r≥2. Put X₀=p⁻¹(0), M=Uʳ|X₀. The bijection H(j,y)=Uʲy gives
+**A supplied cyclic reading leaves a whole return action.** This connection with LiR §6 is made precise in [AR4](../../../../Research/2026-09-25-atoms-distinguishability-and-return.md). Let K be nonempty, U:K→K bijective, and p:K→ℤ/r satisfy pU=p+1, for r≥2. Put X₀=p⁻¹(0), M=Uʳ|X₀. The bijection H(j,y)=Uʲy gives
 
     H⁻¹UH(j,y) = (j+1,y) for j<r−1,
     H⁻¹UH(r−1,y) = (0,My).
 
-Every bijective M on a nonempty carrier admits this construction. Thus the
-same phase cycle permits a full return, a longer cycle or a nonreturning
-residue. The counter increment in LQ22 is one particular M. On this new
-phase/residue cut, the whole-step graph is atomic exactly when M≠id: splice
-a non-carry phase step with a changed residue y→My. A complete-state return
-after k positive steps instead requires k=rm and Mᵐy=y.
+Every bijective M on a nonempty carrier admits this construction. Thus the same phase cycle permits a full return, a longer cycle or a nonreturning residue. The counter increment in LQ22 is one particular M. On this new phase/residue cut, the whole-step graph is atomic exactly when M≠id: splice a non-carry phase step with a changed residue y→My. A complete-state return after k positive steps instead requires k=rm and Mᵐy=y.
 
-H is a phase-dependent readdressing of the whole. It is not generally a
-separate recoding of old physical parts, so LQ21 does not automatically
-transport their cuts or access through H. Its inverse formula supplies no
-available physical inverse operation. An original question Q on X₀ has
-the required return action V precisely when QM=VQ. A transported question
-on another phase must remain bound to that requirement. A second forward
-contact is not the reverse edge of the first, including in a two-phase
-cycle; identifying them would impose M=id without grounds.
+H is a phase-dependent readdressing of the whole. It is not generally a separate recoding of old physical parts, so LQ21 does not automatically transport their cuts or access through H. Its inverse formula supplies no available physical inverse operation. An original question Q on X₀ has the required return action V precisely when QM=VQ. A transported question on another phase must remain bound to that requirement. A second forward contact is not the reverse edge of the first, including in a two-phase cycle; identifying them would impose M=id without grounds.
 
 ## §6m. Quantitative distinguishability keeps its contact
 
-The trace distance used in the earlier CA estimates has the convention
-D(ρ,σ)=½‖ρ−σ‖₁. This section connects that quantitative reading with the
-atom comparison; it does not derive the quantum state model from LQ15.
-On one supplied finite-dimensional quantum carrier,
+The trace distance used in the earlier CA estimates has the convention D(ρ,σ)=½‖ρ−σ‖₁. This section connects that quantitative reading with the atom comparison; it does not derive the quantum state model from LQ15. On one supplied finite-dimensional quantum carrier,
 
     D(ρ,σ) = max_{0≤M≤I} |Tr M(ρ−σ)|.
 
-Indeed, the positive and negative parts of the traceless Hermitian
-ρ−σ each have trace D. Every effect M bounds the displayed difference
-between −D and D, and the projector on the positive part attains D.
-The operational discrimination result and the common-channel contraction
-law are standard; see [Watrous, chapter 3, Theorem 3.4 and Corollary 3.40](https://cs.uwaterloo.ca/~watrous/TQI/TQI.3.pdf).
-In particular, D≤ε bounds each event-probability difference by ε,
-including after the same quantum channel is applied to both states.
-The channel need not be individually known for this bound, provided that
-its common action and membership in that class are established. Normalized
-postselection is not such a channel. A bound on event probabilities does
-not by itself identify the occurrence or establish its physical source law.
+Indeed, the positive and negative parts of the traceless Hermitian ρ−σ each have trace D. Every effect M bounds the displayed difference between −D and D, and the projector on the positive part attains D. The operational discrimination result and the common-channel contraction law are standard; see [Watrous, chapter 3, Theorem 3.4 and Corollary 3.40](https://cs.uwaterloo.ca/~watrous/TQI/TQI.3.pdf). In particular, D≤ε bounds each event-probability difference by ε, including after the same quantum channel is applied to both states. The channel need not be individually known for this bound, provided that its common action and membership in that class are established. Normalized postselection is not such a channel. A bound on event probabilities does not by itself identify the occurrence or establish its physical source law.
 
 For a fixed nonempty family of actually supported effects ℰ, define
 
     d_ℰ(ρ,σ) = sup_{M∈ℰ} |Tr M(ρ−σ)| ≤ D(ρ,σ).
 
-This is a pseudometric; its zero means agreement on those outcomes. The
-same ℰ must be used across comparisons. A family chosen differently for
-each state pair need not satisfy the triangle inequality. To retain
-continued questions, include their effective source effects Φ*(M), with
-the actual common continuation Φ. This is VC15's scope discipline in a
-supplied probabilistic model, not a free replacement of an internal contact
-by an observer's choice. Actual availability remains to be established.
+This is a pseudometric; its zero means agreement on those outcomes. The same ℰ must be used across comparisons. A family chosen differently for each state pair need not satisfy the triangle inequality. To retain continued questions, include their effective source effects Φ*(M), with the actual common continuation Φ. This is VC15's scope discipline in a supplied probabilistic model, not a free replacement of an internal contact by an observer's choice. Actual availability remains to be established.
 
-**Joint distinction can be absent from every single part.** On two binary
-roles put
+**Joint distinction can be absent from every single part.** On two binary roles put
 
     ρ = (|00⟩⟨00| + |11⟩⟨11|)/2,
     σ = (|01⟩⟨01| + |10⟩⟨10|)/2.
 
-Their supports are orthogonal, so D(ρ,σ)=1. Both reduced states on each
-single role are I/2, hence both local distances are zero. The joint effect
-M=|00⟩⟨00|+|11⟩⟨11| has probabilities one and zero. A contact supporting
-that effect distinguishes the preparations; separate marginal questions
-do not. These are separable mixtures, so quantum entanglement is not needed
-for the example. Their support relations are respectively {00,11} and
-{01,10}, each atomic under LQ15's independent-splice definition. Atom here
-does not mean extremal density operator or absence of a convex decomposition.
-Flipping the second role relates the two supports, as in LQ21; transporting
-both the states and their effects is different from changing only the state
-while retaining the original question.
+Their supports are orthogonal, so D(ρ,σ)=1. Both reduced states on each single role are I/2, hence both local distances are zero. The joint effect M=|00⟩⟨00|+|11⟩⟨11| has probabilities one and zero. A contact supporting that effect distinguishes the preparations; separate marginal questions do not. These are separable mixtures, so quantum entanglement is not needed for the example. Their support relations are respectively {00,11} and {01,10}, each atomic under LQ15's independent-splice definition. Atom here does not mean extremal density operator or absence of a convex decomposition. Flipping the second role relates the two supports, as in LQ21; transporting both the states and their effects is different from changing only the state while retaining the original question.
 
-**Support atomicity is not the whole quantitative relation.** For the two
-diagonal states above, put ρ_ε=(1−ε)ρ+εI₄/4 and
-σ_ε=(1−ε)σ+εI₄/4, with 0<ε<1. All four classical outcomes now have
-positive probability. Their support relations are full products even though
-their joint distance is 1−ε and D(ρ_ε,ρ)=ε/2. Both marginal pairs still
-coincide. Thus a discontinuous change of LQ15's support partition need not
-be a discontinuous loss of correlations. This is IiS19's already established
-zero-profile/weight distinction applied to the atom comparison. Full support
-also really removes error-free finite discrimination in IiS19's instrument
-class; a large remaining correlation does not restore that exact guarantee.
+**Support atomicity is not the whole quantitative relation.** For the two diagonal states above, put ρ_ε=(1−ε)ρ+εI₄/4 and σ_ε=(1−ε)σ+εI₄/4, with 0<ε<1. All four classical outcomes now have positive probability. Their support relations are full products even though their joint distance is 1−ε and D(ρ_ε,ρ)=ε/2. Both marginal pairs still coincide. Thus a discontinuous change of LQ15's support partition need not be a discontinuous loss of correlations. This is IiS19's already established zero-profile/weight distinction applied to the atom comparison. Full support also really removes error-free finite discrimination in IiS19's instrument class; a large remaining correlation does not restore that exact guarantee.
 
-For a fixed finite tensor-role partition P, quantitative independence means
-ρ=⊗_{B∈P}ρ_B. Exact product partitions have a unique finest refinement:
-reducing a Q-product to each P-block proves factorization over every
-nonempty intersection B∩C. However, declaring approximate independence by
-δ_P(ρ)=D(ρ,⊗ρ_B)≤ε does not preserve that conclusion. The three-role state
-(1−λ)I₈/8+λ(|000⟩⟨000|+|111⟩⟨111|)/2 has δ=λ/2 for each
-two-block partition and δ=3λ/4 for three singleton blocks. At tolerance
-λ/2, incompatible finest acceptable partitions therefore coexist.
-[AR1–AR3](../../../../Research/2026-09-25-atoms-distinguishability-and-return.md)
-prove these statements and the bound
-|δ_P(ρ)−δ_P(σ)|≤(|P|+1)D(ρ,σ). This selected marginal-product distance
-is not a minimization over all product states. The actual tensor roles,
-preparation law and required continuation remain part of the claim.
+For a fixed finite tensor-role partition P, quantitative independence means ρ=⊗_{B∈P}ρ_B. Exact product partitions have a unique finest refinement: reducing a Q-product to each P-block proves factorization over every nonempty intersection B∩C. However, declaring approximate independence by δ_P(ρ)=D(ρ,⊗ρ_B)≤ε does not preserve that conclusion. The three-role state (1−λ)I₈/8+λ(|000⟩⟨000|+|111⟩⟨111|)/2 has δ=λ/2 for each two-block partition and δ=3λ/4 for three singleton blocks. At tolerance λ/2, incompatible finest acceptable partitions therefore coexist. [AR1–AR3](../../../../Research/2026-09-25-atoms-distinguishability-and-return.md) prove these statements and the bound |δ_P(ρ)−δ_P(σ)|≤(|P|+1)D(ρ,σ). This selected marginal-product distance is not a minimization over all product states. The actual tensor roles, preparation law and required continuation remain part of the claim.
 
-**The full action has its own factorization and error.** For a supplied
-finite-dimensional channel Φ:⊗Aᵢ→⊗Bᵢ, keep each input reference Rᵢ
-grouped with its output Bᵢ. The normalized Choi state J_Φ factors across
-these grouped roles exactly when Φ is a product of the corresponding
-channels. Thus AR1's unique finest exact partition extends to this whole
-boundary-to-boundary action, as proved in
-[AR5](../../../../Research/2026-09-25-atoms-distinguishability-and-return.md).
-If d is the input dimension, the uniform error on unknown inputs with a
-retained reference obeys
+**The full action has its own factorization and error.** For a supplied finite-dimensional channel Φ:⊗Aᵢ→⊗Bᵢ, keep each input reference Rᵢ grouped with its output Bᵢ. The normalized Choi state J_Φ factors across these grouped roles exactly when Φ is a product of the corresponding channels. Thus AR1's unique finest exact partition extends to this whole boundary-to-boundary action, as proved in [AR5](../../../../Research/2026-09-25-atoms-distinguishability-and-return.md). If d is the input dimension, the uniform error on unknown inputs with a retained reference obeys
 
     D(J_Φ,J_Ψ) ≤ ½‖Φ−Ψ‖_⋄ ≤ d D(J_Φ,J_Ψ).
 
-A small Choi error therefore need not be the same small worst-case error.
-The mathematical reference does not grant physical preparation or complete
-knowledge of J from one trial. The endpoint channel also does not determine
-intermediate records or interventions. This extension preserves LQ19's
-whole-action requirement; it does not infer independence of a physical
-implementation from the product form of its final effect.
+A small Choi error therefore need not be the same small worst-case error. The mathematical reference does not grant physical preparation or complete knowledge of J from one trial. The endpoint channel also does not determine intermediate records or interventions. This extension preserves LQ19's whole-action requirement; it does not infer independence of a physical implementation from the product form of its final effect.
 
-**A distance between states does not supply a rhythm or spatial length.**
-Encode distinct positions of a finite cycle as orthogonal pure states. Every
-pair of distinct positions has D=1, irrespective of the number of steps
-between them. The supplied successor relation determines those steps; D
-alone cannot reconstruct it. LQ22's phase/residue relation, LiR8's internal
-calibration and Space S26's light-incidence boundary therefore address
-different obligations. In particular, S26 already preserves light paths
-within a conformal family while changing clock integrals. Using light for
-comparison does not by itself establish a smallest length or one complete
-reading of every system distinction.
+**A distance between states does not supply a rhythm or spatial length.** Encode distinct positions of a finite cycle as orthogonal pure states. Every pair of distinct positions has D=1, irrespective of the number of steps between them. The supplied successor relation determines those steps; D alone cannot reconstruct it. LQ22's phase/residue relation, LiR8's internal calibration and Space S26's light-incidence boundary therefore address different obligations. In particular, S26 already preserves light paths within a conformal family while changing clock integrals. Using light for comparison does not by itself establish a smallest length or one complete reading of every system distinction.
 
-The useful joint requirement is to retain which distinctions a contact
-supports, how its action carries them, and how its repetitions are compared.
-The general relational framework does not thereby supersede the quantitative
-quantum laws used in this example. It locates where their source, joint scope
-and continuation must remain attached to any claim made with the number D.
+The useful joint requirement is to retain which distinctions a contact supports, how its action carries them, and how its repetitions are compared. The general relational framework does not thereby supersede the quantitative quantum laws used in this example. It locates where their source, joint scope and continuation must remain attached to any claim made with the number D.
 
 ## §7. Statement
 
@@ -1823,36 +1286,15 @@ LQ18 distinguishes reconstructing a cut from preserving it under another operati
 
 Section 6h applies the existing contact boundary to a requirement supplied by an internal counterpart. It distinguishes that derived compatibility condition from choosing, executing or valuing a continuation, and uses LQ8a to keep requirement revision separate from fulfillment. Internal regulation and experienced feeling remain further research obligations.
 
-LQ19 applies the same recombination test to whole executions and families of
-relations. It derives their finest common independent blocks and a finite
-relational basis for that partition on finite addresses. The shared-unknown
-example prevents confusing factorization conditional on a mode with
-factorization of the joint episode. The exchange example shows why endpoint
-return does not establish independence of the intervening action.
+LQ19 applies the same recombination test to whole executions and families of relations. It derives their finest common independent blocks and a finite relational basis for that partition on finite addresses. The shared-unknown example prevents confusing factorization conditional on a mode with factorization of the joint episode. The exchange example shows why endpoint return does not establish independence of the intervening action.
 
-LQ20 identifies those blocks from minimally forbidden partial fillings and
-shows that exact local reduction of irrelevant distinctions preserves them.
-It distinguishes a block's extent from its full law and from the dynamics
-which may preserve it. Joint restrictions can involve arbitrarily many
-roles while remaining invisible in every proper projection.
+LQ20 identifies those blocks from minimally forbidden partial fillings and shows that exact local reduction of irrelevant distinctions preserves them. It distinguishes a block's extent from its full law and from the dynamics which may preserve it. Joint restrictions can involve arbitrarily many roles while remaining invisible in every proper projection.
 
-LQ21 makes the uniqueness claim precise across minimal separate presentations
-of the same contact. Their source-bound translations preserve the atom and
-compose consistently; actions are also transported when their descent is
-established. Unique decomposition, unique reduced description and unique
-occurrence or mechanism are not interchangeable conclusions.
+LQ21 makes the uniqueness claim precise across minimal separate presentations of the same contact. Their source-bound translations preserve the atom and compose consistently; actions are also transported when their descent is established. Unique decomposition, unique reduced description and unique occurrence or mechanism are not interchangeable conclusions.
 
-Section 6l compares seven models without imposing a universal temporal fate.
-LQ22 constructs a reversible phase/residue action with an atomic execution
-graph, a returning phase and a precisely advancing residue. Its requested
-r-step effect needs neither initial value to be known. Returning endpoints
-do not separate the intervening history; atomicity alone does not supply
-the successor law used in this construction.
+Section 6l compares seven models without imposing a universal temporal fate. LQ22 constructs a reversible phase/residue action with an atomic execution graph, a returning phase and a precisely advancing residue. Its requested r-step effect needs neither initial value to be known. Returning endpoints do not separate the intervening history; atomicity alone does not supply the successor law used in this construction.
 
-Section 6m relates the standard trace distance to a fixed family of supported
-questions. A separable two-role example retains a fully distinguishable
-joint relation with identical single-role marginals. The distance supplies
-neither the successor law of a cycle nor a physical space/time calibration.
+Section 6m relates the standard trace distance to a fixed family of supported questions. A separable two-role example retains a fully distinguishable joint relation with identical single-role marginals. The distance supplies neither the successor law of a cycle nor a physical space/time calibration.
 
 ## §8. Dependency
 

@@ -168,13 +168,7 @@ The proof's root is one vertex of the network. It supplies no external reference
 
 All such qᵣ are exactly the readings constant on the orbits of the loop transformations. Thus forgetting a path can be legitimate for one question while erasing another. If qᵣ(H(x))≠qᵣ(x), no representation that identifies those cases can retain this qᵣ. If the retained questions separate all members of Fᵣ, their invariance forces every H to be the identity and recovers S25. This applies VC15 and Liquid's component argument. It does not identify physically different forms just because a selected question ignores their difference.
 
-Verdict VC96 supplies a finite instance with resident control. Two return words
-in a three-leaf star connect all three central phase states while preserving
-an arbitrary payload. The original questions recoverable from the final working
-carrier without the word are exactly those depending only on that payload.
-The word remains in the complete command record; the insufficient observation
-omits it. A stationary stage contact in the middle of a return changes the
-phase, so omitting apparently unmoving contacts would give the wrong loop test.
+Verdict VC96 supplies a finite instance with resident control. Two return words in a three-leaf star connect all three central phase states while preserving an arbitrary payload. The original questions recoverable from the final working carrier without the word are exactly those depending only on that payload. The word remains in the complete command record; the insufficient observation omits it. A stationary stage contact in the middle of a return changes the phase, so omitting apparently unmoving contacts would give the wrong loop test.
 
 **Preserving a distinction need not keep its answer constant.** Let G be the group of loop transformations on Fᵣ and let E:Fᵣ→I be a description with I=E(Fᵣ). There is a unique action U of G on I satisfying U_H∘E=E∘H exactly when E(x)=E(y) implies E(Hx)=E(Hy) for every H∈G. Necessity follows by applying U_H to the equal images. For sufficiency define U_H(E(x))=E(Hx). The condition makes it well-defined. Surjectivity of E gives uniqueness, composition gives U_H U_K=U_HK, and H⁻¹ supplies the inverse. This is VC15's compatibility criterion for the given group. The earlier invariant reading is the special case U_H=id.
 

@@ -76,18 +76,7 @@ Indeed, the original joint boundary is β(S)∩K and the simplified one is β(P)
 
 This permits substantial simplification: several interiors with the same boundary need not all be retained as candidate witnesses for boundary-only questions. It forbids discarding a distinct boundary possibility while claiming compatibility with every future boundary contact. If β is the identity, every candidate must remain available for this unrestricted reuse claim. Preserving a relation can instead avoid listing its members at all. Enlarging the contact to read a previously hidden field changes the scope of the simplification.
 
-Matter M71a–d makes this preservation constructive for finite free
-functional contact diagrams. With disjoint contact symbols, the exact
-boundary is represented by conditional equality consequences and
-obstructions. Reapplying these local constructions after new boundary
-identities gives a complete compatibility test without enumerating
-partitions. If a contact itself is shared, its hidden path can carry an
-obstruction that an identity-only boundary misses. Eliminating private
-support can also require a wider joint boundary condition: simple unary
-contacts can carry a dependency on arbitrarily many identities together.
-Keeping an intermediate structure or a recoverable tuple permits a
-shorter expression while retaining that dependency. These are scopes of
-the preserved relation, not statuses attached to its summaries.
+Matter M71a–d makes this preservation constructive for finite free functional contact diagrams. With disjoint contact symbols, the exact boundary is represented by conditional equality consequences and obstructions. Reapplying these local constructions after new boundary identities gives a complete compatibility test without enumerating partitions. If a contact itself is shared, its hidden path can carry an obstruction that an identity-only boundary misses. Eliminating private support can also require a wider joint boundary condition: simple unary contacts can carry a dependency on arbitrarily many identities together. Keeping an intermediate structure or a recoverable tuple permits a shorter expression while retaining that dependency. These are scopes of the preserved relation, not statuses attached to its summaries.
 
 For U2c's two widths, let S={(a,b): a,b≥0, a+b=10}. Choosing the smallest a keeps only (0,10). Joining the later condition a≥4 to that chosen result gives no solution, although joining it to S admits every (a,10−a) with 4≤a≤10. Reapplying the same minimization after the join gives (4,6). Selection before composition and selection after composition thus differ even with a unique optimizer at each feasible stage. The objective is an explicit additional rule. Keeping only its earlier winner is not an exact boundary description.
 

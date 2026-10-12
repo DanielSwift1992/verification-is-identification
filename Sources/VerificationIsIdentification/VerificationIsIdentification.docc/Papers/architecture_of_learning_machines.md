@@ -118,38 +118,13 @@ Compilation checks the relevant language constraints, a test suite checks its ex
 
 ## §7. The Type-Level Witness Boundary
 
-**AI8 (An acquired image can answer a family of future questions).** Suppose
-the permitted transitions have certified image updates, each target question
-factors through its final image, and the initial image has been acquired in
-a readable record. `QuestionAlongTransition` derives the future question's
-factorization through that initial image (VC45). `AnswerOnRefinement` then
-transports the answer to the acquired fact (VC41). Every constructed path
-with the required endpoints admits this derivation.
+**AI8 (An acquired image can answer a family of future questions).** Suppose the permitted transitions have certified image updates, each target question factors through its final image, and the initial image has been acquired in a readable record. `QuestionAlongTransition` derives the future question's factorization through that initial image (VC45). `AnswerOnRefinement` then transports the answer to the acquired fact (VC41). Every constructed path with the required endpoints admits this derivation.
 
-In the two-swap fragment, VC44 establishes closure from two generic
-preservation relations. The same recorded complete image answers alpha
-after any permitted finite mixed continuation. A separate learned entry for
-every word is unnecessary for this guarantee. The operation word remains
-part of the question, while the decoder reads the original acquired fact.
-This is saturation of a specified family of relations, even when the family
-contains arbitrarily long words.
+In the two-swap fragment, VC44 establishes closure from two generic preservation relations. The same recorded complete image answers alpha after any permitted finite mixed continuation. A separate learned entry for every word is unnecessary for this guarantee. The operation word remains part of the question, while the decoder reads the original acquired fact. This is saturation of a specified family of relations, even when the family contains arbitrarily long words.
 
-The guarantee concerns sufficiency and derivability. It does not assign a
-runtime or energy cost to reading a long type expression. It also does not
-predict which operation an unspecified controller will choose. Extending
-the allowed interactions can require a more informative image. The initial
-alpha fact alone cannot answer the mixed continuation exposing the third
-coordinate. M42 relates the sufficient image to conditional uncertainty,
-while keeping whole entropy and physical acquisition separate.
+The guarantee concerns sufficiency and derivability. It does not assign a runtime or energy cost to reading a long type expression. It also does not predict which operation an unspecified controller will choose. Extending the allowed interactions can require a more informative image. The initial alpha fact alone cannot answer the mixed continuation exposing the third coordinate. M42 relates the sufficient image to conditional uncertainty, while keeping whole entropy and physical acquisition separate.
 
-For partial interactions, the image must also preserve where each action
-is available (VC46–VC47). Agreement on every successful result does not
-establish that domain condition. A complete acquired image can supply the
-resident equality required by `MatchedSwapTransition`, and its future answer
-still uses VC41 and VC45. After the step, availability concerns the successor's
-fields. A record of earlier success does not authorize repetition. A total
-extension's computed answer also does not establish that the partial action
-is available. Its differently specified question must remain explicit.
+For partial interactions, the image must also preserve where each action is available (VC46–VC47). Agreement on every successful result does not establish that domain condition. A complete acquired image can supply the resident equality required by `MatchedSwapTransition`, and its future answer still uses VC41 and VC45. After the step, availability concerns the successor's fields. A record of earlier success does not authorize repetition. A total extension's computed answer also does not establish that the partial action is available. Its differently specified question must remain explicit.
 
 **AI9 (Saturation is relative to the interaction family).** In the binary guarded-swap fragment, six classes suffice for the present alpha question and every available continuation (VC49). VC50–VC52 derive those classes and answers from a previously acquired complete image. The derived decoder's input is the fact, while the acquisition relation remains tied to its actual source. There is no separate observation of the source in this derivation.
 

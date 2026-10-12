@@ -38,14 +38,7 @@ Selecting the first survivor can still depend on order. If both a and b pass, th
 
 The schedule can change work and the time at which an answer becomes available. A reading that changes its source, obtains a new observation or changes its predicate falls outside the fixed contract. Outside that contract the order can change the answer itself. InI S2a gives a model in which the order of two acting observations enters their record, at leading order, through the commutator of their address operators. Neither the finite argument nor finality makes time globally inert.
 
-Verdict VC92 and VC94a provide a constructive contrast. One resident phase
-distinction permits a locally chosen path to the original answer; without
-that access both constant actions remain in closed quiet orbits. The words
-ab and aaab have the same working endpoint, but the latter needs an additional
-order record to choose different actions at a repeated working state. Its
-resident tape supplies that record and retains the consumed commands.
-Irrelevance of order to a particular final answer does not make order freely
-available to an executor, or identify the two complete execution histories.
+Verdict VC92 and VC94a provide a constructive contrast. One resident phase distinction permits a locally chosen path to the original answer; without that access both constant actions remain in closed quiet orbits. The words ab and aaab have the same working endpoint, but the latter needs an additional order record to choose different actions at a repeated working state. Its resident tape supplies that record and retains the consumed commands. Irrelevance of order to a particular final answer does not make order freely available to an executor, or identify the two complete execution histories.
 
 ## §4. Initiality Does Not Choose the Question
 

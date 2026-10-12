@@ -94,517 +94,134 @@ LQ13 supplies a complete conditional instance for local square laws. Their joint
 
 Every failed condition has finite support: a finite-arity tuple comparison or one nonidentity, plus a finite equality chain for each compared place. Thus its refusal survives every enlargement preserving that support, without requiring a finite whole or a complete contact catalogue. No deterministic source-to-answer function was used. A contact relation may admit both (x,a) and (x,b) with a and b distinct. Identifying those two complete contacts, or requiring their answers to equal one answer, adds the demand that creates the obstruction. Two different outcomes alone do not prove that their source projections differ.
 
-**M71a (complete identity questions for a finite functional contact diagram).**
-Let V be a finite nonempty set of addressed roles, without presuming that
-different role names denote different contents. Supplied facts consist of
-identity equations E, registered contrasts D, and finitely many rows
+**M71a (complete identity questions for a finite functional contact diagram).** Let V be a finite nonempty set of addressed roles, without presuming that different role names denote different contents. Supplied facts consist of identity equations E, registered contrasts D, and finitely many rows
 
     k(a₁,...,aᵣ)=b.
 
-Each k denotes one common, possibly partial function of its stated finite
-arity on an arbitrary nonempty carrier Y, defined at the supplied rows.
-Its actual identity across rows must be established; a common label alone
-is insufficient. No totality, injectivity, inverse, algebraic identity,
-finite capacity or exhaustion of Y is required. No additional domain
-refusals are specified in this fragment; an absent row is not a refusal.
+Each k denotes one common, possibly partial function of its stated finite arity on an arbitrary nonempty carrier Y, defined at the supplied rows. Its actual identity across rows must be established; a common label alone is insufficient. No totality, injectivity, inverse, algebraic identity, finite capacity or exhaustion of Y is required. No additional domain refusals are specified in this fragment; an absent row is not a refusal.
 
-Form the least equivalence ≈ on V containing E and closed under the
-supplied rows: whenever two rows use the same k and corresponding
-arguments are ≈-equal, join their outputs. Each strict join reduces the
-finite number of classes, so this closure terminates. It operates on
-the supplied diagram, without enumerating or bounding the unknown medium.
+Form the least equivalence ≈ on V containing E and closed under the supplied rows: whenever two rows use the same k and corresponding arguments are ≈-equal, join their outputs. Each strict join reduces the finite number of classes, so this closure terminates. It operates on the supplied diagram, without enumerating or bounding the unknown medium.
 
-The diagram is realizable iff no contrast in D has ≈-equal endpoints.
-Necessity follows by substitution through a common function. For
-sufficiency use the carrier V/≈. Each row defines k at the tuple of its
-argument classes; closure makes this single-valued. Leave other tuples
-undefined, or assign any one class to all of them if a total completion
-is wanted. The resulting functions and role map a↦[a] retain every
-supplied equation, row and contrast.
-This constructs a compatible interpretation, not its physical realization
-or an identification of the actual Y with that finite carrier. Arbitrarily
-many further states can be adjoined while retaining every old tuple's
-value and assigning the new tuples freely.
+The diagram is realizable iff no contrast in D has ≈-equal endpoints. Necessity follows by substitution through a common function. For sufficiency use the carrier V/≈. Each row defines k at the tuple of its argument classes; closure makes this single-valued. Leave other tuples undefined, or assign any one class to all of them if a total completion is wanted. The resulting functions and role map a↦[a] retain every supplied equation, row and contrast. This constructs a compatible interpretation, not its physical realization or an identification of the actual Y with that finite carrier. Arbitrarily many further states can be adjoined while retaining every old tuple's value and assigning the new tuples freely.
 
 For a consistent diagram, the identity question for a,b is therefore exact:
 
-- Equality is forced iff a≈b. Propagation proves the forward implication;
-  if the classes differ, the constructed interpretation separates them.
-- Distinction is forced iff adding a=b to E and closing again collapses
-  some registered contrast. Any identifying interpretation would violate
-  that contrast. Conversely, a consistent new closure supplies an actual
-  quotient interpretation with a=b.
-- Otherwise the original quotient separates a,b and the new quotient
-  identifies them, while both retain all supplied facts. The question is
-  unresolved by this diagram, with two constructive witnesses of that
-  underdetermination. An unsuccessful proof search is not the witness.
+- Equality is forced iff a≈b. Propagation proves the forward implication; if the classes differ, the constructed interpretation separates them.
+- Distinction is forced iff adding a=b to E and closing again collapses some registered contrast. Any identifying interpretation would violate that contrast. Conversely, a consistent new closure supplies an actual quotient interpretation with a=b.
+- Otherwise the original quotient separates a,b and the new quotient identifies them, while both retain all supplied facts. The question is unresolved by this diagram, with two constructive witnesses of that underdetermination. An unsuccessful proof search is not the witness.
 
-The consistency qualification prevents vacuous identification from
-impossible premises. The two interpretations are extensions of an
-incomplete representation of one given source, not two actual realities.
-This is completeness for a specified question and contact fragment, not
-a Boolean answer to every question about the whole.
+The consistency qualification prevents vacuous identification from impossible premises. The two interpretations are extensions of an incomplete representation of one given source, not two actual realities. This is completeness for a specified question and contact fragment, not a Boolean answer to every question about the whole.
 
-Contrasts cannot force additional equalities in this unrestricted
-functional fragment: its original quotient keeps every unforced pair
-separate. M64k's inequality graph can force an equality because it adds
-a bound on the number of available values. Without that capacity relation
-its all-distinct interpretation would remain possible. The different
-conclusions identify exactly where the bound contributes information.
+Contrasts cannot force additional equalities in this unrestricted functional fragment: its original quotient keeps every unforced pair separate. M64k's inequality graph can force an equality because it adds a bound on the number of available values. Without that capacity relation its all-distinct interpretation would remain possible. The different conclusions identify exactly where the bound contributes information.
 
-A finite further contact expression with its required contacts admitted
-can be included by adding its role and defining row. This does not create
-admission at an untested input. A registered negative comparison k(a)≠b can be represented
-by its actual reply role c with k(a)=c and c≠b. This adds no guessed
-correspondence between replies from different contexts. Nor does closure
-of this finite diagram establish an unrestricted future continuation
-profile; VC107 and VC108 concern that stronger question. For nonfunctional
-contacts the output-joining rule is unavailable: the relational result
-above permits multiple distinct outcomes at one projected input.
+A finite further contact expression with its required contacts admitted can be included by adding its role and defining row. This does not create admission at an untested input. A registered negative comparison k(a)≠b can be represented by its actual reply role c with k(a)=c and c≠b. This adds no guessed correspondence between replies from different contexts. Nor does closure of this finite diagram establish an unrestricted future continuation profile; VC107 and VC108 concern that stronger question. For nonfunctional contacts the output-joining rule is unavailable: the relational result above permits multiple distinct outcomes at one projected input.
 
-This is the established congruence-closure principle expressed as an
-addressed realization and question criterion. The standard equality and
-disequality criterion appears in
-[Barrett and Tinelli, Satisfiability Modulo Theories, §4.1](https://cs.stanford.edu/~barrett/pubs/BT18.pdf).
-Here it supplies the explicit scope of the current contact constructions,
-not a claim to a new decision procedure. No runtime solver is introduced.
+This is the established congruence-closure principle expressed as an addressed realization and question criterion. The standard equality and disequality criterion appears in [Barrett and Tinelli, Satisfiability Modulo Theories, §4.1](https://cs.stanford.edu/~barrett/pubs/BT18.pdf). Here it supplies the explicit scope of the current contact constructions, not a claim to a new decision procedure. No runtime solver is introduced.
 
-`ContactDiagram.swift` gives a generic implication and its two completion
-boundaries. An actual common Left contact f satisfies f²(a)=a. A further
-return f³(a)=a forces f(a)=a: transporting the first equation by f gives
-f³(a)=f(a), and the second closes the identity. `ReturnsForceFixedPoint`
-derives it without a supplied one-step identity or inverse. A fixed node
-and a two-cycle both realize the two-step diagram alone. Actual iterated
-projections give the same recorded positive return fact, while complete
-records retain their different sources. Their one-step identity answers
-differ. An additional Right reading in the two-cycle gives Never and
-Succ<Never>; identifying those nodes would collapse this actual contrast.
+`ContactDiagram.swift` gives a generic implication and its two completion boundaries. An actual common Left contact f satisfies f²(a)=a. A further return f³(a)=a forces f(a)=a: transporting the first equation by f gives f³(a)=f(a), and the second closes the identity. `ReturnsForceFixedPoint` derives it without a supplied one-step identity or inverse. A fixed node and a two-cycle both realize the two-step diagram alone. Actual iterated projections give the same recorded positive return fact, while complete records retain their different sources. Their one-step identity answers differ. An additional Right reading in the two-cycle gives Never and Succ<Never>; identifying those nodes would collapse this actual contrast.
 
-Equal supplied successors also need not identify their source.
-`MatchingSuccessorsModel` supplies equal Left and Right successors but
-an additional internal Answer reading separates its nodes as Never and
-Succ<Never>. The distinction is witnessed by another possible reading,
-rather than asserted from different type names alone. Claiming that the earlier
-successors exhaust all possible readings would add a completeness or
-joint-recovery premise absent from this diagram. These addressed
-implications and model boundaries are checked statically; the general
-quotient-completion theorem is the mathematical proof above.
+Equal supplied successors also need not identify their source. `MatchingSuccessorsModel` supplies equal Left and Right successors but an additional internal Answer reading separates its nodes as Never and Succ<Never>. The distinction is witnessed by another possible reading, rather than asserted from different type names alone. Claiming that the earlier successors exhaust all possible readings would add a completeness or joint-recovery premise absent from this diagram. These addressed implications and model boundaries are checked statically; the general quotient-completion theorem is the mathematical proof above.
 
-**M71b (a conditional boundary can preserve compatibility of whole diagrams).**
-Consider two M71a diagrams G,H whose role sets meet only at a finite
-boundary B. Their contact-symbol sets are disjoint, with no additional
-laws relating the two sets. This is a condition on the
-displayed constraints, not statistical independence or a claim that
-the containing reality has no other relations. Renaming a genuinely
-shared contact to make it private would change this premise.
+**M71b (a conditional boundary can preserve compatibility of whole diagrams).** Consider two M71a diagrams G,H whose role sets meet only at a finite boundary B. Their contact-symbol sets are disjoint, with no additional laws relating the two sets. This is a condition on the displayed constraints, not statistical independence or a claim that the containing reality has no other relations. Renaming a genuinely shared contact to make it private would change this premise.
 
-Let P_G be the set of partitions of B that some realization of G induces:
-roles in one block have equal images, and roles in different blocks have
-different images. Membership of a proposed partition π is an exact M71a
-question. Add its within-block equalities and between-block contrasts
-to G and close the diagram. The partition is admissible exactly when
-no supplied contrast collapses. Thus P_G is a finite relational interface
-even when the private carrier or the containing medium is not bounded.
-It need not be stored as a list; a construction answering its compatibility
-questions can represent it.
+Let P_G be the set of partitions of B that some realization of G induces: roles in one block have equal images, and roles in different blocks have different images. Membership of a proposed partition π is an exact M71a question. Add its within-block equalities and between-block contrasts to G and close the diagram. The partition is admissible exactly when no supplied contrast collapses. Thus P_G is a finite relational interface even when the private carrier or the containing medium is not bounded. It need not be stored as a list; a construction answering its compatibility questions can represent it.
 
 The two diagrams have a joint realization iff
 
     P_G ∩ P_H ≠ ∅.
 
-Necessity restricts any joint realization to its boundary partition.
-For sufficiency choose a compatible quotient realization of each diagram
-for one shared π. Take their disjoint union and identify just the
-corresponding boundary classes. Each local carrier still embeds
-injectively, so every local contrast survives. A private contact retains
-its prescribed values on its own carrier's tuples; the other diagram
-places no requirements on that contact. Leave the remaining tuples
-undefined or complete them freely. This constructs a joint realization
-without inspecting any other possible interiors.
+Necessity restricts any joint realization to its boundary partition. For sufficiency choose a compatible quotient realization of each diagram for one shared π. Take their disjoint union and identify just the corresponding boundary classes. Each local carrier still embeds injectively, so every local contrast survives. A private contact retains its prescribed values on its own carrier's tuples; the other diagram places no requirements on that contact. Leave the remaining tuples undefined or complete them freely. This constructs a joint realization without inspecting any other possible interiors.
 
-This instantiates Seam SG2's boundary-image criterion. It also proves
-minimality for the stated class of later partners: if two interfaces
-disagree about one partition π, a partner supplying exactly π as boundary
-equalities and contrasts distinguishes their compatibility. This uses
-the declared availability of such finite boundary-identity constraints.
-A restricted partner grammar can permit a coarser interface. The result
-preserves existence of a joint realization; it does not by itself select
-one common action for every unresolved actual source, as M25a distinguishes.
+This instantiates Seam SG2's boundary-image criterion. It also proves minimality for the stated class of later partners: if two interfaces disagree about one partition π, a partner supplying exactly π as boundary equalities and contrasts distinguishes their compatibility. This uses the declared availability of such finite boundary-identity constraints. A restricted partner grammar can permit a coarser interface. The result preserves existence of a joint realization; it does not by itself select one common action for every unresolved actual source, as M25a distinguishes.
 
-Unconditional answers to individual boundary questions are insufficient.
-Let B={a,b,c,d} and let G contain f(a)=c and f(b)=d, with f private and
-no given boundary contrasts. Both an all-equal and an all-distinct
-interpretation are possible, so every individual pair's identity is
-unresolved. The empty boundary diagram G₀ has exactly those same
-unconditional pair verdicts. Yet the partner H imposing a=b and c≠d
-joins G₀ and cannot join G. The missing relation is conditional:
-a=b forces c=d through the shared f inside G. A list of current verdicts
-lost how a new identification changes the allowed answers.
+Unconditional answers to individual boundary questions are insufficient. Let B={a,b,c,d} and let G contain f(a)=c and f(b)=d, with f private and no given boundary contrasts. Both an all-equal and an all-distinct interpretation are possible, so every individual pair's identity is unresolved. The empty boundary diagram G₀ has exactly those same unconditional pair verdicts. Yet the partner H imposing a=b and c≠d joins G₀ and cannot join G. The missing relation is conditional: a=b forces c=d through the shared f inside G. A list of current verdicts lost how a new identification changes the allowed answers.
 
-If contacts themselves are shared between G and H, even the whole set
-of boundary partitions may be insufficient. Take B={a,c,d}, with c≠d
-in both diagrams. Let G contain f(a)=x, g(x)=c and H contain f(a)=y,
-g(y)=d, where x,y are private roles but f,g are the same contacts.
-Each diagram admits all three boundary partitions with c≠d. Their
-boundary profiles therefore coincide and intersect. Joining the actual
-contacts nevertheless forces x=y and then c=d. The common path g∘f,
-which the identity-only interface discarded, supplies the obstruction.
-Neither agreement of boundary names nor equality of the two profiles
-establishes that this path is private.
+If contacts themselves are shared between G and H, even the whole set of boundary partitions may be insufficient. Take B={a,c,d}, with c≠d in both diagrams. Let G contain f(a)=x, g(x)=c and H contain f(a)=y, g(y)=d, where x,y are private roles but f,g are the same contacts. Each diagram admits all three boundary partitions with c≠d. Their boundary profiles therefore coincide and intersect. Joining the actual contacts nevertheless forces x=y and then c=d. The common path g∘f, which the identity-only interface discarded, supplies the obstruction. Neither agreement of boundary names nor equality of the two profiles establishes that this path is private.
 
-There is a constructive sufficient boundary for this shared-contact case.
-Suppose two displayed realizations are identified along a common
-substructure C: each shared contact is defined on C's argument tuples,
-its outputs remain in C, and the two restrictions agree there. The
-contacts can remain partial elsewhere. Form the disjoint union of the
-carriers over C. A tuple lying in both old carriers lies entirely in C;
-the two prescribed answers are therefore the same element of C. Any
-other old tuple is prescribed on only one side. Combining these rows
-and leaving mixed tuples free yields shared partial functions extending
-both realizations. Private contacts extend as before. No local identity
-or contrast is changed.
+There is a constructive sufficient boundary for this shared-contact case. Suppose two displayed realizations are identified along a common substructure C: each shared contact is defined on C's argument tuples, its outputs remain in C, and the two restrictions agree there. The contacts can remain partial elsewhere. Form the disjoint union of the carriers over C. A tuple lying in both old carriers lies entirely in C; the two prescribed answers are therefore the same element of C. Any other old tuple is prescribed on only one side. Combining these rows and leaving mixed tuples free yields shared partial functions extending both realizations. Private contacts extend as before. No local identity or contrast is changed.
 
-This sufficient construction concerns the specified shared contacts.
-If a proposed boundary is not closed under them, their output roles may
-have to become part of the shared interface as well. A hidden output is
-not made private by omitting its address from publication.
-The two-step example already shows that obstruction at a finite depth;
-no general finite bound on all future shared continuations is inferred.
-For comparison with established mathematical theory combination, see
-[Barrett and Tinelli, §5](https://cs.stanford.edu/~barrett/pubs/BT18.pdf).
-The argument here uses its explicitly stated free-contact scope.
+This sufficient construction concerns the specified shared contacts. If a proposed boundary is not closed under them, their output roles may have to become part of the shared interface as well. A hidden output is not made private by omitting its address from publication. The two-step example already shows that obstruction at a finite depth; no general finite bound on all future shared continuations is inferred. For comparison with established mathematical theory combination, see [Barrett and Tinelli, §5](https://cs.stanford.edu/~barrett/pubs/BT18.pdf). The argument here uses its explicitly stated free-contact scope.
 
-`ContactBoundary.swift` preserves the conditional relation constructively.
-`FunctionalBoundaryReading` reads (a,b,f(a),f(b)) using actual source
-projections. `AliasActivatesBoundary` takes an identity of a,b and derives
-the equality of the two resulting fields, without requesting it as a
-second premise. `UncoupledBoundary` supplies the contrasting case with
-independent c,d. `SharedEntryForcesHiddenAgreement` derives equality of
-both the actual private intermediate and the final reading along a
-shared two-contact path. The separate paths returning Never and Lit1
-cannot be joined at that same source while preserving the common path.
+`ContactBoundary.swift` preserves the conditional relation constructively. `FunctionalBoundaryReading` reads (a,b,f(a),f(b)) using actual source projections. `AliasActivatesBoundary` takes an identity of a,b and derives the equality of the two resulting fields, without requesting it as a second premise. `UncoupledBoundary` supplies the contrasting case with independent c,d. `SharedEntryForcesHiddenAgreement` derives equality of both the actual private intermediate and the final reading along a shared two-contact path. The separate paths returning Never and Lit1 cannot be joined at that same source while preserving the common path.
 
-`ClosedBoundaryJoin` gives a positive shared-contact witness. Its boundary
-has nodes P,Q with f exchanging them and g fixing each. A private node
-on the first side has both contact outputs P; the second has both outputs
-Q. Both local views are actual projections of one constructed whole and
-reuse its same boundary. The input conditions contain only the four
-boundary contact equations; the private rows and preserved local views
-are constructed. A further internal reading supplies a positive P/Q
-contrast, and composed readings distinguish the two private nodes.
-Thus their common boundary permits a joint carrier without making
-their interiors identical. The static checks cover these constructions
-and refusals; the general partition-interface theorem is the proof above.
+`ClosedBoundaryJoin` gives a positive shared-contact witness. Its boundary has nodes P,Q with f exchanging them and g fixing each. A private node on the first side has both contact outputs P; the second has both outputs Q. Both local views are actual projections of one constructed whole and reuse its same boundary. The input conditions contain only the four boundary contact equations; the private rows and preserved local views are constructed. A further internal reading supplies a positive P/Q contrast, and composed readings distinguish the two private nodes. Thus their common boundary permits a joint carrier without making their interiors identical. The static checks cover these constructions and refusals; the general partition-interface theorem is the proof above.
 
-**M71c (conditional equality is a complete interface for the free-contact fragment).**
-The finite interface in M71b need not be a catalogue of partitions. For
-a boundary equivalence S, add its equations to G and perform M71a's
-closure. Write C_G(S) for the resulting boundary equivalence. If an
-original contrast collapses, retain that obstruction instead of declaring
-an answer about an actual source. For every consistent S, C_G(S) is the
-least partition extending S that G admits. Its quotient model realizes
-that exact partition, while every other realization contains its
-equalities. Thus the interface can return newly forced relations with
-their derivations, or a witnessed obstruction.
+**M71c (conditional equality is a complete interface for the free-contact fragment).** The finite interface in M71b need not be a catalogue of partitions. For a boundary equivalence S, add its equations to G and perform M71a's closure. Write C_G(S) for the resulting boundary equivalence. If an original contrast collapses, retain that obstruction instead of declaring an answer about an actual source. For every consistent S, C_G(S) is the least partition extending S that G admits. Its quotient model realizes that exact partition, while every other realization contains its equalities. Thus the interface can return newly forced relations with their derivations, or a witnessed obstruction.
 
-For two diagrams with M71b's disjoint contact symbols, this gives an
-exact constructive exchange. Start with the discrete boundary partition
-and repeatedly apply C_G and C_H. Stop with incompatibility if a local
-contrast collapses. Otherwise every change joins previously separate
-boundary classes, so there are at most max(0,|B|−1) strict joins before both
-closures agree. At a common fixed partition S, each local quotient
-realizes exactly S. M71b joins those quotients and proves compatibility.
-Conversely every propagated identity is required by a joint realization,
-so no encountered obstruction can be repaired while retaining its
-support. This is a complete existence test in the stated fragment, with
-no guessing of a boundary partition. Only boundary equations need to enter
-the other diagram; each remains supported by its actual local derivation.
-The bound counts strict boundary mergers, not local proof cost or
-communication messages.
+For two diagrams with M71b's disjoint contact symbols, this gives an exact constructive exchange. Start with the discrete boundary partition and repeatedly apply C_G and C_H. Stop with incompatibility if a local contrast collapses. Otherwise every change joins previously separate boundary classes, so there are at most max(0,|B|−1) strict joins before both closures agree. At a common fixed partition S, each local quotient realizes exactly S. M71b joins those quotients and proves compatibility. Conversely every propagated identity is required by a joint realization, so no encountered obstruction can be repaired while retaining its support. This is a complete existence test in the stated fragment, with no guessing of a boundary partition. Only boundary equations need to enter the other diagram; each remains supported by its actual local derivation. The bound counts strict boundary mergers, not local proof cost or communication messages.
 
-A one-time list of unconditional answers still fails in M71b's example.
-The exchange succeeds because a newly received identity is supplied to
-the current local construction and can activate its conditional answer.
-It does not copy a verdict status or equate two conclusions on the basis that
-both were accepted. If a contact is actually shared, the disjoint-symbol
-premise fails and M71b's hidden-path obstruction still applies. The
-standard theory-combination literature calls the relevant absence of
-irreducible equality alternatives *convexity*; see
-[Barrett and Tinelli, §5.2](https://cs.stanford.edu/~barrett/pubs/BT18.pdf).
-This direct proof supplies its particular contact scope, not a new solver.
+A one-time list of unconditional answers still fails in M71b's example. The exchange succeeds because a newly received identity is supplied to the current local construction and can activate its conditional answer. It does not copy a verdict status or equate two conclusions on the basis that both were accepted. If a contact is actually shared, the disjoint-symbol premise fails and M71b's hidden-path obstruction still applies. The standard theory-combination literature calls the relevant absence of irreducible equality alternatives *convexity*; see [Barrett and Tinelli, §5.2](https://cs.stanford.edu/~barrett/pubs/BT18.pdf). This direct proof supplies its particular contact scope, not a new solver.
 
-There is also an exact description of which finite boundary families the
-language can express. Regard a partition as its set of equal pairs.
-For a nonempty family P on a finite B, the following are equivalent:
+There is also an exact description of which finite boundary families the language can express. Regard a partition as its set of equal pairs. For a nonempty family P on a finite B, the following are equivalent:
 
-1. P is the boundary profile of a consistent M71a diagram, permitting
-   fresh private contacts of arbitrary finite arity.
+1. P is the boundary profile of a consistent M71a diagram, permitting fresh private contacts of arbitrary finite arity.
 2. P is closed under intersections of nonempty subfamilies.
-3. P is specified by finitely many conditional rules S⇒(a=b) and
-   forbidden mergers S⇒⊥, where S is a finite conjunction of boundary
-   equalities.
+3. P is specified by finitely many conditional rules S⇒(a=b) and forbidden mergers S⇒⊥, where S is a finite conjunction of boundary equalities.
 
-**Proof.** For (1)⇒(2), take the product of any nonempty finite family
-of realizations of the same diagram. Map each role to the tuple of its
-images; apply each contact componentwise where every component is defined.
-Every supplied row remains defined and correct. Every supplied contrast
-still has different endpoints. Two product images are equal exactly when
-their images agree in every component, so the boundary partition is the
-intersection. B has only finitely many partitions, which also covers
-nonempty intersections indexed with repetitions. No empty-product closure
-is required: an empty product would identify every role and can destroy
-a supplied contrast.
+**Proof.** For (1)⇒(2), take the product of any nonempty finite family of realizations of the same diagram. Map each role to the tuple of its images; apply each contact componentwise where every component is defined. Every supplied row remains defined and correct. Every supplied contrast still has different endpoints. Two product images are equal exactly when their images agree in every component, so the boundary partition is the intersection. B has only finitely many partitions, which also covers nonempty intersections indexed with repetitions. No empty-product closure is required: an empty product would identify every role and can destroy a supplied contrast.
 
-For (2)⇒(3), consider each partition π outside P. Let P_π be the members
-of P containing every equality of π. If P_π is empty, forbid the conjunction
-of π's equalities. Otherwise their intersection μ belongs to P, contains
-π, and differs from π. Choose one equality in μ but not in π and make
-it the conclusion of that conjunction. Every member of P satisfies the
-rule; π violates it. Finitely many such rules admit exactly P among
-equivalence relations. This is an existence construction, not a claim
-that the smallest rule presentation is unique or cheap to obtain.
+For (2)⇒(3), consider each partition π outside P. Let P_π be the members of P containing every equality of π. If P_π is empty, forbid the conjunction of π's equalities. Otherwise their intersection μ belongs to P, contains π, and differs from π. Choose one equality in μ but not in π and make it the conclusion of that conjunction. Every member of P satisfies the rule; π violates it. Finitely many such rules admit exactly P among equivalence relations. This is an existence construction, not a claim that the smallest rule presentation is unique or cheap to obtain.
 
 For (3)⇒(1), realize each rule
 
     (a₁=b₁ ∧ ... ∧ aᵣ=bᵣ) ⇒ c=d
 
-by a fresh contact k and two rows k(a₁,...,aᵣ)=c and
-k(b₁,...,bᵣ)=d. Their functionality imposes exactly that conditional
-identity. For a forbidden merger, use two fresh output roles p,q with
-p≠q instead of c,d. An empty antecedent becomes a given equality or an
-immediate inconsistent contrast. For any boundary partition satisfying
-the rules, equal argument tuples have equal prescribed outputs; other
-tuples remain independent. Choose the fresh contrast outputs separately
-and define each private contact at its supplied rows. This extends that
-partition to a diagram realization. Conversely each realization satisfies
-all rules. No capacity, injectivity or unlisted contact law is added.
-The availability of fresh finite-arity contacts is part of this converse;
-a fixed smaller signature need not express every such profile. QED
+by a fresh contact k and two rows k(a₁,...,aᵣ)=c and k(b₁,...,bᵣ)=d. Their functionality imposes exactly that conditional identity. For a forbidden merger, use two fresh output roles p,q with p≠q instead of c,d. An empty antecedent becomes a given equality or an immediate inconsistent contrast. For any boundary partition satisfying the rules, equal argument tuples have equal prescribed outputs; other tuples remain independent. Choose the fresh contrast outputs separately and define each private contact at its supplied rows. This extends that partition to a diagram realization. Conversely each realization satisfies all rules. No capacity, injectivity or unlisted contact law is added. The availability of fresh finite-arity contacts is part of this converse; a fixed smaller signature need not express every such profile. QED
 
-This exposes a limit of the fragment. The requirement a=b or a=c,
-with neither alternative forced, cannot be imposed by these free contact
-rows and contrasts alone. The patterns {a,b}|{c} and {a,c}|{b} have the
-all-distinct partition as their intersection, which violates that
-requirement. Equivalently, M71a's least quotient simultaneously separates
-every pair whose equality is unforced. A consistent diagram therefore
-forces a finite disjunction of equalities only if it already forces at
-least one member.
+This exposes a limit of the fragment. The requirement a=b or a=c, with neither alternative forced, cannot be imposed by these free contact rows and contrasts alone. The patterns {a,b}|{c} and {a,c}|{b} have the all-distinct partition as their intersection, which violates that requirement. Equivalently, M71a's least quotient simultaneously separates every pair whose equality is unforced. A consistent diagram therefore forces a finite disjunction of equalities only if it already forces at least one member.
 
-This does not prohibit alternatives in reality or in VI as a whole.
-For example, established b≠c and a carrier capacity of at most two
-values force a=b or a=c without selecting either. The two permitted
-patterns above have a three-valued product, which the capacity relation
-excludes. The extra law changes the expressive environment; silently
-assuming a binary carrier would have supplied exactly the missing
-content. M64k uses that kind of capacity explicitly. A range restriction,
-an admitted alternative relation or another acquired law must likewise
-be presented when it does this work.
+This does not prohibit alternatives in reality or in VI as a whole. For example, established b≠c and a carrier capacity of at most two values force a=b or a=c without selecting either. The two permitted patterns above have a three-valued product, which the capacity relation excludes. The extra law changes the expressive environment; silently assuming a binary carrier would have supplied exactly the missing content. M64k uses that kind of capacity explicitly. A range restriction, an admitted alternative relation or another acquired law must likewise be presented when it does this work.
 
-`AlternatingBoundaryClosure` exhibits three actual exchanges: an input
-identity passes through G's Left contact, H's Right contact and G's Left
-contact again. Each constructor consumes the preceding derived identity.
-The final answer is bound to `AlternatingBoundaryPath`'s actual composed
-reading. Only the entry identity is supplied; neither the intermediate
-nor terminal equalities are requested from the caller. Two unmerged
-entries with terminal answers Never and Lit1 show the obstruction that
-a later entry merger activates.
+`AlternatingBoundaryClosure` exhibits three actual exchanges: an input identity passes through G's Left contact, H's Right contact and G's Left contact again. Each constructor consumes the preceding derived identity. The final answer is bound to `AlternatingBoundaryPath`'s actual composed reading. Only the entry identity is supplied; neither the intermediate nor terminal equalities are requested from the caller. Two unmerged entries with terminal answers Never and Lit1 show the obstruction that a later entry merger activates.
 
-`ProductBoundary` constructs joint role images and recovers both original
-boundary triples by their component projections. `AlternativeBoundaryProduct`
-uses (0,0,1) and (0,1,0); the product roles (0,0),(0,1),(1,0) have neither
-of the original alternative identities. Actual component readings provide
-both positive contrasts. These static witnesses check the displayed
-constructions and failed mergers. The general product and interface
-representation claims have the mathematical proof above.
+`ProductBoundary` constructs joint role images and recovers both original boundary triples by their component projections. `AlternativeBoundaryProduct` uses (0,0,1) and (0,1,0); the product roles (0,0),(0,1),(1,0) have neither of the original alternative identities. Actual component readings provide both positive contrasts. These static witnesses check the displayed constructions and failed mergers. The general product and interface representation claims have the mathematical proof above.
 
-**M71d (eliminating private support can require a wider boundary condition).**
-Fix m≥2 and boundary roles a₁,b₁,...,aₘ,bₘ,c,d. The target interface
-admits exactly the partitions satisfying
+**M71d (eliminating private support can require a wider boundary condition).** Fix m≥2 and boundary roles a₁,b₁,...,aₘ,bₘ,c,d. The target interface admits exactly the partitions satisfying
 
     (a₁=b₁ ∧ ... ∧ aₘ=bₘ) ⇒ c=d.
 
-Role names do not assert distinctness. This entire family is realizable
-using only private unary contacts and m−1 private intermediate roles.
-Put h₀=c, hₘ=d, introduce h₁,...,hₘ₋₁ and a fresh unary fᵢ for each
-link, and supply the two rows
+Role names do not assert distinctness. This entire family is realizable using only private unary contacts and m−1 private intermediate roles. Put h₀=c, hₘ=d, introduce h₁,...,hₘ₋₁ and a fresh unary fᵢ for each link, and supply the two rows
 
     fᵢ(aᵢ)=hᵢ₋₁,       fᵢ(bᵢ)=hᵢ.
 
-If all input identities hold, functionality joins each consecutive pair
-of h roles, forcing c=d. Conversely fix any boundary partition obeying
-the target implication. Join neighboring h roles exactly where aᵢ=bᵢ
-holds. Identify the endpoint classes as required by the given c,d;
-choose fresh values for any remaining private classes. When c≠d,
-at least one missing input identity separates the endpoint segments.
-When c=d, joining the two endpoint classes is permitted. In either case
-every equal-input pair of rows has equal outputs. Each fᵢ has only its
-two prescribed rows, so the functions are well-defined and the boundary
-partition is unchanged. Leave other inputs free.
+If all input identities hold, functionality joins each consecutive pair of h roles, forcing c=d. Conversely fix any boundary partition obeying the target implication. Join neighboring h roles exactly where aᵢ=bᵢ holds. Identify the endpoint classes as required by the given c,d; choose fresh values for any remaining private classes. When c≠d, at least one missing input identity separates the endpoint segments. When c=d, joining the two endpoint classes is permitted. In either case every equal-input pair of rows has equal outputs. Each fᵢ has only its two prescribed rows, so the functions are well-defined and the boundary partition is unchanged. Leave other inputs free.
 
-This proves exactness of the eliminated boundary relation, not only its
-forward implication. Unexpected identities between different boundary
-roles cause no extra row comparisons across different fᵢ: their contact
-symbols are private and distinct. Reusing one actual contact for all
-links would change this premise and can add further constraints.
-No injectivity or inverse is assumed in constructing the chains.
+This proves exactness of the eliminated boundary relation, not only its forward implication. Unexpected identities between different boundary roles cause no extra row comparisons across different fᵢ: their contact symbols are private and distinct. Reusing one actual contact for all links would change this premise and can add further constraints. No injectivity or inverse is assumed in constructing the chains.
 
-The construction also strengthens M71c: fresh unary contacts already
-suffice for every finite profile characterized there. Replace each
-nonempty Horn antecedent by such a chain. For a forbidden merger, its
-two endpoint roles are fresh and carry a contrast. Empty antecedents
-are supplied equalities or immediate obstructions. Different clauses
-use separate private roles and contact symbols. Their local constructions
-therefore join on every boundary partition satisfying all the clauses.
-Higher contact arity is unnecessary for this expressive result.
+The construction also strengthens M71c: fresh unary contacts already suffice for every finite profile characterized there. Replace each nonempty Horn antecedent by such a chain. For a forbidden merger, its two endpoint roles are fresh and carry a contrast. Empty antecedents are supplied equalities or immediate obstructions. Different clauses use separate private roles and contact symbols. Their local constructions therefore join on every boundary partition satisfying all the clauses. Higher contact arity is unnecessary for this expressive result.
 
-Now require an interface containing only the original boundary roles,
-with rules whose antecedents are conjunctions of boundary-pair equalities
-and whose conclusions are one boundary equality or ⊥. No auxiliary
-roles, aggregate terms or additional predicates are admitted. The
-smallest possible maximum antecedent width for the displayed target is
-exactly m, even if arbitrarily many rules are allowed.
+Now require an interface containing only the original boundary roles, with rules whose antecedents are conjunctions of boundary-pair equalities and whose conclusions are one boundary equality or ⊥. No auxiliary roles, aggregate terms or additional predicates are admitted. The smallest possible maximum antecedent width for the displayed target is exactly m, even if arbitrarily many rules are allowed.
 
-**Proof of the lower bound.** Let π identify just aᵢ with bᵢ for every i,
-keeping all these m blocks, c and d separate. It violates the target.
-Any rule system defining exactly the target must contain a rule violated
-by π. Its antecedent is true in π, so each nonreflexive atom lies within
-one of the m input-pair blocks. If its width were less than m, at least
-one block would not be used. Let π′ identify only the input pairs used
-by that antecedent, leaving every other role separate. The antecedent
-is still true. The conclusion is still false: an equality absent from π
-is also absent from its subrelation π′, and ⊥ remains false. Yet π′ is
-admitted by the target because at least one input identity is missing.
-Thus this rule would exclude a required boundary possibility. No such
-system of smaller-width rules can be exact. The displayed m-antecedent
-rule attains the bound. QED
+**Proof of the lower bound.** Let π identify just aᵢ with bᵢ for every i, keeping all these m blocks, c and d separate. It violates the target. Any rule system defining exactly the target must contain a rule violated by π. Its antecedent is true in π, so each nonreflexive atom lies within one of the m input-pair blocks. If its width were less than m, at least one block would not be used. Let π′ identify only the input pairs used by that antecedent, leaving every other role separate. The antecedent is still true. The conclusion is still false: an equality absent from π is also absent from its subrelation π′, and ⊥ remains false. Yet π′ is admitted by the target because at least one input identity is missing. Thus this rule would exclude a required boundary possibility. No such system of smaller-width rules can be exact. The displayed m-antecedent rule attains the bound. QED
 
-This is a bound within the specified interface grammar. A single
-equality between two constructed tuples can carry all m input identities.
-That expression retains a joint object and its projections; it is not
-one of the original boundary-pair atoms. Likewise, retaining intermediate
-roles can replace a wide condition by short local implications. The
-result does not assign an absolute number of logical atoms to the
-dependency. It identifies what cannot be discarded while shortening
-this particular interface: the joint support must remain in a condition,
-an intermediate structure or an equivalent acquired relation.
+This is a bound within the specified interface grammar. A single equality between two constructed tuples can carry all m input identities. That expression retains a joint object and its projections; it is not one of the original boundary-pair atoms. Likewise, retaining intermediate roles can replace a wide condition by short local implications. The result does not assign an absolute number of logical atoms to the dependency. It identifies what cannot be discarded while shortening this particular interface: the joint support must remain in a condition, an intermediate structure or an equivalent acquired relation.
 
-`JoinedConditionalBoundary<A,B>` presents the two-link case. A supplies
-a=b, B supplies u=v, and the actual first-contact output at b is bound
-to the second-contact output at u. The constructor derives the equality
-of the outer readings using the two previously established projection
-constructors. It does not request that final equality. Removing either
-input identity separately admits an `OpenConditionalChain` whose outer
-readings are Never and Lit1 while the other identity and intermediate
-seam survive. Both omissions therefore matter.
+`JoinedConditionalBoundary<A,B>` presents the two-link case. A supplies a=b, B supplies u=v, and the actual first-contact output at b is bound to the second-contact output at u. The constructor derives the equality of the outer readings using the two previously established projection constructors. It does not request that final equality. Removing either input identity separately admits an `OpenConditionalChain` whose outer readings are Never and Lit1 while the other identity and intermediate seam survive. Both omissions therefore matter.
 
-`PackedConditionalBoundary` takes one equality of the paired input
-records. Actual projections recover A and B and feed the same two-link
-constructor. This demonstrates how a shorter static expression keeps
-the needed joint structure. `ClosedConditionalChain` supplies a nonzero
-joint realization and binds the constructed equality to both actual
-outer readings. The packed input does not obtain the two premises from
-less information. The general width theorem concerns all boundary-only
-rule systems; the Swift witnesses establish these addressed chains,
-their packed use and both missing-premise obstructions.
+`PackedConditionalBoundary` takes one equality of the paired input records. Actual projections recover A and B and feed the same two-link constructor. This demonstrates how a shorter static expression keeps the needed joint structure. `ClosedConditionalChain` supplies a nonzero joint realization and binds the constructed equality to both actual outer readings. The packed input does not obtain the two premises from less information. The general width theorem concerns all boundary-only rule systems; the Swift witnesses establish these addressed chains, their packed use and both missing-premise obstructions.
 
-**M71e (a finite diagram can force future agreement without determining future answers).**
-Consider the following two-sorted fragment of M71a. A finite diagram names
-source roles, answer roles, equalities and contrasts within each sort.
-It supplies rows o(x)=y for finitely many common unary partial contacts o,
-explicit refusals o(x) undefined, and rows E(x)=a for one common total
-reading. Realizations may use arbitrary nonempty source and answer
-carriers. There is no capacity bound, injectivity requirement, inverse
-law or other unlisted condition. Answers are not fed back as contact
-inputs in this fragment. A missing row is unknown, not a refusal.
+**M71e (a finite diagram can force future agreement without determining future answers).** Consider the following two-sorted fragment of M71a. A finite diagram names source roles, answer roles, equalities and contrasts within each sort. It supplies rows o(x)=y for finitely many common unary partial contacts o, explicit refusals o(x) undefined, and rows E(x)=a for one common total reading. Realizations may use arbitrary nonempty source and answer carriers. There is no capacity bound, injectivity requirement, inverse law or other unlisted condition. Answers are not fed back as contact inputs in this fragment. A missing row is unknown, not a refusal.
 
-Close the supplied equalities under functionality: equal inputs of the
-same contact join their supplied outputs; equal inputs of E join their
-supplied answers. Assume consistency: no supplied contrast collapses,
-and no source class both admits and refuses the same contact. Let C be
-the n resulting source classes. Different classes need not be distinct
-in every realization, but the least quotient keeps them distinct and
-realizes all supplied rows and refusals. Missing contact rows can remain
-undefined, and missing readings can be filled freely.
+Close the supplied equalities under functionality: equal inputs of the same contact join their supplied outputs; equal inputs of E join their supplied answers. Assume consistency: no supplied contrast collapses, and no source class both admits and refuses the same contact. Let C be the n resulting source classes. Different classes need not be distinct in every realization, but the least quotient keeps them distinct and realizes all supplied rows and refusals. Missing contact rows can remain undefined, and missing readings can be filled freely.
 
-Fix roots x,y. Ask whether **every realization** of this diagram makes
-them equivalent for every finite word in the declared contacts: the word
-is executable at both or at neither, and its defined E answers agree.
-This is VC47's behavioral question, now asked across completions of an
-incomplete diagram rather than over one fully specified transition graph.
+Fix roots x,y. Ask whether **every realization** of this diagram makes them equivalent for every finite word in the declared contacts: the word is executable at both or at neither, and its defined E answers agree. This is VC47's behavioral question, now asked across completions of an incomplete diagram rather than over one fully specified transition graph.
 
-The following finite pair test is exact. Start at the unordered pair
-([x],[y]) and inspect each reached pair at most once.
+The following finite pair test is exact. Start at the unordered pair ([x],[y]) and inspect each reached pair at most once.
 
-* At a diagonal pair (c,c), close the branch. No outgoing row or E answer
-  is needed there: it is the same actual input of every common contact.
-* At a distinct pair (c,d), both E rows must be supplied and their answer
-  classes must coincide. For each contact, either both inputs have an
-  explicit refusal, or both have a supplied successful row. In the latter
-  case inspect the successor pair. Any other case fails the test.
+* At a diagonal pair (c,c), close the branch. No outgoing row or E answer is needed there: it is the same actual input of every common contact.
+* At a distinct pair (c,d), both E rows must be supplied and their answer classes must coincide. For each contact, either both inputs have an explicit refusal, or both have a supplied successful row. In the latter case inspect the successor pair. Any other case fails the test.
 
-**Sufficiency.** Relate the images of every inspected pair in an arbitrary
-realization and include all diagonal pairs of its carrier. At each
-off-diagonal listed pair the rows establish equal current answers and
-matching availability. Successful successors are again related. At a
-diagonal pair these facts follow from one common partial function and one
-common reading at one actual input, irrespective of the unknown future.
-Induction on word length therefore preserves availability and every
-defined answer. The induction ranges over words, not over a supposedly
-finite whole. Repeated pairs close a finite certificate; no prediction of
-the number of future source states is required.
+**Sufficiency.** Relate the images of every inspected pair in an arbitrary realization and include all diagonal pairs of its carrier. At each off-diagonal listed pair the rows establish equal current answers and matching availability. Successful successors are again related. At a diagonal pair these facts follow from one common partial function and one common reading at one actual input, irrespective of the unknown future. Induction on word length therefore preserves availability and every defined answer. The induction ranges over words, not over a supposedly finite whole. Repeated pairs close a finite certificate; no prediction of the number of future source states is required.
 
-**Necessity.** If the test fails, reach a first failing distinct pair by a
-prefix of supplied successful rows. Use the least source quotient, keeping
-all its classes distinct. If two supplied E answers have different
-classes, keep them distinct too. If an E row is missing at either input,
-fill the missing readings to make the answers different, using a fresh
-answer if necessary. This respects all the diagram's other facts. The
-prefix itself now distinguishes the roots. Otherwise failure concerns a
-contact: a supplied success opposed to a supplied refusal already separates
-availability. If one or both rows are missing, complete them so that the
-contact is defined at exactly one of these distinct inputs, respecting
-any supplied row. A fresh output source may be used. Leave other missing
-contact rows undefined and fill other readings arbitrarily. The prefix
-followed by this contact distinguishes availability. These choices build
-a finite compatible realization, rather than a gap in a proposed proof.
+**Necessity.** If the test fails, reach a first failing distinct pair by a prefix of supplied successful rows. Use the least source quotient, keeping all its classes distinct. If two supplied E answers have different classes, keep them distinct too. If an E row is missing at either input, fill the missing readings to make the answers different, using a fresh answer if necessary. This respects all the diagram's other facts. The prefix itself now distinguishes the roots. Otherwise failure concerns a contact: a supplied success opposed to a supplied refusal already separates availability. If one or both rows are missing, complete them so that the contact is defined at exactly one of these distinct inputs, respecting any supplied row. A fresh output source may be used. Leave other missing contact rows undefined and fill other readings arbitrarily. The prefix followed by this contact distinguishes availability. These choices build a finite compatible realization, rather than a gap in a proposed proof.
 
-There are at most n(n−1)/2 distinct unordered pairs to inspect. A shortest
-route to a failing pair has no repetition and cannot pass through a
-diagonal. Thus a counter-word of length at most n(n−1)/2 suffices whenever
-the test fails: a reading failure uses that route, and an availability
-failure adds one contact. This is a sufficient bound, with no claim of
-optimality. It does not bound the cost of acquiring the supplied diagram.
+There are at most n(n−1)/2 distinct unordered pairs to inspect. A shortest route to a failing pair has no repetition and cannot pass through a diagonal. Thus a counter-word of length at most n(n−1)/2 suffices whenever the test fails: a reading failure uses that route, and an availability failure adds one contact. This is a sufficient bound, with no claim of optimality. It does not bound the cost of acquiring the supplied diagram.
 
-The criterion answers whether future agreement is *forced*. A countermodel
-refutes that proposed implication; it need not prove that the actual roots
-will differ, nor that agreement remains possible. A supplied answer
-contrast can already force disagreement in every realization. Likewise,
-the necessity proof depends on the declared freedom to complete missing
-rows. Additional reversibility, totality, capacity or coupling laws can
-forbid its countermodels and require a different criterion.
+The criterion answers whether future agreement is *forced*. A countermodel refutes that proposed implication; it need not prove that the actual roots will differ, nor that agreement remains possible. A supplied answer contrast can already force disagreement in every realization. Likewise, the necessity proof depends on the declared freedom to complete missing rows. Additional reversibility, totality, capacity or coupling laws can forbid its countermodels and require a different criterion.
 
-The diagonal case removes a real completeness obligation. Suppose the
-roots have equal current E answers and every declared first contact sends
-them to one common source for that contact. Their entire future behaviors
-then agree, although even the next E answer can remain unknown. With one
-contact o, the rows E(x)=E(y)=a and o(x)=o(y)=z suffice. No row at z is
-required. Compatible completions can give z different readings or arbitrarily
-different future structures, while preserving the comparison of x with y.
-This does not contradict VC107: the identity of the actual reached input
-is supplied structural evidence, stronger than matching finitely many
-readouts. VC108 supplies a different route through a justified bound on
-future profiles. Neither route establishes the other's premise for free.
+The diagonal case removes a real completeness obligation. Suppose the roots have equal current E answers and every declared first contact sends them to one common source for that contact. Their entire future behaviors then agree, although even the next E answer can remain unknown. With one contact o, the rows E(x)=E(y)=a and o(x)=o(y)=z suffice. No row at z is required. Compatible completions can give z different readings or arbitrarily different future structures, while preserving the comparison of x with y. This does not contradict VC107: the identity of the actual reached input is supplied structural evidence, stronger than matching finitely many readouts. VC108 supplies a different route through a justified bound on future profiles. Neither route establishes the other's premise for free.
 
-`JoinedContinuation<A,B,R>` gives the static common-input construction.
-Actual first projections from A and B feed the same supplied suffix R;
-their input identity derives the suffix-answer identity without requesting
-it separately. `RecordReading` retains both original roots beside their
-facts. `JoinedRoots` supplies equal current answers and an additional
-private contrast, which survives those records. `UnjoinedVisibleRoots`
-shows equal current answers with different answers after the same two
-projections when the joining relation is absent. These constructions check
-the joined-input case for an arbitrary admitted suffix, not the full pair
-test or arbitrary partial-function semantics; those have the proof above.
+`JoinedContinuation<A,B,R>` gives the static common-input construction. Actual first projections from A and B feed the same supplied suffix R; their input identity derives the suffix-answer identity without requesting it separately. `RecordReading` retains both original roots beside their facts. `JoinedRoots` supplies equal current answers and an additional private contrast, which survives those records. `UnjoinedVisibleRoots` shows equal current answers with different answers after the same two projections when the joining relation is absent. These constructions check the joined-input case for an arbitrary admitted suffix, not the full pair test or arbitrary partial-function semantics; those have the proof above.
 
 **A new partner changes the continuation question.** M71e ranges over a fixed list of common unary contacts. Consider instead a finite consistent ground diagram with one common partial binary contact B and one total reading E. The source and answer carriers can be enlarged, missing rows are free, and there are no other capacity, inverse or universal coupling laws. Equalities are closed under functionality as above. For two named roots x,y, the following property is forced in every realization exactly when their source classes have been joined:
 
@@ -635,15 +252,7 @@ At every permitted contact the same visible exchange law applies. Induction ther
 
 This sharpens the scope rather than invalidating earlier sufficient evidence. For the declared unary continuations, M71e's joined future can remain exact. For all new partners, finite free ground evidence forces the stronger agreement only when it already forces identity of the roots. A constructed membrane such as the visible exchange instead admits a large partner family while preserving a smaller question by its uniform law. Establishing that law for an unknown physical contact remains a distinct acquisition or structural obligation.
 
-This is not an erasure law for the containing whole. Agreement concerns
-the selected working input, reading and contact family. Retained histories
-can remain distinguishable. If a later contact consults such history, its
-full input is no longer just the common working source used in this proof.
-An identical label, a shared instrument name or an equal partial reading
-does not establish that common-input premise. The contribution here is
-the exact finite-diagram criterion and its countercompletion, combining
-M71a's free extension with VC47's continuation argument; it is not a claim
-to a new general theory of behavioral equivalence.
+This is not an erasure law for the containing whole. Agreement concerns the selected working input, reading and contact family. Retained histories can remain distinguishable. If a later contact consults such history, its full input is no longer just the common working source used in this proof. An identical label, a shared instrument name or an equal partial reading does not establish that common-input premise. The contribution here is the exact finite-diagram criterion and its countercompletion, combining M71a's free extension with VC47's continuation argument; it is not a claim to a new general theory of behavioral equivalence.
 
 **Passing the present diagram has a different extension rule.** Return to the relational partial description under “The obstruction can precede a single-valued reading”, before M71a, without functionality or other extra laws, and let E be the equivalence generated by its established equalities alone. A proposed set of additional identity equations remains compatible with every consistent enrichment of that description exactly when all those equations already belong to E. Here an enrichment may add a registered nonidentity while retaining every old fact, and compatibility asks whether the enriched facts and the proposed equations have a common realization.
 
@@ -1352,58 +961,23 @@ Verdict VC38 now constructs the least autonomous refinement for a fixed finite m
 
 This is the finite resolution order of the observational entropy used in M38. The distributional identity follows from the stated refinement and conditional measures. It is not supplied by naming a Swift protocol.
 
-**M42 (A determined future answer need not reduce whole entropy).** In a
-declared finite probability model, let T be the specified complete-state
-transition, E_0 and E_1 its initial and final readings, and V an image
-transition satisfying E_1∘T = V∘E_0. Let q=d∘E_1. For X distributed on
-the complete carrier, the future answer Y=q(T(X)) satisfies
+**M42 (A determined future answer need not reduce whole entropy).** In a declared finite probability model, let T be the specified complete-state transition, E_0 and E_1 its initial and final readings, and V an image transition satisfying E_1∘T = V∘E_0. Let q=d∘E_1. For X distributed on the complete carrier, the future answer Y=q(T(X)) satisfies
 
     Y = d(V(E_0(X))),
     H(Y | E_0(X)) = 0,
     H(Y) ≤ H(E_0(X)).
 
-*Proof.* Substitute the commuting equation into q∘T. Each initial image
-then specifies one Y, so its conditional entropy is zero. Since Y is a
-function of E_0(X), the joint entropy of that pair equals H(E_0(X)). The
-chain rule gives H(E_0(X))=H(Y)+H(E_0(X)|Y), proving the inequality. QED
+*Proof.* Substitute the commuting equation into q∘T. Each initial image then specifies one Y, so its conditional entropy is zero. Since Y is a function of E_0(X), the joint entropy of that pair equals H(E_0(X)). The chain rule gives H(E_0(X))=H(Y)+H(E_0(X)|Y), proving the inequality. QED
 
-If an internal record R supplies E_0(X) through a fixed decoder, the same
-substitution gives H(Y|R)=0. This is a relation of sufficiency under the
-stated joint distribution. Acquiring such a record physically is another
-interaction within the whole. Choosing to condition a calculation on E_0
-does not itself provide that record to an internal participant.
+If an internal record R supplies E_0(X) through a fixed decoder, the same substitution gives H(Y|R)=0. This is a relation of sufficiency under the stated joint distribution. Acquiring such a record physically is another interaction within the whole. Choosing to condition a calculation on E_0 does not itself provide that record to an internal participant.
 
-For a complete triple of independent fair bits (a,b,c), execute swap_bc and
-then swap_ab. The future alpha answer is c. Its uncertainty given only a is
-one bit, and given (a,b,c) is zero. The complete transition permutes the eight
-states, so whole entropy remains three bits. The two conditional entropies
-compare different available readings. They do not describe a decrease of
-whole entropy as time passes. This is a finite symbolic example, with its
-joint distribution explicitly supplied.
+For a complete triple of independent fair bits (a,b,c), execute swap_bc and then swap_ab. The future alpha answer is c. Its uncertainty given only a is one bit, and given (a,b,c) is zero. The complete transition permutes the eight states, so whole entropy remains three bits. The two conditional entropies compare different available readings. They do not describe a decrease of whole entropy as time passes. This is a finite symbolic example, with its joint distribution explicitly supplied.
 
-Verdict VC45 gives the structural factorization used here, and VC44 supplies
-closure under every permitted finite two-swap continuation. The Shannon
-statements additionally use the finite probability model above. Neither
-the number of Swift type names nor the nesting depth of a path supplies a
-probability measure or an entropy. A double-swap expression can grow while
-its complete coordinate image returns. Interpreting that expression as a
-retained physical history would require its own record relation.
+Verdict VC45 gives the structural factorization used here, and VC44 supplies closure under every permitted finite two-swap continuation. The Shannon statements additionally use the finite probability model above. Neither the number of Swift type names nor the nesting depth of a path supplies a probability measure or an entropy. A double-swap expression can grow while its complete coordinate image returns. Interpreting that expression as a retained physical history would require its own record relation.
 
-The orders now have separate objects: Permanent relates retained records,
-CommutingTransition relates source and image changes, M41 compares readings
-at a fixed distribution, and M42 concerns the answer conditioned on an
-available image. A type-level derivation does not assert that the modeled
-source transition occurred. Its physical implementation, including compilation
-or a participant's reasoning, is another process inside the whole. These
-distinctions preserve the whole-system premise without using it to select
-a thermodynamic arrow.
+The orders now have separate objects: Permanent relates retained records, CommutingTransition relates source and image changes, M41 compares readings at a fixed distribution, and M42 concerns the answer conditioned on an available image. A type-level derivation does not assert that the modeled source transition occurred. Its physical implementation, including compilation or a participant's reasoning, is another process inside the whole. These distinctions preserve the whole-system premise without using it to select a thermodynamic arrow.
 
-For a partial proposed action T:D→K, the random variable q(T(X)) is defined
-on that domain. Applying M42 therefore requires preparation supported on D,
-or a separately specified outcome model for attempts outside D. VC46–VC47
-give the domain condition needed when using a compressed image. Silently
-assigning a default answer to an unavailable action changes the random
-variable and can change its entropy.
+For a partial proposed action T:D→K, the random variable q(T(X)) is defined on that domain. Applying M42 therefore requires preparation supported on D, or a separately specified outcome model for attempts outside D. VC46–VC47 give the domain condition needed when using a compressed image. Silently assigning a default answer to an unavailable action changes the random variable and can change its entropy.
 
 ## §4c. The same internal acquisition, its entropy and its order
 
@@ -1828,143 +1402,45 @@ The positive boundary uses the same one fact and the same new images (10,01). In
 
 The result connects persistence to scoped change. Knowledge can survive a change in both named mechanisms when the relevant relation survives. Conversely, an intact archive and matching surface images can fail to carry that relation. M64 closes the tracked mixed-exchange bridge left open by M60–M62. It establishes this transition family, not unrestricted persistence of calibration under every future interaction.
 
-**M64a (two paired acquisitions can identify the relative action while both
-connections and the probe source remain unknown).** Let X be four distinct
-probe states and V four retained record labels. Two fixed unknown bijections
-f,g:X→V share the same probe on each occasion. A paired acquisition returns
+**M64a (two paired acquisitions can identify the relative action while both connections and the probe source remain unknown).** Let X be four distinct probe states and V four retained record labels. Two fixed unknown bijections f,g:X→V share the same probe on each occasion. A paired acquisition returns
 
     (u,v)=(f(x),g(x)).
 
-Suppose the relative permutation D=g∘f⁻¹ on V is even. The individual
-connections need not be known or even. For example a common unknown
-bijective output instrument c gives f=c∘a, g=c∘b, and D remains even
-whenever a and b have the same parity. All these components remain internal.
-The pairing, bijectivity and admitted law family are supplied relations,
-not inferences from matching labels.
+Suppose the relative permutation D=g∘f⁻¹ on V is even. The individual connections need not be known or even. For example a common unknown bijective output instrument c gives f=c∘a, g=c∘b, and D remains even whenever a and b have the same parity. All these components remain internal. The pairing, bijectivity and admitted law family are supplied relations, not inferences from matching labels.
 
-Two acquired pairs (u₀,v₀),(u₁,v₁) with u₀≠u₁ determine D exactly.
-They are two point constraints D(uᵢ)=vᵢ. Two input and two output labels
-remain. There are two bijective completions, differing by one transposition;
-exactly one is even. One pair is insufficient for this full relative-law
-question: every first image has three possible even completions. These
-completions are actually compatible with the unknown-component model:
-choose any f, set g=D∘f and choose x=f⁻¹(u). Thus the lower bound does
-not rely on candidates forbidden by the model.
+Two acquired pairs (u₀,v₀),(u₁,v₁) with u₀≠u₁ determine D exactly. They are two point constraints D(uᵢ)=vᵢ. Two input and two output labels remain. There are two bijective completions, differing by one transposition; exactly one is even. One pair is insufficient for this full relative-law question: every first image has three possible even completions. These completions are actually compatible with the unknown-component model: choose any f, set g=D∘f and choose x=f⁻¹(u). Thus the lower bound does not rely on candidates forbidden by the model.
 
-A second distinct first image does not require identifying x or f.
-If an available probe operation J satisfies J(x)≠x on the admitted
-preparations and preserves the two connections, acquire the pairs before
-and after J. Injectivity gives f(J(x))≠f(x). One such intervening operation
-therefore guarantees the required two distinct constraints. A known
-fixed-point-free operation on X is sufficient; the weaker separation
-condition on the actual preparation is enough. Its availability and
-preservation of the acquisition relation must be established. Counting
-two pairs does not include preparing, recording or restoring an instrument.
+A second distinct first image does not require identifying x or f. If an available probe operation J satisfies J(x)≠x on the admitted preparations and preserves the two connections, acquire the pairs before and after J. Injectivity gives f(J(x))≠f(x). One such intervening operation therefore guarantees the required two distinct constraints. A known fixed-point-free operation on X is sufficient; the weaker separation condition on the actual preparation is enough. Its availability and preservation of the acquisition relation must be established. Counting two pairs does not include preparing, recording or restoring an instrument.
 
-The old two-image decoder has a direct algebraic reuse. There is a unique
-even permutation A sending fixed record labels 0,1 to u₀,u₁, and a unique
-even permutation B sending them to v₀,v₁. Then D=B∘A⁻¹. These are both
-the existing VC100 two-image completion question: D∘A is even and has
-B's two specified images, hence equals B by uniqueness. Neither individual
-connection has to be even. No unknown source x,
-f or g is an additional input to this decoder. Applying D to a newly
-acquired first-connection image predicts the second image under the same
-relative law. The instrument's absolute calibration and the channels'
-decomposition are not obtained and are not needed.
+The old two-image decoder has a direct algebraic reuse. There is a unique even permutation A sending fixed record labels 0,1 to u₀,u₁, and a unique even permutation B sending them to v₀,v₁. Then D=B∘A⁻¹. These are both the existing VC100 two-image completion question: D∘A is even and has B's two specified images, hence equals B by uniqueness. Neither individual connection has to be even. No unknown source x, f or g is an additional input to this decoder. Applying D to a newly acquired first-connection image predicts the second image under the same relative law. The instrument's absolute calibration and the channels' decomposition are not obtained and are not needed.
 
-There are two different common changes. A shared bijective readdressing J
-of the input gives f′=f∘J and g′=g∘J, hence D′=D without a commutation
-requirement. A shared output change instead conjugates D, as in M64b.
-The two actions cannot be interchanged on the basis that both affect the
-connections together.
+There are two different common changes. A shared bijective readdressing J of the input gives f′=f∘J and g′=g∘J, hence D′=D without a commutation requirement. A shared output change instead conjugates D, as in M64b. The two actions cannot be interchanged on the basis that both affect the connections together.
 
-`JointReplyAcquisition.swift` supplies a static acquisition fragment. It
-records the first fields of two supplied forward point tables, applies the
-actual Z word to both input tables, and records their new first fields beside
-the old record. Its memory reads only these two facts and the fixed
-`FourLeafReplyTable`. A generic equality allows all four unmeasured table
-fields to vary without changing that memory, including the facts' operation
-addresses. The decoder projects the acquired pairs and uses the existing
-two-image decoder twice; it produces the presentation (A,B), not a newly
-asserted name for D.
+`JointReplyAcquisition.swift` supplies a static acquisition fragment. It records the first fields of two supplied forward point tables, applies the actual Z word to both input tables, and records their new first fields beside the old record. Its memory reads only these two facts and the fixed `FourLeafReplyTable`. A generic equality allows all four unmeasured table fields to vary without changing that memory, including the facts' operation addresses. The decoder projects the acquired pairs and uses the existing two-image decoder twice; it produces the presentation (A,B), not a newly asserted name for D.
 
-For the forward tables W and Z it obtains (W,Z). After the same actual
-input shift it obtains (ZW,I). The actual words WWZ and (ZW)² have the
-same full payload action (B,C,A,D), although these decoded presentations
-differ. Wrong lookup seams and equating the presentations are rejected.
-This verifies the acquisition, two concrete decodings and their relative
-word identity.
+For the forward tables W and Z it obtains (W,Z). After the same actual input shift it obtains (ZW,I). The actual words WWZ and (ZW)² have the same full payload action (B,C,A,D), although these decoded presentations differ. Wrong lookup seams and equating the presentations are rejected. This verifies the acquisition, two concrete decodings and their relative word identity.
 
-`FourLeafInverseWords.swift` then provides an inverse interface at the same
-twelve occurrence addresses as the forward catalogue. Each leaf is an
-existing actual word. All twelve forward/inverse compositions return the
-whole source for arbitrary working fields and retained context. Address
-agreement and agreement of the carried library with its actual leaves are
-also derived; an address name alone does not establish inversion.
+`FourLeafInverseWords.swift` then provides an inverse interface at the same twelve occurrence addresses as the forward catalogue. Each leaf is an existing actual word. All twelve forward/inverse compositions return the whole source for arbitrary working fields and retained context. Address agreement and agreement of the carried library with its actual leaves are also derived; an address name alone does not establish inversion.
 
-`JointReplyExecution.swift` records the acquired memory beside its source
-and attaches it to a prepared working world. `JointReplyPolicy` reads only
-that carried memory and its selector instruction. The first decoded address
-selects its inverse from the inverse root; the second selects its forward
-word at the actual reached working source. Hence the action is B∘A⁻¹.
-The original acquisition whole, its new record and arbitrary remaining
-context survive. The mathematical all-pairs construction uses the twelve
-inverse identities and composition; no new table of 144 pairs is needed.
+`JointReplyExecution.swift` records the acquired memory beside its source and attaches it to a prepared working world. `JointReplyPolicy` reads only that carried memory and its selector instruction. The first decoded address selects its inverse from the inverse root; the second selects its forward word at the actual reached working source. Hence the action is B∘A⁻¹. The original acquisition whole, its new record and arbitrary remaining context survive. The mathematical all-pairs construction uses the twelve inverse identities and composition; no new table of 144 pairs is needed.
 
-The two source-bound complete paths for (W,Z) and (ZW,I) are checked from
-acquisition through selection and action on arbitrary working data. Both
-produce (B,C,A,D), keeping their different archives. A fresh marker at 0
-is sent to 2, matching the two current channel fields at an unmeasured
-input position. Those fields are inspected by the check, not supplied to
-the decoder. Refusals reject a different selected address, reuse of the
-working source before the first action, and treating the forward root as
-the inverse root despite their equal address layouts.
+The two source-bound complete paths for (W,Z) and (ZW,I) are checked from acquisition through selection and action on arbitrary working data. Both produce (B,C,A,D), keeping their different archives. A fresh marker at 0 is sent to 2, matching the two current channel fields at an unmeasured input position. Those fields are inspected by the check, not supplied to the decoder. Refusals reject a different selected address, reuse of the working source before the first action, and treating the forward root as the inverse root despite their equal address layouts.
 
-These are finite static constructions, not a new runtime dispatcher or a
-compilation of every possible source instantiation. Bijectivity, evenness,
-availability of the paired contact and the calibrated action library belong
-to the stated family; arbitrary `Pair` or `PredicateReading` conformance
-alone does not establish them. The action library must refer to the same
-record-label frame as the question. An unknown change of that relation is
-not corrected by retaining the observations alone.
+These are finite static constructions, not a new runtime dispatcher or a compilation of every possible source instantiation. Bijectivity, evenness, availability of the paired contact and the calibrated action library belong to the stated family; arbitrary `Pair` or `PredicateReading` conformance alone does not establish them. The action library must refer to the same record-label frame as the question. An unknown change of that relation is not corrected by retaining the observations alone.
 
-This is an acquisition result within a stated family, extending M60 rather
-than replacing its premises with unspecified reliability. If D may instead
-be any permutation, two pairs leave the two completions unresolved.
-If successive paired acquisitions do not belong to the same D, even a unique
-completion need not describe the current pair of connections. M64b supplies
-an example in which each individual acquisition is truthful.
+This is an acquisition result within a stated family, extending M60 rather than replacing its premises with unspecified reliability. If D may instead be any permutation, two pairs leave the two completions unresolved. If successive paired acquisitions do not belong to the same D, even a unique completion need not describe the current pair of connections. M64b supplies an example in which each individual acquisition is truthful.
 
-**M64b (a common change preserves a relative law exactly when it commutes
-with that law).** After acquiring D=g∘f⁻¹, let both output connections
-change by the same unknown bijection h:V→V:
+**M64b (a common change preserves a relative law exactly when it commutes with that law).** After acquiring D=g∘f⁻¹, let both output connections change by the same unknown bijection h:V→V:
 
     f′=h∘f,        g′=h∘g,        D′=h∘D∘h⁻¹.
 
-Reusing D unchanged predicts every new second image from its corresponding
-first image exactly when D′=D, equivalently h∘D=D∘h. This follows by
-substitution and surjectivity of the first connection. Commonality of h
-alone does not give the last equality. It describes a physical change of
-both connections relative to a retained decoder. Relabeling the decoder,
-all records and both connections together is a different comparison.
+Reusing D unchanged predicts every new second image from its corresponding first image exactly when D′=D, equivalently h∘D=D∘h. This follows by substitution and surjectivity of the first connection. Commonality of h alone does not give the last equality. It describes a physical change of both connections relative to a retained decoder. Relabeling the decoder, all records and both connections together is a different comparison.
 
-The binary I/S family is special: its two maps commute, so every common
-I/S change preserves the relative action. For a three-cycle on four labels,
-only its three powers commute with it among all twenty-four frame
-permutations. A commuting map must fix the three-cycle's unique fixed label;
-its image of one moving label determines the other two, leaving three choices.
-For a product of two disjoint exchanges, the commuting maps may exchange
-the two pairs and independently exchange the two labels inside each pair:
-eight choices. The identity commutes with all twenty-four.
+The binary I/S family is special: its two maps commute, so every common I/S change preserves the relative action. For a three-cycle on four labels, only its three powers commute with it among all twenty-four frame permutations. A commuting map must fix the three-cycle's unique fixed label; its image of one moving label determines the other two, leaving three choices. For a product of two disjoint exchanges, the commuting maps may exchange the two pairs and independently exchange the two labels inside each pair: eight choices. The identity commutes with all twenty-four.
 
-Consequently an unspecified common S₄ change leaves respectively one,
-eight or three possible current relative laws, according as D is identity,
-a three-cycle or a double exchange. This class information is known without
-further calibration. In particular identity, period and cycle pattern survive.
-The exact labeled law need not survive.
+Consequently an unspecified common S₄ change leaves respectively one, eight or three possible current relative laws, according as D is identity, a three-cycle or a double exchange. This class information is known without further calibration. In particular identity, period and cycle pattern survive. The exact labeled law need not survive.
 
-Under an available point-query instrument for D′, the exact worst-case
-numbers of new distinct point constraints are:
+Under an available point-query instrument for D′, the exact worst-case numbers of new distinct point constraints are:
 
 | Previously established cycle type | Possible current laws | Required queries |
 | --- | --- | --- |
@@ -1972,95 +1448,27 @@ numbers of new distinct point constraints are:
 | two disjoint exchanges | 3 | 1 |
 | three-cycle | 8 | 2 |
 
-For a double exchange, the partner of any queried label determines the
-other pair. For a three-cycle, a fixed queried label leaves the two
-orientations of the other three; a moved queried label leaves two choices
-of the cycle's third label. Thus one answer always leaves two laws.
-Two distinct inputs suffice by M64a. The counts concern a fixed current
-D′ throughout acquisition. M64a's two paired probes can supply the point
-constraints without knowing either connection separately when its
-separation operation is available. Arbitrarily repeating an uncontrolled
-preparation is not a guarantee of two distinct inputs.
+For a double exchange, the partner of any queried label determines the other pair. For a three-cycle, a fixed queried label leaves the two orientations of the other three; a moved queried label leaves two choices of the cycle's third label. Thus one answer always leaves two laws. Two distinct inputs suffice by M64a. The counts concern a fixed current D′ throughout acquisition. M64a's two paired probes can supply the point constraints without knowing either connection separately when its separation operation is available. Arbitrarily repeating an uncontrolled preparation is not a guarantee of two distinct inputs.
 
-There is an explicit obstruction to extrapolating the binary cancellation.
-Take W=(a c d), fixing b, and H=(a b). The relative law after the common
-change is P=(b c d), fixing a. In left-to-right word notation HWH has
-payload output (A,D,B,C), while W has (D,B,A,C). Both have period three.
-`PhaseFrameDrift.swift` constructs these actual paths with arbitrary
-retained context and proves the changed output. It also constructs the
-common change by W itself, which preserves W, and refuses identifying
-the H-conjugated action with the original one.
+There is an explicit obstruction to extrapolating the binary cancellation. Take W=(a c d), fixing b, and H=(a b). The relative law after the common change is P=(b c d), fixing a. In left-to-right word notation HWH has payload output (A,D,B,C), while W has (D,B,A,C). Both have period three. `PhaseFrameDrift.swift` constructs these actual paths with arbitrary retained context and proves the changed output. It also constructs the common change by W itself, which preserves W, and refuses identifying the H-conjugated action with the original one.
 
-For mixed acquisition, before the H change obtain (b,b); afterwards obtain
-(c,d). The two truthful pairs have distinct first labels and determine W
-as their unique even completion. But the current law is P, and at new first
-label a it returns a, whereas that completion predicts c. Such records are
-possible with f=id, g=W before the change and f′=H, g′=H∘W after it, using
-probe states b and c. The static witness checks the corresponding actual
-marker positions: B at output b before, C at output d afterwards, both
-compatible with the old W table. It does not claim a new resident recording
-implementation for that mixed-law counterexample. M64a separately gives
-the positive acquisition and its subsequent source-bound application.
+For mixed acquisition, before the H change obtain (b,b); afterwards obtain (c,d). The two truthful pairs have distinct first labels and determine W as their unique even completion. But the current law is P, and at new first label a it returns a, whereas that completion predicts c. Such records are possible with f=id, g=W before the change and f′=H, g′=H∘W after it, using probe states b and c. The static witness checks the corresponding actual marker positions: B at output b before, C at output d afterwards, both compatible with the old W table. It does not claim a new resident recording implementation for that mixed-law counterexample. M64a separately gives the positive acquisition and its subsequent source-bound application.
 
-**M64c (an old policy needs agreement of frames only modulo the action it
-must implement).** Let an acquired program represent D on four record
-labels. A common change h of the two observation connections makes the
-current target hDh⁻¹. Suppose a change k of the actual action library makes
-the same retained program realize kDk⁻¹. This covariance is a relation of
-the library's actual operations, not a consequence of retaining its names.
-No new observation is needed to use the old program correctly whenever
+**M64c (an old policy needs agreement of frames only modulo the action it must implement).** Let an acquired program represent D on four record labels. A common change h of the two observation connections makes the current target hDh⁻¹. Suppose a change k of the actual action library makes the same retained program realize kDk⁻¹. This covariance is a relation of the library's actual operations, not a consequence of retaining its names. No new observation is needed to use the old program correctly whenever
 
     kDk⁻¹ = hDh⁻¹  iff  rD=Dr,  where r=k⁻¹h.
 
-Indeed conjugating the left equality by k⁻¹ gives D=rDr⁻¹. Thus the
-relevant unknown is the relative frame discrepancy r, and only its action
-modulo the centralizer of D matters. Requiring h=k is sufficient but can
-be unnecessarily strong for a single requested action. Identity tolerates
-every discrepancy; a three-cycle tolerates its three commuting rotations;
-a double exchange tolerates the eight transformations described in M64b.
+Indeed conjugating the left equality by k⁻¹ gives D=rDr⁻¹. Thus the relevant unknown is the relative frame discrepancy r, and only its action modulo the centralizer of D matters. Requiring h=k is sufficient but can be unnecessarily strong for a single requested action. Identity tolerates every discrepancy; a three-cycle tolerates its three commuting rotations; a double exchange tolerates the eight transformations described in M64b.
 
-For example k=hD gives r=D⁻¹ and works for this D even when h≠k.
-That same discrepancy need not work for a different action. Correctness
-for every D in a family L requires r to commute with every member of L,
-rather than only with the one most recently exercised.
+For example k=hD gives r=D⁻¹ and works for this D even when h≠k. That same discrepancy need not work for a different action. Correctness for every D in a family L requires r to commute with every member of L, rather than only with the one most recently exercised.
 
-For the whole A₄ interface the only such r in S₄ is identity. It already
-suffices to commute with W=(0 2 3), fixing 1, and Z=(0 1)(2 3). Commuting
-with W forces r to fix 1 and restricts it to the three powers of W.
-Commuting also with Z forces r(0)=r(Z(1))=Z(r(1))=0. Only the identity
-power of W fixes 0. Consequently correctness for the full interface forces
-h=k within this model, although correctness for one action does not.
-These are equalities of full actions, not a claim that two isolated
-point observations verify the whole interface.
+For the whole A₄ interface the only such r in S₄ is identity. It already suffices to commute with W=(0 2 3), fixing 1, and Z=(0 1)(2 3). Commuting with W forces r to fix 1 and restricts it to the three powers of W. Commuting also with Z forces r(0)=r(Z(1))=Z(r(1))=0. Only the identity power of W fixes 0. Consequently correctness for the full interface forces h=k within this model, although correctness for one action does not. These are equalities of full actions, not a claim that two isolated point observations verify the whole interface.
 
-This criterion separates repair of observation from repair of action.
-M64b is the special case k=id: preserving the old action fails when h
-does not commute with D. The positive case k=h preserves applicability
-without changing the old memory or individually identifying either frame.
-It does require the stated relation between current observations and the
-current implementation. Agreement in a finite history does not establish
-that relation for an unrestricted class of later implementations (VC107–108).
+This criterion separates repair of observation from repair of action. M64b is the special case k=id: preserving the old action fails when h does not commute with D. The positive case k=h preserves applicability without changing the old memory or individually identifying either frame. It does require the stated relation between current observations and the current implementation. Agreement in a finite history does not establish that relation for an unrestricted class of later implementations (VC107–108).
 
-The static construction uses the existing acquired
-D=WWZ and H=(0 1). A reversible change of the common observation frame
-changes the actual two channel tables while retaining both old facts.
-The intended current action is H D H=ZW. An H transport around the same
-memory-selected program, or the different compatible frame k=H D, supplies
-the current action. `JointReplyFrame.swift` constructs the channel change,
-reads the old facts from the changed whole and supplies the working-frame
-transports. The complete consumer checks both policies from acquisition
-through the frame change and selection on arbitrary working data. Both
-yield (C,A,B,D), preserve the current acquisition whole and its old facts,
-and correctly send a fresh marker 1 to 2, as required by the unmeasured
-current channel fields. The decoder input remains exactly the old memory.
-These are the displayed coherent channel and transport families, not an
-inference that arbitrary unknown changes are coordinated.
+The static construction uses the existing acquired D=WWZ and H=(0 1). A reversible change of the common observation frame changes the actual two channel tables while retaining both old facts. The intended current action is H D H=ZW. An H transport around the same memory-selected program, or the different compatible frame k=H D, supplies the current action. `JointReplyFrame.swift` constructs the channel change, reads the old facts from the changed whole and supplies the working-frame transports. The complete consumer checks both policies from acquisition through the frame change and selection on arbitrary working data. Both yield (C,A,B,D), preserve the current acquisition whole and its old facts, and correctly send a fresh marker 1 to 2, as required by the unmeasured current channel fields. The decoder input remains exactly the old memory. These are the displayed coherent channel and transport families, not an inference that arbitrary unknown changes are coordinated.
 
-**M64d (exact acquisition of applicability from unresolved transformations).**
-Let G be a given finite group of permutations of a finite input set X, and
-H a subgroup. An unknown r∈G is accessible through exact point queries r(i),
-with i chosen by the querying process. The question is membership r∈H,
-not identification of r. For queried inputs Q, write
+**M64d (exact acquisition of applicability from unresolved transformations).** Let G be a given finite group of permutations of a finite input set X, and H a subgroup. An unknown r∈G is accessible through exact point queries r(i), with i chosen by the querying process. The question is membership r∈H, not identification of r. For queried inputs Q, write
 
     G_Q={g∈G : g(i)=i for every i∈Q}.
 
@@ -2068,37 +1476,17 @@ The exact worst-case number of distinct point queries is
 
     b(G,H)=min{|Q| : G_Q ⊆ H}.
 
-One fixed set of inputs attains it; adaptive choice cannot improve the
-worst case for this question and access model. This does not claim that
-finding an optimal Q or processing a transcript has no computational cost.
+One fixed set of inputs attains it; adaptive choice cannot improve the worst case for this question and access model. This does not claim that finding an optimal Q or processing a transcript has no computational cost.
 
-*Proof.* The replies from r leave exactly rG_Q: equality on Q is equivalent
-to r⁻¹s fixing Q. If G_Q⊆H, any such coset either misses H or is entirely
-inside H. Thus the question is constant on every available-evidence fiber.
-Conversely run any exact adaptive strategy on identity. If it stops at Q
-with G_Q not contained in H, some g∈G_Q\H gives the same complete transcript
-as identity and the opposite membership answer. Repeated queries do not
-alter Q. This proves the bound and also the nonadaptive attainment. ∎
+*Proof.* The replies from r leave exactly rG_Q: equality on Q is equivalent to r⁻¹s fixing Q. If G_Q⊆H, any such coset either misses H or is entirely inside H. Thus the question is constant on every available-evidence fiber. Conversely run any exact adaptive strategy on identity. If it stops at Q with G_Q not contained in H, some g∈G_Q\H gives the same complete transcript as identity and the opposite membership answer. Repeated queries do not alter Q. This proves the bound and also the nonadaptive attainment. ∎
 
-For M64c take H=C_G(D), the admitted transformations commuting with the
-desired action D. On X of size n≥1 let f be D's number of fixed points,
-and let ε₂ indicate whether D has a two-cycle. For unrestricted r∈Sₙ,
+For M64c take H=C_G(D), the admitted transformations commuting with the desired action D. On X of size n≥1 let f be D's number of fixed points, and let ε₂ indicate whether D has a two-cycle. For unrestricted r∈Sₙ,
 
     b(Sₙ,C_Sₙ(D)) = n − max{1, f, 2ε₂}.
 
-Indeed the unresolved transformations are all permutations of U=X\Q.
-For |U|≥3 they commute with D exactly when D fixes U pointwise: D must
-preserve their unique nontrivial orbit U, and the center of S_U is trivial.
-For |U|=2 it suffices and is necessary that D fix both points or exchange
-them. For |U|≤1 there is no residual ambiguity. The largest permissible U
-therefore has the displayed size. This is a positive-certificate bound;
-some incompatible frames can be rejected earlier.
+Indeed the unresolved transformations are all permutations of U=X\Q. For |U|≥3 they commute with D exactly when D fixes U pointwise: D must preserve their unique nontrivial orbit U, and the center of S_U is trivial. For |U|=2 it suffices and is necessary that D fix both points or exchange them. For |U|≤1 there is no residual ambiguity. The largest permissible U therefore has the displayed size. This is a positive-certificate bound; some incompatible frames can be rejected earlier.
 
-For known even r∈Aₙ the residual group is A_U. For |U|≤2 it is trivial;
-for |U|=3 its centralizer on U is the three-cycle group; for |U|≥4 its
-centralizer on U is trivial. The latter follows because commuting with
-every three-cycle not containing a point forces that point to be fixed.
-Consequently, with ε₃ indicating a three-cycle in D,
+For known even r∈Aₙ the residual group is A_U. For |U|≤2 it is trivial; for |U|=3 its centralizer on U is the three-cycle group; for |U|≥4 its centralizer on U is trivial. The latter follows because commuting with every three-cycle not containing a point forces that point to be fixed. Consequently, with ε₃ indicating a three-cycle in D,
 
     b(Aₙ,C_Aₙ(D)) = n − max{min(n,2), f, 3ε₃}.
 
@@ -2110,157 +1498,51 @@ These formulas give the following exact worst-case counts on four labels:
 | two disjoint exchanges | 2 | 2 |
 | three-cycle | 3 | 1 |
 
-For a double exchange in S₄, query partners i and D(i). If their images
-are partners, the remaining two images complete the remaining pair in
-either order; both completions commute. One query cannot decide. Two
-arbitrary different inputs need not suffice: for D=(0 1)(2 3), identity
-and (1 3) agree on inputs 0,2 but differ in commutation. The relation
-between the probes matters, not only their number.
+For a double exchange in S₄, query partners i and D(i). If their images are partners, the remaining two images complete the remaining pair in either order; both completions commute. One query cannot decide. Two arbitrary different inputs need not suffice: for D=(0 1)(2 3), identity and (1 3) agree on inputs 0,2 but differ in commutation. The relation between the probes matters, not only their number.
 
-For a three-cycle W=(0 2 3) fixing 1 and even r, commutation is equivalent
-to r(1)=1. Fixing 1 leaves just the three even permutations of the other
-labels, which are the powers of W. Thus a single reply verifies applicability
-while leaving three distinct frames possible. Without the even-family
-premise, identity and the odd exchange (2 3) give that same reply, although
-the latter does not commute with W. If the frame is known odd, applicability
-to this three-cycle is already impossible without a point query.
+For a three-cycle W=(0 2 3) fixing 1 and even r, commutation is equivalent to r(1)=1. Fixing 1 leaves just the three even permutations of the other labels, which are the powers of W. Thus a single reply verifies applicability while leaving three distinct frames possible. Without the even-family premise, identity and the odd exchange (2 3) give that same reply, although the latter does not commute with W. If the frame is known odd, applicability to this three-cycle is already impossible without a point query.
 
-The A₄ premise has a concrete origin in VI's coupled four-leaf family:
-VC99a classifies the residual phase actions when the complete final stage
-action is identity. It is not inferred from the return of one preparation
-or asserted for arbitrary reframings. Within this established family,
-`OneReplyApplicability.swift` reuses `FourLeafSecondProbe` as the sole probe
-at prepared phase 1. The resident word and U produce a stage record; the
-decoder receives only that fact and a fixed four-entry reading. It accepts
-exactly I,W,WW. All twelve original resident law addresses are retained,
-and the three accepted cases have exactly the same decoder input.
+The A₄ premise has a concrete origin in VI's coupled four-leaf family: VC99a classifies the residual phase actions when the complete final stage action is identity. It is not inferred from the return of one preparation or asserted for arbitrary reframings. Within this established family, `OneReplyApplicability.swift` reuses `FourLeafSecondProbe` as the sole probe at prepared phase 1. The resident word and U produce a stage record; the decoder receives only that fact and a fixed four-entry reading. It accepts exactly I,W,WW. All twelve original resident law addresses are retained, and the three accepted cases have exactly the same decoder input.
 
-Separately, actual word compositions prove that I,W,WW commute with W
-on arbitrary working data, and exhibit a differing field for each of the
-other nine words on distinct markers. The acquired verdict is recorded
-beside the resulting experiment. Refusals reject identification of the
-hidden frame from the one reply and extension of the commutation conclusion
-to the odd fixed-point example. This counts one point acquisition, not one
-primitive contact: preparing the marker, executing the word, U and retaining
-the result remain operations in the displayed path.
+Separately, actual word compositions prove that I,W,WW commute with W on arbitrary working data, and exhibit a differing field for each of the other nine words on distinct markers. The acquired verdict is recorded beside the resulting experiment. Refusals reject identification of the hidden frame from the one reply and extension of the commutation conclusion to the odd fixed-point example. This counts one point acquisition, not one primitive contact: preparing the marker, executing the word, U and retaining the result remain operations in the displayed path.
 
-Finally, the probe need not freeze the entire source representation.
-Readdressing inputs by D changes a table r to rD while preserving the
-membership question: (rD)D=D(rD) iff rD=Dr. A fixed-address probe before
-and after this specific change reads r(i) and r(D(i)). This supplies the
-right mathematical preparation relation for the double-exchange test,
-without assuming that r commutes with D in advance. Its acquisition path
-must still implement this right composition and exclude other untracked
-changes. `PartnerProbeApplicability.swift` now constructs that path: record
-port 0, perform the existing Z word beside its record, then record port 0
-of the reached table. The current table is (B,A,D,C); the available memory
-contains only the two facts about A,B and a fixed partner resource. This
-resource is itself Z applied to the four singleton rows. Two existing
-coordinate readings select its row and cell; the resulting answer is
-recorded beside the complete experiment.
+Finally, the probe need not freeze the entire source representation. Readdressing inputs by D changes a table r to rD while preserving the membership question: (rD)D=D(rD) iff rD=Dr. A fixed-address probe before and after this specific change reads r(i) and r(D(i)). This supplies the right mathematical preparation relation for the double-exchange test, without assuming that r commutes with D in advance. Its acquisition path must still implement this right composition and exclude other untracked changes. `PartnerProbeApplicability.swift` now constructs that path: record port 0, perform the existing Z word beside its record, then record port 0 of the reached table. The current table is (B,A,D,C); the available memory contains only the two facts about A,B and a fixed partner resource. This resource is itself Z applied to the four singleton rows. Two existing coordinate readings select its row and cell; the resulting answer is recorded beside the complete experiment.
 
-All twelve distinct ordered reply pairs are checked with arbitrary two
-unmeasured fields. An independent question reads the reached table's first
-two fields, in their current order B,A, and yields the same answer. Those
-direct source readings belong to the verifier's question; they are not
-extra observations supplied to the actor's decoder. For permutation tables,
-the partner criterion above supplies the connection to full commutation.
-The generic tuple construction by itself does not assert bijectivity.
+All twelve distinct ordered reply pairs are checked with arbitrary two unmeasured fields. An independent question reads the reached table's first two fields, in their current order B,A, and yields the same answer. Those direct source readings belong to the verifier's question; they are not extra observations supplied to the actor's decoder. For permutation tables, the partner criterion above supplies the connection to full commutation. The generic tuple construction by itself does not assert bijectivity.
 
-Identity and the actual exchange (2 3) produce the same two partner facts
-and different current tables; both remain compatible with Z. Conversely
-an input exchange (0 2) gives identical two records for identity and
-(1 3). Their current tables are (0 2) and (0 2)(1 3): the first does not
-commute with Z, whereas the second does. Actual compositions establish
-these contrasts. Thus the preparation relation determines whether the
-same amount of acquired evidence answers the current question.
+Identity and the actual exchange (2 3) produce the same two partner facts and different current tables; both remain compatible with Z. Conversely an input exchange (0 2) gives identical two records for identity and (1 3). Their current tables are (0 2) and (0 2)(1 3): the first does not commute with Z, whereas the second does. Actual compositions establish these contrasts. Thus the preparation relation determines whether the same amount of acquired evidence answers the current question.
 
-**M64e (when question-preserving movements permit acquisition).**
-Keep the finite point-query model G,H of M64d. The only observation port
-is i. Known input movements form a subgroup L of H and act by right
-composition: the current source r becomes rℓ, for ℓ∈L. Their words and
-composition are available to the controller; an unobserved source-dependent
-choice of ℓ is not part of this access model. Preparations before the first
-reading are permitted, and movement costs are separate from query counts.
+**M64e (when question-preserving movements permit acquisition).** Keep the finite point-query model G,H of M64d. The only observation port is i. Known input movements form a subgroup L of H and act by right composition: the current source r becomes rℓ, for ℓ∈L. Their words and composition are available to the controller; an unobserved source-dependent choice of ℓ is not part of this access model. Preparations before the first reading are permitted, and movement costs are separate from query counts.
 
-Each such movement preserves membership in H, even when it changes the
-source. Indeed rℓ∈H iff r∈H. Conversely, a fixed right composition that
-preserves this question for every r∈G must use ℓ∈H: apply it to identity.
+Each such movement preserves membership in H, even when it changes the source. Indeed rℓ∈H iff r∈H. Conversely, a fixed right composition that preserves this question for every r∈G must use ℓ∈H: apply it to identity.
 
 Let O=L·i be the orbit of the port. Then the exact worst-case query count is
 
     b_O(G,H)=min{|Q| : Q⊆O and G_Q⊆H},
 
-with value infinity when no such Q exists. Finite acquisition is possible
-exactly when G_O⊆H. In particular, keeping the question unchanged does not
-by itself provide enough access to answer it.
+with value infinity when no such Q exists. Finite acquisition is possible exactly when G_O⊆H. In particular, keeping the question unchanged does not by itself provide enough access to answer it.
 
-*Proof.* At a known accumulated movement t∈L, the acquired value is r(t(i)).
-Thus the complete transcript consists of original-source point queries in
-O. Any chosen point of O can be reached from the current t by an available
-movement word, so a fixed qualifying Q attains the displayed bound. The
-current membership answer is still the original one. For the lower bound,
-follow identity's adaptive transcript. If its queried Q has G_Q not
-contained in H, an element g∈G_Q\H gives every same reply along that branch,
-but its membership answer remains opposite after every performed movement.
-If even G_O is not contained in H, the same obstruction survives every
-finite transcript, including a traversal of the entire orbit. ∎
+*Proof.* At a known accumulated movement t∈L, the acquired value is r(t(i)). Thus the complete transcript consists of original-source point queries in O. Any chosen point of O can be reached from the current t by an available movement word, so a fixed qualifying Q attains the displayed bound. The current membership answer is still the original one. For the lower bound, follow identity's adaptive transcript. If its queried Q has G_Q not contained in H, an element g∈G_Q\H gives every same reply along that branch, but its membership answer remains opposite after every performed movement. If even G_O is not contained in H, the same obstruction survives every finite transcript, including a traversal of the entire orbit. ∎
 
-For Z=(0 1)(2 3), G=S₄, H=C_G(Z), take only L=⟨Z⟩ and port 0. Its orbit
-is {0,1}; the residual group {identity,(2 3)} lies in H. The preceding
-two-reading construction therefore attains the exact bound while leaving
-two source completions unresolved.
+For Z=(0 1)(2 3), G=S₄, H=C_G(Z), take only L=⟨Z⟩ and port 0. Its orbit is {0,1}; the residual group {identity,(2 3)} lies in H. The preceding two-reading construction therefore attains the exact bound while leaving two source completions unresolved.
 
-For W=(0 2 3) and G=S₄, all right movements preserving the commutation
-question form H=⟨W⟩. From port 1 they cannot acquire the answer at any finite
-budget: the port never moves, and identity and (2 3) remain indistinguishable.
-`PartnerTrappedPort` checks the actual record–W–record step on arbitrary
-contents; induction repeats that unchanged reply for every word of these
-movements. From a port in {0,2,3}, three queries do suffice. Under the
-additional known-even restriction G=A₄, the same fixed port 1 needs just
-one query, because its residual group already equals H. Thus a family
-restriction can change the possibility of acquisition through a fixed
-interface, beyond the number of observations needed by a free probe.
+For W=(0 2 3) and G=S₄, all right movements preserving the commutation question form H=⟨W⟩. From port 1 they cannot acquire the answer at any finite budget: the port never moves, and identity and (2 3) remain indistinguishable. `PartnerTrappedPort` checks the actual record–W–record step on arbitrary contents; induction repeats that unchanged reply for every word of these movements. From a port in {0,2,3}, three queries do suffice. Under the additional known-even restriction G=A₄, the same fixed port 1 needs just one query, because its residual group already equals H. Thus a family restriction can change the possibility of acquisition through a fixed interface, beyond the number of observations needed by a free probe.
 
-This is a limitation of the stated movement interface. It does not prove
-that a useful experiment must preserve the question at every intermediate
-step. A known invertible movement outside H can carry the question to a
-different current relation; returning the source later can restore the
-original question while retaining newly acquired records. The following
-construction supplies such an excursion in an explicitly enlarged interface.
+This is a limitation of the stated movement interface. It does not prove that a useful experiment must preserve the question at every intermediate step. A known invertible movement outside H can carry the question to a different current relation; returning the source later can restore the original question while retaining newly acquired records. The following construction supplies such an excursion in an explicitly enlarged interface.
 
-**M64f (acquire through an excursion, then restore the question).**
-Allow a known subgroup K of input movements in G, without requiring K⊆H.
-The current table is s=rt, with the accumulated t∈K known from the performed
-word. The question about the initial source is now
+**M64f (acquire through an excursion, then restore the question).** Allow a known subgroup K of input movements in G, without requiring K⊆H. The current table is s=rt, with the accumulated t∈K known from the performed word. The question about the initial source is now
 
     s t⁻¹ ∈ H, equivalently s ∈ Ht.
 
-This question is transported through the excursion. It need not coincide
-with membership of the current table in H at every intermediate point.
-If the final t is in H, the two membership questions agree again; if t is
-identity, the entire source table returns. Previously acquired records
-need not be erased by either return.
+This question is transported through the excursion. It need not coincide with membership of the current table in H at every intermediate point. If the final t is in H, the two membership questions agree again; if t is identity, the entire source table returns. Previously acquired records need not be erased by either return.
 
-With known movement words and their inverses, preparations allowed before
-the first read, and no source-dependent feedback from movements themselves,
-the exact worst-case point-query count for acquisition followed by return
-is still
+With known movement words and their inverses, preparations allowed before the first read, and no source-dependent feedback from movements themselves, the exact worst-case point-query count for acquisition followed by return is still
 
     min{|Q| : Q⊆K·i and G_Q⊆H}.
 
-For sufficiency visit a qualifying Q and then undo the accumulated input
-movement. The records are the original r-values at Q. For necessity every
-queried current value is an original r-value at a known point of K·i;
-M64d's indistinguishable adaptive branch therefore still applies. The
-construction changes movement access, not the information in a point reply.
-Movement costs and the storage used by recording are not query counts.
+For sufficiency visit a qualifying Q and then undo the accumulated input movement. The records are the original r-values at Q. For necessity every queried current value is an original r-value at a known point of K·i; M64d's indistinguishable adaptive branch therefore still applies. The construction changes movement access, not the information in a point reply. Movement costs and the storage used by recording are not query counts.
 
-For the previously trapped W-port 1, add the known exchange T=(0 1).
-The existing phase constructors supply this action; its availability is
-an additional interface premise, not a consequence of W alone. On a point
-table (A,B,C,D), the actual field action called W is (D,B,A,C). This field
-order is inverse to the destination permutation W=(0 2 3). Perform
+For the previously trapped W-port 1, add the known exchange T=(0 1). The existing phase constructors supply this action; its availability is an additional interface premise, not a consequence of W alone. On a point table (A,B,C,D), the actual field action called W is (D,B,A,C). This field order is inverse to the destination permutation W=(0 2 3). Perform
 
     T; read1; T,W,T; read1; T,W,T; read1; T,W.
 
@@ -2268,293 +1550,88 @@ The three contacted tables and the final table are, respectively,
 
     (B,A,C,D), (B,D,A,C), (B,C,D,A), (A,B,C,D).
 
-Thus the fixed port acquires r(0),r(3),r(2), and the original source returns.
-The path has nine T/W blocks and three acquisitions. Nine is an attained
-block count, not an asserted optimum or the number of low-level contacts.
+Thus the fixed port acquires r(0),r(3),r(2), and the original source returns. The path has nine T/W blocks and three acquisitions. Nine is an attained block count, not an asserted optimum or the number of low-level contacts.
 
-For r∈S₄, commuting with W is equivalent to those three replies being one
-of (0,3,2), (3,2,0), (2,0,3). A commuting permutation must preserve W's
-unique fixed point and is a cyclic rotation on its other orbit. Conversely
-each displayed triple, together with bijectivity, gives exactly one such
-rotation; the unqueried image r(1)=1 is then forced. Three queries therefore
-suffice and attain M64d's lower bound for unrestricted point-query access.
+For r∈S₄, commuting with W is equivalent to those three replies being one of (0,3,2), (3,2,0), (2,0,3). A commuting permutation must preserve W's unique fixed point and is a cyclic rotation on its other orbit. Conversely each displayed triple, together with bijectivity, gives exactly one such rotation; the unqueried image r(1)=1 is then forced. Three queries therefore suffice and attain M64d's lower bound for unrestricted point-query access.
 
-`PhaseProbeExcursion.swift` constructs the entire record–move–return path
-on arbitrary contents, with explicit equalities to the actual composed
-endpoints. The existing `ThreeStageFacts` reads the retained facts and
-excludes the returned table. `PhaseOrientationReply.swift` decodes those
-facts through a fixed directed-orbit table using the existing finite Route
-clauses. It records its verdict beside the restored experiment. The twenty-four
-permutation sources in `PhaseExcursionCalibration.swift` run these actual
-acquisitions and give exactly the three accepted cases. Their sources are
-independently tied to the actual I,W,WW word outputs. Arbitrary tuple shapes
-or arbitrary PredicateReading conformances do not establish this scope.
+`PhaseProbeExcursion.swift` constructs the entire record–move–return path on arbitrary contents, with explicit equalities to the actual composed endpoints. The existing `ThreeStageFacts` reads the retained facts and excludes the returned table. `PhaseOrientationReply.swift` decodes those facts through a fixed directed-orbit table using the existing finite Route clauses. It records its verdict beside the restored experiment. The twenty-four permutation sources in `PhaseExcursionCalibration.swift` run these actual acquisitions and give exactly the three accepted cases. Their sources are independently tied to the actual I,W,WW word outputs. Arbitrary tuple shapes or arbitrary PredicateReading conformances do not establish this scope.
 
-There is a useful counterweight to the earlier partial-knowledge examples.
-In this point-query model, every exact positive certificate of commutation
-with W already identifies the whole r. If two inputs remain unqueried,
-their transposition fixes every acquired reply. Multiplying a compatible
-r by it gives an odd, incompatible permutation with the same transcript.
-Thus every positive branch needs three distinct inputs; their images fix
-the fourth by bijectivity. This remains true for adaptive excursions with
-known movements. Some negative branches can finish earlier.
+There is a useful counterweight to the earlier partial-knowledge examples. In this point-query model, every exact positive certificate of commutation with W already identifies the whole r. If two inputs remain unqueried, their transposition fixes every acquired reply. Multiplying a compatible r by it gives an odd, incompatible permutation with the same transcript. Thus every positive branch needs three distinct inputs; their images fix the fourth by bijectivity. This remains true for adaptive excursions with known movements. Some negative branches can finish earlier.
 
-The verdict may subsequently be compressed to yes/no, but the positive
-acquisition itself distinguished the complete table. In contrast, M64d's
-known-even, fixed-point probe leaves three compatible frames unresolved.
-Whether full identification is avoidable depends on the admitted source
-family and the available questions, not only on the size of the final answer.
+The verdict may subsequently be compressed to yes/no, but the positive acquisition itself distinguished the complete table. In contrast, M64d's known-even, fixed-point probe leaves three compatible frames unresolved. Whether full identification is avoidable depends on the admitted source family and the available questions, not only on the size of the final answer.
 
-The checks exhibit identity and (1 2) with equal first two acquired records
-and opposite final verdicts. They also exhibit different memories for two
-accepted frames. Refusals reject applying the original commutation answer
-to the intermediate T-frame, treating two records as sufficient, equating
-the source return with deletion of its records, and merging distinct positive
-memories. The source table returns; the full recorded history does not.
+The checks exhibit identity and (1 2) with equal first two acquired records and opposite final verdicts. They also exhibit different memories for two accepted frames. Refusals reject applying the original commutation answer to the intermediate T-frame, treating two records as sufficient, equating the source return with deletion of its records, and merging distinct positive memories. The source table returns; the full recorded history does not.
 
-**M64g (acquire applicability through two uncalibrated channels).**
-Let h,k be bijections from one four-point carrier to a common four-point
-output carrier, and W a three-cycle of the input carrier with fixed point p.
-Assume the relative map r=k⁻¹h is even. Equivalently, after choosing any
-common labelling, h and k have the same parity; neither must individually
-be even. Then
+**M64g (acquire applicability through two uncalibrated channels).** Let h,k be bijections from one four-point carrier to a common four-point output carrier, and W a three-cycle of the input carrier with fixed point p. Assume the relative map r=k⁻¹h is even. Equivalently, after choosing any common labelling, h and k have the same parity; neither must individually be even. Then
 
     (k⁻¹h)W=W(k⁻¹h)  iff  h(p)=k(p).
 
-Indeed the even centralizer of W is its three-element cyclic group, which
-is exactly the stabilizer of p in A₄. Thus commutation is equivalent to
-(k⁻¹h)(p)=p, and bijectivity of k gives the displayed comparison. This
-acquires the answer from the two actual channels, without an oracle that
-already supplies point values of k⁻¹h or an inverse implementation of k.
+Indeed the even centralizer of W is its three-element cyclic group, which is exactly the stabilizer of p in A₄. Thus commutation is equivalent to (k⁻¹h)(p)=p, and bijectivity of k gives the displayed comparison. This acquires the answer from the two actual channels, without an oracle that already supplies point values of k⁻¹h or an inverse implementation of k.
 
-Suppose both replies pass through one unknown injective encoding c. The
-available pair is (c(k(p)),c(h(p))). Its equality is equivalent to the
-displayed channel relation. No separate identification of c,k,h is required.
-For a common bijective c, the relative map itself is unchanged:
-(ck)⁻¹(ch)=k⁻¹h. One paired trial suffices; zero cannot decide between,
-for example, (k,h)=(identity,identity) and (identity,Z). A paired trial here
-contains two channel replies and can require many underlying contacts.
+Suppose both replies pass through one unknown injective encoding c. The available pair is (c(k(p)),c(h(p))). Its equality is equivalent to the displayed channel relation. No separate identification of c,k,h is required. For a common bijective c, the relative map itself is unchanged: (ck)⁻¹(ch)=k⁻¹h. One paired trial suffices; zero cannot decide between, for example, (k,h)=(identity,identity) and (identity,Z). A paired trial here contains two channel replies and can require many underlying contacts.
 
-The relation directly read from pairs (k(x),h(x)) without input coordinates
-is instead R=h k⁻¹ on the output carrier. For the desired input operation W,
-write C=kWk⁻¹. The full condition is R C=C R. R alone does not in general
-settle it. On equal labelled carriers take T=(0 1): k=identity,h=W and
-k=T,h=WT give the same R=W, but relative maps W and TWT. Only the first
-commutes with the fixed W. Input-labelled observations or observations of
-the transported C contain more information than R alone; this example
-does not discard such observations when they are actually available.
+The relation directly read from pairs (k(x),h(x)) without input coordinates is instead R=h k⁻¹ on the output carrier. For the desired input operation W, write C=kWk⁻¹. The full condition is R C=C R. R alone does not in general settle it. On equal labelled carriers take T=(0 1): k=identity,h=W and k=T,h=WT give the same R=W, but relative maps W and TWT. Only the first commutes with the fixed W. Input-labelled observations or observations of the transported C contain more information than R alone; this example does not discard such observations when they are actually available.
 
-`PairedProbeApplicability.swift` combines two actual phase-1 resident probes
-and keeps a common frame C beside the entire paired acquisition. Both
-framing reads obtain C from that same source field. A new joint record
-contains only their encoded replies. The equality decoder receives this
-record and a fixed four-label resource; raw replies, the frame table and
-resident law addresses remain outside its input, preserved in the whole.
-The name `SecondProbe` refers to an older experiment: each use here is the
-sole prepared point probe of its channel, not an unperformed earlier trial.
+`PairedProbeApplicability.swift` combines two actual phase-1 resident probes and keeps a common frame C beside the entire paired acquisition. Both framing reads obtain C from that same source field. A new joint record contains only their encoded replies. The equality decoder receives this record and a fixed four-label resource; raw replies, the frame table and resident law addresses remain outside its input, preserved in the whole. The name `SecondProbe` refers to an older experiment: each use here is the sole prepared point probe of its channel, not an unperformed earlier trial.
 
-The twelve even resident laws give four actual reply classes of three laws
-each. `PairedProbeCalibration.swift` derives those fact equalities and checks
-all sixteen ordered class pairs, which suffices for their paired composition.
-Different pairs of hidden laws have exactly the same positive decoder input.
-An arbitrary common frame also carries an equal raw reply class to an equal
-encoded pair, without requiring knowledge of its unused fields.
+The twelve even resident laws give four actual reply classes of three laws each. `PairedProbeCalibration.swift` derives those fact equalities and checks all sixteen ordered class pairs, which suffices for their paired composition. Different pairs of hidden laws have exactly the same positive decoder input. An arbitrary common frame also carries an equal raw reply class to an equal encoded pair, without requiring knowledge of its unused fields.
 
-`CommonProbeFrame.swift` checks equality preservation on all sixteen pairs
-for the actual output-label generators T and the frame table produced by W.
-These generate S₄: conjugating the exchange with the three-cycle supplies
-all exchanges from the fixed label to the other three labels. Composition
-therefore preserves equality for every finite word of these generators.
-This is the stated finite permutation-frame grammar, not a proof that
-every arbitrary `C: Structure` is injective. The generic acquisition can
-also represent a lossy encoding; only the admitted frame scope supplies
-the corresponding commutation interpretation of its equality verdict.
+`CommonProbeFrame.swift` checks equality preservation on all sixteen pairs for the actual output-label generators T and the frame table produced by W. These generate S₄: conjugating the exchange with the three-cycle supplies all exchanges from the fixed label to the other three labels. Composition therefore preserves equality for every finite word of these generators. This is the stated finite permutation-frame grammar, not a proof that every arbitrary `C: Structure` is injective. The generic acquisition can also represent a lossy encoding; only the admitted frame scope supplies the corresponding commutation interpretation of its equality verdict.
 
-Three boundaries are independently necessary for this complete test.
-Without the even-relative scope, identity and (2 3) agree at p=1 although
-their relative map does not commute with W. With different output frames,
-the unequal I/Z replies (1,0) can become (1,1) by exchanging 0/1 only on
-the second reply. With one common but constant encoding, the same unequal
-replies also become equal. The latter two misleading agreements are actual
-recorded paths in the checks, not false readings of their encoded outputs.
-Their original resident records remain in the whole. Source retention
-does not make the final observation sufficient for the original question.
+Three boundaries are independently necessary for this complete test. Without the even-relative scope, identity and (2 3) agree at p=1 although their relative map does not commute with W. With different output frames, the unequal I/Z replies (1,0) can become (1,1) by exchanging 0/1 only on the second reply. With one common but constant encoding, the same unequal replies also become equal. The latter two misleading agreements are actual recorded paths in the checks, not false readings of their encoded outputs. Their original resident records remain in the whole. Source retention does not make the final observation sufficient for the original question.
 
-There is a sharper one-sided result. Commonality of c alone already makes
-unequal encoded replies certify h(p)≠k(p), hence failure of commutation.
-Injectivity is needed to interpret equality as a positive certificate,
-not to interpret an observed inequality as a negative one. The even-relative
-premise is unnecessary for this negative side too: every permutation
-commuting with W must preserve its unique fixed point. Moreover full
-injectivity is only a sufficient condition: reflection of equality on the
-actually admitted pair family is enough. The next question is how an
-internal contact can establish that restricted reflection without first
-calibrating the entire encoder; M64h supplies a local return construction.
+There is a sharper one-sided result. Commonality of c alone already makes unequal encoded replies certify h(p)≠k(p), hence failure of commutation. Injectivity is needed to interpret equality as a positive certificate, not to interpret an observed inequality as a negative one. The even-relative premise is unnecessary for this negative side too: every permutation commuting with W must preserve its unique fixed point. Moreover full injectivity is only a sufficient condition: reflection of equality on the actually admitted pair family is enough. The next question is how an internal contact can establish that restricted reflection without first calibrating the entire encoder; M64h supplies a local return construction.
 
-**Point acquisition of a relative contact without separate channel calibration.**
-The two-channel relation can also acquire selected values of the relative
-map itself. Let A and B be two addressed n-element input sets, n≥2,
-and let h:A→Y and k:B→Y be unknown fixed injections. The participant may
-query h(a) or k(b), retaining the returned token. Tokens are compared only
-by equality; no output coordinate system or inverse-channel operation is
-provided. A query costs one acquired point reply. Equality comparisons,
-record processing and preparation costs are not part of this count.
-Every query retains both channel laws and the earlier records throughout
-this inquiry. Let T⊆A be a specified m-element target set.
+**Point acquisition of a relative contact without separate channel calibration.** The two-channel relation can also acquire selected values of the relative map itself. Let A and B be two addressed n-element input sets, n≥2, and let h:A→Y and k:B→Y be unknown fixed injections. The participant may query h(a) or k(b), retaining the returned token. Tokens are compared only by equality; no output coordinate system or inverse-channel operation is provided. A query costs one acquired point reply. Equality comparisons, record processing and preparation costs are not part of this count. Every query retains both channel laws and the earlier records throughout this inquiry. Let T⊆A be a specified m-element target set.
 
-First suppose the full images are the same n-element set C. C can be a
-proper finite region of an arbitrarily large Y; the whole is not assumed
-finite. The required answer is the addressed list
+First suppose the full images are the same n-element set C. C can be a proper finite region of an arbitrarily large Y; the whole is not assumed finite. The required answer is the addressed list
 
     (k⁻¹h(a)) for a∈T.
 
-Neither channel is to be individually identified. The exact deterministic
-worst-case point-query count is
+Neither channel is to be individually identified. The exact deterministic worst-case point-query count is
 
     0,                         if m=0;
     n−1 + min(m,n−1),           if 1≤m≤n.
 
-For 1≤m<n, query h at every target and k at any n−1 distinct inputs.
-Compare the acquired tokens. A target token found in those k replies has
-its input. Any target token not found must be the value at the sole
-unqueried k input, by the common full-image premise. There can be at most
-one such target token, since h is injective. This gives n−1+m replies.
+For 1≤m<n, query h at every target and k at any n−1 distinct inputs. Compare the acquired tokens. A target token found in those k replies has its input. Any target token not found must be the value at the sole unqueried k input, by the common full-image premise. There can be at most one such target token, since h is injective. This gives n−1+m replies.
 
-For m=n, query n−1 inputs of each channel. Their two acquired image sets
-have size n−1 inside C. If the sets coincide, their missing h and k inputs
-correspond to the same remaining token. If they differ, their intersection
-has size n−2: the sole h-only token belongs to the missing k input, and
-the sole k-only token belongs to the missing h input. All other pairs
-are matched by equality. This determines the full relative permutation
-using 2n−2 replies, even without naming the token omitted by both.
+For m=n, query n−1 inputs of each channel. Their two acquired image sets have size n−1 inside C. If the sets coincide, their missing h and k inputs correspond to the same remaining token. If they differ, their intersection has size n−2: the sole h-only token belongs to the missing k input, and the sole k-only token belongs to the missing h input. All other pairs are matched by equality. This determines the full relative permutation using 2n−2 replies, even without naming the token omitted by both.
 
-For the lower bound, every successful transcript requires at least
-min(m,n−1) distinct h queries. Otherwise a target a and another input a′
-are both unqueried; exchanging their h values preserves every reply and
-the full image but changes the required answer at a. Independently,
-choose one target a₀. Even if the entire h table is provided for free,
-an adversary can defer the k reply equal to h(a₀) until all but at most
-one k input have been queried. With two k inputs still unread, the
-corresponding two completions give different answers at a₀. Thus some
-transcript needs at least n−1 k queries. The first lower bound holds
-on every successful transcript, including this one, so the bounds add.
-Both arguments apply to adaptive choices of inputs and channel order.
-They are worst-case counts, not expected search times.
+For the lower bound, every successful transcript requires at least min(m,n−1) distinct h queries. Otherwise a target a and another input a′ are both unqueried; exchanging their h values preserves every reply and the full image but changes the required answer at a. Independently, choose one target a₀. Even if the entire h table is provided for free, an adversary can defer the k reply equal to h(a₀) until all but at most one k input have been queried. With two k inputs still unread, the corresponding two completions give different answers at a₀. Thus some transcript needs at least n−1 k queries. The first lower bound holds on every successful transcript, including this one, so the bounds add. Both arguments apply to adaptive choices of inputs and channel order. They are worst-case counts, not expected search times.
 
-The algorithm uses no absolute output labels. A fixed common injective
-encoding of the replies preserves all its tests. Different encodings
-at different calls, a changing channel law, or a comparison that merges
-relevant tokens change the admitted inquiry. M64g/h and M64as already
-expose those independent obligations. The abstract inverse in the answer
-specification is never used as an available primitive.
+The algorithm uses no absolute output labels. A fixed common injective encoding of the replies preserves all its tests. Different encodings at different calls, a changing channel law, or a comparison that merges relevant tokens change the admitted inquiry. M64g/h and M64as already expose those independent obligations. The abstract inverse in the answer specification is never used as an available primitive.
 
-**Removing common-image admission changes the exact cost.** Now allow all
-injections h,k into a fixed Y with at least n+1 elements, without requiring
-their images to agree. The target answer at a is the unique b with
-k(b)=h(a), if one exists, and an explicit absence answer otherwise.
-For 1≤m≤n the exact worst-case cost is
+**Removing common-image admission changes the exact cost.** Now allow all injections h,k into a fixed Y with at least n+1 elements, without requiring their images to agree. The target answer at a is the unique b with k(b)=h(a), if one exists, and an explicit absence answer otherwise. For 1≤m≤n the exact worst-case cost is
 
     n+m.
 
-Query all m selected h inputs and every k input, and compare the tokens.
-This suffices. For necessity, every selected h input must be queried.
-If a selected value is unread, hold k and every other h value fixed.
-At least two outputs remain available to that h entry, and at least
-one lies in k(B), since the other n−1 h entries cannot cover all n
-values of k. These choices change either the matched b or presence
-versus absence, preserving all recorded replies and injectivity.
+Query all m selected h inputs and every k input, and compare the tokens. This suffices. For necessity, every selected h input must be queried. If a selected value is unread, hold k and every other h value fixed. At least two outputs remain available to that h entry, and at least one lies in k(B), since the other n−1 h entries cannot cover all n values of k. These choices change either the matched b or presence versus absence, preserving all recorded replies and injectivity.
 
-Even with h known for free, a fixed target token can remain unseen in
-the first n−1 distinct k queries. There are then completions in which
-the last input returns this token and completions in which it returns
-another unused token. Both exist because |Y|≥n+1. Hence some successful
-transcript requires all n k queries. Again the h lower bound holds on
-that transcript, proving the sum. The extra possible token is a relation
-inside the same Y, not an external source or a loss of information.
+Even with h known for free, a fixed target token can remain unseen in the first n−1 distinct k queries. There are then completions in which the last input returns this token and completions in which it returns another unused token. Both exist because |Y|≥n+1. Hence some successful transcript requires all n k queries. Again the h lower bound holds on that transcript, proving the sum. The extra possible token is a relation inside the same Y, not an external source or a loss of information.
 
-On two inputs the difference is concrete. Take three distinct outputs
-a,b,c. The sources
+On two inputs the difference is concrete. Take three distinct outputs a,b,c. The sources
 
     h=(a,b), k=(b,a),      and      h=(a,b), k=(b,c)
 
-give the same replies h(0)=a and k(0)=b. The first matches the target
-to input 1; the second has no matching k input. Reading k(1) separates
-them. Their internal tables and all earlier records can remain intact.
-Knowing both input inventories and injectivity does not supply equality
-of their images. Conversely, an independently supplied construction of
-both channels on the same complete carrier makes the shorter inference
-legitimate without demanding a fresh exhaustive calibration.
+give the same replies h(0)=a and k(0)=b. The first matches the target to input 1; the second has no matching k input. Reading k(1) separates them. Their internal tables and all earlier records can remain intact. Knowing both input inventories and injectivity does not supply equality of their images. Conversely, an independently supplied construction of both channels on the same complete carrier makes the shorter inference legitimate without demanding a fresh exhaustive calibration.
 
-The stronger question “are h(A) and k(B) the same set?” has exact
-worst-case cost 2n in this open-image access model. In fact every
-positive transcript must read every input of both channels. Starting
-from equal full images, change any unread entry of one channel to a
-fresh output outside that image. Injectivity and all replies remain,
-but image equality becomes false. Full acquisition attains 2n.
-This is a different question from locating the m requested matches;
-its cost must not be imposed on a task for which those matches suffice.
+The stronger question “are h(A) and k(B) the same set?” has exact worst-case cost 2n in this open-image access model. In fact every positive transcript must read every input of both channels. Starting from equal full images, change any unread entry of one channel to a fresh output outside that image. Injectivity and all replies remain, but image equality becomes false. Full acquisition attains 2n. This is a different question from locating the m requested matches; its cost must not be imposed on a task for which those matches suffice.
 
-Thus a shared full image saves one reply for 1≤m<n and two replies for
-m=n, compared with answering including possible absence. Certifying
-that shared image from arbitrary injection tables is a separate task,
-not a status that the matching procedure silently grants itself. These
-are exact counts for the declared nondisturbing point interface. They
-do not bound energy, running time, all possible instruments, or an
-inquiry in which an act changes an untracked channel.
+Thus a shared full image saves one reply for 1≤m<n and two replies for m=n, compared with answering including possible absence. Certifying that shared image from arbitrary injection tables is a separate task, not a status that the matching procedure silently grants itself. These are exact counts for the declared nondisturbing point interface. They do not bound energy, running time, all possible instruments, or an inquiry in which an act changes an untracked channel.
 
-With no supplied finite complete inventory of k inputs, point replies
-alone need not certify absence at all. In the open-injection model with
-infinitely many available inputs and enough output values, any finite
-transcript that has not encountered a target token admits two injective
-extensions: one assigns it to an unread input, the other keeps it outside
-the k image. A witnessed matching pair still certifies its own positive
-answer immediately. This is a distinction between the two questions,
-not a general claim that every negative conclusion needs a full model.
-An impossible equality between already established answers can still be
-excluded locally by M71.
+With no supplied finite complete inventory of k inputs, point replies alone need not certify absence at all. In the open-injection model with infinitely many available inputs and enough output values, any finite transcript that has not encountered a target token admits two injective extensions: one assigns it to an unread input, the other keeps it outside the k image. A witnessed matching pair still certifies its own positive answer immediately. This is a distinction between the two questions, not a general claim that every negative conclusion needs a full model. An impossible equality between already established answers can still be excluded locally by M71.
 
-**The new finite construction keeps the missing reply outside the decoder.**
-`RelativeChannelAcquisition` represents two resident two-entry tables
-and an arbitrary retained history. Two first-entry projections are
-jointly archived; the second k entry is acquired later from the same
-actual retained source. `RemainingMatchFromFacts` receives only the old
-reply-pair fact and this new fact. It reconstructs the pair consisting
-of the original target token and the newly observed k token.
-`MatchFactors` derives its equality with the independently defined
-source reading. Neither the unread second h entry nor either table is
-a decoder input. The direct reading and the decoder use one question
-name, with its meaning fixed by their displayed projections; the name
-alone does no proof work.
+**The new finite construction keeps the missing reply outside the decoder.** `RelativeChannelAcquisition` represents two resident two-entry tables and an arbitrary retained history. Two first-entry projections are jointly archived; the second k entry is acquired later from the same actual retained source. `RemainingMatchFromFacts` receives only the old reply-pair fact and this new fact. It reconstructs the pair consisting of the original target token and the newly observed k token. `MatchFactors` derives its equality with the independently defined source reading. Neither the unread second h entry nor either table is a decoder input. The direct reading and the decoder use one question name, with its meaning fixed by their displayed projections; the name alone does no proof work.
 
-Five positive declarations cover the identical initial facts, actual
-refinement, preservation of both tables and history, irrelevance of the
-unread h entry, and the matching common-image example. Two refusals
-reject asserting the unmeasured match on the open-image counterexample
-and supplying the old fact where the decoder requires both facts.
-This establishes the finite acquisition and refusal boundary. The
-arbitrary-n query minimum is the argument above, not a Swift protocol
-asserting an optimal search algorithm or an unperformed runtime scan.
-The comparison-based procedures and adversaries are given directly;
-no independent priority over matching or search results is asserted.
+Five positive declarations cover the identical initial facts, actual refinement, preservation of both tables and history, irrelevance of the unread h entry, and the matching common-image example. Two refusals reject asserting the unmeasured match on the open-image counterexample and supplying the old fact where the decoder requires both facts. This establishes the finite acquisition and refusal boundary. The arbitrary-n query minimum is the argument above, not a Swift protocol asserting an optimal search algorithm or an unperformed runtime scan. The comparison-based procedures and adversaries are given directly; no independent priority over matching or search results is asserted.
 
-The target-orbit construction in VC12 and the earlier M64ae tell which
-relative values a future action needs. This result prices acquiring
-selected values through two actual unknown channels instead of granting
-a relative-map oracle in advance. A known action on their shared output
-region can be folded into h before this inquiry only when that composite
-point contact is itself available and the stated image relation survives.
-Otherwise it introduces another acquisition or admission question.
+The target-orbit construction in VC12 and the earlier M64ae tell which relative values a future action needs. This result prices acquiring selected values through two actual unknown channels instead of granting a relative-map oracle in advance. A known action on their shared output region can be folded into h before this inquiry only when that composite point contact is itself available and the stated image relation survives. Otherwise it introduces another acquisition or admission question.
 
-**M64h (acquired local returns reflect a distinction without global calibration).**
-Let a,b belong to one carrier X. Both pass through a common function c:X→Y,
-giving y₀=c(a), y₁=c(b). A common return function d:Y→X is available, but is
-not assumed to invert c. Two local comparisons actually acquire
+**M64h (acquired local returns reflect a distinction without global calibration).** Let a,b belong to one carrier X. Both pass through a common function c:X→Y, giving y₀=c(a), y₁=c(b). A common return function d:Y→X is available, but is not assumed to invert c. Two local comparisons actually acquire
 
     e₀ = [d(y₀)=a],    e₁ = [d(y₁)=b].
 
-Each comparison uses its retained original input and the actual returned
-value. The receiving answer reader obtains only (y₀,y₁,e₀,e₁), not a,b or
-the tables c,d. The original question is whether a=b. The resulting rule is
+Each comparison uses its retained original input and the actual returned value. The receiving answer reader obtains only (y₀,y₁,e₀,e₁), not a,b or the tables c,d. The original question is whether a=b. The resulting rule is
 
 | Acquired relation | Answers still possible for a=b |
 | --- | --- |
@@ -2563,885 +1640,253 @@ the tables c,d. The original question is whether a=b. The resulting rule is
 | y₀=y₁ and e₀≠e₁ | false |
 | y₀=y₁ and e₀=e₁=false | false or true in the unrestricted carrier class |
 
-The first row follows from functionality of the common c. For the other
-rows put y=y₀=y₁ and z=d(y). Both successful returns give a=z=b. Different
-echo bits say that exactly one input equals z, so the inputs differ. Both
-failed returns only place a,b in X\{z}. This is the shared-decoder argument
-of M71 applied to actual local return records. It does not require c or d
-to be injective, surjective or globally calibrated.
+The first row follows from functionality of the common c. For the other rows put y=y₀=y₁ and z=d(y). Both successful returns give a=z=b. Different echo bits say that exactly one input equals z, so the inputs differ. Both failed returns only place a,b in X\{z}. This is the shared-decoder argument of M71 applied to actual local return records. It does not require c or d to be injective, surjective or globally calibrated.
 
-The last ambiguity is exact for the class of arbitrary common functions
-on a carrier with at least three elements. Choose c constant at y and
-d(y)=0. Inputs (1,1) and (1,2) give the same displayed observation and
-opposite answers. This construction works for each available label y;
-the displayed singletons are forced in their respective nonempty classes.
-Further established restrictions may shrink these classes. In particular,
-on a two-element X two failed returns with the same y force both inputs to
-be the sole element other than z, so that row becomes true. It would be
-incorrect to export the unrestricted ambiguity after adding this bound.
+The last ambiguity is exact for the class of arbitrary common functions on a carrier with at least three elements. Choose c constant at y and d(y)=0. Inputs (1,1) and (1,2) give the same displayed observation and opposite answers. This construction works for each available label y; the displayed singletons are forced in their respective nonempty classes. Further established restrictions may shrink these classes. In particular, on a two-element X two failed returns with the same y force both inputs to be the sole element other than z, so that row becomes true. It would be incorrect to export the unrestricted ambiguity after adding this bound.
 
-An entirely collapsing forward channel can therefore support a positive
-answer for a particular pair. With c constant 0 and d the identity on four
-labels, inputs (0,0) give two successful local returns. Nothing here
-recovers an untested input such as 1. Inputs (0,2) give different echo bits
-and a negative answer despite the identical forward records. The new
-distinction comes from the actual comparisons to the retained originals;
-it was not manufactured by more processing of the old encoded pair alone.
+An entirely collapsing forward channel can therefore support a positive answer for a particular pair. With c constant 0 and d the identity on four labels, inputs (0,0) give two successful local returns. Nothing here recovers an untested input such as 1. Inputs (0,2) give different echo bits and a negative answer despite the identical forward records. The new distinction comes from the actual comparisons to the retained originals; it was not manufactured by more processing of the old encoded pair alone.
 
-The common-return premise is substantive. With the same forward collapse,
-use d₀(y)=0 at the first site and d₂(y)=2 at the second. Inputs (0,2) now
-give two successful returns, although they differ. A common container
-holding both maps does not turn these two readers into one function d.
-Likewise, the name of one changing device does not establish that its two
-occasions realize the same input-output relation. The local comparisons
-also have a specified equality meaning; their correctness has not been
-derived from the mere presence of two signals called echo bits.
+The common-return premise is substantive. With the same forward collapse, use d₀(y)=0 at the first site and d₂(y)=2 at the second. Inputs (0,2) now give two successful returns, although they differ. A common container holding both maps does not turn these two readers into one function d. Likewise, the name of one changing device does not establish that its two occasions realize the same input-output relation. The local comparisons also have a specified equality meaning; their correctness has not been derived from the mere presence of two signals called echo bits.
 
-`LocalProbeEcho.swift` continues the actual paired acquisition of M64g.
-Both return reads use the same resident D field. Each local comparison
-reads its original probe fact and its returned value through the existing
-four-label equality clauses. Their answers are recorded together without
-requiring either success from the caller. The final memory exposes the
-forward fact and the new echo fact; both tables and the original raw facts
-remain in the retained whole, outside that memory.
+`LocalProbeEcho.swift` continues the actual paired acquisition of M64g. Both return reads use the same resident D field. Each local comparison reads its original probe fact and its returned value through the existing four-label equality clauses. Their answers are recorded together without requiring either success from the caller. The final memory exposes the forward fact and the new echo fact; both tables and the original raw facts remain in the retained whole, outside that memory.
 
-`LocalEchoAnswer.swift` composes the existing coordinate clauses and binary
-table selection into a fact-only reader. Its answer has two admission
-fields, for inequality and equality: (1,0), (0,1), or (1,1). The last is a
-pair of surviving answers, not a negative verdict or a separate proof
-status. `LocalEchoDecision` links this reader to the actual acquired memory
-and records its result while retaining the acquisition.
+`LocalEchoAnswer.swift` composes the existing coordinate clauses and binary table selection into a fact-only reader. Its answer has two admission fields, for inequality and equality: (1,0), (0,1), or (1,1). The last is a pair of surviving answers, not a negative verdict or a separate proof status. `LocalEchoDecision` links this reader to the actual acquired memory and records its result while retaining the acquisition.
 
-`LocalEchoCalibration.swift` constructs all sixteen ordered raw reply
-classes through the constant forward table and the identity return table.
-The four echo-bit patterns are derived by actual comparisons. The (1,1)
-and (1,2) raw cases have exactly the same complete decoder input and leave
-both answers admitted. A second positive construction changes both hidden
-resident laws and both channel tables while preserving that positive
-memory. Thus the positive observation does not identify these components.
-The checks also acquire unequal encoded replies and construct the
-two-different-return-map counterexample above.
+`LocalEchoCalibration.swift` constructs all sixteen ordered raw reply classes through the constant forward table and the identity return table. The four echo-bit patterns are derived by actual comparisons. The (1,1) and (1,2) raw cases have exactly the same complete decoder input and leave both answers admitted. A second positive construction changes both hidden resident laws and both channel tables while preserving that positive memory. Thus the positive observation does not identify these components. The checks also acquire unequal encoded replies and construct the two-different-return-map counterexample above.
 
-The generic composition interfaces can express readers outside the shared
-finite table grammar. Their successful typechecking alone does not certify
-that interpretation. The split-return example intentionally uses this
-larger grammar: its recorded bits are true and the mechanical completion
-table outputs equality, but that conclusion disagrees with an independent
-canonical comparison of its raw replies. The refusal checks the attempted
-equating of those answers. It is not a claim that Swift automatically
-rejects every such out-of-scope application before that obligation is posed.
+The generic composition interfaces can express readers outside the shared finite table grammar. Their successful typechecking alone does not certify that interpretation. The split-return example intentionally uses this larger grammar: its recorded bits are true and the mechanical completion table outputs equality, but that conclusion disagrees with an independent canonical comparison of its raw replies. The refusal checks the attempted equating of those answers. It is not a claim that Swift automatically rejects every such out-of-scope application before that obligation is posed.
 
-For M64g take a=k(p), b=h(p). A singleton equality answer establishes the
-desired commutation under its even-relative premise. A singleton inequality
-excludes commutation without that parity premise. The ambiguous result
-leaves both possibilities in the admitted four-point family. The claim
-concerns these acquired occurrences; reuse at a changed source still needs
-the preservation or transport relation from M64c. No global recovery,
-unobserved future agreement or physical clock accuracy is inferred.
+For M64g take a=k(p), b=h(p). A singleton equality answer establishes the desired commutation under its even-relative premise. A singleton inequality excludes commutation without that parity premise. The ambiguous result leaves both possibilities in the admitted four-point family. The claim concerns these acquired occurrences; reuse at a changed source still needs the preservation or transport relation from M64c. No global recovery, unobserved future agreement or physical clock accuracy is inferred.
 
-**M64i (exhaustion by common returns; the origin need not be known).**
-Let X be the complete admitted carrier of n≥1 possible values of two
-retained originals a,b. A paired comparison at a common target t acquires
-([a=t],[b=t]). The receiver obtains these bits, without a,b or the absolute
-target label. Targets may be selected adaptively from an available family
-O⊆X, but selection has no other access to the originals or additional
-source-dependent feedback. Moving between targets has no query cost in
-this model. Repeated queries do not create new target values.
+**M64i (exhaustion by common returns; the origin need not be known).** Let X be the complete admitted carrier of n≥1 possible values of two retained originals a,b. A paired comparison at a common target t acquires ([a=t],[b=t]). The receiver obtains these bits, without a,b or the absolute target label. Targets may be selected adaptively from an available family O⊆X, but selection has no other access to the originals or additional source-dependent feedback. Moving between targets has no query cost in this model. Repeated queries do not create new target values.
 
 For a list of distinct queried targets Q, define its signature
 
     s_Q(x) = ([x=t]) indexed by t in Q.
 
-Each member of Q has its own one-hot signature. Every member of X\Q has
-the all-zero signature. Consequently
+Each member of Q has its own one-hot signature. Every member of X\Q has the all-zero signature. Consequently
 
     s_Q(a)=s_Q(b) determines a=b for all a,b in X
     iff |X\Q|≤1.
 
-This is a factorization criterion for the equality question, not an
-assumption that the original values are known. It yields three stopping
-rules. Different bits in any round establish inequality. A round with
-both bits true establishes equality. If n−1 distinct rounds all return
-two false bits, both originals must be the sole unqueried value, so they
-are equal without any successful return.
+This is a factorization criterion for the equality question, not an assumption that the original values are known. It yields three stopping rules. Different bits in any round establish inequality. A round with both bits true establishes equality. If n−1 distinct rounds all return two false bits, both originals must be the sole unqueried value, so they are equal without any successful return.
 
-Exact decision for all a,b using O is possible iff |X\O|≤1. When it is
-possible, its minimum worst-case number of paired queries is n−1 (zero
-when n=1). For the upper bound query any n−1 available distinct targets.
-For the lower bound follow the adaptive history consisting solely of
-two-false replies. Before n−1 distinct targets have been queried, at least
-two values u,v remain. Originals (u,u) and (u,v) give the same history and
-opposite equality answers. The same initial target, target mechanism and
-other available resources can be held fixed in those two realizations.
-Repetition or stopping sooner cannot distinguish them. This bound does
-not apply to an interface which additionally reads an original or lets
-its unobserved value choose a target for free.
+Exact decision for all a,b using O is possible iff |X\O|≤1. When it is possible, its minimum worst-case number of paired queries is n−1 (zero when n=1). For the upper bound query any n−1 available distinct targets. For the lower bound follow the adaptive history consisting solely of two-false replies. Before n−1 distinct targets have been queried, at least two values u,v remain. Originals (u,u) and (u,v) give the same history and opposite equality answers. The same initial target, target mechanism and other available resources can be held fixed in those two realizations. Repetition or stopping sooner cannot distinguish them. This bound does not apply to an interface which additionally reads an original or lets its unobserved value choose a target for free.
 
-Suppose now the common targets are U^j(t₀), where U is one known
-permutation and t₀ is unknown. At that origin the exact condition becomes
-|X\orbit_U(t₀)|≤1. For n≥3 a uniform guarantee over every possible origin
-holds iff U is an n-cycle. If U has two or more cycles, a shortest one has
-at most n−2 members, leaving two unqueried values at an origin in that
-cycle. For n=2 either permutation suffices: one paired query leaves at
-most one other value. No absolute origin is required by the decoder.
+Suppose now the common targets are U^j(t₀), where U is one known permutation and t₀ is unknown. At that origin the exact condition becomes |X\orbit_U(t₀)|≤1. For n≥3 a uniform guarantee over every possible origin holds iff U is an n-cycle. If U has two or more cycles, a shortest one has at most n−2 members, leaving two unqueried values at an origin in that cycle. For n=2 either permutation suffices: one paired query leaves at most one other value. No absolute origin is required by the decoder.
 
-A full cycle is sufficient, not necessary when the origin is restricted:
-an orbit containing n−1 values also suffices. More generally a known cycle
-is not required if the actual queried set Q already has the stated
-coverage. Establishing that coverage is a separate contact or structural
-obligation; the number of written records alone does not establish it.
+A full cycle is sufficient, not necessary when the origin is restricted: an orbit containing n−1 values also suffices. More generally a known cycle is not required if the actual queried set Q already has the stated coverage. Establishing that coverage is a separate contact or structural obligation; the number of written records alone does not establish it.
 
-For four labels `EchoOrbit.swift` builds the table (1,2,3,0) from three
-existing coordinate exchanges. It then applies this fixed table to each
-current return VALUE. This differs from reordering the input positions of
-an unknown d table: reordering a constant table leaves its returned value
-unchanged, whereas applying U to that value changes 0 to 1.
+For four labels `EchoOrbit.swift` builds the table (1,2,3,0) from three existing coordinate exchanges. It then applies this fixed table to each current return VALUE. This differs from reordering the input positions of an unknown d table: reordering a constant table leaves its returned value unchanged, whereas applying U to that value changes 0 to 1.
 
-The seed is actually read through the return channel after the paired
-resident acquisition. `PrepareEchoOrbit` keeps that whole acquisition
-beside the seed and the cycle resource. `EchoOrbitRound` compares the same
-two retained originals with one shared current value, using the existing
-local comparison construction. Its actual advance reads U at that value
-and preserves both the raw-source archive and U. `ThreeEchoRounds` performs
-three comparisons with two intervening advances; earlier facts travel
-beside later actions. The original resident probes are not repeated.
+The seed is actually read through the return channel after the paired resident acquisition. `PrepareEchoOrbit` keeps that whole acquisition beside the seed and the cycle resource. `EchoOrbitRound` compares the same two retained originals with one shared current value, using the existing local comparison construction. Its actual advance reads U at that value and preserves both the raw-source archive and U. `ThreeEchoRounds` performs three comparisons with two intervening advances; earlier facts travel beside later actions. The original resident probes are not repeated.
 
-`EchoOrbitAnswer.swift` reads only the three acquired echo facts and fixed
-comparison resources. It compares the two bits within each fact and
-conjoins those three answers. Under the displayed coverage criterion,
-this is exactly equality of the originals. `EchoOrbitDecision` binds that
-reader to the actual three-round path and retains the acquisition.
+`EchoOrbitAnswer.swift` reads only the three acquired echo facts and fixed comparison resources. It compares the two bits within each fact and conjoins those three answers. Under the displayed coverage criterion, this is exactly equality of the originals. `EchoOrbitDecision` binds that reader to the actual three-round path and retains the acquisition.
 
-`EchoOrbitCalibration.swift` constructs all sixteen raw reply-class pairs
-with the same four-cycle. The actual answer matrix is the diagonal equality
-table. For originals (3,3) and seed 0, the three targets 0,1,2 all fail for
-both originals, yet the acquired verdict is positive. Originals (2,2)
-and (2,3) have exactly the same first two facts; the third fact and final
-verdict separate them. This supplies the finite witness of the lower bound.
+`EchoOrbitCalibration.swift` constructs all sixteen raw reply-class pairs with the same four-cycle. The actual answer matrix is the diagonal equality table. For originals (3,3) and seed 0, the three targets 0,1,2 all fail for both originals, yet the acquired verdict is positive. Originals (2,2) and (2,3) have exactly the same first two facts; the third fact and final verdict separate them. This supplies the finite witness of the lower bound.
 
-Another actual path changes the seed to 1 and both originals to 0. Its
-three targets 1,2,3 also all fail. Its complete receiver input is identical
-to that for originals (3,3), seed 0. Thus the answer does not identify the
-absolute origin or the original values. Within one privately fixed origin,
-however, the length-three signature identifies each value relative to the
-orbit; it would be incorrect to call it intrinsically less informative
-than that relative identification.
+Another actual path changes the seed to 1 and both originals to 0. Its three targets 1,2,3 also all fail. Its complete receiver input is identical to that for originals (3,3), seed 0. Thus the answer does not identify the absolute origin or the original values. Within one privately fixed origin, however, the length-three signature identifies each value relative to the orbit; it would be incorrect to call it intrinsically less informative than that relative identification.
 
-The checks replace the cycle by the actual exchange (0 1). Targets 0,1,0
-then leave originals 2 and 3 forever untested. For the unequal pair (2,3)
-the complete three-fact memory equals the positive full-cycle memory above.
-The mechanical conjunction still outputs true, but its proposed equality
-interpretation fails against the independently constructed full-cycle
-answer for the same originals. This is a failure of coverage, not a false
-echo record. The generic interfaces can express both paths; the certified
-interpretation must remain bound to the path supplying its coverage.
+The checks replace the cycle by the actual exchange (0 1). Targets 0,1,0 then leave originals 2 and 3 forever untested. For the unequal pair (2,3) the complete three-fact memory equals the positive full-cycle memory above. The mechanical conjunction still outputs true, but its proposed equality interpretation fails against the independently constructed full-cycle answer for the same originals. This is a failure of coverage, not a false echo record. The generic interfaces can express both paths; the certified interpretation must remain bound to the path supplying its coverage.
 
-The theorem measures paired comparisons, each with two local results; it
-does not assert a minimum number of primitive contacts or a duration.
-The originals are preserved in an internal archive, so these paths answer
-the original question. They do not infer the same answer at an arbitrarily
-changed current source. The next acquisition question is whether the
-required distinctness of the targets can itself be obtained from their
-retained contacts, without knowing the law U in advance.
+The theorem measures paired comparisons, each with two local results; it does not assert a minimum number of primitive contacts or a duration. The originals are preserved in an internal archive, so these paths answer the original question. They do not infer the same answer at an arbitrarily changed current source. The next acquisition question is whether the required distinctness of the targets can itself be obtained from their retained contacts, without knowing the law U in advance.
 
-**M64j (acquire coverage from recorded returns, without a known generator).**
-Retain the originals a,b and each of three actually used common targets
-t₀,t₁,t₂. Before changing a target, acquire both its paired echo
-([a=tᵢ],[b=tᵢ]) and a private record of that target. Later comparisons read
-those retained target records, giving
+**M64j (acquire coverage from recorded returns, without a known generator).** Retain the originals a,b and each of three actually used common targets t₀,t₁,t₂. Before changing a target, acquire both its paired echo ([a=tᵢ],[b=tᵢ]) and a private record of that target. Later comparisons read those retained target records, giving
 
     c₀₁=[t₀=t₁], c₀₂=[t₀=t₂], c₁₂=[t₁=t₂].
 
-The receiver is given only the echo bits and these three comparison bits.
-It receives neither the target values nor the law that generated them.
-Assume the originals and targets all belong to a carrier with at most four
-values. On the unresolved branch where all six original-to-target echoes
-are false, three false comparison bits force a=b. The targets are three
-different values, and at most one other value is available for both
-originals. This is M64i's coverage condition acquired for the actual trial.
+The receiver is given only the echo bits and these three comparison bits. It receives neither the target values nor the law that generated them. Assume the originals and targets all belong to a carrier with at most four values. On the unresolved branch where all six original-to-target echoes are false, three false comparison bits force a=b. The targets are three different values, and at most one other value is available for both originals. This is M64i's coverage condition acquired for the actual trial.
 
-If a target repeats, the same branch can remain undecided. On the full
-four-value carrier, targets (0,1,0) and originals (2,2) or (2,3) give the
-same complete visible evidence and opposite equality answers. Thus, in
-the class retaining arbitrary four-value realizations, the exact answer
-set for this all-false branch is {true} when the three targets are
-pairwise distinct, and {false,true} when they repeat. The local TT and
-mismatched-echo branches retain their earlier answers from M64h; they do
-not need this additional coverage acquisition.
+If a target repeats, the same branch can remain undecided. On the full four-value carrier, targets (0,1,0) and originals (2,2) or (2,3) give the same complete visible evidence and opposite equality answers. Thus, in the class retaining arbitrary four-value realizations, the exact answer set for this all-false branch is {true} when the three targets are pairwise distinct, and {false,true} when they repeat. The local TT and mismatched-echo branches retain their earlier answers from M64h; they do not need this additional coverage acquisition.
 
-The four-value bound has not been learned from three distinctions. With a
-fifth value, targets (0,1,2) and originals (3,3) or (3,4) give the same
-nine visible bits and opposite answers. That is a mathematical countermodel
-to dropping the bound, not an execution in the four-address Route grammar.
-The bounded carrier is the declared value space of this question. It need
-not be the full physical or retained source, whose other fields can vary.
+The four-value bound has not been learned from three distinctions. With a fifth value, targets (0,1,2) and originals (3,3) or (3,4) give the same nine visible bits and opposite answers. That is a mathematical countermodel to dropping the bound, not an execution in the four-address Route grammar. The bounded carrier is the declared value space of this question. It need not be the full physical or retained source, whose other fields can vary.
 
-No fixed, reversible or known generator is required for the displayed
-implication. Its obligations concern the actual common targets, the
-preserved originals, their records and the meaning of the comparisons.
-Changing a target after its recording does not change that record. Reading
-the final current target in place of an earlier record would be a different
-contact and can give a different answer. A known inverse law is not used to
-reconstruct the earlier targets for these comparisons.
+No fixed, reversible or known generator is required for the displayed implication. Its obligations concern the actual common targets, the preserved originals, their records and the meaning of the comparisons. Changing a target after its recording does not change that record. Reading the final current target in place of an earlier record would be a different contact and can give a different answer. A known inverse law is not used to reconstruct the earlier targets for these comparisons.
 
-`ReturnTargetEvidence.swift` reads three private facts, each containing
-(paired echo bits, actual target value), from their addressed positions in
-the final recorded path. `AcquireReturnCoverage` then performs and records
-the three comparisons of their target fields through the existing finite
-equality clauses. A further recorded reading transmits only the echo bits
-and comparison bits. All private target records remain in the whole.
+`ReturnTargetEvidence.swift` reads three private facts, each containing (paired echo bits, actual target value), from their addressed positions in the final recorded path. `AcquireReturnCoverage` then performs and records the three comparisons of their target fields through the existing finite equality clauses. A further recorded reading transmits only the echo bits and comparison bits. All private target records remain in the whole.
 
-`ReturnCoverageAnswer.swift` supplies the `UnmatchedReturnAnswer` clause.
-Its input must actually carry three two-false echoes; this is a condition
-on the acquired data, not a supplied positive conclusion. Its fixed table
-reads the target-comparison bits and retains either the equality answer
-alone or both answers. `ApplyReturnCoverage` binds that reader to the
-actual transmitted record and records the result. The other echo branches
-are not newly reimplemented by this all-false clause.
+`ReturnCoverageAnswer.swift` supplies the `UnmatchedReturnAnswer` clause. Its input must actually carry three two-false echoes; this is a condition on the acquired data, not a supplied positive conclusion. Its fixed table reads the target-comparison bits and retains either the equality answer alone or both answers. `ApplyReturnCoverage` binds that reader to the actual transmitted record and records the result. The other echo branches are not newly reimplemented by this all-false clause.
 
-`ReturnCoverageCalibration.swift` records targets before the intervening
-changes in three actual paths. Targets 0,1,2 yield equality for originals
-3,3. A second path resets the target after its second comparison, giving
-0,1,0. Originals 2,2 and 2,3 then have identical transmitted facts and
-retain both answers. Their original echo bits alone also agree with the
-positive path; the newly acquired target relations distinguish its
-applicability.
+`ReturnCoverageCalibration.swift` records targets before the intervening changes in three actual paths. Targets 0,1,2 yield equality for originals 3,3. A second path resets the target after its second comparison, giving 0,1,0. Originals 2,2 and 2,3 then have identical transmitted facts and retain both answers. Their original echo bits alone also agree with the positive path; the newly acquired target relations distinguish its applicability.
 
-`ChangingReturnCoverage` uses two different non-injective generator tables:
-one sends every value to 2, the next sends every value to 1. Starting at
-0, this produces recorded targets 0,2,1 for originals 3,3. Their three
-acquired comparisons establish sufficient coverage. The complete visible
-fact is identical to the positive 0,1,2 path, and the same answer reader
-applies. Earlier values survive in the private records despite the local
-non-injectivity of these changes. The first generator action itself differs
-between the two paths and is not identified by that visible fact.
+`ChangingReturnCoverage` uses two different non-injective generator tables: one sends every value to 2, the next sends every value to 1. Starting at 0, this produces recorded targets 0,2,1 for originals 3,3. Their three acquired comparisons establish sufficient coverage. The complete visible fact is identical to the positive 0,1,2 path, and the same answer reader applies. Earlier values survive in the private records despite the local non-injectivity of these changes. The first generator action itself differs between the two paths and is not identified by that visible fact.
 
-The checks preserve arbitrary extra laboratory state, reject replacing an
-earlier target by the current one, and reject strengthening the repeated
-target observation to equality. The known values in these finite
-calibrations serve to construct and verify the actual acquisition paths;
-they are not parameters secretly passed into the receiving answer reader.
-The general implication is the exclusion argument above and applies to
-any generator preserving the stated acquisition relations. As in M64h,
-arbitrary `PredicateReading` conformances are not certified by
-sharing a name with the finite comparison clauses.
+The checks preserve arbitrary extra laboratory state, reject replacing an earlier target by the current one, and reject strengthening the repeated target observation to equality. The known values in these finite calibrations serve to construct and verify the actual acquisition paths; they are not parameters secretly passed into the receiving answer reader. The general implication is the exclusion argument above and applies to any generator preserving the stated acquisition relations. As in M64h, arbitrary `PredicateReading` conformances are not certified by sharing a name with the finite comparison clauses.
 
-There is a useful further reading of the positive branch. Its support
-consists of nine inequalities: the three targets are mutually different,
-and each original differs from every target. Within a four-value carrier
-these relations force the missing equality between the two originals.
-This suggests asking whether the same support can be acquired through
-individually uncalibrated local encodings, and how many inequality contacts
-are indispensable for such a forced equality. It does not assume the
-answer to either acquisition or minimality question.
+There is a useful further reading of the positive branch. Its support consists of nine inequalities: the three targets are mutually different, and each original differs from every target. Within a four-value carrier these relations force the missing equality between the two originals. This suggests asking whether the same support can be acquired through individually uncalibrated local encodings, and how many inequality contacts are indispensable for such a forced equality. It does not assume the answer to either acquisition or minimality question.
 
-**M64k (the least inequality support forcing an equality).**
-Let G be a finite simple graph of distinct variable roles, including a,b.
-An edge requires its two values to differ. Admit every assignment of its
-vertices to at most n values that satisfies these inequalities, where
-n≥1 is given. Require this class to be nonempty. There are no other pins,
-equations, predicates or hidden identifications of roles. How few edges
-can force a=b in every admitted assignment, even with auxiliary vertices?
+**M64k (the least inequality support forcing an equality).** Let G be a finite simple graph of distinct variable roles, including a,b. An edge requires its two values to differ. Admit every assignment of its vertices to at most n values that satisfies these inequalities, where n≥1 is given. Require this class to be nonempty. There are no other pins, equations, predicates or hidden identifications of roles. How few edges can force a=b in every admitted assignment, even with auxiliary vertices?
 
 The exact minimum is
 
     n(n+1)/2 − 1.
 
-For n=1 it is zero. For n≥2, a construction is the complete graph on
-n+1 roles with only edge ab removed. Its n−1 other roles are pairwise
-different; both a and b differ from all of them. Only one value remains
-for a and b. The assignment that merges a,b and otherwise uses distinct
-values witnesses nonemptiness.
+For n=1 it is zero. For n≥2, a construction is the complete graph on n+1 roles with only edge ab removed. Its n−1 other roles are pairwise different; both a and b differ from all of them. Only one value remains for a and b. The assignment that merges a,b and otherwise uses distinct values witnesses nonemptiness.
 
-For the lower bound, suppose G forces a=b and has an n-value assignment.
-Then ab is not an edge, and adding it produces a graph with no n-value
-assignment. Choose an inclusion-minimal subgraph H with that property.
-It contains ab, since every subgraph of G still has the original
-assignment. Every vertex of H has degree at least n: after deleting a
-vertex the remaining graph is n-colourable by minimality, and fewer than
-n neighbours would leave an available colour with which to restore it.
-Consequently H has at least n+1 vertices and at least n(n+1)/2 edges.
-All but ab belong to G. Auxiliary vertices therefore cannot lower the
-displayed bound.
+For the lower bound, suppose G forces a=b and has an n-value assignment. Then ab is not an edge, and adding it produces a graph with no n-value assignment. Choose an inclusion-minimal subgraph H with that property. It contains ab, since every subgraph of G still has the original assignment. Every vertex of H has degree at least n: after deleting a vertex the remaining graph is n-colourable by minimality, and fewer than n neighbours would leave an available colour with which to restore it. Consequently H has at least n+1 vertices and at least n(n+1)/2 edges. All but ab belong to G. Auxiliary vertices therefore cannot lower the displayed bound.
 
-Each edge in the attaining construction is essential. Delete any other
-edge uv, merge exactly u,v, and give all other roles distinct values.
-This is an n-value assignment preserving every retained inequality and
-having a≠b, because uv is not ab. The minimum concerns inequality
-relations, not physical duration or the number of arbitrary queries.
-Allowing stronger predicates, given equalities, or pre-identified roles
-changes the class to which the bound applies.
+Each edge in the attaining construction is essential. Delete any other edge uv, merge exactly u,v, and give all other roles distinct values. This is an n-value assignment preserving every retained inequality and having a≠b, because uv is not ab. The minimum concerns inequality relations, not physical duration or the number of arbitrary queries. Allowing stronger predicates, given equalities, or pre-identified roles changes the class to which the bound applies.
 
-These relations need not be read through one calibrated frame. For each
-edge e=uv let an unknown common function c_e act on both actual endpoint
-values. Acquiring c_e(u)≠c_e(v) establishes u≠v. No injectivity, known
-inverse, or agreement between different c_e is required. Even a binary
-output carrier suffices for every edge: any unequal pair can be separated
-by a suitable two-valued function. The receiver needs only the acquired
-contrast bit and its endpoint binding. It need not receive the source
-values, output coordinates or function tables.
+These relations need not be read through one calibrated frame. For each edge e=uv let an unknown common function c_e act on both actual endpoint values. Acquiring c_e(u)≠c_e(v) establishes u≠v. No injectivity, known inverse, or agreement between different c_e is required. Even a binary output carrier suffices for every edge: any unequal pair can be separated by a suitable two-valued function. The receiver needs only the acquired contrast bit and its endpoint binding. It need not receive the source values, output coordinates or function tables.
 
-The qualification "common" is within each edge, not across the network.
-The two images must be applications of the same function to the same
-recorded values that the adjoining edges use. Two maps in one container
-can give unequal images of one equal input. Conversely, equal images of
-a lossy common map do not establish equal inputs. Thus the raw TT and
-mismatched-echo rules of M64h cannot be applied to these encoded echoes.
-Here only acquired separations are used. Their common finite value bound
-is still a given, not a calibration inferred from those separations.
+The qualification "common" is within each edge, not across the network. The two images must be applications of the same function to the same recorded values that the adjoining edges use. Two maps in one container can give unequal images of one equal input. Conversely, equal images of a lossy common map do not establish equal inputs. Thus the raw TT and mismatched-echo rules of M64h cannot be applied to these encoded echoes. Here only acquired separations are used. Their common finite value bound is still a given, not a calibration inferred from those separations.
 
-For n=4 the attaining support is precisely M64j's nine inequalities on
-{a,b,t₀,t₁,t₂}. `EncodedSeparation.swift` reads all five roles from one
-actual node record and all edge tables from the resident resources. Each
-edge's two finite `Route` clauses read the same table field. Their binary
-images are compared through the existing bit-equality table. Nine such
-readings are joined at the same root and recorded by
-`AcquireRecordedNetwork`; the earlier source is retained beside the new fact.
-The positive all-separation clause of `UnmatchedReturnAnswer` is reused
-on this acquired record, without receiving the private nodes or tables.
+For n=4 the attaining support is precisely M64j's nine inequalities on {a,b,t₀,t₁,t₂}. `EncodedSeparation.swift` reads all five roles from one actual node record and all edge tables from the resident resources. Each edge's two finite `Route` clauses read the same table field. Their binary images are compared through the existing bit-equality table. Nine such readings are joined at the same root and recorded by `AcquireRecordedNetwork`; the earlier source is retained beside the new fact. The positive all-separation clause of `UnmatchedReturnAnswer` is reused on this acquired record, without receiving the private nodes or tables.
 
-`SeparationGraphCalibration.swift` obtains the positive node record from
-the previous actual resident-and-return path: originals 3,3 and targets
-0,1,2. Its nine functions are non-injective four-to-two tables. Some
-produce images (1,0), others (0,1); the common conclusion uses neither
-orientation. The actual nine comparison bits are all false and the
-recorded answer is equality. The finite type witnesses check this
-acquisition path; the general implication and its lower bound are the
-exclusion proofs above, not a compiler enumeration of arbitrary graphs.
+`SeparationGraphCalibration.swift` obtains the positive node record from the previous actual resident-and-return path: originals 3,3 and targets 0,1,2. Its nine functions are non-injective four-to-two tables. Some produce images (1,0), others (0,1); the common conclusion uses neither orientation. The actual nine comparison bits are all false and the recorded answer is equality. The finite type witnesses check this acquisition path; the general implication and its lower bound are the exclusion proofs above, not a compiler enumeration of arbitrary graphs.
 
-Two countermodels cover the two kinds of removable edge in this support.
-For a missing target edge, use originals 0,1 and targets 2,2,3. For a
-missing spoke, use originals 0,1 and targets 0,2,3. Separate binary
-functions acquire every remaining inequality. In each case the omitted
-relation cannot be supplied from the other eight; relabelling the roles
-covers the other edges of the same kind. A further check applies two
-different resident functions to the same actual node, obtains unequal
-images, and rejects transporting that image comparison as raw inequality.
-The five-value countermodel in M64j still defeats removal of the carrier
-bound. Losing the shared node binding would also change the graph itself.
+Two countermodels cover the two kinds of removable edge in this support. For a missing target edge, use originals 0,1 and targets 2,2,3. For a missing spoke, use originals 0,1 and targets 0,2,3. Separate binary functions acquire every remaining inequality. In each case the omitted relation cannot be supplied from the other eight; relabelling the roles covers the other edges of the same kind. A further check applies two different resident functions to the same actual node, obtains unequal images, and rejects transporting that image comparison as raw inequality. The five-value countermodel in M64j still defeats removal of the carrier bound. Losing the shared node binding would also change the graph itself.
 
-This differs from VC85's conflict graph for the number of calibration
-symbols: the present question is the minimum inequality support for one
-forced equality at a given capacity. It uses ordinary finite graph
-colouring and the elementary minimal-obstruction argument just proved;
-no priority claim is made. Nor does generic `PredicateReading` conformance
-establish the meaning of an arbitrary purported encoder. The static
-witnesses use the admitted projection, composition, record and finite
-table-reading clauses and their actual source bindings.
+This differs from VC85's conflict graph for the number of calibration symbols: the present question is the minimum inequality support for one forced equality at a given capacity. It uses ordinary finite graph colouring and the elementary minimal-obstruction argument just proved; no priority claim is made. Nor does generic `PredicateReading` conformance establish the meaning of an arbitrary purported encoder. The static witnesses use the admitted projection, composition, record and finite table-reading clauses and their actual source bindings.
 
-**M64l (apply the acquired agreement without identifying the frames).**
-The equality acquired in M64k can discharge M64g's comparison h(p)=k(p).
-Within its bijective, even-relative frame scope this establishes
+**M64l (apply the acquired agreement without identifying the frames).** The equality acquired in M64k can discharge M64g's comparison h(p)=k(p). Within its bijective, even-relative frame scope this establishes
 
     hWh⁻¹ = kWk⁻¹.
 
-This is an equality of actions on the entire four-point carrier, not only
-of their response at p. It does not identify h or k, or identify their
-common transported action if the output position itself was not revealed.
-An agent can invoke the available current W implementation through k,
-knowing that it implements the intended W through h. To execute this
-particular realization, the forward and inverse frame interfaces must be
-available and related as specified. Acquisition alone does not manufacture
-an inverse port, and agreement in a past trial does not establish arbitrary
-future covariance.
+This is an equality of actions on the entire four-point carrier, not only of their response at p. It does not identify h or k, or identify their common transported action if the output position itself was not revealed. An agent can invoke the available current W implementation through k, knowing that it implements the intended W through h. To execute this particular realization, the forward and inverse frame interfaces must be available and related as specified. Acquisition alone does not manufacture an inverse port, and agreement in a past trial does not establish arbitrary future covariance.
 
-`AcquiredFrameAction.swift` makes this use explicit for the distinct resident
-frame words h=ZWW and k=WZWW. Their prepared phase-1 probes both return 3.
-`ProbePairWitnessNodes` runs those actual probes and reads both resulting
-facts beside the three resident anchors. The nine non-injective encoding
-tables of M64k acquire the separation network at this new node record.
-The answer reader receives only that fact and its fixed answer resource.
-The alternative pair (WZWW,WWZWW) produces exactly the same receiving
-input through the same acquisition layout. Thus this positive evidence
-does not determine the two resident frame addresses. The older return
-layout has the same nine bits but a different recorded question expression;
-these two complete fact types are not falsely identified.
+`AcquiredFrameAction.swift` makes this use explicit for the distinct resident frame words h=ZWW and k=WZWW. Their prepared phase-1 probes both return 3. `ProbePairWitnessNodes` runs those actual probes and reads both resulting facts beside the three resident anchors. The nine non-injective encoding tables of M64k acquire the separation network at this new node record. The answer reader receives only that fact and its fixed answer resource. The alternative pair (WZWW,WWZWW) produces exactly the same receiving input through the same acquisition layout. Thus this positive evidence does not determine the two resident frame addresses. The older return layout has the same nine bits but a different recorded question expression; these two complete fact types are not falsely identified.
 
-For subsequent use, `AcquiredFrameContexts` reads each actual retained frame
-context from the final acquisition. `PrepareAcquiredFrame` reads that
-context and combines it with working data and a center already prepared
-beside the acquisition. An inverse-library selection at that same resident
-address, the actual W word, and a forward-library selection at that same
-address implement the framed action. Neither selection receives a recovered
-frame address from the equality decoder. The existing finite forward and
-inverse libraries supply their semantics and availability.
+For subsequent use, `AcquiredFrameContexts` reads each actual retained frame context from the final acquisition. `PrepareAcquiredFrame` reads that context and combines it with working data and a center already prepared beside the acquisition. An inverse-library selection at that same resident address, the actual W word, and a forward-library selection at that same address implement the framed action. Neither selection receives a recovered frame address from the equality decoder. The existing finite forward and inverse libraries supply their semantics and availability.
 
-`AcquiredFrameActions<A,B,C,D,R>` composes both alternatives from acquisition
-to the returned working boundary. For arbitrary payloads and additional R,
-both have the same input and output, with working result
+`AcquiredFrameActions<A,B,C,D,R>` composes both alternatives from acquisition to the returned working boundary. For arbitrary payloads and additional R, both have the same input and output, with working result
 
     (A,B,C,D) → (C,A,B,D).
 
-Both retain the entire acquired whole, including both frame contexts,
-the private node record, encoding resources, network fact and answer.
-The temporary working context returns to the value read from that whole;
-closing the working boundary keeps the original copy there. No new log
-of the different execution paths is part of this contract. Equality of
-the returned states is not an assertion that their histories or contact
-costs are equal, nor that this implementation is cost-optimal.
+Both retain the entire acquired whole, including both frame contexts, the private node record, encoding resources, network fact and answer. The temporary working context returns to the value read from that whole; closing the working boundary keeps the original copy there. No new log of the different execution paths is part of this contract. Equality of the returned states is not an assertion that their histories or contact costs are equal, nor that this implementation is cost-optimal.
 
-The same acquired frame agreement does not authorize every question.
-Replacing W with Z in these actual paths gives respectively
+The same acquired frame agreement does not authorize every question. Replacing W with Z in these actual paths gives respectively
 
     (C,D,A,B)   and   (B,A,D,C).
 
-Distinct payloads separate them. The checks reject treating those results
-as one, identifying the retained frame contexts, or selecting the other
-frame's inverse address at the current root. This applies the existing
-centralizer criterion to the newly acquired evidence; it is not a new
-claim about all uncalibrated interfaces. The concrete static acquisition
-and full symbolic actions supplement the general exclusion argument of
-M64k and group argument of M64g rather than replacing their stated scopes.
+Distinct payloads separate them. The checks reject treating those results as one, identifying the retained frame contexts, or selecting the other frame's inverse address at the current root. This applies the existing centralizer criterion to the newly acquired evidence; it is not a new claim about all uncalibrated interfaces. The concrete static acquisition and full symbolic actions supplement the general exclusion argument of M64k and group argument of M64g rather than replacing their stated scopes.
 
-**M64m (sparse contact comparisons can determine the whole intertwining).**
-Let D:X→X and C:Y→Y be permutations, each with one cycle of length l≥2
-and f fixed points, on complete finite carriers of size l+f. An unknown
-bijection h:X→Y is accessible through the following comparison at a chosen
-input x:
+**M64m (sparse contact comparisons can determine the whole intertwining).** Let D:X→X and C:Y→Y be permutations, each with one cycle of length l≥2 and f fixed points, on complete finite carriers of size l+f. An unknown bijection h:X→Y is accessible through the following comparison at a chosen input x:
 
     B_h(x) = [h(Dx)=C(hx)].
 
-The receiving strategy sees this bit, not the endpoint coordinates. D,C,h
-are the same functions across these contacts. The question is whether
-Ch=hD everywhere. No parity of h, chosen output frame or implementation
-of h⁻¹ is assumed. This is a different access model from M64d's point
-oracle for k⁻¹h. In M64l one may take C=kWk⁻¹ and D=W when that actual
-current C interface is available.
+The receiving strategy sees this bit, not the endpoint coordinates. D,C,h are the same functions across these contacts. The question is whether Ch=hD everywhere. No parity of h, chosen output frame or implementation of h⁻¹ is assumed. This is a different access model from M64d's point oracle for k⁻¹h. In M64l one may take C=kWk⁻¹ and D=W when that actual current C interface is available.
 
-The exact worst-case number of such comparisons, including adaptive
-strategies, is
+The exact worst-case number of such comparisons, including adaptive strategies, is
 
     m(l,0) = l−2,
     m(l,f) = max(l−2, ceil(l/2))  when f>0.
 
-For the identity action the number is zero. Thus a three-cycle with a
-fixed point needs two comparisons, whereas a three-cycle on the entire
-carrier needs one. A cycle of length at least four needs l−2 comparisons
-even if arbitrarily many additional fixed points are present. These count
-comparison outcomes, not primitive invocations or physical time.
+For the identity action the number is zero. Thus a three-cycle with a fixed point needs two comparisons, whereas a three-cycle on the entire carrier needs one. A cycle of length at least four needs l−2 comparisons even if arbitrarily many additional fixed points are present. These count comparison outcomes, not primitive invocations or physical time.
 
-For l≥4, leave two nonadjacent cycle edges untested and test the other
-l−2. The tested graph consists of two directed paths, each containing at
-least two vertices. If every tested square holds, a vertex incident with
-one of these edges must map into C's cycle: injectivity of h makes the
-two endpoint images different, so their C step cannot be fixed. Hence
-the images of all l cycle vertices exhaust C's cycle. Their two path
-images are complementary directed segments. C must join their ends
-crosswise. Joining either segment back to its own beginning would make
-a shorter C cycle, contrary to the given cycle type. These forced joins
-are exactly the two omitted equations. Bijection then maps the remaining
-f vertices to the remaining fixed points, where the equations hold too.
+For l≥4, leave two nonadjacent cycle edges untested and test the other l−2. The tested graph consists of two directed paths, each containing at least two vertices. If every tested square holds, a vertex incident with one of these edges must map into C's cycle: injectivity of h makes the two endpoint images different, so their C step cannot be fixed. Hence the images of all l cycle vertices exhaust C's cycle. Their two path images are complementary directed segments. C must join their ends crosswise. Joining either segment back to its own beginning would make a shorter C cycle, contrary to the given cycle type. These forced joins are exactly the two omitted equations. Bijection then maps the remaining f vertices to the remaining fixed points, where the equations hold too.
 
-When f=0 the same two-segment proof permits a singleton path: there are
-no fixed target points into which its image could disappear. It gives
-l−2 tests for all l≥2, including no test for a two-cycle. When f>0 and
-l=2 or 3, testing l−1 consecutive edges covers the entire active cycle;
-its C image closes by the given cycle length. These constructions give
-the displayed upper bounds, and any false comparison already rejects
-global intertwining.
+When f=0 the same two-segment proof permits a singleton path: there are no fixed target points into which its image could disappear. It gives l−2 tests for all l≥2, including no test for a two-cycle. When f>0 and l=2 or 3, testing l−1 consecutive edges covers the entire active cycle; its C image closes by the given cycle length. These constructions give the displayed upper bounds, and any false comparison already rejects global intertwining.
 
-For the lower bound, follow a strategy on a fully compatible h. Relabel
-the output carrier by this h solely for the proof, so C=D and that h is
-identity. If at most l−3 cycle edges have been queried, at least three
-directed path components remain, with isolated vertices allowed. Embed
-these paths around the target cycle in a different cyclic order while
-preserving each path's internal order. This produces another bijection
-that satisfies every queried cycle equation but fails an omitted one.
-Keep every fixed point in place, so any queried fixed-point equations
-also hold. The entire all-true transcript remains the same. Adaptive
-choice therefore cannot reduce the worst-case bound below l−2.
+For the lower bound, follow a strategy on a fully compatible h. Relabel the output carrier by this h solely for the proof, so C=D and that h is identity. If at most l−3 cycle edges have been queried, at least three directed path components remain, with isolated vertices allowed. Embed these paths around the target cycle in a different cyclic order while preserving each path's internal order. This produces another bijection that satisfies every queried cycle equation but fails an omitted one. Keep every fixed point in place, so any queried fixed-point equations also hold. The entire all-true transcript remains the same. Adaptive choice therefore cannot reduce the worst-case bound below l−2.
 
-The two small cases with f>0 need the remaining lower bounds. With a
-two-cycle, no tests cannot exclude exchanging a cycle point with a fixed
-point. With a three-cycle, one cycle test leaves its third vertex
-unconstrained; exchanging that vertex with a fixed point preserves the
-test and breaks intertwining. If the sole test is instead at a fixed
-point, keep all fixed points in place and reverse the active three-cycle.
-It passes that test and again breaks intertwining. This completes the
-lower bounds, including the adaptive all-true branches.
+The two small cases with f>0 need the remaining lower bounds. With a two-cycle, no tests cannot exclude exchanging a cycle point with a fixed point. With a three-cycle, one cycle test leaves its third vertex unconstrained; exchanging that vertex with a fixed point preserves the test and breaks intertwining. If the sole test is instead at a fixed point, keep all fixed points in place and reverse the active three-cycle. It passes that test and again breaks intertwining. This completes the lower bounds, including the adaptive all-true branches.
 
-The placement condition is substantive. For l≥4 and f>0, a minimum-size
-test set must use l−2 cycle edges; using fewer leaves the preceding
-three-component ambiguity. Its two omitted edges must be nonadjacent.
-If they are adjacent, their common vertex is isolated in the tested graph
-and can be exchanged with a fixed point without changing any test.
-Conversely the nonadjacent placement was proved sufficient above. Thus
-the minimum count alone does not certify a particular test arrangement.
+The placement condition is substantive. For l≥4 and f>0, a minimum-size test set must use l−2 cycle edges; using fewer leaves the preceding three-component ambiguity. Its two omitted edges must be nonadjacent. If they are adjacent, their common vertex is isolated in the tested graph and can be exchanged with a fixed point without changing any test. Conversely the nonadjacent placement was proved sufficient above. Thus the minimum count alone does not certify a particular test arrangement.
 
-For D=(0 2 3) with fixed point 1, test at x=0 and Dx=2. Three recorded
-images h(0),h(2),h(3) and the two actual C applications to the first two
-images supply the two comparisons. The middle image can be reused from
-its record. If both pass, the third cycle relation and fixed-point
-relation follow. Identity h,C=D passes. The odd map h=(0 1), with
-C=(1 2 3), also passes. By contrast h=(1 3),C=D passes the first square
-and fails the second. Parity is neither assumed nor identified by the
-positive evidence in this experiment.
+For D=(0 2 3) with fixed point 1, test at x=0 and Dx=2. Three recorded images h(0),h(2),h(3) and the two actual C applications to the first two images supply the two comparisons. The middle image can be reused from its record. If both pass, the third cycle relation and fixed-point relation follow. Identity h,C=D passes. The odd map h=(0 1), with C=(1 2 3), also passes. By contrast h=(1 3),C=D passes the first square and fails the second. Parity is neither assumed nor identified by the positive evidence in this experiment.
 
-`ContactCycle.swift` constructs these three paths using existing finite
-table clauses. `ThreeCycleImages` reads h at the actual x,Dx,D²x using
-the same resident D and h fields and records the image triple.
-`TwoCycleSquares` reads the retained C field, applies it to the first two
-recorded images, compares with the next two, and records only the two
-bits for the receiver. The original source and all three private images
-remain. Identity and the odd example give exactly the same final fact
-despite different private images. In this finite witness the equality
-comparisons use the given four-value comparison clauses; acquiring their
-meaning through further unknown encodings is a separate obligation,
-for which M64k supplies one sufficient construction.
+`ContactCycle.swift` constructs these three paths using existing finite table clauses. `ThreeCycleImages` reads h at the actual x,Dx,D²x using the same resident D and h fields and records the image triple. `TwoCycleSquares` reads the retained C field, applies it to the first two recorded images, compares with the next two, and records only the two bits for the receiver. The original source and all three private images remain. Identity and the odd example give exactly the same final fact despite different private images. In this finite witness the equality comparisons use the given four-value comparison clauses; acquiring their meaning through further unknown encodings is a separate obligation, for which M64k supplies one sufficient construction.
 
-The file also gives a symbolic five-position countermodel to using two
-adjacent tests for a four-cycle plus one fixed point. Its three center
-exchanges produce the four-cycle; exchanging the untested cycle position
-with the fixed position preserves the two tested fields but changes a
-different field. The generic equations use actual composed source fields,
-and the check supplies a concrete distinct pair to reject full equality.
-This is the placement failure just proved, not a failure of the optimum.
+The file also gives a symbolic five-position countermodel to using two adjacent tests for a four-cycle plus one fixed point. Its three center exchanges produce the four-cycle; exchanging the untested cycle position with the fixed position preserves the two tested fields but changes a different field. The generic equations use actual composed source fields, and the check supplies a concrete distinct pair to reject full equality. This is the placement failure just proved, not a failure of the optimum.
 
-The general counts and minimal placements are mathematical proofs above.
-The static checks cover the displayed acquisition and countermodels, not
-an enumeration of arbitrary l or a proof that any Pair denotes a cycle.
-The given cycle type and bijection scope remain necessary restrictions.
-Two tests cost more than two primitive calls: in the three-cycle protocol
-they use three h readings, two C applications, input preparation and
-comparison. No efficiency comparison with M64d's different oracle follows
-from comparing their displayed numbers. Nor does a finite successful
-history establish these function laws for an unrestricted changing source.
+The general counts and minimal placements are mathematical proofs above. The static checks cover the displayed acquisition and countermodels, not an enumeration of arbitrary l or a proof that any Pair denotes a cycle. The given cycle type and bijection scope remain necessary restrictions. Two tests cost more than two primitive calls: in the three-cycle protocol they use three h readings, two C applications, input preparation and comparison. No efficiency comparison with M64d's different oracle follows from comparing their displayed numbers. Nor does a finite successful history establish these function laws for an unrestricted changing source.
 
-**If the passage h may merge values.** Keep D,C and the bit-only contact
-interface, but admit every total h:X→Y rather than only bijections. The
-exact worst-case count is now l−1+f for l≥2. Test l−1 consecutive active
-edges and every fixed input. The active path forces
-h(Dʲx)=Cʲh(x) for j=0,...,l−1; Cˡ=id closes its last edge even when h
-collapses the cycle to a fixed point. The fixed-input tests supply the
-remaining equations separately.
+**If the passage h may merge values.** Keep D,C and the bit-only contact interface, but admit every total h:X→Y rather than only bijections. The exact worst-case count is now l−1+f for l≥2. Test l−1 consecutive active edges and every fixed input. The active path forces h(Dʲx)=Cʲh(x) for j=0,...,l−1; Cˡ=id closes its last edge even when h collapses the cycle to a fixed point. The fixed-input tests supply the remaining equations separately.
 
-Every fixed-input test is necessary: otherwise change only that input's
-image from a C-fixed point to a cycle point. None of the other equations
-sees the change. If at most l−2 active edges are tested, their graph has
-at least two path components. Map each component along C but give them
-different phase offsets. All tested edges hold and an omitted join fails.
-Injectivity no longer excludes the overlap. This also preserves the
-adaptive all-true transcript, proving the lower bound.
+Every fixed-input test is necessary: otherwise change only that input's image from a C-fixed point to a cycle point. None of the other equations sees the change. If at most l−2 active edges are tested, their graph has at least two path components. Map each component along C but give them different phase offsets. All tested edges hold and an omitted join fails. Injectivity no longer excludes the overlap. This also preserves the adaptive all-true transcript, proving the lower bound.
 
-In the four-point three-cycle example, h=(0,0,2,3) as an image table gives
-the same two positive cycle bits as identity. At the untested fixed input
-1 it instead gives h(D1)=0 and C(h1)=2. The extra comparison at 1 is needed
-in this larger function class. Conversely h=(1,1,1,1) intertwines everywhere
-because 1 is C-fixed, while retaining no distinction between inputs.
-Both tables are represented in `ContactCycleCalibration`. Their two-bit
-records equal the earlier positive record; direct table composition
-exhibits the first map's failed fixed-point equation. That third comparison
-is not claimed to have been acquired by the two-test construction.
+In the four-point three-cycle example, h=(0,0,2,3) as an image table gives the same two positive cycle bits as identity. At the untested fixed input 1 it instead gives h(D1)=0 and C(h1)=2. The extra comparison at 1 is needed in this larger function class. Conversely h=(1,1,1,1) intertwines everywhere because 1 is C-fixed, while retaining no distinction between inputs. Both tables are represented in `ContactCycleCalibration`. Their two-bit records equal the earlier positive record; direct table composition exhibits the first map's failed fixed-point equation. That third comparison is not claimed to have been acquired by the two-test construction.
 
-An additional acquired contrast can exclude such total collapse. With
-l=3,f=1, two active comparisons, the fixed-input comparison and
-h(x)≠h(Dx) force the three active images around C's three-cycle, while
-the remaining input maps to its unique fixed point. Thus bijectivity of h
-then follows instead of being assumed. This is a sufficient joint
-certificate, not a claimed optimum for combined equality and contrast
-queries. It also separates two legitimate questions: preserving the
-requested action can permit a lossy passage, whereas faithfully retaining
-the source's distinctions needs its own acquired relation.
+An additional acquired contrast can exclude such total collapse. With l=3,f=1, two active comparisons, the fixed-input comparison and h(x)≠h(Dx) force the three active images around C's three-cycle, while the remaining input maps to its unique fixed point. Thus bijectivity of h then follows instead of being assumed. This is a sufficient joint certificate, not a claimed optimum for combined equality and contrast queries. It also separates two legitimate questions: preserving the requested action can permit a lossy passage, whereas faithfully retaining the source's distinctions needs its own acquired relation.
 
-More generally, once Ch=hD is established, the remaining maps can be
-classified without inspecting a table of all functions. One chosen active
-input determines its entire cycle's images; its image may be any of the
-l+f target points since Cˡ fixes them all. Each fixed input independently
-maps to a C-fixed point. Thus for f>0 there are (l+f)fᶠ intertwiners,
-of which lf! are bijections; for f=0 there are exactly l, all bijective.
-The invertible part recovers the centralizer count when the two carriers
-are identified, while the other maps express genuine losses of distinction.
+More generally, once Ch=hD is established, the remaining maps can be classified without inspecting a table of all functions. One chosen active input determines its entire cycle's images; its image may be any of the l+f target points since Cˡ fixes them all. Each fixed input independently maps to a C-fixed point. Thus for f>0 there are (l+f)fᶠ intertwiners, of which lf! are bijections; for f=0 there are exactly l, all bijective. The invertible part recovers the centralizer count when the two carriers are identified, while the other maps express genuine losses of distinction.
 
-For f>0, bijectivity within this established intertwining family is
-equivalent to two relations: one active contrast h(x)≠h(Dx), and pairwise
-distinct images of all f fixed inputs. The first forces the active images
-to exhaust C's cycle, the second exhausts its fixed set. Their images are
-disjoint, so h is a bijection. Conversely every bijection satisfies them.
-If the new observations are only pairwise equality tests of h images,
-the exact worst-case number needed for this further question is
-1+f(f−1)/2; it is zero when f=0. The displayed tests attain it. Each
-fixed-input pair must be compared: starting at a bijective h, merging
-just that pair changes none of the other pairwise answers. Tests only
-between fixed inputs still allow the active cycle to collapse to a fixed
-point, so at least one additional test is necessary. This counts further
-contrasts after full intertwining was established; it does not claim
-optimality for jointly acquiring all these relations from scratch.
+For f>0, bijectivity within this established intertwining family is equivalent to two relations: one active contrast h(x)≠h(Dx), and pairwise distinct images of all f fixed inputs. The first forces the active images to exhaust C's cycle, the second exhausts its fixed set. Their images are disjoint, so h is a bijection. Conversely every bijection satisfies them. If the new observations are only pairwise equality tests of h images, the exact worst-case number needed for this further question is 1+f(f−1)/2; it is zero when f=0. The displayed tests attain it. Each fixed-input pair must be compared: starting at a bijective h, merging just that pair changes none of the other pairwise answers. Tests only between fixed inputs still allow the active cycle to collapse to a fixed point, so at least one additional test is necessary. This counts further contrasts after full intertwining was established; it does not claim optimality for jointly acquiring all these relations from scratch.
 
-**M64n (two joint contacts forbid every partial merger).** Let X consist
-of four distinct source positions 0,1,2,3, with W=(0 2 3) fixing 1 and
-Z=(0 1)(2 3). Let h:X→Y be a total passage into an arbitrary carrier Y.
-The target carrier need not be finite or exhausted by these images. Two
-common, possibly partial target functions u,v satisfy the eight contact equations
+**M64n (two joint contacts forbid every partial merger).** Let X consist of four distinct source positions 0,1,2,3, with W=(0 2 3) fixing 1 and Z=(0 1)(2 3). Let h:X→Y be a total passage into an arbitrary carrier Y. The target carrier need not be finite or exhausted by these images. Two common, possibly partial target functions u,v satisfy the eight contact equations
 
     h(Wx)=u(hx),    h(Zx)=v(hx)    for every x∈X.
 
-The supplied equations include admission of these applications. They
-already make u and v defined on h(X); no availability elsewhere in Y is
-required. The passage h is specified on the four source positions,
-not as a total operation on every possible source in the containing whole.
+The supplied equations include admission of these applications. They already make u and v defined on h(X); no availability elsewhere in Y is required. The passage h is specified on the four source positions, not as a total operation on every possible source in the containing whole.
 
-Neither h nor the target functions are assumed injective. No target
-cycle type, inverse, parity or global group action is given. Then h is
-either constant or injective. In particular, one established contrast
-h(a)≠h(b) forces all four images to be distinct.
+Neither h nor the target functions are assumed injective. No target cycle type, inverse, parity or global group action is given. Then h is either constant or injective. In particular, one established contrast h(a)≠h(b) forces all four images to be distinct.
 
-Here is a direct proof from the contacts. If h identifies the fixed
-position 1 with any position in W's three-cycle, apply the common u
-repeatedly. The image of 1 remains the same, while the other position visits
-all three cycle positions. All four images therefore coincide. If h
-instead identifies two positions in that cycle, the same propagation
-under W makes h(0)=h(2)=h(3). Applying the common v to h(0)=h(2) then gives
-h(1)=h(3), so again all four coincide. Every proposed pairwise merger
-belongs to one of these cases. The acquired contrast excludes their
-common conclusion; no merger remains.
+Here is a direct proof from the contacts. If h identifies the fixed position 1 with any position in W's three-cycle, apply the common u repeatedly. The image of 1 remains the same, while the other position visits all three cycle positions. All four images therefore coincide. If h instead identifies two positions in that cycle, the same propagation under W makes h(0)=h(2)=h(3). Applying the common v to h(0)=h(2) then gives h(1)=h(3), so again all four coincide. Every proposed pairwise merger belongs to one of these cases. The acquired contrast excludes their common conclusion; no merger remains.
 
-This is a restriction on possible implementations, not a finite search
-through Y. More target states cannot repair a partial merger while
-preserving the same h and common functions. For example, W alone admits
-h=(a,b,a,a), with a≠b and u identity on the two images. But Z would require
-v(a)=b from source position 0 and v(a)=a from source position 2. Those
-are the same argument of the same function. M71 rules out their joint
-realization under the retained contrast. An additional input or a changed
-reading can resolve the demand only by changing this contract.
+This is a restriction on possible implementations, not a finite search through Y. More target states cannot repair a partial merger while preserving the same h and common functions. For example, W alone admits h=(a,b,a,a), with a≠b and u identity on the two images. But Z would require v(a)=b from source position 0 and v(a)=a from source position 2. Those are the same argument of the same function. M71 rules out their joint realization under the retained contrast. An additional input or a changed reading can resolve the demand only by changing this contract.
 
-Both contacts are substantive. Z alone admits h=(a,a,b,b), with v identity.
-It cannot distinguish the two source positions within either swapped
-pair. Thus each of these interfaces separately permits a nonconstant
-lossy passage; their joint structure forbids every such passage. In fact
-two is the minimum number of source permutation contacts with this
-property on four positions. A single nontransitive permutation with two
-or three orbits admits the orbit-label quotient. Identity admits any
-two-block quotient. A transitive permutation is a four-cycle and admits
-the alternating two-position quotient. In each case a common target
-function realizes a rank-two or rank-three passage. W and Z attain the
-two-contact bound. This minimum concerns whole permutation contacts,
-not the number of point comparisons needed to establish their equations.
+Both contacts are substantive. Z alone admits h=(a,a,b,b), with v identity. It cannot distinguish the two source positions within either swapped pair. Thus each of these interfaces separately permits a nonconstant lossy passage; their joint structure forbids every such passage. In fact two is the minimum number of source permutation contacts with this property on four positions. A single nontransitive permutation with two or three orbits admits the orbit-label quotient. Identity admits any two-block quotient. A transitive permutation is a four-cycle and admits the alternating two-position quotient. In each case a common target function realizes a rank-two or rank-three passage. W and Z attain the two-contact bound. This minimum concerns whole permutation contacts, not the number of point comparisons needed to establish their equations.
 
-The equations already make h(X) closed under u and v and give u³=id and
-v²=id there, even before a contrast is supplied. Observable return does
-not by itself recover the source: the fully collapsed image also returns.
-After a contrast rules out collapse, h is a bijection from X onto h(X),
-and these restrictions are faithfully hWh⁻¹ and hZh⁻¹. Every source word
-relation is preserved, and conversely no new equality between source
-actions appears on that image. The functions may be undefined or
-noninjective elsewhere in Y. The correspondence h⁻¹ exists on the image, but its
-description or an executable inverse port has not thereby been acquired.
+The equations already make h(X) closed under u and v and give u³=id and v²=id there, even before a contrast is supplied. Observable return does not by itself recover the source: the fully collapsed image also returns. After a contrast rules out collapse, h is a bijection from X onto h(X), and these restrictions are faithfully hWh⁻¹ and hZh⁻¹. Every source word relation is preserved, and conversely no new equality between source actions appears on that image. The functions may be undefined or noninjective elsewhere in Y. The correspondence h⁻¹ exists on the image, but its description or an executable inverse port has not thereby been acquired.
 
-The proof's general mechanism is that equality of h images must propagate
-under every shared contact: the kernel of h is an invariant equivalence
-relation on X. Here the explicit pair propagation leaves only equality
-and total equivalence. In group-action terminology this is a primitive
-action; W and Z generate the familiar four-position A₄ action. See the
-[GAP reference on primitive actions and invariant partitions, §§41.10–11](https://gap-system.github.io/gap/doc/ref/chap41_mj.html)
-for the existing terminology. This comparison is not an extra
-premise or a novelty claim. The two-case proof above does not require a
-classification of groups.
+The proof's general mechanism is that equality of h images must propagate under every shared contact: the kernel of h is an invariant equivalence relation on X. Here the explicit pair propagation leaves only equality and total equivalence. In group-action terminology this is a primitive action; W and Z generate the familiar four-position A₄ action. See the [GAP reference on primitive actions and invariant partitions, §§41.10–11](https://gap-system.github.io/gap/doc/ref/chap41_mj.html) for the existing terminology. This comparison is not an extra premise or a novelty claim. The two-case proof above does not require a classification of groups.
 
-`JointContactRigidity.swift` presents this implication directly in types.
-`TwoContactImage` contains four node types and exactly the eight edge
-equalities. The two target contacts are the actual Left and Right
-projections on a node. Equality of nodes therefore gives equality of
-their projected successors without postulating extensionality for
-arbitrary named `PredicateReading` instances. Six generic constructors
-`ContactMerge01` through `ContactMerge23` each accept just one possible
-merger in addition to the edge relations and derive equality of all four
-images. No constructor asks the caller for the total-collapse conclusion.
-Faithful and fully collapsed graph presentations both conform. The
-consumer also derives W³ and Z² returns from the same actual fields.
+`JointContactRigidity.swift` presents this implication directly in types. `TwoContactImage` contains four node types and exactly the eight edge equalities. The two target contacts are the actual Left and Right projections on a node. Equality of nodes therefore gives equality of their projected successors without postulating extensionality for arbitrary named `PredicateReading` instances. Six generic constructors `ContactMerge01` through `ContactMerge23` each accept just one possible merger in addition to the edge relations and derive equality of all four images. No constructor asks the caller for the total-collapse conclusion. Faithful and fully collapsed graph presentations both conform. The consumer also derives W³ and Z² returns from the same actual fields.
 
-These recursive nominal declarations present a finite contact graph;
-they do not claim to construct runtime recursive values. The proof does
-not depend on an execution or enumeration. The separate quotient
-constructions use existing W and Z words on arbitrary symbolic contents;
-a positive constructor distinction makes their shared-input obstruction
-concrete. A same-node projection retains arbitrary additional context K
-while still deriving one answer. The negative checks reject an actual
-partial graph conformance, the conflicting required answers and an
-attempt to recover two source positions with one fixed decoder answer.
+These recursive nominal declarations present a finite contact graph; they do not claim to construct runtime recursive values. The proof does not depend on an execution or enumeration. The separate quotient constructions use existing W and Z words on arbitrary symbolic contents; a positive constructor distinction makes their shared-input obstruction concrete. A same-node projection retains arbitrary additional context K while still deriving one answer. The negative checks reject an actual partial graph conformance, the conflicting required answers and an attempt to recover two source positions with one fixed decoder answer.
 
-This result removes M64m's given bijection and target cycle-class premises
-by establishing a different, joint contact contract. It does not obtain
-those eight equations from the bare existence of a distinction. They
-must themselves be established at their common source and target
-addresses. Nor does an observed finite history prove their unrestricted
-future persistence. The next acquisition question is which subset of
-actual contact and contrast comparisons suffices to derive this faithful
-passage when the target functions have no prescribed cycle structure.
+This result removes M64m's given bijection and target cycle-class premises by establishing a different, joint contact contract. It does not obtain those eight equations from the bare existence of a distinction. They must themselves be established at their common source and target addresses. Nor does an observed finite history prove their unrestricted future persistence. The next acquisition question is which subset of actual contact and contrast comparisons suffices to derive this faithful passage when the target functions have no prescribed cycle structure.
 
-**The response alphabet can follow from the joint contact law.** A
-finite list of encountered replies does not itself bound the unobserved
-replies of an arbitrary instrument. However, a bound need not always be
-postulated separately. Consider a total reading C:X×X→Y on these four
-positions, with arbitrary output carrier Y. Supply the two actual laws
+**The response alphabet can follow from the joint contact law.** A finite list of encountered replies does not itself bound the unobserved replies of an arbitrary instrument. However, a bound need not always be postulated separately. Consider a total reading C:X×X→Y on these four positions, with arbitrary output carrier Y. Supply the two actual laws
 
     C(Wx,Wy)=C(x,y),    C(Zx,Zy)=C(x,y),    for all x,y∈X.
 
-The same reading C and the same output comparison are retained. These
-are invariance equations for joint input changes, not an assumed
-Boolean answer and not a new name for the question C is meant to answer.
-They force exactly this form, for some output values a,b:
+The same reading C and the same output comparison are retained. These are invariance equations for joint input changes, not an assumed Boolean answer and not a new name for the question C is meant to answer. They force exactly this form, for some output values a,b:
 
     C(x,y)=a when x=y;     C(x,y)=b when x≠y.
 
-Consequently C has at most two output values. If it is nonconstant,
-a≠b and it is an exact code of equality, with its polarity still free.
-If constant, it supplies no comparison. No upper bound on Y or on the
-rest of the whole was used.
+Consequently C has at most two output values. If it is nonconstant, a≠b and it is an exact code of equality, with its polarity still free. If constant, it supplies no comparison. No upper bound on Y or on the rest of the whole was used.
 
-**Proof by the two joint orbits.** W and Z act transitively on X: W
-cycles 0,2,3 and Z connects that orbit to 1. The stabilizer of 1 contains
-W, which cycles every other position. Therefore the joint action is
-transitive on ordered unequal pairs: first move their first member to
-1, then use a power of W to move the second to any other desired
-position. Mapping both a source pair and a target pair to (1,0),
-then reversing the latter map, joins any two unequal pairs.
-Diagonal pairs likewise form one orbit. There are exactly two orbits,
-the diagonal and its complement. The two displayed generator equations
-extend to their finite words, so C is constant on each orbit. This gives
-the entire table without enumerating its possible output assignments. ∎
+**Proof by the two joint orbits.** W and Z act transitively on X: W cycles 0,2,3 and Z connects that orbit to 1. The stabilizer of 1 contains W, which cycles every other position. Therefore the joint action is transitive on ordered unequal pairs: first move their first member to 1, then use a power of W to move the second to any other desired position. Mapping both a source pair and a target pair to (1,0), then reversing the latter map, joins any two unequal pairs. Diagonal pairs likewise form one orbit. There are exactly two orbits, the diagonal and its complement. The two displayed generator equations extend to their finite words, so C is constant on each orbit. This gives the entire table without enumerating its possible output assignments. ∎
 
-The mechanism is general: on any carrier of at least two elements, an
-action transitive on ordered unequal pairs has these same two joint
-orbits. An invariant unary reading is constant by transitivity. A
-nonconstant invariant pair reading can exist and has exactly the two
-values just described. This identifies the first nontrivial relational
-arity under that action. It does not claim that every physical carrier
-has such a symmetry, or that every distinction divides the whole into
-two regions. Extra structure can support other invariant questions.
+The mechanism is general: on any carrier of at least two elements, an action transitive on ordered unequal pairs has these same two joint orbits. An invariant unary reading is constant by transitivity. A nonconstant invariant pair reading can exist and has exactly the two values just described. This identifies the first nontrivial relational arity under that action. It does not claim that every physical carrier has such a symmetry, or that every distinction divides the whole into two regions. Extra structure can support other invariant questions.
 
-**Joint does not mean independent.** If C must also be unchanged when W
-acts only on its first argument, then
+**Joint does not mean independent.** If C must also be unchanged when W acts only on its first argument, then
 
     a=C(0,0)=C(W0,0)=C(2,0)=b.
 
-The readout collapses. More generally, independent transitive changes
-of both arguments make all ordered pairs one orbit. A comparison can
-ignore common changes of its frame while remaining sensitive to a change
-of the relation between its two inputs. Requiring invariance under both
-independent frame changes would remove the relation being measured.
-The commonness of the transformation is thus a positive condition of
-comparison, beyond an economy in calibrating two unrelated devices.
+The readout collapses. More generally, independent transitive changes of both arguments make all ordered pairs one orbit. A comparison can ignore common changes of its frame while remaining sensitive to a change of the relation between its two inputs. Requiring invariance under both independent frame changes would remove the relation being measured. The commonness of the transformation is thus a positive condition of comparison, beyond an economy in calibrating two unrelated devices.
 
-**Coordinate covariance alone gives no such bound.** For any C and any
-g, define a new reading C^g(u,v)=C(g⁻¹u,g⁻¹v). Then automatically
+**Coordinate covariance alone gives no such bound.** For any C and any g, define a new reading C^g(u,v)=C(g⁻¹u,g⁻¹v). Then automatically
 
     C^g(gx,gy)=C(x,y).
 
-Here the readout changes with the coordinates. This identity holds even
-for C(x,y)=x, whose range has four values and which does not compare its
-arguments. It does not establish the fixed-readout equations above.
-A law saying that actual joint contacts leave the same answer unchanged
-is stronger than a consistent relabeling of a description.
+Here the readout changes with the coordinates. This identity holds even for C(x,y)=x, whose range has four values and which does not compare its arguments. It does not establish the fixed-readout equations above. A law saying that actual joint contacts leave the same answer unchanged is stronger than a consistent relabeling of a description.
 
-The source projection is also a complete obstruction to manufacturing
-the missing relation by further joint probes. From (x,x) and (x,y), with
-x≠y, every common word g gives the same projection gx. Every adaptive
-history of those replies remains identical. Averaging, orbit aggregation
-or further processing cannot recover equality from that access. The
-nonconstancy of an arbitrary pair reading is therefore insufficient;
-it must either have the joint invariant law or be supplemented by a
-contact which actually reaches the missing relation.
+The source projection is also a complete obstruction to manufacturing the missing relation by further joint probes. From (x,x) and (x,y), with x≠y, every common word g gives the same projection gx. Every adaptive history of those replies remains identical. Averaging, orbit aggregation or further processing cannot recover equality from that access. The nonconstancy of an arbitrary pair reading is therefore insufficient; it must either have the joint invariant law or be supplemented by a contact which actually reaches the missing relation.
 
-**The law identifies meaning without choosing signal names.** A
-nonconstant C meeting the equations already has only two possible
-answers, even if the output carrier contains arbitrarily many other
-forms. To decide which answer means equality, an actual self-contact
-can acquire C(r,r), for any available r. A later response C(x,y) then
-answers equality by comparison with that retained signal. This requires
-the same C, or an established transport of its two response classes.
-It does not require knowing r's coordinate or naming the two signals.
-A self-contact is additional available access, not two written copies
-of a symbol declared to be one physical operation.
+**The law identifies meaning without choosing signal names.** A nonconstant C meeting the equations already has only two possible answers, even if the output carrier contains arbitrarily many other forms. To decide which answer means equality, an actual self-contact can acquire C(r,r), for any available r. A later response C(x,y) then answers equality by comparison with that retained signal. This requires the same C, or an established transport of its two response classes. It does not require knowing r's coordinate or naming the two signals. A self-contact is additional available access, not two written copies of a symbol declared to be one physical operation.
 
-Conversely, the polarity cannot be inferred just from these invariant
-laws. Interchanging the two output values preserves both equations and
-nonconstancy. A single unanchored response can therefore come from equal
-inputs under one code or unequal inputs under its exchanged code. The
-meaning is determined up to that remaining correspondence; an actual
-reference response can determine the correspondence needed for use.
+Conversely, the polarity cannot be inferred just from these invariant laws. Interchanging the two output values preserves both equations and nonconstancy. A single unanchored response can therefore come from equal inputs under one code or unequal inputs under its exchanged code. The meaning is determined up to that remaining correspondence; an actual reference response can determine the correspondence needed for use.
 
-**Static construction from the current rows.** `PairReadoutViews` builds
-the two joint pullbacks by applying `CoarseContactViews` to every row
-and then to the row positions. Both use the already constructed W,Z
-words; `FirstW` moves only the rows. `JointInvariantPairReadout` accepts
-arbitrary rows and the two whole-table equalities. It derives the table
+**Static construction from the current rows.** `PairReadoutViews` builds the two joint pullbacks by applying `CoarseContactViews` to every row and then to the row positions. Both use the already constructed W,Z words; `FirstW` moves only the rows. `JointInvariantPairReadout` accepts arbitrary rows and the two whole-table equalities. It derives the table
 
     (a,b,b,b), (b,a,b,b), (b,b,a,b), (b,b,b,a),
 
-where a,b are the actual first diagonal and first off-diagonal fields.
-It neither asks for a Boolean range nor repeats the table form among
-its premises. `TwoOrbitReadout` constructs that form with two arbitrary
-fields and the positive consumer derives both joint invariances.
-`IndependentReadoutCollapse` takes the additional actual one-sided
-invariance and derives a=b, rather than demanding their equality again.
+where a,b are the actual first diagonal and first off-diagonal fields. It neither asks for a Boolean range nor repeats the table form among its premises. `TwoOrbitReadout` constructs that form with two arbitrary fields and the positive consumer derives both joint invariances. `IndependentReadoutCollapse` takes the additional actual one-sided invariance and derives a=b, rather than demanding their equality again.
 
-Five consumer declarations check the two free codes, the derived fields,
-the changed self-reading under one-sided movement, a compensated
-reframing of the four-valued projection, and the admitted constant
-boundary. Two refusals reject independent invariance with distinct codes
-and treating the covariant projection as a fixed invariant comparator.
-The arbitrary finite table and its field implications are checked;
-physical availability and agreement of a real instrument with that
-complete table remain separate relations. No finite sample of an
-unspecified hidden continuation scope has been called this structural
-proof; VC107–108 distinguish those access conditions.
+Five consumer declarations check the two free codes, the derived fields, the changed self-reading under one-sided movement, a compensated reframing of the four-valued projection, and the admitted constant boundary. Two refusals reject independent invariance with distinct codes and treating the covariant projection as a fixed invariant comparator. The arbitrary finite table and its field implications are checked; physical availability and agreement of a real instrument with that complete table remain separate relations. No finite sample of an unspecified hidden continuation scope has been called this structural proof; VC107–108 distinguish those access conditions.
 
-This does not replace M64n's earlier faithful-or-constant passage result.
-There the target can have nontrivial induced actions. Here the target
-answer is invariant and the source is a pair, with two joint orbits.
-Nor is it a claim of priority over the elementary orbit classification.
-Its use in VI is to establish the question and finite response form from
-actual transformations of the reading. The following coarse-sensor
-construction supplies such an equality answer by a performed sequence,
-instead of assuming that one primitive instrument already provides it.
+This does not replace M64n's earlier faithful-or-constant passage result. There the target can have nontrivial induced actions. Here the target answer is invariant and the source is a pair, with two joint orbits. Nor is it a claim of priority over the elementary orbit classification. Its use in VI is to establish the question and finite response form from actual transformations of the reading. The following coarse-sensor construction supplies such an equality answer by a performed sequence, instead of assuming that one primitive instrument already provides it.
 
-**A coarse common sensor can supply exact comparison through actions.**
-The passage in M64n must admit autonomous target contacts. That requirement
-can be dropped when the participant may act on the original positions
-before comparing their coarse readings. Retain X={0,1,2,3} and the
-available reversible source contacts W=(0 2 3), Z=(0 1)(2 3). Let
-E:X→Y be any fixed nonconstant sensor. Its output need not identify a
-source position, and no sensor partition or output labels are supplied.
-Nonconstancy concerns this four-position carrier, not a contrast somewhere
-else in the whole. It may be grounded by an independently retained contrast;
-its coordinate location is not an extra input to the interface below.
+**A coarse common sensor can supply exact comparison through actions.** The passage in M64n must admit autonomous target contacts. That requirement can be dropped when the participant may act on the original positions before comparing their coarse readings. Retain X={0,1,2,3} and the available reversible source contacts W=(0 2 3), Z=(0 1)(2 3). Let E:X→Y be any fixed nonconstant sensor. Its output need not identify a source position, and no sensor partition or output labels are supplied. Nonconstancy concerns this four-position carrier, not a contrast somewhere else in the whole. It may be grounded by an independently retained contrast; its coordinate location is not an extra input to the interface below.
 
-Two initial positions x,y are unknown. A comparison round chooses an
-available word g, applies that same g to both originals, and acquires
-only the bit
+Two initial positions x,y are unknown. A comparison round chooses an available word g, applies that same g to both originals, and acquires only the bit
 
     b_g = [E(gx)=E(gy)].
 
-This is comparison of coarse sensor outputs, not an instrument already
-answering x=y. The same E is retained across both sides and all rounds.
-The participant receives neither x,y nor the sensor's table. The task is
-to decide equality of their original position values for every x,y and
-every admitted nonconstant E.
+This is comparison of coarse sensor outputs, not an instrument already answering x=y. The same E is retained across both sides and all rounds. The participant receives neither x,y nor the sensor's table. The task is to decide equality of their original position values for every x,y and every admitted nonconstant E.
 
-The following four rounds are sufficient, and four is the exact worst-case
-minimum even with adaptive word choices in this agreement-bit interface:
+The following four rounds are sufficient, and four is the exact worst-case minimum even with adaptive word choices in this agreement-bit interface:
 
     F={id,W,Z,Z∘W}.
 
-Here Z∘W performs W and then Z. Return true exactly when all four bits
-are true. One false bit already proves x≠y by functionality of the common
-sensor and contact. Four true bits prove x=y by the joint relations below.
-The count is of comparison rounds; each may contain multiple movement,
-return and reading operations. It is not four primitive actuator calls.
+Here Z∘W performs W and then Z. Return true exactly when all four bits are true. One false bit already proves x≠y by functionality of the common sensor and contact. Four true bits prove x=y by the joint relations below. The count is of comparison rounds; each may contain multiple movement, return and reading operations. It is not four primitive actuator calls.
 
-**The comparison graph gives the criterion.** More generally, for a
-specified finite X and a word family F, associate to each distinct x,y
-the undirected graph on X with edges {gx,gy}, g∈F. All acquired bits
-are true exactly when E is constant along every edge, hence on each
-connected component. Therefore all nonconstant sensors decide equality
-by these bits if and only if every such graph is connected. If a graph
-is disconnected, give one component one sensor value and its complement
-a distinct value. The sensor is nonconstant while this unequal pair
-passes every comparison. This also proves necessity without choosing
-a pre-calibrated sensor or enumerating all its possible tables.
+**The comparison graph gives the criterion.** More generally, for a specified finite X and a word family F, associate to each distinct x,y the undirected graph on X with edges {gx,gy}, g∈F. All acquired bits are true exactly when E is constant along every edge, hence on each connected component. Therefore all nonconstant sensors decide equality by these bits if and only if every such graph is connected. If a graph is disconnected, give one component one sensor value and its complement a distinct value. The sensor is nonconstant while this unequal pair passes every comparison. This also proves necessity without choosing a pre-calibrated sensor or enumerating all its possible tables.
 
-For the four words above the six graphs have these edges, retaining
-repetition because four rounds were actually specified:
+For the four words above the six graphs have these edges, retaining repetition because four rounds were actually specified:
 
 | original pair | id | W | Z | Z∘W |
 | --- | --- | --- | --- | --- |
@@ -3452,160 +1897,55 @@ repetition because four rounds were actually specified:
 | 13 | 13 | 01 | 02 | 01 |
 | 23 | 23 | 03 | 23 | 12 |
 
-Each row connects all four positions. Its four equalities thus force
-E(0)=E(1)=E(2)=E(3), contrary to the supplied contrast. The cases x=y
-always pass. This proves the exact answer for the complete declared
-family while the sensor itself can remain unidentified and lossy.
+Each row connects all four positions. Its four equalities thus force E(0)=E(1)=E(2)=E(3), contrary to the supplied contrast. The cases x=y always pass. This proves the exact answer for the complete declared family while the sensor itself can remain unidentified and lossy.
 
-**Why every three-round alternative fails.** This lower bound permits
-any three even permutations, so it also covers every three words built
-from W,Z and their inverses. Consider the three partitions of X into
-two unordered pairs:
+**Why every three-round alternative fails.** This lower bound permits any three even permutations, so it also covers every three words built from W,Z and their inverses. Consider the three partitions of X into two unordered pairs:
 
     {01,23}, {02,13}, {03,12}.
 
-Even permutations act on these three partitions by a cyclic group of
-order three. The kernel consists of identity and the three double
-exchanges. A nonidentity double exchange fixes each of its two exchanged
-pairs as an unordered pair.
+Even permutations act on these three partitions by a cyclic group of order three. The kernel consists of identity and the three double exchanges. A nonidentity double exchange fixes each of its two exchanged pairs as an unordered pair.
 
-If two chosen words induce the same permutation of the partitions,
-their relative permutation lies in that kernel and fixes some pair e.
-Consequently those two words give the same edge on e. With at most two
-distinct edges, the three-round graph on four vertices is disconnected.
+If two chosen words induce the same permutation of the partitions, their relative permutation lies in that kernel and fixes some pair e. Consequently those two words give the same edge on e. With at most two distinct edges, the three-round graph on four vertices is disconnected.
 
-Otherwise the three induced permutations are different. For each e,
-its three image edges belong to three different partitions. No two
-such edges are disjoint, since disjoint edges on four vertices belong
-to one partition. Three pairwise intersecting edges are either a star
-or a triangle. For the complementary pair of positions, every image edge is
-the complement of the corresponding edge for e. Complementing all
-three changes a star into a triangle and a triangle into a star.
-One of these two graphs is therefore disconnected. A nonconstant
-binary sensor constant on that graph's components supplies an unequal
-pair with all three bits true.
+Otherwise the three induced permutations are different. For each e, its three image edges belong to three different partitions. No two such edges are disjoint, since disjoint edges on four vertices belong to one partition. Three pairwise intersecting edges are either a star or a triangle. For the complementary pair of positions, every image edge is the complement of the corresponding edge for e. Complementing all three changes a star into a triangle and a triangle into a star. One of these two graphs is therefore disconnected. A nonconstant binary sensor constant on that graph's components supplies an unequal pair with all three bits true.
 
-For an adaptive procedure, follow the branch consisting only of true
-bits. Equal originals make that branch possible with any nonconstant
-sensor. The first three chosen words are then fixed by the available
-history. The argument just given supplies unequal originals and an
-admitted sensor with exactly the same history. No exact procedure can
-finish on that branch by the third round. Four fixed rounds attain
-the lower bound. This concerns the interface exposing agreement bits
-only. Revealing individual sensor values, an anchored calibration
-contrast, the initial positions, or further controls changes the
-information available to the policy and needs its own bound.
+For an adaptive procedure, follow the branch consisting only of true bits. Equal originals make that branch possible with any nonconstant sensor. The first three chosen words are then fixed by the available history. The argument just given supplies unequal originals and an admitted sensor with exactly the same history. No exact procedure can finish on that branch by the third round. Four fixed rounds attain the lower bound. This concerns the interface exposing agreement bits only. Revealing individual sensor values, an anchored calibration contrast, the initial positions, or further controls changes the information available to the policy and needs its own bound.
 
-**One changing whole can support acquisition internally.** Keep (E,x,y,H), where
-H retains earlier observations. A round moves x,y by g, appends the
-actual comparison bit, and applies g⁻¹ to both positions. E and H are
-retained during movement. The original positions return; the newly
-acquired bit remains. No copy of an unknown initial position and no
-external reset are needed. Inverses are available from W⁻¹=W² and
-Z⁻¹=Z. Different rounds can thus test the same original question while
-the complete recorded history grows. The declared comparison operation
-still has to implement the relation of the common sensor outputs.
-Neither its physical availability nor the sensor's nonconstancy is
-created by calling the returning bit a certificate.
+**One changing whole can support acquisition internally.** Keep (E,x,y,H), where H retains earlier observations. A round moves x,y by g, appends the actual comparison bit, and applies g⁻¹ to both positions. E and H are retained during movement. The original positions return; the newly acquired bit remains. No copy of an unknown initial position and no external reset are needed. Inverses are available from W⁻¹=W² and Z⁻¹=Z. Different rounds can thus test the same original question while the complete recorded history grows. The declared comparison operation still has to implement the relation of the common sensor outputs. Neither its physical availability nor the sensor's nonconstancy is created by calling the returning bit a certificate.
 
-The contrast premise cannot be omitted. A constant E makes every pair
-pass every word. The common-sensor premise is independent. For initial
-pair 01 choose the successive four sensor tables
+The contrast premise cannot be omitted. A constant E makes every pair pass every word. The common-sensor premise is independent. For initial pair 01 choose the successive four sensor tables
 
     (a,a,b,a), (b,a,a,a), (a,a,b,a), (a,b,a,a),  a≠b.
 
-Use these respectively at id,W,Z,Z∘W. Every acquired comparison is
-(a,a), although each sensor is nonconstant and the initial positions
-differ. It is their being the same actual E throughout the inquiry
-that allows equalities from different contacts to be joined. A common
-apparatus name or common container does not establish that relation.
+Use these respectively at id,W,Z,Z∘W. Every acquired comparison is (a,a), although each sensor is nonconstant and the initial positions differ. It is their being the same actual E throughout the inquiry that allows equalities from different contacts to be joined. A common apparatus name or common container does not establish that relation.
 
-**Static witness.** `CoarseContactViews` uses the existing phase-word
-catalogue for the actual sensor pullbacks. Its I, WW, Z and ZWW push
-words give the respective tables
+**Static witness.** `CoarseContactViews` uses the existing phase-word catalogue for the actual sensor pullbacks. Its I, WW, Z and ZWW push words give the respective tables
 
     (a,b,c,d), (c,b,d,a), (b,a,d,c), (d,a,c,b).
 
-The difference between chronological push words and the displayed
-source-action composition is checked explicitly. Six generic
-constructors `CoarseAgreement01` through `CoarseAgreement23` take
-the four appropriate coarse equalities and derive total sensor
-collapse. They do not ask the caller for that collapse or for source
-equality. An actual nonconstant sensor rules out each unequal source
-pair through these implications. Arbitrary hidden parts beyond X do
-not repair a failed implication while the same contacts, readings and
-contrast remain in place.
+The difference between chronological push words and the displayed source-action composition is checked explicitly. Six generic constructors `CoarseAgreement01` through `CoarseAgreement23` take the four appropriate coarse equalities and derive total sensor collapse. They do not ask the caller for that collapse or for source equality. An actual nonconstant sensor rules out each unequal source pair through these implications. Arbitrary hidden parts beyond X do not repair a failed implication while the same contacts, readings and contrast remain in place.
 
-Five consumer declarations check the word meanings, the accepted
-constant-sensor boundary, three true comparisons with the last value
-still free, the final distinguishing comparison, and the changing-sensor
-counterexample. Two refusals reject the four-agreement premise on a
-nonconstant counterexample and identification of readings from different
-sensor tables. These are field and word proofs. The agreement-bit
-acquisition model and the optimality argument are stated above; the
-Swift file does not claim to implement a physical comparator or an
-arbitrary policy interpreter.
+Five consumer declarations check the word meanings, the accepted constant-sensor boundary, three true comparisons with the last value still free, the final distinguishing comparison, and the changing-sensor counterexample. Two refusals reject the four-agreement premise on a nonconstant counterexample and identification of readings from different sensor tables. These are field and word proofs. The agreement-bit acquisition model and the optimality argument are stated above; the Swift file does not claim to implement a physical comparator or an arbitrary policy interpreter.
 
-M64h/i weaken the needed knowledge of the forward and return channels
-while retaining local comparisons. This construction instead upgrades
-a nontrivial coarse comparison by available common source actions.
-It does not require an autonomous action on a sensor output: E may
-merge states whose later readings differ. The graph argument is an
-instance of invariant-relation reasoning; no general priority over
-observability or permutation-action results is asserted.
+M64h/i weaken the needed knowledge of the forward and return channels while retaining local comparisons. This construction instead upgrades a nontrivial coarse comparison by available common source actions. It does not require an autonomous action on a sensor output: E may merge states whose later readings differ. The graph argument is an instance of invariant-relation reasoning; no general priority over observability or permutation-action results is asserted.
 
-For The Cut, the useful conclusion is constructive: full recognition
-of each form need not be a primitive capacity of a witness. An actual
-contrast and jointly available contacts can force an exact comparison.
-The contrast alone does not supply those contacts. Equality of the
-represented position values also does not identify two experienced
-occurrences or establish feeling. Those are different relations of
-the source, not additional meanings of the same final true bit.
+For The Cut, the useful conclusion is constructive: full recognition of each form need not be a primitive capacity of a witness. An actual contrast and jointly available contacts can force an exact comparison. The contrast alone does not supply those contacts. Equality of the represented position values also does not identify two experienced occurrences or establish feeling. Those are different relations of the source, not additional meanings of the same final true bit.
 
-**The output polarity need not be known in advance.** The preceding
-construction knew which bit meant agreement. Now retain the same two
-unknown originals, common source actions and fixed sensor, but expose
-only c(b_g), where c is one fixed unknown bijection from the two Boolean
-answers to two distinguishable signal values. Its polarity is not given.
-There is no self-comparison, known-answer reference, individual sensor
-value or disclosed coordinate of a calibration contrast. Signals can
-still be compared with one another. Removing their interpretation does
-not remove the participant's capacity to distinguish the signals.
+**The output polarity need not be known in advance.** The preceding construction knew which bit meant agreement. Now retain the same two unknown originals, common source actions and fixed sensor, but expose only c(b_g), where c is one fixed unknown bijection from the two Boolean answers to two distinguishable signal values. Its polarity is not given. There is no self-comparison, known-answer reference, individual sensor value or disclosed coordinate of a calibration contrast. Signals can still be compared with one another. Removing their interpretation does not remove the participant's capacity to distinguish the signals.
 
-Assume 2≤|E(X)|≤r, for an integer r≥2. This upper bound is an additional
-relation of the sensor. One actual contrast establishes nonconstancy;
-it does not establish two-valuedness or any other upper bound.
+Assume 2≤|E(X)|≤r, for an integer r≥2. This upper bound is an additional relation of the sensor. One actual contrast establishes nonconstancy; it does not establish two-valuedness or any other upper bound.
 
-For a nonempty finite word family F and arbitrary finite X, an exact
-equality decoder for every sensor and code in this family exists exactly
-when, for every unequal original pair, its comparison graph Γ satisfies
+For a nonempty finite word family F and arbitrary finite X, an exact equality decoder for every sensor and code in this family exists exactly when, for every unequal original pair, its comparison graph Γ satisfies
 
     Γ is connected, and χ(Γ)>r.
 
-Here χ is the minimum number of colors in a proper vertex coloring.
-Under these conditions the decoder is particularly simple: the originals
-are equal exactly when all acquired signals are identical.
+Here χ is the minimum number of colors in a proper vertex coloring. Under these conditions the decoder is particularly simple: the originals are equal exactly when all acquired signals are identical.
 
-Indeed, equal originals give only true bits, hence a constant encoded
-history. For unequal originals, all true bits would make E constant on
-every connected component. Connectivity and nonconstancy exclude this.
-All false bits would make the sensor values a proper coloring with at
-most r colors. The chromatic condition excludes this as well. There must
-therefore be both kinds of bit, and the common bijection preserves that
-nonuniformity. No choice of the unknown polarity changes the answer.
+Indeed, equal originals give only true bits, hence a constant encoded history. For unequal originals, all true bits would make E constant on every connected component. Connectivity and nonconstancy exclude this. All false bits would make the sensor values a proper coloring with at most r colors. The chromatic condition excludes this as well. There must therefore be both kinds of bit, and the common bijection preserves that nonuniformity. No choice of the unknown polarity changes the answer.
 
-Conversely, a disconnected graph admits a nonconstant binary sensor
-constant on each component, giving only true bits for unequal originals.
-If χ(Γ)≤r, a proper coloring gives only false bits. Since F is nonempty
-and its actions are permutations, Γ has an edge and this coloring is
-nonconstant. In either case choose the unknown code so that this constant
-history equals the constant history of equal originals with an admitted
-code. No decoder of those signals can distinguish the two realizations.
-This necessity concerns any decoder, not just the proposed uniformity
-rule. It is a finite graph proof, not a test of sampled sensor tables.
+Conversely, a disconnected graph admits a nonconstant binary sensor constant on each component, giving only true bits for unequal originals. If χ(Γ)≤r, a proper coloring gives only false bits. Since F is nonempty and its actions are permutations, Γ has an edge and this coloring is nonconstant. In either case choose the unknown code so that this constant history equals the constant history of equal originals with an admitted code. No decoder of those signals can distinguish the two realizations. This necessity concerns any decoder, not just the proposed uniformity rule. It is a finite graph proof, not a test of sampled sensor tables.
 
-**Five rounds for a binary sensor.** On the four positions with W,Z,
-add W² to the preceding four words. The resulting rows are:
+**Five rounds for a binary sensor.** On the four positions with W,Z, add W² to the preceding four words. The resulting rows are:
 
 | original pair | id | W | Z | Z∘W | W² |
 | --- | --- | --- | --- | --- | --- |
@@ -3616,449 +1956,119 @@ add W² to the preceding four words. The resulting rows are:
 | 13 | 13 | 01 | 02 | 01 | 12 |
 | 23 | 23 | 03 | 23 | 12 | 02 |
 
-Each row is connected and contains a triangle: respectively 013, 023,
-023, 012, 012, 023. No triangle has a proper binary coloring. Five
-fixed rounds therefore suffice for every nonconstant binary sensor,
-without acquiring its table or the output polarity.
+Each row is connected and contains a triangle: respectively 013, 023, 023, 012, 012, 023. No triangle has a proper binary coloring. Five fixed rounds therefore suffice for every nonconstant binary sensor, without acquiring its table or the output polarity.
 
-Four rounds cannot suffice. The even action on the three partitions
-into pairs has three possible values. Among four chosen words, two
-have the same value. Their relative action is identity or a double
-exchange and fixes some unordered pair. On that input pair the two
-words give a repeated edge, so there are at most three distinct edges.
-A connected graph on four vertices with at most three edges is a tree,
-hence bipartite; a disconnected graph fails the other required condition.
-Thus some unequal pair admits a constant encoded history.
+Four rounds cannot suffice. The even action on the three partitions into pairs has three possible values. Among four chosen words, two have the same value. Their relative action is identity or a double exchange and fixes some unordered pair. On that input pair the two words give a repeated edge, so there are at most three distinct edges. A connected graph on four vertices with at most three edges is a tree, hence bipartite; a disconnected graph fails the other required condition. Thus some unequal pair admits a constant encoded history.
 
-For adaptivity follow one constant signal s, a possible history for equal
-originals with c(true)=s. The words chosen along that history are fixed.
-For at most four words the preceding argument supplies an unequal pair
-and a sensor giving uniformly true or uniformly false answers. Choose
-its fixed code to map that answer to s. It then follows exactly the same
-adaptive branch. Consequently five is the exact worst-case round count,
-not just the length of one successful schedule.
+For adaptivity follow one constant signal s, a possible history for equal originals with c(true)=s. The words chosen along that history are fixed. For at most four words the preceding argument supplies an unequal pair and a sensor giving uniformly true or uniformly false answers. Choose its fixed code to map that answer to s. It then follows exactly the same adaptive branch. Consequently five is the exact worst-case round count, not just the length of one successful schedule.
 
-**Nine rounds when three sensor levels are admitted.** A graph on four
-vertices has chromatic number greater than three exactly when it is K4.
-If an edge is missing, its endpoints can share a color and the other two
-vertices use separate colors. Thus every unequal pair must visit all
-six possible output edges.
+**Nine rounds when three sensor levels are admitted.** A graph on four vertices has chromatic number greater than three exactly when it is K4. If an edge is missing, its endpoints can share a color and the other two vertices use separate colors. Thus every unequal pair must visit all six possible output edges.
 
-Let V={id,(01)(23),(02)(13),(03)(12)}. It is the kernel of the action on
-the three pair partitions and has three cosets in A4. For a fixed edge
-e, its stabilizer in A4 consists of identity and the double exchange
-which exchanges e and its complementary pair. The map g↦g(e) therefore
-has exactly two elements in each fiber; those two lie in one V-coset.
-Omit one element from each of the three V-cosets. No entire fiber is
-omitted, so the remaining nine actions carry every e to all six edges.
+Let V={id,(01)(23),(02)(13),(03)(12)}. It is the kernel of the action on the three pair partitions and has three cosets in A4. For a fixed edge e, its stabilizer in A4 consists of identity and the double exchange which exchanges e and its complementary pair. The map g↦g(e) therefore has exactly two elements in each fiber; those two lie in one V-coset. Omit one element from each of the three V-cosets. No entire fiber is omitted, so the remaining nine actions carry every e to all six edges.
 
-In particular, omit {id,W,W²}. The remaining nine actions are exactly
-the catalogue words containing Z, in chronological notation:
+In particular, omit {id,W,W²}. The remaining nine actions are exactly the catalogue words containing Z, in chronological notation:
 
     Z, ZW, ZWW, WZ, WZW, WZWW, WWZ, WWZW, WWZWW.
 
-The set is inverse-closed: its omitted subgroup is inverse-closed.
-Thus using the catalogue's push tables or the corresponding source
-pullbacks gives the same set of nine actions. This resolves direction
-without treating an individual word and its inverse as identical.
+The set is inverse-closed: its omitted subgroup is inverse-closed. Thus using the catalogue's push tables or the corresponding source pullbacks gives the same set of nine actions. This resolves direction without treating an individual word and its inverse as identical.
 
-For the lower bound, any set of at most eight even actions omits at
-least four of the twelve. Two omitted elements u,v lie in one V-coset.
-Their relative nonidentity double exchange fixes some edge e. The pair
-{u,v} is the entire fiber carrying e to u(e). The tested graph for e
-therefore lacks that edge and admits a proper coloring with at most
-three colors. This gives only false bits. Repeated words add no edges.
-Along a constant-signal adaptive branch the same omitted-fiber argument
-applies to its chosen words; choosing c(false)=s matches equal originals
-with c(true)=s. Nine is the exact worst-case count in this interface.
+For the lower bound, any set of at most eight even actions omits at least four of the twelve. Two omitted elements u,v lie in one V-coset. Their relative nonidentity double exchange fixes some edge e. The pair {u,v} is the entire fiber carrying e to u(e). The tested graph for e therefore lacks that edge and admits a proper coloring with at most three colors. This gives only false bits. Repeated words add no edges. Along a constant-signal adaptive branch the same omitted-fiber argument applies to its chosen words; choosing c(false)=s matches equal originals with c(true)=s. Nine is the exact worst-case count in this interface.
 
-**An admitted injective sensor changes possibility itself.** If four
-sensor levels are allowed, take an injective E. Every permutation gives
-true for equal originals and false for unequal originals. Opposite
-unknown codes make their entire signal histories identical. This remains
-so after every available word, under adaptive choices, and for arbitrarily
-long histories. It even survives adding more source permutations. The
-obstruction is not an insufficient finite search: this access cannot
-separate the two realizations at all.
+**An admitted injective sensor changes possibility itself.** If four sensor levels are allowed, take an injective E. Every permutation gives true for equal originals and false for unequal originals. Opposite unknown codes make their entire signal histories identical. This remains so after every available word, under adaptive choices, and for arbitrarily long histories. It even survives adding more source permutations. The obstruction is not an insufficient finite search: this access cannot separate the two realizations at all.
 
-The known capacity bound is doing positive work. It forces a merger on
-a graph which cannot be properly colored by that many sensor values.
-This is not a claim that discarding accessible information improves an
-answer. Individual values were never supplied, and the source family
-with a known capacity bound is more restricted. An upper bound on a
-sensor is also not a bound on the size of the whole or a claim that
-reality itself has only two or three values.
+The known capacity bound is doing positive work. It forces a merger on a graph which cannot be properly colored by that many sensor values. This is not a claim that discarding accessible information improves an answer. Individual values were never supplied, and the source family with a known capacity bound is more restricted. An upper bound on a sensor is also not a bound on the size of the whole or a claim that reality itself has only two or three values.
 
-**One added kind of contact removes that impossibility.** Suppose the
-interface additionally admits an actual self-comparison, passed through
-the same fixed unknown code. Its answer identifies c(true), without
-identifying E or any original position. Follow it by the four source
-comparisons above. Five rounds now suffice for every nonconstant E,
-with no capacity upper bound. This is a new available relation, not a
-free semantic label attached to one of the old signals.
+**One added kind of contact removes that impossibility.** Suppose the interface additionally admits an actual self-comparison, passed through the same fixed unknown code. Its answer identifies c(true), without identifying E or any original position. Follow it by the four source comparisons above. Five rounds now suffice for every nonconstant E, with no capacity upper bound. This is a new available relation, not a free semantic label attached to one of the old signals.
 
-Five is also necessary in this augmented interface. Follow the constant
-signal c(true). If a procedure makes a self-comparison within four total
-rounds, it has at most three comparisons of the unknown originals.
-Their graph is disconnected for some pair by the preceding three-round
-lower bound, so a nonconstant sensor makes every one of those answers
-true as well. If it makes no self-comparison, the four-round binary
-counterexample still belongs to the admitted family. Either way an
-unequal pair shares the equal pair's history. A fifth round is required.
-Thus a new contact can replace a nine-round indirect inquiry, or turn
-an impossible inquiry into a five-round one, while retaining the same
-unknown sensor. Its physical availability must be established separately.
+Five is also necessary in this augmented interface. Follow the constant signal c(true). If a procedure makes a self-comparison within four total rounds, it has at most three comparisons of the unknown originals. Their graph is disconnected for some pair by the preceding three-round lower bound, so a nonconstant sensor makes every one of those answers true as well. If it makes no self-comparison, the four-round binary counterexample still belongs to the admitted family. Either way an unequal pair shares the equal pair's history. A fifth round is required. Thus a new contact can replace a nine-round indirect inquiry, or turn an impossible inquiry into a five-round one, while retaining the same unknown sensor. Its physical availability must be established separately.
 
-**Static boundary and reuse.** `FiveContactTriangles` extracts the six
-actual triangles from `CoarseContactViews` and the existing W² table.
-`TriangularContactCalibration` derives equality of the two markers from
-three successive reversals which close. It reuses `OddContactCalibration`
-by inserting a back-and-forth edge into the triangle. Equality is a
-conclusion, not an extra requirement. In a genuine binary alphabet,
-unequal neighboring colors determine opposite marker orientations, so
-this construction witnesses the obstruction to three unequal edges.
-Arbitrary Pair conformances are not assumed to exhaust that alphabet.
+**Static boundary and reuse.** `FiveContactTriangles` extracts the six actual triangles from `CoarseContactViews` and the existing W² table. `TriangularContactCalibration` derives equality of the two markers from three successive reversals which close. It reuses `OddContactCalibration` by inserting a back-and-forth edge into the triangle. Equality is a conclusion, not an extra requirement. In a genuine binary alphabet, unequal neighboring colors determine opposite marker orientations, so this construction witnesses the obstruction to three unequal edges. Arbitrary Pair conformances are not assumed to exhaust that alphabet.
 
-The earlier six connected-graph constructors supply the all-true
-obstruction. Four new consumer declarations check the triangles, their
-collapsed boundary, an actual four-round all-opposite example, and its
-fifth equal reading. Two refusals exclude closing three reversals with
-distinct markers and retaining the old opposite pair at the fifth read.
-The general coloring criterion, the nine-round fiber bound and adaptive
-lower bounds are mathematical proofs above. They are not represented
-as generic Swift claims about all colorings or all policies.
+The earlier six connected-graph constructors supply the all-true obstruction. Four new consumer declarations check the triangles, their collapsed boundary, an actual four-round all-opposite example, and its fifth equal reading. Two refusals exclude closing three reversals with distinct markers and retaining the old opposite pair at the fifth read. The general coloring criterion, the nine-round fiber bound and adaptive lower bounds are mathematical proofs above. They are not represented as generic Swift claims about all colorings or all policies.
 
-The round may retain (E,c,x,y,H), move both positions, record the actual
-encoded signal and restore the positions through the inverse word.
-Neither E nor c changes between the joined readings; H keeps the new
-record. A changing code can make unequal bits look uniform, just as
-changing E defeated the preceding construction. The available distinction
-between signals is therefore still an actual premise. What has been
-removed is prior knowledge of their meaning, in the precise interfaces
-and families just proved sufficient.
+The round may retain (E,c,x,y,H), move both positions, record the actual encoded signal and restore the positions through the inverse word. Neither E nor c changes between the joined readings; H keeps the new record. A changing code can make unequal bits look uniform, just as changing E defeated the preceding construction. The available distinction between signals is therefore still an actual premise. What has been removed is prior knowledge of their meaning, in the precise interfaces and families just proved sufficient.
 
-**Complete pair readings need not cover the relation of a triple.** The
-joint W,Z action has the same orbits on X and X² as all permutations of
-X. That agreement does not extend to X³. Its triple orbits are:
+**Complete pair readings need not cover the relation of a triple.** The joint W,Z action has the same orbits on X and X² as all permutations of X. That agreement does not extend to X³. Its triple orbits are:
 
 * all three entries equal;
 * exactly two equal, with each of the three possible singleton positions;
 * all three different, with two possible orientations.
 
-There are six orbits, whereas the full permutation action has five.
-To establish the last split, complete a distinct ordered triple (x,y,z)
-by the unique missing fourth position r. Relative to one ordered reference,
-the resulting four-position permutation is even or odd. An even common
-action preserves that sign. Two completions of the same sign are connected
-by their relative even permutation. An odd common action exchanges the
-two classes. Their names are conventional; the distinction between the
-two A4-orbits is not removed by changing those names together.
+There are six orbits, whereas the full permutation action has five. To establish the last split, complete a distinct ordered triple (x,y,z) by the unique missing fourth position r. Relative to one ordered reference, the resulting four-position permutation is even or odd. An even common action preserves that sign. Two completions of the same sign are connected by their relative even permutation. An odd common action exchanges the two classes. Their names are conventional; the distinction between the two A4-orbits is not removed by changing those names together.
 
-The repeated-entry cases have the same orbits under both groups. Once
-a map between their at most two used values is fixed, there are at least
-two unused positions. Exchanging those unused positions changes the parity
-of its extension without changing the tuple. An even extension therefore
-always exists. This also proves directly why pair readings cannot see
-the additional distinction.
+The repeated-entry cases have the same orbits under both groups. Once a map between their at most two used values is fixed, there are at least two unused positions. Exchanging those unused positions changes the parity of its extension without changing the tuple. An even extension therefore always exists. This also proves directly why pair readings cannot see the additional distinction.
 
-For example, (0,1,2) and (1,0,2) have identical values under every
-invariant unary and binary reading of their entries, including every
-choice of pair and every repeated self-entry. After any common word the
-entries are still all distinct, and all those readings remain equal
-between the two preparations. In this interface the retained history contains
-response records; source moves act on the three current entries together.
-It supplies no separately retained source reference or selective movement
-of just one entry. Any adaptive history using only these readings and
-common words is identical: induction fixes the next choice
-and its next reply in both cases. Thus even a complete pair calibration
-does not determine the orientation class through this access.
+For example, (0,1,2) and (1,0,2) have identical values under every invariant unary and binary reading of their entries, including every choice of pair and every repeated self-entry. After any common word the entries are still all distinct, and all those readings remain equal between the two preparations. In this interface the retained history contains response records; source moves act on the three current entries together. It supplies no separately retained source reference or selective movement of just one entry. Any adaptive history using only these readings and common words is identical: induction fixes the next choice and its next reply in both cases. Thus even a complete pair calibration does not determine the orientation class through this access.
 
-**The required arity can grow.** On n≥3 positions, A_n and S_n have the
-same orbits on every tuple of length k≤n−2. A tuple uses at most n−2
-positions, so the unused-position exchange just described can correct the
-parity of any extension. At arity n−1, an all-distinct tuple leaves only
-one unused position; its extension is unique and its two parity classes
-split. Hence n−1 is the first arity at which an invariant reading can
-expose a difference between their tuple-orbit partitions.
+**The required arity can grow.** On n≥3 positions, A_n and S_n have the same orbits on every tuple of length k≤n−2. A tuple uses at most n−2 positions, so the unused-position exchange just described can correct the parity of any extension. At arity n−1, an all-distinct tuple leaves only one unused position; its extension is unique and its two parity classes split. Hence n−1 is the first arity at which an invariant reading can expose a difference between their tuple-orbit partitions.
 
-This cannot be repaired by composing more of the invariant relations of
-arity at most n−2 while keeping the same unmarked scalar carrier. Every
-such relation is already S_n-invariant. Conjunction, negation, disjunction
-and quantification over that same carrier preserve this invariance, as
-follows by transporting each assignment. No parameter-free expression
-in that relational language can select just one of the two orientation
-classes. This is a limitation of the specified relations and access,
-not of the amount of reasoning or the number of their instances.
+This cannot be repaired by composing more of the invariant relations of arity at most n−2 while keeping the same unmarked scalar carrier. Every such relation is already S_n-invariant. Conjunction, negation, disjunction and quantification over that same carrier preserve this invariance, as follows by transporting each assignment. No parameter-free expression in that relational language can select just one of the two orientation classes. This is a limitation of the specified relations and access, not of the amount of reasoning or the number of their instances.
 
-A named contact, a retained asymmetric parameter, or a richer internal
-carrier can change the language. In particular, a nested VI Pair may
-retain an entire ordered tuple. Its binary constructor is not a promise
-that every available predicate concerns only two unstructured scalar
-positions. Tuple packaging alone does not select an orientation; its
-contact relations must supply the missing distinction. VC23a makes the
-corresponding distinction for Boolean
-constraint media; the present obstruction instead follows from a common
-permutation preserving all the admitted relations.
+A named contact, a retained asymmetric parameter, or a richer internal carrier can change the language. In particular, a nested VI Pair may retain an entire ordered tuple. Its binary constructor is not a promise that every available predicate concerns only two unstructured scalar positions. Tuple packaging alone does not select an orientation; its contact relations must supply the missing distinction. VC23a makes the corresponding distinction for Boolean constraint media; the present obstruction instead follows from a common permutation preserving all the admitted relations.
 
-**A relational contact makes orientation available to a pair comparator.**
-Suppose x,y,z are three distinct positions and an available q cycles exactly
-those three, fixing their missing fourth position. Then
+**A relational contact makes orientation available to a pair comparator.** Suppose x,y,z are three distinct positions and an available q cycles exactly those three, fixing their missing fourth position. Then
 
     [q(x)=y]
 
-distinguishes the cyclic order (x,y,z) from its reversal. A single
-calibrated equality comparison suffices after this q is available. With
-an uncalibrated two-code comparator, a retained response on a known
-unequal pair of the triple supplies the off-diagonal reference; comparison
-with the new response then determines the same answer. Acquiring that
-reference is an additional call if it was not already retained.
+distinguishes the cyclic order (x,y,z) from its reversal. A single calibrated equality comparison suffices after this q is available. With an uncalibrated two-code comparator, a retained response on a known unequal pair of the triple supplies the off-diagonal reference; comparison with the new response then determines the same answer. Acquiring that reference is an additional call if it was not already retained.
 
-This does not contradict the pair-reading obstruction. The complete probe
-uses q as well as the two compared values. It is a relation of the tuple
-and the contact, rather than an invariant reading of two otherwise
-unmarked values. The third value enters through the established cycle
-support; a cycle with another support or the opposite direction is a
-different probe.
+This does not contradict the pair-reading obstruction. The complete probe uses q as well as the two compared values. It is a relation of the tuple and the contact, rather than an invariant reading of two otherwise unmarked values. The third value enters through the established cycle support; a cycle with another support or the opposite direction is a different probe.
 
-There is a useful connection to M64g. The A4-conjugacy class of W contains
-exactly one three-cycle with each possible fixed point. To see this, if
-g and h send W's fixed point 1 to the same r, then h⁻¹g fixes 1 and is
-a power of W, hence commutes with W. Therefore gWg⁻¹=hWh⁻¹. Existence
-comes from transitivity. The inverse cycles form the other class. Once
-one such directed class is supplied, the missing fourth position selects
-its q uniquely; the unused choice of transporting frame need not be
-identified. Mere existence of that q does not, however, supply an
-implementation or an acquired address for it.
+There is a useful connection to M64g. The A4-conjugacy class of W contains exactly one three-cycle with each possible fixed point. To see this, if g and h send W's fixed point 1 to the same r, then h⁻¹g fixes 1 and is a power of W, hence commutes with W. Therefore gWg⁻¹=hWh⁻¹. Existence comes from transitivity. The inverse cycles form the other class. Once one such directed class is supplied, the missing fourth position selects its q uniquely; the unused choice of transporting frame need not be identified. Mere existence of that q does not, however, supply an implementation or an acquired address for it.
 
-For the prepared support {0,1,2}, the selected cycle may be q=(0 1 2).
-The two orientations above give [q(0)=1]=true and [q(1)=0]=false.
-In the existing catalogue its input pullback is the push word WWZ,
-whose four rows are (row1,row2,row0,row3). The inverse pullback is ZW.
-These are actual established words, not new primitive cycle names.
+For the prepared support {0,1,2}, the selected cycle may be q=(0 1 2). The two orientations above give [q(0)=1]=true and [q(1)=0]=false. In the existing catalogue its input pullback is the push word WWZ, whose four rows are (row1,row2,row0,row3). The inverse pullback is ZW. These are actual established words, not new primitive cycle names.
 
-**The contact must be transported too.** Under a common frame change g,
-set q′=gqg⁻¹. Then
+**The contact must be transported too.** Under a common frame change g, set q′=gqg⁻¹. Then
 
     [q′(gx)=gy]=[q(x)=y].
 
-This works for odd as well as even g: it is the relative relation of
-the contact and inputs that is preserved. For g=(0 1), the cycle q=(0 1 2)
-is conjugated to q⁻¹. The reflected triple (1,0,2) gives true with q⁻¹,
-but false if the old q is used instead. Keeping the old contact while
-renaming only the input is a changed physical relation, not an alternative
-notation for the same complete probe. Transporting q adds precisely the
-relation absent from the pair-only language.
+This works for odd as well as even g: it is the relative relation of the contact and inputs that is preserved. For g=(0 1), the cycle q=(0 1 2) is conjugated to q⁻¹. The reflected triple (1,0,2) gives true with q⁻¹, but false if the old q is used instead. Keeping the old contact while renaming only the input is a changed physical relation, not an alternative notation for the same complete probe. Transporting q adds precisely the relation absent from the pair-only language.
 
-**The boundary of the carrier matters inside a closed whole.** Local
-evenness does not follow from evenness of a larger complete permutation.
-In a six-position whole, take the four-position region {0,1,2,3} and an
-internal reserve {4,5}. The allowed whole action (0 1)(4 5) is even and
-preserves both regions as sets. It nevertheless reverses the local triple
-orientation. The compensating exchange is entirely internal. Therefore
-the local A4 scope requires a restriction on its actual contacts or a
-retained relation to that reserve; closure and global parity alone do
-not establish it. This is the same distinction between a complete joint
-law and a local projection that VC99 exhibits in its coupled actions.
+**The boundary of the carrier matters inside a closed whole.** Local evenness does not follow from evenness of a larger complete permutation. In a six-position whole, take the four-position region {0,1,2,3} and an internal reserve {4,5}. The allowed whole action (0 1)(4 5) is even and preserves both regions as sets. It nevertheless reverses the local triple orientation. The compensating exchange is entirely internal. Therefore the local A4 scope requires a restriction on its actual contacts or a retained relation to that reserve; closure and global parity alone do not establish it. This is the same distinction between a complete joint law and a local projection that VC99 exhibits in its coupled actions.
 
-**Acquired static witness.** `TripleOrientationContact` starts with the
-current two-code comparator table, applies WWZ, acquires the actual
-row0/column1 or row1/column0 response, and applies the inverse word to
-the table beside the new record. `ReturnedTableAndAcquiredAnswers`
-derives both complete table returns and the distinct response fields a,b.
-No unknown table entry is supplied to a decoder as an extra argument.
-The two paths are prepared representative probes; the orbit proof above
-covers the stated relation of general triples and transported contacts.
+**Acquired static witness.** `TripleOrientationContact` starts with the current two-code comparator table, applies WWZ, acquires the actual row0/column1 or row1/column0 response, and applies the inverse word to the table beside the new record. `ReturnedTableAndAcquiredAnswers` derives both complete table returns and the distinct response fields a,b. No unknown table entry is supplied to a decoder as an extra argument. The two paths are prepared representative probes; the orbit proof above covers the stated relation of general triples and transported contacts.
 
-The same constructor applies the existing exchange T=(0 1) to both axes
-of the pulled table and derives its equality to the inverse-contact table.
-This checks the contact transport, not just the names of the two answer
-classes. Five consumer declarations verify indistinguishable direct pair
-readings, acquisition with return, the actual conjugated table, the
-preserved response after joint transport, and the admitted collapsed
-comparator boundary. Two refusals exclude merging the acquired opposite
-answers and using the stale contact for the reflected input.
+The same constructor applies the existing exchange T=(0 1) to both axes of the pulled table and derives its equality to the inverse-contact table. This checks the contact transport, not just the names of the two answer classes. Five consumer declarations verify indistinguishable direct pair readings, acquisition with return, the actual conjugated table, the preserved response after joint transport, and the admitted collapsed comparator boundary. Two refusals exclude merging the acquired opposite answers and using the stale contact for the reflected input.
 
-The result complements VC100h: separately characterized actions or views
-can leave a joint relation unresolved, and a contact can acquire that
-relation. M65's equality-pattern classification uses compatibility with
-all injective interpretations, including larger carriers. The orientation
-split here uses the narrower fixed-carrier action and is not an exception
-to that classification. No physical geometry, universal ternary atom or
-priority over permutation-orbit results is inferred from this finite model.
+The result complements VC100h: separately characterized actions or views can leave a joint relation unresolved, and a contact can acquire that relation. M65's equality-pattern classification uses compatibility with all injective interpretations, including larger carriers. The orientation split here uses the narrower fixed-carrier action and is not an exception to that classification. No physical geometry, universal ternary atom or priority over permutation-orbit results is inferred from this finite model.
 
-**M64o (the location of one contrast determines its sufficient support).**
-Keep M64n's four source positions and W,Z, but assume none of the eight
-target contact equations in advance. A performed test includes admission
-of its target application and supplies the bit [h(Wx)=u(hx)] at (W,x),
-or [h(Zx)=v(hx)] at (Z,x). The same h, defined on X, and the same possibly
-partial u,v are used throughout, with arbitrary target carrier and no
-target cycle restriction. Availability outside the tested inputs is not
-assumed. An undefined application is not a false comparison; further
-domain-refusal evidence is outside this bit-only interface. One addressed
-contrast of h images has already been acquired.
-We ask for the smallest set of *positive* contact equations which, with
-that contrast, forces h to be injective in every compatible realization.
-The contrast is not counted again among the contact equations.
+**M64o (the location of one contrast determines its sufficient support).** Keep M64n's four source positions and W,Z, but assume none of the eight target contact equations in advance. A performed test includes admission of its target application and supplies the bit [h(Wx)=u(hx)] at (W,x), or [h(Zx)=v(hx)] at (Z,x). The same h, defined on X, and the same possibly partial u,v are used throughout, with arbitrary target carrier and no target cycle restriction. Availability outside the tested inputs is not assumed. An undefined application is not a false comparison; further domain-refusal evidence is outside this bit-only interface. One addressed contrast of h images has already been acquired. We ask for the smallest set of *positive* contact equations which, with that contrast, forces h to be injective in every compatible realization. The contrast is not counted again among the contact equations.
 
-The sufficiency arguments below use only admitted rows. The lower-bound
-countermodels can even be completed to total functions, so allowing
-partial contacts does not weaken those bounds. No global availability
-premise is needed for either minimum.
+The sufficiency arguments below use only admitted rows. The lower-bound countermodels can even be completed to total functions, so allowing partial contacts does not weaken those bounds. No global availability premise is needed for either minimum.
 
-For h(0)≠h(2), the exact minimum is four. All four W equations attain it.
-Any merger inside the three-cycle spreads around it, contradicting the
-given contrast. A merger of the fixed position with the cycle spreads in
-the same way using the fixed-point equation. Thus none is possible; no Z
-equation is needed. This also follows for any contrast within that cycle.
+For h(0)≠h(2), the exact minimum is four. All four W equations attain it. Any merger inside the three-cycle spreads around it, contradicting the given contrast. A merger of the fixed position with the cycle spreads in the same way using the fixed-point equation. Thus none is possible; no Z equation is needed. This also follows for any contrast within that cycle.
 
-For h(0)≠h(1), the exact minimum is six. All four W equations plus Z at
-positions 0 and 2 attain it. W alone admits only a three-cycle image with
-a distinct fixed image, or a collapsed cycle with an arbitrary fixed
-image. The first case is injective. In the second, the given contrast
-makes h=(a,b,a,a) with a≠b, and the two Z equations would give v(a)=b and
-v(a)=a. They exclude it. No equations at Z's other positions were used.
+For h(0)≠h(1), the exact minimum is six. All four W equations plus Z at positions 0 and 2 attain it. W alone admits only a three-cycle image with a distinct fixed image, or a collapsed cycle with an arbitrary fixed image. The first case is injective. In the second, the given contrast makes h=(a,b,a,a) with a≠b, and the two Z equations would give v(a)=b and v(a)=a. They exclude it. No equations at Z's other positions were used.
 
-Both lower bounds can be proved without listing target devices. Consider
-merging just one source pair p while keeping the other two positions
-distinct. The existing contrast allows five of the six choices of p.
-This rank-three quotient satisfies a set of tested contact equations
-unless some single contact was tested at both endpoints of p and sends
-those endpoints into different quotient classes. If no such conflict
-occurs, define its target function from the tested rows on the three
-classes; the absence of conflict makes it well-defined. Assign arbitrary
-images at the remaining arguments to obtain total functions. Thus a
-positive certificate must conflict with each of those five simple mergers.
+Both lower bounds can be proved without listing target devices. Consider merging just one source pair p while keeping the other two positions distinct. The existing contrast allows five of the six choices of p. This rank-three quotient satisfies a set of tested contact equations unless some single contact was tested at both endpoints of p and sends those endpoints into different quotient classes. If no such conflict occurs, define its target function from the tested rows on the three classes; the absence of conflict makes it well-defined. Assign arbitrary images at the remaining arguments to obtain total functions. Thus a positive certificate must conflict with each of those five simple mergers.
 
-Three or fewer equations cannot do so. Three W tests cover at most three
-pairs; two W and one Z, or the reverse, cover at most one; three Z tests
-cover at most two useful pairs. For Z, the pairs {0,1} and {2,3} map into
-themselves and never obstruct their own merger. A permitted pair is
-therefore left unchallenged. This proves the lower bound of four for an
-active contrast, irrespective of where the tests were chosen.
+Three or fewer equations cannot do so. Three W tests cover at most three pairs; two W and one Z, or the reverse, cover at most one; three Z tests cover at most two useful pairs. For Z, the pairs {0,1} and {2,3} map into themselves and never obstruct their own merger. A permitted pair is therefore left unchallenged. This proves the lower bound of four for an active contrast, irrespective of where the tests were chosen.
 
-For the fixed contrast, five equations still fail. Four W tests and at
-most one Z test allow the rank-two quotient (a,b,a,a): one tested Z row
-cannot demand two answers at the same argument. With three W tests and
-two Z tests, at most 3+1=4 simple mergers are challenged. With two W and
-three Z, at most 1+2=3 are challenged. With at most one W and all four Z,
-only Z's four crossing pairs can be challenged. Each leaves at least one
-of the five allowed simple mergers. Fewer tests cannot do better. These
-cases cover all allocations and prove the lower bound of six.
+For the fixed contrast, five equations still fail. Four W tests and at most one Z test allow the rank-two quotient (a,b,a,a): one tested Z row cannot demand two answers at the same argument. With three W tests and two Z tests, at most 3+1=4 simple mergers are challenged. With two W and three Z, at most 1+2=3 are challenged. With at most one W and all four Z, only Z's four crossing pairs can be challenged. Each leaves at least one of the five allowed simple mergers. Fewer tests cannot do better. These cases cover all allocations and prove the lower bound of six.
 
-The same argument excludes earlier certification by an adaptive bit-only
-strategy along an all-positive branch. At every insufficient prefix,
-one of these quotient realizations satisfies the same contrast and all
-queried equations. It gives exactly the same transcript and therefore
-the same next choice. Repeated tests add nothing. This is a lower bound
-on certification in that branch, not a claimed total decision procedure
-for every possible pattern of positive and negative replies.
+The same argument excludes earlier certification by an adaptive bit-only strategy along an all-positive branch. At every insufficient prefix, one of these quotient realizations satisfies the same contrast and all queried equations. It gives exactly the same transcript and therefore the same next choice. Repeated tests add nothing. This is a lower bound on certification in that branch, not a claimed total decision procedure for every possible pattern of positive and negative replies.
 
-Placement and the question remain essential. Testing all W equations and
-Z only at 0 and 1 gives six positive answers but still permits (a,b,a,a):
-choose v to exchange a and b. Conversely the sufficient six equations do
-not establish full Z intertwining. Take h identity, u=W and target image
-table v=(1,1,3,3). The tested Z rows at 0 and 2 pass, while those at 1 and
-3 fail. Here h is injective but v is not a permutation on its image. A
-certificate for faithful passage must not be reused as a certificate for
-the entire unmeasured contact.
+Placement and the question remain essential. Testing all W equations and Z only at 0 and 1 gives six positive answers but still permits (a,b,a,a): choose v to exchange a and b. Conversely the sufficient six equations do not establish full Z intertwining. Take h identity, u=W and target image table v=(1,1,3,3). The tested Z rows at 0 and 2 pass, while those at 1 and 3 fail. Here h is injective but v is not a permutation on its image. A certificate for faithful passage must not be reused as a certificate for the entire unmeasured contact.
 
-There is no total classifier for injectivity from these eight comparison
-bits and the one contrast alone in the stated unrestricted class. Let a
-faithful h map into four points of a larger Y, and send all of them to a
-fresh point e under both target functions. Every comparison is false.
-A noninjective h preserving the same specified contrast, with both target
-functions again returning a point outside its image, gives the same eight
-false bits. Additional unrelated points are allowed by the contract.
-These two realizations answer injectivity differently. Restricting their
-target functions or acquiring another kind of contact would change the
-problem; a negative square alone does not establish a lossy h.
+There is no total classifier for injectivity from these eight comparison bits and the one contrast alone in the stated unrestricted class. Let a faithful h map into four points of a larger Y, and send all of them to a fresh point e under both target functions. Every comparison is false. A noninjective h preserving the same specified contrast, with both target functions again returning a point outside its image, gives the same eight false bits. Additional unrelated points are allowed by the contract. These two realizations answer injectivity differently. Restricting their target functions or acquiring another kind of contact would change the problem; a negative square alone does not establish a lossy h.
 
-**Support selection as an M71a corollary.** The four-position example has
-a general exact criterion. Let X be any finite set of known source
-positions, R a selection of rows f(x)=x' of specified possibly partial
-source functions on X, and let their
-positive target witnesses state u_f(h(x))=h(x'). Each u_f is one common
-possibly partial function on an unrestricted carrier, with no additional
-target laws. Retain one actual contrast h(a)≠h(b), where a≠b in X.
-The discrete interpretation is consistent: copy X and its selected rows.
+**Support selection as an M71a corollary.** The four-position example has a general exact criterion. Let X be any finite set of known source positions, R a selection of rows f(x)=x' of specified possibly partial source functions on X, and let their positive target witnesses state u_f(h(x))=h(x'). Each u_f is one common possibly partial function on an unrestricted carrier, with no additional target laws. Retain one actual contrast h(a)≠h(b), where a≠b in X. The discrete interpretation is consistent: copy X and its selected rows.
 
-For each distinct x,y in X, tentatively identify their image roles and
-close the selected diagram by M71a. Then R forces injectivity of h iff
-every such closure identifies a with b. One direction transports a
-proposed merger through common contacts until it contradicts the actual
-contrast. In the other direction, a closure that leaves a,b apart gives
-the quotient interpretation from M71a. It realizes all selected positive
-rows and the contrast while identifying x,y. This is a compatible lossy
-interpretation, rather than a failure to find a proof.
+For each distinct x,y in X, tentatively identify their image roles and close the selected diagram by M71a. Then R forces injectivity of h iff every such closure identifies a with b. One direction transports a proposed merger through common contacts until it contradicts the actual contrast. In the other direction, a closure that leaves a,b apart gives the quotient interpretation from M71a. It realizes all selected positive rows and the contrast while identifying x,y. This is a compatible lossy interpretation, rather than a failure to find a proof.
 
-Equivalently, every nondiscrete partition π of X that keeps a,b separate
-must conflict with some two selected rows of the same contact:
+Equivalently, every nondiscrete partition π of X that keeps a,b separate must conflict with some two selected rows of the same contact:
 
     f(x)=x', f(y)=y',    x ≡π y,    x' ≢π y'.
 
-If no such pair exists, each target contact is single-valued on the
-π-classes of its selected inputs and supplies the counterinterpretation.
-If a pair exists, that proposed identification demands two different
-answers from the same addressed contact. Thus a support is sufficient
-exactly when it excludes every remaining lossy partition in this sense.
-Individual rows do not carry independent rejection power: the conflict
-uses their common contact and input identity together. M64o's placement
-and counting arguments are instances of this criterion. It does not
-enumerate the unknown carrier or introduce a runtime optimizer; selecting
-a minimum support in a new family remains a separate finite problem.
+If no such pair exists, each target contact is single-valued on the π-classes of its selected inputs and supplies the counterinterpretation. If a pair exists, that proposed identification demands two different answers from the same addressed contact. Thus a support is sufficient exactly when it excludes every remaining lossy partition in this sense. Individual rows do not carry independent rejection power: the conflict uses their common contact and input identity together. M64o's placement and counting arguments are instances of this criterion. It does not enumerate the unknown carrier or introduce a runtime optimizer; selecting a minimum support in a new family remains a separate finite problem.
 
-The same criterion can preserve a question instead of all source
-distinctions. Fix an independently specified q:X→A. A decoder d with
-q=d∘h exists for every compatible realization iff the contrast is collapsed by the
-tentative closure for each pair x,y with q(x)≠q(y). Pairs to which q
-assigns the same answer need no such exclusion. Indeed, the sufficient
-condition makes q constant on every h-fiber, so d(h(x))=q(x) is well-defined
-on h(X). If one relevant pair survives, its quotient interpretation has
-one image and two q-answers, excluding a decoder even for that realization.
-For injective q this is the preceding faithfulness criterion; for a
-constant q no source distinction needs to be preserved.
+The same criterion can preserve a question instead of all source distinctions. Fix an independently specified q:X→A. A decoder d with q=d∘h exists for every compatible realization iff the contrast is collapsed by the tentative closure for each pair x,y with q(x)≠q(y). Pairs to which q assigns the same answer need no such exclusion. Indeed, the sufficient condition makes q constant on every h-fiber, so d(h(x))=q(x) is well-defined on h(X). If one relevant pair survives, its quotient interpretation has one image and two q-answers, excluding a decoder even for that realization. For injective q this is the preceding faithfulness criterion; for a constant q no source distinction needs to be preserved.
 
-This states ∀ compatible h, ∃ d, not ∃ one available d for all h.
-Different faithful codings may use the same target values with exchanged
-source correspondences. On a two-position source, identity and exchanged
-codings both preserve its sole contrast, yet a nonconstant q requires
-different decoders on their common target carrier. Acquiring a common
-usable decoder still requires the appropriate correspondence evidence
-and question factorization over the receiver's full available record.
-The support criterion establishes that a required distinction was not
-lost in any compatible passage; it does not secretly give its inverse
-or a law parameter to the receiver.
+This states ∀ compatible h, ∃ d, not ∃ one available d for all h. Different faithful codings may use the same target values with exchanged source correspondences. On a two-position source, identity and exchanged codings both preserve its sole contrast, yet a nonconstant q requires different decoders on their common target carrier. Acquiring a common usable decoder still requires the appropriate correspondence evidence and question factorization over the receiver's full available record. The support criterion establishes that a required distinction was not lost in any compatible passage; it does not secretly give its inverse or a law parameter to the receiver.
 
-`ContactContrastSupport.swift` expresses the two sufficient supports as
-four and six equations on actual common projections. Five generic
-constructors per support show that any merger other than the given
-contrast forces its endpoints equal. The already excluded contrast pair
-needs no further propagation. `SparseFaithfulContactImage` supplies the
-six equations while its untested Right fields fail full Z; it is a
-positive implementation of the weaker scope. `MisplacedSixContactImage`
-supplies six differently placed equations and keeps only two images.
-`ThreeActiveEdgesMayLoseFixed` preserves all three active W edges but
-merges the untested fixed position with position 0. Consumers check these
-boundaries and refuse their proposed strengthenings. `CycleImageReturns`
-also derives W³ on the image without a contrast, including the lossy
-case. `ZeroTargetContactReadings` also realizes the eight-negative case.
-Its input is a retained packet of four h images, not an additional claim
-to acquire those images from an unknown h. The source W/Z words bind the
-expected endpoints. Both target contacts use the actual First projection
-of a successor, giving Never; every expected endpoint is a successor.
-`ZeroContactMismatch` ties that constructor distinction to the actual
-readings and returns the false comparison bit. The faithful packet
-(1,2,3,4), the fixed-contrast lossy packet (1,2,1,1) and the active-contrast
-lossy packet (1,1,3,1) yield exactly the same full recorded eight-bit fact.
-Their relevant original contrast endpoints coincide as well. Complete
-records retain their different packets, but those packets are not inputs
-of the stipulated bit-only receiver. The general lower bounds remain the
-mathematical arguments above, not a count inferred from these examples.
+`ContactContrastSupport.swift` expresses the two sufficient supports as four and six equations on actual common projections. Five generic constructors per support show that any merger other than the given contrast forces its endpoints equal. The already excluded contrast pair needs no further propagation. `SparseFaithfulContactImage` supplies the six equations while its untested Right fields fail full Z; it is a positive implementation of the weaker scope. `MisplacedSixContactImage` supplies six differently placed equations and keeps only two images. `ThreeActiveEdgesMayLoseFixed` preserves all three active W edges but merges the untested fixed position with position 0. Consumers check these boundaries and refuse their proposed strengthenings. `CycleImageReturns` also derives W³ on the image without a contrast, including the lossy case. `ZeroTargetContactReadings` also realizes the eight-negative case. Its input is a retained packet of four h images, not an additional claim to acquire those images from an unknown h. The source W/Z words bind the expected endpoints. Both target contacts use the actual First projection of a successor, giving Never; every expected endpoint is a successor. `ZeroContactMismatch` ties that constructor distinction to the actual readings and returns the false comparison bit. The faithful packet (1,2,3,4), the fixed-contrast lossy packet (1,2,1,1) and the active-contrast lossy packet (1,1,3,1) yield exactly the same full recorded eight-bit fact. Their relevant original contrast endpoints coincide as well. Complete records retain their different packets, but those packets are not inputs of the stipulated bit-only receiver. The general lower bounds remain the mathematical arguments above, not a count inferred from these examples.
 
-**M64p (acquired profiles can make comparison available without full contact return).**
-Let h map four addressed source positions 0,1,2,3 into an arbitrary
-carrier Y. Let u and q be common partial operations on complete images,
-defined on the readings used below. Set
+**M64p (acquired profiles can make comparison available without full contact return).** Let h map four addressed source positions 0,1,2,3 into an arbitrary carrier Y. Let u and q be common partial operations on complete images, defined on the readings used below. Set
 
     P(x) = (q(x), q(u(x)), q(u²(x))).
 
@@ -4067,442 +2077,128 @@ Suppose actual acquired profiles are
     P(h(0))=(a,b,c),   P(h(1))=(d,d,d),
     P(h(2))=(b,c,a),   P(h(3))=(c,a,b),   a≠b.
 
-Then P∘h is injective. Equality of two cyclic profiles forces a=b=c;
-equality of the constant profile with any cyclic profile forces
-a=b=c=d. These are all six possible collisions, and each contradicts
-the given contrast. Therefore
+Then P∘h is injective. Equality of two cyclic profiles forces a=b=c; equality of the constant profile with any cyclic profile forces a=b=c=d. These are all six possible collisions, and each contradicts the given contrast. Therefore
 
     P(h(i))=P(h(j)) iff i=j.
 
-This also forces h injective: a common P cannot give distinct profiles
-on one complete image. When equality of the observation symbols is an
-available operation, comparing the two profiles supplies one decoder of
-source equality across every h satisfying the acquired pattern. It does
-not require h⁻¹, source labels, or complete image values as decoder
-inputs. The bit-valued implementation below provides that comparison
-operation explicitly; abstract distinct symbols alone do not provide
-an arbitrary equality oracle.
+This also forces h injective: a common P cannot give distinct profiles on one complete image. When equality of the observation symbols is an available operation, comparing the two profiles supplies one decoder of source equality across every h satisfying the acquired pattern. It does not require h⁻¹, source labels, or complete image values as decoder inputs. The bit-valued implementation below provides that comparison operation explicitly; abstract distinct symbols alone do not provide an arbitrary equality oracle.
 
-The full-image equations u(h(i))=h(Wi) and u³(h(i))=h(i) are unnecessary.
-For u=First and q=Second, the finite chain (((K,c),b),a) has profile
-(a,b,c) and reaches arbitrary K after three u steps. Four such chains
-realize the displayed profile pattern. Their unobserved tails can
-change while every available profile remains the same. Thus these
-premises are strictly weaker than the corresponding full contact
-equations, with sufficient positive implementations. M64o's 4/6 minima
-concern a different measurement interface and are not claimed here.
+The full-image equations u(h(i))=h(Wi) and u³(h(i))=h(i) are unnecessary. For u=First and q=Second, the finite chain (((K,c),b),a) has profile (a,b,c) and reaches arbitrary K after three u steps. Four such chains realize the displayed profile pattern. Their unobserved tails can change while every available profile remains the same. Thus these premises are strictly weaker than the corresponding full contact equations, with sufficient positive implementations. M64o's 4/6 minima concern a different measurement interface and are not claimed here.
 
-For a=0,b=1,c=d=0 the four profiles are 010,000,100,001. Positions 1
-and 3 have the same first two observations and different third ones.
-Three is consequently the exact sufficient common-prefix length for
-this family; this does not optimize arbitrary alternative instruments
-or total calibration cost. A fifth image with profile 000 and a
-different continuation also shows why the source range matters.
-Profile equality need not identify every complete state of Y.
+For a=0,b=1,c=d=0 the four profiles are 010,000,100,001. Positions 1 and 3 have the same first two observations and different third ones. Three is consequently the exact sufficient common-prefix length for this family; this does not optimize arbitrary alternative instruments or total calibration cost. A fifth image with profile 000 and a different continuation also shows why the source range matters. Profile equality need not identify every complete state of Y.
 
-More generally, let n active profiles be the cyclic shifts of a word z
-of length n>1, and let one extra profile be constant. These n+1 profiles
-are all distinct iff z has minimal cyclic period n. A shorter period
-identifies two active profiles. Full period makes all shifts distinct
-and nonconstant, separating the extra profile. For prime n,
-nonconstancy suffices. At composite n, 0101 already gives a counterexample.
-This is a period of an acquired observation word, not a derived period
-of complete hidden states; finite chains again realize the distinction.
+More generally, let n active profiles be the cyclic shifts of a word z of length n>1, and let one extra profile be constant. These n+1 profiles are all distinct iff z has minimal cyclic period n. A shorter period identifies two active profiles. Full period makes all shifts distinct and nonconstant, separating the extra profile. For prime n, nonconstancy suffices. At composite n, 0101 already gives a counterexample. This is a period of an acquired observation word, not a derived period of complete hidden states; finite chains again realize the distinction.
 
-`ContactProfile.swift` constructs the actual profile readings, records
-calibration at the resident encoder of the prepared paired source, and
-then reads profiles of the outputs of `PairedProbeInFrame`. The old
-calibration and source records survive. Its positive calibration clause
-requires the observed pattern, not injectivity as an extra premise.
-`ContactProfileSeparation.swift` provides six generic collision-to-contrast
-implications. `ContactProfileUse.swift` composes the acquisition with a
-bit-profile comparison and resident payload selection, for arbitrary
-unread tails and payloads. Changing those tails preserves the complete
-local procedure input; the decoder receives facts and tables, with no
-encoder parameter. Source position equality is specified by the raw
-probe replies, independently of the computed comparison.
+`ContactProfile.swift` constructs the actual profile readings, records calibration at the resident encoder of the prepared paired source, and then reads profiles of the outputs of `PairedProbeInFrame`. The old calibration and source records survive. Its positive calibration clause requires the observed pattern, not injectivity as an extra premise. `ContactProfileSeparation.swift` provides six generic collision-to-contrast implications. `ContactProfileUse.swift` composes the acquisition with a bit-profile comparison and resident payload selection, for arbitrary unread tails and payloads. Changing those tails preserves the complete local procedure input; the decoder receives facts and tables, with no encoder parameter. Source position equality is specified by the raw probe replies, independently of the computed comparison.
 
-The implementation supplies positive static branches using the concrete
-projection and routing grammar. It does not certify arbitrary
-`PredicateReading` conformances or provide a total diagnostic program
-for every invalid calibration. Access to the four addressed images,
-the common profile operation, and the retained-source acquisition
-mechanism remain explicit interface premises. An untracked source
-change cannot be substituted into the same acquisition; a separately
-established profile-preserving change can preserve applicability, as
-the arbitrary-tail construction demonstrates.
+The implementation supplies positive static branches using the concrete projection and routing grammar. It does not certify arbitrary `PredicateReading` conformances or provide a total diagnostic program for every invalid calibration. Access to the four addressed images, the common profile operation, and the retained-source acquisition mechanism remain explicit interface premises. An untracked source change cannot be substituted into the same acquisition; a separately established profile-preserving change can preserve applicability, as the arbitrary-tail construction demonstrates.
 
-**M64q (a sparse distinguishing certificate need not recover the profile law).**
-Let a finite collection of unknown images have arbitrary binary profiles
-under fixed questions r₁,…,rₙ. Each rⱼ is applied to the complete image;
-one cell query reveals one profile value. There is no additional law
-relating unknown cells. A set of acquired cells forces all profile rows
-distinct iff every pair of rows has acquired unequal values in some
-common column.
+**M64q (a sparse distinguishing certificate need not recover the profile law).** Let a finite collection of unknown images have arbitrary binary profiles under fixed questions r₁,…,rₙ. Each rⱼ is applied to the complete image; one cell query reveals one profile value. There is no additional law relating unknown cells. A set of acquired cells forces all profile rows distinct iff every pair of rows has acquired unequal values in some common column.
 
-Sufficiency uses that acquired disagreement. For necessity, choose a
-pair without such a column. Their partial rows can be completed to one
-common word, since none of their common acquired coordinates conflicts.
-The other rows can be completed independently. Finite chains as in
-M64p realize these completions even under the common sequential reader
-rⱼ=q∘uʲ⁻¹; the two selected rows may use one complete chain. Thus absent
-an additional restriction on the carrier or unknown cells, the same
-acquired record admits a passage losing that source distinction.
+Sufficiency uses that acquired disagreement. For necessity, choose a pair without such a column. Their partial rows can be completed to one common word, since none of their common acquired coordinates conflicts. The other rows can be completed independently. Finite chains as in M64p realize these completions even under the common sequential reader rⱼ=q∘uʲ⁻¹; the two selected rows may use one complete chain. Thus absent an additional restriction on the carrier or unknown cells, the same acquired record admits a passage losing that source distinction.
 
-For the particular true table with rows 0ⁿ,e₁,…,eₙ, where eᵢ has a
-single 1 at i, the exact minimum positive certificate size is
+For the particular true table with rows 0ⁿ,e₁,…,eₙ, where eᵢ has a single 1 at i, the exact minimum positive certificate size is
 
     2n + n(n−1)/2 = n(n+3)/2.
 
-Separating 0ⁿ from eᵢ requires reading both cells at coordinate i,
-giving 2n mandatory cells. Separating eᵢ from eⱼ additionally requires
-the zero at row i, column j, or at row j, column i. Each such additional
-cell separates exactly one previously unseparated pair. At least
-n(n−1)/2 more are necessary. Choosing either direction for each pair
-attains that number. Every successful adaptive transcript on this true
-table must contain such a certificate, so adaptation cannot evade its
-lower bound. This is a minimum certificate at the specified table, not
-the worst-case complexity of deciding separation on all binary tables.
+Separating 0ⁿ from eᵢ requires reading both cells at coordinate i, giving 2n mandatory cells. Separating eᵢ from eⱼ additionally requires the zero at row i, column j, or at row j, column i. Each such additional cell separates exactly one previously unseparated pair. At least n(n−1)/2 more are necessary. Choosing either direction for each pair attains that number. Every successful adaptive transcript on this true table must contain such a certificate, so adaptation cannot evade its lower bound. This is a minimum certificate at the specified table, not the worst-case complexity of deciding separation on all binary tables.
 
-There are exactly 2^(n(n−1)/2) minimum cell supports: each contains the
-2n forced cells and chooses one of the two cross-zeros independently
-for each active pair. For n≥2 their common intersection is insufficient,
-since it separates the zero row from every active row but does not
-separate active rows from each other. Thus a determinate answer need
-not have one determinate minimum acquisition. A conjunction of fixed
-mandatory cell addresses cannot describe these alternative sufficient
-supports; the supplied separator for each pair must remain part of
-the construction. This distinguishes uniqueness of the certified
-answer from uniqueness of a minimum support.
+There are exactly 2^(n(n−1)/2) minimum cell supports: each contains the 2n forced cells and chooses one of the two cross-zeros independently for each active pair. For n≥2 their common intersection is insufficient, since it separates the zero row from every active row but does not separate active rows from each other. Thus a determinate answer need not have one determinate minimum acquisition. A conjunction of fixed mandatory cell addresses cannot describe these alternative sufficient supports; the supplied separator for each pair must remain part of the construction. This distinguishes uniqueness of the certified answer from uniqueness of a minimum support.
 
-For M64p's rows 010,000,100,001, the following nine observed cells attain
-the bound:
+For M64p's rows 010,000,100,001, the following nine observed cells attain the bound:
 
     (0,1,?), (0,0,0), (1,?,0), (?,0,1).
 
-The three question marks are independent; the completed profiles need
-not be rotations. All six source pairs still have observed separators.
-The criterion also survives independent injective recodings of each
-column: only comparisons within a common question are used. Neither a
-common numerical scale nor an interpretation of values across different
-columns is required. The reading for a column must remain common to the
-rows being compared. Arbitrary untracked row-dependent recodings do not
-preserve that relation. This preserves the separation relation; it does
-not manufacture an available equality test for arbitrary new symbols.
+The three question marks are independent; the completed profiles need not be rotations. All six source pairs still have observed separators. The criterion also survives independent injective recodings of each column: only comparisons within a common question are used. Neither a common numerical scale nor an interpretation of values across different columns is required. The reading for a column must remain common to the rows being compared. Arbitrary untracked row-dependent recodings do not preserve that relation. This preserves the separation relation; it does not manufacture an available equality test for arbitrary new symbols.
 
-`SparseContactProfile.swift` acquires exactly these nine values through
-actual projections, retains the complete image packet, and derives six
-separating pairs with arbitrary unread cells and tails.
-`MandatoryProfilesCanMerge` retains the identical six-cell fact when
-all three active rows are replaced by one shared image with profile
-111, exhibiting the insufficient intersection directly.
-`AcceptedSparseContactProfiles` is the positive calibration clause
-consuming the acquired nine-value fact.
-`SparseContactProfileUse.swift` replaces the twelve-value calibration
-in the retained-source experiment by this reading. The resulting query
-facts, original comparison clauses, and selected resident payloads are
-preserved. The discarded calibration cells are not reconstructed or
-secretly supplied to the receiver. The general lower bound is the
-argument above; the static implementation covers the four-row case.
-No claim equates the cell count to contact depth, preparation cost,
-physical duration, or the cost of acquiring the addressed source range.
+`SparseContactProfile.swift` acquires exactly these nine values through actual projections, retains the complete image packet, and derives six separating pairs with arbitrary unread cells and tails. `MandatoryProfilesCanMerge` retains the identical six-cell fact when all three active rows are replaced by one shared image with profile 111, exhibiting the insufficient intersection directly. `AcceptedSparseContactProfiles` is the positive calibration clause consuming the acquired nine-value fact. `SparseContactProfileUse.swift` replaces the twelve-value calibration in the retained-source experiment by this reading. The resulting query facts, original comparison clauses, and selected resident payloads are preserved. The discarded calibration cells are not reconstructed or secretly supplied to the receiver. The general lower bound is the argument above; the static implementation covers the four-row case. No claim equates the cell count to contact depth, preparation cost, physical duration, or the cost of acquiring the addressed source range.
 
-**M64r (a distinguishing support can be renewed before its old carrier changes).**
-Keep M64q's binary cell-query interface and its true table 0ⁿ,e₁,…,eₙ
-fixed during a handover. Write m=n(n+3)/2. If two minimum supports differ
-in k choices of cross-zero, the least number of single-cell additions
-and removals transforming one into the other is 2k. For k>0, the least
-possible peak active support size, with separation certified at every
-step, is m+1.
+**M64r (a distinguishing support can be renewed before its old carrier changes).** Keep M64q's binary cell-query interface and its true table 0ⁿ,e₁,…,eₙ fixed during a handover. Write m=n(n+3)/2. If two minimum supports differ in k choices of cross-zero, the least number of single-cell additions and removals transforming one into the other is 2k. For k>0, the least possible peak active support size, with separation certified at every step, is m+1.
 
-Each of the k new cells must be added and each of the k old cells
-removed, giving 2k as a lower bound. For each differing pair, acquire
-its replacement cross-zero before retiring the old one. Every pair
-keeps a separator, attaining both bounds. The first effective step
-cannot be a removal: every proper subset of a minimum certificate is
-insufficient. It must be an addition, giving the peak lower bound.
-For k=0 no edit is needed and the peak is m. A simultaneous atomic
-replacement is a different edit interface. These are sizes of active
-cell certificates, not bounds on total historical memory or physical
-resources. Retiring a cell from a current proof does not erase its
-acquisition. The m+1 result does not assume arbitrary source changes
-during replacement acquisition.
+Each of the k new cells must be added and each of the k old cells removed, giving 2k as a lower bound. For each differing pair, acquire its replacement cross-zero before retiring the old one. Every pair keeps a separator, attaining both bounds. The first effective step cannot be a removal: every proper subset of a minimum certificate is insufficient. It must be an addition, giving the peak lower bound. For k=0 no edit is needed and the peak is m. A simultaneous atomic replacement is a different edit interface. These are sizes of active cell certificates, not bounds on total historical memory or physical resources. Retiring a cell from a current proof does not erase its acquisition. The m+1 result does not assume arbitrary source changes during replacement acquisition.
 
-There is also a source-changing implementation. Use common profile
-readings q₀=q, q₁=q∘u, q₂=q∘u² and acquire M64q's support S:
+There is also a source-changing implementation. Use common profile readings q₀=q, q₁=q∘u, q₂=q∘u² and acquire M64q's support S:
 
     A=(0,1,?), B=(0,0,0), C=(1,?,0), D=(?,0,1).
 
-Acquire C₁=0 from that same retained source. Replace the A/C separator
-A₀≠C₀ by A₁≠C₁. The resulting support S′ is
+Acquire C₁=0 from that same retained source. Replace the A/C separator A₀≠C₀ by A₁≠C₁. The resulting support S′ is
 
     A=(?,1,?), B=(0,0,0), C=(1,0,0), D=(?,0,1).
 
-It contains nine cells; S∪S′ contains ten. The six separators AB, AC,
-AD, BC, BD, CD use columns 1,1,1,0,2,2 respectively. Unlike S, S′ does
-not use A₀. An actual internal exchange of A₀ with an arbitrary
-resident reserve v can therefore change A to (v,1,x) while preserving
-all six separators. The former A₀ survives in the reserve. The other
-unread entries and complete chain tails may be arbitrary; v need not
-be binary, since the comparison below never reads it. This does not
-claim that S′ remains a minimum certificate at every changed table.
+It contains nine cells; S∪S′ contains ten. The six separators AB, AC, AD, BC, BD, CD use columns 1,1,1,0,2,2 respectively. Unlike S, S′ does not use A₀. An actual internal exchange of A₀ with an arbitrary resident reserve v can therefore change A to (v,1,x) while preserving all six separators. The former A₀ survives in the reserve. The other unread entries and complete chain tails may be arbitrary; v need not be binary, since the comparison below never reads it. This does not claim that S′ remains a minimum certificate at every changed table.
 
-Write E_S for the original nine readings, g for the acquired C₁, U for
-this exchange, and R_S′ for the current nine-reading question. Repacking
-actual fields gives a decoder d with
+Write E_S for the original nine readings, g for the acquired C₁, U for this exchange, and R_S′ for the current nine-reading question. Repacking actual fields gives a decoder d with
 
     R_S′ ∘ U = d ∘ (E_S, g).
 
-Here d drops A₀ from its answer, keeps the eight common cells and
-inserts g into the C profile. It receives the two acquired facts, not
-the reserve or the complete changed source. The source equation is
-essential: arbitrary records with the same question names do not
-establish it. For v=1, E_S after U differs from E_S before U, so the old
-fact alone is no longer the current answer to the old nine-cell
-question. For v=0 it still is. Applicability changes by the question
-and actual operation, without a general invalidation status.
+Here d drops A₀ from its answer, keeps the eight common cells and inserts g into the C profile. It receives the two acquired facts, not the reserve or the complete changed source. The source equation is essential: arbitrary records with the same question names do not establish it. For v=1, E_S after U differs from E_S before U, so the old fact alone is no longer the current answer to the old nine-cell question. For v=0 it still is. Applicability changes by the question and actual operation, without a general invalidation status.
 
-The replacement cannot be inferred from S alone. Before the exchange,
-the tables (010,000,100,001) and (010,000,110,001) have identical S
-records and both separate their four rows. Exchanging A₀ with reserve
-1 gives (110,000,100,001) in the first case, and
-(110,000,110,001) in the second. The first preserves distinction;
-the second identifies A with C. Thus the postcontact distinction
-question does not factor through the old fact. The new C₁ reading
-separates these cases; a response 1 would not license this particular
-S′ construction.
+The replacement cannot be inferred from S alone. Before the exchange, the tables (010,000,100,001) and (010,000,110,001) have identical S records and both separate their four rows. Exchanging A₀ with reserve 1 gives (110,000,100,001) in the first case, and (110,000,110,001) in the second. The first preserves distinction; the second identifies A with C. Thus the postcontact distinction question does not factor through the old fact. The new C₁ reading separates these cases; a response 1 would not license this particular S′ construction.
 
-S′ also gives a concrete classifier for an unknown image in the four-row
-range, with each question reading that same retained image. Read q₁:
-result 1 identifies A. Otherwise read q₂: result 1
-identifies D. Otherwise q₀ distinguishes B=0 from C=1. All visited
-values are binary under S′, even when v, x, or D₀ are not. This fixed
-decision tree avoids every unread coordinate; comparing two resulting
-row addresses answers source equality. The argument supplies this
-available procedure without a complete image equality oracle. It is
-not an optimality claim for every possible instrument or a compiled
-resident execution of this new tree.
+S′ also gives a concrete classifier for an unknown image in the four-row range, with each question reading that same retained image. Read q₁: result 1 identifies A. Otherwise read q₂: result 1 identifies D. Otherwise q₀ distinguishes B=0 from C=1. All visited values are binary under S′, even when v, x, or D₀ are not. This fixed decision tree avoids every unread coordinate; comparing two resulting row addresses answers source equality. The argument supplies this available procedure without a complete image equality oracle. It is not an optimality claim for every possible instrument or a compiled resident execution of this new tree.
 
-`ProfileSupportHandover.swift` constructs the two actual acquisitions,
-their field-only decoder, the resident exchange and the retained
-facts. `CurrentSupportFactors` ties the direct reading at the changed
-root to those facts; no equality of final answers is requested as a
-caller premise. `SixCurrentSeparators` derives the contrasts for
-arbitrary unread cells, reserve and tails. The exchange has a checked
-inverse on the supplied finite chains. `MissingReplacementCanMerge`
-constructs the two indistinguishable old records and the actual merger.
-The finite checks reject the old fact as a changed current answer,
-inference of the missing replacement from the old fact, and a second
-acquisition at a different source. The static implementation retains
-both acquired facts; nine is the number of dependencies in its derived
-support, not its total storage usage. This is a maintained relation
-under an explicitly supplied contact, not yet a derivation of an
-organization that itself keeps that contact and its access available.
+`ProfileSupportHandover.swift` constructs the two actual acquisitions, their field-only decoder, the resident exchange and the retained facts. `CurrentSupportFactors` ties the direct reading at the changed root to those facts; no equality of final answers is requested as a caller premise. `SixCurrentSeparators` derives the contrasts for arbitrary unread cells, reserve and tails. The exchange has a checked inverse on the supplied finite chains. `MissingReplacementCanMerge` constructs the two indistinguishable old records and the actual merger. The finite checks reject the old fact as a changed current answer, inference of the missing replacement from the old fact, and a second acquisition at a different source. The static implementation retains both acquired facts; nine is the number of dependencies in its derived support, not its total storage usage. This is a maintained relation under an explicitly supplied contact, not yet a derivation of an organization that itself keeps that contact and its access available.
 
-**M64s (a different acquired branch can release an entire column).**
-Keep the old nine-cell support of M64q and binary unacquired cells
-α=A₂ and c=C₁. After exchanging A₀ with an arbitrary resident value v,
-the profiles are
+**M64s (a different acquired branch can release an entire column).** Keep the old nine-cell support of M64q and binary unacquired cells α=A₂ and c=C₁. After exchanging A₀ with an arbitrary resident value v, the profiles are
 
     A=(v,1,α), B=(0,0,0), C=(1,c,0), D=(d,0,1).
 
-All pairs other than AC have separators independent of v,α,c,d.
-The AC profiles coincide exactly when v=1, c=1 and α=0. Consequently
-the exchange preserves profile distinction for every v iff c=0 or α=1. More generally,
-without a binary restriction on α,c, the criterion is c≠1 or α≠0.
-Thus M64r's C₁=0 branch is sufficient but is not the only sufficient
-branch. Reading C₁, then reading A₂ only after response 1, decides
-this universal-reserve question in at most two of these point queries.
-Two are necessary in the worst case: first response C₁=1 leaves the
-answer dependent on A₂, and first response A₂=0 leaves it dependent
-on C₁. The old nine-cell fact is identical in all four binary cases.
-This count concerns these two available questions and a fixed source
-during acquisition, not arbitrary combined instruments.
+All pairs other than AC have separators independent of v,α,c,d. The AC profiles coincide exactly when v=1, c=1 and α=0. Consequently the exchange preserves profile distinction for every v iff c=0 or α=1. More generally, without a binary restriction on α,c, the criterion is c≠1 or α≠0. Thus M64r's C₁=0 branch is sufficient but is not the only sufficient branch. Reading C₁, then reading A₂ only after response 1, decides this universal-reserve question in at most two of these point queries. Two are necessary in the worst case: first response C₁=1 leaves the answer dependent on A₂, and first response A₂=0 leaves it dependent on C₁. The old nine-cell fact is identical in all four binary cases. This count concerns these two available questions and a fixed source during acquisition, not arbitrary combined instruments.
 
-There is a stronger release question: may all four first-column values
-be replaced independently by arbitrary values while retaining distinct
-profiles? This holds exactly when
-c=α=1. The remaining pairs are then
+There is a stronger release question: may all four first-column values be replaced independently by arbitrary values while retaining distinct profiles? This holds exactly when c=α=1. The remaining pairs are then
 
     A:11, B:00, C:10, D:01.
 
-Conversely c=0 permits BC to merge after their first coordinates are
-made equal; c=1 and α=0 permits AC to merge. In the successful branch,
-eight acquired cells in the last two columns certify distinction.
-Every one is necessary within this two-column certificate interface:
-each row has a neighbor differing only at that coordinate. Omitting
-the cell permits completion to that neighbor. The two-coordinate
-address also classifies a promised row in exactly two queries in the
-worst case; one binary coordinate cannot identify four rows.
+Conversely c=0 permits BC to merge after their first coordinates are made equal; c=1 and α=0 permits AC to merge. In the successful branch, eight acquired cells in the last two columns certify distinction. Every one is necessary within this two-column certificate interface: each row has a neighbor differing only at that coordinate. Omitting the cell permits completion to that neighbor. The two-coordinate address also classifies a promised row in exactly two queries in the worst case; one binary coordinate cannot identify four rows.
 
-The complete first column and all four tails may now vary independently.
-This is a larger admissible change family than M64r's one-cell exchange,
-despite using a smaller active certificate. There is no conflict with
-M64q's nine-cell minimum at its different true table. Nor is eight a
-bound on stored history or the cost of acquiring the source addresses.
+The complete first column and all four tails may now vary independently. This is a larger admissible change family than M64r's one-cell exchange, despite using a smaller active certificate. There is no conflict with M64q's nine-cell minimum at its different true table. Nor is eight a bound on stored history or the cost of acquiring the source addresses.
 
-`ProfileRelease.swift` constructs these eight actual readings and six
-generic separators. `RectangularProfileExchange` acquires the eight-cell
-fact, exchanges A₀ with the resident reserve, and derives its continued
-applicability at the actual changed root. The fact remains beside that
-root. The constructor does not implement the two-query adaptive policy
-from the old nine-cell record; its lower bound and branching procedure
-are the argument above. `ProfileReleaseInquiry` supplies the equal old
-facts, the two ambiguous first-query branches and a merged image when
-the needed last coordinate is absent.
+`ProfileRelease.swift` constructs these eight actual readings and six generic separators. `RectangularProfileExchange` acquires the eight-cell fact, exchanges A₀ with the resident reserve, and derives its continued applicability at the actual changed root. The fact remains beside that root. The constructor does not implement the two-query adaptive policy from the old nine-cell record; its lower bound and branching procedure are the argument above. `ProfileReleaseInquiry` supplies the equal old facts, the two ambiguous first-query branches and a merged image when the needed last coordinate is absent.
 
-**M64t (the exact capacity of support handover is a union-connectivity question).**
-Fix a finite set E of mutually compatible primary witness occurrences
-about an unchanged source. Let V be a nonempty upward-closed family of sufficient subsets
-of E for one fixed question, and let 𝓑 be its inclusion-minimal members.
-Only one primary witness may be added or retired per step, and any
-remaining member of E is available for acquisition. No derived
-conclusion is supplied as an extra independent witness. For capacity k,
-form a graph whose vertices are B∈𝓑 with |B|≤k, joining B,C exactly when
-|B∪C|≤k. Two minimal supports admit a sufficient handover of peak size
-at most k iff they are connected in this graph.
+**M64t (the exact capacity of support handover is a union-connectivity question).** Fix a finite set E of mutually compatible primary witness occurrences about an unchanged source. Let V be a nonempty upward-closed family of sufficient subsets of E for one fixed question, and let 𝓑 be its inclusion-minimal members. Only one primary witness may be added or retired per step, and any remaining member of E is available for acquisition. No derived conclusion is supplied as an extra independent witness. For capacity k, form a graph whose vertices are B∈𝓑 with |B|≤k, joining B,C exactly when |B∪C|≤k. Two minimal supports admit a sufficient handover of peak size at most k iff they are connected in this graph.
 
-For an edge, add C\B while retaining B, then retire B\C while retaining
-C. This keeps sufficiency and never exceeds |B∪C|. Conversely, every
-sufficient finite intermediate set S contains a minimal B_S. Two
-successive one-edit sets are nested, so the chosen minimal supports
-have union contained in the larger set and hence of size at most k.
-Every sufficient handover therefore projects to a walk in the stated
-graph. At minimal endpoints the contained minimal member is the
-endpoint itself. These two constructions prove the equivalence.
+For an edge, add C\B while retaining B, then retire B\C while retaining C. This keeps sufficiency and never exceeds |B∪C|. Conversely, every sufficient finite intermediate set S contains a minimal B_S. Two successive one-edit sets are nested, so the chosen minimal supports have union contained in the larger set and hence of size at most k. Every sufficient handover therefore projects to a walk in the stated graph. At minimal endpoints the contained minimal member is the endpoint itself. These two constructions prove the equivalence.
 
-Thus, for different endpoints, the optimal peak is the minimum over
-paths of minimal supports of the largest adjacent union size. For an
-unchanged endpoint it equals that endpoint’s size. This quotient preserves the
-capacity question; it does not claim to preserve the number of edits
-or the cost of discovering or enumerating the minimal supports.
+Thus, for different endpoints, the optimal peak is the minimum over paths of minimal supports of the largest adjacent union size. For an unchanged endpoint it equals that endpoint’s size. This quotient preserves the capacity question; it does not claim to preserve the number of edits or the cost of discovering or enumerating the minimal supports.
 
-M64q's independent choices give a path of adjacent unions of size m+1.
-There is no general +1 law. For r≥2, take two internally disjoint
-a-to-b chains of r primary equality witnesses each, with no other
-available witnesses. A subset entails a=b exactly when it connects
-their variable roles: different connected components can be assigned
-different values. The only minimal supports are the two complete
-chains. Their union has size 2r, so the exact handover peak is 2r.
-Keeping a freely reusable derived a=b as a new primitive changes E
-and the interface, rather than refuting this bound. The result is a
-finite structural proof, not a runtime enumeration of witness sets.
+M64q's independent choices give a path of adjacent unions of size m+1. There is no general +1 law. For r≥2, take two internally disjoint a-to-b chains of r primary equality witnesses each, with no other available witnesses. A subset entails a=b exactly when it connects their variable roles: different connected components can be assigned different values. The only minimal supports are the two complete chains. Their union has size 2r, so the exact handover peak is 2r. Keeping a freely reusable derived a=b as a new primitive changes E and the interface, rather than refuting this bound. The result is a finite structural proof, not a runtime enumeration of witness sets.
 
-**M64u (paired replacement has an exact two-cell reserve).** Fix d≥1 and
-let the true table contain the N=2^d binary rows of length d+1 with even
-parity. The candidate tables used to judge a primary-cell certificate
-are unrestricted binary tables with these addressed rows, including
-tables with coincident rows. The parity equation describes the true
-instance; it is not an extra premise available to the decoder. A cell
-certificate is sufficient for row distinction iff every pair of rows
-has an observed opposing value at some common coordinate. Otherwise
-the two rows can be completed identically without changing any record.
+**M64u (paired replacement has an exact two-cell reserve).** Fix d≥1 and let the true table contain the N=2^d binary rows of length d+1 with even parity. The candidate tables used to judge a primary-cell certificate are unrestricted binary tables with these addressed rows, including tables with coincident rows. The parity equation describes the true instance; it is not an extra premise available to the decoder. A cell certificate is sufficient for row distinction iff every pair of rows has an observed opposing value at some common coordinate. Otherwise the two rows can be completed identically without changing any record.
 
-The minimum certificate size is m=dN. Indeed, if a row has two unread
-coordinates, its parity-code neighbor differing exactly there has no
-observed contrast against that row. Hence every row needs at least d
-cells. Reading every column except one attains the bound. Write B_i
-for this support omitting column i.
+The minimum certificate size is m=dN. Indeed, if a row has two unread coordinates, its parity-code neighbor differing exactly there has no observed contrast against that row. Hence every row needs at least d cells. Reading every column except one attains the bound. Write B_i for this support omitting column i.
 
-For i≠j, a sufficient one-cell-at-a-time handover B_i→B_j at this fixed
-table has exact peak m+2 and minimum edit count 2N. With capacity m+1,
-the first addition can only fill column i of one row r. Retiring a cell
-of another row leaves it with fewer than d cells. Retiring coordinate
-j of r fails against the neighbor differing at i,j: one of their two
-contrasts is missing at each endpoint. The same argument applies to
-any proposed retired coordinate. The only permitted retirement undoes
-the addition, so capacity m+1 cannot leave B_i.
+For i≠j, a sufficient one-cell-at-a-time handover B_i→B_j at this fixed table has exact peak m+2 and minimum edit count 2N. With capacity m+1, the first addition can only fill column i of one row r. Retiring a cell of another row leaves it with fewer than d cells. Retiring coordinate j of r fails against the neighbor differing at i,j: one of their two contrasts is missing at each endpoint. The same argument applies to any proposed retired coordinate. The only permitted retirement undoes the addition, so capacity m+1 cannot leave B_i.
 
-For sufficiency, partition the rows into N/2 pairs agreeing on the other
-d−1 coordinates. Acquire the two i cells of one pair, then retire its
-two j cells. Different pairs remain separated by a retained common
-coordinate. Within each pair retain the old j separator until both
-new i values are acquired. At every settled intermediate support each
-row has d recorded cells, and the peak is m+2. Each of the N new cells
-must be added and each of the N departing cells retired, giving 2N edits.
-This attains both bounds without enumerating supports. M64t describes
-the same threshold through adjacent unions of minimal supports.
+For sufficiency, partition the rows into N/2 pairs agreeing on the other d−1 coordinates. Acquire the two i cells of one pair, then retire its two j cells. Different pairs remain separated by a retained common coordinate. Within each pair retain the old j separator until both new i values are acquired. At every settled intermediate support each row has d recorded cells, and the peak is m+2. Each of the N new cells must be added and each of the N departing cells retired, giving 2N edits. This attains both bounds without enumerating supports. M64t describes the same threshold through adjacent unions of minimal supports.
 
-This is a primary-certificate capacity result, not a lower bound on all
-possible VI representations, physical memory, or policies allowed to
-change the source during handover. An independently established parity
-law, a free derived certificate, or a larger instrument changes the
-information interface. Histories are not deleted when cells leave the
-active certificate. For d=2 the minimum is eight, the exact peak ten.
+This is a primary-certificate capacity result, not a lower bound on all possible VI representations, physical memory, or policies allowed to change the source during handover. An independently established parity law, a free derived certificate, or a larger instrument changes the information interface. Histories are not deleted when cells leave the active certificate. For d=2 the minimum is eight, the exact peak ten.
 
-**M64v (a mixed support can retain an optimal adaptive instrument).** In
-the four-row instance, order rows by the common Z coordinate and write
-a settled intermediate support as
+**M64v (a mixed support can retain an optimal adaptive instrument).** In the four-row instance, order rows by the common Z coordinate and write a settled intermediate support as
 
     r₀=(a₀,*,e₀), r₁=(a₁,*,e₀),
     r₂=(*,b₀,e₁), r₃=(*,b₁,e₁),
 
-with a₀≠a₁, b₀≠b₁, e₀≠e₁. The stars are not retained observations and
-may vary independently. Read Z first. At e₀ read X and use the acquired
-a₀/a₁ contrast; at e₁ read Y and use b₀/b₁. This identifies every
-promised row in two reads in every table compatible with the support.
-In the binary interface one read cannot identify four rows, so this
-depth is optimal.
+with a₀≠a₁, b₀≠b₁, e₀≠e₁. The stars are not retained observations and may vary independently. Read Z first. At e₀ read X and use the acquired a₀/a₁ contrast; at e₁ read Y and use b₀/b₁. This identifies every promised row in two reads in every table compatible with the support. In the binary interface one read cannot identify four rows, so this depth is optimal.
 
-No fixed pair of coordinates works uniformly over those completions.
-XZ may merge r₂,r₃ by assigning their unobserved X values equally;
-YZ may merge r₀,r₁. For XY, set the unobserved Y of r₀ to b₀ and the
-unobserved X of r₂ to a₀. Those two keys coincide while Z still keeps
-the complete rows distinct. Thus loss of a common two-coordinate
-projection need not mean loss of a two-read instrument. The conditional
-choice of the second coordinate is made from the first acquired answer.
+No fixed pair of coordinates works uniformly over those completions. XZ may merge r₂,r₃ by assigning their unobserved X values equally; YZ may merge r₀,r₁. For XY, set the unobserved Y of r₀ to b₀ and the unobserved X of r₂ to a₀. Those two keys coincide while Z still keeps the complete rows distinct. Thus loss of a common two-coordinate projection need not mean loss of a two-read instrument. The conditional choice of the second coordinate is made from the first acquired answer.
 
-In M64u's general instance, the d−1 shared coordinates locate one pair;
-then its current local separator locates the row. Depth d is both
-sufficient throughout the paired handover and necessary for N=2^d
-binary alternatives. A remaining pair can consequently still be located
-after an earlier pair's old cells have changed. In the supplied
-projection/Route interface, the following cell reading has an actual
-resident source. This does not infer arbitrary physical instruments
-from the abstract existence of a decoder.
+In M64u's general instance, the d−1 shared coordinates locate one pair; then its current local separator locates the row. Depth d is both sufficient throughout the paired handover and necessary for N=2^d binary alternatives. A remaining pair can consequently still be located after an earlier pair's old cells have changed. In the supplied projection/Route interface, the following cell reading has an actual resident source. This does not infer arbitrary physical instruments from the abstract existence of a decoder.
 
-`AcquireRenewedProfile` records YZ, acquires the first X pair, exchanges
-the retired first Y pair, acquires the second X pair at that changed
-source, and exchanges the remaining Y pair. `MixedFactors` and
-`AfterExchangeFactors` derive applicability from the recorded fields;
-their decoder inputs do not contain the current source. Each two-cell
-reading is a macro for its two available projections at an unchanged
-source, so it may be expanded into the one-cell edits counted in M64u.
-`MixedProfileAccess` supplies actual Route inputs and outputs for both
-orientations of the first acquired pair, with the four unused cell
-values arbitrary. No full renewed column is required for the intermediate
-lookup. The field-transport identities alone do not assert that a
-missing pair contrast holds.
+`AcquireRenewedProfile` records YZ, acquires the first X pair, exchanges the retired first Y pair, acquires the second X pair at that changed source, and exchanges the remaining Y pair. `MixedFactors` and `AfterExchangeFactors` derive applicability from the recorded fields; their decoder inputs do not contain the current source. Each two-cell reading is a macro for its two available projections at an unchanged source, so it may be expanded into the one-cell edits counted in M64u. `MixedProfileAccess` supplies actual Route inputs and outputs for both orientations of the first acquired pair, with the four unused cell values arbitrary. No full renewed column is required for the intermediate lookup. The field-transport identities alone do not assert that a missing pair contrast holds.
 
-**M64w (local facts can select an entry into a recurrent renewal family).**
-Use the binary X interface, with the acquired YZ rectangle
+**M64w (local facts can select an entry into a recurrent renewal family).** Use the binary X interface, with the acquired YZ rectangle
 
     Y=(c,d,c,d), Z=(e,e,f,f), c≠d, e≠f.
 
-The current YZ answer does not determine whether Y can be retired.
-XZ distinguishes the rows exactly when both X pairs contrast. All four
-X cells are needed in the worst successful case using point queries:
-if one is unread, changing it to its partner's value preserves all
-acquired information but changes the release answer. Reading pair by
-pair attains this bound and admits the intermediate support of M64v.
+The current YZ answer does not determine whether Y can be retired. XZ distinguishes the rows exactly when both X pairs contrast. All four X cells are needed in the worst successful case using point queries: if one is unread, changing it to its partner's value preserves all acquired information but changes the release answer. Reading pair by pair attains this bound and admits the intermediate support of M64v.
 
-Once both binary pairs contrast, exactly two relative arrangements
-remain, after naming the first pair (a,b):
+Once both binary pairs contrast, exactly two relative arrangements remain, after naming the first pair (a,b):
 
     opposed: X=(a,b,b,a),     aligned: X=(a,b,a,b), a≠b.
 
-Their relative orientation is already determined by the four acquired
-values; no extra source contact is required. It must still affect the
-chosen action. Always treating aligned blocks as opposed is wrong:
-for X=Y, flipping all of Y leaves X and Y opposite copies, so their
-joint keys cannot replace Z. The first XZ handover has succeeded, but
-the proposed next XY support fails. `RenewalAccessCanDisappear` supplies
-this positive key collision alongside the two successful local contrasts.
+Their relative orientation is already determined by the four acquired values; no extra source contact is required. It must still affect the chosen action. Always treating aligned blocks as opposed is wrong: for X=Y, flipping all of Y leaves X and Y opposite copies, so their joint keys cannot replace Z. The first XZ handover has succeeded, but the proposed next XY support fails. `RenewalAccessCanDisappear` supplies this positive key collision alongside the two successful local contrasts.
 
-There is a constructive repair, rather than a requirement that the
-source was opposed from the start. Both branches first exchange the
-retired first Y pair after acquiring the first X pair. After acquiring
-the second pair:
+There is a constructive repair, rather than a requirement that the source was opposed from the start. Both branches first exchange the retired first Y pair after acquiring the first X pair. After acquiring the second pair:
 
 * Opposed: exchange the second Y pair and reorder rows as [0,3,1,2].
 * Aligned: leave the second Y pair and reorder rows as [0,2,1,3].
@@ -4511,676 +2207,184 @@ Then rotate column roles (X,Y,Z)→(Y,Z,X). Both branches reach
 
     X'=(d,c,c,d), Y'=(e,f,e,f), Z'=(a,a,b,b).
 
-Every final value follows by these resident permutations. Thus both
-enter the same family R(a,b,c,d,e,f), defined by columns
-(a,b,b,a), (c,d,c,d), (e,e,f,f). Every two coordinates in R enumerate
-their four Cartesian keys. Each of its three coordinate pairs supplies
-a sufficient support, with no cell common to all three supports.
+Every final value follows by these resident permutations. Thus both enter the same family R(a,b,c,d,e,f), defined by columns (a,b,b,a), (c,d,c,d), (e,e,f,f). Every two coordinates in R enumerate their four Cartesian keys. Each of its three coordinate pairs supplies a sufficient support, with no cell common to all three supports.
 
 Within R, one opposed renewal step maps its parameters to
 
     (a,b,c,d,e,f) → (d,c,e,f,a,b).
 
-The next source again belongs to R and its active YZ support is the
-reordered acquired XZ support. Three steps reverse all three coordinate
-pairs; hence every one of the twelve original cell values has changed
-when the pairs are distinguished. Six steps restore the device table.
-The three-step row and column permutations return their role positions,
-so the change is at the original table addresses, not only in a renamed
-coordinate chart. These are constructed updates; idling does not satisfy
-the stated renewal request.
+The next source again belongs to R and its active YZ support is the reordered acquired XZ support. Three steps reverse all three coordinate pairs; hence every one of the twelve original cell values has changed when the pairs are distinguished. Six steps restore the device table. The three-step row and column permutations return their role positions, so the change is at the original table addresses, not only in a renamed coordinate chart. These are constructed updates; idling does not satisfy the stated renewal request.
 
-If an acquired X pair does not contrast, that block cannot be handed
-over under this release contract. A failed first pair need not change
-the source. After a successful first pair and a failed second, undo
-the first Y exchange. The old source and applicability of the retained
-YZ fact are recovered, while the new facts remain archived.
-`RollbackEndpoint` and `RollbackSupportFactors` construct that branch.
-Failure of the selected release does not assert that every possible
-repair in a larger interaction vocabulary is impossible.
+If an acquired X pair does not contrast, that block cannot be handed over under this release contract. A failed first pair need not change the source. After a successful first pair and a failed second, undo the first Y exchange. The old source and applicability of the retained YZ fact are recovered, while the new facts remain archived. `RollbackEndpoint` and `RollbackSupportFactors` construct that branch. Failure of the selected release does not assert that every possible repair in a larger interaction vocabulary is impossible.
 
-`RenewableProfileStep` and `AlignedProfileEntry` connect actual acquisition
-endpoints to the two source permutations. Their recorded cross-agreement
-or alignment is obtained from the actual new records. The next support
-is read from those records through the displayed reindexing, without
-the source as an extra decoder input. `RenewableProfileDeviceReturn`
-checks the generic six-step device word. Binary contrast admission and
-the finite conditional choice are justified above; no runtime branch
-executor or universal synthesis procedure is claimed.
+`RenewableProfileStep` and `AlignedProfileEntry` connect actual acquisition endpoints to the two source permutations. Their recorded cross-agreement or alignment is obtained from the actual new records. The next support is read from those records through the displayed reindexing, without the source as an extra decoder input. `RenewableProfileDeviceReturn` checks the generic six-step device word. Binary contrast admission and the finite conditional choice are justified above; no runtime branch executor or universal synthesis procedure is claimed.
 
-**Normalization has a necessary residual.** For fixed distinguished
-coordinate pairs, the aligned and opposed device sources are different,
-but the two admitted entry words give the same final device table.
-The archive prefixes agree; their last acquired X pairs are (a,b) and
-(b,a). `NormalizedRenewalRetainsOrientation` derives both facts, so the
-complete outputs still differ. Across the union of these two entry
-families, the final device table has exactly two preimages: it recovers
-a,b,c,d,e,f by its displayed fields, but not the old block orientation.
-One binary residual specifying that orientation is therefore necessary
-and sufficient to recover the original device table. This is a bound
-for that recovery question and source family, not a proposed compression
-of the entire archive to one bit. The retained second-pair fact already
-contains the residual. A common normalized device does not identify
-the two acquired histories or their complete outputs.
+**Normalization has a necessary residual.** For fixed distinguished coordinate pairs, the aligned and opposed device sources are different, but the two admitted entry words give the same final device table. The archive prefixes agree; their last acquired X pairs are (a,b) and (b,a). `NormalizedRenewalRetainsOrientation` derives both facts, so the complete outputs still differ. Across the union of these two entry families, the final device table has exactly two preimages: it recovers a,b,c,d,e,f by its displayed fields, but not the old block orientation. One binary residual specifying that orientation is therefore necessary and sufficient to recover the original device table. This is a bound for that recovery question and source family, not a proposed compression of the entire archive to one bit. The retained second-pair fact already contains the residual. A common normalized device does not identify the two acquired histories or their complete outputs.
 
-Induction now permits any finite number of admitted renewal rounds:
-the source family, relevant contrasts, recorded support and next
-projection contacts are reproduced at each completed round. The
-permutation law and instrument vocabulary remain premises. This is
-renewal of all table cells, not replacement of every logical premise.
-The archive is carried through the constructions and may grow; the
-eight/ten cell counts are active primary-support counts. No infinite
-physical execution, bounded total historical memory, or apparatus
-outside the represented source is inferred.
+Induction now permits any finite number of admitted renewal rounds: the source family, relevant contrasts, recorded support and next projection contacts are reproduced at each completed round. The permutation law and instrument vocabulary remain premises. This is renewal of all table cells, not replacement of every logical premise. The archive is carried through the constructions and may grow; the eight/ten cell counts are active primary-support counts. No infinite physical execution, bounded total historical memory, or apparatus outside the represented source is inferred.
 
-**M64x (two working charts have an additional joint release condition).**
-Let S have q² row occurrences, q≥2. Readings X,Y,Z take values in three
-q-element alphabets. Suppose both (X,Z) and (Y,Z) are bijections from S
-onto their Cartesian answer sets. Each Z fiber therefore contains one
-row at each X value and one at each Y value. The relation between the
-two local charts on that fiber is a permutation τ_z:X→Y.
+**M64x (two working charts have an additional joint release condition).** Let S have q² row occurrences, q≥2. Readings X,Y,Z take values in three q-element alphabets. Suppose both (X,Z) and (Y,Z) are bijections from S onto their Cartesian answer sets. Each Z fiber therefore contains one row at each X value and one at each Y value. The relation between the two local charts on that fiber is a permutation τ_z:X→Y.
 
-The complete Z column may be replaced by arbitrary independent values
-without merging any full row profile iff, for every x, the q values
-τ_z(x), as z varies, are all different. Equivalently, the graphs of the
-q permutations τ_z partition X×Y. Indeed, (X,Y) is injective exactly
-under this condition. If it is, it separates every two rows regardless
-of Z. If it is not, setting the Z values of a colliding pair equal
-merges their full profiles. This is a universal-replacement question;
-some particular replacements can still be safe when it fails.
+The complete Z column may be replaced by arbitrary independent values without merging any full row profile iff, for every x, the q values τ_z(x), as z varies, are all different. Equivalently, the graphs of the q permutations τ_z partition X×Y. Indeed, (X,Y) is injective exactly under this condition. If it is, it separates every two rows regardless of Z. If it is not, setting the Z values of a colliding pair equal merges their full profiles. This is a universal-replacement question; some particular replacements can still be safe when it fails.
 
-Change the X values inside fiber z by a permutation u_z and the Y
-values by v_z, retaining Z and the row occurrences. The two current
-charts remain bijective, and the updated relative map is exactly
+Change the X values inside fiber z by a permutation u_z and the Y values by v_z, retaining Z and the row occurrences. The two current charts remain bijective, and the updated relative map is exactly
 
     τ'_z = v_z ∘ τ_z ∘ u_z⁻¹.
 
-The joint release criterion must be tested on these updated maps.
-Local chart bijectivity does not imply it. Nor does commutation of the
-two disjoint column changes: commutation fixes the common endpoint,
-not the relations that this endpoint must satisfy. This criterion
-concerns the declared complete row family and supplied current maps;
-old facts need their own applicable transport to describe these maps.
+The joint release criterion must be tested on these updated maps. Local chart bijectivity does not imply it. Nor does commutation of the two disjoint column changes: commutation fixes the common endpoint, not the relations that this endpoint must satisfy. This criterion concerns the declared complete row family and supplied current maps; old facts need their own applicable transport to describe these maps.
 
-**M64y (a shared binary correction preserves more freedom than independent permissions).**
-Specialize M64x to the four-row family of M64w. Name the rows by
-(i,z)∈{0,1}², and use binary orientations
+**M64y (a shared binary correction preserves more freedom than independent permissions).** Specialize M64x to the four-row family of M64w. Name the rows by (i,z)∈{0,1}², and use binary orientations
 
     X(i,z)=i⊕x_z,     Y(i,z)=i⊕y_z,     Z(i,z)=z.
 
-Different alphabets may be substituted independently for the two
-symbols of each coordinate. Both XZ and YZ always identify rows.
-The two relative permutations differ, and Z is releasable, exactly when
+Different alphabets may be substituted independently for the two symbols of each coordinate. Both XZ and YZ always identify rows. The two relative permutations differ, and Z is releasable, exactly when
 
     χ = x₀⊕x₁⊕y₀⊕y₁ = 1.
 
-An exchange of the two X cells in fiber z toggles x_z; the analogous
-Y exchange toggles y_z. For cumulative local exchange vectors u,v,
-put ε(u)=u₀⊕u₁ and ε(v)=v₀⊕v₁. Starting at χ=1, the exact set of
-joint changes preserving release is
+An exchange of the two X cells in fiber z toggles x_z; the analogous Y exchange toggles y_z. For cumulative local exchange vectors u,v, put ε(u)=u₀⊕u₁ and ε(v)=v₀⊕v₁. Starting at χ=1, the exact set of joint changes preserving release is
 
     K = {(u,v)∈{0,1}²×{0,1}² : ε(u)=ε(v)}.
 
-It has eight elements. If participants instead choose independently
-from sets U,V that each include idling, and every combination must
-preserve release, then U×V⊆K forces ε(u)=ε(v)=0 separately. Such an
-independent permission product has at most four elements; both even
-local subgroups attain four. Thus the complete eight-element
-permission cannot be expressed by two independent local allow-lists
-with idling. It includes a first-pair X exchange paired with either
-single-pair Y exchange, although neither exchange alone preserves
-the release question. The larger freedom is relational, not a broader
-unilateral permission.
+It has eight elements. If participants instead choose independently from sets U,V that each include idling, and every combination must preserve release, then U×V⊆K forces ε(u)=ε(v)=0 separately. Such an independent permission product has at most four elements; both even local subgroups attain four. Thus the complete eight-element permission cannot be expressed by two independent local allow-lists with idling. It includes a first-pair X exchange paired with either single-pair Y exchange, although neither exchange alone preserves the release question. The larger freedom is relational, not a broader unilateral permission.
 
-For a receiver knowing u and the initial valid preparation, one binary
-message ε(v), bound to the actual cumulative partner action, is enough
-to decide release or to select one further local exchange restoring
-it. One is necessary if all four v remain possible: idling and a
-single exchange require different answers. This is a two-symbol
-communication bound with a sender able to distinguish its performed
-action, not a claim that a parity instrument is freely available.
+For a receiver knowing u and the initial valid preparation, one binary message ε(v), bound to the actual cumulative partner action, is enough to decide release or to select one further local exchange restoring it. One is necessary if all four v remain possible: idling and a single exchange require different answers. This is a two-symbol communication bound with a sender able to distinguish its performed action, not a claim that a parity instrument is freely available.
 
-For the complete current Y chart, all four v are distinguishable when
-the two Y values contrast. That different question requires four
-message values, or two fixed binary symbols. Two partner exchanges
-of different pairs have the same odd ε(v) but different current charts.
-If the only new contacts are individual Y cell readings at a fixed
-source, deciding ε(v) itself needs two point queries in the worst case:
-one in each fiber attains it, and after any one query changing the
-other fiber changes parity without changing that answer. A smaller
-answer alphabet therefore does not imply fewer point contacts.
+For the complete current Y chart, all four v are distinguishable when the two Y values contrast. That different question requires four message values, or two fixed binary symbols. Two partner exchanges of different pairs have the same odd ε(v) but different current charts. If the only new contacts are individual Y cell readings at a fixed source, deciding ε(v) itself needs two point queries in the worst case: one in each fiber attains it, and after any one query changing the other fiber changes parity without changing that answer. A smaller answer alphabet therefore does not imply fewer point contacts.
 
-These statements apply at a common actual cut. A delayed message
-about an earlier prefix is insufficient if a later unreported odd
-exchange has occurred. The two histories can deliver the same old
-message and have opposite current χ. Conversely, cumulative parity
-through the required cut determines this release question even if
-the detailed path is not retained in the receiver's working record.
-It does not identify those paths as historical occurrences.
+These statements apply at a common actual cut. A delayed message about an earlier prefix is insufficient if a later unreported odd exchange has occurred. The two histories can deliver the same old message and have opposite current χ. Conversely, cumulative parity through the required cut determines this release question even if the detailed path is not retained in the receiver's working record. It does not identify those paths as historical occurrences.
 
-During the gap between the two matching odd exchanges, XZ and YZ
-remain usable, while Z is not yet releasable. The existing access can
-therefore support the corrective contact without assuming the desired
-future access. No fairness, atomic delivery, or termination against
-unrestricted interfering actions follows from the endpoint equation.
+During the gap between the two matching odd exchanges, XZ and YZ remain usable, while Z is not yet releasable. The existing access can therefore support the corrective contact without assuming the desired future access. No fairness, atomic delivery, or termination against unrestricted interfering actions follows from the endpoint equation.
 
-`SharedProfileChanges` derives commutation, inverse endpoints and the
-unchanged other current chart from actual field exchanges.
-`SharedProfileChangeRecords` acquires both charts, performs X then Y
-at its changed source and derives each current chart from its own old
-fact through `ExchangedChartFromFact`. The decoder has no current source
-or other participant's fact as an additional input; the performed
-fixed exchange is supplied by the proved word. This implements the
-known-word transport, not an asynchronous one-bit messaging channel.
-`SharedProfileLookup` takes the two transported charts and derives
-the actual routing inputs and recovery of each row's arbitrary payload
-through either chart. Reusing the old payload table after the exchange
-instead returns a different row's payload in the displayed counterexample.
-`SharedRenewalGrids` derives the three complete XY grids for generators
-of K and the collisions after an unpaired exchange. The binary formula
-above proves the exhaustion and closure for arbitrary finite words.
-It also distinguishes the two same-parity partner charts. None of
-these declarations obtains its conclusion as a caller equality premise.
+`SharedProfileChanges` derives commutation, inverse endpoints and the unchanged other current chart from actual field exchanges. `SharedProfileChangeRecords` acquires both charts, performs X then Y at its changed source and derives each current chart from its own old fact through `ExchangedChartFromFact`. The decoder has no current source or other participant's fact as an additional input; the performed fixed exchange is supplied by the proved word. This implements the known-word transport, not an asynchronous one-bit messaging channel. `SharedProfileLookup` takes the two transported charts and derives the actual routing inputs and recovery of each row's arbitrary payload through either chart. Reusing the old payload table after the exchange instead returns a different row's payload in the displayed counterexample. `SharedRenewalGrids` derives the three complete XY grids for generators of K and the collisions after an unpaired exchange. The binary formula above proves the exhaustion and closure for arbitrary finite words. It also distinguishes the two same-parity partner charts. None of these declarations obtains its conclusion as a caller equality premise.
 
-**M64z (the number of mutually sufficient coordinates forces an incidence geometry).**
-Let S have q² elements and let k≥2 readings C₁,…,C_k each take values
-in a q-element alphabet, q≥2. Require each joint reading (C_i,C_j),
-i≠j, to be injective. Its domain and codomain have the same finite
-size, so it is bijective. Every answer fiber of every C_i has q rows.
+**M64z (the number of mutually sufficient coordinates forces an incidence geometry).** Let S have q² elements and let k≥2 readings C₁,…,C_k each take values in a q-element alphabet, q≥2. Require each joint reading (C_i,C_j), i≠j, to be injective. Its domain and codomain have the same finite size, so it is bijective. Every answer fiber of every C_i has q rows.
 
-For one C_i, exactly q·q(q−1)/2 unordered row pairs agree on its answer.
-No row pair may agree in two coordinates, since that would violate
-joint injectivity. Comparing with the total q²(q²−1)/2 row pairs gives
+For one C_i, exactly q·q(q−1)/2 unordered row pairs agree on its answer. No row pair may agree in two coordinates, since that would violate joint injectivity. Comparing with the total q²(q²−1)/2 row pairs gives
 
     k ≤ q+1.
 
-When k=q+1, every pair of different rows agrees in exactly one
-coordinate. Take rows as points and answer fibers as lines. Two points
-then determine exactly one line. The q lines of each coordinate
-partition S; lines from different coordinates intersect in exactly
-one point, by joint bijectivity. A point outside a line lies on exactly
-one disjoint line, namely the fiber of that same coordinate through
-the point. Since q≥2, there are noncollinear points. Thus the saturated
-reading family has precisely the incidence structure of a finite
-affine plane of order q. Conversely its parallel classes give these
-q+1 readings. Existence of such a saturated family for an arbitrary q
-is not being assumed by the bound or the equivalence.
+When k=q+1, every pair of different rows agrees in exactly one coordinate. Take rows as points and answer fibers as lines. Two points then determine exactly one line. The q lines of each coordinate partition S; lines from different coordinates intersect in exactly one point, by joint bijectivity. A point outside a line lies on exactly one disjoint line, namely the fiber of that same coordinate through the point. Since q≥2, there are noncollinear points. Thus the saturated reading family has precisely the incidence structure of a finite affine plane of order q. Conversely its parallel classes give these q+1 readings. Existence of such a saturated family for an arbitrary q is not being assumed by the bound or the equivalence.
 
-For q=2 the three charts in M64w attain the bound. A fourth binary
-coordinate cannot form a rectangle with all three on the same four
-rows. More directly, after fixing Y=(0,1,0,1), Z=(0,0,1,1), a binary
-fourth coordinate forming rectangles with Y and Z must be (a,b,b,a)
-with a≠b. It then agrees in pairs at the same row addresses as X and
-cannot distinguish rows jointly with X. `FourthProfileCoordinateObstruction`
-derives those colliding keys for arbitrary choices of the two contents;
-the binary argument supplies the exhaustion of candidates.
+For q=2 the three charts in M64w attain the bound. A fourth binary coordinate cannot form a rectangle with all three on the same four rows. More directly, after fixing Y=(0,1,0,1), Z=(0,0,1,1), a binary fourth coordinate forming rectangles with Y and Z must be (a,b,b,a) with a≠b. It then agrees in pairs at the same row addresses as X and cannot distinguish rows jointly with X. `FourthProfileCoordinateObstruction` derives those colliding keys for arbitrary choices of the two contents; the binary argument supplies the exhaustion of candidates.
 
-This is an incidence conclusion from finite, equally sized alphabets
-and exact pairwise sufficiency. No distance, angle, physical dimension,
-or global structure of reality is inferred. M64v's adaptive access is
-a different object from one extra coordinate in this theorem. More
-coordinates may also be used when only selected pairs, rather than
-every pair, are required to identify the rows.
+This is an incidence conclusion from finite, equally sized alphabets and exact pairwise sufficiency. No distance, angle, physical dimension, or global structure of reality is inferred. M64v's adaptive access is a different object from one extra coordinate in this theorem. More coordinates may also be used when only selected pairs, rather than every pair, are required to identify the rows.
 
-The upper bound also applies to a chosen q²-row subfamily of a larger
-source. Extra hidden rows cannot repair a collision already forced on
-those rows while preserving their readings and the stated alphabets.
-The affine-plane conclusion describes the restricted family; it does
-not assert that these rows exhaust a physical carrier.
+The upper bound also applies to a chosen q²-row subfamily of a larger source. Extra hidden rows cannot repair a collision already forced on those rows while preserving their readings and the stated alphabets. The affine-plane conclusion describes the restricted family; it does not assert that these rows exhaust a physical carrier.
 
-**M64aa (one missing coordinate is forced by the remaining relations).**
-Under M64z's finite reading contract, suppose exactly q pairwise
-sufficient coordinates have been supplied. For rows a,b define
+**M64aa (one missing coordinate is forced by the remaining relations).** Under M64z's finite reading contract, suppose exactly q pairwise sufficient coordinates have been supplied. For rows a,b define
 
     a ~ b  iff  a=b or C_i(a)≠C_i(b) for every supplied i.
 
-This is an equivalence relation with q classes of q rows. Its classes
-give the unique additional coordinate, up to renaming its answers,
-that forms a sufficient pair with every supplied coordinate.
+This is an equivalence relation with q classes of q rows. Its classes give the unique additional coordinate, up to renaming its answers, that forms a sufficient pair with every supplied coordinate.
 
-To prove it, the q answer fibers through a meet only at a. They
-contain 1+q(q−1) rows in total. Let U_a be the q−1 rows outside them.
-Take b∈U_a. For any coordinate j, its fiber through b misses the
-j-fiber through a and intersects each of the other q−1 fibers through
-a in one point. These intersection points are distinct, since those
-fibers intersect only at a, which is not on the fiber through b.
-Together with b they fill that q-point fiber. Therefore no other
-member of U_a lies on any fiber through b. The q rows {a}∪U_a are
-pairwise different in every supplied coordinate. Their sets agree
-when based at any member, so they partition S. Each such class meets
-each old answer fiber once, establishing all new sufficient pairs.
-Any possible new answer fiber through a must consist of a and q−1
-members of U_a; its size q forces exactly this class. This proves
-existence and uniqueness, rather than only a numerical upper bound.
+To prove it, the q answer fibers through a meet only at a. They contain 1+q(q−1) rows in total. Let U_a be the q−1 rows outside them. Take b∈U_a. For any coordinate j, its fiber through b misses the j-fiber through a and intersects each of the other q−1 fibers through a in one point. These intersection points are distinct, since those fibers intersect only at a, which is not on the fiber through b. Together with b they fill that q-point fiber. Therefore no other member of U_a lies on any fiber through b. The q rows {a}∪U_a are pairwise different in every supplied coordinate. Their sets agree when based at any member, so they partition S. Each such class meets each old answer fiber once, establishing all new sufficient pairs. Any possible new answer fiber through a must consist of a and q−1 members of U_a; its size q forces exactly this class. This proves existence and uniqueness, rather than only a numerical upper bound.
 
-The construction uses only equality relations, not chosen numerical
-labels. A row correspondence preserving each supplied coordinate's
-equality relation also preserves ~. Thus independently relabeled old
-coordinates transport the additional equality question without
-choosing an absolute label for its new classes. This derives a new
-organization of already established distinctions; it supplies neither
-new evidence about an unmeasured source nor an independently available
-physical instrument for that coordinate.
+The construction uses only equality relations, not chosen numerical labels. A row correspondence preserving each supplied coordinate's equality relation also preserves ~. Thus independently relabeled old coordinates transport the additional equality question without choosing an absolute label for its new classes. This derives a new organization of already established distinctions; it supplies neither new evidence about an unmeasured source nor an independently available physical instrument for that coordinate.
 
-One fewer supplied coordinate does not have the same extension
-guarantee. On the sixteen rows (x,y)∈{0,1,2,3}², let X=x, Y=y and
-Z=x+y modulo 4. Every pair among these three readings is bijective.
-There is no fourth four-valued reading forming sufficient pairs with
-all three. If it existed, any one of its four-row fibers would use
-every X, every Y and every Z value exactly once. Summing X+Y modulo
-4 over that fiber gives 6+6=0 modulo 4, whereas summing the required
-four Z values gives 6=2 modulo 4. This is impossible. The obstruction
-is a finite joint relation even though every old pair works.
+One fewer supplied coordinate does not have the same extension guarantee. On the sixteen rows (x,y)∈{0,1,2,3}², let X=x, Y=y and Z=x+y modulo 4. Every pair among these three readings is bijective. There is no fourth four-valued reading forming sufficient pairs with all three. If it existed, any one of its four-row fibers would use every X, every Y and every Z value exactly once. Summing X+Y modulo 4 over that fiber gives 6+6=0 modulo 4, whereas summing the required four Z values gives 6=2 modulo 4. This is impossible. The obstruction is a finite joint relation even though every old pair works.
 
-These finite-geometry connections are established mathematics, not a
-priority claim for VI. In the language of nets, M64z identifies the
-zero-deficiency case and M64aa completes deficiency one. Bruck's
-[Finite nets. II. Uniqueness and imbedding](https://msp.org/pjm/1963/13-2/pjm-v13-n2-p05-p.pdf)
-gives a broader completion theory; its introduction (pp. 421–423) and
-Theorem 4.3 distinguish uniqueness from guaranteed existence. The
-arguments here derive the stated special cases directly from the
-reading contract. The four-row obstruction has a static field
-certificate; the general counting, completion and modulo-4 argument
-are mathematical proofs here, not claimed as generic Swift theorems.
+These finite-geometry connections are established mathematics, not a priority claim for VI. In the language of nets, M64z identifies the zero-deficiency case and M64aa completes deficiency one. Bruck's [Finite nets. II. Uniqueness and imbedding](https://msp.org/pjm/1963/13-2/pjm-v13-n2-p05-p.pdf) gives a broader completion theory; its introduction (pp. 421–423) and Theorem 4.3 distinguish uniqueness from guaranteed existence. The arguments here derive the stated special cases directly from the reading contract. The four-row obstruction has a static field certificate; the general counting, completion and modulo-4 argument are mathematical proofs here, not claimed as generic Swift theorems.
 
-**M64ab (one successful joint change need not be a reusable generator).**
-There is a useful larger family where the binary permission in M64y
-can be tested for accidental strength. Let q≥2 and work with the
-cyclic alphabet Z/qZ. Rows are (i,z). Suppose
+**M64ab (one successful joint change need not be a reusable generator).** There is a useful larger family where the binary permission in M64y can be tested for accidental strength. Let q≥2 and work with the cyclic alphabet Z/qZ. Rows are (i,z). Suppose
 
     X(i,z)=i+a_z,    Y(i,z)=i+a_z+σ(z),    Z(i,z)=z,
 
-where a is arbitrary and σ is a permutation of the q symbols. All
-three coordinate pairs identify the q² rows. Change X and Y inside
-fiber z by additions u_z and v_z respectively. Then
+where a is arbitrary and σ is a permutation of the q symbols. All three coordinate pairs identify the q² rows. Change X and Y inside fiber z by additions u_z and v_z respectively. Then
 
     a'=a+u,      σ'=σ+δ,      δ=v−u.
 
-The change preserves release at this particular source exactly when
-σ+δ is a permutation. It preserves release for every source in this
-family exactly when δ is constant. A constant shifts all σ values
-equally, so suffices. If δ_z≠δ_w, choose two different permutation
-values with σ(z)−σ(w)=δ_w−δ_z, and complete them to a permutation.
-Their updated values coincide. This supplies the necessary witness
-for every nonconstant δ, including composite q.
+The change preserves release at this particular source exactly when σ+δ is a permutation. It preserves release for every source in this family exactly when δ is constant. A constant shifts all σ values equally, so suffices. If δ_z≠δ_w, choose two different permutation values with σ(z)−σ(w)=δ_w−δ_z, and complete them to a permutation. Their updated values coincide. This supplies the necessary witness for every nonconstant δ, including composite q.
 
-Consequently there are q^q·q! admitted one-step action pairs at a
-fixed valid source, but only q^(q+1) pairs uniformly preserving the
-whole family: u is arbitrary and v=u+c for one common c. The latter
-form a group under addition and are therefore reusable under arbitrary
-finite composition. Independent local permission sets containing
-idling and allowing every combination have size at most q²: with
-the partner idle, each permitted local vector must be constant.
-Independent constant shifts attain q². This is a classification in
-the displayed cyclic-translation interface, not in the larger class
-of all possible within-fiber permutations from M64x.
+Consequently there are q^q·q! admitted one-step action pairs at a fixed valid source, but only q^(q+1) pairs uniformly preserving the whole family: u is arbitrary and v=u+c for one common c. The latter form a group under addition and are therefore reusable under arbitrary finite composition. Independent local permission sets containing idling and allowing every combination have size at most q²: with the partner idle, each permitted local vector must be constant. Independent constant shifts attain q². This is a classification in the displayed cyclic-translation interface, not in the larger class of all possible within-fiber permutations from M64x.
 
-At q=2 the fixed-source and uniform counts coincide. At q=3 they
-do not. Start with a=0 and σ(z)=z; apply u=0, v_z=z. The first
-result has σ'(z)=2z, still a permutation. Apply the same action again:
-σ''(z)=0, so XY loses all distinction between rows sharing i, while
-XZ and YZ remain complete charts. Both individual applications are
-actual reversible permutations of the complete source; the second
-fails only the stronger common-coordinate release question. Thus a
-certificate established at one current source cannot be promoted to
-a source-independent reusable command.
+At q=2 the fixed-source and uniform counts coincide. At q=3 they do not. Start with a=0 and σ(z)=z; apply u=0, v_z=z. The first result has σ'(z)=2z, still a permutation. Apply the same action again: σ''(z)=0, so XY loses all distinction between rows sharing i, while XZ and YZ remain complete charts. Both individual applications are actual reversible permutations of the complete source; the second fails only the stronger common-coordinate release question. Thus a certificate established at one current source cannot be promoted to a source-independent reusable command.
 
-For q=3 every σ has the form az+b with a∈{1,2}. In this subcase
-the next addition v_z=z is admissible exactly when a=1. The required
-answer is one binary orientation, although one point query σ(z)
-leaves both orientations possible; two distinct point queries decide
-it. After the admitted change a becomes 2. A known inverse change
-can recover the previous prepared family using the still available
-XZ or YZ access. No fresh source reading is needed to derive
-that known update from its valid earlier record; unreported partner
-changes would alter the premise.
+For q=3 every σ has the form az+b with a∈{1,2}. In this subcase the next addition v_z=z is admissible exactly when a=1. The required answer is one binary orientation, although one point query σ(z) leaves both orientations possible; two distinct point queries decide it. After the admitted change a becomes 2. A known inverse change can recover the previous prepared family using the still available XZ or YZ access. No fresh source reading is needed to derive that known update from its valid earlier record; unreported partner changes would alter the premise.
 
-`CyclicProfileRepeatBoundary` constructs the three complete source
-endpoints by permutations of addressed triples, carrying X and Z
-through every change. It derives the two complete XY key sets, the
-threefold repetition of keys after the second change, and the inverse
-word returning the prepared source. Interpreting three distinguished
-symbols cyclically supplies the displayed modulo-three instance; no
-runtime arithmetic or search is used by that certificate.
+`CyclicProfileRepeatBoundary` constructs the three complete source endpoints by permutations of addressed triples, carrying X and Z through every change. It derives the two complete XY key sets, the threefold repetition of keys after the second change, and the inverse word returning the prepared source. Interpreting three distinguished symbols cyclically supplies the displayed modulo-three instance; no runtime arithmetic or search is used by that certificate.
 
-The same witness gives two individually closed controllers with an
-unsafe shared execution. Each isolated controller keeps a private
-forward/reverse marker, applies the forward word at the forward state
-and its inverse at the reverse state, and updates its marker. Its
-own source/marker relation closes under this two-step cycle. Start
-two such controllers at the same forward source with separate forward
-markers. The first changes the device to reverse and updates only its
-own marker. The second still selects the forward word from its private
-marker, reaches the collapsed source, and changes its marker to reverse.
-Both markers now say reverse; the device is not in that state.
-`TwoCyclicControllers` constructs the isolated return, unchanged partner
-marker and complete shared endpoints. The two selected applications
-have the same operation expression and correctly connected actual
-source endpoints. It is their private phase applicability that fails.
-The control boundaries are the supplied words; no physical atomicity
-of a multi-contact word is inferred. This answers the composition
-question without treating local closure as a shared permission.
+The same witness gives two individually closed controllers with an unsafe shared execution. Each isolated controller keeps a private forward/reverse marker, applies the forward word at the forward state and its inverse at the reverse state, and updates its marker. Its own source/marker relation closes under this two-step cycle. Start two such controllers at the same forward source with separate forward markers. The first changes the device to reverse and updates only its own marker. The second still selects the forward word from its private marker, reaches the collapsed source, and changes its marker to reverse. Both markers now say reverse; the device is not in that state. `TwoCyclicControllers` constructs the isolated return, unchanged partner marker and complete shared endpoints. The two selected applications have the same operation expression and correctly connected actual source endpoints. It is their private phase applicability that fails. The control boundaries are the supplied words; no physical atomicity of a multi-contact word is inferred. This answers the composition question without treating local closure as a shared permission.
 
-**M64ac (removing the cyclic source law changes the reusable permission).**
-Return to all q-permutation families (τ_z) whose graphs partition
-X×Y, with q≥3. Fix within-fiber permutations u_z of X and v_z of Y,
-chosen independently of the unknown family. They preserve this
-partition for every admitted family iff u_z=U and v_z=V are each
-constant across fibers. Thus the uniform fixed action group in this
-full interface is S_q×S_q. Within the translation subinterface of
-M64ab this leaves only the q² pairs of global constant shifts, rather
-than its q^(q+1) permissions under the additional cyclic source law.
+**M64ac (removing the cyclic source law changes the reusable permission).** Return to all q-permutation families (τ_z) whose graphs partition X×Y, with q≥3. Fix within-fiber permutations u_z of X and v_z of Y, chosen independently of the unknown family. They preserve this partition for every admitted family iff u_z=U and v_z=V are each constant across fibers. Thus the uniform fixed action group in this full interface is S_q×S_q. Within the translation subinterface of M64ab this leaves only the q² pairs of global constant shifts, rather than its q^(q+1) permissions under the additional cyclic source law.
 
-Here is a direct necessity proof. Any two pointwise-disjoint
-permutations p,r can be completed to an admitted family: their graphs
-are disjoint perfect matchings of the complete bipartite graph X×Y.
-The remaining graph is regular. To see that a positive-degree regular
-bipartite graph has a perfect matching, take a maximum matching. If
-it leaves a left vertex unmatched, follow alternating paths from it.
-Every reached right vertex must be matched, or such a path augments
-the matching. Their matched partners are exactly the reached left
-vertices except the initial one. But all neighbors of a reached left
-vertex are reached, and regular edge-counting requires at least as
-many reached right vertices as left vertices, a contradiction.
-Removing a perfect matching and repeating decomposes the remainder.
-This supplies the completion used below without assuming an unknown
-Latin completion as an additional premise.
+Here is a direct necessity proof. Any two pointwise-disjoint permutations p,r can be completed to an admitted family: their graphs are disjoint perfect matchings of the complete bipartite graph X×Y. The remaining graph is regular. To see that a positive-degree regular bipartite graph has a perfect matching, take a maximum matching. If it leaves a left vertex unmatched, follow alternating paths from it. Every reached right vertex must be matched, or such a path augments the matching. Their matched partners are exactly the reached left vertices except the initial one. But all neighbors of a reached left vertex are reached, and regular edge-counting requires at least as many reached right vertices as left vertices, a contradiction. Removing a perfect matching and repeating decomposes the remainder. This supplies the completion used below without assuming an unknown Latin completion as an additional premise.
 
-Fix fibers z,w and an output x. Put a=u_z⁻¹(x), b=u_w⁻¹(x). If a≠b,
-choose a value y and t=v_w⁻¹(v_z(y)). Since q≥3 there is a permutation
-p with p(a)=y and p(b)≠t. Choose a derangement d with
-d(b)=p⁻¹(t), for example a q-cycle with that directed edge, and set
-r=p∘d. The old p,r are pointwise disjoint, but the two updated maps
-agree at x. Complete them as above to obtain a valid old source with
-an invalid new release. Hence a=b for every x, giving u_z=u_w.
-With this equality, if v_z≠v_w, choose y with
-t=v_w⁻¹(v_z(y))≠y and disjoint p,r taking the common input to y,t.
-Their changed answers again coincide. Thus v_z=v_w. Sufficiency
-follows immediately by applying common bijections to both sides of
-every joint reading. The use of a third symbol explains why this
-necessity proof does not apply to M64y's binary exception.
+Fix fibers z,w and an output x. Put a=u_z⁻¹(x), b=u_w⁻¹(x). If a≠b, choose a value y and t=v_w⁻¹(v_z(y)). Since q≥3 there is a permutation p with p(a)=y and p(b)≠t. Choose a derangement d with d(b)=p⁻¹(t), for example a q-cycle with that directed edge, and set r=p∘d. The old p,r are pointwise disjoint, but the two updated maps agree at x. Complete them as above to obtain a valid old source with an invalid new release. Hence a=b for every x, giving u_z=u_w. With this equality, if v_z≠v_w, choose y with t=v_w⁻¹(v_z(y))≠y and disjoint p,r taking the common input to y,t. Their changed answers again coincide. Thus v_z=v_w. Sufficiency follows immediately by applying common bijections to both sides of every joint reading. The use of a third symbol explains why this necessity proof does not apply to M64y's binary exception.
 
-For a concrete check of the missing premise, take q=3 and
-τ_z(x)=−x+z. These maps form an admitted partition. The equal local
-translations u_z=v_z=z have δ=0 in M64ab, but here they give
-τ'_z(x)=−x+3z=−x. The future XY keys merge across all Z fibers.
-The cyclic source law cannot be discarded while keeping its larger
-uniform permission.
+For a concrete check of the missing premise, take q=3 and τ_z(x)=−x+z. These maps form an admitted partition. The equal local translations u_z=v_z=z have δ=0 in M64ab, but here they give τ'_z(x)=−x+3z=−x. The future XY keys merge across all Z fibers. The cyclic source law cannot be discarded while keeping its larger uniform permission.
 
-This need not force isolation. For a known local action u_z, the
-source-dependent choice
+This need not force isolation. For a known local action u_z, the source-dependent choice
 
     v_z = τ_z ∘ u_z ∘ τ_z⁻¹
 
-retains τ'_z=τ_z exactly, without assuming an additive coordinate
-law. It is the same addressed row action expressed through the other
-chart. To choose v_z, determining the whole τ_z may be unnecessary.
-Two maps τ,ρ give the same required v exactly when ρ⁻¹τ commutes
-with u. For a transposition of a,b, the answer is just the unordered
-pair {τ(a),τ(b)}. Its direction inside the pair is irrelevant.
+retains τ'_z=τ_z exactly, without assuming an additive coordinate law. It is the same addressed row action expressed through the other chart. To choose v_z, determining the whole τ_z may be unnecessary. Two maps τ,ρ give the same required v exactly when ρ⁻¹τ commutes with u. For a transposition of a,b, the answer is just the unordered pair {τ(a),τ(b)}. Its direction inside the pair is irrelevant.
 
-For three ports, one point query at the remaining port c determines
-this pair as the complement of {τ(c)}. With no query all three
-remote transpositions remain possible, so one is the exact minimum
-in this point-query interface. Two possible frame laws remain after
-every reply, but they prescribe the same action. For q≥4 two point
-queries attain the answer; one cannot decide it, since at least one
-unread input inside the requested pair and one outside can be
-exchanged without changing the reply. At q=2 no query is necessary.
+For three ports, one point query at the remaining port c determines this pair as the complement of {τ(c)}. With no query all three remote transpositions remain possible, so one is the exact minimum in this point-query interface. Two possible frame laws remain after every reply, but they prescribe the same action. For q≥4 two point queries attain the answer; one cannot decide it, since at least one unread input inside the requested pair and one outside can be exchanged without changing the reply. At q=2 no query is necessary.
 
-`ThreePortSharedCoupling` supplies all six frame clauses on arbitrary
-payloads. It acquires the fixed-port image at the actual retained
-frame, routes only that fact and the supplied payload through one
-three-clause selector, and keeps the frame and fact beside the result.
-`SixActualCouplings` derives agreement with the requested local swap
-for all six clauses; neither the other two unknown frame entries nor
-an output-equality premise is a selector input. `CurrentFixedPointFactors`
-derives applicability of the same fact after this supplied update.
-These source-bound constructions execute the remote half of the
-three-port coupling and compare it with the requested local action
-through the retained frame. They do not also construct a changed raw
-table of both physical charts or an asynchronous delivery mechanism.
-The universal classification over q and all permutation families is
-the mathematical proof above; it is not a sealed Swift grammar for
-arbitrary user-defined readings or a physical delivery protocol.
+`ThreePortSharedCoupling` supplies all six frame clauses on arbitrary payloads. It acquires the fixed-port image at the actual retained frame, routes only that fact and the supplied payload through one three-clause selector, and keeps the frame and fact beside the result. `SixActualCouplings` derives agreement with the requested local swap for all six clauses; neither the other two unknown frame entries nor an output-equality premise is a selector input. `CurrentFixedPointFactors` derives applicability of the same fact after this supplied update. These source-bound constructions execute the remote half of the three-port coupling and compare it with the requested local action through the retained frame. They do not also construct a changed raw table of both physical charts or an asynchronous delivery mechanism. The universal classification over q and all permutation families is the mathematical proof above; it is not a sealed Swift grammar for arbitrary user-defined readings or a physical delivery protocol.
 
-**M64ad (a known change can change the question that the old fact must answer).**
-Fix a finite permutation group G, an unknown frame τ∈G and a requested
-local action u∈G. The remote action required by M64ac is
+**M64ad (a known change can change the question that the old fact must answer).** Fix a finite permutation group G, an unknown frame τ∈G and a requested local action u∈G. The remote action required by M64ac is
 
     Q_u(τ) = τuτ⁻¹.
 
-Let H=C_G(u) be the permutations commuting with u. Two frames τ,ρ
-have the same Q_u exactly when ρ⁻¹τ∈H. The sufficient record for this
-one action therefore distinguishes right cosets τH, not necessarily
-individual frames. This describes the content of a record; it does
-not assume that the observer already has an instrument reading it.
+Let H=C_G(u) be the permutations commuting with u. Two frames τ,ρ have the same Q_u exactly when ρ⁻¹τ∈H. The sufficient record for this one action therefore distinguishes right cosets τH, not necessarily individual frames. This describes the content of a record; it does not assume that the observer already has an instrument reading it.
 
-Now let the actual frame change be τ'=βτα⁻¹, with the applied α,β
-known. Here this is one fixed change admitted for every candidate τ;
-an unspecified source-dependent map is not a free extra input. Then
+Now let the actual frame change be τ'=βτα⁻¹, with the applied α,β known. Here this is one fixed change admitted for every candidate τ; an unspecified source-dependent map is not a free extra input. Then
 
     Q_u(τ') = β Q_(α⁻¹uα)(τ) β⁻¹.
 
-The output change β always transports a known remote action by
-conjugation. The input change α can demand a different old question.
-For every τ, Q_u(τ') is determined by Q_u(τ), α and β exactly when
+The output change β always transports a known remote action by conjugation. The input change α can demand a different old question. For every τ, Q_u(τ') is determined by Q_u(τ), α and β exactly when
 
     α ∈ N_G(H),       equivalently α⁻¹Hα = H.
 
-*Proof.* Replace a candidate τ by τh, h∈H, which leaves the old
-record unchanged. The new answers agree for every such h precisely
-when h commutes with α⁻¹uα. Its centralizer is α⁻¹Hα. Thus the
-criterion is H⊆α⁻¹Hα. Since G is finite the two subgroups have equal
-size, so this inclusion is equality. Conversely that equality makes
-the new answer independent of the representative of every old coset,
-and defines the required decoder on the realized records. This proves
-factorization; the finite constructions below provide particular
-decoders and acquisitions. It does not assign zero cost to obtaining
-the actual change α,β.
+*Proof.* Replace a candidate τ by τh, h∈H, which leaves the old record unchanged. The new answers agree for every such h precisely when h commutes with α⁻¹uα. Its centralizer is α⁻¹Hα. Thus the criterion is H⊆α⁻¹Hα. Since G is finite the two subgroups have equal size, so this inclusion is equality. Conversely that equality makes the new answer independent of the representative of every old coset, and defines the required decoder on the realized records. This proves factorization; the finite constructions below provide particular decoders and acquisitions. It does not assign zero cost to obtaining the actual change α,β.
 
-Preserving the old answer itself is more restrictive. With β=id,
-Q_u(τα⁻¹)=Q_u(τ) for every τ iff α∈H. Normalizing H allows a
-derived change of the answer, not necessarily an unchanged answer.
+Preserving the old answer itself is more restrictive. With β=id, Q_u(τα⁻¹)=Q_u(τ) for every τ iff α∈H. Normalizing H allows a derived change of the answer, not necessarily an unchanged answer.
 
-For a transposition u=(a b) in S_q, q≥3, H consists of permutations
-preserving the pair {a,b} and its complement separately. Its orbits
-on ports have sizes 2 and q−2. A normalizer must permute those orbits.
-When q≠4 their different sizes force it to preserve each, so N(H)=H.
-At q=4 the two orbits have equal size. Their exchange also normalizes
-H, giving eight allowed input changes instead of four. If α exchanges
-the two pairs, the new remote transposition exchanges the complement
-of the old remote pair. Thus the old action suffices for a different
-action without identifying the frame or making a new contact. A
-change mixing the pairs fails the criterion. At q=2 every frame gives
-the same sole transposition, and no frame acquisition is needed.
+For a transposition u=(a b) in S_q, q≥3, H consists of permutations preserving the pair {a,b} and its complement separately. Its orbits on ports have sizes 2 and q−2. A normalizer must permute those orbits. When q≠4 their different sizes force it to preserve each, so N(H)=H. At q=4 the two orbits have equal size. Their exchange also normalizes H, giving eight allowed input changes instead of four. If α exchanges the two pairs, the new remote transposition exchanges the complement of the old remote pair. Thus the old action suffices for a different action without identifying the frame or making a new contact. A change mixing the pairs fails the criterion. At q=2 every frame gives the same sole transposition, and no frame acquisition is needed.
 
-**M64ae (admitted changes determine the least reusable frame content).**
-Keep the finite group and fixed request of M64ad. Allow every finite
-word in a specified reversible input-change vocabulary, generating
-D≤G. The actual word's resulting d∈D is an available input at use.
-Acquire a record before that word; require it to answer the same
-local request after every such change. Two old frames may share a
-record exactly to the extent that their relative permutation belongs
-to
+**M64ae (admitted changes determine the least reusable frame content).** Keep the finite group and fixed request of M64ad. Allow every finite word in a specified reversible input-change vocabulary, generating D≤G. The actual word's resulting d∈D is an available input at use. Acquire a record before that word; require it to answer the same local request after every such change. Two old frames may share a record exactly to the extent that their relative permutation belongs to
 
     H_D = ⋂_(d∈D) d⁻¹Hd
         = C_G(⟨d⁻¹ud : d∈D⟩).
 
-Consequently the least sufficient record has |G|/|H_D| different
-answers. This is a closed-form instance of VC15/VC38's continuation
-quotient, not a second saturation algorithm or a new general
-minimization theorem.
+Consequently the least sufficient record has |G|/|H_D| different answers. This is a closed-form instance of VC15/VC38's continuation quotient, not a second saturation algorithm or a new general minimization theorem.
 
-*Proof.* For each available d the required answer is
-τd⁻¹udτ⁻¹. Replacing τ by τh preserves all these answers iff h
-commutes with every d⁻¹ud, equivalently with the subgroup they
-generate. This gives exactly the intersection above. Jointly recording
-these required answers attains that equivalence. Any record merging
-two different classes fails on a specific admitted d which separates
-them. The intersection is invariant under conjugation by D, so later
-known changes act on its cosets without further refinement. The word
-history may still be needed for another question; this quotient
-retains its required effect only.
+*Proof.* For each available d the required answer is τd⁻¹udτ⁻¹. Replacing τ by τh preserves all these answers iff h commutes with every d⁻¹ud, equivalently with the subgroup they generate. This gives exactly the intersection above. Jointly recording these required answers attains that equivalence. Any record merging two different classes fails on a specific admitted d which separates them. The intersection is invariant under conjugation by D, so later known changes act on its cosets without further refinement. The word history may still be needed for another question; this quotient retains its required effect only.
 
-For G=S_q, q≥3, a transposition request and D=S_q, its conjugates
-are all transpositions. They generate S_q, whose center is trivial:
-commuting with every transposition fixes every unordered pair, and
-the intersection of {a,b} and {a,c} fixes a when b,c differ. Hence
-H_D={id}. The one-action record must refine to the whole frame if
-it promises reuse after *every known input permutation*. This does
-not require acquiring the whole frame for a single actual future
-use. Once that particular change is known, a new question-specific
-contact can suffice, as M64ag constructs.
+For G=S_q, q≥3, a transposition request and D=S_q, its conjugates are all transpositions. They generate S_q, whose center is trivial: commuting with every transposition fixes every unordered pair, and the intersection of {a,b} and {a,c} fixes a when b,c differ. Hence H_D={id}. The one-action record must refine to the whole frame if it promises reuse after *every known input permutation*. This does not require acquiring the whole frame for a single actual future use. Once that particular change is known, a new question-specific contact can suffice, as M64ag constructs.
 
-There is also a direct description for an arbitrary transposition
-request library. Draw a simple graph L on the q labelled local ports,
-with one edge for every requested swap. The answer retains the
-remote action of each labelled request, not just their unlabelled
-collection. Let e be the number of connected components consisting
-of one isolated edge, and r the number of isolated vertices. The
-unresolved frame group is exactly
+There is also a direct description for an arbitrary transposition request library. Draw a simple graph L on the q labelled local ports, with one edge for every requested swap. The answer retains the remote action of each labelled request, not just their unlabelled collection. Let e be the number of connected components consisting of one isolated edge, and r the number of isolated vertices. The unresolved frame group is exactly
 
     H_L ≅ (C₂)^e × S_r,
 
-and the answer has q!/(2^e r!) possibilities. To prove this without a
-group enumeration, a relative permutation must preserve every edge
-as an unordered pair. Two incident edges fix their common vertex
-by intersection. Their other endpoints are then fixed, and this
-propagates throughout every connected component with at least three
-vertices. An isolated edge can still be reversed, and isolated
-vertices can be permuted freely. These independent changes also
-suffice to preserve every requested action.
+and the answer has q!/(2^e r!) possibilities. To prove this without a group enumeration, a relative permutation must preserve every edge as an unordered pair. Two incident edges fix their common vertex by intersection. Their other endpoints are then fixed, and this propagates throughout every connected component with at least three vertices. An isolated edge can still be reversed, and isolated vertices can be permuted freely. These independent changes also suffice to preserve every requested action.
 
-Thus a full frame is determined iff e=0 and r≤1. At q=4, two
-overlapping requests identify all four ports; two disjoint requests
-leave four frames possible. The periods and number of the requests
-are identical. Their overlap is the distinguishing relation.
+Thus a full frame is determined iff e=0 and r≤1. At q=4, two overlapping requests identify all four ports; two disjoint requests leave four frames possible. The periods and number of the requests are identical. Their overlap is the distinguishing relation.
 
-For q≥3 the fewest transposition requests which can identify a full
-frame is ⌈2(q−1)/3⌉. Indeed at least q−1 vertices must lie in
-components of size at least three. If they occupy N vertices and c
-components, at least N−c edges are required, while c≤N/3. Conversely
-partition q−1 vertices into triples, using one group of four or five
-when necessary, and put a tree on each group. This attains the bound;
-for q=3 use the two edges of a three-vertex path. This counts distinct
-action questions whose answers are supplied, not physical calls that
-acquire those answers.
+For q≥3 the fewest transposition requests which can identify a full frame is ⌈2(q−1)/3⌉. Indeed at least q−1 vertices must lie in components of size at least three. If they occupy N vertices and c components, at least N−c edges are required, while c≤N/3. Conversely partition q−1 vertices into triples, using one group of four or five when necessary, and put a tree on each group. This attains the bound; for q=3 use the two edges of a three-vertex path. This counts distinct action questions whose answers are supplied, not physical calls that acquire those answers.
 
-This minimum is the known base size for S_q acting on two-element
-subsets: it is the k=2 case of
-[Halasi, Theorem 3.2](https://zhalasi.web.elte.hu/papers/05.ksets.pdf)
-for q≥4; the three-port case is given directly above. The graph proof
-identifies how that established result enters this acquisition
-question. No independent priority for the base-size formula is claimed.
+This minimum is the known base size for S_q acting on two-element subsets: it is the k=2 case of [Halasi, Theorem 3.2](https://zhalasi.web.elte.hu/papers/05.ksets.pdf) for q≥4; the three-port case is given directly above. The graph proof identifies how that established result enters this acquisition question. No independent priority for the base-size formula is claimed.
 
-The point-query cost is a separate quantity. Set m to the largest
-size among the r unused vertices, each isolated pair of size two and
-each individually fixed vertex of size one. On the unrestricted
-family of all q! frames, q−m point queries are necessary and sufficient
-to acquire this action-library answer. Query every port outside a
-largest such block. Its remaining images determine the answer, since
-all permutations within that block preserve every requested action.
-With fewer queries, more than m inputs remain unread. Two belong to
-different blocks, and exchanging their images preserves the entire
-transcript while changing a requested action. This argument applies
-at every reached adaptive transcript. It is the payload-class
-principle of VC100c with this graph-derived partition and *without*
-a known parity premise; the parity improvement there is not imported.
+The point-query cost is a separate quantity. Set m to the largest size among the r unused vertices, each isolated pair of size two and each individually fixed vertex of size one. On the unrestricted family of all q! frames, q−m point queries are necessary and sufficient to acquire this action-library answer. Query every port outside a largest such block. Its remaining images determine the answer, since all permutations within that block preserve every requested action. With fewer queries, more than m inputs remain unread. Two belong to different blocks, and exchanging their images preserves the entire transcript while changing a requested action. This argument applies at every reached adaptive transcript. It is the payload-class principle of VC100c with this graph-derived partition and *without* a known parity premise; the parity improvement there is not imported.
 
-Even reaching every port does not force whole-frame saturation. On
-four ports let the admitted changes be powers of c=(0 1 2 3). For
-the request (0 1), its transported versions form the four edges of
-the cycle. Their overlap fixes every port, so the reusable record
-identifies all 24 frames and needs three point queries. For the
-request (0 2), the versions are only (0 2) and (1 3). They form two
-disjoint edges; the record has six answers, leaves four frames per
-answer, and needs two point queries. The same change group reaches
-every port in both cases. It is the orbit of the *question*, not
-point reachability alone, which determines the needed refinement.
+Even reaching every port does not force whole-frame saturation. On four ports let the admitted changes be powers of c=(0 1 2 3). For the request (0 1), its transported versions form the four edges of the cycle. Their overlap fixes every port, so the reusable record identifies all 24 frames and needs three point queries. For the request (0 2), the versions are only (0 2) and (1 3). They form two disjoint edges; the record has six answers, leaves four frames per answer, and needs two point queries. The same change group reaches every port in both cases. It is the orbit of the *question*, not point reachability alone, which determines the needed refinement.
 
-For the opposite-pair request, only the parity of the actual power
-of c is needed at use: an even power preserves the old remote pair,
-an odd power selects its complement. One bit about the whole change
-word is sufficient and necessary in a change-only message channel,
-since identity and c require different actions at the same old
-record. Its complete count and order need not be sent. For the
-adjacent-pair request, all four powers demand different remote
-actions at each fixed frame; that same channel needs four possible
-messages. These are message alphabets for the actual effect of the
-change, not assumptions that its parity or phase is already known.
-Their acquisition and retention across the final cut remain subject
-to M64af. This also distinguishes the amount of initial calibration
-from the amount of later change information.
+For the opposite-pair request, only the parity of the actual power of c is needed at use: an even power preserves the old remote pair, an odd power selects its complement. One bit about the whole change word is sufficient and necessary in a change-only message channel, since identity and c require different actions at the same old record. Its complete count and order need not be sent. For the adjacent-pair request, all four powers demand different remote actions at each fixed frame; that same channel needs four possible messages. These are message alphabets for the actual effect of the change, not assumptions that its parity or phase is already known. Their acquisition and retention across the final cut remain subject to M64af. This also distinguishes the amount of initial calibration from the amount of later change information.
 
-**M64af (a last unobserved change differs from a known transport).**
-Suppose β=id and, between a record's last acquisition and the use,
-an unreported input change α from D≤G can occur, including identity.
-Even a full record of the previous τ cannot determine the new
-required action for every such α unless D≤C_G(u). Necessity follows
-by comparing the same old τ and history with α=id and with an α
-not commuting with u. Their required actions differ. If D≤C_G(u),
-they are equal and the old Q_u is sufficient; the full frame may
-change without changing this question.
+**M64af (a last unobserved change differs from a known transport).** Suppose β=id and, between a record's last acquisition and the use, an unreported input change α from D≤G can occur, including identity. Even a full record of the previous τ cannot determine the new required action for every such α unless D≤C_G(u). Necessity follows by comparing the same old τ and history with α=id and with an α not commuting with u. Their required actions differ. If D≤C_G(u), they are equal and the old Q_u is sufficient; the full frame may change without changing this question.
 
-In particular, in the three-port family arbitrary unreported frame
-permutations after the last read defeat any guarantee based only on
-that finite history and a subsequently chosen fixed remote swap.
-Doing one more read only moves the last-read boundary if the same
-intervention is still admitted afterward. This is a refusal for the
-declared read-then-use interface, not a prohibition on interaction
-with a changing source. A successful interface can restrict those final
-changes to the relevant stabilizer, supply their actual transport,
-or couple the selection and action to the current relation. Each is
-an additional realized relation to demonstrate. A timestamp, a
-private controller phase or the name “current” supplies none of them
-by itself. No external clock, fairness or atomic delivery is assumed.
+In particular, in the three-port family arbitrary unreported frame permutations after the last read defeat any guarantee based only on that finite history and a subsequently chosen fixed remote swap. Doing one more read only moves the last-read boundary if the same intervention is still admitted afterward. This is a refusal for the declared read-then-use interface, not a prohibition on interaction with a changing source. A successful interface can restrict those final changes to the relevant stabilizer, supply their actual transport, or couple the selection and action to the current relation. Each is an additional realized relation to demonstrate. A timestamp, a private controller phase or the name “current” supplies none of them by itself. No external clock, fairness or atomic delivery is assumed.
 
-M64ad and M64af have different inputs. A known pair exchange at q=4
-can be decoded by taking the complement. If it might have happened
-but is unreported, the old and complementary swaps remain distinct
-possibilities. A harmless uncertainty is therefore relative both to
-the action question and to the participant's available change record.
+M64ad and M64af have different inputs. A known pair exchange at q=4 can be decoded by taking the complement. If it might have happened but is unreported, the old and complementary swaps remain distinct possibilities. A harmless uncertainty is therefore relative both to the action question and to the participant's available change record.
 
-**M64ag (actual reacquisition repairs the three-port crossing).**
-The old three-port frames τ₀=(0,1,2) and τ₁=(1,0,2) give the same
-fixed-port reply τ(2)=2. Change each actual frame by precomposing
-the exchange of local ports 1 and 2. The resulting frames are
-(0,2,1) and (1,2,0), whose fixed-port replies are respectively 1
-and 0. The old record and the known change word are equal, but the
-remote swaps now required for the same local request (0 1) are
-(0 2) and (1 2). The old reply cannot choose between them.
+**M64ag (actual reacquisition repairs the three-port crossing).** The old three-port frames τ₀=(0,1,2) and τ₁=(1,0,2) give the same fixed-port reply τ(2)=2. Change each actual frame by precomposing the exchange of local ports 1 and 2. The resulting frames are (0,2,1) and (1,2,0), whose fixed-port replies are respectively 1 and 0. The old record and the known change word are equal, but the remote swaps now required for the same local request (0 1) are (0 2) and (1 2). The old reply cannot choose between them.
 
-`FrameProbeThenMove` composes the actual old acquisition with this
-actual resident-field change and retains its fact. `ThreePortInterference`
-derives equality of the two old fact inputs and of the change words,
-while exposing the two different current answers. `ReprobeMovedFrame`
-then acquires the fixed-port answer from the changed source.
-`ExecuteReprobedFrameSwap` passes only this new fact and arbitrary
-payload to the existing selector. Both branches give the required
-coupling at their actual current frames; the frame and both acquired
-occurrences remain beside the result. The new acquisition is one
-point contact with three possible answers, not three contacts or a
-binary bit. In this two-candidate subfamily it has two realized answers.
+`FrameProbeThenMove` composes the actual old acquisition with this actual resident-field change and retains its fact. `ThreePortInterference` derives equality of the two old fact inputs and of the change words, while exposing the two different current answers. `ReprobeMovedFrame` then acquires the fixed-port answer from the changed source. `ExecuteReprobedFrameSwap` passes only this new fact and arbitrary payload to the existing selector. Both branches give the required coupling at their actual current frames; the frame and both acquired occurrences remain beside the result. The new acquisition is one point contact with three possible answers, not three contacts or a binary bit. In this two-candidate subfamily it has two realized answers.
 
-By contrast `FrameMovePreservesFixedPort` derives, for arbitrary
-three addressed contents, that exchanging the first two fields
-preserves the old fixed-port reading. It does not require equality
-of the complete old and new frames. Repeated such exchanges preserve
-that relation by composition, so this branch requires no new point
-contact. The supplied words terminate at specified use boundaries;
-they do not establish M64af's missing relation across an additional
-unreported change after the new contact. These static paths certify
-the instances just described. The group classifications and minimal
-request counts are the mathematical arguments above, not claims
-that the Swift checker enumerates arbitrary finite groups.
+By contrast `FrameMovePreservesFixedPort` derives, for arbitrary three addressed contents, that exchanging the first two fields preserves the old fixed-port reading. It does not require equality of the complete old and new frames. Repeated such exchanges preserve that relation by composition, so this branch requires no new point contact. The supplied words terminate at specified use boundaries; they do not establish M64af's missing relation across an additional unreported change after the new contact. These static paths certify the instances just described. The group classifications and minimal request counts are the mathematical arguments above, not claims that the Swift checker enumerates arbitrary finite groups.
 
-**M64ah (transporting the request can remove the need for more frame knowledge).**
-M64ad–ag keep the local request u fixed while the frame changes.
-This is the contract of using the same current local slots after a
-resident rewiring. It must not be confused with carrying the original
-addressed operation through a change of local coordinates. In that
-second contract the request changes together with the frame:
+**M64ah (transporting the request can remove the need for more frame knowledge).** M64ad–ag keep the local request u fixed while the frame changes. This is the contract of using the same current local slots after a resident rewiring. It must not be confused with carrying the original addressed operation through a change of local coordinates. In that second contract the request changes together with the frame:
 
     τ' = βτα⁻¹,        u' = αuα⁻¹.
 
@@ -5188,610 +2392,165 @@ Substitution gives
 
     τ'u'τ'⁻¹ = β(τuτ⁻¹)β⁻¹.
 
-The input change α cancels. Old knowledge of the one remote action
-therefore suffices for every such joint transport, with only the
-known output change β applied to it. Full frame identification is
-unnecessary. When β=id the very same remote command works. The
-formula does not require reconstructing α at the receiver if the
-joint request transport is actually enforced by the supplied process;
-it does require that relation, rather than an assertion that the
-request “must have moved too”.
+The input change α cancels. Old knowledge of the one remote action therefore suffices for every such joint transport, with only the known output change β applied to it. Full frame identification is unnecessary. When β=id the very same remote command works. The formula does not require reconstructing α at the receiver if the joint request transport is actually enforced by the supplied process; it does require that relation, rather than an assertion that the request “must have moved too”.
 
-For the stated bijective frames this request transport is also
-necessary if that transported remote action is required: multiplying
-τ'u'τ'⁻¹=β(τuτ⁻¹)β⁻¹ by the inverse frame maps forces
-u'=αuα⁻¹. Thus it is the unique compatible request, not a convenient
-extra choice that happens to make the example work.
+For the stated bijective frames this request transport is also necessary if that transported remote action is required: multiplying τ'u'τ'⁻¹=β(τuτ⁻¹)β⁻¹ by the inverse frame maps forces u'=αuα⁻¹. Thus it is the unique compatible request, not a convenient extra choice that happens to make the example work.
 
-With β=id, the whole joint family has a precise quotient. Two pairs
-(τ,u),(ρ,w) give the same remote action iff there is a unique α
-with ρ=τα⁻¹ and w=αuα⁻¹: set α=ρ⁻¹τ and substitute. Hence
-conjugated action is a complete invariant of this joint transport
-on G×G. The unidentified frame and moving request need not be known
-separately. Their preserved relation is sufficient. This statement
-concerns the supplied group interface; it does not classify arbitrary
-physical changes as coordinate changes.
+With β=id, the whole joint family has a precise quotient. Two pairs (τ,u),(ρ,w) give the same remote action iff there is a unique α with ρ=τα⁻¹ and w=αuα⁻¹: set α=ρ⁻¹τ and substitute. Hence conjugated action is a complete invariant of this joint transport on G×G. The unidentified frame and moving request need not be known separately. Their preserved relation is sufficient. This statement concerns the supplied group interface; it does not classify arbitrary physical changes as coordinate changes.
 
-For M64ag's exchange α=(1 2), the transported request is
-u'=(0 2), whereas its fixed-coordinate request was u=(0 1).
-The old remote swap (0 1) works in both changed frames for u',
-even though it works in neither for u. `FrameMoveTransportsRequest`
-derives the new middle-port reading from the actual changed frame
-and shows that its pullback is the old third-port occurrence for
-arbitrary contents. Thus correspondence is obtained from the
-constructed change, not from equal question names or a selected
-coincidence of payloads. `ExecuteMovedFrameSwap` then implements both
-transported requests using the old fact, with no second acquisition.
-`ThreePortInterference` retains these paths beside the two reacquired
-paths of M64ag, so the difference lies in the requested relation.
+For M64ag's exchange α=(1 2), the transported request is u'=(0 2), whereas its fixed-coordinate request was u=(0 1). The old remote swap (0 1) works in both changed frames for u', even though it works in neither for u. `FrameMoveTransportsRequest` derives the new middle-port reading from the actual changed frame and shows that its pullback is the old third-port occurrence for arbitrary contents. Thus correspondence is obtained from the constructed change, not from equal question names or a selected coincidence of payloads. `ExecuteMovedFrameSwap` then implements both transported requests using the old fact, with no second acquisition. `ThreePortInterference` retains these paths beside the two reacquired paths of M64ag, so the difference lies in the requested relation.
 
-There is a compositional form. If successive source changes are
-τ_(j+1)=β_j τ_j α_j⁻¹ and each request is carried as
-u_(j+1)=α_j u_j α_j⁻¹, then its needed remote action evolves only
-by v_(j+1)=β_j v_j β_j⁻¹. Induction covers every finite admitted
-word, without a new calibration after each input-coordinate change.
-The source, request and record may all move while the relevant
-coupling remains closed. This is a different continuation contract
-from M64ae's fixed local request: applying its full-frame lower bound
-here would add an obligation that the transported question does not
-have. Nor may a fixed-coordinate failure be repaired by silently
-substituting this transported question. Which operation is meant
-must be established through its addressed participants.
+There is a compositional form. If successive source changes are τ_(j+1)=β_j τ_j α_j⁻¹ and each request is carried as u_(j+1)=α_j u_j α_j⁻¹, then its needed remote action evolves only by v_(j+1)=β_j v_j β_j⁻¹. Induction covers every finite admitted word, without a new calibration after each input-coordinate change. The source, request and record may all move while the relevant coupling remains closed. This is a different continuation contract from M64ae's fixed local request: applying its full-frame lower bound here would add an obligation that the transported question does not have. Nor may a fixed-coordinate failure be repaired by silently substituting this transported question. Which operation is meant must be established through its addressed participants.
 
-`MarkedFrameRequest.swift` also realizes a small closed interface for
-that joint movement, without requiring the receiver to learn the
-intervening word. Its source has three rows (value, marker), exactly
-one marked, and its question reads that row's value. The three
-`MarkedFrameAt…` clauses use actual projections at their admitted
-marker patterns. Both adjacent exchanges move whole rows, including
-the marker. `MarkedFrameMoves` supplies all six generic commuting
-squares, with identity on the read value and the exact successor
-pattern at each step. Because these successors remain in the same
-three-clause family for arbitrary values, induction proves preservation
-under every finite word of these contacts. The word and final marker
-position can remain unknown to a receiver retaining the old value.
+`MarkedFrameRequest.swift` also realizes a small closed interface for that joint movement, without requiring the receiver to learn the intervening word. Its source has three rows (value, marker), exactly one marked, and its question reads that row's value. The three `MarkedFrameAt…` clauses use actual projections at their admitted marker patterns. Both adjacent exchanges move whole rows, including the marker. `MarkedFrameMoves` supplies all six generic commuting squares, with identity on the read value and the exact successor pattern at each step. Because these successors remain in the same three-clause family for arbitrary values, induction proves preservation under every finite word of these contacts. The word and final marker position can remain unknown to a receiver retaining the old value.
 
-`RecordedMarkedFrameMove` binds this invariance to an actual earlier
-acquisition, a subsequent whole-row exchange and reading of the saved
-fact at the resulting source. `MoveFrameValuesWithoutRequest` gives
-the competing transformation: it exchanges the same two values but
-leaves the request marker in its old slot. Both transformations have
-the same unmarked current frame. Their marked questions can differ,
-and only the whole-row exchange preserves the old answer uniformly.
-The joint movement is therefore part of the constructed operation,
-not inferred from the unmarked result or from the name of the request.
-Interleaving these admitted contacts preserves the reading, including
-choices by different participants. No claim is made for an additional
-operation that separates value and marker, changes the selected value,
-or exposes intermediate cuts inside one of the supplied contacts.
+`RecordedMarkedFrameMove` binds this invariance to an actual earlier acquisition, a subsequent whole-row exchange and reading of the saved fact at the resulting source. `MoveFrameValuesWithoutRequest` gives the competing transformation: it exchanges the same two values but leaves the request marker in its old slot. Both transformations have the same unmarked current frame. Their marked questions can differ, and only the whole-row exchange preserves the old answer uniformly. The joint movement is therefore part of the constructed operation, not inferred from the unmarked result or from the name of the request. Interleaving these admitted contacts preserves the reading, including choices by different participants. No claim is made for an additional operation that separates value and marker, changes the selected value, or exposes intermediate cuts inside one of the supplied contacts.
 
-**M64ai (uniform reversible movement can use the request without learning the values).**
-The fixed whole-row permutations in M64ah are not the largest
-uniform interface preserving the selected answer. Fix q≥1. For
-every value set A let a rule act on A^q×{0,…,q−1}, a value tuple
-and its selected position. Require transport under every value
-interpretation h:A→B, including interpretations identifying values,
-with the position left unchanged by h. On the binary carrier
-A={0,1}, require no merging of complete inputs and preservation of
-the selected value. The rule itself may read the selected position.
-Bijectivity and preservation on every A will follow, rather than
-being extra premises.
+**M64ai (uniform reversible movement can use the request without learning the values).** The fixed whole-row permutations in M64ah are not the largest uniform interface preserving the selected answer. Fix q≥1. For every value set A let a rule act on A^q×{0,…,q−1}, a value tuple and its selected position. Require transport under every value interpretation h:A→B, including interpretations identifying values, with the position left unchanged by h. On the binary carrier A={0,1}, require no merging of complete inputs and preservation of the selected value. The rule itself may read the selected position. Bijectivity and preservation on every A will follow, rather than being extra premises.
 
-Exactly the following rules satisfy these conditions. Choose a
-permutation σ of the q selected positions. For each old position i
-choose a permutation π_i of the q value occurrences satisfying
-π_i(i)=σ(i). The rule sends position i to σ(i) and sends each
-value occurrence k to position π_i(k). There are exactly
+Exactly the following rules satisfy these conditions. Choose a permutation σ of the q selected positions. For each old position i choose a permutation π_i of the q value occurrences satisfying π_i(i)=σ(i). The rule sends position i to σ(i) and sends each value occurrence k to position π_i(k). There are exactly
 
     q! · ((q−1)!)^q
 
-such uniform rules. At three positions this gives 48, including
-the six fixed whole-row permutations as a proper subgroup.
+such uniform rules. At three positions this gives 48, including the six fixed whole-row permutations as a proper subgroup.
 
-*Proof.* Interpret q different generic markers as any value tuple.
-Naturality forces each output coordinate, at each given i, to select
-one of those markers. It also makes the output selected position
-depend only on i: the interpretation into a one-value set removes
-all value distinctions while retaining that position. This gives a
-map σ and coordinate selections f_i. On the binary carrier, an
-all-zero tuple remains all-zero under each coordinate selection.
-Two different positions i with the same σ(i) would therefore merge
-complete inputs. Binary injectivity forces σ to be a permutation.
-If an f_i omitted an input
-coordinate, two binary value tuples differing only there would
-merge at the same output position σ(i). Thus f_i selects all q
-coordinates once; its inverse is the occurrence movement π_i.
-Preservation of the selected value forces π_i(i)=σ(i): otherwise
-a binary tuple separating i from f_i(σ(i)) already gives a wrong
-selected answer. Conversely these conditions define a bijection:
-recover i by σ⁻¹, then undo π_i. They commute with every h and
-retain the selected value. There are q! choices for σ and (q−1)!
-choices for each π_i, proving the count. The proof extends M65's
-generic-marker argument with an explicit internal request; no value
-equality test is hidden in the rule.
+*Proof.* Interpret q different generic markers as any value tuple. Naturality forces each output coordinate, at each given i, to select one of those markers. It also makes the output selected position depend only on i: the interpretation into a one-value set removes all value distinctions while retaining that position. This gives a map σ and coordinate selections f_i. On the binary carrier, an all-zero tuple remains all-zero under each coordinate selection. Two different positions i with the same σ(i) would therefore merge complete inputs. Binary injectivity forces σ to be a permutation. If an f_i omitted an input coordinate, two binary value tuples differing only there would merge at the same output position σ(i). Thus f_i selects all q coordinates once; its inverse is the occurrence movement π_i. Preservation of the selected value forces π_i(i)=σ(i): otherwise a binary tuple separating i from f_i(σ(i)) already gives a wrong selected answer. Conversely these conditions define a bijection: recover i by σ⁻¹, then undo π_i. They commute with every h and retain the selected value. There are q! choices for σ and (q−1)! choices for each π_i, proving the count. The proof extends M65's generic-marker argument with an explicit internal request; no value equality test is hidden in the rule.
 
-The interpretation premise can itself be reduced to binary readings.
-Write B={0,1}. It suffices that T_A commute with every coordinatewise
-binary reading b:A→B, including the selected position unchanged:
+The interpretation premise can itself be reduced to binary readings. Write B={0,1}. It suffices that T_A commute with every coordinatewise binary reading b:A→B, including the selected position unchanged:
 
     (b^q × id) T_A = T_B (b^q × id).
 
-To see this, first take A to be the q distinct generic markers and
-read its generic tuple. Its output supplies some selected position
-σ(i) and coordinate indices f_i(j). Every binary q-tuple is the
-image of this generic tuple under a choice of b, so the equation
-forces T_B on *all* binary tuples to use these same indices and
-σ. Now take any A and input tuple. Every binary reading of its
-output coordinate equals the same reading of input coordinate
-f_i(j). Binary readings separate two different elements, forcing
-equality of these actual coordinates. The position is likewise σ(i).
-Thus all T_A have the same selection form, which then commutes with
-every interpretation h:A→C. Binary injectivity and answer preservation
-give the previous classification. This is a quantified structural
-reading contract, not a claim that a finite number of physical trials
-establishes every such binary reading for an unknown apparatus.
+To see this, first take A to be the q distinct generic markers and read its generic tuple. Its output supplies some selected position σ(i) and coordinate indices f_i(j). Every binary q-tuple is the image of this generic tuple under a choice of b, so the equation forces T_B on *all* binary tuples to use these same indices and σ. Now take any A and input tuple. Every binary reading of its output coordinate equals the same reading of input coordinate f_i(j). Binary readings separate two different elements, forcing equality of these actual coordinates. The position is likewise σ(i). Thus all T_A have the same selection form, which then commutes with every interpretation h:A→C. Binary injectivity and answer preservation give the previous classification. This is a quantified structural reading contract, not a claim that a finite number of physical trials establishes every such binary reading for an unknown apparatus.
 
-A nonseparating reading family cannot replace that condition. On a
-three-value carrier, restrict the binary readings to those identifying
-two specified distinct values. Exchanging those values in the selected
-coordinate preserves every retained reading and is reversible, while
-changing the selected answer. The missing contrast is precisely what
-the reduced test would fail to constrain.
+A nonseparating reading family cannot replace that condition. On a three-value carrier, restrict the binary readings to those identifying two specified distinct values. Exchanging those values in the selected coordinate preserves every retained reading and is reversible, while changing the selected answer. The missing contrast is precisely what the reduced test would fail to constrain.
 
-After fixing reference names for the q−1 unselected positions at
-each i, composition has the familiar wreath-product form
-(S_(q−1))^q ⋊ S_q. The content here is its derivation from the stated
-interpretation, recovery and question requirements. It is not a
-priority claim about wreath products, and the uniformity under all
-interpretations remains a substantive interface premise. Requiring
-only invariance under renaming would allow further value-dependent
-rules, as M65's equality-controlled example shows.
+After fixing reference names for the q−1 unselected positions at each i, composition has the familiar wreath-product form (S_(q−1))^q ⋊ S_q. The content here is its derivation from the stated interpretation, recovery and question requirements. It is not a priority claim about wreath products, and the uniformity under all interpretations remains a substantive interface premise. Requiring only invariance under renaming would allow further value-dependent rules, as M65's equality-controlled example shows.
 
-For q=3, one additional generator suffices beyond whole-row moves:
-exchange the two unselected rows only when the selected row is at
-position 0; otherwise do nothing. It is an involution and preserves
-the marked value. Conjugating this gate by the fixed whole-row
-permutations supplies independently the gate at each of the three
-selected positions. The gates commute because their trigger domains
-are disjoint. Their eight products together with the six transports
-realize all 48 rules: after matching σ by a whole-row permutation,
-the remaining rule fixes i and independently either exchanges its
-other two positions or leaves them. `GatedUnmarkedFrameMove` gives
-the actual three clauses and their return. This is a closed
-source-dependent movement library, with no measurement of the value
-needed to choose its branch.
+For q=3, one additional generator suffices beyond whole-row moves: exchange the two unselected rows only when the selected row is at position 0; otherwise do nothing. It is an involution and preserves the marked value. Conjugating this gate by the fixed whole-row permutations supplies independently the gate at each of the three selected positions. The gates commute because their trigger domains are disjoint. Their eight products together with the six transports realize all 48 rules: after matching σ by a whole-row permutation, the remaining rule fixes i and independently either exchanges its other two positions or leaves them. `GatedUnmarkedFrameMove` gives the actual three clauses and their return. This is a closed source-dependent movement library, with no measurement of the value needed to choose its branch.
 
-The larger library does not enlarge the set of configurations
-reachable from any one fully specified source: each branch still
-performs a whole-row permutation. It enlarges the uniform operations
-available across unknown sources. The gated rule cannot be replaced
-by one fixed row permutation for all marker positions. Nor does
-knowing the selected value always reveal the gate's branch. For
-values (a,a,b), a≠b, marking position 0 or 1 gives the same unmarked
-tuple and the same selected value a. The gate respectively produces
-unmarked tuples (a,b,a) and (a,a,b). A participant allowed only those
-old readings cannot select both full transformations. The admitted
-native rule uses the actual marker; an external implementation must
-establish access to that distinction or an equivalent coupling.
+The larger library does not enlarge the set of configurations reachable from any one fully specified source: each branch still performs a whole-row permutation. It enlarges the uniform operations available across unknown sources. The gated rule cannot be replaced by one fixed row permutation for all marker positions. Nor does knowing the selected value always reveal the gate's branch. For values (a,a,b), a≠b, marking position 0 or 1 gives the same unmarked tuple and the same selected value a. The gate respectively produces unmarked tuples (a,b,a) and (a,a,b). A participant allowed only those old readings cannot select both full transformations. The admitted native rule uses the actual marker; an external implementation must establish access to that distinction or an equivalent coupling.
 
-Consequently preservation need not freeze the unused parts, the
-request's coordinate, or the whole frame. What must remain intact
-is the addressed value-request relation. Arbitrary compositions of
-these admitted rules preserve it. A physical implementation must
-still realize that relation at its contact boundaries; the finite
-classification does not supply physical timing or a universal
-model of material transformations.
+Consequently preservation need not freeze the unused parts, the request's coordinate, or the whole frame. What must remain intact is the addressed value-request relation. Arbitrary compositions of these admitted rules preserve it. A physical implementation must still realize that relation at its contact boundaries; the finite classification does not supply physical timing or a universal model of material transformations.
 
-**M64aj (one shared ternary carrier forces the uniform binary rule).**
-The interpretation premise of M64ai has a more concrete realization
-criterion. Let B={0,1}, C={o,l,r}, and supply two fixed readings
-p,s:C→B with joint profiles
+**M64aj (one shared ternary carrier forces the uniform binary rule).** The interpretation premise of M64ai has a more concrete realization criterion. Let B={0,1}, C={o,l,r}, and supply two fixed readings p,s:C→B with joint profiles
 
     o ↦ (0,0),       l ↦ (1,0),       r ↦ (0,1).
 
-The two binary readings cannot both equal 1 on one C-value. Apply
-them coordinatewise to q-tuples, retaining the same selected position
-i∈I={0,…,q−1}. Fix any injective total rule T_B on B^q×I which
-preserves the selected bit. There exists a total T_C on C^q×I
-making both actual reading squares commute with this *same* T_B iff
-T_B belongs to M64ai's classified family. No recovery, naturality or
-question-preservation premise is added for T_C; its form and these
-properties follow. Here C and the two readings are fixed before the
-rule is tested, rather than defined from its desired outputs.
+The two binary readings cannot both equal 1 on one C-value. Apply them coordinatewise to q-tuples, retaining the same selected position i∈I={0,…,q−1}. Fix any injective total rule T_B on B^q×I which preserves the selected bit. There exists a total T_C on C^q×I making both actual reading squares commute with this *same* T_B iff T_B belongs to M64ai's classified family. No recovery, naturality or question-preservation premise is added for T_C; its form and these properties follow. Here C and the two readings are fixed before the rule is tested, rather than defined from its desired outputs.
 
-*Proof.* Write T_B(x,i)=(F_i(x),κ_i(x)). Any two disjoint binary
-vectors x,y are the two readings of exactly one C-tuple. Their
-successor readings must remain disjoint and have the same successor
-selected position. Comparing x with the zero vector shows that
-κ_i(x)=κ_i(0)=σ(i) for every x. Taking both vectors zero shows
-F_i(0)=0, since a nonzero coordinate in both would require the
-missing C-profile (1,1). Binary injectivity now makes σ a permutation
-and each F_i a bijection of the finite set B^q.
+*Proof.* Write T_B(x,i)=(F_i(x),κ_i(x)). Any two disjoint binary vectors x,y are the two readings of exactly one C-tuple. Their successor readings must remain disjoint and have the same successor selected position. Comparing x with the zero vector shows that κ_i(x)=κ_i(0)=σ(i) for every x. Taking both vectors zero shows F_i(0)=0, since a nonzero coordinate in both would require the missing C-profile (1,1). Binary injectivity now makes σ a permutation and each F_i a bijection of the finite set B^q.
 
-The q unit vectors are pairwise disjoint. Their images under F_i
-are nonzero and pairwise disjoint, hence are exactly q distinct unit
-vectors. They determine an occurrence permutation π_i. For any x,
-disjointness from every unit vector outside its support gives
-support(F_i(x))⊆π_i(support(x)). This inclusion is equality. Induct
-on the size of the support: if the inclusion were proper, its
-preimage under π_i would be a proper smaller support whose already
-established image equals F_i(x), contradicting injectivity. Thus
-F_i is precisely the coordinate permutation π_i. Preservation of
-the selected bit forces π_i(i)=σ(i), by a unit-vector witness.
-The joint C-reading is injective, so it forces T_C to perform those
-same occurrence movements and selected-position changes. Conversely
-every classified rule gives that T_C and both squares. This proves
-necessity, sufficiency and uniqueness of the lift.
+The q unit vectors are pairwise disjoint. Their images under F_i are nonzero and pairwise disjoint, hence are exactly q distinct unit vectors. They determine an occurrence permutation π_i. For any x, disjointness from every unit vector outside its support gives support(F_i(x))⊆π_i(support(x)). This inclusion is equality. Induct on the size of the support: if the inclusion were proper, its preimage under π_i would be a proper smaller support whose already established image equals F_i(x), contradicting injectivity. Thus F_i is precisely the coordinate permutation π_i. Preservation of the selected bit forces π_i(i)=σ(i), by a unit-vector witness. The joint C-reading is injective, so it forces T_C to perform those same occurrence movements and selected-position changes. Conversely every classified rule gives that T_C and both squares. This proves necessity, sufficiency and uniqueness of the lift.
 
-Any additional value carrier with a jointly separating family of
-binary readings, commuting with this established T_B and retaining
-the common selected position, is forced to use the same π_i and σ.
-For a one-value carrier include at least one reading to bind the
-selected position; no source input exists on an empty carrier when
-q≥1. The resulting family then respects all interpretations without
-having assumed them as its initial law. Separation binds the values;
-the shared selected-position output binds the request.
+Any additional value carrier with a jointly separating family of binary readings, commuting with this established T_B and retaining the common selected position, is forced to use the same π_i and σ. For a one-value carrier include at least one reading to bind the selected position; no source input exists on an empty carrier when q≥1. The resulting family then respects all interpretations without having assumed them as its initial law. Separation binds the values; the shared selected-position output binds the request.
 
-The source need not be exactly this finite profile carrier. Let K
-be an arbitrary carrier with an actual profile E:K→C^q×I and a
-change U:K→K. If the two readings through E commute with T_B,
-the same argument applies whenever the required input profiles are
-realized. Hidden details of K, its cardinality and its own recovery
-are not used. Once π_i and σ are forced, the injective joint
-profile reading gives E∘U=Π∘E, where Π is the derived occurrence
-movement. Thus autonomous motion of the profile is a conclusion,
-not a separately supplied law for an imagined complete source.
+The source need not be exactly this finite profile carrier. Let K be an arbitrary carrier with an actual profile E:K→C^q×I and a change U:K→K. If the two readings through E commute with T_B, the same argument applies whenever the required input profiles are realized. Hidden details of K, its cardinality and its own recovery are not used. Once π_i and σ are forced, the injective joint profile reading gives E∘U=Π∘E, where Π is the derived occurrence movement. Thus autonomous motion of the profile is a conclusion, not a separately supplied law for an imagined complete source.
 
-For this classification even all 3^q profiles are unnecessary. The
-proof uses (x,0), pairs of different unit vectors, and (x,e_j) with
-x_j=0. It suffices to realize, at every selected position, all
-C-tuples containing at most one r. There are 2^q+q·2^(q−1) such
-profiles before counting positions. They already include every
-binary input and the individual contrasts used in the proof. This
-is a sufficient coverage family, not a claimed minimum number of
-experiments. The single forbidden-profile witness below requires
-only its one stated initial profile and the preserved reading ranges.
-Adding hidden states cannot supply the missing joint value while
-retaining those ranges and both actual squares.
+For this classification even all 3^q profiles are unnecessary. The proof uses (x,0), pairs of different unit vectors, and (x,e_j) with x_j=0. It suffices to realize, at every selected position, all C-tuples containing at most one r. There are 2^q+q·2^(q−1) such profiles before counting positions. They already include every binary input and the individual contrasts used in the proof. This is a sufficient coverage family, not a claimed minimum number of experiments. The single forbidden-profile witness below requires only its one stated initial profile and the preserved reading ranges. Adding hidden states cannot supply the missing joint value while retaining those ranges and both actual squares.
 
-The ternary condition excludes real alternatives to mere binary
-recovery. With two positions and position 0 selected, flip only the
-second bit; at the other selected position let the rule be identity.
-This is a bijection and preserves the selected bit. At selected
-position 0 the all-zero vector becomes (0,1). Two all-zero binary
-readings of the same all-o source would therefore both become 1 in
-its second coordinate, outside the fixed C carrier. No T_C can
-make both squares commute. `BinaryChangeWithoutTernaryLift` builds
-this witness with reversible swaps of the internal two-field bit
-representations and reads the forbidden joint profile after both
-actual binary changes. Each individual binary transition returns
-and preserves its selected first bit.
+The ternary condition excludes real alternatives to mere binary recovery. With two positions and position 0 selected, flip only the second bit; at the other selected position let the rule be identity. This is a bijection and preserves the selected bit. At selected position 0 the all-zero vector becomes (0,1). Two all-zero binary readings of the same all-o source would therefore both become 1 in its second coordinate, outside the fixed C carrier. No T_C can make both squares commute. `BinaryChangeWithoutTernaryLift` builds this witness with reversible swaps of the internal two-field bit representations and reads the forbidden joint profile after both actual binary changes. Each individual binary transition returns and preserves its selected first bit.
 
-This supplies a specific shared-realization requirement in place
-of an unrestricted naturality declaration. It is still a requirement
-on complete admitted maps and their source-bound readings. A few
-sampled coincidences of two instruments do not establish the squares
-on all their inputs, and independently chosen binary evolutions are
-not the common T_B assumed here. No physical realization of these
-carriers is inferred from their mathematical consistency alone.
+This supplies a specific shared-realization requirement in place of an unrestricted naturality declaration. It is still a requirement on complete admitted maps and their source-bound readings. A few sampled coincidences of two instruments do not establish the squares on all their inputs, and independently chosen binary evolutions are not the common T_B assumed here. No physical realization of these carriers is inferred from their mathematical consistency alone.
 
-**M64ak (the common law is forced, not assigned to both channels).**
-In M64aj the two binary channels were required to use the same law.
-This equality can itself be derived. Retain the three joint profiles
-00, 10 and 01, the same selected-position set I, and q≥1. Let
+**M64ak (the common law is forced, not assigned to both channels).** In M64aj the two binary channels were required to use the same law. This equality can itself be derived. Retain the three joint profiles 00, 10 and 01, the same selected-position set I, and q≥1. Let
 
     T(x,i)=(F_i(x),κ_i(x)),       V(y,i)=(G_i(y),λ_i(y))
 
-be two independently specified total injective maps on B^q×I.
-Require that their images can still be joint readings of one successor:
-for every supplied disjoint pair x,y at position i, the vectors
-F_i(x),G_i(y) are disjoint and κ_i(x)=λ_i(y). Only T is required
-to preserve the selected bit. Then the following finite coverage
-already forces T=V, with both of M64ai's form:
+be two independently specified total injective maps on B^q×I. Require that their images can still be joint readings of one successor: for every supplied disjoint pair x,y at position i, the vectors F_i(x),G_i(y) are disjoint and κ_i(x)=λ_i(y). Only T is required to preserve the selected bit. Then the following finite coverage already forces T=V, with both of M64ai's form:
 
     (x,0)                  for every x;
     (x,e_j)                whenever x_j=0;
     (1−y,y)                for every y.
 
-Here a pair denotes the two readings of one actual ternary profile,
-not separately prepared binary sources. The last row uses only l,r
-values, and complements are descriptions of preparations, not an
-unacquired change to a measuring channel. At each selected position
-the union contains
+Here a pair denotes the two readings of one actual ternary profile, not separately prepared binary sources. The last row uses only l,r values, and complements are descriptions of preparations, not an unacquired change to a measuring channel. At each selected position the union contains
 
     2^(q+1) + q·2^(q−1) − q − 1
 
-profiles. This is an explicit sufficient family, not a minimal one.
-It has 24 profiles for q=3, rather than all 27.
+profiles. This is an explicit sufficient family, not a minimal one. It has 24 profiles for q=3, rather than all 27.
 
-*Proof.* The first family makes κ_i(x) independent of x; write its
-value σ(i). The last family makes every λ_i(y) equal to the same
-σ(i). Injectivity makes each F_i an injection B^q→B^q, hence a
-bijection. Two different i cannot have the same σ(i), because their
-full image blocks would then coincide. Thus σ is a permutation,
-and each G_i is also a bijection. Disjointness of F_i(x) from G_i(0)
-for every x forces G_i(0)=0.
+*Proof.* The first family makes κ_i(x) independent of x; write its value σ(i). The last family makes every λ_i(y) equal to the same σ(i). Injectivity makes each F_i an injection B^q→B^q, hence a bijection. Two different i cannot have the same σ(i), because their full image blocks would then coincide. Thus σ is a permutation, and each G_i is also a bijection. Disjointness of F_i(x) from G_i(0) for every x forces G_i(0)=0.
 
-For each j there are 2^(q−1) different x with x_j=0. Their distinct
-F_i images must all be disjoint from G_i(e_j). A vector of weight w
-has exactly 2^(q−w) disjoint binary vectors. Consequently G_i(e_j)
-has weight at most one. It is nonzero by injectivity and G_i(0)=0.
-These q different unit images define a permutation π_i.
+For each j there are 2^(q−1) different x with x_j=0. Their distinct F_i images must all be disjoint from G_i(e_j). A vector of weight w has exactly 2^(q−w) disjoint binary vectors. Consequently G_i(e_j) has weight at most one. It is nonzero by injectivity and G_i(0)=0. These q different unit images define a permutation π_i.
 
-The second family now gives
-support(F_i(x))⊆π_i(support(x)). This inclusion and bijectivity
-force equality: by induction on support size, a proper inclusion
-would duplicate the image of the smaller preimage under π_i. In
-particular the empty support is fixed. The last family then gives
-support(G_i(y))⊆π_i(support(y)); the same induction gives equality.
-Thus F_i=G_i=π_i. T's selected-bit preservation, tested on e_i,
-forces π_i(i)=σ(i). V's preservation is a conclusion. Conversely
-these common role movements preserve every disjoint pair and hence
-all the supplied profiles. The count is M64aj's at-most-one-r family
-plus all 2^q profiles without o, with their q+1 overlaps removed. ∎
+The second family now gives support(F_i(x))⊆π_i(support(x)). This inclusion and bijectivity force equality: by induction on support size, a proper inclusion would duplicate the image of the smaller preimage under π_i. In particular the empty support is fixed. The last family then gives support(G_i(y))⊆π_i(support(y)); the same induction gives equality. Thus F_i=G_i=π_i. T's selected-bit preservation, tested on e_i, forces π_i(i)=σ(i). V's preservation is a conclusion. Conversely these common role movements preserve every disjoint pair and hence all the supplied profiles. The count is M64aj's at-most-one-r family plus all 2^q profiles without o, with their q+1 overlaps removed. ∎
 
-**A complete returning source can supply the two recoveries.** Let K
-be arbitrary, E:K→C^q×I an actual profile, and U:K→K onto. Suppose
-E realizes the displayed coverage and both fixed readings satisfy
+**A complete returning source can supply the two recoveries.** Let K be arbitrary, E:K→C^q×I an actual profile, and U:K→K onto. Suppose E realizes the displayed coverage and both fixed readings satisfy
 
     P∘U=T∘P,       S∘U=V∘S,
     P=(p^q,id)∘E,  S=(s^q,id)∘E.
 
-T,V need initially be only total maps. Coverage makes P and S onto
-the finite binary domain. Since U is onto, these equations make T
-and V onto, therefore bijective. M64ak applies, and joint separation
-then derives E∘U=Π∘E. No enumeration or finiteness of K is required;
-E need not realize all ternary profiles. Equality of the channel laws
-and autonomous movement of the joint profile are conclusions.
+T,V need initially be only total maps. Coverage makes P and S onto the finite binary domain. Since U is onto, these equations make T and V onto, therefore bijective. M64ak applies, and joint separation then derives E∘U=Π∘E. No enumeration or finiteness of K is required; E need not realize all ternary profiles. Equality of the channel laws and autonomous movement of the joint profile are conclusions.
 
-Onto means every state in this declared K has a predecessor under
-this same U. Here a predecessor is a preimage of this operation,
-not a separately assigned temporal past. A reversible complete law
-supplies it. Injection alone
-on an infinite K does not. Nor does a return available only on the
-prepared episodes establish it for an arbitrarily enlarged scope.
-The binary maps, fixed readings, shared successor, coverage and
-selected-bit relation remain explicit premises. No sampled prefix
-alone establishes their universal applicability.
+Onto means every state in this declared K has a predecessor under this same U. Here a predecessor is a preimage of this operation, not a separately assigned temporal past. A reversible complete law supplies it. Injection alone on an infinite K does not. Nor does a return available only on the prepared episodes establish it for an arbitrarily enlarged scope. The binary maps, fixed readings, shared successor, coverage and selected-bit relation remain explicit premises. No sampled prefix alone establishes their universal applicability.
 
-**Separate coverage is not the joint coverage used in this proof.** At
-q=2 and selected position 0, admit only the six ternary tuples
+**Separate coverage is not the joint coverage used in this proof.** At q=2 and selected position 0, admit only the six ternary tuples
 
     oo, or, ll, lr, rl, rr.
 
-Let the source law exchange oo with or and ll with lr, and fix rl
-and rr. It is a permutation and preserves the selected first row.
-Both binary readings separately realize every two-bit input. Each
-position also realizes all three joint codes o,l,r. Nevertheless
-their autonomous binary laws are different:
+Let the source law exchange oo with or and ll with lr, and fix rl and rr. It is a permutation and preserves the selected first row. Both binary readings separately realize every two-bit input. Each position also realizes all three joint codes o,l,r. Nevertheless their autonomous binary laws are different:
 
     T(x₀,x₁)=(x₀,x₁ XOR x₀),
     V(y₀,y₁)=(y₀,y₁ XOR (1−y₀)).
 
-Both are involutions preserving the selected bit. The six displayed
-source transitions directly verify both squares. For example, oo→or
-leaves P=00 fixed and sends S=00 to 01; ll→lr sends P=11 to 10 and
-also sends S=00 to 01. The other two exchanged directions reverse
-these changes, while rl and rr give the stated fixed channel inputs.
-To include selected position 1 in the original domain, supply every
-ternary tuple there and let both laws be identity on that component.
+Both are involutions preserving the selected bit. The six displayed source transitions directly verify both squares. For example, oo→or leaves P=00 fixed and sends S=00 to 01; ll→lr sends P=11 to 10 and also sends S=00 to 01. The other two exchanged directions reverse these changes, while rl and rr give the stated fixed channel inputs. To include selected position 1 in the original domain, supply every ternary tuple there and let both laws be identity on that component.
 
-What fails is joint preparation coverage at position 0: ol, lo and
-ro are absent. For instance, the proposed channel changes at ol
-would demand second-row profile 11. Individually complete channels
-and complete single-position alphabets therefore do not replace
-the family of joint profiles in M64ak. This is a finite reversible
-counterexample to that weaker coverage condition.
+What fails is joint preparation coverage at position 0: ol, lo and ro are absent. For instance, the proposed channel changes at ol would demand second-row profile 11. Individually complete channels and complete single-position alphabets therefore do not replace the family of joint profiles in M64ak. This is a finite reversible counterexample to that weaker coverage condition.
 
-The same witness also forbids extending this carrier by the profile
-ol while keeping both old autonomous channel laws and the excluded
-pair 11. A hidden enlargement cannot supply the required successor.
-At least one of those relations must change. This is an obstruction
-to that proposed extension, not a claim that ol is impossible in
-every other realization of a ternary carrier.
+The same witness also forbids extending this carrier by the profile ol while keeping both old autonomous channel laws and the excluded pair 11. A hidden enlargement cannot supply the required successor. At least one of those relations must change. This is an obstruction to that proposed extension, not a claim that ol is impossible in every other realization of a ternary carrier.
 
-**M64al (one missing joint possibility is the restrictive relation).**
-The particular missing pair 11 in M64ak is not distinguished. For
-any three of the four binary pairs, two injective autonomous channel
-laws compatible with all profiles again coincide and move roles as
-above. Complement the first and/or second channel on both its input
-and output so that the missing pair becomes 11. This conjugates the
-two laws separately, preserving injectivity and the selected-bit
-condition. Apply M64ak to the transformed profiles. A coordinate
-permutation commutes with whole-vector complement, so undoing the
-two conjugations leaves the same law on both original channels.
-The correspondingly transformed sparse coverage also suffices.
+**M64al (one missing joint possibility is the restrictive relation).** The particular missing pair 11 in M64ak is not distinguished. For any three of the four binary pairs, two injective autonomous channel laws compatible with all profiles again coincide and move roles as above. Complement the first and/or second channel on both its input and output so that the missing pair becomes 11. This conjugates the two laws separately, preserving injectivity and the selected-bit condition. Apply M64ak to the transformed profiles. A coordinate permutation commutes with whole-vector complement, so undoing the two conjugations leaves the same law on both original channels. The correspondingly transformed sparse coverage also suffices.
 
-The range condition cannot be replaced by having two binary
-channels. If their joint range is all four pairs, their vector
-readings can be chosen independently. Compatibility still forces a
-common σ, but for each i the two vector maps can be arbitrary
-bijections, separately, with the stipulated selected-bit preservation.
-Pair their output bits to construct the unique common four-valued
-lift. For example, at q=2 and selected position 0, one channel can
-flip the second bit while the other does nothing. The common lift
-is reversible and preserves the selected pair, although the laws
-differ and are not common role movements. Set both laws to identity
-at selected position 1. Its forbidden ternary input is the second
-row (0,1), which becomes (1,1); on a four-profile carrier it is allowed.
+The range condition cannot be replaced by having two binary channels. If their joint range is all four pairs, their vector readings can be chosen independently. Compatibility still forces a common σ, but for each i the two vector maps can be arbitrary bijections, separately, with the stipulated selected-bit preservation. Pair their output bits to construct the unique common four-valued lift. For example, at q=2 and selected position 0, one channel can flip the second bit while the other does nothing. The common lift is reversible and preserves the selected pair, although the laws differ and are not common role movements. Set both laws to identity at selected position 1. Its forbidden ternary input is the second row (0,1), which becomes (1,1); on a four-profile carrier it is allowed.
 
-For q≥2, three distinct profiles are also minimal among carriers whose two
-binary readings are individually onto and jointly separating. A
-two-profile carrier has either equal or complementary readings.
-In the equal case use the same selected-bit-preserving non-routing
-binary bijection on both channels. In the complementary case use
-conjugate laws V=c∘T∘c; their paired outputs remain complementary.
-Flipping the unselected bit supplies such a counterexample for q=2.
-Thus two, three and four joint possibilities play different roles:
-two may tie the channels without restricting their dynamics; three
-force a common role law under the supplied recovery and coverage;
-four admit independent channel dynamics. This concerns these exact
-finite profiles, not the number of values of a general physical system.
+For q≥2, three distinct profiles are also minimal among carriers whose two binary readings are individually onto and jointly separating. A two-profile carrier has either equal or complementary readings. In the equal case use the same selected-bit-preserving non-routing binary bijection on both channels. In the complementary case use conjugate laws V=c∘T∘c; their paired outputs remain complementary. Flipping the unselected bit supplies such a counterexample for q=2. Thus two, three and four joint possibilities play different roles: two may tie the channels without restricting their dynamics; three force a common role law under the supplied recovery and coverage; four admit independent channel dynamics. This concerns these exact finite profiles, not the number of values of a general physical system.
 
-**Without the returning-profile premise, retained history is not enough.**
-At q=2, selected position 0, let T flip only the second binary bit
-and let V keep the first bit and set the second to zero. Both preserve
-their selected bit. On the ternary carrier their common lift keeps
-the first row and sends the second row
+**Without the returning-profile premise, retained history is not enough.** At q=2, selected position 0, let T flip only the second binary bit and let V keep the first bit and set the second to zero. Both preserve their selected bit. On the ternary carrier their common lift keeps the first row and sends the second row
 
     o→l,       l→o,       r→l.
 
-It is total and the two squares commute, but V and the joint lift
-are not injective. At selected position 1 let both laws and the lift
-be identity. The complete carrier K=(C^2×I)×(C^2×I)* nevertheless
-has an injective realization
+It is total and the two squares commute, but V and the joint lift are not injective. At selected position 1 let both laws and the lift be identity. The complete carrier K=(C^2×I)×(C^2×I)* nevertheless has an injective realization
 
     U(z,h)=(J(z), h followed by z).
 
-The old source is recovered from the last history entry. Reading
-only the current z gives the stated different channel laws at every
-step, with complete profile coverage. U is not onto K. This is a
-retaining construction inside the supplied whole, not information
-sent outside it. The example isolates exactly why global injection
-cannot substitute for the onto premise used above. A history-sensitive
-question has a different reading from the present profile question.
+The old source is recovered from the last history entry. Reading only the current z gives the stated different channel laws at every step, with complete profile coverage. U is not onto K. This is a retaining construction inside the supplied whole, not information sent outside it. The example isolates exactly why global injection cannot substitute for the onto premise used above. A history-sensitive question has a different reading from the present profile question.
 
-**M64am (exact acquisition using only the profiles needed by the proof).**
-Suppose M64ak's class has been established and one unknown fixed member
-is now accessed by prepared ternary-profile queries. A query chooses
-the initial tuple and selected position and acquires the complete
-successor profile, including its selected position. Preparations and
-readout are available for the family S_q used in M64ak: at most one
-r, or no o. Queries concern the same law; they do not replace it.
-For q≥3, the exact worst-case number of queries to identify its whole
-action on C^q×I is
+**M64am (exact acquisition using only the profiles needed by the proof).** Suppose M64ak's class has been established and one unknown fixed member is now accessed by prepared ternary-profile queries. A query chooses the initial tuple and selected position and acquires the complete successor profile, including its selected position. Preparations and readout are available for the family S_q used in M64ak: at most one r, or no o. Queries concern the same law; they do not replace it. For q≥3, the exact worst-case number of queries to identify its whole action on C^q×I is
 
     q·k_q,       k_q=min{k≥0 : 2^k+k ≥ q−1}.
 
-The count is for this preparation/readout interface. It is not the
-cost of establishing M64ak's premises or physically realizing a trial.
+The count is for this preparation/readout interface. It is not the cost of establishing M64ak's premises or physically realizing a trial.
 
-*Attainment.* At a fixed selected position i, give the other q−1
-positions different length-k_q signatures. There are 2^k_q ordinary
-signatures over {o,l}. If more are needed, add up to k_q signatures,
-each using r in its own one column and o elsewhere. The selected
-position has the all-o signature and may duplicate an unselected
-signature: the returned marker independently locates its image.
-Every column is a permitted preparation with at most one r.
-The returned marker gives σ(i); the other output signatures give
-π_i on all remaining positions. Repeat for each i. The receiver
-decodes only acquired output profiles and the chosen preparations,
-not a private address of the unknown law.
+*Attainment.* At a fixed selected position i, give the other q−1 positions different length-k_q signatures. There are 2^k_q ordinary signatures over {o,l}. If more are needed, add up to k_q signatures, each using r in its own one column and o elsewhere. The selected position has the all-o signature and may duplicate an unselected signature: the returned marker independently locates its image. Every column is a permitted preparation with at most one r. The returned marker gives σ(i); the other output signatures give π_i on all remaining positions. Repeat for each i. The receiver decodes only acquired output profiles and the chosen preparations, not a private address of the unknown law.
 
-*Necessity, including adaptation.* Fix a reached transcript and a
-selected position i queried k times. Each permitted preparation is
-either binary over {l,r}, or binary over {o,l} with at most one
-exceptional r. Across these k queries, at most k unselected positions
-are ever exceptional. Every other position has one of at most 2^k
-binary signatures, with the appropriate two-symbol alphabet in each
-column. Thus there are at most 2^k+k different unselected signatures.
-If q−1 exceeds this number, exchange two positions with the same
-signature before π_i, changing no other π or σ. This gives another
-member of the established class with the same answers to every query
-in the transcript but a different action on other data. Adaptation
-selects the same next queries on that branch. Hence every i needs at
-least k_q queries. The construction attains their sum. ∎
+*Necessity, including adaptation.* Fix a reached transcript and a selected position i queried k times. Each permitted preparation is either binary over {l,r}, or binary over {o,l} with at most one exceptional r. Across these k queries, at most k unselected positions are ever exceptional. Every other position has one of at most 2^k binary signatures, with the appropriate two-symbol alphabet in each column. Thus there are at most 2^k+k different unselected signatures. If q−1 exceeds this number, exchange two positions with the same signature before π_i, changing no other π or σ. This gives another member of the established class with the same answers to every query in the transcript but a different action on other data. Adaptation selects the same next queries on that branch. Hence every i needs at least k_q queries. The construction attains their sum. ∎
 
-For q=1 the class contains only identity, needing no query. For q=2
-the only unknown is σ; one returned marker determines it and both
-π_i. These are the exceptional cases omitted by q·k_q.
+For q=1 the class contains only identity, needing no query. For q=2 the only unknown is σ; one returned marker determines it and both π_i. These are the exceptional cases omitted by q·k_q.
 
-If arbitrary ternary preparations are independently available, the
-same signature argument instead gives q·⌈log₃(q−1)⌉ for q≥3.
-For arbitrary binary preparations it gives q·⌈log₂(q−1)⌉. A larger
-palette is not by itself the same as access to all its patterns.
-For example, q=8 takes 24 queries using S_q, while full ternary
-preparations take 16; for q=4 both ternary interfaces take four,
-whereas binary preparations take eight. These are questions about
-the complete law. The transported selected value is already invariant
-throughout the class and needs none of this calibration.
+If arbitrary ternary preparations are independently available, the same signature argument instead gives q·⌈log₃(q−1)⌉ for q≥3. For arbitrary binary preparations it gives q·⌈log₂(q−1)⌉. A larger palette is not by itself the same as access to all its patterns. For example, q=8 takes 24 queries using S_q, while full ternary preparations take 16; for q=4 both ternary interfaces take four, whereas binary preparations take eight. These are questions about the complete law. The transported selected value is already invariant throughout the class and needs none of this calibration.
 
-**M64an (unlimited successful available probes need not acquire the class).**
-M64am identifies a member of a justified class. It cannot be read
-backwards as establishing that an arbitrary mechanism belongs to it.
-Here the distinction persists on a finite, completely reversible
-profile carrier, even with unlimited queries using S_q.
+**M64an (unlimited successful available probes need not acquire the class).** M64am identifies a member of a justified class. It cannot be read backwards as establishing that an arbitrary mechanism belongs to it. Here the distinction persists on a finite, completely reversible profile carrier, even with unlimited queries using S_q.
 
-Take q=3 and the full carrier C^3×I. Compare identity with J which
-exchanges only these two complete states,
+Take q=3 and the full carrier C^3×I. Compare identity with J which exchanges only these two complete states,
 
     ((o,r,r),2)  ↔  ((r,o,r),2),
 
-and fixes every other state. Both preserve the selected value and
-are total bijections. Both displayed tuples are outside S_3: they
-contain o and two r values. J therefore fixes every allowed prepared
-state. Every finite or infinite continuation made of this same
-unknown contact, S_3 preparations and profile readouts has the same
-answers under the two laws. Repetition and adaptive choice add no
-distinction. There is no late clock or unbounded hidden store here.
+and fixes every other state. Both preserve the selected value and are total bijections. Both displayed tuples are outside S_3: they contain o and two r values. J therefore fixes every allowed prepared state. Every finite or infinite continuation made of this same unknown contact, S_3 preparations and profile readouts has the same answers under the two laws. Repetition and adaptive choice add no distinction. There is no late clock or unbounded hidden store here.
 
-Yet J is not a role law. It fixes every generic tuple with three
-different values and every selected position, which would force
-σ and every π_i to be identity. The displayed exchange is not.
-Its first binary channel is autonomous identity: exchanging o and r
-in these tuples changes none of its zero bits. But its second channel
-is not autonomous.
-The states ((o,r,r),2) and ((l,r,r),2) both read (0,1,1;2) in that
-channel, but after J they read (1,0,1;2) and (0,1,1;2). No single
-V on that channel can give these two answers to the same input.
+Yet J is not a role law. It fixes every generic tuple with three different values and every selected position, which would force σ and every π_i to be identity. The displayed exchange is not. Its first binary channel is autonomous identity: exchanging o and r in these tuples changes none of its zero bits. But its second channel is not autonomous. The states ((o,r,r),2) and ((l,r,r),2) both read (0,1,1;2) in that channel, but after J they read (1,0,1;2) and (0,1,1;2). No single V on that channel can give these two answers to the same input.
 
-One newly available preparation ((o,r,r),2) distinguishes the two
-laws in this declared two-member family. It does not certify arbitrary
-alternatives on the full carrier. If the intended jurisdiction is
-only the scope reachable from S_3 through the old interface, identity
-is already the correct complete action on that scope in both cases.
-The error is extending this correct answer to the other profiles.
+One newly available preparation ((o,r,r),2) distinguishes the two laws in this declared two-member family. It does not certify arbitrary alternatives on the full carrier. If the intended jurisdiction is only the scope reachable from S_3 through the old interface, identity is already the correct complete action on that scope in both cases. The error is extending this correct answer to the other profiles.
 
-Thus the missing relation is not always another unknown parameter
-inside the current law family. Here it is autonomy of a channel on
-the larger source scope. M64ak derives equality once that relation
-is supplied; M64am acquires which resulting law is present; this
-counterexample prevents their conclusions from acquiring their own
-premises. A source-bound structural presentation can supply the
-universal squares. The available successful probes alone cannot.
+Thus the missing relation is not always another unknown parameter inside the current law family. Here it is autonomy of a channel on the larger source scope. M64ak derives equality once that relation is supplied; M64am acquires which resulting law is present; this counterexample prevents their conclusions from acquiring their own premises. A source-bound structural presentation can supply the universal squares. The available successful probes alone cannot.
 
-**The separating preparation can come from an internal reserve.** Put
-the allowed working tuple (l,r,r) beside a resident o row. Exchange
-its first row with the reserve. The working tuple is now (o,r,r),
-and the displaced l is retained in the reserve. The preparation is
-an actual involution, independent of which unknown law is present.
-Apply the unknown contact, acquire its second-channel profile, apply
-that contact again, and undo the preparation. Identity and J are both
-involutions, so the working tuple and the reserve return in either
-case. The recorded profiles are respectively 011 and 101 and survive
-the return. The old record and resident applications remain too.
+**The separating preparation can come from an internal reserve.** Put the allowed working tuple (l,r,r) beside a resident o row. Exchange its first row with the reserve. The working tuple is now (o,r,r), and the displaced l is retained in the reserve. The preparation is an actual involution, independent of which unknown law is present. Apply the unknown contact, acquire its second-channel profile, apply that contact again, and undo the preparation. Identity and J are both involutions, so the working tuple and the reserve return in either case. The recorded profiles are respectively 011 and 101 and survive the return. The old record and resident applications remain too.
 
-`ExchangeFirstRowWithReserve` constructs the generic exchange and its
-return. `ProbeOutsideFromResidentReserve` composes the supplied actual
-forward application, the source-bound acquisition and the actual
-return application, retaining both resident applications in its root.
-`InternalProfileContrast` instantiates the two clauses of this fixed
-experiment for identity and J. The generic path does not establish
-that an arbitrary supplied return is another call to the same law;
-the two stated involutive families supply that relation here.
+`ExchangeFirstRowWithReserve` constructs the generic exchange and its return. `ProbeOutsideFromResidentReserve` composes the supplied actual forward application, the source-bound acquisition and the actual return application, retaining both resident applications in its root. `InternalProfileContrast` instantiates the two clauses of this fixed experiment for identity and J. The generic path does not establish that an arbitrary supplied return is another call to the same law; the two stated involutive families supply that relation here.
 
-There is no exterior value in this construction. What changes is
-the accessible preparation: the reserve and its exchange were not
-part of M64an's old interface. After restoration, the current S
-reading is again 011 in both cases. The stored 101 in the J case
-is a truthful answer about the intervening contacted preparation,
-not the restored tuple's current S value. Its use for the two-law
-question retains the performed experiment. This gives a positive
-acquisition following the impossibility result without weakening
-that result's original access restriction.
+There is no exterior value in this construction. What changes is the accessible preparation: the reserve and its exchange were not part of M64an's old interface. After restoration, the current S reading is again 011 in both cases. The stored 101 in the J case is a truthful answer about the intervening contacted preparation, not the restored tuple's current S value. Its use for the two-law question retains the performed experiment. This gives a positive acquisition following the impossibility result without weakening that result's original access restriction.
 
-**M64ao (recovering the positions from the compatibility relation).**
-The full-profile version has an intrinsic description of its positions.
-This is not a derivation of a Boolean contact from an unstructured whole.
-It identifies which further relations let coordinates be recovered,
-rather than supplied as names at the start.
+**M64ao (recovering the positions from the compatibility relation).** The full-profile version has an intrinsic description of its positions. This is not a derivation of a Boolean contact from an unstructured whole. It identifies which further relations let coordinates be recovered, rather than supplied as names at the start.
 
-Start with a finite relation R⊆X×Y, with distinct row neighborhoods
-N(x)={y:(x,y)∈R}. Suppose the family L={N(x):x∈X} contains Y,
-is closed under intersections, and is a Boolean lattice under inclusion.
-The lattice operations belong to these actual neighborhoods; a Boolean
-label on an arbitrary family does not supply the assumption. Let A be
-its set of atoms and let B₀ be its bottom neighborhood. Define
+Start with a finite relation R⊆X×Y, with distinct row neighborhoods N(x)={y:(x,y)∈R}. Suppose the family L={N(x):x∈X} contains Y, is closed under intersections, and is a Boolean lattice under inclusion. The lattice operations belong to these actual neighborhoods; a Boolean label on an arbitrary family does not supply the assumption. Let A be its set of atoms and let B₀ be its bottom neighborhood. Define
 
     M(y)=intersection of all N∈L containing y,
     a(x)={atoms contained in N(x)},
@@ -5801,1157 +2560,331 @@ Then a is a bijection X→P(A), and the original contact is exactly
 
     (x,y)∈R  iff  b(y)⊆a(x).
 
-*Proof.* The top neighborhood contains every y, and finite intersection
-closure makes M(y) a member of L containing y. Hence y∈N iff M(y)⊆N.
-Every member of a finite Boolean lattice is uniquely the join of its
-atoms: a proper remainder above their join would contain another
-minimal nonzero element, contradicting their completeness. Different
-atoms meet at the bottom, so their joins also distinguish which atoms
-are included. Inclusion is exactly inclusion of those atom sets. This gives
-the displayed equivalence and the bijection a. For every atom A_j,
-choose y∈A_j\B₀. Its least neighborhood is A_j, so b(y)={A_j}.
-Thus every derived coordinate has an actual distinguishing partner. ∎
+*Proof.* The top neighborhood contains every y, and finite intersection closure makes M(y) a member of L containing y. Hence y∈N iff M(y)⊆N. Every member of a finite Boolean lattice is uniquely the join of its atoms: a proper remainder above their join would contain another minimal nonzero element, contradicting their completeness. Different atoms meet at the bottom, so their joins also distinguish which atoms are included. Inclusion is exactly inclusion of those atom sets. This gives the displayed equivalence and the bijection a. For every atom A_j, choose y∈A_j\B₀. Its least neighborhood is A_j, so b(y)={A_j}. Thus every derived coordinate has an actual distinguishing partner. ∎
 
-If bijections f:X→X and g:Y→Y preserve admission, they preserve it
-in both directions: their injective action maps the finite relation
-into itself and therefore onto itself. Consequently
+If bijections f:X→X and g:Y→Y preserve admission, they preserve it in both directions: their injective action maps the finite relation into itself and therefore onto itself. Consequently
 
     g(N(x))=N(f(x)).
 
-This induces a Boolean-lattice automorphism and a permutation π of
-its atoms. Intersections then also give g(M(y))=M(g(y)). Both sides
-therefore obey the same derived coordinate law:
+This induces a Boolean-lattice automorphism and a permutation π of its atoms. Intersections then also give g(M(y))=M(g(y)). Both sides therefore obey the same derived coordinate law:
 
     a(f(x))=π(a(x)),       b(g(y))=π(b(y)).
 
-The two maps are not assumed equal or identified by their names.
-Their common action on the contact's atoms is forced. At Y, forms
-with the same b profile may still be permuted among themselves.
-Precisely, write n(S)=|{y:b(y)=S}|. Every atom permutation preserving
-all these multiplicities is allowed, together with arbitrary
-bijections between its corresponding fibers; no other pair f,g is.
-To see sufficiency, define f through the bijection a and choose those
-fiber bijections for g. They preserve exactly the displayed inclusion.
-Necessity follows from the derived equations.
+The two maps are not assumed equal or identified by their names. Their common action on the contact's atoms is forced. At Y, forms with the same b profile may still be permuted among themselves. Precisely, write n(S)=|{y:b(y)=S}|. Every atom permutation preserving all these multiplicities is allowed, together with arbitrary bijections between its corresponding fibers; no other pair f,g is. To see sufficiency, define f through the bijection a and choose those fiber bijections for g. They preserve exactly the displayed inclusion. Necessity follows from the derived equations.
 
-For the full disjointness profile in M64ak at a fixed selected
-position, N(x) is the family of subsets of the complement of x.
-Its atoms are the neighborhoods containing just the empty vector
-and one unit vector. They recover the q positions without a preferred
-enumeration. Each b fiber has one member, so all atom permutations
-and no independent within-fiber changes remain. The q selected-position
-components can be permuted through σ; the retained selected-bit
-question then gives π_i(i)=σ(i) as before.
+For the full disjointness profile in M64ak at a fixed selected position, N(x) is the family of subsets of the complement of x. Its atoms are the neighborhoods containing just the empty vector and one unit vector. They recover the q positions without a preferred enumeration. Each b fiber has one member, so all atom permutations and no independent within-fiber changes remain. The q selected-position components can be permuted through σ; the retained selected-bit question then gives π_i(i)=σ(i) as before.
 
-This connects the result to LQ13's contact profiles. Inclusion already
-describes uniform replacement there. The additional Boolean organization
-here makes its independent roles reconstructible and forces how two
-recoverable sides must move together. A chain of three neighborhoods
-is intersection-closed and has a top but is not Boolean; these weaker
-conditions do not give the coordinate reconstruction. Nor does the
-sparse preparation set in M64ak alone assert that its observed row
-neighborhoods form this complete Boolean lattice. The two arguments
-have different starting evidence. Neither supplies a spatial metric,
-a preferred origin, or the physical acquisition of every neighborhood.
+This connects the result to LQ13's contact profiles. Inclusion already describes uniform replacement there. The additional Boolean organization here makes its independent roles reconstructible and forces how two recoverable sides must move together. A chain of three neighborhoods is intersection-closed and has a top but is not Boolean; these weaker conditions do not give the coordinate reconstruction. Nor does the sparse preparation set in M64ak alone assert that its observed row neighborhoods form this complete Boolean lattice. The two arguments have different starting evidence. Neither supplies a spatial metric, a preferred origin, or the physical acquisition of every neighborhood.
 
-**M64ap (the incompatible channel forces an exact residue requirement).**
-For a specified binary map F, the greatest possible compatible output
-of the other channel at y is
+**M64ap (the incompatible channel forces an exact residue requirement).** For a specified binary map F, the greatest possible compatible output of the other channel at y is
 
     G_max(y)=complement of the union of F(x) over x disjoint from y.
 
-Here vectors are identified with their supports. A proposed G preserves
-the joint disjointness relation exactly when G(y)⊆G_max(y) for every
-y. This follows by requiring G(y) to avoid each of those F(x), and
-uses no recovery or numerical probability assumption.
+Here vectors are identified with their supports. A proposed G preserves the joint disjointness relation exactly when G(y)⊆G_max(y) for every y. This follows by requiring G(y) to avoid each of those F(x), and uses no recovery or numerical probability assumption.
 
-Apply this criterion at q=2 with position 0 selected and
-F(x₀,x₁)=(x₀,1−x₁). Every compatible G must have its second bit
-zero: x₁=0 is always among the compatible inputs, and F then has
-second bit one. Its first bit can be one only when y₀=1. If G also
-preserves the selected first bit, it is therefore uniquely forced:
+Apply this criterion at q=2 with position 0 selected and F(x₀,x₁)=(x₀,1−x₁). Every compatible G must have its second bit zero: x₁=0 is always among the compatible inputs, and F then has second bit one. Its first bit can be one only when y₀=1. If G also preserves the selected first bit, it is therefore uniquely forced:
 
     G(y₀,y₁)=(y₀,0).
 
-Thus M64al's losing channel was not an arbitrary counterexample chosen
-afterwards. It is the only possible companion under these relations.
-The shared ternary change J fixes the selected row and sends the
-unselected row o→l, l→o, r→l. Exact compatibility demands this local
-merger; complete recovery from the current profile alone forbids it.
+Thus M64al's losing channel was not an arbitrary counterexample chosen afterwards. It is the only possible companion under these relations. The shared ternary change J fixes the selected row and sends the unselected row o→l, l→o, r→l. Exact compatibility demands this local merger; complete recovery from the current profile alone forbids it.
 
-For a prepared use, a single binary residual is both necessary and
-sufficient to preserve the entire unselected input. Necessity follows
-from J(o)=J(r)=l: two residual answers are needed to recover which
-input occurred. To attain it with a finite, completely reversible
-carrier C×{0,1}, use this one permutation:
+For a prepared use, a single binary residual is both necessary and sufficient to preserve the entire unselected input. Necessity follows from J(o)=J(r)=l: two residual answers are needed to recover which input occurred. To attain it with a finite, completely reversible carrier C×{0,1}, use this one permutation:
 
     (o,0) ↔ (l,0),       (r,0) ↔ (l,1),
     (o,1) fixed,         (r,1) fixed.
 
-On the prepared residual 0 its C projection is exactly J. Each
-selected first row can be carried unchanged beside this operation.
-The six-state law returns every complete input when applied twice.
-`MinimalTernaryResidual` constructs all six clauses as swaps of the
-actual internal bit fields and identities, with both inverse pairs.
+On the prepared residual 0 its C projection is exactly J. Each selected first row can be carried unchanged beside this operation. The six-state law returns every complete input when applied twice. `MinimalTernaryResidual` constructs all six clauses as swaps of the actual internal bit fields and identities, with both inverse pairs.
 
-The price is not an exception to M64ak. On the complete carrier the
-binary readings of C alone are no longer autonomous. For instance,
-(o,0) and (o,1) have the same current profile o but different next
-profiles l and o. After the prepared input (r,0), a second call
-returns r, whereas a second autonomous application of J would give
-o. The residual affects later action. Discarding its relevance would
-change the source question, not remove the stored distinction.
+The price is not an exception to M64ak. On the complete carrier the binary readings of C alone are no longer autonomous. For instance, (o,0) and (o,1) have the same current profile o but different next profiles l and o. After the prepared input (r,0), a second call returns r, whereas a second autonomous application of J would give o. The residual affects later action. Discarding its relevance would change the source question, not remove the stored distinction.
 
-This makes the alternatives explicit: retain the forbidden-pair
-relation and the requested binary change, and the other current
-channel must merge; preserve complete recovery, and some retained
-relation must distinguish the merged inputs. The displayed binary
-residual attains that requirement for this prepared operation, but
-does not supply an indefinitely reusable blank residual. It also does
-not select a physical thermodynamic cost or a universal bit count.
+This makes the alternatives explicit: retain the forbidden-pair relation and the requested binary change, and the other current channel must merge; preserve complete recovery, and some retained relation must distinguish the merged inputs. The displayed binary residual attains that requirement for this prepared operation, but does not supply an indefinitely reusable blank residual. It also does not select a physical thermodynamic cost or a universal bit count.
 
-**M64aq (certifying an unrestricted candidate costs more than learning a member).**
-Fix q≥2 and a known value alphabet A of size m≥2. The complete
-profile domain is D=A^q×I. Suppose an unknown fixed permutation U
-of D is already known to preserve the selected value. A forward
-query supplies one prepared state and reads its full successor.
-There is no supplied channel autonomy, role law, inverse-query
-operation or additional access to U's definition. To accept a
-candidate as belonging to M64ai's role-law family, with no false
-acceptance anywhere in this domain, the exact worst-case number of
-queries on members of that family is
+**M64aq (certifying an unrestricted candidate costs more than learning a member).** Fix q≥2 and a known value alphabet A of size m≥2. The complete profile domain is D=A^q×I. Suppose an unknown fixed permutation U of D is already known to preserve the selected value. A forward query supplies one prepared state and reads its full successor. There is no supplied channel autonomy, role law, inverse-query operation or additional access to U's definition. To accept a candidate as belonging to M64ai's role-law family, with no false acceptance anywhere in this domain, the exact worst-case number of queries on members of that family is
 
     |D|−m = q·m^q−m.
 
-The bound holds for adaptive procedures too. It concerns complete
-membership, not a single selected-value question or rejection of
-one known alternative.
+The bound holds for adaptive procedures too. It concerns complete membership, not a single selected-value question or rejection of one known alternative.
 
-*Proof.* Let G be the role-law group acting on D. Composing
-(σ,π_i) after (τ,ρ_i) gives (στ,π_(τ(i))ρ_i), which retains the
-selected-position equation; inverses have the same form. G contains no
-permutation that exchanges only two complete states. If σ changes,
-every state at each moved selected position changes, moving at least
-2m^q states. If σ is identity, each π_i fixes i. For q=2 all π_i
-are then identity. For q≥3 a nontrivial π_i has at most q−1 cycles,
-so fixes at most m^(q−1) tuples and moves at least
-m^q−m^(q−1)≥4. This excludes a two-state transposition in all cases.
+*Proof.* Let G be the role-law group acting on D. Composing (σ,π_i) after (τ,ρ_i) gives (στ,π_(τ(i))ρ_i), which retains the selected-position equation; inverses have the same form. G contains no permutation that exchanges only two complete states. If σ changes, every state at each moved selected position changes, moving at least 2m^q states. If σ is identity, each π_i fixes i. For q=2 all π_i are then identity. For q≥3 a nontrivial π_i has at most q−1 cycles, so fixes at most m^(q−1) tuples and moves at least m^q−m^(q−1)≥4. This excludes a two-state transposition in all cases.
 
-Consider any accepting transcript for U∈G. If two unqueried states
-have the same selected value, exchange those two inputs before U.
-The new U′ is still a permutation preserving the selected value and
-gives every acquired answer in the transcript. But U′∉G: otherwise
-U⁻¹U′ would be the excluded two-state transposition in G. Adaptation
-receives the same replies and cannot distinguish the alternative.
-At most one input can therefore remain unqueried in each of the m
-selected-value fibers, giving the lower bound |D|−m.
+Consider any accepting transcript for U∈G. If two unqueried states have the same selected value, exchange those two inputs before U. The new U′ is still a permutation preserving the selected value and gives every acquired answer in the transcript. But U′∉G: otherwise U⁻¹U′ would be the excluded two-state transposition in G. Adaptation receives the same replies and cannot distinguish the alternative. At most one input can therefore remain unqueried in each of the m selected-value fibers, giving the lower bound |D|−m.
 
-To attain it, query every state except one per such fiber. Within
-each fiber, permutation and selected-value preservation leave exactly
-one unused successor for the omitted input. The entire table is
-therefore determined. Membership in the specified finite group can
-then be decided. The result counts target queries, not the effort
-of constructing or comparing those table descriptions. ∎
+To attain it, query every state except one per such fiber. Within each fiber, permutation and selected-value preservation leave exactly one unused successor for the omitted input. The entire table is therefore determined. Membership in the specified finite group can then be decided. The result counts target queries, not the effort of constructing or comparing those table descriptions. ∎
 
-For three ternary positions, an already justified role law needs
-three queries by M64am. An otherwise unrestricted permutation preserving
-the selected value needs 78 queries for this complete positive
-membership test. These are different source contracts and questions,
-not two implementations competing on the same evidence. A source-bound
-structural proof of the required relations supplies information that
-point queries alone were not given. Calling an unknown source a
-role-law object does not supply that proof. Conversely, the selected
-value itself is known to be preserved throughout the larger candidate
-class already and needs no membership test at all.
+For three ternary positions, an already justified role law needs three queries by M64am. An otherwise unrestricted permutation preserving the selected value needs 78 queries for this complete positive membership test. These are different source contracts and questions, not two implementations competing on the same evidence. A source-bound structural proof of the required relations supplies information that point queries alone were not given. Calling an unknown source a role-law object does not supply that proof. Conversely, the selected value itself is known to be preserved throughout the larger candidate class already and needs no membership test at all.
 
-**M64ar (the protection of a relative answer is the cut separating its sources).**
-Consider a finite undirected loopless comparison graph G=(V,E); parallel
-contacts are allowed. At each vertex i an unknown fixed bijection of one
-binary probe alphabet to one common retained binary record alphabet is
-given. It has the form c_i(s)=s XOR θ_i, with θ_i unknown. Each edge ij
-acquires the replies to one common probe s_e through its two endpoints.
-The probe may differ arbitrarily between edges and need not be known.
-The acquired comparison is
+**M64ar (the protection of a relative answer is the cut separating its sources).** Consider a finite undirected loopless comparison graph G=(V,E); parallel contacts are allowed. At each vertex i an unknown fixed bijection of one binary probe alphabet to one common retained binary record alphabet is given. It has the form c_i(s)=s XOR θ_i, with θ_i unknown. Each edge ij acquires the replies to one common probe s_e through its two endpoints. The probe may differ arbitrarily between edges and need not be known. The acquired comparison is
 
     d_e = c_i(s_e) XOR c_j(s_e) = θ_i XOR θ_j.
 
-No endpoint instrument is separately calibrated. The common probe on each
-edge, the same endpoint map across its incident contacts and the common
-record comparison are the supplied acquisition relations. A name for an
-instrument does not establish them. Even retaining both raw replies gives
-no additional information about θ when the probes are otherwise free:
-for any θ satisfying the edge comparisons, choose s_e from the first raw
-reply and θ_i; the second reply then agrees. A common flip of every θ_i
-leaves all relative answers unchanged.
+No endpoint instrument is separately calibrated. The common probe on each edge, the same endpoint map across its incident contacts and the common record comparison are the supplied acquisition relations. A name for an instrument does not establish them. Even retaining both raw replies gives no additional information about θ when the probes are otherwise free: for any θ satisfying the edge comparisons, choose s_e from the first raw reply and θ_i; the second reply then agrees. A common flip of every θ_i leaves all relative answers unchanged.
 
-Write d(θ) for the edge vector. For two selected distinct vertices u,v,
-the target is q(θ)=θ_u XOR θ_v, not every instrument map. Permit an
-explicit nonempty family B of possible edge-defect vectors, so the available
-record is z=d(θ) XOR e with e∈B. This class admits every such θ,e pair;
-additional source-dependent restrictions can remove the counterexamples
-below. Defects include any deviation allowed by
-this contract, whether from a reply, a changed context or the recording
-path. They are not assumed statistically independent or assigned outside
-the containing whole. Their admitted family must be justified separately.
+Write d(θ) for the edge vector. For two selected distinct vertices u,v, the target is q(θ)=θ_u XOR θ_v, not every instrument map. Permit an explicit nonempty family B of possible edge-defect vectors, so the available record is z=d(θ) XOR e with e∈B. This class admits every such θ,e pair; additional source-dependent restrictions can remove the counterexamples below. Defects include any deviation allowed by this contract, whether from a reply, a changed context or the recording path. They are not assumed statistically independent or assigned outside the containing whole. Their admitted family must be justified separately.
 
-For S⊆V let δS denote the indicator vector of edges with exactly one
-endpoint in S. Then the available record determines q uniformly over all
-admitted sources and defects **if and only if**
+For S⊆V let δS denote the indicator vector of edges with exactly one endpoint in S. Then the available record determines q uniformly over all admitted sources and defects **if and only if**
 
     (B XOR B) ∩ {δS : S contains exactly one of u,v} = ∅,
 
 where B XOR B={e XOR e′ : e,e′∈B}.
 
-**Proof.** For two assignments θ,θ′, let S be the vertices on which they
-differ. An edge comparison changes exactly when it crosses S, so
-d(θ) XOR d(θ′)=δS. Their target answers differ exactly when S separates
-u and v. Two such assignments can give one available z exactly when their
-comparison difference is also e XOR e′ for two admitted defects. This
-proves both directions. In the disjoint case every source compatible with
-one z has the same target answer, supplying its decoder without identifying
-the source or defect. If the intersection is nonempty, choose θ all zero,
-θ′ the indicator of its S, and the exhibited defects. These are actual
-compatible alternatives with one record and different target answers. ∎
+**Proof.** For two assignments θ,θ′, let S be the vertices on which they differ. An edge comparison changes exactly when it crosses S, so d(θ) XOR d(θ′)=δS. Their target answers differ exactly when S separates u and v. Two such assignments can give one available z exactly when their comparison difference is also e XOR e′ for two admitted defects. This proves both directions. In the disjoint case every source compatible with one z has the same target answer, supplying its decoder without identifying the source or defect. If the intersection is nonempty, choose θ all zero, θ′ the indicator of its S, and the exhibited defects. These are actual compatible alternatives with one record and different target answers. ∎
 
-For at most t arbitrary erroneous edge bits, put B={e:|e|≤t}. Let λ(u,v)
-be the fewest graph edges crossing a set containing exactly one of u,v.
-If they are disconnected, λ=0. The exact uniform recovery criterion is
+For at most t arbitrary erroneous edge bits, put B={e:|e|≤t}. Let λ(u,v) be the fewest graph edges crossing a set containing exactly one of u,v. If they are disconnected, λ=0. The exact uniform recovery criterion is
 
     λ(u,v) > 2t.
 
-Indeed two admitted defects differ on at most 2t edges. Conversely every
-set of at most 2t edges can be split into two sets of size at most t. A
-minimum separating cut of size at most 2t therefore gives the two same-record
-alternatives in the proof. This is the distance between the two *answer*
-families, which can exceed the minimum distance for recovering all edge
-comparisons. It is not a confidence level or an estimate from repeated
-agreement. With b known erased contacts as well as t unknown erroneous
-ones, the worst-case uniform criterion is λ(u,v)>2t+b: erase up to b
-edges of a minimum cut for the converse, and note that erasure can remove
-at most b edges of any separating cut for sufficiency. For a fixed known
-erasure set use the cut size of the remaining graph instead.
+Indeed two admitted defects differ on at most 2t edges. Conversely every set of at most 2t edges can be split into two sets of size at most t. A minimum separating cut of size at most 2t therefore gives the two same-record alternatives in the proof. This is the distance between the two *answer* families, which can exceed the minimum distance for recovering all edge comparisons. It is not a confidence level or an estimate from repeated agreement. With b known erased contacts as well as t unknown erroneous ones, the worst-case uniform criterion is λ(u,v)>2t+b: erase up to b edges of a minimum cut for the converse, and note that erasure can remove at most b edges of any separating cut for sufficiency. For a fixed known erasure set use the cut size of the remaining graph instead.
 
-There is a direct positive construction whenever 2t+1 acquired u–v paths
-share no edges. XOR the records along each path. Every intact path gives
-q because each internal θ occurs twice. At most t paths can contain an
-erroneous edge, so the majority of these path answers gives q. The path
-family is supplied here; no claim that finding it is free is needed for
-the exact cut criterion above. Repeating one contact does not establish
-separate failure supports. A common context change may affect many paths
-and must be counted in B accordingly.
+There is a direct positive construction whenever 2t+1 acquired u–v paths share no edges. XOR the records along each path. Every intact path gives q because each internal θ occurs twice. At most t paths can contain an erroneous edge, so the majority of these path answers gives q. The path family is supplied here; no claim that finding it is free is needed for the exact cut criterion above. Repeating one contact does not establish separate failure supports. A common context change may affect many paths and must be counted in B accordingly.
 
-For example, take three two-edge paths u–a–v, u–b–v and u–c–v, and add
-one leaf h joined only to a. The target cut has size three: the paths give
-the lower bound, and the three edges at u attain it. One arbitrary wrong
-record can therefore leave u's relation to v exact. The leaf's relation
-to a has cut size one and remains ambiguous under the same allowance.
-Two descriptions differing only at h can share all observed data by
-placing the defect on its lone edge in one description. Correctly answering
-the selected comparison does not require repairing that peripheral ambiguity.
+For example, take three two-edge paths u–a–v, u–b–v and u–c–v, and add one leaf h joined only to a. The target cut has size three: the paths give the lower bound, and the three edges at u attain it. One arbitrary wrong record can therefore leave u's relation to v exact. The leaf's relation to a has cut size one and remains ambiguous under the same allowance. Two descriptions differing only at h can share all observed data by placing the defect on its lone edge in one description. Correctly answering the selected comparison does not require repairing that peripheral ambiguity.
 
-Cycle agreement alone is weaker. An edge vector has zero XOR around every
-cycle exactly when it equals d(η) for some vertex assignment η. Propagate
-η from a chosen root along a tree in each component; the cycle equations
-verify the other edges. Thus an error is invisible to every cycle check
-exactly when it is a cut δS. Such an error changes q precisely when that
-cut separates u,v. Even all cycle tests cannot distinguish it from a
-different source assignment. This is the binary instance of S25's loop
-argument, with its exact target-dependent blind support made explicit.
-If a third comparison was computed from two others instead of acquired,
-its loop identity adds no independent constraint.
+Cycle agreement alone is weaker. An edge vector has zero XOR around every cycle exactly when it equals d(η) for some vertex assignment η. Propagate η from a chosen root along a tree in each component; the cycle equations verify the other edges. Thus an error is invisible to every cycle check exactly when it is a cut δS. Such an error changes q precisely when that cut separates u,v. Even all cycle tests cannot distinguish it from a different source assignment. This is the binary instance of S25's loop argument, with its exact target-dependent blind support made explicit. If a third comparison was computed from two others instead of acquired, its loop identity adds no independent constraint.
 
-**The cut bound does not depend on binary or commuting answers.** Let the
-unknown endpoint frames g_i belong to any nontrivial group H, and let an
-oriented edge carry its complete relative action D_ij=g_j g_i⁻¹. Reversing
-an edge uses the inverse of that same acquired comparison, not a separate
-uncalibrated physical return. The target is D_uv. The minimum number of
-edge values on which two assignments with different targets can disagree
-is again exactly λ(u,v).
+**The cut bound does not depend on binary or commuting answers.** Let the unknown endpoint frames g_i belong to any nontrivial group H, and let an oriented edge carry its complete relative action D_ij=g_j g_i⁻¹. Reversing an edge uses the inverse of that same acquired comparison, not a separate uncalibrated physical return. The target is D_uv. The minimum number of edge values on which two assignments with different targets can disagree is again exactly λ(u,v).
 
-To see this, write g_i′=g_i h_i. The two values at ij agree exactly when
-h_i=h_j, whereas their targets agree exactly when h_u=h_v. If targets
-differ, every unchanged-edge path from u stops before v. The boundary of
-its reachable region is a separating cut consisting entirely of changed
-edges, giving the lower bound. For the converse, choose a minimum
-separating cut, put h_i equal to one fixed nonidentity element on one side
-and identity on the other. Exactly its edges change, and so does the
-target. Splitting that disagreement set between two records proves the
-same sharp threshold λ(u,v)>2t for at most t arbitrary substituted edge
-values. This argument requires neither finiteness nor commutativity of H.
+To see this, write g_i′=g_i h_i. The two values at ij agree exactly when h_i=h_j, whereas their targets agree exactly when h_u=h_v. If targets differ, every unchanged-edge path from u stops before v. The boundary of its reachable region is a separating cut consisting entirely of changed edges, giving the lower bound. For the converse, choose a minimum separating cut, put h_i equal to one fixed nonidentity element on one side and identity on the other. Exactly its edges change, and so does the target. Splitting that disagreement set between two records proves the same sharp threshold λ(u,v)>2t for at most t arbitrary substituted edge values. This argument requires neither finiteness nor commutativity of H.
 
-In this unrestricted frame family, replacing D_uv by any nonconstant
-question f(D_uv) does not improve the worst-case threshold. Its separating
-records still differ on at least λ edges. To attain that distance, choose
-a,b with f(a)≠f(b), set g_u=1, g_v=a, and right-multiply the frames on
-the v side of a minimum cut by a⁻¹b. Only that cut changes, and the target
-becomes b. Thus a coarser question can need less acquisition of edge
-actions without automatically tolerating more arbitrary corrupted edges.
-The earlier peripheral example gains by restricting the compared endpoints,
-not by an unrestricted promise that every coarsening improves robustness.
+In this unrestricted frame family, replacing D_uv by any nonconstant question f(D_uv) does not improve the worst-case threshold. Its separating records still differ on at least λ edges. To attain that distance, choose a,b with f(a)≠f(b), set g_u=1, g_v=a, and right-multiply the frames on the v side of a minimum cut by a⁻¹b. Only that cut changes, and the target becomes b. Thus a coarser question can need less acquisition of edge actions without automatically tolerating more arbitrary corrupted edges. The earlier peripheral example gains by restricting the compared endpoints, not by an unrestricted promise that every coarsening improves robustness.
 
-Ordered products along intact paths give D_uv by cancellation of the
-internal frames. With 2t+1 edge-disjoint paths, at least t+1 products equal
-that target, so the repeated answer is unique even for nonbinary actions.
-Acquisition now has a stronger obligation than one binary trial: an edge
-must supply its relative action, or evidence sufficient for the products
-and comparisons actually used. One matching point response of two unknown
-bijections does not provide their full relative map. The theorem isolates
-the protection supplied by the contact graph after that obligation; it
-does not hide the acquisition of an arbitrary action in an edge label.
+Ordered products along intact paths give D_uv by cancellation of the internal frames. With 2t+1 edge-disjoint paths, at least t+1 products equal that target, so the repeated answer is unique even for nonbinary actions. Acquisition now has a stronger obligation than one binary trial: an edge must supply its relative action, or evidence sufficient for the products and comparisons actually used. One matching point response of two unknown bijections does not provide their full relative map. The theorem isolates the protection supplied by the contact graph after that obligation; it does not hide the acquisition of an arbitrary action in an edge label.
 
-**Coherent context changes need no small error count.** Suppose instead
-the endpoint maps change to θ′=θ XOR α for an unknown α in a nonempty
-declared family A. Every acquired edge still uses the same changed map at
-each occurrence of its vertex. Then d(θ′)=d(θ) XOR δ(support α).
-All loop comparisons survive. For connected u,v, the old target q(θ)
-is recoverable from the new comparisons for every θ,α exactly when
-α_u XOR α_v has one fixed value k throughout A. The new path comparison
-equals q(θ′)=q(θ) XOR k, so XOR with this one k decodes the old target.
-If A admits different endpoint parities, choose θ separately to give
-the same θ′ for those two changes. Every new edge and every loop then
-agrees while the old target differs. This proves necessity as well.
-Interior maps can change arbitrarily: no bound on the number of changed
-edges is needed if this boundary relation is maintained. With unrestricted
-α, the new target remains readable, but the old target does not. Relabelling
-that new answer as the old one would change the question's source binding.
+**Coherent context changes need no small error count.** Suppose instead the endpoint maps change to θ′=θ XOR α for an unknown α in a nonempty declared family A. Every acquired edge still uses the same changed map at each occurrence of its vertex. Then d(θ′)=d(θ) XOR δ(support α). All loop comparisons survive. For connected u,v, the old target q(θ) is recoverable from the new comparisons for every θ,α exactly when α_u XOR α_v has one fixed value k throughout A. The new path comparison equals q(θ′)=q(θ) XOR k, so XOR with this one k decodes the old target. If A admits different endpoint parities, choose θ separately to give the same θ′ for those two changes. Every new edge and every loop then agrees while the old target differs. This proves necessity as well. Interior maps can change arbitrarily: no bound on the number of changed edges is needed if this boundary relation is maintained. With unrestricted α, the new target remains readable, but the old target does not. Relabelling that new answer as the old one would change the question's source binding.
 
-This cancellation needs the occurrence relation too. If successive edges
-of a path v₀,…,v_m use different states of an intermediate instrument,
-write θ_(v_j,e_j) and θ_(v_j,e_(j+1)) for its two orientations. XOR of
-the acquired edge comparisons is then the two endpoint orientations XOR
+This cancellation needs the occurrence relation too. If successive edges of a path v₀,…,v_m use different states of an intermediate instrument, write θ_(v_j,e_j) and θ_(v_j,e_(j+1)) for its two orientations. XOR of the acquired edge comparisons is then the two endpoint orientations XOR
 
     XOR over 0<j<m of
         (θ_(v_j,e_j) XOR θ_(v_j,e_(j+1))).
 
-These are internal changes between the actual occurrences. The formula
-follows by grouping the two appearances of every intermediate vertex.
-They cancel only when their *joint* XOR is zero; each instrument need
-not individually remain unchanged. Knowing that joint change is sufficient to
-correct the endpoint comparison. Missing its occurrence links is different
-from lacking an absolute instrument calibration. Additional acquired
-comparisons across those occurrences can supply the links, but the formula
-does not assert that such acquisition is always available. A path drawn
-with one reused instrument name supplies none of them by itself.
-M64as supplies a two-occasion acquisition of a joint change without
-requiring the individual instruments to retain their earlier orientations.
+These are internal changes between the actual occurrences. The formula follows by grouping the two appearances of every intermediate vertex. They cancel only when their *joint* XOR is zero; each instrument need not individually remain unchanged. Knowing that joint change is sufficient to correct the endpoint comparison. Missing its occurrence links is different from lacking an absolute instrument calibration. Additional acquired comparisons across those occurrences can supply the links, but the formula does not assert that such acquisition is always available. A path drawn with one reused instrument name supplies none of them by itself. M64as supplies a two-occasion acquisition of a joint change without requiring the individual instruments to retain their earlier orientations.
 
-`RepeatedFirstAnswer`, `RepeatedOuterAnswer` and `RepeatedLastAnswer` read
-the repeated value of an actual three-answer record by existing projections.
-They cover every binary triple and agree wherever their input shapes
-overlap. Their branch is determined by repetition in the available record,
-not by an oracle identifying the damaged path. The one-error triples for
-both answers are checked along with their retained records. The same 010
-record can arise from true 000 with one error or true 111 with two; a
-separate refusal prevents extending its first conclusion across that changed
-defect allowance. These static cases check the three-path decoder fragment;
-the general graph and cut bounds have the proof above.
+`RepeatedFirstAnswer`, `RepeatedOuterAnswer` and `RepeatedLastAnswer` read the repeated value of an actual three-answer record by existing projections. They cover every binary triple and agree wherever their input shapes overlap. Their branch is determined by repetition in the available record, not by an oracle identifying the damaged path. The one-error triples for both answers are checked along with their retained records. The same 010 record can arise from true 000 with one error or true 111 with two; a separate refusal prevents extending its first conclusion across that changed defect allowance. These static cases check the three-path decoder fragment; the general graph and cut bounds have the proof above.
 
-This does not acquire a fault budget from the data it is intended to
-protect. With unrestricted B both answers remain compatible with every
-record. Nor do the successful tests certify future stability of endpoint
-maps. The result locates a smaller sufficient support for a current
-relative answer and the exact class of permitted changes that can defeat
-it. It uses the familiar binary parity and distance argument, not a new
-physical law: M64a's unknown-component acquisition can be protected for a
-chosen question without requiring uniform recovery of every component.
+This does not acquire a fault budget from the data it is intended to protect. With unrestricted B both answers remain compatible with every record. Nor do the successful tests certify future stability of endpoint maps. The result locates a smaller sufficient support for a current relative answer and the exact class of permitted changes that can defeat it. It uses the familiar binary parity and distance argument, not a new physical law: M64a's unknown-component acquisition can be protected for a chosen question without requiring uniform recovery of every component.
 
-**M64as (acquire a joint change without identifying its individual changes).**
-Distinguish addressed instrument occurrences instead of identifying them
-by one device name. At two occasions, let the unknown binary orientations
-be a₀,b₀ and a₁,b₁. A paired acquisition at occasion t sends one unknown
-probe s_t through its two current instruments and retains
+**M64as (acquire a joint change without identifying its individual changes).** Distinguish addressed instrument occurrences instead of identifying them by one device name. At two occasions, let the unknown binary orientations be a₀,b₀ and a₁,b₁. A paired acquisition at occasion t sends one unknown probe s_t through its two current instruments and retains
 
     r_t=(s_t XOR a_t, s_t XOR b_t).
 
-The two probes need not agree. No individual instrument is required to
-remain unchanged. The two acquired relative bits are d_t=a_t XOR b_t,
-so the four raw replies determine
+The two probes need not agree. No individual instrument is required to remain unchanged. The two acquired relative bits are d_t=a_t XOR b_t, so the four raw replies determine
 
     d₀ XOR d₁ = (a₀ XOR a₁) XOR (b₀ XOR b₁).
 
-This is exactly the joint drift that M64ar's two-occurrence correction
-requires. Two paired acquisitions suffice in this interface, or one new
-acquisition when the first pair is already retained. One total acquisition
-cannot determine the change: vary an orientation at the unobserved occasion.
-Yet neither individual drift is determined even by both full raw pairs.
-Flip a₁,b₁ and s₁ together. Every available reply remains the same, while
-both individual drifts reverse and their joint drift remains fixed. This
-gives two compatible source histories, rather than an unmeasured parameter alone.
+This is exactly the joint drift that M64ar's two-occurrence correction requires. Two paired acquisitions suffice in this interface, or one new acquisition when the first pair is already retained. One total acquisition cannot determine the change: vary an orientation at the unobserved occasion. Yet neither individual drift is determined even by both full raw pairs. Flip a₁,b₁ and s₁ together. Every available reply remains the same, while both individual drifts reverse and their joint drift remains fixed. This gives two compatible source histories, rather than an unmeasured parameter alone.
 
-The result acquires the common relation *between* occasions without a
-shared probe or fixed instrument *across* occasions. It still uses one
-common probe within each paired acquisition and a known comparison of the
-retained binary labels. If the probes differ even within a pair, their
-unknown relative bit enters that comparison. The formula then requires
-its further relation; device or occasion names do not supply it.
+The result acquires the common relation *between* occasions without a shared probe or fixed instrument *across* occasions. It still uses one common probe within each paired acquisition and a known comparison of the retained binary labels. If the probes differ even within a pair, their unknown relative bit enters that comparison. The formula then requires its further relation; device or occasion names do not supply it.
 
-There is an exact acquisition criterion for a general finite occurrence
-graph G=(V,E). Vertex v has unknown bit θ_v. An available edge contact
-returns θ_i XOR θ_j for its two specified occurrences; it has a supplied
-nonnegative cost w_e. Only these replies are source-dependent inputs to
-the acquiring participant. The target is the joint parity
+There is an exact acquisition criterion for a general finite occurrence graph G=(V,E). Vertex v has unknown bit θ_v. An available edge contact returns θ_i XOR θ_j for its two specified occurrences; it has a supplied nonnegative cost w_e. Only these replies are source-dependent inputs to the acquiring participant. The target is the joint parity
 
     q_T(θ) = XOR over v∈T of θ_v,
 
-where T is a specified subset of vertices. Repeated occurrences in an
-expression cancel in pairs before forming T. For a queried edge set F
-with a realizable transcript, q_T is determined exactly when **every connected component of (V,F)
-contains an even number of vertices of T**.
-Inconsistent replies refuse the fixed occurrence model; they do not
-determine an answer by leaving no admitted source.
+where T is a specified subset of vertices. Repeated occurrences in an expression cancel in pairs before forming T. For a queried edge set F with a realizable transcript, q_T is determined exactly when **every connected component of (V,F) contains an even number of vertices of T**. Inconsistent replies refuse the fixed occurrence model; they do not determine an answer by leaving no admitted source.
 
-**Proof.** Equal replies on F mean θ and θ′ differ by one constant flip
-on each of its connected components. Every such set of component flips
-is compatible with those replies. It changes q_T exactly on components
-having odd intersection with T, proving necessity and sufficiency. The
-empty T has constant answer zero. If a full component of the available
-G has odd intersection with T, even acquiring every contact cannot
-determine the target; an absolute label is not silently supplied. ∎
+**Proof.** Equal replies on F mean θ and θ′ differ by one constant flip on each of its connected components. Every such set of component flips is compatible with those replies. It changes q_T exactly on components having odd intersection with T, proving necessity and sufficiency. The empty T has constant answer zero. If a full component of the available G has odd intersection with T, even acquiring every contact cannot determine the target; an absolute label is not silently supplied. ∎
 
-The answer also has a direct constructive reading. A set of edges J with
-odd degree exactly at the vertices of T is called a T-join. XOR of its
-acquired edge replies equals q_T: every intermediate vertex appears an
-even number of times, and each target vertex an odd number. Whenever F
-passes the component criterion, it contains such a J. In each component
-take a spanning tree, work from its leaves, and include a leaf's parent
-edge exactly when the remaining target parity at that leaf is odd. Move
-that parity to the parent. The component's even total makes the final
-root parity zero. This constructs J using only edges of F.
+The answer also has a direct constructive reading. A set of edges J with odd degree exactly at the vertices of T is called a T-join. XOR of its acquired edge replies equals q_T: every intermediate vertex appears an even number of times, and each target vertex an odd number. Whenever F passes the component criterion, it contains such a J. In each component take a spanning tree, work from its leaves, and include a leaf's parent edge exactly when the remaining target parity at that leaf is odd. Move that parity to the parent. The component's even total makes the final root parity zero. This constructs J using only edges of F.
 
 Consequently the minimum acquisition cost is exactly
 
     min over T-joins J in G of Σ_(e∈J) w_e,
 
-when one exists. No adaptive strategy improves this exact minimum in the
-declared noiseless interface. On any stopping transcript its queried F
-must pass the component criterion: otherwise a component flip preserves
-every previous reply, hence the same adaptive choices, while reversing the
-target. The constructed J⊆F costs no more because all w_e are nonnegative.
-A minimum T-join supplies a fixed attaining strategy. This counts the
-specified comparison contacts, not the physical cost of preparing or
-retaining their occurrences; sharing raw replies may change that cost model.
+when one exists. No adaptive strategy improves this exact minimum in the declared noiseless interface. On any stopping transcript its queried F must pass the component criterion: otherwise a component flip preserves every previous reply, hence the same adaptive choices, while reversing the target. The constructed J⊆F costs no more because all w_e are nonnegative. A minimum T-join supplies a fixed attaining strategy. This counts the specified comparison contacts, not the physical cost of preparing or retaining their occurrences; sharing raw replies may change that cost model.
 
-For the two-occasion example, T={a₀,b₀,a₁,b₁}. The two available edges
-a₀b₀ and a₁b₁ form a T-join. Both connected components have two targets,
-so the joint drift is determined. The individual target {a₀,a₁} has one
-vertex in each component and remains undetermined. Thus the sufficient
-acquisition need not connect each instrument to its own later occurrence.
-It can connect different pairs while retaining exactly the joint question.
+For the two-occasion example, T={a₀,b₀,a₁,b₁}. The two available edges a₀b₀ and a₁b₁ form a T-join. Both connected components have two targets, so the joint drift is determined. The individual target {a₀,a₁} has one vertex in each component and remains undetermined. Thus the sufficient acquisition need not connect each instrument to its own later occurrence. It can connect different pairs while retaining exactly the joint question.
 
-This also separates the count of components from their interaction law.
-If an even number m of instruments each contributes one before and one
-after occurrence, comparison graphs connected within each occasion can
-determine the parity of all m drifts with no cross-occasion edge. For odd
-m that same evidence cannot: flipping the entire later component changes
-the target. This is a parity statement in the declared binary family,
-not a universal threshold for changes in arbitrary media.
+This also separates the count of components from their interaction law. If an even number m of instruments each contributes one before and one after occurrence, comparison graphs connected within each occasion can determine the parity of all m drifts with no cross-occasion edge. For odd m that same evidence cannot: flipping the entire later component changes the target. This is a parity statement in the declared binary family, not a universal threshold for changes in arbitrary media.
 
-The graph describes available addressed comparisons. A temporal edge to
-an earlier occurrence must actually be obtainable from retained support
-or another presented contact. Drawing it does not restore an inaccessible
-past. Queries that change an input create a further occurrence unless a
-relation licenses using the old one. The concrete two-occasion construction
-uses only contemporaneous pairs and their retained records, so it needs
-no direct access to an earlier instrument after it has changed.
+The graph describes available addressed comparisons. A temporal edge to an earlier occurrence must actually be obtainable from retained support or another presented contact. Drawing it does not restore an inaccessible past. Queries that change an input create a further occurrence unless a relation licenses using the old one. The concrete two-occasion construction uses only contemporaneous pairs and their retained records, so it needs no direct access to an earlier instrument after it has changed.
 
-For noncommuting actions the order cannot be discarded in this parity
-fashion. With D_t=g_Bt g_At⁻¹ and Δ_A=g_A1 g_A0⁻¹,
-Δ_B=g_B1 g_B0⁻¹, substitution gives
+For noncommuting actions the order cannot be discarded in this parity fashion. With D_t=g_Bt g_At⁻¹ and Δ_A=g_A1 g_A0⁻¹, Δ_B=g_B1 g_B0⁻¹, substitution gives
 
     D₁ D₀⁻¹ = Δ_B D₀ Δ_A⁻¹ D₀⁻¹.
 
-The relative change is available from D₀,D₁, but it is not generally the
-untransported product Δ_B Δ_A⁻¹. The conjugation carries the original
-frame relation. The T-join parity result does not claim to remove that
-ordered support. M64b–c already expose the corresponding frame obligation.
+The relative change is available from D₀,D₁, but it is not generally the untransported product Δ_B Δ_A⁻¹. The conjugation carries the original frame relation. The T-join parity result does not claim to remove that ordered support. M64b–c already expose the corresponding frame obligation.
 
-`RecordAcrossOccurrences` records the before reading, performs the supplied
-source transition and records the after reading at its actual output.
-Its whole retains the original source, prior memory and transition record.
-The final memory projects exactly the two acquired facts; the source and
-transition record remain in the retained whole.
-No commuting image square or preservation of either answer is required.
-`JointChangeFromFacts` reads only those facts and composes supplied finite
-parity clauses. The examples use the existing equal and unequal binary
-clauses, with one construction whose raw replies change while relative drift
-is zero and another with nonzero relative drift. An old fact cannot replace
-the changed current answer, and reversing only one binary reply changes
-the acquired conclusion. These static paths establish the displayed
-acquisition fragment. The graph criterion, cost and adaptive lower bound
-have their proofs above; no runtime graph search carries them.
+`RecordAcrossOccurrences` records the before reading, performs the supplied source transition and records the after reading at its actual output. Its whole retains the original source, prior memory and transition record. The final memory projects exactly the two acquired facts; the source and transition record remain in the retained whole. No commuting image square or preservation of either answer is required. `JointChangeFromFacts` reads only those facts and composes supplied finite parity clauses. The examples use the existing equal and unequal binary clauses, with one construction whose raw replies change while relative drift is zero and another with nonzero relative drift. An old fact cannot replace the changed current answer, and reversing only one binary reply changes the acquired conclusion. These static paths establish the displayed acquisition fragment. The graph criterion, cost and adaptive lower bound have their proofs above; no runtime graph search carries them.
 
-This is the standard finite parity/T-join argument applied to an acquisition
-question about internal occurrences, not a priority claim about that graph
-theory. Its role here is to replace a demand for every individual drift
-by exactly the comparisons sufficient for the requested joint change.
+This is the standard finite parity/T-join argument applied to an acquisition question about internal occurrences, not a priority claim about that graph theory. Its role here is to replace a demand for every individual drift by exactly the comparisons sufficient for the requested joint change.
 
-**M64at (joint correction need not decompose into independent sufficient readings).**
-Combine M64ar's permitted edge errors with M64as's joint question q_T.
-Two source assignments differ on S; their comparison records differ on
-δS and their answers differ exactly when |S∩T| is odd. Consequently the
-distance between opposite-answer record families is
+**M64at (joint correction need not decompose into independent sufficient readings).** Combine M64ar's permitted edge errors with M64as's joint question q_T. Two source assignments differ on S; their comparison records differ on δS and their answers differ exactly when |S∩T| is odd. Consequently the distance between opposite-answer record families is
 
     λ_T = min {|δS| : |S∩T| is odd}.
 
-For nonempty T this gives the same exact uniform one-error criterion
-λ_T≥3. A set of edge-disjoint T-joins would supply independent sufficient
-readings, but the existence of this correction criterion does not force
-such a decomposition. Independence here means disjoint contact support,
-not a statistical assumption.
+For nonempty T this gives the same exact uniform one-error criterion λ_T≥3. A set of edge-disjoint T-joins would supply independent sufficient readings, but the existence of this correction criterion does not force such a decomposition. Independence here means disjoint contact support, not a statistical assumption.
 
-Take the Petersen graph, with indices modulo five: vertices a_i,b_i and
-edges a_i a_(i+1), a_i b_i, b_i b_(i+2). Set T to all ten vertices.
-Its perfect matchings are M∞, containing all five spokes, and the five
-matchings
+Take the Petersen graph, with indices modulo five: vertices a_i,b_i and edges a_i a_(i+1), a_i b_i, b_i b_(i+2). Set T to all ten vertices. Its perfect matchings are M∞, containing all five spokes, and the five matchings
 
     M_i = {a_i b_i,
            a_(i+1) a_(i+2), a_(i+3) a_(i+4),
            b_(i+2) b_(i+4), b_(i+1) b_(i+3)}.
 
-Here is a direct completeness check. A perfect matching uses an odd number
-of spokes because five outer vertices must otherwise be matched in pairs.
-Three spokes would leave the same pair of indices to be adjacent both in
-the outer cycle, with difference ±1, and in the inner cycle, with difference
-±2, which is impossible. Five spokes give M∞. One spoke leaves a four-vertex
-path in each cycle, each with one perfect matching, giving exactly M_i.
+Here is a direct completeness check. A perfect matching uses an odd number of spokes because five outer vertices must otherwise be matched in pairs. Three spokes would leave the same pair of indices to be adjacent both in the outer cycle, with difference ±1, and in the inner cycle, with difference ±2, which is impossible. Five spokes give M∞. One spoke leaves a four-vertex path in each cycle, each with one perfect matching, giving exactly M_i.
 
-M∞ intersects M_i at spoke i. M_i intersects M_(i+1) at the displayed
-inner edge b_(i+2)b_(i+4), and M_(i+2) at the displayed outer edge
-a_(i+3)a_(i+4); each intersection contains just that edge. Reversal and
-rotation cover every other pair. Thus every pair of matchings has exactly
-one shared edge, and every edge belongs to exactly two matchings. These
-standard catalogue properties are also stated in
-[Ma, Mattiolo, Steffen and Wolf, Proposition 2.1](https://iris.unimore.it/retrieve/374887ce-44d3-4870-9501-7441def6e3cc/unpaywall-bitstream--1204780336.pdf).
-They are used here for a comparison-acquisition question, without a claim
-to new graph-theoretic priority.
+M∞ intersects M_i at spoke i. M_i intersects M_(i+1) at the displayed inner edge b_(i+2)b_(i+4), and M_(i+2) at the displayed outer edge a_(i+3)a_(i+4); each intersection contains just that edge. Reversal and rotation cover every other pair. Thus every pair of matchings has exactly one shared edge, and every edge belongs to exactly two matchings. These standard catalogue properties are also stated in [Ma, Mattiolo, Steffen and Wolf, Proposition 2.1](https://iris.unimore.it/retrieve/374887ce-44d3-4870-9501-7441def6e3cc/unpaywall-bitstream--1204780336.pdf). They are used here for a comparison-acquisition question, without a claim to new graph-theoretic priority.
 
-Every perfect matching crosses a cut of odd vertex cardinality an odd,
-hence positive, number of times. Summing over the six matchings counts
-each cut edge twice, so 2|δS|≥6 for every such S. A single vertex has
-cut size three. Therefore λ_T=3, and the whole contact record determines
-q_T in the presence of at most one arbitrary erroneous edge bit.
+Every perfect matching crosses a cut of odd vertex cardinality an odd, hence positive, number of times. Summing over the six matchings counts each cut edge twice, so 2|δS|≥6 for every such S. A single vertex has cut size three. Therefore λ_T=3, and the whole contact record determines q_T in the presence of at most one arbitrary erroneous edge bit.
 
-Yet there are not even **two disjoint sufficient contact sets**. Each
-sufficient set contains a T-join by M64as. If two T-joins were disjoint,
-each would use an odd positive number of edges at every vertex. Since the
-graph is cubic, neither could use three there: that would leave none for
-the other. Both must therefore be perfect matchings. The catalogue shows
-that every pair shares an edge, a contradiction. This excludes arbitrary
-separately sufficient functions on disjoint subsets of contacts, not only
-an attempted choice of two matching-parity formulas.
+Yet there are not even **two disjoint sufficient contact sets**. Each sufficient set contains a T-join by M64as. If two T-joins were disjoint, each would use an odd positive number of edges at every vertex. Since the graph is cubic, neither could use three there: that would leave none for the other. Both must therefore be perfect matchings. The catalogue shows that every pair shares an edge, a contradiction. This excludes arbitrary separately sufficient functions on disjoint subsets of contacts, not only an attempted choice of two matching-parity formulas.
 
-There is nevertheless a direct decoder from overlapping readings. XOR
-the five edge bits in each matching; without error every result equals
-q_T because each vertex occurs once. One erroneous edge flips exactly
-two of the six matching answers. Retain any five of them. At most two
-are wrong, so their strict majority is q_T. All fifteen raw contacts are
-acquired once; the matching readings reuse their common records. The
-five answers are not five independent measurements, and no new corruption
-is charged for reading one edge record twice.
+There is nevertheless a direct decoder from overlapping readings. XOR the five edge bits in each matching; without error every result equals q_T because each vertex occurs once. One erroneous edge flips exactly two of the six matching answers. Retain any five of them. At most two are wrong, so their strict majority is q_T. All fifteen raw contacts are acquired once; the matching readings reuse their common records. The five answers are not five independent measurements, and no new corruption is charged for reading one edge record twice.
 
-Five is exact among subsets of these matching-parity readings. Given any
-four selected matchings, split them into two pairs. Take the common edge
-of the first pair as an error for a source with q_T=0, and the common
-edge of the second pair as an error for a source with q_T=1. Both give
-the same four answers: ones at the first pair and zeros at the second.
-Both source parities are realizable, by an all-zero assignment and by
-flipping one vertex. Each scenario has one edge error. Any smaller subset
-inherits the ambiguity. This is not a five-bit lower bound for an arbitrary
-encoder allowed to compute the corrected q_T before choosing its message.
+Five is exact among subsets of these matching-parity readings. Given any four selected matchings, split them into two pairs. Take the common edge of the first pair as an error for a source with q_T=0, and the common edge of the second pair as an error for a source with q_T=1. Both give the same four answers: ones at the first pair and zeros at the second. Both source parities are realizable, by an all-zero assignment and by flipping one vertex. Each scenario has one edge error. Any smaller subset inherits the ambiguity. This is not a five-bit lower bound for an arbitrary encoder allowed to compute the corrected q_T before choosing its message.
 
-The five retained answers determine more: the error's location. If they
-all equal their majority, no edge is wrong. If exactly one differs, its
-matching shares the wrong edge with the omitted sixth matching. If two
-differ, their common edge is wrong. Every edge is represented by exactly
-one pair of the six matching indices. Thus the 32 pairs
+The five retained answers determine more: the error's location. If they all equal their majority, no edge is wrong. If exactly one differs, its matching shares the wrong edge with the omitted sixth matching. If two differ, their common edge is wrong. Every edge is represented by exactly one pair of the six matching indices. Thus the 32 pairs
 
     (q_T, no error or one of the fifteen edge locations)
 
-correspond one-to-one to all 32 five-bit messages. Five binary message
-coordinates are therefore necessary for this *joint* answer-and-location
-question and are attained here. They still do not identify the source
-assignment. The sixth matching parity is already XOR of the first five,
-since every raw edge occurs twice across all six. Computing it supplies
-no additional acquired constraint.
-The location names the record differing from its true comparison in this
-contract. It does not identify a faulty device, the cause of the difference
-or a unique physical event history.
+correspond one-to-one to all 32 five-bit messages. Five binary message coordinates are therefore necessary for this *joint* answer-and-location question and are attained here. They still do not identify the source assignment. The sixth matching parity is already XOR of the first five, since every raw edge occurs twice across all six. Computing it supplies no additional acquired constraint. The location names the record differing from its true comparison in this contract. It does not identify a faulty device, the cause of the difference or a unique physical event history.
 
-There is an important admission boundary. Since every five-bit message
-has one of the displayed interpretations, those five summaries cannot
-test the assumed one-error contract. For an explicit refused raw record,
-label each edge by its pair of matching indices and put ones on the three
-edges 01,12,02, zeros elsewhere. Each matching encounters either zero or
-two of them, so all six summaries are zero. The compressed decoder reports
-q_T=0 and no error. But the raw record has three ones. For a noiseless
-comparison record on a cubic graph, XOR of all edge values equals q_T:
-every vertex bit occurs three times. This raw record is therefore not
-noiseless with q_T=0. Nor can it be a permitted one-error record: the five
-summaries already force the unique pair (0,no error) within that family.
-Compression preserves the answer on the admitted family while omitting a
-test of the family's applicability. The raw acquisition remains available
-if that further question is asked.
+There is an important admission boundary. Since every five-bit message has one of the displayed interpretations, those five summaries cannot test the assumed one-error contract. For an explicit refused raw record, label each edge by its pair of matching indices and put ones on the three edges 01,12,02, zeros elsewhere. Each matching encounters either zero or two of them, so all six summaries are zero. The compressed decoder reports q_T=0 and no error. But the raw record has three ones. For a noiseless comparison record on a cubic graph, XOR of all edge values equals q_T: every vertex bit occurs three times. This raw record is therefore not noiseless with q_T=0. Nor can it be a permitted one-error record: the five summaries already force the unique pair (0,no error) within that family. Compression preserves the answer on the admitted family while omitting a test of the family's applicability. The raw acquisition remains available if that further question is asked.
 
-`PetersenContactRows` constructs all six matching supports from fifteen
-source fields indexed by pairs of matching indices. Reading every edge
-at its first and second appearance reconstructs exactly that same source
-twice. Five full raw rows also cover the omitted row. These are raw-support
-relations, distinct from five scalar parity summaries. A changed common
-edge alters its two occurrences together while leaving the other four
-rows untouched; a refusal rejects changing only one of the shared copies.
-The static constructors establish this addressed incidence and reuse. The
-matching catalogue, parity decoder, minimum and admission counterexample
-have the mathematical proofs above; they are not asserted by an empty
-protocol or an executable enumeration.
+`PetersenContactRows` constructs all six matching supports from fifteen source fields indexed by pairs of matching indices. Reading every edge at its first and second appearance reconstructs exactly that same source twice. Five full raw rows also cover the omitted row. These are raw-support relations, distinct from five scalar parity summaries. A changed common edge alters its two occurrences together while leaving the other four rows untouched; a refusal rejects changing only one of the shared copies. The static constructors establish this addressed incidence and reuse. The matching catalogue, parity decoder, minimum and admission counterexample have the mathematical proofs above; they are not asserted by an empty protocol or an executable enumeration.
 
-The result identifies a concrete limitation of repetition as an architecture
-of proof: sufficiently strong joint constraints can protect a target even
-when no two independently sufficient pieces exist. It does not establish
-statistical independence, physical fault bounds or the one-error premise
-from an internally consistent compressed message.
+The result identifies a concrete limitation of repetition as an architecture of proof: sufficiently strong joint constraints can protect a target even when no two independently sufficient pieces exist. It does not establish statistical independence, physical fault bounds or the one-error premise from an internally consistent compressed message.
 
-**M64au (two cycle readings restore exact record admission, not its physical provenance).**
-Keep M64at's Petersen graph, its common raw edge record z, and the five
-retained matching parities. Now allow z to be *any* binary edge record;
-do not assume in advance that its error count is at most one. The five
-bits always determine a proposed pair (q̂,ê), where ê is either no edge
-or one edge, by M64at's majority-and-minority rule. This is a proposed
-interpretation until its applicability to z has been established.
+**M64au (two cycle readings restore exact record admission, not its physical provenance).** Keep M64at's Petersen graph, its common raw edge record z, and the five retained matching parities. Now allow z to be *any* binary edge record; do not assume in advance that its error count is at most one. The five bits always determine a proposed pair (q̂,ê), where ê is either no edge or one edge, by M64at's majority-and-minority rule. This is a proposed interpretation until its applicability to z has been established.
 
-Let O(z) be the XOR of the five outer-cycle edges and I(z) the XOR of
-the five inner-cycle edges. For an edge e let χ_O(e),χ_I(e) indicate
-membership in those cycles, with both zero for no edge. Then
+Let O(z) be the XOR of the five outer-cycle edges and I(z) the XOR of the five inner-cycle edges. For an edge e let χ_O(e),χ_I(e) indicate membership in those cycles, with both zero for no edge. Then
 
     z is within one edge error of some comparison record δθ
       iff O(z) = χ_O(ê) and I(z) = χ_I(ê).
 
-If the condition holds, its comparison record and error location are
-unique, and the joint source parity is q̂. Uniqueness here concerns the
-realizations admitted by this one-error family. It does not identify an
-unrestricted actual source from its allegedly corrupted record.
+If the condition holds, its comparison record and error location are unique, and the joint source parity is q̂. Uniqueness here concerns the realizations admitted by this one-error family. It does not identify an unrestricted actual source from its allegedly corrupted record.
 
-Here is a constructive proof of sufficiency. Put z′=z XOR ê, interpreting
-ê as its one-edge indicator. The five retained matching parities of z′
-all equal q̂. The sixth equals their XOR, hence also q̂. The two new
-conditions say O(z′)=I(z′)=0. Choose an arbitrary bit at a_0 and use the
-outer edge records successively to assign a_1,...,a_4. The last edge is
-consistent because O(z′)=0. Set b_i=a_i XOR z′(s_i) from the spokes.
-This constructs θ and matches every outer edge and spoke without using
-any inner edge equation as a premise.
+Here is a constructive proof of sufficiency. Put z′=z XOR ê, interpreting ê as its one-edge indicator. The five retained matching parities of z′ all equal q̂. The sixth equals their XOR, hence also q̂. The two new conditions say O(z′)=I(z′)=0. Choose an arbitrary bit at a_0 and use the outer edge records successively to assign a_1,...,a_4. The last edge is consistent because O(z′)=0. Set b_i=a_i XOR z′(s_i) from the spokes. This constructs θ and matches every outer edge and spoke without using any inner edge equation as a premise.
 
 Only inner residuals may remain. Define
 
     r_i = z′(k_i) XOR b_i XOR b_(i+2).
 
-Subtracting δθ does not change cycle parities. The spoke matching has
-zero residual; each other matching has residual r_(i+1) XOR r_(i+2).
-All six corrected matching parities were equal, and every matching
-parity of δθ equals the joint vertex parity. Therefore all these pair
-residuals are zero. Successive r_i are equal, so all five equal one bit r.
-The inner cycle condition now gives 0=I(z′ XOR δθ)=5r=r. No residual
-remains. The spoke matching also shows that the constructed θ has joint
-parity q̂. This proves existence by constructing all vertex relations;
-it does not add existence of θ to the caller's premises.
+Subtracting δθ does not change cycle parities. The spoke matching has zero residual; each other matching has residual r_(i+1) XOR r_(i+2). All six corrected matching parities were equal, and every matching parity of δθ equals the joint vertex parity. Therefore all these pair residuals are zero. Successive r_i are equal, so all five equal one bit r. The inner cycle condition now gives 0=I(z′ XOR δθ)=5r=r. No residual remains. The spoke matching also shows that the constructed θ has joint parity q̂. This proves existence by constructing all vertex relations; it does not add existence of θ to the caller's premises.
 
-Conversely, suppose z=δθ XOR e with at most one error. M64at recovers
-exactly (q_T,e), and every cycle has zero parity on δθ. The two displayed
-equalities follow. Uniqueness of e and q_T follows from the same decoder;
-δθ then equals z XOR e. On this connected graph θ is determined by that
-full corrected raw record up to one global bit. This last recovery uses
-the raw record, not only the seven compressed bits.
+Conversely, suppose z=δθ XOR e with at most one error. M64at recovers exactly (q_T,e), and every cycle has zero parity on δθ. The two displayed equalities follow. Uniqueness of e and q_T follows from the same decoder; δθ then equals z XOR e. On this connected graph θ is determined by that full corrected raw record up to one global bit. This last recovery uses the raw record, not only the seven compressed bits.
 
-Two is minimal in the declared interface of *additional binary linear
-parity readings of the same raw record*. Let U be one on every outer
-edge and zero elsewhere; let V similarly mark every inner edge. Every
-matching meets each cycle in either zero or two edges. Thus adding U,
-V or U XOR V leaves all five old summaries unchanged. In particular
-0,U,V,U XOR V all have old message zero. Their new cycle messages are
-respectively (0,0),(1,0),(0,1),(1,1). Only the first is admitted: the old
-message forces the proposed pair (0,no error), while each other record
-violates at least one cycle condition necessary for a comparison record.
+Two is minimal in the declared interface of *additional binary linear parity readings of the same raw record*. Let U be one on every outer edge and zero elsewhere; let V similarly mark every inner edge. Every matching meets each cycle in either zero or two edges. Thus adding U, V or U XOR V leaves all five old summaries unchanged. In particular 0,U,V,U XOR V all have old message zero. Their new cycle messages are respectively (0,0),(1,0),(0,1),(1,1). Only the first is admitted: the old message forces the proposed pair (0,no error), while each other record violates at least one cycle condition necessary for a comparison record.
 
-Any single binary linear reading has a nonzero kernel element on the
-two-dimensional span of U,V. It therefore gives the same new bit on
-zero and at least one of the three nonadmitted records. Choosing that
-one reading adaptively from the five old bits does not help on their
-common zero transcript. The two displayed readings attain the bound.
-An arbitrary nonlinear oracle that directly answers record membership
-would be a different interface and could return one bit; no absolute
-two-bit lower bound for a Boolean question is claimed. The six-matching
-sum supplies no repair because it was already determined by the old
-five bits.
+Any single binary linear reading has a nonzero kernel element on the two-dimensional span of U,V. It therefore gives the same new bit on zero and at least one of the three nonadmitted records. Choosing that one reading adaptively from the five old bits does not help on their common zero transcript. The two displayed readings attain the bound. An arbitrary nonlinear oracle that directly answers record membership would be a different interface and could return one bit; no absolute two-bit lower bound for a Boolean question is claimed. The six-matching sum supplies no repair because it was already determined by the old five bits.
 
-There is also a lower bound without prescribing the first five readings.
-For the total question which returns either "not admitted" or the pair
-(q_T,e), **seven binary linear parity readings are optimal, even with
-adaptive choice of readings**. To prove necessity, follow any successful
-strategy on the all-zero raw record. Its answer must be (0,no error).
-Every raw record with the same transcript must have that same answer,
-so it must belong to C_0={δθ : XOR_v θ_v=0}. There are exactly 2^8 such
-edge records: the parity-zero vertex assignments number 2^9, and each
-edge record on the connected graph has exactly the two assignments
-related by a global flip. Both assignments have even parity because
-there are ten vertices.
+There is also a lower bound without prescribing the first five readings. For the total question which returns either "not admitted" or the pair (q_T,e), **seven binary linear parity readings are optimal, even with adaptive choice of readings**. To prove necessity, follow any successful strategy on the all-zero raw record. Its answer must be (0,no error). Every raw record with the same transcript must have that same answer, so it must belong to C_0={δθ : XOR_v θ_v=0}. There are exactly 2^8 such edge records: the parity-zero vertex assignments number 2^9, and each edge record on the connected graph has exactly the two assignments related by a global flip. Both assignments have even parity because there are ten vertices.
 
-After k binary linear queries on the fifteen raw bits, the transcript's
-solution set contains at least 2^(15-k) records. This remains true for an
-adaptive strategy: the chosen queries are fixed on this reached branch,
-and any record satisfying their equations follows that same branch.
-To fit inside C_0 therefore requires 2^(15-k)≤2^8, or k≥7. The five
-matching and two cycle readings attain seven. This is a lower bound for
-the joint admitted-answer-and-location task. It is not asserted for the
-Boolean admission question alone, for unrestricted nonlinear messages,
-or for the number of physical edge acquisitions. All fifteen edge records
-are already accessible in the declared interface.
-There are only 33 possible final answers: 32 admitted pairs and one
-refusal. An unrestricted encoder that has already solved the question
-can label those answers with six bits. The seven-bit lower bound is
-therefore a restriction of acquiring the answer through linear parity
-readings, not a count of the answer's abstract possible values.
+After k binary linear queries on the fifteen raw bits, the transcript's solution set contains at least 2^(15-k) records. This remains true for an adaptive strategy: the chosen queries are fixed on this reached branch, and any record satisfying their equations follows that same branch. To fit inside C_0 therefore requires 2^(15-k)≤2^8, or k≥7. The five matching and two cycle readings attain seven. This is a lower bound for the joint admitted-answer-and-location task. It is not asserted for the Boolean admission question alone, for unrestricted nonlinear messages, or for the number of physical edge acquisitions. All fifteen edge records are already accessible in the declared interface. There are only 33 possible final answers: 32 admitted pairs and one refusal. An unrestricted encoder that has already solved the question can label those answers with six bits. The seven-bit lower bound is therefore a restriction of acquiring the answer through linear parity readings, not a count of the answer's abstract possible values.
 
-The seven-bit reading factors two questions that the old five-bit reading
-did not factor jointly: membership in the admitted raw-record family,
-and, when admitted, its uniquely determined (q_T,e). It still discards
-most of the source. Both new facts must concern the same addressed raw
-record as the matching summaries. If that record is retained, acquiring
-the new question does not require repeating the physical measurements.
-If only the five old bits survive, no further internal calculation on
-them recovers the lost admission test; the four records above are a
-direct witness to that impossibility.
+The seven-bit reading factors two questions that the old five-bit reading did not factor jointly: membership in the admitted raw-record family, and, when admitted, its uniquely determined (q_T,e). It still discards most of the source. Both new facts must concern the same addressed raw record as the matching summaries. If that record is retained, acquiring the new question does not require repeating the physical measurements. If only the five old bits survive, no further internal calculation on them recovers the lost admission test; the four records above are a direct witness to that impossibility.
 
-Record admission is not acquisition of the physical error bound. For
-example, the zero raw record can arise from the all-zero source with no
-errors, or from a source with exactly one vertex bit changed and with
-all three incident edge records flipped. In the second realization the
-joint source parity is one, but the raw record, all matching summaries
-and both cycle checks are exactly as in the first. Even complete access
-to that same raw record cannot distinguish these two explanations when
-such coherent errors are allowed. The test proves existence of a
-one-error explanation; it does not prove that the actual history belongs
-to it. Inferring the actual q_T still requires an established relation
-restricting that history, or a further contact which separates these
-possibilities. This is a concrete application of the sufficient-reading
-criterion, not a new trust flag or an unexplained physical exception.
-Nor does failure of the test make a record impossible in reality. A
-contact law with actual path dependence can produce a nonzero cycle
-without any bad measurement. What fails is its representation as these
-fixed vertex comparisons with at most one erroneous edge. Flatness of
-that representation has a proved admission test here; it has not been
-derived as a universal law from closure of the whole.
+Record admission is not acquisition of the physical error bound. For example, the zero raw record can arise from the all-zero source with no errors, or from a source with exactly one vertex bit changed and with all three incident edge records flipped. In the second realization the joint source parity is one, but the raw record, all matching summaries and both cycle checks are exactly as in the first. Even complete access to that same raw record cannot distinguish these two explanations when such coherent errors are allowed. The test proves existence of a one-error explanation; it does not prove that the actual history belongs to it. Inferring the actual q_T still requires an established relation restricting that history, or a further contact which separates these possibilities. This is a concrete application of the sufficient-reading criterion, not a new trust flag or an unexplained physical exception. Nor does failure of the test make a record impossible in reality. A contact law with actual path dependence can produce a nonzero cycle without any bad measurement. What fails is its representation as these fixed vertex comparisons with at most one erroneous edge. Flatness of that representation has a proved admission test here; it has not been derived as a universal law from closure of the whole.
 
-`PetersenCycleReadings` reads both cycles from the same fifteen fields as
-`PetersenContactRows`. In matching-index order with M_5=M∞, the outer
-edges are 24,03,14,02,13 and the inner edges are 34,04,01,12,23. The
-existing `JointEvidence` construction requires a common actual source.
-`FiveBitParity` links four successive parity applications to those actual
-row fields; its concrete uses contain only the finite parity clauses in
-`WitnessTransfer`. An arbitrary conformance with the same operation name
-does not establish XOR semantics. The four hidden-cycle cases yield the
-four distinct acquired bit pairs, and M64at's original triangle yields
-(1,0) from its actual raw source. `RecordReading` retains that source
-with the acquired fact. Refusals reject the triangle's alleged zero
-cycle result and joining cycle facts from different raw records, even
-when the substituted individual answer is equal. These static checks
-verify the addressed construction and the displayed cases; the universal
-admission criterion and its lower bound have the constructive proofs
-above, without executable enumeration.
+`PetersenCycleReadings` reads both cycles from the same fifteen fields as `PetersenContactRows`. In matching-index order with M_5=M∞, the outer edges are 24,03,14,02,13 and the inner edges are 34,04,01,12,23. The existing `JointEvidence` construction requires a common actual source. `FiveBitParity` links four successive parity applications to those actual row fields; its concrete uses contain only the finite parity clauses in `WitnessTransfer`. An arbitrary conformance with the same operation name does not establish XOR semantics. The four hidden-cycle cases yield the four distinct acquired bit pairs, and M64at's original triangle yields (1,0) from its actual raw source. `RecordReading` retains that source with the acquired fact. Refusals reject the triangle's alleged zero cycle result and joining cycle facts from different raw records, even when the substituted individual answer is equal. These static checks verify the addressed construction and the displayed cases; the universal admission criterion and its lower bound have the constructive proofs above, without executable enumeration.
 
-**M64av (a joint balance can be sufficient without an autonomous model of the process).**
-An independently developed control mechanism supplies a useful test of
-VI's scope. The ideal antithetic controller has two controller species:
-reference production increments Z1, sensing increments Z2, and a common
-reaction decrements both by one. The sensing intensity is proportional
-to the regulated output; actuation connects Z1 back to that output.
-The published stochastic tracking theorem requires ergodicity and moment
-bounds; the cancellation alone is not its stability proof. See
-[Briat, Gupta and Khammash, reactions (1), equations (2–4), Theorem 1](https://arxiv.org/pdf/1410.6064).
+**M64av (a joint balance can be sufficient without an autonomous model of the process).** An independently developed control mechanism supplies a useful test of VI's scope. The ideal antithetic controller has two controller species: reference production increments Z1, sensing increments Z2, and a common reaction decrements both by one. The sensing intensity is proportional to the regulated output; actuation connects Z1 back to that output. The published stochastic tracking theorem requires ergodicity and moment bounds; the cancellation alone is not its stability proof. See [Briat, Gupta and Khammash, reactions (1), equations (2–4), Theorem 1](https://arxiv.org/pdf/1410.6064).
 
-For VI, first separate the finite event relation from assumptions about
-time, rates and limiting distributions. Consider any finite admitted
-history of count pairs (z1,z2). Reference and sensing events have changes
-(1,0) and (0,1). A common removal has change (−1,−1) and requires both
-reactants. Other events in the admitted fragment leave these counts
-unchanged. Let A,B,C count the respective three events. Directly summing
-their changes gives
+For VI, first separate the finite event relation from assumptions about time, rates and limiting distributions. Consider any finite admitted history of count pairs (z1,z2). Reference and sensing events have changes (1,0) and (0,1). A common removal has change (−1,−1) and requires both reactants. Other events in the admitted fragment leave these counts unchanged. Let A,B,C count the respective three events. Directly summing their changes gives
 
     z1′ = z1 + A − C,       z2′ = z2 + B − C,
     D′ − D = A − B,         D = z1 − z2.
 
-Equivalently, z1′+z2+B = z2′+z1+A. This natural-count equality does not
-require a signed-number implementation. It follows by induction on the
-actual event sequence: reference adds one to the first difference,
-sensing subtracts one, and common removal changes neither. No event
-probability, fixed common-removal rate, independence, clock or convergence
-is used. The same proof admits any jointly equal count changes. The
-specified reaction incidences perform the work. Describing two separate
-losses with the same parameter name does not make them one such event.
+Equivalently, z1′+z2+B = z2′+z1+A. This natural-count equality does not require a signed-number implementation. It follows by induction on the actual event sequence: reference adds one to the first difference, sensing subtracts one, and common removal changes neither. No event probability, fixed common-removal rate, independence, clock or convergence is used. The same proof admits any jointly equal count changes. The specified reaction incidences perform the work. Describing two separate losses with the same parameter name does not make them one such event.
 
-This gives an exact finite bound on accumulated imbalance. If
-|D′−D|≤K and A>0, then |B/A−1|≤K/A. Along a sequence of histories with
-A→∞, the event-count ratio B/A tends to one exactly when (D′−D)/A tends
-to zero. These statements use the actual reference events as the
-denominator, without introducing external time. They concern numbers of
-events; a regulated concentration or output rate needs its additional
-sensing relation. Persistent event imbalance must appear in D or in a
-violation of the admitted event/capacity conditions. It cannot be removed
-by an unknown number of the common cancellations.
+This gives an exact finite bound on accumulated imbalance. If |D′−D|≤K and A>0, then |B/A−1|≤K/A. Along a sequence of histories with A→∞, the event-count ratio B/A tends to one exactly when (D′−D)/A tends to zero. These statements use the actual reference events as the denominator, without introducing external time. They concern numbers of events; a regulated concentration or output rate needs its additional sensing relation. Persistent event imbalance must appear in D or in a violation of the admitted event/capacity conditions. It cannot be removed by an unknown number of the common cancellations.
 
-The statistic D does **not** determine all enabled microscopic actions.
-States (0,0) and (1,1) have the same D=0, but common removal is unavailable
-in the first and available in the second. Actuation depending on z1 can
-also distinguish them. This alone does not prove that D's own evolution
-is nonautonomous: common removal leaves D unchanged.
+The statistic D does **not** determine all enabled microscopic actions. States (0,0) and (1,1) have the same D=0, but common removal is unavailable in the first and available in the second. Actuation depending on z1 can also distinguish them. This alone does not prove that D's own evolution is nonautonomous: common removal leaves D unchanged.
 
-For a separate test of autonomy, include the regulated output Y in the
-complete state and use the stipulated Markov reaction intensities μ
-and θY. On any bounded test function f of D, the projected generator is
+For a separate test of autonomy, include the regulated output Y in the complete state and use the stipulated Markov reaction intensities μ and θY. On any bounded test function f of D, the projected generator is
 
     L(f∘D)(z1,z2,Y) = μ[f(D+1)−f(D)] + θY[f(D−1)−f(D)].
 
-Common removal and actuation contribute zero directly. If the admitted
-state family contains two states with the same D and different Y, their
-instantaneous rates to D−1 differ. No Markov generator on D alone can
-represent this projected law for every such initial state. The exact
-event balance still holds for both. This is a statement about the declared
-family, not a refusal of every possible restricted preparation.
+Common removal and actuation contribute zero directly. If the admitted state family contains two states with the same D and different Y, their instantaneous rates to D−1 differ. No Markov generator on D alone can represent this projected law for every such initial state. The exact event balance still holds for both. This is a statement about the declared family, not a refusal of every possible restricted preparation.
 
-Conversely, with constant reference and sensing intensities μ and ν,
-the same reaction incidences admit an autonomous continuous-time random
-walk for D: the displayed generator has ν in place of θY and depends
-only on D. Hidden common removals may still have rate ηz1z2 and different
-availability. Thus loss of the full action description, nonautonomy of
-the chosen reading, and exactness of its event balance are three separate
-properties. Neither autonomy nor its failure is required to use the
-finite balance. Its long-run consequence needs the further conditions
-below.
+Conversely, with constant reference and sensing intensities μ and ν, the same reaction incidences admit an autonomous continuous-time random walk for D: the displayed generator has ν in place of θY and depends only on D. Hidden common removals may still have rate ηz1z2 and different availability. Thus loss of the full action description, nonautonomy of the chosen reading, and exactness of its event balance are three separate properties. Neither autonomy nor its failure is required to use the finite balance. Its long-run consequence needs the further conditions below.
 
-For the time-based interpretation, suppose the counting model has
-reference intensity μ>0 and sensing intensity θY(t), with θ>0, and its
-counts are nonexplosive and both the counts and integrated intensities
-are integrable on the interval considered. Write
-M_A(t)=A(t)−μt and M_B(t)=B(t)−θ∫₀ᵗY(s)ds for their compensated counts.
-The same finite-count identity yields, path by path,
+For the time-based interpretation, suppose the counting model has reference intensity μ>0 and sensing intensity θY(t), with θ>0, and its counts are nonexplosive and both the counts and integrated intensities are integrable on the interval considered. Write M_A(t)=A(t)−μt and M_B(t)=B(t)−θ∫₀ᵗY(s)ds for their compensated counts. The same finite-count identity yields, path by path,
 
     (1/t)∫₀ᵗY(s)ds = μ/θ − (D(t)−D(0))/(θt)
                             + (M_A(t)−M_B(t))/(θt).
 
-Under the stipulated intensities and integrability, the compensated
-counts have zero mean. Consequently
+Under the stipulated intensities and integrability, the compensated counts have zero mean. Consequently
 
     (1/t)∫₀ᵗ E[Y(s)]ds = μ/θ − (E[D(t)]−E[D(0)])/(θt).
 
-Hence convergence of this averaged mean output to μ/θ is equivalent to
-sublinear growth of the mean difference on the right. Full stationarity
-is not needed for this particular implication. Neither pointwise
-convergence of E[Y(t)] nor almost-sure convergence of the single-path
-time average follows from this averaged-mean identity alone. On a single path, sublinear
-growth of D and of the compensated-count difference is sufficient. The
-mean identity does not remove this latter random term from a realized
-history. Nor does a bounded difference by itself bound the two separate
-populations: they can grow together.
-Under the unit-Poisson time-change assumptions, M64ax gives a sharper
-path criterion: relative to its diverging internal clock, sublinear
-growth of the difference alone is necessary and sufficient for the
-weighted output limit. That inference uses the counting law in addition
-to the finite event balance.
-The ratio μ/θ is the remaining reference-to-sensing relation, not an
-absolute constant supplied by closure of the whole. Changing that ratio
-changes the target. For a common variable multiplier μ(t)=ρa(t),
-θ(t)=a(t)>0, the deterministic balance instead controls the weighted
-reading ∫a(t)y(t)dt/∫a(t)dt, with boundary correction
-−(D(t)−D(0))/∫a(t)dt. It does not automatically control the unweighted
-time average. The identity follows directly by integrating
-dot D=a(t)(ρ−y(t)); convergence needs a diverging denominator and a
-sublinear boundary term relative to it. Thus even removal of a common
-unknown timing scale preserves a specified relational question, rather
-than every meaning assigned to the word "average".
+Hence convergence of this averaged mean output to μ/θ is equivalent to sublinear growth of the mean difference on the right. Full stationarity is not needed for this particular implication. Neither pointwise convergence of E[Y(t)] nor almost-sure convergence of the single-path time average follows from this averaged-mean identity alone. On a single path, sublinear growth of D and of the compensated-count difference is sufficient. The mean identity does not remove this latter random term from a realized history. Nor does a bounded difference by itself bound the two separate populations: they can grow together. Under the unit-Poisson time-change assumptions, M64ax gives a sharper path criterion: relative to its diverging internal clock, sublinear growth of the difference alone is necessary and sufficient for the weighted output limit. That inference uses the counting law in addition to the finite event balance. The ratio μ/θ is the remaining reference-to-sensing relation, not an absolute constant supplied by closure of the whole. Changing that ratio changes the target. For a common variable multiplier μ(t)=ρa(t), θ(t)=a(t)>0, the deterministic balance instead controls the weighted reading ∫a(t)y(t)dt/∫a(t)dt, with boundary correction −(D(t)−D(0))/∫a(t)dt. It does not automatically control the unweighted time average. The identity follows directly by integrating dot D=a(t)(ρ−y(t)); convergence needs a diverging denominator and a sublinear boundary term relative to it. Thus even removal of a common unknown timing scale preserves a specified relational question, rather than every meaning assigned to the word "average".
 
-The finite identity also states exactly what breaks under extra losses.
-If L1 and L2 count additional separate decrements, then
+The finite identity also states exactly what breaks under extra losses. If L1 and L2 count additional separate decrements, then
 
     D′−D = A−B−L1+L2.
 
-Even equal per-capita loss rates δ do not give equal actual losses. In
-a deterministic description with such loss terms,
-dot D=μ−θy−δD, so a stationary value satisfies
-y*=μ/θ−δD*/θ. For a concrete admitted counterexample, take
+Even equal per-capita loss rates δ do not give equal actual losses. In a deterministic description with such loss terms, dot D=μ−θy−δD, so a stationary value satisfies y*=μ/θ−δD*/θ. For a concrete admitted counterexample, take
 
     dot z1 = 3/4 − 2z1z2 − z1,
     dot z2 = y − 2z1z2 − z2,
     dot y  = z1 − y.
 
-The positive constant state (z1,z2,y)=(1/2,1/4,1/2) satisfies all three
-equations, while the ideal target is 3/4. This is an exact counterexample
-to deriving that ideal stationary target after adding equal independent
-loss-rate coefficients. No claim about convergence to this state or
-about measured biological parameters is needed for the counterexample.
+The positive constant state (z1,z2,y)=(1/2,1/4,1/2) satisfies all three equations, while the ideal target is 3/4. This is an exact counterexample to deriving that ideal stationary target after adding equal independent loss-rate coefficients. No claim about convergence to this state or about measured biological parameters is needed for the counterexample.
 
-The physical application has an experimentally important boundary.
-Aoki et al. implemented paired sequestration using sigma/anti-sigma
-proteins in E. coli. Their comparison circuit omitted the anti-sigma
-feedback module. Under induced protease perturbation, the closed-loop
-fluorescence was maintained in an investigated region while the
-open-loop output decreased. The article also reports an exit from that
-adaptation region and models dilution and saturation. This is evidence
-about a concrete implementation and range, not exact regulation under
-every perturbation. See [Aoki et al., Fig. 2 and discussion of non-ideal
-conditions](https://doi.org/10.1038/s41586-019-1321-1). No experimental
-data have been independently reanalysed here. The ideal cancellation,
-the stochastic theorem and these experimental findings retain distinct
-claims and premises.
+The physical application has an experimentally important boundary. Aoki et al. implemented paired sequestration using sigma/anti-sigma proteins in E. coli. Their comparison circuit omitted the anti-sigma feedback module. Under induced protease perturbation, the closed-loop fluorescence was maintained in an investigated region while the open-loop output decreased. The article also reports an exit from that adaptation region and models dilution and saturation. This is evidence about a concrete implementation and range, not exact regulation under every perturbation. See [Aoki et al., Fig. 2 and discussion of non-ideal conditions](https://doi.org/10.1038/s41586-019-1321-1). No experimental data have been independently reanalysed here. The ideal cancellation, the stochastic theorem and these experimental findings retain distinct claims and premises.
 
-`JointReactionBalance` supplies a finite proof grammar. A start witness
-has equal current and ledger pairs. A reference or sensing constructor
-increments the actual current field and its corresponding ledger field.
-A removal constructor consumes two actual successor fields, changes both
-current counts and retains the ledger. Induction proves that current
-and ledger differences agree for every finite construction from these
-rules and finite Never/Succ counts. The caller supplies neither final
-difference equality nor a desired final count. An open
-`JointEventBalance` conformance by itself does not establish that
-interpretation. Generic type checks compose a birth/removal path, retain
-the actual removal record, and distinguish a returned working pair from
-its birth ledger. Refusals reject an empty reactant pair and identifying
-one-sided loss with the common removal. No runtime arithmetic is used.
+`JointReactionBalance` supplies a finite proof grammar. A start witness has equal current and ledger pairs. A reference or sensing constructor increments the actual current field and its corresponding ledger field. A removal constructor consumes two actual successor fields, changes both current counts and retains the ledger. Induction proves that current and ledger differences agree for every finite construction from these rules and finite Never/Succ counts. The caller supplies neither final difference equality nor a desired final count. An open `JointEventBalance` conformance by itself does not establish that interpretation. Generic type checks compose a birth/removal path, retain the actual removal record, and distinguish a returned working pair from its birth ledger. Refusals reject an empty reactant pair and identifying one-sided loss with the common removal. No runtime arithmetic is used.
 
-This imports a constraint from an independently studied mechanism into
-VI: a useful exact guarantee need not be a complete autonomous quotient
-of the dynamics. The common event establishes a balance that can support
-regulation without a stored model of the unknown network. The local
-count description does not claim that matter disappears from the whole;
-inactive products, reservoirs and the surrounding process are outside
-this particular reading. The construction also supplies no inference
-from regulation or local accessibility to subjective experience.
+This imports a constraint from an independently studied mechanism into VI: a useful exact guarantee need not be a complete autonomous quotient of the dynamics. The common event establishes a balance that can support regulation without a stored model of the unknown network. The local count description does not claim that matter disappears from the whole; inactive products, reservoirs and the surrounding process are outside this particular reading. The construction also supplies no inference from regulation or local accessibility to subjective experience.
 
-**M64aw (retaining a selected answer need not retain the contact that can apply it).**
-An external experiment separates selection from the prepared input of
-an action. Lahue, Au and Modrich reconstituted E. coli mismatch repair.
-Changing which strand carried the single GATC methylation changed the
-strand corrected; the site lay 1024 base pairs from the mismatch.
-Pre-incision allowed correction without MutH when ligase was absent.
-Adding ligase inhibited this route. MutH restored repair for GATC-bearing
-substrates, but not for the tested substrate lacking GATC, including when
-both substrates shared a reaction. Other repair requirements remained.
-These interventions support distinct initiation and downstream roles;
-they do not make every marked strand historically correct, or every
-individual repair infallible. See [Lahue et al., Figs. 3–5](https://cmgm-new.stanford.edu/biochem/biochem201/Papers/modrich.pdf).
+**M64aw (retaining a selected answer need not retain the contact that can apply it).** An external experiment separates selection from the prepared input of an action. Lahue, Au and Modrich reconstituted E. coli mismatch repair. Changing which strand carried the single GATC methylation changed the strand corrected; the site lay 1024 base pairs from the mismatch. Pre-incision allowed correction without MutH when ligase was absent. Adding ligase inhibited this route. MutH restored repair for GATC-bearing substrates, but not for the tested substrate lacking GATC, including when both substrates shared a reaction. Other repair requirements remained. These interventions support distinct initiation and downstream roles; they do not make every marked strand historically correct, or every individual repair infallible. See [Lahue et al., Figs. 3–5](https://cmgm-new.stanford.edu/biochem/biochem201/Papers/modrich.pdf).
 
-Here is a finite relational model of that distinction, not a molecular
-simulation. Express both stored contents in one comparison convention,
-so matching contents have the form (a,a). Write a current surface as
+Here is a finite relational model of that distinction, not a molecular simulation. Express both stored contents in one comparison convention, so matching contents have the form (a,a). Write a current surface as
 
     s = ((a,b),(m,(o,h))),
 
-where m is an attached selection relation, o is the actual access state,
-and h is a retained remainder. Let C mean closed and N2 access to the
-second content. For a selection m=1 preserving the first content, the
-following are partial operations with the displayed exact domains:
+where m is an attached selection relation, o is the actual access state, and h is a retained remainder. Let C mean closed and N2 access to the second content. For a selection m=1 preserving the first content, the following are partial operations with the displayed exact domains:
 
     I2: ((a,b),(1,(C,h)))  -> ((a,b),(1,(N2,h))),
     T2: ((a,b),(m,(N2,h))) -> ((a,a),(m,(N2,(b,h)))),
     L2: ((a,b),(m,(N2,h))) -> ((a,b),(m,(C,h))).
 
-I2 prepares access; T2 transfers the selected content and retains the
-displaced b; L2 closes access. T2 uses a prepared N2 and its actual
-contents, without requesting the earlier m=1 relation again. The
-symmetric I1/T1/L1 branch preserves b. The domain restrictions are the
-declared local model, motivated by the intervention above. They are not
-derived from the spelling of an enzyme name or from global closure.
+I2 prepares access; T2 transfers the selected content and retains the displaced b; L2 closes access. T2 uses a prepared N2 and its actual contents, without requesting the earlier m=1 relation again. The symmetric I1/T1/L1 branch preserves b. The domain restrictions are the declared local model, motivated by the intervention above. They are not derived from the spelling of an enzyme name or from global closure.
 
-**What is constructively forced.** The word I2,T2,L2 maps the closed
-source to ((a,a),(1,(C,(b,h)))). Direct substitution proves agreement,
-preservation of a, closure and retention of b for all a,b,h. None of
-these final equalities is supplied as an extra premise. On T2's image,
-the inverse reads a from the first current field, b from the head of the
-remainder, and h from its tail. It recovers the entire presented input.
-The local projection (a,b) -> (a,a) is many-to-one when at least two b
-are admitted; the displayed complete transfer is injective. This is an
-explicit recoverable realization, not a claim that the experiment has
-measured that environmental record or that every physical correction
-has a supplied inverse.
+**What is constructively forced.** The word I2,T2,L2 maps the closed source to ((a,a),(1,(C,(b,h)))). Direct substitution proves agreement, preservation of a, closure and retention of b for all a,b,h. None of these final equalities is supplied as an extra premise. On T2's image, the inverse reads a from the first current field, b from the head of the remainder, and h from its tail. It recovers the entire presented input. The local projection (a,b) -> (a,a) is many-to-one when at least two b are admitted; the displayed complete transfer is injective. This is an explicit recoverable realization, not a claim that the experiment has measured that environmental record or that every physical correction has a supplied inverse.
 
-Now perform I2,L2 before T2. The contents, selection and h return
-unchanged, but o=C, so the required T2 input is absent. Thus even exact
-preservation of the selected answer does not preserve the opportunity
-to apply it. In the interface containing only T2, L2 and identity, a
-closed state cannot change: the first nonidentity step of any proposed
-word is undefined. For a≠b, agreement is therefore unreachable in that
-interface despite the retained value of a. With the attached m=1 and
-I2 available, the word I2,L2,I2,T2,L2 instead has exactly the same full
-endpoint as I2,T2,L2. This supplies both the obstruction and its repair
-by an actual contact, rather than by an assertion that access once
-existed. It gives no scheduling or reaction-rate guarantee.
+Now perform I2,L2 before T2. The contents, selection and h return unchanged, but o=C, so the required T2 input is absent. Thus even exact preservation of the selected answer does not preserve the opportunity to apply it. In the interface containing only T2, L2 and identity, a closed state cannot change: the first nonidentity step of any proposed word is undefined. For a≠b, agreement is therefore unreachable in that interface despite the retained value of a. With the attached m=1 and I2 available, the word I2,L2,I2,T2,L2 instead has exactly the same full endpoint as I2,T2,L2. This supplies both the obstruction and its repair by an actual contact, rather than by an assertion that access once existed. It gives no scheduling or reaction-rate guarantee.
 
-Three questions require separate answers. Selection determines which current
-content the declared correction preserves. Prepared access determines
-whether the next action is admitted. Historical fidelity asks whether
-that selected content equals the earlier intended one. On a≠b, both
-branches produce agreement, but their current outputs are (a,a) and
-(b,b). If the admitted histories allow either strand to have acquired
-the discrepancy, the mismatch itself cannot identify the historical
-target. An attached marker selects a branch; identifying that branch
-with historical fidelity additionally uses its acquisition and copying
-relations. When a=b, both branches already give the same content
-answer and selection can be omitted for that particular question.
+Three questions require separate answers. Selection determines which current content the declared correction preserves. Prepared access determines whether the next action is admitted. Historical fidelity asks whether that selected content equals the earlier intended one. On a≠b, both branches produce agreement, but their current outputs are (a,a) and (b,b). If the admitted histories allow either strand to have acquired the discrepancy, the mismatch itself cannot identify the historical target. An attached marker selects a branch; identifying that branch with historical fidelity additionally uses its acquisition and copying relations. When a=b, both branches already give the same content answer and selection can be omitted for that particular question.
 
-This applies M71e's distinction between an answer and admitted future
-contacts to a separately investigated mechanism. Closure here changes
-an actual relation in the medium; it cannot be reduced to a status change in
-an observer's record. Information about the earlier opening may remain
-perfectly legible while the opening no longer exists. Neither an
-external clock nor loss of that historical information is needed for
-this order sensitivity. Conversely, knowing the allowed order does not
-establish that a competing process will permit its completion.
+This applies M71e's distinction between an answer and admitted future contacts to a separately investigated mechanism. Closure here changes an actual relation in the medium; it cannot be reduced to a status change in an observer's record. Information about the earlier opening may remain perfectly legible while the opening no longer exists. Neither an external clock nor loss of that historical information is needed for this order sensitivity. Conversely, knowing the allowed order does not establish that a competing process will permit its completion.
 
-`DirectedRepair.swift` gives the displayed field constructions, using
-the existing `SequentialReading` rather than a new correctness protocol.
-`FirstDirectedRepair` derives the target and agreement; the symmetric
-branch separates agreement from content identification.
-`RestoreSecondFromRemainder<S>` accepts only the actual result and
-projects its fields, with no hidden earlier-b parameter.
-`ReopenedFirstRepair` composes actual re-opening. The checks include
-arbitrary residual h, a prepared contact with no upstream selection
-marker, and retaining an opening's source and fact through `RecordReading`.
-Refusals exclude use after closure, the opposite opening, and identifying
-the two agreement outcomes. They verify this stated finite fragment,
-not arbitrary `PredicateReading` conformances or the complete chemistry.
+`DirectedRepair.swift` gives the displayed field constructions, using the existing `SequentialReading` rather than a new correctness protocol. `FirstDirectedRepair` derives the target and agreement; the symmetric branch separates agreement from content identification. `RestoreSecondFromRemainder<S>` accepts only the actual result and projects its fields, with no hidden earlier-b parameter. `ReopenedFirstRepair` composes actual re-opening. The checks include arbitrary residual h, a prepared contact with no upstream selection marker, and retaining an opening's source and fact through `RecordReading`. Refusals exclude use after closure, the opposite opening, and identifying the two agreement outcomes. They verify this stated finite fragment, not arbitrary `PredicateReading` conformances or the complete chemistry.
 
-**No privileged surviving side is required when another relation suffices.**
-The need for M64aw's directed marker is relative to the two-copy task;
-it is not a universal need for a permanently trusted object. Here is
-the elementary repetition-code alternative, derived from actual contacts.
-Let values belong to any set with at least two elements. Prepare five
-internal positions as
+**No privileged surviving side is required when another relation suffices.** The need for M64aw's directed marker is relative to the two-copy task; it is not a universal need for a permanently trusted object. Here is the elementary repetition-code alternative, derived from actual contacts. Let values belong to any set with at least two elements. Prepare five internal positions as
 
     ((a,a,a),(b,c)),
 
-with arbitrary reserve contents b,c. The available corruption family
-contains identity or one transposition of a replica with a reserve.
-Every such contact is a permutation of the full five-position carrier.
-Its displayed wiring, not the name "one error", establishes that at
-least two replicas still carry a. The reader receives only the three
-current replicas, omitting the reserves and the contact address.
+with arbitrary reserve contents b,c. The available corruption family contains identity or one transposition of a replica with a reserve. Every such contact is a permutation of the full five-position carrier. Its displayed wiring, not the name "one error", establishes that at least two replicas still carry a. The reader receives only the three current replicas, omitting the reserves and the contact address.
 
-Define D on triples with an equal pair to return the repeated value.
-The three clauses compare positions 1/2, 1/3 and 2/3. If two clauses
-apply, all three entries agree, so the outputs agree. Thus these clauses
-define one function of the current triple, independent of which clause
-was used. They cover every prepared one-transposition outcome, and each
-returns a. There is no trusted surviving position and no old-a input to
-the decoder. Permuting positions or bijectively renaming values preserves
-this conclusion. Equality has its stated content-comparison meaning;
-the construction does not prove an instrument for comparing arbitrary
-physical preparations.
+Define D on triples with an equal pair to return the repeated value. The three clauses compare positions 1/2, 1/3 and 2/3. If two clauses apply, all three entries agree, so the outputs agree. Thus these clauses define one function of the current triple, independent of which clause was used. They cover every prepared one-transposition outcome, and each returns a. There is no trusted surviving position and no old-a input to the decoder. Permuting positions or bijectively renaming values preserves this conclusion. Equality has its stated content-comparison meaning; the construction does not prove an instrument for comparing arbitrary physical preparations.
 
-Two replicas cannot give the same guarantee. For x≠y, the view (x,y)
-can result from preparation (x,x) by replacing its second entry with y,
-or from preparation (y,y) by replacing its first entry with x. Both
-replacements can be realized as swaps with an internal reserve. The
-same complete available input would have to return both x and y.
-Consequently three is the minimum number of homogeneous replicas for
-this one-affected-position, unmarked recovery question. It is not a
-universal three-bit basis for information or a consequence of closure
-without the preparation and contact relations.
+Two replicas cannot give the same guarantee. For x≠y, the view (x,y) can result from preparation (x,x) by replacing its second entry with y, or from preparation (y,y) by replacing its first entry with x. Both replacements can be realized as swaps with an internal reserve. The same complete available input would have to return both x and y. Consequently three is the minimum number of homogeneous replicas for this one-affected-position, unmarked recovery question. It is not a universal three-bit basis for information or a consequence of closure without the preparation and contact relations.
 
-Even three do not survive an unexamined extension of the contact family.
-Start from (a,a,a,b,b). Swap positions 1/4 and then 2/5, obtaining
-(b,b,a,a,a). From (b,b,b,a,a), swap positions 3/4, obtaining
-(b,b,a,b,a). The visible triples are both (b,b,a), while their original
-values are a and b. The complete states and their histories remain
-different; no information has been destroyed by these swaps. At most
-two allowed swaps therefore defeat recovery from that view. Naming
-the first two swaps one macro-operation does not restore the one-position
-guarantee. Contact support, not number of command names, matters.
+Even three do not survive an unexamined extension of the contact family. Start from (a,a,a,b,b). Swap positions 1/4 and then 2/5, obtaining (b,b,a,a,a). From (b,b,b,a,a), swap positions 3/4, obtaining (b,b,a,b,a). The visible triples are both (b,b,a), while their original values are a and b. The complete states and their histories remain different; no information has been destroyed by these swaps. At most two allowed swaps therefore defeat recovery from that view. Naming the first two swaps one macro-operation does not restore the one-position guarantee. Contact support, not number of command names, matters.
 
-Reading is still distinct from repair. Admit the additional, explicitly
-defined contact
+Reading is still distinct from repair. Admit the additional, explicitly defined contact
 
     J_D: (v,r) -> ((D(v),D(v),D(v)),(v,r)).
 
-It is controlled by the current view v alone, keeps the complete
-current input in its remainder, and is injective with inverse projection
-on its image. Following any prepared one-swap path by this contact
-restores the working replicas to (a,a,a). This is a recoverable symbolic
-realization with an admitted record extension, not a derivation of blank
-storage, cloning of arbitrary physical states or indefinite finite-carrier
-reuse. Without an available realization of J_D, the decoder alone gives
-knowledge of a, not the act of repairing the medium.
+It is controlled by the current view v alone, keeps the complete current input in its remainder, and is injective with inverse projection on its image. Following any prepared one-swap path by this contact restores the working replicas to (a,a,a). This is a recoverable symbolic realization with an admitted record extension, not a derivation of blank storage, cloning of arbitrary physical states or indefinite finite-carrier reuse. Without an available realization of J_D, the decoder alone gives knowledge of a, not the act of repairing the medium.
 
-The rule's historical meaning comes from preparation and contact support.
-Symmetry alone does not prefer the repeated value: on triples with exactly
-two equal entries, choosing the singleton is also invariant under position
-permutations and equivariant under value renaming. Only the first rule
-recovers the homogeneous preparation after every permitted single swap.
-The criterion is grounded by those internal relations; it need not be a
-frozen object outside the process.
+The rule's historical meaning comes from preparation and contact support. Symmetry alone does not prefer the repeated value: on triples with exactly two equal entries, choosing the singleton is also invariant under position permutations and equivariant under value renaming. Only the first rule recovers the homogeneous preparation after every permitted single swap. The criterion is grounded by those internal relations; it need not be a frozen object outside the process.
 
-`RepairWithoutAnchor.swift` supplies four actual swap clauses, covering
-all three working positions and an alternative reserve, and proves their
-full involutions. The generic recovery paths pass only the current triple
-to the three equal-pair readers. These paths certify coverage; the
-executor's answer is the single glued D above, not a hidden choice based
-on a supplied fault address. `RestoreReplicasFromReading` uses that view
-to restore the replicas and retains the input as actual output fields.
-The two-history collision has equal available views and distinct original
-values. Static refusals reject extending the guarantee to that collision
-and treating unequal fields as an equal-pair reading. The general minimum
-and the interpretation of this finite grammar have the proofs above;
-this is an application of known repetition coding, not a new coding bound.
+`RepairWithoutAnchor.swift` supplies four actual swap clauses, covering all three working positions and an alternative reserve, and proves their full involutions. The generic recovery paths pass only the current triple to the three equal-pair readers. These paths certify coverage; the executor's answer is the single glued D above, not a hidden choice based on a supplied fault address. `RestoreReplicasFromReading` uses that view to restore the replicas and retains the input as actual output fields. The two-history collision has equal available views and distinct original values. Static refusals reject extending the guarantee to that collision and treating unequal fields as an equal-pair reading. The general minimum and the interpretation of this finite grammar have the proofs above; this is an application of known repetition coding, not a new coding bound.
 
-**M64ax (an internal clock can be omitted exactly for the answers its reweighting preserves).**
-M64av leaves a precise timing question. Changing the name of a time
-coordinate, changing the measure used to average a path, and changing
-the relative speed of actual contacts are different operations. For
-a C¹ coordinate change s=φ(t) with φ′(t)>0, and an integrable output
-on [0,T], the old average ∫y(t)dt/T becomes
-∫y(φ⁻¹(s))(dt/ds)ds/T over [φ(0),φ(T)]. Using uniform ds instead is
-a different reading unless the relevant invariance has been established.
-This distinction needs no clock outside the whole: two internal ways
-of comparing progress may supply different measures.
+**M64ax (an internal clock can be omitted exactly for the answers its reweighting preserves).** M64av leaves a precise timing question. Changing the name of a time coordinate, changing the measure used to average a path, and changing the relative speed of actual contacts are different operations. For a C¹ coordinate change s=φ(t) with φ′(t)>0, and an integrable output on [0,T], the old average ∫y(t)dt/T becomes ∫y(φ⁻¹(s))(dt/ds)ds/T over [φ(0),φ(T)]. Using uniform ds instead is a different reading unless the relevant invariance has been established. This distinction needs no clock outside the whole: two internal ways of comparing progress may supply different measures.
 
-**The complete finite clock-reweighting family.** Let Q be the generator
-of an irreducible continuous-time Markov model on n≥2 states. Write
-π for its positive stationary distribution, λ_i=−Q_ii>0, and
-P_ij=Q_ij/λ_i for j≠i, P_ii=0. P describes which state comes next
-conditional on a jump, not the transition probabilities over a fixed
-time interval. Multiply all outgoing rates at state i by a_i>0:
+**The complete finite clock-reweighting family.** Let Q be the generator of an irreducible continuous-time Markov model on n≥2 states. Write π for its positive stationary distribution, λ_i=−Q_ii>0, and P_ij=Q_ij/λ_i for j≠i, P_ii=0. P describes which state comes next conditional on a jump, not the transition probabilities over a fixed time interval. Multiply all outgoing rates at state i by a_i>0:
 
     Q^a_ij = a_i Q_ij,
     π^a_i = (π_i/a_i) / Σ_j(π_j/a_j).
 
-The jump matrix remains P because the same a_i cancels in numerator
-and denominator. The second formula is stationary since
-(π^a Q^a)_j = (πQ)_j / Σ_i(π_i/a_i) = 0; irreducibility gives uniqueness.
-This uses the finite generator criterion, for which see
-[Lalley, §2 and §3.2, Corollaries 5 and 8](https://www.stat.uchicago.edu/~lalley/Courses/312/ContinuousTime.pdf).
-The stationary jump weights, proportional to π_iλ_i, also remain
-unchanged after reweighting. The entire jump-record law is unchanged
-when the same initial jump-state distribution is used. Initializing
-each timed model in its own stationary distribution is a different
-comparison and need not give the same initial state law.
+The jump matrix remains P because the same a_i cancels in numerator and denominator. The second formula is stationary since (π^a Q^a)_j = (πQ)_j / Σ_i(π_i/a_i) = 0; irreducibility gives uniqueness. This uses the finite generator criterion, for which see [Lalley, §2 and §3.2, Corollaries 5 and 8](https://www.stat.uchicago.edu/~lalley/Courses/312/ContinuousTime.pdf). The stationary jump weights, proportional to π_iλ_i, also remain unchanged after reweighting. The entire jump-record law is unchanged when the same initial jump-state distribution is used. Initializing each timed model in its own stationary distribution is a different comparison and need not give the same initial state law.
 
-Every strictly positive probability vector p is attainable as π^a:
-choose a_i=π_i/p_i. Thus the conditional jump law alone permits every
-positive stationary occupation law in this class. For a nonconstant
-real output q, its possible stationary means fill the open interval
-between its minimum and maximum; the extrema are approached by positive
-weights concentrating at extremal states. Every interior value is
-attained by a positive mixture. Consequently a stationary mean is
-invariant under all these state-dependent speeds exactly when q is
-constant. A common constant speed is a smaller change family and
-preserves every stationary mean.
+Every strictly positive probability vector p is attainable as π^a: choose a_i=π_i/p_i. Thus the conditional jump law alone permits every positive stationary occupation law in this class. For a nonconstant real output q, its possible stationary means fill the open interval between its minimum and maximum; the extrema are approached by positive weights concentrating at extremal states. Every interior value is attained by a positive mixture. Consequently a stationary mean is invariant under all these state-dependent speeds exactly when q is constant. A common constant speed is a smaller change family and preserves every stationary mean.
 
-This is not a contradiction in probability theory: holding times
-were part of Q and have been omitted from P. Nor is the finite Markov
-carrier asserted to be the complete physical whole. A physical speed
-change must be distinguished relative to some internal comparison
-process. Rescaling that comparison together with every contact may
-instead be a mere coordinate change. The derivation states the model
-and the retained reading, rather than deriving either from closure.
+This is not a contradiction in probability theory: holding times were part of Q and have been omitted from P. Nor is the finite Markov carrier asserted to be the complete physical whole. A physical speed change must be distinguished relative to some internal comparison process. Rescaling that comparison together with every contact may instead be a mere coordinate change. The derivation states the model and the retained reading, rather than deriving either from closure.
 
-**A weaker, positive criterion for an unknown clock.** Suppose the
-allowed speed depends only on a specified class c(i), independently
-choosable as a_c>0. For each nonempty class define
+**A weaker, positive criterion for an unknown clock.** Suppose the allowed speed depends only on a specified class c(i), independently choosable as a_c>0. For each nonempty class define
 
     w_c = Σ_{i:c(i)=c} π_i,
     m_c = Σ_{i:c(i)=c} π_i q_i / w_c.
@@ -6960,328 +2893,99 @@ Then the new stationary mean is
 
     Σ_c (w_c/a_c)m_c / Σ_c(w_c/a_c).
 
-It is the same m for every allowed class speed exactly when every
-m_c=m. Sufficiency is substitution. For necessity, w_c/a_c can range
-independently over all positive weights; concentrating them at one
-class forces its m_c to equal the purported common value. No recovery
-of the individual speeds is required. Requiring preservation of the
-whole distribution of q instead gives the stronger condition that
-the conditional q distributions be the same in every clock class,
-by applying this argument to each output indicator.
+It is the same m for every allowed class speed exactly when every m_c=m. Sufficiency is substitution. For necessity, w_c/a_c can range independently over all positive weights; concentrating them at one class forces its m_c to equal the purported common value. No recovery of the individual speeds is required. Requiring preservation of the whole distribution of q instead gives the stronger condition that the conditional q distributions be the same in every clock class, by applying this argument to each output indicator.
 
-For example, a directed four-cycle with unit base rates has uniform
-π. Let its successive q values be 0,1,0,1 and its clock classes be
-A,A,B,B. Unknown class speeds give unnormalized occupation masses
-(u,u,v,v), with u=1/a_A and v=1/a_B. Each outcome receives mass u+v,
-so the mean is exactly 1/2 for every positive u,v. Change only the
-class-to-output alignment to A,B,A,B: the masses become (u,v,u,v),
-and the mean is v/(u+v). The two class sizes, output counts and
-conditional next-state laws did not determine that joint alignment.
+For example, a directed four-cycle with unit base rates has uniform π. Let its successive q values be 0,1,0,1 and its clock classes be A,A,B,B. Unknown class speeds give unnormalized occupation masses (u,u,v,v), with u=1/a_A and v=1/a_B. Each outcome receives mass u+v, so the mean is exactly 1/2 for every positive u,v. Change only the class-to-output alignment to A,B,A,B: the masses become (u,v,u,v), and the mean is v/(u+v). The two class sizes, output counts and conditional next-state laws did not determine that joint alignment.
 
-Even robust preservation of a mean is not preservation of the noise
-law. On the same A,A,B,B clock partition, use q=(0,2,1,1). Both class
-means equal 1, so every speed gives mean 1. Its stationary variance
-is u/(u+v), which can vary throughout (0,1). These are exact finite
-model calculations, not measured biological parameters.
+Even robust preservation of a mean is not preservation of the noise law. On the same A,A,B,B clock partition, use q=(0,2,1,1). Both class means equal 1, so every speed gives mean 1. Its stationary variance is u/(u+v), which can vary throughout (0,1). These are exact finite model calculations, not measured biological parameters.
 
-**The regulated relation in an internal event clock.** In M64av's
-counting model allow a positive predictable speed a(t), a nonnegative
-predictable output Y(t), and intensities ρa(t) and a(t)Y(t), with ρ>0.
-Assume nonexplosion and finite integrated intensities on every finite
-interval. For the expectation statements below, additionally require
-integrability sufficient for the compensated counts to be true
-zero-mean martingales on the stated finite interval. Put
-C(t)=∫₀ᵗa(s)ds, M_A=A−ρC, and M_B=B−∫₀ᵗa(s)Y(s)ds. The existing
-pathwise count balance gives, whenever C(t)>0,
+**The regulated relation in an internal event clock.** In M64av's counting model allow a positive predictable speed a(t), a nonnegative predictable output Y(t), and intensities ρa(t) and a(t)Y(t), with ρ>0. Assume nonexplosion and finite integrated intensities on every finite interval. For the expectation statements below, additionally require integrability sufficient for the compensated counts to be true zero-mean martingales on the stated finite interval. Put C(t)=∫₀ᵗa(s)ds, M_A=A−ρC, and M_B=B−∫₀ᵗa(s)Y(s)ds. The existing pathwise count balance gives, whenever C(t)>0,
 
     ∫₀ᵗa(s)Y(s)ds / C(t)
         = ρ − (D(t)−D(0))/C(t) + (M_A(t)−M_B(t))/C(t).
 
-The counting/intensity distinction is the one specified in
-[Anderson and Kurtz, §2.2–2.4 and Definition 1.5](https://people.math.wisc.edu/~dfanderson/papers/SURVEY_AndKurtz.pdf).
-The path criterion becomes sharper under that model's unit-Poisson
-time-change representation. Write S(t)=∫₀ᵗa(s)Y(s)ds and
-A(t)=P_A(ρC(t)), B(t)=P_B(S(t)). On the probability-one event where
-both unit Poisson paths obey P(u)/u→1, and on paths with C(t)→∞,
+The counting/intensity distinction is the one specified in [Anderson and Kurtz, §2.2–2.4 and Definition 1.5](https://people.math.wisc.edu/~dfanderson/papers/SURVEY_AndKurtz.pdf). The path criterion becomes sharper under that model's unit-Poisson time-change representation. Write S(t)=∫₀ᵗa(s)Y(s)ds and A(t)=P_A(ρC(t)), B(t)=P_B(S(t)). On the probability-one event where both unit Poisson paths obey P(u)/u→1, and on paths with C(t)→∞,
 
     S(t)/C(t)→ρ  if and only if  (D(t)−D(0))/C(t)→0.
 
-For sufficiency, A/C→ρ, so B/C=A/C−(D−D(0))/C→ρ>0. Therefore
-B→∞, which forces S→∞, and B/S→1. It follows that
-S/C=(B/C)/(B/S)→ρ. Conversely S/C→ρ>0 implies S→∞ and B/C→ρ;
-subtracting from A/C gives the vanishing difference residue. This
-uses the Poisson strong law, stated in Anderson and Kurtz, Theorem 1.2.
-The clocks may depend on previous events: the pathwise limit holds
-along every diverging argument, so no independence of S or C from
-their drivers is inserted. There is no separate small-noise premise.
-The result needs the counting-law representation; it does not follow
-from the finite balance alone. Nor does it imply convergence of the
-expectation of the normalized ratio without an additional bound such
-as uniform integrability. Ordinary t-averaging does not follow.
-The actual-event identity D′−D=A−B also still gives
-B/A→1 when A→∞ and (D′−D)/A→0, without obtaining a from a clock.
-C is an integrated intensity, not a claim that its exact value is
-directly observed as a count.
+For sufficiency, A/C→ρ, so B/C=A/C−(D−D(0))/C→ρ>0. Therefore B→∞, which forces S→∞, and B/S→1. It follows that S/C=(B/C)/(B/S)→ρ. Conversely S/C→ρ>0 implies S→∞ and B/C→ρ; subtracting from A/C gives the vanishing difference residue. This uses the Poisson strong law, stated in Anderson and Kurtz, Theorem 1.2. The clocks may depend on previous events: the pathwise limit holds along every diverging argument, so no independence of S or C from their drivers is inserted. There is no separate small-noise premise. The result needs the counting-law representation; it does not follow from the finite balance alone. Nor does it imply convergence of the expectation of the normalized ratio without an additional bound such as uniform integrability. Ordinary t-averaging does not follow. The actual-event identity D′−D=A−B also still gives B/A→1 when A→∞ and (D′−D)/A→0, without obtaining a from a clock. C is an integrated intensity, not a claim that its exact value is directly observed as a count.
 
-Expectation requires special care when C is random. The zero-mean
-compensation gives
+Expectation requires special care when C is random. The zero-mean compensation gives
 
     E[∫aY] = ρ E[C] − E[D(t)−D(0)].
 
-It does not permit division inside the expectation by random C.
-A finite discrete illustration needs only two independent fair trials:
-stop after the first if it is 1; otherwise perform the second and stop.
-The terminal records 1, 01 and 00 have probabilities 1/2, 1/4 and 1/4.
-If N counts ones and T counts performed trials, E[N]=3/4 and E[T]=3/2,
-so E[N]/E[T]=1/2 and E[N−T/2]=0. Yet E[N/T]=5/8. The stopping rule
-uses an acquired internal result, not an outside intervention or a
-look-ahead at the second trial. This illustrates the invalid algebraic
-step; it is not an antithetic-controller realization or a new stopping
-theorem.
+It does not permit division inside the expectation by random C. A finite discrete illustration needs only two independent fair trials: stop after the first if it is 1; otherwise perform the second and stop. The terminal records 1, 01 and 00 have probabilities 1/2, 1/4 and 1/4. If N counts ones and T counts performed trials, E[N]=3/4 and E[T]=3/2, so E[N]/E[T]=1/2 and E[N−T/2]=0. Yet E[N/T]=5/8. The stopping rule uses an acquired internal result, not an outside intervention or a look-ahead at the second trial. This illustrates the invalid algebraic step; it is not an antithetic-controller realization or a new stopping theorem.
 
-`ClockClassMass.swift` verifies the four-cycle's positive structural
-fragment. Two actual class fields expand into their repeated occurrences;
-regrouping those occurrences by outcome produces identical formal mass
-lists. This derives equality for every additive positive interpretation,
-without supplying final balance as a premise. The source and its acquired
-fact remain bound. A changed grouping and substitution of another
-current class source fail the addressed checks. These type relations
-do not prove the Markov equations, stationarity, real-number limits or
-probability normalization; those have the explicit mathematical arguments
-above. The contribution is an exact boundary on omitting a clock, not a
-new stochastic formalism or a universal preferred time for reality.
+`ClockClassMass.swift` verifies the four-cycle's positive structural fragment. Two actual class fields expand into their repeated occurrences; regrouping those occurrences by outcome produces identical formal mass lists. This derives equality for every additive positive interpretation, without supplying final balance as a premise. The source and its acquired fact remain bound. A changed grouping and substitution of another current class source fail the addressed checks. These type relations do not prove the Markov equations, stationarity, real-number limits or probability normalization; those have the explicit mathematical arguments above. The contribution is an exact boundary on omitting a clock, not a new stochastic formalism or a universal preferred time for reality.
 
-**Changing relative contact speeds can preserve an answer while changing the jump law.**
-The preceding row reweighting accelerates every outgoing contact at a
-state together. If only some are accelerated, the mixture of next
-contacts generally changes. M67's exchange of admitted serializations
-and LQ13's preservation of contact admission do not determine that
-mixture. The following finite criterion addresses the eventual answer
-rather than the whole path law.
+**Changing relative contact speeds can preserve an answer while changing the jump law.** The preceding row reweighting accelerates every outgoing contact at a state together. If only some are accelerated, the mixture of next contacts generally changes. M67's exchange of admitted serializations and LQ13's preservation of contact admission do not determine that mixture. The following finite criterion addresses the eventual answer rather than the whole path law.
 
-Let X be a finite state set and B a nonempty proper absorbing boundary for
-this question. Every x outside B must have a directed path to B.
-The boundary means that reading stops there, not that the physical
-whole stops. At each x outside B, split the outgoing contacts into
-finitely many nonempty groups g. Their fixed nonnegative rate rows
-r_xg(y), with r_xg(x)=0, have positive row sums. Different groups may
-reach the same y. Each row is multiplied by an independently unknown
-constant a_xg>0. All these constants are fixed during this first model:
+Let X be a finite state set and B a nonempty proper absorbing boundary for this question. Every x outside B must have a directed path to B. The boundary means that reading stops there, not that the physical whole stops. At each x outside B, split the outgoing contacts into finitely many nonempty groups g. Their fixed nonnegative rate rows r_xg(y), with r_xg(x)=0, have positive row sums. Different groups may reach the same y. Each row is multiplied by an independently unknown constant a_xg>0. All these constants are fixed during this first model:
 
     Q^a_xy = Σ_g a_xg r_xg(y),  y≠x,
     Q^a_xx = −Σ_{y≠x} Q^a_xy.
 
-Fix a real terminal question f:B→ℝ. There is one function h on X
-which equals the expected terminal answer from every starting state,
-for every positive choice of the multipliers, if and only if there
-is an h with h|_B=f satisfying the separate balances
+Fix a real terminal question f:B→ℝ. There is one function h on X which equals the expected terminal answer from every starting state, for every positive choice of the multipliers, if and only if there is an h with h|_B=f satisfying the separate balances
 
     Σ_y r_xg(y)(h(y)−h(x)) = 0  for every x outside B and every g.   (†)
 
-This is a criterion for one common answer function on all the stated
-starting states. It is not asserted as a necessary test for a single
-special preparation while other starting-state answers are allowed
-to change. It also does not identify the individual outcome from its
-probability. For f the indicator of a part of B, h is its hitting
-probability; retaining one general mean need not retain the full law.
+This is a criterion for one common answer function on all the stated starting states. It is not asserted as a necessary test for a single special preparation while other starting-state answers are allowed to change. It also does not identify the individual outcome from its probability. For f the indicator of a part of B, h is its hitting probability; retaining one general mean need not retain the full law.
 
-*Proof of sufficiency and of the completion obligation.* For any fixed
-positive multipliers, every selected path to B has positive probability
-in the jump chain. Choose one such simple path per interior state.
-Finiteness gives a common length bound L and a positive minimum δ of
-these path probabilities. Conditional on not yet hitting B, hitting
-within the next L jumps has probability at least δ. Thus survival
-through kL jumps has probability at most (1−δ)^k. Absorption occurs
-almost surely. These bounds depend on the multipliers and need not
-be uniform over their whole family. Finite rates on the finite state
-set give nonexplosion; the finitely many holding times before
-absorption are finite almost surely.
+*Proof of sufficiency and of the completion obligation.* For any fixed positive multipliers, every selected path to B has positive probability in the jump chain. Choose one such simple path per interior state. Finiteness gives a common length bound L and a positive minimum δ of these path probabilities. Conditional on not yet hitting B, hitting within the next L jumps has probability at least δ. Thus survival through kL jumps has probability at most (1−δ)^k. Absorption occurs almost surely. These bounds depend on the multipliers and need not be uniform over their whole family. Finite rates on the finite state set give nonexplosion; the finitely many holding times before absorption are finite almost surely.
 
-Summing (†) with weights a_xg gives Q^a h=0 in the interior, or
-h(x)=Σ_y P^a_xy h(y) for its jump matrix. Repeated conditioning gives
-E_x[h(X_{N∧τ})]=h(x), where τ is the first boundary jump. Since h is
-bounded and τ is almost surely finite, taking N→∞ gives
-E_x[f(X_τ)]=h(x). The same argument for the difference of two solutions
-with zero boundary shows uniqueness. This is the elementary harmonic
-boundary argument; the hitting-probability formulation is set out in
-[Weber's Cambridge notes, §3.1–3.3, Theorem 3.4](https://www.statslab.cam.ac.uk/~rrw1/markov/M.pdf).
-Here reachability of the specified boundary is proved sufficient for
-uniqueness, rather than inferred from finiteness alone.
+Summing (†) with weights a_xg gives Q^a h=0 in the interior, or h(x)=Σ_y P^a_xy h(y) for its jump matrix. Repeated conditioning gives E_x[h(X_{N∧τ})]=h(x), where τ is the first boundary jump. Since h is bounded and τ is almost surely finite, taking N→∞ gives E_x[f(X_τ)]=h(x). The same argument for the difference of two solutions with zero boundary shows uniqueness. This is the elementary harmonic boundary argument; the hitting-probability formulation is set out in [Weber's Cambridge notes, §3.1–3.3, Theorem 3.4](https://www.statslab.cam.ac.uk/~rrw1/markov/M.pdf). Here reachability of the specified boundary is proved sufficient for uniqueness, rather than inferred from finiteness alone.
 
-*Necessity.* A common expected-terminal-answer function satisfies the
-first-jump equation for every multiplier choice. Therefore
-Σ_g a_xg Σ_y r_xg(y)(h(y)−h(x))=0. Hold all multipliers fixed except
-one and subtract the equations at two distinct positive values. The
-coefficient for that group must vanish. Repeat for each group. QED
+*Necessity.* A common expected-terminal-answer function satisfies the first-jump equation for every multiplier choice. Therefore Σ_g a_xg Σ_y r_xg(y)(h(y)−h(x))=0. Hold all multipliers fixed except one and subtract the equations at two distinct positive values. The coefficient for that group must vanish. Repeat for each group. QED
 
-In particular, if every independently accelerated group is just one
-deterministic outgoing contact x→y, (†) requires h(y)=h(x) on every
-edge. Across this full speed family, nonconstant terminal answers
-cannot be preserved through a state that can reach different terminal
-values. A nontrivial robust probability needs a retained relation
-between competing contacts: grouping two opposed contributions into
-one shared speed is substantive, not a notation for two unrelated
-rates. The criterion does not acquire that relation from the graph.
+In particular, if every independently accelerated group is just one deterministic outgoing contact x→y, (†) requires h(y)=h(x) on every edge. Across this full speed family, nonconstant terminal answers cannot be preserved through a state that can reach different terminal values. A nontrivial robust probability needs a retained relation between competing contacts: grouping two opposed contributions into one shared speed is substantive, not a notation for two unrelated rates. The criterion does not acquire that relation from the graph.
 
-**A positive family changes paths but preserves their final law.** Take
-states named 0,1,2,3,4, with boundary {0,4}. These names index the
-specified relation; no physical length is assigned. The short-contact
-group from each interior i has unit rates to i−1 and i+1. A second,
-long-contact group has the following nonzero rates:
+**A positive family changes paths but preserves their final law.** Take states named 0,1,2,3,4, with boundary {0,4}. These names index the specified relation; no physical length is assigned. The short-contact group from each interior i has unit rates to i−1 and i+1. A second, long-contact group has the following nonzero rates:
 
     from 1: to 0 at rate 2, to 3 at rate 1;
     from 2: to 0 at rate 1, to 4 at rate 1;
     from 3: to 1 at rate 1, to 4 at rate 2.
 
-The proposed numerator H(i)=i has zero balance in every short group.
-Its three long-group balances are respectively
-2(0−1)+(3−1)=0, (0−2)+(4−2)=0, and (1−3)+2(4−3)=0.
-Thus h=H/4, with f(0)=0 and f(4)=1, is forced by the criterion for
-all six positive, independently chosen group multipliers. Relative
-multipliers change the next-state distribution and the routes, but
-the probability of ending at 4 remains i/4. For example from 2,
-long contacts terminate immediately, whereas short contacts visit
-another interior state. This is stronger than a change of holding
-times with one unchanged jump chain. It is a constructed model,
-not a measured physical law or a new claim of priority for harmonic
-functions. The known rate ratios are an explicit input to the model.
+The proposed numerator H(i)=i has zero balance in every short group. Its three long-group balances are respectively 2(0−1)+(3−1)=0, (0−2)+(4−2)=0, and (1−3)+2(4−3)=0. Thus h=H/4, with f(0)=0 and f(4)=1, is forced by the criterion for all six positive, independently chosen group multipliers. Relative multipliers change the next-state distribution and the routes, but the probability of ending at 4 remains i/4. For example from 2, long contacts terminate immediately, whereas short contacts visit another interior state. This is stronger than a change of holding times with one unchanged jump chain. It is a constructed model, not a measured physical law or a new claim of priority for harmonic functions. The known rate ratios are an explicit input to the model.
 
-**History-dependent scheduling preserves the balance, not automatically termination.**
-At each jump, now allow the weights of the group mixtures to depend on
-the acquired past. If the conditional law within each selected group
-still uses its fixed normalized row, (†) gives
+**History-dependent scheduling preserves the balance, not automatically termination.** At each jump, now allow the weights of the group mixtures to depend on the acquired past. If the conditional law within each selected group still uses its fixed normalized row, (†) gives
 
     E[h(X_{(n+1)∧τ}) | the acquired history through n] = h(X_{n∧τ}).
 
-Induction retains the finite-N expectation. If boundary arrival is
-also almost sure, bounded convergence gives the same terminal answer.
-There is no need to read, predict or store h inside the mechanism to
-obtain this mathematical consequence of its actual branching laws.
-The next argument derives completion for the five-state example
-from its actual branch rows, even under these adaptive mixtures.
+Induction retains the finite-N expectation. If boundary arrival is also almost sure, bounded convergence gives the same terminal answer. There is no need to read, predict or store h inside the mechanism to obtain this mathematical consequence of its actual branching laws. The next argument derives completion for the five-state example from its actual branch rows, even under these adaptive mixtures.
 
-**A required amount of answer variation can itself force completion.**
-For a binary terminal question, suppose 0≤h≤1, the boundary values
-are 0 or 1, and every admitted conditional group law satisfies (†).
-Assume that at each unfinished jump, every group has conditional
-squared variation at least some fixed ε>0:
+**A required amount of answer variation can itself force completion.** For a binary terminal question, suppose 0≤h≤1, the boundary values are 0 or 1, and every admitted conditional group law satisfies (†). Assume that at each unfinished jump, every group has conditional squared variation at least some fixed ε>0:
 
     Σ_y [r_xg(y)/Σ_z r_xg(z)] (h(y)−h(x))² ≥ ε.
 
-This is a quantitative condition on alternatives, not a requirement
-that every individual realized jump changes h. It is sufficient,
-not necessary, for completion. It can be derived from a finite list
-of actual branch rows; it must not be inferred from the word
-“different.” Assume the specified next-jump laws continue to apply
-until the boundary, allowing arbitrary choices of group mixtures
-based on the acquired history.
+This is a quantitative condition on alternatives, not a requirement that every individual realized jump changes h. It is sufficient, not necessary, for completion. It can be derived from a finite list of actual branch rows; it must not be inferred from the word “different.” Assume the specified next-jump laws continue to apply until the boundary, allowing arbitrary choices of group mixtures based on the acquired history.
 
-Write Z_n=h(X_{n∧τ}), with the boundary held after it is reached.
-The zero conditional increment gives
+Write Z_n=h(X_{n∧τ}), with the boundary held after it is reached. The zero conditional increment gives
 
     E[Z_N²]−Z_0² = E[Σ_{n=0}^{N−1}(Z_{n+1}−Z_n)²].
 
-Indeed expand the square at each step. The cross term has expectation
-zero by conditioning on the prior history, and the remaining terms
-telescope. Since Z_N²≤Z_N and E[Z_N]=Z_0, the right side is at most
-Z_0(1−Z_0). The variation premise also makes it at least
-ε E[min(N,τ)]. Monotone convergence therefore gives
+Indeed expand the square at each step. The cross term has expectation zero by conditioning on the prior history, and the remaining terms telescope. Since Z_N²≤Z_N and E[Z_N]=Z_0, the right side is at most Z_0(1−Z_0). The variation premise also makes it at least ε E[min(N,τ)]. Monotone convergence therefore gives
 
     E[τ] ≤ h(x)(1−h(x))/ε.
 
-In particular τ is almost surely finite: completion has now been
-derived, not assumed. Bounded convergence then identifies the terminal
-probability as h(x), and the total expected squared variation equals
-h(x)(1−h(x)). This is the elementary square identity for a bounded
-martingale, applied here to the admitted contact rows; no independent
-noise source, physical clock or stored internal value of h is required.
-The probability law and its conditional row interpretation remain
-premises. The bound concerns the number of actual jumps, not duration
-or a guarantee for every single possible infinite path.
+In particular τ is almost surely finite: completion has now been derived, not assumed. Bounded convergence then identifies the terminal probability as h(x), and the total expected squared variation equals h(x)(1−h(x)). This is the elementary square identity for a bounded martingale, applied here to the admitted contact rows; no independent noise source, physical clock or stored internal value of h is required. The probability law and its conditional row interpretation remain premises. The bound concerns the number of actual jumps, not duration or a guarantee for every single possible infinite path.
 
-In the five-state example, the short groups have squared variation
-1/16. The long groups at 1,2,3 have respectively 1/8,1/4,1/8.
-Thus ε=1/16 works for every adaptive mixture and
-E_i[τ]≤i(4−i). Equality holds for the pure short-group rule: its
-variation is exactly 1/16 at each unfinished step, so the same
-identity gives E_i[τ]=i(4−i). If both groups must receive strictly
-positive mixture weights, that pure rule is excluded, but the bound
-remains valid. No claim that every such positive mixture attains
-it is made. The exact row calculations and square expansion supply
-this proof without executing or enumerating walks.
+In the five-state example, the short groups have squared variation 1/16. The long groups at 1,2,3 have respectively 1/8,1/4,1/8. Thus ε=1/16 works for every adaptive mixture and E_i[τ]≤i(4−i). Equality holds for the pure short-group rule: its variation is exactly 1/16 at each unfinished step, so the same identity gives E_i[τ]=i(4−i). If both groups must receive strictly positive mixture weights, that pure rule is excluded, but the bound remains valid. No claim that every such positive mixture attains it is made. The exact row calculations and square expansion supply this proof without executing or enumerating walks.
 
-The general fixed-rate proof must not be extended to arbitrary
-history-dependent mixtures on the basis that every current rate is
-positive. The finite path minimum δ used there can disappear along
-the changing history. The repair example gives an exact obstruction.
+The general fixed-rate proof must not be extended to arbitrary history-dependent mixtures on the basis that every current rate is positive. The finite path minimum δ used there can disappear along the changing history. The repair example gives an exact obstruction.
 
-**Repair turns relative speed into a success question.** At M64aw's
-prepared opening O with initially distinct contents, count success
-when the admitted transfer has occurred; the existing closing contact
-can then be applied separately. Suppose transfer T occurs at rate α>0 and early
-sealing L at rate β>0, constant for this trial. Their exponential
-race reaches transfer first with probability
+**Repair turns relative speed into a success question.** At M64aw's prepared opening O with initially distinct contents, count success when the admitted transfer has occurred; the existing closing contact can then be applied separately. Suppose transfer T occurs at rate α>0 and early sealing L at rate β>0, constant for this trial. Their exponential race reaches transfer first with probability
 
     ∫₀^∞ α exp(−(α+β)t)dt = α/(α+β).
 
-A common factor on α and β changes the waiting time, not this answer.
-Changing α alone changes the answer while preserving the existence
-of both contacts and their endpoint maps. The early-seal endpoint
-still retains the target but lacks the transfer input. This is an
-added stochastic model of the existing finite interface, not an
-experimental fit to DNA repair and not an inference that a biological
-reaction has exactly two competing channels.
+A common factor on α and β changes the waiting time, not this answer. Changing α alone changes the answer while preserving the existence of both contacts and their endpoint maps. The early-seal endpoint still retains the target but lacks the transfer input. This is an added stochastic model of the existing finite interface, not an experimental fit to DNA repair and not an inference that a biological reaction has exactly two competing channels.
 
-If every failed closure is actually reopened and no other failure
-or deadline is added, fixed α,β give p=α/(α+β) at each attempt and
-survival after n attempts (1−p)^n. Eventual success is almost sure;
-no finite attempt count guarantees it, and no finite count gives a
-uniform nonzero success bound over all p>0. M64aw already constructs
-reopening and the same repaired endpoint after a closure. It does
-not itself prove that repeated openings occur or select the race law.
+If every failed closure is actually reopened and no other failure or deadline is added, fixed α,β give p=α/(α+β) at each attempt and survival after n attempts (1−p)^n. Eventual success is almost sure; no finite attempt count guarantees it, and no finite count gives a uniform nonzero success bound over all p>0. M64aw already constructs reopening and the same repaired endpoint after a closure. It does not itself prove that repeated openings occur or select the race law.
 
-More sharply, let p_n∈(0,1) denote the conditional success probability
-at attempt n given that the preceding attempts failed. Assume these
-attempts continue to occur after each failure. The chain rule gives
-survival through N as Π_{n=1}^N(1−p_n), without independence of trials.
-Eventual success has probability one exactly when this product tends to zero,
-equivalently when Σ_n p_n diverges. If the sum diverges, use
-log(1−p)≤−p. If it converges, eventually p≤1/2 and
-log(1−p)≥−2p; the finite initial factors and the remaining product
-are positive. This proves both directions under the stated p_n range.
+More sharply, let p_n∈(0,1) denote the conditional success probability at attempt n given that the preceding attempts failed. Assume these attempts continue to occur after each failure. The chain rule gives survival through N as Π_{n=1}^N(1−p_n), without independence of trials. Eventual success has probability one exactly when this product tends to zero, equivalently when Σ_n p_n diverges. If the sum diverges, use log(1−p)≤−p. If it converges, eventually p≤1/2 and log(1−p)≥−2p; the finite initial factors and the remaining product are positive. This proves both directions under the stated p_n range.
 
-For p_n=1/(n+1)², the survival product telescopes to
-(N+2)/(2(N+1)) and tends to 1/2. Every attempt has a positive success
-chance and the same available contacts, yet half the probability
-remains on endless failed attempts. These ratios can be realized by
-α_n=p_n, β_n=1−p_n, with total opening hazard 1 at every attempt and
-reopening hazard 1. The internal attempt count supplies the changed
-rate relation. Thus even unchanged total hazards and infinitely many
-actual opportunities do not preserve the fixed-rate success guarantee.
-This is an unbounded-history model, not a fixed finite homogeneous
-chain contradicting the theorem above.
+For p_n=1/(n+1)², the survival product telescopes to (N+2)/(2(N+1)) and tends to 1/2. Every attempt has a positive success chance and the same available contacts, yet half the probability remains on endless failed attempts. These ratios can be realized by α_n=p_n, β_n=1−p_n, with total opening hazard 1 at every attempt and reopening hazard 1. The internal attempt count supplies the changed rate relation. Thus even unchanged total hazards and infinitely many actual opportunities do not preserve the fixed-rate success guarantee. This is an unbounded-history model, not a fixed finite homogeneous chain contradicting the theorem above.
 
-The relation retained by a clock question is therefore more precise
-than “the order can be traversed differently.” Whole-row rescaling,
-changes between balanced contact groups, and changes between opposed
-single contacts preserve different answers. Actual continued access
-is another obligation. The bare Swift `DirectedRepair` constructions
-already address opening, early sealing and reopening from their real
-sources. `BalancedContactRows` now presents the six actual branch rows
-and computes each weighted balance through the existing finite
-`AddZero`/`AddSuccessor` and product constructors. `ContactRowMoment`
-ties every operand to the current row; its two result fields are
-compared only after that computation. Six positive declarations derive
-the balances without requesting their equality from the caller. One
-refusal changes the 2:1 rate relation to 1:1 and obtains unequal
-computed moments; another tries to reuse arithmetic from a different
-row and fails the operand binding even though 1×0 and 2×0 give
-the same zero and the remaining moments would balance. These checks
-do not supply the
-probability interpretation, the squared-variation bound or criterion
-(†); those conclusions have the proofs just given. The mathematical description reads the law of
-this constructed fragment. It does not make the whole a predictor of
-itself, or infer experience from its ability to use a prepared contact.
+The relation retained by a clock question is therefore more precise than “the order can be traversed differently.” Whole-row rescaling, changes between balanced contact groups, and changes between opposed single contacts preserve different answers. Actual continued access is another obligation. The bare Swift `DirectedRepair` constructions already address opening, early sealing and reopening from their real sources. `BalancedContactRows` now presents the six actual branch rows and computes each weighted balance through the existing finite `AddZero`/`AddSuccessor` and product constructors. `ContactRowMoment` ties every operand to the current row; its two result fields are compared only after that computation. Six positive declarations derive the balances without requesting their equality from the caller. One refusal changes the 2:1 rate relation to 1:1 and obtains unequal computed moments; another tries to reuse arithmetic from a different row and fails the operand binding even though 1×0 and 2×0 give the same zero and the remaining moments would balance. These checks do not supply the probability interpretation, the squared-variation bound or criterion (†); those conclusions have the proofs just given. The mathematical description reads the law of this constructed fragment. It does not make the whole a predictor of itself, or infer experience from its ability to use a prepared contact.
 
 **M65 (uniform interpretation and recoverability derive the two frame operations).** The I/S family need not enter only as an enumerated list. Suppose, for every set A, a total operation T_A maps A×A to A×A. Require it to respect every interpretation h:B→A of the two-marker set B={0,1}: T_A(h(0),h(1))=(h×h)(T_B(0,1)). This requirement says how the operation relates across contents. It is stronger than invariance under bijective renaming, because h may identify the two markers.
 
@@ -7543,37 +3247,11 @@ The same construction has a precise internal escape. An already prepared two-dim
 
 The unbounded retaining case has no second implementation in code: `ExtendLawRecord<X>` aliases the existing `RetainedWhole<X,X.Right.Right>`. X contains its previous record and its current local law form; the appended local form follows that source's actual Right relation. Generic proofs derive one and two successor steps and recovery of the complete previous record. Two zero successors agree locally while their records remain distinct. This is the admitted finite record grammar, with no bound asserted on all its members. It realizes the difference between returning to preparation and retaining another occurrence through the same underlying local law.
 
-**Contact calibration can constrain even an unrestricted remainder.** Verdict
-VC104–VC105 supply a complementary case to M70. Four actual contacts project
-to the exchanges between a center and four leaves. Complete endpoint
-calibration means that equality of their full final stage permutations also
-gives equality of their complete actions. An autonomous selected step must
-be one of those actual contacts, including its relevant internal update.
-Under these relations, an uninterrupted residence of m leaf readings followed
-by exit has exact minimum carrier sizes 5,10,15,30,40,60,120 over the ranges
-specified in VC105. Twenty-five equal leaf readings followed by exit are
-incompatible with complete calibration at every carrier size. Infinite
-unreachable copies cannot change the finite orbit of the given preparation.
+**Contact calibration can constrain even an unrestricted remainder.** Verdict VC104–VC105 supply a complementary case to M70. Four actual contacts project to the exchanges between a center and four leaves. Complete endpoint calibration means that equality of their full final stage permutations also gives equality of their complete actions. An autonomous selected step must be one of those actual contacts, including its relevant internal update. Under these relations, an uninterrupted residence of m leaf readings followed by exit has exact minimum carrier sizes 5,10,15,30,40,60,120 over the ranges specified in VC105. Twenty-five equal leaf readings followed by exit are incompatible with complete calibration at every carrier size. Infinite unreachable copies cannot change the finite orbit of the given preparation.
 
-The distinction used here is supplied by later behavior, without assuming a
-permanently growing record. If two positions before the observed exit were
-the same complete source, the same autonomous continuation would make the
-exit occur earlier. The remaining number of actual selected contacts to
-exit therefore distinguishes those positions. It does not assign a duration
-in seconds or require a clock outside the whole. The minimum constructions
-even admit reversible U: the selected path closes while other continuations
-retain the distinctions needed for the residence question.
+The distinction used here is supplied by later behavior, without assuming a permanently growing record. If two positions before the observed exit were the same complete source, the same autonomous continuation would make the exit occur earlier. The remaining number of actual selected contacts to exit therefore distinguishes those positions. It does not assign a duration in seconds or require a clock outside the whole. The minimum constructions even admit reversible U: the selected path closes while other continuations retain the distinctions needed for the residence question.
 
-This constrains the internal interaction relations, beyond the amount
-of blank memory. At four leaf readings, twenty states suffice by a raw count
-but their completely calibrated contact geometry is a star with no required
-four-vertex path; thirty are necessary and sufficient. At twenty-five leaf
-readings, some stage-returning word must have a further distinguishable
-action. VC104a bounds such a word by twenty-four contacts and its subsequent
-U separator by nineteen. Actual contact addresses and the route to a new
-comparison remain acquisition questions. In M70 the unspecified remainder
-was allowed to supply arbitrary complete transitions; imposing these common
-action relations removes that freedom and yields a definite obstruction.
+This constrains the internal interaction relations, beyond the amount of blank memory. At four leaf readings, twenty states suffice by a raw count but their completely calibrated contact geometry is a star with no required four-vertex path; thirty are necessary and sufficient. At twenty-five leaf readings, some stage-returning word must have a further distinguishable action. VC104a bounds such a word by twenty-four contacts and its subsequent U separator by nineteen. Actual contact addresses and the route to a new comparison remain acquisition questions. In M70 the unspecified remainder was allowed to supply arbitrary complete transitions; imposing these common action relations removes that freedom and yields a definite obstruction.
 
 ## §5. Candidate Physical Correspondences
 

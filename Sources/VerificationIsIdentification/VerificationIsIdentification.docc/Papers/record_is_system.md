@@ -18,11 +18,7 @@ No new postulate. The author reads the coordinates off the theory:
 
 A software practice is located by which of its artifacts are the record and which are second encodings kept beside it. The theorems are then in force conditionally, the same way PiR §5 reads I1–I3 on ice and the Architecture paper reads the six coordinates on a learner.
 
-The pure artifact and the physical activity that reads it have different
-boundaries within one whole. A build can leave the source record unchanged
-while changing the compiler's memory and its surroundings. Purity of the
-represented relation does not place that activity outside reality or assign
-it zero physical cost.
+The pure artifact and the physical activity that reads it have different boundaries within one whole. A build can leave the source record unchanged while changing the compiler's memory and its surroundings. Purity of the represented relation does not place that activity outside reality or assign it zero physical cost.
 
 The same distinction applies to editing a description. An actual edit is an event within the whole. Invariance of the described answer concerns its referent and encoding. It does not erase the editing event. Likewise, retaining an edit in a complete history does not make the previous source available in the current checkout. That access needs a retained readable representation, the distinction stated in Matter M50.
 
@@ -57,14 +53,7 @@ The verbs of practice map accordingly: *implement* = write. *Build* = the refere
 
 The same trace can retain facts from different contexts. An old decoder reads its unchanged prefix in its original context, independently of the new fact's encoding (VC42). `RetainTraceAnswer` therefore needs matching source and memory, without requiring a common context for every fact in the trace. `TraceEvidence` names the contextual memory projection `TraceEvidenceIn`. Coexistence of these facts neither translates their questions nor makes their answers comparable. The relation needed for one reading is smaller than a uniform interpretation of the complete record.
 
-The same simplification applies to path extension: `AppendSwap` and the two
-`AppendSpectrum` aliases name existing compositions. Their names add no
-separate path objects. VC44 also shows why reducing names is not enough by
-itself: different nominal expressions can have the same complete behavior
-under the specified questions and operations. The agreement certificates
-express that relation without asserting source identity. VC45 then carries
-a question along a transition to a decoder of its initial image, using one
-generic factorization rather than a second implementation of the prediction.
+The same simplification applies to path extension: `AppendSwap` and the two `AppendSpectrum` aliases name existing compositions. Their names add no separate path objects. VC44 also shows why reducing names is not enough by itself: different nominal expressions can have the same complete behavior under the specified questions and operations. The agreement certificates express that relation without asserting source identity. VC45 then carries a question along a transition to a decoder of its initial image, using one generic factorization rather than a second implementation of the prediction.
 
 VC50–VC53 extend this reduction across representations. The source classification names a composition of the complete observation with its class decoder. The source-to-class action square names `ReobservedTransition`. Its source action and class action already exist. `AnswersThroughSharedDecoder` likewise names `JoinedVerdict` at the decoder seam. These aliases remove duplicate declarations of consequences without equating different source types.
 

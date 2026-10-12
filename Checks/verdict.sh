@@ -198,12 +198,11 @@ typecheck() {
 }
 
 typecheck_refusal() {
-    if [ "$verdict_scope" = localphase ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
-            -module-cache-path "$verdict_tmp/cache" "$verdict_case_file" "$@"
-    else
-        typecheck "$@"
-    fi
+    # The modules and combined positive scope have already been checked.
+    # A refusal checks only its own fixture, with its declared source support.
+    # Rechecking every unrelated proof here costs a full scope per mutation.
+    swiftc -typecheck -I "$verdict_bin/Modules" \
+        -module-cache-path "$verdict_tmp/cache" "${verdict_case_sources[@]}" "$@"
 }
 
 verdict_checked_files=" "
@@ -1025,9 +1024,9 @@ for verdict_case in \
     LOCAL_PHASE_RETURN_COVERAGE_MERGES_SOURCES:RejectedReturnCoverageMergesSources \
     LOCAL_PHASE_RETURN_COVERAGE_IDENTIFIES_GENERATOR:RejectedReturnCoverageIdentifiesGenerator \
     LOCAL_PHASE_RETURN_COVERAGE_USES_CURRENT_TARGET:RejectedReturnCoverageUsesCurrentTarget \
-LOCAL_PHASE_SEPARATION_MISSING_TRIANGLE:RejectedSeparationMissingTriangle \
-LOCAL_PHASE_SEPARATION_MISSING_SPOKE:RejectedSeparationMissingSpoke \
-LOCAL_PHASE_SEPARATION_SPLIT_MAP:RejectedSeparationSplitMap \
+    LOCAL_PHASE_SEPARATION_MISSING_TRIANGLE:RejectedSeparationMissingTriangle \
+    LOCAL_PHASE_SEPARATION_MISSING_SPOKE:RejectedSeparationMissingSpoke \
+    LOCAL_PHASE_SEPARATION_SPLIT_MAP:RejectedSeparationSplitMap \
     LOCAL_PHASE_ACQUIRED_ACTION_CHANGES_QUESTION:RejectedAcquiredActionChangesQuestion \
     LOCAL_PHASE_ACQUIRED_ACTION_IDENTIFIES_FRAMES:RejectedAcquiredActionIdentifiesFrames \
     LOCAL_PHASE_ACQUIRED_ACTION_WRONG_INVERSE:RejectedAcquiredActionWrongInverse \
@@ -1286,32 +1285,40 @@ do
     if [ "$verdict_scope" = seeing ] && [[ "$verdict_flag" != BAD_SENSOR_* ]]; then
         continue
     fi
-    if [ "$verdict_scope" = localphase ]; then
-        # The combined positive scope has already passed. Also establish
-        # that this fixture stands alone before testing its one changed
-        # premise. Unrelated large history proofs need not be checked again
-        # for every refusal. Missing dependencies cannot count as a refusal.
-        verdict_case_files=()
-        while IFS= read -r verdict_case_file; do
-            verdict_case_files+=("$verdict_case_file")
-        done < <(rg -l --glob '*.swift' "^#if ${verdict_flag}$" Checks)
-        if [ "${#verdict_case_files[@]}" -ne 1 ]; then
-            echo "verdict: ERROR — expected one fixture for $verdict_flag"
-            exit 1
-        fi
-        verdict_case_file="${verdict_case_files[0]}"
-        case "$verdict_checked_files" in
-            *" $verdict_case_file "*) ;;
-            *)
-                if ! typecheck_refusal >"$verdict_tmp/fixture-positive.log" 2>&1; then
-                    cat "$verdict_tmp/fixture-positive.log"
-                    echo "verdict: ERROR — standalone positive failed for $verdict_case_file"
-                    exit 1
-                fi
-                verdict_checked_files="$verdict_checked_files$verdict_case_file "
-                ;;
-        esac
+    # Missing dependencies cannot count as a refusal. Establish each fixture
+    # without a mutation once, then run every registered mutation independently.
+    verdict_case_files=()
+    while IFS= read -r verdict_case_file; do
+        verdict_case_files+=("$verdict_case_file")
+    done < <(rg -l --glob '*.swift' "^#if ${verdict_flag}$" Checks)
+    if [ "${#verdict_case_files[@]}" -ne 1 ]; then
+        echo "verdict: ERROR — expected one fixture for $verdict_flag"
+        exit 1
     fi
+    verdict_case_file="${verdict_case_files[0]}"
+    verdict_case_sources=("$verdict_case_file")
+    case "$verdict_case_file" in
+        Checks/Coverage.swift|Checks/Saturation.swift|Checks/Transition.swift|Checks/Transport.swift)
+            verdict_case_sources+=(Checks/Verdict.swift)
+            ;;
+        Checks/Publication.swift)
+            verdict_case_sources+=(Sources/DocumentKitDemo/Claim.swift)
+            ;;
+        Checks/IceIncidence.swift|Checks/IceCoverage.swift)
+            verdict_case_sources=(Checks/IceIncidence.swift Checks/IceCoverage.swift)
+            ;;
+    esac
+    case "$verdict_checked_files" in
+        *" $verdict_case_file "*) ;;
+        *)
+            if ! typecheck_refusal >"$verdict_tmp/fixture-positive.log" 2>&1; then
+                cat "$verdict_tmp/fixture-positive.log"
+                echo "verdict: ERROR — standalone positive failed for $verdict_case_file"
+                exit 1
+            fi
+            verdict_checked_files="$verdict_checked_files$verdict_case_file "
+            ;;
+    esac
     verdict_log="$verdict_tmp/$verdict_flag.log"
     if typecheck_refusal "-D$verdict_flag" >"$verdict_log" 2>&1; then
         echo "verdict: ERROR — $verdict_flag was accepted"
@@ -1326,6 +1333,11 @@ do
         "$verdict_log"; then
         cat "$verdict_log"
         echo "verdict: ERROR — compiler could not check $verdict_flag (exit $verdict_status)"
+        exit 1
+    fi
+    if grep -Eq 'error: (cannot find .* in scope|no such module )' "$verdict_log"; then
+        cat "$verdict_log"
+        echo "verdict: ERROR — missing dependency while checking $verdict_flag"
         exit 1
     fi
     if ! grep -q 'error:' "$verdict_log" || ! grep -q "$verdict_name" "$verdict_log"; then

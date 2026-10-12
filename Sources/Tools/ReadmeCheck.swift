@@ -1,7 +1,7 @@
 // README CHECK — the README's numbers are counted, not remembered.
 //
 // Every number the README states about the repository is re-counted here from the
-// artifact that owns it: papers from the Papers directory, protocols from the theory's
+// artifact that owns it: paper families from their complete pages, protocols from the theory's
 // sources, people from the two team files, tests from the test sources, and the two
 // numbers owned by a documentation page (the keypad's 6561, the curve's 12800) from
 // those pages. A claim that drifts fails the gate by name, and a claim that
@@ -61,10 +61,10 @@ enum ReadmeCheck {
         var lies: [String] = []
 
         // What the repository counts today.
-        let papers = countFiles(
-            "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers",
-            suffix: ".md"
+        let corpus = PaperFamilies.require(
+            root + "/Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers"
         )
+        let papers = corpus.families.count
         let protocols = countMatches(
             swiftSources("Sources/VerificationIsIdentification"), of: "public protocol "
         )
@@ -85,7 +85,7 @@ enum ReadmeCheck {
 
         // What the README says, each pattern read at every occurrence.
         let expectations: [(pattern: String, count: Int, name: String)] = [
-            ("(\\d+) papers", papers, "papers in the Papers directory"),
+            ("(\\d+) papers", papers, "complete paper families"),
             ("(\\d+) protocols", protocols, "public protocols in the theory"),
             ("(\\d+)-person company", people, "people in the two team files"),
             ("the (\\d+) people", people, "people in the two team files"),
@@ -157,7 +157,7 @@ enum ReadmeCheck {
 
         if lies.isEmpty {
             print(
-                "✓ THE NUMBERS hold: \(papers) papers, \(protocols) protocols, "
+                "✓ THE NUMBERS hold: \(papers) papers (\(corpus.texts.count) pages), \(protocols) protocols, "
                     + "\(people) people (\(named) named, \(generated) generated), \(tests) tests, "
                     + "\(keypadSequences) keypad sequences, \(curveEmployees) at the curve's end, "
                     + "walks \(pageChoices.first ?? "?") and \(rosterDepth) deep."

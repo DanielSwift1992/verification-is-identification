@@ -82,6 +82,7 @@ LAWS+=(
 "rules|a rule is one substitution|swift run Tools lint Sources/DynamicsDemo/Rules.swift --strict"
 "renames|empty intersections have one name; duplicate controls refuse|swift run Tools lint Sources/VerificationIsIdentification --docc Sources/VerificationIsIdentification/VerificationIsIdentification.docc --strict && python3 Checks/lint_duplicates.py --tools .build/debug/Tools"
 "topics|the Topics tree equals the type lattice|swift package --allow-writing-to-package-directory tree-sort check"
+"families|every paper part has an owner and its readers reject lost addresses|swift run Tools papers && python3 Checks/paper_families.py --tools .build/debug/Tools --graph auto"
 "artifacts|the committed artifacts match the types, byte for byte|swift package --allow-writing-to-package-directory generate >/dev/null && swift run OrgDemo render-doc >/dev/null && swift run DocumentKitDemo render-doc >/dev/null && swift run DocumentKitDemo claim --write >/dev/null && swift run VectorDemo all >/dev/null && git diff --exit-code"
 "judge|the second judge agrees with the compiler|swift run Tools judge diff 200"
 "light|the second judge reads the conditional grammar and its supplied aliases|swift run Tools judge where Sources/Examples/Light.swift Sources/VerificationIsIdentification/Primitive.swift"

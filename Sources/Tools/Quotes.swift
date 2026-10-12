@@ -23,6 +23,8 @@ enum Quotes {
     static let tokens: [(pattern: String, file: String)] = [
         ("V=I|Verification Is Identification", "verification_is_identification.md"),
         ("\\bPiR\\b|Permanence Is Resistance", "permanence_is_resistance.md"),
+        ("Verdict Is Invariant", "verdict_is_invariant.md"),
+        ("\\bIiS\\b|Interference Is Substitution", "interference_is_substitution.md"),
         ("\\bIiI\\b|Intelligence Is Inevitable", "intelligence_is_inevitable.md"),
         ("\\bInI\\b|Interference Is Intelligence", "interference_is_intelligence.md"),
         ("\\bDiD\\b|Difference Is Distance", "difference_is_distance.md"),
@@ -89,7 +91,7 @@ enum Quotes {
 
     // the core, fed by the walk and by its own self-test
     static func check(paper: String, text: String,
-                      corpus: [String: String]) -> (bad: [Violation], seen: Int) {
+                      corpus: [String: [String]], family: String? = nil) -> (bad: [Violation], seen: Int) {
         var bad: [Violation] = []
         var seen = 0
         let ns = text as NSString
@@ -105,7 +107,7 @@ enum Quotes {
             var target: String? = nil
             var best = -1
             for (pattern, file) in tokens
-            where file != paper {
+            where file != (family ?? paper) {
                 let re = try! NSRegularExpression(pattern: pattern)
                 let sns = sentence as NSString
                 for tm in re.matches(in: sentence,
@@ -117,12 +119,12 @@ enum Quotes {
             }
             guard let t = target, let body = corpus[t] else { continue }
             seen += 1
-            let normBody = normalize(body)
+            let normBlocks = body.map(normalize)
             let parts = q.replacingOccurrences(of: "...", with: "…")
                 .components(separatedBy: "…")
                 .map(normalize)
                 .filter { $0.split(separator: " ").count >= 5 }
-            let drifted = parts.filter { normBody.contains($0) == false }
+            let drifted = parts.filter { part in normBlocks.filter { $0.contains(part) }.isEmpty }
             if drifted.isEmpty == false {
                 let line = upTo.components(separatedBy: "\n").count
                 bad.append(Violation(paper: paper, line: line, target: t,
@@ -136,7 +138,7 @@ enum Quotes {
     // reworded one refuses, an unattributed one is stepped over
     static func quotesWalkFires() -> Bool {
         let corpus = ["basis_is_residue.md":
-            "The residue stands alone and the sieve keeps what composition cannot reach today."]
+            ["The residue stands alone and the sieve keeps what composition cannot reach today."]]
         let good = "As Basis Is Residue says: \"the sieve keeps what composition cannot reach\". So."
         let bad = "As Basis Is Residue says: \"the sieve keeps what composition happily reaches\". So."
         let own = "Its own phrase stands here: \"a sieve of a phrase nobody attributed to anybody\". So."
@@ -152,21 +154,16 @@ enum Quotes {
         }
         let dir = args.first
             ?? "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers"
-        let names = ((try? FileManager.default.contentsOfDirectory(atPath: dir)) ?? [])
-            .filter { $0.hasSuffix(".md") }.sorted()
-        guard names.isEmpty == false else {
-            print("✗ THE QUOTES reader finds no papers under \(dir)")
-            exit(2)
-        }
-        var corpus: [String: String] = [:]
-        for n in names {
-            corpus[n] = (try? String(contentsOfFile:
-                (dir as NSString).appendingPathComponent(n), encoding: .utf8)) ?? ""
-        }
+        let papers = PaperFamilies.require(dir)
+        let names = papers.texts.keys.sorted()
+        let corpus = Dictionary(uniqueKeysWithValues: papers.families.map {
+            ($0.entry, papers.blocks(in: $0.id))
+        })
         var bad: [Violation] = []
         var seen = 0
         for n in names {
-            let r = check(paper: n, text: corpus[n] ?? "", corpus: corpus)
+            let r = check(paper: n, text: papers.texts[n] ?? "", corpus: corpus,
+                          family: papers.family(of: n) + ".md")
             bad.append(contentsOf: r.bad)
             seen += r.seen
         }

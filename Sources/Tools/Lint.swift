@@ -172,6 +172,7 @@ var danglingTags: [Violation] = []
 var legendTags: Set<String> = []
 var tagToPaper: [String: String] = [:]
 var paperTags: [String: [String]] = [:]
+var citedLabels: [(file: String, line: Int, paper: String, label: String)] = []
 
 func loadLegend(_ sourcesMD: String) {
     guard let contents = try? String(contentsOfFile: sourcesMD, encoding: .utf8) else { return }
@@ -308,6 +309,12 @@ func scan(file path: String, checkProvenance: Bool) {
                 let first = tag.split(whereSeparator: { " ,;".contains($0) }).first.map(String.init) ?? tag
                 if let paper = tagToPaper[first] {
                     citedPapers[paper, default: 0] += 1
+                    if !PaperFamilies.registry.filter({ $0.id == paper }).isEmpty {
+                        let labels = captures(
+                            try! NSRegularExpression(pattern: #"\b((?:IiS|VC|VI|LQ|M)\d+[a-z]*(?:\.[a-z0-9]+)?)\b"#), tag
+                        )
+                        for label in labels { citedLabels.append((name, number, paper, label)) }
+                    }
                 } else {
                     danglingTags.append(Violation(file: name, line: number, rule: "PROVENANCE — dangling tag", detail: "[\(tag)]"))
                 }
@@ -317,20 +324,30 @@ func scan(file path: String, checkProvenance: Bool) {
 }
 
 func disconnectedPapers(routedPaperDir: String) -> [Violation] {
-    let fm = FileManager.default
+    let corpus: PaperFamilies.Corpus
+    do { corpus = try PaperFamilies.load(routedPaperDir) }
+    catch {
+        return [Violation(file: "Papers", line: 0, rule: "PROVENANCE — paper family", detail: "\(error)")]
+    }
     var routed: Set<String> = []
-    if let entries = try? fm.contentsOfDirectory(atPath: routedPaperDir) {
-        for entry in entries
-        where entry.hasSuffix(".md") {
-            let path = (routedPaperDir as NSString).appendingPathComponent(entry)
-            if let body = try? String(contentsOfFile: path, encoding: .utf8),
-               body.contains("### Theorems this paper proves") {
-                routed.insert(String(entry.dropLast(3)))   // drop ".md"
-            }
+    for family in corpus.families {
+        let body = corpus.texts[family.entry] ?? ""
+        if body.contains("### Related type declarations") && body.contains("- ``") {
+            routed.insert(family.id)
         }
     }
     var out: [Violation] = []
+    for reference in citedLabels
+    where corpus.addresses[reference.paper + "/" + reference.label] == nil {
+        out.append(Violation(file: reference.file, line: reference.line, rule: "PROVENANCE — missing label",
+                             detail: "\(reference.paper)/\(reference.label) — no declaration in the family"))
+    }
     for paper in Set(tagToPaper.values).sorted() {
+        if corpus.owners[paper + ".md"] != paper {
+            out.append(Violation(file: "Sources.md", line: 0, rule: "PROVENANCE — missing family",
+                                 detail: "\(paper) — legend must name a logical paper entry"))
+            continue
+        }
         let isRouted = routed.contains(paper)
         let isCited = (citedPapers[paper] ?? 0) > 0
         let isBelowFloor = !(Set(paperTags[paper] ?? []).isDisjoint(with: belowFloor))

@@ -70,6 +70,8 @@ guard args.count >= 2 else {
 let graphPath = args[0]
 let docc = args[1]
 let mode = args.count >= 3 ? args[2].replacingOccurrences(of: "--", with: "") : "audit"
+let papers = PaperFamilies.require((docc as NSString).appendingPathComponent("Papers"))
+let mentions = papers.mentions()
 
 guard let data = FileManager.default.contents(atPath: graphPath),
       let G = try? JSONDecoder().decode(Graph.self, from: data) else {
@@ -369,12 +371,8 @@ func arguesWalkFires() -> Bool {
 }
 func arguesRecords() -> [(child: String, parent: String, paper: String, line: Int)] {
     var out: [(String, String, String, Int)] = []
-    let papersDir = (docc as NSString).appendingPathComponent("Papers")
-    let names = (try? FileManager.default.contentsOfDirectory(atPath: papersDir)) ?? []
-    for name in names.sorted()
-    where name.hasSuffix(".md") {
-        let path = (papersDir as NSString).appendingPathComponent(name)
-        guard let text = try? String(contentsOfFile: path, encoding: .utf8) else { continue }
+    for name in papers.texts.keys.sorted() {
+        let text = papers.texts[name]!
         for r in arguesParse(text) {
             out.append((r.child, r.parent, name, r.line))
         }
@@ -480,6 +478,22 @@ func paperTopics() -> [String: String] {
         let ordered = ps.sorted { line($0) < line($1) }
         out[doc] = "## Topics\n\n" + group("Related type declarations", symbols(names(ordered)))
     }
+    for family in PaperFamilies.registry {
+        let parts = family.members.dropFirst().map { "<doc:\($0.dropLast(3))>" }
+        var block = "## Topics\n\n" + group("Parts", parts)
+        let ordered = (by[family.id] ?? []).sorted { line($0) < line($1) }
+        if !ordered.isEmpty { block += "\n" + group("Related type declarations", symbols(names(ordered))) }
+        // A paper without a route can carry authored prose under Topics. Wave's
+        // Encoding status is such a block; replacing it would delete source text.
+        let tail = (papers.texts[family.entry] ?? "").components(separatedBy: "\n## Topics\n").last ?? ""
+        for section in tail.components(separatedBy: "\n### ").dropFirst() {
+            let heading = section.components(separatedBy: "\n").first ?? ""
+            if heading != "Parts" && heading != "Related type declarations" {
+                block += "\n### " + section.trimmingCharacters(in: .whitespacesAndNewlines) + "\n"
+            }
+        }
+        out[family.id] = block
+    }
     return out
 }
 
@@ -519,20 +533,34 @@ func target(_ path: String, _ block: String) -> String {
     // TABLE the same way the routes carry generated Topics: prose above, one
     // induced block below, idempotent on every rewrite.
     let mark = "\n" + (block.split(separator: "\n").first.map(String.init) ?? "## Topics")
-    let head: String
+    var head: String
     if let r = txt.range(of: mark, options: .backwards) {
         head = String(txt[txt.startIndex..<r.lowerBound])
     } else { head = txt }
+    let page = (path as NSString).lastPathComponent
+    if !PaperFamilies.registry.filter({ $0.members.contains(page) }).isEmpty {
+        if let start = head.range(of: "\n## Cross-page mentions") {
+            head = String(head[..<start.lowerBound])
+        }
+        let navigation = papers.mentionsBlock(page: page, mentions: mentions)
+        if !navigation.isEmpty { head = head.trimmingCharacters(in: .whitespacesAndNewlines) + "\n\n" + navigation }
+    }
     let trimmedHead = head.trimmingCharacters(in: .whitespacesAndNewlines)
     if trimmedHead.isEmpty {
         FileHandle.standardError.write(Data("refusing to write empty-prose file: \(path)\n".utf8))
         exit(2)
     }
-    return trimmedHead + "\n\n" + block.trimmingCharacters(in: .whitespacesAndNewlines) + "\n"
+    let tail = block.trimmingCharacters(in: .whitespacesAndNewlines)
+    return trimmedHead + (tail.isEmpty ? "\n" : "\n\n" + tail + "\n")
 }
 func eachFile() -> [(String, String)] {
     var out = [(theoryMD, LAND)]
     for (doc, block) in PAPERS { out.append(((docc as NSString).appendingPathComponent("Papers/\(doc).md"), block)) }
+    for family in PaperFamilies.registry {
+        for part in family.members.dropFirst() {
+            out.append(((docc as NSString).appendingPathComponent("Papers/\(part)"), ""))
+        }
+    }
     out.append(((docc as NSString).appendingPathComponent("Atlas.md"), atlasBlock()))
     out.append(((docc as NSString).appendingPathComponent("AtlasUnfolded.md"), atlasUnfoldedBlock()))
     out.append(((docc as NSString).appendingPathComponent("AtlasRepeats.md"), repeatsBlock()))

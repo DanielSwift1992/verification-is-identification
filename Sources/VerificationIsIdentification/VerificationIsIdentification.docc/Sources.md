@@ -2,6 +2,8 @@
 
 The papers this lattice encodes, readable here in full.
 
+Four longer papers keep their original entry addresses and place detailed derivations in the Parts listed under each entry's Topics. A part belongs to that paper, so the corpus has 35 papers across 75 pages. Each result has one declaration address. Cross-page mentions are navigation; the separately named Required setting links record the premises reviewed at a section boundary.
+
 ## Overview
 
 Each protocol in ``VerificationIsIdentification`` encodes a claim first made and proved in one of the papers below. The relationship runs one way: the papers are the *source* (prose derivations carrying the full proofs and the mathematics) and the lattice is their type-level *encoding*.

@@ -3,21 +3,6 @@ import VerificationIsIdentification
 // The finite certificate constructors: the compiler checks each generic body
 // under its premises. There is no runtime predicate or answer-selection code.
 
-/// Join two applications of the same question when their answers coincide.
-public enum JoinedVerdict<
-    L: PredicateReading,
-    R: PredicateReading
->: VerdictIsInvariant
-where L.Sigma == R.Sigma, L.Encoding == R.Encoding,
-      L.Predicate == R.Predicate, L.Answer == R.Answer {
-    public typealias Left = L
-    public typealias Right = R
-    public typealias Sigma = L.Sigma
-    public typealias Encoding = L.Encoding
-    public typealias Predicate = L.Predicate
-    public typealias Answer = L.Answer
-}
-
 /// A singleton is the same reading in both positions, with one source in its
 /// support. Equality of answers follows by substitution, with no extra premise.
 public enum SingletonVerdict<R: PredicateReading>: VerdictIsInvariant {

@@ -80,6 +80,11 @@ The tag in each symbol's discussion decodes here. Every paper is readable in ful
 | `VI` | [Verdict Is Invariant](doc:verdict_is_invariant) |
 | `SiG` | [Seam Is Game](doc:seam_is_game) |
 | `AiC` | [Agreement Is Comparison](doc:agreement_is_comparison) |
+| `Halt` | [Halt Is Ignition](doc:halt_is_ignition) |
+| `Acquire` | [Acquisition Keeps Its Question](doc:acquisition_keeps_its_question) |
+| `Continuation` | [Continuation Carries the Relation](doc:continuation_carries_the_relation) |
+| `Record` | [Record Is System](doc:record_is_system) |
+| `Permission` | [Permission Is Existence](doc:permission_is_existence) |
 
 > Tip: A section code inside a tag is the paper's own numbering: `§5.22`, `G2c`, `N5`, `O9`, `LT3`, `PP10`, `B4`. In the paper, that code lands you on the exact claim.
 

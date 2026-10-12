@@ -5,27 +5,53 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 verdict_scope="${1:-all}"
 case "$verdict_scope" in
-    all|localphase|localpolicy|contact|publication|whole|ice|seeing|markers|uniqueness|distance|return|scopedlaw|knowledgeclosure|acquisition|interactions|knowledge|observer|resident|construction|boundary|common|evidence|evolution|closure|probe|routing|reuse|probepair|lawtransport|demand|frame|discovery) ;;
-    *) echo "usage: bash Checks/verdict.sh [all|localphase|localpolicy|contact|publication|whole|ice|seeing|markers|uniqueness|distance|return|scopedlaw|knowledgeclosure|acquisition|interactions|knowledge|observer|resident|construction|boundary|common|evidence|evolution|closure|probe|routing|reuse|probepair|lawtransport|demand|frame|discovery]" >&2; exit 2 ;;
+    all|halt|sourcecontinuation|residuecontinuation|recordreadings|admission|localphase|localpolicy|contact|publication|whole|ice|seeing|markers|uniqueness|distance|return|scopedlaw|knowledgeclosure|acquisition|interactions|knowledge|observer|resident|construction|boundary|common|evidence|evolution|closure|probe|routing|reuse|probepair|lawtransport|demand|frame|discovery) ;;
+    *) echo "usage: bash Checks/verdict.sh [all|halt|sourcecontinuation|residuecontinuation|recordreadings|admission|localphase|localpolicy|contact|publication|whole|ice|seeing|markers|uniqueness|distance|return|scopedlaw|knowledgeclosure|acquisition|interactions|knowledge|observer|resident|construction|boundary|common|evidence|evolution|closure|probe|routing|reuse|probepair|lawtransport|demand|frame|discovery]" >&2; exit 2 ;;
 esac
 verdict_tmp="$(mktemp -d "${TMPDIR:-/tmp}/vi-verdict.XXXXXX")"
 trap 'rm -rf "$verdict_tmp"' EXIT
 
-if [ "$verdict_scope" = localphase ]; then
+if [ "$verdict_scope" = localphase ] || [ "$verdict_scope" = halt ] || [ "$verdict_scope" = sourcecontinuation ] || [ "$verdict_scope" = residuecontinuation ] || [ "$verdict_scope" = recordreadings ] || [ "$verdict_scope" = admission ]; then
     # This scope needs declarations only. Check both current source layers
     # together, without borrowing an older module from the package cache or
     # generating object code for the modeled constructions.
     verdict_bin="$verdict_tmp"
     mkdir -p "$verdict_bin/Modules"
     swiftc -emit-module -parse-as-library -module-name VerificationIsIdentification \
+        -module-cache-path "$verdict_tmp/cache" \
         Sources/VerificationIsIdentification/*.swift \
         -emit-module-path "$verdict_bin/Modules/VerificationIsIdentification.swiftmodule"
+    verdict_examples_sources=(Sources/Examples/*.swift)
+    if [ "$verdict_scope" = halt ]; then
+        # This fixture uses only the new constructor. Check that source slice
+        # against the full fresh lattice; the all scope uses the whole target.
+        verdict_examples_sources=(Sources/Examples/Halt.swift)
+    elif [ "$verdict_scope" = sourcecontinuation ]; then
+        verdict_examples_sources=(Sources/Examples/JoinedVerdict.swift Sources/Examples/SourceContinuation.swift)
+    elif [ "$verdict_scope" = residuecontinuation ]; then
+        verdict_examples_sources=(Sources/Examples/ResidueContinuation.swift)
+    elif [ "$verdict_scope" = recordreadings ]; then
+        verdict_examples_sources=(Sources/Examples/RecordReadings.swift)
+    elif [ "$verdict_scope" = admission ]; then
+        verdict_examples_sources=(Sources/Examples/Admission.swift)
+        for verdict_module in Alphabet GrammarLexicon; do
+            swiftc -emit-module -parse-as-library -module-name "$verdict_module" \
+                -module-cache-path "$verdict_tmp/cache" -I "$verdict_bin/Modules" \
+                Sources/"$verdict_module"/*.swift \
+                -emit-module-path "$verdict_bin/Modules/$verdict_module.swiftmodule"
+        done
+    fi
     swiftc -emit-module -parse-as-library -module-name Examples \
-        -I "$verdict_bin/Modules" Sources/Examples/*.swift \
+        -module-cache-path "$verdict_tmp/cache" \
+        -I "$verdict_bin/Modules" "${verdict_examples_sources[@]}" \
         -emit-module-path "$verdict_bin/Modules/Examples.swiftmodule"
 else
     if [ "$verdict_scope" = publication ] || [ "$verdict_scope" = all ]; then
         swift build --product DocumentKitDemo
+        # The admission fixture reads the actual vocabulary, not a cached grant.
+        if [ "$verdict_scope" = all ]; then
+            swift build --target GrammarLexicon
+        fi
     else
         swift build --target Examples
     fi
@@ -33,6 +59,31 @@ else
 fi
 
 typecheck() {
+    if [ "$verdict_scope" = admission ]; then
+        swiftc -typecheck -I "$verdict_bin/Modules" \
+            -module-cache-path "$verdict_tmp/cache" Checks/Admission.swift "$@"
+        return
+    fi
+    if [ "$verdict_scope" = recordreadings ]; then
+        swiftc -typecheck -I "$verdict_bin/Modules" \
+            -module-cache-path "$verdict_tmp/cache" Checks/RecordReadings.swift "$@"
+        return
+    fi
+    if [ "$verdict_scope" = residuecontinuation ]; then
+        swiftc -typecheck -I "$verdict_bin/Modules" \
+            -module-cache-path "$verdict_tmp/cache" Checks/ResidueContinuation.swift "$@"
+        return
+    fi
+    if [ "$verdict_scope" = sourcecontinuation ]; then
+        swiftc -typecheck -I "$verdict_bin/Modules" \
+            -module-cache-path "$verdict_tmp/cache" Checks/SourceContinuation.swift "$@"
+        return
+    fi
+    if [ "$verdict_scope" = halt ]; then
+        swiftc -typecheck -I "$verdict_bin/Modules" \
+            -module-cache-path "$verdict_tmp/cache" Checks/Halt.swift "$@"
+        return
+    fi
     if [ "$verdict_scope" = localphase ]; then
         swiftc -typecheck -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/LocalPhase.swift Checks/LocalStar.swift Checks/LocalStarObservation.swift Checks/LocalContactLift.swift Checks/LocalFourLeaf.swift Checks/PhaseLawInquiry.swift Checks/PhaseWordCatalogue.swift Checks/FourLeafResident.swift Checks/FourLeafPointProbe.swift Checks/FourLeafAcquiredLaw.swift Checks/FourLeafRecoveredUse.swift Checks/FaithfulContactLift.swift Checks/FourLeafControl.swift Checks/FourReadingAcquisition.swift Checks/FourLeafEcho.swift Checks/AlternatingLine.swift Checks/QuarterClockCalibration.swift Checks/FourLeafRecordedReturn.swift Checks/StarRecoveryFibers.swift Checks/FourLeafProfileScope.swift Checks/FourLeafValueQuestion.swift Checks/FourLeafQuestionRefinement.swift Checks/SevenQuestionPrefix.swift Checks/PhaseLawKnownTransport.swift Checks/JointPhaseQuestions.swift Checks/PhaseAlignmentObstruction.swift Checks/UnobservedPhaseBridge.swift Checks/PhaseCyclingBridge.swift Checks/PhaseClockPolicy.swift Checks/PhaseProbeClockPolicy.swift Checks/ReusablePhaseInterface.swift Checks/PhaseInterfaceResidue.swift Checks/PrimitivePhaseReturn.swift Checks/PhaseBasisProfile.swift Checks/PhaseBasisReduction.swift Checks/PhaseFrameDrift.swift Checks/JointReplyAcquisition.swift Checks/JointReplyExecution.swift Checks/OneReplyApplicability.swift Checks/PartnerProbeApplicability.swift Checks/PhaseProbeExcursion.swift Checks/PairedProbeApplicability.swift Checks/LocalProbeEcho.swift Checks/EchoOrbit.swift Checks/ReturnCoverage.swift Checks/SeparationGraph.swift Checks/AcquiredFrameAction.swift Checks/ContactCycle.swift Checks/JointContactRigidity.swift Checks/ContactContrastSupport.swift Checks/ContactProfile.swift Checks/ProfileSupportHandover.swift Checks/ProfileRelease.swift Checks/BorrowedPhase.swift Checks/ProfileRenewal.swift Checks/SharedProfileRenewal.swift Checks/CyclicProfileRenewal.swift Checks/SharedFrameCoupling.swift Checks/FrameInterference.swift Checks/MarkedFrameRequest.swift Checks/SharedChannelLaw.swift Checks/RecombinationAutonomy.swift Checks/JoinedContinuation.swift Checks/RelativeAnswerCorrection.swift Checks/OccurrenceChange.swift Checks/OverlappingReadings.swift Checks/CycleAdmission.swift Checks/JointReactionBalance.swift Checks/DirectedRepair.swift Checks/RepairWithoutAnchor.swift Checks/ClockClassMass.swift Checks/BalancedContactRows.swift Checks/SelfRecordUse.swift Checks/TargetFrameTransport.swift Checks/RelativeChannelAcquisition.swift Checks/CoarseContactComparison.swift Checks/UncalibratedComparison.swift Checks/JointReadoutSymmetry.swift Checks/TripleOrientationContact.swift Checks/PhaseSelectiveContrast.swift Checks/DetectorContrast.swift Checks/FreshPartner.swift Checks/ContactDiagram.swift Checks/ContactBoundary.swift "$@"
@@ -194,7 +245,7 @@ typecheck() {
         return
     fi
     swiftc -typecheck -I "$verdict_bin/Modules" \
-        -module-cache-path "$verdict_tmp/cache" Checks/Verdict.swift Checks/FiniteBoundary.swift Checks/Coverage.swift Checks/Transition.swift Checks/ClosedInformation.swift Checks/Discovery.swift Checks/Cache.swift Checks/Entropy.swift Checks/Transcript.swift Checks/Learning.swift Checks/SelfPlay.swift Checks/SelfInspection.swift Checks/Sampling.swift Checks/Stationarity.swift Checks/Basis.swift Checks/Context.swift Sources/DocumentKitDemo/Claim.swift Checks/Publication.swift Checks/Transport.swift Checks/Saturation.swift Checks/Acquisition.swift Checks/Continuation.swift Checks/Interactions.swift Checks/InteractionKnowledge.swift Checks/InternalObserver.swift Checks/ResidentExperiment.swift Checks/Construction.swift Checks/CommonBoundary.swift Checks/CommonAcquisition.swift Checks/AcquiredBoundary.swift Checks/BoundaryEvolution.swift Checks/BoundaryClosure.swift Checks/MechanismProbe.swift Checks/RoutingProbe.swift Checks/RoutingReuse.swift Checks/ResidentProbePair.swift Checks/RoutingTransport.swift Checks/RoutingDemand.swift Checks/RoutingFrame.swift Checks/KnowledgeClosure.swift Checks/QuestionScopedLaw.swift Checks/ContactCalibration.swift Checks/ContactInquiry.swift Checks/LocalContactPolicy.swift Checks/LocalPhase.swift Checks/LocalStar.swift Checks/LocalStarObservation.swift Checks/LocalContactLift.swift Checks/LocalFourLeaf.swift Checks/PhaseLawInquiry.swift Checks/PhaseWordCatalogue.swift Checks/FourLeafResident.swift Checks/FourLeafPointProbe.swift Checks/FourLeafAcquiredLaw.swift Checks/FourLeafRecoveredUse.swift Checks/FaithfulContactLift.swift Checks/FourLeafControl.swift Checks/FourReadingAcquisition.swift Checks/FourLeafEcho.swift Checks/AlternatingLine.swift Checks/QuarterClockCalibration.swift Checks/FourLeafRecordedReturn.swift Checks/StarRecoveryFibers.swift Checks/FourLeafProfileScope.swift Checks/FourLeafValueQuestion.swift Checks/FourLeafQuestionRefinement.swift Checks/SevenQuestionPrefix.swift Checks/PhaseLawKnownTransport.swift Checks/JointPhaseQuestions.swift Checks/PhaseAlignmentObstruction.swift Checks/UnobservedPhaseBridge.swift Checks/PhaseCyclingBridge.swift Checks/PhaseClockPolicy.swift Checks/PhaseProbeClockPolicy.swift Checks/ReusablePhaseInterface.swift Checks/PhaseInterfaceResidue.swift Checks/PrimitivePhaseReturn.swift Checks/PhaseBasisProfile.swift Checks/PhaseBasisReduction.swift Checks/PhaseFrameDrift.swift Checks/JointReplyAcquisition.swift Checks/JointReplyExecution.swift Checks/OneReplyApplicability.swift Checks/PartnerProbeApplicability.swift Checks/PhaseProbeExcursion.swift Checks/PairedProbeApplicability.swift Checks/LocalProbeEcho.swift Checks/EchoOrbit.swift Checks/ReturnCoverage.swift Checks/SeparationGraph.swift Checks/AcquiredFrameAction.swift Checks/ContactCycle.swift Checks/JointContactRigidity.swift Checks/ContactContrastSupport.swift Checks/ContactProfile.swift Checks/ProfileSupportHandover.swift Checks/ProfileRelease.swift Checks/BorrowedPhase.swift Checks/ProfileRenewal.swift Checks/SharedProfileRenewal.swift Checks/CyclicProfileRenewal.swift Checks/SharedFrameCoupling.swift Checks/FrameInterference.swift Checks/MarkedFrameRequest.swift Checks/SharedChannelLaw.swift Checks/RecombinationAutonomy.swift Checks/JoinedContinuation.swift Checks/RelativeAnswerCorrection.swift Checks/OccurrenceChange.swift Checks/OverlappingReadings.swift Checks/CycleAdmission.swift Checks/JointReactionBalance.swift Checks/DirectedRepair.swift Checks/RepairWithoutAnchor.swift Checks/ClockClassMass.swift Checks/BalancedContactRows.swift Checks/SelfRecordUse.swift Checks/TargetFrameTransport.swift Checks/RelativeChannelAcquisition.swift Checks/CoarseContactComparison.swift Checks/UncalibratedComparison.swift Checks/JointReadoutSymmetry.swift Checks/TripleOrientationContact.swift Checks/PhaseSelectiveContrast.swift Checks/DetectorContrast.swift Checks/FreshPartner.swift Checks/ContactDiagram.swift Checks/ContactBoundary.swift Checks/RelationalReturn.swift Checks/Distance.swift Checks/IceIncidence.swift Checks/IceCoverage.swift Checks/Seeing.swift "$@"
+        -module-cache-path "$verdict_tmp/cache" Checks/Halt.swift Checks/SourceContinuation.swift Checks/ResidueContinuation.swift Checks/RecordReadings.swift Checks/Admission.swift Checks/Verdict.swift Checks/FiniteBoundary.swift Checks/Coverage.swift Checks/Transition.swift Checks/ClosedInformation.swift Checks/Discovery.swift Checks/Cache.swift Checks/Entropy.swift Checks/Transcript.swift Checks/Learning.swift Checks/SelfPlay.swift Checks/SelfInspection.swift Checks/Sampling.swift Checks/Stationarity.swift Checks/Basis.swift Checks/Context.swift Sources/DocumentKitDemo/Claim.swift Checks/Publication.swift Checks/Transport.swift Checks/Saturation.swift Checks/Acquisition.swift Checks/Continuation.swift Checks/Interactions.swift Checks/InteractionKnowledge.swift Checks/InternalObserver.swift Checks/ResidentExperiment.swift Checks/Construction.swift Checks/CommonBoundary.swift Checks/CommonAcquisition.swift Checks/AcquiredBoundary.swift Checks/BoundaryEvolution.swift Checks/BoundaryClosure.swift Checks/MechanismProbe.swift Checks/RoutingProbe.swift Checks/RoutingReuse.swift Checks/ResidentProbePair.swift Checks/RoutingTransport.swift Checks/RoutingDemand.swift Checks/RoutingFrame.swift Checks/KnowledgeClosure.swift Checks/QuestionScopedLaw.swift Checks/ContactCalibration.swift Checks/ContactInquiry.swift Checks/LocalContactPolicy.swift Checks/LocalPhase.swift Checks/LocalStar.swift Checks/LocalStarObservation.swift Checks/LocalContactLift.swift Checks/LocalFourLeaf.swift Checks/PhaseLawInquiry.swift Checks/PhaseWordCatalogue.swift Checks/FourLeafResident.swift Checks/FourLeafPointProbe.swift Checks/FourLeafAcquiredLaw.swift Checks/FourLeafRecoveredUse.swift Checks/FaithfulContactLift.swift Checks/FourLeafControl.swift Checks/FourReadingAcquisition.swift Checks/FourLeafEcho.swift Checks/AlternatingLine.swift Checks/QuarterClockCalibration.swift Checks/FourLeafRecordedReturn.swift Checks/StarRecoveryFibers.swift Checks/FourLeafProfileScope.swift Checks/FourLeafValueQuestion.swift Checks/FourLeafQuestionRefinement.swift Checks/SevenQuestionPrefix.swift Checks/PhaseLawKnownTransport.swift Checks/JointPhaseQuestions.swift Checks/PhaseAlignmentObstruction.swift Checks/UnobservedPhaseBridge.swift Checks/PhaseCyclingBridge.swift Checks/PhaseClockPolicy.swift Checks/PhaseProbeClockPolicy.swift Checks/ReusablePhaseInterface.swift Checks/PhaseInterfaceResidue.swift Checks/PrimitivePhaseReturn.swift Checks/PhaseBasisProfile.swift Checks/PhaseBasisReduction.swift Checks/PhaseFrameDrift.swift Checks/JointReplyAcquisition.swift Checks/JointReplyExecution.swift Checks/OneReplyApplicability.swift Checks/PartnerProbeApplicability.swift Checks/PhaseProbeExcursion.swift Checks/PairedProbeApplicability.swift Checks/LocalProbeEcho.swift Checks/EchoOrbit.swift Checks/ReturnCoverage.swift Checks/SeparationGraph.swift Checks/AcquiredFrameAction.swift Checks/ContactCycle.swift Checks/JointContactRigidity.swift Checks/ContactContrastSupport.swift Checks/ContactProfile.swift Checks/ProfileSupportHandover.swift Checks/ProfileRelease.swift Checks/BorrowedPhase.swift Checks/ProfileRenewal.swift Checks/SharedProfileRenewal.swift Checks/CyclicProfileRenewal.swift Checks/SharedFrameCoupling.swift Checks/FrameInterference.swift Checks/MarkedFrameRequest.swift Checks/SharedChannelLaw.swift Checks/RecombinationAutonomy.swift Checks/JoinedContinuation.swift Checks/RelativeAnswerCorrection.swift Checks/OccurrenceChange.swift Checks/OverlappingReadings.swift Checks/CycleAdmission.swift Checks/JointReactionBalance.swift Checks/DirectedRepair.swift Checks/RepairWithoutAnchor.swift Checks/ClockClassMass.swift Checks/BalancedContactRows.swift Checks/SelfRecordUse.swift Checks/TargetFrameTransport.swift Checks/RelativeChannelAcquisition.swift Checks/CoarseContactComparison.swift Checks/UncalibratedComparison.swift Checks/JointReadoutSymmetry.swift Checks/TripleOrientationContact.swift Checks/PhaseSelectiveContrast.swift Checks/DetectorContrast.swift Checks/FreshPartner.swift Checks/ContactDiagram.swift Checks/ContactBoundary.swift Checks/RelationalReturn.swift Checks/Distance.swift Checks/IceIncidence.swift Checks/IceCoverage.swift Checks/Seeing.swift "$@"
 }
 
 typecheck_refusal() {
@@ -210,7 +261,17 @@ typecheck >"$verdict_tmp/positive.log" 2>&1 || {
     cat "$verdict_tmp/positive.log"
     exit 1
 }
-if [ "$verdict_scope" = publication ]; then
+if [ "$verdict_scope" = admission ]; then
+    echo "permission: checked spelling factors share the declared floor; sources and questions retain their own bindings"
+elif [ "$verdict_scope" = recordreadings ]; then
+    echo "record: two routes derive the requested source reading; archive reuse needs its actual transfer"
+elif [ "$verdict_scope" = residuecontinuation ]; then
+    echo "acquisition: the original requirement, actual residue, selected action and retained record are bound; shared choices derive one action"
+elif [ "$verdict_scope" = sourcecontinuation ]; then
+    echo "continuation: a shared late reading derives the original-answer equality; source and joining addresses are checked"
+elif [ "$verdict_scope" = halt ]; then
+    echo "halt: a conserved square derives equal source readings; source binding and image conservation are checked"
+elif [ "$verdict_scope" = publication ]; then
     echo "publication: active support, channel binding and coverage-preserving reordering compile"
 elif [ "$verdict_scope" = discovery ]; then
     echo "discovery: transition traces, successor coverage, source-bound readings and diagonal fixed points compile"
@@ -278,6 +339,24 @@ else
 fi
 
 for verdict_case in \
+    PE_BAD_MIDLINE:PERejectedMidline \
+    PE_BAD_SCOPE:PERejectedScope \
+    PE_BAD_FLOOR:PERejectedFloor \
+    PE_BAD_SOURCE_INFERENCE:PERejectedSourceInference \
+    PE_BAD_QUESTION:PERejectedQuestion \
+    RS_BAD_ARCHIVE:RSRejectedArchive \
+    RS_BAD_REFERENCE:RSRejectedReference \
+    RS_BAD_ANSWER:RSRejectedAnswer \
+    RS_BAD_SOURCE_INFERENCE:RSRejectedSourceInference \
+    AQ_BAD_RESIDUE:AQRejectedResidue \
+    AQ_BAD_CHOICE:AQRejectedChoice \
+    AQ_BAD_ORIGINAL_ANSWER:AQRejectedOriginalAnswer \
+    AQ_BAD_LOST_RESIDUE:AQRejectedLostResidue \
+    E2_BAD_LATE_SEAM:E2RejectedLateSeam \
+    E2_BAD_SOURCE_SEAM:E2RejectedSourceSeam \
+    E2_BAD_ORIGINAL_ANSWER:E2RejectedOriginalAnswer \
+    HF9_BAD_CONSERVATION:HF9RejectedConservation \
+    HF9_BAD_PREDECESSOR:HF9RejectedPredecessor \
     BAD_SENSOR_DIAGONAL_WRONG_FIELD:RejectedDiagonalObservationField \
     BAD_SENSOR_DIAGONAL_WRONG_MEMORY:RejectedDiagonalMemory \
     BAD_SENSOR_CHOI_TRACE_IDENTIFIES:RejectedChoiIdentificationFromTrace \
@@ -1186,6 +1265,21 @@ for verdict_case in \
 do
     verdict_flag="${verdict_case%%:*}"
     verdict_name="${verdict_case#*:}"
+    if [ "$verdict_scope" = admission ] && [[ "$verdict_flag" != PE_* ]]; then
+        continue
+    fi
+    if [ "$verdict_scope" = recordreadings ] && [[ "$verdict_flag" != RS_* ]]; then
+        continue
+    fi
+    if [ "$verdict_scope" = residuecontinuation ] && [[ "$verdict_flag" != AQ_* ]]; then
+        continue
+    fi
+    if [ "$verdict_scope" = sourcecontinuation ] && [[ "$verdict_flag" != E2_* ]]; then
+        continue
+    fi
+    if [ "$verdict_scope" = halt ] && [[ "$verdict_flag" != HF9_* ]]; then
+        continue
+    fi
     if [ "$verdict_scope" = localphase ] && [[ "$verdict_flag" != LOCAL_PHASE_* ]]; then
         continue
     fi

@@ -106,3 +106,9 @@ and continuing the action remain part of the requested work.
 | Mathematical argument | Intersection of the adequate choices over the complete input fiber |
 
 The stated action laws and preparations remain part of each example. The adequacy criterion proves none of their availability.
+
+## Topics
+
+### Related type declarations
+
+- ``AdequateResidueContinuation``

@@ -31,3 +31,9 @@ No new postulate. The author proves the pieces elsewhere and assembles them here
 ## §5. Position
 
 Against V=I: the linter is a small system, and the mapping is exact: finite space (the registry), decidable test (the schema's constraints), append-only record (the emitted mirror), agent/system split (stream proposes, compiler certifies). Against the series: PE2 is grounded in Existence Is Finite (finiteness is what makes absence enforceable), and PE4 reads the terminal state the way Halt Is Ignition reads a halt: by what it opens, which here is nothing, and that nothing is the verdict. The general lesson, stated once: **to govern a domain, do not police it. Give it a vocabulary in which only the lawful can be said, and let existence do the judging.**
+
+## Topics
+
+### Related type declarations
+
+- ``CheckedSpellingAdmission``

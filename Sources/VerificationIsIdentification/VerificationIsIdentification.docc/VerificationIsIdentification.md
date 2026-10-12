@@ -79,8 +79,10 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``Open``
 - ``Close``
 - ``Digit``
+- ``SharedBoundaryContinuation``
 - ``StructuresFinite``
 - ``OperationsClosed``
+- ``RootedRecordReadings``
 - ``SharedDeclaredTick``
 - ``VerdictRetainsLeft``
 - ``VerdictRetainsRight``
@@ -135,6 +137,7 @@ The types below are grouped by what each one does: the seed, the markers, the ke
 - ``QualitiesAreFinite``
 - ``CommutingTransition``
 - ``EncodingInvents``
+- ``ConservedReadingStep``
 - ``PerspectiveIsEncoding``
 ### The axes: pure generators
 

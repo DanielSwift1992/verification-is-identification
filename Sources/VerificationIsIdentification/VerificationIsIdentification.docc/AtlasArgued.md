@@ -21,7 +21,7 @@ for each edge alongside those different compiler checks.
 
 ## The edges argued so far
 
-The lattice declares 332 direct edges, and 64 of them carry an argument record in a paper. The rest wait.
+The lattice declares 337 direct edges, and 64 of them carry an argument record in a paper. The rest wait.
 
 | claim | premise | argued in |
 |---|---|---|

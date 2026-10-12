@@ -199,6 +199,11 @@ let PAPER: [String: String] = [
     "Verdict.swift": "verdict_is_invariant",
     "Transition.swift": "verdict_is_invariant",
     "Projection.swift": "architecture_of_learning_machines",
+    "Halt.swift": "halt_is_ignition",
+    "Continuation.swift": "continuation_carries_the_relation",
+    "Acquisition.swift": "acquisition_keeps_its_question",
+    "Record.swift": "record_is_system",
+    "Permission.swift": "permission_is_existence",
 ]
 let FLOOR_FILES: Set<String> = ["Spec.swift"]        // -> landing "The floor"
 let PROJ_FILES: Set<String> = ["Projection.swift"]   // -> landing "Projection"

@@ -74,6 +74,8 @@ answers where to start reading.
 - ``Permanent``, after ``Pair``
 - ``PredicateReading``, after ``HasVerdict``, ``Pair``
 - ``ReachIsPath``, after ``HasBasis``, ``HasPath``
+- ``RootedRecordReadings``, after ``Pair``
+- ``SharedBoundaryContinuation``, after ``Pair``
 - ``SharedDeclaredTick``, after ``Pair``
 - ``SharedDecoder``, after ``Pair``
 - ``SpaceFromDifference``, after ``DistanceIsMetric``, ``HasGrammar``
@@ -110,6 +112,7 @@ answers where to start reading.
 
 ### Step 5
 
+- ``AdequateResidueContinuation``, after ``VerdictIsInvariant``
 - ``AnchorGraph``, after ``DistanceOnStructures``, ``HasLibrary``
 - ``AxesCoOriented``, after ``CachePermanent``, ``ResultDeterministic``
 - ``BehaviorIsStructure``, after ``DistanceOnStructures``, ``HasTime``
@@ -118,6 +121,7 @@ answers where to start reading.
 - ``CandidateLeafReading``, after ``CandidateReading``
 - ``CandidatesOnlyLeave``, after ``CachePermanent``, ``HasSolutions``
 - ``CommunicationBounded``, after ``ComparisonsAreBounded``, ``HasCache``
+- ``ConservedReadingStep``, after ``CommutingTransition``
 - ``DiagnosticsAccumulate``, after ``CachePermanent``, ``ResultDeterministic``
 - ``DistanceIsCost``, after ``DistanceOnStructures``, ``HasCost``
 - ``EncodingForgets``, after ``VerdictIsInvariant``
@@ -142,6 +146,7 @@ answers where to start reading.
 - ``AcquiresAnswer``, after ``ReadingFactors``
 - ``BallSaturation``, after ``DistanceOnStructures``, ``LibrarySaturates``
 - ``BasisIsFinite``, after ``HasBasis``, ``LibrarySaturates``
+- ``CheckedSpellingAdmission``, after ``ReadingFactors``
 - ``ColourIsQuotient``, after ``EncodingForgets``
 - ``ContentIsGaugeInvariant``, after ``HasGauge``, ``ReadingFactors``
 - ``DiscoveryIsRevelation``, after ``ExactlyOneSurvives``, ``LibrarySaturates``

@@ -1,9 +1,5 @@
 # Verification Is Identification
 
-For the ongoing VI research, start with the [connected account](Research/VI-whole-picture.md),
-its [source map](Research/VI-source-map.md), and the [continuation context](Research/VI-continuation-context.md).
-These distinguish established constructions, their scope, and the current open work.
-
 **Zero-runtime programming.** The compiler enumerates every state a system can reach. It checks each one against every stated rule. A renderer writes each one to disk as a web page. An action is a link. Nothing is left to run: **the build is the run**.
 
 [![The playground: Swift types on the left, the judged and drawn page on the right.](https://raw.githubusercontent.com/DanielSwift1992/typed-playground/main/screenshot.png)](https://danielswift1992.github.io/typed-playground/)
@@ -16,7 +12,7 @@ These distinguish established constructions, their scope, and the current open w
 git clone https://github.com/DanielSwift1992/verification-is-identification && cd verification-is-identification && swift build
 ```
 
-The package ships a worked system: a 204-person company, its access policy, and its whole intranet site, all written as types. A green build checks its concrete and generic constructions against their declared type relations. Each proof derives its conclusion from the source-bound construction. A clean build takes 27 seconds on a laptop. An incremental build takes seconds. Four things to try:
+The package ships a worked system: a 204-person company, its access policy, and its whole intranet site, all written as types. A green build checks its concrete and generic constructions against their declared type relations. Each proof derives its conclusion from the source-bound construction. In a local measurement on a 14-core Apple M4 Pro, a clean build took about eight minutes. Rebuilding after a comment-only edit to the policy took about ten seconds. Four things to try:
 
 - Break a rule in [`Sources/Organization/System/Policy.swift`](Sources/Organization/System/Policy.swift) and rebuild. The error names what you broke.
 - `swift test` runs the worked demos: two from physics (ice's residual entropy, hydrogen's spectrum) and a task scheduler. It prints "Executed 19 tests". The trailing "0 tests" line is expected: the newer Swift Testing harness finds no `@Test` functions there.
@@ -130,6 +126,7 @@ The repository checks itself. Each command is a gate. Green is a pass:
 
 - `swift build` type-checks the whole system. The LawCheck plugin lints the engine and the company as it builds. A violation refuses the build by name.
 - `swift run Tools grammar` re-states every source file in a typed vocabulary for the compiler to judge. A style violation is a compile error that names its rule.
+- `swift run Tools lint Sources/VerificationIsIdentification --docc Sources/VerificationIsIdentification/VerificationIsIdentification.docc --strict` checks the theory against its law: pure types, every opened axis closed, no protocol that renames another, including one intersection of parents under two names, and every paper tag resolved to its paper.
 - `swift run Tools readme` re-counts every number this page states, from the artifact that owns it. The gate refuses a drifted claim by name.
 - `swift run Tools census` counts declarations per target: zero structs, zero classes, zero runtime functions across the theory, engine, and company rows.
 - `swift run Tools judge diff 200` sets a second, independent checker beside the compiler. Four lies are planted in the generated company. Both checkers must refuse each one and name the same facts.

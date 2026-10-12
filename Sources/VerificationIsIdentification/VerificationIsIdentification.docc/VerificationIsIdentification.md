@@ -6,7 +6,7 @@ A theory of when checking an answer is the same act as finding it, written as pu
 
 Take a finite set of candidates and a test. If exactly one candidate passes, "it passed" and "it is the answer" state the same fact: checking the lone survivor identifies it. (Of `a, b, c`, if only `c` passes, "`c` passed" and "the answer is `c`" say one thing.) The interface ``PassIsIdentification`` names this contract. A generic construction proves an implication when it requires the premises and derives the conclusion from its actual fields. The compiler checks that construction without executing a domain program. Stating a protocol requirement alone does not supply its derivation.
 
-**Where to go.** Pick by what you came for.
+**Where to go.**
 
 - term **Try it:** [the playground](https://danielswift1992.github.io/typed-playground/) runs in the browser, nothing to install: Swift types on the left, their reading on the right, and the judge names every broken claim at the keystroke. In the compiler, the scheduler in [Examples](https://danielswift1992.github.io/verification-is-identification/documentation/examples) is a proof in nine lines: it derives the one consistent schedule and refuses an impossible one by name. Five minutes either way.
 - term **See it at scale:** [Organization](https://danielswift1992.github.io/verification-is-identification/documentation/organization) is a whole company in the notation: browse the site its build rendered, walk a login keypad, read the access verdicts. <doc:Curve> measures the build as the company grows, to 12800 employees.
@@ -26,13 +26,13 @@ Two longer threads run through the papers: learning machines, <doc:intelligence_
 
 ### What is on this page
 
-The types below are grouped by what each one does: the seed, the markers, the kernel, the four axes, and the theorems built on them. That is the framework's core. The papers carry the rest and are linked from <doc:Sources>. Every type's page is enough on its own. A tag like `[Nav N5]` points to its proof in a paper, never something you must read first.
+The framework's core types are grouped by what each one does: the seed, the markers, the kernel, the four axes, and the theorems built on them. The papers carry the rest and are linked from <doc:Sources>. Every type's page is enough on its own. A tag like `[Nav N5]` points to its proof in a paper, never something you must read first.
 
-(The page is not ordered by paper: the order the papers were written is one walk through the types, while this lists them by the move each one makes. A fuller account of that organization is in ``Law``.)
+The page's order follows each type's move. The papers' writing order gives a different walk through the types. ``Law`` gives a fuller account of that organization.
 
 > Important: The compiler checks the relations expressed in each concrete or generic construction. The source-bound schedule and contact examples derive their conclusions from those relations. The legacy ``SystemCrystallizes`` coordinates alone do not establish a unique actual schedule or completion of an arbitrary search. A refusal identifies the incompatible construction whose premises were changed.
 
-> Note: The whole tree obeys one construction law (see ``Law``), enforced on every build by the package's linter. The spine and routes below are *induced* from the types: `tree-sort` computes each symbol's group from the `associatedtype`/`where` it declares, and `tree-sort --check` holds the page equal to the types. Nothing is grouped by hand.
+> Note: The package's linter checks the construction law in ``Law``. `check.sh` runs the lattice checks. `tree-sort` derives every group in the spine and routes below from the types' `associatedtype`/`where` declarations, and `tree-sort check` checks the page against that generated form.
 
 ## Topics
 

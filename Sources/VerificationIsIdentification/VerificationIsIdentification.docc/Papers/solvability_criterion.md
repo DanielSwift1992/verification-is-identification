@@ -1,6 +1,6 @@
 # The Solvability Criterion (Specification)
 
-This paper specifies one sufficient architecture for certified search: represent a candidate family, relate it to the intended task, delimit a search region, and check supplied candidates until an adequate witness is found or the declared budget ends. Distance Is Cost G10–G13 provide several ways to bound or compare that work. They do not force every solver to use metric balls, and they do not make model adequacy a consequence of compilation.
+This paper specifies one sufficient architecture for certified search: represent a candidate family, relate it to the intended task, delimit a search region, and check supplied candidates until an adequate witness is found or the declared budget ends. Distance Is Cost G10–G13 provide several ways to bound or compare that work. Other solvers may work without metric balls, and model adequacy remains a premise beyond compilation.
 
 ## §0. The Factorization
 
@@ -74,4 +74,4 @@ The useful result is E2.1 with explicit premises and a reviewable proof. C3 desc
 | PiR | M16 sufficient finite-descent premise |
 | Verdict | actual reading and application relations, evidence factorization, VC10 open-reading boundary |
 
-The question is no longer whether a grammar has the one geometry that every intelligence must possess. It is which explicit relations suffice for the intended answer, and which of those relations the current construction already supplies.
+The question is which explicit relations suffice for the intended answer, and which of those relations the current construction already supplies. It replaces the earlier question of whether a grammar has one geometry that every intelligence must possess.

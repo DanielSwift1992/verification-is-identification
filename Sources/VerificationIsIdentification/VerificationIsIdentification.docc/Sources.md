@@ -8,11 +8,11 @@ Four longer papers keep their original entry addresses and place detailed deriva
 
 Each protocol in ``VerificationIsIdentification`` encodes a claim first made and proved in one of the papers below. The relationship runs one way: the papers are the *source* (prose derivations carrying the full proofs and the mathematics) and the lattice is their type-level *encoding*.
 
-These are the *why*, not the *how*. To use the framework you need none of them: that path starts at <doc:Purpose>. They are here for the reader who wants the claim proved.
+To use the framework you need none of the papers: that path starts at <doc:Purpose>. The papers are here for the reader who wants the claim proved.
 
 One paper is apart. *Existence Is Finite* (`EiF`) is the ground, below the protocol floor: in it the author argues the seed (``Pair``, ``Null``) and the medium Σ into place, so no protocol *routes* to it. It is what the rest are built in. Its claims surface as provenance on the seed and the kernel, never as a route of their own.
 
-They are arranged differently, on purpose. The papers follow the order they were written. This documentation follows the structure *measured* from the lattice itself: a small basis of axes spanned by a web of theorems (see the ``VerificationIsIdentification`` overview). The papers are one walk through that structure. The documentation is the structure.
+The papers follow the order they were written. This documentation follows the structure *measured* from the lattice itself: a small basis of axes spanned by a web of theorems (see the ``VerificationIsIdentification`` overview). The papers are one walk through that structure.
 
 So a tag like `[Nav N5]` at the end of a symbol's discussion is provenance, not navigation: it points to the section of the paper that proves the claim, where the full notation is. To understand a symbol, its own page is enough. To read the derivation and the math, open the paper.
 
@@ -20,7 +20,7 @@ So a tag like `[Nav N5]` at the end of a symbol's discussion is provenance, not 
 
 ## The papers as one game
 
-The list reads three ways. By the order the papers were written, the walk above. By the structure measured from the lattice, the documentation's spine. And as one game, the reading that <doc:Purpose> opens: each paper is a rule of the game, or a consequence of playing it.
+The list can be read in writing order, through the documentation's spine measured from the lattice, or as one game, the reading that <doc:Purpose> opens: each paper is a rule of the game or a consequence of playing it.
 
 | In the game | Where it is set |
 | --- | --- |
@@ -34,7 +34,7 @@ These are the spine of the arc. The other papers deepen one of these moves, and 
 
 ## By what you came to build
 
-The readings above are the structure. This one is for the reader with a goal: pick your path and pull the thread in order.
+The following paths group the papers by what you came for. Read each path in the listed order.
 
 | If you came for | The thread |
 | --- | --- |

@@ -71,7 +71,7 @@ A nested metric cover alone does not supply the necessary graph edges, a policy 
 
 ## §5. Economics
 
-**N13 (Amortization).** Building the map costs |L|² traversals once (the W-matrix). Each routed query saves (|L| − hops × deg) traversals against the scan (N10). The crossover (queries until the map has paid for itself) is |L|² / (|L| − hops × deg): finite, computable in advance from measured quantities. Past it, the map is pure profit, and the profit compounds with query rate. Incremental maintenance (one matrix row per insertion) keeps the ledger linear after the initial build.
+**N13 (Amortization).** Building the map costs |L|² traversals once (the W-matrix). Each routed query saves (|L| − hops × deg) traversals against the scan (N10). The crossover (queries until the map has paid for itself) is |L|² / (|L| − hops × deg): finite, computable in advance from measured quantities. Past it, each routed query is a net saving in traversals, and the savings grow with query rate. Incremental maintenance (one matrix row per insertion) keeps the ledger linear after the initial build.
 
 **N14 (Attachment signature).** As the library grows by crystallization under a modulus (G10), new entries land within ω(·) of the classes that produced them: insertions attach near existing anchors. Anchors central to dense regions accumulate degree, and the degree distribution of Γ(L, ρ) skews toward hubs: ball centers in the sense of G11. The histogram of deg(a) is therefore a cheap diagnostic of clustered growth: skewed degrees are the signature of attachment, flat degrees the signature of uniform scatter. A signature, not a law: read it, do not assume it.
 

@@ -273,11 +273,11 @@ The broader compression, feeling, resonance and ensemble proposals in PP12–PP1
 | Source | Used |
 |---|---|
 | V=I | §0 (postulate: PAIR/NULL/COMPARE given), §1 (encoding is the agent's, REJECT-address), §2.1/§2.3 (Σ, G), §2.5/§5.11 (composition, the act of distinction), §3.1–3.6 (game, R4), §4.7–4.8 (gate, execute), §5.4 (encoding-local), §5.5 (totality), §5.17 (agent-system duality), §5.18 (cache transferability), §5.22 (S non-increasing), §5.24/§5.25, Theorem 2 |
-| IiI | §0 (agent = outer half), §1 (crystallization), §3 (Saturation Theorem, SAT5/6, scope remark), §4 (grammar boundary), §6 (coupon collector), §7 (Mirror/Crystal correlations) |
+| IiI | §0 (agent = outer half), §1 (crystallization), §3 (Saturation Theorem, SAT5/6, scope remark), §4 (grammar boundary), §6 (coupon collector) |
 | PiR | §0 (one substrate), §2 (irreducibility), §6 (revelation), M7–M8/M10 (ignition, crystal-as-target), M12 (convergence), M24 (conditional physical resource model) |
 | DiD | S1 (stationarity), S7 (cache distance), S9 (translation), S18 (inertia), S24 (Σ conserved) |
 | DiC | §2 (grow/shrink), §4 (frontier = surface), G1a (norm and conditional node cost), G4 (graded comparison), G10 (modulus), G12 (compression criterion), G13 (loss), G14 (travel time), G15 (resistance has magnitude) |
-| InI | S5b (cert / confusion-cover), S6a (dual flow), §7 (agent correlation types) |
+| InI | S5b (cert / confusion-cover), S6a (dual flow), §7 S9 (several agents: shared or complementary records) |
 | LiT | LT4–LT5 (law as game, ambiguity as experiment), §6 (stochastic/partial boundaries) |
 | E2 | §0 (the measured campaign), C1 (basis coverage), §4 (critical-slowing budget), §5 (encoder-tower floor) |
 | B | B3 (ordered bounded sieve), B6–B8 (bounded expansion versus unbounded generation), B8d–B8e (reach growth and sampling) |
@@ -299,7 +299,7 @@ The broader compression, feeling, resonance and ensemble proposals in PP12–PP1
 | PP8 | V=I §5.4, §5.24, DiD S1, S9, InI §7 |
 | PP9 | PiR M7–M8, M10 |
 | PP10 | V=I §2.3, DiC §2, §4, G14, DiD S18, S24, PiR M12, InI S6a |
-| PP11 | PP2, I3, IiI §1–§3, §7 |
+| PP11 | PP2, PP8, PP19, PP20, I3, V=I U2c, IiI §1–§3 |
 | PP12 | IiI CS1, fixed one-class-per-entry contract, DiC G12 |
 | PP13 | fixed-example mismatch, VI2, VC15, explicit exhaustion and cost scope |
 | PP14 | PP8, PP9, V=I §5.4, §5.24, DiD S1, IiI §4 |

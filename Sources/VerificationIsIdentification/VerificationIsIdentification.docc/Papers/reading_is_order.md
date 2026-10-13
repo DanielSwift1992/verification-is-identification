@@ -18,7 +18,7 @@ Existence Is Finite's distinction between a space and a process applies here: ch
 
 The focus and stack reconstruct the whole tree by successively filling each hole. This is the binary instance of [Huet's zipper](https://gallium.inria.fr/~huet/PUBLIC/zip.pdf) and the one-hole interpretation developed by [McBride](https://citeseerx.ist.psu.edu/document?doi=7de4f6fddb11254d1fd5f8adfd67b6e0c9439eaa&repid=rep1&type=pdf).
 
-The two context constructors do not imply exactly two possible actions. At an internal focus with a parent, down-left, down-right and up are three distinct available navigations. Descent requires a branch and ascent requires a nonempty context. Editing or stopping requires further specified operations. A recorded walk has an order, but this representation alone neither supplies physical duration nor proves that every agent is only a traversal policy.
+At an internal focus with a parent, down-left, down-right and up are three distinct available navigations, so the two context constructors do not imply exactly two possible actions. Descent requires a branch and ascent requires a nonempty context. Editing or stopping requires further specified operations. A recorded walk has an order, but this representation alone neither supplies physical duration nor proves that every agent is only a traversal policy.
 
 ## §2. Specified Generators and Readers
 
@@ -46,7 +46,7 @@ Verdict VC92 and VC94a provide a constructive contrast. One resident phase disti
 
 Thus neither the grammar nor its initiality chooses a discriminator. Finality also supplies a canonical carrier for fixed F while leaving many source coalgebras. There is no initial/free asymmetry establishing inevitable checking semantics on one side. Proposal Is Order GD3–GD4 separately distinguish coverage, dispatch and cost. Their premises cannot be replaced by uniqueness of a map after its algebra has been chosen.
 
-This objection does not prevent relations from forcing an answer. It locates the required work: specify the relations that exclude the second algebra for this question. The generic existence of folds does not exclude it.
+Relations can still force an answer. This objection locates the required work: specify the relations that exclude the second algebra for this question. The generic existence of folds does not exclude it.
 
 ## §5. Accumulation and Cycles
 

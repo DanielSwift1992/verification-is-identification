@@ -36,9 +36,9 @@ No new postulate. A press is V=I's Theorem 2 applied to one slot: the pattern id
 
 ## §6. Races and reversal
 
-**DiS6 (Races are no-ops).** Rules over distinct slots commute: each reads and writes only its own slot. Two systems over disjoint slots therefore compose by concatenating their forms and their dictionaries, and every theorem above is true of the union. Two presses over one slot resolve as compare-and-swap: the later press finds a term its pattern no longer matches, and it lands as a no-op. A stale expectation is no loss, because nothing it expected exists.
+**DiS6 (Races are no-ops).** Rules over distinct slots commute: each reads and writes only its own slot. Two systems over disjoint slots therefore compose by concatenating their forms and their dictionaries, and every theorem above is true of the union. Two presses over one slot resolve as compare-and-swap when the first press makes the second pattern stop matching: the later press finds a term its pattern no longer matches, and it lands as a no-op. A stale expectation is then no loss, because nothing it expected exists. A pattern that still matches the new term fires again. With From = x and Into = PAIR(x, NULL), two presses from NULL give PAIR(NULL, NULL) and then PAIR(PAIR(NULL, NULL), NULL).
 
-**DiS7 (Undo is a rule).** A rule that erases no variable reverses by swapping From and Into. The reverse is again a rule, judged like any other. A history is one level-1 rule: cons the last term onto a list slot.
+**DiS7 (Undo is a rule).** When Into is also linear and uses exactly the variables of From, swapping From and Into gives a rule of the same class, judged like any other, which undoes each fired transition. Keeping every variable is not enough: Into = PAIR(x, x) swaps to a From that repeats x, outside DiS1. The swapped rule also need not invert the whole press map. With From = NULL and Into = PAIR(NULL, NULL), the press sends NULL to PAIR(NULL, NULL) and leaves PAIR(NULL, NULL) unchanged as a no-op, so two inputs share one output. Undoing a whole press then needs the retained old term or a record that the rule fired. A history is one level-1 rule: cons the last term onto a list slot.
 
 ## §7. The class boundary
 

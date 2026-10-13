@@ -29,7 +29,7 @@ The framework's prior papers identified rules of static transformations. A law i
 
 **LT2 (The law has an encoding in Σ).** f is a finite function, and a finite function has an encoding as a lookup structure: a tree of PAIR((s, a), s′) entries terminating at NULL (V=I §2.1, the same move as the library's own encoding, PiR §2). Therefore:
 
-- ‖f‖ is defined (G1a): the number of distinctions in the law's encoding. Under M24's uniform maintenance model it prices the law per cycle, and a law expressible through few features has small norm.
+- ‖f‖ is defined (G1a): the number of distinctions in the law's encoding. Under M24's uniform maintenance model it prices the law per cycle. The norm measures the chosen encoding. A short feature description does not by itself bound the norm of the lookup structure above. That structure grows with |St|·|A| even for a constant law.
 - W(f₁, f₂) is defined (G2): the number of single-address edits between the two law encodings, disagreeing transition cells each counted with the magnitude of their disagreement. It is computable before any transfer is attempted. Reading it as a transfer cost needs LT8's execution premises.
 
 **LT3 (Relocation).** Under LT1's fixed complete state/action interpretation, the transition table remains fixed while a represented state changes. It can therefore be the target required by I2. For a local description E of a larger state, the corresponding requirement is descent of the whole transition through E, with its actual availability preserved where actions are partial (Verdict VC46–VC47). M70 supplies whole permutations for which a local reset holds for any prepared finite horizon and then fails. Identifying the fixed whole law and establishing an autonomous local law are different obligations.
@@ -48,7 +48,7 @@ The diagnostic is constructive: the system returns the distinguishing cells: WHI
 
 ## §3. Behavior as Structure
 
-**LT7 (Trajectory).** A bounded-horizon trajectory T = (s₀, a₀, s₁, a₁, ..., s_h) is a finite sequence over finite alphabets: a finite tree in Σ. Behavior is a structure. Two consequences are immediate: ‖T‖ (the cost of a behavior's existence) and W(T₁, T₂) (the distance between behaviors, computable by one traversal, G2a).
+**LT7 (Trajectory).** A bounded-horizon trajectory T = (s₀, a₀, s₁, a₁, ..., s_h) is a finite sequence over finite alphabets: a finite tree in Σ. Behavior is a structure. Two consequences are immediate: ‖T‖ (the number of distinctions in the encoded trajectory, priced as a maintenance cost only under M24's model) and W(T₁, T₂) (the distance between behaviors, computable by one traversal, G2a).
 
 **LT8 (Editing a plan and executing it have different costs).** W(T₁,T₂) counts the single-address edits of G2 needed to change one encoded plan into another. It bounds operation ticks only for an interface allowing one such edit per tick. G14a instead permits compatible edits in parallel and counts dependent rounds. Executing a plan can also depend on the current state, action availability, committed effects and retained history. Its redirection cost must use those actual transitions. A distance between two plan descriptions alone does not determine that cost or a physical inertia.
 

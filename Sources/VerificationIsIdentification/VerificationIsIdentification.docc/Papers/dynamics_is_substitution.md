@@ -66,10 +66,10 @@ Dynamics is substitution. A written system moves by one act: find the pattern in
 |---|---|
 | V=I | Theorem 2 (the cut), §5.22 (the candidate set shrinks): a match is the cut at one slot |
 | Law Is Target | LT1–LT2 (the law is a finite structure with norm and distance), the identified half mirrored here |
-| Existence Is Finite | the actual is finite, and an unbounded run has no final structure to ask about |
-| Program Is Path | a press word is a path: finite, permanent, priced by its length |
-| Distance Is Cost | the cost of dynamics is the written rules, never the size of the reached space |
-| Play Is Proof | PP15 (the gate is given, not self-certified): the encoder's product is judged at the door |
+| Existence Is Finite | finite generation as a stated condition (C6, EF1). Finite levels alone do not imply a last level, while a supplied strictly decreasing natural-number rank bounds continued levels (EF7) |
+| Program Is Path | a press word is a finite retained path with a length (PiP1–PiP2), and its cost needs an identified unit (PiP3) |
+| Distance Is Cost | the tree-edit metric W (G2), within which a press changes one slot's term (DiS4) |
+| Play Is Proof | §8 and PP21 (a certified label needs a decidable verifier, and internal inspection is relative to stated premises): the encoder's product is judged at the door |
 
 In Law Is Target the author proved the law identifiable from examples, with the writing side left open. Here the author closes it: a law can be written whole and judged, and every consequence of identification is inherited, with the search already spent. The author pinned the claims in the lattice before stating them in prose, and this document exists so the presented half of the axis is one in prose and in types.
 

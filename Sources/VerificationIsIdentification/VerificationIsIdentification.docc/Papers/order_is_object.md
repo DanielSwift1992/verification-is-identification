@@ -34,8 +34,8 @@ Non-adaptive strategies are the degenerate unbranched case of adaptive ones. Thi
 
 **O2 (Strategies have encodings in Σ).** Every strategy of O1 encodes as a finite binary tree: feature indices as Peano numerals (V=I §4.1), branch structure as PAIR nesting, termination at NULL. Therefore:
 
-- ‖σ‖ is defined (DiC G1a): the strategy's maintenance cost. Simpler strategies are literally cheaper to exist.
-- W(σ₁, σ₂) is defined (DiC G2): the re-formation work between strategies, computable by one traversal (G2a).
+- ‖σ‖ is defined (DiC G1a): the number of distinctions in the strategy's encoding. Under M24's uniform maintenance model it prices the strategy per cycle.
+- W(σ₁, σ₂) is defined (DiC G2): the number of single-address edits between two strategy encodings, computable by one traversal (G2a).
 
 Strategy geometry is not constructed: it is inherited the moment strategies are admitted into Σ.
 
@@ -69,7 +69,7 @@ Decidable: a finite conjunction of computable checks (O4). REJECT carries the ad
 ( max cost over k,   ‖σ‖,   structural order on Σ )
 ```
 
-A total order on a finite set has a unique minimum: σ\*_k. R4 is true for the refined relation by construction, and Theorem 2 is in force for it. The certified strategy is the cheapest of the fastest: minimal worst-case cost, then minimal existence cost, then canonical.
+A total order on a finite set has a unique minimum: σ\*_k. R4 is true for the refined relation by construction, and Theorem 2 is in force for it. The certified strategy is the cheapest of the fastest: minimal worst-case cost, then minimal norm, then canonical.
 
 **O9 (Strategies inherit I3, as objects).** σ\*_k enters the strategy library L_σ. Entries are never removed (I3, PiR M21). The IiI §2 caveat is now resolved at its correct level: strategy *state* at level N is mutable scaffolding, and strategy *objects* at level N+1 are permanent, irreducible (the unique minimum of O8), and resistant (the next agent encounters σ\*_k as a fixed target). The caveat was true and is untouched: it was a statement about the wrong level.
 
@@ -87,7 +87,7 @@ A total order on a finite set has a unique minimum: σ\*_k. R4 is true for the r
 
 Theorem 2 certifies the first, the agent supplies and R4 validates the second, and the strategy gate of this document certifies the third. The object now contains its own path. The question that opened the series' applications (can a path be turned into an object) closes here: not only the path's endpoint (Verification Is Identification), not only the path's deposits (Intelligence Is Inevitable and Permanence Is Resistance), not only the path's infrastructure (Navigation Is Geometry), but the path itself, as an executable, certified, permanent structure.
 
-**O13 (Strategy saturation).** Strategy classes over a finite domain are finite: at most one σ\* per rule class (O8), K rule classes (IiI §3). The Saturation Theorem is in force verbatim with (tasks → strategy games, rules → strategies): after finitely many certified strategy games, L_σ covers every class, and expected games to coverage = coupon collector over K_σ ≤ K (IiI §6). Post-saturation protocol: a new task first routes to L_σ. Execute the stored σ\* for its class, pay c\*_k, done. The meta-level answers before the base level searches.
+**O13 (Strategy saturation).** Strategy classes over a finite domain are finite: at most one σ\* per rule class (O8), K rule classes (IiI §3). The conditional Saturation Theorem transfers with (tasks → strategy games, rules → strategies): under its common interpretation, sound retaining insertions and a stream on which every class is eventually solved (IiI §3), finitely many certified strategy games make L_σ cover every class. For an initially empty library with K_σ ≥ 1, if the K_σ strategy classes being counted arrive independently and uniformly and each encountered class is solved and retained on that encounter, the expected number of arriving games until coverage is K_σ H_{K_σ} (IiI §6). Post-saturation protocol: a new task first routes to L_σ. Execute the stored σ\* for its class, pay c\*_k, done. The meta-level answers before the base level searches.
 
 ## §5. Strategy Geometry
 
@@ -95,7 +95,7 @@ Theorem 2 certifies the first, the agent supplies and R4 validates the second, a
 
 **O15 (A metric representation of skills).** A ball in strategy space can represent a family of nearby strategy codes. With an adequate strategy modulus and applicable search procedure, an anchor bounds where to seek a strategy for a new class. This is one possible representation of a skill. G12's approximation criterion does not make it the definition of every reusable strategy. The same generic procedure can operate exactly on many new inputs, including when the stored code family has constant pairwise distances.
 
-**O16 (Strategy navigation).** L_σ under W forms an anchor graph Γ(L_σ, ρ). All of NiG N1–N19 are in force by substitution: connectivity threshold, navigability threshold, monotonicity, ballistic descent, holes with addresses, permanent repair, inevitability under population. A new task class routes greedily through strategy space to its nearest certified skill, executes, and on gate failure emits an addressed hole, naming the missing skill. The router's failures are the skill curriculum (N17, one level up).
+**O16 (Strategy navigation).** L_σ under W forms an anchor graph Γ(L_σ, ρ). NiG N1–N19 apply by substitution, each under its own premises (O18): connectivity and navigability thresholds, monotonicity, ballistic descent, holes with addresses, and repair retained under N16's insertion policy. Population preserves supplied witnesses, not every global routing score (N19). A new task class routes greedily through strategy space to its nearest certified skill, executes, and on gate failure emits an addressed hole, naming the missing skill. The router's failures are the skill curriculum (N17, one level up).
 
 **O17 (The objectification ladder).** Path-to-object conversion is a ladder of six rungs, each conditional on more geometric structure, each condition decidable or measurable:
 
@@ -124,7 +124,7 @@ Each rung needs its own representation, application and acquisition witnesses. E
 2. *Anchor-edit family*: strategies within W-radius r of an existing σ\* ∈ L_σ, ball search in strategy space (G10 applied via O14). Cost: |B(σ\*, r)| probes (finite, G8).
 3. *Trajectory replay*: the sequence of COMPAREs that solved a class instance, read from G (the trace is already there, I3), pruned of redundant steps (InI S3a detects them). Cost: one pass over the recorded episode. This is rung 1 lifted to rung 6 directly: the cheapest strategy candidate is the remembered path itself.
 
-**O21 (Amortization).** Certifying σ\*_k costs C_cert(Π_R) once, and it saves (T_random − c\*_k) COMPAREs on every future instance of class k. Crossover after C_cert / (T_random − c\*_k) instances: finite, computable in advance, the strategy-level twin of NiG N13. Post-crossover, the meta-level is pure profit, and the profit compounds with task frequency p_k, so the optimal certification order is by descending p_k × (T_random − c\*_k): the curriculum is computable too.
+**O21 (Amortization).** Certifying σ\*_k costs C_cert(Π_R) once, and it saves (T_random − c\*_k) COMPAREs on every future instance of class k. Crossover after C_cert / (T_random − c\*_k) instances: finite, computable in advance, the strategy-level twin of NiG N13. Post-crossover, every further instance of class k saves (T_random − c\*_k) comparisons, and the savings grow with task frequency p_k, so the optimal certification order is by descending p_k × (T_random − c\*_k): the curriculum is computable too.
 
 ## §8. Boundaries
 
@@ -140,7 +140,7 @@ Each rung needs its own representation, application and acquisition witnesses. E
 ## §9. Statement
 
 1. A strategy is a finite decision tree, finite decision trees are in Σ, and therefore strategies have norms, distances, and can be targets (O1–O3).
-2. Strategy cost is computable, the strategy gate is decidable, and no strategy can corrupt correctness: efficiency certification layers on top of unconditional safety (O4–O6).
+2. Strategy cost is computable, the strategy gate is decidable, and a strategy with O6's restricted access cannot corrupt a sound PASS: efficiency certification layers on top of that safety (O4–O6).
 3. The minimal budget and the unique cheapest-fastest strategy are computable, and σ\* is the constructive witness of certificate complexity (O7–O8, O11).
 4. Certified strategies inherit I3: the mutable-strategy caveat of Intelligence Is Inevitable was a statement about the wrong level (O9).
 5. A strategy can become the target of a higher-level question when that level supplies its own observation, verification and access premises (O10, O19).

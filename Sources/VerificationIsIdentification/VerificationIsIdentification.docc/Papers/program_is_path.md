@@ -40,7 +40,7 @@ More generally, for a finite sequence h₀,…,hₙ, its sum of edge distances i
 
 ## §5. An Invalid Step Folds Onto the Path
 
-**PiP6 (An explicit refusal policy).** A rejected construction supplies no instance of that attempted construction. This does not choose the enclosing system's response. A system can preserve its previous path, append a failure record or expose another admitted outcome if its declared rules provide it. InvalidStepFolds requires Left=Right=Path, without an attempted transition, failure condition or execution rule. It names a stationary path coordinate. It does not prove that all refusals return to it or that this is the only total response. Matter M58 already distinguishes an explicit return relation from a return supposedly inferred from closure alone. A keypad's chosen failure representation needs its own construction to establish its sharing and size.
+**PiP6 (An explicit refusal policy).** A rejected construction supplies no instance of that attempted construction. The enclosing system's response is a separate choice: a system can preserve its previous path, append a failure record or expose another admitted outcome if its declared rules provide it. InvalidStepFolds requires Left=Right=Path, without an attempted transition, failure condition or execution rule. It names a stationary path coordinate. It does not prove that all refusals return to it or that this is the only total response. Matter M58 already distinguishes an explicit return relation from a return supposedly inferred from closure alone. A keypad's chosen failure representation needs its own construction to establish its sharing and size.
 
 ## §6. The Gate Decides Soundness
 
@@ -73,7 +73,7 @@ For a sequence of steps, admissibility at each step gives a path guarantee when 
 
 Three interpretation and implementation questions remain separate from the path interfaces:
 
-- **Length and decoded value.** A finite token list has a length in its chosen tokenization. A positional numeral decoder assigns a value to paths in its admitted digit grammar. A letter path is outside that particular grammar, but another declared reading can assign it a number. The open Path coordinate alone supplies neither token membership nor a value decoder. This is a missing construction, without establishing that such a type-level grammar is impossible.
+- **Length and decoded value.** A finite token list has a length in its chosen tokenization. A positional numeral decoder assigns a value to paths in its admitted digit grammar. A letter path is outside that particular grammar, but another declared reading can assign it a number. The open Path coordinate alone supplies neither token membership nor a value decoder. This construction is missing, and its impossibility as a type-level grammar is not established.
 - **Number and word.** The paths `1` and `o·n·e` can denote the same number under specified readers while differing as token structures. A conversion between admitted representations needs its own domain and recovery laws. Agreement on the number question does not identify the paths or make every conversion invertible.
 - **Navigation and checking.** A persistent trie can navigate recorded paths with work depending on path depth. A lookup establishes the recorded path's presence. Authorization additionally needs a checked relation to the current action and context. A small checker is a possible implementation, but the number of marker names does not bound the work of their constraint system. PiP7 separates the necessary evidence from the choice of generator or checking engine.
 
@@ -96,8 +96,8 @@ Three interpretation and implementation questions remain separate from the path 
 |---|---|
 | B | B8b (the horn, the reach no finite axis expresses), B5 (atoms), B6–B7 (derive above the basis) |
 | GD | GD1 (proposal and checking), GD9 (infinite reach does not eliminate lookup or compilation) |
-| Reading | R2 (fold/unfold duality), R3 (order adds no facts) |
-| DiC | G2c (distance is cost, the step-count metric) |
+| Reading | R2 (unfold and fold require their respective structures), R3 (an order-invariant answer within a fixed reading contract) |
+| DiC | G2 (the tree-edit metric W), G2a (its recursion), G2d (the triangle residual), G2c (physical cost needs an implementation model) |
 | V=I | §5.22 (S monotone), Theorem 2 (the cut), §5.24 (scope bounded by the encoding) |
 | IiI | §2 (permanence, erasure has no inverse), §5 (SystemCrystallizes idiom) |
 | NiG | N6 (a failure carries an address, the folded invalid step) |

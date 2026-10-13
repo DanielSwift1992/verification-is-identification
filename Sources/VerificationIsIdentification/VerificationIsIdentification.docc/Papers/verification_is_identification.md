@@ -113,7 +113,7 @@ The agent proposes, and the system certifies relative to the supplied encoding. 
    - **MISMATCH**: rule compiles but fails on test. Agent: add training examples or change features.
 4. **AGENT** reads the diagnostic and constructs a revised encoding, preserving or re-establishing the source/question connection required by §1b, then re-enters at step 1. A deliberate requirement revision states a new task rather than silently counting as completion of the old one.
 
-**Inner half** (steps 2–3): total. Always halts. Always returns a definite answer. If PASS: output = f*. If REJECT: no output. The proofs are in §5.
+**Inner half** (steps 2–3): total on its admitted finite inputs with the supplied enumerations and terminating primitive checks. Every path halts at a definite terminal state. If PASS: output = f*. If REJECT: no output. The proofs are in §5.
 
 **Outer half** (steps 1, 4): the agent's domain. Completion must be scoped:
 - PASS settles the represented task under its stated grounds. Completion of the original task additionally requires the source/question transfer of §1b; without it, application remains conditional.

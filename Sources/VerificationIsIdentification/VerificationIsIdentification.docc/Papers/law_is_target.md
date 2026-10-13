@@ -8,7 +8,7 @@ Within the established scope, disagreements between surviving tables identify di
 
 ## §0. Derivation
 
-No new postulate. One new premise, stated openly: the environment is finite and deterministic (relaxations and their named failures in §6).
+No new postulate. One new premise: the environment is finite and deterministic (relaxations and their named failures in §6).
 
 1. I2 requires a fixed target. A moving state is not fixed. *[V=I §2.4; PiR M6]*
 2. The state moves lawfully: s′ = f(s, a) for a deterministic transition function f over finite states and actions. f itself does not move. *[premise]*
@@ -29,8 +29,8 @@ The framework's prior papers identified rules of static transformations. A law i
 
 **LT2 (The law has an encoding in Σ).** f is a finite function, and a finite function has an encoding as a lookup structure: a tree of PAIR((s, a), s′) entries terminating at NULL (V=I §2.1, the same move as the library's own encoding, PiR §2). Therefore:
 
-- ‖f‖ is defined (G1a): the law's maintenance cost. Simple dynamics are literally cheaper to exist, and a law expressible through few features has small norm.
-- W(f₁, f₂) is defined (G2): the distance between dynamics, the work to re-form one law into the other, disagreeing transition cells each counted with the magnitude of their disagreement. Environment transfer becomes a measurable quantity before any transfer is attempted.
+- ‖f‖ is defined (G1a): the number of distinctions in the law's encoding. Under M24's uniform maintenance model it prices the law per cycle, and a law expressible through few features has small norm.
+- W(f₁, f₂) is defined (G2): the number of single-address edits between the two law encodings, disagreeing transition cells each counted with the magnitude of their disagreement. It is computable before any transfer is attempted. Reading it as a transfer cost needs LT8's execution premises.
 
 **LT3 (Relocation).** Under LT1's fixed complete state/action interpretation, the transition table remains fixed while a represented state changes. It can therefore be the target required by I2. For a local description E of a larger state, the corresponding requirement is descent of the whole transition through E, with its actual availability preserved where actions are partial (Verdict VC46–VC47). M70 supplies whole permutations for which a local reset holds for any prepared finite horizon and then fails. Identifying the fixed whole law and establishing an autonomous local law are different obligations.
 
@@ -67,14 +67,14 @@ The diagnostic is constructive: the system returns the distinguishing cells: WHI
 | N5 (ballistic termination) | a strictly-approaching plan reaches the goal in ≤ W(s₀, g) steps |
 | N6 (holes with addresses) | a stuck state = no action decreases W, an obstacle or trap, located and named |
 | N7 (decidability) | reachability of every goal from every state is decidable, offline |
-| N8 (monotonicity) | richer action sets strictly reduce traps: adding an action never creates one |
+| N8 (monotonicity) | richer action sets can only remove traps: adding an action never creates one |
 | N9 (threshold) | the minimal action-reach at which the world is fully navigable exists and is computable |
-| N15–N16 (permanent repair) | a trap repaired (by a new action, a waypoint, a macro) is repaired for good (I3) |
+| N15–N16 (permanent repair) | a trap repaired (by a new action, a waypoint, a macro) stays repaired under a retaining insertion policy and the same law (N16, I3) |
 | N17 (failure curriculum) | the traps name which capabilities to acquire next |
 
 Local minima of W are exactly the states where greedy locomotion fails: walls, dead ends, puzzles. The framework does not promise their absence: it promises their addresses.
 
-**LT13 (Macro-actions are strategies, and the papers compose).** A certified sub-plan (a region of states, an action sequence, a guaranteed arrival region under f\*) is a strategy object in the sense of Order Is Object: a finite decision tree over observations (states) choosing moves (actions), certifiable by the strategy gate (O5) with cost = plan length, entering the library with norm and distance (O2). Therefore the whole of OiO is in force: motor skills are balls in plan space (O15), skill space is navigable when it clusters (O16), and the optimal certification order of motor skills is computable (O21). Identification (papers 1–6), navigation (7), strategy (8), and dynamics (9) compose on shared primitives with no new axioms: a skill learned in one region of one environment transfers to any (region, environment) pair within measured W, both distances already defined (LT2, O14).
+**LT13 (Macro-actions are strategies, and the papers compose).** A certified sub-plan (a region of states, an action sequence, a guaranteed arrival region under f\*) is a strategy object in the sense of Order Is Object: a finite decision tree over observations (states) choosing moves (actions), certifiable by the strategy gate (O5) with cost = plan length, entering the library with norm and distance (O2). Therefore the whole of OiO is in force: motor skills are balls in plan space (O15), skill space is navigable when it clusters (O16), and the optimal certification order of motor skills is computable (O21). Identification (papers 1–6), navigation (7), strategy (8), and dynamics (9) compose on shared primitives with no new axioms: where O14's strategy modulus is established on the represented rule classes, it bounds W(σ\*_k, σ\*_{k′}) by ω_σ(W(k, k′)). Finding and applying a strategy for a new class additionally requires the search and certification premises of O5/O15 and the execution premises of LT8–LT9.
 
 **LT14 (Decomposition of the interactive task).** Any task in a finite deterministic environment decomposes:
 
@@ -112,8 +112,8 @@ Agreement AC7 supplies an exact finite error bound under a stated conditional la
 1. A fixed law on an adequate state/action representation can be the target while states change (LT1–LT3).
 2. Law identification determines a candidate within its declared family. Connection to the actual law and attainable separating experiments remain required (LT4–LT6).
 3. Encoded trajectories carry norms and edit distances. Editing, plan execution and prediction each require their actual transition and interpretation premises (LT7–LT9).
-4. Planning is navigation: goals are balls under the derived metric, plans are ballistic descents, traps have addresses, repairs are permanent, and no reward function is ever supplied (LT10–LT12).
-5. Motor skills are certified strategies: papers 8 and 9 compose without new axioms, and skill transfer between environments is a measured distance before it is an attempt (LT13).
+4. Planning is navigation: goals are balls under the derived metric, plans are ballistic descents, traps have addresses, repairs persist under a retaining policy and the same law, and no reward function is ever supplied (LT10–LT12).
+5. Motor skills are certified strategies: papers 8 and 9 compose under their stated premises. An established strategy modulus bounds the distance between optimal strategy codes. Finding, certifying and executing a strategy for a new environment additionally requires the corresponding access and execution premises (LT13).
 6. Identify–plan–execute is a sufficient route under its acquisition, model and planning premises. An invariant question can be settled with the law still unresolved (LT14).
 7. A fixed law at a larger internal level is another possible target. Its finite existence alone does not establish learnability or certify a continuing local law (LT15, M70).
 

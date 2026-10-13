@@ -51,7 +51,7 @@ Termination is one of two states: arrival at an anchor with W = 0 to τ (identif
 
 *Proof.* Neighbors at radius ρ are a subset of neighbors at ρ′ ≥ ρ. The stuck condition (no neighbor strictly closer) is preserved under subsetting: removing options cannot unstick. Conversely, adding options (larger ρ) can only provide a closer neighbor. QED
 
-In substituted readings the same statement is monotonicity in capability: richer edge sets (more actions, more moves, more reachable variants per step) strictly shrink the set of traps and never grow it.
+In substituted readings the same statement is monotonicity in capability: richer edge sets (more actions, more moves, more reachable variants per step) can only remove traps and never add one. An added action whose successor is already available removes none.
 
 **N9 (Navigability threshold).** ρ_nav(L) = the least ρ at which greedy descent succeeds for every (start, target) pair over L. It exists: at ρ = diam(L) the graph is complete and the target's own entry is every node's neighbor, and every walk arrives in one hop. It is computable: success at fixed ρ is decidable (N7) and monotone in ρ (N8), so binary search over ρ ∈ [ρ\*, diam] finds the threshold in log₂(diam) probes.
 

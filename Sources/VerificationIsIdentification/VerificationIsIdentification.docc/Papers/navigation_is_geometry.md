@@ -151,7 +151,7 @@ The global navigability threshold over a growing vertex set need not decrease. W
 | N9 | N7, N8 |
 | N10 | N3, DiC G2a |
 | N11 | N1, DiC G11–G12 |
-| N12 | N11 |
+| N12 | Supplied finite graph, level assignment, descending access and policy |
 | N13 | N10 |
 | N14 | DiC G10–G11, IiI §1 |
 | N15 | N6, DiC G2 (geodesics inside Σ) |

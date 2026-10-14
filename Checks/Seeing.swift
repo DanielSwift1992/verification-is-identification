@@ -9,10 +9,10 @@ enum ProductByOneComputesOperand<N: IntegerValued>: Null {
 }
 
 enum ProductStepComputesBothAddresses<P: NaturalProduct, A: NaturalSum>: Null
-where A.Left.Left == P.Answer, A.Left.Right == P.Left.Right {
+where A.First == P.Answer, A.Second == P.Second {
     typealias Step = ProductSuccessor<P, A>
     typealias Left = Paired<Step.Left, Step.Answer>
-    typealias Right = Paired<Paired<Examples.Succ<P.Left.Left>, P.Left.Right>, A.Answer>
+    typealias Right = Paired<Paired<Examples.Succ<P.First>, P.Second>, A.Answer>
 }
 
 enum GramSharesOneFactor<P: NaturalProduct>: Null

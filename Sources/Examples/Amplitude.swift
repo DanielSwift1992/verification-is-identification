@@ -90,13 +90,25 @@ public enum NaturalProductQuestion: Close {}
 /// Operand and answer coordinates for addition. Correctness is established
 /// by the finite AddZero/AddSuccessor constructor grammar below, not by an
 /// arbitrary conformance to this open interface. Never is its chosen zero.
+///
+/// First and Second name the two operands, and each constructor pairs them
+/// as Left. A successor step reads the previous operands through these named
+/// associated types. On Swift 6.2.3 a depth-36 chain then checks without the
+/// slowdown of the nested-address form. Left stays an independent requirement. A protocol-level link from Left to First and
+/// Second makes Swift 6.2 drop requirements that other signatures write
+/// through Left.Left, and the Gram refusal fixtures catch that loss.
 public protocol NaturalSum: PredicateReading
 where Left: Pair, Left.Left: IntegerValued, Left.Right: IntegerValued,
       Answer: IntegerValued, Sigma == NaturalArithmeticSpace,
-      Encoding == UnaryArithmeticEncoding, Predicate == NaturalSumQuestion {}
+      Encoding == UnaryArithmeticEncoding, Predicate == NaturalSumQuestion {
+    associatedtype First: IntegerValued
+    associatedtype Second: IntegerValued
+}
 
 public enum AddZero<B: IntegerValued>: NaturalSum {
-    public typealias Left = Paired<Never, B>
+    public typealias First = Never
+    public typealias Second = B
+    public typealias Left = Paired<First, Second>
     public typealias Answer = B
     public typealias Right = Answer
     public typealias Sigma = NaturalArithmeticSpace
@@ -106,7 +118,9 @@ public enum AddZero<B: IntegerValued>: NaturalSum {
 
 /// One successor in the first operand becomes one in the same result.
 public enum AddSuccessor<P: NaturalSum>: NaturalSum {
-    public typealias Left = Paired<Succ<P.Left.Left>, P.Left.Right>
+    public typealias First = Succ<P.First>
+    public typealias Second = P.Second
+    public typealias Left = Paired<First, Second>
     public typealias Answer = Succ<P.Answer>
     public typealias Right = Answer
     public typealias Sigma = NaturalArithmeticSpace
@@ -117,13 +131,20 @@ public enum AddSuccessor<P: NaturalSum>: NaturalSum {
 /// Operand and answer coordinates for multiplication. The finite product
 /// constructors must use additions from the finite sum grammar. A supplied
 /// interface conformance alone does not establish its arithmetic meaning.
+///
+/// First and Second name the two operands, as in NaturalSum.
 public protocol NaturalProduct: PredicateReading
 where Left: Pair, Left.Left: IntegerValued, Left.Right: IntegerValued,
       Answer: IntegerValued, Sigma == NaturalArithmeticSpace,
-      Encoding == UnaryArithmeticEncoding, Predicate == NaturalProductQuestion {}
+      Encoding == UnaryArithmeticEncoding, Predicate == NaturalProductQuestion {
+    associatedtype First: IntegerValued
+    associatedtype Second: IntegerValued
+}
 
 public enum ProductZero<B: IntegerValued>: NaturalProduct {
-    public typealias Left = Paired<Never, B>
+    public typealias First = Never
+    public typealias Second = B
+    public typealias Left = Paired<First, Second>
     public typealias Answer = Never
     public typealias Right = Answer
     public typealias Sigma = NaturalArithmeticSpace
@@ -134,8 +155,10 @@ public enum ProductZero<B: IntegerValued>: NaturalProduct {
 /// The addition must start with the previous product and the same second
 /// operand. Its computed answer becomes the next product, with no count call.
 public enum ProductSuccessor<P: NaturalProduct, A: NaturalSum>: NaturalProduct
-where A.Left.Left == P.Answer, A.Left.Right == P.Left.Right {
-    public typealias Left = Paired<Succ<P.Left.Left>, P.Left.Right>
+where A.First == P.Answer, A.Second == P.Second {
+    public typealias First = Succ<P.First>
+    public typealias Second = P.Second
+    public typealias Left = Paired<First, Second>
     public typealias Answer = A.Answer
     public typealias Right = Answer
     public typealias Sigma = NaturalArithmeticSpace

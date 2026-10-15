@@ -55,7 +55,7 @@ The showcase is a few small mechanisms. Each one is checked by the compiler, so 
 
 | Mechanism | What the compiler guarantees |
 | --- | --- |
-| **Access is a gate** | ``View``, ``Administer``, ``Delete`` earn ``Authorized`` only when their rule is met. A forbidden access does not compile. |
+| **Access is a gate** | ``View``, ``Administer``, ``Delete`` earn ``Authorized`` only when their rule is met. ``Granted`` accepts only an authorized gate, so asserting a forbidden access does not compile. |
 | **Roles make it scale** | Access depends on the role, not the person, so the whole roster resolves from a few certified rules (``RoleLibrary``): 200 people, four proofs. |
 | **The audit re-proves itself** | The standing report (``OwnedFromWithin``, ``LedByManager``) is re-checked on every build, so a fact that stops being true becomes a build error. |
 | **An access can name a person** | Only the owner can delete a vault, so "who may delete it?" has one answer. Checking the access names that person (``OwnerGate``). |

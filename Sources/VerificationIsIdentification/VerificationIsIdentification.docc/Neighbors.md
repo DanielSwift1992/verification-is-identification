@@ -10,7 +10,7 @@ A partial evaluator takes a program together with the part of its input that is 
 
 ### Materialized Datalog
 
-Datalog is a query language over facts and rules, decidable because it gives up Turing completeness. A materialized Datalog database does not search at query time: it derives every derivable fact once, ahead of time, and stores the closure, so a query becomes a lookup. The saturation this package's papers prove, a checking system that eventually contains every answer and stops computing, is that fixpoint. The difference is in the terms. Datalog forbids function symbols, while this lattice composes types: `Pair`, generic parameters. Termination is kept by the theory's floor instead: every space is finite, width by ``Pair``, depth by ``Null``.
+Datalog is a query language over facts and rules, decidable because it gives up Turing completeness. A materialized Datalog database derives every derivable fact once, ahead of time, and stores the closure, so a query becomes a lookup instead of a search. The papers prove related coverage for a fixed task domain with a common finite rule interpretation. Once the task stream has solved and stored every class through sound retaining insertions, the library represents every class in that domain. A later task in the same domain can reuse a stored rule when an implemented dispatcher selects the required class (the Conditional saturation theorem of <doc:intelligence_is_inevitable>). The difference is in the terms. Datalog forbids function symbols, while this lattice composes types: `Pair`, generic parameters. Termination is kept by the theory's floor instead: every space is finite, width by ``Pair``, depth by ``Null``.
 
 ### Total languages
 
@@ -22,7 +22,7 @@ The login keypad in the Organization showcase accepts one four-digit code out of
 
 ### Policy engines
 
-Policy-as-code engines state access rules as data and answer requests against them: OPA evaluates Rego policies at request time, and AWS's Cedar adds an analyzer beside the engine that proves properties of a policy with a solver. In both, the policy is one artifact and the system it governs is another, met at request time. Here the policy and the system are one text: people, documents, and rules are types in one file, an access is a type instantiation, and an illegal access is not rejected when requested: it is unwritable. The check is exhaustive over the declared space, because every access the code states is decided at build. The certificate replays byte for byte, and every refusal names the failed premise: the address an agent learns from.
+Policy-as-code engines state access rules as data and answer requests against them: OPA evaluates Rego policies at request time, and AWS's Cedar adds an analyzer beside the engine that proves properties of a policy with a solver. In both, the policy is one artifact and the system it governs is another, met at request time. Here the policy and the system are one text: people, documents, and rules are types in one file, an access is a type instantiation, and an illegal access is unwritable, where those engines reject it at request time. The check is exhaustive over the declared space, because every access the code states is decided at build. The certificate replays byte for byte, and every refusal names the failed premise: the address an agent learns from.
 
 ### The combination
 

@@ -22,8 +22,14 @@ The login keypad in the Organization showcase accepts one four-digit code out of
 
 ### Policy engines
 
-Policy-as-code engines state access rules as data and answer requests against them: OPA evaluates Rego policies at request time, and AWS's Cedar adds an analyzer beside the engine that proves properties of a policy with a solver. In both, the policy is one artifact and the system it governs is another, met at request time. Here the policy and the system are one text: people, documents, and rules are types in one file, an access is a type instantiation, and an illegal access is unwritable, where those engines reject it at request time. The check is exhaustive over the declared space, because every access the code states is decided at build. The certificate replays byte for byte, and every refusal names the failed premise: the address an agent learns from.
+Policy-as-code engines state access rules as data and answer requests against them: OPA evaluates Rego policies at request time, and AWS's Cedar adds an analyzer beside the engine that proves properties of a policy with a solver. In both, the policy is one artifact and the system it governs is another, met at request time. Here the stated organization and its policy are one source record: people, documents, and rules are types. You assert an access with `Granted`, whose gate parameter must conform to `Authorized`. The compiler refuses an unauthorized gate at that assertion and names the failed premise. The artifact check regenerates the supplied readings and compares them with their committed copies.
 
 ### The combination
 
-Each neighbor keeps its own home. The package's claim is the combination: a decidable core, a finite stated input domain, and a residual artifact, rendered, counted, and re-proved by every build.
+Each neighbor keeps its own home. The package's claim is the combination: a decidable core, a finite stated input domain, and a residual artifact.
+
+| Check | What it checks |
+| --- | --- |
+| `build` | Compile the package and run its tests. |
+| `census` | Count source declarations by target. |
+| `artifacts` | Regenerate the named pages and figures and compare them with committed copies. |

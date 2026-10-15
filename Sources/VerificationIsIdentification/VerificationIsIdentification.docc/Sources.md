@@ -28,7 +28,7 @@ The list can be read in writing order, through the documentation's spine measure
 | the two moves — draw a distinction, or close one | the grammar, ``Law`` |
 | a legal play is a proof | [Play Is Proof](doc:play_is_proof) |
 | the winning position — one survivor, identified | [Verification Is Identification](doc:verification_is_identification) |
-| what playing forces — it saturates, it gains a metric, distance costs, order is its only freedom | [Intelligence Is Inevitable](doc:intelligence_is_inevitable), [Difference Is Distance](doc:difference_is_distance), [Distance Is Cost](doc:distance_is_cost), [Interference Is Intelligence](doc:interference_is_intelligence) |
+| what playing yields under its premises — conditional saturation, a metric between records, distance as a minimal count of single-distinction changes, question order affecting search cost | [Intelligence Is Inevitable](doc:intelligence_is_inevitable), [Difference Is Distance](doc:difference_is_distance), [Distance Is Cost](doc:distance_is_cost), [Interference Is Intelligence](doc:interference_is_intelligence) |
 
 These are the spine of the arc. The other papers deepen one of these moves, and the full list is below.
 

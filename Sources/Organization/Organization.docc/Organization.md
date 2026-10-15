@@ -16,7 +16,7 @@ The pages are the same for everyone: dashboard, roster, access matrix. The one p
 
 Most companies describe who can do what in three places, and the three disagree. The policy is a wiki page. The code that enforces it is somewhere else. The audit that certifies it was correct is a spreadsheet from last quarter. Keeping them in step is manual work, so they drift, and the wiki page is usually the part that is quietly wrong.
 
-Here the three are one. The policy is written as types, so compiling the company is what enforces it: an allowed access compiles, and a forbidden one fails to compile and names the rule it broke. The audit, the access matrix, and this documentation are not copies kept in sync: each is read straight from those types. Change a rule, rebuild, and the build re-reads every page.
+Here the policy, access assertions and audit use one type model. A `Granted` assertion compiles when its gate satisfies the declared rule. A forbidden assertion fails with the unmet premise. The access matrix and audit read the model through the supplied queries. Running `OrgDemo render-doc` regenerates the dashboard and catalogs from the compiled types.
 
 ## Architecture
 

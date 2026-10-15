@@ -127,10 +127,11 @@ public protocol HasLibrary: HasSigma {
     associatedtype Library
 }
 
-/// This names the comparison cache: every `COMPARE` result, recorded. A sub-space of ``HasSigma``.
+/// This names the coordinate for recorded comparison answers.
 ///
-/// Results are permanent once written, so the cache only accumulates. Each
-/// comparison is paid once.
+/// The application supplies `Cache`'s record representation and access law.
+/// Retained sound answers serve later comparisons under CS2's key coverage
+/// and selection premises. [V=I §5.26 CS2]
 public protocol HasCache: HasSigma {
     associatedtype Cache
 }

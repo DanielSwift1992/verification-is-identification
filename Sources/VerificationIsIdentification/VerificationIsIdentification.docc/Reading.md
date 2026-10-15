@@ -8,7 +8,7 @@ Five facts are true on every page of this documentation. They are stated once, h
 
 **Bodies never run.** A `body` lists types inside `{ }`. The compiler checks that list, readers walk it, and no statement in it ever executes. A build log full of "will never be executed" warnings reports the design working, not a defect.
 
-**A green build is the proof.** Claims are written as protocols and conformances. The claim is true when the build passes, and fails to compile when it does not. There is no separate proof artifact to keep in step with the code.
+**A green build is the proof.** A conformance supplies a construction meeting its encoded relation. A generic constructor derives a consequence when its parameters require only the premises and its body supplies the conclusion (``Law`` §T). The compiler checks that construction for every admitted substitution. A refusal reports on the attempted construction under its constraints (Law §0′). There is no separate proof artifact to keep in step with the code.
 
 **The badge is provenance.** A bracket like `[Nav N5]` at the end of a comment names the paper section where the claim is proved. The sentence before it teaches the idea, and the badge names where the proof is, for the reader who wants it.
 

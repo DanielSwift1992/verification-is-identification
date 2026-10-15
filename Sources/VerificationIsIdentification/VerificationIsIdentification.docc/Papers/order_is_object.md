@@ -105,7 +105,7 @@ Theorem 2 certifies the first, the agent supplies and R4 validates the second, a
 | 2 | Endpoint certified (f\*) | finite deterministic task | Thm 2, Thm 4 |
 | 3 | Object transfers | rule classes repeat (K finite) | IiI §3 |
 | 4 | Object generalizes (ball) | modulus ω exists | G10–G11 |
-| 5 | Objects route (graph) | library clusters | NiG N11, N18 |
+| 5 | Objects route (graph) | radius, permitted moves, targets and policy specified; a hop bound retains N12's access, level and selection premises | NiG N12, N18 |
 | 6 | The path itself certified (σ\*) | strategy grammar affordable (§7) | this document |
 
 Each rung needs its own representation, application and acquisition witnesses. Encoding a path as an object permits another question about it, but does not establish that the next level is learnable or cheaper.
@@ -179,7 +179,7 @@ Each rung needs its own representation, application and acquisition witnesses. E
 | O14 | O2, DiC G10 |
 | O15 | O14, DiC G12 |
 | O16 | O14, O15, NiG N1–N19 |
-| O17 | O12, I3, Thm 2/4, IiI §3, G10–G11, NiG N18 |
+| O17 | O12, I3, Thm 2/4, IiI §3, G10–G11, NiG N12, N18 |
 | O18 | O15, NiG N18 |
 | O19 | O1–O9, InI S1–S2, S8a, DiC G12 |
 | O20 | O3 remark, V=I §1, InI S3–S5, DiC G8, G10, I3 |

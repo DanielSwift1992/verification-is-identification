@@ -194,7 +194,7 @@ The two projections can therefore exhibit different behavior: a candidate return
 
 *Proof.* The recursion descends only where both sides are PAIRs. It meets a divergence exactly at an address where one side is PAIR and the other NULL, and all proper prefixes of that address are shared PAIRs, so divergence points are exactly frontier elements. Halting at the first divergence yields X (and Z as its existence bit). Completing the traversal and summing (G2a) yields Δ. QED
 
-Binary COMPARE is the sign of the gradient. The X-axis is one coordinate of it. The framework was already leaking the gradient through X, and here the author completes the leak.
+Binary COMPARE is the sign of W: it tests whether W = 0. The X-axis identifies one frontier address when the trees differ. Completing the traversal yields the gradient Δ: W and, on demand, the full set D(s) △ D(t) (G4).
 
 **G4a (The invariant of a pair).** |D(s) ∩ D(t)| = (‖s‖ + ‖t‖ − W(s, t)) / 2. The shared structure of two forms is computable from two norms and one distance. For a library L, the intersection over all entries is the domain's common skeleton: the invariant that costs nothing extra to carry because every entry already carries it.
 

@@ -39,7 +39,7 @@ The earlier papers built the entries. This document is about getting between the
 
 *Proof.* W is integer-valued (DiC: a count of distinctions) and bounded below by 0. Each step strictly decreases W(·, τ) by at least 1. At most W(s, τ) steps fit. QED
 
-Termination is one of two states: arrival at an anchor with W = 0 to τ (identification of τ's entry, G2b: W = 0 forces identity) or arrival at the closest reachable anchor, including the global minimum over L when the geometry admits it (N11).
+Termination is either arrival at an anchor with W = 0 to τ (identification of τ's entry, G2b: W = 0 forces identity) or a stop at an anchor with no strictly closer neighbor (N6).
 
 **N6 (Holes carry addresses).** A greedy walk is *stuck* at s for target τ when no neighbor of s is strictly closer to τ. The triple (s, τ, ρ) is the hole's address, and it is constructive: it names the region (structures within ρ of s and closer to τ than s) in which L has no anchor. The failure does not say "lost": it says where the map is blank, with coordinates.
 
@@ -103,7 +103,7 @@ The global navigability threshold over a growing vertex set need not decrease. W
 
 **Conditional core.** N11–N12, N14, N19 are premise-bound. The premises are measurable (dendrogram separation, δ, degree law, class probabilities) and not guaranteed by I1–I3: the standing of G10 and G12, unchanged. The degenerate cases are exact and stated.
 
-**Greedy is not optimal.** Greedy descent finds a path, not the shortest path, and stretch is measured (N4), not bounded, outside N11's premise.
+**Greedy is not optimal.** An arriving greedy walk need not be a shortest path. Stretch is measured, with no general bound asserted (N4).
 
 **Targets must be comparable.** Routing requires W(anchor, τ) to be computable: τ must be encoded in the same encoding as the library (DiC §11, encoding-locality). A query in a foreign encoding is not near or far: it is unmeasurable, and the first step is translation (DiD S9).
 

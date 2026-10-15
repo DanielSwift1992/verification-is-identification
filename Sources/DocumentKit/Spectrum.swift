@@ -210,7 +210,7 @@ extension HBetaGlow {
     public static var typeName: String { "h-beta" }
 }
 
-/// The Paschen-α line, 1875 nm, per rung: every share ``Never``, and the table
+/// The Paschen-α line, 1875 nm, per rung: every share `Never`, and the table
 /// agrees: far beyond the observer's reach.
 public enum PaschenGlow: CanonicalWeights, Close {}
 extension PaschenGlow {

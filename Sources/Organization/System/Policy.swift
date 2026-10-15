@@ -125,9 +125,10 @@ public enum PeopleShare: Doc {
 
 /// This names the mark an access earns when it is allowed. A gate (``View``, ``Administer``,
 /// ``Delete``) conforms to it only when its rule holds, so `Authorized` is the verdict
-/// "this access is proved". An access that is not authorized does not compile. Each gate is also
-/// a V=I `Decidable` when it holds: a decision, in or out, so `decide` reads it as it reads any
-/// policy's verdict. `Left` is the principal, `Right` the two-way outcome.
+/// "this access is proved". Asserting an unauthorized access through ``Granted`` does not
+/// compile. Each gate is also a V=I `Decidable` when it holds: a decision, in or out, so
+/// `decide` reads it as it reads any policy's verdict. `Left` is the principal, `Right` the
+/// two-way outcome.
 public protocol Authorized {}
 
 /// This is View: anyone in the document's department may view it.

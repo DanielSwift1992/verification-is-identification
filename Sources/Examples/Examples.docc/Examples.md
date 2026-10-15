@@ -50,15 +50,12 @@ argument, such as the pinned schedule's forced coordinates and closing edge.
    proton decay, `-DSHOW_REJECT` for the legacy interface gates, or
    `-DSHOW_UNSAT` for the incompatible schedule edge. `-DSHOW_AMBIGUOUS`
    checks an incompatible Unique coordinate, without counting schedules.
-3. Encode your own question. Choose the operation, write it as types, and read the
-   build. A selection rule is a `where` clause. The cases that satisfy it compile,
-   and one that does not is rejected. The `Lowers` and `Orbital` types below are real,
-   in `Sources/Examples/Hydrogen.swift`:
+3. Encode your own question. Choose the operation, write it as types, and read the build. The `DipoleAllowed.Type` annotation asks the compiler to check the selection rule in the conditional conformance. The allowed transition satisfies its `where` clause. The forbidden transition fails it. The `Lowers` and `Orbital` types below are real, in `Sources/Examples/Hydrogen.swift`:
 
    ```swift
    // The dipole rule Δℓ = ±1, written as a where clause.
-   let allowed = Lowers<Orbital2p, Orbital1s>.self      // compiles: Δℓ = −1
-   // let forbidden = Lowers<Orbital2s, Orbital1s>.self // rejected: Δℓ = 0, so 2s is metastable
+   let allowed: DipoleAllowed.Type = Lowers<Orbital2p, Orbital1s>.self      // compiles: Δℓ = −1
+   // let forbidden: DipoleAllowed.Type = Lowers<Orbital2s, Orbital1s>.self // rejected: Δℓ = 0, so 2s is metastable
    ```
 
    A count is a fold (``Bonds``) and a forcing is a chain (``Machine``). The

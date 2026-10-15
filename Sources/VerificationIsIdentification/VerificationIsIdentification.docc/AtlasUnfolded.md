@@ -1,9 +1,8 @@
 # Atlas, unfolded
 
-This page expands every Carries number of the <doc:Atlas> into its list.
-A claim's **cone** is the full set of claims that depend on it, directly
-or through others, and every Carries number on the Atlas links to its
-cone here.
+This page expands every Carries number of the Atlas into its list.
+
+A claim's **cone** is the full set of claims that depend on it, directly or through others, and every Carries number on the <doc:Atlas> links to its cone here.
 
 Each section repeats the same table over its cone, largest first. A
 number inside a cone opens a further cone, strictly smaller than the one

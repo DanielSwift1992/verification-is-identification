@@ -55,7 +55,7 @@ In substituted readings the same statement is monotonicity in capability: richer
 
 **N9 (Navigability threshold).** ρ_nav(L) = the least ρ at which greedy descent succeeds for every (start, target) pair over L. It exists: at ρ = diam(L) the graph is complete and the target's own entry is every node's neighbor, and every walk arrives in one hop. It is computable: success at fixed ρ is decidable (N7) and monotone in ρ (N8), so binary search over ρ ∈ [ρ\*, diam] finds the threshold in log₂(diam) probes.
 
-**N10 (Query cost).** A routed query costs Σ deg(node) traversals along the walk, at most hops × max-degree. A linear scan costs |L| traversals. Routing wins exactly when hops × deg < |L|. The win factor is a measured property of the graph, and the regime where it is large (few hops, modest degree) is the regime the conditional theorems below characterize.
+**N10 (Query cost).** A routed query costs Σ deg(node) traversals along the walk, at most hops × max-degree. A linear scan costs |L| traversals. The routed computation uses fewer traversals exactly when Σ deg(node) < |L|. The bound hops × max-degree < |L| is sufficient. The win factor is a measured property of the graph, and the regime where it is large (few hops, modest degree) is the regime the conditional theorems below characterize.
 
 ## §4. Navigable Geometries
 
@@ -71,7 +71,7 @@ A nested metric cover alone does not supply the necessary graph edges, a policy 
 
 ## §5. Economics
 
-**N13 (Amortization).** Building the map costs |L|² traversals once (the W-matrix). Each routed query saves (|L| − hops × deg) traversals against the scan (N10). The crossover (queries until the map has paid for itself) is |L|² / (|L| − hops × deg): finite, computable in advance from measured quantities. Past it, each routed query is a net saving in traversals, and the savings grow with query rate. Incremental maintenance (one matrix row per insertion) keeps the ledger linear after the initial build.
+**N13 (Amortization).** Building the map costs |L|² traversals once (the W-matrix). For a fixed nonempty library and repeated routed queries each costing C = Σ deg(node) < |L| traversals under N10, each query saves |L| − C against the scan. The build cost is recovered when q(|L| − C) ≥ |L|², so the break-even threshold is |L|² / (|L| − C), and a strict net saving requires q above that threshold. These quantities are computable from the declared costs. If C ≥ |L|, this repeated-query bill has no finite crossover. Incremental maintenance costs one matrix row of traversals per insertion (N1).
 
 **N14 (Attachment signature).** As the library grows by crystallization under a modulus (G10), new entries land within ω(·) of the classes that produced them: insertions attach near existing anchors. Anchors central to dense regions accumulate degree, and the degree distribution of Γ(L, ρ) skews toward hubs: ball centers in the sense of G11. The histogram of deg(a) is therefore a cheap diagnostic of clustered growth: skewed degrees are the signature of attachment, flat degrees the signature of uniform scatter. A signature, not a law: read it, do not assume it.
 
@@ -117,7 +117,7 @@ The global navigability threshold over a growing vertex set need not decrease. W
 3. Failure is an address, not a verdict: a stuck walk names the node, the target, and the blank region (N6–N7).
 4. Navigability has a threshold, monotone in radius and capability, computable by binary search (N8–N10).
 5. A supplied routing level and actual descending transitions bound hops. Nested covers alone do not establish logarithmic routing (N11–N12).
-6. The map amortizes over queries with a computable crossover, and clustered growth leaves a degree signature (N13–N14).
+6. When a routed query costs fewer traversals than the scan, the map amortizes over repeated queries with a computable break-even threshold, and clustered growth leaves a degree signature (N13–N14).
 7. An admissible improving anchor repairs its addressed hole. Retaining old edges preserves that improvement, while new pairs require their own routing witnesses (N15–N17).
 8. Approximation, anchored recovery and navigation share a metric but have different premises (N18).
 9. Population and retention preserve supplied paths. Global navigability on an expanding domain need not improve (N19).

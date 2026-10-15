@@ -1,8 +1,6 @@
 # Engine reference
 
-Every public name of the engine, shelved: the vector kit that divides space, the
-dictionary that owns every number, the markup that renders pages, and the law and
-certificates that hold it all. Each shelf is one file in the source.
+Every public name of the engine, shelved: the vector kit that divides space, the dictionary of measures composed from the lattice's numerals, the markup that renders pages, and the law and certificates that hold it all. Each shelf is one file in the source.
 
 ## Topics
 

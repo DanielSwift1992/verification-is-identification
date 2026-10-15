@@ -22,7 +22,7 @@ Each shape a property can take is one of the lattice's markers. Conform to the o
 | exactly one survivor | ``Unique`` | exactly one candidate is left |
 | a distance between two | ``MetricProperty`` | the two are a stated distance apart |
 
-The landing groups these as the medium. To turn a full claim into a protocol, follow the translation in ``Law`` (§T): quantity to an axis, premise to a parent, conclusion to a `where` at the fixpoint.
+The landing page lists these markers in its group *The medium: markers, the functions on Pair*. To turn a full claim into a protocol, follow the translation in ``Law`` (§T): quantity to an axis, premise to a parent, conclusion to a `where` at the fixpoint.
 
 ## A worked example
 

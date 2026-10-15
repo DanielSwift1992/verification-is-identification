@@ -1363,7 +1363,7 @@ extension EdgeSame: Spanning {
 
 /// This reads an order of two magnitudes at the edge and branches there: when
 /// the first count reaches the second, the face renders. Short of it, nothing
-/// does. With ``Times`` for cross-multiplication a ratio bound is the same
+/// does. With `Times` for cross-multiplication a ratio bound is the same
 /// comparison (4.5:1 is nine to two), and a strict bound is this form with
 /// one unit added to the bar. Thresholds of every kind are compositions of
 /// this one door.

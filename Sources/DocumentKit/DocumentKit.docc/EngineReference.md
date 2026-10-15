@@ -123,7 +123,7 @@ White is the atom and division is the only move: a colour is a walk of eight hal
 
 ### The spectral bridge
 
-Mixing is a type: a line's weight per rung is a stated magnitude in 256ths, a pour is Plus of Times read by the structure's own count, and the one edge door prints three canonical sums for the device to map. Declaring a substance is stating data, never touching the kit: one ``CanonicalWeights`` atom per line, a world file for the lamp, ``Never`` rows for the lines no eye reads. A display is the same genre (three stated primaries), so a chart's cone is data too, and every threshold, from a contrast bound to a gamut badge, is a composition of the edge comparison doors.
+Mixing is a type: a line's weight per rung is a stated magnitude in 256ths, a pour is Plus of Times read by the structure's own count, and the one edge door prints three canonical sums for the device to map. Declaring a substance is stating data, never touching the kit: one ``CanonicalWeights`` atom per line, a world file for the lamp, `Never` rows for the lines no eye reads. A display is the same genre (three stated primaries), so a chart's cone is data too, and every threshold, from a contrast bound to a gamut badge, is a composition of the edge comparison doors.
 
 - ``CanonicalWeights``
 - ``Rung0``
@@ -233,7 +233,7 @@ The sizes text wears, the corner radii, and the text anchors (Design.swift).
 
 ### The dictionary of rungs
 
-Every extent, breath, inset, and zone the divided axes speak: the one home of numbers (Design.swift).
+Every extent, breath, inset, and zone the divided axes speak, defined in one home (Design.swift). The numerals they compose from are the lattice's own (Primitive.swift), one ladder read by every target.
 
 - ``AccessWide``
 - ``ArchCaptionWide``
@@ -296,16 +296,6 @@ Every extent, breath, inset, and zone the divided axes speak: the one home of nu
 - ``TextPrimary``
 - ``TimelineInset``
 - ``TrackHeight``
-- ``U1``
-- ``U128``
-- ``U16``
-- ``U2``
-- ``U256``
-- ``U32``
-- ``U4``
-- ``U512``
-- ``U64``
-- ``U8``
 - ``VaultZoneTall``
 - ``VerdictCardTall``
 - ``VerdictChipTall``
@@ -341,9 +331,6 @@ Every extent, breath, inset, and zone the divided axes speak: the one home of nu
 - ``GateResetTurn``
 - ``GateRowDrop``
 
-- ``CurveGroupWide``
-- ``CurveBarWide``
-- ``CurveWallWide``
 - ``LegendChipWide``
 - ``LegendTextWide``
 - ``LegendWideTextWide``

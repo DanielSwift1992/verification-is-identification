@@ -178,11 +178,13 @@ public protocol HasBasis: HasLibrary {
     associatedtype Basis
 }
 
-/// The saturated library: the fixed point ``HasLibrary`` grows toward.
+/// This names the library's fixed-point coordinate.
 ///
-/// A free axis until IiI §3 compresses it with `where Library == SaturatedLibrary`,
-/// the moment growth stops adding anything new. ``LibrarySaturates`` is that
-/// theorem.
+/// ``LibrarySaturates`` states `Library == SaturatedLibrary` with
+/// `Library: Permanent`. For a common finite rule domain, sound retaining
+/// insertions give full class coverage when every class is eventually solved
+/// and inserted. Full coverage permits different raw entries.
+/// [IiI §3] [V=I §5.26 CS1]
 public protocol HasSaturation: HasLibrary {
     associatedtype SaturatedLibrary
 }

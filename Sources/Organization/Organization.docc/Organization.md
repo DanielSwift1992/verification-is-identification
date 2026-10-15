@@ -1,6 +1,6 @@
 # ``Organization``
 
-A company modeled in Swift's type system. Its people, its access rules, and its audit are one program, and compiling that program checks every access. This documentation is generated from the same types, so it cannot drift from what the code enforces.
+A company modeled in Swift's type system. Its people, access rules and audit are one program. Compilation checks the standing access assertions, and the dashboard and catalogs render from those types. This guide explains the model.
 
 ## Start here
 

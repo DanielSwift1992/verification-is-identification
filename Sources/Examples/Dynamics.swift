@@ -18,7 +18,7 @@ public enum LampOn {}
 /// This marks the terms the counter's slot may hold: the floor and every wrap of
 /// it. The constraint is what the judge checks a press against, for all bindings
 /// at once. A counting term is a structure, so its chain folds to a number the
-/// way every chain in this package does, and ``Tally`` reads it with no reader
+/// way every chain in this package does, and `Tally` reads it with no reader
 /// written anywhere.
 ///
 /// > Important: `Counting` deliberately stands apart from `IntegerValued`, and

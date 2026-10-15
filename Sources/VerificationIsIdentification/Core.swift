@@ -169,11 +169,12 @@ public protocol HasAlpha: HasDistance {
     associatedtype Alpha: Measurable
 }
 
-/// This names the basis of the library: its generating set. A sub-space of ``HasLibrary``.
+/// This names the coordinate for a library's generating set.
 ///
-/// Its finiteness is a result, proven by ``BasisIsFinite``, not a definition,
-/// so the axis opens bare here and the constraint lands in the theorem (§2
-/// placement: axes are free, theorems compress). [IiI §3]
+/// ``BasisIsFinite`` constrains `Basis: IntegerValued`, a recursive Right axis.
+/// The application must relate it to a generating set of the library.
+/// Finite generation and termination of a basis search need their own
+/// witnesses. [IiI §3] [EiF EF10] [Basis B6–B8] [Law §2]
 public protocol HasBasis: HasLibrary {
     associatedtype Basis
 }

@@ -14,7 +14,7 @@ To make correctness the cheapest thing to build: a notation where writing a stru
 
 **Trust grows one part at a time.** You need not convert the whole system. Write the one part you must be sure of, and it is proved while the rest remains craft: the line between them is exactly where the types stop.
 
-**The record shows itself.** The types the compiler checks are the pages the reader browses: every page of this documentation is a type's rendered name, re-derived at each build. Documentation, reports, and audit are readings of the one record, with nothing beside it to fall out of step. The projection is written out in <doc:record_is_system>.
+**The record shows itself.** The Organization showcase and DocumentKit gallery render pages from the types the compiler checks. The artifact check regenerates those pages and compares them with their committed copies. Authored prose has its own claims, and a reading answers its question only when it preserves the required distinctions. The projection and these proof obligations are written out in <doc:record_is_system> (SW2–SW3).
 
 **Why it is cheap.** Every step is borrowed or free. The grammar fits a page (``Law``) and is learned in minutes. The proof checker is a compiler you already run, so its soundness is inherited rather than re-earned. And the grammar leaves the writer almost no choices (Law §0′): the same claim becomes the same code in any hand, so the only thing to review is whether the claim is true.
 

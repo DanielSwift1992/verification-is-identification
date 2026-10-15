@@ -38,11 +38,13 @@ public protocol Unique: Monotone, Null {}
 public protocol Permanent: Pair
 where Right: Pair, Right.Left == Left {}
 
-/// This is elimination: after ⊆ before. Shrinks toward ``Null``. Mirror of ``Permanent``.
+/// The earlier shape contains the later shape together with a remainder.
 ///
-/// `Left` unfolds to contain `Right`: `Left = (Right, removed)`, so the earlier
-/// state contains the later whole plus what was dropped. Verification runs this way:
-/// each `COMPARE` peels a candidate off until one survives. [V=I §5.22]
+/// `Left.Left == Right` mirrors ``Permanent``. For a fixed game, sound
+/// retained constraints from its examples shrink the interpreted working
+/// set or leave it unchanged. The exact solution set remains fixed.
+/// A singleton conclusion needs a witness over the declared candidate domain.
+/// [V=I §5.22] [V=I U1–U2]
 public protocol Monotone: Pair
 where Left: Pair, Left.Left == Right {}
 

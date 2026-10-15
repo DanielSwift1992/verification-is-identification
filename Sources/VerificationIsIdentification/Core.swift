@@ -135,11 +135,12 @@ public protocol HasCache: HasSigma {
     associatedtype Cache
 }
 
-/// This gives distances between structures in Σ. A sub-space of ``HasSigma``.
+/// This names the coordinate used for a structural distance count.
 ///
-/// Pinned to a finite count (§2): `Distance` is ``IntegerValued``, a chain of
-/// unit steps, and a chain of steps is a cost. The pin is placed on the axis so
-/// every downstream theorem inherits it. [DiC G2c]
+/// ``IntegerValued`` gives `Distance` a recursive Right axis. Finite
+/// `Never`/`Succ` constructions give a unary count under their stated
+/// interpretation. The application's reading relates that count to edit
+/// distance, with physical cost assumptions stated separately. [DiC G2c] [EiF EF10]
 public protocol HasDistance: HasSigma {
     associatedtype Distance: IntegerValued
 }
@@ -155,11 +156,11 @@ public protocol HasEncoding: HasSigma {
     associatedtype Encoding
 }
 
-/// This gives α, the alignment coefficient, computed from distance: `α = f(W)`.
+/// This names the alignment result alongside the distance coordinate.
 ///
-/// The dependency is through ``HasDistance``. Swift can't type `f`, so `Alpha` is
-/// pinned to ``Measurable`` instead: it settles to one computed value (§2). The
-/// pin captures the determinacy of α without naming the function. [GA]
+/// ``Measurable`` requires `Alpha` to have a ``Null`` output, whose two sides
+/// agree. The application constructs the reading that relates this result
+/// to distance, loss and the sampled region. [GA] [EiF EF10]
 public protocol HasAlpha: HasDistance {
     associatedtype Alpha: Measurable
 }

@@ -4,9 +4,9 @@ To make correctness the cheapest thing to build: a notation where writing a stru
 
 ## Overview
 
-**Compile is proof.** You write a claim as a `protocol`. If it compiles, it is true. If not, it is false. Nothing runs, and no separate step proves it. The compiler can decide because the system is stated in exact, finite terms: every degree of freedom is a written type, so the type checker decides every question the code states, at build time.
+**Compile is proof.** You write a claim as types: what it assumes, and what must then be true. To prove it, you write one generic type that asks only for the assumptions and builds what must be true from its own parts (``Law`` §T). If that type compiles, the claim is true for every case the assumptions admit. Nothing runs, and no separate step proves it. Rather than proving the opposite claim, a refusal reports on the construction that failed (Law §0′).
 
-**What it buys.** The usual way to trust a system is to build it, prove something about it, and keep the two in step. The proof is a second artifact, and it drifts. Here the system and its proof are one text: the compile is the whole proof, and every build re-proves every stated claim.
+**What it buys.** The usual way to trust a system is to build it, prove something about it, and keep the two in step. The proof is a second artifact, and it drifts. Here the system and its proof are one text: the compile is the whole proof, and every build checks every construction again.
 
 **What it costs.** Only the exact, finite, determinate part of a system fits. Turning a claim into that typed structure is the work that remains human. And whether you stated the right rule remains yours to judge: the build checks consistency with what you stated.
 

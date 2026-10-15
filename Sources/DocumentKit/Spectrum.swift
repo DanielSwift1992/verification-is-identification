@@ -250,7 +250,7 @@ extension SodiumDGlow {
     public static var typeName: String { "sodium-589" }
 }
 
-/// Sodium's infrared line, 819 nm, per rung: every share ``Never``, and the
+/// Sodium's infrared line, 819 nm, per rung: every share `Never`, and the
 /// table agrees to six decimal places. The blind row is measured, not assumed.
 public enum SodiumIRGlow: CanonicalWeights, Close {}
 extension SodiumIRGlow {

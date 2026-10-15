@@ -16,7 +16,7 @@ To make correctness the cheapest thing to build: a notation where writing a stru
 
 **The record shows itself.** The Organization showcase and DocumentKit gallery render pages from the types the compiler checks. The artifact check regenerates those pages and compares them with their committed copies. Authored prose has its own claims, and a reading answers its question only when it preserves the required distinctions. The projection and these proof obligations are written out in <doc:record_is_system> (SW2–SW3).
 
-**Why it is cheap.** Every step is borrowed or free. The grammar fits a page (``Law``) and is learned in minutes. The proof checker is a compiler you already run, so its soundness is inherited rather than re-earned. And the grammar leaves the writer almost no choices (Law §0′): the same claim becomes the same code in any hand, so the only thing to review is whether the claim is true.
+**Why it is cheap.** The notation uses the compiler’s existing type checks. ``Law`` states its grammar. §T adds the generic witness needed to derive a conclusion from stated premises. Review checks the encoding against the intended claim (Law §0′). The compiler’s correctness remains a premise of the type check (<doc:record_is_system>, §8).
 
 ## The boundary
 

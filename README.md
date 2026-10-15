@@ -135,7 +135,7 @@ The repository checks itself. Each command is a gate. Green is a pass:
 
 ## Documentation
 
-The whole site is generated from this package. The 35 papers build the theory step by step. Two of them say where it ends: a system that only checks will eventually contain every answer and stop computing, and the distance between two such systems is measurable.
+The whole site is generated from this package. The 35 papers build the theory step by step. Two of them say where it ends: in a fixed task domain with a common finite rule interpretation, a system that only checks comes to represent every rule class once sound retaining insertions have stored a solved task of each class, and the distance between two such systems is measurable.
 
 - **[VerificationIsIdentification](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification)** has the framework: the protocols, the papers, [the atlas](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/atlas/).
 - **[Examples](https://danielswift1992.github.io/verification-is-identification/documentation/examples)** applies it: the physics demos and a working solver.

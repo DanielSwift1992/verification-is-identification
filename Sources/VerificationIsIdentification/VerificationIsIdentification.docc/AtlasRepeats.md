@@ -1,9 +1,6 @@
 # Which premises repeat
 
-Each claim declares its premises, and when one declared premise is
-reachable from another, the dependency is stated twice: directly, and
-through the other premise. This page lists every such pair, computed
-from the same parents <doc:Atlas> prints.
+Each claim declares its premises, and when one declared premise is reachable from another, the dependency is stated twice: directly, and through the other premise. This page lists every such pair, computed from the same parents the Atlas prints.
 
 A repeat does not affect the build. It affects reading: the premise list
 is longer than the dependency graph requires. An empty table means no

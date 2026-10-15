@@ -10,17 +10,19 @@ The framework checks structure for free. Turning your problem into that structur
 
 ## The shapes are the markers
 
-Each shape a property can take is one of the lattice's markers. Conform to the one that fits.
+Each marker in this table constrains the two roles of ``Pair``. Match its relation to your encoding, then give the construction and interpretation that connect it to your question (``Law`` §0′ and §T).
 
-| Your property | The marker | What is true once it compiles |
+| Intended use | The marker | Relation checked by conformance |
 | --- | --- | --- |
-| a yes/no test | ``Decidable`` | every case lands in or out |
-| one determined value | ``Measurable`` | one value, settled |
-| a bounded count | ``IntegerValued`` | a count that cannot run forever |
-| something that only narrows | ``Monotone`` | it can only shrink |
-| something that only accumulates | ``Permanent`` | it can only grow |
-| exactly one survivor | ``Unique`` | exactly one candidate is left |
-| a distance between two | ``MetricProperty`` | the two are a stated distance apart |
+| a yes/no test | ``Decidable`` | `Right: Pair` |
+| one determined value | ``Measurable`` | `Right: Null` |
+| a unary count | ``IntegerValued`` | `Right: IntegerValued` |
+| something that only narrows | ``Monotone`` | `Left: Pair, Left.Left == Right` |
+| something that only accumulates | ``Permanent`` | `Right: Pair, Right.Left == Left` |
+| exactly one survivor | ``Unique`` | `Left: Pair, Left == Right, Left.Left == Left` |
+| a distance between two | ``MetricProperty`` | `Left: Pair, Right: Pair, Left.Right == Right.Left` |
+
+> Important: These equations require a source interpretation for their intended use. Finite unary counts use finite `Never`/`Succ` expressions (EF10 of <doc:existence_is_finite>), and a singleton claim names its candidate support (U1–U2 of <doc:verification_is_identification>).
 
 The landing page lists these markers in its group *The medium: markers, the functions on Pair*. To turn a full claim into a protocol, follow the translation in ``Law`` (§T): quantity to an axis, premise to a parent, conclusion to a `where` at the fixpoint.
 

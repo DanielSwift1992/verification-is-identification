@@ -84,6 +84,8 @@ The divided axis and its members, the span leaves, the frames, and the interacti
 - ``SpanTrack``
 - ``SpanTrackDashed``
 - ``SpanTrackOutlined``
+- ``SpanVariant``
+- ``SpanVariantKey``
 - ``Spanning``
 - ``StandaloneStrokedPath``
 - ``StateGroup``
@@ -189,12 +191,19 @@ Colour atoms, the eight roles and their dark halves, and the legibility gates th
 - ``OnAccent``
 - ``OnAccentDark``
 - ``OnActionRole``
+- ``PageBackdrop``
 - ``Paint``
 - ``Paper``
+- ``ShadowCast``
+- ``ShadowEnvelope``
+- ``ShadowRestOpacity``
 - ``Shadowed``
 - ``SoftShadow``
+- ``SoftShadowName``
 - ``SurfaceCardDark``
 - ``SurfaceCardShadow``
+- ``SurfaceCardShadowName``
+- ``SurfacePage``
 - ``SurfaceTrackDark``
 - ``TextPrimaryDark``
 - ``TextSecondaryDark``
@@ -239,7 +248,9 @@ Every extent, breath, inset, and zone the divided axes speak, defined in one hom
 - ``AvatarSide``
 - ``BadgeChipWide``
 - ``BoardColumnTall``
+- ``BoardEdge``
 - ``BoardHeaderZone``
+- ``BoardMatrixTall``
 - ``BoardSlotPitch``
 - ``BoardTall``
 - ``Breath``
@@ -248,6 +259,12 @@ Every extent, breath, inset, and zone the divided axes speak, defined in one hom
 - ``ChipInset``
 - ``ChipPad``
 - ``ChipTripletWide``
+- ``CurveBarThick``
+- ``CurveBuildWide3200``
+- ``CurveBuildWide6400``
+- ``CurveBuildWide12800``
+- ``CurveLegendTextWide``
+- ``CurveNameColumn``
 - ``CycleAffordanceInset``
 - ``CyclePanelDropSecond``
 - ``CyclePanelDropThird``
@@ -313,6 +330,7 @@ Every extent, breath, inset, and zone the divided axes speak, defined in one hom
 - ``FlowCardRoleStorey``
 - ``FlowCardTall``
 - ``FlowCardPitch``
+- ``FlowCardGap``
 - ``FlowZoneTall``
 - ``ArchDotDip``
 - ``ArchFooterTall``
@@ -448,6 +466,7 @@ Atoms and combinators that render a page from a type. `Tally(_:)` is the countin
 - ``Tipped``
 - ``Title``
 - ``TitledLink``
+- ``TopicReference``
 - ``TripleBacktick``
 - ``TripleBacktickSwift``
 - ``TripleHash``
@@ -515,6 +534,12 @@ Space axioms held as conformances, re-proved by every build (LayoutCertificate.s
 - ``FitVerdict``
 - ``LayoutGate``
 - ``SpanDistance``
+
+### The coverage fields
+
+The declared coverage fields of a type, rendered as text (Claim.swift).
+
+- ``CoveredStatement``
 
 ### The letterforms
 

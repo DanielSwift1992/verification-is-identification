@@ -252,10 +252,10 @@ V=I §5.25 states: "With GC2 updates, complete traversals produce the same union
 
 The recorded implementation test used two agents, one domain, identical content and constituent files declared in opposite orders, comparing judgments and emitted bytes. The first run reported two failures:
 
-1. Declarations belonging to one presented encoding were carried into *every* other — two encodings communicating, which V=I §5.24 forbids outright.
-2. They were carried in declaration order, so two agents with identical content received different line numbers for the same refusal. Order had leaked into an *address*, and an address is part of what a refusal is.
+1. Declarations from one presented encoding were copied into every other encoding, contrary to the separation of pipeline executions in V=I §5.24.
+2. The declarations were copied in declaration order. Two agents with identical content therefore received different line numbers for the same refusal. Declaration order thus entered the address, and the address is part of the refusal.
 
-Both fell to one correction: an encoding takes a foreign declaration only where its own declaration stood, and a name it never spoke is not an addition to it. The re-run is byte-identical across opposite orders while the overrides still take effect.
+One correction removed both failures. A foreign declaration enters an encoding only at the position of the encoding's own declaration, which it replaces. A name the encoding never declared is not added to it. The re-run is byte-identical across opposite orders while the overrides still take effect.
 
 This differential test exposed two order dependencies. One process can also compare several orders, and a structural proof can quantify over them. `IndependentReadingOrders` derives equality for actual disjoint applications, while M67 gives conditions for transporting adjacent exchanges through a larger serialization. Byte-identical diagnostics additionally need a rendering contract. The number of agents is not a proof premise.
 

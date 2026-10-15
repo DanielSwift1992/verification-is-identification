@@ -12,6 +12,6 @@ Five facts are true on every page of this documentation. They are stated once, h
 
 **The badge is provenance.** A bracket like `[Nav N5]` at the end of a comment names the paper section where the claim is proved. The sentence before it teaches the idea, and the badge names where the proof is, for the reader who wants it.
 
-**"Checked directly" marks a wall.** Where "checked directly" is in a comment, the stated limit was verified against the real toolchain rather than assumed. Such limits are stopped at and named, not patched around.
+**"Checked directly" names a verified limit.** In a comment, the phrase reports a limit verified against the actual toolchain rather than assumed. These pages call such a limit a *wall*: it is named and stopped at, not patched around.
 
 The construction vocabulary (the seed, the two moves, the floor) is one page: ``Law``.

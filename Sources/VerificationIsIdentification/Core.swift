@@ -119,10 +119,13 @@ public protocol HasSolutions: HasSigma {
     associatedtype SolutionSet
 }
 
-/// This names the library: accumulated certified knowledge. A sub-space of ``HasSigma``.
+/// This names the library coordinate for accumulated certified knowledge.
 ///
-/// It only grows: entries are certified once and kept. Its generating set is
-/// ``HasBasis`` and its fixpoint is ``HasSaturation``.
+/// The application supplies a representation of entries in `Sigma` and a
+/// sound retaining update. ``HasBasis`` and ``HasSaturation`` name the
+/// generating-set and fixed-point coordinates. Conditional saturation requires
+/// a common finite rule interpretation and eventual solution and insertion
+/// of every class. [IiI §2–§3] [V=I §5.26 CS1]
 public protocol HasLibrary: HasSigma {
     associatedtype Library
 }

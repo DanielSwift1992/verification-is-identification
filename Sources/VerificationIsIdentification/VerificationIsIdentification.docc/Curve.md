@@ -14,7 +14,7 @@ Each N carries a pair: the build's bar is as wide as its seconds, and the judge'
 
 If build time grows faster than N, the approach works for demos and fails at real sizes. Model checking has fought this growth for forty years under the name state-space explosion, and this chart is that field's standard plot, taken for the Swift type checker.
 
-The theory fixes what the chart cannot: every build terminates, because every stated space is finite. What it does not fix is the speed, so the exponent is measured, not derived.
+The termination theorem for the inner pipeline assumes finite enumerations and terminating evaluations and primitive checks (<doc:verification_is_identification>, §5.1 and §5.5). Swift's build time and scaling exponent are measured here.
 
 The first series showed the growth was real: near N², so doubling the company roughly quadrupled the build.
 

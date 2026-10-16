@@ -92,9 +92,17 @@ public protocol DiscoveryIsRevelation: LibrarySaturates, ExactlyOneSurvives {}
 
 // ── §3 Intelligence (η): §T-generated ───────────────────────
 
-/// Intelligence is a measured value: efficiency of identification,
-/// `η = T_min / T_actual ∈ (0,1]`. A computed quantity over ``HasSigma``, so
-/// ``Measurable`` (``Law`` §2). [IiI §3]
+/// This names the coordinate for identification efficiency.
+///
+/// On a completed task τ, IiI §3 defines the intelligence of protocol P as
+/// `η(P, τ) = T_min(τ) / T_actual(P, τ) ∈ (0,1]`: the least COMPARE count
+/// that reaches `|S| ≤ 1` on τ, divided by the count P actually uses. The
+/// ratio is defined only when `0 < T_min ≤ T_actual`, with both costs in the
+/// same unit and the same available information, memory and query
+/// capabilities. The inline ``Measurable`` bound dimensions the axis
+/// (``Law`` §2): `Efficiency` has a ``Null`` output, whose two sides agree.
+/// The application constructs the reading that relates it to a protocol, a
+/// task and both costs. [IiI §3] [EiF EF10]
 public protocol HasEfficiency: HasSigma {
     associatedtype Efficiency: Measurable
 }

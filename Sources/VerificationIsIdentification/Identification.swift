@@ -211,11 +211,14 @@ public protocol SaturationIncorruptible: StructuresFinite, CachePermanent {}
 /// construct neither that graph nor the required singleton witness. [V=I §5 Thm 4]
 public protocol Universality: StructuresFinite, HasEncoding, ExactlyOneSurvives {}
 
-/// COMPARE reveals a pre-existing fact: its result is fixed by the inputs' structure
-/// before the call, never created. The output settles to one determined value, and the
-/// medium already contains it.
-/// It joins closed operations (``OperationsClosed``) to a measured value (``Measurable``):
-/// the call reads what the medium already fixes (EiF Part III). [V=I §5.20]
+/// The paper's pure COMPARE reports whether its supplied finite trees
+/// already agree in structure. The call makes that fixed relation explicit.
+///
+/// ``OperationsClosed`` constrains component types. ``Measurable`` requires
+/// equal sides in the represented output. Applying this interpretation needs
+/// an actual law binding the input trees to their comparison verdict.
+/// The structural relation and a stored comparison record have distinct roles.
+/// [V=I §5.20–5.21, EiF Thm 3, Part III]
 public protocol RevealsNotCreates: OperationsClosed, Measurable {}
 
 /// Historical interface for a verification scope varying only enumeration.

@@ -26,10 +26,13 @@
 /// a chain terminates or that a candidate domain has a uniform bound. [EiF EF6]
 public protocol StructuresFinite: Pair, HasSigma {}
 
-/// Distinction is recursive: a structure's components are themselves
-/// structures. Operations are closed under Σ.
-/// Compresses both sides of ``Pair``: `Left` and `Right` must each be `Pair`.
-/// [EiF C5]
+/// Requires ``Pair`` on both addressed components, `Left` and `Right`.
+/// The full finite-tree grammar is closed under its total pairing constructor.
+/// Its constructor, admission and finite generation are further premises.
+/// These component constraints alone do not establish them.
+/// Under its operand-recovery, origin and finite-generation conditions,
+/// EiF EF8 also gives unique decomposition for partial construction.
+/// [EiF C5, Definition 1, EF8]
 public protocol OperationsClosed: Pair
 where Left: Pair, Right: Pair {}
 

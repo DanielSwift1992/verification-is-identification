@@ -4,7 +4,7 @@ The framework is a notation for questions, their grounds, checked constructions 
 
 ## Overview
 
-An answer is determined when the given relations admit at least one case and every compatible case gives the same answer. For a question q and compatible cases S, this is S≠∅ and q(S)={a}. Complete candidate identification is the case q=id. Application to the intended source requires a justified source relation (U2c and §1b of <doc:verification_is_identification>).
+The notation starts from a distinction, represented by two addressed roles. A question reads a distinction in each description, and its answer is the value read there. The compatible cases are the descriptions the given relations admit. An answer is determined when at least one compatible case exists and every one of them gives that answer. For a question q and compatible cases S, this is S≠∅ and q(S)={a}. Complete candidate identification is the case q=id. Application to the intended source requires a justified source relation (U2c and §1b of <doc:verification_is_identification>).
 
 **A schedule.** Four tasks use machine labels A and B, with opposite(A)=B and opposite(B)=A. Pinning the first task to A and requiring three successive conflicts forces this assignment:
 

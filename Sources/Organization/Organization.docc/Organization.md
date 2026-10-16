@@ -8,7 +8,7 @@ Three things to do, in order:
 
 - term **Take the walk:** <doc:SiteWalk> reaches any page in four choices, and any of the 204 people in eight. Every door names what is behind it, read off the same types this site is rendered from. Try it: the task board is three choices in.
 - term **Unlock a card:** every person's card is public, including the password printed on it, and the keypad beside it is the login. Walk the code digit by digit: the last correct press lands on the card's unlocked half. <doc:CompanyDashboard> lists the four named cards to try.
-- term **Change a rule:** edit `System/Policy.swift` and rebuild. The build re-reads every page, and a rule that contradicts the policy is refused by the build, with the failed premise named.
+- term **Change a rule:** edit `System/Policy.swift` and rebuild to check the standing access assertions (`Granted`). The compiler names the unmet premise when an assertion fails. Run `swift run OrgDemo render-doc` to regenerate the dashboard and catalogs.
 
 The pages are the same for everyone: dashboard, roster, access matrix. The one page that differs is a card's unlocked half, and it is reached by the walk above, never by a session.
 

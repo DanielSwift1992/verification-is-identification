@@ -87,9 +87,14 @@ public protocol ResultDeterministic: OperationsClosed {
 
 // ── §5 Monotonicity ─────────────────────────────────────
 
-/// The cache only grows: G_n ⊆ G_{n+1}, and cached comparisons are kept at every step.
-/// It carries permanence (``CachePermanent``) across the terminating steps
-/// (``StepsTerminate``), so the cache accumulates step by step. [V=I §5.6]
+/// With fixed comparison keys and answers, sound retaining updates give
+/// one run an inclusion chain of decoded caches. A repeated insertion can
+/// leave the cache unchanged.
+///
+/// ``CachePermanent`` requires `Cache: Permanent`, while ``StepsTerminate``
+/// names `Steps: IntegerValued`. Their use across a run needs the actual
+/// transitions and a compatible interpretation of cache contents.
+/// Raw recovery alone gives no decoded inclusion. [V=I §5.6, §2.4 GC2–GC3]
 public protocol CacheOnlyGrows: CachePermanent, StepsTerminate {}
 
 

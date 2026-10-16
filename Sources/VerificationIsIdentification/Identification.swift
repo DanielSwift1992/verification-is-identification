@@ -170,10 +170,14 @@ public protocol ComparisonsAreBounded: StructuresFinite {
     associatedtype Comparisons: IntegerValued
 }
 
-/// The preconditions guarantee a PASS: a finite space, a decidable test, and a single
-/// survivor together force certification to succeed.
-/// Its three parents are those three preconditions: finite space (``StructuresFinite``),
-/// decidable test (``EqualityDecidable``), one survivor (``ExactlyOneSurvives``). [V=I Thm 5]
+/// With a terminating membership test and a supplied finite enumeration,
+/// exhaustive checking finds the candidate when exactly one member passes.
+///
+/// The enumeration must cover the declared candidate family.
+/// This interface joins ``StructuresFinite``, ``EqualityDecidable`` and
+/// ``ExactlyOneSurvives`` through representation, equality and solution coordinates.
+/// Using this completeness result needs the actual enumeration, membership
+/// test and singleton witness. [V=I Thm 5]
 public protocol PreconditionsGuaranteePass: StructuresFinite, EqualityDecidable, ExactlyOneSurvives {}
 
 

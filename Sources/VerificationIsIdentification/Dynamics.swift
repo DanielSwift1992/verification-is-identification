@@ -52,10 +52,13 @@ public protocol LawLivesInSigma: HasLaw, DistanceOnStructures {}
 /// > ``LawfulDrift`` retain their own acquisition and availability premises.
 public protocol LawIsTarget: LawLivesInSigma, PassIsIdentification {}
 
-/// Exploration is the `|S|>1` diagnostic read back as an experiment plan. The
-/// ambiguity is present iff some `(s,a)` cell where survivors differ is unobserved,
-/// and the diagnostic names it: WHICH state to reach, WHICH action to try. The
-/// dynamics-level instance of "the failure names its own cure". [Law LT5]
+/// With multiple distinct surviving tables, an unobserved state/action cell
+/// distinguishes at least two candidates in the fixed reading. Its address
+/// gives an experiment question. Reaching that state and obtaining a sound
+/// observation depend on the experiment's actual actions, access and preparation.
+/// ``LawIsTarget`` and ``HolesCarryAddresses`` join the interfaces, with
+/// comparison and a witnessed cell address supplied by the application.
+/// [Law LT4–LT6]
 public protocol AmbiguityIsExperiment: LawIsTarget, HolesCarryAddresses {}
 
 /// A finite encoded trajectory has a norm and edit distance. Its edit count

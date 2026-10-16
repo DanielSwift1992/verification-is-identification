@@ -7,14 +7,14 @@ import VerificationIsIdentification
 // not enforced by a plugin, it is checked by reading. System/, Query/, and View/ enact it.
 // ═══════════════════════════════════════════════════════════════
 
-/// How this showcase is built: a declarative, one-directional architecture where the model is a
-/// lattice of types and the update is recompilation.
+/// How this showcase is built: the compiler checks the model's presented type relations, and
+/// queries and views read that model into pages through explicit rendering.
 ///
 /// The shape is the one SwiftUI and Elm share — a view is a pure function of state, redrawn when
 /// the state changes — with two substitutions that come from V=I. The state is not values in
-/// memory, it is the type lattice (the company, `System/`). The redraw is not a runtime event,
-/// it is the build: changing the state recompiles, and compiling re-proves. The ``Architecture``
-/// symbol is the anchor, and the sections below are its statement.
+/// memory, it is the type lattice (the company, `System/`). The build checks its presented type
+/// relations. `swift run OrgDemo render-doc` writes the generated DocC Markdown. ``Architecture``
+/// is the anchor, and the sections below are its statement.
 ///
 /// - term One source: the company as types (`System/`), the model everything reads from.
 /// - term One direction: System to Query to Reader to Screen to render. The View depends on the
@@ -46,19 +46,19 @@ import VerificationIsIdentification
 /// > year's decision as a type. The runtime does not hold the change, it reads the type the change
 /// > became.
 ///
-/// ## §4 · To act is to write is to prove
+/// ## §4 · Model edits and compilation
 ///
-/// There is no action as a separate thing. Every action is an edit to `System/`, an edit is a
-/// recompilation, and a recompilation re-proves the whole system. So `act` collapses into
-/// `write`, and `write` is `prove`, the framework's equation, lifted to the application.
-/// The build is the update loop, and verification is identification: the proof that the new
-/// state is consistent IS the new view, re-derived every build, so it cannot drift.
+/// A domain update enters `System/` as a type edit. Recompilation checks the presented type
+/// relations for that edit, applying the framework's write/prove equation to this supplied
+/// representation. The explicit `swift run OrgDemo render-doc` command writes generated Markdown.
+/// DocC builds documentation from those files and the symbol graph. Prose and renderers still
+/// need review against the modeled claims (§2).
 ///
 /// ## §5 · A change costs what it moves (Distance Is Cost)
 ///
 /// Two changes, two costs. Changing the PERSPECTIVE, which page, who you signed in as (`Params`),
 /// is a cheap re-reading at a new coordinate, the runtime move SwiftUI makes when `@State`
-/// changes. Changing the DOMAIN, the company, the policy, is an expensive re-proof, the build. A
+/// changes. Changing the DOMAIN, the company or policy, needs a build to check its type relations. A
 /// static document fixes the perspective ahead of time, so the pages are a closed set of links. A
 /// live app would set it at runtime, with open controls. Both read the one `view(Σ, params)`.
 ///
@@ -94,9 +94,9 @@ import VerificationIsIdentification
 /// | Layout (`SideBySide`, `PanelOf`, a table) | types to a tree | `Pair` and an orientation |
 /// | Render (`typeName`) | the tree to a medium | the lens, Perspective Is Encoding |
 ///
-/// The whole site is `typeName` of a page-type composed over `(Σ, perspective)`: a composition
-/// of readings. The rendered site is the order those readings induce (Reading Is Order), not a
-/// second artifact kept in step by hand. This law is enacted, not declared: `System/`, `Query/`,
-/// and `View/` are its statement in code, and a page that contradicted it (a stored value, a
-/// hand-typed count, a verdict the gates refuse) has nothing to compile against.
+/// Generated pages use `typeName` on page types composed over `(Σ, perspective)`. The reading
+/// pipeline makes their order explicit (Reading Is Order). `OrgDemo` writes their Markdown,
+/// and DocC builds documentation from those files and the symbol graph. The artifacts gate
+/// regenerates the committed files and compares the results. Prose and renderers still need
+/// review against the modeled claims, as described in §2.
 public enum Architecture {}

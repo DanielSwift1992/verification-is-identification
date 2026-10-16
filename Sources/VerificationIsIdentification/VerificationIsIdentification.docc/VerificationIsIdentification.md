@@ -1,10 +1,37 @@
 # ``VerificationIsIdentification``
 
-A theory of when checking an answer is the same act as finding it, written as pure Swift types, with the compiler as the proof checker.
+The framework is a notation for questions, their grounds, checked constructions and the conditions of continued use.
 
 ## Overview
 
-Take a finite set of candidates and a test. If exactly one candidate passes, "it passed" and "it is the answer" state the same fact: checking the lone survivor identifies it. (Of `a, b, c`, if only `c` passes, "`c` passed" and "the answer is `c`" say one thing.) The interface ``PassIsIdentification`` names this contract. A generic construction proves an implication when it requires the premises and derives the conclusion from its actual fields. The compiler checks that construction without executing a domain program. Stating a protocol requirement alone does not supply its derivation.
+An answer is determined when the given relations admit at least one case and every compatible case gives the same answer. For a question q and compatible cases S, this is S≠∅ and q(S)={a}. Complete candidate identification is the case q=id. Application to the intended source requires a justified source relation (U2c and §1b of <doc:verification_is_identification>).
+
+**A schedule.** Four tasks use machine labels A and B, with opposite(A)=B and opposite(B)=A. Pinning the first task to A and requiring three successive conflicts forces this assignment:
+
+```text
+task:       1   2   3   4
+machine:    A   B   A   B
+```
+
+The last and first tasks satisfy the closing conflict: B opposite A. An extra conflict between first and third is incompatible: A against A. This proof identifies machine coordinates. Execution requires actual tasks and admissible operations. The construction and named refusal are in <doc:Encoding>.
+
+**The loop.** The proposer supplies the original question, grounds and construction. The checker checks the construction under those grounds:
+
+```text
+question + grounds → proposed construction → checked consequence
+                                          → named refusal
+                                          → open proof obligation
+```
+
+A named refusal concerns that attempt. Continued use requires the actual result and its applicable grounds, with a justified relation to the original question (§1b of <doc:verification_is_identification>).
+
+**The notation.**
+
+- term **The seed:** the seed is a pair of addressed roles, ``Pair``. Equality of their types is the ``Null`` constraint.
+- term **The moves:** *expand* opens an axis. *compress* constrains axes with a stated relation (``Law`` §1).
+- term **The floor:** each term in the finite constructor interpretation reaches a declared leaf. Recursive Swift conformances need not terminate, and a family of finite terms can be infinite. Equality of ``Pair``'s sides, expressed by ``Null``, does not identify every such form with the leaf.
+
+**The Swift reading.** The compiler checks a generic construction that requires the premises and derives the conclusion from its actual fields (``Law`` §T). An interface requirement states the claim. Its derivation needs the construction. The full-candidate interface is ``PassIsIdentification``.
 
 **Where to go.**
 
@@ -15,12 +42,6 @@ Take a finite set of candidates and a test. If exactly one candidate passes, "it
 - term **Build your own:** <doc:Purpose> states what the notation buys and where it stops, <doc:Encoding> maps your part of a system onto it, and ``Law`` is the grammar you write in. These pages are themselves rendered by [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit): the site is written in the notation it documents.
 
 Two longer threads run through the papers: learning machines, <doc:intelligence_is_inevitable> → <doc:play_is_proof> → <doc:architecture_of_learning_machines>, and the emitted path (token by token, gated or not), <doc:program_is_path>. The type pages under Topics are reference.
-
-**How it is built.** From one act and one fixpoint:
-
-- term **The seed:** a single act of distinction, ``Pair``. Its fixpoint, where the two sides close, is ``Null``.
-- term **The move:** two directions and no third: *expand* opens a degree of freedom (`associatedtype`), *compress* closes one (`where`).
-- term **The floor:** each term in the finite constructor interpretation reaches a declared leaf. Recursive Swift conformances need not terminate, and a family of finite terms can be infinite. Equality of ``Pair``'s sides, expressed by ``Null``, does not identify every such form with the leaf.
 
 ![The construction law: one seed, two moves, one floor.](law)
 

@@ -34,8 +34,8 @@ import VerificationIsIdentification
 /// The View holds no runtime either: a page is a type, composed from the system's types,
 /// and the one place a type becomes text is the `typeName` door: `Symbol` for a name, `Tally`
 /// for a count, read once as the page renders. The dependency points one way, View toward
-/// System, so a page shows only what the types hold. A page cannot overstate the system,
-/// because it has nothing beyond the types themselves to overstate with.
+/// System. The page reads the model through its types. Its prose and renderers still need review
+/// to check that the page describes those types accurately.
 ///
 /// ## §3 · A write enters the system as a type
 ///

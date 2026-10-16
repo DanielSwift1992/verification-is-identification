@@ -49,7 +49,7 @@ Checking the schedule and finding it are one act: the compiler derived the singl
 
 ## The one caveat
 
-The compiler proves your encoding is self-consistent, never that it matches what you meant. A wrong encoding compiles into a confident proof of the wrong thing (V=I §6: correctness is relative to the relation you wrote). The framework clears the structural bugs and hands back exactly one job: write the relation that says what you mean. That job is the craft, and it remains yours.
+The compiler checks the relations expressed by your encoding under their stated premises. Applying that result to the intended task needs a justified link to the actual source and question. A model can have one passing candidate while excluding the intended target (§0, "On encoding", of <doc:verification_is_identification>). That link can itself be derived from further grounds: §1b U4 gives a sufficient rule for transferring the source premises, proving the modeled claim, and returning it to the original question.
 
 ## In your own package
 

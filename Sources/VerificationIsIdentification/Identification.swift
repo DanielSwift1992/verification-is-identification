@@ -118,9 +118,13 @@ public protocol NoSelfReference: OperationsClosed {
     associatedtype Input: IntegerValued
 }
 
-/// The pipeline sees only the encoded representation: its scope stops at the encoding.
-/// It joins closed operations (``OperationsClosed``) to a deterministic result
-/// (``ResultDeterministic``), so the result is a function of the encoding alone. [V=I §5.24]
+/// In the paper's pure pipeline, equal encoded games and feature sets give equal outputs.
+///
+/// Its operations use only this input. This interface joins ``OperationsClosed``
+/// and ``ResultDeterministic`` through component and result coordinates.
+/// Applying the result to another pipeline requires its output to be a
+/// function of the complete encoded input, with the actual input binding.
+/// [V=I §5.23–5.24]
 public protocol ScopeBoundedByEncoding: OperationsClosed, ResultDeterministic {}
 
 

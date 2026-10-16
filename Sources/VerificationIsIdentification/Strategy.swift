@@ -75,11 +75,15 @@ public protocol CompleteEntry: PhaseBecomesAmplitude, HasEncoding, HasLibrary {}
 /// can serve new inputs without a metric grouping. [Order O15]
 public protocol SkillsAreBalls: StrategyLivesInSigma, BallSaturation {}
 
-/// The strategy library under W is an anchor graph: ``NavigationInevitable``
-/// and all of NiG N1–N19 are in force on ``SkillsAreBalls`` by substitution. A new class
-/// routes greedily to its nearest certified skill. Gate failure emits an addressed
-/// hole naming the missing skill, the skill curriculum (N17, one level up).
-/// [Order O16]
+/// A finite strategy library under W and a chosen radius has an anchor graph.
+/// Each navigation theorem applies under its own premises. Retaining insertion
+/// preserves supplied paths for fixed starts, targets and radius. The global
+/// routing threshold can increase on an expanded domain. A witnessed missing
+/// improving neighbor specifies an acquisition question. Obtaining a usable
+/// strategy there requires another witness.
+/// ``SkillsAreBalls`` and ``NavigationInevitable`` join these interfaces.
+/// Actual graph construction, routes and failure witnesses belong to the
+/// application. [Order O16, O18] [NiG N16–N19]
 public protocol StrategyNavigation: SkillsAreBalls, NavigationInevitable {}
 
 /// Historical name for strategy and rule geometry interfaces. Their

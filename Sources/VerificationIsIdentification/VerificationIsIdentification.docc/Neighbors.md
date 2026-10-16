@@ -18,7 +18,7 @@ Agda, Coq and Idris check termination or productivity under their respective rul
 
 ### Automaton minimization
 
-The login keypad in the Organization showcase accepts one four-digit code out of 9⁴ = 6561. Drawn as a tree, that is thousands of states. Every wrong digit, at any depth, has the same future: the dead state. States with the same future are one state under bisimulation, the standard equivalence on state machines, and the keypad ships that quotient: five states. The papers call the move a fold (Program Is Path), the automata literature calls it minimization. One mechanism, two vocabularies.
+The login keypad in the Organization showcase accepts one four-digit code out of 9⁴ = 6561. Drawn as a tree, that is thousands of states. The keypad uses four prefix fragments, `k0` through `k3`, and one shared `dead` fragment. Each wrong digit links to `dead`. The last correct digit links to the person's unlocked page. PiP6 of <doc:program_is_path> treats this failure response as part of the supplied execution rule.
 
 ### Policy engines
 

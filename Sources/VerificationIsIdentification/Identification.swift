@@ -93,11 +93,13 @@ public protocol ResultDeterministic: OperationsClosed {
 public protocol CacheOnlyGrows: CachePermanent, StepsTerminate {}
 
 
-/// The solution set only shrinks: each COMPARE can drop a candidate, and once dropped
-/// it is out for good (|S_{n+1}| ≤ |S_n|).
-/// It compresses the solution axis (``HasSolutions``) to a ``Monotone`` `SolutionSet`,
-/// built on the permanent cache (``CachePermanent``) that makes a drop final. This
-/// protocol owns the claim, and IiI A1 reuses it. [V=I §5.22]
+/// A fixed game's working candidates shrink or remain unchanged as sound facts accumulate.
+///
+/// These facts follow from the same examples. The exact solution set is fixed.
+/// This interface constrains ``HasSolutions``' `SolutionSet` to ``Monotone``
+/// beside ``CachePermanent``. Its candidate interpretation must supply membership
+/// and admission by every retained sound fact. ``SystemCrystallizes`` reuses
+/// this interface for IiI A1. [V=I §5.22] [IiI §5 A1]
 public protocol CandidatesOnlyLeave: CachePermanent,
     HasSolutions
     where SolutionSet: Monotone {}

@@ -4,7 +4,7 @@
     @PageImage(purpose: card, source: "card-reports", alt: "Reports")
 }
 
-The company's audit, re-proved on every build. A policy that contradicted itself would not compile, so every figure below is true as of this build.
+The report collects access tables, standing assertions and scale figures for the encoded company. Compilation checks the presented type relations.
 
 @TabNavigator {
 @Tab("Access matrix") {

@@ -64,7 +64,7 @@
   "AssigneeHeader": "Assignee",
   "StatusHeader": "Status",
   "BoardIntro": "A board laid out the way the dashboard is: columns of cards, each an org type. Every assignee links into the directory.",
-  "ReportsIntro": "The company's audit, re-proved on every build. A policy that contradicted itself would not compile, so every figure below is true as of this build.",
+  "ReportsIntro": "The report collects access tables, standing assertions and scale figures for the encoded company. Compilation checks the presented type relations.",
   "AccessMatrixHeading": "Access matrix",
   "StandingInvariantsHeading": "Standing invariants",
   "DataResidencyLine": "Every owned document has an owner inside its own department, so data stays where it belongs.",

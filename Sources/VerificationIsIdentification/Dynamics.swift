@@ -76,11 +76,15 @@ public protocol BehaviorIsStructure: DistanceOnStructures, HasTime {}
 /// > reusable strategy object.
 public protocol PlanningIsNavigation: LawIsTarget, NavigationInevitable {}
 
-/// A certified sub-plan (states, an action sequence, a guaranteed arrival
-/// region) *is* a strategy object (OiO): certifiable by the strategy gate,
-/// entering the library with norm and distance. Motor skills are balls in plan
-/// space. Identification, navigation, strategy, and dynamics compose on shared
-/// primitives with no new axioms. [Law LT13]
+/// A certified sub-plan has a state region, an action sequence and an arrival
+/// guarantee under the certified law. Its finite decision-tree encoding can
+/// be certified by the strategy gate and stored with norm and distance under
+/// Order's own premises. A ball in plan space can represent a family of motor
+/// skills. Applying a strategy to a new class also requires the search,
+/// certification and execution premises. These results compose on shared
+/// primitives, with no new axioms, under those premises. ``PlanningIsNavigation`` and
+/// ``SkillsAreBalls`` join the interfaces, with state/action bindings and
+/// execution supplied by the application. [Law LT8–LT9, LT13] [Order O5, O15]
 public protocol MotorSkillsAreStrategies: PlanningIsNavigation, SkillsAreBalls {}
 
 /// Identify, plan and execute form one sufficient route under the actual

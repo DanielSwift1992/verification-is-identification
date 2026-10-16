@@ -9,16 +9,28 @@
 // reaches is checked by review. The law is written in the thing it governs,
 // it is itself Pair and Null all the way down (§6).
 
-/// How every protocol in the lattice must be written: the grammar
-/// of the whole theory.
+/// The rules for stating relations and deriving consequences in the chosen
+/// type grammar.
 ///
-/// Every protocol is built from one seed by one of two moves, grounded on one
-/// floor, and the law that governs this is itself written in the seed it grows
-/// from. The ``Law`` symbol is its anchor. The sections below are its statement.
+/// Add an axis to expand a protocol. Close, pin or intersect relations to
+/// compress it. Every protocol must make one of these moves and express its
+/// relation through the types (§1–§3).
 ///
-/// - term Seed: one act, *distinction* (``Pair``). One fixpoint: ``Null``.
-/// - term Move: two directions: *expand* (add an axis), *compress* (close one).
-/// - term Floor: each interpreted tree is finite: bounded width and finite depth.
+/// - term Seed: ``Pair`` has two addressed roles whose contents can agree.
+///   ``Null`` equates those sides. Its conformers need not be `Never` (§0).
+/// - term Proof: state quantities, premises and conclusion. Supply the related
+///   axes in a generic construction requiring only the premises, and check its
+///   conformance for every admitted substitution (§T). A named refusal tests
+///   the attempted incompatible construction under its constraints (§0′, §T).
+/// - term Floor: total structural comparison uses finite trees in a stated
+///   constructor grammar. Exhaustive finite search also needs a sufficient
+///   obtainable bound for its candidate carrier. ``Pair``/``Null`` conformance
+///   alone supplies neither termination argument (§0′, §4).
+/// - term Application: using the result for its intended task needs a justified
+///   link to the actual source and original question (§0′).
+///
+/// The sections below retain the pure-type and writing rules (§0′–§0″),
+/// the roots, the law's own expression and the dependency order (§5–§7).
 ///
 /// ## §0 · The seed and its fixpoint
 ///

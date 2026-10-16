@@ -172,7 +172,9 @@ public protocol PassIsIdentification: PassImpliesMembership, ExactlyOneSurvives,
     where Left == SolutionSet {}
 
 /// A fixed domain of N atoms has at most N² ordered comparison pairs.
-/// Exhaustive coverage needs at most N² fresh comparisons, with retained results.
+/// Exhaustive coverage needs at most N² fresh top-level COMPARE calls,
+/// with retained results. Candidate evaluation, enumeration, cache access
+/// and the internal cost of comparing composite values are outside this count.
 /// The finite atom domain is separate from the unbounded syntax Σ. [V=I Thm 3]
 public protocol ComparisonsAreBounded: StructuresFinite {
     associatedtype Comparisons: IntegerValued

@@ -4,7 +4,7 @@ This package generates a demo company of N employees as Swift types and `swift b
 
 ## Overview
 
-The company is generated: `swift package generate org N` writes N employees, one enum per person, plus the access rules and the walk pages over them. `swift build` then type-checks every declaration — every access that must be in force, every page that must exist. The compiler is the arbiter under every guarantee, so its running time is the price of every guarantee (a second, linear checker is beside it: the second judge, below). The measurement is seconds against N, both checkers on one corpus:
+The company is generated: `swift package generate org N` writes N employees, one enum per person, plus access assertions and declarations for the walk pages over them. `swift build` checks the presented type relations in these declarations. Curve measures the running time of this package build (a second, linear checker is beside it: the second judge, below). The measurement is seconds against N, both checkers on one corpus:
 
 ![One company, two checkers: paired bars per corpus size, the build bar as wide as its seconds, the judge's hair-wide bar with its seconds in the label.](curve)
 

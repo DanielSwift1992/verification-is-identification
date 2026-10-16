@@ -14,7 +14,7 @@ Datalog is a query language over facts and rules, decidable because it gives up 
 
 ### Total languages
 
-In Agda, Coq, or Idris, every program provably terminates, and non-termination is an effect a program must declare. That removes one class of runtime surprise, but the programs still run, because the input arrives at run time and cannot be enumerated in advance. Here the input is finite and stated, so it can be enumerated, and running is replaced by navigating what was enumerated.
+Agda, Coq and Idris check termination or productivity under their respective rules. Idris also permits partial functions, Agda permits non-terminating definitions outside safe mode, and Coq supports productive coinductive definitions. These checks do not require a finite input domain: a checked function can still run on an input supplied later. This package uses supplied finite domains for advance enumeration and generated readings (<doc:verification_is_identification>, §5.1).
 
 ### Automaton minimization
 

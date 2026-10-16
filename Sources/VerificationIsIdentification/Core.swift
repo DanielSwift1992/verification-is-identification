@@ -152,10 +152,12 @@ public protocol HasDistance: HasSigma {
     associatedtype Distance: IntegerValued
 }
 
-/// This names the encoding: the agent's perspective on the target. A sub-space of ``HasSigma``.
+/// Names the encoding coordinate for the target representation.
 ///
-/// Perspective is a choice of encoding, and the encoding fixes what is reachable:
-/// it bounds the scope of every search the agent can run.
+/// The paper's pure inner pipeline uses only its encoded game and features.
+/// Its scope follows the actual input binding. A choice among encodings
+/// belongs to the separate selection step. This axis supplies neither that
+/// binding nor the available encoding family. [V=I §5.23–5.24, §6]
 /// A declaration certificate applies to behavior through an established
 /// relation to its implementation. This coordinate alone supplies no such
 /// relation or acquisition. [SiG SG3]

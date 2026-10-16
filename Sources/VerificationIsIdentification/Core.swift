@@ -104,10 +104,11 @@ extension Never: Unique, Permanent, Decidable,
 //   Alpha is computed from Distance
 // ═══════════════════════════════════════════════════════
 
-/// This is Σ: the space of all structures. The root axis every other axis is inside.
-///
-/// Σ is the one free dimension everything else is carved from: solutions,
-/// library, cache, distance, and encoding are all sub-spaces of it.
+/// Names the carrier coordinate for a structural interpretation.
+/// Under EiF's full constructor premises, Σ is the infinite carrier
+/// of finite binary trees. This free axis supplies neither that grammar
+/// nor membership of the other coordinates in it. The application supplies
+/// their representations and relations. [EiF Definition 1, Thm 1, EF5]
 public protocol HasSigma {
     associatedtype Sigma
 }

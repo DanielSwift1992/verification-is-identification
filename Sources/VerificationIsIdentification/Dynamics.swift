@@ -24,7 +24,8 @@ public protocol HasLaw: HasSigma {
 
 /// The transition law f is a finite function, hence a finite structure in Σ
 /// (pinned at ``HasLaw``): it has a norm ‖f‖ and a distance W between
-/// dynamics. Environment transfer is measurable before any attempt. (The law
+/// dynamics. W counts edits between supplied law encodings before transfer.
+/// Reading it as transfer cost requires LT8's execution premises. (The law
 /// is also ``Measurable`` (deterministic), but that is a relaxable premise, §6,
 /// not part of its identity: stochastic laws exist, so it is outside the inline
 /// pin.) [Law LT2]

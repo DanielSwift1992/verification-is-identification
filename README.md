@@ -102,7 +102,7 @@ What you cannot write exactly remains outside, yours to handle. The build checks
 
 ## A company as types
 
-The `Organization` target is the showcase. Every build re-proves and re-renders the 204 people, the access policy, and the company's whole site: dashboard, catalogs, reports, personal cards, keypad logins. Navigation is proved too. The site carries guided walks: a page asks a question, and each answer is a link. The walks reach any page in four choices, and any of the 204 people in eight.
+The `Organization` target is the showcase. Its types declare the 204 people, the access policy, and the company's dashboard, catalogs, reports, personal cards and keypad logins. The compiler checks the presented type relations and access assertions. `swift run Tools site` builds and serves the documentation. Navigation is proved too. The site carries guided walks: a page asks a question, and each answer is a link. The walks reach any page in four choices, and any of the 204 people in eight.
 
 [![The package, top down: the V=I type lattice, the DocumentKit engine that renders, walks, and rewrites it, the Organization written in both over a shared alphabet, and the two outputs of every build, the rendered site and the console audit.](Sources/Organization/Organization.docc/Resources/architecture.svg)](https://danielswift1992.github.io/verification-is-identification/documentation/organization)
 

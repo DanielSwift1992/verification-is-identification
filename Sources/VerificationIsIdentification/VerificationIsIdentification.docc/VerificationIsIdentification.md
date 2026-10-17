@@ -66,6 +66,7 @@ The page's order follows each type's move. The papers' writing order gives a dif
 ### How these pages read
 
 - <doc:Reading>
+- <doc:Results>
 ### Where it is
 
 - <doc:Neighbors>

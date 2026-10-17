@@ -25,6 +25,8 @@ The Question field records how the answer remains tied to the original requireme
 
 For a fixed question and compatible set, three cases are distinguished. No candidate fits: `S` is empty. One answer: `S` is nonempty and `q(S) = {a}`. Several answers: `q` still varies on `S`. "Not yet established" is a state of the check and stays separate from the three outcomes.
 
+For an action on a declared family of starts, the outcome is whether one admissible program meets the requirement at every admitted start: the intersection of the admissible sets over the family is empty or nonempty. A nonempty intersection is existence as a set. The supplied choice and its realization are recorded under Continuation (<doc:acquisition_keeps_its_question>, Adequacy).
+
 A record also names its relation to the original requirement: identification of `q`, identification of a neighboring `q′`, a proved limit, an approximation, or a construction with provided parts. One move can carry two of these. Proof status and execution status are recorded separately.
 
 > Important: The record presents a result, and its Derivation field carries the proof. A filled form adds no grounds of its own.

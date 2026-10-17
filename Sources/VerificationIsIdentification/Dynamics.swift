@@ -68,16 +68,16 @@ public protocol AmbiguityIsExperiment: LawIsTarget, HolesCarryAddresses {}
 /// execution time or the cost of redirecting an actual process. [Law LT7–LT8]
 public protocol BehaviorIsStructure: DistanceOnStructures, HasTime {}
 
-/// Planning is navigation. Under the certified ``LawIsTarget``, the state space
-/// is a finite labeled graph, a goal is a ball B(g,r) under W, and planning is
-/// greedy descent: the entire navigation stack is in force, by substitution. The
-/// gradient toward the goal *is* the W-gradient, so no reward function is needed.
+/// Planning uses the supplied finite state graph under certified ``LawIsTarget``.
+/// A goal is a ball B(g,r) under W. A greedy plan descends W without an added
+/// reward function. LT12 applies navigation results with the access, routing
+/// and retention premises used by each result.
 /// Traps are local minima, located and named, not promised absent.
 /// [Law LT10-LT12]
 ///
-/// > Note: Goals are balls and motion is descent, so dynamics inherits geometry
-/// > for free. ``MotorSkillsAreStrategies`` then certifies a finished plan as a
-/// > reusable strategy object.
+/// > Note: ``MotorSkillsAreStrategies`` treats a certified sub-plan as a
+/// > strategy object. Finding and applying it for a new class retains the
+/// > search, certification and execution premises of LT13 and LT8-LT9.
 public protocol PlanningIsNavigation: LawIsTarget, NavigationInevitable {}
 
 /// A certified sub-plan has a state region, an action sequence and an arrival

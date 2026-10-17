@@ -49,8 +49,8 @@ public protocol StrategyIsUnique: StrategyGate, ExactlyOneSurvives {}
 /// STATE at level N is mutable scaffolding. The strategy OBJECT at level N+1 is
 /// permanent. [Order O9]
 ///
-/// > Note: The order, once transient scaffolding, freezes into a permanent
-/// > library object. Raising the level is what turns mutable phase into matter.
+/// > Note: A certified strategy retained under I3 is a permanent library object.
+/// > The state of a process using that description can continue to change.
 public protocol StrategyCrystallizes: StrategyIsUnique, Matter {}
 
 /// At level N a deterministic comparison choice adds no information beyond the

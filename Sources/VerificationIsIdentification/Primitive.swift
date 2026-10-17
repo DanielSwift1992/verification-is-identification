@@ -7,8 +7,12 @@
 // interpretation requires separate constructor and termination premises,
 // including a syntax leaf distinct from constructed pairs. [EiF EF2, EF4]
 //
-// The Swift compiler checking `where Left == Right` IS verification. The
-// constraint holding IS identification. The compiler IS the V=I loop.
+// For a supplied Null conformance, the compiler checks `Left == Right`
+// at the declared addresses. An answer to a declared question is determined
+// when the compatible set is nonempty and every compatible candidate gives
+// that answer. A proof can derive this agreement from the actual constraint
+// relations without enumerating candidates. Applying the answer to an
+// intended target needs a justified source relation. [V=I U2c, §1b]
 //
 // ── PROTOCOL CREATION RULES (summary, canonical form: Law.swift) ──
 //

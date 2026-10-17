@@ -88,6 +88,7 @@ LAWS+=(
 "light|the second judge reads the conditional grammar and its supplied aliases|swift run Tools judge where Sources/Examples/Light.swift Sources/VerificationIsIdentification/Primitive.swift"
 "ladder|the ladder's count readings agree and its nominal refusals stand|bash Checks/rydberg.sh"
 "grants|the second judge reads the grant world|swift run Tools judge where Sources/Examples/Grants.swift"
+"alias|a claim through an alias meets the gate its definition names|bash Checks/where-alias.sh"
 "court|the judge builds as a library a consumer links|swift build --product Court"
 "quotes|a quote of a sibling paper is that paper's sentence|swift run Tools quotes"
 "law|the grammar carries every source file|swift run Tools grammar"

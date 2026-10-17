@@ -404,6 +404,21 @@ enum WhereJudge {
         Press.serialize(normalize(parseTerm(Substring(text)), world))
     }
 
+    // A claim meets the gate its definition names. A head spelled through an
+    // alias or a member alias is unfolded before the gate is looked up, so an
+    // intermediate name cannot carry a claim past its gate. A nominal head is
+    // already the name a gate is looked up by, and a world that presents no
+    // gate has no lookup to prepare. The gate itself reads the arguments.
+    static func gatedForm(_ term: Term, _ world: World, rigid: Set<String> = []) -> Term {
+        guard !world.gates.isEmpty,
+              world.aliases[term.head] != nil || term.head.contains(".") else { return term }
+        do {
+            let expression = try DefinitionReduction.parse(Press.serialize(term), allowRigidNames: true)
+            let source = DefinitionReduction.Source(world: world, rigid: rigid)
+            return try DefinitionReduction.headForm(expression, source: source).output.legacy
+        } catch { fail("unresolved definition reduction: \(error)") }
+    }
+
     // does the conformer wear the protocol: its declared list, closed over
     // the refinement ladder the file presents
     static func wears(_ conformer: Conformer, _ proto: String, _ world: World) -> Bool {
@@ -575,9 +590,10 @@ enum WhereJudge {
             let name = certificate.name
             let term = certificate.term
             let body = Press.serialize(term)
-            let matching = world.gates.filter { $0.head == term.head }
+            let claim = gatedForm(term, world, rigid: certificate.rigid)
+            let matching = world.gates.filter { $0.head == claim.head }
             guard !matching.isEmpty else { continue }
-            let bindings = gateBindings(term, world)
+            let bindings = gateBindings(claim, world)
             for gate in matching {
                 for (left, right) in gate.equalities {
                     judged += 1
@@ -601,10 +617,10 @@ enum WhereJudge {
         }
 
         for use in world.uses {
-            let term = parseTerm(Substring(use))
-            let matching = world.gates.filter { $0.head == term.head }
+            let claim = gatedForm(parseTerm(Substring(use)), world)
+            let matching = world.gates.filter { $0.head == claim.head }
             guard !matching.isEmpty else { continue }
-            let bindings = gateBindings(term, world)
+            let bindings = gateBindings(claim, world)
             for gate in matching {
                 for (left, right) in gate.equalities {
                     judged += 1

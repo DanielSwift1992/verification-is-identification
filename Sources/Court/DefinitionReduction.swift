@@ -327,6 +327,15 @@ enum DefinitionReduction {
         return ends
     }
 
+    /// Unfolds definitions only until the outermost constructor is a name no
+    /// source definition rewrites. Arguments stay as written.
+    static func headForm(_ expression: Expression, source: Source) throws -> Ends {
+        let proof = try derive(expression, source: source, headOnly: true)
+        let ends = try replay(proof, source: source)
+        guard ends.input == expression else { throw Failure("normalization changed the question") }
+        return ends
+    }
+
     /// Re-use requires these actual question endpoints and the current source.
     /// A derivation for a different question is not accepted merely because its
     /// outputs match. Changed definitions can invalidate the same proof tree.

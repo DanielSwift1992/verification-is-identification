@@ -6,6 +6,16 @@ The framework is a notation for questions, their grounds, checked constructions 
 
 The notation starts from a distinction, represented by two addressed roles. A question reads a distinction in each description, and its answer is the value read there. The compatible cases are the descriptions the given relations admit. An answer is determined when at least one compatible case exists and every one of them gives that answer. For a question q and compatible cases S, this is S≠∅ and q(S)={a}. Complete candidate identification is the case q=id. Application to the intended source requires a justified source relation (U2c and §1b of <doc:verification_is_identification>).
 
+**Three cases.** These examples use declared types.
+
+| Question and supplied grounds | Checked result | Boundary and continued use |
+|---|---|---|
+| Machine assignment: pin the first task to A and impose three successive opposite equations. | The assignment is A,B,A,B. The existing four-cycle closes. | An extra first-to-third conflict is incompatible. Executing tasks requires actual tasks and admissible operations (U2b). |
+| Visible reading: three declared beam records share their two visible coordinates and differ in infrared. | All three give one visible answer. | The source and its infrared coordinate remain undetermined by that answer. A new question needs its own source relation (U2/U2c). |
+| Contact cut: four fields of one `X` satisfy three supplied boundary equalities. | The complementary equality follows. The cut constructs two recombinations from those fields. A second cut uses that actual output. | The contents remain unknown. Physical contacts and execution require their own grounds (U3 and §1b). |
+
+The arguments and constructions are in U2–U3 and §1b of <doc:verification_is_identification>. The schedule below gives the assignment and its refusal explicitly.
+
 **A schedule.** Four tasks use machine labels A and B, with opposite(A)=B and opposite(B)=A. Pinning the first task to A and requiring three successive conflicts forces this assignment:
 
 ```text

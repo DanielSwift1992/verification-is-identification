@@ -30,7 +30,7 @@ enum WhereJudge {
     struct Conformer {
         let name: String
         let parameters: [String]
-        let protocols: [String]
+        var protocols: [String]
         var table: [String: String]
     }
 
@@ -194,11 +194,11 @@ enum WhereJudge {
 
     // A gate's where carries three kinds of conjunct. An equality is judged
     // against the canon. A membership, a colon and a bare protocol name, is
-    // judged against the conformer's declared protocols, closed over the
-    // refinements the file presents. Anything else used to be dropped in
-    // silence, and a court may not drop a condition in silence: it is named
-    // at its gate instead, so a half-read law is a refusal, never a verdict
-    // that counts what it never read.
+    // judged against the protocols the conformer's declaration and extensions
+    // list, closed over the refinements the file presents. Anything else used
+    // to be dropped in silence, and a court may not drop a condition in
+    // silence: it is named at its gate instead, so a half-read law is a
+    // refusal, never a verdict that counts what it never read.
     static func splitConjuncts(_ clause: String)
         -> (equalities: [(String, String)], memberships: [(String, String)], unjudged: [String]) {
         var parts: [String] = []
@@ -299,12 +299,22 @@ enum WhereJudge {
             world.parameters[hit[0]] = parameterNames(hit[1])
         }
 
+        // An unconditional extension of a presented conformer adds what its
+        // declaration would carry: the protocols of its list and the
+        // parameterless aliases of its body. A where clause always carries ':'
+        // or '==', so the list cannot swallow one, and a gated extension stays
+        // a gate. A type with no inheritance list (`enum Foo {}`) is not
+        // presented, so its extensions add nothing, and an extension body
+        // outside the flat fragment is not read.
         for hit in captures(
-            #"extension\s+(\w+)\s*\{([^{}]*)\}"#, clean
+            #"extension\s+(\w+)\s*(?::\s*([\w,\s]+?))?\s*\{([^{}]*)\}"#, clean
         ) {
             let name = hit[0]
             if world.conformers[name] != nil {
-                for aliasHit in readAliases(hit[1]) where aliasHit[1].isEmpty {
+                world.conformers[name]!.protocols += hit[1]
+                    .split(separator: ",")
+                    .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+                for aliasHit in readAliases(hit[2]) where aliasHit[1].isEmpty {
                     guard world.conformers[name]!.table[aliasHit[0]] == nil else {
                         fail("duplicate definition of '\(name).\(aliasHit[0])'")
                     }
@@ -419,8 +429,8 @@ enum WhereJudge {
         } catch { fail("unresolved definition reduction: \(error)") }
     }
 
-    // does the conformer wear the protocol: its declared list, closed over
-    // the refinement ladder the file presents
+    // does the conformer wear the protocol: the lists of its declaration and
+    // its extensions, closed over the refinement ladder the file presents
     static func wears(_ conformer: Conformer, _ proto: String, _ world: World) -> Bool {
         inheritedProtocols(conformer.protocols, world).contains(proto)
     }

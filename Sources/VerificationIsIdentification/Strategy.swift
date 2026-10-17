@@ -35,10 +35,12 @@ public protocol StrategyLivesInSigma: DistanceOnStructures, OrderIsOnlyFreedom {
 /// those permissions nor establish class-wide performance. [Order O5–O6]
 public protocol StrategyGate: StrategyLivesInSigma, PassImpliesMembership {}
 
-/// Among the strategies passing the ``StrategyGate`` at the minimal budget, argmin
-/// over (worst-case cost, ‖σ‖, structural order) has a unique minimum σ*, the
-/// cheapest of the fastest, so ``ExactlyOneSurvives``. R4 is true for the refined
-/// relation. Thm 2 is in force. [Order O8]
+/// At the minimal budget, a nonempty passing set in O1's finite strategy
+/// family has one minimum under O8's order: worst-case cost, then norm,
+/// then structural order. This refines acceptance to the selected strategy.
+/// Theorem 2 applies under the strategy game's verification premises.
+/// The ``ExactlyOneSurvives`` coordinate does not itself perform this
+/// selection. [Order O1, O6, O8]
 public protocol StrategyIsUnique: StrategyGate, ExactlyOneSurvives {}
 
 /// The certified σ* (``StrategyIsUnique``) enters the library and inherits I3,

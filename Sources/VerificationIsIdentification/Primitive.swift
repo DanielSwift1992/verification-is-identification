@@ -110,9 +110,12 @@ public protocol Pair: Open {
 /// It does not identify the conforming type with either side or with the syntax leaf.
 /// `Never` is one conformer. Other nominal equality witnesses remain distinct. [EiF EF4]
 ///
-/// > Note: Every theorem that says "A = B" is ``Null`` at that level. The compiler
-/// > checking `where Left == Right` is the verification. The met constraint is
-/// > the identification. The compiler is the V=I loop.
+/// > Note: For a supplied ``Null`` conformance, the compiler checks
+/// > `Left == Right` at these addresses. An answer to a declared question is
+/// > determined when the compatible set is nonempty and every compatible
+/// > candidate gives that answer. The proof can derive this agreement from the
+/// > actual constraint relations without enumerating candidates. Applying the
+/// > answer to an intended target needs a justified source relation. [V=I U2c, §1b]
 public protocol Null: Pair
 where Left == Right {}
 

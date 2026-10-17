@@ -1,14 +1,17 @@
 // ═══════════════════════════════════════════════════════════════
 // Law Is Target (Dynamics).
 //
-// The framework demands a fixed target (I2), and a moving state violates it,
-// the series' explicit boundary since PiR M6. This paper removes the
-// boundary by RELOCATING the target: the state is not the target, the law
-// is. A finite deterministic transition law f is a structure in Σ.
-// Observed transitions are examples, and identifying the law is an ordinary
-// V=I game with every guarantee intact. Once the law is certified, motion
-// becomes substrate: planning is navigation, goals are balls, behavior is
-// structure, and the whole stack composes by substitution.
+// I2 requires a fixed target, and a moving state is not one (PiR M6). On
+// supplied finite state and action carriers, a fixed transition law is a
+// finite table in Σ. Under a fixed complete state/action interpretation it
+// stays fixed while the represented state changes, so it can be that target.
+// Sound observations constrain a declared candidate family. Identifying the
+// actual law requires its membership and separating evidence in the same
+// state/action reading. A fixed whole law need not descend to an autonomous
+// local one. Applying the certificate requires its law, interpretation and
+// evidence connections to hold. Plans and strategies compose under their
+// own navigation, search, certification and execution premises.
+// [Law LT1-LT4, LT8-LT13]
 //
 // Pure types (§0′). Dynamics is genuinely NEW content (the framework
 // excluded it before), so this paper opens a new axis: the Law. [Dyn]

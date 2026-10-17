@@ -299,22 +299,32 @@ enum WhereJudge {
             world.parameters[hit[0]] = parameterNames(hit[1])
         }
 
-        // An unconditional extension of a presented conformer adds what its
-        // declaration would carry: the protocols of its list and the
-        // parameterless aliases of its body. A where clause always carries ':'
-        // or '==', so the list cannot swallow one, and a gated extension stays
-        // a gate. A type with no inheritance list (`enum Foo {}`) is not
-        // presented, so its extensions add nothing, and an extension body
-        // outside the flat fragment is not read.
-        for hit in captures(
-            #"extension\s+(\w+)\s*(?::\s*([\w,\s]+?))?\s*\{([^{}]*)\}"#, clean
-        ) {
+        // An unconditional extension of a presented conformer adds the
+        // protocols its header lists, whatever its body holds: the header
+        // states the conformance, so a body this reader cannot read does not
+        // drop the obligation. A where clause always carries ':' or '==', so
+        // the list cannot swallow one, and a gated extension stays a gate. A
+        // type with no inheritance list (`enum Foo {}`) is not presented, so
+        // its extensions add nothing.
+        for hit in captures(#"extension\s+(\w+)\s*:\s*([\w,\s]+?)\s*\{"#, clean) {
             let name = hit[0]
             if world.conformers[name] != nil {
                 world.conformers[name]!.protocols += hit[1]
                     .split(separator: ",")
                     .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
-                for aliasHit in readAliases(hit[2]) where aliasHit[1].isEmpty {
+            }
+        }
+
+        // An extension body inside the flat fragment lends its parameterless
+        // aliases to a presented conformer. A body outside it is not read, so
+        // an axis only that body defines has no definition here, and its
+        // projection is unread rather than opaque.
+        for hit in captures(
+            #"extension\s+(\w+)\s*(?::\s*[\w,\s]+?)?\s*\{([^{}]*)\}"#, clean
+        ) {
+            let name = hit[0]
+            if world.conformers[name] != nil {
+                for aliasHit in readAliases(hit[1]) where aliasHit[1].isEmpty {
                     guard world.conformers[name]!.table[aliasHit[0]] == nil else {
                         fail("duplicate definition of '\(name).\(aliasHit[0])'")
                     }

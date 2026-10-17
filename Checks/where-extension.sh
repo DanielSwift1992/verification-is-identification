@@ -2,8 +2,9 @@
 # A conformance stated in an unconditional extension is the conformer's
 # conformance. The court reads the extension's protocols and the aliases of
 # its body: a refinement stated there is judged at its gate, a premise added
-# there is worn, and a premise it does not add is still missing. The compiler
-# gives the same two verdicts on the same files.
+# there is worn, and a premise it does not add is still missing. The header
+# carries the conformance even when the body is beyond the reader. The
+# compiler gives the same verdicts on the same files.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -90,4 +91,48 @@ if ! grep -q "^✓ THE WHERE holds: 3 equalities and 4 memberships judged across
     echo "where-extension: the control was not judged through its extensions" >&2
     exit 1
 fi
-echo "✓ where-extension: an extension's conformances are worn and judged, three refusals match the compiler, the control holds"
+# One more refused world, read beside the compiler. In the mixed world a
+# refinement sits in an extension whose body holds a method, next to one
+# that holds: the court refuses the first rather than counting the second
+# and passing the file.
+extension_refused_world() {
+    local world="$1" errors="$2" verdict="$3"
+    if swiftc -typecheck -module-cache-path "$extension_tmp/cache" \
+        "Checks/where-extension/$world.swift" >"$extension_tmp/$world-swift.log" 2>&1; then
+        echo "where-extension: Swift accepted $world.swift" >&2
+        exit 1
+    fi
+    if "$extension_bin/Tools" judge where "Checks/where-extension/$world.swift" \
+        >"$extension_tmp/$world.log" 2>&1; then
+        cat "$extension_tmp/$world.log"
+        echo "where-extension: the where court admitted $world.swift" >&2
+        exit 1
+    else
+        extension_status=$?
+    fi
+    if [ "$extension_status" -ne 1 ]; then
+        cat "$extension_tmp/$world.log"
+        echo "where-extension: the where court gave no refusal verdict on $world.swift" >&2
+        exit 1
+    fi
+    python3 - "$world" "$extension_tmp/$world-swift.log" "$extension_tmp/$world.log" \
+        "$errors" "$verdict" <<'PY'
+from pathlib import Path
+import re, sys
+world, swift_log, court_log, errors, verdict = sys.argv[1:]
+pattern = re.compile(r"^Checks/where-extension/" + re.escape(world) + r"\.swift:\d+:\d+: (error: .*)$")
+said = [m.group(1) for m in map(pattern.match, Path(swift_log).read_text().splitlines()) if m]
+if sorted(said) != sorted(errors.split("\n")):
+    print(Path(swift_log).read_text())
+    raise SystemExit(f"where-extension: Swift did not refuse {world}.swift for the expected reasons")
+lines = Path(court_log).read_text().splitlines()
+if lines != verdict.split("\n"):
+    print("\n".join(lines))
+    raise SystemExit(f"where-extension: the court did not refuse {world}.swift for the expected reasons")
+PY
+}
+extension_refused_world mixed \
+"error: type 'Later' does not conform to protocol 'StrictlyBanded'
+error: 'StrictlyBanded' requires the types 'Later.Band' (aka 'Loose') and 'Tight' be equivalent" \
+"✗ 'Later: StrictlyBanded' requires the types 'Band' (aka 'Loose') and 'Tight' (aka 'Tight') be equivalent"
+echo "✓ where-extension: an extension's conformances are worn and judged from its header, every refusal matches the compiler, the control holds"

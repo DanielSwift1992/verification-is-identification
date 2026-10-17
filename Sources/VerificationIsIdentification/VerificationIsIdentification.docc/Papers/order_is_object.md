@@ -79,7 +79,7 @@ A total order on a finite set has a unique minimum: σ\*_k. R4 is true for the r
 
 ## §4. Crystallization
 
-**O12 (The complete entry).** After rule saturation (IiI §3) and strategy saturation (O14), a library entry is a triple:
+**O12 (The complete entry).** After rule saturation (IiI §3) and strategy saturation (O13), a library entry is a triple:
 
 ```
 ( f*,  E,  σ* )  —  WHAT the answer is,  THROUGH WHICH lens,  HOW to reach it fastest

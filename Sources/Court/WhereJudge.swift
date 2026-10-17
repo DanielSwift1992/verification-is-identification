@@ -61,13 +61,56 @@ enum WhereJudge {
 
     // ── reading the world ──
 
+    // A comment states nothing. Line comments and block comments, nested the
+    // way Swift nests them, are blanked before any declaration is read, so an
+    // extension or a gate written inside one is no premise. A block comment
+    // reads as a space and keeps its line breaks, so the lines below stay
+    // the source's lines. An unterminated block comment leaves the rest of
+    // the file unread, which is a reader failure, not an empty tail.
+    static func blankComments(_ text: String) -> String {
+        let scalars = Array(text.unicodeScalars)
+        var kept = String.UnicodeScalarView()
+        var depth = 0
+        var inLine = false
+        var index = 0
+        while index < scalars.count {
+            let scalar = scalars[index]
+            let following = index + 1 < scalars.count ? scalars[index + 1] : nil
+            if inLine {
+                if scalar == "\n" {
+                    inLine = false
+                    kept.append(scalar)
+                }
+                index += 1
+            } else if scalar == "/", following == "*" {
+                if depth == 0 { kept.append(" ") }
+                depth += 1
+                index += 2
+            } else if depth > 0, scalar == "*", following == "/" {
+                depth -= 1
+                index += 2
+            } else if depth > 0 {
+                if scalar == "\n" { kept.append(scalar) }
+                index += 1
+            } else if scalar == "/", following == "/" {
+                inLine = true
+                index += 2
+            } else {
+                kept.append(scalar)
+                index += 1
+            }
+        }
+        if depth > 0 { fail("unterminated block comment") }
+        return String(kept)
+    }
+
     static func stripComments(_ text: String) -> String {
         // Conditional compilation is outside this court's scope. Omit the
         // complete block, including nested alternatives; never expose a tail
         // merely because an inner #endif was encountered.
         var flaggedDepth = 0
         var kept: [String] = []
-        for line in text.split(separator: "\n", omittingEmptySubsequences: false) {
+        for line in blankComments(text).split(separator: "\n", omittingEmptySubsequences: false) {
             let bare = line.trimmingCharacters(in: .whitespaces)
             if bare.range(of: #"^#if\b"#, options: .regularExpression) != nil {
                 flaggedDepth += 1
@@ -83,11 +126,7 @@ enum WhereJudge {
                 continue
             }
             if flaggedDepth > 0 { continue }
-            if let cut = line.range(of: "//") {
-                kept.append(String(line[line.startIndex..<cut.lowerBound]))
-            } else {
-                kept.append(String(line))
-            }
+            kept.append(String(line))
         }
         if flaggedDepth != 0 { fail("unterminated #if block") }
         return kept.joined(separator: "\n")

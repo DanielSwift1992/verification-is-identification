@@ -3,8 +3,9 @@
 # conformance. The court reads the extension's protocols and the aliases of
 # its body: a refinement stated there is judged at its gate, a premise added
 # there is worn, and a premise it does not add is still missing. The header
-# carries the conformance even when the body is beyond the reader. The
-# compiler gives the same verdicts on the same files.
+# carries the conformance even when the body is beyond the reader, and a
+# comment or a disabled branch carries none. The compiler gives the same
+# verdicts on the same files.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -91,10 +92,11 @@ if ! grep -q "^✓ THE WHERE holds: 3 equalities and 4 memberships judged across
     echo "where-extension: the control was not judged through its extensions" >&2
     exit 1
 fi
-# One more refused world, read beside the compiler. In the mixed world a
-# refinement sits in an extension whose body holds a method, next to one
+# Two more refused worlds, each read beside the compiler. In the mixed world
+# a refinement sits in an extension whose body holds a method, next to one
 # that holds: the court refuses the first rather than counting the second
-# and passing the file.
+# and passing the file. In the commented world the only conformances are in
+# a nested block comment and in an outer #if whose inner #if closes first.
 extension_refused_world() {
     local world="$1" errors="$2" verdict="$3"
     if swiftc -typecheck -module-cache-path "$extension_tmp/cache" \
@@ -135,4 +137,10 @@ extension_refused_world mixed \
 "error: type 'Later' does not conform to protocol 'StrictlyBanded'
 error: 'StrictlyBanded' requires the types 'Later.Band' (aka 'Loose') and 'Tight' be equivalent" \
 "✗ 'Later: StrictlyBanded' requires the types 'Band' (aka 'Loose') and 'Tight' (aka 'Tight') be equivalent"
-echo "✓ where-extension: an extension's conformances are worn and judged from its header, every refusal matches the compiler, the control holds"
+extension_refused_world commented \
+"error: global function 'need' requires that 'Commented' conform to 'Required'
+error: global function 'need' requires that 'Disabled' conform to 'Required'" \
+"✗ 'CommentedClaim = Use<Commented>' requires the type 'T' (aka 'Commented') conform to 'Required', and 'Commented: Setting' does not carry it [Admitted]
+✗ 'DisabledClaim = Use<Disabled>' requires the type 'T' (aka 'Disabled') conform to 'Required', and 'Disabled: Setting' does not carry it [Admitted]"
+
+echo "✓ where-extension: an extension's conformances are worn and judged from its header, comments and disabled branches state none, every refusal matches the compiler, the control holds"

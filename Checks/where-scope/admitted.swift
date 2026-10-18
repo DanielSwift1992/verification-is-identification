@@ -1,8 +1,10 @@
 // The control for the scope refusals: a body may declare what this court
 // does not read, under names it does not resolve. A namespace holds a plain
-// enum and a struct, a function holds a local struct and a typealias, and a
-// conformer holds a member typealias. The compiler accepts the world, and
-// the court admits the good claim and its application.
+// enum and a struct, a function holds a local struct and a typealias, a
+// conformer holds a member typealias, and a block under a plain flag, which
+// a compilation without the flag skips, holds a struct of the good name.
+// The compiler accepts the world, and the court admits the good claim and
+// its application.
 
 public protocol Setting {}
 public protocol Required: Setting {}
@@ -19,6 +21,9 @@ public enum Holder: Setting {
     public typealias Kept = Good
 }
 func scratch() {
+#if NEVER
+    struct Good {}
+#endif
     struct Scratch {}
     typealias Kept = Good
     _ = (Scratch(), Kept.self)

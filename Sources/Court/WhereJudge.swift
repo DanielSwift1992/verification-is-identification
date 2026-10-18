@@ -256,11 +256,25 @@ enum WhereJudge {
         // complete block, including nested alternatives; never expose a tail
         // merely because an inner #endif was encountered. An omitted line
         // stays as an empty one, so the lines read are the source's lines.
+        //
+        // Omitting a block reads the file as a compilation that skips it, and
+        // only a block under a plain flag, with no alternative of its own, is
+        // one that a compilation without the flag skips. Any other condition,
+        // `#if true` or `#if !FLAG` above all, and an `#else` or `#elseif` of
+        // an outer block, holds source that compilation may read, a
+        // declaration that rebinds a name among it, so each is refused at its
+        // line rather than omitted.
         var flaggedDepth = 0
         var kept: [String] = []
-        for line in blankCommentsAndStrings(text).split(separator: "\n", omittingEmptySubsequences: false) {
+        for (index, line) in blankCommentsAndStrings(text)
+            .split(separator: "\n", omittingEmptySubsequences: false).enumerated() {
             let bare = line.trimmingCharacters(in: .whitespaces)
             if bare.range(of: #"^#if\b"#, options: .regularExpression) != nil {
+                if flaggedDepth == 0,
+                   bare.range(of: #"^#if\s+(?!true$)[A-Za-z_][A-Za-z0-9_]*$"#, options: .regularExpression) == nil {
+                    fail("cannot read line \(index + 1): '\(bare)' is not a plain compilation flag, "
+                        + "and this court omits only a block a compilation without its flag skips")
+                }
                 flaggedDepth += 1
                 kept.append("")
                 continue
@@ -273,6 +287,10 @@ enum WhereJudge {
             }
             if bare.range(of: #"^#(?:else|elseif)\b"#, options: .regularExpression) != nil {
                 if flaggedDepth == 0 { fail("conditional branch outside #if") }
+                if flaggedDepth == 1 {
+                    fail("cannot read line \(index + 1): '\(bare)' opens a branch a compilation without "
+                        + "the flag reads, and this court omits only a block that compilation skips")
+                }
                 kept.append("")
                 continue
             }

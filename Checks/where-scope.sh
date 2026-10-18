@@ -4,11 +4,13 @@
 # every body. A second declaration of a court-read name in a function body,
 # of a form the court reads or not (an enum, a typealias, a generic
 # parameter), rebinds it where a use sits, and an enum nested in a namespace
-# can stand for a file-scope name the court does not read; each world holds
-# a real bad demand beside a good neighbour, the compiler refuses it, and
-# the court gives no verdict and names the name and its lines instead of
-# holding the file. The control keeps what a body may declare readable: the
-# compiler accepts it and the court admits it.
+# can stand for a file-scope name the court does not read; and a block
+# under `#if true` is compiled, so only a block under a plain flag is
+# omitted. Each such world holds a real bad demand beside a good neighbour,
+# the compiler refuses it, and the court gives no verdict and names the name
+# or the condition and its line instead of holding the file. The control
+# keeps what a body may declare, and a block under a plain flag, readable:
+# the compiler accepts it and the court admits it.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -64,6 +66,9 @@ scope_world rebound "error: global function 'need' requires that 'Good' (aka 'Ba
 scope_world generic "error: type 'Good' does not conform to protocol 'Setting'
 error: generic parameter 'T' could not be inferred" \
     "✗ THE WHERE: cannot read 'Good': it is declared at lines 9 and 15, $no_scope_rule"
+scope_world conditional "error: type 'Good' does not conform to protocol 'Setting'
+error: generic parameter 'T' could not be inferred" \
+    "✗ THE WHERE: cannot read line 18: '#if true' is not a plain compilation flag, and this court omits only a block a compilation without its flag skips"
 
 # The control: what a body may declare reads, the compiler accepts, the court admits.
 if ! swiftc -typecheck -module-cache-path "$scope_tmp/cache" \
@@ -82,4 +87,4 @@ if ! grep -q "^✓ THE WHERE holds: 0 equalities and 2 memberships judged across
     echo "where-scope: the control was not judged beside its nested declarations" >&2
     exit 1
 fi
-echo "✓ where-scope: four rebound or nested names are named at their lines, the compiler refuses each world, a body's own declarations read"
+echo "✓ where-scope: five rebound, nested or compiled names are named at their lines, the compiler refuses each world, a body's own declarations read"

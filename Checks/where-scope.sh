@@ -4,13 +4,17 @@
 # every body. A second declaration of a court-read name in a function body,
 # of a form the court reads or not (an enum, a typealias, a generic
 # parameter), rebinds it where a use sits, and an enum nested in a namespace
-# can stand for a file-scope name the court does not read; and a block
-# under `#if true` is compiled, so only a block under a plain flag is
-# omitted. Each such world holds a real bad demand beside a good neighbour,
-# the compiler refuses it, and the court gives no verdict and names the name
-# or the condition and its line instead of holding the file. The control
-# keeps what a body may declare, and a block under a plain flag, readable:
-# the compiler accepts it and the court admits it.
+# can stand for a file-scope name the court does not read. A name bound
+# outside the file rebinds a file-scope name inside a type or an extension
+# body, so a use there is refused; and a block under `#if true` is compiled,
+# so only a block under a plain flag is omitted. Each such world holds a
+# real bad demand beside a good neighbour, the compiler refuses it, and the
+# court gives no verdict and names the name, the use or the condition and
+# its line instead of holding the file. A member a definitions file writes
+# for a conformer of the world is the conformer's, and the court refuses the
+# certificate it rebinds, as the compiler does. The control keeps what a body
+# may declare, and a block under a plain flag, readable: the compiler
+# accepts it and the court admits it.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -66,9 +70,36 @@ scope_world rebound "error: global function 'need' requires that 'Good' (aka 'Ba
 scope_world generic "error: type 'Good' does not conform to protocol 'Setting'
 error: generic parameter 'T' could not be inferred" \
     "✗ THE WHERE: cannot read 'Good': it is declared at lines 9 and 15, $no_scope_rule"
+scope_world outside "error: type 'Element' does not conform to protocol 'Setting'
+error: generic parameter 'T' could not be inferred" \
+    "✗ THE WHERE: cannot read line 20: the use 'Use<Element>' sits in the body of a type or an extension, whose members this court does not read"
 scope_world conditional "error: type 'Good' does not conform to protocol 'Setting'
 error: generic parameter 'T' could not be inferred" \
     "✗ THE WHERE: cannot read line 18: '#if true' is not a plain compilation flag, and this court omits only a block a compilation without its flag skips"
+
+# The lent world: the compiler reads both files and refuses the demand; the
+# court reads the definitions file's extension as Owner's, binds `Left` to
+# the bad setting inside Owner and refuses the certificate.
+if swiftc -typecheck -module-cache-path "$scope_tmp/cache" Checks/where-scope/lent-definitions.swift \
+    Checks/where-scope/lent.swift >"$scope_tmp/lent-swift.log" 2>&1; then
+    echo "where-scope: Swift accepted lent.swift" >&2
+    exit 1
+fi
+if [ "$(grep -E '^Checks/where-scope/lent(-definitions)?\.swift:[0-9]+:[0-9]+: error: ' "$scope_tmp/lent-swift.log" | sed -E 's/^[^ ]+ //')" \
+    != "error: global function 'need' requires that 'Owner.Left' (aka 'Bad') conform to 'Required'" ]; then
+    cat "$scope_tmp/lent-swift.log"
+    echo "where-scope: Swift did not refuse lent.swift for the rebound Left" >&2
+    exit 1
+fi
+scope_said=0
+"$scope_bin/Tools" judge where Checks/where-scope/lent.swift Checks/where-scope/lent-definitions.swift \
+    >"$scope_tmp/lent.out" 2>"$scope_tmp/lent.err" || scope_said=$?
+if [ "$scope_said" -ne 1 ] || [ -s "$scope_tmp/lent.err" ] \
+    || [ "$(cat "$scope_tmp/lent.out")" != "✗ 'Owner.Claim = Use<Owner.Left>' requires the type 'T' (aka 'Bad') conform to 'Required', and 'Bad: Setting' does not carry it [Admitted]" ]; then
+    cat "$scope_tmp/lent.out" "$scope_tmp/lent.err"
+    echo "where-scope: the court did not read the lent member inside its conformer" >&2
+    exit 1
+fi
 
 # The control: what a body may declare reads, the compiler accepts, the court admits.
 if ! swiftc -typecheck -module-cache-path "$scope_tmp/cache" \
@@ -87,4 +118,4 @@ if ! grep -q "^✓ THE WHERE holds: 0 equalities and 2 memberships judged across
     echo "where-scope: the control was not judged beside its nested declarations" >&2
     exit 1
 fi
-echo "✓ where-scope: five rebound, nested or compiled names are named at their lines, the compiler refuses each world, a body's own declarations read"
+echo "✓ where-scope: six rebound, nested or unread names are named at their lines, a lent member binds inside its conformer, the compiler refuses each world, a body's own declarations read"

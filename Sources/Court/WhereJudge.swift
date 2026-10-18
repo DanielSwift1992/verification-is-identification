@@ -336,6 +336,45 @@ enum WhereJudge {
         }
     }
 
+    // A body opened by a type or an extension holds that type's members in
+    // scope, and a member bound outside this file (an external type's generic
+    // parameter, an associated type of a protocol another file declares)
+    // rebinds a name there that this reader resolves at file scope. For each
+    // UTF-16 offset of the read text, the number of type or extension bodies
+    // around it: a brace opens one when the last declaring keyword before it,
+    // since the previous brace or semicolon, names a type or an extension.
+    static func typeBodies(_ text: String) -> [Int] {
+        let keyword = try! NSRegularExpression(
+            pattern: #"\b(extension|enum|struct|class|actor|protocol|func|init|deinit|subscript|var|let"#
+                + #"|get|set|willSet|didSet|if|else|for|while|repeat|switch|case|default|do|catch|guard|defer)\b"#
+        )
+        let units = Array(text.utf16)
+        var depth: [Int] = [0]
+        var opened: [Bool] = []
+        var segmentStart = 0
+        for (offset, unit) in units.enumerated() {
+            var current = depth[depth.count - 1]
+            if unit == 0x7B {
+                let segment = String(utf16CodeUnits: Array(units[segmentStart..<offset]), count: offset - segmentStart)
+                let range = NSRange(segment.startIndex..., in: segment)
+                let last = keyword.matches(in: segment, range: range).last
+                    .flatMap { Range($0.range(at: 1), in: segment) }
+                    .map { String(segment[$0]) }
+                let isType = ["extension", "enum", "struct", "class", "actor", "protocol"].contains(last ?? "")
+                opened.append(isType)
+                if isType { current += 1 }
+                segmentStart = offset + 1
+            } else if unit == 0x7D {
+                if let wasType = opened.popLast(), wasType { current -= 1 }
+                segmentStart = offset + 1
+            } else if unit == 0x3B {
+                segmentStart = offset + 1
+            }
+            depth.append(current)
+        }
+        return depth
+    }
+
     static func spelledLines(_ lines: [Int]) -> String {
         let spelled = lines.map(String.init)
         guard spelled.count > 1 else { return "line \(spelled[0])" }
@@ -553,6 +592,11 @@ enum WhereJudge {
         var uses: [String] = []
         /// the lines each name of this file is declared at, in any scope
         var declared: [String: [Int]] = [:]
+        /// what this file's unconditional extensions of types it does not
+        /// present add: protocols and parameterless aliases, lent to a world
+        /// that presents the type
+        var extendedProtocols: [String: [String]] = [:]
+        var extendedAliases: [String: [(name: String, body: String)]] = [:]
     }
 
     static func read(_ text: String) -> World {
@@ -615,10 +659,13 @@ enum WhereJudge {
         // its extensions add nothing.
         for hit in declarations(#"extension\s+(\w+)\s*:\s*([\w,\s]+?)\s*\{"#, clean, scope) {
             let name = hit[0]
+            let listed = hit[1]
+                .split(separator: ",")
+                .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
             if world.conformers[name] != nil {
-                world.conformers[name]!.protocols += hit[1]
-                    .split(separator: ",")
-                    .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+                world.conformers[name]!.protocols += listed
+            } else {
+                world.extendedProtocols[name, default: []] += listed
             }
         }
 
@@ -636,6 +683,10 @@ enum WhereJudge {
                         fail("duplicate definition of '\(name).\(aliasHit[0])'")
                     }
                     world.conformers[name]!.table[aliasHit[0]] = aliasHit[2]
+                }
+            } else {
+                for aliasHit in readAliases(hit[1]) where aliasHit[1].isEmpty {
+                    world.extendedAliases[name, default: []].append((aliasHit[0], aliasHit[2]))
                 }
             }
         }
@@ -710,9 +761,22 @@ enum WhereJudge {
             world.protocolAxes[hit[0]] = Set(captures(#"associatedtype\s+(\w+)"#, hit[1]).map { $0[0] })
         }
 
-        for hit in captures(#"([\w<>,\. ]+?)\s*\.self"#, clean) {
-            let use = hit[0].trimmingCharacters(in: .whitespaces)
-            if use.contains("<") { world.uses.append(use) }
+        // A use is read at file scope. One inside a type or an extension body
+        // may name a member this court does not read, so it is refused there.
+        let bodies = typeBodies(clean)
+        let usePattern = try! NSRegularExpression(
+            pattern: #"([\w<>,\. ]+?)\s*\.self"#, options: [.dotMatchesLineSeparators]
+        )
+        for match in usePattern.matches(in: clean, range: NSRange(clean.startIndex..., in: clean)) {
+            guard let bounds = Range(match.range(at: 1), in: clean) else { continue }
+            let use = String(clean[bounds]).trimmingCharacters(in: .whitespaces)
+            guard use.contains("<") else { continue }
+            let start = match.range.location
+            if bodies[start] > 0 {
+                fail("cannot read line \(scope.line[start]): the use '\(use)' sits in the body of a type "
+                    + "or an extension, whose members this court does not read")
+            }
+            world.uses.append(use)
         }
         return world
     }
@@ -884,7 +948,24 @@ enum WhereJudge {
             }
             excludesConditional = excludesConditional
                 || more.range(of: #"(?m)^\s*#if\b"#, options: .regularExpression) != nil
-            for (name, rule) in read(more).aliases.sorted(by: { $0.key < $1.key }) {
+            let lent = read(more)
+            // A definitions file's extension of a type this world presents is
+            // that type's, as the world's own extensions are: its protocols and
+            // its aliases are the conformer's, and a member alias it writes
+            // binds its name inside the conformer before the file's scope does.
+            for (name, listed) in lent.extendedProtocols.sorted(by: { $0.key < $1.key }) {
+                if world.conformers[name] != nil { world.conformers[name]!.protocols += listed }
+            }
+            for (name, members) in lent.extendedAliases.sorted(by: { $0.key < $1.key }) {
+                guard world.conformers[name] != nil else { continue }
+                for member in members {
+                    guard world.conformers[name]!.table[member.name] == nil else {
+                        fail("duplicate definition of '\(name).\(member.name)' in '\(path)' and '\(extra)'")
+                    }
+                    world.conformers[name]!.table[member.name] = member.body
+                }
+            }
+            for (name, rule) in lent.aliases.sorted(by: { $0.key < $1.key }) {
                 guard aliasOrigins[name] == nil else {
                     fail("ambiguous definition of '\(name)' in '\(aliasOrigins[name]!)' and '\(extra)'")
                 }

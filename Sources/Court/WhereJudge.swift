@@ -452,6 +452,23 @@ enum WhereJudge {
             )
         }
 
+        // A where clause this reader cannot read as a gate is refused by name,
+        // never passed over: an unread condition would leave every claim
+        // over it unjudged, and a neighbour that holds would pass the file.
+        // A conditional conformance is read with one protocol before its
+        // where clause, a conditional protocol with an inheritance list.
+        for hit in captures(#"extension\s+(\w+)\s*:\s*([^{}]*?)\bwhere\b"#, clean)
+        where hit[1].range(of: #"^\w+\s+$"#, options: .regularExpression) == nil {
+            let listed = hit[1].split(whereSeparator: \.isWhitespace).joined(separator: " ")
+            fail("cannot read conditional conformance '\(hit[0]): \(listed)': "
+                + "this court reads one protocol per conditional extension")
+        }
+        for hit in captures(#"protocol\s+(\w+)\b([^{}]*?)\bwhere\b"#, clean)
+        where hit[1].range(of: #"^\s*:\s*[\w,\s]+?\s+$"#, options: .regularExpression) == nil {
+            fail("cannot read conditional protocol '\(hit[0])': "
+                + "this court reads a where clause after an inheritance list of plain names")
+        }
+
         for hit in captures(
             #"extension\s+(\w+)\s*:\s*(\w+)\s+where\s+([^{]+)\{"#, clean
         ) {

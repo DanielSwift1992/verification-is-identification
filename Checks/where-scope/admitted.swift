@@ -5,9 +5,10 @@
 // a compilation without the flag skips, holds a struct of the good name. A
 // function's generic parameters, under fresh names, carry a constraint that
 // nests three brackets deep around an arrow. A type's where clause spells
-// `repeat`, a class declares `class` members, and a function runs a
-// `repeat` loop before its application. The compiler accepts the world, and
-// the court admits the good claim and all three applications.
+// `repeat`, a class declares `class` members after constants that compare
+// numbers, and a function runs a `repeat` loop before its application. The
+// compiler accepts the world, and the court admits the good claim and all
+// three applications.
 
 public protocol Setting {}
 public protocol Required: Setting {}
@@ -40,6 +41,8 @@ func demandDeep<Fresh: Setting & Marker<Box<Box<(Int) -> Good>>>, Other>(_: Fres
     need(Use<Good>.self)
 }
 public struct Pack<each T> where repeat each T: Setting {}
+let comparison = 1 < 2
+let ordered = (1 < 2) && (2 <= 3)
 open class Counter {
     open class func make() -> Int { 1 }
     class var count: Int { 2 }

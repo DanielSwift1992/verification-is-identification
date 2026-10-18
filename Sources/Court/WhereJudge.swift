@@ -675,9 +675,11 @@ enum WhereJudge {
         var parts: [String] = []
         var depth = 0
         var piece = ""
+        var previous: Character = " "
         for character in clause {
             if character == "<" { depth += 1 }
-            if character == ">" { depth -= 1 }
+            if character == ">", previous != "-" { depth -= 1 }
+            previous = character
             if character == ",", depth == 0 {
                 parts.append(piece)
                 piece = ""
@@ -692,6 +694,14 @@ enum WhereJudge {
         for part in parts {
             let bare = part.trimmingCharacters(in: .whitespacesAndNewlines)
             if bare.isEmpty { continue }
+            // The `>` of an arrow closes no bracket, so a conjunct that spells
+            // a function type ends at its own comma. A function type is a term
+            // this court does not read, and no verdict is given over a law
+            // that holds one: the conjunct is named instead.
+            if bare.contains("->") {
+                fail("cannot read the where clause conjunct '\(bare)': a function type is a term this court "
+                    + "does not read")
+            }
             let sides = part.components(separatedBy: "==")
             if sides.count == 2 {
                 equalities.append((

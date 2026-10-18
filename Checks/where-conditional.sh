@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # A conditional conformance is read as a gate or refused by name. A gate
 # written on one line is the same gate and is judged; a conditional
-# conformance listing two protocols, and a conditional protocol whose where
-# clause stands without an inheritance list, are forms this court does not
-# read, so it gives no verdict and names them instead of passing over them
-# while a neighbour holds the file. The compiler refuses each world on the
-# same files.
+# conformance listing two protocols, a conditional protocol whose where
+# clause stands without an inheritance list, and a where clause that spells
+# a function type are forms this court does not read, so it gives no verdict
+# and names them instead of passing over them while a neighbour holds the
+# file. The compiler refuses each world on the same files.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -66,5 +66,9 @@ conditional_world selfbound 2 \
 "error: type 'Later' does not conform to protocol 'StrictlyBanded'
 error: 'StrictlyBanded' requires the types 'Later.Band' (aka 'Loose') and 'Tight' be equivalent" \
 "✗ THE WHERE: cannot read conditional protocol 'StrictlyBanded': this court reads a where clause after an inheritance list of plain names"
+conditional_world arrow 2 \
+"error: global function 'need' requires that 'Bad' conform to 'Required'
+error: global function 'need' requires the types 'Int' and '(Int) -> Int' be equivalent" \
+"✗ THE WHERE: cannot read the where clause conjunct 'F == (Int) -> Int': a function type is a term this court does not read"
 
-echo "✓ where-conditional: a one-line gate is judged, two unread conditional forms are named, the compiler refuses all three"
+echo "✓ where-conditional: a one-line gate is judged, three unread conditional forms are named, the compiler refuses all four"

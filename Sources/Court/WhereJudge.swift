@@ -353,11 +353,12 @@ enum WhereJudge {
     // `each` or any word, and a header that ends in `repeat` opens a loop.
     // `class` before a member's keyword, modifiers between them, is that
     // member's modifier (`class func`, `override class var`), the kind an
-    // import names (`import struct M.T`) declares nothing, and a keyword
-    // after a dot is a member's name, so none of them names a type.
+    // import names (`import struct M.T`) declares nothing, a keyword after a
+    // dot is a member's name, and `actor` is a keyword only before a name
+    // (`let actor = 1` declares no type), so none of them names a type.
     static func typeBodies(_ text: String) -> [Int] {
         let keyword = try! NSRegularExpression(
-            pattern: #"(?<!\.)\b(extension|enum|struct|class|actor|protocol|func|init|deinit|subscript|var|let"#
+            pattern: #"(?<!\.)\b(extension|enum|struct|class|actor(?=\s+[A-Za-z_])|protocol|func|init|deinit|subscript|var|let"#
                 + #"|get|set|willSet|didSet|if|else|for|while|switch|case|default|do|catch|guard|defer)\b"#
         )
         func words(_ header: String) -> [String] {
@@ -496,15 +497,56 @@ enum WhereJudge {
                 file.insert(name)
             }
         }
-        // A generic parameter list is read to its balanced closing bracket,
-        // however deep its constraints nest; one this reader cannot close
-        // before the header ends is refused, never passed over.
-        let generic = try! NSRegularExpression(
-            pattern: #"\b(?:func\s+[^\s(<]+|(?:enum|struct|class|actor|typealias)\s+\w+|init[?!]?|subscript)\s*<"#
+        // A generic parameter list is read wherever a declaration may carry
+        // one: after the name of a function, a type or a typealias, and after
+        // `init` or `subscript`. The name is read by its lexical class, a word
+        // or an operator (`func < <T>`, `func ==<T>`, whose last `<` opens the
+        // list), so a list is never passed over because its name is not a
+        // word. `class` before a member's keyword is a modifier, and `actor`
+        // is a keyword only before a name. The list is read to its balanced
+        // closing bracket, however deep its constraints nest; one this reader
+        // cannot close before the header ends is refused.
+        let declaring = try! NSRegularExpression(
+            pattern: #"(?<!\.)\b(func|enum|struct|class|actor|typealias|init|subscript)\b"#
         )
+        let modifying: Set<String> = [
+            "func", "var", "let", "subscript", "init", "deinit", "static", "final", "override", "required",
+            "convenience", "dynamic", "nonisolated", "public", "private", "fileprivate", "internal", "package", "open",
+        ]
         let units = Array(text.utf16)
-        for match in generic.matches(in: text, range: range) {
-            let start = match.range.location + match.range.length
+        func isWord(_ unit: UInt16) -> Bool {
+            (unit >= 0x30 && unit <= 0x39) || (unit >= 0x41 && unit <= 0x5A) || (unit >= 0x61 && unit <= 0x7A)
+                || unit == 0x5F || unit >= 0x80
+        }
+        func isSpace(_ unit: UInt16) -> Bool { unit == 0x20 || unit == 0x09 || unit == 0x0A || unit == 0x0D }
+        for match in declaring.matches(in: text, range: range) {
+            guard let kind = Range(match.range(at: 1), in: text).map({ String(text[$0]) }) else { continue }
+            var cursor = match.range.location + match.range.length
+            if kind == "init", cursor < units.count, units[cursor] == 0x3F || units[cursor] == 0x21 { cursor += 1 }
+            if kind != "init", kind != "subscript" {
+                while cursor < units.count, isSpace(units[cursor]) { cursor += 1 }
+                let nameStart = cursor
+                if kind == "func", cursor < units.count, !isWord(units[cursor]) {
+                    while cursor < units.count, !isSpace(units[cursor]), units[cursor] != 0x28, !isWord(units[cursor]) {
+                        cursor += 1
+                    }
+                    if cursor - nameStart > 1, units[cursor - 1] == 0x3C, cursor < units.count, isWord(units[cursor]) {
+                        cursor -= 1
+                    }
+                } else {
+                    while cursor < units.count, isWord(units[cursor]) { cursor += 1 }
+                }
+                let name = String(utf16CodeUnits: Array(units[nameStart..<cursor]), count: cursor - nameStart)
+                if kind == "class", name.isEmpty || modifying.contains(name) { continue }
+                if kind == "actor", name.isEmpty { continue }
+                if name.isEmpty {
+                    fail("cannot read line \(scope.line[match.range.location]): the name this \(kind) declares "
+                        + "is not one this court reads")
+                }
+            }
+            while cursor < units.count, isSpace(units[cursor]) { cursor += 1 }
+            guard cursor < units.count, units[cursor] == 0x3C else { continue }
+            let start = cursor + 1
             var depth = 1
             var end = start
             while end < units.count, depth > 0 {

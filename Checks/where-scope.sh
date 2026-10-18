@@ -6,19 +6,21 @@
 # parameter), rebinds it where a use sits, and an enum nested in a namespace
 # can stand for a file-scope name the court does not read. A generic
 # parameter list is read to its closing bracket, however deep its
-# constraints nest and whatever arrow they spell. A name bound outside the
-# file rebinds a file-scope name inside a type or an extension body, so a
-# use there is refused, under a where clause that spells `repeat` and after
-# a comparison as well; and a block under `#if true` is compiled, so only a
-# block under a plain flag is omitted. Each such world holds a real bad
-# demand beside a good neighbour, the compiler refuses it, and the court
-# gives no verdict and names the name, the use or the condition and its line
-# instead of holding the file. A definitions file that extends a type of the
-# world is refused: the court cannot tell that the extension is the world's
-# type, or that its member reaches the world. The control keeps what a body
-# may declare, a deep generic list under fresh names, a pack type, `class`
-# members after comparisons, a `repeat` loop, and a block under a plain
-# flag, readable: the compiler accepts it and the court admits it.
+# constraints nest and whatever arrow they spell, after a name read as a
+# word or an operator. A name bound outside the file rebinds a file-scope
+# name inside a type or an extension body, so a use there is refused, under
+# a where clause that spells `repeat` and after a comparison as well; and a
+# block under `#if true` is compiled, so only a block under a plain flag is
+# omitted. Each such world holds a real bad demand beside a good neighbour,
+# the compiler refuses it, and the court gives no verdict and names the
+# name, the use or the condition and its line instead of holding the file. A
+# definitions file that extends a type of the world is refused: the court
+# cannot tell that the extension is the world's type, or that its member
+# reaches the world. The control keeps what a body may declare, a deep
+# generic list and an operator's list under fresh names, a constant named
+# `actor`, a pack type, `class` members after comparisons, a `repeat` loop,
+# and a block under a plain flag, readable: the compiler accepts it and the
+# court admits it.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -78,6 +80,8 @@ scope_world deep "error: global function 'need' requires that 'Good' conform to 
     "✗ THE WHERE: cannot read 'Good': it is declared at lines 11 and 20, $no_scope_rule"
 scope_world arrow "error: global function 'need' requires that 'Good' conform to 'Required'" \
     "✗ THE WHERE: cannot read 'Good': it is declared at lines 10 and 18, $no_scope_rule"
+scope_world operator "error: global function 'need' requires that 'Good' conform to 'Required'" \
+    "✗ THE WHERE: cannot read 'Good': it is declared at lines 12 and 19, $no_scope_rule"
 scope_world outside "error: type 'Element' does not conform to protocol 'Setting'
 error: generic parameter 'T' could not be inferred" \
     "✗ THE WHERE: cannot read line 20: the use 'Use<Element>' sits in the body of a type or an extension, whose members this court does not read"
@@ -148,4 +152,4 @@ if ! grep -q "^✓ THE WHERE holds: 0 equalities and 4 memberships judged across
     echo "where-scope: the control was not judged beside its nested declarations" >&2
     exit 1
 fi
-echo "✓ where-scope: ten rebound, nested or unread names and two foreign extensions are named, the compiler refuses each world, a body's own declarations read"
+echo "✓ where-scope: eleven rebound, nested or unread names and two foreign extensions are named, the compiler refuses each world, a body's own declarations read"

@@ -10,11 +10,11 @@
 # so only a block under a plain flag is omitted. Each such world holds a
 # real bad demand beside a good neighbour, the compiler refuses it, and the
 # court gives no verdict and names the name, the use or the condition and
-# its line instead of holding the file. A member a definitions file writes
-# for a conformer of the world is the conformer's, and the court refuses the
-# certificate it rebinds, as the compiler does. The control keeps what a body
-# may declare, and a block under a plain flag, readable: the compiler
-# accepts it and the court admits it.
+# its line instead of holding the file. A definitions file that extends a
+# type of the world is refused: the court cannot tell that the extension is
+# the world's type, or that its member reaches the world. The control keeps
+# what a body may declare, and a block under a plain flag, readable: the
+# compiler accepts it and the court admits it.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -77,29 +77,41 @@ scope_world conditional "error: type 'Good' does not conform to protocol 'Settin
 error: generic parameter 'T' could not be inferred" \
     "✗ THE WHERE: cannot read line 18: '#if true' is not a plain compilation flag, and this court omits only a block a compilation without its flag skips"
 
-# The lent world: the compiler reads both files and refuses the demand; the
-# court reads the definitions file's extension as Owner's, binds `Left` to
-# the bad setting inside Owner and refuses the certificate.
-if swiftc -typecheck -module-cache-path "$scope_tmp/cache" Checks/where-scope/lent-definitions.swift \
-    Checks/where-scope/lent.swift >"$scope_tmp/lent-swift.log" 2>&1; then
-    echo "where-scope: Swift accepted lent.swift" >&2
-    exit 1
-fi
-if [ "$(grep -E '^Checks/where-scope/lent(-definitions)?\.swift:[0-9]+:[0-9]+: error: ' "$scope_tmp/lent-swift.log" | sed -E 's/^[^ ]+ //')" \
-    != "error: global function 'need' requires that 'Owner.Left' (aka 'Bad') conform to 'Required'" ]; then
-    cat "$scope_tmp/lent-swift.log"
-    echo "where-scope: Swift did not refuse lent.swift for the rebound Left" >&2
-    exit 1
-fi
-scope_said=0
-"$scope_bin/Tools" judge where Checks/where-scope/lent.swift Checks/where-scope/lent-definitions.swift \
-    >"$scope_tmp/lent.out" 2>"$scope_tmp/lent.err" || scope_said=$?
-if [ "$scope_said" -ne 1 ] || [ -s "$scope_tmp/lent.err" ] \
-    || [ "$(cat "$scope_tmp/lent.out")" != "✗ 'Owner.Claim = Use<Owner.Left>' requires the type 'T' (aka 'Bad') conform to 'Required', and 'Bad: Setting' does not carry it [Admitted]" ]; then
-    cat "$scope_tmp/lent.out" "$scope_tmp/lent.err"
-    echo "where-scope: the court did not read the lent member inside its conformer" >&2
-    exit 1
-fi
+# scope_pair <world> <compiler error> <court refusal>: a world beside its
+# definitions file, <world>-definitions.swift. The compiler, given both
+# files, refuses the world for exactly this error, and the court, given the
+# same files, exits 2 with exactly this line on stderr and nothing on stdout.
+scope_pair() {
+    local world="$1" error="$2" verdict="$3"
+    if swiftc -typecheck -module-cache-path "$scope_tmp/cache" "Checks/where-scope/$world.swift" \
+        "Checks/where-scope/$world-definitions.swift" >"$scope_tmp/$world-swift.log" 2>&1; then
+        echo "where-scope: Swift accepted $world.swift beside its definitions" >&2
+        exit 1
+    fi
+    if [ "$(grep -E "^Checks/where-scope/$world(-definitions)?\.swift:[0-9]+:[0-9]+: error: " "$scope_tmp/$world-swift.log" \
+        | sed -E 's/^[^ ]+ //')" != "$error" ]; then
+        cat "$scope_tmp/$world-swift.log"
+        echo "where-scope: Swift did not refuse $world.swift for the expected reason" >&2
+        exit 1
+    fi
+    local said=0
+    "$scope_bin/Tools" judge where "Checks/where-scope/$world.swift" "Checks/where-scope/$world-definitions.swift" \
+        >"$scope_tmp/$world.out" 2>"$scope_tmp/$world.err" || said=$?
+    if [ "$said" -ne 2 ] || [ -s "$scope_tmp/$world.out" ] || [ "$(cat "$scope_tmp/$world.err")" != "$verdict" ]; then
+        cat "$scope_tmp/$world.out" "$scope_tmp/$world.err"
+        echo "where-scope: the court did not refuse to read $world.swift beside its definitions" >&2
+        exit 1
+    fi
+}
+
+# A definitions file that extends a type of the world is one this court
+# cannot place: the extension may not be the world's type, and its member
+# may not reach the world.
+cannot_place="and this court cannot tell that the extension is this world's type, or that its members reach this file"
+scope_pair lent "error: global function 'need' requires that 'Owner.Left' (aka 'Bad') conform to 'Required'" \
+    "✗ THE WHERE: cannot read 'Owner': 'Checks/where-scope/lent-definitions.swift' extends it at line 4, $cannot_place"
+scope_pair private-target "error: global function 'need' requires that 'Left' conform to 'Required'" \
+    "✗ THE WHERE: cannot read 'Left': 'Checks/where-scope/private-target-definitions.swift' extends it at line 5, $cannot_place"
 
 # The control: what a body may declare reads, the compiler accepts, the court admits.
 if ! swiftc -typecheck -module-cache-path "$scope_tmp/cache" \
@@ -118,4 +130,4 @@ if ! grep -q "^✓ THE WHERE holds: 0 equalities and 2 memberships judged across
     echo "where-scope: the control was not judged beside its nested declarations" >&2
     exit 1
 fi
-echo "✓ where-scope: six rebound, nested or unread names are named at their lines, a lent member binds inside its conformer, the compiler refuses each world, a body's own declarations read"
+echo "✓ where-scope: six rebound, nested or unread names and two foreign extensions are named, the compiler refuses each world, a body's own declarations read"

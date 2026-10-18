@@ -592,11 +592,11 @@ enum WhereJudge {
         var uses: [String] = []
         /// the lines each name of this file is declared at, in any scope
         var declared: [String: [Int]] = [:]
-        /// what this file's unconditional extensions of types it does not
-        /// present add: protocols and parameterless aliases, lent to a world
-        /// that presents the type
-        var extendedProtocols: [String: [String]] = [:]
-        var extendedAliases: [String: [(name: String, body: String)]] = [:]
+        /// the lines at which this file extends each name, in any form
+        var extensions: [String: [Int]] = [:]
+        /// the names this file declares at file scope as a type, a protocol
+        /// or a typealias: the names another file's extension can reach
+        var fileTypes: Set<String> = []
     }
 
     static func read(_ text: String) -> World {
@@ -664,8 +664,6 @@ enum WhereJudge {
                 .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
             if world.conformers[name] != nil {
                 world.conformers[name]!.protocols += listed
-            } else {
-                world.extendedProtocols[name, default: []] += listed
             }
         }
 
@@ -684,11 +682,18 @@ enum WhereJudge {
                     }
                     world.conformers[name]!.table[aliasHit[0]] = aliasHit[2]
                 }
-            } else {
-                for aliasHit in readAliases(hit[1]) where aliasHit[1].isEmpty {
-                    world.extendedAliases[name, default: []].append((aliasHit[0], aliasHit[2]))
-                }
             }
+        }
+
+        let fileType = try! NSRegularExpression(pattern: #"\b(?:enum|struct|class|actor|protocol|typealias)\s+(\w+)"#)
+        for match in fileType.matches(in: clean, range: NSRange(clean.startIndex..., in: clean))
+        where scope.depth[match.range.location] == 0 {
+            if let bounds = Range(match.range(at: 1), in: clean) { world.fileTypes.insert(String(clean[bounds])) }
+        }
+        let extended = try! NSRegularExpression(pattern: #"\bextension\s+(\w+)"#)
+        for match in extended.matches(in: clean, range: NSRange(clean.startIndex..., in: clean)) {
+            guard let bounds = Range(match.range(at: 1), in: clean) else { continue }
+            world.extensions[String(clean[bounds]), default: []].append(scope.line[match.range.location])
         }
 
         for hit in readAliases(outsideBodies(clean)) {
@@ -949,21 +954,21 @@ enum WhereJudge {
             excludesConditional = excludesConditional
                 || more.range(of: #"(?m)^\s*#if\b"#, options: .regularExpression) != nil
             let lent = read(more)
-            // A definitions file's extension of a type this world presents is
-            // that type's, as the world's own extensions are: its protocols and
-            // its aliases are the conformer's, and a member alias it writes
-            // binds its name inside the conformer before the file's scope does.
-            for (name, listed) in lent.extendedProtocols.sorted(by: { $0.key < $1.key }) {
-                if world.conformers[name] != nil { world.conformers[name]!.protocols += listed }
-            }
-            for (name, members) in lent.extendedAliases.sorted(by: { $0.key < $1.key }) {
-                guard world.conformers[name] != nil else { continue }
-                for member in members {
-                    guard world.conformers[name]!.table[member.name] == nil else {
-                        fail("duplicate definition of '\(name).\(member.name)' in '\(path)' and '\(extra)'")
-                    }
-                    world.conformers[name]!.table[member.name] = member.body
-                }
+            // A definitions file that extends a type, a protocol or a typealias
+            // this world declares at file scope may add a member that binds a
+            // name inside the world's type, a conformance, or a gate. Whether
+            // that extension is the world's type at all (the definitions file
+            // may declare its own type of the name, privately, or sit in
+            // another module) and whether its members reach this file (a
+            // private or fileprivate member does not) are facts this flat
+            // reader does not establish, so such an extension is refused rather
+            // than read or passed over.
+            let extendsWorld = lent.extensions
+                .filter { world.fileTypes.contains($0.key) }
+                .sorted(by: { $0.key < $1.key })
+            if let first = extendsWorld.first {
+                fail("cannot read '\(first.key)': '\(extra)' extends it at \(spelledLines(first.value)), and this court "
+                    + "cannot tell that the extension is this world's type, or that its members reach this file")
             }
             for (name, rule) in lent.aliases.sorted(by: { $0.key < $1.key }) {
                 guard aliasOrigins[name] == nil else {

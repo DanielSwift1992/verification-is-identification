@@ -1,10 +1,11 @@
-// A member a definitions file writes for a conformer of this world binds
-// its name inside the conformer before the file's scope does. Beside this
-// world, lent-definitions.swift extends Owner with `Left = Bad`, so within
-// Owner `Left` is the bad setting, not the file's enum. The court reads that
-// extension as the conformer's, as it reads the world's own, and refuses the
-// certificate for the premise Bad lacks; the compiler, given both files,
-// refuses the demand.
+// A definitions file that extends a type of this world is one this court
+// cannot place. Beside this world, lent-definitions.swift extends Owner with
+// `Left = Bad`, and within Owner `Left` would then be the bad setting; but
+// whether that extension is this world's Owner (the definitions file could
+// declare its own, privately, or sit in another module) and whether its
+// member reaches this file are not facts the flat reader establishes. The
+// compiler, given both files, refuses the demand; the court names the
+// extension and gives no verdict.
 
 public protocol Setting {}
 public protocol Required: Setting {}

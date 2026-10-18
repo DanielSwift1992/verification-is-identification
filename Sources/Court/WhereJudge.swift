@@ -424,29 +424,51 @@ enum WhereJudge {
                 file.insert(name)
             }
         }
+        // A generic parameter list is read to its balanced closing bracket,
+        // however deep its constraints nest; one this reader cannot close
+        // before the header ends is refused, never passed over.
         let generic = try! NSRegularExpression(
-            pattern: #"\b(?:func\s+[^\s(<]+|(?:enum|struct|class|actor|typealias)\s+\w+|init[?!]?|subscript)"#
-                + #"\s*<([^<>]*(?:<[^<>]*>[^<>]*)*)>"#
+            pattern: #"\b(?:func\s+[^\s(<]+|(?:enum|struct|class|actor|typealias)\s+\w+|init[?!]?|subscript)\s*<"#
         )
+        let units = Array(text.utf16)
         for match in generic.matches(in: text, range: range) {
-            guard let list = Range(match.range(at: 1), in: text).map({ String(text[$0]) }) else { continue }
+            let start = match.range.location + match.range.length
+            var depth = 1
+            var end = start
+            while end < units.count, depth > 0 {
+                let unit = units[end]
+                if unit == 0x7B || unit == 0x7D || unit == 0x3B { break }
+                if unit == 0x3C { depth += 1 }
+                if unit == 0x3E, end == 0 || units[end - 1] != 0x2D { depth -= 1 }
+                end += 1
+            }
+            guard depth == 0 else {
+                fail("cannot read line \(scope.line[match.range.location]): its generic parameter list "
+                    + "does not close where this court can read it")
+            }
+            let list = String(utf16CodeUnits: Array(units[start..<(end - 1)]), count: end - 1 - start)
             for parameter in parameterNames(list) {
-                // a parameter pack is spelled `each T`
-                let name = parameter.split(whereSeparator: \.isWhitespace).last.map(String.init) ?? parameter
-                lines[name, default: []].append(scope.line[match.range(at: 1).location])
+                // a parameter pack is spelled `each T`, a value parameter `let n: Int`
+                let bare = parameter.split(whereSeparator: \.isWhitespace).last.map(String.init) ?? parameter
+                lines[bare, default: []].append(scope.line[start])
             }
         }
         return (lines.mapValues { $0.sorted() }, file)
     }
 
+    // The names a generic parameter list declares, split at its top-level
+    // commas. The `>` of an arrow `->`, which a constraint may spell inside
+    // its brackets, closes no bracket.
     static func parameterNames(_ list: String) -> [String] {
         guard !list.isEmpty else { return [] }
         var names: [String] = []
         var depth = 0
         var piece = ""
+        var previous: Character = " "
         for character in list {
             if character == "<" { depth += 1 }
-            if character == ">" { depth -= 1 }
+            if character == ">", previous != "-" { depth -= 1 }
+            previous = character
             if character == ",", depth == 0 {
                 names.append(piece)
                 piece = ""

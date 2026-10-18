@@ -4,7 +4,9 @@
 # every body. A second declaration of a court-read name in a function body,
 # of a form the court reads or not (an enum, a typealias, a generic
 # parameter), rebinds it where a use sits, and an enum nested in a namespace
-# can stand for a file-scope name the court does not read. A name bound
+# can stand for a file-scope name the court does not read. A generic
+# parameter list is read to its closing bracket, however deep its
+# constraints nest and whatever arrow they spell. A name bound
 # outside the file rebinds a file-scope name inside a type or an extension
 # body, so a use there is refused; and a block under `#if true` is compiled,
 # so only a block under a plain flag is omitted. Each such world holds a
@@ -13,8 +15,9 @@
 # its line instead of holding the file. A definitions file that extends a
 # type of the world is refused: the court cannot tell that the extension is
 # the world's type, or that its member reaches the world. The control keeps
-# what a body may declare, and a block under a plain flag, readable: the
-# compiler accepts it and the court admits it.
+# what a body may declare, a deep generic list under fresh names, and a
+# block under a plain flag, readable: the compiler accepts it and the court
+# admits it.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -70,6 +73,10 @@ scope_world rebound "error: global function 'need' requires that 'Good' (aka 'Ba
 scope_world generic "error: type 'Good' does not conform to protocol 'Setting'
 error: generic parameter 'T' could not be inferred" \
     "✗ THE WHERE: cannot read 'Good': it is declared at lines 9 and 15, $no_scope_rule"
+scope_world deep "error: global function 'need' requires that 'Good' conform to 'Required'" \
+    "✗ THE WHERE: cannot read 'Good': it is declared at lines 11 and 20, $no_scope_rule"
+scope_world arrow "error: global function 'need' requires that 'Good' conform to 'Required'" \
+    "✗ THE WHERE: cannot read 'Good': it is declared at lines 10 and 18, $no_scope_rule"
 scope_world outside "error: type 'Element' does not conform to protocol 'Setting'
 error: generic parameter 'T' could not be inferred" \
     "✗ THE WHERE: cannot read line 20: the use 'Use<Element>' sits in the body of a type or an extension, whose members this court does not read"
@@ -125,9 +132,9 @@ if ! "$scope_bin/Tools" judge where Checks/where-scope/admitted.swift >"$scope_t
     echo "where-scope: the where court refused the control" >&2
     exit 1
 fi
-if ! grep -q "^✓ THE WHERE holds: 0 equalities and 2 memberships judged across 1 uses" "$scope_tmp/admitted.log"; then
+if ! grep -q "^✓ THE WHERE holds: 0 equalities and 3 memberships judged across 2 uses" "$scope_tmp/admitted.log"; then
     cat "$scope_tmp/admitted.log"
     echo "where-scope: the control was not judged beside its nested declarations" >&2
     exit 1
 fi
-echo "✓ where-scope: six rebound, nested or unread names and two foreign extensions are named, the compiler refuses each world, a body's own declarations read"
+echo "✓ where-scope: eight rebound, nested or unread names and two foreign extensions are named, the compiler refuses each world, a body's own declarations read"

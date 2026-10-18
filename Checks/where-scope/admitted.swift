@@ -2,9 +2,10 @@
 // does not read, under names it does not resolve. A namespace holds a plain
 // enum and a struct, a function holds a local struct and a typealias, a
 // conformer holds a member typealias, and a block under a plain flag, which
-// a compilation without the flag skips, holds a struct of the good name.
-// The compiler accepts the world, and the court admits the good claim and
-// its application.
+// a compilation without the flag skips, holds a struct of the good name. A
+// function's generic parameters, under fresh names, carry a constraint that
+// nests three brackets deep around an arrow. The compiler accepts the world,
+// and the court admits the good claim and both applications.
 
 public protocol Setting {}
 public protocol Required: Setting {}
@@ -31,3 +32,8 @@ func scratch() {
 public typealias GoodClaim = Use<Good>
 func need<T: Admitted>(_: T.Type) {}
 func demandGood() { need(Use<Good>.self) }
+public protocol Marker<Value> { associatedtype Value }
+public enum Box<T> {}
+func demandDeep<Fresh: Setting & Marker<Box<Box<(Int) -> Good>>>, Other>(_: Fresh.Type, _: Other.Type) {
+    need(Use<Good>.self)
+}

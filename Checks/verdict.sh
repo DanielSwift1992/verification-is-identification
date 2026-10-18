@@ -1394,7 +1394,7 @@ do
     verdict_case_files=()
     while IFS= read -r verdict_case_file; do
         verdict_case_files+=("$verdict_case_file")
-    done < <(rg -l --glob '*.swift' "^#if ${verdict_flag}$" Checks)
+    done < <(grep -rlE --include='*.swift' "^#if ${verdict_flag}$" Checks)
     if [ "${#verdict_case_files[@]}" -ne 1 ]; then
         echo "verdict: ERROR — expected one fixture for $verdict_flag"
         exit 1

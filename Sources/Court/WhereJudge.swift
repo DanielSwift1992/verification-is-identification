@@ -341,26 +341,64 @@ enum WhereJudge {
     // parameter, an associated type of a protocol another file declares)
     // rebinds a name there that this reader resolves at file scope. For each
     // UTF-16 offset of the read text, the number of type or extension bodies
-    // around it: a brace opens one when the last declaring keyword before it,
-    // since the previous brace or semicolon, names a type or an extension.
+    // around it. The header a brace closes runs from the previous brace or
+    // semicolon, and is read outside its brackets, since a generic list, a
+    // parameter list or an attribute's arguments may spell `let`, `each` or
+    // any word: the brace opens a type or extension body when the last
+    // declaring keyword of that header names a type or an extension, and a
+    // header that ends in `repeat` opens a loop. `class` before a member's
+    // keyword, modifiers between them, is that member's modifier (`class
+    // func`, `override class var`), and the kind an import names (`import
+    // struct M.T`) declares nothing, so neither names a type. A header that
+    // names a type or an extension and still reads as something else is one
+    // this court cannot place, and it is refused at its line.
     static func typeBodies(_ text: String) -> [Int] {
         let keyword = try! NSRegularExpression(
             pattern: #"\b(extension|enum|struct|class|actor|protocol|func|init|deinit|subscript|var|let"#
-                + #"|get|set|willSet|didSet|if|else|for|while|repeat|switch|case|default|do|catch|guard|defer)\b"#
+                + #"|get|set|willSet|didSet|if|else|for|while|switch|case|default|do|catch|guard|defer)\b"#
         )
+        let notDeclaring = try! NSRegularExpression(
+            pattern: #"\bimport\s+(?:struct|class|enum|protocol|typealias|func|var|let)\b|\bclass(?=(?:\s+(?:public|"#
+                + #"private|fileprivate|internal|package|open|final|override|required|convenience|dynamic"#
+                + #"|nonisolated))*\s+(?:func|var|let|subscript|init)\b)"#
+        )
+        let typeKeywords: Set<String> = ["extension", "enum", "struct", "class", "actor", "protocol"]
         let units = Array(text.utf16)
         var depth: [Int] = [0]
         var opened: [Bool] = []
         var segmentStart = 0
+        var line = 1
         for (offset, unit) in units.enumerated() {
             var current = depth[depth.count - 1]
+            if unit == 0x0A { line += 1 }
             if unit == 0x7B {
-                let segment = String(utf16CodeUnits: Array(units[segmentStart..<offset]), count: offset - segmentStart)
-                let range = NSRange(segment.startIndex..., in: segment)
-                let last = keyword.matches(in: segment, range: range).last
-                    .flatMap { Range($0.range(at: 1), in: segment) }
-                    .map { String(segment[$0]) }
-                let isType = ["extension", "enum", "struct", "class", "actor", "protocol"].contains(last ?? "")
+                var flat: [UInt16] = []
+                var nesting = 0
+                for index in segmentStart..<offset {
+                    let part = units[index]
+                    if part == 0x3C || part == 0x28 || part == 0x5B {
+                        nesting += 1
+                    } else if part == 0x29 || part == 0x5D || (part == 0x3E && (index == 0 || units[index - 1] != 0x2D)) {
+                        nesting = max(0, nesting - 1)
+                    } else if nesting == 0 {
+                        flat.append(part)
+                    }
+                }
+                let spelled = String(utf16CodeUnits: flat, count: flat.count)
+                let header = notDeclaring.stringByReplacingMatches(
+                    in: spelled, range: NSRange(spelled.startIndex..., in: spelled), withTemplate: " "
+                )
+                let range = NSRange(header.startIndex..., in: header)
+                let words = keyword.matches(in: header, range: range)
+                    .compactMap { Range($0.range(at: 1), in: header) }
+                    .map { String(header[$0]) }
+                let loops = header.trimmingCharacters(in: .whitespacesAndNewlines).hasSuffix("repeat")
+                let isType = !loops && typeKeywords.contains(words.last ?? "")
+                let namesType = words.contains { typeKeywords.contains($0) }
+                if !isType, namesType {
+                    fail("cannot read line \(line): this court cannot tell whether the body opened here "
+                        + "belongs to a type or an extension")
+                }
                 opened.append(isType)
                 if isType { current += 1 }
                 segmentStart = offset + 1

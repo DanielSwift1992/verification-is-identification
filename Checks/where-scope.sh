@@ -8,16 +8,17 @@
 # parameter list is read to its closing bracket, however deep its
 # constraints nest and whatever arrow they spell. A name bound
 # outside the file rebinds a file-scope name inside a type or an extension
-# body, so a use there is refused; and a block under `#if true` is compiled,
+# body, so a use there is refused, under a where clause that spells
+# `repeat` as well; and a block under `#if true` is compiled,
 # so only a block under a plain flag is omitted. Each such world holds a
 # real bad demand beside a good neighbour, the compiler refuses it, and the
 # court gives no verdict and names the name, the use or the condition and
 # its line instead of holding the file. A definitions file that extends a
 # type of the world is refused: the court cannot tell that the extension is
 # the world's type, or that its member reaches the world. The control keeps
-# what a body may declare, a deep generic list under fresh names, and a
-# block under a plain flag, readable: the compiler accepts it and the court
-# admits it.
+# what a body may declare, a deep generic list under fresh names, a pack
+# type, `class` members, a `repeat` loop, and a block under a plain flag,
+# readable: the compiler accepts it and the court admits it.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -120,6 +121,12 @@ scope_pair lent "error: global function 'need' requires that 'Owner.Left' (aka '
 scope_pair private-target "error: global function 'need' requires that 'Left' conform to 'Required'" \
     "✗ THE WHERE: cannot read 'Left': 'Checks/where-scope/private-target-definitions.swift' extends it at line 5, $cannot_place"
 
+# A where clause that spells `repeat` opens no loop: the class body beneath
+# it is a type's body, where a member inherited from the definitions file
+# rebinds the name of the use.
+scope_pair pack "error: global function 'need' requires that 'Owner<repeat each T>.Element' (aka 'Bad') conform to 'Required'" \
+    "✗ THE WHERE: cannot read line 21: the use 'Use<Element>' sits in the body of a type or an extension, whose members this court does not read"
+
 # The control: what a body may declare reads, the compiler accepts, the court admits.
 if ! swiftc -typecheck -module-cache-path "$scope_tmp/cache" \
     Checks/where-scope/admitted.swift >"$scope_tmp/admitted-swift.log" 2>&1; then
@@ -132,9 +139,9 @@ if ! "$scope_bin/Tools" judge where Checks/where-scope/admitted.swift >"$scope_t
     echo "where-scope: the where court refused the control" >&2
     exit 1
 fi
-if ! grep -q "^✓ THE WHERE holds: 0 equalities and 3 memberships judged across 2 uses" "$scope_tmp/admitted.log"; then
+if ! grep -q "^✓ THE WHERE holds: 0 equalities and 4 memberships judged across 3 uses" "$scope_tmp/admitted.log"; then
     cat "$scope_tmp/admitted.log"
     echo "where-scope: the control was not judged beside its nested declarations" >&2
     exit 1
 fi
-echo "✓ where-scope: eight rebound, nested or unread names and two foreign extensions are named, the compiler refuses each world, a body's own declarations read"
+echo "✓ where-scope: nine rebound, nested or unread names and two foreign extensions are named, the compiler refuses each world, a body's own declarations read"

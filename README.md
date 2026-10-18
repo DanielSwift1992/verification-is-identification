@@ -6,6 +6,20 @@
 
 **[Open the playground →](https://danielswift1992.github.io/typed-playground/)**: Swift types on the left, the page they draw on the right. A checker called the judge names every broken claim as you type. It is one static page: no install, no server. Every tab is a real Swift file. This repository re-checks the same files.
 
+## If you come from AI safety
+
+You are reviewing an agent workflow. A saved check found that a document met the requirements for the next action. The document is replaced before that action. The saved result concerns the earlier source. Using it now requires a justified relation to the replacement and the action's requirement.
+
+This repository studies what given grounds determine and when the result can be used again. An answer is determined when compatible cases exist and all of them give that answer. The source can remain partly unknown. [Verification Is Identification](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verification_is_identification.md) states this criterion and gives constructions checked by the Swift compiler under supplied premises.
+
+Acquisition Keeps Its Question applies the criterion to action. A supplied continuation must be available and meet the original requirement in every case compatible with the chooser's input. This includes the required residue, access and completion. After a source change, the compatible cases must reflect what is known about the replacement. After a handoff, the next participant needs the access required by the action. The criterion does not supply or execute that action.
+
+In [the result form](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Results.md), authors record the question, premises and scope, with proof and execution status kept separate. When a premise loses support, the form calls for review of dependent uses. Other valid grounds may still suffice for the claim.
+
+What this establishes. Compilation checks encoded constructions under their stated premises. Application to an actual system also needs grounds for the source relation, the supplied operations and the coverage of the represented cases. The papers and constructions do not by themselves provide a system that approves an agent's next action or establish the safety of a deployed agent.
+
+Start with [Acquisition Keeps Its Question](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/acquisition_keeps_its_question.md) for the criterion, its examples and the boundary between an adequate choice and an executed action.
+
 ## Run the proof
 
 ```sh

@@ -424,17 +424,13 @@ enum WhereJudge {
     // closing bracket meets an opener of another kind or a bracket is still
     // open at the end: a region whose brackets this reader cannot place.
     static func outsideBrackets(_ units: [UInt16]) -> [UInt16]? {
-        func bindsName(_ unit: UInt16) -> Bool {
-            (unit >= 0x30 && unit <= 0x39) || (unit >= 0x41 && unit <= 0x5A) || (unit >= 0x61 && unit <= 0x7A)
-                || unit == 0x5F || unit >= 0x80
-        }
         var open: [UInt16] = []
         var flat: [UInt16] = []
         for (index, unit) in units.enumerated() {
             let before: UInt16 = index > 0 ? units[index - 1] : 0x20
             let after: UInt16 = index + 1 < units.count ? units[index + 1] : 0x20
             if unit == 0x28 || unit == 0x5B
-                || (unit == 0x3C && bindsName(before) && after != 0x3D && after != 0x3C) {
+                || (unit == 0x3C && isWordUnit(before) && after != 0x3D && after != 0x3C) {
                 open.append(unit)
             } else if unit == 0x29 || unit == 0x5D {
                 while open.last == 0x3C { open.removeLast() }
@@ -447,6 +443,15 @@ enum WhereJudge {
         }
         return open.isEmpty ? flat : nil
     }
+
+    // A UTF-16 unit of a word (a letter, a digit, an underscore, or any
+    // character past ASCII), and one of the spaces between tokens.
+    static func isWordUnit(_ unit: UInt16) -> Bool {
+        (unit >= 0x30 && unit <= 0x39) || (unit >= 0x41 && unit <= 0x5A) || (unit >= 0x61 && unit <= 0x7A)
+            || unit == 0x5F || unit >= 0x80
+    }
+
+    static func isSpaceUnit(_ unit: UInt16) -> Bool { unit == 0x20 || unit == 0x09 || unit == 0x0A || unit == 0x0D }
 
     static func spelledLines(_ lines: [Int]) -> String {
         let spelled = lines.map(String.init)
@@ -514,27 +519,22 @@ enum WhereJudge {
             "convenience", "dynamic", "nonisolated", "public", "private", "fileprivate", "internal", "package", "open",
         ]
         let units = Array(text.utf16)
-        func isWord(_ unit: UInt16) -> Bool {
-            (unit >= 0x30 && unit <= 0x39) || (unit >= 0x41 && unit <= 0x5A) || (unit >= 0x61 && unit <= 0x7A)
-                || unit == 0x5F || unit >= 0x80
-        }
-        func isSpace(_ unit: UInt16) -> Bool { unit == 0x20 || unit == 0x09 || unit == 0x0A || unit == 0x0D }
         for match in declaring.matches(in: text, range: range) {
             guard let kind = Range(match.range(at: 1), in: text).map({ String(text[$0]) }) else { continue }
             var cursor = match.range.location + match.range.length
             if kind == "init", cursor < units.count, units[cursor] == 0x3F || units[cursor] == 0x21 { cursor += 1 }
             if kind != "init", kind != "subscript" {
-                while cursor < units.count, isSpace(units[cursor]) { cursor += 1 }
+                while cursor < units.count, isSpaceUnit(units[cursor]) { cursor += 1 }
                 let nameStart = cursor
-                if kind == "func", cursor < units.count, !isWord(units[cursor]) {
-                    while cursor < units.count, !isSpace(units[cursor]), units[cursor] != 0x28, !isWord(units[cursor]) {
+                if kind == "func", cursor < units.count, !isWordUnit(units[cursor]) {
+                    while cursor < units.count, !isSpaceUnit(units[cursor]), units[cursor] != 0x28, !isWordUnit(units[cursor]) {
                         cursor += 1
                     }
-                    if cursor - nameStart > 1, units[cursor - 1] == 0x3C, cursor < units.count, isWord(units[cursor]) {
+                    if cursor - nameStart > 1, units[cursor - 1] == 0x3C, cursor < units.count, isWordUnit(units[cursor]) {
                         cursor -= 1
                     }
                 } else {
-                    while cursor < units.count, isWord(units[cursor]) { cursor += 1 }
+                    while cursor < units.count, isWordUnit(units[cursor]) { cursor += 1 }
                 }
                 let name = String(utf16CodeUnits: Array(units[nameStart..<cursor]), count: cursor - nameStart)
                 if kind == "class", name.isEmpty || modifying.contains(name) { continue }
@@ -544,7 +544,7 @@ enum WhereJudge {
                         + "is not one this court reads")
                 }
             }
-            while cursor < units.count, isSpace(units[cursor]) { cursor += 1 }
+            while cursor < units.count, isSpaceUnit(units[cursor]) { cursor += 1 }
             guard cursor < units.count, units[cursor] == 0x3C else { continue }
             let start = cursor + 1
             var depth = 1
@@ -826,10 +826,29 @@ enum WhereJudge {
         where scope.depth[match.range.location] == 0 {
             if let bounds = Range(match.range(at: 1), in: clean) { world.fileTypes.insert(String(clean[bounds])) }
         }
-        let extended = try! NSRegularExpression(pattern: #"\bextension\s+(\w+)"#)
+        // An extension's owner is read in full. One named through a qualifier
+        // (`main.Owner`, `Module.Type`, `Outer.Inner`) is a type this court
+        // does not resolve, so it is refused at its line rather than read as
+        // its first word.
+        let extended = try! NSRegularExpression(pattern: #"(?<!\.)\bextension\b"#)
+        let cleanUnits = Array(clean.utf16)
         for match in extended.matches(in: clean, range: NSRange(clean.startIndex..., in: clean)) {
-            guard let bounds = Range(match.range(at: 1), in: clean) else { continue }
-            world.extensions[String(clean[bounds]), default: []].append(scope.line[match.range.location])
+            let line = scope.line[match.range.location]
+            var cursor = match.range.location + match.range.length
+            while cursor < cleanUnits.count, isSpaceUnit(cleanUnits[cursor]) { cursor += 1 }
+            let nameStart = cursor
+            while cursor < cleanUnits.count, isWordUnit(cleanUnits[cursor]) { cursor += 1 }
+            var end = cursor
+            while end < cleanUnits.count, cleanUnits[end] == 0x2E || isWordUnit(cleanUnits[end]) { end += 1 }
+            let spelled = String(utf16CodeUnits: Array(cleanUnits[nameStart..<end]), count: end - nameStart)
+            if cursor == nameStart {
+                fail("cannot read line \(line): the type this extension extends is not one this court reads")
+            }
+            if end > cursor {
+                fail("cannot read line \(line): the extension of '\(spelled)' names its type through a qualifier, "
+                    + "which this court does not resolve")
+            }
+            world.extensions[spelled, default: []].append(line)
         }
 
         for hit in readAliases(outsideBodies(clean)) {
@@ -841,6 +860,16 @@ enum WhereJudge {
                 parameters: parameterNames(hit[1]),
                 body: hit[2]
             )
+        }
+
+        // An extension of a typealias extends the type the alias names, and
+        // this court does not follow an extension through an alias.
+        let throughAlias = world.extensions
+            .filter { world.aliases[$0.key] != nil }
+            .sorted(by: { $0.key < $1.key })
+        if let first = throughAlias.first {
+            fail("cannot read '\(first.key)': it is a typealias, extended at \(spelledLines(first.value)), and this "
+                + "court does not follow an extension through an alias to its type")
         }
 
         // A where clause this reader cannot read as a gate is refused by name,
@@ -1083,13 +1112,26 @@ enum WhereJudge {
         // same source. This flat reader has no module-resolution rule with
         // which to choose between duplicates, so a collision is unresolved.
         var aliasOrigins = Dictionary(uniqueKeysWithValues: world.aliases.keys.map { ($0, path) })
-        for extra in arguments.dropFirst() {
+        let extras: [(path: String, text: String, world: World)] = arguments.dropFirst().map { extra in
             guard let more = try? String(contentsOfFile: extra, encoding: .utf8) else {
                 fail("cannot read \(extra)")
             }
+            return (extra, more, read(more))
+        }
+        // A typealias of any file may be extended from another, and such an
+        // extension extends the alias's type, through the alias, as well.
+        var anyAlias = Set(world.aliases.keys)
+        for extra in extras { anyAlias.formUnion(extra.world.aliases.keys) }
+        let worldThroughAlias = world.extensions
+            .filter { anyAlias.contains($0.key) }
+            .sorted(by: { $0.key < $1.key })
+        if let first = worldThroughAlias.first {
+            fail("cannot read '\(first.key)': it is a typealias, extended at \(spelledLines(first.value)), and this "
+                + "court does not follow an extension through an alias to its type")
+        }
+        for (extra, more, lent) in extras {
             excludesConditional = excludesConditional
                 || more.range(of: #"(?m)^\s*#if\b"#, options: .regularExpression) != nil
-            let lent = read(more)
             // A definitions file that extends a type, a protocol or a typealias
             // this world declares at file scope may add a member that binds a
             // name inside the world's type, a conformance, or a gate. Whether
@@ -1098,9 +1140,10 @@ enum WhereJudge {
             // another module) and whether its members reach this file (a
             // private or fileprivate member does not) are facts this flat
             // reader does not establish, so such an extension is refused rather
-            // than read or passed over.
+            // than read or passed over, and so is one of a typealias, which
+            // extends the alias's type, whichever file declares it.
             let extendsWorld = lent.extensions
-                .filter { world.fileTypes.contains($0.key) }
+                .filter { world.fileTypes.contains($0.key) || anyAlias.contains($0.key) }
                 .sorted(by: { $0.key < $1.key })
             if let first = extendsWorld.first {
                 fail("cannot read '\(first.key)': '\(extra)' extends it at \(spelledLines(first.value)), and this court "

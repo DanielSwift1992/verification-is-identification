@@ -16,11 +16,12 @@
 # name, the use or the condition and its line instead of holding the file. A
 # definitions file that extends a type of the world is refused: the court
 # cannot tell that the extension is the world's type, or that its member
-# reaches the world. The control keeps what a body may declare, a deep
-# generic list and an operator's list under fresh names, a constant named
-# `actor`, a pack type, `class` members after comparisons, a `repeat` loop,
-# and a block under a plain flag, readable: the compiler accepts it and the
-# court admits it.
+# reaches the world; so is an extension whose owner is qualified, or a
+# typealias. The control keeps what a body may declare, a deep generic list
+# and an operator's list under fresh names, a constant named `actor`, a pack
+# type, `class` members after comparisons, a `repeat` loop, and a block
+# under a plain flag, readable: the compiler accepts it and the court admits
+# it.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -125,6 +126,13 @@ scope_pair lent "error: global function 'need' requires that 'Owner.Left' (aka '
 scope_pair private-target "error: global function 'need' requires that 'Left' conform to 'Required'" \
     "✗ THE WHERE: cannot read 'Left': 'Checks/where-scope/private-target-definitions.swift' extends it at line 5, $cannot_place"
 
+# An extension's owner is read in full: a qualified owner is not resolved,
+# and an alias is not followed to its type, so each is refused.
+scope_pair qualified "error: global function 'need' requires that 'Owner.Left' (aka 'Bad') conform to 'Required'" \
+    "✗ THE WHERE: cannot read line 4: the extension of 'main.Owner' names its type through a qualifier, which this court does not resolve"
+scope_pair aliased "error: global function 'need' requires that 'Owner.Left' (aka 'Bad') conform to 'Required'" \
+    "✗ THE WHERE: cannot read 'Other': it is a typealias, extended at line 5, and this court does not follow an extension through an alias to its type"
+
 # A where clause that spells `repeat` opens no loop: the class body beneath
 # it is a type's body, where a member inherited from the definitions file
 # rebinds the name of the use.
@@ -152,4 +160,4 @@ if ! grep -q "^✓ THE WHERE holds: 0 equalities and 4 memberships judged across
     echo "where-scope: the control was not judged beside its nested declarations" >&2
     exit 1
 fi
-echo "✓ where-scope: eleven rebound, nested or unread names and two foreign extensions are named, the compiler refuses each world, a body's own declarations read"
+echo "✓ where-scope: eleven rebound, nested or unread names and four foreign extensions are named, the compiler refuses each world, a body's own declarations read"

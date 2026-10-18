@@ -91,6 +91,7 @@ LAWS+=(
 "alias|a claim through an alias meets the gate its definition names|bash Checks/where-alias.sh"
 "extension|a conformance stated in an extension is worn and judged|bash Checks/where-extension.sh"
 "conditional|a conditional conformance is read as a gate or refused by name|bash Checks/where-conditional.sh"
+"lexical|a form the reader does not recognise is refused by name|bash Checks/where-lexical.sh"
 "court|the judge builds as a library a consumer links|swift build --product Court"
 "quotes|a quote of a sibling paper is that paper's sentence|swift run Tools quotes"
 "law|the grammar carries every source file|swift run Tools grammar"

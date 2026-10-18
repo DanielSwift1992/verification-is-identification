@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+# What the reader does not recognise is refused by name, never read as code.
+# A regular expression literal, a second slash on one line (which may close
+# a bare one), a backquoted identifier, a macro outside the built-in ones
+# and an attribute neither built in nor declared here as a result builder or
+# a property wrapper can each carry or hide a conformance; each world holds
+# a real bad demand beside a good neighbour, the compiler refuses it, and the
+# court gives no verdict and names the form and its line instead of holding
+# the file. The control keeps the built-in forms and a declared property
+# wrapper readable: the compiler accepts it and the court admits it.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+lexical_tmp=$(mktemp -d "${TMPDIR:-/tmp}/vi-where-lexical.XXXXXX")
+trap 'rm -rf "$lexical_tmp"' EXIT
+
+if ! swift build --product Tools >"$lexical_tmp/build.log" 2>&1; then
+    cat "$lexical_tmp/build.log"
+    exit 1
+fi
+lexical_bin=$(swift build --show-bin-path)
+
+# lexical_world <world> <compiler flags> <compiler errors> <court refusal>:
+# the compiler refuses the world for exactly these errors, and the court
+# exits 2 with exactly this line on stderr and nothing on stdout.
+lexical_world() {
+    local world="$1" flags="$2" errors="$3" verdict="$4"
+    # shellcheck disable=SC2086
+    if swiftc -typecheck $flags -module-cache-path "$lexical_tmp/cache" \
+        "Checks/where-lexical/$world.swift" >"$lexical_tmp/$world-swift.log" 2>&1; then
+        echo "where-lexical: Swift accepted $world.swift" >&2
+        exit 1
+    fi
+    local said=0
+    "$lexical_bin/Tools" judge where "Checks/where-lexical/$world.swift" \
+        >"$lexical_tmp/$world.out" 2>"$lexical_tmp/$world.err" || said=$?
+    if [ "$said" -ne 2 ] || [ -s "$lexical_tmp/$world.out" ]; then
+        cat "$lexical_tmp/$world.out" "$lexical_tmp/$world.err"
+        echo "where-lexical: the where court did not refuse to read $world.swift" >&2
+        exit 1
+    fi
+    python3 - "$world" "$lexical_tmp/$world-swift.log" "$lexical_tmp/$world.err" "$errors" "$verdict" <<'PY'
+from pathlib import Path
+import re, sys
+world, swift_log, court_log, errors, verdict = sys.argv[1:]
+pattern = re.compile(r"^Checks/where-lexical/" + re.escape(world) + r"\.swift:\d+:\d+: (error: .*)$")
+said = [m.group(1) for m in map(pattern.match, Path(swift_log).read_text().splitlines()) if m]
+if sorted(said) != sorted(errors.split("\n")):
+    print(Path(swift_log).read_text())
+    raise SystemExit(f"where-lexical: Swift did not refuse {world}.swift for the expected reasons")
+if Path(court_log).read_text().splitlines() != [verdict]:
+    print(Path(court_log).read_text())
+    raise SystemExit(f"where-lexical: the court did not name the form it cannot read in {world}.swift")
+PY
+}
+
+bad_demand="error: global function 'need' requires that 'Bad' conform to 'Required'"
+lexical_world regex "" "$bad_demand" \
+    "✗ THE WHERE: cannot read line 15: a regular expression literal is not among the forms this court reads"
+lexical_world slashes "-enable-bare-slash-regex" "$bad_demand" \
+    "✗ THE WHERE: cannot read line 14: a second slash on one line may close a regular expression literal, which this court does not read"
+lexical_world backquoted "" "$bad_demand" \
+    "✗ THE WHERE: cannot read line 14: a backquoted identifier is not among the forms this court reads"
+lexical_world attribute "" "error: unknown attribute 'AddsRequired'
+$bad_demand" \
+    "✗ THE WHERE: cannot read line 16: the attribute '@AddsRequired' is not among the forms this court reads"
+lexical_world macro "" "error: no macro named 'makeConformance'
+$bad_demand" \
+    "✗ THE WHERE: cannot read line 13: the macro '#makeConformance' is not among the forms this court reads"
+
+# The control: the built-in forms read, the compiler accepts, the court admits.
+if ! swiftc -typecheck -module-cache-path "$lexical_tmp/cache" \
+    Checks/where-lexical/admitted.swift >"$lexical_tmp/admitted-swift.log" 2>&1; then
+    cat "$lexical_tmp/admitted-swift.log"
+    echo "where-lexical: Swift refused the control" >&2
+    exit 1
+fi
+if ! "$lexical_bin/Tools" judge where Checks/where-lexical/admitted.swift >"$lexical_tmp/admitted.log" 2>&1; then
+    cat "$lexical_tmp/admitted.log"
+    echo "where-lexical: the where court refused the control" >&2
+    exit 1
+fi
+if ! grep -q "^✓ THE WHERE holds: 0 equalities and 2 memberships judged across 1 uses" "$lexical_tmp/admitted.log"; then
+    cat "$lexical_tmp/admitted.log"
+    echo "where-lexical: the control was not judged through its built-in forms" >&2
+    exit 1
+fi
+echo "✓ where-lexical: five unread forms are named at their line, the compiler refuses each world, the built-in forms read"

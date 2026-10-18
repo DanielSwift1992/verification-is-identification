@@ -70,10 +70,33 @@ enum WhereJudge {
     // a string open nothing, a quote in a comment opens nothing, and a
     // declaration spelled inside either is no premise. A block comment reads
     // as a space, a string keeps its delimiters, and both keep their line
-    // breaks, so the lines below stay the source's lines. An unterminated
-    // comment, string or interpolation leaves the rest of the file unread,
-    // which is a reader failure, not an empty tail. Regular expression
-    // literals are not among the forms read here.
+    // breaks, so the lines below stay the source's lines.
+    //
+    // What the scan does not recognise is refused, never read as code: a
+    // regular expression literal (`#/…/#`, or a second slash on one line,
+    // which may close a bare `/…/`), a backquoted identifier, and a macro or
+    // directive outside the built-in ones. An attribute outside the built-in
+    // ones reads only when the same text declares it as a result builder or
+    // a property wrapper; any other, an attached macro above all, can add a
+    // conformance this court never sees, and is refused at its first use.
+    // Each is a reader failure that names its line, as is an unterminated
+    // comment, string or interpolation.
+    static let directives: Set<String> = [
+        "if", "elseif", "else", "endif", "sourceLocation", "warning", "error",
+        "available", "unavailable", "selector", "keyPath", "file", "fileID",
+        "filePath", "line", "column", "function", "dsohandle", "isolation",
+        "colorLiteral", "imageLiteral", "fileLiteral",
+    ]
+    static let attributes: Set<String> = [
+        "available", "frozen", "inlinable", "usableFromInline", "discardableResult",
+        "inline", "retroactive", "preconcurrency", "unchecked", "escaping",
+        "autoclosure", "Sendable", "MainActor", "objc", "nonobjc", "testable", "main",
+        "unknown", "convention", "propertyWrapper", "resultBuilder",
+        "dynamicMemberLookup", "dynamicCallable", "warn_unqualified_access",
+        "_disfavoredOverload", "_exported", "_implementationOnly", "_spi",
+        "_alwaysEmitIntoClient", "_transparent",
+    ]
+
     static func blankCommentsAndStrings(_ text: String) -> String {
         enum Context {
             case code(interpolated: Bool, parentheses: Int)
@@ -84,6 +107,9 @@ enum WhereJudge {
         var kept = String.UnicodeScalarView()
         var stack: [Context] = [.code(interpolated: false, parentheses: 0)]
         var index = 0
+        var line = 1
+        var slashes = 0
+        var unreadAttributes: [(name: String, line: Int)] = []
         func scalar(_ offset: Int) -> Unicode.Scalar? {
             index + offset < scalars.count ? scalars[index + offset] : nil
         }
@@ -93,6 +119,23 @@ enum WhereJudge {
         func keep(_ width: Int) {
             for offset in 0..<width { kept.append(scalars[index + offset]) }
             index += width
+        }
+        func newline() {
+            kept.append("\n")
+            line += 1
+            slashes = 0
+        }
+        func name(after offset: Int) -> String {
+            var spelled = String.UnicodeScalarView()
+            while let next = scalar(offset + spelled.count),
+                  next == "_" || ("a"..."z").contains(next) || ("A"..."Z").contains(next)
+                      || (!spelled.isEmpty && ("0"..."9").contains(next)) {
+                spelled.append(next)
+            }
+            return String(spelled)
+        }
+        func refuse(_ reason: String) -> Never {
+            fail("cannot read line \(line): \(reason)")
         }
         while index < scalars.count {
             let current = scalars[index]
@@ -109,7 +152,7 @@ enum WhereJudge {
                     }
                     index += 2
                 } else {
-                    if current == "\n" { kept.append(current) }
+                    if current == "\n" { newline() }
                     index += 1
                 }
             case let .string(hashes, multiline):
@@ -120,7 +163,7 @@ enum WhereJudge {
                         kept.append("(")
                         stack.append(.code(interpolated: true, parentheses: 0))
                     } else if scalar(1 + hashes) == "\n" {
-                        kept.append("\n")
+                        newline()
                     }
                     index += 2 + hashes
                 } else if repeats("\"", from: 0, quotes), repeats("#", from: quotes, hashes) {
@@ -129,7 +172,7 @@ enum WhereJudge {
                 } else if current == "\n", !multiline {
                     fail("unterminated string literal")
                 } else {
-                    if current == "\n" { kept.append(current) }
+                    if current == "\n" { newline() }
                     index += 1
                 }
             case let .code(interpolated, parentheses):
@@ -139,6 +182,13 @@ enum WhereJudge {
                     kept.append(" ")
                     stack.append(.comment(depth: 1))
                     index += 2
+                } else if current == "/" {
+                    slashes += 1
+                    if slashes > 1 {
+                        refuse("a second slash on one line may close a regular expression literal, "
+                            + "which this court does not read")
+                    }
+                    keep(1)
                 } else if current == "#" || current == "\"" {
                     var hashes = 0
                     while scalar(hashes) == "#" { hashes += 1 }
@@ -146,9 +196,24 @@ enum WhereJudge {
                         let multiline = repeats("\"", from: hashes, 3)
                         stack.append(.string(hashes: hashes, multiline: multiline))
                         keep(hashes + (multiline ? 3 : 1))
+                    } else if scalar(hashes) == "/" {
+                        refuse("a regular expression literal is not among the forms this court reads")
                     } else {
+                        let spelled = name(after: 1)
+                        if !directives.contains(spelled) {
+                            refuse("the macro '#\(spelled)' is not among the forms this court reads")
+                        }
                         keep(1)
                     }
+                } else if current == "@" {
+                    let spelled = name(after: 1)
+                    if !attributes.contains(spelled) { unreadAttributes.append((spelled, line)) }
+                    keep(1)
+                } else if current == "`" {
+                    refuse("a backquoted identifier is not among the forms this court reads")
+                } else if current == "\n" {
+                    newline()
+                    index += 1
                 } else if interpolated, current == "(" {
                     stack[stack.count - 1] = .code(interpolated: true, parentheses: parentheses + 1)
                     keep(1)
@@ -170,7 +235,17 @@ enum WhereJudge {
         case let .code(interpolated, _):
             if interpolated { fail("unterminated string interpolation") }
         }
-        return String(kept)
+        let read = String(kept)
+        let declared = Set(captures(
+            #"@(?:resultBuilder|propertyWrapper)\s+(?:(?:public|internal|fileprivate|private|open|final)\s+)*"#
+                + #"(?:struct|enum|class|actor)\s+(\w+)"#, read
+        ).map { $0[0] })
+        let undeclared = unreadAttributes.filter { declared.contains($0.name) == false }
+        if let use = undeclared.first {
+            fail("cannot read line \(use.line): the attribute '@\(use.name)' "
+                + "is not among the forms this court reads")
+        }
+        return read
     }
 
     static func stripComments(_ text: String) -> String {

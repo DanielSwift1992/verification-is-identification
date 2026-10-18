@@ -1,7 +1,8 @@
-// A bare regular expression literal, `/…/`, cannot be told from two
-// divisions by this reader, so a second slash on one line is refused by
-// name. The literal carries the text of a conformance the bad setting
-// lacks; the compiler, given bare literals, refuses the bad demand.
+// A bare regular expression literal, `/…/`, opens with a slash that opens
+// no comment and has no whitespace after it, so such a slash in code is
+// refused by name before the literal's text can be read. The literal
+// carries the text of a conformance the bad setting lacks; the compiler,
+// given bare literals, refuses the bad demand.
 
 public protocol Setting {}
 public protocol Required: Setting {}

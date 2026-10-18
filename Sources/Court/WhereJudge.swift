@@ -73,13 +73,18 @@ enum WhereJudge {
     // breaks, so the lines below stay the source's lines.
     //
     // What the scan does not recognise is refused, never read as code: a
-    // regular expression literal (`#/…/#`, or a second slash on one line,
-    // which may close a bare `/…/`), a backquoted identifier, and a macro or
-    // directive outside the built-in ones. An attribute outside the built-in
-    // ones reads only when the same text declares it as a result builder or
-    // a property wrapper; any other, an attached macro above all, can add a
-    // conformance this court never sees, and is refused at its first use.
-    // Each is a reader failure that names its line, as is an unterminated
+    // regular expression literal `#/…/#`; a slash in code that opens no comment
+    // and has no whitespace after it, since a bare `/…/` literal opens with
+    // exactly such a slash (it may not start with a space or a tab, and `//`
+    // and `/*` are always comments), so the literal is refused before its text
+    // can be read, and a division written without a space after its slash is
+    // refused with it; a backquoted identifier; and a macro or directive
+    // outside the built-in ones. An attribute outside the built-in ones reads
+    // only when the same text puts `@resultBuilder` or `@propertyWrapper` on a
+    // struct, enum, class or actor of that name, with other attributes and
+    // modifiers allowed between them; any other, an attached macro above all,
+    // can add a conformance this court never sees, and is refused at its first
+    // use. Each is a reader failure that names its line, as is an unterminated
     // comment, string or interpolation.
     static let directives: Set<String> = [
         "if", "elseif", "else", "endif", "sourceLocation", "warning", "error",
@@ -108,7 +113,6 @@ enum WhereJudge {
         var stack: [Context] = [.code(interpolated: false, parentheses: 0)]
         var index = 0
         var line = 1
-        var slashes = 0
         var unreadAttributes: [(name: String, line: Int)] = []
         func scalar(_ offset: Int) -> Unicode.Scalar? {
             index + offset < scalars.count ? scalars[index + offset] : nil
@@ -123,7 +127,6 @@ enum WhereJudge {
         func newline() {
             kept.append("\n")
             line += 1
-            slashes = 0
         }
         func name(after offset: Int) -> String {
             var spelled = String.UnicodeScalarView()
@@ -183,12 +186,12 @@ enum WhereJudge {
                     stack.append(.comment(depth: 1))
                     index += 2
                 } else if current == "/" {
-                    slashes += 1
-                    if slashes > 1 {
-                        refuse("a second slash on one line may close a regular expression literal, "
-                            + "which this court does not read")
+                    if let next = scalar(1), next == " " || next == "\t" || next == "\n" || next == "\r" {
+                        keep(1)
+                    } else {
+                        refuse("a slash with no whitespace after it may open a regular "
+                            + "expression literal, which this court does not read")
                     }
-                    keep(1)
                 } else if current == "#" || current == "\"" {
                     var hashes = 0
                     while scalar(hashes) == "#" { hashes += 1 }
@@ -237,8 +240,8 @@ enum WhereJudge {
         }
         let read = String(kept)
         let declared = Set(captures(
-            #"@(?:resultBuilder|propertyWrapper)\s+(?:(?:public|internal|fileprivate|private|open|final)\s+)*"#
-                + #"(?:struct|enum|class|actor)\s+(\w+)"#, read
+            #"@(?:resultBuilder|propertyWrapper)\s+(?:(?:@\w+(?:\([^()]*\))?|public|internal|fileprivate"#
+                + #"|private|package|open|final|indirect)\s+)*(?:struct|enum|class|actor)\s+(\w+)"#, read
         ).map { $0[0] })
         let undeclared = unreadAttributes.filter { declared.contains($0.name) == false }
         if let use = undeclared.first {

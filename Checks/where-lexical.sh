@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
 # What the reader does not recognise is refused by name, never read as code.
-# A regular expression literal, a second slash on one line (which may close
-# a bare one), a backquoted identifier, a macro outside the built-in ones
-# and an attribute neither built in nor declared here as a result builder or
-# a property wrapper can each carry or hide a conformance; each world holds
-# a real bad demand beside a good neighbour, the compiler refuses it, and the
-# court gives no verdict and names the form and its line instead of holding
-# the file. The control keeps the built-in forms and a declared property
-# wrapper readable: the compiler accepts it and the court admits it.
+# A regular expression literal, a slash in code that opens no comment and
+# has no whitespace after it (which is how a bare literal opens, even one
+# ending in `\//`), a backquoted
+# identifier, a macro outside the built-in ones and an attribute neither
+# built in nor declared here as a result builder or a property wrapper can
+# each carry or hide a conformance; each world holds a real bad demand beside
+# a good neighbour, the compiler refuses it, and the court gives no verdict
+# and names the form and its line instead of holding the file. The boundary
+# world shows the cost: a division with no space after its slash is refused
+# with them, a narrowing of what the court reads, not a verdict. The control keeps the built-in forms and a
+# declared property wrapper readable: the compiler accepts it and the court
+# admits it.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -58,7 +62,9 @@ bad_demand="error: global function 'need' requires that 'Bad' conform to 'Requir
 lexical_world regex "" "$bad_demand" \
     "✗ THE WHERE: cannot read line 15: a regular expression literal is not among the forms this court reads"
 lexical_world slashes "-enable-bare-slash-regex" "$bad_demand" \
-    "✗ THE WHERE: cannot read line 14: a second slash on one line may close a regular expression literal, which this court does not read"
+    "✗ THE WHERE: cannot read line 15: a slash with no whitespace after it may open a regular expression literal, which this court does not read"
+lexical_world escaped "-enable-bare-slash-regex" "$bad_demand" \
+    "✗ THE WHERE: cannot read line 17: a slash with no whitespace after it may open a regular expression literal, which this court does not read"
 lexical_world backquoted "" "$bad_demand" \
     "✗ THE WHERE: cannot read line 14: a backquoted identifier is not among the forms this court reads"
 lexical_world attribute "" "error: unknown attribute 'AddsRequired'
@@ -67,6 +73,24 @@ $bad_demand" \
 lexical_world macro "" "error: no macro named 'makeConformance'
 $bad_demand" \
     "✗ THE WHERE: cannot read line 13: the macro '#makeConformance' is not among the forms this court reads"
+
+# The boundary: the compiler accepts a division, and the court names the
+# slash it cannot tell from a literal's.
+if ! swiftc -typecheck -module-cache-path "$lexical_tmp/cache" \
+    Checks/where-lexical/division.swift >"$lexical_tmp/division-swift.log" 2>&1; then
+    cat "$lexical_tmp/division-swift.log"
+    echo "where-lexical: Swift refused the boundary world" >&2
+    exit 1
+fi
+lexical_said=0
+"$lexical_bin/Tools" judge where Checks/where-lexical/division.swift \
+    >"$lexical_tmp/division.out" 2>"$lexical_tmp/division.err" || lexical_said=$?
+if [ "$lexical_said" -ne 2 ] || [ -s "$lexical_tmp/division.out" ] \
+    || [ "$(cat "$lexical_tmp/division.err")" != "✗ THE WHERE: cannot read line 14: a slash with no whitespace after it may open a regular expression literal, which this court does not read" ]; then
+    cat "$lexical_tmp/division.out" "$lexical_tmp/division.err"
+    echo "where-lexical: the court did not name the slash of the boundary world" >&2
+    exit 1
+fi
 
 # The control: the built-in forms read, the compiler accepts, the court admits.
 if ! swiftc -typecheck -module-cache-path "$lexical_tmp/cache" \
@@ -85,4 +109,4 @@ if ! grep -q "^✓ THE WHERE holds: 0 equalities and 2 memberships judged across
     echo "where-lexical: the control was not judged through its built-in forms" >&2
     exit 1
 fi
-echo "✓ where-lexical: five unread forms are named at their line, the compiler refuses each world, the built-in forms read"
+echo "✓ where-lexical: six unread forms are named at their line, the compiler refuses each world, a division is named at the boundary, the built-in forms read"

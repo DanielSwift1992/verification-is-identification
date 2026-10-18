@@ -61,46 +61,115 @@ enum WhereJudge {
 
     // ── reading the world ──
 
-    // A comment states nothing. Line comments and block comments, nested the
-    // way Swift nests them, are blanked before any declaration is read, so an
-    // extension or a gate written inside one is no premise. A block comment
-    // reads as a space and keeps its line breaks, so the lines below stay
-    // the source's lines. An unterminated block comment leaves the rest of
-    // the file unread, which is a reader failure, not an empty tail.
-    static func blankComments(_ text: String) -> String {
+    // A comment states nothing, and a string states no declaration. Before
+    // any line is read, comments and the contents of string literals are
+    // blanked by one scan that knows Swift's lexical forms: a line comment
+    // runs to its line's end, a block comment nests, and a string is plain,
+    // multiline (`"""`) or raw (`#"…"#`, any number of `#`), with escapes and
+    // interpolations `\(…)` whose code is read as code. So comment markers in
+    // a string open nothing, a quote in a comment opens nothing, and a
+    // declaration spelled inside either is no premise. A block comment reads
+    // as a space, a string keeps its delimiters, and both keep their line
+    // breaks, so the lines below stay the source's lines. An unterminated
+    // comment, string or interpolation leaves the rest of the file unread,
+    // which is a reader failure, not an empty tail. Regular expression
+    // literals are not among the forms read here.
+    static func blankCommentsAndStrings(_ text: String) -> String {
+        enum Context {
+            case code(interpolated: Bool, parentheses: Int)
+            case comment(depth: Int)
+            case string(hashes: Int, multiline: Bool)
+        }
         let scalars = Array(text.unicodeScalars)
         var kept = String.UnicodeScalarView()
-        var depth = 0
-        var inLine = false
+        var stack: [Context] = [.code(interpolated: false, parentheses: 0)]
         var index = 0
+        func scalar(_ offset: Int) -> Unicode.Scalar? {
+            index + offset < scalars.count ? scalars[index + offset] : nil
+        }
+        func repeats(_ mark: Unicode.Scalar, from offset: Int, _ count: Int) -> Bool {
+            (0..<count).allSatisfy { scalar(offset + $0) == mark }
+        }
+        func keep(_ width: Int) {
+            for offset in 0..<width { kept.append(scalars[index + offset]) }
+            index += width
+        }
         while index < scalars.count {
-            let scalar = scalars[index]
-            let following = index + 1 < scalars.count ? scalars[index + 1] : nil
-            if inLine {
-                if scalar == "\n" {
-                    inLine = false
-                    kept.append(scalar)
+            let current = scalars[index]
+            switch stack[stack.count - 1] {
+            case let .comment(depth):
+                if current == "/", scalar(1) == "*" {
+                    stack[stack.count - 1] = .comment(depth: depth + 1)
+                    index += 2
+                } else if current == "*", scalar(1) == "/" {
+                    if depth == 1 {
+                        stack.removeLast()
+                    } else {
+                        stack[stack.count - 1] = .comment(depth: depth - 1)
+                    }
+                    index += 2
+                } else {
+                    if current == "\n" { kept.append(current) }
+                    index += 1
                 }
-                index += 1
-            } else if scalar == "/", following == "*" {
-                if depth == 0 { kept.append(" ") }
-                depth += 1
-                index += 2
-            } else if depth > 0, scalar == "*", following == "/" {
-                depth -= 1
-                index += 2
-            } else if depth > 0 {
-                if scalar == "\n" { kept.append(scalar) }
-                index += 1
-            } else if scalar == "/", following == "/" {
-                inLine = true
-                index += 2
-            } else {
-                kept.append(scalar)
-                index += 1
+            case let .string(hashes, multiline):
+                let quotes = multiline ? 3 : 1
+                if current == "\\", repeats("#", from: 1, hashes) {
+                    // an escape, or an interpolation whose code is read as code
+                    if scalar(1 + hashes) == "(" {
+                        kept.append("(")
+                        stack.append(.code(interpolated: true, parentheses: 0))
+                    } else if scalar(1 + hashes) == "\n" {
+                        kept.append("\n")
+                    }
+                    index += 2 + hashes
+                } else if repeats("\"", from: 0, quotes), repeats("#", from: quotes, hashes) {
+                    stack.removeLast()
+                    keep(quotes + hashes)
+                } else if current == "\n", !multiline {
+                    fail("unterminated string literal")
+                } else {
+                    if current == "\n" { kept.append(current) }
+                    index += 1
+                }
+            case let .code(interpolated, parentheses):
+                if current == "/", scalar(1) == "/" {
+                    while index < scalars.count, scalars[index] != "\n" { index += 1 }
+                } else if current == "/", scalar(1) == "*" {
+                    kept.append(" ")
+                    stack.append(.comment(depth: 1))
+                    index += 2
+                } else if current == "#" || current == "\"" {
+                    var hashes = 0
+                    while scalar(hashes) == "#" { hashes += 1 }
+                    if scalar(hashes) == "\"" {
+                        let multiline = repeats("\"", from: hashes, 3)
+                        stack.append(.string(hashes: hashes, multiline: multiline))
+                        keep(hashes + (multiline ? 3 : 1))
+                    } else {
+                        keep(1)
+                    }
+                } else if interpolated, current == "(" {
+                    stack[stack.count - 1] = .code(interpolated: true, parentheses: parentheses + 1)
+                    keep(1)
+                } else if interpolated, current == ")" {
+                    if parentheses == 0 {
+                        stack.removeLast()
+                    } else {
+                        stack[stack.count - 1] = .code(interpolated: true, parentheses: parentheses - 1)
+                    }
+                    keep(1)
+                } else {
+                    keep(1)
+                }
             }
         }
-        if depth > 0 { fail("unterminated block comment") }
+        switch stack[stack.count - 1] {
+        case .comment: fail("unterminated block comment")
+        case .string: fail("unterminated string literal")
+        case let .code(interpolated, _):
+            if interpolated { fail("unterminated string interpolation") }
+        }
         return String(kept)
     }
 
@@ -110,7 +179,7 @@ enum WhereJudge {
         // merely because an inner #endif was encountered.
         var flaggedDepth = 0
         var kept: [String] = []
-        for line in blankComments(text).split(separator: "\n", omittingEmptySubsequences: false) {
+        for line in blankCommentsAndStrings(text).split(separator: "\n", omittingEmptySubsequences: false) {
             let bare = line.trimmingCharacters(in: .whitespaces)
             if bare.range(of: #"^#if\b"#, options: .regularExpression) != nil {
                 flaggedDepth += 1

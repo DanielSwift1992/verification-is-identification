@@ -4,8 +4,8 @@
 # its body: a refinement stated there is judged at its gate, a premise added
 # there is worn, and a premise it does not add is still missing. The header
 # carries the conformance even when the body is beyond the reader, and a
-# comment or a disabled branch carries none. The compiler gives the same
-# verdicts on the same files.
+# comment, a string or a disabled branch carries none. The compiler gives
+# the same verdicts on the same files.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -97,6 +97,8 @@ fi
 # that holds: the court refuses the first rather than counting the second
 # and passing the file. In the commented world the only conformances are in
 # a nested block comment and in an outer #if whose inner #if closes first.
+# In the strings world every literal form carries a comment marker or a
+# declaration, and the real claim between two markers is still read.
 extension_refused_world() {
     local world="$1" errors="$2" verdict="$3"
     if swiftc -typecheck -module-cache-path "$extension_tmp/cache" \
@@ -143,4 +145,9 @@ error: global function 'need' requires that 'Disabled' conform to 'Required'" \
 "✗ 'CommentedClaim = Use<Commented>' requires the type 'T' (aka 'Commented') conform to 'Required', and 'Commented: Setting' does not carry it [Admitted]
 ✗ 'DisabledClaim = Use<Disabled>' requires the type 'T' (aka 'Disabled') conform to 'Required', and 'Disabled: Setting' does not carry it [Admitted]"
 
-echo "✓ where-extension: an extension's conformances are worn and judged from its header, comments and disabled branches state none, every refusal matches the compiler, the control holds"
+extension_refused_world strings \
+"error: global function 'need' requires that 'Bad' conform to 'Required'" \
+"✗ 'BadClaim = Use<Bad>' requires the type 'T' (aka 'Bad') conform to 'Required', and 'Bad: Setting' does not carry it [Admitted]
+✗ 'Use<Bad>' requires the type 'T' (aka 'Bad') conform to 'Required', and 'Bad: Setting' does not carry it [Admitted]"
+
+echo "✓ where-extension: an extension's conformances are worn and judged from its header, comments, strings and disabled branches state none, every refusal matches the compiler, the control holds"

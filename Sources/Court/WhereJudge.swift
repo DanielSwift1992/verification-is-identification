@@ -451,7 +451,17 @@ enum WhereJudge {
             || unit == 0x5F || unit >= 0x80
     }
 
-    static func isSpaceUnit(_ unit: UInt16) -> Bool { unit == 0x20 || unit == 0x09 || unit == 0x0A || unit == 0x0D }
+    static func isSpaceUnit(_ unit: UInt16) -> Bool { unit == 0x20 || (0x09...0x0D).contains(unit) }
+
+    // The ASCII operator signs this reader accepts in a function name.
+    // Punctuation outside this set is not silently consumed as a name.
+    static func isOperatorUnit(_ unit: UInt16) -> Bool {
+        switch unit {
+        case 0x2F, 0x3D, 0x2D, 0x2B, 0x21, 0x2A, 0x25, 0x3C, 0x3E,
+             0x26, 0x7C, 0x5E, 0x7E, 0x3F, 0x2E: return true
+        default: return false
+        }
+    }
 
     static func spelledLines(_ lines: [Int]) -> String {
         let spelled = lines.map(String.init)
@@ -505,9 +515,9 @@ enum WhereJudge {
         // A generic parameter list is read wherever a declaration may carry
         // one: after the name of a function, a type or a typealias, and after
         // `init` or `subscript`. The name is read by its lexical class, a word
-        // or an operator (`func < <T>`, `func ==<T>`, whose last `<` opens the
-        // list), so a list is never passed over because its name is not a
-        // word. `class` before a member's keyword is a modifier, and `actor`
+        // or an operator (`func < <T>`, `func ==< T>`, whose last `<` opens the
+        // list even across whitespace), so a list is never passed over because
+        // its name is not a word. `class` before a member's keyword is a modifier, and `actor`
         // is a keyword only before a name. The list is read to its balanced
         // closing bracket, however deep its constraints nest; one this reader
         // cannot close before the header ends is refused.
@@ -527,10 +537,12 @@ enum WhereJudge {
                 while cursor < units.count, isSpaceUnit(units[cursor]) { cursor += 1 }
                 let nameStart = cursor
                 if kind == "func", cursor < units.count, !isWordUnit(units[cursor]) {
-                    while cursor < units.count, !isSpaceUnit(units[cursor]), units[cursor] != 0x28, !isWordUnit(units[cursor]) {
+                    while cursor < units.count, isOperatorUnit(units[cursor]) {
                         cursor += 1
                     }
-                    if cursor - nameStart > 1, units[cursor - 1] == 0x3C, cursor < units.count, isWordUnit(units[cursor]) {
+                    var next = cursor
+                    while next < units.count, isSpaceUnit(units[next]) { next += 1 }
+                    if cursor - nameStart > 1, units[cursor - 1] == 0x3C, next < units.count, isWordUnit(units[next]) {
                         cursor -= 1
                     }
                 } else {
@@ -545,6 +557,10 @@ enum WhereJudge {
                 }
             }
             while cursor < units.count, isSpaceUnit(units[cursor]) { cursor += 1 }
+            if kind == "func", cursor == units.count || (units[cursor] != 0x3C && units[cursor] != 0x28) {
+                fail("cannot read line \(scope.line[match.range.location]): the function name is not followed "
+                    + "by a parameter list this court reads")
+            }
             guard cursor < units.count, units[cursor] == 0x3C else { continue }
             let start = cursor + 1
             var depth = 1
@@ -837,7 +853,8 @@ enum WhereJudge {
             if let bounds = Range(match.range(at: 1), in: clean) { world.fileTypes.insert(String(clean[bounds])) }
         }
         // An extension's owner is read in full. One named through a qualifier
-        // (`main.Owner`, `Module.Type`, `Outer.Inner`) is a type this court
+        // (`main.Owner`, `Module.Type`, `Outer.Inner`, with whitespace or
+        // comments between their tokens as well) is a type this court
         // does not resolve, so it is refused at its line rather than read as
         // its first word.
         let extended = try! NSRegularExpression(pattern: #"(?<!\.)\bextension\b"#)
@@ -848,15 +865,34 @@ enum WhereJudge {
             while cursor < cleanUnits.count, isSpaceUnit(cleanUnits[cursor]) { cursor += 1 }
             let nameStart = cursor
             while cursor < cleanUnits.count, isWordUnit(cleanUnits[cursor]) { cursor += 1 }
-            var end = cursor
-            while end < cleanUnits.count, cleanUnits[end] == 0x2E || isWordUnit(cleanUnits[end]) { end += 1 }
-            let spelled = String(utf16CodeUnits: Array(cleanUnits[nameStart..<end]), count: end - nameStart)
             if cursor == nameStart {
                 fail("cannot read line \(line): the type this extension extends is not one this court reads")
             }
-            if end > cursor {
+            var parts = [String(utf16CodeUnits: Array(cleanUnits[nameStart..<cursor]), count: cursor - nameStart)]
+            while true {
+                while cursor < cleanUnits.count, isSpaceUnit(cleanUnits[cursor]) { cursor += 1 }
+                guard cursor < cleanUnits.count, cleanUnits[cursor] == 0x2E else { break }
+                cursor += 1
+                while cursor < cleanUnits.count, isSpaceUnit(cleanUnits[cursor]) { cursor += 1 }
+                let partStart = cursor
+                while cursor < cleanUnits.count, isWordUnit(cleanUnits[cursor]) { cursor += 1 }
+                guard cursor > partStart else {
+                    fail("cannot read line \(line): the type this extension extends is not one this court reads")
+                }
+                parts.append(String(utf16CodeUnits: Array(cleanUnits[partStart..<cursor]), count: cursor - partStart))
+            }
+            let spelled = parts.joined(separator: ".")
+            if parts.count > 1 {
                 fail("cannot read line \(line): the extension of '\(spelled)' names its type through a qualifier, "
                     + "which this court does not resolve")
+            }
+            let tailStart = cursor
+            var tailEnd = cursor
+            while tailEnd < cleanUnits.count, isWordUnit(cleanUnits[tailEnd]) { tailEnd += 1 }
+            let tail = String(utf16CodeUnits: Array(cleanUnits[tailStart..<tailEnd]), count: tailEnd - tailStart)
+            guard cursor < cleanUnits.count,
+                  cleanUnits[cursor] == 0x3A || cleanUnits[cursor] == 0x7B || tail == "where" else {
+                fail("cannot read line \(line): the type this extension extends is not one this court reads")
             }
             world.extensions[spelled, default: []].append(line)
         }

@@ -160,4 +160,5 @@ if ! grep -q "^✓ THE WHERE holds: 0 equalities and 4 memberships judged across
     echo "where-scope: the control was not judged beside its nested declarations" >&2
     exit 1
 fi
+python3 Checks/where-tokens.py "$scope_bin/Tools"
 echo "✓ where-scope: eleven rebound, nested or unread names and four foreign extensions are named, the compiler refuses each world, a body's own declarations read"

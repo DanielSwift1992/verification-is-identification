@@ -254,26 +254,29 @@ enum WhereJudge {
     static func stripComments(_ text: String) -> String {
         // Conditional compilation is outside this court's scope. Omit the
         // complete block, including nested alternatives; never expose a tail
-        // merely because an inner #endif was encountered.
+        // merely because an inner #endif was encountered. An omitted line
+        // stays as an empty one, so the lines read are the source's lines.
         var flaggedDepth = 0
         var kept: [String] = []
         for line in blankCommentsAndStrings(text).split(separator: "\n", omittingEmptySubsequences: false) {
             let bare = line.trimmingCharacters(in: .whitespaces)
             if bare.range(of: #"^#if\b"#, options: .regularExpression) != nil {
                 flaggedDepth += 1
+                kept.append("")
                 continue
             }
             if bare.range(of: #"^#endif\b"#, options: .regularExpression) != nil {
                 if flaggedDepth == 0 { fail("unmatched #endif") }
                 flaggedDepth -= 1
+                kept.append("")
                 continue
             }
             if bare.range(of: #"^#(?:else|elseif)\b"#, options: .regularExpression) != nil {
                 if flaggedDepth == 0 { fail("conditional branch outside #if") }
+                kept.append("")
                 continue
             }
-            if flaggedDepth > 0 { continue }
-            kept.append(String(line))
+            kept.append(flaggedDepth > 0 ? "" : String(line))
         }
         if flaggedDepth != 0 { fail("unterminated #if block") }
         return kept.joined(separator: "\n")
@@ -288,6 +291,95 @@ enum WhereJudge {
                 return String(text[bounds])
             }
         }
+    }
+
+    // This reader resolves every name in one scope, the file's. A name
+    // declared in a body (a function's, or another type's) is bound there,
+    // and Swift resolves a use inside that body to it. Read as file-scope, a
+    // nested declaration could stand for a name declared elsewhere or
+    // overwrite one declared here, and a second declaration of a name the
+    // reader resolves, of any form, could rebind it where a use sits: either
+    // way a good neighbour would pass the file. So a declaration this reader
+    // reads at file scope is refused when it sits inside a body, and a name
+    // it reads at file scope is refused when it is declared more than once.
+    // Each refusal names the name and its lines.
+
+    /// The brace depth and the line before each UTF-16 offset of the read
+    /// text, the coordinates a regular expression match is reported in.
+    struct Scope {
+        var depth: [Int] = [0]
+        var line: [Int] = [1]
+
+        init(_ text: String) {
+            for unit in text.utf16 {
+                depth.append(depth[depth.count - 1] + (unit == 0x7B ? 1 : unit == 0x7D ? -1 : 0))
+                line.append(line[line.count - 1] + (unit == 0x0A ? 1 : 0))
+            }
+        }
+    }
+
+    static func spelledLines(_ lines: [Int]) -> String {
+        let spelled = lines.map(String.init)
+        guard spelled.count > 1 else { return "line \(spelled[0])" }
+        return "lines " + spelled.dropLast().joined(separator: ", ") + " and " + spelled[spelled.count - 1]
+    }
+
+    // The captures of a declaration this reader reads as file-scope: the
+    // pattern begins at the declaring keyword, and its first group is the
+    // declared name.
+    static func declarations(_ pattern: String, _ text: String, _ scope: Scope) -> [[String]] {
+        let regex = try! NSRegularExpression(pattern: pattern, options: [.dotMatchesLineSeparators])
+        let range = NSRange(text.startIndex..., in: text)
+        return regex.matches(in: text, range: range).map { match in
+            let groups: [String] = (1..<match.numberOfRanges).map { index in
+                guard let bounds = Range(match.range(at: index), in: text) else { return "" }
+                return String(text[bounds])
+            }
+            let start = match.range.location
+            if scope.depth[start] > 0 {
+                let spelled = Range(match.range, in: text).map { String(text[$0]) } ?? ""
+                let keyword = spelled.prefix { !$0.isWhitespace }
+                fail("cannot read line \(scope.line[start]): the \(keyword) '\(groups[0])' is declared "
+                    + "inside a body, and this court reads declarations at file scope")
+            }
+            return groups
+        }
+    }
+
+    // Every declaration of a name, in any scope and of any form: a nominal
+    // type, a protocol, a typealias, an associated type, a generic parameter.
+    // `file` holds the names this reader reads at file scope: an enum, a
+    // protocol or a typealias outside every body.
+    static func declaredNames(_ text: String, _ scope: Scope)
+        -> (lines: [String: [Int]], file: Set<String>) {
+        var lines: [String: [Int]] = [:]
+        var file = Set<String>()
+        let range = NSRange(text.startIndex..., in: text)
+        let nominal = try! NSRegularExpression(
+            pattern: #"\b(enum|struct|class|actor|protocol|typealias|associatedtype)\s+(\w+)"#
+        )
+        for match in nominal.matches(in: text, range: range) {
+            guard let kind = Range(match.range(at: 1), in: text).map({ String(text[$0]) }),
+                  let name = Range(match.range(at: 2), in: text).map({ String(text[$0]) }) else { continue }
+            let start = match.range.location
+            lines[name, default: []].append(scope.line[start])
+            if scope.depth[start] == 0, ["enum", "protocol", "typealias"].contains(kind) {
+                file.insert(name)
+            }
+        }
+        let generic = try! NSRegularExpression(
+            pattern: #"\b(?:func\s+[^\s(<]+|(?:enum|struct|class|actor|typealias)\s+\w+|init[?!]?|subscript)"#
+                + #"\s*<([^<>]*(?:<[^<>]*>[^<>]*)*)>"#
+        )
+        for match in generic.matches(in: text, range: range) {
+            guard let list = Range(match.range(at: 1), in: text).map({ String(text[$0]) }) else { continue }
+            for parameter in parameterNames(list) {
+                // a parameter pack is spelled `each T`
+                let name = parameter.split(whereSeparator: \.isWhitespace).last.map(String.init) ?? parameter
+                lines[name, default: []].append(scope.line[match.range(at: 1).location])
+            }
+        }
+        return (lines.mapValues { $0.sorted() }, file)
     }
 
     static func parameterNames(_ list: String) -> [String] {
@@ -441,28 +533,39 @@ enum WhereJudge {
         var conditionalDeclarations: Set<String> = []
         var presentedBodies: Set<String> = []
         var uses: [String] = []
+        /// the lines each name of this file is declared at, in any scope
+        var declared: [String: [Int]] = [:]
     }
 
     static func read(_ text: String) -> World {
         let clean = stripComments(text)
+        let scope = Scope(clean)
         var world = World()
+
+        let names = declaredNames(clean, scope)
+        world.declared = names.lines
+        for name in names.file.sorted(by: { (names.lines[$0]![0], $0) < (names.lines[$1]![0], $1) })
+        where names.lines[name]!.count > 1 {
+            fail("cannot read '\(name)': it is declared at \(spelledLines(names.lines[name]!)), "
+                + "and this court has no scope rule to choose between them")
+        }
 
         // A presented declaration can have a body this flat reader cannot read.
         // Such a body does not license reflexivity of an unestablished field.
-        for hit in captures(
-            #"enum\s+(\w+)\s*(?:<([^>]*)>)?\s*:\s*[\w,\s]+?\s*\{"#, clean
+        for hit in declarations(
+            #"enum\s+(\w+)\s*(?:<([^>]*)>)?\s*:\s*[\w,\s]+?\s*\{"#, clean, scope
         ) {
             world.presentedBodies.insert(hit[0])
         }
 
-        for hit in captures(
-            #"enum\s+(\w+)\s*(?:<([^>]*)>)?\s*:\s*[\w,\s]+?\bwhere\s+[^{}]+\{"#, clean
+        for hit in declarations(
+            #"enum\s+(\w+)\s*(?:<([^>]*)>)?\s*:\s*[\w,\s]+?\bwhere\s+[^{}]+\{"#, clean, scope
         ) {
             world.conditionalDeclarations.insert(hit[0])
         }
 
-        for hit in captures(
-            #"enum\s+(\w+)\s*(?:<([^>]*)>)?\s*:\s*([\w,\s]+?)\s*\{([^{}]*)\}"#, clean
+        for hit in declarations(
+            #"enum\s+(\w+)\s*(?:<([^>]*)>)?\s*:\s*([\w,\s]+?)\s*\{([^{}]*)\}"#, clean, scope
         ) {
             let name = hit[0]
             let parameters = parameterNames(hit[1])
@@ -481,7 +584,7 @@ enum WhereJudge {
             )
         }
 
-        for hit in captures(#"enum\s+(\w+)\s*<([^>]*)>"#, clean) {
+        for hit in declarations(#"enum\s+(\w+)\s*<([^>]*)>"#, clean, scope) {
             world.parameters[hit[0]] = parameterNames(hit[1])
         }
 
@@ -492,7 +595,7 @@ enum WhereJudge {
         // the list cannot swallow one, and a gated extension stays a gate. A
         // type with no inheritance list (`enum Foo {}`) is not presented, so
         // its extensions add nothing.
-        for hit in captures(#"extension\s+(\w+)\s*:\s*([\w,\s]+?)\s*\{"#, clean) {
+        for hit in declarations(#"extension\s+(\w+)\s*:\s*([\w,\s]+?)\s*\{"#, clean, scope) {
             let name = hit[0]
             if world.conformers[name] != nil {
                 world.conformers[name]!.protocols += hit[1]
@@ -505,8 +608,8 @@ enum WhereJudge {
         // aliases to a presented conformer. A body outside it is not read, so
         // an axis only that body defines has no definition here, and its
         // projection is unread rather than opaque.
-        for hit in captures(
-            #"extension\s+(\w+)\s*(?::\s*[\w,\s]+?)?\s*\{([^{}]*)\}"#, clean
+        for hit in declarations(
+            #"extension\s+(\w+)\s*(?::\s*[\w,\s]+?)?\s*\{([^{}]*)\}"#, clean, scope
         ) {
             let name = hit[0]
             if world.conformers[name] != nil {
@@ -535,20 +638,20 @@ enum WhereJudge {
         // over it unjudged, and a neighbour that holds would pass the file.
         // A conditional conformance is read with one protocol before its
         // where clause, a conditional protocol with an inheritance list.
-        for hit in captures(#"extension\s+(\w+)\s*:\s*([^{}]*?)\bwhere\b"#, clean)
+        for hit in declarations(#"extension\s+(\w+)\s*:\s*([^{}]*?)\bwhere\b"#, clean, scope)
         where hit[1].range(of: #"^\w+\s+$"#, options: .regularExpression) == nil {
             let listed = hit[1].split(whereSeparator: \.isWhitespace).joined(separator: " ")
             fail("cannot read conditional conformance '\(hit[0]): \(listed)': "
                 + "this court reads one protocol per conditional extension")
         }
-        for hit in captures(#"protocol\s+(\w+)\b([^{}]*?)\bwhere\b"#, clean)
+        for hit in declarations(#"protocol\s+(\w+)\b([^{}]*?)\bwhere\b"#, clean, scope)
         where hit[1].range(of: #"^\s*:\s*[\w,\s]+?\s+$"#, options: .regularExpression) == nil {
             fail("cannot read conditional protocol '\(hit[0])': "
                 + "this court reads a where clause after an inheritance list of plain names")
         }
 
-        for hit in captures(
-            #"extension\s+(\w+)\s*:\s*(\w+)\s+where\s+([^{]+)\{"#, clean
+        for hit in declarations(
+            #"extension\s+(\w+)\s*:\s*(\w+)\s+where\s+([^{]+)\{"#, clean, scope
         ) {
             let conjuncts = splitConjuncts(hit[2])
             world.gates.append(GatedExtension(
@@ -559,8 +662,8 @@ enum WhereJudge {
             ))
         }
 
-        for hit in captures(
-            #"protocol\s+(\w+)\s*:\s*[\w,\s]+?\s+where\s+([^{]+)\{"#, clean
+        for hit in declarations(
+            #"protocol\s+(\w+)\s*:\s*[\w,\s]+?\s+where\s+([^{]+)\{"#, clean, scope
         ) {
             let conjuncts = splitConjuncts(hit[1])
             world.gatedProtocols[hit[0]] = GatedProtocol(
@@ -573,19 +676,19 @@ enum WhereJudge {
 
         // the refinement ladder, read from what is presented: a protocol's
         // parents are the material the membership walk closes over
-        for hit in captures(
-            #"protocol\s+(\w+)\s*:\s*([\w,\s]+?)\s*(?:\s+where|\{)"#, clean
+        for hit in declarations(
+            #"protocol\s+(\w+)\s*:\s*([\w,\s]+?)\s*(?:\s+where|\{)"#, clean, scope
         ) {
             world.protocolParents[hit[0]] = hit[1]
                 .split(separator: ",")
                 .map { $0.trimmingCharacters(in: .whitespaces) }
         }
-        for hit in captures(#"protocol\s+(\w+)\s*\{"#, clean)
+        for hit in declarations(#"protocol\s+(\w+)\s*\{"#, clean, scope)
         where world.protocolParents[hit[0]] == nil {
             world.protocolParents[hit[0]] = []
         }
 
-        for hit in captures(#"protocol\s+(\w+)[^{}]*\{([^{}]*)\}"#, clean) {
+        for hit in declarations(#"protocol\s+(\w+)[^{}]*\{([^{}]*)\}"#, clean, scope) {
             world.protocolAxes[hit[0]] = Set(captures(#"associatedtype\s+(\w+)"#, hit[1]).map { $0[0] })
         }
 
@@ -766,6 +869,10 @@ enum WhereJudge {
             for (name, rule) in read(more).aliases.sorted(by: { $0.key < $1.key }) {
                 guard aliasOrigins[name] == nil else {
                     fail("ambiguous definition of '\(name)' in '\(aliasOrigins[name]!)' and '\(extra)'")
+                }
+                if let lines = world.declared[name] {
+                    fail("cannot read '\(name)': it is a typealias in '\(extra)' and is declared at "
+                        + "\(spelledLines(lines)) of '\(path)', and this court has no scope rule to choose between them")
                 }
                 world.aliases[name] = rule
                 aliasOrigins[name] = extra

@@ -29,4 +29,6 @@ For an action on a declared family of starts, the outcome is whether one admissi
 
 A record also names its relation to the original requirement: identification of `q`, identification of a neighboring `q′`, a proved limit, an approximation, or a construction with provided parts. One move can carry two of these. Proof status and execution status are recorded separately.
 
-> Important: The record presents a result, and its Derivation field carries the proof. A filled form adds no grounds of its own.
+Record each sufficient derivation and the premises it uses. When a premise loses support, review the applications that depend on it. The claim remains established at its stated reach if the remaining valid grounds suffice for that claim. Otherwise record the claim as not yet established, unless separate grounds establish its negation. A correctly recorded measurement remains a fact about its original setup. Its use on a changed setup requires an established relation to the new conditions. Selective review is complete only when the recorded dependencies cover the actual grounds of the affected applications.
+
+> Important: The record presents a result, and its Derivation field carries the proof. A filled form adds no grounds of its own. Free-form prose can contain an argument. State which premises and inferences were checked and which were supplied. Merely storing an explanation supplies no check of that explanation. A sentence used as a premise in a later step needs grounds of its own or an explicit status as a supplied assumption.

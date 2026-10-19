@@ -2,7 +2,7 @@
 
 This repository studies what a given access to an unknown source determines, and what can be done with the result. The arguments are in 35 papers. The relations written as Swift types are checked by the compiler. A 204-person company written as types is the worked application.
 
-The name states the criterion. To verify an answer to a question is to identify that answer. The whole source has to be identified only when the question asks for the whole source.
+The name states the criterion. To verify an answer to a question is to identify that answer. An answer can be determined while several sources remain compatible. Identifying the whole source is a special case.
 
 The research goal: preserve or transform the content a task concerns, make the actual result available to the next participant, and keep further work possible. Unknown content can take part in the work before it is identified.
 
@@ -10,7 +10,7 @@ Start with [Verification Is Identification](https://danielswift1992.github.io/ve
 
 ## The question determines what must be known
 
-[`Light.swift`](Sources/Examples/Light.swift) and [`Verdict.swift`](Sources/Examples/Verdict.swift) declare three symbolic light sources: `RedBeam`, `RedBeamWithIR` and `RedBeamWithMoreIR`. Each has two visible coordinates and one hidden coordinate, the infrared. The three differ only in the infrared. All three have the same `EyeImage`. The eye image is given, and which of the three sources produced it is not.
+Three symbolic light sources have the same visible coordinates and different infrared coordinates. Their visible reading is given. It does not say which source produced it. [`Light.swift`](Sources/Examples/Light.swift) and [`Verdict.swift`](Sources/Examples/Verdict.swift) declare the sources as `RedBeam`, `RedBeamWithIR` and `RedBeamWithMoreIR`. `EyeImage` reads their visible coordinates.
 
 ![Three declared sources share the same visible record. That record determines their visible pair while leaving their hidden coordinate open.](Documentation/Figures/beam-questions.svg)
 
@@ -69,7 +69,7 @@ question and grounds → proposed construction → check
 
 The next step starts from the result and its grounds. A changed representation must connect the question back to the intended source. An action must produce the actual result the continuation requires. A successful type check establishes the encoded consequences under their premises. Applying them to an actual system also requires the source connection.
 
-The theory is 199 protocols, one per claim. Worked constructions are in [`Sources/Examples`](Sources/Examples). Positive witnesses and expected refusals are in [`Checks`](Checks). The [atlas](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/atlas/) maps the dependencies between claims.
+The typed theory has 199 protocols, one per claim. Worked constructions are in [`Sources/Examples`](Sources/Examples). Positive witnesses and expected refusals are in [`Checks`](Checks). The [atlas](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/atlas/) maps the dependencies between claims.
 
 To check a construction locally:
 

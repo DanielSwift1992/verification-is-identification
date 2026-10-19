@@ -10,6 +10,9 @@
 
 const fs = require("fs");
 const path = require("path");
+const { TextDecoder } = require("util");
+// Decode the same UTF-8 byte domain as Rust read_to_string; keep a supplied BOM.
+const sourceDecoder = new TextDecoder("utf-8", { fatal: true, ignoreBOM: true });
 
 const OPTIONS_WITH_VALUE = new Set(["--predicate", "--encoding", "--sigma"]);
 
@@ -36,8 +39,11 @@ function sourceArguments(argv) {
 function readSources(names) {
     return names.map((name) => {
         try {
-            return { name, text: fs.readFileSync(name, "utf8") };
+            return { name, text: sourceDecoder.decode(fs.readFileSync(name)) };
         } catch (error) {
+            if (error.code === "ERR_ENCODING_INVALID_ENCODED_DATA") {
+                return { name, error: "stream did not contain valid UTF-8" };
+            }
             const text = POSIX_TEXT[error.code];
             return { name, error: text ? `${text} (${error.code})` : String(error.message) };
         }

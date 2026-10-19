@@ -1,149 +1,127 @@
 # Verification Is Identification
 
-A saved check says a document met the requirement for an agent's next action. The document changes before that action. The record concerns the earlier source. Using it now requires grounds that connect the result to the current source and the original requirement. The [acquisition criterion](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/acquisition_keeps_its_question.md) asks whether the retained grounds make the action adequate after the change.
+Work starts with something you do not fully know. You have some access to it and a task to carry out. What can you conclude from that access? What can you change? What must the result leave for someone else to continue?
 
-## The criterion
+Verification Is Identification studies these questions together. The research goal is to preserve or transform the content a task concerns, make the actual result accessible to the next participant and enable further work. Unknown content can participate in that work before it is fully identified.
 
-This repository studies what given grounds determine and when a result can be used again. An answer is determined when compatible cases exist and all of them give that answer. The source can remain partly unknown. Determining the answer need not identify the complete source. This criterion names the repository: verification is identification. [Verification Is Identification](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verification_is_identification.md) states this criterion. The papers develop the arguments and their premises. The compiler checks the presented Swift constructions against their encoded relations. The [research loop](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/VerificationIsIdentification.md) distinguishes a checked consequence, a refusal of the attempted construction and an open proof obligation. The company and its site demonstrate the notation.
+The papers give the arguments and their premises. Swift types express relations and constructions that can be checked. The tools check specified parts of those records. A company and its website provide a worked application of the notation.
 
-## The discipline
+Start with [Verification Is Identification](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verification_is_identification/) for the criterion, constructions and connection to the source being studied.
 
-The repository states how to record a result and what its continued use requires. It implements checks for specified relations between declarations.
+## The question determines what must be known
 
-A record states its question, its grounds and the scope of its answer. Proof status and execution status are kept apart, and when a premise loses support, the record calls for review of the uses that depended on it. [The result form](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Results.md) is that record.
+The question is part of the claim being checked. The same grounds can determine an answer to one question while leaving another open.
 
-A continuation after a change needs grounds that connect the old result to the new situation. The source may change instance, the access may be withdrawn, another participant may take over. The chosen continuation must still be available and still meet the original requirement in every case compatible with the complete input used to choose it, and its actual result must retain the residue and access the task requires. [Acquisition Keeps Its Question](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/acquisition_keeps_its_question.md) states the condition and its boundary: the criterion does not supply or execute the action.
+The same distinction applies to verification. Compatible cases are the cases the given grounds permit. An answer is determined when compatible cases exist and every one gives that answer. Identifying the entire source is the special case where the question asks for the entire source. The criterion concerns the question actually asked.
 
-Agreement between records needs a checked relation. [`Sources/Court`](Sources/Court) reads supported declarations without using the Swift compiler for that reading. Each reader states which relations it checks. The company reader reports named refusals for its checked access assertions. The [gate](https://github.com/DanielSwift1992/gate) tool builds a judge from a pinned revision of this corpus for use in other repositories.
+The sequence below follows one construction already expressed and checked in the corpus. The family contains exactly three symbolic sources. The visible reading is supplied, and the actual source remains unspecified.
 
-## How it is written
+![Three declared sources share the same visible record. That record determines their visible pair while leaving their hidden coordinate open.](Documentation/Figures/beam-questions.svg)
 
-Swift protocols, associated types and constraints record relations in the notation. For a typed proof, [Law](Sources/VerificationIsIdentification/Law.swift) requires a construction deriving the claimed consequence from its supplied premises. The compiler checks the presented construction against its encoded relations. A refusal concerns that attempt and does not by itself establish the opposite claim. In the example below, a type instantiation presents an access assertion. The `judge` gate compares the company reader with the compiler on selected planted changes and checks the names in their refusals.
+<details>
+<summary>The criterion: compatible cases and a determined answer</summary>
 
+![The compatible cases can determine one answer, permit several answers, or be empty. A check that has not established which case holds is a separate state.](Documentation/Figures/answer-determination.svg)
 
-The demonstrated [policy rule](Sources/Organization/System/Policy.swift) permits a manager to administer documents in that manager's department.
+</details>
 
-The comparison uses implementations of this access condition. A check over values can evaluate an `if` or a guard when access is requested. The implementation below represents people, documents and requests as types. Its `where` clause requires an administrator rank and a matching department. `Granted` asks the compiler to establish that relation for the declared request:
+[Verification Is Identification, U2c](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verification_is_identification/) states this criterion. Its constructions include a forced task assignment, agreement on a visible reading while the sources differ, and new relations derived among still-unknown fields. Each construction states what it uses and what follows.
 
-```swift
-public enum Carol: Employee {                     // a person is a type
-    public typealias Rank = IndividualContributor
-    public typealias Home = Finance
-    // ...name, birth year, workplace: more of the same
-}
+## A result must support the next action
 
-public enum Administer<Who: Employee, Of: Doc> {}
-extension Administer: Authorized                  // the rule is a `where` clause
-where Who.Rank: CanAdmin, Who.Home == Of.Home {}
+An answer and an available action have different obligations. A supplied operation may act on unknown contents when its laws establish the required effect. Choosing it requires grounds that it works in every case compatible with the input used to make that choice. Its actual output must preserve what the task requires and provide the access needed for the continuation. A task that requires completion also needs a completion argument.
 
-Granted<Administer<Alice, FinanceShare>>.self     // ✅ compiles: the access is proved
-Granted<Administer<Carol, FinanceShare>>.self     // ❌ error: type 'Carol.Rank' (aka
-                                                  //    'IndividualContributor') does not
-                                                  //    conform to protocol 'CanAdmin'
+Continue with the same sources. A supplied symbolic swap preserves the hidden coordinate and lets the next visible answer be computed from the old record. A different operation exposes that coordinate and loses this particular ground for reuse. The old reading remains a fact about its original state.
+
+![The symbolic swap commutes with the visible reading. Exposing the hidden coordinate instead gives different future answers from the same old record. Neither picture supplies a physical execution.](Documentation/Figures/beam-continuation.svg)
+
+The construction is `ThreeBeamVerdict` with `SwapFactors` and `ExposeHidden`. The [source map](Documentation/Figures/beam-study-sources.md) identifies the definitions, general argument and positive and negative checks for each frame. These are checked symbolic relations. Applying them to a physical system requires the corresponding operation and source connection.
+
+<details>
+<summary>The action criterion: one adequate continuation across compatible reached states</summary>
+
+![An adequate continuation must work at every actual source–residue pair compatible with the complete input to its choice. Its operation, availability and realization must be supplied.](Documentation/Figures/adequate-continuation.svg)
+
+</details>
+
+The source may change, an experiment may alter it, access may be withdrawn or another participant may take over. Continued use needs a justified connection between the original requirement, the retained answer and the state actually reached.
+
+[Acquisition Keeps Its Question](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/acquisition_keeps_its_question/) develops this condition and its examples. It keeps the original requirement attached to the continuation. The law describes when a continuation is adequate. Completing the task also requires supplying and carrying out the action.
+
+The [result form](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/results/) records what another reader needs: the question, source, premises, derivation, reach, actual result and next use. Proof status and execution status are recorded separately. If a premise loses support, dependent uses need review. Other valid grounds may still suffice.
+
+For an agent workflow, these are concrete questions: which source was checked, what changed, which action remains available and what the next participant can actually use. The research treats the source relation and execution as obligations that need their own grounds.
+
+## From a claim to a checked construction
+
+A protocol states a relation. A proof needs a construction deriving the conclusion from supplied premises. [Law.swift](Sources/VerificationIsIdentification/Law.swift) states that requirement for the typed proofs. The compiler checks the construction against its encoded relations. A failed construction identifies a problem with that attempt, and an unestablished claim keeps its open proof obligation.
+
+The working cycle is:
+
+```text
+question and grounds → proposed construction → check
+                                               → established consequence
+                                               → addressed refusal
+                                               → open proof obligation
 ```
 
-`Granted` requires the declared request to conform to `Authorized`. The compiler refuses the shown request for Carol because its rank does not meet that requirement. This checks the written access assertion. It does not intercept requests to a running company's documents. The playground's **Plant a lie** button changes a declaration for its checker to read. Its At scale tab judges a 12,800-person file as you edit.
+The next move uses that result with its grounds. A changed representation must carry the question back to the intended source. An action must supply the actual result required for the continuation. A successful type check establishes its encoded consequences under its premises. Applying those consequences to an actual system requires the source connection as well.
 
-| Concept | Dynamic example | Guard over typed values | Typed request below |
-| --- | --- | --- | --- |
-| Data | a dict, shaped at runtime | a struct, shaped by the compiler | an empty `enum`: a pure type |
-| A rule | an `if` | a guard over typed values | a `where` clause |
-| A question | a call | a call | a type instantiation |
-| A change of state | mutation | mutation, or a new value | a new type |
-| A decision | at runtime | at runtime | at compile time |
-| A green build means | the configured build checks passed | the declared type constraints are met | the written constructions satisfy their declared relations |
+The 35 papers develop the arguments. The theory contains 199 protocols, one per claim, with worked constructions in [`Sources/Examples`](Sources/Examples) and positive witnesses and expected refusals in [`Checks`](Checks). The [atlas](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/atlas/) maps dependencies between claims.
 
-The comparison concerns the three implementations of this rule. It describes where each places the access check. A checked construction still needs grounds connecting its declarations to the system and requirement it represents. [Verification Is Identification](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verification_is_identification.md) states that obligation for changes of representation and continued use.
-
-## Run the proof
+To check a construction locally:
 
 ```sh
-git clone https://github.com/DanielSwift1992/verification-is-identification && cd verification-is-identification && swift build
+git clone https://github.com/DanielSwift1992/verification-is-identification
+cd verification-is-identification
+swift build --target Examples
+bash Checks/verdict.sh acquisition
+bash Checks/verdict.sh knowledgeclosure
 ```
 
-The package ships a worked system: a 204-person company, its access policy, and its whole intranet site, all written as types. A green build checks its concrete and generic constructions against their declared type relations. Each proof derives its conclusion from the source-bound construction. In a local measurement on a 14-core Apple M4 Pro, a clean build took about eight minutes. Rebuilding after a comment-only edit to the policy took about ten seconds. Four things to try:
+The acquisition checks exercise a family of generic consequences and nearby incompatible constructions. [When does a new question require a new observation?](https://danielswift1992.github.io/verification-is-identification/documentation/examples/knowledgeclosure/) gives a worked acquisition chain, reuse of old memory and a case requiring a new reading.
 
-- Break a rule in [`Sources/Organization/System/Policy.swift`](Sources/Organization/System/Policy.swift) and rebuild. The error names what you broke.
-- `swift test` runs the worked demos: two from physics (ice's residual entropy, hydrogen's spectrum) and a task scheduler. It prints "Executed 19 tests". The trailing "0 tests" line is expected: the newer Swift Testing harness finds no `@Test` functions there.
-- `swift build -Xswiftc -DSHOW_UNSAT` rejects an impossible schedule by name. `-DSHOW_FORBIDDEN` rejects a forbidden spectral line. `-DSHOW_METAMER_SPLIT` splits a metameric pair of lights: the refusal names the infrared slot no eye reads.
-- `swift run Tools site` builds and serves the whole documentation site locally.
+## A second reader checks a stated relation
 
-For a research proof about acquired knowledge, see [When does a new question require a new observation?](Sources/Examples/Examples.docc/KnowledgeClosure.md). Run `bash Checks/verdict.sh knowledgeclosure` to check one resident acquisition chain, reuse of old memory, a necessary new reading and closure under its declared coordinate exchanges.
+[`Sources/Court`](Sources/Court) contains readers for specified declaration fragments. They read supported relations separately from the Swift compiler. Check the supported fragment and the obligations actually examined before using a verdict. A form the reader cannot interpret needs an addressed refusal. The company `judge` check compares its reader with the compiler on selected planted changes and checks the names in their refusals.
 
-## The evidence
+[gate](https://github.com/DanielSwift1992/gate) applies checking tools to records in other repositories and builds its judge from a pinned revision of this corpus. The papers state arguments and premises, the readers check specified relations, and gate supplies an interface for using checks. Their contracts determine what a result means.
 
-**The papers.** The 35 papers develop the arguments and their premises, in [`Papers`](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers) and on [the documentation site](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification). [`Sources/VerificationIsIdentification`](Sources/VerificationIsIdentification) contains 199 protocols, one per claim. Each protocol records a relation, and [Law](Sources/VerificationIsIdentification/Law.swift) distinguishes that declaration from a construction deriving its conclusion. Start with [Verification Is Identification](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verification_is_identification.md) for the criterion and its first constructions.
+![Target package responsibilities: vi owns the research and where/count semantics, showcase owns its constructed world and policy, and gate supplies an implementation under a versioned contract. The package split is planned.](Documentation/Figures/framework-architecture.svg)
 
-**The constructions.** [`Sources/Examples`](Sources/Examples) carries the worked constructions the papers cite. [`Checks`](Checks) supplies positive witnesses and selected incompatible constructions with expected refusals. `bash Checks/verdict.sh acquisition` runs one family of them.
+The diagram shows the intended division of responsibilities. The showcase targets remain in this package. Gate currently pins an earlier judge. The existing [package diagram](Sources/Organization/Organization.docc/Resources/architecture.svg) shows the worked application and its generated representations.
 
-**The demonstration.** [`Sources/Organization`](Sources/Organization) is a company, its access policy and its intranet site, all as types, rendered by [`Sources/DocumentKit`](Sources/DocumentKit). It shows the notation at scale and adds no claim to the theory.
+## A worked application
 
-[![The playground: Swift types on the left, the judged and drawn page on the right.](https://raw.githubusercontent.com/DanielSwift1992/typed-playground/main/screenshot.png)](https://danielswift1992.github.io/typed-playground/)
+The package also contains a 204-person company, an access policy and an intranet website written as types. Its declarations describe the 204 people, their documents and access requests. A conditional conformance expresses a policy rule, and the compiler checks the declared requests against it.
 
-[The playground](https://danielswift1992.github.io/typed-playground/) shows Swift declarations on the left and the page they draw on the right. Its checker reports the supported relations that a declaration fails as you type. The playground uses a stated subset of Swift, and its [checks](https://github.com/DanielSwift1992/typed-playground#the-checks) describe the scope of that reading. It is a static page with no installation or application server.
+[Open the playground](https://danielswift1992.github.io/typed-playground/) to edit declarations and see the page they describe. **Plant a lie** changes a declaration for its checker to read. The At scale tab judges a 12,800-person file. The playground documents its supported subset of Swift in [its checks](https://github.com/DanielSwift1992/typed-playground#the-checks).
 
+The application demonstrates the notation on a declared world. Its checked access assertions concern those declarations. Connecting them to a running organisation and enforcing access would require the corresponding source relation and operations.
 
-The `Organization` target is the showcase. Its types declare the 204 people, the access policy, and the company's dashboard, catalogs, reports, personal cards and keypad logins. The compiler checks the presented type relations and access assertions. `swift run Tools site` builds and serves the documentation. The [guided walks](Sources/Organization/Wayfinding.swift) present branches of declared trees as links. Within their declared directories, the walks reach any page in four choices, and any of the 204 people in eight. The reader supplies the choice at each branch.
+<details>
+<summary>The website, navigation and local commands</summary>
 
-The site is rendered ahead of time, every page of it. Four of the employee cards carry a login keypad, as the demonstration. A key press follows a link to the next state. The state `k2` names two correct digits so far, and the URL fragment stores it. A wrong digit at any position lands in one shared dead state, so the 9⁴ = 6561 possible input sequences need five states. The last correct digit is a link to the unlocked page. [SecretPage](Sources/Organization/View/Card.swift) requires the supplied secret type to equal the page's declared secret. That equality is checked at compilation. It does not record which digits a visitor entered. The pages are static files, the site prints each password on its card, and the unlocked address can be opened directly. Access assertions for the 204 people use their declared rank, department and owner relations.
+The [company site](https://danielswift1992.github.io/verification-is-identification/documentation/organization/) presents dashboards, catalogs, reports and personal cards. Within their declared directories, the guided walks reach any page in four choices and any of the people in eight. The reader chooses each branch. [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit/) renders the pages, tables and SVG from types.
 
-[![The package, top down: the V=I type lattice, the DocumentKit engine that renders, walks, and rewrites it, and the Organization written in both over a shared alphabet, as drawn by the VectorDemo renderer.](Sources/Organization/Organization.docc/Resources/architecture.svg)](https://danielswift1992.github.io/verification-is-identification/documentation/organization)
+Four of the employee cards carry a login keypad. A key follows a link to a declared state. The 6561 possible input sequences share a small state graph because each wrong digit reaches the same dead state. The compiler checks the supplied secret type against the page's declared secret. The page prints the password, and the unlocked address can be opened directly. This is a static navigation demonstration.
 
-The diagram is rendered by `VectorDemo` from the package's types. `swift package --allow-writing-to-package-directory generate` and `swift run Tools site` refresh it. Its labels use the census atoms emitted by `CensusGen`. The layout is computed from the same types the pages use, and every label is fitted by its measured width. The [Curve](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/curve) page has the measurement: build time against company size, to 12,800 employees.
+`swift build` checks the whole package. `swift test` exercises the worked demos and prints "Executed 19 tests". `swift run Tools site` builds and serves the documentation locally. The [Curve](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/curve/) page reports measurements as the company grows to 12,800 employees.
 
-This is a bounded rendering of declared states. It shows the notation carrying a whole organisation and its site. It says nothing about a system whose states were not declared.
+In a recorded local measurement on a 14-core Apple M4 Pro, a clean build took about eight minutes. A rebuild after a comment-only policy edit took about ten seconds. These are measurements of that setup.
 
-## What the build proves
+</details>
 
-The company example declares a bounded family of states. A generic constructor can describe an infinite family, and a generic proof can cover its admitted substitutions without enumeration. An answer is determined when compatible cases exist and all of them give that answer. The cases need not be identical. Identifying a complete candidate is the special case in which only that candidate remains compatible. [Verification Is Identification](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verification_is_identification.md) states the criterion and the grounds needed to apply it to the intended source.
+## Read and work in the repository
 
-A construction can express a change through relations between its input and output. [Law](Sources/VerificationIsIdentification/Law.swift) requires a witness for the claimed consequence. Type syntax alone supplies no termination argument for an arbitrary recursive construction. In the company demonstration, pages and fragments represent declared states, and links represent actions. The generator and renderer execute to produce those files, and the browser follows the links.
+| Part | Read | Work with the source |
+| --- | --- | --- |
+| Research and notation | [Framework and papers](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/), [dependency atlas](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/atlas/) | [`VerificationIsIdentification`](Sources/VerificationIsIdentification), [`Examples`](Sources/Examples), [`Checks`](Checks) |
+| Worked constructions | [Examples](https://danielswift1992.github.io/verification-is-identification/documentation/examples/) | [`Sources/Examples`](Sources/Examples) |
+| Readers | Contracts stated by each reader | [`Sources/Court`](Sources/Court), [gate](https://github.com/DanielSwift1992/gate) |
+| Company and rendering | [Organization](https://danielswift1992.github.io/verification-is-identification/documentation/organization/), [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit/) | [`Sources/Organization`](Sources/Organization), [`Sources/DocumentKit`](Sources/DocumentKit) |
 
-An answer derived from the written input and type relations is available at build time. A finite source file does not make every semantic question decidable. The worked constructors show what their actual fields force, and the refusal checks attempt nearby incompatible constructions. General mathematical claims and their premises are developed in the papers.
-
-The build checks the presented type relations. Applying a checked consequence to an actual system requires grounds connecting its premises and conclusion to the source and original question. [Verification Is Identification](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verification_is_identification.md) states that transfer obligation. [Results](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Results.md) records the derivation, its reach and the conditions of continued use, with proof and execution status kept separate.
-
-*A checked construction derives its conclusion under its stated premises.*
-
-## If you come from AI safety
-
-Start with [Acquisition Keeps Its Question](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/acquisition_keeps_its_question.md): the criterion applied to action, its examples, and the boundary between an adequate choice and an executed action. What this establishes: compilation checks encoded constructions under their stated premises. Application to an actual system also needs grounds for the source relation, the supplied operations and the coverage of the represented cases. The papers and constructions do not by themselves provide a system that approves an agent's next action or establish the safety of a deployed agent.
-
-## The map
-
-[`Sources/VerificationIsIdentification`](Sources/VerificationIsIdentification) contains 199 protocols, one per claim. Protocol requirements state relations. [Law](Sources/VerificationIsIdentification/Law.swift) distinguishes those declarations from constructors that derive their conclusions. The theory prints its dependency map, [the atlas](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/atlas/): one row per claim, the most depended-on first.
-
-[`Acquisition.swift`](Sources/Examples/Acquisition.swift) expresses recording and evidence refinement through generic constructors. Retained access needs only `AnswerInTrace`: a constrained name for the certificate's existing decoder. Its source and memory must fit, and its entire reading type is already present. No application object or runtime evaluator supplies the answer. [`Checks/Acquisition.swift`](Checks/Acquisition.swift) presents the generic consequences and nearby false constructions.
-
-Run `bash Checks/verdict.sh acquisition` for the acquisition proofs and 21 named refusals, `./check.sh --only verdict` when shared proof relations change, or `./check.sh` for integration. Mathematical arguments state their premises and derivations in the corpus. Optional experiments and their results belong under `Checks` and `Research`, and run separately with `./check.sh --research-only`. They do not gate publication of the theory. If a saved deletion report is available locally at `Research/ablation/current.md`, `./check.sh --only ablation` checks its recorded premise list against the current symbol graph. The report is a separate local experiment and is not included in a clone. A normal edit does not require a new deletion sweep.
-
-[`Sources/Court`](Sources/Court) supplies readers for specified declaration fragments. The `judge` gate compares the company reader with the compiler on selected planted changes and checks the names in their refusals. [`Sources/Organization`](Sources/Organization) is the showcase: 204 people, the access policy, and the whole site as types. The generated roster and walk sources are checked-in artifacts, regenerated with `swift package --allow-writing-to-package-directory generate`. Start with the policy and the named people. [`Sources/DocumentKit`](Sources/DocumentKit) is the engine: pages, tables, SVG, and text metrics, written in the notation it renders.
-
-The 35 papers derive the theory step by step. They are in [`Papers`](Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers) and render into [the documentation site](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification).
-
-## The gates
-
-The repository includes checks, inspection commands, and regeneration tools:
-
-- `swift build` type-checks the whole system. The LawCheck plugin lints the engine and the company as it builds. A violation refuses the build by name.
-- `swift run Tools grammar` re-states every source file in a typed vocabulary for the compiler to judge. A style violation is a compile error that names its rule.
-- `swift run Tools lint Sources/VerificationIsIdentification --docc Sources/VerificationIsIdentification/VerificationIsIdentification.docc --strict` checks the theory against its law: pure types, every opened axis closed, no protocol that renames another, including one intersection of parents under two names, and every paper tag resolved to its paper.
-- `swift run Tools readme` checks the registered count claims on this page against the source files and documentation that own them. The gate names a missing or mismatched claim.
-- `swift run Tools census` counts source declarations per target: zero structs, zero classes, and zero functions classified as runtime across the theory, engine, and company rows. [Census.swift](Sources/Tools/Census.swift) defines that classification. It counts declarations rather than measuring execution.
-- `swift run Tools judge diff 200` sets a second, independent checker beside the compiler. Four lies are planted in the generated company. Both checkers must refuse each one and name the same facts.
-- `swift package --allow-writing-to-package-directory tree-sort check` checks that the docs' topic tree and the atlas match the type structure.
-- `swift package --allow-writing-to-package-directory generate` regenerates the checked-in roster and walk sources, font metrics, and SVG artwork.
-
-## Documentation
-
-The whole site is generated from this package. The 35 papers build the theory step by step. Two of them say where it ends: in a fixed task domain with a common finite rule interpretation, a system that only checks comes to represent every rule class once sound retaining insertions have stored a solved task of each class, and the distance between two such systems is measurable.
-
-- **[VerificationIsIdentification](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification)** has the framework: the protocols, the papers, [the atlas](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/atlas/).
-- **[Examples](https://danielswift1992.github.io/verification-is-identification/documentation/examples)** applies it: the physics demos and a working solver.
-- **[Organization](https://danielswift1992.github.io/verification-is-identification/documentation/organization)** scales the demonstration: a company declared as types, with checked access assertions and pages rendered from those declarations.
-- **[DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit)** carries the rendering engine and the guided walks, written in the notation they render.
-- **[GrammarLexicon](https://danielswift1992.github.io/verification-is-identification/documentation/grammarlexicon)** is the style linter's vocabulary: the words, scopes, and grants sources are judged in.
-- **[Alphabet](https://danielswift1992.github.io/verification-is-identification/documentation/alphabet)** has one atom per character, shared by the renderer and the linter.
+[`check.sh`](check.sh) lists the repository's checks. `./check.sh --only verdict` runs the registered proof and refusal fixtures. `./check.sh` runs the integration checks. `swift run Tools readme` compares the registered counts on this page with their source artifacts. Optional research experiments run separately with `./check.sh --research-only`. The checked-in roster, walk sources, font metrics and SVG artwork are regenerated with `swift package --allow-writing-to-package-directory generate`.
 
 ## License
 

@@ -146,10 +146,18 @@ public enum WhereResponse {
         let outcome: Outcome
         let messages: [String]
         switch error {
-        case WhereJudge.Failure.unsupported(let reasons): outcome = .unsupported; messages = reasons
-        case WhereJudge.Failure.open(let reasons): outcome = .open; messages = reasons
-        case WhereJudge.Failure.input(let reasons): outcome = .inputError; messages = reasons
-        default: outcome = .inputError; messages = [String(describing: error)]
+        case WhereJudge.Failure.unsupported(let reasons):
+            outcome = .unsupported
+            messages = reasons
+        case WhereJudge.Failure.open(let reasons):
+            outcome = .open
+            messages = reasons
+        case WhereJudge.Failure.input(let reasons):
+            outcome = .inputError
+            messages = reasons
+        default:
+            outcome = .inputError
+            messages = [String(describing: error)]
         }
         return Result(id: request.id, application: request.application, source: source,
                       line: line ?? request.application.line, construction: construction,

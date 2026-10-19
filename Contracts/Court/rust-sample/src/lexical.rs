@@ -73,7 +73,7 @@ enum Context {
 /// A comment states nothing, and a string states no declaration. A line comment
 /// is dropped, a block comment reads as a space, a string keeps its delimiters
 /// and its interpolations' code, and every form keeps its line breaks.
-pub fn blank_comments_and_strings(text: &str) -> Result<String, Failure> {
+pub fn blank_comments_and_strings(text: &str, lent: &HashSet<String>) -> Result<String, Failure> {
     let scalars: Vec<char> = text.chars().collect();
     let mut kept = String::with_capacity(text.len());
     let mut stack: Vec<Context> = vec![Context::Code { interpolated: false, parentheses: 0 }];
@@ -247,14 +247,8 @@ pub fn blank_comments_and_strings(text: &str) -> Result<String, Failure> {
             }
         }
     }
-    let declared: HashSet<String> = captures(
-        r"@(?:resultBuilder|propertyWrapper)\s+(?:(?:@\w+(?:\([^()]*\))?|public|internal|fileprivate|private|package|open|final|indirect)\s+)*(?:struct|enum|class|actor)\s+(\w+)",
-        &kept,
-    )
-    .into_iter()
-    .map(|c| c[0].clone())
-    .collect();
-    if let Some((name, at)) = unread_attributes.iter().find(|(name, _)| !declared.contains(name)) {
+    let declared = declared_builders(&kept);
+    if let Some((name, at)) = unread_attributes.iter().find(|(name, _)| !declared.contains(name) && !lent.contains(name)) {
         return fail(format!(
             "cannot read line {}: the attribute '@{}' is not among the forms this court reads",
             at, name
@@ -263,11 +257,26 @@ pub fn blank_comments_and_strings(text: &str) -> Result<String, Failure> {
     Ok(kept)
 }
 
+/// The names a read text declares as a result builder or a property wrapper,
+/// with other attributes and modifiers allowed between the declaring attribute
+/// and the type. An attribute of such a name adds no conformance, so it is a
+/// form this court reads, in the text that declares it and in a world that
+/// text is lent to.
+pub fn declared_builders(read: &str) -> HashSet<String> {
+    captures(
+        r"@(?:resultBuilder|propertyWrapper)\s+(?:(?:@\w+(?:\([^()]*\))?|public|internal|fileprivate|private|package|open|final|indirect)\s+)*(?:struct|enum|class|actor)\s+(\w+)",
+        read,
+    )
+    .into_iter()
+    .map(|c| c[0].clone())
+    .collect()
+}
+
 /// Conditional compilation is outside this court's scope. A block under a
 /// plain flag is omitted whole, its lines kept empty; any other condition or
 /// branch is refused at its line.
-pub fn strip_comments(text: &str) -> Result<String, Failure> {
-    let blanked = blank_comments_and_strings(text)?;
+pub fn strip_comments(text: &str, lent: &HashSet<String>) -> Result<String, Failure> {
+    let blanked = blank_comments_and_strings(text, lent)?;
     let plain_flag = re(r"^#if\s+([A-Za-z_][A-Za-z0-9_]*)$");
     let mut flagged_depth = 0usize;
     let mut kept: Vec<String> = Vec::new();

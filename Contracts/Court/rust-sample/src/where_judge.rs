@@ -28,8 +28,8 @@ fn trim_spaces(text: &str) -> &str {
 
 // ── reading the world ──
 
-pub fn read(text: &str) -> Result<World, Failure> {
-    let clean = strip_comments(text)?;
+pub fn read(text: &str, lent: &HashSet<String>) -> Result<World, Failure> {
+    let clean = strip_comments(text, lent)?;
     let scope = Scope::new(&clean);
     let mut world = World::default();
 
@@ -731,7 +731,21 @@ pub fn prepare(arguments: &[String], load: &dyn Fn(&str) -> Result<String, Failu
     };
     let conditional = re(r"(?m)^\s*#if\b");
     let text = load(&path)?;
-    let mut world = read(&text)?;
+    // A definitions file that declares a result builder or a property wrapper
+    // lends that attribute to the world the way it lends its typealiases: the
+    // declaration supplies the premise that the attribute adds no conformance.
+    // A definitions file this scan cannot read lends nothing here; it is
+    // refused below, in its turn.
+    let no_lent: HashSet<String> = HashSet::new();
+    let mut lent_builders: HashSet<String> = HashSet::new();
+    for extra in arguments.iter().skip(1) {
+        if let Ok(more) = load(extra) {
+            if let Ok(clean) = strip_comments(&more, &no_lent) {
+                lent_builders.extend(declared_builders(&clean));
+            }
+        }
+    }
+    let mut world = read(&text, &lent_builders)?;
     let mut excludes_conditional = conditional.is_match(&text);
     let own_aliases = world.aliases.clone();
     // Extra files supply alias definitions, not a second version of the same
@@ -740,7 +754,7 @@ pub fn prepare(arguments: &[String], load: &dyn Fn(&str) -> Result<String, Failu
     let mut extras: Vec<Extra> = Vec::new();
     for extra in arguments.iter().skip(1) {
         let more = load(extra)?;
-        let lent = read(&more)?;
+        let lent = read(&more, &no_lent)?;
         extras.push(Extra { path: extra.clone(), text: more, world: lent });
     }
     // A typealias of any file may be extended from another, and such an

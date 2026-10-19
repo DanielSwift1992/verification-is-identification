@@ -109,4 +109,59 @@ if ! grep -q "^✓ THE WHERE holds: 0 equalities and 2 memberships judged across
     echo "where-lexical: the control was not judged through its built-in forms" >&2
     exit 1
 fi
-echo "✓ where-lexical: six unread forms are named at their line, the compiler refuses each world, a division is named at the boundary, the built-in forms read"
+# The lent attribute: a result builder Primitive.swift declares is a form the
+# court reads in a world that file is lent to, and not in the world alone.
+if ! swiftc -typecheck -module-cache-path "$lexical_tmp/cache" \
+    Checks/where-lexical/attribute-lent.swift Sources/VerificationIsIdentification/Primitive.swift \
+    >"$lexical_tmp/lent-swift.log" 2>&1; then
+    cat "$lexical_tmp/lent-swift.log"
+    echo "where-lexical: Swift refused the lent-attribute control" >&2
+    exit 1
+fi
+lexical_said=0
+"$lexical_bin/Tools" judge where Checks/where-lexical/attribute-lent.swift \
+    >"$lexical_tmp/lent-alone.out" 2>"$lexical_tmp/lent-alone.err" || lexical_said=$?
+if [ "$lexical_said" -ne 2 ] || [ -s "$lexical_tmp/lent-alone.out" ] \
+    || [ "$(cat "$lexical_tmp/lent-alone.err")" != "✗ THE WHERE: cannot read line 18: the attribute '@StructureBuilder' is not among the forms this court reads" ]; then
+    cat "$lexical_tmp/lent-alone.out" "$lexical_tmp/lent-alone.err"
+    echo "where-lexical: the court did not name the attribute of the world alone" >&2
+    exit 1
+fi
+if ! "$lexical_bin/Tools" judge where Checks/where-lexical/attribute-lent.swift \
+    Sources/VerificationIsIdentification/Primitive.swift >"$lexical_tmp/lent.log" 2>&1; then
+    cat "$lexical_tmp/lent.log"
+    echo "where-lexical: the where court refused the lent-attribute control" >&2
+    exit 1
+fi
+if ! grep -q "^✓ THE WHERE holds: 0 equalities and 2 memberships judged across 1 uses" "$lexical_tmp/lent.log"; then
+    cat "$lexical_tmp/lent.log"
+    echo "where-lexical: the lent-attribute control was not judged through its lent builder" >&2
+    exit 1
+fi
+# The boundary of the lent attribute: the lent declaration shows a builder,
+# not the Body it built. A gate on that Body meets a declaration outside the
+# flat fragment: the court gives no verdict, and the compiler, which reads
+# the body, refuses the demand.
+if swiftc -typecheck -module-cache-path "$lexical_tmp/cache" \
+    Checks/where-lexical/attribute-lent-body.swift Sources/VerificationIsIdentification/Primitive.swift \
+    >"$lexical_tmp/lent-body-swift.log" 2>&1; then
+    echo "where-lexical: Swift accepted the Body demand of the lent-attribute boundary" >&2
+    exit 1
+fi
+if [ "$(grep -c "^Checks/where-lexical/attribute-lent-body.swift:[0-9]*:[0-9]*: error: global function 'needFlat' requires the types 'some Structure' and 'Never' be equivalent$" "$lexical_tmp/lent-body-swift.log")" -ne 1 ] \
+    || [ "$(grep -c "^Checks/where-lexical/attribute-lent-body.swift:[0-9]*:[0-9]*: error: " "$lexical_tmp/lent-body-swift.log")" -ne 1 ]; then
+    cat "$lexical_tmp/lent-body-swift.log"
+    echo "where-lexical: Swift refused the lent-attribute boundary for another reason" >&2
+    exit 1
+fi
+lexical_said=0
+"$lexical_bin/Tools" judge where Checks/where-lexical/attribute-lent-body.swift \
+    Sources/VerificationIsIdentification/Primitive.swift \
+    >"$lexical_tmp/lent-body.out" 2>"$lexical_tmp/lent-body.err" || lexical_said=$?
+if [ "$lexical_said" -ne 2 ] || [ -s "$lexical_tmp/lent-body.out" ] \
+    || [ "$(cat "$lexical_tmp/lent-body.err")" != "✗ THE WHERE: unresolved definition reduction: cannot read declaration 'Page': body outside flat-definition fragment" ]; then
+    cat "$lexical_tmp/lent-body.out" "$lexical_tmp/lent-body.err"
+    echo "where-lexical: the court judged a Body it cannot read, or named another reason" >&2
+    exit 1
+fi
+echo "✓ where-lexical: six unread forms are named at their line, the compiler refuses each world, a division is named at the boundary, the built-in forms read, a lent result builder reads beside its declaration and is named alone, and a Body the builder built stays unread"

@@ -120,7 +120,7 @@ enum WhereJudge {
         "_alwaysEmitIntoClient", "_transparent",
     ]
 
-    static func blankCommentsAndStrings(_ text: String) throws -> String {
+    static func blankCommentsAndStrings(_ text: String, lent: Set<String> = []) throws -> String {
         enum Context {
             case code(interpolated: Bool, parentheses: Int)
             case comment(depth: Int)
@@ -257,11 +257,8 @@ enum WhereJudge {
             if interpolated { try fail("unterminated string interpolation") }
         }
         let read = String(kept)
-        let declared = Set(captures(
-            #"@(?:resultBuilder|propertyWrapper)\s+(?:(?:@\w+(?:\([^()]*\))?|public|internal|fileprivate"#
-                + #"|private|package|open|final|indirect)\s+)*(?:struct|enum|class|actor)\s+(\w+)"#, read
-        ).map { $0[0] })
-        let undeclared = unreadAttributes.filter { declared.contains($0.name) == false }
+        let declared = declaredBuilders(read)
+        let undeclared = unreadAttributes.filter { !declared.contains($0.name) && !lent.contains($0.name) }
         if let use = undeclared.first {
             try fail("cannot read line \(use.line): the attribute '@\(use.name)' "
                 + "is not among the forms this court reads")
@@ -269,7 +266,19 @@ enum WhereJudge {
         return read
     }
 
-    static func stripComments(_ text: String) throws -> String {
+    // The names a read text declares as a result builder or a property
+    // wrapper, with other attributes and modifiers allowed between the
+    // declaring attribute and the type. An attribute of such a name adds no
+    // conformance, so it is a form this court reads, in the text that
+    // declares it and in a world that text is lent to.
+    static func declaredBuilders(_ read: String) -> Set<String> {
+        Set(captures(
+            #"@(?:resultBuilder|propertyWrapper)\s+(?:(?:@\w+(?:\([^()]*\))?|public|internal|fileprivate"#
+                + #"|private|package|open|final|indirect)\s+)*(?:struct|enum|class|actor)\s+(\w+)"#, read
+        ).map { $0[0] })
+    }
+
+    static func stripComments(_ text: String, lent: Set<String> = []) throws -> String {
         // Conditional compilation is outside this court's scope. Omit the
         // complete block, including nested alternatives; never expose a tail
         // merely because an inner #endif was encountered. An omitted line
@@ -284,7 +293,7 @@ enum WhereJudge {
         // line rather than omitted.
         var flaggedDepth = 0
         var kept: [String] = []
-        for (index, line) in try blankCommentsAndStrings(text)
+        for (index, line) in try blankCommentsAndStrings(text, lent: lent)
             .split(separator: "\n", omittingEmptySubsequences: false).enumerated() {
             let bare = line.trimmingCharacters(in: .whitespaces)
             if bare.range(of: #"^#if\b"#, options: .regularExpression) != nil {
@@ -810,8 +819,8 @@ enum WhereJudge {
         var aliasSpans: [NSRange] = []
     }
 
-    static func read(_ text: String) throws -> World {
-        let clean = try stripComments(text)
+    static func read(_ text: String, lent: Set<String> = []) throws -> World {
+        let clean = try stripComments(text, lent: lent)
         let scope = Scope(clean)
         var world = World()
 
@@ -1366,7 +1375,16 @@ enum WhereJudge {
             throw Failure.input(["usage: judge where <world.swift> [definitions.swift ...]"])
         }
         let text = try load(path)
-        var world = try read(text)
+        // A definitions file that declares a result builder or a property
+        // wrapper lends that attribute to the world the way it lends its
+        // typealiases: the declaration supplies the premise that the
+        // attribute adds no conformance. A definitions file this scan cannot
+        // read lends nothing here; it is refused below, in its turn.
+        let lentBuilders = Set(arguments.dropFirst().flatMap { extra -> Set<String> in
+            guard let more = try? load(extra), let clean = try? stripComments(more) else { return [] }
+            return declaredBuilders(clean)
+        })
+        var world = try read(text, lent: lentBuilders)
         var excludesConditional = text.range(of: #"(?m)^\s*#if\b"#, options: .regularExpression) != nil
         let ownAliases = world.aliases
         // Extra files supply alias definitions, not a second version of the

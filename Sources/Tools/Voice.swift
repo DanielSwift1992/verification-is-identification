@@ -46,14 +46,61 @@ enum VoiceTool {
         ("readme", 2),
     ]
 
-    static func run(_ args: [String]) {
-        let counts = [
+    // `--scope <name>=<kind>:<path>[!<excluded>]@<pin>`, kind `markdown`, `docs` or `file`:
+    // a dependent package (the showcase, T-0015) scans its own prose against its own pins.
+    // With one or more flags only the named scopes are scanned, and a path that does not
+    // exist is refused, so a moved directory cannot pass as a scope of zero hits. Without
+    // them the scopes and pins are this repository's own, as above.
+    static func scopes(_ args: [String]) -> (counts: [(String, Int)], pins: [(scope: String, count: Int)], rest: [String]) {
+        var counts: [(String, Int)] = []
+        var chosen: [(scope: String, count: Int)] = []
+        var rest: [String] = []
+        var index = 0
+        while index < args.count {
+            guard args[index] == "--scope" else {
+                rest.append(args[index])
+                index += 1
+                continue
+            }
+            let spec = index + 1 < args.count ? args[index + 1] : ""
+            guard let equals = spec.firstIndex(of: "="), let colon = spec.firstIndex(of: ":"),
+                  let at = spec.lastIndex(of: "@"), equals < colon, colon < at,
+                  let pin = Int(spec[spec.index(after: at)...]) else {
+                FileHandle.standardError.write(Data("voice: --scope needs <name>=<kind>:<path>[!<excluded>]@<pin>\n".utf8))
+                exit(2)
+            }
+            let name = String(spec[..<equals])
+            let kind = String(spec[spec.index(after: equals)..<colon])
+            let target = spec[spec.index(after: colon)..<at].split(separator: "!", maxSplits: 1).map(String.init)
+            guard FileManager.default.fileExists(atPath: root + "/" + target[0]) else {
+                FileHandle.standardError.write(Data("voice: cannot read \(target[0]) for scope \(name)\n".utf8))
+                exit(2)
+            }
+            let n: Int
+            switch kind {
+            case "markdown": n = scanMarkdown(under: target[0], excluding: target.count == 2 ? target[1] : nil)
+            case "docs": n = scanDocComments(under: target[0])
+            case "file": n = scanMarkdownFile(root + "/" + target[0])
+            default:
+                FileHandle.standardError.write(Data("voice: scope kind \(kind) is not markdown, docs or file\n".utf8))
+                exit(2)
+            }
+            counts.append((name, n))
+            chosen.append((scope: name, count: pin))
+            index += 2
+        }
+        if chosen.isEmpty == false { return (counts, chosen, rest) }
+        return ([
             ("papers", scanMarkdown(under: "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers")),
             ("lattice", scanDocComments(under: "Sources/VerificationIsIdentification")),
             ("kit", scanDocComments(under: "Sources/DocumentKit")),
             ("pages", scanMarkdown(under: "Sources", excluding: "Papers")),
             ("readme", scanMarkdownFile(root + "/README.md")),
-        ]
+        ], pins, rest)
+    }
+
+    static func run(_ arguments: [String]) {
+        let (counts, pins, args) = scopes(arguments)
         if args.first == "--counts" {
             for (scope, n) in counts { print("\(scope): \(n)") }
             return
@@ -70,7 +117,9 @@ enum VoiceTool {
             exit(1)
         }
         let total = counts.reduce(0) { $0 + $1.1 }
-        print("✓ VOICE BASELINE: \(total) lexical hits across five scopes, every one at or under its pin. Semantic faithfulness is not certified.")
+        let words = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+        let spelled = counts.count < words.count ? words[counts.count] : String(counts.count)
+        print("✓ VOICE BASELINE: \(total) lexical hits across \(spelled) scope\(counts.count == 1 ? "" : "s"), every one at or under its pin. Semantic faithfulness is not certified.")
     }
 
     // Prose lines of `///` doc-comments, code spans stripped, fenced blocks skipped.

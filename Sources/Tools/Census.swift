@@ -8,7 +8,12 @@ import Foundation
 // counts, per line, how many of the nine declaration kinds appear: protocol / enum /
 // typealias / extension / struct / class / func / var / init.
 //
-// Usage: Tools census
+// Usage: Tools census [--target <Name>[:<Atom>]=<path>[,<path>…]]… [--emit <path>]
+//
+// Without --target the census counts this repository's own targets, as it always has.
+// With one or more, it counts exactly the named paths, and a path that does not exist is
+// refused: a dependent package (the showcase, T-0015) counts its own targets and the
+// theory's checkout by name instead of carrying a second census.
 // ═══════════════════════════════════════════════════════
 
 enum Census {
@@ -165,14 +170,44 @@ enum Census {
         "Tools+Plugins": "Tooling",
     ]
 
-    static func emit(to path: String) {
+    // The targets and atom names this run counts: the repository's own table, or exactly
+    // the `--target` flags, which the rest of the arguments no longer carry.
+    private static func selection(_ args: [String]) -> (targets: [Target], atoms: [String: String], rest: [String]) {
+        var chosen: [Target] = []
+        var atoms: [String: String] = [:]
+        var rest: [String] = []
+        var index = 0
+        while index < args.count {
+            guard args[index] == "--target" else {
+                rest.append(args[index])
+                index += 1
+                continue
+            }
+            guard index + 1 < args.count, let equals = args[index + 1].firstIndex(of: "=") else {
+                FileHandle.standardError.write(Data("census: --target needs <Name>[:<Atom>]=<path>[,<path>…]\n".utf8))
+                exit(2)
+            }
+            let label = args[index + 1][..<equals].split(separator: ":", maxSplits: 1).map(String.init)
+            let paths = args[index + 1][args[index + 1].index(after: equals)...].split(separator: ",").map(String.init)
+            for path in paths where FileManager.default.fileExists(atPath: path) == false {
+                FileHandle.standardError.write(Data("census: cannot read \(path) for target \(label[0])\n".utf8))
+                exit(2)
+            }
+            chosen.append(Target(name: label[0], paths: paths))
+            if label.count == 2 { atoms[label[0]] = label[1] }
+            index += 2
+        }
+        return chosen.isEmpty ? (targets, atomTarget, rest) : (chosen, atoms, rest)
+    }
+
+    private static func emit(to path: String, targets: [Target], atoms: [String: String]) {
         var o = [
             "import VerificationIsIdentification", "",
             "// GENERATED at build by the CensusGen plugin: the census, spelled as atoms, so a",
             "// page wears the numbers the build just counted and a claim cannot go stale.", "",
         ]
         for target in targets {
-            guard let short = atomTarget[target.name] else { continue }
+            guard let short = atoms[target.name] else { continue }
             let (counts, runtimeFunc) = tally(target)
             let types = (counts["protocol"] ?? 0) + (counts["enum"] ?? 0)
             for (word, value) in [
@@ -191,9 +226,10 @@ enum Census {
         print("census: emitted atoms to \(path)")
     }
 
-    static func run(_ args: [String]) {
+    static func run(_ arguments: [String]) {
+        let (targets, atoms, args) = selection(arguments)
         if args.first == "--emit", args.count > 1 {
-            emit(to: args[1])
+            emit(to: args[1], targets: targets, atoms: atoms)
             return
         }
         var lines: [String] = []

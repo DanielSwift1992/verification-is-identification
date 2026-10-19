@@ -50,7 +50,7 @@ swift build --product Tools && python3 Contracts/Court/rust-sample/diff-court.py
 Contracts/Court/rust-sample/build-wasm.sh
 ```
 
-The script builds for `wasm32-unknown-unknown`, binds the module for node and for the web into `pkg/`, which is not committed, and prints the toolchain, the source revision and the SHA-256 of the module. The wasm-bindgen tool must match the crate version `Cargo.toml` pins. The module is about 2.1 MB, unoptimized: the `regex` crate carries the Unicode tables the reader's word classes need.
+The script builds for `wasm32-unknown-unknown`, binds the module for node, for the web as an ES module and for the web as a classic script (`no-modules`, for a page opened from a file) into `pkg/`, which is not committed, and prints the toolchain, the source revision and the SHA-256 of the module. The wasm-bindgen tool must match the crate version `Cargo.toml` pins. The module is about 2.1 MB, unoptimized: the `regex` crate carries the Unicode tables the reader's word classes need.
 
 Through the node loader the module answers the thirteen cases of the suite 13/13 and the 318 repository invocations 317/318, the same as the native binary. `web/index.html` is a test page that loads the web binding, judges a world with `where` and prints the CLI's lines and exit code. Serve the sample directory statically to open it.
 

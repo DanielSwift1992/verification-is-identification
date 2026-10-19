@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Build the court for wasm32 and bind it for node and for the web. The last
+# Build the court for wasm32 and bind it for node, for the web as a module and
+# as a classic script (no-modules, for a page opened from a file). The last
 # lines are the SHA-256 of the module, the line a pin record keeps beside the
 # revision it was built from. Run from anywhere; the outputs land in pkg/.
 set -euo pipefail
@@ -19,7 +20,8 @@ fi
 cargo build --release --target wasm32-unknown-unknown
 wasm-bindgen --target nodejs --out-dir pkg/node target/wasm32-unknown-unknown/release/vi_court.wasm
 wasm-bindgen --target web --out-dir pkg/web target/wasm32-unknown-unknown/release/vi_court.wasm
+wasm-bindgen --target no-modules --out-dir pkg/no-modules target/wasm32-unknown-unknown/release/vi_court.wasm
 
 echo "toolchain: $(rustc --version); wasm-bindgen $installed"
 echo "source: $(git rev-parse HEAD 2>/dev/null || echo unknown)$(git diff --quiet 2>/dev/null || echo ' (working tree has changes)')"
-shasum -a 256 pkg/node/vi_court_bg.wasm pkg/web/vi_court_bg.wasm
+shasum -a 256 pkg/node/vi_court_bg.wasm pkg/web/vi_court_bg.wasm pkg/no-modules/vi_court_bg.wasm

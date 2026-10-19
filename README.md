@@ -106,7 +106,7 @@ The [company site](https://danielswift1992.github.io/verification-is-identificat
 
 Four of the employee cards carry a login keypad. A key follows a link to a declared state. The 6561 possible input sequences share a small state graph because each wrong digit reaches the same dead state. The compiler checks the supplied secret type against the page's declared secret. The page prints the password, and the unlocked address can be opened directly. This is a static navigation demonstration.
 
-`swift build` checks the whole package. `swift test` exercises the worked demos and prints "Executed 19 tests". `swift run Tools site` builds and serves the documentation locally. The [Curve](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/curve/) page reports measurements as the company grows to 12,800 employees.
+`swift build` checks the whole package. `swift test` exercises the worked demos and prints "Executed 24 tests". `swift run Tools site` builds and serves the documentation locally. The [Curve](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/curve/) page reports measurements as the company grows to 12,800 employees.
 
 In a recorded local measurement on a 14-core Apple M4 Pro, a clean build took about eight minutes. A rebuild after a comment-only policy edit took about ten seconds. These are measurements of that setup.
 

@@ -14,7 +14,7 @@ Metamerism is one case of a more general situation: different sources give the s
 
 The visible record answers one question and not another. It determines the visible pair. It does not determine the infrared coordinate, because the three sources differ there.
 
-An answer is determined when the cases compatible with the grounds exist and all of them give that answer. Several sources can remain compatible while the answer is determined, and identifying the whole source is the special case where the question asks for the whole source. [Verification Is Identification, U2c](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verification_is_identification/) states it, and its constructions go on to derive new relations among fields that are still unknown.
+An answer is determined when the cases compatible with the grounds exist and all of them give that answer. To verify an answer to a question is to identify that answer. Several sources can remain compatible while the answer is determined, and identifying the whole source is the special case where the question asks for the whole source. [Verification Is Identification, U2c](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verification_is_identification/) states it, and its constructions go on to derive new relations among fields that are still unknown.
 
 <details>
 <summary>When an answer is determined</summary>

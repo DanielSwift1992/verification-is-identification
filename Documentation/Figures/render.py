@@ -145,7 +145,7 @@ def architecture():
     f.path('M930 628V684')
     f.text(945,663,'conforms to','small muted')
     f.text(40,829,'NOW  vi and showcase are separate repositories, and showcase pins vi. Gate pins an older revision.','body')
-    f.text(40,856,'A Rust sample of the judge passes the finite suite of the contract. NEXT  Gate re-pins through it.','small muted')
+    f.text(40,856,'A Rust sample of the judge passes the finite suite of the contract. NEXT  Gate re-pins through the contract.','small muted')
     f.save('framework-architecture.svg')
 
 

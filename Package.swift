@@ -155,6 +155,8 @@ let package = Package(
         // DocC's own bare auto-generated symbol page.
         .executableTarget(name: "OrgDemo", dependencies: ["Organization", "DocumentKit", "OrgWalkPages"]),
 
+        .testTarget(name: "CourtTests", dependencies: ["Court"]),
+
         // The demos as proofs.
         .testTarget(name: "ExamplesTests", dependencies: ["Examples"]),
 

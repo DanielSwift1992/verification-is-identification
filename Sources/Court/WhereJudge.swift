@@ -54,17 +54,26 @@ enum WhereJudge {
         let unjudged: [String]
     }
 
-    static func fail(_ message: String) -> Never {
-        failAll([message])
+    /// Internal failures are data. Only the legacy CLI boundary writes to
+    /// stderr and exits; callers can distinguish unread syntax from unavailable
+    /// input without interpreting diagnostic text or a process exit status.
+    enum Failure: Error {
+        case unsupported([String])
+        case input([String])
+
+        var messages: [String] {
+            switch self {
+            case let .unsupported(messages), let .input(messages): return messages
+            }
+        }
     }
 
-    // A reader's refusal that names every place it does not read, each on
-    // its own line, so a file left partly unread shows all of what is left.
-    static func failAll(_ messages: [String]) -> Never {
-        for message in messages {
-            FileHandle.standardError.write(Data("✗ THE WHERE: \(message)\n".utf8))
-        }
-        exit(2)
+    static func fail(_ message: String) throws -> Never {
+        throw Failure.unsupported([message])
+    }
+
+    static func failAll(_ messages: [String]) throws -> Never {
+        throw Failure.unsupported(messages)
     }
 
     // ── reading the world ──
@@ -110,7 +119,7 @@ enum WhereJudge {
         "_alwaysEmitIntoClient", "_transparent",
     ]
 
-    static func blankCommentsAndStrings(_ text: String) -> String {
+    static func blankCommentsAndStrings(_ text: String) throws -> String {
         enum Context {
             case code(interpolated: Bool, parentheses: Int)
             case comment(depth: Int)
@@ -145,8 +154,8 @@ enum WhereJudge {
             }
             return String(spelled)
         }
-        func refuse(_ reason: String) -> Never {
-            fail("cannot read line \(line): \(reason)")
+        func refuse(_ reason: String) throws -> Never {
+            try fail("cannot read line \(line): \(reason)")
         }
         while index < scalars.count {
             let current = scalars[index]
@@ -181,7 +190,7 @@ enum WhereJudge {
                     stack.removeLast()
                     keep(quotes + hashes)
                 } else if current == "\n", !multiline {
-                    fail("unterminated string literal")
+                    try fail("unterminated string literal")
                 } else {
                     if current == "\n" { newline() }
                     index += 1
@@ -197,7 +206,7 @@ enum WhereJudge {
                     if let next = scalar(1), next == " " || next == "\t" || next == "\n" || next == "\r" {
                         keep(1)
                     } else {
-                        refuse("a slash with no whitespace after it may open a regular "
+                        try refuse("a slash with no whitespace after it may open a regular "
                             + "expression literal, which this court does not read")
                     }
                 } else if current == "#" || current == "\"" {
@@ -208,11 +217,11 @@ enum WhereJudge {
                         stack.append(.string(hashes: hashes, multiline: multiline))
                         keep(hashes + (multiline ? 3 : 1))
                     } else if scalar(hashes) == "/" {
-                        refuse("a regular expression literal is not among the forms this court reads")
+                        try refuse("a regular expression literal is not among the forms this court reads")
                     } else {
                         let spelled = name(after: 1)
                         if !directives.contains(spelled) {
-                            refuse("the macro '#\(spelled)' is not among the forms this court reads")
+                            try refuse("the macro '#\(spelled)' is not among the forms this court reads")
                         }
                         keep(1)
                     }
@@ -221,7 +230,7 @@ enum WhereJudge {
                     if !attributes.contains(spelled) { unreadAttributes.append((spelled, line)) }
                     keep(1)
                 } else if current == "`" {
-                    refuse("a backquoted identifier is not among the forms this court reads")
+                    try refuse("a backquoted identifier is not among the forms this court reads")
                 } else if current == "\n" {
                     newline()
                     index += 1
@@ -241,10 +250,10 @@ enum WhereJudge {
             }
         }
         switch stack[stack.count - 1] {
-        case .comment: fail("unterminated block comment")
-        case .string: fail("unterminated string literal")
+        case .comment: try fail("unterminated block comment")
+        case .string: try fail("unterminated string literal")
         case let .code(interpolated, _):
-            if interpolated { fail("unterminated string interpolation") }
+            if interpolated { try fail("unterminated string interpolation") }
         }
         let read = String(kept)
         let declared = Set(captures(
@@ -253,13 +262,13 @@ enum WhereJudge {
         ).map { $0[0] })
         let undeclared = unreadAttributes.filter { declared.contains($0.name) == false }
         if let use = undeclared.first {
-            fail("cannot read line \(use.line): the attribute '@\(use.name)' "
+            try fail("cannot read line \(use.line): the attribute '@\(use.name)' "
                 + "is not among the forms this court reads")
         }
         return read
     }
 
-    static func stripComments(_ text: String) -> String {
+    static func stripComments(_ text: String) throws -> String {
         // Conditional compilation is outside this court's scope. Omit the
         // complete block, including nested alternatives; never expose a tail
         // merely because an inner #endif was encountered. An omitted line
@@ -274,13 +283,13 @@ enum WhereJudge {
         // line rather than omitted.
         var flaggedDepth = 0
         var kept: [String] = []
-        for (index, line) in blankCommentsAndStrings(text)
+        for (index, line) in try blankCommentsAndStrings(text)
             .split(separator: "\n", omittingEmptySubsequences: false).enumerated() {
             let bare = line.trimmingCharacters(in: .whitespaces)
             if bare.range(of: #"^#if\b"#, options: .regularExpression) != nil {
                 if flaggedDepth == 0,
                    bare.range(of: #"^#if\s+(?!true$)[A-Za-z_][A-Za-z0-9_]*$"#, options: .regularExpression) == nil {
-                    fail("cannot read line \(index + 1): '\(bare)' is not a plain compilation flag, "
+                    try fail("cannot read line \(index + 1): '\(bare)' is not a plain compilation flag, "
                         + "and this court omits only a block a compilation without its flag skips")
                 }
                 flaggedDepth += 1
@@ -288,15 +297,15 @@ enum WhereJudge {
                 continue
             }
             if bare.range(of: #"^#endif\b"#, options: .regularExpression) != nil {
-                if flaggedDepth == 0 { fail("unmatched #endif") }
+                if flaggedDepth == 0 { try fail("unmatched #endif") }
                 flaggedDepth -= 1
                 kept.append("")
                 continue
             }
             if bare.range(of: #"^#(?:else|elseif)\b"#, options: .regularExpression) != nil {
-                if flaggedDepth == 0 { fail("conditional branch outside #if") }
+                if flaggedDepth == 0 { try fail("conditional branch outside #if") }
                 if flaggedDepth == 1 {
-                    fail("cannot read line \(index + 1): '\(bare)' opens a branch a compilation without "
+                    try fail("cannot read line \(index + 1): '\(bare)' opens a branch a compilation without "
                         + "the flag reads, and this court omits only a block that compilation skips")
                 }
                 kept.append("")
@@ -304,7 +313,7 @@ enum WhereJudge {
             }
             kept.append(flaggedDepth > 0 ? "" : String(line))
         }
-        if flaggedDepth != 0 { fail("unterminated #if block") }
+        if flaggedDepth != 0 { try fail("unterminated #if block") }
         return kept.joined(separator: "\n")
     }
 
@@ -364,7 +373,7 @@ enum WhereJudge {
     // import names (`import struct M.T`) declares nothing, a keyword after a
     // dot is a member's name, and `actor` is a keyword only before a name
     // (`let actor = 1` declares no type), so none of them names a type.
-    static func typeBodies(_ text: String) -> [Int] {
+    static func typeBodies(_ text: String) throws -> [Int] {
         let keyword = try! NSRegularExpression(
             pattern: #"(?<!\.)\b(extension|enum|struct|class|actor(?=\s+[A-Za-z_])|protocol|func|init|deinit|subscript|var|let"#
                 + #"|get|set|willSet|didSet|if|else|for|while|switch|case|default|do|catch|guard|defer)\b"#
@@ -401,7 +410,7 @@ enum WhereJudge {
                     let loops = flat.trimmingCharacters(in: .whitespacesAndNewlines).hasSuffix("repeat")
                     isType = outside != nil && !loops && typeKeywords.contains(words(flat).last ?? "")
                     if !isType {
-                        fail("cannot read line \(line): this court cannot tell whether the body opened here "
+                        try fail("cannot read line \(line): this court cannot tell whether the body opened here "
                             + "belongs to a type or an extension")
                     }
                 }
@@ -480,10 +489,10 @@ enum WhereJudge {
     // The captures of a declaration this reader reads as file-scope: the
     // pattern begins at the declaring keyword, and its first group is the
     // declared name.
-    static func declarations(_ pattern: String, _ text: String, _ scope: Scope) -> [[String]] {
+    static func declarations(_ pattern: String, _ text: String, _ scope: Scope) throws -> [[String]] {
         let regex = try! NSRegularExpression(pattern: pattern, options: [.dotMatchesLineSeparators])
         let range = NSRange(text.startIndex..., in: text)
-        return regex.matches(in: text, range: range).map { match in
+        return try regex.matches(in: text, range: range).map { match in
             let groups: [String] = (1..<match.numberOfRanges).map { index in
                 guard let bounds = Range(match.range(at: index), in: text) else { return "" }
                 return String(text[bounds])
@@ -492,7 +501,7 @@ enum WhereJudge {
             if scope.depth[start] > 0 {
                 let spelled = Range(match.range, in: text).map { String(text[$0]) } ?? ""
                 let keyword = spelled.prefix { !$0.isWhitespace }
-                fail("cannot read line \(scope.line[start]): the \(keyword) '\(groups[0])' is declared "
+                try fail("cannot read line \(scope.line[start]): the \(keyword) '\(groups[0])' is declared "
                     + "inside a body, and this court reads declarations at file scope")
             }
             return groups
@@ -501,8 +510,8 @@ enum WhereJudge {
 
     // The group ranges of the same declarations, in the read text's UTF-16
     // coordinates, for a reader that must know where each group stands.
-    static func declarationSpans(_ pattern: String, _ text: String, _ scope: Scope) -> [[NSRange]] {
-        _ = declarations(pattern, text, scope)
+    static func declarationSpans(_ pattern: String, _ text: String, _ scope: Scope) throws -> [[NSRange]] {
+        _ = try declarations(pattern, text, scope)
         let regex = try! NSRegularExpression(pattern: pattern, options: [.dotMatchesLineSeparators])
         return regex.matches(in: text, range: NSRange(text.startIndex..., in: text)).map { match in
             (1..<match.numberOfRanges).map { match.range(at: $0) }
@@ -513,7 +522,7 @@ enum WhereJudge {
     // type, a protocol, a typealias, an associated type, a generic parameter.
     // `file` holds the names this reader reads at file scope: an enum, a
     // protocol or a typealias outside every body.
-    static func declaredNames(_ text: String, _ scope: Scope)
+    static func declaredNames(_ text: String, _ scope: Scope) throws
         -> (lines: [String: [Int]], file: Set<String>) {
         var lines: [String: [Int]] = [:]
         var file = Set<String>()
@@ -570,13 +579,13 @@ enum WhereJudge {
                 if kind == "class", name.isEmpty || modifying.contains(name) { continue }
                 if kind == "actor", name.isEmpty { continue }
                 if name.isEmpty {
-                    fail("cannot read line \(scope.line[match.range.location]): the name this \(kind) declares "
+                    try fail("cannot read line \(scope.line[match.range.location]): the name this \(kind) declares "
                         + "is not one this court reads")
                 }
             }
             while cursor < units.count, isSpaceUnit(units[cursor]) { cursor += 1 }
             if kind == "func", cursor == units.count || (units[cursor] != 0x3C && units[cursor] != 0x28) {
-                fail("cannot read line \(scope.line[match.range.location]): the function name is not followed "
+                try fail("cannot read line \(scope.line[match.range.location]): the function name is not followed "
                     + "by a parameter list this court reads")
             }
             guard cursor < units.count, units[cursor] == 0x3C else { continue }
@@ -591,7 +600,7 @@ enum WhereJudge {
                 end += 1
             }
             guard depth == 0 else {
-                fail("cannot read line \(scope.line[match.range.location]): its generic parameter list "
+                try fail("cannot read line \(scope.line[match.range.location]): its generic parameter list "
                     + "does not close where this court can read it")
             }
             let list = String(utf16CodeUnits: Array(units[start..<(end - 1)]), count: end - 1 - start)
@@ -634,13 +643,13 @@ enum WhereJudge {
     // A line break inside generic arguments does not end a typealias. Keep
     // projected continuations too; reject an unbalanced RHS as a reader
     // failure rather than judging its truncated prefix as a different type.
-    static func readAliases(_ text: String) -> [[String]] {
-        readAliasSpans(text).map(\.fields)
+    static func readAliases(_ text: String) throws -> [[String]] {
+        try readAliasSpans(text).map(\.fields)
     }
 
     // The same aliases, each with the range of its right side in the read
     // text's UTF-16 coordinates.
-    static func readAliasSpans(_ text: String) -> [(fields: [String], body: NSRange)] {
+    static func readAliasSpans(_ text: String) throws -> [(fields: [String], body: NSRange)] {
         let header = try! NSRegularExpression(
             pattern: #"typealias\s+(\w+)\s*(?:<([^>]*)>)?\s*=\s*"#,
             options: [.dotMatchesLineSeparators]
@@ -661,7 +670,7 @@ enum WhereJudge {
                 if character == "<" { depth += 1 }
                 if character == ">" {
                     depth -= 1
-                    if depth < 0 { fail("cannot read typealias '\(name)': unbalanced generic arguments") }
+                    if depth < 0 { try fail("cannot read typealias '\(name)': unbalanced generic arguments") }
                 }
                 if character == "{" || character == "}" || character == ";" { break }
                 if character == "\n", depth == 0 {
@@ -671,12 +680,12 @@ enum WhereJudge {
                 }
                 end = text.index(after: end)
             }
-            if depth != 0 { fail("cannot read typealias '\(name)': unbalanced generic arguments") }
+            if depth != 0 { try fail("cannot read typealias '\(name)': unbalanced generic arguments") }
             let body = String(text[start..<end])
                 .trimmingCharacters(in: .whitespacesAndNewlines)
                 .replacingOccurrences(of: #"\s*\.\s*"#, with: ".", options: .regularExpression)
                 .replacingOccurrences(of: #"\s+"#, with: " ", options: .regularExpression)
-            if body.isEmpty { fail("cannot read typealias '\(name)': empty right side") }
+            if body.isEmpty { try fail("cannot read typealias '\(name)': empty right side") }
             let tail = text[end...].trimmingCharacters(in: .whitespacesAndNewlines)
             let conditional = body.range(of: #"\bwhere\b"#, options: .regularExpression) != nil
                 || tail.range(of: #"^where\b"#, options: .regularExpression) != nil
@@ -691,16 +700,16 @@ enum WhereJudge {
     // Keep line boundaries so multiline top-level aliases remain readable.
     // A body's text becomes one space per UTF-16 unit, so what stands outside
     // keeps the read text's coordinates.
-    static func outsideBodies(_ text: String) -> String {
+    static func outsideBodies(_ text: String) throws -> String {
         var depth = 0
         var result: [UInt16] = []
         for unit in text.utf16 {
             if unit == 0x7B { depth += 1 }
             result.append(depth == 0 || unit == 0x0A ? unit : 0x20)
             if unit == 0x7D { depth -= 1 }
-            if depth < 0 { fail("unmatched declaration brace") }
+            if depth < 0 { try fail("unmatched declaration brace") }
         }
-        if depth != 0 { fail("unterminated declaration body") }
+        if depth != 0 { try fail("unterminated declaration body") }
         return String(utf16CodeUnits: result, count: result.count)
     }
 
@@ -711,7 +720,7 @@ enum WhereJudge {
     // to be dropped in silence, and a court may not drop a condition in
     // silence: it is named at its gate instead, so a half-read law is a
     // refusal, never a verdict that counts what it never read.
-    static func splitConjuncts(_ clause: String)
+    static func splitConjuncts(_ clause: String) throws
         -> (equalities: [(String, String)], memberships: [(String, String)], unjudged: [String]) {
         var parts: [String] = []
         var depth = 0
@@ -740,7 +749,7 @@ enum WhereJudge {
             // this court does not read, and no verdict is given over a law
             // that holds one: the conjunct is named instead.
             if bare.contains("->") {
-                fail("cannot read the where clause conjunct '\(bare)': a function type is a term this court "
+                try fail("cannot read the where clause conjunct '\(bare)': a function type is a term this court "
                     + "does not read")
             }
             let sides = part.components(separatedBy: "==")
@@ -798,37 +807,37 @@ enum WhereJudge {
         var aliasSpans: [NSRange] = []
     }
 
-    static func read(_ text: String) -> World {
-        let clean = stripComments(text)
+    static func read(_ text: String) throws -> World {
+        let clean = try stripComments(text)
         let scope = Scope(clean)
         var world = World()
 
         // Use the same Unicode word class as the declaration reader. A name
         // it reads cannot disappear when checking which gates reach the file.
         world.names = Set(captures(#"\b(\w+)\b"#, clean).map { $0[0] })
-        let names = declaredNames(clean, scope)
+        let names = try declaredNames(clean, scope)
         world.declared = names.lines
         for name in names.file.sorted(by: { (names.lines[$0]![0], $0) < (names.lines[$1]![0], $1) })
         where names.lines[name]!.count > 1 {
-            fail("cannot read '\(name)': it is declared at \(spelledLines(names.lines[name]!)), "
+            try fail("cannot read '\(name)': it is declared at \(spelledLines(names.lines[name]!)), "
                 + "and this court has no scope rule to choose between them")
         }
 
         // A presented declaration can have a body this flat reader cannot read.
         // Such a body does not license reflexivity of an unestablished field.
-        for hit in declarations(
+        for hit in try declarations(
             #"enum\s+(\w+)\s*(?:<([^>]*)>)?\s*:\s*[\w,\s]+?\s*\{"#, clean, scope
         ) {
             world.presentedBodies.insert(hit[0])
         }
 
-        for hit in declarations(
+        for hit in try declarations(
             #"enum\s+(\w+)\s*(?:<([^>]*)>)?\s*:\s*[\w,\s]+?\bwhere\s+[^{}]+\{"#, clean, scope
         ) {
             world.conditionalDeclarations.insert(hit[0])
         }
 
-        for hit in declarations(
+        for hit in try declarations(
             #"enum\s+(\w+)\s*(?:<([^>]*)>)?\s*:\s*([\w,\s]+?)\s*\{([^{}]*)\}"#, clean, scope
         ) {
             let name = hit[0]
@@ -837,9 +846,9 @@ enum WhereJudge {
                 .split(separator: ",")
                 .map { $0.trimmingCharacters(in: .whitespaces) }
             var table: [String: String] = [:]
-            for aliasHit in readAliases(hit[3]) where aliasHit[1].isEmpty {
+            for aliasHit in try readAliases(hit[3]) where aliasHit[1].isEmpty {
                 guard table[aliasHit[0]] == nil else {
-                    fail("duplicate definition of '\(name).\(aliasHit[0])'")
+                    try fail("duplicate definition of '\(name).\(aliasHit[0])'")
                 }
                 table[aliasHit[0]] = aliasHit[2]
             }
@@ -848,7 +857,7 @@ enum WhereJudge {
             )
         }
 
-        for hit in declarations(#"enum\s+(\w+)\s*<([^>]*)>"#, clean, scope) {
+        for hit in try declarations(#"enum\s+(\w+)\s*<([^>]*)>"#, clean, scope) {
             world.parameters[hit[0]] = parameterNames(hit[1])
         }
 
@@ -859,7 +868,7 @@ enum WhereJudge {
         // the list cannot swallow one, and a gated extension stays a gate. A
         // type with no inheritance list (`enum Foo {}`) is not presented, so
         // its extensions add nothing.
-        for hit in declarations(#"extension\s+(\w+)\s*:\s*([\w,\s]+?)\s*\{"#, clean, scope) {
+        for hit in try declarations(#"extension\s+(\w+)\s*:\s*([\w,\s]+?)\s*\{"#, clean, scope) {
             let name = hit[0]
             let listed = hit[1]
                 .split(separator: ",")
@@ -873,14 +882,14 @@ enum WhereJudge {
         // aliases to a presented conformer. A body outside it is not read, so
         // an axis only that body defines has no definition here, and its
         // projection is unread rather than opaque.
-        for hit in declarations(
+        for hit in try declarations(
             #"extension\s+(\w+)\s*(?::\s*[\w,\s]+?)?\s*\{([^{}]*)\}"#, clean, scope
         ) {
             let name = hit[0]
             if world.conformers[name] != nil {
-                for aliasHit in readAliases(hit[1]) where aliasHit[1].isEmpty {
+                for aliasHit in try readAliases(hit[1]) where aliasHit[1].isEmpty {
                     guard world.conformers[name]!.table[aliasHit[0]] == nil else {
-                        fail("duplicate definition of '\(name).\(aliasHit[0])'")
+                        try fail("duplicate definition of '\(name).\(aliasHit[0])'")
                     }
                     world.conformers[name]!.table[aliasHit[0]] = aliasHit[2]
                 }
@@ -906,7 +915,7 @@ enum WhereJudge {
             let nameStart = cursor
             while cursor < cleanUnits.count, isWordUnit(cleanUnits[cursor]) { cursor += 1 }
             if cursor == nameStart {
-                fail("cannot read line \(line): the type this extension extends is not one this court reads")
+                try fail("cannot read line \(line): the type this extension extends is not one this court reads")
             }
             var parts = [String(utf16CodeUnits: Array(cleanUnits[nameStart..<cursor]), count: cursor - nameStart)]
             while true {
@@ -917,13 +926,13 @@ enum WhereJudge {
                 let partStart = cursor
                 while cursor < cleanUnits.count, isWordUnit(cleanUnits[cursor]) { cursor += 1 }
                 guard cursor > partStart else {
-                    fail("cannot read line \(line): the type this extension extends is not one this court reads")
+                    try fail("cannot read line \(line): the type this extension extends is not one this court reads")
                 }
                 parts.append(String(utf16CodeUnits: Array(cleanUnits[partStart..<cursor]), count: cursor - partStart))
             }
             let spelled = parts.joined(separator: ".")
             if parts.count > 1 {
-                fail("cannot read line \(line): the extension of '\(spelled)' names its type through a qualifier, "
+                try fail("cannot read line \(line): the extension of '\(spelled)' names its type through a qualifier, "
                     + "which this court does not resolve")
             }
             let tailStart = cursor
@@ -932,14 +941,14 @@ enum WhereJudge {
             let tail = String(utf16CodeUnits: Array(cleanUnits[tailStart..<tailEnd]), count: tailEnd - tailStart)
             guard cursor < cleanUnits.count,
                   cleanUnits[cursor] == 0x3A || cleanUnits[cursor] == 0x7B || tail == "where" else {
-                fail("cannot read line \(line): the type this extension extends is not one this court reads")
+                try fail("cannot read line \(line): the type this extension extends is not one this court reads")
             }
             world.extensions[spelled, default: []].append(line)
         }
 
-        for hit in readAliases(outsideBodies(clean)) {
+        for hit in try readAliases(try outsideBodies(clean)) {
             guard world.aliases[hit[0]] == nil else {
-                fail("duplicate definition of typealias '\(hit[0])'")
+                try fail("duplicate definition of typealias '\(hit[0])'")
             }
             if !hit[3].isEmpty { world.conditionalDeclarations.insert(hit[0]) }
             world.aliases[hit[0]] = AliasRule(
@@ -954,7 +963,7 @@ enum WhereJudge {
             .filter { world.aliases[$0.key] != nil }
             .sorted(by: { $0.key < $1.key })
         if let first = throughAlias.first {
-            fail("cannot read '\(first.key)': it is a typealias, extended at \(spelledLines(first.value)), and this "
+            try fail("cannot read '\(first.key)': it is a typealias, extended at \(spelledLines(first.value)), and this "
                 + "court does not follow an extension through an alias to its type")
         }
 
@@ -963,22 +972,22 @@ enum WhereJudge {
         // over it unjudged, and a neighbour that holds would pass the file.
         // A conditional conformance is read with one protocol before its
         // where clause, a conditional protocol with an inheritance list.
-        for hit in declarations(#"extension\s+(\w+)\s*:\s*([^{}]*?)\bwhere\b"#, clean, scope)
+        for hit in try declarations(#"extension\s+(\w+)\s*:\s*([^{}]*?)\bwhere\b"#, clean, scope)
         where hit[1].range(of: #"^\w+\s+$"#, options: .regularExpression) == nil {
             let listed = hit[1].split(whereSeparator: \.isWhitespace).joined(separator: " ")
-            fail("cannot read conditional conformance '\(hit[0]): \(listed)': "
+            try fail("cannot read conditional conformance '\(hit[0]): \(listed)': "
                 + "this court reads one protocol per conditional extension")
         }
-        for hit in declarations(#"protocol\s+(\w+)\b([^{}]*?)\bwhere\b"#, clean, scope)
+        for hit in try declarations(#"protocol\s+(\w+)\b([^{}]*?)\bwhere\b"#, clean, scope)
         where hit[1].range(of: #"^\s*:\s*[\w,\s]+?\s+$"#, options: .regularExpression) == nil {
-            fail("cannot read conditional protocol '\(hit[0])': "
+            try fail("cannot read conditional protocol '\(hit[0])': "
                 + "this court reads a where clause after an inheritance list of plain names")
         }
 
-        for hit in declarations(
+        for hit in try declarations(
             #"extension\s+(\w+)\s*:\s*(\w+)\s+where\s+([^{]+)\{"#, clean, scope
         ) {
-            let conjuncts = splitConjuncts(hit[2])
+            let conjuncts = try splitConjuncts(hit[2])
             world.gates.append(GatedExtension(
                 head: hit[0], proto: hit[1],
                 equalities: conjuncts.equalities,
@@ -987,10 +996,10 @@ enum WhereJudge {
             ))
         }
 
-        for hit in declarations(
+        for hit in try declarations(
             #"protocol\s+(\w+)\s*:\s*[\w,\s]+?\s+where\s+([^{]+)\{"#, clean, scope
         ) {
-            let conjuncts = splitConjuncts(hit[1])
+            let conjuncts = try splitConjuncts(hit[1])
             world.gatedProtocols[hit[0]] = GatedProtocol(
                 name: hit[0],
                 equalities: conjuncts.equalities,
@@ -1001,19 +1010,19 @@ enum WhereJudge {
 
         // the refinement ladder, read from what is presented: a protocol's
         // parents are the material the membership walk closes over
-        for hit in declarations(
+        for hit in try declarations(
             #"protocol\s+(\w+)\s*:\s*([\w,\s]+?)\s*(?:\s+where|\{)"#, clean, scope
         ) {
             world.protocolParents[hit[0]] = hit[1]
                 .split(separator: ",")
                 .map { $0.trimmingCharacters(in: .whitespaces) }
         }
-        for hit in declarations(#"protocol\s+(\w+)\s*\{"#, clean, scope)
+        for hit in try declarations(#"protocol\s+(\w+)\s*\{"#, clean, scope)
         where world.protocolParents[hit[0]] == nil {
             world.protocolParents[hit[0]] = []
         }
 
-        for hit in declarations(#"protocol\s+(\w+)[^{}]*\{([^{}]*)\}"#, clean, scope) {
+        for hit in try declarations(#"protocol\s+(\w+)[^{}]*\{([^{}]*)\}"#, clean, scope) {
             world.protocolAxes[hit[0]] = Set(captures(#"associatedtype\s+(\w+)"#, hit[1]).map { $0[0] })
         }
 
@@ -1022,7 +1031,7 @@ enum WhereJudge {
         // its line. A use is read at file scope; one inside a type or an
         // extension body may name a member this court does not read, so it is
         // refused there.
-        let bodies = typeBodies(clean)
+        let bodies = try typeBodies(clean)
         let units = Array(clean.utf16)
         var read: [NSRange] = []
         let metatype = try! NSRegularExpression(pattern: #"\.self\b"#)
@@ -1060,7 +1069,7 @@ enum WhereJudge {
                   spelled.range(of: #"^[\w.<>, ]+$"#, options: .regularExpression) != nil else { continue }
             let use = spelled
             if bodies[start] > 0 {
-                fail("cannot read line \(scope.line[start]): the use '\(use)' sits in the body of a type "
+                try fail("cannot read line \(scope.line[start]): the use '\(use)' sits in the body of a type "
                     + "or an extension, whose members this court does not read")
             }
             world.uses.append(use)
@@ -1072,35 +1081,35 @@ enum WhereJudge {
         // above, the right sides of the typealiases at file scope and in a
         // presented conformer's table, and the gates' where clauses. The
         // check that nothing else applies one waits for every file.
-        for span in readAliasSpans(outsideBodies(clean)) {
+        for span in try readAliasSpans(try outsideBodies(clean)) {
             world.aliasSpans.append(span.body)
             if span.fields[1].isEmpty { world.rootApplicationSpans.append(span.body) }
         }
         read += world.aliasSpans
-        for spans in declarationSpans(
+        for spans in try declarationSpans(
             #"enum\s+(\w+)\s*(?:<([^>]*)>)?\s*:\s*([\w,\s]+?)\s*\{([^{}]*)\}"#, clean, scope
         ) {
             let table = spans[3]
             guard let bounds = Range(table, in: clean) else { continue }
-            for span in readAliasSpans(String(clean[bounds])) where span.fields[1].isEmpty {
+            for span in try readAliasSpans(String(clean[bounds])) where span.fields[1].isEmpty {
                 read.append(NSRange(location: table.location + span.body.location, length: span.body.length))
                 world.rootApplicationSpans.append(NSRange(location: table.location + span.body.location, length: span.body.length))
             }
         }
-        for spans in declarationSpans(
+        for spans in try declarationSpans(
             #"extension\s+(\w+)\s*(?::\s*[\w,\s]+?)?\s*\{([^{}]*)\}"#, clean, scope
         ) {
             guard let owner = Range(spans[0], in: clean), world.conformers[String(clean[owner])] != nil,
                   let bounds = Range(spans[1], in: clean) else { continue }
-            for span in readAliasSpans(String(clean[bounds])) where span.fields[1].isEmpty {
+            for span in try readAliasSpans(String(clean[bounds])) where span.fields[1].isEmpty {
                 read.append(NSRange(location: spans[1].location + span.body.location, length: span.body.length))
                 world.rootApplicationSpans.append(NSRange(location: spans[1].location + span.body.location, length: span.body.length))
             }
         }
-        for spans in declarationSpans(#"extension\s+(\w+)\s*:\s*(\w+)\s+where\s+([^{]+)\{"#, clean, scope) {
+        for spans in try declarationSpans(#"extension\s+(\w+)\s*:\s*(\w+)\s+where\s+([^{]+)\{"#, clean, scope) {
             read.append(spans[2])
         }
-        for spans in declarationSpans(#"protocol\s+(\w+)\s*:\s*[\w,\s]+?\s+where\s+([^{]+)\{"#, clean, scope) {
+        for spans in try declarationSpans(#"protocol\s+(\w+)\s*:\s*[\w,\s]+?\s+where\s+([^{]+)\{"#, clean, scope) {
             read.append(spans[1])
         }
         world.readSpans = read
@@ -1113,31 +1122,31 @@ enum WhereJudge {
 
     // The term reader consumes the whole expression. An unread suffix cannot
     // be turned into an opaque atom and then accepted by reflexivity.
-    static func parseTerm(_ text: Substring) -> Term {
+    static func parseTerm(_ text: Substring) throws -> Term {
         do { return try DefinitionReduction.parse(String(text)).legacy }
-        catch { fail("cannot read term: \(error)") }
+        catch { try fail("cannot read term: \(error)") }
     }
 
-    static func substitute(_ term: Term, _ bindings: [String: Term]) -> Term {
+    static func substitute(_ term: Term, _ bindings: [String: Term]) throws -> Term {
         do {
             let expression = try DefinitionReduction.parse(Press.serialize(term), allowRigidNames: true)
             let values = try bindings.mapValues {
                 try DefinitionReduction.parse(Press.serialize($0), allowRigidNames: true)
             }
             return try expression.substituting(values).legacy
-        } catch { fail("cannot substitute term: \(error)") }
+        } catch { try fail("cannot substitute term: \(error)") }
     }
 
-    static func normalize(_ term: Term, _ world: World, rigid: Set<String> = []) -> Term {
+    static func normalize(_ term: Term, _ world: World, rigid: Set<String> = []) throws -> Term {
         do {
             let expression = try DefinitionReduction.parse(Press.serialize(term), allowRigidNames: true)
             let source = DefinitionReduction.Source(world: world, rigid: rigid)
             return try DefinitionReduction.normalForm(expression, source: source).output.legacy
-        } catch { fail("unresolved definition reduction: \(error)") }
+        } catch { try fail("unresolved definition reduction: \(error)") }
     }
 
-    static func canon(_ text: String, _ world: World) -> String {
-        Press.serialize(normalize(parseTerm(Substring(text)), world))
+    static func canon(_ text: String, _ world: World) throws -> String {
+        Press.serialize(try normalize(try parseTerm(Substring(text)), world))
     }
 
     // A claim meets the gate its definition names. A head spelled through an
@@ -1145,14 +1154,14 @@ enum WhereJudge {
     // intermediate name cannot carry a claim past its gate. A nominal head is
     // already the name a gate is looked up by, and a world that presents no
     // gate has no lookup to prepare. The gate itself reads the arguments.
-    static func gatedForm(_ term: Term, _ world: World, rigid: Set<String> = []) -> Term {
+    static func gatedForm(_ term: Term, _ world: World, rigid: Set<String> = []) throws -> Term {
         guard !world.gates.isEmpty,
               world.aliases[term.head] != nil || term.head.contains(".") else { return term }
         do {
             let expression = try DefinitionReduction.parse(Press.serialize(term), allowRigidNames: true)
             let source = DefinitionReduction.Source(world: world, rigid: rigid)
             return try DefinitionReduction.headForm(expression, source: source).output.legacy
-        } catch { fail("unresolved definition reduction: \(error)") }
+        } catch { try fail("unresolved definition reduction: \(error)") }
     }
 
     // does the conformer wear the protocol: the lists of its declaration and
@@ -1172,8 +1181,11 @@ enum WhereJudge {
         return seen
     }
 
-    static func conformerContext(_ conformer: Conformer, _ world: World)
+    static func conformerContext(_ conformer: Conformer, _ world: World) throws
         -> (bindings: [String: Term], rigid: Set<String>) {
+        guard Set(conformer.parameters).count == conformer.parameters.count else {
+            try fail("cannot bind conformer '\(conformer.name)': duplicate generic parameters")
+        }
         // Alpha-rename bound parameters outside the source identifier grammar.
         // No nominal declaration or alias may supply a value for a free
         // parameter merely by sharing its spelling.
@@ -1197,12 +1209,12 @@ enum WhereJudge {
     // A question's formal parameters must be bound by this actual application.
     // zip alone would leave missing parameters free to resolve as global names.
     // A declaration with zero parameters still has obligations to discharge.
-    static func gateBindings(_ term: Term, _ world: World) -> [String: Term] {
+    static func gateBindings(_ term: Term, _ world: World) throws -> [String: Term] {
         guard let parameters = world.parameters[term.head] ?? world.conformers[term.head]?.parameters else {
-            fail("cannot bind gate '\(term.head)': no declaration parameters were read")
+            try fail("cannot bind gate '\(term.head)': no declaration parameters were read")
         }
         guard parameters.count == term.args.count, Set(parameters).count == parameters.count else {
-            fail("cannot bind gate '\(term.head)': expected \(parameters.count) distinct arguments, received \(term.args.count)")
+            try fail("cannot bind gate '\(term.head)': expected \(parameters.count) distinct arguments, received \(term.args.count)")
         }
         var bindings = Dictionary(uniqueKeysWithValues: zip(parameters, term.args))
         bindings["Self"] = term
@@ -1228,18 +1240,18 @@ enum WhereJudge {
         _ memberships: [(String, String)], site: String, tag: String?,
         bindings: [String: Term], world: World,
         counted: inout Int, refusals: inout [String], rigid: Set<String> = []
-    ) {
+    ) throws {
         let mark = tag.map { " [\($0)]" } ?? ""
         for (lhs, proto) in memberships {
             counted += 1
-            let lhsTerm = substitute(parseTerm(Substring(lhs)), bindings)
-            let resolved = normalize(lhsTerm, world, rigid: rigid)
+            let lhsTerm = try substitute(try parseTerm(Substring(lhs)), bindings)
+            let resolved = try normalize(lhsTerm, world, rigid: rigid)
             let spelled = Press.serialize(resolved)
             if world.conformers[resolved.head] == nil, world.presentedBodies.contains(resolved.head) {
-                fail("cannot read declaration '\(resolved.head)': its body is outside this court's flat-definition fragment")
+                try fail("cannot read declaration '\(resolved.head)': its body is outside this court's flat-definition fragment")
             }
             guard resolved.args.isEmpty else {
-                fail("cannot judge membership of '\(spelled)' in '\(proto)' required by '\(site)': "
+                try fail("cannot judge membership of '\(spelled)' in '\(proto)' required by '\(site)': "
                     + "generic applicability is not established by this membership reader")
             }
             guard let wearer = world.conformers[resolved.head] else {
@@ -1261,25 +1273,59 @@ enum WhereJudge {
 
     // ── the judgement ──
 
+    struct Judgment {
+        let equalities: Int
+        let memberships: Int
+        let uses: Int
+        let excludesConditional: Bool
+        let refusals: [String]
+    }
+
+    /// The original text/exit interface is retained at this single boundary.
     static func run(_ arguments: [String]) {
+        do {
+            let result = try judge(arguments)
+            if result.refusals.isEmpty {
+                if result.excludesConditional {
+                    print("THE WHERE scope: conditional compilation blocks are excluded.")
+                }
+                print("✓ THE WHERE holds: \(result.equalities) equalities and \(result.memberships) memberships judged across \(result.uses) uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v\(canonVersion)).")
+            } else {
+                for refusal in result.refusals { print("✗ \(refusal)") }
+                exit(1)
+            }
+        } catch let failure as Failure {
+            for message in failure.messages {
+                FileHandle.standardError.write(Data("✗ THE WHERE: \(message)\n".utf8))
+            }
+            exit(2)
+        } catch {
+            FileHandle.standardError.write(Data("✗ THE WHERE: internal error: \(error)\n".utf8))
+            exit(2)
+        }
+    }
+
+    /// Reader failures are thrown to the caller. This retains the legacy aggregate
+    /// judgment; it is not yet a per-application request/coverage protocol.
+    static func judge(_ arguments: [String]) throws -> Judgment {
         guard let path = arguments.first else {
-            fail("usage: judge where <world.swift> [definitions.swift ...]")
+            throw Failure.input(["usage: judge where <world.swift> [definitions.swift ...]"])
         }
         guard let text = try? String(contentsOfFile: path, encoding: .utf8) else {
-            fail("cannot read \(path)")
+            throw Failure.input(["cannot read \(path)"])
         }
-        var world = read(text)
+        var world = try read(text)
         var excludesConditional = text.range(of: #"(?m)^\s*#if\b"#, options: .regularExpression) != nil
         let ownAliases = world.aliases
         // Extra files supply alias definitions, not a second version of the
         // same source. This flat reader has no module-resolution rule with
         // which to choose between duplicates, so a collision is unresolved.
         var aliasOrigins = Dictionary(uniqueKeysWithValues: world.aliases.keys.map { ($0, path) })
-        let extras: [(path: String, text: String, world: World)] = arguments.dropFirst().map { extra in
+        let extras: [(path: String, text: String, world: World)] = try arguments.dropFirst().map { extra in
             guard let more = try? String(contentsOfFile: extra, encoding: .utf8) else {
-                fail("cannot read \(extra)")
+                throw Failure.input(["cannot read \(extra)"])
             }
-            return (extra, more, read(more))
+            return (extra, more, try read(more))
         }
         // A typealias of any file may be extended from another, and such an
         // extension extends the alias's type, through the alias, as well.
@@ -1289,7 +1335,7 @@ enum WhereJudge {
             .filter { anyAlias.contains($0.key) }
             .sorted(by: { $0.key < $1.key })
         if let first = worldThroughAlias.first {
-            fail("cannot read '\(first.key)': it is a typealias, extended at \(spelledLines(first.value)), and this "
+            try fail("cannot read '\(first.key)': it is a typealias, extended at \(spelledLines(first.value)), and this "
                 + "court does not follow an extension through an alias to its type")
         }
         // A gate binds every file of the module, and this court judges the
@@ -1303,7 +1349,7 @@ enum WhereJudge {
         }
         for extra in extras {
             for gate in extra.world.gates where world.names.contains(gate.head) {
-                fail("cannot read the gate '\(gate.head): \(gate.proto)' in '\(extra.path)': this court judges "
+                try fail("cannot read the gate '\(gate.head): \(gate.proto)' in '\(extra.path)': this court judges "
                     + "the gates of the world it reads, and '\(path)' names '\(gate.head)'")
             }
             let gated = Set(extra.world.gatedProtocols.keys)
@@ -1316,7 +1362,7 @@ enum WhereJudge {
                     walk += ancestry[next] ?? []
                 }
                 if let first = reached.intersection(gated).sorted().first {
-                    fail("cannot read '\(name)': it reaches '\(first)', a gated protocol of '\(extra.path)', and "
+                    try fail("cannot read '\(name)': it reaches '\(first)', a gated protocol of '\(extra.path)', and "
                         + "this court judges the gated protocols of the world it reads")
                 }
             }
@@ -1338,15 +1384,15 @@ enum WhereJudge {
                 .filter { world.fileTypes.contains($0.key) || anyAlias.contains($0.key) }
                 .sorted(by: { $0.key < $1.key })
             if let first = extendsWorld.first {
-                fail("cannot read '\(first.key)': '\(extra)' extends it at \(spelledLines(first.value)), and this court "
+                try fail("cannot read '\(first.key)': '\(extra)' extends it at \(spelledLines(first.value)), and this court "
                     + "cannot tell that the extension is this world's type, or that its members reach this file")
             }
             for (name, rule) in lent.aliases.sorted(by: { $0.key < $1.key }) {
                 guard aliasOrigins[name] == nil else {
-                    fail("ambiguous definition of '\(name)' in '\(aliasOrigins[name]!)' and '\(extra)'")
+                    try fail("ambiguous definition of '\(name)' in '\(aliasOrigins[name]!)' and '\(extra)'")
                 }
                 if let lines = world.declared[name] {
-                    fail("cannot read '\(name)': it is a typealias in '\(extra)' and is declared at "
+                    try fail("cannot read '\(name)': it is a typealias in '\(extra)' and is declared at "
                         + "\(spelledLines(lines)) of '\(path)', and this court has no scope rule to choose between them")
                 }
                 world.aliases[name] = rule
@@ -1381,7 +1427,7 @@ enum WhereJudge {
         for extra in extras {
             for (name, rule) in extra.world.aliases.sorted(by: { $0.key < $1.key }) where rule.parameters.isEmpty {
                 if gatedNames.contains(name) {
-                    fail("cannot read '\(name)': '\(extra.path)' defines it as an application of a gated head, and "
+                    try fail("cannot read '\(name)': '\(extra.path)' defines it as an application of a gated head, and "
                         + "this court judges certificates in the world it reads")
                 }
             }
@@ -1399,8 +1445,8 @@ enum WhereJudge {
             let spelled = String(world.clean[bounds]).trimmingCharacters(in: .whitespacesAndNewlines)
             let names = Set(captures(#"\b(\w+)\b"#, spelled).map { $0[0] })
             guard !names.isDisjoint(with: gatedNames) else { continue }
-            let term = parseTerm(Substring(spelled))
-            let claim = gatedForm(term, world)
+            let term = try parseTerm(Substring(spelled))
+            let claim = try gatedForm(term, world)
             let arguments = (term.args + claim.args).map(Press.serialize).joined(separator: ",")
             let nested = Set(captures(#"\b(\w+)\b"#, arguments).map { $0[0] }).intersection(gatedNames)
             if !nested.isEmpty || !world.gates.contains(where: { $0.head == claim.head }) {
@@ -1455,7 +1501,7 @@ enum WhereJudge {
         unread(world, world.readSpans, path)
         unreadPlaces.sort { ($0.line, $0.message) < ($1.line, $1.message) }
         for extra in extras { unread(extra.world, extra.world.aliasSpans, extra.path) }
-        if !unreadPlaces.isEmpty { failAll(unreadPlaces.map(\.message)) }
+        if !unreadPlaces.isEmpty { try failAll(unreadPlaces.map(\.message)) }
 
         var refusals: [String] = []
         var judged = 0
@@ -1483,33 +1529,33 @@ enum WhereJudge {
         // A typealias certificate is a judged point: a parameterless alias in the
         // world whose right side names a gated head states the gate's equalities
         // for those arguments, and the refusal names the certificate.
-        var certificates: [(name: String, term: Term, rigid: Set<String>)] = ownAliases
+        var certificates: [(name: String, term: Term, rigid: Set<String>)] = try ownAliases
             .filter { $0.value.parameters.isEmpty }
-            .map { ($0.key, parseTerm(Substring($0.value.body)), []) }
+            .map { ($0.key, try parseTerm(Substring($0.value.body)), []) }
         // A local certificate is still checked, but in its actual owner.
         // Removing it from the global namespace must not remove its obligation.
         for conformer in world.conformers.values {
-            let context = conformerContext(conformer, world)
+            let context = try conformerContext(conformer, world)
             for (name, body) in conformer.table {
                 certificates.append((conformer.name + "." + name,
-                    substitute(parseTerm(Substring(body)), context.bindings), context.rigid))
+                    try substitute(try parseTerm(Substring(body)), context.bindings), context.rigid))
             }
         }
         for certificate in certificates.sorted(by: { $0.name < $1.name }) {
             let name = certificate.name
             let term = certificate.term
             let body = Press.serialize(term)
-            let claim = gatedForm(term, world, rigid: certificate.rigid)
+            let claim = try gatedForm(term, world, rigid: certificate.rigid)
             let matching = world.gates.filter { $0.head == claim.head }
             guard !matching.isEmpty else { continue }
-            let bindings = gateBindings(claim, world)
+            let bindings = try gateBindings(claim, world)
             for gate in matching {
                 for (left, right) in gate.equalities {
                     judged += 1
-                    let leftTerm = substitute(parseTerm(Substring(left)), bindings)
-                    let rightTerm = substitute(parseTerm(Substring(right)), bindings)
-                    let leftCanon = Press.serialize(normalize(leftTerm, world, rigid: certificate.rigid))
-                    let rightCanon = Press.serialize(normalize(rightTerm, world, rigid: certificate.rigid))
+                    let leftTerm = try substitute(try parseTerm(Substring(left)), bindings)
+                    let rightTerm = try substitute(try parseTerm(Substring(right)), bindings)
+                    let leftCanon = Press.serialize(try normalize(leftTerm, world, rigid: certificate.rigid))
+                    let rightCanon = Press.serialize(try normalize(rightTerm, world, rigid: certificate.rigid))
                     if leftCanon != rightCanon {
                         refusals.append(
                             "'\(name) = \(body)' requires the types '\(left)' (aka '\(leftCanon)') and "
@@ -1517,7 +1563,7 @@ enum WhereJudge {
                         )
                     }
                 }
-                judgeMemberships(
+                try judgeMemberships(
                     gate.memberships, site: "\(name) = \(body)", tag: gate.proto,
                     bindings: bindings, world: world,
                     counted: &members, refusals: &refusals, rigid: certificate.rigid
@@ -1526,17 +1572,17 @@ enum WhereJudge {
         }
 
         for use in world.uses {
-            let claim = gatedForm(parseTerm(Substring(use)), world)
+            let claim = try gatedForm(try parseTerm(Substring(use)), world)
             let matching = world.gates.filter { $0.head == claim.head }
             guard !matching.isEmpty else { continue }
-            let bindings = gateBindings(claim, world)
+            let bindings = try gateBindings(claim, world)
             for gate in matching {
                 for (left, right) in gate.equalities {
                     judged += 1
-                    let leftTerm = substitute(parseTerm(Substring(left)), bindings)
-                    let rightTerm = substitute(parseTerm(Substring(right)), bindings)
-                    let leftCanon = Press.serialize(normalize(leftTerm, world))
-                    let rightCanon = Press.serialize(normalize(rightTerm, world))
+                    let leftTerm = try substitute(try parseTerm(Substring(left)), bindings)
+                    let rightTerm = try substitute(try parseTerm(Substring(right)), bindings)
+                    let leftCanon = Press.serialize(try normalize(leftTerm, world))
+                    let rightCanon = Press.serialize(try normalize(rightTerm, world))
                     if leftCanon != rightCanon {
                         refusals.append(
                             "'\(use)' requires the types '\(left)' (aka '\(leftCanon)') and "
@@ -1544,7 +1590,7 @@ enum WhereJudge {
                         )
                     }
                 }
-                judgeMemberships(
+                try judgeMemberships(
                     gate.memberships, site: use, tag: gate.proto,
                     bindings: bindings, world: world,
                     counted: &members, refusals: &refusals
@@ -1554,17 +1600,17 @@ enum WhereJudge {
 
         for conformer in world.conformers.values.sorted(by: { $0.name < $1.name }) {
             let protocols = inheritedProtocols(conformer.protocols, world)
-            let (bindings, rigid) = conformerContext(conformer, world)
+            let (bindings, rigid) = try conformerContext(conformer, world)
             // Membership inheritance and equality inheritance are the same
             // dependency closure. A child cannot discard a parent's gate.
             for protoName in protocols.sorted() {
                 guard let gated = world.gatedProtocols[protoName] else { continue }
                 for (left, right) in gated.equalities {
                     judged += 1
-                    let leftTerm = substitute(parseTerm(Substring(left)), bindings)
-                    let rightTerm = substitute(parseTerm(Substring(right)), bindings)
-                    let leftCanon = Press.serialize(normalize(leftTerm, world, rigid: rigid))
-                    let rightCanon = Press.serialize(normalize(rightTerm, world, rigid: rigid))
+                    let leftTerm = try substitute(try parseTerm(Substring(left)), bindings)
+                    let rightTerm = try substitute(try parseTerm(Substring(right)), bindings)
+                    let leftCanon = Press.serialize(try normalize(leftTerm, world, rigid: rigid))
+                    let rightCanon = Press.serialize(try normalize(rightTerm, world, rigid: rigid))
                     if leftCanon != rightCanon {
                         refusals.append(
                             "'\(conformer.name): \(protoName)' requires the types '\(left)' "
@@ -1572,7 +1618,7 @@ enum WhereJudge {
                         )
                     }
                 }
-                judgeMemberships(
+                try judgeMemberships(
                     gated.memberships, site: "\(conformer.name): \(protoName)", tag: nil,
                     bindings: bindings, world: world,
                     counted: &members, refusals: &refusals, rigid: rigid
@@ -1580,17 +1626,10 @@ enum WhereJudge {
             }
         }
 
-        if refusals.isEmpty {
-            if judged == 0 && members == 0 {
-                fail("no equalities or memberships were judged; no certificate established")
-            }
-            if excludesConditional {
-                print("THE WHERE scope: conditional compilation blocks are excluded.")
-            }
-            print("✓ THE WHERE holds: \(judged) equalities and \(members) memberships judged across \(world.uses.count) uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v\(canonVersion)).")
-        } else {
-            for refusal in refusals { print("✗ \(refusal)") }
-            exit(1)
+        if refusals.isEmpty && judged == 0 && members == 0 {
+            try fail("no equalities or memberships were judged; no certificate established")
         }
+        return Judgment(equalities: judged, memberships: members, uses: world.uses.count,
+                        excludesConditional: excludesConditional, refusals: refusals)
     }
 }

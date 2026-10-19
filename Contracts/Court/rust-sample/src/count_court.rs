@@ -6,6 +6,7 @@
 
 use crate::expression::{self as ex, Derivation, Expression, Failure, Source};
 use crate::structural::{self as st, StructuralSource};
+use crate::{Answer, Loader};
 use std::collections::{HashMap, HashSet};
 
 pub struct Block {
@@ -343,7 +344,7 @@ struct Job {
     nested: bool,
 }
 
-fn judge(arguments: &[String]) -> Result<(usize, usize, Vec<String>, Expression, Expression, Expression), Failure> {
+fn judge_with(load: Loader, arguments: &[String]) -> Result<(usize, usize, Vec<String>, Expression, Expression, Expression), Failure> {
     let mut paths: Vec<String> = Vec::new();
     let mut options: HashMap<String, String> = HashMap::new();
     let mut i = 0usize;
@@ -371,7 +372,7 @@ fn judge(arguments: &[String]) -> Result<(usize, usize, Vec<String>, Expression,
     }
     let mut files: Vec<(String, String)> = Vec::new();
     for path in &paths {
-        let text = std::fs::read_to_string(path).map_err(|e| Failure::new(format!("cannot read {}: {}", path, e)))?;
+        let text = load(path).map_err(|e| Failure::new(format!("cannot read {}: {}", path, e)))?;
         files.push((path.clone(), text));
     }
     let source = StructuralSource::new(&files)?;
@@ -482,33 +483,36 @@ fn judge(arguments: &[String]) -> Result<(usize, usize, Vec<String>, Expression,
     Ok((checked, files.len(), refusals, sigma, encoding, predicate))
 }
 
-pub fn run(arguments: &[String]) -> i32 {
-    match judge(arguments) {
+pub fn answer(load: Loader, arguments: &[String]) -> Answer {
+    let mut out = Answer::default();
+    match judge_with(load, arguments) {
         Ok((checked, presented, refusals, sigma, encoding, predicate)) => {
             if !refusals.is_empty() {
                 for refusal in refusals {
-                    println!("✗ COUNT: {}", refusal);
+                    out.stdout.push_str(&format!("✗ COUNT: {}\n", refusal));
                 }
-                return 1;
+                out.exit = 1;
+                return out;
             }
-            println!(
+            out.stdout.push_str(&format!(
                 "✓ COUNT holds: {} source-bound readings checked; finite Unit/Never/Plus rules and definition/count \
-                 derivations replayed.",
+                 derivations replayed.\n",
                 checked
-            );
-            println!(
+            ));
+            out.stdout.push_str(&format!(
                 "Scope: {} / {} / {}; all {} presented files; closed aliases/top-level metatypes; Int range and reader \
-                 budgets; nominal equality and Swift conformance are separate checks.",
+                 budgets; nominal equality and Swift conformance are separate checks.\n",
                 sigma.text(),
                 encoding.text(),
                 predicate.text(),
                 presented
-            );
-            0
+            ));
+            out.exit = 0;
         }
         Err(error) => {
-            eprintln!("✗ COUNT unresolved: {}", error);
-            2
+            out.stderr.push_str(&format!("✗ COUNT unresolved: {}\n", error));
+            out.exit = 2;
         }
     }
+    out
 }

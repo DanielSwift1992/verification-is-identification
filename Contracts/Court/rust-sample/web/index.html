@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>vi-court in the browser</title>
+<style>
+  :root { --ink: #1c1c1c; --paper: #fbfaf7; --line: #d8d4cc; --ok: #1f6f3f; --no: #8a2a1b; --mute: #6b665d; }
+  body { margin: 0; padding: 24px 16px; background: var(--paper); color: var(--ink); font: 15px/1.45 -apple-system, "Helvetica Neue", Arial, sans-serif; }
+  main { max-width: 880px; margin: 0 auto; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  p { margin: 6px 0 14px; color: var(--mute); }
+  textarea { width: 100%; box-sizing: border-box; min-height: 220px; font: 13px/1.4 ui-monospace, Menlo, monospace; border: 1px solid var(--line); padding: 10px; background: #fff; }
+  button { font: inherit; padding: 8px 14px; border: 1px solid var(--ink); background: #fff; cursor: pointer; margin: 10px 8px 10px 0; }
+  pre { white-space: pre-wrap; word-break: break-word; border: 1px solid var(--line); padding: 10px; background: #fff; min-height: 48px; font: 13px/1.4 ui-monospace, Menlo, monospace; }
+  pre.ok { border-color: var(--ok); } pre.no { border-color: var(--no); }
+  small { color: var(--mute); }
+</style>
+</head>
+<body>
+<main>
+  <h1>vi-court in the browser</h1>
+  <p>The same court as the native binary, built for wasm32. Edit the world below and judge it with <code>where</code>. The answer is the CLI's: its lines and its exit code. <small id="version"></small></p>
+  <textarea id="world" spellcheck="false">public enum Unit {}
+public enum Plus&lt;A, B&gt; {}
+public protocol Admitted {}
+public enum Match&lt;A, B&gt; {}
+extension Match: Admitted
+where A == B {}
+func need&lt;T: Admitted&gt;(_: T.Type) {}
+public typealias U2 = Plus&lt;Unit, Unit&gt;
+public typealias Claim = Match&lt;U2, Plus&lt;Unit, Unit&gt;&gt;
+func check() { need(Claim.self) }
+</textarea>
+  <div>
+    <button id="judge">judge where world.swift</button>
+    <button id="plant">plant a different tree</button>
+  </div>
+  <pre id="answer">loading the module…</pre>
+</main>
+<script type="module">
+  import init, { judge, version } from "../pkg/web/vi_court.js";
+  const world = document.getElementById("world");
+  const answer = document.getElementById("answer");
+  await init();
+  document.getElementById("version").textContent = version();
+  answer.textContent = "ready";
+  function run() {
+    const request = { arguments: ["where", "world.swift"], files: [{ name: "world.swift", text: world.value }] };
+    const result = JSON.parse(judge(JSON.stringify(request)));
+    answer.textContent = (result.stdout + result.stderr).trimEnd() + "\n[exit " + result.exit + "]";
+    answer.className = result.exit === 0 ? "ok" : "no";
+  }
+  document.getElementById("judge").addEventListener("click", run);
+  document.getElementById("plant").addEventListener("click", () => {
+    world.value = world.value.replace("Match<U2, Plus<Unit, Unit>>", "Match<Plus<Plus<Unit, Unit>, Unit>, Plus<Unit, Plus<Unit, Unit>>>");
+    run();
+  });
+  run();
+</script>
+</body>
+</html>

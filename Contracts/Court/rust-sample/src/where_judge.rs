@@ -9,6 +9,7 @@
 
 use crate::expression::{self as ex, AliasRule, Conformer, Expression, GatedExtension, GatedProtocol, Source, Span, World};
 use crate::failure::{fail, fail_all, Failure};
+use crate::{Answer, Loader};
 use crate::lexical::*;
 use regex::Regex;
 use std::collections::{HashMap, HashSet};
@@ -610,12 +611,11 @@ pub struct Prepared {
     pub excludes_conditional: bool,
 }
 
-pub fn file_text(path: &str) -> Result<String, Failure> {
-    std::fs::read_to_string(path).map_err(|_| Failure::Input(vec![format!("cannot read {}", path)]))
-}
-
-pub fn judge(arguments: &[String]) -> Result<Judgment, Failure> {
-    evaluate(&prepare(arguments, file_text)?)
+/// Reads through the caller's loader; an unavailable source is an input failure
+/// that names the path and nothing else, as the legacy CLI said.
+pub fn judge_with(load: Loader, arguments: &[String]) -> Result<Judgment, Failure> {
+    let read = |path: &str| load(path).map_err(|_| Failure::Input(vec![format!("cannot read {}", path)]));
+    evaluate(&prepare(arguments, &read)?)
 }
 
 struct Extra {
@@ -724,7 +724,7 @@ fn unread(
     places.extend(found);
 }
 
-pub fn prepare(arguments: &[String], load: fn(&str) -> Result<String, Failure>) -> Result<Prepared, Failure> {
+pub fn prepare(arguments: &[String], load: &dyn Fn(&str) -> Result<String, Failure>) -> Result<Prepared, Failure> {
     let path = match arguments.first() {
         Some(p) => p.clone(),
         None => return Err(Failure::Input(vec!["usage: judge where <world.swift> [definitions.swift ...]".to_string()])),
@@ -1135,32 +1135,35 @@ pub fn evaluate_selected(
     })
 }
 
-/// The original text/exit interface is retained at this single boundary.
-pub fn run(arguments: &[String]) -> i32 {
-    match judge(arguments) {
+/// The original text/exit interface is retained at this single boundary: the
+/// answer carries the lines the CLI prints and the code it exits with.
+pub fn answer(load: Loader, arguments: &[String]) -> Answer {
+    let mut out = Answer::default();
+    match judge_with(load, arguments) {
         Ok(result) => {
             if result.refusals.is_empty() {
                 if result.excludes_conditional {
-                    println!("THE WHERE scope: conditional compilation blocks are excluded.");
+                    out.stdout.push_str("THE WHERE scope: conditional compilation blocks are excluded.\n");
                 }
-                println!(
+                out.stdout.push_str(&format!(
                     "✓ THE WHERE holds: {} equalities and {} memberships judged across {} uses, the certificates, and \
-                     the gated conformers, source-replayed definition reductions (canon v{}).",
+                     the gated conformers, source-replayed definition reductions (canon v{}).\n",
                     result.equalities, result.memberships, result.uses, CANON_VERSION
-                );
-                0
+                ));
+                out.exit = 0;
             } else {
                 for refusal in result.refusals {
-                    println!("✗ {}", refusal);
+                    out.stdout.push_str(&format!("✗ {}\n", refusal));
                 }
-                1
+                out.exit = 1;
             }
         }
         Err(failure) => {
             for message in failure.messages() {
-                eprintln!("✗ THE WHERE: {}", message);
+                out.stderr.push_str(&format!("✗ THE WHERE: {}\n", message));
             }
-            2
+            out.exit = 2;
         }
     }
+    out
 }

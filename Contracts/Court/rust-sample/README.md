@@ -42,6 +42,20 @@ swift build --product Tools && python3 Contracts/Court/rust-sample/diff-court.py
 
 `Cargo.lock` pins the one dependency. The driver's report binds a result to the executable's hash and the manifest's hash, not to this source. A build receipt that names the toolchain and the lock file belongs beside the report.
 
+## The same court in the browser and under node
+
+`src/lib.rs` is the court as a library: the two passes read their sources through a loader the caller supplies and return an `Answer`, the exit code with the two output streams, so one judgement serves three roads. `src/main.rs` is the CLI over files. `src/wasm.rs` is the browser road: one exported function takes a request as JSON, the pass with its arguments as the CLI takes them and the texts the named sources stand for, and returns the answer as JSON. `node/vi-court.js` is the reference loader for node: it speaks the CLI words, reads the files itself and hands the texts to the module, so the contract driver and `diff-court.py` can run against the module unchanged.
+
+```sh
+Contracts/Court/rust-sample/build-wasm.sh
+```
+
+The script builds for `wasm32-unknown-unknown`, binds the module for node and for the web into `pkg/`, which is not committed, and prints the toolchain, the source revision and the SHA-256 of the module. The wasm-bindgen tool must match the crate version `Cargo.toml` pins. The module is about 2.1 MB, unoptimized: the `regex` crate carries the Unicode tables the reader's word classes need.
+
+Through the node loader the module answers the thirteen cases of the suite 13/13 and the 318 repository invocations 317/318, the same as the native binary. `web/index.html` is a test page that loads the web binding, judges a world with `where` and prints the CLI's lines and exit code. Serve the sample directory statically to open it.
+
+A consumer that pins this court takes the module the way it takes any judge: built from the pinned revision by `build-wasm.sh`, with the module's hash kept beside the revision. A module built from a working copy is a second, untracked pin.
+
 ## Next step
 
-The next step the contract names is the structured response route. Until it is ported, this binary answers the text CLI of suite 0.1 and nothing else.
+The next step the contract names is the structured response route. Until it is ported, this court answers the text CLI of suite 0.1 and nothing else, on every road.

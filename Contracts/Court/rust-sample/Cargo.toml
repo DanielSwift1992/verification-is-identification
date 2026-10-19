@@ -2,7 +2,12 @@
 name = "vi-court"
 version = "0.1.0"
 edition = "2021"
-description = "A replacement implementation of the vi court CLI for the questions suite 0.1: judge where and judge count, read from the same bare Swift declarations."
+description = "A replacement implementation of the vi court CLI for the questions suite 0.1: judge where and judge count, read from the same bare Swift declarations. The same court builds as a native binary and as a wasm32 module."
+
+[lib]
+name = "vi_court"
+path = "src/lib.rs"
+crate-type = ["cdylib", "rlib"]
 
 [[bin]]
 name = "vi-court"
@@ -10,6 +15,11 @@ path = "src/main.rs"
 
 [dependencies]
 regex = "1.11"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = "=0.2.105"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
 
 [profile.release]
 debug = false

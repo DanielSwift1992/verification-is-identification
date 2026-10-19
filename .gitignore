@@ -33,3 +33,4 @@ pass_manifest.json
 
 # Rust court sample (built locally, never committed)
 Contracts/Court/rust-sample/target/
+Contracts/Court/rust-sample/pkg/

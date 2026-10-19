@@ -35,13 +35,20 @@ fi
 scope_bin=$(swift build --show-bin-path)
 
 # scope_world <world> <compiler errors> <court refusal>: the compiler
-# refuses the world for exactly these errors, and the court exits 2 with
-# exactly this line on stderr and nothing on stdout.
+# refuses the world for the named errors, allowing the optional inference
+# cascade in three named worlds; the court exits 2 with exactly this line
+# on stderr and nothing on stdout.
 scope_world() {
     local world="$1" errors="$2" verdict="$3"
-    if swiftc -typecheck -module-cache-path "$scope_tmp/cache" \
-        "Checks/where-scope/$world.swift" >"$scope_tmp/$world-swift.log" 2>&1; then
+    local compiled=0
+    swiftc -typecheck -module-cache-path "$scope_tmp/cache" \
+        "Checks/where-scope/$world.swift" >"$scope_tmp/$world-swift.log" 2>&1 || compiled=$?
+    if [ "$compiled" -eq 0 ]; then
         echo "where-scope: Swift accepted $world.swift" >&2
+        exit 1
+    elif [ "$compiled" -ne 1 ]; then
+        cat "$scope_tmp/$world-swift.log"
+        echo "where-scope: Swift exited $compiled for $world.swift, not an ordinary typecheck refusal" >&2
         exit 1
     fi
     local said=0
@@ -58,7 +65,16 @@ import re, sys
 world, swift_log, court_log, errors, verdict = sys.argv[1:]
 pattern = re.compile(r"^Checks/where-scope/" + re.escape(world) + r"\.swift:\d+:\d+: (error: .*)$")
 said = [m.group(1) for m in map(pattern.match, Path(swift_log).read_text().splitlines()) if m]
-if sorted(said) != sorted(errors.split("\n")):
+expected = errors.split("\n")
+# The invalid Use argument is the required error. Some compiler versions
+# also report that the enclosing call cannot infer T; this is not another
+# premise of these scope fixtures. Keep every other expected error exact.
+if world in {"generic", "outside", "conditional"}:
+    cascade = "error: generic parameter 'T' could not be inferred"
+    expected.remove(cascade)
+    if cascade in said:
+        said.remove(cascade)
+if sorted(said) != sorted(expected):
     print(Path(swift_log).read_text())
     raise SystemExit(f"where-scope: Swift did not refuse {world}.swift for the expected reasons")
 if Path(court_log).read_text().splitlines() != [verdict]:

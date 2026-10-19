@@ -55,7 +55,15 @@ enum WhereJudge {
     }
 
     static func fail(_ message: String) -> Never {
-        FileHandle.standardError.write(Data("✗ THE WHERE: \(message)\n".utf8))
+        failAll([message])
+    }
+
+    // A reader's refusal that names every place it does not read, each on
+    // its own line, so a file left partly unread shows all of what is left.
+    static func failAll(_ messages: [String]) -> Never {
+        for message in messages {
+            FileHandle.standardError.write(Data("✗ THE WHERE: \(message)\n".utf8))
+        }
         exit(2)
     }
 
@@ -491,6 +499,16 @@ enum WhereJudge {
         }
     }
 
+    // The group ranges of the same declarations, in the read text's UTF-16
+    // coordinates, for a reader that must know where each group stands.
+    static func declarationSpans(_ pattern: String, _ text: String, _ scope: Scope) -> [[NSRange]] {
+        _ = declarations(pattern, text, scope)
+        let regex = try! NSRegularExpression(pattern: pattern, options: [.dotMatchesLineSeparators])
+        return regex.matches(in: text, range: NSRange(text.startIndex..., in: text)).map { match in
+            (1..<match.numberOfRanges).map { match.range(at: $0) }
+        }
+    }
+
     // Every declaration of a name, in any scope and of any form: a nominal
     // type, a protocol, a typealias, an associated type, a generic parameter.
     // `file` holds the names this reader reads at file scope: an enum, a
@@ -617,11 +635,17 @@ enum WhereJudge {
     // projected continuations too; reject an unbalanced RHS as a reader
     // failure rather than judging its truncated prefix as a different type.
     static func readAliases(_ text: String) -> [[String]] {
+        readAliasSpans(text).map(\.fields)
+    }
+
+    // The same aliases, each with the range of its right side in the read
+    // text's UTF-16 coordinates.
+    static func readAliasSpans(_ text: String) -> [(fields: [String], body: NSRange)] {
         let header = try! NSRegularExpression(
             pattern: #"typealias\s+(\w+)\s*(?:<([^>]*)>)?\s*=\s*"#,
             options: [.dotMatchesLineSeparators]
         )
-        var result: [[String]] = []
+        var result: [(fields: [String], body: NSRange)] = []
         var cursor = text.startIndex
         while cursor < text.endIndex,
               let match = header.firstMatch(in: text, range: NSRange(cursor..., in: text)),
@@ -656,7 +680,7 @@ enum WhereJudge {
             let tail = text[end...].trimmingCharacters(in: .whitespacesAndNewlines)
             let conditional = body.range(of: #"\bwhere\b"#, options: .regularExpression) != nil
                 || tail.range(of: #"^where\b"#, options: .regularExpression) != nil
-            result.append([name, parameters, body, conditional ? "where" : ""])
+            result.append(([name, parameters, body, conditional ? "where" : ""], NSRange(start..<end, in: text)))
             cursor = end
         }
         return result
@@ -665,18 +689,19 @@ enum WhereJudge {
     // Member aliases belong to their declaration. Exporting them into the
     // world's namespace can turn an unrelated alias into a false equality.
     // Keep line boundaries so multiline top-level aliases remain readable.
+    // A body's text becomes one space per UTF-16 unit, so what stands outside
+    // keeps the read text's coordinates.
     static func outsideBodies(_ text: String) -> String {
         var depth = 0
-        var result = ""
-        for character in text {
-            if character == "{" { depth += 1 }
-            if depth == 0 || character == "\n" { result.append(character) }
-            else { result.append(" ") }
-            if character == "}" { depth -= 1 }
+        var result: [UInt16] = []
+        for unit in text.utf16 {
+            if unit == 0x7B { depth += 1 }
+            result.append(depth == 0 || unit == 0x0A ? unit : 0x20)
+            if unit == 0x7D { depth -= 1 }
             if depth < 0 { fail("unmatched declaration brace") }
         }
         if depth != 0 { fail("unterminated declaration body") }
-        return result
+        return String(utf16CodeUnits: result, count: result.count)
     }
 
     // A gate's where carries three kinds of conjunct. An equality is judged
@@ -752,6 +777,9 @@ enum WhereJudge {
         var conditionalDeclarations: Set<String> = []
         var presentedBodies: Set<String> = []
         var uses: [String] = []
+        /// Uses and parameterless certificates are judged at their root.
+        /// A parsed range does not discharge a gate nested inside that root.
+        var rootApplicationSpans: [NSRange] = []
         /// the lines each name of this file is declared at, in any scope
         var declared: [String: [Int]] = [:]
         /// the lines at which this file extends each name, in any form
@@ -759,6 +787,15 @@ enum WhereJudge {
         /// the names this file declares at file scope as a type, a protocol
         /// or a typealias: the names another file's extension can reach
         var fileTypes: Set<String> = []
+        /// every name this file's code spells
+        var names: Set<String> = []
+        /// the read text, the line before each of its UTF-16 offsets, the
+        /// ranges this court reads as uses, certificates and gate clauses,
+        /// and the right sides of the typealiases at file scope
+        var clean = ""
+        var lineAt: [Int] = []
+        var readSpans: [NSRange] = []
+        var aliasSpans: [NSRange] = []
     }
 
     static func read(_ text: String) -> World {
@@ -766,6 +803,9 @@ enum WhereJudge {
         let scope = Scope(clean)
         var world = World()
 
+        // Use the same Unicode word class as the declaration reader. A name
+        // it reads cannot disappear when checking which gates reach the file.
+        world.names = Set(captures(#"\b(\w+)\b"#, clean).map { $0[0] })
         let names = declaredNames(clean, scope)
         world.declared = names.lines
         for name in names.file.sorted(by: { (names.lines[$0]![0], $0) < (names.lines[$1]![0], $1) })
@@ -977,23 +1017,95 @@ enum WhereJudge {
             world.protocolAxes[hit[0]] = Set(captures(#"associatedtype\s+(\w+)"#, hit[1]).map { $0[0] })
         }
 
-        // A use is read at file scope. One inside a type or an extension body
-        // may name a member this court does not read, so it is refused there.
+        // A use is an application written as a metatype: the chain of names,
+        // dots and balanced generic arguments that stands before `.self` on
+        // its line. A use is read at file scope; one inside a type or an
+        // extension body may name a member this court does not read, so it is
+        // refused there.
         let bodies = typeBodies(clean)
-        let usePattern = try! NSRegularExpression(
-            pattern: #"([\w<>,\. ]+?)\s*\.self"#, options: [.dotMatchesLineSeparators]
-        )
-        for match in usePattern.matches(in: clean, range: NSRange(clean.startIndex..., in: clean)) {
-            guard let bounds = Range(match.range(at: 1), in: clean) else { continue }
-            let use = String(clean[bounds]).trimmingCharacters(in: .whitespaces)
-            guard use.contains("<") else { continue }
-            let start = match.range.location
+        let units = Array(clean.utf16)
+        var read: [NSRange] = []
+        let metatype = try! NSRegularExpression(pattern: #"\.self\b"#)
+        for match in metatype.matches(in: clean, range: NSRange(clean.startIndex..., in: clean)) {
+            var index = match.range.location - 1
+            while index >= 0, isSpaceUnit(units[index]) { index -= 1 }
+            let end = index + 1
+            var chained = true
+            while index >= 0 {
+                if units[index] == 0x3E, index == 0 || units[index - 1] != 0x2D {
+                    var depth = 0
+                    var open = index
+                    while open >= 0 {
+                        let unit = units[open]
+                        if unit == 0x3E, open == 0 || units[open - 1] != 0x2D { depth += 1 }
+                        if unit == 0x3C { depth -= 1 }
+                        if depth == 0 || unit == 0x7B || unit == 0x7D || unit == 0x3B { break }
+                        open -= 1
+                    }
+                    guard open > 0, units[open] == 0x3C, depth == 0, isWordUnit(units[open - 1]) else {
+                        chained = false
+                        break
+                    }
+                    index = open - 1
+                }
+                guard isWordUnit(units[index]) else { break }
+                while index >= 0, isWordUnit(units[index]) { index -= 1 }
+                guard index >= 0, units[index] == 0x2E else { break }
+                index -= 1
+            }
+            let start = index + 1
+            guard chained, start < end else { continue }
+            let spelled = String(utf16CodeUnits: Array(units[start..<end]), count: end - start)
+            guard spelled.contains("<"), !spelled.contains("->"),
+                  spelled.range(of: #"^[\w.<>, ]+$"#, options: .regularExpression) != nil else { continue }
+            let use = spelled
             if bodies[start] > 0 {
                 fail("cannot read line \(scope.line[start]): the use '\(use)' sits in the body of a type "
                     + "or an extension, whose members this court does not read")
             }
             world.uses.append(use)
+            read.append(NSRange(location: start, length: end - start))
+            world.rootApplicationSpans.append(NSRange(location: start, length: end - start))
         }
+
+        // What this court reads of a gated head's applications: the uses
+        // above, the right sides of the typealiases at file scope and in a
+        // presented conformer's table, and the gates' where clauses. The
+        // check that nothing else applies one waits for every file.
+        for span in readAliasSpans(outsideBodies(clean)) {
+            world.aliasSpans.append(span.body)
+            if span.fields[1].isEmpty { world.rootApplicationSpans.append(span.body) }
+        }
+        read += world.aliasSpans
+        for spans in declarationSpans(
+            #"enum\s+(\w+)\s*(?:<([^>]*)>)?\s*:\s*([\w,\s]+?)\s*\{([^{}]*)\}"#, clean, scope
+        ) {
+            let table = spans[3]
+            guard let bounds = Range(table, in: clean) else { continue }
+            for span in readAliasSpans(String(clean[bounds])) where span.fields[1].isEmpty {
+                read.append(NSRange(location: table.location + span.body.location, length: span.body.length))
+                world.rootApplicationSpans.append(NSRange(location: table.location + span.body.location, length: span.body.length))
+            }
+        }
+        for spans in declarationSpans(
+            #"extension\s+(\w+)\s*(?::\s*[\w,\s]+?)?\s*\{([^{}]*)\}"#, clean, scope
+        ) {
+            guard let owner = Range(spans[0], in: clean), world.conformers[String(clean[owner])] != nil,
+                  let bounds = Range(spans[1], in: clean) else { continue }
+            for span in readAliasSpans(String(clean[bounds])) where span.fields[1].isEmpty {
+                read.append(NSRange(location: spans[1].location + span.body.location, length: span.body.length))
+                world.rootApplicationSpans.append(NSRange(location: spans[1].location + span.body.location, length: span.body.length))
+            }
+        }
+        for spans in declarationSpans(#"extension\s+(\w+)\s*:\s*(\w+)\s+where\s+([^{]+)\{"#, clean, scope) {
+            read.append(spans[2])
+        }
+        for spans in declarationSpans(#"protocol\s+(\w+)\s*:\s*[\w,\s]+?\s+where\s+([^{]+)\{"#, clean, scope) {
+            read.append(spans[1])
+        }
+        world.readSpans = read
+        world.clean = clean
+        world.lineAt = scope.line
         return world
     }
 
@@ -1175,6 +1287,35 @@ enum WhereJudge {
             fail("cannot read '\(first.key)': it is a typealias, extended at \(spelledLines(first.value)), and this "
                 + "court does not follow an extension through an alias to its type")
         }
+        // A gate binds every file of the module, and this court judges the
+        // gates of the world it reads. A definitions file's gated extension of
+        // a head the world names, and its gated protocol, when a protocol the
+        // world names reaches it through the refinements any file presents,
+        // would bind the world unjudged, so each is refused by name.
+        var ancestry = world.protocolParents
+        for extra in extras {
+            ancestry.merge(extra.world.protocolParents) { first, _ in first }
+        }
+        for extra in extras {
+            for gate in extra.world.gates where world.names.contains(gate.head) {
+                fail("cannot read the gate '\(gate.head): \(gate.proto)' in '\(extra.path)': this court judges "
+                    + "the gates of the world it reads, and '\(path)' names '\(gate.head)'")
+            }
+            let gated = Set(extra.world.gatedProtocols.keys)
+            guard !gated.isEmpty else { continue }
+            for name in world.names.sorted() {
+                var reached: Set<String> = []
+                var walk = [name]
+                while let next = walk.popLast() {
+                    guard reached.insert(next).inserted else { continue }
+                    walk += ancestry[next] ?? []
+                }
+                if let first = reached.intersection(gated).sorted().first {
+                    fail("cannot read '\(name)': it reaches '\(first)', a gated protocol of '\(extra.path)', and "
+                        + "this court judges the gated protocols of the world it reads")
+                }
+            }
+        }
         for (extra, more, lent) in extras {
             excludesConditional = excludesConditional
                 || more.range(of: #"(?m)^\s*#if\b"#, options: .regularExpression) != nil
@@ -1207,6 +1348,110 @@ enum WhereJudge {
                 aliasOrigins[name] = extra
             }
         }
+        // A gated head is judged where it is applied, so every application of
+        // one is read, or refused at its line, never passed over. A typealias
+        // whose right side names a gated head, in any file, applies it in turn,
+        // and its own applications count. In the world an application is read
+        // as a use, as the right side of a typealias at file scope or in a
+        // presented conformer's table, or in a gate's where clause; written
+        // anywhere else (a parameter's type, a member alias of a body this
+        // reader does not read, a local alias, a parenthesized metatype, a use
+        // across lines) it binds a demand this court never judges, and a
+        // neighbour would pass the file. A definitions file is read for its
+        // typealiases alone: there an application is read only as the right
+        // side of a generic one, and a parameterless one that applies a gated
+        // head is a certificate this court does not judge outside the world.
+        var gatedNames = Set(world.gates.map(\.head))
+        var grown = true
+        while grown {
+            grown = false
+            for (name, rule) in world.aliases.sorted(by: { $0.key < $1.key }) where !gatedNames.contains(name) {
+                let spelled = Set(captures(#"\b(\w+)\b"#, rule.body).map { $0[0] })
+                if !spelled.isDisjoint(with: gatedNames) {
+                    gatedNames.insert(name)
+                    grown = true
+                }
+            }
+        }
+        for extra in extras {
+            for (name, rule) in extra.world.aliases.sorted(by: { $0.key < $1.key }) where rule.parameters.isEmpty {
+                if gatedNames.contains(name) {
+                    fail("cannot read '\(name)': '\(extra.path)' defines it as an application of a gated head, and "
+                        + "this court judges certificates in the world it reads")
+                }
+            }
+        }
+        let declaring: Set<String> = ["enum", "struct", "class", "actor", "typealias", "protocol"]
+        var unreadPlaces: [(line: Int, message: String)] = []
+        // A use or a certificate is judged only at the head its definition
+        // exposes. Reading Optional<Use<Bad>> as a term does not judge Use,
+        // and the outer gate of Twin<Use<Bad>> does not judge the inner one.
+        // Generic aliases defer their arguments until application, so inspect
+        // the exposed root as well as its written arguments. Nested gates are
+        // a named boundary, including a gate reached through an argument alias.
+        for span in world.rootApplicationSpans {
+            guard let bounds = Range(span, in: world.clean) else { continue }
+            let spelled = String(world.clean[bounds]).trimmingCharacters(in: .whitespacesAndNewlines)
+            let names = Set(captures(#"\b(\w+)\b"#, spelled).map { $0[0] })
+            guard !names.isDisjoint(with: gatedNames) else { continue }
+            let term = parseTerm(Substring(spelled))
+            let claim = gatedForm(term, world)
+            let arguments = (term.args + claim.args).map(Press.serialize).joined(separator: ",")
+            let nested = Set(captures(#"\b(\w+)\b"#, arguments).map { $0[0] }).intersection(gatedNames)
+            if !nested.isEmpty || !world.gates.contains(where: { $0.head == claim.head }) {
+                let line = world.lineAt[span.location]
+                unreadPlaces.append((line, "cannot read line \(line) of '\(path)': '\(spelled)' contains "
+                    + "a gated application outside the root this court judges"))
+            }
+        }
+        func unread(_ file: World, _ spans: [NSRange], _ spelledPath: String) {
+            let units = Array(file.clean.utf16)
+            var places: [(line: Int, message: String)] = []
+            for name in gatedNames.sorted() {
+                // Comments have become spaces; qualification can still have
+                // spaces before or after each dot, including across lines.
+                let applied = try! NSRegularExpression(pattern: #"(?<![\w.])((?:\w+\s*\.\s*)*)"#
+                    + NSRegularExpression.escapedPattern(for: name) + #"\s*<"#)
+                for match in applied.matches(in: file.clean, range: NSRange(file.clean.startIndex..., in: file.clean)) {
+                    let at = match.range.location
+                    if !spans.filter({ NSLocationInRange(at, $0) }).isEmpty { continue }
+                    var wordEnd = at
+                    while wordEnd > 0, isSpaceUnit(units[wordEnd - 1]) { wordEnd -= 1 }
+                    var wordStart = wordEnd
+                    while wordStart > 0, isWordUnit(units[wordStart - 1]) { wordStart -= 1 }
+                    let word = String(utf16CodeUnits: Array(units[wordStart..<wordEnd]), count: wordEnd - wordStart)
+                    if declaring.contains(word) { continue }
+                    // a metatype whose generic arguments run across lines is a
+                    // use this court reads only on one line
+                    var close = match.range.location + match.range.length
+                    var depth = 1
+                    var broken = false
+                    while close < units.count, depth > 0 {
+                        let unit = units[close]
+                        if unit == 0x3C { depth += 1 }
+                        if unit == 0x3E, units[close - 1] != 0x2D { depth -= 1 }
+                        if unit == 0x0A { broken = true }
+                        if unit == 0x7B || unit == 0x7D || unit == 0x3B { break }
+                        close += 1
+                    }
+                    var after = close
+                    while after < units.count, isSpaceUnit(units[after]) { after += 1 }
+                    let metatype = depth == 0 && after + 4 < units.count
+                        && String(utf16CodeUnits: Array(units[after..<(after + 5)]), count: 5) == ".self"
+                    let reason = metatype && broken
+                        ? "a use written across lines, which this court reads on one line"
+                        : "a place where this court reads no use and no certificate"
+                    places.append((file.lineAt[at], "cannot read line \(file.lineAt[at]) of '\(spelledPath)': '\(name)' "
+                        + "applies a gated head in \(reason)"))
+                }
+            }
+            unreadPlaces += places.sorted(by: { ($0.line, $0.message) < ($1.line, $1.message) })
+        }
+        unread(world, world.readSpans, path)
+        unreadPlaces.sort { ($0.line, $0.message) < ($1.line, $1.message) }
+        for extra in extras { unread(extra.world, extra.world.aliasSpans, extra.path) }
+        if !unreadPlaces.isEmpty { failAll(unreadPlaces.map(\.message)) }
+
         var refusals: [String] = []
         var judged = 0
         var members = 0

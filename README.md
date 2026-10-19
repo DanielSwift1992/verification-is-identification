@@ -44,7 +44,7 @@ The source can change after a check, access can be withdrawn, or another partici
 
 ## What is known and what is built here
 
-The criterion has known ancestors. Certain answers over incomplete databases answer a query under every world the records permit (Imielinski and Lipski, 1984, Dong, Halevy and Yu, 2009). Three verdicts, true on every admissible case, false on every one and open between, are the supervaluationist's (van Fraassen, 1966, Fine, 1975). Determinacy as a semantic relation, apart from rewriting in a chosen language, is studied by Nash, Segoufin and Vianu (2010). Encoding finite structures in a type system is not new either. [Verdict Is Invariant](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verdict_is_invariant/) cites these ancestors, and [The neighbors](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/neighbors/) compares the package with partial evaluation, materialized Datalog, total languages, automaton minimization and policy engines.
+The criterion has known ancestors. Certain answers over incomplete databases answer a query under every world the records permit (Imielinski and Lipski, 1984). The same quantification over uncertain schema mappings answers it under every mapping the records permit (Dong, Halevy and Yu, 2009). Three verdicts, true on every admissible case, false on every one and open between, are the supervaluationist's (van Fraassen, 1966, Fine, 1975). Determinacy as a semantic relation, apart from rewriting in a chosen language, is studied by Nash, Segoufin and Vianu (2010). [Verdict Is Invariant](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verdict_is_invariant/) cites these ancestors, and [The neighbors](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/neighbors/) compares the package with partial evaluation, materialized Datalog, total languages, automaton minimization and policy engines, each of which keeps its own home. What the package claims over them is the combination: a decidable core, a finite stated input domain and a residual artifact.
 
 What this repository builds on them:
 
@@ -53,7 +53,7 @@ What this repository builds on them:
 - A second reader that names what it refuses, and a finite contract against which another implementation of that reader is checked.
 - Worked models, among them the three sources above and the company of the showcase package.
 
-They do not establish that the two readers agree on every Swift text, that a symbolic operation is a physical one, or that the encoding technique is new.
+They do not establish that the second reader agrees with the compiler, or with another implementation of it, on every Swift text, that a symbolic operation is a physical one, or that any single part of that combination is new.
 
 ## From a claim to a checked construction
 

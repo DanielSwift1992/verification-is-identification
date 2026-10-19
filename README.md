@@ -1,6 +1,6 @@
 # Verification Is Identification
 
-This repository studies what a given access to an unknown source determines, and what can be done with the result. The arguments are in 35 papers. The relations written as Swift types are checked by the compiler. A 204-person company written as types is the worked application.
+This repository studies what a given access to an unknown source determines, and what can be done with the result. The arguments are in 35 papers. The relations written as Swift types are checked by the compiler. The worked application, a company written as types, is the separate [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase).
 
 The name states the criterion. To verify an answer to a question is to identify that answer. An answer can be determined while several sources remain compatible. Identifying the whole source is a special case.
 
@@ -85,34 +85,21 @@ The acquisition checks run a family of generic consequences and nearby construct
 
 ## A second reader checks a stated relation
 
-[`Sources/Court`](Sources/Court) is a second reader, separate from the Swift compiler, for specified fragments of declarations. A verdict applies to the fragment the reader supports and to the obligations it examined. A form outside that fragment must receive a refusal that names it. The company `judge` check plants selected changes and compares the reader with the compiler, including the names in their refusals.
+[`Sources/Court`](Sources/Court) is a second reader, separate from the Swift compiler, for specified fragments of declarations. A verdict applies to the fragment the reader supports and to the obligations it examined. A form outside that fragment must receive a refusal that names it. The showcase package's `judge` check plants selected changes in its company and compares this reader with the compiler, including the names in their refusals.
 
 [gate](https://github.com/DanielSwift1992/gate) applies these checks to records in other repositories. Its judge is built from a pinned revision of this corpus. The contract of each check defines what its result means.
 
-![Target package responsibilities: vi owns the research and where/count semantics, showcase owns its constructed world and policy, and gate supplies an implementation under a versioned contract. The package split is planned.](Documentation/Figures/framework-architecture.svg)
+![Target package responsibilities: vi owns the research and where/count semantics, showcase owns its constructed world and policy, and gate supplies an implementation under a versioned contract.](Documentation/Figures/framework-architecture.svg)
 
-The package split in the diagram is planned. The showcase targets are still in this package, and gate pins an earlier judge. The current [package diagram](Sources/Organization/Organization.docc/Resources/architecture.svg) shows the worked application and its generated representations.
+The company and its rendering are the [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase), which depends on this one and runs its `Tools` and `LawCheck`. Gate pins an earlier judge. The showcase's [package diagram](https://github.com/DanielSwift1992/verification-is-identification-showcase/blob/main/Sources/Organization/Organization.docc/Resources/architecture.svg) shows the worked application and its generated representations.
 
 ## A worked application
 
-The package contains a 204-person company written as types, with an access policy and an intranet website. Declarations describe the 204 people, their documents and their access requests. A policy rule is a conditional conformance, and the compiler checks the declared requests against it.
+The [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) declares a company, its access policy and its intranet website as types, and the compiler checks the declared access requests against the policy. Its [company site](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/) presents the result, and [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) renders the pages from types. The company is a declared world: the checked access assertions are about its declarations.
 
-[Open the playground](https://danielswift1992.github.io/typed-playground/) to edit declarations and see the page they describe. **Plant a lie** changes a declaration for its checker to read. The At scale tab judges a 12,800-person file. [Its checks](https://github.com/DanielSwift1992/typed-playground#the-checks) document the supported subset of Swift.
+[Open the playground](https://danielswift1992.github.io/typed-playground/) to edit declarations and see the page they describe. [Its checks](https://github.com/DanielSwift1992/typed-playground#the-checks) document the supported subset of Swift.
 
-The company is a declared world. The checked access assertions are about its declarations. A running organisation would need its own source relation and operations to enforce access.
-
-<details>
-<summary>The website, navigation and local commands</summary>
-
-The [company site](https://danielswift1992.github.io/verification-is-identification/documentation/organization/) presents dashboards, reports and personal cards. Within their declared directories, the guided walks reach any page in four choices and any of the people in eight. The reader chooses each branch. [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit/) renders the pages and the SVG from types.
-
-Four of the employee cards have a login keypad. A key is a link to a declared state. The 6561 possible input sequences share a small state graph, because every wrong digit leads to the same dead state. The compiler checks the supplied secret type against the page's declared secret. The page prints the password, and the unlocked address can be opened directly. This is a static navigation demonstration.
-
-`swift build` checks the whole package. `swift test` runs the worked demos and prints "Executed 24 tests". `swift run Tools site` builds and serves the documentation locally. The [Curve](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/curve/) page reports measurements as the company grows to 12,800 employees.
-
-A recorded local measurement on a 14-core Apple M4 Pro: a clean build in about eight minutes, a rebuild after a comment-only policy edit in about ten seconds. These numbers describe that setup.
-
-</details>
+`swift build` checks the whole package. `swift test` runs the worked demos and prints "Executed 9 tests". `swift run Tools site` builds and serves the documentation locally.
 
 ## Read and work in the repository
 
@@ -121,9 +108,9 @@ A recorded local measurement on a 14-core Apple M4 Pro: a clean build in about e
 | Research and notation | [Framework and papers](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/), [dependency atlas](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/atlas/) | [`VerificationIsIdentification`](Sources/VerificationIsIdentification), [`Examples`](Sources/Examples), [`Checks`](Checks) |
 | Worked constructions | [Examples](https://danielswift1992.github.io/verification-is-identification/documentation/examples/) | [`Sources/Examples`](Sources/Examples) |
 | Readers | Contracts stated by each reader | [`Sources/Court`](Sources/Court), [gate](https://github.com/DanielSwift1992/gate) |
-| Company and rendering | [Organization](https://danielswift1992.github.io/verification-is-identification/documentation/organization/), [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit/) | [`Sources/Organization`](Sources/Organization), [`Sources/DocumentKit`](Sources/DocumentKit) |
+| Company and rendering | [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/), [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) | [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) |
 
-[`check.sh`](check.sh) lists the repository's checks. `./check.sh --only verdict` runs the registered proof and refusal fixtures. `./check.sh` runs the integration checks. `swift run Tools readme` compares the counts on this page with their source artifacts. Optional research experiments run separately with `./check.sh --research-only`. `swift package --allow-writing-to-package-directory generate` regenerates the checked-in roster, walk sources, font metrics and SVG artwork.
+[`check.sh`](check.sh) lists the repository's checks. `./check.sh --only verdict` runs the registered proof and refusal fixtures. `./check.sh` runs the integration checks. `swift run Tools readme` compares the counts on this page with their source artifacts. Optional research experiments run separately with `./check.sh --research-only`. Two artifacts of this package are rendered by the showcase package, which checks them: the curve chart of the [Curve](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/curve/) page and the covered visible claim in Examples.
 
 ## License
 

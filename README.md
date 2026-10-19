@@ -1,6 +1,6 @@
 # Verification Is Identification
 
-Different sources can produce the same observation. In colour vision this is called metamerism: two different spectra can look identical to an observer, who then cannot tell which spectrum it was. Some questions about the source can still be answered exactly, and some operations on it can still be chosen with grounds.
+Different visible spectra can produce the same colour reading for a specified observer under fixed conditions. This is metamerism. That reading alone does not identify the spectrum. Some questions about the source can still be answered exactly, and some operations on it can still be chosen with grounds.
 
 This repository studies that situation in general: what a partial view of an unknown source determines, which actions it supports before the source is identified, and what the result must keep for whoever continues the work. The arguments are in 35 papers. The part written as Swift types is checked by the compiler, and a second reader checks a fragment of it separately.
 
@@ -8,7 +8,7 @@ Start with [Verification Is Identification](https://danielswift1992.github.io/ve
 
 ## One observation, two questions
 
-The model in [`Light.swift`](Sources/Examples/Light.swift) and [`Verdict.swift`](Sources/Examples/Verdict.swift) follows this case in types. Three declared sources, `RedBeam`, `RedBeamWithIR` and `RedBeamWithMoreIR`, have the same visible coordinates and different infrared coordinates. `EyeImage` reads the visible ones. The physical case is a separate argument, in [Seeing Is Encoding](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/seeing_is_encoding/).
+A simpler symbolic model appears in [`Light.swift`](Sources/Examples/Light.swift) and [`Verdict.swift`](Sources/Examples/Verdict.swift). Three declared sources, `RedBeam`, `RedBeamWithIR` and `RedBeamWithMoreIR`, have the same visible coordinates and different infrared coordinates. `EyeImage` reads the visible ones. This example discards a hidden coordinate. [Seeing Is Encoding](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/seeing_is_encoding/) also derives a model in which every source channel contributes to the reading, and states the calibration and measurement conditions a physical test would need.
 
 ![Three declared sources share the same visible record. That record determines their visible pair while leaving their hidden coordinate open.](Documentation/Figures/beam-questions.svg)
 
@@ -44,9 +44,9 @@ The source can change after a check, access can be withdrawn, or another partici
 
 ## What is known and what is built here
 
-The criterion has known ancestors. Certain answers over incomplete databases answer a query under every world the records permit (Imielinski and Lipski, 1984). The same quantification over uncertain schema mappings answers it under every mapping the records permit (Dong, Halevy and Yu, 2009). Three verdicts, true on every admissible case, false on every one and open between, are the supervaluationist's (van Fraassen, 1966, Fine, 1975). Determinacy as a semantic relation, apart from rewriting in a chosen language, is studied by Nash, Segoufin and Vianu (2010). [Verdict Is Invariant](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verdict_is_invariant/) cites these ancestors, and [The neighbors](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/neighbors/) compares the package with partial evaluation, materialized Datalog, total languages, automaton minimization and policy engines, each of which keeps its own home. What the package claims over them is the combination: a decidable core, a finite stated input domain and a residual artifact.
+The criterion has known ancestors. In incomplete databases, certain answers are tuples returned by a query in every database consistent with the recorded information (Imielinski and Lipski, 1984). Dong, Halevy and Yu (2009) study query answering under uncertain schema mappings. For a Boolean question over a nonempty admissible class, truth throughout, falsity throughout and indeterminacy when the cases disagree follow the supervaluationist pattern (van Fraassen, 1966, Fine, 1975). Indeterminacy here is a verdict, not a third truth value. Nash, Segoufin and Vianu (2010) distinguish semantic determinacy from rewriting in a chosen language. [Verdict Is Invariant](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verdict_is_invariant/) discusses these connections, and [The neighbors](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/neighbors/) compares the package with partial evaluation, materialized Datalog, total languages, automaton minimization and policy engines, each of which keeps its own home. What the package claims over them is the combination: a decidable core, a finite stated input domain and a residual artifact.
 
-What this repository builds on them:
+What is built and checked here:
 
 - The action law above, with what a continuation must keep after the source, the access or the participant changes.
 - A typed record of the research: 199 protocols, one per claim, with constructions the compiler checks and expected refusals that must keep failing.
@@ -84,7 +84,7 @@ The acquisition checks run a family of generic consequences and nearby construct
 
 [`Sources/Court`](Sources/Court) is a second reader, separate from the Swift compiler, for specified fragments of declarations. A verdict applies to the fragment the reader supports and to the obligations it examined. A form outside that fragment must receive a refusal that names it.
 
-[gate](https://github.com/DanielSwift1992/gate) is another kind of application: it applies these checks to records in other repositories, such as ownership files and API contracts. Its judge is built from a pinned revision of this corpus, and the contract of each check defines what its result means.
+[gate](https://github.com/DanielSwift1992/gate) is another kind of application. It uses a judge built from a pinned revision of this corpus to check declarations imported from records such as ownership files. Other commands inspect API contracts and their clients under separate contracts. The contract of each command defines what its result means.
 
 ![Target package responsibilities: vi owns the research and where/count semantics, showcase owns its constructed world and policy, and gate supplies an implementation under a versioned contract.](Documentation/Figures/framework-architecture.svg)
 

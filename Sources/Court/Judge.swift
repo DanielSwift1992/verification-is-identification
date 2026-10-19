@@ -622,6 +622,10 @@ public enum Judge {
     }
 
     public static func run(_ arguments: [String]) {
+        if arguments.first == "where-report" || arguments.first == "where-admit" {
+            WhereResponse.run(Array(arguments.dropFirst()), admission: arguments.first == "where-admit")
+            return
+        }
         if arguments.first == "count" {
             CountCourt.run(Array(arguments.dropFirst()))
             return

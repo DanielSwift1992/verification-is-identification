@@ -60,10 +60,11 @@ enum WhereJudge {
     enum Failure: Error {
         case unsupported([String])
         case input([String])
+        case open([String])
 
         var messages: [String] {
             switch self {
-            case let .unsupported(messages), let .input(messages): return messages
+            case let .unsupported(messages), let .input(messages), let .open(messages): return messages
             }
         }
     }
@@ -649,12 +650,12 @@ enum WhereJudge {
 
     // The same aliases, each with the range of its right side in the read
     // text's UTF-16 coordinates.
-    static func readAliasSpans(_ text: String) throws -> [(fields: [String], body: NSRange)] {
+    static func readAliasSpans(_ text: String) throws -> [(fields: [String], body: NSRange, declaration: NSRange)] {
         let header = try! NSRegularExpression(
             pattern: #"typealias\s+(\w+)\s*(?:<([^>]*)>)?\s*=\s*"#,
             options: [.dotMatchesLineSeparators]
         )
-        var result: [(fields: [String], body: NSRange)] = []
+        var result: [(fields: [String], body: NSRange, declaration: NSRange)] = []
         var cursor = text.startIndex
         while cursor < text.endIndex,
               let match = header.firstMatch(in: text, range: NSRange(cursor..., in: text)),
@@ -689,7 +690,7 @@ enum WhereJudge {
             let tail = text[end...].trimmingCharacters(in: .whitespacesAndNewlines)
             let conditional = body.range(of: #"\bwhere\b"#, options: .regularExpression) != nil
                 || tail.range(of: #"^where\b"#, options: .regularExpression) != nil
-            result.append(([name, parameters, body, conditional ? "where" : ""], NSRange(start..<end, in: text)))
+            result.append(([name, parameters, body, conditional ? "where" : ""], NSRange(start..<end, in: text), match.range))
             cursor = end
         }
         return result
@@ -786,6 +787,8 @@ enum WhereJudge {
         var conditionalDeclarations: Set<String> = []
         var presentedBodies: Set<String> = []
         var uses: [String] = []
+        var useLines: [Int] = []
+        var certificateLines: [String: Int] = [:]
         /// Uses and parameterless certificates are judged at their root.
         /// A parsed range does not discharge a gate nested inside that root.
         var rootApplicationSpans: [NSRange] = []
@@ -1073,6 +1076,7 @@ enum WhereJudge {
                     + "or an extension, whose members this court does not read")
             }
             world.uses.append(use)
+            world.useLines.append(scope.line[start])
             read.append(NSRange(location: start, length: end - start))
             world.rootApplicationSpans.append(NSRange(location: start, length: end - start))
         }
@@ -1082,6 +1086,7 @@ enum WhereJudge {
         // presented conformer's table, and the gates' where clauses. The
         // check that nothing else applies one waits for every file.
         for span in try readAliasSpans(try outsideBodies(clean)) {
+            world.certificateLines[span.fields[0]] = scope.line[span.declaration.location]
             world.aliasSpans.append(span.body)
             if span.fields[1].isEmpty { world.rootApplicationSpans.append(span.body) }
         }
@@ -1090,8 +1095,9 @@ enum WhereJudge {
             #"enum\s+(\w+)\s*(?:<([^>]*)>)?\s*:\s*([\w,\s]+?)\s*\{([^{}]*)\}"#, clean, scope
         ) {
             let table = spans[3]
-            guard let bounds = Range(table, in: clean) else { continue }
+            guard let bounds = Range(table, in: clean), let owner = Range(spans[0], in: clean) else { continue }
             for span in try readAliasSpans(String(clean[bounds])) where span.fields[1].isEmpty {
+                world.certificateLines[String(clean[owner]) + "." + span.fields[0]] = scope.line[table.location + span.declaration.location]
                 read.append(NSRange(location: table.location + span.body.location, length: span.body.length))
                 world.rootApplicationSpans.append(NSRange(location: table.location + span.body.location, length: span.body.length))
             }
@@ -1102,6 +1108,7 @@ enum WhereJudge {
             guard let owner = Range(spans[0], in: clean), world.conformers[String(clean[owner])] != nil,
                   let bounds = Range(spans[1], in: clean) else { continue }
             for span in try readAliasSpans(String(clean[bounds])) where span.fields[1].isEmpty {
+                world.certificateLines[String(clean[owner]) + "." + span.fields[0]] = scope.line[spans[1].location + span.declaration.location]
                 read.append(NSRange(location: spans[1].location + span.body.location, length: span.body.length))
                 world.rootApplicationSpans.append(NSRange(location: spans[1].location + span.body.location, length: span.body.length))
             }
@@ -1230,6 +1237,15 @@ enum WhereJudge {
         return bindings
     }
 
+    // A missing ancestor may carry an obligation; absence is not an empty gate.
+    static func requireProtocolGrounds(_ protocols: [String], _ world: World) throws {
+        for name in inheritedProtocols(protocols, world).sorted() {
+            guard world.protocolParents[name] != nil || world.gatedProtocols[name] != nil else {
+                throw Failure.open(["no declared protocol grounds for '\(name)'"])
+            }
+        }
+    }
+
     // one membership judged: the left side resolves through the same canon
     // the equalities use, the resolved name must be a presented conformer,
     // and the conformer must wear the protocol through the ladder. Either
@@ -1239,10 +1255,12 @@ enum WhereJudge {
     static func judgeMemberships(
         _ memberships: [(String, String)], site: String, tag: String?,
         bindings: [String: Term], world: World,
-        counted: inout Int, refusals: inout [String], rigid: Set<String> = []
+        counted: inout Int, refusals: inout [String], rigid: Set<String> = [],
+        requireGrounds: Bool = false
     ) throws {
         let mark = tag.map { " [\($0)]" } ?? ""
         for (lhs, proto) in memberships {
+            if requireGrounds { try requireProtocolGrounds([proto], world) }
             counted += 1
             let lhsTerm = try substitute(try parseTerm(Substring(lhs)), bindings)
             let resolved = try normalize(lhsTerm, world, rigid: rigid)
@@ -1255,11 +1273,22 @@ enum WhereJudge {
                     + "generic applicability is not established by this membership reader")
             }
             guard let wearer = world.conformers[resolved.head] else {
+                if requireGrounds {
+                    throw Failure.open(["no declared conformance grounds for '\(spelled)' required by '\(site)'"])
+                }
                 refusals.append(
                     "'\(site)' requires the type '\(lhs)' (aka '\(spelled)') conform to "
                         + "'\(proto)', and no conformer of that name is presented\(mark)"
                 )
                 continue
+            }
+            if requireGrounds {
+                try requireProtocolGrounds(wearer.protocols, world)
+                let inherited = inheritedProtocols(wearer.protocols, world)
+                if let gated = inherited.sorted().first(where: { world.gatedProtocols[$0] != nil }) {
+                    try fail("membership of '\(spelled)' depends on gated conformance '\(gated)'; "
+                        + "this selected-application profile does not discharge dependent conformer obligations")
+                }
             }
             if wears(wearer, proto, world) == false {
                 let worn = wearer.protocols.joined(separator: ", ")
@@ -1307,13 +1336,36 @@ enum WhereJudge {
 
     /// Reader failures are thrown to the caller. This retains the legacy aggregate
     /// judgment; it is not yet a per-application request/coverage protocol.
-    static func judge(_ arguments: [String]) throws -> Judgment {
-        guard let path = arguments.first else {
-            throw Failure.input(["usage: judge where <world.swift> [definitions.swift ...]"])
-        }
+    struct Prepared {
+        let path: String
+        let world: World
+        let ownAliases: [String: AliasRule]
+        let excludesConditional: Bool
+    }
+
+    enum Selection: Equatable {
+        case certificate(String)
+        case use(Int)
+        case conformer(String)
+    }
+
+    static func fileText(_ path: String) throws -> String {
         guard let text = try? String(contentsOfFile: path, encoding: .utf8) else {
             throw Failure.input(["cannot read \(path)"])
         }
+        return text
+    }
+
+    static func judge(_ arguments: [String]) throws -> Judgment {
+        try evaluate(prepare(arguments))
+    }
+
+    static func prepare(_ arguments: [String],
+                        load: (String) throws -> String = fileText) throws -> Prepared {
+        guard let path = arguments.first else {
+            throw Failure.input(["usage: judge where <world.swift> [definitions.swift ...]"])
+        }
+        let text = try load(path)
         var world = try read(text)
         var excludesConditional = text.range(of: #"(?m)^\s*#if\b"#, options: .regularExpression) != nil
         let ownAliases = world.aliases
@@ -1322,9 +1374,7 @@ enum WhereJudge {
         // which to choose between duplicates, so a collision is unresolved.
         var aliasOrigins = Dictionary(uniqueKeysWithValues: world.aliases.keys.map { ($0, path) })
         let extras: [(path: String, text: String, world: World)] = try arguments.dropFirst().map { extra in
-            guard let more = try? String(contentsOfFile: extra, encoding: .utf8) else {
-                throw Failure.input(["cannot read \(extra)"])
-            }
+            let more = try load(extra)
             return (extra, more, try read(more))
         }
         // A typealias of any file may be extended from another, and such an
@@ -1503,6 +1553,15 @@ enum WhereJudge {
         for extra in extras { unread(extra.world, extra.world.aliasSpans, extra.path) }
         if !unreadPlaces.isEmpty { try failAll(unreadPlaces.map(\.message)) }
 
+        return Prepared(path: path, world: world, ownAliases: ownAliases,
+                        excludesConditional: excludesConditional)
+    }
+
+    static func evaluate(_ prepared: Prepared, selection: Selection? = nil,
+                         requireGrounds: Bool = false) throws -> Judgment {
+        let world = prepared.world
+        let ownAliases = prepared.ownAliases
+        let excludesConditional = prepared.excludesConditional
         var refusals: [String] = []
         var judged = 0
         var members = 0
@@ -1542,6 +1601,7 @@ enum WhereJudge {
             }
         }
         for certificate in certificates.sorted(by: { $0.name < $1.name }) {
+            guard selection == nil || selection == .certificate(certificate.name) else { continue }
             let name = certificate.name
             let term = certificate.term
             let body = Press.serialize(term)
@@ -1550,6 +1610,7 @@ enum WhereJudge {
             guard !matching.isEmpty else { continue }
             let bindings = try gateBindings(claim, world)
             for gate in matching {
+                if requireGrounds { try requireProtocolGrounds([gate.proto], world) }
                 for (left, right) in gate.equalities {
                     judged += 1
                     let leftTerm = try substitute(try parseTerm(Substring(left)), bindings)
@@ -1566,17 +1627,19 @@ enum WhereJudge {
                 try judgeMemberships(
                     gate.memberships, site: "\(name) = \(body)", tag: gate.proto,
                     bindings: bindings, world: world,
-                    counted: &members, refusals: &refusals, rigid: certificate.rigid
+                    counted: &members, refusals: &refusals, rigid: certificate.rigid, requireGrounds: requireGrounds
                 )
             }
         }
 
-        for use in world.uses {
+        for (index, use) in world.uses.enumerated() {
+            guard selection == nil || selection == .use(index) else { continue }
             let claim = try gatedForm(try parseTerm(Substring(use)), world)
             let matching = world.gates.filter { $0.head == claim.head }
             guard !matching.isEmpty else { continue }
             let bindings = try gateBindings(claim, world)
             for gate in matching {
+                if requireGrounds { try requireProtocolGrounds([gate.proto], world) }
                 for (left, right) in gate.equalities {
                     judged += 1
                     let leftTerm = try substitute(try parseTerm(Substring(left)), bindings)
@@ -1593,12 +1656,14 @@ enum WhereJudge {
                 try judgeMemberships(
                     gate.memberships, site: use, tag: gate.proto,
                     bindings: bindings, world: world,
-                    counted: &members, refusals: &refusals
+                    counted: &members, refusals: &refusals, requireGrounds: requireGrounds
                 )
             }
         }
 
         for conformer in world.conformers.values.sorted(by: { $0.name < $1.name }) {
+            guard selection == nil || selection == .conformer(conformer.name) else { continue }
+            if requireGrounds { try requireProtocolGrounds(conformer.protocols, world) }
             let protocols = inheritedProtocols(conformer.protocols, world)
             let (bindings, rigid) = try conformerContext(conformer, world)
             // Membership inheritance and equality inheritance are the same
@@ -1621,12 +1686,13 @@ enum WhereJudge {
                 try judgeMemberships(
                     gated.memberships, site: "\(conformer.name): \(protoName)", tag: nil,
                     bindings: bindings, world: world,
-                    counted: &members, refusals: &refusals, rigid: rigid
+                    counted: &members, refusals: &refusals, rigid: rigid, requireGrounds: requireGrounds
                 )
             }
         }
 
         if refusals.isEmpty && judged == 0 && members == 0 {
+            if requireGrounds { throw Failure.open(["no equality or membership grounds for the selected application"]) }
             try fail("no equalities or memberships were judged; no certificate established")
         }
         return Judgment(equalities: judged, memberships: members, uses: world.uses.count,

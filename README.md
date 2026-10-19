@@ -8,18 +8,18 @@ Start with [Verification Is Identification](https://danielswift1992.github.io/ve
 
 ## One observation, two questions
 
-Metamerism is one case of a more general situation: different sources give the same observation and still differ in ways that matter for other questions. A symbolic model in [`Light.swift`](Sources/Examples/Light.swift) and [`Verdict.swift`](Sources/Examples/Verdict.swift) isolates that situation. Three declared sources, `RedBeam`, `RedBeamWithIR` and `RedBeamWithMoreIR`, have the same visible coordinates and different infrared coordinates. `EyeImage` reads the visible ones. This example discards a hidden coordinate. [Seeing Is Encoding](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/seeing_is_encoding/) also derives a model in which every source channel contributes to the reading, and states the calibration and measurement conditions a physical test would need.
+Metamerism is one case of a more general situation: different sources give the same observation and still differ in ways that matter for other questions. A symbolic model in [`Light.swift`](Sources/Examples/Light.swift) and [`Verdict.swift`](Sources/Examples/Verdict.swift) isolates that situation. Three declared sources, `RedBeam`, `RedBeamWithIR` and `RedBeamWithMoreIR`, have the same visible coordinates and different infrared coordinates. `EyeImage` reads only the visible coordinates. The infrared coordinate remains part of each source. [Seeing Is Encoding](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/seeing_is_encoding/) also derives a model in which every source channel contributes to the reading, and states the calibration and measurement conditions a physical test would need.
 
-![Three declared sources share the same visible record. That record determines their visible pair while leaving their hidden coordinate open.](Documentation/Figures/beam-questions.svg)
+![Three declared sources share the same visible record. It determines their visible pair and not their hidden coordinate.](Documentation/Figures/beam-questions.svg)
 
-The visible record answers one question and not another. It determines the visible pair. It does not determine the infrared coordinate, because the three sources differ there. A check is therefore a check of an answer to a stated question.
+The visible record answers one question and not another. It determines the visible pair. It does not determine the infrared coordinate, because the three sources differ there.
 
-This is the criterion the repository is named after. An answer is determined when the cases compatible with the grounds exist and all of them give that answer. Several sources can remain compatible while the answer is determined, and identifying the whole source is the special case where the question asks for the whole source. [Verification Is Identification, U2c](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verification_is_identification/) states it, and its constructions go on to derive new relations among fields that are still unknown.
+An answer is determined when the cases compatible with the grounds exist and all of them give that answer. Several sources can remain compatible while the answer is determined, and identifying the whole source is the special case where the question asks for the whole source. [Verification Is Identification, U2c](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verification_is_identification/) states it, and its constructions go on to derive new relations among fields that are still unknown.
 
 <details>
-<summary>The criterion: compatible cases and a determined answer</summary>
+<summary>When an answer is determined</summary>
 
-![The compatible cases can determine one answer, permit several answers, or be empty. A check that has not established which case holds is a separate state.](Documentation/Figures/answer-determination.svg)
+![The compatible cases determine one answer, permit several, or are empty. A check that has not yet decided among these cases is in a separate state.](Documentation/Figures/answer-determination.svg)
 
 </details>
 
@@ -27,16 +27,16 @@ This is the criterion the repository is named after. An answer is determined whe
 
 Take the same three sources. `SwapVisible` exchanges the two visible coordinates and keeps the infrared. The new eye image is the swap of the old one, so the old record still answers the new visible question. `ExposeHidden` moves the infrared into a visible coordinate, and after it the three sources give three different eye images. The old record is still true about the state it was taken from. It no longer determines the new answer.
 
-![The symbolic swap commutes with the visible reading. Exposing the hidden coordinate instead gives different future answers from the same old record. Neither picture supplies a physical execution.](Documentation/Figures/beam-continuation.svg)
+![The swap commutes with the visible reading. Exposing the hidden coordinate gives different new answers from the same old record.](Documentation/Figures/beam-continuation.svg)
 
 The construction is `ThreeBeamVerdict` with `SwapVisible`, `SwapFactors` and `ExposeHidden`, and the [source map](Documentation/Figures/beam-study-sources.md) gives the definitions, the general argument and the positive and negative checks of each frame. These operations are symbolic. Applying them to light requires a physical operation and a connection to the source.
 
 [Acquisition Keeps Its Question](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/acquisition_keeps_its_question/) states the condition for any operation. A supplied operation may act on unknown contents when its laws establish the required effect, and choosing it needs grounds that it works in every case compatible with the complete input used for the choice. Its actual output has to keep what the task requires and give the continuation the access it needs, and a task that must finish also needs a completion argument. Unknown content can take part in the action without being identified first.
 
 <details>
-<summary>The action criterion: one adequate continuation across compatible reached states</summary>
+<summary>When a continuation is adequate</summary>
 
-![An adequate continuation must work at every actual source–residue pair compatible with the complete input to its choice. Its operation, availability and realization must be supplied.](Documentation/Figures/adequate-continuation.svg)
+![An adequate continuation works at every source and reached state compatible with the complete input to its choice. Its operation and its execution still have to be supplied.](Documentation/Figures/adequate-continuation.svg)
 
 </details>
 
@@ -44,7 +44,7 @@ The source can change after a check, access can be withdrawn, or another partici
 
 ## What is known and what is built here
 
-The criterion has known ancestors. In incomplete databases, certain answers are tuples returned by a query in every database consistent with the recorded information (Imielinski and Lipski, 1984). Dong, Halevy and Yu (2009) study query answering under uncertain schema mappings. For a Boolean question over a nonempty admissible class, truth throughout, falsity throughout and indeterminacy when the cases disagree follow the supervaluationist pattern (van Fraassen, 1966, Fine, 1975). Indeterminacy here is a verdict, not a third truth value. Nash, Segoufin and Vianu (2010) distinguish semantic determinacy from rewriting in a chosen language. [Verdict Is Invariant](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verdict_is_invariant/) discusses these connections, and [The neighbors](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/neighbors/) compares the package with partial evaluation, materialized Datalog, total languages, automaton minimization and policy engines, each of which keeps its own home. What the package claims over them is the combination: a decidable core, a finite stated input domain and a residual artifact.
+This question has been studied in several forms. In incomplete databases, certain answers are tuples returned by a query in every database consistent with the recorded information (Imielinski and Lipski, 1984). Dong, Halevy and Yu (2009) study query answering under uncertain schema mappings. For a Boolean question over a nonempty admissible class, truth throughout, falsity throughout and indeterminacy when the cases disagree follow the supervaluationist pattern (van Fraassen, 1966, Fine, 1975). Indeterminacy here is a verdict, not a third truth value. Nash, Segoufin and Vianu (2010) distinguish semantic determinacy from rewriting in a chosen language. [Verdict Is Invariant](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verdict_is_invariant/) discusses these connections, and [The neighbors](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/neighbors/) compares the package with partial evaluation, materialized Datalog, total languages, automaton minimization and policy engines.
 
 What is built and checked here:
 
@@ -53,7 +53,7 @@ What is built and checked here:
 - A second reader that names what it refuses, and a finite contract against which another implementation of that reader is checked.
 - Worked models, among them the three sources above and the company of the showcase package.
 
-They do not establish that the second reader agrees with the compiler, or with another implementation of it, on every Swift text, that a symbolic operation is a physical one, or that any single part of that combination is new.
+They do not establish that the second reader agrees with the compiler, or with another implementation of it, on every Swift text, that a symbolic operation is a physical one, or priority over the work cited above.
 
 ## From a claim to a checked construction
 
@@ -86,7 +86,7 @@ The acquisition checks run a family of generic consequences and nearby construct
 
 [gate](https://github.com/DanielSwift1992/gate) is another kind of application. It uses a judge built from a pinned revision of this corpus to check declarations imported from records such as ownership files. Other commands inspect API contracts and their clients under separate contracts. The contract of each command defines what its result means.
 
-![Target package responsibilities: vi owns the research and where/count semantics, showcase owns its constructed world and policy, and gate supplies an implementation under a versioned contract.](Documentation/Figures/framework-architecture.svg)
+![vi owns the research and the where and count semantics. showcase contains the constructed company and its policy. gate supplies an implementation that passes a versioned contract.](Documentation/Figures/framework-architecture.svg)
 
 ## The worked application
 

@@ -35,10 +35,9 @@ class Figure:
 
 
 def method():
-    f=Figure('VI: a determined answer and an adequate continuation', 'The first panel states VI U2c: a nonempty compatible family determines an answer exactly when the question is constant on it. The second states the adequacy law from Acquisition Keeps Its Question: intersect the available adequate continuations across all source-residue pairs compatible with the complete input. A chosen continuation and its realization must still be supplied. These are criteria, not a claim of automatic construction.', 1000)
+    f=Figure('A determined answer and an adequate continuation', 'Left: the cases compatible with the constraints determine an answer when they exist and the question takes one value on all of them (U2c). Right: a continuation is adequate when it works at every source and reached state compatible with the complete input to the choice (Acquisition Keeps Its Question). The chosen continuation still has to be supplied and carried out.', 1000)
     f.text(40,42,'VERIFICATION IS IDENTIFICATION','eyebrow blue')
     f.text(40,83,'What do the available relations determine?','heading')
-    f.text(40,115,'The question fixes what must agree. The rest can remain unknown.','body muted')
 
     f.rect(40,150,1040,300)
     f.text(62,184,'1   Establish an answer','label')
@@ -63,7 +62,7 @@ def method():
     f.rect(640,338,412,52,'#fff8ec','#e8d2aa')
     f.text(659,370,'No compatible case: S = ∅','body amber')
     f.text(62,407,'One answer can be established while several source candidates remain.','body')
-    f.text(62,433,'“Not yet established” is a state of the check, separate from these three mathematical cases.','small muted')
+    f.text(62,433,'A check that has not yet decided which case holds is in a separate state.','small muted')
 
     f.rect(40,480,1040,360)
     f.text(62,514,'2   Choose a continuation','label')
@@ -86,15 +85,14 @@ def method():
     f.text(770,632,'supply d(m) ∈ W(m)','body math')
     f.lines(770,659,['Provide its laws and access.','Realize the chosen continuation.','If required, every admitted','execution must complete.'],'small',20)
     f.text(62,770,'The same chosen program can act on different unknown contents and produce different results.','body')
-    f.text(62,797,'For reached m. F covers all admitted outcomes, with an outcome for each admitted initial condition.','small muted')
-    f.text(62,824,'A nonempty intersection establishes existence. It does not supply a choice or an executor.','small muted')
+    f.text(62,797,'F lists an outcome for each admitted initial condition.','small muted')
+    f.text(62,824,'W(m) ≠ ∅ shows that a continuation exists. Choosing it and running it are separate steps.','small muted')
 
     f.path('M902 731V868H560V887',dashed=True)
     f.text(904,862,'record the actual result','small muted',text_anchor='end')
     f.rect(40,887,1040,72,'#ffffff','#a6b5c8')
     f.text(62,916,'For the next participant','label')
     f.text(62,944,'Keep the original requirement, actual residue, available access and grounds of the next use.','body muted')
-    f.text(40,985,'The diagrams state the criteria. Their premises, action laws and source connections require grounds.','small muted')
     f.save('vi-method.svg')
     full=(OUT/'vi-method.svg').read_text()
     # Views of the same argument, placed beside the corresponding README text.
@@ -104,36 +102,35 @@ def method():
 
 
 def architecture():
-    f=Figure('VI framework: target responsibilities and present implementation', 'Target design: VI owns the research, constructions and where/count semantics. Showcase owns the worked organization, rendering and organizational policy. Gate supplies interfaces and a judge implementation. A versioned contract links the semantic owner to an implementation. The package split and gate alignment are not complete. Desk is a research workspace. Arrow labels distinguish source dependencies from conformance and delivery.', 890)
-    f.text(40,42,'FRAMEWORK / TARGET RESPONSIBILITIES','eyebrow blue')
-    f.text(40,83,'Three packages. Each pass has a semantic owner.','heading')
-    f.text(40,115,'Dashed boundaries show the intended split. The present code has not yet been moved.','body muted')
+    f=Figure('vi, showcase and gate', 'vi owns the research, the constructions and the where and count semantics. showcase is a separate repository with the worked company, its rendering and its policy, and it pins a revision of vi. gate brings records from other projects to a judge built from a pinned revision of vi. A versioned contract with conformance fixtures states what an implementation of a check must pass.', 890)
+    f.text(40,42,'THREE PACKAGES','eyebrow blue')
+    f.text(40,83,'Each check has one owner of its meaning.','heading')
     f.rect(40,149,1040,83,'#f6f8fb')
     f.text(62,180,'People and agents','label')
-    f.text(62,209,'Bring a question, a record and access to work. Desk currently holds the research process.','body muted')
+    f.text(62,209,'Bring a question, a record and access to work.','body muted')
     f.path('M905 232V290')
     f.text(919,266,'submit a record','small muted')
 
-    f.rect(40,302,300,326,'#edf3fb','#7c9fc9',True)
+    f.rect(40,302,300,326,'#edf3fb','#7c9fc9')
     f.text(62,339,'vi','heading blue')
     f.lines(62,376,['Research and constructions','Papers · relations · examples','Checks of stated consequences'],'body',29)
     f.rect(60,478,260,125,'#ffffff','#bdcfe7')
     f.text(78,509,'Semantic owner','label blue')
     f.lines(78,540,['where: declared type relations','count: selected count question','Canon + conformance fixtures'],'small',25)
 
-    f.rect(410,302,300,326,'#f7f8fa','#98a5b7',True)
+    f.rect(410,302,300,326,'#f7f8fa','#98a5b7')
     f.text(432,339,'showcase','heading')
     f.lines(432,376,['A constructed world','Organization · DocumentKit','Pages · SVG · site generation'],'body',29)
     f.rect(430,478,260,125,'#ffffff')
-    f.text(448,509,'Its own obligations','label')
-    f.lines(448,540,['Organization policy + judge','Artifacts match constructions','Publication controls retain scope'],'small',25)
+    f.text(448,509,'Its own checks','label')
+    f.lines(448,540,['Policy + differential judge','Artifacts match constructions','Seven publication refusals'],'small',25)
 
-    f.rect(780,302,300,326,'#edf7f1','#7aa68f',True)
+    f.rect(780,302,300,326,'#edf7f1','#7aa68f')
     f.text(802,339,'gate','heading green')
     f.lines(802,376,['Entry and delivery','Records from other projects','Calls checks · returns results'],'body',29)
     f.rect(800,478,260,125,'#ffffff','#bad9c8')
     f.text(818,509,'Supplied implementation','label green')
-    f.lines(818,540,['Must pass the selected contract','Carries question + coverage','A port preserves the question'],'small',25)
+    f.lines(818,540,['Passes the selected contract','Carries question + coverage','Pinned revision of vi'],'small',25)
 
     f.path('M410 442H340')
     f.text(375,424,'uses vi','small muted',text_anchor='middle')
@@ -142,14 +139,13 @@ def architecture():
     f.path('M560 628V684')
     f.text(575,663,'defines organization','small muted')
     f.rect(40,698,1040,99,'#ffffff','#8ba2be')
-    f.text(62,730,'Contract of the selected pass','label blue')
+    f.text(62,730,'Contract of each check','label blue')
     f.text(62,758,'Question / semantics     ·     accepted input     ·     response form     ·     conformance suite','body')
-    f.text(62,783,'Versions belong to each pass. Passing finite fixtures establishes that scope of conformance.','small muted')
+    f.text(62,783,'Each check has its own version. Passing the finite fixtures shows conformance on that suite.','small muted')
     f.path('M930 628V684')
     f.text(945,663,'conforms to','small muted')
-    f.text(40,829,'CURRENT  Court and showcase targets share the vi repository. Gate still pins an older canon.','body')
-    f.text(40,856,'NEXT  Align contracts and coverage, measure check profiles, then move the showcase and its controls.','small muted')
-    f.text(40,880,'The publication checks depend on DocumentKit today; this is a test dependency, not a core-library import.','small muted')
+    f.text(40,829,'NOW  vi and showcase are separate repositories, and showcase pins vi. Gate pins an older revision.','body')
+    f.text(40,856,'A Rust sample of the judge passes the finite suite of the contract. NEXT  Gate re-pins through it.','small muted')
     f.save('framework-architecture.svg')
 
 

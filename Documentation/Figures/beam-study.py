@@ -14,9 +14,8 @@ DESC = ('The source is one of three symbolic states: (1,0,0), (1,0,1), (1,0,2). 
         'the first two coordinates and retains the third: the full outputs still differ, '
         'but all have visible pair (0,1). Starting from the original states, ExposeHidden '
         'instead maps (alpha,beta,r) to (r,0,0), giving three different visible pairs. '
-        'The original reading alone cannot determine this new answer. These are checked '
-        'relations in a symbolic model, not a demonstrated physical implementation.')
-HEIGHT = 1830
+        'The original reading alone cannot determine this new answer.')
+HEIGHT = 1730
 f = Figure(TITLE, DESC, HEIGHT)
 # Larger type belongs to this sequence; the other diagrams keep their own layout.
 f.parts.append('''<style>
@@ -118,23 +117,17 @@ f.text(65, 1608, 'The old reading (1, 0) alone cannot tell us which new pair res
 f.text(65, 1646, 'For this new answer, we need an observation that distinguishes these cases.', 'body')
 f.text(65, 1682, 'U(α, β, r) = (r, 0, 0)', 'small math blue')
 
-f.lines(40, 1751, [
-    'These relations are checked in a symbolic model. The diagram does not establish',
-    'that the operations can be performed on a physical source.'
-], 'small muted', 32)
 f.save('beam-study.svg')
 
 full = (Path(__file__).resolve().parent / 'beam-study.svg').read_text()
 views = [
     ('beam-questions.svg', 0, 752, TITLE,
      'Three symbolic source states yield the same visible pair (1,0). '
-     'The reading determines that pair but leaves the hidden value at 0, 1, or 2.'),
-    ('beam-continuation.svg', 758, 1072, 'Two operations on the same three possible sources',
+     'The reading determines that pair. The hidden value can be 0, 1 or 2.'),
+    ('beam-continuation.svg', 758, 972, 'Two operations on the same three possible sources',
      'SwapVisible produces distinct full states with the same visible pair (0,1). '
      'Starting again from the original states, ExposeHidden gives visible pairs '
-     '(0,0), (1,0), and (2,0). The old reading alone cannot determine this new answer. '
-     'These are symbolic operations with checked type relations; physical execution '
-     'is not established.'),
+     '(0,0), (1,0), and (2,0). The old reading alone cannot determine this new answer.'),
 ]
 for name, top, height, title, desc in views:
     view = full.replace(f'height="{HEIGHT}" viewBox="0 0 1120 {HEIGHT}"',

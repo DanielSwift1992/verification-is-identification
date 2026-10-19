@@ -38,6 +38,12 @@ let package = Package(
         // one source of judgement, and executables are views of it.
         .library(name: "Court", targets: ["Court"]),
 
+        // Tools and LawCheck as products: a package that depends on this one (the
+        // showcase, T-0015) runs the same lint, grammar, census and judge, and attaches
+        // the same surface law to its targets, instead of carrying a copy.
+        .executable(name: "Tools", targets: ["Tools"]),
+        .plugin(name: "LawCheck", targets: ["LawCheck"]),
+
     ],
     dependencies: [
         // Docs only — Swift-DocC renders the lattice's doc-comments + protocol

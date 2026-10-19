@@ -32,7 +32,7 @@ jobs:
       # person at a desk and this runner ask for the same list. The mirror
       # runs in the `law` job beside this one, and skips here.
       - name: Every law but the grammar mirror
-        run: ./check.sh --skip law
+        run: python3 Checks/ci-check.py --skip law
 
       - name: Generate the combined documentation site
         run: >
@@ -89,7 +89,7 @@ jobs:
           xcode-version: latest-stable
 
       - name: The grammar carries every source file
-        run: ./check.sh --only law
+        run: python3 Checks/ci-check.py --only law
 
   deploy:
     needs: [build, law]

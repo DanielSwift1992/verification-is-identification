@@ -97,6 +97,7 @@ LAWS+=(
 "applications|every application of a gated head is read or refused by name|bash Checks/where-applications.sh"
 "court|the judge builds as a library a consumer links|swift build --product Court"
 "contract|the named finite court contract matches its complete fixtures|bash Checks/court-contract.sh"
+"ci|CI diagnostics preserve failed checks and quote their output safely|python3 Checks/ci-check-test.py"
 "quotes|a quote of a sibling paper is that paper's sentence|swift run Tools quotes"
 "law|the grammar carries every source file|swift run Tools grammar"
 )

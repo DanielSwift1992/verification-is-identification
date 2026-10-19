@@ -385,8 +385,20 @@ enum Linter {
             }
         }
 
-        let lexiconDir = NSString(string: repoPath).appendingPathComponent("Sources/GrammarLexicon")
-        let alphabetDir = NSString(string: repoPath).appendingPathComponent("Sources/Alphabet")
+        // The vocabulary, the alphabet and the seed the mirror is judged by are the theory's. Run
+        // from the theory they sit under this root; the showcase package runs the same gate from
+        // its own root and names the theory checkout in VI_THEORY_PATH. A root that lacks them
+        // is refused, never judged with an empty vocabulary.
+        let theoryPath = ProcessInfo.processInfo.environment["VI_THEORY_PATH"]
+            .map { NSString(string: $0).standardizingPath } ?? repoPath
+        let lexiconDir = NSString(string: theoryPath).appendingPathComponent("Sources/GrammarLexicon")
+        let alphabetDir = NSString(string: theoryPath).appendingPathComponent("Sources/Alphabet")
+        for required in [lexiconDir, alphabetDir, NSString(string: theoryPath).appendingPathComponent("Sources/VerificationIsIdentification")] {
+            guard FileManager.default.fileExists(atPath: required) else {
+                FileHandle.standardError.write(Data("cannot read \(required): set VI_THEORY_PATH to the theory checkout\n".utf8))
+                exit(2)
+            }
+        }
         let scratch = NSString(string: NSTemporaryDirectory()).appendingPathComponent("grammar-mirror-\(UUID().uuidString)")
         let sourcesDir = NSString(string: scratch).appendingPathComponent("Sources/MirrorSource")
         try? FileManager.default.removeItem(atPath: scratch)
@@ -428,7 +440,7 @@ enum Linter {
         // (GrammarLexicon/Certificate.swift) conforms the lattice's instance protocols,
         // so every run of the check re-certifies the checker in the same build that carries
         // the verdict. Copied verbatim (the lattice imports nothing), not re-declared.
-        let seedSource = NSString(string: repoPath).appendingPathComponent("Sources/VerificationIsIdentification")
+        let seedSource = NSString(string: theoryPath).appendingPathComponent("Sources/VerificationIsIdentification")
         let seedDir = NSString(string: scratch).appendingPathComponent("Sources/VerificationIsIdentification")
         try? FileManager.default.createDirectory(atPath: seedDir, withIntermediateDirectories: true)
         let seedFiles = (try? FileManager.default.contentsOfDirectory(atPath: seedSource)) ?? []

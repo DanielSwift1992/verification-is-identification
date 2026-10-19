@@ -1,22 +1,20 @@
 # Verification Is Identification
 
-This repository studies what a given access to an unknown source determines, and what can be done with the result. The arguments are in 35 papers. The relations written as Swift types are checked by the compiler. The worked application, a company written as types, is the separate [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase).
+Different sources can produce the same observation. In colour vision this is called metamerism: two different spectra can look identical to an observer, who then cannot tell which spectrum it was. Some questions about the source can still be answered exactly, and some operations on it can still be chosen with grounds.
 
-The name states the criterion. To verify an answer to a question is to identify that answer. An answer can be determined while several sources remain compatible. Identifying the whole source is a special case.
+This repository studies that situation in general: what a partial view of an unknown source determines, which actions it supports before the source is identified, and what the result must keep for whoever continues the work. The arguments are in 35 papers. The part written as Swift types is checked by the compiler, and a second reader checks a fragment of it separately.
 
-The research goal: preserve or transform the content a task concerns, make the actual result available to the next participant, and keep further work possible. Unknown content can take part in the work before it is identified.
+Start with [Verification Is Identification](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verification_is_identification/) for the criterion, the constructions and their connection to the source being studied.
 
-Start with [Verification Is Identification](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verification_is_identification/): the criterion, the constructions, and their connection to the source being studied.
+## One observation, two questions
 
-## The question determines what must be known
-
-Three symbolic light sources have the same visible coordinates and different infrared coordinates. Their visible reading is given. It does not say which source produced it. [`Light.swift`](Sources/Examples/Light.swift) and [`Verdict.swift`](Sources/Examples/Verdict.swift) declare the sources as `RedBeam`, `RedBeamWithIR` and `RedBeamWithMoreIR`. `EyeImage` reads their visible coordinates.
+The model in [`Light.swift`](Sources/Examples/Light.swift) and [`Verdict.swift`](Sources/Examples/Verdict.swift) follows this case in types. Three declared sources, `RedBeam`, `RedBeamWithIR` and `RedBeamWithMoreIR`, have the same visible coordinates and different infrared coordinates. `EyeImage` reads the visible ones. The physical case is a separate argument, in [Seeing Is Encoding](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/seeing_is_encoding/).
 
 ![Three declared sources share the same visible record. That record determines their visible pair while leaving their hidden coordinate open.](Documentation/Figures/beam-questions.svg)
 
-The eye image determines the visible pair. It does not determine the infrared, because the three sources differ there. The same record answers one question and does not answer the other. A check is therefore a check of an answer to a stated question.
+The visible record answers one question and not another. It determines the visible pair. It does not determine the infrared coordinate, because the three sources differ there. A check is therefore a check of an answer to a stated question.
 
-A compatible case is a case the given grounds permit. An answer is determined when compatible cases exist and every one of them gives that answer. Identifying the whole source is the case where the question asks for the whole source.
+This is the criterion the repository is named after. An answer is determined when the cases compatible with the grounds exist and all of them give that answer. Several sources can remain compatible while the answer is determined, and identifying the whole source is the special case where the question asks for the whole source. [Verification Is Identification, U2c](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verification_is_identification/) states it, and its constructions go on to derive new relations among fields that are still unknown.
 
 <details>
 <summary>The criterion: compatible cases and a determined answer</summary>
@@ -25,19 +23,15 @@ A compatible case is a case the given grounds permit. An answer is determined wh
 
 </details>
 
-[Verification Is Identification, U2c](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verification_is_identification/) states this criterion. Its constructions include new relations derived among fields that are still unknown. Each construction states what it uses and what follows.
+## Acting before the source is known
 
-## A result must support the next action
-
-An operation on the source needs its own grounds, separate from the answer.
-
-The same three sources. `SwapVisible` exchanges the two visible coordinates and keeps the infrared. The eye image after the swap is the swap of the old eye image, so it is computed from the old record. `ExposeHidden` moves the infrared into a visible coordinate. After it the three sources give different eye images, and the old record does not determine the new one. The old record is still correct about the state it was taken from.
+Take the same three sources. `SwapVisible` exchanges the two visible coordinates and keeps the infrared. The new eye image is the swap of the old one, so the old record still answers the new visible question. `ExposeHidden` moves the infrared into a visible coordinate, and after it the three sources give three different eye images. The old record is still true about the state it was taken from. It no longer determines the new answer.
 
 ![The symbolic swap commutes with the visible reading. Exposing the hidden coordinate instead gives different future answers from the same old record. Neither picture supplies a physical execution.](Documentation/Figures/beam-continuation.svg)
 
-The construction is `ThreeBeamVerdict` with `SwapVisible`, `SwapFactors` and `ExposeHidden`. The [source map](Documentation/Figures/beam-study-sources.md) lists, for each frame, the definitions, the general argument and the positive and negative checks. These operations are symbolic. Applying them to light requires a physical operation and a connection to the source.
+The construction is `ThreeBeamVerdict` with `SwapVisible`, `SwapFactors` and `ExposeHidden`, and the [source map](Documentation/Figures/beam-study-sources.md) gives the definitions, the general argument and the positive and negative checks of each frame. These operations are symbolic. Applying them to light requires a physical operation and a connection to the source.
 
-The general condition. A supplied operation may act on unknown contents when its laws establish the required effect. Choosing it requires grounds that it works in every case compatible with the input used for the choice. Its actual output must preserve what the task requires and give the continuation the access it needs. A task that must finish also needs a completion argument.
+[Acquisition Keeps Its Question](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/acquisition_keeps_its_question/) states the condition for any operation. A supplied operation may act on unknown contents when its laws establish the required effect, and choosing it needs grounds that it works in every case compatible with the complete input used for the choice. Its actual output has to keep what the task requires and give the continuation the access it needs, and a task that must finish also needs a completion argument. Unknown content can take part in the action without being identified first.
 
 <details>
 <summary>The action criterion: one adequate continuation across compatible reached states</summary>
@@ -46,19 +40,24 @@ The general condition. A supplied operation may act on unknown contents when its
 
 </details>
 
-The source can change after a check. Access can be withdrawn, and another participant can take over. Continued use then needs a justified connection between the original requirement, the retained answer and the state actually reached.
+The source can change after a check, access can be withdrawn, or another participant can take over. Continued use then needs a justified connection between the original requirement, the retained answer and the state actually reached. The [result form](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/results/) records the question, source, premises, derivation, reach, actual result and next use, with proof status and execution status as separate fields. When a premise loses support, the uses that depend on it are reviewed, and other valid grounds may still support them. An agent workflow meets this at every handoff: an agent checked a document, the document changed, and the next action needs grounds both for the source relation and for the execution.
 
-[Acquisition Keeps Its Question](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/acquisition_keeps_its_question/) states this condition, with examples, and attaches the original requirement to the continuation. It gives the condition for an adequate continuation. Supplying the action and carrying it out are separate steps.
+## What is known and what is built here
 
-The [result form](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/results/) records the question, source, premises, derivation, reach, actual result and next use. Proof status and execution status are separate fields. When a premise loses support, the uses that depend on it are reviewed. Other valid grounds may still support them.
+The criterion has known ancestors. Certain answers over incomplete databases answer a query under every world the records permit (Imielinski and Lipski, 1984, Dong, Halevy and Yu, 2009). Three verdicts, true on every admissible case, false on every one and open between, are the supervaluationist's (van Fraassen, 1966, Fine, 1975). Determinacy as a semantic relation, apart from rewriting in a chosen language, is studied by Nash, Segoufin and Vianu (2010). Encoding finite structures in a type system is not new either. [Verdict Is Invariant](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verdict_is_invariant/) cites these ancestors, and [The neighbors](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/neighbors/) compares the package with partial evaluation, materialized Datalog, total languages, automaton minimization and policy engines.
 
-In an agent workflow the case looks like this. An agent checked a document, and the document changed. Whether the old check still supports the next action needs grounds for the source relation and grounds for the execution.
+What this repository builds on them:
+
+- The action law above, with what a continuation must keep after the source, the access or the participant changes.
+- A typed record of the research: 199 protocols, one per claim, with constructions the compiler checks and expected refusals that must keep failing.
+- A second reader that names what it refuses, and a finite contract against which another implementation of that reader is checked.
+- Worked models, among them the three sources above and the company of the showcase package.
+
+They do not establish that the two readers agree on every Swift text, that a symbolic operation is a physical one, or that the encoding technique is new.
 
 ## From a claim to a checked construction
 
-A protocol states a relation. A proof is a construction that derives the conclusion from supplied premises. [Law.swift](Sources/VerificationIsIdentification/Law.swift) requires such a construction for the typed proofs. The compiler checks it against the encoded relations. A failed construction is a defect of that attempt. A claim without a construction has an open proof obligation.
-
-The working cycle is:
+A protocol states a relation. A proof is a construction that derives the conclusion from supplied premises. [Law.swift](Sources/VerificationIsIdentification/Law.swift) requires such a construction for the typed proofs, and the compiler checks it against the encoded relations. A failed construction is a defect of that attempt. A claim without a construction has an open proof obligation.
 
 ```text
 question and grounds → proposed construction → check
@@ -67,11 +66,9 @@ question and grounds → proposed construction → check
                                                → open proof obligation
 ```
 
-The next step starts from the result and its grounds. A changed representation must connect the question back to the intended source. An action must produce the actual result the continuation requires. A successful type check establishes the encoded consequences under their premises. Applying them to an actual system also requires the source connection.
+The next step starts from the result and its grounds. A changed representation must connect the question back to the intended source. An action must produce the actual result the continuation requires. A successful type check establishes the encoded consequences under their premises, and applying them to an actual system also requires the source connection.
 
-The typed theory has 199 protocols, one per claim. Worked constructions are in [`Sources/Examples`](Sources/Examples). Positive witnesses and expected refusals are in [`Checks`](Checks). The [atlas](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/atlas/) maps the dependencies between claims.
-
-To check a construction locally:
+Worked constructions are in [`Sources/Examples`](Sources/Examples), positive witnesses and expected refusals in [`Checks`](Checks), and the [atlas](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/atlas/) maps the dependencies between claims. To check a construction locally:
 
 ```sh
 git clone https://github.com/DanielSwift1992/verification-is-identification
@@ -83,23 +80,19 @@ bash Checks/verdict.sh knowledgeclosure
 
 The acquisition checks run a family of generic consequences and nearby constructions that must fail. [When does a new question require a new observation?](https://danielswift1992.github.io/verification-is-identification/documentation/examples/knowledgeclosure/) is a worked chain: old memory answers one question, and the next question requires a new reading.
 
-## A second reader checks a stated relation
+## A second reader, and gate
 
-[`Sources/Court`](Sources/Court) is a second reader, separate from the Swift compiler, for specified fragments of declarations. A verdict applies to the fragment the reader supports and to the obligations it examined. A form outside that fragment must receive a refusal that names it. The showcase package's `judge` check plants selected changes in its company and compares this reader with the compiler, including the names in their refusals.
+[`Sources/Court`](Sources/Court) is a second reader, separate from the Swift compiler, for specified fragments of declarations. A verdict applies to the fragment the reader supports and to the obligations it examined. A form outside that fragment must receive a refusal that names it.
 
-[gate](https://github.com/DanielSwift1992/gate) applies these checks to records in other repositories. Its judge is built from a pinned revision of this corpus. The contract of each check defines what its result means.
+[gate](https://github.com/DanielSwift1992/gate) is another kind of application: it applies these checks to records in other repositories, such as ownership files and API contracts. Its judge is built from a pinned revision of this corpus, and the contract of each check defines what its result means.
 
 ![Target package responsibilities: vi owns the research and where/count semantics, showcase owns its constructed world and policy, and gate supplies an implementation under a versioned contract.](Documentation/Figures/framework-architecture.svg)
 
-The company and its rendering are the [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase), which depends on this one and runs its `Tools` and `LawCheck`. Gate pins an earlier judge. The showcase's [package diagram](https://github.com/DanielSwift1992/verification-is-identification-showcase/blob/main/Sources/Organization/Organization.docc/Resources/architecture.svg) shows the worked application and its generated representations.
+## The worked application
 
-## A worked application
-
-The [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) declares a company, its access policy and its intranet website as types, and the compiler checks the declared access requests against the policy. Its [company site](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/) presents the result, and [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) renders the pages from types. The company is a declared world: the checked access assertions are about its declarations.
+The [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) declares a company, its access policy and its intranet website as types, and the compiler checks the declared access requests against the policy. Its [company site](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/) presents the result, and [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) renders the pages from types. The company is a declared world: the checked access assertions are about its declarations. The showcase runs this package's `Tools` and `LawCheck`, and its [package diagram](https://github.com/DanielSwift1992/verification-is-identification-showcase/blob/main/Sources/Organization/Organization.docc/Resources/architecture.svg) shows the application and its generated representations.
 
 [Open the playground](https://danielswift1992.github.io/typed-playground/) to edit declarations and see the page they describe. [Its checks](https://github.com/DanielSwift1992/typed-playground#the-checks) document the supported subset of Swift.
-
-`swift build` checks the whole package. `swift test` runs the worked demos and prints "Executed 9 tests". `swift run Tools site` builds and serves the documentation locally.
 
 ## Read and work in the repository
 
@@ -110,7 +103,7 @@ The [showcase package](https://github.com/DanielSwift1992/verification-is-identi
 | Readers | Contracts stated by each reader | [`Sources/Court`](Sources/Court), [gate](https://github.com/DanielSwift1992/gate) |
 | Company and rendering | [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/), [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) | [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) |
 
-[`check.sh`](check.sh) lists the repository's checks. `./check.sh --only verdict` runs the registered proof and refusal fixtures. `./check.sh` runs the integration checks. `swift run Tools readme` compares the counts on this page with their source artifacts. Optional research experiments run separately with `./check.sh --research-only`. Two artifacts of this package are rendered by the showcase package, which checks them: the curve chart of the [Curve](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/curve/) page and the covered visible claim in Examples.
+`swift build` checks the whole package. `swift test` runs the worked demos and prints "Executed 9 tests". `swift run Tools site` builds and serves the documentation locally. [`check.sh`](check.sh) lists the repository's checks: `./check.sh --only verdict` runs the registered proof and refusal fixtures, `./check.sh` runs the integration checks, and `swift run Tools readme` compares the counts on this page with their source artifacts. Optional research experiments run separately with `./check.sh --research-only`. Two artifacts of this package are rendered by the showcase package, which checks them: the curve chart of the [Curve](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/curve/) page and the covered visible claim in Examples.
 
 ## License
 

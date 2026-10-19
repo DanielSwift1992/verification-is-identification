@@ -2,11 +2,11 @@
 
 You work with something you do not fully know. You see part of it, and you have a task. So two questions come first: what that part lets you conclude, and what you can do with it before you know the rest.
 
-You do not need to know everything. An answer is determined when every case compatible with what you have gives that answer. Identifying the whole source is one question among others, the one that asks for the whole source. That is the name: to verify an answer is to identify it, and the question decides how much of the source this takes.
+You do not need to know everything. The question decides how much of the source an answer takes, and identifying the whole source is only one question among others. That is the name: to verify an answer is to identify it.
 
 The research goal is wider than a verdict. The content a task concerns has to be preserved or transformed, the actual result has to reach the next participant, and further work has to remain possible. Unknown content can take part in that work before anyone identifies it.
 
-The arguments are in 35 papers. The part that can be checked is written as Swift types: the compiler checks it, and separate readers check specified parts of it. A 204-person company written the same way shows the notation at work.
+The arguments are in 35 papers. What has been made checkable is written as Swift types: the compiler checks it, and separate readers check specified parts of it. A 204-person company written the same way shows the notation at work.
 
 Start with [Verification Is Identification](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/verification_is_identification/): the criterion, the constructions, and how they connect to the source being studied.
 

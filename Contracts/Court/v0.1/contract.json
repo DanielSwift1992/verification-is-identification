@@ -1,0 +1,430 @@
+{
+  "schema": "vi.court.conformance/1",
+  "suite": "vi.court.questions/0.1",
+  "scope": "Finite question-separation and reader-boundary suite. Passing does not establish complete Swift coverage or general implementation equivalence.",
+  "reference_revision": "4d0bae55a4cdd2aa1de889691b604572f7e07332",
+  "versions": {
+    "where_question": "vi.where.definition-equality/1",
+    "where_input": "vi.where.questions-fixtures/1",
+    "where_normalization_canon": 4,
+    "count_question": "vi.count.unit-never-plus/1",
+    "count_input": "vi.count.rydberg-fixtures/1",
+    "response": "vi.court.cli-text/1"
+  },
+  "ownership": {
+    "where": "vi",
+    "count": "vi",
+    "organization": "showcase (planned; excluded from this suite)",
+    "delivery": "gate (planned integration)"
+  },
+  "missing_files": [
+    "fixtures/intentionally-absent.swift"
+  ],
+  "files": {
+    "fixtures/alias-same-definition.swift": {
+      "sha256": "f8d42eba974217fc6b16985783b94d7ef4646b8daab6cdd1b3c2fa16d2669d36",
+      "origin": "Research/Desk/audit/2026-10-18-judge-contract-codex/worlds/alias-same-definition.swift"
+    },
+    "fixtures/same-count-different-tree.swift": {
+      "sha256": "356cde2ae2047221f27cd189820dc767b385c055d66e7b8c421f9c9e42258b9b",
+      "origin": "Research/Desk/audit/2026-10-18-judge-contract-codex/worlds/same-count-different-tree.swift"
+    },
+    "fixtures/twice-opaque-name.swift": {
+      "sha256": "fb4a1a66fa1bea32271f684dfa439bf167a2d69f3d57cba03057fd75ec33c7e9",
+      "origin": "Research/Desk/audit/2026-10-18-judge-contract-codex/worlds/twice-opaque-name.swift"
+    },
+    "fixtures/twice-definition-is-identity.swift": {
+      "sha256": "f705459b4b2a0b463d9addad47e4efcee1f3d365e210a7ebc37e9404c0faaa8a",
+      "origin": "Research/Desk/audit/2026-10-18-judge-contract-codex/worlds/twice-definition-is-identity.swift"
+    },
+    "fixtures/double-actual-definition.swift": {
+      "sha256": "006bdef06e2e11e830062de509eed3df51f405bb4becfc18dfd765fa0f7ab5a8",
+      "origin": "Research/Desk/audit/2026-10-18-judge-contract-codex/worlds/double-actual-definition.swift"
+    },
+    "fixtures/count-product-unsupported.swift": {
+      "sha256": "3a73e907ba5f8d8f1f35ca0f96393e7569b965af9b316269fcec5bebc2c14d67",
+      "origin": "Research/Desk/audit/2026-10-18-judge-contract-codex/worlds/count-product-unsupported.swift"
+    },
+    "fixtures/Primitive.swift": {
+      "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a",
+      "origin": "Research/Desk/audit/2026-10-18-judge-contract-codex/snapshots/Primitive.swift",
+      "source_revision": "db20e6384691c19f111e75ba085d522ea483b357"
+    },
+    "fixtures/RydbergLadder.swift": {
+      "sha256": "2ca5fa874b4706c0255d0ad38dc58fff5cd19b414a2573403e9ecdcc6ca84f04",
+      "origin": "Research/Desk/audit/2026-10-18-judge-contract-codex/snapshots/RydbergLadder.swift",
+      "source_revision": "db20e6384691c19f111e75ba085d522ea483b357"
+    },
+    "fixtures/false-direct-drop.swift": {
+      "sha256": "944fb11a8c7b878723a9fdb21e92f3873954887c750a993745fea63fa25843bb",
+      "origin": "Research/Desk/audit/2026-10-18-judge-contract-codex/snapshots/false-direct-drop.swift"
+    },
+    "fixtures/fake-shared-answer.swift": {
+      "sha256": "07fc6158d2c54eca0003669821490d0a3391546a0f53be31eb21d4cc4e84e1d0",
+      "origin": "Research/Desk/audit/2026-10-18-judge-contract-codex/snapshots/fake-shared-answer.swift"
+    },
+    "fixtures/nested-admitted.swift": {
+      "sha256": "ac9b5e79b4b672854905d6691553c8960d502284ea69d02aa11c443784aa64bd",
+      "origin": "Checks/where-applications/nested-admitted.swift",
+      "source_revision": "4d0bae55a4cdd2aa1de889691b604572f7e07332"
+    },
+    "fixtures/admitted-definitions.swift": {
+      "sha256": "d541aa2b588099457cd5e03e3b39d1b3a5e894c0ae9aaa4f470c486faa8c473a",
+      "origin": "Checks/where-applications/admitted-definitions.swift",
+      "source_revision": "4d0bae55a4cdd2aa1de889691b604572f7e07332"
+    }
+  },
+  "cases": [
+    {
+      "id": "alias-same-definition",
+      "pass": "where",
+      "files": [
+        "fixtures/alias-same-definition.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "exit": 0,
+        "diagnostic": "none"
+      }
+    },
+    {
+      "id": "same-count-different-tree",
+      "pass": "where",
+      "files": [
+        "fixtures/same-count-different-tree.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ 'Claim = Match<Plus<Plus<Unit, Unit>, Unit>, Plus<Unit, Plus<Unit, Unit>>>' requires the types 'A' (aka 'Plus<Plus<Unit, Unit>, Unit>') and 'B' (aka 'Plus<Unit, Plus<Unit, Unit>>') be equivalent [Admitted]"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "exit": 1,
+        "diagnostic": "equivalence"
+      }
+    },
+    {
+      "id": "twice-opaque-name",
+      "pass": "where",
+      "files": [
+        "fixtures/twice-opaque-name.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ 'Claim = Match<Twice<Unit>, Plus<Unit, Unit>>' requires the types 'A' (aka 'Twice<Unit>') and 'B' (aka 'Plus<Unit, Unit>') be equivalent [Admitted]"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "exit": 1,
+        "diagnostic": "equivalence"
+      }
+    },
+    {
+      "id": "twice-definition-is-identity",
+      "pass": "where",
+      "files": [
+        "fixtures/twice-definition-is-identity.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ 'Claim = Match<Twice<Unit>, Plus<Unit, Unit>>' requires the types 'A' (aka 'Unit') and 'B' (aka 'Plus<Unit, Unit>') be equivalent [Admitted]"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "exit": 1,
+        "diagnostic": "equivalence"
+      }
+    },
+    {
+      "id": "double-actual-definition",
+      "pass": "where",
+      "files": [
+        "fixtures/double-actual-definition.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "exit": 0,
+        "diagnostic": "none"
+      }
+    },
+    {
+      "id": "ladder-nominal",
+      "pass": "where",
+      "files": [
+        "fixtures/RydbergLadder.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ 'GroundFloorStitch = EnergySum<FloorOneDepth, FloorTwoDepth, LymanAlphaDrop>' requires the types 'Whole' (aka 'Plus<Plus<Plus<Plus<Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>, Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>>, Plus<Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>, Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>>>, Plus<Plus<Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>, Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>>, Plus<Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>, Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>>>>, Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>>') and 'Plus<A, B>' (aka 'Plus<Plus<Plus<Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>, Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>, Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>>, Plus<Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>, Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>>>, Plus<Plus<Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>, Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>>, Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>>>') be equivalent [EnergyClosed]",
+            "✗ 'SecondFloorStitch = EnergySum<FloorTwoDepth, FloorThreeDepth, BalmerAlphaDrop>' requires the types 'Whole' (aka 'Plus<Plus<Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>, Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>') and 'Plus<A, B>' (aka 'Plus<Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>, Plus<Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>') be equivalent [EnergyClosed]",
+            "✗ 'ThirdFloorStitch = EnergySum<FloorThreeDepth, FloorFourDepth, PaschenAlphaDrop>' requires the types 'Whole' (aka 'Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>') and 'Plus<A, B>' (aka 'Plus<Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Unit>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Unit>>>') be equivalent [EnergyClosed]",
+            "✗ 'TwoRoadsOneDrop = EnergySum<BalmerBetaDrop, PaschenAlphaDrop, BalmerAlphaDrop>' requires the types 'Whole' (aka 'Plus<Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>, Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Unit, Unit>, Unit>>>') and 'Plus<A, B>' (aka 'Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Unit>>, Plus<Plus<Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>, Plus<Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>, Plus<Plus<Unit, Unit>, Plus<Unit, Unit>>>>') be equivalent [EnergyClosed]"
+          ],
+          "unordered": true
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "ladder-count",
+      "pass": "count",
+      "files": [
+        "fixtures/RydbergLadder.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--predicate",
+        "TickCountQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "RydbergLevels"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ COUNT holds: 10 source-bound readings checked; finite Unit/Never/Plus rules and definition/count derivations replayed.",
+            "Scope: RydbergLevels / UnaryArithmeticEncoding / TickCountQuestion; all 2 presented files; closed aliases/top-level metatypes; Int range and reader budgets; nominal equality and Swift conformance are separate checks."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-false-direct-drop",
+      "pass": "count",
+      "files": [
+        "fixtures/false-direct-drop.swift",
+        "fixtures/RydbergLadder.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--predicate",
+        "TickCountQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "RydbergLevels"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ COUNT: 'FalseBalmerBetaBinding.Right' count Left = 37, but Answer = 36 [TickCountQuestion]"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-fake-shared-answer",
+      "pass": "count",
+      "files": [
+        "fixtures/fake-shared-answer.swift",
+        "fixtures/RydbergLadder.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--predicate",
+        "TickCountQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "RydbergLevels"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ COUNT: 'ForgedFloorTwo.Right' count Left = 36, but Answer = 32 [TickCountQuestion]",
+            "✗ COUNT: 'ForgedFloorTwo.Left' count Left = 36, but Answer = 32 [TickCountQuestion]"
+          ],
+          "unordered": true
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-unsupported-product",
+      "pass": "count",
+      "files": [
+        "fixtures/count-product-unsupported.swift",
+        "fixtures/RydbergLadder.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--predicate",
+        "TickCountQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "RydbergLevels"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ COUNT unresolved: 'ProductCount' count reading unresolved: 'Times<U2, U2>' is outside the finite Unit/Never/Plus count fragment"
+          ]
+        }
+      }
+    },
+    {
+      "id": "count-missing-file",
+      "pass": "count",
+      "files": [
+        "fixtures/intentionally-absent.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--predicate",
+        "TickCountQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "RydbergLevels"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "input-error",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "line_patterns": [
+            "✗ COUNT unresolved: (?=.*intentionally-absent\\.swift)(?=.*No such file or directory).+"
+          ]
+        }
+      }
+    },
+    {
+      "id": "where-nested-supported-neighbor",
+      "pass": "where",
+      "files": [
+        "fixtures/nested-admitted.swift",
+        "fixtures/admitted-definitions.swift"
+      ],
+      "args": [],
+      "compiler": {
+        "exit": 0,
+        "diagnostic": "none"
+      },
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: cannot read line 25 of 'fixtures/nested-admitted.swift': 'Twin<Use<Good>>' contains a gated application outside the root this court judges"
+          ]
+        }
+      }
+    },
+    {
+      "id": "where-missing-file",
+      "pass": "where",
+      "files": [
+        "fixtures/intentionally-absent.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "input-error",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: cannot read fixtures/intentionally-absent.swift"
+          ]
+        }
+      }
+    }
+  ],
+  "remaining": [
+    "Structured per-request coverage and unsupported/tool-error outcomes (T-0003).",
+    "Full port acceptance also requires the existing where/count law suites, with their own profiles.",
+    "Known generic-membership defect T-0019 is not made normative by this suite.",
+    "Organizational policy, the general VI method, and the original research question are outside this suite."
+  ]
+}

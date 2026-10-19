@@ -2,7 +2,7 @@
 
 A rendered artifact can have several source representations. Call two forms equivalent when a specified renderer gives them identical bytes. This paper studies that equivalence, transformations that preserve it and the cost of checking particular representatives. The renderer, candidate domain, workload and cost law must be specified. Gauge.swift names interfaces, while the equations and conditional arguments below establish their intended scope.
 
-The historical measurements are recorded in <doc:Curve>. They motivate the question without proving a universal preferred packing.
+The historical measurements are recorded on [the curve page of the showcase](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/curve). They motivate the question without proving a universal preferred packing.
 
 ## §0. Derivation
 
@@ -72,7 +72,7 @@ Agreement on a finite corpus and targeted refusals test the represented cases. M
 | Verdict | ReadingFactors and question-specific agreement |
 | PiP | PiP3 (cost units), PiP7 (admissibility and uniqueness) |
 | Matter | M64 (reuse requires a relation between comparison occasions) |
-| The record | <doc:Curve> (historical measurements), CodeForm (selected parameters) |
+| The record | [the curve page of the showcase](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/curve) (historical measurements), CodeForm (selected parameters) |
 
 ## Topics
 

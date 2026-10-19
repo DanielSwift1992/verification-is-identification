@@ -38,6 +38,8 @@ enum VoiceTool {
     // DocumentKit catalogs (253 and 50 of the pages scope's 308) are scanned there, with
     // the same pins. The pages pin here moves to the 5 that remain (2 in this package's
     // catalog, 3 in Examples), so no unreviewed room is left behind.
+    // On 2026-10-19 the Curve page and the covered visible claim, both rendered by showcase
+    // code, moved there too (T-0025); the Curve page carried one hit, and the pin moves to 4.
     // On 2026-10-12 every paper paragraph was joined onto one line; cmark and
     // pandoc render each paper identically before and after. Two wrapped
     // continuation lines had begun with |z| and |C|, and the table-row filter
@@ -46,7 +48,7 @@ enum VoiceTool {
     static let pins: [(scope: String, count: Int)] = [
         ("papers", 1395),
         ("lattice", 6),
-        ("pages", 5),
+        ("pages", 4),
         ("readme", 2),
     ]
 

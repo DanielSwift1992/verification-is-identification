@@ -101,7 +101,7 @@ answer without enumerating its hidden coordinate. A symbolic operation that
 exposes that coordinate demonstrates the limit of reusing an invariant.
 `Checks/Coverage.swift` checks these boundaries alongside the verdict checks.
 
-The [published visible claim](doc:CoveredVisibleClaim) reads its support,
+The [published visible claim](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/coveredvisibleclaim) reads its support,
 question, encoding and answer from a root-bound coverage application.
 `swift run DocumentKitDemo claim --write` regenerates that page.
 

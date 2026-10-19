@@ -1222,7 +1222,8 @@ enum WhereJudge {
     // the equalities use, the resolved name must be a presented conformer,
     // and the conformer must wear the protocol through the ladder. Either
     // failure is a refusal in this court's own voice, at the site that
-    // required it.
+    // required it. Applied generic types have a separate boundary: knowing
+    // the head's protocol list does not establish its argument constraints.
     static func judgeMemberships(
         _ memberships: [(String, String)], site: String, tag: String?,
         bindings: [String: Term], world: World,
@@ -1237,7 +1238,11 @@ enum WhereJudge {
             if world.conformers[resolved.head] == nil, world.presentedBodies.contains(resolved.head) {
                 fail("cannot read declaration '\(resolved.head)': its body is outside this court's flat-definition fragment")
             }
-            guard resolved.args.isEmpty, let wearer = world.conformers[resolved.head] else {
+            guard resolved.args.isEmpty else {
+                fail("cannot judge membership of '\(spelled)' in '\(proto)' required by '\(site)': "
+                    + "generic applicability is not established by this membership reader")
+            }
+            guard let wearer = world.conformers[resolved.head] else {
                 refusals.append(
                     "'\(site)' requires the type '\(lhs)' (aka '\(spelled)') conform to "
                         + "'\(proto)', and no conformer of that name is presented\(mark)"

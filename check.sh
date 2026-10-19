@@ -91,6 +91,7 @@ LAWS+=(
 "alias|a claim through an alias meets the gate its definition names|bash Checks/where-alias.sh"
 "extension|a conformance stated in an extension is worn and judged|bash Checks/where-extension.sh"
 "conditional|a conditional conformance is read as a gate or refused by name|bash Checks/where-conditional.sh"
+"memberships|generic membership is explicitly unread while plain membership is judged|bash Checks/where-memberships.sh"
 "lexical|a form the reader does not recognise is refused by name|bash Checks/where-lexical.sh"
 "scope|a name the court resolves is declared once, outside every body, or refused by name|bash Checks/where-scope.sh"
 "applications|every application of a gated head is read or refused by name|bash Checks/where-applications.sh"

@@ -34,11 +34,11 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-# Two laws read only a committed tree: the second judge checks out HEAD into
-# a worktree, and the artifacts law regenerates files and diffs them, which
-# over work in progress would mix your edits into its answer. A run with work
-# in progress names them as not asked and holds the rest.
-NEEDS_CLEAN="judge artifacts"
+# A law that reads only a committed tree is named here; a run with work in
+# progress names it as not asked and holds the rest. The two that did, the
+# differential judge and the artifacts law, moved with the company to the
+# showcase package (T-0015).
+NEEDS_CLEAN=""
 
 # tag | what it holds | how to ask
 LAWS=(
@@ -82,12 +82,9 @@ LAWS+=(
 "census|the declaration count per target|swift run Tools census"
 "voice|lexical counts do not exceed their authored pins|swift run Tools voice"
 "readme|the numbers are counted, not remembered|swift run Tools readme"
-"rules|a rule is one substitution|swift run Tools lint Sources/DynamicsDemo/Rules.swift --strict"
 "renames|empty intersections have one name; duplicate controls refuse|swift run Tools lint Sources/VerificationIsIdentification --docc Sources/VerificationIsIdentification/VerificationIsIdentification.docc --strict && python3 Checks/lint_duplicates.py --tools .build/debug/Tools"
 "topics|the Topics tree equals the type lattice|swift package --allow-writing-to-package-directory tree-sort check"
 "families|every paper part has an owner and its readers reject lost addresses|swift run Tools papers && python3 Checks/paper_families.py --tools .build/debug/Tools --graph auto"
-"artifacts|the committed artifacts match the types, byte for byte|swift package --allow-writing-to-package-directory generate >/dev/null && swift run OrgDemo render-doc >/dev/null && swift run DocumentKitDemo render-doc >/dev/null && swift run DocumentKitDemo claim --write >/dev/null && swift run VectorDemo all >/dev/null && git diff --exit-code"
-"judge|the second judge agrees with the compiler|swift run Tools judge diff 200"
 "light|the second judge names the claims of Light it does not read, and the rest holds|bash Checks/where-light.sh"
 "ladder|the ladder's count readings agree and its nominal refusals stand|bash Checks/rydberg.sh"
 "grants|the second judge reads the grant world|swift run Tools judge where Sources/Examples/Grants.swift"

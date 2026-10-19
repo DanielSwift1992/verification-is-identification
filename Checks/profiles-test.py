@@ -22,6 +22,7 @@ class ProfileControls(unittest.TestCase):
     def test_registry_and_commands(self):
         raw, registry = profiles.read_registry(ROOT)
         self.assertIn('response', registry)
+        self.assertEqual(profiles.command_for('verdict'), ['bash', 'check.sh', '--only', 'verdict'])
         self.assertEqual(profiles.command_for('verdict:core'), ['bash', 'Checks/verdict.sh', 'core'])
         self.assertEqual(profiles.command_for('court'), ['bash', 'check.sh', '--only', 'court'])
         with self.assertRaises(ValueError):
@@ -35,6 +36,7 @@ class ProfileControls(unittest.TestCase):
         with mock.patch.dict(profiles.PROFILES, {'extra': ['response']}):
             with self.assertRaises(ValueError):
                 profiles.validate_coverage(registry)
+        # The company's laws moved to the showcase package; naming one here is not coverage.
         with mock.patch.dict(profiles.PROFILES, {'showcase': ['rules', 'artifacts', 'judge']}):
             with self.assertRaises(ValueError):
                 profiles.validate_coverage(registry)
@@ -188,7 +190,7 @@ if [ -z "${flag:-}" ]; then
 fi
 case "${VI_FAULT:-}" in
     crash) echo 'Stack dump: compiler failed' >&2; exit 70 ;;
-    missing) echo 'error: no such module Missing' >&2; echo "error: RejectedPublicationArchive" >&2; exit 1 ;;
+    missing) echo 'error: no such module Missing' >&2; echo "error: $VI_FIRST_NAME" >&2; exit 1 ;;
     unrelated) echo 'error: UnrelatedFailure' >&2; exit 1 ;;
     accepts) exit 0 ;;
 esac
@@ -213,42 +215,42 @@ exit 0
         trace = self.scratch / f'{scope}-{fault}.trace'
         trace.write_text('')
         env = {**os.environ, 'PATH': str(self.tools) + os.pathsep + os.environ['PATH'],
-               'VI_TRACE': str(trace), 'VI_FAKE_BIN': str(self.scratch), 'VI_FAULT': fault}
+               'VI_TRACE': str(trace), 'VI_FAKE_BIN': str(self.scratch), 'VI_FAULT': fault,
+               'VI_FIRST_NAME': self.pairs[0][1]}
         result = subprocess.run(['bash', 'Checks/verdict.sh', scope], cwd=ROOT, env=env, capture_output=True, text=True)
         return result, [line.split('\t') for line in trace.read_text().splitlines()]
 
-    def test_partition_preserves_positive_files_and_every_refusal(self):
+    def test_core_equals_all_after_the_publication_moved(self):
         observations = {}
-        for scope in ['all', 'core', 'publication']:
+        for scope in ['all', 'core']:
             result, calls = self.run_scope(scope)
             self.assertEqual(result.returncode, 0, result.stdout[-1000:] + result.stderr)
             positives = [call for call in calls if call[0] == 'swiftc' and not any(x.startswith('-D') for x in call)]
             flags = [x[2:] for call in calls for x in call if x.startswith('-D')]
             self.assertEqual(len(flags), len(set(flags)))
             observations[scope] = (positives, set(flags), calls)
-        all_positive, all_flags, _ = observations['all']
+        all_positive, all_flags, all_calls = observations['all']
         core_positive, core_flags, core_calls = observations['core']
-        pub_positive, pub_flags, _ = observations['publication']
         self.assertEqual(all_flags, set(self.flags))
-        self.assertEqual(pub_flags, {x for x in self.flags if x.startswith('PUBLICATION_')})
-        self.assertEqual(len(pub_flags), 7)
-        self.assertFalse(core_flags & pub_flags)
-        self.assertEqual(core_flags | pub_flags, all_flags)
+        self.assertEqual(core_flags, all_flags)
+        self.assertFalse(any(flag.startswith('PUBLICATION_') for flag in all_flags))
         sources = lambda call: {arg for arg in call if arg.endswith('.swift')}
-        self.assertEqual(sources(all_positive[0]), sources(core_positive[0]) | sources(pub_positive[0]))
-        self.assertFalse(sources(core_positive[0]) & sources(pub_positive[0]))
-        self.assertEqual(sources(pub_positive[0]), {'Checks/Publication.swift', 'Sources/DocumentKitDemo/Claim.swift'})
-        self.assertFalse(any('DocumentKitDemo' in arg for call in core_calls for arg in call))
-        self.assertIn(['swift', 'build', '--target', 'GrammarLexicon'], core_calls)
-        self.assertIn(['swift', 'build', '--target', 'Examples'], core_calls)
-        print(f'coverage: {len(all_flags)} refusals = {len(core_flags)} core + {len(pub_flags)} publication', flush=True)
+        self.assertEqual(sources(all_positive[0]), sources(core_positive[0]))
+        self.assertFalse(any('DocumentKitDemo' in arg or 'Publication.swift' in arg
+                             for call in all_calls + core_calls for arg in call))
+        for calls in (all_calls, core_calls):
+            self.assertIn(['swift', 'build', '--target', 'GrammarLexicon'], calls)
+            self.assertIn(['swift', 'build', '--target', 'Examples'], calls)
+        rejected = subprocess.run(['bash', 'Checks/verdict.sh', 'publication'], cwd=ROOT, capture_output=True, text=True)
+        self.assertEqual(rejected.returncode, 2)
+        print(f'coverage: {len(all_flags)} refusals, core and all identical', flush=True)
 
     def test_wrong_failures_cannot_pass(self):
         for fault in ['build', 'positive', 'crash', 'missing', 'unrelated', 'accepts']:
             with self.subTest(fault=fault):
-                result, calls = self.run_scope('publication', fault)
+                result, calls = self.run_scope('all', fault)
                 self.assertNotEqual(result.returncode, 0)
-                self.assertNotIn('verdict: refused PUBLICATION_ARCHIVE_IS_ACTIVE', result.stdout)
+                self.assertNotIn(f'verdict: refused {self.pairs[0][0]}', result.stdout)
 
 
 if __name__ == '__main__':

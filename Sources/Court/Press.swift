@@ -2,18 +2,16 @@ import Foundation
 
 // ═══════════════════════════════════════════════════════
 // Press applies one rewrite triple to one state file: `swift run Tools press <Rule>
-// [--file <path>] [--rules <path>]`. This is the whole applier the dynamics medium ever needs, for
+// --file <path> --rules <path>`. This is the whole applier the dynamics medium ever needs, for
 // every domain at once: find the rule's slot alias, compare the slot's term with the
 // rule's pattern, substitute the template. One match or none, never a search; a
 // mismatch is a lawful no-op that leaves the file byte-identical. No domain logic
-// stands here or ever will: a system's behaviour is its triples
-// (Sources/DynamicsDemo/Rules.swift), and the judge already admitted every press
+// stands here or ever will: a system's behaviour is its triples (the showcase's
+// Sources/DynamicsDemo/Rules.swift), and the judge already admitted every press
 // when it compiled the rule's generic declaration.
 // ═══════════════════════════════════════════════════════
 
 public enum Press {
-    static let defaultDictionaryPath = "Sources/DynamicsDemo/Rules.swift"
-    static let defaultStatePath = "Sources/DynamicsDemo/WorldState.swift"
 
     struct Rule {
         let name: String
@@ -233,22 +231,24 @@ public enum Press {
 
     public static func run(_ args: [String]) {
         var arguments = args
-        var statePath = defaultStatePath
-        if let flag = arguments.firstIndex(of: "--file"), flag + 1 < arguments.count {
-            statePath = arguments[flag + 1]
-            arguments.removeSubrange(flag...flag + 1)
+        // The dynamics world moved with the showcase (T-0015): the state file and the rule
+        // dictionary are named, never assumed.
+        guard let fileFlag = arguments.firstIndex(of: "--file"), fileFlag + 1 < arguments.count else {
+            fail("usage: Tools press <Rule>[,<Rule>…] --file <state file> --rules <rule file>")
         }
-        var dictionaryPath = defaultDictionaryPath
-        if let flag = arguments.firstIndex(of: "--rules"), flag + 1 < arguments.count {
-            dictionaryPath = arguments[flag + 1]
-            arguments.removeSubrange(flag...flag + 1)
+        let statePath = arguments[fileFlag + 1]
+        arguments.removeSubrange(fileFlag...fileFlag + 1)
+        guard let rulesFlag = arguments.firstIndex(of: "--rules"), rulesFlag + 1 < arguments.count else {
+            fail("usage: Tools press <Rule>[,<Rule>…] --file <state file> --rules <rule file>")
         }
+        let dictionaryPath = arguments[rulesFlag + 1]
+        arguments.removeSubrange(rulesFlag...rulesFlag + 1)
         if let first = arguments.first, first == "append" || first == "rubout" || first == "clear" {
             pressLiteral(first, Array(arguments.dropFirst()), statePath: statePath)
             return
         }
         guard let ruleArgument = arguments.first else {
-            fail("usage: Tools press <Rule>[,<Rule>…] [--file <state file>] [--rules <rule file>]")
+            fail("usage: Tools press <Rule>[,<Rule>…] --file <state file> --rules <rule file>")
         }
         guard let dictionary = try? String(contentsOfFile: dictionaryPath, encoding: .utf8) else {
             fail("cannot read \(dictionaryPath)")

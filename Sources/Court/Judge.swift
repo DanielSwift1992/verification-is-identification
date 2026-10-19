@@ -70,14 +70,14 @@ public enum Judge {
     static let departments: Set<String> = ["Finance", "Engineering", "Sales", "People"]
     static let workplaces: Set<String> = ["OnSite", "Hybrid", "Remote"]
     static let genders: Set<String> = ["Male", "Female"]
-    static let shareHomes: [String: String] = [
+    public static let shareHomes: [String: String] = [
         "FinanceShare": "Finance", "EngineeringShare": "Engineering",
         "SalesShare": "Sales", "PeopleShare": "People",
     ]
 
     /// The table states each seeded cycle's rotation: one `Next` step costs one row,
     /// whatever the depth of the chain that asks for it.
-    static let nextInCycle: [String: String] = [
+    public static let nextInCycle: [String: String] = [
         "IndividualContributor": "Lead", "Lead": "Manager",
         "Manager": "IndividualContributor",
         "Finance": "Engineering", "Engineering": "Sales",
@@ -647,8 +647,10 @@ public enum Judge {
             return
         }
         if arguments.first == "diff" || arguments.first == "chain" {
-            JudgeDiff.run(arguments)
-            return
+            // The differential seat builds the company, and moved with it (T-0015).
+            FileHandle.standardError.write(Data(
+                "✗ judge \(arguments[0]) moved with the company: run `swift run ShowcaseTools judge \(arguments[0])` in the showcase package\n".utf8))
+            exit(2)
         }
         if arguments.first == "where" {
             WhereJudge.run(Array(arguments.dropFirst()))
@@ -658,9 +660,13 @@ public enum Judge {
             printParsed(Array(arguments.dropFirst()))
             return
         }
-        let paths = arguments.isEmpty
-            ? ["Sources/Organization/System/GeneratedTeam.swift"]
-            : arguments
+        // The corpus is named: the company's GeneratedTeam.swift now lives in the showcase.
+        guard arguments.isEmpty == false else {
+            FileHandle.standardError.write(Data(
+                "✗ THE JUDGE needs the files it reads: `swift run Tools judge <path>…`\n".utf8))
+            exit(2)
+        }
+        let paths = arguments
         guard let judgment = judge(paths: paths) else {
             FileHandle.standardError.write(Data("✗ THE JUDGE cannot read the corpus\n".utf8))
             exit(2)
@@ -669,7 +675,7 @@ public enum Judge {
         if judgment.refusals.isEmpty == false { exit(1) }
     }
 
-    static func report(_ judgment: Judgment) {
+    public static func report(_ judgment: Judgment) {
         let clock = String(format: "%.1f", judgment.milliseconds)
         if judgment.refusals.isEmpty {
             print("✓ THE JUDGE holds: \(judgment.declarations) declarations · "

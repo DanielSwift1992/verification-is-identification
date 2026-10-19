@@ -33,6 +33,11 @@ enum VoiceTool {
     // This records the expanded corpus as the review baseline. It does not
     // certify every residual match or claim a completed semantic audit.
     // Other scope pins are unchanged. A rise still fails until explicitly reviewed.
+    // On 2026-10-19 the company moved to the showcase package (T-0015) with its prose:
+    // the kit scope (DocumentKit doc comments, pin 18) and the Organization and
+    // DocumentKit catalogs (253 and 50 of the pages scope's 308) are scanned there, with
+    // the same pins. The pages pin here moves to the 5 that remain (2 in this package's
+    // catalog, 3 in Examples), so no unreviewed room is left behind.
     // On 2026-10-12 every paper paragraph was joined onto one line; cmark and
     // pandoc render each paper identically before and after. Two wrapped
     // continuation lines had begun with |z| and |C|, and the table-row filter
@@ -41,8 +46,7 @@ enum VoiceTool {
     static let pins: [(scope: String, count: Int)] = [
         ("papers", 1395),
         ("lattice", 6),
-        ("kit", 18),
-        ("pages", 308),
+        ("pages", 5),
         ("readme", 2),
     ]
 
@@ -72,6 +76,10 @@ enum VoiceTool {
             let name = String(spec[..<equals])
             let kind = String(spec[spec.index(after: equals)..<colon])
             let target = spec[spec.index(after: colon)..<at].split(separator: "!", maxSplits: 1).map(String.init)
+            guard name.isEmpty == false, target.isEmpty == false, target[0].isEmpty == false else {
+                FileHandle.standardError.write(Data("voice: --scope needs a name and a path\n".utf8))
+                exit(2)
+            }
             guard FileManager.default.fileExists(atPath: root + "/" + target[0]) else {
                 FileHandle.standardError.write(Data("voice: cannot read \(target[0]) for scope \(name)\n".utf8))
                 exit(2)
@@ -93,7 +101,6 @@ enum VoiceTool {
         return ([
             ("papers", scanMarkdown(under: "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers")),
             ("lattice", scanDocComments(under: "Sources/VerificationIsIdentification")),
-            ("kit", scanDocComments(under: "Sources/DocumentKit")),
             ("pages", scanMarkdown(under: "Sources", excluding: "Papers")),
             ("readme", scanMarkdownFile(root + "/README.md")),
         ], pins, rest)

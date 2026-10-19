@@ -5,8 +5,8 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 verdict_scope="${1:-all}"
 case "$verdict_scope" in
-    all|core|halt|sourcecontinuation|residuecontinuation|recordreadings|admission|localphase|localpolicy|contact|publication|whole|ice|seeing|markers|uniqueness|distance|return|scopedlaw|knowledgeclosure|acquisition|interactions|knowledge|observer|resident|construction|boundary|common|evidence|evolution|closure|probe|routing|reuse|probepair|lawtransport|demand|frame|discovery) ;;
-    *) echo "usage: bash Checks/verdict.sh [all|core|halt|sourcecontinuation|residuecontinuation|recordreadings|admission|localphase|localpolicy|contact|publication|whole|ice|seeing|markers|uniqueness|distance|return|scopedlaw|knowledgeclosure|acquisition|interactions|knowledge|observer|resident|construction|boundary|common|evidence|evolution|closure|probe|routing|reuse|probepair|lawtransport|demand|frame|discovery]" >&2; exit 2 ;;
+    all|core|halt|sourcecontinuation|residuecontinuation|recordreadings|admission|localphase|localpolicy|contact|whole|ice|seeing|markers|uniqueness|distance|return|scopedlaw|knowledgeclosure|acquisition|interactions|knowledge|observer|resident|construction|boundary|common|evidence|evolution|closure|probe|routing|reuse|probepair|lawtransport|demand|frame|discovery) ;;
+    *) echo "usage: bash Checks/verdict.sh [all|core|halt|sourcecontinuation|residuecontinuation|recordreadings|admission|localphase|localpolicy|contact|whole|ice|seeing|markers|uniqueness|distance|return|scopedlaw|knowledgeclosure|acquisition|interactions|knowledge|observer|resident|construction|boundary|common|evidence|evolution|closure|probe|routing|reuse|probepair|lawtransport|demand|frame|discovery]" >&2; exit 2 ;;
 esac
 verdict_tmp="$(mktemp -d "${TMPDIR:-/tmp}/vi-verdict.XXXXXX")"
 trap 'rm -rf "$verdict_tmp"' EXIT
@@ -46,17 +46,10 @@ if [ "$verdict_scope" = localphase ] || [ "$verdict_scope" = halt ] || [ "$verdi
         -I "$verdict_bin/Modules" "${verdict_examples_sources[@]}" \
         -emit-module-path "$verdict_bin/Modules/Examples.swiftmodule"
 else
-    if [ "$verdict_scope" = publication ] || [ "$verdict_scope" = all ]; then
-        swift build --product DocumentKitDemo
-        # The admission fixture reads the actual vocabulary, not a cached grant.
-        if [ "$verdict_scope" = all ]; then
-            swift build --target GrammarLexicon
-        fi
-    else
-        swift build --target Examples
-        if [ "$verdict_scope" = core ]; then
-            swift build --target GrammarLexicon
-        fi
+    swift build --target Examples
+    # The admission fixture reads the actual vocabulary, not a cached grant.
+    if [ "$verdict_scope" = all ] || [ "$verdict_scope" = core ]; then
+        swift build --target GrammarLexicon
     fi
     verdict_bin="$(swift build --show-bin-path)"
 fi
@@ -100,11 +93,6 @@ typecheck() {
     if [ "$verdict_scope" = contact ]; then
         swiftc -typecheck -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/ContactCalibration.swift Checks/ContactInquiry.swift "$@"
-        return
-    fi
-    if [ "$verdict_scope" = publication ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
-            -module-cache-path "$verdict_tmp/cache" Sources/DocumentKitDemo/Claim.swift Checks/Publication.swift "$@"
         return
     fi
     if [ "$verdict_scope" = discovery ]; then
@@ -269,8 +257,6 @@ typecheck() {
         Checks/Stationarity.swift
         Checks/Basis.swift
         Checks/Context.swift
-        Sources/DocumentKitDemo/Claim.swift
-        Checks/Publication.swift
         Checks/Transport.swift
         Checks/Saturation.swift
         Checks/Acquisition.swift
@@ -388,16 +374,6 @@ typecheck() {
         Checks/Seeing.swift
         Checks/ProjectionDefectCertificate.swift
     )
-    if [ "$verdict_scope" = core ]; then
-        verdict_core_sources=()
-        for verdict_source in "${verdict_positive_sources[@]}"; do
-            case "$verdict_source" in
-                Sources/DocumentKitDemo/Claim.swift|Checks/Publication.swift) ;;
-                *) verdict_core_sources+=("$verdict_source") ;;
-            esac
-        done
-        verdict_positive_sources=("${verdict_core_sources[@]}")
-    fi
     swiftc -typecheck -I "$verdict_bin/Modules" \
         -module-cache-path "$verdict_tmp/cache" "${verdict_positive_sources[@]}" "$@"
 }
@@ -425,8 +401,6 @@ elif [ "$verdict_scope" = sourcecontinuation ]; then
     echo "continuation: a shared late reading derives the original-answer equality; source and joining addresses are checked"
 elif [ "$verdict_scope" = halt ]; then
     echo "halt: a conserved square derives equal source readings; source binding and image conservation are checked"
-elif [ "$verdict_scope" = publication ]; then
-    echo "publication: active support, channel binding and coverage-preserving reordering compile"
 elif [ "$verdict_scope" = discovery ]; then
     echo "discovery: transition traces, successor coverage, source-bound readings and diagonal fixed points compile"
 elif [ "$verdict_scope" = seeing ]; then
@@ -1409,13 +1383,6 @@ for verdict_case in \
     CONTACT_COLLISION_REUSES_ANSWER:RejectedContactCollision \
     CONTACT_FALSE_ADMISSION:RejectedContactAdmission \
     CONTACT_CHANGES_SEAM:RejectedContactSeam \
-    PUBLICATION_ARCHIVE_IS_ACTIVE:RejectedPublicationArchive \
-    PUBLICATION_OTHER_QUESTION:RejectedPublicationQuestion \
-    PUBLICATION_OTHER_ENCODING:RejectedPublicationEncoding \
-    PUBLICATION_OTHER_SPACE:RejectedPublicationSpace \
-    PUBLICATION_SAME_LABEL_DIFFERENT_READING:RejectedPublicationReadingBridge \
-    PUBLICATION_COHERENT_FALSE_READINGS:RejectedCoherentPublication \
-    PUBLICATION_VISIBLE_IDENTIFIES_SOURCE:RejectedPublishedIdentification \
     PROJECTION_DEFECT_PASS_ABOVE_TOLERANCE:RejectedSecondSettingPassesTheTolerance \
     PROJECTION_DEFECT_REFUSE_BELOW_TOLERANCE:RejectedFirstSettingExceedsTheTolerance \
     PROJECTION_DEFECT_OTHER_UNIT:RejectedToleranceInAnotherUnit \
@@ -1451,12 +1418,6 @@ do
         continue
     fi
     if [ "$verdict_scope" = contact ] && [[ "$verdict_flag" != CONTACT_* ]]; then
-        continue
-    fi
-    if [ "$verdict_scope" = core ] && [[ "$verdict_flag" = PUBLICATION_* ]]; then
-        continue
-    fi
-    if [ "$verdict_scope" = publication ] && [[ "$verdict_flag" != PUBLICATION_* ]]; then
         continue
     fi
     if [ "$verdict_scope" = discovery ]; then
@@ -1561,9 +1522,6 @@ do
     case "$verdict_case_file" in
         Checks/Coverage.swift|Checks/Saturation.swift|Checks/Transition.swift|Checks/Transport.swift)
             verdict_case_sources+=(Checks/Verdict.swift)
-            ;;
-        Checks/Publication.swift)
-            verdict_case_sources+=(Sources/DocumentKitDemo/Claim.swift)
             ;;
         Checks/IceIncidence.swift|Checks/IceCoverage.swift)
             verdict_case_sources=(Checks/IceIncidence.swift Checks/IceCoverage.swift)

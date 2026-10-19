@@ -14,8 +14,7 @@ import time
 
 ROOT = Path(__file__).resolve().parent.parent
 PROFILES = {
-    'vi': ['verdict:core', 'renames', 'topics', 'families', 'quotes'],
-    'showcase': ['verdict:publication', 'rules', 'artifacts', 'judge'],
+    'vi': ['verdict', 'renames', 'topics', 'families', 'quotes'],
     'court': ['light', 'ladder', 'grants', 'alias', 'extension', 'conditional',
               'memberships', 'lexical', 'scope', 'applications', 'court', 'contract', 'response'],
     'integration': ['build', 'census', 'voice', 'readme', 'profiles', 'ci', 'law'],
@@ -40,12 +39,9 @@ def validate_coverage(registry):
     selected = [item for group in PROFILES.values() for item in group]
     if len(selected) != len(set(selected)):
         raise ValueError('duplicate profile obligation')
-    if {x for x in selected if x.startswith('verdict:')} != {'verdict:core', 'verdict:publication'}:
-        raise ValueError('verdict must retain both core and publication scopes')
-    ordinary = {x for x in selected if not x.startswith('verdict:')}
-    if ordinary | {'verdict'} != set(registry):
+    if set(selected) != set(registry):
         raise ValueError('profile coverage differs from registered laws: ' +
-                         repr(sorted((ordinary | {'verdict'}) ^ set(registry))))
+                         repr(sorted(set(selected) ^ set(registry))))
 
 
 def command_for(item):

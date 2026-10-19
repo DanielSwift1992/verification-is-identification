@@ -24,8 +24,6 @@ enum Census {
 
     private static let targets: [Target] = [
         Target(name: "VerificationIsIdentification", paths: ["Sources/VerificationIsIdentification"]),
-        Target(name: "DocumentKit", paths: ["Sources/DocumentKit"]),
-        Target(name: "Organization", paths: ["Sources/Organization"]),
         Target(name: "Examples", paths: ["Sources/Examples"]),
         Target(name: "Court", paths: ["Sources/Court"]),
         Target(name: "Tools+Plugins", paths: ["Sources/Tools", "Plugins"]),
@@ -164,8 +162,6 @@ enum Census {
     // the reader is a type. ──
     private static let atomTarget: [String: String] = [
         "VerificationIsIdentification": "Lattice",
-        "DocumentKit": "Engine",
-        "Organization": "Company",
         "Court": "Court",
         "Tools+Plugins": "Tooling",
     ]
@@ -189,6 +185,10 @@ enum Census {
             }
             let label = args[index + 1][..<equals].split(separator: ":", maxSplits: 1).map(String.init)
             let paths = args[index + 1][args[index + 1].index(after: equals)...].split(separator: ",").map(String.init)
+            guard label.isEmpty == false, label[0].isEmpty == false, paths.isEmpty == false else {
+                FileHandle.standardError.write(Data("census: --target needs a name and at least one path\n".utf8))
+                exit(2)
+            }
             for path in paths where FileManager.default.fileExists(atPath: path) == false {
                 FileHandle.standardError.write(Data("census: cannot read \(path) for target \(label[0])\n".utf8))
                 exit(2)

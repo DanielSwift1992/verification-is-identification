@@ -41,8 +41,7 @@ jobs:
           generate-documentation
           --enable-experimental-combined-documentation
           --experimental-enable-custom-templates
-          --target VerificationIsIdentification --target Organization
-          --target DocumentKit --target Examples
+          --target VerificationIsIdentification --target Examples
           --target GrammarLexicon --target Alphabet
           --transform-for-static-hosting
           --hosting-base-path verification-is-identification
@@ -52,7 +51,7 @@ jobs:
         run: |
           python3 - << 'EOF'
           import pathlib
-          hook = pathlib.Path('Sources/Organization/Organization.docc/footer.html').read_text()
+          hook = pathlib.Path('Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html').read_text()
           root = pathlib.Path('_site')
           patched = 0
           for shell in root.rglob('index.html'):

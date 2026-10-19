@@ -164,4 +164,28 @@ if [ "$lexical_said" -ne 2 ] || [ -s "$lexical_tmp/lent-body.out" ] \
     echo "where-lexical: the court judged a Body it cannot read, or named another reason" >&2
     exit 1
 fi
-echo "✓ where-lexical: six unread forms are named at their line, the compiler refuses each world, a division is named at the boundary, the built-in forms read, a lent result builder reads beside its declaration and is named alone, and a Body the builder built stays unread"
+# The shadow of the lent attribute: a world that declares a macro of the
+# lent builder's name is refused, at the macro's own form; the compiler
+# refuses the pair too.
+if swiftc -typecheck -module-cache-path "$lexical_tmp/cache" \
+    Checks/where-lexical/attribute-lent-shadow.swift Sources/VerificationIsIdentification/Primitive.swift \
+    >"$lexical_tmp/lent-shadow-swift.log" 2>&1; then
+    echo "where-lexical: Swift accepted the world that shadows the lent builder with a macro" >&2
+    exit 1
+fi
+if [ "$(grep -c "^Checks/where-lexical/attribute-lent-shadow.swift:[0-9]*:[0-9]*: error: " "$lexical_tmp/lent-shadow-swift.log")" -lt 1 ]; then
+    cat "$lexical_tmp/lent-shadow-swift.log"
+    echo "where-lexical: Swift refused the shadowing world without an error at its lines" >&2
+    exit 1
+fi
+lexical_said=0
+"$lexical_bin/Tools" judge where Checks/where-lexical/attribute-lent-shadow.swift \
+    Sources/VerificationIsIdentification/Primitive.swift \
+    >"$lexical_tmp/lent-shadow.out" 2>"$lexical_tmp/lent-shadow.err" || lexical_said=$?
+if [ "$lexical_said" -ne 2 ] || [ -s "$lexical_tmp/lent-shadow.out" ] \
+    || [ "$(cat "$lexical_tmp/lent-shadow.err")" != "✗ THE WHERE: cannot read line 17: the macro '#externalMacro' is not among the forms this court reads" ]; then
+    cat "$lexical_tmp/lent-shadow.out" "$lexical_tmp/lent-shadow.err"
+    echo "where-lexical: the court read a world that declares a macro of the lent builder's name" >&2
+    exit 1
+fi
+echo "✓ where-lexical: six unread forms are named at their line, the compiler refuses each world, a division is named at the boundary, the built-in forms read, a lent result builder reads beside its declaration and is named alone, a Body the builder built stays unread, and a macro of the builder's name is not lent"

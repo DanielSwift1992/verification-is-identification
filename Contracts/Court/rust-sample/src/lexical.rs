@@ -248,7 +248,22 @@ pub fn blank_comments_and_strings(text: &str, lent: &HashSet<String>) -> Result<
         }
     }
     let declared = declared_builders(&kept);
-    if let Some((name, at)) = unread_attributes.iter().find(|(name, _)| !declared.contains(name) && !lent.contains(name)) {
+    // A name this text declares as a macro is this text's macro: a lent
+    // builder of the same name says nothing about it, so it is not lent.
+    let macro_word = re(r"\bmacro\s+(\w+)");
+    let bytes = kept.as_bytes();
+    let shadowed: HashSet<String> = macro_word
+        .captures_iter(&kept)
+        .filter(|c| {
+            let start = c.get(0).unwrap().start();
+            start == 0 || bytes[start - 1] != b'.'
+        })
+        .map(|c| c[1].to_string())
+        .collect();
+    if let Some((name, at)) = unread_attributes
+        .iter()
+        .find(|(name, _)| !declared.contains(name) && (!lent.contains(name) || shadowed.contains(name)))
+    {
         return fail(format!(
             "cannot read line {}: the attribute '@{}' is not among the forms this court reads",
             at, name

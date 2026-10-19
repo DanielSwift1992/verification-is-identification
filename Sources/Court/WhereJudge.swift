@@ -258,6 +258,10 @@ enum WhereJudge {
         }
         let read = String(kept)
         let declared = declaredBuilders(read)
+        // A name this text declares as a macro is this text's macro: a lent
+        // builder of the same name says nothing about it, so it is not lent.
+        let shadowed = Set(captures(#"(?<!\.)\bmacro\s+(\w+)"#, read).map { $0[0] })
+        let lent = lent.subtracting(shadowed)
         let undeclared = unreadAttributes.filter { !declared.contains($0.name) && !lent.contains($0.name) }
         if let use = undeclared.first {
             try fail("cannot read line \(use.line): the attribute '@\(use.name)' "

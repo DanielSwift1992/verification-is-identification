@@ -44,6 +44,25 @@ def invocations():
     return jobs
 
 
+def permitted(job, a, b):
+    """The one difference the contract permits: the platform detail of the
+    count missing-file line. Both courts exit 2 with one stderr line that
+    names the absent file and says that there is no such file."""
+    if job[0] != "count" or a[0] != 2 or b[0] != 2 or a[1] or b[1]:
+        return False
+    absent = os.path.basename(job[1]).encode()
+    lines = []
+    for text in (a[2], b[2]):
+        parts = text.split(b"\n")
+        if len(parts) != 2 or parts[1]:
+            return False
+        lines.append(parts[0])
+    return all(
+        line.startswith("✗ COUNT unresolved: ".encode()) and absent in line and b"No such file or directory" in line
+        for line in lines
+    )
+
+
 def run(binary, job):
     result = subprocess.run([binary, "judge"] + job, capture_output=True, timeout=120)
     return result.returncode, result.stdout, result.stderr
@@ -57,6 +76,7 @@ def main():
     args = parser.parse_args()
     same = 0
     differ = []
+    allowed = []
     jobs = invocations()
     by_exit = {}
     for job in jobs:
@@ -66,9 +86,13 @@ def main():
         by_exit[a[0]] += 1
         if a == b:
             same += 1
+        elif permitted(job, a, b):
+            allowed.append(job)
         else:
             differ.append((job, a, b))
     print(f"{same}/{len(jobs)} invocations identical (exit, stdout, stderr); Swift exits: {dict(sorted(by_exit.items()))}")
+    for job in allowed:
+        print("permitted platform difference (count missing-file line):", " ".join(job))
     for job, a, b in differ[: args.show]:
         print("=== DIFFER:", " ".join(job))
         print(f"  swift exit {a[0]} | other exit {b[0]}")
@@ -78,7 +102,7 @@ def main():
                 print(f"  --- {label} other:\n" + text_b.decode("utf-8", "replace")[:1500])
     if len(differ) > args.show:
         print(f"... {len(differ) - args.show} more differing invocations not shown")
-    return 0 if not differ else 1
+    return 0 if not differ else 1  # a permitted difference alone exits 0
 
 
 if __name__ == "__main__":

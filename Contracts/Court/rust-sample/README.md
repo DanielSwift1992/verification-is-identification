@@ -6,7 +6,7 @@
 
 `Checks/court-contract.py` ran the thirteen cases of `vi.court.questions/0.1` against this binary and matched all thirteen. The driver's report records the manifest hash, the executable hash, and every command with its actual output.
 
-`diff-court.py` ran the Swift court and this binary on 318 invocations built from the repository's where and count fixtures (`Checks/where-*`, `Checks/rydberg-count`), the Examples the laws judge (Light, Grants, the Rydberg ladder), and the contract fixtures, each world judged alone and beside its definitions files. 317 invocations answered alike in exit, stdout and stderr, byte for byte. The one difference is the text of the missing-file diagnostic of `count`: the Swift court prints Foundation's error, this binary prints the operating system's, and the contract permits platform detail in that line. The rest of Light without its three claims written across lines also answers alike.
+`diff-court.py` ran the Swift court and this binary on 318 invocations built from the repository's where and count fixtures (`Checks/where-*`, `Checks/rydberg-count`), the Examples the laws judge (Light, Grants, the Rydberg ladder), and the contract fixtures, each world judged alone and beside its definitions files. 317 invocations answered alike in exit, stdout and stderr, byte for byte. The one difference is the text of the missing-file diagnostic of `count`: the Swift court prints Foundation's error, this binary prints the operating system's, and the contract permits platform detail in that line. Of the 318, the Swift court admits 44 with exit 0, refuses 24 claims with exit 1 and declines to read 250 with exit 2, so most of the agreement is on what both courts decline to read. The rest of Light without its three claims written across lines also answers alike. `diff-court.py` names the permitted missing-file difference and exits 0 when it is the only one.
 
 Four laws that take a court path pass with this binary: `where-tokens.py`, `where-nested-applications.py`, `where-application-names.py` and `where-memberships.py`.
 
@@ -40,7 +40,7 @@ python3 Checks/court-contract.py --command-json "[\"$PWD/Contracts/Court/rust-sa
 swift build --product Tools && python3 Contracts/Court/rust-sample/diff-court.py --swift "$(swift build --show-bin-path)/Tools" --other "$PWD/Contracts/Court/rust-sample/target/release/vi-court"
 ```
 
-`Cargo.lock` pins the one dependency. The driver's report binds a result to the executable's hash and the manifest's hash, not to this source; a build receipt that names the toolchain and the lock file belongs beside the report.
+`Cargo.lock` pins the one dependency. The driver's report binds a result to the executable's hash and the manifest's hash, not to this source. A build receipt that names the toolchain and the lock file belongs beside the report.
 
 ## Next step
 

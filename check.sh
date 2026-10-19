@@ -7,6 +7,7 @@
 # lives here, and both callers read it: a person runs `./check.sh`, and the
 # workflow runs the same file.
 #
+#   ./check.sh --list       print the registered laws without executing them
 #   ./check.sh              every law
 #   ./check.sh --skip law   every law but the grammar mirror
 #   ./check.sh --only law   the grammar mirror alone
@@ -19,11 +20,13 @@
 set -uo pipefail
 cd "$(dirname "$0")"
 
+MODE_LIST=""
 MODE_SKIP=""
 MODE_ONLY=""
 MODE_RESEARCH=""
 while [ $# -gt 0 ]; do
     case "$1" in
+        --list) MODE_LIST="yes"; shift ;;
         --skip) MODE_SKIP="$2"; shift 2 ;;
         --only) MODE_ONLY="$2"; shift 2 ;;
         --research-only) MODE_RESEARCH="yes"; shift ;;
@@ -98,6 +101,7 @@ LAWS+=(
 "court|the judge builds as a library a consumer links|bash Checks/court-library.sh"
 "response|requested where applications have addressed outcomes and complete admission coverage|bash Checks/where-response.sh"
 "contract|the named finite court contract matches its complete fixtures|bash Checks/court-contract.sh"
+"profiles|named check profiles preserve the declared coverage|python3 Checks/profiles-test.py"
 "ci|CI diagnostics preserve failed checks and quote their output safely|python3 Checks/ci-check-test.py"
 "quotes|a quote of a sibling paper is that paper's sentence|swift run Tools quotes"
 "law|the grammar carries every source file|swift run Tools grammar"
@@ -111,6 +115,15 @@ if [ "$MODE_RESEARCH" = "yes" ]; then
     LAWS=("${RESEARCH[@]}")
 elif [ "$MODE_ONLY" = "ablation" ]; then
     LAWS=("ablation|the saved deletion experiment matches the current premise list|swift build --product Tools >/dev/null && .build/debug/Tools ablate --self-test && swift package dump-symbol-graph >/dev/null 2>&1 && GRAPH=\$(find .build -name VerificationIsIdentification.symbols.json | head -1) && .build/debug/Tools ablate \"\$GRAPH\" --check")
+fi
+
+if [ "$MODE_LIST" = "yes" ]; then
+    if [ -n "$MODE_ONLY$MODE_SKIP$MODE_RESEARCH" ]; then
+        echo "check.sh: --list cannot be combined with check selection" >&2
+        exit 2
+    fi
+    printf '%s\n' "${LAWS[@]}"
+    exit 0
 fi
 
 if [ -n "$MODE_ONLY" ]; then

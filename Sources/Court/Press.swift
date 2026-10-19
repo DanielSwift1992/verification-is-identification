@@ -2,7 +2,7 @@ import Foundation
 
 // ═══════════════════════════════════════════════════════
 // Press applies one rewrite triple to one state file: `swift run Tools press <Rule>
-// [--file <path>]`. This is the whole applier the dynamics medium ever needs, for
+// [--file <path>] [--rules <path>]`. This is the whole applier the dynamics medium ever needs, for
 // every domain at once: find the rule's slot alias, compare the slot's term with the
 // rule's pattern, substitute the template. One match or none, never a search; a
 // mismatch is a lawful no-op that leaves the file byte-identical. No domain logic
@@ -12,7 +12,7 @@ import Foundation
 // ═══════════════════════════════════════════════════════
 
 public enum Press {
-    static let dictionaryPath = "Sources/DynamicsDemo/Rules.swift"
+    static let defaultDictionaryPath = "Sources/DynamicsDemo/Rules.swift"
     static let defaultStatePath = "Sources/DynamicsDemo/WorldState.swift"
 
     struct Rule {
@@ -30,7 +30,7 @@ public enum Press {
 
     /// Reads one rule's triple out of the dictionary's text: the enum's generic
     /// parameter names, and its Slot/From/Into aliases.
-    static func readRule(named name: String, from text: String) -> Rule {
+    static func readRule(named name: String, from text: String, path: String) -> Rule {
         var variables: [String] = []
         var slot = ""
         var from = ""
@@ -76,7 +76,7 @@ public enum Press {
                 fail("\(name) is not a triple: \(line)")
             }
         }
-        guard inside else { fail("no rule named \(name) in \(dictionaryPath)") }
+        guard inside else { fail("no rule named \(name) in \(path)") }
         guard !slot.isEmpty, !from.isEmpty, !into.isEmpty else {
             fail("\(name) states no full Slot/From/Into triple")
         }
@@ -238,12 +238,17 @@ public enum Press {
             statePath = arguments[flag + 1]
             arguments.removeSubrange(flag...flag + 1)
         }
+        var dictionaryPath = defaultDictionaryPath
+        if let flag = arguments.firstIndex(of: "--rules"), flag + 1 < arguments.count {
+            dictionaryPath = arguments[flag + 1]
+            arguments.removeSubrange(flag...flag + 1)
+        }
         if let first = arguments.first, first == "append" || first == "rubout" || first == "clear" {
             pressLiteral(first, Array(arguments.dropFirst()), statePath: statePath)
             return
         }
         guard let ruleArgument = arguments.first else {
-            fail("usage: Tools press <Rule>[,<Rule>…] [--file <state file>]")
+            fail("usage: Tools press <Rule>[,<Rule>…] [--file <state file>] [--rules <rule file>]")
         }
         guard let dictionary = try? String(contentsOfFile: dictionaryPath, encoding: .utf8) else {
             fail("cannot read \(dictionaryPath)")
@@ -271,7 +276,7 @@ public enum Press {
         memberTexts.append(piece)
         let members = memberTexts.map { text -> (rule: Rule, instance: [Term]) in
             let spelled = parseTerm(Substring(text))
-            return (readRule(named: spelled.head, from: dictionary), spelled.args)
+            return (readRule(named: spelled.head, from: dictionary, path: dictionaryPath), spelled.args)
         }
         let rules = members.map(\.rule)
         guard let firstSlot = rules.first?.slot, rules.allSatisfy({ $0.slot == firstSlot }) else {

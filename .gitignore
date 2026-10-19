@@ -30,3 +30,6 @@ _site/
 pass_manifest.json
 .site/
 .claude/
+
+# Rust court sample (built locally, never committed)
+Contracts/Court/rust-sample/target/

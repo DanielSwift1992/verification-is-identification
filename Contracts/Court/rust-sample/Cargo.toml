@@ -1,0 +1,15 @@
+[package]
+name = "vi-court"
+version = "0.1.0"
+edition = "2021"
+description = "A replacement implementation of the vi court CLI for the questions suite 0.1: judge where and judge count, read from the same bare Swift declarations."
+
+[[bin]]
+name = "vi-court"
+path = "src/main.rs"
+
+[dependencies]
+regex = "1.11"
+
+[profile.release]
+debug = false

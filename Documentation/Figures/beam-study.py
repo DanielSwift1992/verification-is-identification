@@ -1,89 +1,146 @@
 #!/usr/bin/env python3
 """Four views of the declared three-beam construction; see beam-study-sources.md."""
+from html import escape
 from pathlib import Path
+import re
+
 from render import Figure
 
-f=Figure('One declared construction: a visible answer, an unknown source and a changing operation', 'Three symbolic beams have coordinates (1,0,0), (1,0,1), (1,0,2). The supplied reading E keeps the first two coordinates. All three yield (1,0); the hidden coordinate is not determined. SwapVisible exchanges the first two and retains the third. Its visible result follows by swapping the retained pair. ExposeHidden instead puts the hidden coordinate first, producing distinct visible results from the same old image. This is a symbolic model with checked type relations, not a physical experiment.', 1390)
-f.text(40,42,'ONE CONSTRUCTION / FOUR STEPS','eyebrow blue')
-f.text(40,83,'Keep the question in view. Leave the source unknown.','heading')
-f.text(40,115,'The three-beam construction from the corpus. The actual source is one of these three, not selected.','body muted')
 
-f.rect(40,143,1040,262)
-f.text(62,180,'1   A declared family and a supplied reading','label')
-f.text(72,216,'source','small muted')
-f.text(322,216,'α','small muted',text_anchor='middle')
-f.text(380,216,'β','small muted',text_anchor='middle')
-f.text(450,216,'hidden','small muted',text_anchor='middle')
-f.rect(298,228,110,125,'#edf7f1','#bad9c8')
-f.rect(420,228,60,125,'#eef0f4','#ced5df')
-for i,(name,r) in enumerate([('RedBeam',0),('RedBeamWithIR',1),('RedBeamWithMoreIR',2)]):
-    y=258+i*37
-    f.text(72,y,name,'small')
-    f.text(322,y,'1','label green',text_anchor='middle')
-    f.text(380,y,'0','label green',text_anchor='middle')
-    f.text(450,y,str(r),'label muted',text_anchor='middle')
-f.path('M500 289H642')
-f.text(571,254,'E(α,β,r) = (α,β)','small math blue',text_anchor='middle')
-f.text(571,279,'keeps two coordinates','small muted',text_anchor='middle')
-f.rect(664,229,388,123,'#edf7f1','#bad9c8')
-f.text(687,260,'The same accessible record','label green')
-f.text(858,306,'(1, 0)','heading green',text_anchor='middle')
-f.text(62,383,'Scope: exactly these three declared sources. 0 = Never, 1 = Lit1, 2 = Lit2 in this symbolic model.','small muted')
+TITLE = 'One reading, three possible sources'
+DESC = ('The source is one of three symbolic states: (1,0,0), (1,0,1), (1,0,2). '
+        'The reading E keeps the first two coordinates, giving (1,0) in all three cases. '
+        'It determines the visible pair, but not the hidden value. SwapVisible exchanges '
+        'the first two coordinates and retains the third: the full outputs still differ, '
+        'but all have visible pair (0,1). Starting from the original states, ExposeHidden '
+        'instead maps (alpha,beta,r) to (r,0,0), giving three different visible pairs. '
+        'The original reading alone cannot determine this new answer. These are checked '
+        'relations in a symbolic model, not a demonstrated physical implementation.')
+HEIGHT = 1830
+f = Figure(TITLE, DESC, HEIGHT)
+# Larger type belongs to this sequence; the other diagrams keep their own layout.
+f.parts.append('''<style>
+.body{font-size:24px}.small{font-size:22px}.label{font-size:26px;font-weight:600}
+.heading{font-size:32px;font-weight:650}.title{font-size:40px;font-weight:650}
+.tuple{font-family:'DejaVu Sans',sans-serif;font-size:32px}
+.number{font-size:26px;font-weight:700;fill:#204f8f}
+</style>''')
 
-f.rect(40,429,1040,210)
-f.text(62,465,'2   Keep the record. Change the question.','label')
-f.rect(62,492,254,102,'#ffffff')
-f.text(189,532,'Available: (1, 0)','label',text_anchor='middle')
-f.text(189,566,'All three sources still fit.','small muted',text_anchor='middle')
-f.path('M316 542H354V518H390')
-f.path('M354 542V579H390')
-f.text(411,524,'What is the visible pair?','body')
-f.text(411,585,'What is the hidden coordinate?','body')
-f.rect(739,491,313,53,'#edf7f1','#bad9c8')
-f.text(760,524,'(1, 0) — determined','label green')
-f.rect(739,552,313,53,'#fff8ec','#e8d2aa')
-f.text(760,585,'0, 1 or 2 — still open','label amber')
 
-f.rect(40,663,1040,337)
-f.text(62,699,'3   A supplied transformation can use unknown contents','label')
-f.text(62,730,'SwapVisible exchanges the visible coordinates and retains the hidden one.  r ∈ {0,1,2}.','body muted')
-f.rect(62,755,310,70,'#ffffff')
-f.text(217,798,'xᵣ = (1, 0, r)','label math',text_anchor='middle')
-f.rect(742,755,310,70,'#ffffff')
-f.text(897,798,'T(xᵣ) = (0, 1, r)','label math',text_anchor='middle')
-f.path('M372 789H728')
-f.text(550,778,'same T for every r','small blue',text_anchor='middle')
-f.path('M217 825V870')
-f.text(230,853,'E','body blue')
-f.path('M897 825V870')
-f.text(910,853,'E','body blue')
-f.rect(62,883,310,62,'#edf7f1','#bad9c8')
-f.text(217,921,'(1, 0)','label green',text_anchor='middle')
-f.rect(742,883,310,62,'#edf7f1','#bad9c8')
-f.text(897,921,'(0, 1)','label green',text_anchor='middle')
-f.path('M372 914H728')
-f.text(550,884,'swap the retained pair','small blue',text_anchor='middle')
-f.text(550,908,'E ∘ T = swap ∘ E','small math',text_anchor='middle')
-f.text(62,975,'The full outputs differ in r. Their visible result follows from the old record without identifying r.','small')
+def heading(y, number, text):
+    f.text(65, y, str(number), 'number')
+    f.text(110, y, text, 'heading')
 
-f.rect(40,1024,1040,287)
-f.text(62,1060,'4   Change the operation. Check the relation again.','label')
-f.text(62,1091,'ExposeHidden is a different supplied symbolic transformation: U(α,β,r) = (r,0,0).','body muted')
-f.rect(62,1119,295,86,'#ffffff')
-f.text(209,1153,'The old record stays (1, 0)','label',text_anchor='middle')
-f.text(209,1184,'The original reading remains true.','small muted',text_anchor='middle')
-f.path('M377 1162H658')
-f.text(518,1135,'future question: E(U(xᵣ))','small math',text_anchor='middle')
-f.rect(681,1119,371,86,'#fff8ec','#e8d2aa')
-f.text(703,1153,'(0, 0), (1, 0), or (2, 0)','label amber')
-f.text(703,1184,'The same old record permits all three.','small muted')
-f.text(62,1245,'No deterministic function of this old record alone can supply the new visible answer for all three.','body')
-f.text(62,1281,'Another accessible distinction or an adequate different continuation must be supplied and justified.','small muted')
 
-f.text(40,1344,'STATUS  The transformations and commuting law are supplied symbolic constructions checked by types.','small muted')
-f.text(40,1373,'A physical operation, its calibration and its execution are not supplied by this picture or by the type check.','small muted')
+def state(x, y, a, b, r, exposed=False):
+    """Retain every full coordinate; color identifies what E can read."""
+    first = 'amber' if exposed else 'green'
+    f.text(x, y, '(', 'tuple muted')
+    f.text(x + 19, y, str(a), f'tuple {first}')
+    f.text(x + 41, y, ',', 'tuple muted')
+    f.text(x + 61, y, str(b), f'tuple {first}')
+    f.text(x + 83, y, ',', 'tuple muted')
+    f.text(x + 103, y, str(r), 'tuple muted')
+    f.text(x + 126, y, ')', 'tuple muted')
+
+
+f.text(40, 57, TITLE, 'title')
+f.lines(40, 100, [
+    'The source is one of these three symbolic cases. All give the reading (1, 0).',
+    'We do not know which one is present.'
+], 'body', 34)
+
+# 1: three complete states converge to one reading. No state is selected.
+f.rect(40, 166, 1040, 320)
+heading(210, 1, 'Three sources, one reading')
+f.text(105, 258, 'Possible source states', 'small muted')
+f.text(776, 258, 'Visible pair', 'small muted')
+for i, r in enumerate(range(3)):
+    y = 309 + i * 56
+    state(150, y, 1, 0, r)
+    f.path(f'M320 {y - 10}H390L506 355')
+f.text(476, 294, 'The reading keeps', 'small muted')
+f.text(476, 323, 'two coordinates', 'small muted')
+f.path('M518 355H734')
+f.text(526, 394, 'E(α, β, r) = (α, β)', 'small math blue')
+f.rect(752, 301, 285, 108, '#edf7f1', '#bad9c8')
+f.text(894, 368, '(1, 0)', 'title green', text_anchor='middle')
+f.text(65, 458, 'Only the third coordinate, r, differs. It is hidden from this reading.', 'body')
+
+# 2: the same information answers one question and leaves another open.
+f.rect(40, 510, 1040, 230)
+heading(555, 2, 'What can this reading answer?')
+f.text(76, 610, 'What is the visible pair?', 'body')
+f.text(76, 688, 'What is the hidden value?', 'body')
+f.rect(540, 579, 497, 59, '#edf7f1', '#bad9c8')
+f.text(563, 617, '(1, 0) in every case', 'label green')
+f.rect(540, 657, 497, 59, '#fff8ec', '#e8d2aa')
+f.text(563, 695, 'Could be 0, 1, or 2', 'label amber')
+
+# 3: list full outputs before projecting them. The shared answer does not
+# imply an identical full state, an identified source, or physical execution.
+f.rect(40, 774, 1040, 454)
+heading(820, 3, 'One operation, the same visible result')
+f.text(65, 863, 'SwapVisible exchanges the first two coordinates and keeps the hidden one.', 'body')
+f.text(119, 913, 'Original state', 'small muted')
+f.text(490, 913, 'After SwapVisible', 'small muted')
+f.text(830, 913, 'Visible pair', 'small muted')
+for i, r in enumerate(range(3)):
+    y = 962 + i * 55
+    state(122, y, 1, 0, r)
+    f.path(f'M298 {y - 10}H445')
+    state(494, y, 0, 1, r)
+    f.path(f'M670 {y - 10}H795')
+    f.rect(811, y - 35, 226, 47, '#edf7f1', '#bad9c8')
+    f.text(924, y, '(0, 1)', 'tuple green', text_anchor='middle')
+f.text(65, 1131, 'The full states still differ. The visible pair is (0, 1) in every case.', 'body')
+f.text(65, 1170, 'The new reading follows by swapping the old pair: (1, 0) → (0, 1).', 'body')
+f.text(65, 1205, 'T(α, β, r) = (β, α, r)', 'small math blue')
+f.text(530, 1205, 'E ∘ T = swap ∘ E', 'small math blue')
+
+# 4 starts again at the original states. It is an alternative operation,
+# not the next arrow in an unannounced composition of operations.
+f.rect(40, 1252, 1040, 454)
+heading(1298, 4, 'A different operation makes the hidden value matter')
+f.text(65, 1341, 'From the same original states, ExposeHidden puts r in the visible pair.', 'body')
+f.text(119, 1391, 'Original state', 'small muted')
+f.text(480, 1391, 'After ExposeHidden', 'small muted')
+f.text(830, 1391, 'Visible pair', 'small muted')
+for i, r in enumerate(range(3)):
+    y = 1440 + i * 55
+    state(122, y, 1, 0, r)
+    f.path(f'M298 {y - 10}H445')
+    state(494, y, r, 0, 0, exposed=True)
+    f.path(f'M670 {y - 10}H795')
+    f.rect(811, y - 35, 226, 47, '#fff8ec', '#e8d2aa')
+    f.text(924, y, f'({r}, 0)', 'tuple amber', text_anchor='middle')
+f.text(65, 1608, 'The old reading (1, 0) alone cannot tell us which new pair results.', 'body')
+f.text(65, 1646, 'For this new answer, we need an observation that distinguishes these cases.', 'body')
+f.text(65, 1682, 'U(α, β, r) = (r, 0, 0)', 'small math blue')
+
+f.lines(40, 1751, [
+    'These relations are checked in a symbolic model. The diagram does not establish',
+    'that the operations can be performed on a physical source.'
+], 'small muted', 32)
 f.save('beam-study.svg')
-full=(Path(__file__).resolve().parent/'beam-study.svg').read_text()
-for name,top,height in [('beam-questions.svg',0,648),('beam-continuation.svg',653,737)]:
-    view=full.replace('height="1390" viewBox="0 0 1120 1390"',f'height="{height}" viewBox="0 {top} 1120 {height}"',1)
-    (Path(__file__).resolve().parent/name).write_text(view)
+
+full = (Path(__file__).resolve().parent / 'beam-study.svg').read_text()
+views = [
+    ('beam-questions.svg', 0, 752, TITLE,
+     'Three symbolic source states yield the same visible pair (1,0). '
+     'The reading determines that pair but leaves the hidden value at 0, 1, or 2.'),
+    ('beam-continuation.svg', 758, 1072, 'Two operations on the same three possible sources',
+     'SwapVisible produces distinct full states with the same visible pair (0,1). '
+     'Starting again from the original states, ExposeHidden gives visible pairs '
+     '(0,0), (1,0), and (2,0). The old reading alone cannot determine this new answer. '
+     'These are symbolic operations with checked type relations; physical execution '
+     'is not established.'),
+]
+for name, top, height, title, desc in views:
+    view = full.replace(f'height="{HEIGHT}" viewBox="0 0 1120 {HEIGHT}"',
+                        f'height="{height}" viewBox="0 {top} 1120 {height}"', 1)
+    view = re.sub(r'<title id="title">.*?</title>',
+                  f'<title id="title">{escape(title)}</title>', view, count=1)
+    view = re.sub(r'<desc id="desc">.*?</desc>',
+                  f'<desc id="desc">{escape(desc)}</desc>', view, count=1)
+    (Path(__file__).resolve().parent / name).write_text(view)

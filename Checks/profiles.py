@@ -17,7 +17,7 @@ PROFILES = {
     'vi': ['verdict', 'renames', 'topics', 'families', 'quotes'],
     'court': ['light', 'ladder', 'grants', 'alias', 'extension', 'conditional',
               'memberships', 'lexical', 'scope', 'applications', 'court', 'contract', 'response'],
-    'integration': ['build', 'census', 'voice', 'readme', 'profiles', 'ci', 'law'],
+    'integration': ['build', 'census', 'voice', 'readme', 'profiles', 'ci', 'law', 'boundary'],
 }
 
 

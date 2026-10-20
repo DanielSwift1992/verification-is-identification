@@ -441,7 +441,7 @@ enum Linter {
         // The lattice rides along as the real module it is: the vocabulary's atoms are
         // `Close`, its fold floor is `Never`, and the certificate beside them
         // (GrammarLexicon/Certificate.swift) conforms the lattice's instance protocols,
-        // so every run of the check re-certifies the checker in the same build that carries
+        // so every run of the check compiles their relations in the same build that carries
         // the verdict. Copied verbatim (the lattice imports nothing), not re-declared.
         let seedSource = NSString(string: theoryPath).appendingPathComponent("Sources/VerificationIsIdentification")
         let seedDir = NSString(string: scratch).appendingPathComponent("Sources/VerificationIsIdentification")

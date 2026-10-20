@@ -3,8 +3,10 @@ import Foundation
 // ═══════════════════════════════════════════════════════════════
 // JUDGE — the door of the court: one entry point that routes each pass to the reader that
 // owns it. `where` and `count` and the continuation, coverage and application courts are
-// this package's questions; the plain court over the company's fragment is
-// ``OrganizationJudge``. Tools, the court-library consumer and gate's CLI all enter here.
+// this package's questions. The plain court over the company's fragment lives with the
+// policy it reads, in the showcase (OrganizationCourt, `swift run ShowcaseTools judge`), and
+// gate builds it from there (T-0028). Tools, the court-library consumer and gate's CLI all
+// enter here.
 // ═══════════════════════════════════════════════════════════════
 
 public enum Judge {
@@ -43,6 +45,10 @@ public enum Judge {
             WhereJudge.run(Array(arguments.dropFirst()))
             return
         }
-        OrganizationJudge.run(arguments)
+        // The plain court reads the company's fragment against the company's policy, and both
+        // live in the showcase now (T-0028).
+        FileHandle.standardError.write(Data(
+            "✗ the plain court moved with the company: run `swift run ShowcaseTools judge <paths>` in the showcase package\n".utf8))
+        exit(2)
     }
 }

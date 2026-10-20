@@ -8,6 +8,41 @@ case "$verdict_scope" in
     all|core|halt|sourcecontinuation|residuecontinuation|recordreadings|admission|localphase|localpolicy|contact|whole|ice|seeing|markers|uniqueness|distance|return|scopedlaw|knowledgeclosure|acquisition|interactions|knowledge|observer|resident|construction|boundary|common|evidence|evolution|closure|probe|routing|reuse|probepair|lawtransport|demand|frame|discovery) ;;
     *) echo "usage: bash Checks/verdict.sh [all|core|halt|sourcecontinuation|residuecontinuation|recordreadings|admission|localphase|localpolicy|contact|whole|ice|seeing|markers|uniqueness|distance|return|scopedlaw|knowledgeclosure|acquisition|interactions|knowledge|observer|resident|construction|boundary|common|evidence|evolution|closure|probe|routing|reuse|probepair|lawtransport|demand|frame|discovery]" >&2; exit 2 ;;
 esac
+# ── A RECEIPT FOR INPUTS THAT DID NOT CHANGE, ON THIS MACHINE ONLY. Each refusal
+# is its own compiler run, so the whole law takes most of an hour, and a
+# change that touches no file the law compiles (a page, a README, a note)
+# would re-prove the same answer. The answer is fixed by what it compiles: the
+# Swift under Sources and Plugins (Examples builds through the LawCheck plugin,
+# which builds the tools), every file under Checks, the package manifest and
+# its resolution, and the compiler. Those bytes are hashed into a key; a full
+# green run of every scope writes a receipt under that key in .build, and a
+# later run with the same key says so and does not run again. Only check.sh
+# asks for this (VERDICT_RECEIPT=1): a direct run, as the profile tests make
+# with stand-in compilers, reads and writes none. CI keeps no receipt and runs
+# in full, and VERDICT_FULL=1 runs in full here. The key is
+# taken again before the receipt is written, and a run whose inputs moved
+# while it ran writes none. What the law reads outside the compiler (the rg
+# on PATH, the temporary directory) is not in the key: the receipt speaks for
+# what was compiled.
+if command -v sha256sum >/dev/null 2>&1; then verdict_sum="sha256sum"; else verdict_sum="shasum -a 256"; fi
+verdict_key() {
+    {
+        find Sources Plugins -type f -name '*.swift' | LC_ALL=C sort
+        find Checks -type f | LC_ALL=C sort
+        printf '%s\n' Package.swift Package.resolved
+    } | while IFS= read -r f; do
+        [ -f "$f" ] && $verdict_sum "$f"
+    done
+    swiftc --version 2>&1
+}
+verdict_receipt=""
+if [ "$verdict_scope" = all ] && [ -n "${VERDICT_RECEIPT:-}" ]; then
+    verdict_receipt=".build/receipts/verdict-$(verdict_key | $verdict_sum | cut -c1-64)"
+    if [ -z "${CI:-}" ] && [ -z "${VERDICT_FULL:-}" ] && [ -f "$verdict_receipt" ]; then
+        echo "verdict: every file this law compiles is unchanged since the full green run in $verdict_receipt ($(head -1 "$verdict_receipt")); not run again here. CI runs it in full, and VERDICT_FULL=1 runs it here."
+        exit 0
+    fi
+fi
 verdict_tmp="$(mktemp -d "${TMPDIR:-/tmp}/vi-verdict.XXXXXX")"
 trap 'rm -rf "$verdict_tmp"' EXIT
 
@@ -1566,3 +1601,15 @@ do
     fi
     echo "verdict: refused $verdict_flag"
 done
+
+# every scope held: the receipt for these exact inputs, read by the next run,
+# and only if they are still the inputs the run began with
+if [ -n "$verdict_receipt" ]; then
+    if [ ".build/receipts/verdict-$(verdict_key | $verdict_sum | cut -c1-64)" = "$verdict_receipt" ]; then
+        mkdir -p "$(dirname "$verdict_receipt")"
+        { date -u '+%Y-%m-%dT%H:%M:%SZ'; git rev-parse HEAD 2>/dev/null || true; } > "$verdict_receipt"
+    else
+        echo "verdict: a file this law compiles changed while it ran; no receipt is written"
+    fi
+fi
+

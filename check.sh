@@ -19,6 +19,9 @@
 # name what they run. A law that is added here is added for everybody.
 set -uo pipefail
 cd "$(dirname "$0")"
+# the verdict law may keep a receipt for inputs that did not change
+# (Checks/verdict.sh); a direct run of that law keeps none
+export VERDICT_RECEIPT=1
 
 MODE_LIST=""
 MODE_SKIP=""

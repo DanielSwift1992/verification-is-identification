@@ -84,25 +84,12 @@ enum Linter {
         return ""
     }
 
-    /// This reads longest prefix first: the same maximal-munch policy the spellings get, now
-    /// over `Schema.scopes`, so a nested directory does not lose to a shorter enclosing one.
-    private static let scopesByLength: [(prefix: String, scope: any LintAtom.Type)] = {
-        Schema.scopes.sorted { $0.prefix.count > $1.prefix.count }
-    }()
-
-    /// This names the file's scope: a mechanical fact about ITS PATH (repo-root-relative, the
-    /// same convention `Schema.scopes` and Census.swift's targets use), not a decision this file
-    /// makes about what a directory MEANS: absent from the registry means the file carries a
-    /// scope name no block type in the schema answers to. A registered prefix ends at a path
-    /// component: `Sources/Court` names the file `Sources/Court` and every file below
-    /// `Sources/Court/`, and a neighbour whose name merely begins with it (`Sources/CourtRoom/`)
-    /// is absent from the registry, not read as the court's.
-    private static func scope(for path: String) -> any LintAtom.Type {
-        for entry in scopesByLength
-        where path == entry.prefix || path.hasPrefix(entry.prefix + "/") {
-            return entry.scope
-        }
-        return Alphabet.defaultWord
+    // The fallback census belongs to this repository. An external map REPLACES
+    // it; an uncovered path never inherits an application-specific exception.
+    private static func defaultMap() -> GrammarScopeMap {
+        GrammarScopeMap(entries: Schema.scopes.map {
+            GrammarScopeMap.Entry(prefix: $0.prefix, scope: String(describing: $0.scope))
+        })
     }
 
     private static func isIdentifierChar(_ c: Character) -> Bool { c.isLetter || c.isNumber || c == "_" }
@@ -149,6 +136,7 @@ enum Linter {
         /// or the SPELLING/GLYPH path (longest match first). A general word also hands back its
         /// text: decoration for the emitted line, so a refusal reads like the source.
         func nextAtom() -> (Classified, wordText: String?) {
+            guard i < chars.count else { return (.unknown("\0"), nil) }
             let c = chars[i]
             if isIdentifierChar(c) {
                 var word = ""
@@ -367,12 +355,47 @@ enum Linter {
         // No arguments names the whole gate: every .swift under Sources, the pre-commit run
         // (`swift run Tools grammar`). The child build keeps this off the incremental build;
         // the LawCheck plugin header states the split.
-        let arguments = args.isEmpty ? ["Sources"] : args
+        var paths: [String] = [], mapPath: String?, receiptPath: String?
+        var portable = false, exportPath: String?
+        var index = 0
+        while index < args.count {
+            let arg = args[index]
+            if ["--scope-map", "--receipt", "--export-policy"].contains(arg) {
+                guard index + 1 < args.count else { print("THE GRAMMAR: missing value for " + arg)
+                 exit(2) }
+                index += 1
+                if arg == "--scope-map" { mapPath = args[index] }
+                else if arg == "--receipt" { receiptPath = args[index] }
+                else { exportPath = args[index] }
+            } else if arg == "--portable" { portable = true }
+            else if arg.hasPrefix("--") { print("THE GRAMMAR: unknown option " + arg)
+             exit(2) }
+            else { paths.append(arg) }
+            index += 1
+        }
+        if let output = exportPath {
+            do { try GrammarPolicyCensus.data().write(to: URL(fileURLWithPath: output))
+             return }
+            catch { print("THE GRAMMAR: cannot export policy: \(error)")
+             exit(2) }
+        }
+        let arguments = paths.isEmpty ? ["Sources"] : paths
+        let map: GrammarScopeMap
+        do {
+            if let path = mapPath {
+                map = try GrammarScopeMap.read(String(contentsOfFile: path, encoding: .utf8),
+                                               scopes: Set(GrammarPolicyCensus.scopes))
+            } else { map = defaultMap() }
+        } catch { print("THE GRAMMAR: scope map refused: \(error)")
+         exit(1) }
 
         let repoPath = FileManager.default.currentDirectoryPath
         var files: [String] = []
         for argument in arguments {
-            let path = NSString(string: argument).isAbsolutePath ? String(argument.dropFirst(repoPath.count + 1)) : argument
+            let path = NSString(string: argument).isAbsolutePath && argument.hasPrefix(repoPath + "/")
+                ? String(argument.dropFirst(repoPath.count + 1)) : argument
+            guard GrammarScopeMap.sourcePath(path) else { print("THE GRAMMAR: non-relative source path '\(path)'")
+             exit(1) }
             var isDirectory: ObjCBool = false
             guard FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory) else {
                 FileHandle.standardError.write(Data("cannot read \(path)\n".utf8))
@@ -386,6 +409,40 @@ enum Linter {
             } else {
                 files.append(path)
             }
+        }
+
+        files = Array(Set(files)).sorted()
+        var assigned: [String: String] = [:]
+        for path in files {
+            do { assigned[path] = try map.scope(for: path) }
+            catch {
+                print("THE GRAMMAR: the mirror does not build: \(path):1: \(error)")
+                print(String(path.map { isIdentifierChar($0) ? $0 : "_" }))
+                exit(1)
+            }
+        }
+        if let receipt = receiptPath {
+            let object: [String: Any] = ["format": "vi-grammar-coverage/1", "scope_map": mapPath ?? "Schema.scopes", "files": assigned, "source_sha256": Dictionary(uniqueKeysWithValues: files.map { ($0, FileManager.default.contents(atPath: $0).map(grammarSHA256) ?? "unread") }), "law": "vi-grammar-policy/1", "policy_sha256": (try? GrammarPolicyCensus.data()).map(grammarSHA256) ?? "unread", "scope_map_sha256": mapPath.flatMap { FileManager.default.contents(atPath: $0) }.map(grammarSHA256) ?? "registry"]
+            do { try JSONSerialization.data(withJSONObject: object, options: [.sortedKeys, .prettyPrinted]).write(to: URL(fileURLWithPath: receipt)) }
+            catch { print("THE GRAMMAR: cannot write coverage receipt: \(error)")
+             exit(2) }
+        }
+        if portable {
+            var refused = false
+            for path in files {
+                do {
+                    let source = try String(contentsOfFile: path, encoding: .utf8)
+                    for finding in try GrammarPolicyCensus.policy().findings(source, scope: assigned[path]!) {
+                        print("\(path):\(finding.line): \(finding.atom) is not granted \(finding.scope)/\(finding.context)")
+                        refused = true
+                    }
+                } catch { print("\(path):1: \(error)")
+                 refused = true }
+            }
+            if refused { print("THE GRAMMAR: the portable mirror refuses")
+             exit(1) }
+            print("THE GRAMMAR: portable reading holds: \(files.count) file(s); Swift bodies not compiled")
+            return
         }
 
         // The vocabulary, the alphabet and the seed the mirror is judged by are the theory's. Run
@@ -467,7 +524,7 @@ enum Linter {
                 FileHandle.standardError.write(Data("cannot read \(path)\n".utf8))
                 exit(2)
             }
-            let scopeName = String(describing: scope(for: path))
+            let scopeName = assigned[path]!
             let fileName = String(path.map { isIdentifierChar($0) ? $0 : "_" })
             try? carried(content, path: path, scopeName: scopeName)
                 .write(toFile: NSString(string: sourcesDir).appendingPathComponent(fileName + ".swift"),

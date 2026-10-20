@@ -505,36 +505,13 @@ public enum Schema {
     }
     @ScopeCensus
     public static var scopes: [(prefix: String, scope: any LintAtom.Type)] {
-        ("Worlds/Playground/Atom/Dictionary", SurfaceScope.self)
-        ("Worlds/Playground/Basics/Dictionary", SurfaceScope.self)
-        ("Worlds/Playground/FAQ/Dictionary", SurfaceScope.self)
-        ("Worlds/Playground/Light/Dictionary", SurfaceScope.self)
-        ("Worlds/Playground/Organization/Dictionary", SurfaceScope.self)
-        ("Worlds/Playground/ReadMe/Dictionary", SurfaceScope.self)
-        ("Worlds/Playground/Rules/Dictionary", SurfaceScope.self)
-        ("Worlds/Playground/Typewriter/Dictionary", SurfaceScope.self)
-        ("Worlds/Playground/World/Dictionary", SurfaceScope.self)
-        ("Worlds/Playground/Site", SurfaceScope.self)
-        ("Worlds/Playground", DemoScope.self)
         ("Sources/VerificationIsIdentification/Primitive.swift", EngineScope.self)
         ("Sources/VerificationIsIdentification", LatticeScope.self)
-        ("Sources/DocumentKit", SurfaceScope.self)
-        ("Sources/Organization/View", SurfaceScope.self)
-        ("Sources/Organization/System", SystemScope.self)
-        ("Sources/Organization/Query", SystemScope.self)
-        ("Sources/Organization", SystemScope.self)
         ("Sources/Tools", ToolsScope.self)
         ("Sources/Court", ToolsScope.self)
-        ("Sources/ShowcaseTools", ToolsScope.self)
-        ("Plugins", ToolsScope.self)
         ("Sources/GrammarLexicon", ToolsScope.self)
         ("Sources/Alphabet", ToolsScope.self)
         ("Sources/Examples", DemoScope.self)
-        ("Sources/DynamicsDemo", DemoScope.self)
-        ("Sources/OrgDemo", DemoScope.self)
-        ("Sources/OrgWalkPages", DemoScope.self)
-        ("Sources/VectorDemo", DemoScope.self)
-        ("Sources/DocumentKitDemo", DemoScope.self)
     }
 }
 

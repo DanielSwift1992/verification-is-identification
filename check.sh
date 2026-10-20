@@ -105,7 +105,7 @@ LAWS+=(
 "ci|CI diagnostics preserve failed checks and quote their output safely|python3 Checks/ci-check-test.py"
 "quotes|a quote of a sibling paper is that paper's sentence|swift run Tools quotes"
 "law|the grammar carries every source file|swift run Tools grammar"
-"boundary|a registered scope ends at a path component, and a neighbour by prefix is absent|bash Checks/grammar-boundary.sh"
+"boundary|registered and external scope maps keep component boundaries, coverage and compiler grants|bash Checks/grammar-boundary.sh && python3 Checks/grammar-scopes.py"
 )
 
 RESEARCH+=(

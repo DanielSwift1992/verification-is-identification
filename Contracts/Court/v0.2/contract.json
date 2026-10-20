@@ -1,0 +1,420 @@
+{
+  "schema": "vi.court.conformance/1",
+  "suite": "vi.court.questions/0.2",
+  "scope": "Named count capacity and source-bound replay controls. The question and the v0.1 answers are unchanged. No general reader equivalence is asserted.",
+  "reference_revision": "95513b4bd8605c2c3c0df3290c0160c0203def2c",
+  "expectation_basis": "Exact independent integer arithmetic, structural mismatch, unchanged primitive rule checks, finite signed 64-bit scope. Baseline reader did not resolve the large cases.",
+  "versions": {
+    "where_question": "vi.where.definition-equality/1",
+    "where_normalization_canon": 4,
+    "count_question": "vi.count.unit-never-plus/1",
+    "count_input": "vi.count.shared-definition-fixtures/1",
+    "response": "vi.court.cli-text/1"
+  },
+  "missing_files": [],
+  "files": {
+    "fixtures/Primitive.swift": {
+      "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a",
+      "origin": "Contracts/Court/v0.1/fixtures/Primitive.swift, unchanged"
+    },
+    "fixtures/size-9984.swift": {
+      "sha256": "553449bfd2d7f6c83b9b77ecda170a0c29d9f8564ea575a23c09b818f75f71eb",
+      "origin": "T-0032 baseline measurement: binary ladder and a declared equal count"
+    },
+    "fixtures/size-10048.swift": {
+      "sha256": "a3f4d2d7f93c4d880ebe9ae944e6a3c341c7a772c0bb2d01b82b0a2bd58e277e",
+      "origin": "T-0032 baseline measurement: binary ladder and a declared equal count"
+    },
+    "fixtures/size-16384.swift": {
+      "sha256": "917816b588c8627a96a85d6f21a1b06cd3c70139cead163991f06e264fd24343",
+      "origin": "T-0032 baseline measurement: binary ladder and a declared equal count"
+    },
+    "fixtures/size-57344.swift": {
+      "sha256": "d199f0cc540a20ff59b8840afdf538afbeffb7b56189ab1ede34b8b4f1b6d798",
+      "origin": "T-0032 baseline measurement: binary ladder and a declared equal count"
+    },
+    "fixtures/gate-d65.swift": {
+      "sha256": "173da51d56fbe1a7c8411bedac317a1cd8b1fdae2d024e686cd24bbfef0e3ffd",
+      "origin": "gate 61422112396ff7e3406c2cf1c1c6fe3bc9da213e:stdlib/bench-palette.swift; the 26 original IDs expanded into 66 stated relations, checked by arithmetic.json"
+    },
+    "origins/gate-bench-palette.swift": {
+      "sha256": "e196c6c7ce83fbab29d5e1b5e1da78677583d3f7705b7ad1a0eee5c0af2ca69f",
+      "origin": "git show 61422112396ff7e3406c2cf1c1c6fe3bc9da213e:stdlib/bench-palette.swift"
+    },
+    "fixtures/large-false-answer.swift": {
+      "sha256": "46be15f0c7fe589b0fa653e04eea9345d303e1f60733de084cc47a80d493eb37",
+      "origin": "size-16384.swift, Answer increased by Unit"
+    },
+    "fixtures/equal-count-different-shape.swift": {
+      "sha256": "c57a2e59d66c8a3a7fa9bf9e8bcf67cf744175185b9cd550c0dc814554bebd4c",
+      "origin": "T-0032 structural Right == Answer control: 3 = 3 does not identify the ordered trees"
+    },
+    "fixtures/large-product-unsupported.swift": {
+      "sha256": "242ec4d3320e612e10dafb7b1c1942eaee8b4097429c4140bceab5fb4f588245",
+      "origin": "size-16384.swift with an opaque Times name, no multiplication rule"
+    },
+    "fixtures/int-overflow.swift": {
+      "sha256": "db0450c02ef9e8816307fabf4e4d72b4614a6e5b1ac27dbac7d4d3263a558236",
+      "origin": "2^63 via direct Plus aliases, within definition depth and outside signed 64-bit range"
+    },
+    "fixtures/cycle.swift": {
+      "sha256": "691bd12fbe5bd0b0f5f302c6397226ed92f88dde49e63bf3a52c4440f70753f7",
+      "origin": "T-0032 cyclic source definition, not an arithmetic refusal"
+    },
+    "fixtures/changed-primitive.swift": {
+      "sha256": "5ab211316b9abb44808ef8ad04298f6a4cc96e729785cbcc8b05166890e67f2c",
+      "origin": "frozen Primitive.swift with a forged Unit.count"
+    },
+    "arithmetic.json": {
+      "sha256": "d4ca8de8330b073b9638a4fbd18d83f12b46686a9e0e26df9284258a44fd3f23",
+      "origin": "independent integer evaluation of the declared fixture sides; checker: Checks/count-dag-arithmetic.py"
+    },
+    "fixtures/deep-definition-unsupported.swift": {
+      "sha256": "88c3f5a6feee82c201ef2a9f2e836a29667f549752118073c081e24a34d13515",
+      "origin": "2^63 via the Twice ladder; definition depth exceeds 128 before arithmetic. Kept separately from the overflow control."
+    }
+  },
+  "cases": [
+    {
+      "id": "count-shared-9984",
+      "pass": "count",
+      "files": [
+        "fixtures/size-9984.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ COUNT holds: 1 source-bound readings checked; finite Unit/Never/Plus rules and definition/count derivations replayed.",
+            "Scope: Measure / UnaryArithmeticEncoding / UnitsQuestion; all 2 presented files; closed aliases/top-level metatypes; Int range and reader budgets; nominal equality and Swift conformance are separate checks."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-shared-10048",
+      "pass": "count",
+      "files": [
+        "fixtures/size-10048.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ COUNT holds: 1 source-bound readings checked; finite Unit/Never/Plus rules and definition/count derivations replayed.",
+            "Scope: Measure / UnaryArithmeticEncoding / UnitsQuestion; all 2 presented files; closed aliases/top-level metatypes; Int range and reader budgets; nominal equality and Swift conformance are separate checks."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-shared-16384",
+      "pass": "count",
+      "files": [
+        "fixtures/size-16384.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ COUNT holds: 1 source-bound readings checked; finite Unit/Never/Plus rules and definition/count derivations replayed.",
+            "Scope: Measure / UnaryArithmeticEncoding / UnitsQuestion; all 2 presented files; closed aliases/top-level metatypes; Int range and reader budgets; nominal equality and Swift conformance are separate checks."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-shared-57344",
+      "pass": "count",
+      "files": [
+        "fixtures/size-57344.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ COUNT holds: 1 source-bound readings checked; finite Unit/Never/Plus rules and definition/count derivations replayed.",
+            "Scope: Measure / UnaryArithmeticEncoding / UnitsQuestion; all 2 presented files; closed aliases/top-level metatypes; Int range and reader budgets; nominal equality and Swift conformance are separate checks."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-gate-d65-26-ids",
+      "pass": "count",
+      "files": [
+        "fixtures/gate-d65.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ COUNT holds: 66 source-bound readings checked; finite Unit/Never/Plus rules and definition/count derivations replayed.",
+            "Scope: Measure / UnaryArithmeticEncoding / UnitsQuestion; all 2 presented files; closed aliases/top-level metatypes; Int range and reader budgets; nominal equality and Swift conformance are separate checks."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-large-false-answer",
+      "pass": "count",
+      "files": [
+        "fixtures/large-false-answer.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ COUNT: 'Probe' count Left = 16384, but Answer = 16385 [UnitsQuestion]"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-equal-count-different-shape",
+      "pass": "count",
+      "files": [
+        "fixtures/equal-count-different-shape.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ COUNT: 'Probe' requires Right == Answer [PredicateReading]"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-large-product-unsupported",
+      "pass": "count",
+      "files": [
+        "fixtures/large-product-unsupported.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "lines": [
+            "✗ COUNT unresolved: 'Probe' count reading unresolved: 'Times<U8192, U2>' is outside the finite Unit/Never/Plus count fragment"
+          ]
+        }
+      }
+    },
+    {
+      "id": "count-overflow",
+      "pass": "count",
+      "files": [
+        "fixtures/int-overflow.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "lines": [
+            "✗ COUNT unresolved: 'Probe' count reading unresolved: count exceeds Int.max at 'Reading<Plus<P62, P62>, Plus<P62, P62>>.Left'"
+          ]
+        }
+      }
+    },
+    {
+      "id": "count-cycle",
+      "pass": "count",
+      "files": [
+        "fixtures/cycle.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "lines": [
+            "✗ COUNT unresolved: cyclic count definition at 'Loop'; no impossibility inferred"
+          ]
+        }
+      }
+    },
+    {
+      "id": "count-changed-primitive",
+      "pass": "count",
+      "files": [
+        "fixtures/size-9984.swift",
+        "fixtures/changed-primitive.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "lines": [
+            "✗ COUNT unresolved: changed count primitive body 'Unit' in fixtures/changed-primitive.swift"
+          ]
+        }
+      }
+    },
+    {
+      "id": "count-definition-depth",
+      "pass": "count",
+      "files": [
+        "fixtures/deep-definition-unsupported.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "lines": [
+            "✗ COUNT unresolved: 'Probe' count reading unresolved: normalization limit reached at 'Plus<U1048576, U1048576>'; no impossibility inferred"
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -78,3 +78,26 @@ with tempfile.TemporaryDirectory(prefix='vi-contract-tests-') as tmp:
         shutil.copytree(root, target)
 
 print(f'court-contract reader: {checks} adversarial and control checks passed')
+
+# The new release must be bound as a whole too. A port cannot report success
+# after silently dropping a large case or replacing its arithmetic premise.
+capacity_root, capacity = contract.load_contract(HERE.parent / 'Contracts/Court/v0.2/contract.json')
+with tempfile.TemporaryDirectory(prefix='vi-capacity-contract-tests-') as tmp:
+    target = Path(tmp) / 'contract'
+    for mutation in ('positive', 'subset', 'expectation', 'changed-input', 'changed-arithmetic'):
+        shutil.copytree(capacity_root, target)
+        manifest = target / 'contract.json'
+        modified = copy.deepcopy(capacity)
+        if mutation == 'subset': modified['cases'] = modified['cases'][:-1]
+        if mutation == 'expectation': modified['cases'][0]['expected']['exit'] = 2
+        if mutation == 'changed-input': (target / modified['cases'][0]['files'][0]).write_text('changed')
+        if mutation == 'changed-arithmetic': (target / 'arithmetic.json').write_text('{}')
+        if mutation in ('subset', 'expectation'): manifest.write_text(json.dumps(modified))
+        try:
+            contract.load_contract(manifest)
+        except (ValueError, OSError):
+            check(mutation != 'positive', 'capacity ' + mutation)
+        else:
+            check(mutation == 'positive', 'capacity ' + mutation)
+        shutil.rmtree(target)
+print(f'court-contract reader: {checks} checks passed across both releases')

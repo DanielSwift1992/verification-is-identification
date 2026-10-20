@@ -20,6 +20,7 @@ import time
 # An immutable suite name binds the exact manifest bytes, including its case set.
 # New normative expectations require a new release and a deliberate registry entry.
 SUITE_HASHES = {
+    "vi.court.questions/0.2": "89803c35cccd5f1c3cf8f2cc451a60e08b7a82d8195b6289f9c3475eb71a54c9",
     "vi.court.questions/0.1": "f6092c3c2bcfed822ee8aef878bb2b0d42c2756ec4fc002026d6d5a9fdfd54e6",
 }
 

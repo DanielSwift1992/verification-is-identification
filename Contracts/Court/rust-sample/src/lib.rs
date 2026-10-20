@@ -6,6 +6,7 @@
 // road; this is what the contract driver and the differential run compare.
 
 pub mod count_court;
+pub mod shared_count;
 pub mod expression;
 pub mod failure;
 pub mod lexical;

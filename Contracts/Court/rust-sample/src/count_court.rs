@@ -4,7 +4,7 @@
 // enabled only after checking the presented primitive definitions. This is a
 // restricted source interpreter, not execution of arbitrary Swift getters.
 
-use crate::expression::{self as ex, Derivation, Expression, Failure, Source};
+use crate::expression::{self as ex, Expression, Failure, Source};
 use crate::structural::{self as st, StructuralSource};
 use crate::{Answer, Loader};
 use std::collections::{HashMap, HashSet};
@@ -204,96 +204,7 @@ pub fn check_primitive_rules(files: &[(String, String)], source: &StructuralSour
     Ok(())
 }
 
-pub enum Proof {
-    Zero(Derivation),
-    Unit(Derivation),
-    Plus(Derivation, Box<Proof>, Box<Proof>),
-}
-
-pub struct Reader<'a> {
-    pub source: Source<'a>,
-}
-
-impl<'a> Reader<'a> {
-    fn derive(&self, input: &Expression, depth: usize, budget: &mut usize) -> Result<Proof, Failure> {
-        if depth >= 128 || *budget == 0 {
-            return Err(Failure::new("count expression exceeds the finite reader budget"));
-        }
-        *budget -= 1;
-        let reduction = ex::derive(input, &self.source, 128, 50_000, true)?;
-        let output = ex::replay(&reduction, &self.source, 100_000)?.output;
-        match &output {
-            Expression::Application(name, args) if name == "Never" && args.is_empty() => Ok(Proof::Zero(reduction)),
-            Expression::Application(name, args) if name == "Unit" && args.is_empty() => Ok(Proof::Unit(reduction)),
-            Expression::Application(name, args) if name == "Plus" => {
-                if args.len() != 2 {
-                    return Err(Failure::new("Plus must have exactly two count operands"));
-                }
-                let left = self.derive(&args[0], depth + 1, budget)?;
-                let right = self.derive(&args[1], depth + 1, budget)?;
-                Ok(Proof::Plus(reduction, Box::new(left), Box::new(right)))
-            }
-            _ => Err(Failure::new(format!(
-                "'{}' is outside the finite Unit/Never/Plus count fragment",
-                output.text()
-            ))),
-        }
-    }
-
-    /// Replay binds every arithmetic step to the original expression and
-    /// source reduction. The certificate contains no asserted integer.
-    fn replay(&self, proof: &Proof, input: &Expression, depth: usize, budget: &mut usize) -> Result<i64, Failure> {
-        if depth >= 128 || *budget == 0 {
-            return Err(Failure::new("count proof exceeds the replay budget"));
-        }
-        *budget -= 1;
-        let reduction = match proof {
-            Proof::Zero(d) | Proof::Unit(d) | Proof::Plus(d, _, _) => d,
-        };
-        let ends = ex::replay(reduction, &self.source, 100_000)?;
-        if ends.input != *input {
-            return Err(Failure::new("count proof changes its source"));
-        }
-        match (proof, &ends.output) {
-            (Proof::Zero(_), Expression::Application(name, args)) if name == "Never" && args.is_empty() => Ok(0),
-            (Proof::Unit(_), Expression::Application(name, args)) if name == "Unit" && args.is_empty() => Ok(1),
-            (Proof::Plus(_, l, r), Expression::Application(name, args)) if name == "Plus" => {
-                if args.len() != 2 {
-                    return Err(Failure::new("Plus proof must have exactly two operands"));
-                }
-                let a = self.replay(l, &args[0], depth + 1, budget)?;
-                let b = self.replay(r, &args[1], depth + 1, budget)?;
-                a.checked_add(b).ok_or_else(|| Failure::new(format!("count exceeds Int.max at '{}'", input.text())))
-            }
-            _ => Err(Failure::new("count proof uses a rule without its source shape")),
-        }
-    }
-
-    pub fn count(&self, input: &Expression) -> Result<i64, Failure> {
-        let mut construction_budget = 50_000usize;
-        let mut replay_budget = 50_000usize;
-        let proof = self.derive(input, 0, &mut construction_budget)?;
-        self.replay(&proof, input, 0, &mut replay_budget)
-    }
-
-    pub fn normal(&self, input: &Expression) -> Result<Expression, Failure> {
-        let proof = ex::derive(input, &self.source, 128, 50_000, false)?;
-        let ends = ex::replay(&proof, &self.source, 100_000)?;
-        if ends.input != *input {
-            return Err(Failure::new("field reduction changes its source"));
-        }
-        Ok(ends.output)
-    }
-
-    pub fn normal_head(&self, input: &Expression) -> Result<Expression, Failure> {
-        let proof = ex::derive(input, &self.source, 128, 50_000, true)?;
-        let ends = ex::replay(&proof, &self.source, 100_000)?;
-        if ends.input != *input {
-            return Err(Failure::new("application reduction changes its source"));
-        }
-        Ok(ends.output)
-    }
-}
+use crate::shared_count::Reader;
 
 /// Metatype applications are discovered from tokens, not comment/string text.
 pub fn metatypes(text: &str) -> Result<Vec<(Expression, bool)>, Failure> {
@@ -378,7 +289,7 @@ fn judge_with(load: Loader, arguments: &[String]) -> Result<(usize, usize, Vec<S
     let source = StructuralSource::new(&files)?;
     check_primitive_rules(&files, &source)?;
     let no_rigid: HashSet<String> = HashSet::new();
-    let reader = Reader { source: Source { world: &source.syntax, rigid: &no_rigid } };
+    let mut reader = Reader::new(Source { world: &source.syntax, rigid: &no_rigid });
     let predicate = reader.normal(&ex::parse(&options["--predicate"], false)?)?;
     let encoding = reader.normal(&ex::parse(&options["--encoding"], false)?)?;
     let sigma = reader.normal(&ex::parse(&options["--sigma"], false)?)?;
@@ -403,6 +314,7 @@ fn judge_with(load: Loader, arguments: &[String]) -> Result<(usize, usize, Vec<S
         if discovered >= 20_000 {
             return Err(Failure::new("count application discovery exceeds its budget"));
         }
+        let mut reader = Reader::new(Source { world: &source.syntax, rigid: &no_rigid });
         let root = reader.normal_head(&job.input)?;
         if !seen.entry(job.anchor.clone()).or_default().insert(root.clone()) {
             continue;
@@ -452,16 +364,9 @@ fn judge_with(load: Loader, arguments: &[String]) -> Result<(usize, usize, Vec<S
         if reader.normal(&field("Encoding"))? != encoding || reader.normal(&field("Sigma"))? != sigma {
             return Err(Failure::new(format!("'{}' changes the selected count signature", job.site)));
         }
-        let input = field("Left");
-        let answer = field("Answer");
-        let answer_form = reader.normal(&answer)?;
-        let right_form = reader.normal(&field("Right"))?;
-        if right_form != answer_form {
-            refusals.push(format!("'{}' requires Right == Answer [PredicateReading]", job.site));
-        }
-        let counted = (|| -> Result<(i64, i64), Failure> { Ok((reader.count(&input)?, reader.count(&answer)?)) })();
-        match counted {
-            Ok((actual, declared)) => {
+        match reader.reading(&root) {
+            Ok((equal, actual, declared)) => {
+                if !equal { refusals.push(format!("'{}' requires Right == Answer [PredicateReading]", job.site)); }
                 if actual != declared {
                     refusals.push(format!(
                         "'{}' count Left = {}, but Answer = {} [{}]",

@@ -156,71 +156,6 @@ enum CountCourt {
         }
     }
 
-    indirect enum Proof {
-        case zero(R.Derivation)
-        case unit(R.Derivation)
-        case plus(R.Derivation, Proof, Proof)
-    }
-
-    struct Reader {
-        let source: R.Source
-
-        func derive(_ input: E, depth: Int = 0, budget: inout Int) throws -> Proof {
-            guard depth < 128, budget > 0 else { throw Failure("count expression exceeds the finite reader budget") }
-            budget -= 1
-            let reduction = try R.derive(input, source: source, depthLimit: 128,
-                                         nodeLimit: 50_000, headOnly: true)
-            let output = try R.replay(reduction, source: source, nodeLimit: 100_000).output
-            switch output {
-            case .application("Never", []): return .zero(reduction)
-            case .application("Unit", []): return .unit(reduction)
-            case let .application("Plus", args):
-                guard args.count == 2 else { throw Failure("Plus must have exactly two count operands") }
-                let left = try derive(args[0], depth: depth + 1, budget: &budget)
-                let right = try derive(args[1], depth: depth + 1, budget: &budget)
-                return .plus(reduction, left, right)
-            default: throw Failure("'\(output.text)' is outside the finite Unit/Never/Plus count fragment")
-            }
-        }
-
-        /// Replay binds every arithmetic step to the original expression and
-        /// source reduction. The certificate contains no asserted integer.
-        func replay(_ proof: Proof, input: E, depth: Int = 0, budget: inout Int) throws -> Int {
-            guard depth < 128, budget > 0 else { throw Failure("count proof exceeds the replay budget") }
-            budget -= 1
-            let reduction: R.Derivation
-            switch proof {
-            case let .zero(d), let .unit(d), let .plus(d, _, _): reduction = d
-            }
-            let ends = try R.replay(reduction, source: source, nodeLimit: 100_000)
-            guard ends.input == input else { throw Failure("count proof changes its source") }
-            switch (proof, ends.output) {
-            case (.zero, .application("Never", [])): return 0
-            case (.unit, .application("Unit", [])): return 1
-            case let (.plus(_, l, r), .application("Plus", args)):
-                guard args.count == 2 else { throw Failure("Plus proof must have exactly two operands") }
-                let a = try replay(l, input: args[0], depth: depth + 1, budget: &budget)
-                let b = try replay(r, input: args[1], depth: depth + 1, budget: &budget)
-                let (sum, overflow) = a.addingReportingOverflow(b)
-                guard !overflow else { throw Failure("count exceeds Int.max at '\(input.text)'") }
-                return sum
-            default: throw Failure("count proof uses a rule without its source shape")
-            }
-        }
-
-        func count(_ input: E) throws -> Int {
-            var constructionBudget = 50_000, replayBudget = 50_000
-            let proof = try derive(input, budget: &constructionBudget)
-            return try replay(proof, input: input, budget: &replayBudget)
-        }
-        func normal(_ input: E) throws -> E {
-            let proof = try R.derive(input, source: source, depthLimit: 128, nodeLimit: 50_000)
-            let ends = try R.replay(proof, source: source, nodeLimit: 100_000)
-            guard ends.input == input else { throw Failure("field reduction changes its source") }
-            return ends.output
-        }
-    }
-
     /// Metatype applications are discovered from tokens, not comment/string text.
     static func metatypes(_ text: String) throws -> [(input: E, nested: Bool)] {
         let ts = StructuralSource.plain(try StructuralSource.tokens(text))
@@ -287,6 +222,7 @@ enum CountCourt {
             var seen: [String: Set<E>] = [:], discovered = 0, checked = 0, refusals: [String] = []
             while let job = queue.popLast() {
                 guard discovered < 20_000 else { throw Failure("count application discovery exceeds its budget") }
+                let reader = Reader(source: R.Source(world: source.syntax, rigid: []))
                 let root = try reader.normalHead(job.input)
                 if !seen[job.anchor, default: []].insert(root).inserted { continue }
                 discovered += 1
@@ -313,18 +249,16 @@ enum CountCourt {
                 guard try reader.normal(.field(root, "Encoding")) == encoding,
                     try reader.normal(.field(root, "Sigma")) == sigma
                 else { throw Failure("'\(job.site)' changes the selected count signature") }
-                let input: E = .field(root, "Left"), answer: E = .field(root, "Answer")
-                let answerForm = try reader.normal(answer)
-                let rightForm = try reader.normal(.field(root, "Right"))
-                if rightForm != answerForm {
-                    refusals.append("'\(job.site)' requires Right == Answer [PredicateReading]")
-                }
                 do {
-                    let actual = try reader.count(input), declared = try reader.count(answer)
-                    if actual != declared {
-                        refusals.append("'\(job.site)' count Left = \(actual), but Answer = \(declared) [\(predicate.text)]")
+                    let result = try reader.reading(root)
+                    if !result.rightEqualsAnswer {
+                        refusals.append("'\(job.site)' requires Right == Answer [PredicateReading]")
+                    }
+                    if result.actual != result.declared {
+                        refusals.append("'\(job.site)' count Left = \(result.actual), but Answer = \(result.declared) [\(predicate.text)]")
                     }
                 } catch { throw Failure("'\(job.site)' count reading unresolved: \(error)") }
+
             }
             guard checked > 0 else { throw Failure("no closed PredicateReading for the selected count signature was checked") }
             if !refusals.isEmpty {
@@ -337,15 +271,5 @@ enum CountCourt {
             FileHandle.standardError.write(Data("✗ COUNT unresolved: \(error)\n".utf8))
             exit(2)
         }
-    }
-}
-
-extension CountCourt.Reader {
-    func normalHead(_ input: CountCourt.E) throws -> CountCourt.E {
-        let proof = try CountCourt.R.derive(input, source: source, depthLimit: 128,
-                                           nodeLimit: 50_000, headOnly: true)
-        let ends = try CountCourt.R.replay(proof, source: source, nodeLimit: 100_000)
-        guard ends.input == input else { throw CountCourt.Failure("application reduction changes its source") }
-        return ends.output
     }
 }

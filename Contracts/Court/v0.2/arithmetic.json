@@ -1,0 +1,434 @@
+{
+  "size-9984": {
+    "Probe": [
+      9984,
+      9984
+    ]
+  },
+  "size-10048": {
+    "Probe": [
+      10048,
+      10048
+    ]
+  },
+  "size-16384": {
+    "Probe": [
+      16384,
+      16384
+    ]
+  },
+  "size-57344": {
+    "Probe": [
+      57344,
+      57344
+    ]
+  },
+  "gate-d65": {
+    "InkGrey_lit_R1": [
+      10,
+      10
+    ],
+    "InkGrey_lit_R2": [
+      275,
+      275
+    ],
+    "InkGrey_lit_R3": [
+      280,
+      280
+    ],
+    "PaperGrey_lit_R1": [
+      25725,
+      25725
+    ],
+    "PaperGrey_lit_R2": [
+      26460,
+      26460
+    ],
+    "PaperGrey_lit_R3": [
+      22450,
+      22450
+    ],
+    "PaperGrey_lit_R4": [
+      22680,
+      22680
+    ],
+    "MistGrey_lit_R1": [
+      23550,
+      23550
+    ],
+    "MistGrey_lit_R2": [
+      24220,
+      24220
+    ],
+    "MistGrey_lit_R3": [
+      20550,
+      20550
+    ],
+    "MistGrey_lit_R4": [
+      20760,
+      20760
+    ],
+    "LineGrey_lit_R1": [
+      17550,
+      17550
+    ],
+    "LineGrey_lit_R2": [
+      18060,
+      18060
+    ],
+    "LineGrey_lit_R3": [
+      15325,
+      15325
+    ],
+    "LineGrey_lit_R4": [
+      15480,
+      15480
+    ],
+    "MutedGrey_lit_R1": [
+      6525,
+      6525
+    ],
+    "MutedGrey_lit_R2": [
+      6720,
+      6720
+    ],
+    "MutedGrey_lit_R3": [
+      5700,
+      5700
+    ],
+    "MutedGrey_lit_R4": [
+      5760,
+      5760
+    ],
+    "SeamGrey_lit_R1": [
+      7575,
+      7575
+    ],
+    "SeamGrey_lit_R2": [
+      7784,
+      7784
+    ],
+    "SeamGrey_lit_R3": [
+      6600,
+      6600
+    ],
+    "SeamGrey_lit_R4": [
+      6672,
+      6672
+    ],
+    "SelectGrey_lit_R1": [
+      18500,
+      18500
+    ],
+    "SelectGrey_lit_R2": [
+      19040,
+      19040
+    ],
+    "SelectGrey_lit_R3": [
+      16150,
+      16150
+    ],
+    "SelectGrey_lit_R4": [
+      16320,
+      16320
+    ],
+    "InkGrey_dim_R1": [
+      16900,
+      16900
+    ],
+    "InkGrey_dim_R2": [
+      17388,
+      17388
+    ],
+    "InkGrey_dim_R3": [
+      14750,
+      14750
+    ],
+    "InkGrey_dim_R4": [
+      14904,
+      14904
+    ],
+    "PaperGrey_dim_R1": [
+      10,
+      10
+    ],
+    "PaperGrey_dim_R2": [
+      275,
+      275
+    ],
+    "PaperGrey_dim_R3": [
+      280,
+      280
+    ],
+    "MistGrey_dim_R1": [
+      825,
+      825
+    ],
+    "MistGrey_dim_R2": [
+      840,
+      840
+    ],
+    "MistGrey_dim_R3": [
+      700,
+      700
+    ],
+    "MistGrey_dim_R4": [
+      720,
+      720
+    ],
+    "LineGrey_dim_R1": [
+      1350,
+      1350
+    ],
+    "LineGrey_dim_R2": [
+      1400,
+      1400
+    ],
+    "LineGrey_dim_R3": [
+      1200,
+      1200
+    ],
+    "LineGrey_dim_R4": [
+      1200,
+      1200
+    ],
+    "MutedGrey_dim_R1": [
+      6650,
+      6650
+    ],
+    "MutedGrey_dim_R2": [
+      6832,
+      6832
+    ],
+    "MutedGrey_dim_R3": [
+      5800,
+      5800
+    ],
+    "MutedGrey_dim_R4": [
+      5856,
+      5856
+    ],
+    "SeamGrey_dim_R1": [
+      4000,
+      4000
+    ],
+    "SeamGrey_dim_R2": [
+      4116,
+      4116
+    ],
+    "SeamGrey_dim_R3": [
+      3500,
+      3500
+    ],
+    "SeamGrey_dim_R4": [
+      3528,
+      3528
+    ],
+    "SelectGrey_dim_R1": [
+      1100,
+      1100
+    ],
+    "SelectGrey_dim_R2": [
+      1120,
+      1120
+    ],
+    "SelectGrey_dim_R3": [
+      950,
+      950
+    ],
+    "SelectGrey_dim_R4": [
+      960,
+      960
+    ],
+    "OkChroma_lit_R1": [
+      4050,
+      4050
+    ],
+    "BadChroma_lit_R1": [
+      4050,
+      4050
+    ],
+    "ActionChroma_lit_R1": [
+      15250,
+      15250
+    ],
+    "LawChroma_lit_R1": [
+      4050,
+      4050
+    ],
+    "LocalTypeChroma_lit_R1": [
+      8650,
+      8650
+    ],
+    "KnownNameChroma_lit_R1": [
+      15750,
+      15750
+    ],
+    "OkChroma_dim_R1": [
+      11313,
+      11313
+    ],
+    "BadChroma_dim_R1": [
+      11313,
+      11313
+    ],
+    "ActionChroma_dim_R1": [
+      17625,
+      17625
+    ],
+    "LawChroma_dim_R1": [
+      11313,
+      11313
+    ],
+    "LocalTypeChroma_dim_R1": [
+      16400,
+      16400
+    ],
+    "KnownNameChroma_dim_R1": [
+      17275,
+      17275
+    ]
+  },
+  "provenance": {
+    "gate_revision": "61422112396ff7e3406c2cf1c1c6fe3bc9da213e",
+    "gate_source_sha256": "e196c6c7ce83fbab29d5e1b5e1da78677583d3f7705b7ad1a0eee5c0af2ca69f",
+    "mapping": {
+      "InkGrey_lit": [
+        "InkGrey_lit_R1",
+        "InkGrey_lit_R2",
+        "InkGrey_lit_R3"
+      ],
+      "PaperGrey_lit": [
+        "PaperGrey_lit_R1",
+        "PaperGrey_lit_R2",
+        "PaperGrey_lit_R3",
+        "PaperGrey_lit_R4"
+      ],
+      "MistGrey_lit": [
+        "MistGrey_lit_R1",
+        "MistGrey_lit_R2",
+        "MistGrey_lit_R3",
+        "MistGrey_lit_R4"
+      ],
+      "LineGrey_lit": [
+        "LineGrey_lit_R1",
+        "LineGrey_lit_R2",
+        "LineGrey_lit_R3",
+        "LineGrey_lit_R4"
+      ],
+      "MutedGrey_lit": [
+        "MutedGrey_lit_R1",
+        "MutedGrey_lit_R2",
+        "MutedGrey_lit_R3",
+        "MutedGrey_lit_R4"
+      ],
+      "SeamGrey_lit": [
+        "SeamGrey_lit_R1",
+        "SeamGrey_lit_R2",
+        "SeamGrey_lit_R3",
+        "SeamGrey_lit_R4"
+      ],
+      "SelectGrey_lit": [
+        "SelectGrey_lit_R1",
+        "SelectGrey_lit_R2",
+        "SelectGrey_lit_R3",
+        "SelectGrey_lit_R4"
+      ],
+      "InkGrey_dim": [
+        "InkGrey_dim_R1",
+        "InkGrey_dim_R2",
+        "InkGrey_dim_R3",
+        "InkGrey_dim_R4"
+      ],
+      "PaperGrey_dim": [
+        "PaperGrey_dim_R1",
+        "PaperGrey_dim_R2",
+        "PaperGrey_dim_R3"
+      ],
+      "MistGrey_dim": [
+        "MistGrey_dim_R1",
+        "MistGrey_dim_R2",
+        "MistGrey_dim_R3",
+        "MistGrey_dim_R4"
+      ],
+      "LineGrey_dim": [
+        "LineGrey_dim_R1",
+        "LineGrey_dim_R2",
+        "LineGrey_dim_R3",
+        "LineGrey_dim_R4"
+      ],
+      "MutedGrey_dim": [
+        "MutedGrey_dim_R1",
+        "MutedGrey_dim_R2",
+        "MutedGrey_dim_R3",
+        "MutedGrey_dim_R4"
+      ],
+      "SeamGrey_dim": [
+        "SeamGrey_dim_R1",
+        "SeamGrey_dim_R2",
+        "SeamGrey_dim_R3",
+        "SeamGrey_dim_R4"
+      ],
+      "SelectGrey_dim": [
+        "SelectGrey_dim_R1",
+        "SelectGrey_dim_R2",
+        "SelectGrey_dim_R3",
+        "SelectGrey_dim_R4"
+      ],
+      "OkChroma_lit": [
+        "OkChroma_lit_R1"
+      ],
+      "BadChroma_lit": [
+        "BadChroma_lit_R1"
+      ],
+      "ActionChroma_lit": [
+        "ActionChroma_lit_R1"
+      ],
+      "LawChroma_lit": [
+        "LawChroma_lit_R1"
+      ],
+      "LocalTypeChroma_lit": [
+        "LocalTypeChroma_lit_R1"
+      ],
+      "KnownNameChroma_lit": [
+        "KnownNameChroma_lit_R1"
+      ],
+      "OkChroma_dim": [
+        "OkChroma_dim_R1"
+      ],
+      "BadChroma_dim": [
+        "BadChroma_dim_R1"
+      ],
+      "ActionChroma_dim": [
+        "ActionChroma_dim_R1"
+      ],
+      "LawChroma_dim": [
+        "LawChroma_dim_R1"
+      ],
+      "LocalTypeChroma_dim": [
+        "LocalTypeChroma_dim_R1"
+      ],
+      "KnownNameChroma_dim": [
+        "KnownNameChroma_dim_R1"
+      ]
+    }
+  },
+  "large-false-answer": {
+    "Probe": [
+      16384,
+      16385
+    ]
+  },
+  "equal-count-different-shape": {
+    "Probe": [
+      3,
+      3
+    ]
+  },
+  "int-overflow": {
+    "Probe": [
+      9223372036854775808,
+      9223372036854775808
+    ]
+  }
+}

@@ -93,10 +93,13 @@ enum Linter {
     /// This names the file's scope: a mechanical fact about ITS PATH (repo-root-relative, the
     /// same convention `Schema.scopes` and Census.swift's targets use), not a decision this file
     /// makes about what a directory MEANS: absent from the registry means the file carries a
-    /// scope name no block type in the schema answers to.
+    /// scope name no block type in the schema answers to. A registered prefix ends at a path
+    /// component: `Sources/Court` names the file `Sources/Court` and every file below
+    /// `Sources/Court/`, and a neighbour whose name merely begins with it (`Sources/CourtRoom/`)
+    /// is absent from the registry, not read as the court's.
     private static func scope(for path: String) -> any LintAtom.Type {
         for entry in scopesByLength
-        where path.hasPrefix(entry.prefix) {
+        where path == entry.prefix || path.hasPrefix(entry.prefix + "/") {
             return entry.scope
         }
         return Alphabet.defaultWord

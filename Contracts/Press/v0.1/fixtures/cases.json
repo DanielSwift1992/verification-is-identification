@@ -1,0 +1,636 @@
+[
+  {
+    "id": "triple",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null
+    }
+  },
+  {
+    "id": "mismatch",
+    "request": {
+      "arguments": [
+        "TurnOff"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": null
+    }
+  },
+  {
+    "id": "chord-one",
+    "request": {
+      "arguments": [
+        "TurnOn,TurnOff"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null
+    }
+  },
+  {
+    "id": "chord-zero",
+    "request": {
+      "arguments": [
+        "TurnOn,TurnOff"
+      ],
+      "state": "typealias Mode = Neither\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Neither\n",
+      "changed": false,
+      "refusal": null
+    }
+  },
+  {
+    "id": "chord-two",
+    "request": {
+      "arguments": [
+        "TurnOn,AlsoOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mode",
+        "reason_contains": "ambiguous chord"
+      }
+    }
+  },
+  {
+    "id": "mixed-slot",
+    "request": {
+      "arguments": [
+        "TurnOn,Elsewhere"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn,Elsewhere",
+        "reason_contains": "a chord holds one slot"
+      }
+    }
+  },
+  {
+    "id": "nested-substitution",
+    "request": {
+      "arguments": [
+        "Swap"
+      ],
+      "state": "typealias Mode = Pair<Off, On>\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Pair<On, Off>\n",
+      "changed": true,
+      "refusal": null
+    }
+  },
+  {
+    "id": "nonlinear-pattern",
+    "request": {
+      "arguments": [
+        "Repeated"
+      ],
+      "state": "typealias Mode = Pair<Off, Off>\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Pair<Off, Off>\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#Repeated",
+        "reason_contains": "linearity"
+      }
+    }
+  },
+  {
+    "id": "instance",
+    "request": {
+      "arguments": [
+        "Set<On>"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null
+    }
+  },
+  {
+    "id": "instance-missing",
+    "request": {
+      "arguments": [
+        "Set"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#Set",
+        "reason_contains": "needs its instance"
+      }
+    }
+  },
+  {
+    "id": "instance-extra",
+    "request": {
+      "arguments": [
+        "Set<On,Off>"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#Set",
+        "reason_contains": "1 instance argument(s)"
+      }
+    }
+  },
+  {
+    "id": "unknown-rule",
+    "request": {
+      "arguments": [
+        "Absent"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#Absent",
+        "reason_contains": "no rule named"
+      }
+    }
+  },
+  {
+    "id": "missing-slot",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Other = Off\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Other = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mode",
+        "reason_contains": "no slot Mode"
+      }
+    }
+  },
+  {
+    "id": "duplicate-slot",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\ntypealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\ntypealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mode",
+        "reason_contains": "appears twice"
+      }
+    }
+  },
+  {
+    "id": "rubout-non-bmp",
+    "request": {
+      "arguments": [
+        "rubout",
+        "Words"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"𐐀\" }\n}\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "changed": true,
+      "refusal": null
+    }
+  },
+  {
+    "id": "rubout-combining",
+    "request": {
+      "arguments": [
+        "rubout",
+        "Words"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"é\" }\n}\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "changed": true,
+      "refusal": null
+    }
+  },
+  {
+    "id": "rubout-ascii",
+    "request": {
+      "arguments": [
+        "rubout",
+        "Words"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"A\" }\n}\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "changed": true,
+      "refusal": null
+    }
+  },
+  {
+    "id": "rubout-empty",
+    "request": {
+      "arguments": [
+        "rubout",
+        "Words"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "changed": false,
+      "refusal": null
+    }
+  },
+  {
+    "id": "append",
+    "request": {
+      "arguments": [
+        "append",
+        "Words",
+        "Hello"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"Hello\" }\n}\n",
+      "changed": true,
+      "refusal": null
+    }
+  },
+  {
+    "id": "append-non-bmp",
+    "request": {
+      "arguments": [
+        "append",
+        "Words",
+        "𐐀"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"𐐀\" }\n}\n",
+      "changed": true,
+      "refusal": null
+    }
+  },
+  {
+    "id": "append-combining",
+    "request": {
+      "arguments": [
+        "append",
+        "Words",
+        "é"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"é\" }\n}\n",
+      "changed": true,
+      "refusal": null
+    }
+  },
+  {
+    "id": "clear",
+    "request": {
+      "arguments": [
+        "clear",
+        "Words"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"Hello\" }\n}\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "changed": true,
+      "refusal": null
+    }
+  },
+  {
+    "id": "literal-quote",
+    "request": {
+      "arguments": [
+        "append",
+        "Words",
+        "\""
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Words",
+        "reason_contains": "outside the literal"
+      }
+    }
+  },
+  {
+    "id": "literal-angle",
+    "request": {
+      "arguments": [
+        "append",
+        "Words",
+        "<"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Words",
+        "reason_contains": "outside the literal"
+      }
+    }
+  },
+  {
+    "id": "literal-newline",
+    "request": {
+      "arguments": [
+        "append",
+        "Words",
+        "\n"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Words",
+        "reason_contains": "outside the literal"
+      }
+    }
+  },
+  {
+    "id": "literal-slash",
+    "request": {
+      "arguments": [
+        "append",
+        "Words",
+        "\\"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Words",
+        "reason_contains": "outside the literal"
+      }
+    }
+  },
+  {
+    "id": "missing-literal",
+    "request": {
+      "arguments": [
+        "rubout",
+        "Absent"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"Hello\" }\n}\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"Hello\" }\n}\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Absent",
+        "reason_contains": "no literal slot"
+      }
+    }
+  },
+  {
+    "id": "rubout-emoji-zwj",
+    "request": {
+      "arguments": [
+        "rubout",
+        "Words"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"👩🏽‍💻\" }\n}\n",
+      "dictionary": "",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "changed": true,
+      "refusal": null
+    }
+  },
+  {
+    "id": "rubout-flag",
+    "request": {
+      "arguments": [
+        "rubout",
+        "Words"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"🇨🇦\" }\n}\n",
+      "dictionary": "",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "changed": true,
+      "refusal": null
+    }
+  },
+  {
+    "id": "rubout-hangul",
+    "request": {
+      "arguments": [
+        "rubout",
+        "Words"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"가\" }\n}\n",
+      "dictionary": "",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "changed": true,
+      "refusal": null
+    }
+  },
+  {
+    "id": "rubout-two-graphemes",
+    "request": {
+      "arguments": [
+        "rubout",
+        "Words"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"A𐐀\" }\n}\n",
+      "dictionary": "",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"A\" }\n}\n",
+      "changed": true,
+      "refusal": null
+    }
+  },
+  {
+    "id": "append-isolated-mark",
+    "request": {
+      "arguments": [
+        "append",
+        "Words",
+        "́"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Words",
+        "reason_contains": "outside the literal"
+      }
+    }
+  },
+  {
+    "id": "append-emoji",
+    "request": {
+      "arguments": [
+        "append",
+        "Words",
+        "👩🏽‍💻"
+      ],
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "dictionary": "enum TurnOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum TurnOff {\n typealias Slot = ModeSlot\n typealias From = On\n typealias Into = Off\n}\nenum AlsoOn {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = On\n}\nenum Set<X> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = X\n}\nenum Swap<A, B> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, B>\n typealias Into = Pair<B, A>\n}\nenum Repeated<A> {\n typealias Slot = ModeSlot\n typealias From = Pair<A, A>\n typealias Into = A\n}\nenum Elsewhere {\n typealias Slot = OtherSlot\n typealias From = Off\n typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "extension Words {\n public static var typeName: String { \"\" }\n}\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Words",
+        "reason_contains": "outside the literal"
+      }
+    }
+  }
+]

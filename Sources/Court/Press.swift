@@ -21,14 +21,22 @@ public enum Press {
         let into: String
     }
 
-    static func fail(_ message: String) -> Never {
-        FileHandle.standardError.write(Data(("press: " + message + "\n").utf8))
-        exit(1)
+    public struct Failure: Error, CustomStringConvertible {
+        public let description: String
+        public let address: String
+    }
+    public struct Substitution {
+        public let state: String
+        public let changed: Bool
+        public let message: String
+    }
+    static func fail(_ message: String, at address: String = "arguments") throws -> Never {
+        throw Failure(description: message, address: address)
     }
 
     /// Reads one rule's triple out of the dictionary's text: the enum's generic
     /// parameter names, and its Slot/From/Into aliases.
-    static func readRule(named name: String, from text: String, path: String) -> Rule {
+    static func readRule(named name: String, from text: String, path: String) throws -> Rule {
         var variables: [String] = []
         var slot = ""
         var from = ""
@@ -71,12 +79,12 @@ public enum Press {
             // §S28's edge at the point of use: a rule is one substitution, so a body
             // line that is not one of the three aliases refuses the whole press.
             guard carried else {
-                fail("\(name) is not a triple: \(line)")
+                try fail("\(name) is not a triple: \(line)", at: "\(path)#\(name)")
             }
         }
-        guard inside else { fail("no rule named \(name) in \(path)") }
+        guard inside else { try fail("no rule named \(name) in \(path)", at: "\(path)#\(name)") }
         guard !slot.isEmpty, !from.isEmpty, !into.isEmpty else {
-            fail("\(name) states no full Slot/From/Into triple")
+            try fail("\(name) states no full Slot/From/Into triple", at: "\(path)#\(name)")
         }
         return Rule(name: name, variables: variables, slot: slot, from: from, into: into)
     }
@@ -178,12 +186,12 @@ public enum Press {
     /// that could escape the literal (quotes, slashes, angles) is outside it, so
     /// the literal's FORM survives every press and the judge only ever sees a
     /// well-formed file. The refusal names the character.
-    static func vetLiteral(_ text: String) {
+    static func vetLiteral(_ text: String, address: String) throws {
         for ch in text {
             let allowed = ch.isLetter || ch.isNumber || ch == " " || ch == "."
                 || ch == "," || ch == "!" || ch == "?" || ch == "-"
             guard allowed else {
-                fail("\"\(ch)\" is outside the literal's alphabet (letters, digits, space, .,!?-)")
+                try fail("\"\(ch)\" is outside the literal's alphabet (letters, digits, space, .,!?-)", at: address)
             }
         }
     }
@@ -191,12 +199,9 @@ public enum Press {
     /// The literal slot's three movements: append, rubout, clear. Free text lives
     /// in a typeName (the prose genre), a label draws it with no reader between,
     /// and the judge vets the file's form, never the words.
-    static func pressLiteral(_ operation: String, _ arguments: [String], statePath: String) {
+    static func pressLiteral(_ operation: String, _ arguments: [String], state: String, statePath: String) throws -> Substitution {
         guard let slotName = arguments.first else {
-            fail("usage: Tools press \(operation) <Slot> \(operation == "append" ? "<text> " : "")[--file <state file>]")
-        }
-        guard let state = try? String(contentsOfFile: statePath, encoding: .utf8) else {
-            fail("cannot read \(statePath)")
+            try fail("usage: Tools press \(operation) <Slot> \(operation == "append" ? "<text> " : "")[--file <state file>]")
         }
         var lines = state.split(separator: "\n", omittingEmptySubsequences: false).map(String.init)
         var insideExtension = false
@@ -214,7 +219,7 @@ public enum Press {
             switch operation {
             case "append":
                 let text = arguments.dropFirst().joined(separator: " ")
-                vetLiteral(text)
+                try vetLiteral(text, address: "\(statePath)#\(slotName)")
                 next = current + text
             case "rubout":
                 next = String(current.dropLast())
@@ -222,39 +227,20 @@ public enum Press {
                 next = ""
             }
             lines[number] = line.replacingOccurrences(of: "{ \"\(current)\" }", with: "{ \"\(next)\" }")
-            try? lines.joined(separator: "\n").write(toFile: statePath, atomically: true, encoding: .utf8)
-            print("pressed \(operation) \(slotName): \"\(current)\" -> \"\(next)\"")
-            return
+            let nextState = lines.joined(separator: "\n")
+            return Substitution(state: nextState, changed: !nextState.utf8.elementsEqual(state.utf8), message: "pressed \(operation) \(slotName): \"\(current)\" -> \"\(next)\"")
         }
-        fail("no literal slot \(slotName) in \(statePath)")
+        try fail("no literal slot \(slotName) in \(statePath)", at: "\(statePath)#\(slotName)")
     }
 
-    public static func run(_ args: [String]) {
-        var arguments = args
-        // The dynamics world moved with the showcase (T-0015): the state file and the rule
-        // dictionary are named, never assumed.
-        guard let fileFlag = arguments.firstIndex(of: "--file"), fileFlag + 1 < arguments.count else {
-            fail("usage: Tools press <Rule>[,<Rule>…] --file <state file> --rules <rule file>")
-        }
-        let statePath = arguments[fileFlag + 1]
-        arguments.removeSubrange(fileFlag...fileFlag + 1)
-        guard let rulesFlag = arguments.firstIndex(of: "--rules"), rulesFlag + 1 < arguments.count else {
-            fail("usage: Tools press <Rule>[,<Rule>…] --file <state file> --rules <rule file>")
-        }
-        let dictionaryPath = arguments[rulesFlag + 1]
-        arguments.removeSubrange(rulesFlag...rulesFlag + 1)
+    /// A substitution is computed from bytes; publishing it is the carrier's act.
+    public static func apply(_ arguments: [String], state: String, dictionary: String,
+        statePath: String = "state.swift", dictionaryPath: String = "rules.swift") throws -> Substitution {
         if let first = arguments.first, first == "append" || first == "rubout" || first == "clear" {
-            pressLiteral(first, Array(arguments.dropFirst()), statePath: statePath)
-            return
+            return try pressLiteral(first, Array(arguments.dropFirst()), state: state, statePath: statePath)
         }
         guard let ruleArgument = arguments.first else {
-            fail("usage: Tools press <Rule>[,<Rule>…] --file <state file> --rules <rule file>")
-        }
-        guard let dictionary = try? String(contentsOfFile: dictionaryPath, encoding: .utf8) else {
-            fail("cannot read \(dictionaryPath)")
-        }
-        guard let state = try? String(contentsOfFile: statePath, encoding: .utf8) else {
-            fail("cannot read \(statePath)")
+            try fail("usage: Tools press <Rule>[,<Rule>…] --file <state file> --rules <rule file>")
         }
         // A comma at depth zero spells a chord: several rules of ONE slot behind one
         // face (§S30). An angle bracket spells an instance: `Rule<Atom>` hands the rule
@@ -274,13 +260,13 @@ public enum Press {
             }
         }
         memberTexts.append(piece)
-        let members = memberTexts.map { text -> (rule: Rule, instance: [Term]) in
+        let members = try memberTexts.map { text -> (rule: Rule, instance: [Term]) in
             let spelled = parseTerm(Substring(text))
-            return (readRule(named: spelled.head, from: dictionary, path: dictionaryPath), spelled.args)
+            return (try readRule(named: spelled.head, from: dictionary, path: dictionaryPath), spelled.args)
         }
         let rules = members.map(\.rule)
         guard let firstSlot = rules.first?.slot, rules.allSatisfy({ $0.slot == firstSlot }) else {
-            fail("a chord holds one slot: \(ruleArgument) mixes \(Set(rules.map(\.slot)).sorted().joined(separator: ", "))")
+            try fail("a chord holds one slot: \(ruleArgument) mixes \(Set(rules.map(\.slot)).sorted().joined(separator: ", "))", at: "\(dictionaryPath)#\(ruleArgument)")
         }
 
         // The slot marker drops its `Slot` suffix to name the alias in the state file.
@@ -293,12 +279,12 @@ public enum Press {
         var slotLine: Int?
         for (number, line) in lines.enumerated() {
             if line.trimmingCharacters(in: .whitespaces).hasPrefix(marker) {
-                guard slotLine == nil else { fail("slot \(aliasName) appears twice in \(statePath)") }
+                guard slotLine == nil else { try fail("slot \(aliasName) appears twice in \(statePath)", at: "\(statePath)#\(aliasName)") }
                 slotLine = number
             }
         }
         guard let found = slotLine else {
-            fail("no slot \(aliasName) in \(statePath)")
+            try fail("no slot \(aliasName) in \(statePath)", at: "\(statePath)#\(aliasName)")
         }
         let current = String(
             lines[found][lines[found].range(of: marker)!.upperBound...]
@@ -318,16 +304,16 @@ public enum Press {
             occurrences(in: pattern, of: rule.variables, into: &counts)
             for (variable, count) in counts {
                 if count > 1 {
-                    fail("\(rule.name) repeats \(variable) in its pattern: linearity is the premise of the unique match")
+                    try fail("\(rule.name) repeats \(variable) in its pattern: linearity is the premise of the unique match", at: "\(dictionaryPath)#\(rule.name)")
                 }
             }
             var bindings: [String: String] = [:]
             let instanceBound = rule.variables.filter { counts[$0] == nil }
             guard instance.count <= instanceBound.count else {
-                fail("\(rule.name) takes \(instanceBound.count) instance argument(s), \(instance.count) given")
+                try fail("\(rule.name) takes \(instanceBound.count) instance argument(s), \(instance.count) given", at: "\(dictionaryPath)#\(rule.name)")
             }
             guard instance.count == instanceBound.count else {
-                fail("\(rule.name) needs its instance argument(s) \(instanceBound.joined(separator: ", ")): press \(rule.name)<…>")
+                try fail("\(rule.name) needs its instance argument(s) \(instanceBound.joined(separator: ", ")): press \(rule.name)<…>", at: "\(dictionaryPath)#\(rule.name)")
             }
             for (variable, argument) in zip(instanceBound, instance) {
                 bindings[variable] = serialize(argument)
@@ -336,19 +322,57 @@ public enum Press {
                 continue
             }
             guard matched == nil else {
-                fail("ambiguous chord: \(matched!.rule.name) and \(rule.name) both match \(aliasName) = \(current)")
+                try fail("ambiguous chord: \(matched!.rule.name) and \(rule.name) both match \(aliasName) = \(current)", at: "\(statePath)#\(aliasName)")
             }
             matched = (rule, bindings)
         }
         guard let (rule, bindings) = matched else {
             let expected = rules.map(\.from).joined(separator: " or ")
-            print("no-op: \(aliasName) is \(current), \(ruleArgument) expects \(expected)")
-            return
+            return Substitution(state: state, changed: false, message: "no-op: \(aliasName) is \(current), \(ruleArgument) expects \(expected)")
         }
         let next = fill(rule.into, bindings)
         let indent = lines[found].prefix(while: { $0 == " " })
         lines[found] = indent + marker + next
-        try? lines.joined(separator: "\n").write(toFile: statePath, atomically: true, encoding: .utf8)
-        print("pressed \(rule.name): \(aliasName) \(current) -> \(next)")
+        let nextState = lines.joined(separator: "\n")
+        return Substitution(state: nextState, changed: !nextState.utf8.elementsEqual(state.utf8),
+            message: "pressed \(rule.name): \(aliasName) \(current) -> \(next)")
     }
+    public static func run(_ args: [String]) {
+        do {
+            var arguments = args
+            guard let f = arguments.firstIndex(of: "--file"), f + 1 < arguments.count else {
+                try fail("usage: Tools press <Rule>[,<Rule>…] --file <state file> --rules <rule file>")
+            }
+            let statePath = arguments[f + 1]
+            arguments.removeSubrange(f...f + 1)
+            guard let r = arguments.firstIndex(of: "--rules"), r + 1 < arguments.count else {
+                try fail("usage: Tools press <Rule>[,<Rule>…] --file <state file> --rules <rule file>")
+            }
+            let dictionaryPath = arguments[r + 1]
+            arguments.removeSubrange(r...r + 1)
+            let dictionary: String
+            if let operation = arguments.first, ["append", "rubout", "clear"].contains(operation) {
+                // Literal editing never reads the triple dictionary.
+                dictionary = ""
+            } else {
+                guard let text = try? String(contentsOfFile: dictionaryPath, encoding: .utf8) else {
+                    try fail("cannot read \(dictionaryPath)", at: dictionaryPath)
+                }
+                dictionary = text
+            }
+            guard let state = try? String(contentsOfFile: statePath, encoding: .utf8) else {
+                try fail("cannot read \(statePath)", at: statePath)
+            }
+            let result = try apply(arguments, state: state, dictionary: dictionary,
+                statePath: statePath, dictionaryPath: dictionaryPath)
+            if result.changed {
+                try result.state.write(toFile: statePath, atomically: true, encoding: .utf8)
+            }
+            print(result.message)
+        } catch {
+            FileHandle.standardError.write(Data(("press: " + String(describing: error) + "\n").utf8))
+            exit(1)
+        }
+    }
+
 }

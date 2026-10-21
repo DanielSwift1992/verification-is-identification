@@ -14,3 +14,4 @@ for suite in v0.1 v0.2; do
         --implementation-id "local SwiftPM Tools build" \
         --compiler "$(command -v swiftc)" "$@"
 done
+bash Checks/press-contract.sh

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+press_contract_tmp=$(mktemp -d)
+trap 'rm -rf "$press_contract_tmp"' EXIT
+swiftc -module-cache-path "$press_contract_tmp/modules" Sources/Court/Press.swift Checks/press-contract/main.swift -o "$press_contract_tmp/press-owner"
+python3 Checks/press-contract-test.py
+python3 Checks/press-contract.py --command-json "[\"$press_contract_tmp/press-owner\"]" --implementation-id 'Swift owner build'
+python3 Checks/press-contract/native-host.py "[\"$press_contract_tmp/press-owner\", \"--native\"]"

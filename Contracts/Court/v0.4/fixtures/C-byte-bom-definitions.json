@@ -1,0 +1,38 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "fixtures/C-byte-bom-definitions.swift",
+      "source": "fixtures/C-byte-bom-definitions.swift",
+      "sha256": "1d16701144dde6b3a7b05cd46d3df6480ec105d75a2293ea6192e370bae59122",
+      "namespace": "World",
+      "imports": [
+        "Library"
+      ],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": [
+          "language#/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "fixtures/C-byte-bom-definitions-definitions.swift",
+      "source": "fixtures/C-byte-bom-definitions-definitions.swift",
+      "sha256": "da95fe3f6313d99ad532f868856635ea9c9f534415d3e4ceb179b6d128f6e8f6",
+      "namespace": "Library",
+      "imports": [],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

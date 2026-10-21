@@ -1,0 +1,120 @@
+{
+  "schema": "vi.court.case-set/1",
+  "suite": "vi.court.questions/0.4",
+  "stage": "Bind original UTF-8 bytes including a supplied BOM",
+  "files": {
+    "fixtures/C-byte-bom-world.swift": {
+      "sha256": "28bc807166258b7309d6571560592e20f9d4105dd466cdcfbe5b09bef17cd2da",
+      "origin": "T0053 original-byte context twins, frozen before fixing the owner UTF-8 file loader"
+    },
+    "fixtures/C-byte-bom-world-definitions.swift": {
+      "sha256": "9892add0ad51420c736a8bbfcf394b88d38c7c558b1f946d60c5f3a683525a59",
+      "origin": "T0053 original-byte context twins, frozen before fixing the owner UTF-8 file loader"
+    },
+    "fixtures/C-byte-bom-world.json": {
+      "sha256": "a18da65d07e14668627b9530b394f2290b02b3b267ad801ec7a06448f3bdff71",
+      "origin": "T0053 original-byte context twins, frozen before fixing the owner UTF-8 file loader"
+    },
+    "fixtures/C-byte-bom-definitions.swift": {
+      "sha256": "1d16701144dde6b3a7b05cd46d3df6480ec105d75a2293ea6192e370bae59122",
+      "origin": "T0053 original-byte context twins, frozen before fixing the owner UTF-8 file loader"
+    },
+    "fixtures/C-byte-bom-definitions-definitions.swift": {
+      "sha256": "da95fe3f6313d99ad532f868856635ea9c9f534415d3e4ceb179b6d128f6e8f6",
+      "origin": "T0053 original-byte context twins, frozen before fixing the owner UTF-8 file loader"
+    },
+    "fixtures/C-byte-bom-definitions.json": {
+      "sha256": "a61c52f8cf7798bcc23d84072dbb13977c917e01205558e9b5e26cd55ed5ea06",
+      "origin": "T0053 original-byte context twins, frozen before fixing the owner UTF-8 file loader"
+    },
+    "fixtures/C-byte-bom-digest.swift": {
+      "sha256": "28bc807166258b7309d6571560592e20f9d4105dd466cdcfbe5b09bef17cd2da",
+      "origin": "T0053 original-byte context twins, frozen before fixing the owner UTF-8 file loader"
+    },
+    "fixtures/C-byte-bom-digest-definitions.swift": {
+      "sha256": "9892add0ad51420c736a8bbfcf394b88d38c7c558b1f946d60c5f3a683525a59",
+      "origin": "T0053 original-byte context twins, frozen before fixing the owner UTF-8 file loader"
+    },
+    "fixtures/C-byte-bom-digest.json": {
+      "sha256": "ec8eef797b83f5aa96c6b24b9e814543771bf6831087f97a42fb50728cf0ffbf",
+      "origin": "T0053 original-byte context twins, frozen before fixing the owner UTF-8 file loader"
+    }
+  },
+  "cases": [
+    {
+      "id": "C-byte-bom-world",
+      "pass": "where",
+      "files": [
+        "fixtures/C-byte-bom-world.swift",
+        "fixtures/C-byte-bom-world-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-byte-bom-world.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "C-byte-bom-definitions",
+      "pass": "where",
+      "files": [
+        "fixtures/C-byte-bom-definitions.swift",
+        "fixtures/C-byte-bom-definitions-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-byte-bom-definitions.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "C-byte-bom-digest",
+      "pass": "where",
+      "files": [
+        "fixtures/C-byte-bom-digest.swift",
+        "fixtures/C-byte-bom-digest-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-byte-bom-digest.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: context record#/sha256: SHA-256 differs for 'fixtures/C-byte-bom-digest.swift'"
+          ]
+        }
+      }
+    }
+  ]
+}

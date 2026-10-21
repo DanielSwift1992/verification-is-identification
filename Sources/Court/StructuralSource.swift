@@ -40,7 +40,7 @@ struct StructuralSource {
     var conditionalSubjects: Set<String> = []
 
     static func tokens(_ source: String) throws -> [String] {
-        let chars = Array(source)
+        let chars = Array(WhereJudge.sourceLines(source))
         var result: [String] = [], i = 0
         func rawStringBegins() -> Bool {
             guard i < chars.count, chars[i] == "#" else { return false }

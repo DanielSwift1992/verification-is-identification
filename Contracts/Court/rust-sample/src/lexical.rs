@@ -70,11 +70,17 @@ enum Context {
     Str { hashes: usize, multiline: bool },
 }
 
+// The owner's source-line view: only LF, CRLF and CR are Swift line breaks.
+// Do not promote other Unicode whitespace into a comment terminator.
+pub fn source_lines(text: &str) -> String {
+    text.replace("\r\n", "\n").replace('\r', "\n")
+}
+
 /// A comment states nothing, and a string states no declaration. A line comment
 /// is dropped, a block comment reads as a space, a string keeps its delimiters
 /// and its interpolations' code, and every form keeps its line breaks.
 pub fn blank_comments_and_strings(text: &str, lent: &HashSet<String>) -> Result<String, Failure> {
-    let scalars: Vec<char> = text.chars().collect();
+    let scalars: Vec<char> = source_lines(text).chars().collect();
     let mut kept = String::with_capacity(text.len());
     let mut stack: Vec<Context> = vec![Context::Code { interpolated: false, parentheses: 0 }];
     let mut index = 0usize;

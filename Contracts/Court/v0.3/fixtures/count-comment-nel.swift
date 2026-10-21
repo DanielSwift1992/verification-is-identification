@@ -1,0 +1,67 @@
+// This remains a single comment  #unknownMacro
+typealias U1024 = Twice<U512>
+typealias U2048 = Twice<U1024>
+typealias U4096 = Twice<U2048>
+typealias U8192 = Twice<U4096>
+typealias U16384 = Twice<U8192>
+typealias U32768 = Twice<U16384>
+typealias U65536 = Twice<U32768>
+typealias U131072 = Twice<U65536>
+typealias U262144 = Twice<U131072>
+typealias U524288 = Twice<U262144>
+typealias U1048576 = Twice<U524288>
+typealias U2097152 = Twice<U1048576>
+typealias U4194304 = Twice<U2097152>
+typealias U8388608 = Twice<U4194304>
+typealias U16777216 = Twice<U8388608>
+typealias U33554432 = Twice<U16777216>
+typealias U67108864 = Twice<U33554432>
+typealias U134217728 = Twice<U67108864>
+typealias U268435456 = Twice<U134217728>
+typealias U536870912 = Twice<U268435456>
+typealias U1073741824 = Twice<U536870912>
+typealias U2147483648 = Twice<U1073741824>
+typealias U4294967296 = Twice<U2147483648>
+typealias U8589934592 = Twice<U4294967296>
+typealias U17179869184 = Twice<U8589934592>
+typealias U34359738368 = Twice<U17179869184>
+typealias U68719476736 = Twice<U34359738368>
+typealias U137438953472 = Twice<U68719476736>
+typealias U274877906944 = Twice<U137438953472>
+typealias U549755813888 = Twice<U274877906944>
+typealias U1099511627776 = Twice<U549755813888>
+typealias U2199023255552 = Twice<U1099511627776>
+typealias U4398046511104 = Twice<U2199023255552>
+typealias U8796093022208 = Twice<U4398046511104>
+typealias U17592186044416 = Twice<U8796093022208>
+typealias U35184372088832 = Twice<U17592186044416>
+typealias U70368744177664 = Twice<U35184372088832>
+typealias U140737488355328 = Twice<U70368744177664>
+typealias U281474976710656 = Twice<U140737488355328>
+typealias U562949953421312 = Twice<U281474976710656>
+typealias U1125899906842624 = Twice<U562949953421312>
+typealias U2251799813685248 = Twice<U1125899906842624>
+typealias U4503599627370496 = Twice<U2251799813685248>
+typealias U9007199254740992 = Twice<U4503599627370496>
+typealias U18014398509481984 = Twice<U9007199254740992>
+typealias U36028797018963968 = Twice<U18014398509481984>
+typealias U72057594037927936 = Twice<U36028797018963968>
+typealias U144115188075855872 = Twice<U72057594037927936>
+typealias U288230376151711744 = Twice<U144115188075855872>
+typealias U576460752303423488 = Twice<U288230376151711744>
+typealias U1152921504606846976 = Twice<U576460752303423488>
+typealias U2305843009213693952 = Twice<U1152921504606846976>
+typealias U4611686018427387904 = Twice<U2305843009213693952>
+typealias U9223372036854775808 = Twice<U4611686018427387904>
+enum Measure: Close {}
+enum UnitsQuestion: Close {}
+enum Reading<A: Structure, B: Structure>: PredicateReading {
+    typealias Left = A
+    typealias Right = B
+    typealias Answer = B
+    typealias Sigma = Measure
+    typealias Encoding = UnaryArithmeticEncoding
+    typealias Predicate = UnitsQuestion
+}
+typealias Amount = Plus<U256, Plus<U512, Plus<U1024, U8192>>>
+typealias Probe = Reading<Amount, Plus<U256, Plus<U512, Plus<U1024, U8192>>>>

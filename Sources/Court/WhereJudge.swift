@@ -120,13 +120,22 @@ enum WhereJudge {
         "_alwaysEmitIntoClient", "_transparent",
     ]
 
+    // Swift has exactly three line-break spellings. Canonicalize before any
+    // Character-based split: CRLF is one Character, not a Character LF.
+    // This changes only the reader's view, never the source bytes or input hash.
+    // Do not use isNewline: VT/FF/NEL/LS/PS must not end a Swift line comment.
+    static func sourceLines(_ text: String) -> String {
+        text.replacingOccurrences(of: "\r\n", with: "\n")
+            .replacingOccurrences(of: "\r", with: "\n")
+    }
+
     static func blankCommentsAndStrings(_ text: String, lent: Set<String> = []) throws -> String {
         enum Context {
             case code(interpolated: Bool, parentheses: Int)
             case comment(depth: Int)
             case string(hashes: Int, multiline: Bool)
         }
-        let scalars = Array(text.unicodeScalars)
+        let scalars = Array(sourceLines(text).unicodeScalars)
         var kept = String.UnicodeScalarView()
         var stack: [Context] = [.code(interpolated: false, parentheses: 0)]
         var index = 0
@@ -1389,7 +1398,7 @@ enum WhereJudge {
             return declaredBuilders(clean)
         })
         var world = try read(text, lent: lentBuilders)
-        var excludesConditional = text.range(of: #"(?m)^\s*#if\b"#, options: .regularExpression) != nil
+        var excludesConditional = sourceLines(text).range(of: #"(?m)^\s*#if\b"#, options: .regularExpression) != nil
         let ownAliases = world.aliases
         // Extra files supply alias definitions, not a second version of the
         // same source. This flat reader has no module-resolution rule with
@@ -1441,7 +1450,7 @@ enum WhereJudge {
         }
         for (extra, more, lent) in extras {
             excludesConditional = excludesConditional
-                || more.range(of: #"(?m)^\s*#if\b"#, options: .regularExpression) != nil
+                || sourceLines(more).range(of: #"(?m)^\s*#if\b"#, options: .regularExpression) != nil
             // A definitions file that extends a type, a protocol or a typealias
             // this world declares at file scope may add a member that binds a
             // name inside the world's type, a conformance, or a gate. Whether

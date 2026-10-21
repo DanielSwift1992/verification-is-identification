@@ -66,7 +66,7 @@ fn is_identifier_part(c: char) -> bool {
 /// `@literal`, line breaks kept as tokens, `==` one token, other punctuation
 /// one token per character.
 pub fn tokens(source: &str) -> Result<Vec<String>, Failure> {
-    let chars: Vec<char> = source.chars().collect();
+    let chars: Vec<char> = crate::lexical::source_lines(source).chars().collect();
     let count = chars.len();
     let mut result: Vec<String> = Vec::new();
     let mut i = 0usize;

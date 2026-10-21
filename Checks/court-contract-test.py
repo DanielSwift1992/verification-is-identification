@@ -101,3 +101,20 @@ with tempfile.TemporaryDirectory(prefix='vi-capacity-contract-tests-') as tmp:
             check(mutation == 'positive', 'capacity ' + mutation)
         shutil.rmtree(target)
 print(f'court-contract reader: {checks} checks passed across both releases')
+
+# A text checkout must not silently rewrite the byte-bound CRLF input into LF.
+lines_root, lines_contract = contract.load_contract(HERE.parent / 'Contracts/Court/v0.3/contract.json')
+with tempfile.TemporaryDirectory(prefix='vi-lines-contract-tests-') as tmp:
+    target = Path(tmp) / 'contract'
+    shutil.copytree(lines_root, target)
+    fixture = target / 'fixtures/where-good-crlf.swift'
+    raw = fixture.read_bytes()
+    check(b'\r\n' in raw, 'line suite carries literal CRLF bytes')
+    fixture.write_bytes(raw.replace(b'\r\n', b'\n'))
+    try:
+        contract.load_contract(target / 'contract.json')
+    except ValueError:
+        check(True, 'rewritten source bytes refused before judging')
+    else:
+        check(False, 'rewritten source bytes refused before judging')
+print(f'court-contract reader: {checks} checks passed across three releases')

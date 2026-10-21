@@ -1,0 +1,1161 @@
+{
+  "schema": "vi.court.conformance/1",
+  "suite": "vi.court.questions/0.3",
+  "scope": "Finite input line-break equivalence and negative twins. LF, CRLF and CR preserve the declared source question and logical line addresses. Other Unicode/newline-like scalars are not promoted to line breaks.",
+  "reference_revision": "1966abc0464081a3dbe1e31414f3bc683b2c41dc",
+  "expectation_basis": "Swift lexical line-break grammar and the unchanged v0.1/v0.2 source questions; good/false pairs retain their answers, changed Primitive retains refusal, #if true retains an addressed unsupported result. No whole-language equivalence.",
+  "versions": {
+    "where_question": "vi.where.definition-equality/1",
+    "where_normalization_canon": 4,
+    "count_question": "vi.count.unit-never-plus/1",
+    "source_lines": "vi.court.source-lines/1",
+    "response": "vi.court.cli-text/1"
+  },
+  "missing_files": [],
+  "files": {
+    "fixtures/Primitive-lf.swift": {
+      "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a",
+      "origin": "v0.2 Primitive bytes, only declared line breaks changed"
+    },
+    "fixtures/where-good-lf.swift": {
+      "sha256": "f8d42eba974217fc6b16985783b94d7ef4646b8daab6cdd1b3c2fa16d2669d36",
+      "origin": "v0.1/alias-same-definition.swift; lf line breaks"
+    },
+    "fixtures/where-false-lf.swift": {
+      "sha256": "356cde2ae2047221f27cd189820dc767b385c055d66e7b8c421f9c9e42258b9b",
+      "origin": "v0.1/same-count-different-tree.swift; lf line breaks"
+    },
+    "fixtures/count-good-lf.swift": {
+      "sha256": "553449bfd2d7f6c83b9b77ecda170a0c29d9f8564ea575a23c09b818f75f71eb",
+      "origin": "v0.2/size-9984.swift; lf line breaks"
+    },
+    "fixtures/count-false-lf.swift": {
+      "sha256": "46be15f0c7fe589b0fa653e04eea9345d303e1f60733de084cc47a80d493eb37",
+      "origin": "v0.2/large-false-answer.swift; lf line breaks"
+    },
+    "fixtures/changed-primitive-lf.swift": {
+      "sha256": "5ab211316b9abb44808ef8ad04298f6a4cc96e729785cbcc8b05166890e67f2c",
+      "origin": "v0.2 changed-primitive.swift; lf line breaks"
+    },
+    "fixtures/where-conditional-lf.swift": {
+      "sha256": "60d000c67659835f70ce29b1b9bb2fac912bc0b9ab6f3634488a127f4b03b79c",
+      "origin": "Addressed refusal: the true conditional begins at logical line 3"
+    },
+    "fixtures/where-excluded-lf.swift": {
+      "sha256": "68697889e688bb92d1f516b6486ddbb2e5222d6e3050bfdd5cbb3ce95f170312",
+      "origin": "A plain excluded flag keeps its scope disclosure"
+    },
+    "fixtures/Primitive-crlf.swift": {
+      "sha256": "ead9102e8bbf203b218b94c1f02ad6a80af49a011c6d0c34a17819521822c771",
+      "origin": "v0.2 Primitive bytes, only declared line breaks changed"
+    },
+    "fixtures/where-good-crlf.swift": {
+      "sha256": "207d6f79b655bffad4c66b340c55c440d7ac023a3e1636c3b08970b2eb768329",
+      "origin": "v0.1/alias-same-definition.swift; crlf line breaks"
+    },
+    "fixtures/where-false-crlf.swift": {
+      "sha256": "3d3e4ad96a66bb7aeda57c3089073586e87e8989dba986009bf28510bc8d273d",
+      "origin": "v0.1/same-count-different-tree.swift; crlf line breaks"
+    },
+    "fixtures/count-good-crlf.swift": {
+      "sha256": "e54c1c984b04f3d1b9cb27de99b049f09bcff9b2ca663dde8b3522675adf42ad",
+      "origin": "v0.2/size-9984.swift; crlf line breaks"
+    },
+    "fixtures/count-false-crlf.swift": {
+      "sha256": "b3b2dfaff46315ea838f1ac8581d6077a0f13f3fcd5730cd85da05a2d8039954",
+      "origin": "v0.2/large-false-answer.swift; crlf line breaks"
+    },
+    "fixtures/changed-primitive-crlf.swift": {
+      "sha256": "dc4c46356cefb8f8d426a7600134480f889eb03a287379409299c75b788dcf02",
+      "origin": "v0.2 changed-primitive.swift; crlf line breaks"
+    },
+    "fixtures/where-conditional-crlf.swift": {
+      "sha256": "6997fbc043f9371797936840f4b7001d40e4252818342e3bfcf8da740143d447",
+      "origin": "Addressed refusal: the true conditional begins at logical line 3"
+    },
+    "fixtures/where-excluded-crlf.swift": {
+      "sha256": "e09d75bc2bd5cb477794eb6a69d086d0945dcdc0df4ad20aac51dc3894532e3b",
+      "origin": "A plain excluded flag keeps its scope disclosure"
+    },
+    "fixtures/Primitive-cr.swift": {
+      "sha256": "ad4527a3b9294ff03dea6b9a4b033d27d191a463ce8c3c76224cd5354d64a28b",
+      "origin": "v0.2 Primitive bytes, only declared line breaks changed"
+    },
+    "fixtures/where-good-cr.swift": {
+      "sha256": "3896023249f28f29a8f638f2acbcbd934576c40008c5a227b6e6966a3e105515",
+      "origin": "v0.1/alias-same-definition.swift; cr line breaks"
+    },
+    "fixtures/where-false-cr.swift": {
+      "sha256": "4ec5d8f6aa215efd9fb3577bd05f2370e3f6793631e8f17ea6f2c133699eb705",
+      "origin": "v0.1/same-count-different-tree.swift; cr line breaks"
+    },
+    "fixtures/count-good-cr.swift": {
+      "sha256": "e54060b3e9bfbe265846c45091786c8a6f2ace56d6d1b817fb1a0e71b7caa37c",
+      "origin": "v0.2/size-9984.swift; cr line breaks"
+    },
+    "fixtures/count-false-cr.swift": {
+      "sha256": "0b2e75238e580f3bc116d4460115a484f342aa567c1ae227187a4aacd02ec908",
+      "origin": "v0.2/large-false-answer.swift; cr line breaks"
+    },
+    "fixtures/changed-primitive-cr.swift": {
+      "sha256": "80a6f0df5793e4ea952fdd616ff149eae053a342780c3bdb88025e9254a76625",
+      "origin": "v0.2 changed-primitive.swift; cr line breaks"
+    },
+    "fixtures/where-conditional-cr.swift": {
+      "sha256": "07c465e5a85752ceee62aa8c796acb432d06bfea20ef7a1aa1469993b594ccb1",
+      "origin": "Addressed refusal: the true conditional begins at logical line 3"
+    },
+    "fixtures/where-excluded-cr.swift": {
+      "sha256": "559aee4ab737c9c8a687f35b60dd988691211e2695ae77ac5de2edff4e8c1ed0",
+      "origin": "A plain excluded flag keeps its scope disclosure"
+    },
+    "fixtures/Primitive-mixed.swift": {
+      "sha256": "9fe8af284819f19237f00acf3c7ccdbb05f32f97be630973cbbe950ef980c783",
+      "origin": "v0.2 Primitive bytes, only declared line breaks changed"
+    },
+    "fixtures/where-good-mixed.swift": {
+      "sha256": "12bf74a9ef9a9f0bde1fae4ed1d9f31108a6169734df1fdb2a9ee60750c42e52",
+      "origin": "v0.1/alias-same-definition.swift; mixed line breaks"
+    },
+    "fixtures/where-false-mixed.swift": {
+      "sha256": "e0bf6ca04d143dcca7ded0e304c94f231062c69112e2ffc2217a604f5e32623e",
+      "origin": "v0.1/same-count-different-tree.swift; mixed line breaks"
+    },
+    "fixtures/count-good-mixed.swift": {
+      "sha256": "b9893ca879e69ec296b7d807439bc56fb1c81288533101329d3f86425e67eae9",
+      "origin": "v0.2/size-9984.swift; mixed line breaks"
+    },
+    "fixtures/count-false-mixed.swift": {
+      "sha256": "8d7ff27c45baa69dc90774c1a9e5b693b2f19b690d09748573f126c78c7e1d24",
+      "origin": "v0.2/large-false-answer.swift; mixed line breaks"
+    },
+    "fixtures/changed-primitive-mixed.swift": {
+      "sha256": "d23013635f88f3c1e2cf84890a71454411fbb3953a28d21b76aee6832a926e4d",
+      "origin": "v0.2 changed-primitive.swift; mixed line breaks"
+    },
+    "fixtures/where-conditional-mixed.swift": {
+      "sha256": "1595763a724eb8adb6e983b4462dba4731c49ff7ba1e20fddbd6f49170d0f60e",
+      "origin": "Addressed refusal: the true conditional begins at logical line 3"
+    },
+    "fixtures/where-excluded-mixed.swift": {
+      "sha256": "2ba657b539c2b42e2d79e9e37f00362c5d4521b24ac7a04d83474a3d561b9271",
+      "origin": "A plain excluded flag keeps its scope disclosure"
+    },
+    "fixtures/where-comment-vt.swift": {
+      "sha256": "291a77faa01f4c01ebbdb1a3d86489ac5aaeea85c5e0d7a7fc8e417b9c7ece71",
+      "origin": "Non-line-break inside comment must not expose the macro that follows it"
+    },
+    "fixtures/count-comment-vt.swift": {
+      "sha256": "f18f72c371a9d14f5b5f0028b5603087b7f2cc881ce2eec16c2e40f289a5a13e",
+      "origin": "Non-line-break inside comment must not expose the macro that follows it"
+    },
+    "fixtures/where-comment-ff.swift": {
+      "sha256": "24a7c7e48152a7a1b64ff8caed9673f4ce0a8906ceca8320e2482dc931225461",
+      "origin": "Non-line-break inside comment must not expose the macro that follows it"
+    },
+    "fixtures/count-comment-ff.swift": {
+      "sha256": "9438b435cf6d13abf64246271bbfb65c4f00c2e84e8e211ed71313ab1cf5c692",
+      "origin": "Non-line-break inside comment must not expose the macro that follows it"
+    },
+    "fixtures/where-comment-nel.swift": {
+      "sha256": "140a32b1fd92fbfd669a31c04a265c1a6691e8b493dc2db953444a2945b2b7a2",
+      "origin": "Non-line-break inside comment must not expose the macro that follows it"
+    },
+    "fixtures/count-comment-nel.swift": {
+      "sha256": "1ec8501e2d71628781981a12cc30d934640d6e453b2e371f2db6f761e9c778bd",
+      "origin": "Non-line-break inside comment must not expose the macro that follows it"
+    },
+    "fixtures/where-comment-ls.swift": {
+      "sha256": "a9fab285d189d5c72540cafb1f9fde7ad6331bb76cf9307da04da8d5a8322b24",
+      "origin": "Non-line-break inside comment must not expose the macro that follows it"
+    },
+    "fixtures/count-comment-ls.swift": {
+      "sha256": "c77e00cc04932fd59d80347692fcb39ea535f687aa2be2394078b5a6266ab349",
+      "origin": "Non-line-break inside comment must not expose the macro that follows it"
+    },
+    "fixtures/where-comment-ps.swift": {
+      "sha256": "99b28a01afae2760f0d61ffa4fb821a3d1be0439f440a4a33ceaaf502cd5c355",
+      "origin": "Non-line-break inside comment must not expose the macro that follows it"
+    },
+    "fixtures/count-comment-ps.swift": {
+      "sha256": "dc0f273535c779d295d0a5569d12dd01c2c01740437bbf2d50f0587763ddf99b",
+      "origin": "Non-line-break inside comment must not expose the macro that follows it"
+    }
+  },
+  "cases": [
+    {
+      "id": "where-good-lf",
+      "pass": "where",
+      "files": [
+        "fixtures/where-good-lf.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "exit": 0,
+        "diagnostic": "none"
+      }
+    },
+    {
+      "id": "where-false-lf",
+      "pass": "where",
+      "files": [
+        "fixtures/where-false-lf.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ 'Claim = Match<Plus<Plus<Unit, Unit>, Unit>, Plus<Unit, Plus<Unit, Unit>>>' requires the types 'A' (aka 'Plus<Plus<Unit, Unit>, Unit>') and 'B' (aka 'Plus<Unit, Plus<Unit, Unit>>') be equivalent [Admitted]"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "exit": 1,
+        "diagnostic": "equivalence"
+      }
+    },
+    {
+      "id": "count-good-lf",
+      "pass": "count",
+      "files": [
+        "fixtures/count-good-lf.swift",
+        "fixtures/Primitive-lf.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ COUNT holds: 1 source-bound readings checked; finite Unit/Never/Plus rules and definition/count derivations replayed.",
+            "Scope: Measure / UnaryArithmeticEncoding / UnitsQuestion; all 2 presented files; closed aliases/top-level metatypes; Int range and reader budgets; nominal equality and Swift conformance are separate checks."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-false-lf",
+      "pass": "count",
+      "files": [
+        "fixtures/count-false-lf.swift",
+        "fixtures/Primitive-lf.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ COUNT: 'Probe' count Left = 16384, but Answer = 16385 [UnitsQuestion]"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-primitive-refused-lf",
+      "pass": "count",
+      "files": [
+        "fixtures/count-good-lf.swift",
+        "fixtures/changed-primitive-lf.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "lines": [
+            "✗ COUNT unresolved: changed count primitive body 'Unit' in fixtures/changed-primitive-lf.swift"
+          ]
+        }
+      }
+    },
+    {
+      "id": "where-conditional-lf",
+      "files": [
+        "fixtures/where-conditional-lf.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: cannot read line 3: '#if true' is not a plain compilation flag, and this court omits only a block a compilation without its flag skips"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "where-excluded-lf",
+      "pass": "where",
+      "files": [
+        "fixtures/where-excluded-lf.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "THE WHERE scope: conditional compilation blocks are excluded.",
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "exit": 0,
+        "diagnostic": "none"
+      }
+    },
+    {
+      "id": "where-good-crlf",
+      "pass": "where",
+      "files": [
+        "fixtures/where-good-crlf.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "exit": 0,
+        "diagnostic": "none"
+      }
+    },
+    {
+      "id": "where-false-crlf",
+      "pass": "where",
+      "files": [
+        "fixtures/where-false-crlf.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ 'Claim = Match<Plus<Plus<Unit, Unit>, Unit>, Plus<Unit, Plus<Unit, Unit>>>' requires the types 'A' (aka 'Plus<Plus<Unit, Unit>, Unit>') and 'B' (aka 'Plus<Unit, Plus<Unit, Unit>>') be equivalent [Admitted]"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "exit": 1,
+        "diagnostic": "equivalence"
+      }
+    },
+    {
+      "id": "count-good-crlf",
+      "pass": "count",
+      "files": [
+        "fixtures/count-good-crlf.swift",
+        "fixtures/Primitive-crlf.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ COUNT holds: 1 source-bound readings checked; finite Unit/Never/Plus rules and definition/count derivations replayed.",
+            "Scope: Measure / UnaryArithmeticEncoding / UnitsQuestion; all 2 presented files; closed aliases/top-level metatypes; Int range and reader budgets; nominal equality and Swift conformance are separate checks."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-false-crlf",
+      "pass": "count",
+      "files": [
+        "fixtures/count-false-crlf.swift",
+        "fixtures/Primitive-crlf.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ COUNT: 'Probe' count Left = 16384, but Answer = 16385 [UnitsQuestion]"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-primitive-refused-crlf",
+      "pass": "count",
+      "files": [
+        "fixtures/count-good-crlf.swift",
+        "fixtures/changed-primitive-crlf.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "lines": [
+            "✗ COUNT unresolved: changed count primitive body 'Unit' in fixtures/changed-primitive-crlf.swift"
+          ]
+        }
+      }
+    },
+    {
+      "id": "where-conditional-crlf",
+      "files": [
+        "fixtures/where-conditional-crlf.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: cannot read line 3: '#if true' is not a plain compilation flag, and this court omits only a block a compilation without its flag skips"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "where-excluded-crlf",
+      "pass": "where",
+      "files": [
+        "fixtures/where-excluded-crlf.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "THE WHERE scope: conditional compilation blocks are excluded.",
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "exit": 0,
+        "diagnostic": "none"
+      }
+    },
+    {
+      "id": "where-good-cr",
+      "pass": "where",
+      "files": [
+        "fixtures/where-good-cr.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "exit": 0,
+        "diagnostic": "none"
+      }
+    },
+    {
+      "id": "where-false-cr",
+      "pass": "where",
+      "files": [
+        "fixtures/where-false-cr.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ 'Claim = Match<Plus<Plus<Unit, Unit>, Unit>, Plus<Unit, Plus<Unit, Unit>>>' requires the types 'A' (aka 'Plus<Plus<Unit, Unit>, Unit>') and 'B' (aka 'Plus<Unit, Plus<Unit, Unit>>') be equivalent [Admitted]"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "exit": 1,
+        "diagnostic": "equivalence"
+      }
+    },
+    {
+      "id": "count-good-cr",
+      "pass": "count",
+      "files": [
+        "fixtures/count-good-cr.swift",
+        "fixtures/Primitive-cr.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ COUNT holds: 1 source-bound readings checked; finite Unit/Never/Plus rules and definition/count derivations replayed.",
+            "Scope: Measure / UnaryArithmeticEncoding / UnitsQuestion; all 2 presented files; closed aliases/top-level metatypes; Int range and reader budgets; nominal equality and Swift conformance are separate checks."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-false-cr",
+      "pass": "count",
+      "files": [
+        "fixtures/count-false-cr.swift",
+        "fixtures/Primitive-cr.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ COUNT: 'Probe' count Left = 16384, but Answer = 16385 [UnitsQuestion]"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-primitive-refused-cr",
+      "pass": "count",
+      "files": [
+        "fixtures/count-good-cr.swift",
+        "fixtures/changed-primitive-cr.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "lines": [
+            "✗ COUNT unresolved: changed count primitive body 'Unit' in fixtures/changed-primitive-cr.swift"
+          ]
+        }
+      }
+    },
+    {
+      "id": "where-conditional-cr",
+      "files": [
+        "fixtures/where-conditional-cr.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: cannot read line 3: '#if true' is not a plain compilation flag, and this court omits only a block a compilation without its flag skips"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "where-excluded-cr",
+      "pass": "where",
+      "files": [
+        "fixtures/where-excluded-cr.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "THE WHERE scope: conditional compilation blocks are excluded.",
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "exit": 0,
+        "diagnostic": "none"
+      }
+    },
+    {
+      "id": "where-good-mixed",
+      "pass": "where",
+      "files": [
+        "fixtures/where-good-mixed.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "exit": 0,
+        "diagnostic": "none"
+      }
+    },
+    {
+      "id": "where-false-mixed",
+      "pass": "where",
+      "files": [
+        "fixtures/where-false-mixed.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ 'Claim = Match<Plus<Plus<Unit, Unit>, Unit>, Plus<Unit, Plus<Unit, Unit>>>' requires the types 'A' (aka 'Plus<Plus<Unit, Unit>, Unit>') and 'B' (aka 'Plus<Unit, Plus<Unit, Unit>>') be equivalent [Admitted]"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "exit": 1,
+        "diagnostic": "equivalence"
+      }
+    },
+    {
+      "id": "count-good-mixed",
+      "pass": "count",
+      "files": [
+        "fixtures/count-good-mixed.swift",
+        "fixtures/Primitive-mixed.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ COUNT holds: 1 source-bound readings checked; finite Unit/Never/Plus rules and definition/count derivations replayed.",
+            "Scope: Measure / UnaryArithmeticEncoding / UnitsQuestion; all 2 presented files; closed aliases/top-level metatypes; Int range and reader budgets; nominal equality and Swift conformance are separate checks."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-false-mixed",
+      "pass": "count",
+      "files": [
+        "fixtures/count-false-mixed.swift",
+        "fixtures/Primitive-mixed.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ COUNT: 'Probe' count Left = 16384, but Answer = 16385 [UnitsQuestion]"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-primitive-refused-mixed",
+      "pass": "count",
+      "files": [
+        "fixtures/count-good-mixed.swift",
+        "fixtures/changed-primitive-mixed.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "lines": [
+            "✗ COUNT unresolved: changed count primitive body 'Unit' in fixtures/changed-primitive-mixed.swift"
+          ]
+        }
+      }
+    },
+    {
+      "id": "where-conditional-mixed",
+      "files": [
+        "fixtures/where-conditional-mixed.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: cannot read line 3: '#if true' is not a plain compilation flag, and this court omits only a block a compilation without its flag skips"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "where-excluded-mixed",
+      "pass": "where",
+      "files": [
+        "fixtures/where-excluded-mixed.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "THE WHERE scope: conditional compilation blocks are excluded.",
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "exit": 0,
+        "diagnostic": "none"
+      }
+    },
+    {
+      "id": "where-comment-vt",
+      "pass": "where",
+      "files": [
+        "fixtures/where-comment-vt.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-comment-vt",
+      "pass": "count",
+      "files": [
+        "fixtures/count-comment-vt.swift",
+        "fixtures/Primitive-lf.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ COUNT holds: 1 source-bound readings checked; finite Unit/Never/Plus rules and definition/count derivations replayed.",
+            "Scope: Measure / UnaryArithmeticEncoding / UnitsQuestion; all 2 presented files; closed aliases/top-level metatypes; Int range and reader budgets; nominal equality and Swift conformance are separate checks."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "where-comment-ff",
+      "pass": "where",
+      "files": [
+        "fixtures/where-comment-ff.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-comment-ff",
+      "pass": "count",
+      "files": [
+        "fixtures/count-comment-ff.swift",
+        "fixtures/Primitive-lf.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ COUNT holds: 1 source-bound readings checked; finite Unit/Never/Plus rules and definition/count derivations replayed.",
+            "Scope: Measure / UnaryArithmeticEncoding / UnitsQuestion; all 2 presented files; closed aliases/top-level metatypes; Int range and reader budgets; nominal equality and Swift conformance are separate checks."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "where-comment-nel",
+      "pass": "where",
+      "files": [
+        "fixtures/where-comment-nel.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-comment-nel",
+      "pass": "count",
+      "files": [
+        "fixtures/count-comment-nel.swift",
+        "fixtures/Primitive-lf.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ COUNT holds: 1 source-bound readings checked; finite Unit/Never/Plus rules and definition/count derivations replayed.",
+            "Scope: Measure / UnaryArithmeticEncoding / UnitsQuestion; all 2 presented files; closed aliases/top-level metatypes; Int range and reader budgets; nominal equality and Swift conformance are separate checks."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "where-comment-ls",
+      "pass": "where",
+      "files": [
+        "fixtures/where-comment-ls.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-comment-ls",
+      "pass": "count",
+      "files": [
+        "fixtures/count-comment-ls.swift",
+        "fixtures/Primitive-lf.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ COUNT holds: 1 source-bound readings checked; finite Unit/Never/Plus rules and definition/count derivations replayed.",
+            "Scope: Measure / UnaryArithmeticEncoding / UnitsQuestion; all 2 presented files; closed aliases/top-level metatypes; Int range and reader budgets; nominal equality and Swift conformance are separate checks."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "where-comment-ps",
+      "pass": "where",
+      "files": [
+        "fixtures/where-comment-ps.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "count-comment-ps",
+      "pass": "count",
+      "files": [
+        "fixtures/count-comment-ps.swift",
+        "fixtures/Primitive-lf.swift"
+      ],
+      "args": [
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ COUNT holds: 1 source-bound readings checked; finite Unit/Never/Plus rules and definition/count derivations replayed.",
+            "Scope: Measure / UnaryArithmeticEncoding / UnitsQuestion; all 2 presented files; closed aliases/top-level metatypes; Int range and reader budgets; nominal equality and Swift conformance are separate checks."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    }
+  ]
+}

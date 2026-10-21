@@ -45,9 +45,10 @@ def invocations():
     jobs.append(["count", "fixtures/absent.swift", PRIMITIVE] + COUNT_ARGS)
     # The capacity suite keeps the same count question, with larger inputs and
     # explicit resource/primitive controls. Match their addressed CLI as well.
-    suite = Path("Contracts/Court/v0.2")
-    for case in json.loads((suite / "contract.json").read_text())["cases"]:
-        jobs.append([case["pass"]] + [str(suite / f) for f in case["files"]] + case["args"])
+    for version in ("v0.2", "v0.3"):
+        suite = Path("Contracts/Court") / version
+        for case in json.loads((suite / "contract.json").read_text())["cases"]:
+            jobs.append([case["pass"]] + [str(suite / f) for f in case["files"]] + case["args"])
     return jobs
 
 

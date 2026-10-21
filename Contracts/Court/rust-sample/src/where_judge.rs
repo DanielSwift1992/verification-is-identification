@@ -746,7 +746,7 @@ pub fn prepare(arguments: &[String], load: &dyn Fn(&str) -> Result<String, Failu
         }
     }
     let mut world = read(&text, &lent_builders)?;
-    let mut excludes_conditional = conditional.is_match(&text);
+    let mut excludes_conditional = conditional.is_match(&crate::lexical::source_lines(&text));
     let own_aliases = world.aliases.clone();
     // Extra files supply alias definitions, not a second version of the same
     // source; a collision is unresolved.
@@ -821,7 +821,7 @@ pub fn prepare(arguments: &[String], load: &dyn Fn(&str) -> Result<String, Failu
         }
     }
     for extra in &extras {
-        excludes_conditional = excludes_conditional || conditional.is_match(&extra.text);
+        excludes_conditional = excludes_conditional || conditional.is_match(&crate::lexical::source_lines(&extra.text));
         // A definitions file that extends a type, a protocol or a typealias
         // this world declares at file scope is refused rather than read.
         let mut extends_world: Vec<(&String, &Vec<usize>)> = extra

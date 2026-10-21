@@ -22,6 +22,8 @@ The question remains **`vi.count.unit-never-plus/1`**: the supplied primitive ru
 
 ## Work and replay
 
+Count values use checked signed 64-bit addition (`Int64` in the Swift owner, `i64` in Rust), independently of the carrier's pointer width. Term indices, depths and work budgets remain platform-sized. The overflow line retains the literal `count exceeds Int.max` required by this release; it names the signed 64-bit boundary, not the carrier's native `Int` width.
+
 Within each discovered reading, the count reader owns an immutable source and fresh construction/replay accounts. A term key includes its constructor or projection owner and ordered arguments. Reduction memo keys also include head/full mode. Shared proof references must point backward. Replay validates every reference and reconstructs the five reduction rules from the current definitions, then computes zero, one and checked addition itself. Its table starts empty; it does not use the builder's numeric cache. Requested roots are checked against the original expressions.
 
 The limits are **50,000 construction units and 100,000 replay units per reading**. The unit is now work on shared representations: a new term or proof node, its edges, a source instantiation and every visit, including memo hits. These are separate accounts, not a cap on the integer answer. Counts of nodes, edges, instantiations and visits are exposed internally for measurement. Expanding a diagnostic is bounded separately; it cannot recreate an unbounded tree. Expression depth remains 128, definition recursion 128, proof depth below 512, and discovery below 20,000. Growing instantiations, cycles, resource exhaustion and arithmetic overflow remain unresolved; none establishes an impossible count.

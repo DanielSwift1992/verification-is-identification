@@ -62,16 +62,18 @@ extension CountCourt {
     static func replaySharedCount(
         _ proof: SharedCountProof, source: R.Source,
         work: R.Work, roots: [(Int, E)]
-    ) throws -> (R.SharedReplay, [Int]) {
+    ) throws -> (R.SharedReplay, [Int64]) {
         let replay = try R.replayShared(proof.reduction, source: source, work: work)
-        var values: [Int] = []
+        // Counts have the signed 64-bit boundary of Court v0.2 on every
+        // carrier. Term references, depths and work accounts remain Int.
+        var values: [Int64] = []
         var depths: [Int] = []
         for node in proof.nodes {
             guard replay.terms.indices.contains(node.input), replay.ends.indices.contains(node.reduction),
                 replay.ends[node.reduction].input == replay.terms[node.input]
             else { throw Failure("count proof changes its source") }
             let output = replay.ends[node.reduction].output
-            let value: Int
+            let value: Int64
             let depth: Int
             let edges: Int
             switch (node.rule, try replay.arena.get(output)) {
@@ -93,6 +95,7 @@ extension CountCourt {
                 else { throw Failure("count proof changes its operand") }
                 let (sum, overflow) = values[a].addingReportingOverflow(values[b])
                 guard !overflow else {
+                    // Keep the addressed v0.2 diagnostic, also used by Rust.
                     throw Failure("count exceeds Int.max at '\(replay.arena.text(replay.terms[node.input]))'")
                 }
                 value = sum
@@ -141,7 +144,7 @@ extension CountCourt {
             }
             return try checked.arena.expression(checked.ends[proof].output)
         }
-        func reading(_ root: E) throws -> (rightEqualsAnswer: Bool, actual: Int, declared: Int) {
+        func reading(_ root: E) throws -> (rightEqualsAnswer: Bool, actual: Int64, declared: Int64) {
             let right = try builder.arena.read(.field(root, "Right"))
             let answer = try builder.arena.read(.field(root, "Answer"))
             let input = try builder.arena.read(.field(root, "Left"))
@@ -163,7 +166,7 @@ extension CountCourt {
                 values[declared]
             )
         }
-        func count(_ input: E) throws -> Int {
+        func count(_ input: E) throws -> Int64 {
             let term = try builder.arena.read(input)
             let counter = SharedCounter(builder)
             let root = try counter.derive(term)

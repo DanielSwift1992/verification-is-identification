@@ -23,7 +23,7 @@ final class CountDAGTests: XCTestCase {
         return (count.proof, root, e)
     }
     private func replay(_ proof: CountCourt.SharedCountProof, root: Int, input: R.Expression, source: R.Source,
-                        limit: Int = 100_000) throws -> Int {
+                        limit: Int = 100_000) throws -> Int64 {
         try CountCourt.replaySharedCount(proof, source: source, work: R.Work(limit, phase: "replay"), roots: [(root, input)]).1[root]
     }
     private func ladder(_ n: Int) -> String {
@@ -138,4 +138,19 @@ final class CountDAGTests: XCTestCase {
             XCTAssertTrue(String(describing: error).contains("count exceeds Int.max"))
         }
     }
+    func testCountUsesCheckedSigned64BitsOnEveryCarrier() throws {
+        let maxima = "typealias M0 = Never\n" + (1...63).map {
+            "typealias M\($0) = Plus<N\($0 - 1), M\($0 - 1)>"
+        }.joined(separator: "\n")
+        let s = try source(ladder(63) + "\n" + maxima)
+        XCTAssertEqual(try CountCourt.Reader(source: s).count(R.parse("M31")), 2_147_483_647)
+        XCTAssertEqual(try CountCourt.Reader(source: s).count(R.parse("N31")), 2_147_483_648)
+        XCTAssertEqual(try CountCourt.Reader(source: s).count(R.parse("N32")), 4_294_967_296)
+        let maximum: Int64 = try CountCourt.Reader(source: s).count(R.parse("M63"))
+        XCTAssertEqual(maximum, Int64.max)
+        XCTAssertThrowsError(try CountCourt.Reader(source: s).count(R.parse("N63"))) { error in
+            XCTAssertEqual(String(describing: error), "count exceeds Int.max at 'N63'")
+        }
+    }
+
 }

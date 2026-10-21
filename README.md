@@ -103,7 +103,7 @@ The [showcase package](https://github.com/DanielSwift1992/verification-is-identi
 | Readers | Contracts stated by each reader | [`Sources/Court`](Sources/Court), [gate](https://github.com/DanielSwift1992/gate) |
 | Company and rendering | [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/), [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) | [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) |
 
-`swift build` checks the whole package. `swift test` runs the worked demos and source-reader controls and prints "Executed 19 tests". `swift run Tools site` builds and serves the documentation locally. [`check.sh`](check.sh) lists the repository's checks: `./check.sh --only verdict` runs the registered proof and refusal fixtures, `./check.sh` runs the integration checks, and `swift run Tools readme` compares the counts on this page with their source artifacts. Optional research experiments run separately with `./check.sh --research-only`.
+`swift build` checks the whole package. `swift test` runs the worked demos and source-reader controls and prints "Executed 20 tests". `swift run Tools site` builds and serves the documentation locally. [`check.sh`](check.sh) lists the repository's checks: `./check.sh --only verdict` runs the registered proof and refusal fixtures, `./check.sh` runs the integration checks, and `swift run Tools readme` compares the counts on this page with their source artifacts. Optional research experiments run separately with `./check.sh --research-only`.
 
 ## License
 

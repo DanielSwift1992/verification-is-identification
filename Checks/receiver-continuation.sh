@@ -4,7 +4,12 @@ cd "$(dirname "$0")/.."
 receiver_tmp="$(mktemp -d "${TMPDIR:-/tmp}/vi-receiver-continuation.XXXXXX")"
 trap 'rm -rf "$receiver_tmp"' EXIT
 mkdir -p "$receiver_tmp/Modules"
+swiftc -emit-module -parse-as-library -module-name Notation \
+    Sources/Notation/*.swift \
+    -module-cache-path "$receiver_tmp/cache" \
+    -emit-module-path "$receiver_tmp/Modules/Notation.swiftmodule"
 swiftc -emit-module -parse-as-library -module-name VerificationIsIdentification \
+    -I "$receiver_tmp/Modules" \
     Sources/VerificationIsIdentification/*.swift \
     -emit-module-path "$receiver_tmp/Modules/VerificationIsIdentification.swiftmodule"
 receiver_sources=()

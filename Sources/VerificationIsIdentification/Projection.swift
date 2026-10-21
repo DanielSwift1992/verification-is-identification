@@ -1,3 +1,5 @@
+import Notation
+
 // ═══════════════════════════════════════════════════════════════
 // The Architecture of Learning Machines (Projection).
 //

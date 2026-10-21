@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 96" role="img" data-vi-canvas="1" font-family="Inter, Roboto, system-ui, sans-serif" aria-label="A plate reading Self-showing, with a chip that links to its own source.">
+<rect width="240" height="96" rx="16" fill="var(--vi-surface-card, #FFFFFF)"/>
+<g transform="translate(24, 0)">
+<text x="0" y="56" text-anchor="start" fill="var(--vi-text-primary, rgba(0,0,0,0.80))" font-weight="400" font-size="21">Self-showing</text>
+</g>
+<g transform="translate(0, 68)">
+<g transform="translate(202, 0)">
+<a href="/documentation/documentkit/selfshowingexamplesource">
+<rect x="0" width="30" height="20" rx="6" fill="var(--vi-surface-track, #F6F7F8)"/>
+<g transform="translate(8, 0)">
+<text x="0" y="14" text-anchor="start" fill="var(--vi-text-secondary, rgba(0,0,0,0.54))" font-weight="400" font-size="13">{ }</text>
+</g>
+</a>
+</g>
+</g>
+
+</svg>

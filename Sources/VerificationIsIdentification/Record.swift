@@ -1,3 +1,5 @@
+import Notation
+
 import Swift
 
 /// Two justified routes retain one requested reading of the record's source.

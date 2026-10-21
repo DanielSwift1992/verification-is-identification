@@ -505,7 +505,12 @@ public enum Schema {
     }
     @ScopeCensus
     public static var scopes: [(prefix: String, scope: any LintAtom.Type)] {
-        ("Sources/VerificationIsIdentification/Primitive.swift", EngineScope.self)
+        ("Sources/Notation/Primitive.swift", EngineScope.self)
+        ("Sources/Notation", LatticeScope.self)
+        ("Sources/DocumentKit", SurfaceScope.self)
+        ("Sources/DocumentKitCertificates", SurfaceScope.self)
+        ("Sources/DocumentKitDemo", DemoScope.self)
+        ("Sources/FontMetrics", ToolsScope.self)
         ("Sources/VerificationIsIdentification", LatticeScope.self)
         ("Sources/Tools", ToolsScope.self)
         ("Sources/Court", ToolsScope.self)

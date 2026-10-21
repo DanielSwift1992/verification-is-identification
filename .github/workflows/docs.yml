@@ -41,8 +41,10 @@ jobs:
           generate-documentation
           --enable-experimental-combined-documentation
           --experimental-enable-custom-templates
+          --warnings-as-errors
           --target VerificationIsIdentification --target Examples
-          --target GrammarLexicon --target Alphabet
+          --target GrammarLexicon --target Alphabet --target Notation
+          --target DocumentKit --target DocumentKitCertificates
           --transform-for-static-hosting
           --hosting-base-path verification-is-identification
           --output-path "$GITHUB_WORKSPACE/_site"

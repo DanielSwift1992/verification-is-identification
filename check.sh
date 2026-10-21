@@ -88,10 +88,13 @@ RESEARCH=(
 )
 
 LAWS+=(
+"drawing|generic native Drawing preserves seven SVGs and four refusals|python3 Checks/drawing.py"
+"target-graph|notation and drawing keep their declared dependencies|python3 Checks/target-graph.py"
+"artifacts|DocumentKit projections reproduce their checked-in bytes|python3 Checks/documentkit-artifacts.py"
 "census|the declaration count per target|bash Checks/tools.sh census"
 "voice|lexical counts do not exceed their authored pins|bash Checks/tools.sh voice"
 "readme|the numbers are counted, not remembered|bash Checks/tools.sh readme"
-"renames|empty intersections have one name; duplicate controls refuse|bash Checks/tools.sh lint Sources/VerificationIsIdentification --docc Sources/VerificationIsIdentification/VerificationIsIdentification.docc --strict && python3 Checks/lint_duplicates.py --tools .build/debug/Tools"
+"renames|empty intersections have one name; duplicate controls refuse|bash Checks/tools.sh lint Sources/Notation Sources/VerificationIsIdentification --docc Sources/VerificationIsIdentification/VerificationIsIdentification.docc --strict && python3 Checks/lint_duplicates.py --tools .build/debug/Tools"
 "topics|the Topics tree equals the type lattice|swift package --allow-writing-to-package-directory tree-sort check"
 "families|every paper part has an owner and its readers reject lost addresses|bash Checks/tools.sh papers && python3 Checks/paper_families.py --tools .build/debug/Tools --graph auto"
 "light|the second judge names the claims of Light it does not read, and the rest holds|bash Checks/where-light.sh"

@@ -1,3 +1,5 @@
+import Notation
+
 // THE LAW names how every protocol in Σ must be written.
 //
 // The canonical statement is the doc-comment below: it renders as the ``Law``
@@ -16,15 +18,15 @@
 /// compress it. Every protocol must make one of these moves and express its
 /// relation through the types (§1–§3).
 ///
-/// - term Seed: ``Pair`` has two addressed roles whose contents can agree.
-///   ``Null`` equates those sides. Its conformers need not be `Never` (§0).
+/// - term Seed: ``/Notation/Pair`` has two addressed roles whose contents can agree.
+///   ``/Notation/Null`` equates those sides. Its conformers need not be `Never` (§0).
 /// - term Proof: state quantities, premises and conclusion. Supply the related
 ///   axes in a generic construction requiring only the premises, and check its
 ///   conformance for every admitted substitution (§T). A named refusal tests
 ///   the attempted incompatible construction under its constraints (§0′, §T).
 /// - term Floor: total structural comparison uses finite trees in a stated
 ///   constructor grammar. Exhaustive finite search also needs a sufficient
-///   obtainable bound for its candidate carrier. ``Pair``/``Null`` conformance
+///   obtainable bound for its candidate carrier. ``/Notation/Pair``/``/Notation/Null`` conformance
 ///   alone supplies neither termination argument (§0′, §4).
 /// - term Application: using the result for its intended task needs a justified
 ///   link to the actual source and original question (§0′).
@@ -34,18 +36,18 @@
 ///
 /// ## §0 · The seed and its fixpoint
 ///
-/// The lattice grows from one act, ``Pair`` (a distinction), and closes at its
-/// fixpoint ``Null``. Everything reduces to them. They are primitive here, the
+/// The lattice grows from one act, ``/Notation/Pair`` (a distinction), and closes at its
+/// fixpoint ``/Notation/Null``. Everything reduces to them. They are primitive here, the
 /// lattice starts from them. Existence Is Finite now states the finiteness and
 /// constructor premises required for its representation theorem. A term reducing
 /// to neither is foreign to this chosen grammar, and the law rejects it (§6).
 ///
-/// - ``Pair``: two addressed roles in one type relation
+/// - ``/Notation/Pair``: two addressed roles in one type relation
 ///   (`associatedtype Left`, `associatedtype Right`).
-/// - ``Null``: the equality constraint on ``Pair``'s sides, `Left == Right`.
+/// - ``/Notation/Null``: the equality constraint on ``/Notation/Pair``'s sides, `Left == Right`.
 ///   `Never` conforms, but other conformers need not equal that syntax leaf (EiF EF4).
 ///
-/// The two roles of ``Pair`` need not have different contents. A realized
+/// The two roles of ``/Notation/Pair`` need not have different contents. A realized
 /// distinction needs a separating relation, such as the explicit constructor
 /// boundary of ZeroSuccessorDistinction. Its name or Pair conformance alone
 /// supplies no refusal. The Cut takes encountered contrast as given at Step 2,
@@ -109,7 +111,7 @@
 ///
 /// The object checked here is a type and its addressed relations. A caseless
 /// enum has no runtime inhabitants. That does not make its conformance false.
-/// ``Null`` identifies its two sides, not all conformers or all their readings.
+/// ``/Notation/Null`` identifies its two sides, not all conformers or all their readings.
 /// Failure to establish a conformance is not a conformance to its negation.
 /// A named refusal checks that attempted construction under those premises.
 /// It does not decide every other construction or the physical whole.
@@ -230,7 +232,7 @@
 /// of the particular answer claimed.
 /// Appending that answer makes it a projection of the resulting record.
 /// Matter §6 shows why this alone derives no function on the original source.
-/// A marker with no additional relation is a tag: a rename of ``Pair``, forbidden.
+/// A marker with no additional relation is a tag: a rename of ``/Notation/Pair``, forbidden.
 /// ``Permanent`` and ``Monotone`` are mirror images, and the `where` is the only
 /// thing that tells them apart:
 ///
@@ -247,12 +249,12 @@
 /// > claim. Make it a *parent* (`protocol P: Decidable`) when the protocol itself is
 /// > that thing: P *is* the decision, the measurement. Make it a *pin*
 /// > (`where Axis: Decidable`) when P itself is not, but one of its axes is. The
-/// > test: does the marker name the protocol's own ``Pair``, or one of its axes?
+/// > test: does the marker name the protocol's own ``/Notation/Pair``, or one of its axes?
 ///
 /// ## §4 · Finite = width × depth
 ///
 /// Finite names both bounds, not just one. Width is bounded by the shape
-/// itself: a ``Pair`` has exactly two sides, never infinitely many. Depth also
+/// itself: a ``/Notation/Pair`` has exactly two sides, never infinitely many. Depth also
 /// needs a floor: each chain in the interpreted tree must reach its declared
 /// terminal. Swift permits recursive associated types, so `Left = Self` can
 /// compile under ``StructuresFinite``. That protocol alone does not prove the
@@ -275,24 +277,24 @@
 ///
 /// ## §5 · Nothing floats
 ///
-/// Trace any protocol up its parents: it must reach ``Pair``. Trace any structure
-/// down: it must reach ``Null``. Markers are rooted in ``Pair`` or ``Null``. Axes are rooted
+/// Trace any protocol up its parents: it must reach ``/Notation/Pair``. Trace any structure
+/// down: it must reach ``/Notation/Null``. Markers are rooted in ``/Notation/Pair`` or ``/Notation/Null``. Axes are rooted
 /// in the one space-root ``HasSigma``. Theorems are rooted in markers and axes.
 /// The law rejects a protocol that reaches neither.
 ///
 /// ## §6 · The law obeys the law
 ///
-/// The law is written in ``Pair`` and ``Null``:
+/// The law is written in ``/Notation/Pair`` and ``/Notation/Null``:
 ///
 /// | Construct | Reading |
 /// | --- | --- |
-/// | `associatedtype` | ``Pair``, two sides: the name and its protocol |
-/// | `where X == Y` | ``Null``, the two sides close |
-/// | `where X: M` | partial ``Null``, the side is pinned |
+/// | `associatedtype` | ``/Notation/Pair``, two sides: the name and its protocol |
+/// | `where X == Y` | ``/Notation/Null``, the two sides close |
+/// | `where X: M` | partial ``/Notation/Null``, the side is pinned |
 ///
-/// Even the two moves are a ``Pair`` (expand or compress) whose ``Null`` is
+/// Even the two moves are a ``/Notation/Pair`` (expand or compress) whose ``/Notation/Null`` is
 /// "no net change": the forbidden rename of §1. The test for any *new* rule:
-/// state it in ``Pair``/``Null``. If it cannot be said in those terms, it is
+/// state it in ``/Notation/Pair``/``/Notation/Null``. If it cannot be said in those terms, it is
 /// foreign, do not add it.
 ///
 /// ## §T · Translation: any theorem → types
@@ -316,12 +318,12 @@
 ///
 /// | Marker | The freedom… |
 /// | --- | --- |
-/// | ``Unique`` / ``Null`` | is *at* the fixpoint (`Left == Right`) |
-/// | ``Monotone`` | shrinks *to* it (toward ``Null``) |
+/// | ``Unique`` / ``/Notation/Null`` | is *at* the fixpoint (`Left == Right`) |
+/// | ``Monotone`` | shrinks *to* it (toward ``/Notation/Null``) |
 /// | ``Permanent`` | grows *from* it (accumulating) |
 /// | ``Measurable`` | resolves to one point (a determined value) |
 /// | ``Decidable`` | forks: two fixpoints (in \| out) |
-/// | ``IntegerValued`` | a ladder of fixpoints (Peano, floored at ``Null``) |
+/// | ``/Notation/IntegerValued`` | a ladder of fixpoints (Peano, floored at ``/Notation/Null``) |
 /// | ``MetricProperty`` | two legs joined at their shared endpoint |
 ///
 /// These slots record the stated relation when every quantity is pinned by its
@@ -417,7 +419,7 @@
 /// ## §7 · The tree obeys the law
 ///
 /// The lattice's page branches by the same move the lattice
-/// makes. §6 forces it: the law is written in ``Pair`` and ``Null``, so the *tree of
+/// makes. §6 forces it: the law is written in ``/Notation/Pair`` and ``/Notation/Null``, so the *tree of
 /// the law* is too. Every node (a Topics group, a page, a route) earns its
 /// place by the move it makes, never by a hand-picked theme (that is the §1
 /// rename, read one level up).
@@ -441,5 +443,5 @@
 /// > Note: This organization is *induced*, not arranged. The checker reads the spine and the routes
 /// > off the types, each symbol at the place its move earns, and holds the page
 /// > equal to that reading, as the linter holds every protocol to §1. The
-/// > tree is ``Pair`` and ``Null`` all the way up, as a protocol is all the way down.
+/// > tree is ``/Notation/Pair`` and ``/Notation/Null`` all the way up, as a protocol is all the way down.
 public enum Law {}

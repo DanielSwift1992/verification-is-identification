@@ -37,6 +37,9 @@ def run_bounded(command, timeout, cwd=ROOT):
             raise
         return subprocess.CompletedProcess(command, process.returncode, output)
 
+def notation_sources():
+    return sorted((ROOT / "Sources/Notation").glob("*.swift"))
+
 def compilation_sources(mode):
     """The actual compiler inputs, shared by fresh builds and local reuse."""
     core = sorted((ROOT / 'Sources/VerificationIsIdentification').glob('*.swift'))
@@ -73,7 +76,7 @@ def main():
     lib = out / 'library'; lib.mkdir()
     mode = 'coherent' if args.coherent else ('acquisition' if args.acquisition else 'continuation')
     core, common, exporter = compilation_sources(mode)
-    inputs = core + common + [exporter, HERE/'build.py']
+    inputs = notation_sources() + core + common + [exporter, HERE/'build.py']
     if not args.prepare_only:
         inputs += sorted(HERE.glob('*.swift')) + sorted(HERE.glob('*.py')) + [HERE/'run.sh']
     hashes = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs}
@@ -98,10 +101,14 @@ def main():
         step('versions',['swiftc','--version'])
         if not args.prepare_only:
             step('sdk-preflight',[sys.executable,'-c','import braket.devices; import braket.ir.openqasm; import importlib.metadata as m; print(m.version("amazon-braket-sdk")); print(m.version("amazon-braket-default-simulator"))'])
+        step('fresh-notation-library',['swiftc','-emit-library','-emit-module','-parse-as-library',
+            '-module-name','Notation',*notation_sources(),'-emit-module-path',lib/'Notation.swiftmodule',
+            '-o',lib/'libNotation.dylib'])
         step('fresh-core-library',['swiftc','-emit-library','-emit-module','-parse-as-library',
-            '-module-name','VerificationIsIdentification',*core,'-emit-module-path',lib/'VerificationIsIdentification.swiftmodule',
+            '-module-name','VerificationIsIdentification','-I',lib,'-L',lib,'-lNotation',
+            '-Xlinker','-rpath','-Xlinker',lib,*core,'-emit-module-path',lib/'VerificationIsIdentification.swiftmodule',
             '-o',lib/'libVerificationIsIdentification.dylib'])
-        flags=['swiftc','-I',lib,'-L',lib,'-lVerificationIsIdentification','-Xlinker','-rpath','-Xlinker',lib]
+        flags=['swiftc','-I',lib,'-L',lib,'-lVerificationIsIdentification','-lNotation','-Xlinker','-rpath','-Xlinker',lib]
         step('compile-proposal',[*flags,*common,exporter,'-o',out/'export'])
         step('derive-and-export',[out/'export',out])
         certificates=out/('CoherentCertificates.swift' if args.coherent else 'Certificates.swift')

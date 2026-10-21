@@ -102,7 +102,7 @@ for job in jobs {
 }
 ''')
         flags = ['-module-cache-path', str(temp/'modules'), '-I', str(bin_dir/'Modules')]
-        objects = [str(path) for module in ('VerificationIsIdentification', 'Alphabet', 'GrammarLexicon')
+        objects = [str(path) for module in ('Notation', 'VerificationIsIdentification', 'Alphabet', 'GrammarLexicon')
                    for path in sorted((bin_dir/(module+'.build')).glob('*.swift.o'))]
         assert objects
         subprocess.run(['swiftc', *flags, *objects, *map(str, sorted((ROOT/'Sources/Tools/Grammar').glob('*.swift'))), str(main), '-o', str(temp/'probe')], check=True, capture_output=True)

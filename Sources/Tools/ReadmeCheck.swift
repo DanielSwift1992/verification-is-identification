@@ -59,7 +59,7 @@ enum ReadmeCheck {
         )
         let papers = corpus.families.count
         let protocols = countMatches(
-            swiftSources("Sources/VerificationIsIdentification"), of: "public protocol "
+            swiftSources("Sources/VerificationIsIdentification") + swiftSources("Sources/Notation"), of: "public protocol "
         )
         let tests = countMatches(swiftSources("Tests"), of: "func test")
 

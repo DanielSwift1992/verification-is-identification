@@ -102,7 +102,8 @@ def main() -> int:
     certificates = artifacts / "CoherentCertificates.swift"
     consumer = artifacts / "CheckedCoherentExport.swift"
     tracked = common + [certificates, consumer, Path(__file__).resolve(), bridge / "static_checks.py",
-                        library / "VerificationIsIdentification.swiftmodule", library / "libVerificationIsIdentification.dylib"]
+                        library / "VerificationIsIdentification.swiftmodule", library / "libVerificationIsIdentification.dylib",
+                                library / "Notation.swiftmodule", library / "libNotation.dylib"]
     report = {
         "schema": "vi.coherent.static-checks.v1", "started_utc": datetime.now(timezone.utc).isoformat(),
         "status": "running", "library": str(library), "work_directory": str(work), "checks": [],

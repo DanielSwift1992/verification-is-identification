@@ -10,13 +10,13 @@ The framework checks structure for free. Turning your problem into that structur
 
 ## The shapes are the markers
 
-Each marker in this table constrains the two roles of ``Pair``. Match its relation to your encoding, then give the construction and interpretation that connect it to your question (``Law`` §0′ and §T).
+Each marker in this table constrains the two roles of ``/Notation/Pair``. Match its relation to your encoding, then give the construction and interpretation that connect it to your question (``Law`` §0′ and §T).
 
 | Intended use | The marker | Relation checked by conformance |
 | --- | --- | --- |
 | a yes/no test | ``Decidable`` | `Right: Pair` |
 | one determined value | ``Measurable`` | `Right: Null` |
-| a unary count | ``IntegerValued`` | `Right: IntegerValued` |
+| a unary count | ``/Notation/IntegerValued`` | `Right: IntegerValued` |
 | something that only narrows | ``Monotone`` | `Left: Pair, Left.Left == Right` |
 | something that only accumulates | ``Permanent`` | `Right: Pair, Right.Left == Left` |
 | exactly one survivor | ``Unique`` | `Left: Pair, Left == Right, Left.Left == Left` |
@@ -79,4 +79,4 @@ Two worked encodings of one physical sense are in the papers: the sensor is deri
 
 ## Showing the part you encoded
 
-The surface is the same discipline: a page is a type, and its markdown is the type's name. [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit) builds a page in five steps, and [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) is that surface run at scale: the encoded company and its site, one build.
+The surface is the same discipline: a page is a type, and its markdown is the type's name. [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit) builds a page in five steps, and [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) is that surface run at scale: the encoded company and its site, one build.

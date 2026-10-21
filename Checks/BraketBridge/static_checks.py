@@ -410,7 +410,7 @@ import VerificationIsIdentification
 
         def build_dynamic(name: str, sources: list[Path], executable: Path) -> None:
             command = [compiler, "-I", str(library), "-L", str(library),
-                       "-lVerificationIsIdentification"]
+                       "-lVerificationIsIdentification", "-lNotation"]
             command.extend(str(path) for path in sources)
             command.extend(["-Xlinker", "-rpath", "-Xlinker", str(library),
                             "-o", str(executable)])

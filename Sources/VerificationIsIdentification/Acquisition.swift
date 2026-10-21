@@ -1,3 +1,5 @@
+import Notation
+
 import Swift
 
 /// A supplied continuation meets the original question at its final state.

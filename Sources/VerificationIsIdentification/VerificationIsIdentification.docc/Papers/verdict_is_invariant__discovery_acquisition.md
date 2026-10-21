@@ -299,7 +299,7 @@ A generic constructor supplies the related axes, and its body satisfies the conc
 
 `EvidenceRefinesQuestion` binds that complete seam. `AnswerOnRefinement<F,G>` constructs the composed decoder and conforms to `ReadingFactors` under the seam premise alone. `RefineAnswer<F,G>` supplies this constructor as the conclusion of `RefinementPreservesAnswer`. The result's direct question is F.Left, its observation is G.Observation, and its decoded answer equals F.Answer. No equality of final answers is requested from the caller. `JointEvidenceRetainsFirst` supplies a generic example: an additional reading of the same source extends the evidence while its first projection recovers the old reading.
 
-> Argues: ``EvidenceRefinesQuestion`` needs ``Pair``. Its sides are the earlier factorization and the recovery of that factorization's observation.
+> Argues: ``EvidenceRefinesQuestion`` needs ``/Notation/Pair``. Its sides are the earlier factorization and the recovery of that factorization's observation.
 > Argues: ``RefinementPreservesAnswer`` needs ``EvidenceRefinesQuestion``. The recovery seam supplies the intermediate image required by the composed decoder.
 
 This is a constructive scope rule. It supplies the decoder that justifies reuse under refined evidence. It does not assert that matching raw bytes prove compatibility or that every valid scope relation must have this particular representation. A different source, question or encoding cannot silently replace the stated seam.
@@ -318,7 +318,7 @@ Source compatibility still matters even when two memories coincide. The same fir
 
 Among admissible pairs (T,F), pairs with the same decoder F.Right have the same scoped reading type. This projection identifies the reading while the contexts and their witnesses can remain distinct in the whole. It uses equality of the actual decoder type. Identifying every semantically equivalent decoder would require a further relation.
 
-> Argues: ``ObservationTrace`` needs ``Pair``. The trace relates the source to its recorded evidence.
+> Argues: ``ObservationTrace`` needs ``/Notation/Pair``. The trace relates the source to its recorded evidence.
 > Argues: ``EmptyObservationTrace`` needs ``ObservationTrace``. Its memory is the empty floor for a specified source.
 > Argues: ``ExtendedObservationTrace`` needs ``ObservationTrace``. Its memory contains the previous memory and the newly recorded fact.
 

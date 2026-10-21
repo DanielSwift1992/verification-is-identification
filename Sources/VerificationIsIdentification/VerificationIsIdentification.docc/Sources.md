@@ -10,7 +10,7 @@ Each protocol in ``VerificationIsIdentification`` encodes a claim first made and
 
 To use the framework you need none of the papers: that path starts at <doc:Purpose>. The papers are here for the reader who wants the claim proved.
 
-One paper is apart. *Existence Is Finite* (`EiF`) is the ground, below the protocol floor: in it the author argues the seed (``Pair``, ``Null``) and the medium Σ into place, so no protocol *routes* to it. It is what the rest are built in. Its claims surface as provenance on the seed and the kernel, never as a route of their own.
+One paper is apart. *Existence Is Finite* (`EiF`) is the ground, below the protocol floor: in it the author argues the seed (``/Notation/Pair``, ``/Notation/Null``) and the medium Σ into place, so no protocol *routes* to it. It is what the rest are built in. Its claims surface as provenance on the seed and the kernel, never as a route of their own.
 
 The papers follow the order they were written. This documentation follows the structure *measured* from the lattice itself: a small basis of axes spanned by a web of theorems (see the ``VerificationIsIdentification`` overview). The papers are one walk through that structure.
 

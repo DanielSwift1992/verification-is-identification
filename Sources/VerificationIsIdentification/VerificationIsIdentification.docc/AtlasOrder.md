@@ -22,11 +22,11 @@ answers where to start reading.
 ### Step 0
 
 - ``HasSigma``
-- ``Structure``
+- ``/Notation/Structure``
 
 ### Step 1
 
-- ``Close``, after ``Structure``
+- ``/Notation/Close``, after ``/Notation/Structure``
 - ``HasCache``, after ``HasSigma``
 - ``HasCandidates``, after ``HasSigma``
 - ``HasCost``, after ``HasSigma``
@@ -40,12 +40,12 @@ answers where to start reading.
 - ``HasSolutions``, after ``HasSigma``
 - ``HasStrategy``, after ``HasSigma``
 - ``HasTime``, after ``HasSigma``
-- ``Open``, after ``Structure``
+- ``/Notation/Open``, after ``/Notation/Structure``
 
 ### Step 2
 
 - ``CostIsPathLength``, after ``HasDistance``, ``HasPath``
-- ``Digit``, after ``Open``
+- ``/Notation/Digit``, after ``/Notation/Open``
 - ``DistanceIsMetric``, after ``HasCache``, ``HasDistance``
 - ``EmissionAccumulates``, after ``HasPath``
 - ``HasAlpha``, after ``HasDistance``
@@ -54,35 +54,35 @@ answers where to start reading.
 - ``HasGrammar``, after ``HasEncoding``
 - ``HasSaturation``, after ``HasLibrary``
 - ``HasVerdict``, after ``HasEncoding``
-- ``Pair``, after ``Open``
+- ``/Notation/Pair``, after ``/Notation/Open``
 - ``StrategyBecomesTarget``, after ``HasStrategy``
 
 ### Step 3
 
-- ``ComparedReadings``, after ``Pair``
-- ``CoverageMatchesDeclaration``, after ``Pair``
-- ``Decidable``, after ``Pair``
-- ``EvidenceRefinesQuestion``, after ``Pair``
-- ``IntegerValued``, after ``Pair``
-- ``Measurable``, after ``Pair``
-- ``MetricProperty``, after ``Pair``
-- ``Monotone``, after ``Pair``
-- ``Null``, after ``Pair``
-- ``ObservationTrace``, after ``Pair``
-- ``ObservedTransition``, after ``HasEncoding``, ``Pair``
-- ``OperationsClosed``, after ``Pair``
-- ``Permanent``, after ``Pair``
-- ``PredicateReading``, after ``HasVerdict``, ``Pair``
+- ``ComparedReadings``, after ``/Notation/Pair``
+- ``CoverageMatchesDeclaration``, after ``/Notation/Pair``
+- ``Decidable``, after ``/Notation/Pair``
+- ``EvidenceRefinesQuestion``, after ``/Notation/Pair``
+- ``/Notation/IntegerValued``, after ``/Notation/Pair``
+- ``Measurable``, after ``/Notation/Pair``
+- ``MetricProperty``, after ``/Notation/Pair``
+- ``Monotone``, after ``/Notation/Pair``
+- ``/Notation/Null``, after ``/Notation/Pair``
+- ``ObservationTrace``, after ``/Notation/Pair``
+- ``ObservedTransition``, after ``HasEncoding``, ``/Notation/Pair``
+- ``OperationsClosed``, after ``/Notation/Pair``
+- ``Permanent``, after ``/Notation/Pair``
+- ``PredicateReading``, after ``HasVerdict``, ``/Notation/Pair``
 - ``ReachIsPath``, after ``HasBasis``, ``HasPath``
-- ``RootedRecordReadings``, after ``Pair``
-- ``SharedBoundaryContinuation``, after ``Pair``
-- ``SharedDeclaredTick``, after ``Pair``
-- ``SharedDecoder``, after ``Pair``
+- ``RootedRecordReadings``, after ``/Notation/Pair``
+- ``SharedBoundaryContinuation``, after ``/Notation/Pair``
+- ``SharedDeclaredTick``, after ``/Notation/Pair``
+- ``SharedDecoder``, after ``/Notation/Pair``
 - ``SpaceFromDifference``, after ``DistanceIsMetric``, ``HasGrammar``
-- ``StructuresFinite``, after ``HasSigma``, ``Pair``
-- ``VerdictReorders``, after ``Pair``
-- ``VerdictRetainsLeft``, after ``Pair``
-- ``VerdictRetainsRight``, after ``Pair``
+- ``StructuresFinite``, after ``HasSigma``, ``/Notation/Pair``
+- ``VerdictReorders``, after ``/Notation/Pair``
+- ``VerdictRetainsLeft``, after ``/Notation/Pair``
+- ``VerdictRetainsRight``, after ``/Notation/Pair``
 
 ### Step 4
 
@@ -96,10 +96,10 @@ answers where to start reading.
 - ``EncodingInvents``, after ``ComparedReadings``, ``HasEncoding``
 - ``EqualityDecidable``, after ``StructuresFinite``
 - ``ExtendedObservationTrace``, after ``ObservationTrace``
-- ``IdentityCollapse``, after ``HasSolutions``, ``Null``
-- ``InvalidStepFolds``, after ``HasPath``, ``Null``
+- ``IdentityCollapse``, after ``HasSolutions``, ``/Notation/Null``
+- ``InvalidStepFolds``, after ``HasPath``, ``/Notation/Null``
 - ``NoSelfReference``, after ``OperationsClosed``
-- ``QualitiesAreFinite``, after ``HasEncoding``, ``IntegerValued``
+- ``QualitiesAreFinite``, after ``HasEncoding``, ``/Notation/IntegerValued``
 - ``RecordedAnswerReading``, after ``PredicateReading``
 - ``RefinementPreservesAnswer``, after ``EvidenceRefinesQuestion``
 - ``Resistant``, after ``Decidable``, ``HasDistance``
@@ -107,7 +107,7 @@ answers where to start reading.
 - ``RetainedReadingRecord``, after ``Permanent``
 - ``RevealsNotCreates``, after ``Measurable``, ``OperationsClosed``
 - ``StepsTerminate``, after ``StructuresFinite``
-- ``Unique``, after ``Monotone``, ``Null``
+- ``Unique``, after ``Monotone``, ``/Notation/Null``
 - ``VerdictIsInvariant``, after ``ComparedReadings``, ``HasVerdict``
 
 ### Step 5
@@ -130,7 +130,7 @@ answers where to start reading.
 - ``LawLivesInSigma``, after ``DistanceOnStructures``, ``HasLaw``
 - ``LibrarySaturates``, after ``CachePermanent``, ``HasSaturation``
 - ``MembershipDecidable``, after ``EqualityDecidable``, ``HasSolutions``
-- ``NullIsOrigin``, after ``DistanceOnStructures``, ``Null``
+- ``NullIsOrigin``, after ``DistanceOnStructures``, ``/Notation/Null``
 - ``PipelineTotal``, after ``StepsTerminate``
 - ``ReadingFactors``, after ``VerdictIsInvariant``
 - ``ResistanceHasMagnitude``, after ``DistanceOnStructures``, ``Resistant``

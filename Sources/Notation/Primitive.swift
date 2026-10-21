@@ -103,7 +103,7 @@ public protocol Close: Structure {}   // law:allow: the seal half of Open/Close,
 /// - term Right: the other side.
 ///
 /// > Note: ``Pair`` is the one thing the lattice rests on, and the one thing no
-/// > protocol derives. Trace any type up its parents (§5 of ``Law``) and it ends
+/// > protocol derives. Trace any type up its parents (§5 of [Law](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/law)) and it ends
 /// > here: an entry in no library, certified by no game.
 public protocol Pair: Open {
     associatedtype Left

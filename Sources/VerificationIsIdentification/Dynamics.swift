@@ -1,3 +1,5 @@
+import Notation
+
 // ═══════════════════════════════════════════════════════════════
 // Law Is Target (Dynamics).
 //
@@ -20,7 +22,7 @@
 /// A finite deterministic environment has a transition law f over finite
 /// states and actions. The law is a new axis: the fixed thing about a moving
 /// world. Being a structure is part of the law's identity (nothing else it could
-/// be), so ``Pair`` is pinned inline (§2: cuts only the impossible). [Law LT1]
+/// be), so ``/Notation/Pair`` is pinned inline (§2: cuts only the impossible). [Law LT1]
 public protocol HasLaw: HasSigma {
     associatedtype Law: Pair
 }

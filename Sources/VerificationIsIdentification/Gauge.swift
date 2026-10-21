@@ -1,3 +1,5 @@
+import Notation
+
 // Form coordinates are bound to actual supplied readings, not timings.
 
 /// A form coordinate in a declared domain. The cost and factorization

@@ -471,7 +471,8 @@ enum Linter {
             .map { NSString(string: $0).standardizingPath } ?? repoPath
         let lexiconDir = NSString(string: theoryPath).appendingPathComponent("Sources/GrammarLexicon")
         let alphabetDir = NSString(string: theoryPath).appendingPathComponent("Sources/Alphabet")
-        for required in [lexiconDir, alphabetDir, NSString(string: theoryPath).appendingPathComponent("Sources/VerificationIsIdentification")] {
+        let notationDir = NSString(string: theoryPath).appendingPathComponent("Sources/Notation")
+        for required in [lexiconDir, alphabetDir, notationDir, NSString(string: theoryPath).appendingPathComponent("Sources/VerificationIsIdentification")] {
             guard FileManager.default.fileExists(atPath: required) else {
                 FileHandle.standardError.write(Data("cannot read \(required): set VI_THEORY_PATH to the theory checkout\n".utf8))
                 exit(2)
@@ -497,8 +498,9 @@ enum Linter {
             name: "Mirror",
             platforms: [.macOS(.v13)],
             targets: [
-                .target(name: "VerificationIsIdentification", path: "Sources/VerificationIsIdentification"),
-                .target(name: "Alphabet", dependencies: ["VerificationIsIdentification"], path: "Sources/Alphabet"),
+                .target(name: "Notation", path: "Sources/Notation"),
+                .target(name: "VerificationIsIdentification", dependencies: ["Notation"], path: "Sources/VerificationIsIdentification"),
+                .target(name: "Alphabet", dependencies: ["Notation"], path: "Sources/Alphabet"),
                 .target(name: "MirrorSource", dependencies: ["VerificationIsIdentification", "Alphabet"], path: "Sources/MirrorSource"),
             ]
         )
@@ -517,7 +519,7 @@ enum Linter {
         // `Close`, its fold floor is `Never`, and the certificate beside them
         // (GrammarLexicon/Certificate.swift) conforms the lattice's instance protocols,
         // so every run of the check compiles their relations in the same build that carries
-        // the verdict. Copied verbatim (the lattice imports nothing), not re-declared.
+        // the verdict. Copied verbatim (the theory imports its copied Notation target), not re-declared.
         let seedSource = NSString(string: theoryPath).appendingPathComponent("Sources/VerificationIsIdentification")
         let seedDir = NSString(string: scratch).appendingPathComponent("Sources/VerificationIsIdentification")
         try? FileManager.default.createDirectory(atPath: seedDir, withIntermediateDirectories: true)
@@ -526,6 +528,14 @@ enum Linter {
         where file.hasSuffix(".swift") {
             try? FileManager.default.copyItem(atPath: NSString(string: seedSource).appendingPathComponent(file),
                                               toPath: NSString(string: seedDir).appendingPathComponent(file))
+        }
+
+        let notationScratchDir = NSString(string: scratch).appendingPathComponent("Sources/Notation")
+        try? FileManager.default.createDirectory(atPath: notationScratchDir, withIntermediateDirectories: true)
+        for file in (try? FileManager.default.contentsOfDirectory(atPath: notationDir)) ?? []
+        where file.hasSuffix(".swift") {
+            try? FileManager.default.copyItem(atPath: NSString(string: notationDir).appendingPathComponent(file),
+                                              toPath: NSString(string: notationScratchDir).appendingPathComponent(file))
         }
 
         let alphabetScratchDir = NSString(string: scratch).appendingPathComponent("Sources/Alphabet")

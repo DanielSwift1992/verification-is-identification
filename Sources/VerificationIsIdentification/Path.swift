@@ -1,3 +1,5 @@
+import Notation
+
 // ═══════════════════════════════════════════════════════════════
 // Program Is Path (Path).
 //
@@ -23,7 +25,7 @@
 /// The PATH: the order in which a structure is emitted, token by token, a sub-space of Σ.
 ///
 /// A program, a string, a numeral, a pinpad combination: each is a finite path of atoms,
-/// consed the way ``Pair`` builds every structure. The axis opens the degree of freedom that
+/// consed the way ``/Notation/Pair`` builds every structure. The axis opens the degree of freedom that
 /// the order of emission is. A ``Reading`` interface alone supplies no inverse writer.
 /// It opens free here and is dimensioned by the theorems below: what the path accumulates, what
 /// it costs, what its reach is. [PiP]

@@ -12,7 +12,7 @@ const counters={normalFormClosures:0};
 function freeze(x){if(x&&typeof x==='object'){Object.values(x).forEach(freeze);Object.freeze(x);}return x;}
 function permutations(items){return items.length?items.flatMap((x,i)=>permutations(items.filter((_,j)=>j!==i)).map(p=>[x,...p])):[[]];}
 function readMovingSource() {
-  const paths=['Sources/VerificationIsIdentification/Primitive.swift','Checks/LocalPolicyCourt.swift','Checks/DerivedContactRelations.swift','Checks/MovingContactRelations.swift'];
+  const paths=['Sources/Notation/Primitive.swift','Checks/LocalPolicyCourt.swift','Checks/DerivedContactRelations.swift','Checks/MovingContactRelations.swift'];
   const texts=paths.map(p=>fs.readFileSync(path.join(root,p),'utf8'));
   const paired=texts[0].match(/public enum Paired\b[^{}]*\{[^{}]*\}/g);assert.equal(paired.length,1);
   let source=paired[0]+'\n'+texts[1].slice(0,texts[1].indexOf('public typealias CourtPolicy'))+'\n'+texts[2]+'\n'+texts[3];

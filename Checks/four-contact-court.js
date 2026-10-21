@@ -13,7 +13,7 @@ const judgePath = path.join(root, "Checks/Archive/WhereV2/judge-where.js");
 const nativePath = process.argv[2];
 const { judgeWhereTexts } = require(path.resolve(judgePath));
 const read = file => fs.readFileSync(path.join(root, file), "utf8");
-const primitive = read("Sources/VerificationIsIdentification/Primitive.swift");
+const primitive = read("Sources/Notation/Primitive.swift");
 const paired = primitive.match(/public enum Paired\b[^{}]*\{[^{}]*\}/g);
 assert.equal(paired && paired.length, 1, "one complete current Paired definition");
 const routing = read("Sources/Examples/RoutingTransport.swift");

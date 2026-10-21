@@ -1,0 +1,94 @@
+{
+  "schema": "vi.court.case-set/1",
+  "suite": "vi.court.questions/0.4",
+  "stage": "N-S source-set closure",
+  "files": {
+    "fixtures/S-borrowed-alias.swift": {
+      "sha256": "801c0aefd9131b4bb9af263641fc3fb8de2a53a1da134e749db0fcebc3d0becf",
+      "origin": "T0053 source-set closure twin frozen before closure implementation"
+    },
+    "fixtures/S-borrowed-import.swift": {
+      "sha256": "b22c7bc8ee50789e747abb2fc6aa17e61ddeccd2f6fa5b6db0c6d17ff36afccd",
+      "origin": "T0053 source-set closure twin frozen before closure implementation"
+    },
+    "fixtures/S-borrowed-never.swift": {
+      "sha256": "2d215acd6eb0b89cdeec677e44f77630861406a40486f5598b61c40963f445a1",
+      "origin": "T0053 source-set closure twin frozen before closure implementation"
+    },
+    "fixtures/S-borrowed-shadow.swift": {
+      "sha256": "cbb9534a1c84dd6b87c90a2aed41807180c6a20d6ddbc9143a3975cdd29417ae",
+      "origin": "T0053 source-set closure twin frozen before closure implementation"
+    },
+    "fixtures/S-parameter-shadow.swift": {
+      "sha256": "80a83eb019f04e885d3cdb1171dba60147f9b7a97ae046462e4d16d217162544",
+      "origin": "T0053 source-set closure twin frozen before closure implementation"
+    }
+  },
+  "cases": [
+    {
+      "id": "S-borrowed-import",
+      "pass": "where",
+      "files": [
+        "fixtures/S-borrowed-import.swift",
+        "fixtures/S-borrowed-alias.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "S-borrowed-shadow",
+      "pass": "where",
+      "files": [
+        "fixtures/S-borrowed-shadow.swift",
+        "fixtures/S-borrowed-never.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: cannot read line 1 of 'fixtures/S-borrowed-never.swift': declaration 'Never' conflicts with intrinsic Swift/1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "S-parameter-shadow",
+      "pass": "where",
+      "files": [
+        "fixtures/S-parameter-shadow.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: cannot read line 2: declaration 'Never' conflicts with intrinsic Swift/1"
+          ]
+        }
+      }
+    }
+  ]
+}

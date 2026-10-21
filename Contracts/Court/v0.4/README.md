@@ -1,0 +1,7 @@
+# Court questions 0.4 · nested names, intrinsic names and borrowed obligations
+
+The suite is assembled from immutable, separately committed case sets before their implementation: N/S first, then context/G. `stages/n-s.json` binds the N/S input bytes and expected CLI channels before code. The final registered `contract.json` will contain these same cases, plus the frozen context/G cases. Until that manifest exists and all carriers have receipts, 0.4 is not a completed release. v0.1–v0.3 are unchanged.
+
+N reads non-generic nested enums inside non-generic enum namespaces, including their flat parameterless fields, as qualified declarations. It never flattens a member into file scope. Nested generic containers, nested non-enum kinds, local types and qualified extensions remain addressed refusals. Count explicitly refuses this newly declared nested fragment until its own structural reader can preserve those identities. Source-relative reduction canon 4 is unchanged: a qualified nominal identity is not an equation, and a field still unfolds only its actual owner's definition.
+
+S reads only plain `import Swift`, whose closed intrinsic Swift/1 exports exactly `Never`. Other qualified exports and conflicting source declarations refuse. No SDK source or environment lookup is implied. Imported-but-unused names discharge no obligation. The selected-applications v1 route retains its original reader until separately versioned; the CLI notation fragment advances to vi.court.swift-declarations/2.

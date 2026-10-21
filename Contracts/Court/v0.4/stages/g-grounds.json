@@ -1,0 +1,157 @@
+{
+  "schema": "vi.court.case-set/1",
+  "suite": "vi.court.questions/0.4",
+  "stage": "G independent grounds",
+  "files": {
+    "fixtures/G-missing-protocol.swift": {
+      "sha256": "a1bf8d22ef2712d152437e974131a19b237e9d686adbae6b34314128ae64db2e",
+      "origin": "T0053 grounded-membership and context-transport twins frozen before hardening"
+    },
+    "fixtures/G-missing-protocol-definitions.swift": {
+      "sha256": "442ac30e9e044c6860fe937ca53517ffa96c2af179a561ccc2e86d4d89b0eb91",
+      "origin": "T0053 grounded-membership and context-transport twins frozen before hardening"
+    },
+    "fixtures/G-missing-protocol.json": {
+      "sha256": "7bd80a6056344294571471a5eb192d172f1484313fca59ded088005957d2c257",
+      "origin": "T0053 grounded-membership and context-transport twins frozen before hardening"
+    },
+    "fixtures/G-self-ground.swift": {
+      "sha256": "fcc4b3e884648f46c9380d915412e8305a4bf3acab1a5dd8e65ca65038885e23",
+      "origin": "T0053 grounded-membership and context-transport twins frozen before hardening"
+    },
+    "fixtures/G-self-ground-definitions.swift": {
+      "sha256": "f37ff555e7b9bcc7e700c0d079bf9b5c9ad1404bae4d062b922a450db89e0c5a",
+      "origin": "T0053 grounded-membership and context-transport twins frozen before hardening"
+    },
+    "fixtures/G-self-ground.json": {
+      "sha256": "1674d1bf4e3296381705c99beb46dd726eb1e5dfb84e907cef855fce4baa0eea",
+      "origin": "T0053 grounded-membership and context-transport twins frozen before hardening"
+    },
+    "fixtures/G-mutual-ground.swift": {
+      "sha256": "b69640a0eafbc361a35a6b217572a2f4e4fabffbf03a3982fb642c1e3e71be07",
+      "origin": "T0053 grounded-membership and context-transport twins frozen before hardening"
+    },
+    "fixtures/G-mutual-ground-definitions.swift": {
+      "sha256": "d1ff37f3411c22a3263958bd7904e4ac074ec8fe1435a4a5f5c21b00ef7457d4",
+      "origin": "T0053 grounded-membership and context-transport twins frozen before hardening"
+    },
+    "fixtures/G-mutual-ground.json": {
+      "sha256": "18703561d59b80f0bc202a2cc668561525f48891810598e00e4be05fa6e6234b",
+      "origin": "T0053 grounded-membership and context-transport twins frozen before hardening"
+    },
+    "fixtures/G-dependent-false.swift": {
+      "sha256": "c30aefcdfe472546d62408a7ca3b5c6854124f137a5bfe3a6210dd27144a776c",
+      "origin": "T0053 grounded-membership and context-transport twins frozen before hardening"
+    },
+    "fixtures/G-dependent-definitions.swift": {
+      "sha256": "775acb6496bc04af437e96ebd4d3689fc9864c8fe906760c80e34ec5a10d9588",
+      "origin": "T0053 grounded-membership and context-transport twins frozen before hardening"
+    },
+    "fixtures/G-dependent.json": {
+      "sha256": "56ca19d5ef2b5495065def27c3ba838577dd156f48a646dd6c47517006057b4a",
+      "origin": "T0053 grounded-membership and context-transport twins frozen before hardening"
+    }
+  },
+  "cases": [
+    {
+      "id": "G-missing-protocol",
+      "pass": "where",
+      "files": [
+        "fixtures/G-missing-protocol.swift",
+        "fixtures/G-missing-protocol-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-missing-protocol.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: fixtures/G-missing-protocol.swift:2: no declared protocol grounds for 'P'"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-self-ground",
+      "pass": "where",
+      "files": [
+        "fixtures/G-self-ground.swift",
+        "fixtures/G-self-ground-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-self-ground.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: fixtures/G-self-ground.swift:2: gated membership cycle at 'A: Recursive' has no independent ground"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-mutual-ground",
+      "pass": "where",
+      "files": [
+        "fixtures/G-mutual-ground.swift",
+        "fixtures/G-mutual-ground-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-mutual-ground.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: fixtures/G-mutual-ground.swift:2: gated membership cycle at 'A: Recursive' has no independent ground"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-dependent-false",
+      "pass": "where",
+      "files": [
+        "fixtures/G-dependent-false.swift",
+        "fixtures/G-dependent-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-dependent.json"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ 'Dependent: Checked' requires the types 'Left' (aka 'Unit') and 'Right' (aka 'Other') be equivalent"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    }
+  ]
+}

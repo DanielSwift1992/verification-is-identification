@@ -1,0 +1,38 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "fixtures/G-missing-protocol.swift",
+      "source": "fixtures/G-missing-protocol.swift",
+      "sha256": "a1bf8d22ef2712d152437e974131a19b237e9d686adbae6b34314128ae64db2e",
+      "namespace": "World",
+      "imports": [
+        "Library"
+      ],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": [
+          "language#/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "fixtures/G-missing-protocol-definitions.swift",
+      "source": "fixtures/G-missing-protocol-definitions.swift",
+      "sha256": "442ac30e9e044c6860fe937ca53517ffa96c2af179a561ccc2e86d4d89b0eb91",
+      "namespace": "Library",
+      "imports": [],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

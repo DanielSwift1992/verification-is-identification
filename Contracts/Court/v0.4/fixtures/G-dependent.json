@@ -1,0 +1,38 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "fixtures/G-dependent-false.swift",
+      "source": "fixtures/G-dependent-false.swift",
+      "sha256": "c30aefcdfe472546d62408a7ca3b5c6854124f137a5bfe3a6210dd27144a776c",
+      "namespace": "World",
+      "imports": [
+        "Library"
+      ],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": [
+          "language#/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "fixtures/G-dependent-definitions.swift",
+      "source": "fixtures/G-dependent-definitions.swift",
+      "sha256": "775acb6496bc04af437e96ebd4d3689fc9864c8fe906760c80e34ec5a10d9588",
+      "namespace": "Library",
+      "imports": [],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

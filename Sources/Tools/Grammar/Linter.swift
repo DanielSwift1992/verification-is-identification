@@ -111,9 +111,8 @@ enum Linter {
         /// reference it by, the builder attribute its scope×context names, and its body
         /// text as accumulated so far. Navigation, not duplication (Formation's doc): a
         /// closed block leaves as a SMALL DECLARATION and its parent keeps one reference line,
-        /// the emitted package never holds a nested expression, so the child compiler's
-        /// work stays linear in the source. `blockCount` is the one number in this file: a
-        /// reference needs a name, a name needs a counter.
+        /// the emitted package never holds a nested expression. References and carrier
+        /// groups receive mechanical names from counters.
         struct Carried {
             let opener: (any OpeningAtom.Type)?
             let name: String
@@ -129,6 +128,29 @@ enum Linter {
 
         func emit(_ statement: String) {
             frames[frames.count - 1].text += frames[frames.count - 1].indent + statement + "\n"
+        }
+
+        // Groups already classified statements in order under their original builder.
+        // Formation admits each group; the same scope×context checks every leaf.
+        var groupCount = 0
+        func writtenBody(_ text: String, _ attribute: String, _ indent: String) -> String {
+            var lines = text.components(separatedBy: "\n").dropLast().map { $0 }
+            var groups = ""
+            while lines.count > 128 {
+                var references: [String] = []
+                for start in stride(from: 0, to: lines.count, by: 128) {
+                    let name = "CarrierGroup\(groupCount)"
+                    groupCount += 1
+                    groups += indent + "enum \(name): Formation {\n"
+                        + indent + "    @\(attribute) static var body: Never.Type {\n"
+                        + lines[start..<min(start + 128, lines.count)].joined(separator: "\n") + "\n"
+                        + indent + "    }\n" + indent + "}\n"
+                    references.append(indent + "    \(name).self")
+                }
+                lines = references
+            }
+            return groups + indent + "@\(attribute) static var body: Never.Type {\n"
+                + lines.map { $0 + "\n" }.joined() + indent + "}\n"
         }
 
         /// This gives one classified atom at the current position, consuming as many characters
@@ -293,9 +315,7 @@ enum Linter {
                     let frame = frames.removeLast()
                     declarations.append(
                         "    enum \(frame.name): Formation {\n"
-                        + "        @\(frame.attribute) static var body: Never.Type {\n"
-                        + frame.text
-                        + "        }\n"
+                        + writtenBody(frame.text, frame.attribute, "        ")
                         + "    }\n")
                     emit("\(frame.name).self")
                     headSeen = false
@@ -343,9 +363,7 @@ enum Linter {
             + "enum \(fileName): Formation {\n"
             + "    static let verdict = Linter(Self.self)\n"
             + declarations.joined()
-            + "    @\(scopeName)PlainTokens static var body: Never.Type {\n"
-            + frames[0].text
-            + "    }\n"
+            + writtenBody(frames[0].text, "\(scopeName)PlainTokens", "    ")
             + "}\n"
     }
 

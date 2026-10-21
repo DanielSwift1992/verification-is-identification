@@ -91,7 +91,7 @@ def main():
         report['passed'] = all(not r['mismatches'] for r in report['results'])
         report['claim'] = 'Finite substitution suite only; no general equivalence or publication guarantee.'
         if args.report:
-            args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+            args.report.write_text(json.dumps(report, ensure_ascii=True, indent=2) + '\n', encoding='utf-8')
         print(str(sum(not r['mismatches'] for r in report['results'])) + '/' + str(len(cases)))
         return 0 if report['passed'] else 1
     except (OSError, ValueError, KeyError, TypeError) as exc:

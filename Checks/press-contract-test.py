@@ -4,6 +4,8 @@ import importlib.util
 import json
 from pathlib import Path
 import shutil
+import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -48,6 +50,22 @@ class Controls(unittest.TestCase):
             self.assertTrue(c.mismatches({**actual, key: value}, expected))
         for refusal in [{'address': 'elsewhere', 'reason': 'no rule named Absent'}, {'address': 'rules.swift#Absent', 'reason': 'failed'}]:
             self.assertTrue(c.mismatches({**actual, 'refusal': refusal}, expected))
+
+    def test_report_retains_an_unpaired_surrogate_from_a_broken_port(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            script = Path(tmp) / 'broken.py'
+            # JSON can spell a lone UTF-16 code unit even though UTF-8 cannot
+            # encode it as a scalar. A failed implementation still gets a report.
+            script.write_text("import json; print(json.dumps({'state': chr(0xd801), 'changed': True}))\n")
+            report = Path(tmp) / 'report.json'
+            run = subprocess.run([sys.executable, str(ROOT / 'Checks/press-contract.py'),
+                '--command-json', json.dumps([sys.executable, str(script)]),
+                '--implementation-id', 'broken UTF-16 port', '--report', str(report)], capture_output=True, text=True)
+            self.assertEqual(run.returncode, 1, run.stderr)
+            actual = json.loads(report.read_text())
+            self.assertFalse(actual['passed'])
+            self.assertEqual(actual['results'][0]['actual']['state'], chr(0xd801))
+            self.assertIn('state bytes', actual['results'][0]['mismatches'])
 
     def test_utf16_half_or_normalization_is_not_the_state(self):
         self.assertTrue(c.mismatches({'state': '\ud801', 'changed': True}, {'state': '', 'changed': True, 'refusal': None}))

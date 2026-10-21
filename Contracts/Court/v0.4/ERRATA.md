@@ -1,0 +1,5 @@
+# Pre-release expectation correction
+
+The frozen `g-views.json` case `G-owner-paired` incorrectly expected four Frac memberships and a positive answer for `typealias Claim = Paired<Unit, Unit>` with the full Vector source. The unchanged CLI question treats a parameterless alias naming a gated head as a claim of every gate of that head. Vector also declares Paired: Takes, Divides and DividesY; Unit states none of them. Both implementations correctly refused the six missing memberships. This is a mistake in the authored expectation, not a reason to discard those gates.
+
+`context-closure.json` explicitly supersedes that pre-release case with `G-owner-paired-all-gates`, retaining the exact inputs and the six negative obligations. `G-owner-all-gates` is its new positive twin with the required actual declarations. The original stage remains immutable and is excluded from the release only by this named supersession. No released v0.1–v0.3 expectation changes. This correction is disclosed for review; v0.4 is not released or accepted merely because the implementations agree.

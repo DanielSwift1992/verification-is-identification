@@ -1,0 +1,302 @@
+{
+  "schema": "vi.court.case-set/1",
+  "suite": "vi.court.questions/0.4",
+  "stage": "Explicit intrinsic closure and pre-release expectation erratum",
+  "files": {
+    "fixtures/S-never.swift": {
+      "sha256": "bc0df06f1c6576993172845aff92c03e5dfbae8bd50674be20f0222f129fabf3",
+      "origin": "previously frozen case input"
+    },
+    "fixtures/C-S-never.json": {
+      "sha256": "8b6972fa1e39f410a6d9c53ac16f3bcefc65298508f0ef844f1b81974f245299",
+      "origin": "T0053 context/intrinsic boundary frozen before strengthening"
+    },
+    "fixtures/C-S-missing.json": {
+      "sha256": "0f2703d9cc0bc43126dc0600dc3a724cda99e4a81c74280bbcb229f38584219f",
+      "origin": "T0053 context/intrinsic boundary frozen before strengthening"
+    },
+    "fixtures/C-S-version.json": {
+      "sha256": "9901254eb43c1372ef0b1ac5d5b3907dec11bec72f286bf814eb6ee8c7971ec7",
+      "origin": "T0053 context/intrinsic boundary frozen before strengthening"
+    },
+    "fixtures/C-S-exports.json": {
+      "sha256": "424960582cc1cd84cf72a3ffb806dbd11c3dc86aa6cb5e7dbeffcfeba9b530ad",
+      "origin": "T0053 context/intrinsic boundary frozen before strengthening"
+    },
+    "fixtures/C-S-source.json": {
+      "sha256": "06256fddd2f098a0ef4fb04d3a2ef6b708f0fbe215ccd7e3c4cd2148c128901d",
+      "origin": "T0053 context/intrinsic boundary frozen before strengthening"
+    },
+    "fixtures/S-borrowed-never.swift": {
+      "sha256": "2d215acd6eb0b89cdeec677e44f77630861406a40486f5598b61c40963f445a1",
+      "origin": "previously frozen case input"
+    },
+    "fixtures/C-S-shadow.json": {
+      "sha256": "1f2dc7a07e0200a28862ecec8fc7711529587bed9d401e1c64b8b52b10da2350",
+      "origin": "T0053 context/intrinsic boundary frozen before strengthening"
+    },
+    "fixtures/C-S-parameter.swift": {
+      "sha256": "6889bb712c6b7d31a39632601da4b9dbff3efff358af49fcbdb44eff777e517f",
+      "origin": "T0053 context/intrinsic boundary frozen before strengthening"
+    },
+    "fixtures/C-S-parameter.json": {
+      "sha256": "248678a17989222cb1a437e385479a89a143fa662c56200d1252f052c3a7f607",
+      "origin": "T0053 context/intrinsic boundary frozen before strengthening"
+    },
+    "fixtures/G-owner-paired.swift": {
+      "sha256": "2d7d9651c89b6c0410c5943d1be9387aac6cd7d9a7564529469830f54548e64b",
+      "origin": "previously frozen case input"
+    },
+    "fixtures/OwnerPrimitive.swift": {
+      "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a",
+      "origin": "previously frozen case input"
+    },
+    "fixtures/OwnerVector.swift": {
+      "sha256": "b61eea9c279db510d66cca5119a2b11b1069be5dce9a2b1981d1ba4b075dfcf3",
+      "origin": "previously frozen case input"
+    },
+    "fixtures/G-owner-paired.json": {
+      "sha256": "e3667225798aac7ce9e5903335d28397c13d30af0de389e5b37fe36cd4ac443e",
+      "origin": "previously frozen case input"
+    },
+    "fixtures/G-owner-all-gates.swift": {
+      "sha256": "dc083d587db18921fd634cd310cba9353f493e6f0977263d7e9c319eccd2df39",
+      "origin": "T0053 context/intrinsic boundary frozen before strengthening"
+    },
+    "fixtures/G-owner-all-gates.json": {
+      "sha256": "0f8f93246792e19c79a74049e14c23235237a4db56cc352041f886dc6b823cf6",
+      "origin": "T0053 context/intrinsic boundary frozen before strengthening"
+    }
+  },
+  "cases": [
+    {
+      "id": "C-S-never",
+      "pass": "where",
+      "files": [
+        "fixtures/S-never.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-S-never.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "C-S-missing",
+      "pass": "where",
+      "files": [
+        "fixtures/S-never.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-S-missing.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: context language#/imports/0: namespace 'Swift' has no supplied source or intrinsic"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-S-version",
+      "pass": "where",
+      "files": [
+        "fixtures/S-never.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-S-version.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: context intrinsics[0]: expected the closed Swift/1 export Never with provenance"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-S-exports",
+      "pass": "where",
+      "files": [
+        "fixtures/S-never.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-S-exports.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: context intrinsics[0]: expected the closed Swift/1 export Never with provenance"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-S-source",
+      "pass": "where",
+      "files": [
+        "fixtures/S-never.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-S-source.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: context language#/namespace: source cannot declare intrinsic namespace Swift"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-S-shadow",
+      "pass": "where",
+      "files": [
+        "fixtures/S-never.swift",
+        "fixtures/S-borrowed-never.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-S-shadow.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: cannot read line 1 of 'fixtures/S-borrowed-never.swift': declaration 'Never' conflicts with intrinsic Swift/1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-S-parameter",
+      "pass": "where",
+      "files": [
+        "fixtures/S-never.swift",
+        "fixtures/C-S-parameter.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-S-parameter.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: cannot read line 1 of 'fixtures/C-S-parameter.swift': declaration 'Never' conflicts with intrinsic Swift/1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-owner-paired-all-gates",
+      "pass": "where",
+      "files": [
+        "fixtures/G-owner-paired.swift",
+        "fixtures/OwnerPrimitive.swift",
+        "fixtures/OwnerVector.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-owner-paired.json"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ 'Claim = Paired<Unit, Unit>' requires the type 'L' (aka 'Unit') conform to 'Takes', and 'Unit: Close' does not carry it [Takes]",
+            "✗ 'Claim = Paired<Unit, Unit>' requires the type 'R' (aka 'Unit') conform to 'Takes', and 'Unit: Close' does not carry it [Takes]",
+            "✗ 'Claim = Paired<Unit, Unit>' requires the type 'L' (aka 'Unit') conform to 'Divides', and 'Unit: Close' does not carry it [Divides]",
+            "✗ 'Claim = Paired<Unit, Unit>' requires the type 'R' (aka 'Unit') conform to 'Divides', and 'Unit: Close' does not carry it [Divides]",
+            "✗ 'Claim = Paired<Unit, Unit>' requires the type 'L' (aka 'Unit') conform to 'DividesY', and 'Unit: Close' does not carry it [DividesY]",
+            "✗ 'Claim = Paired<Unit, Unit>' requires the type 'R' (aka 'Unit') conform to 'DividesY', and 'Unit: Close' does not carry it [DividesY]"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "supersedes": "G-owner-paired"
+    },
+    {
+      "id": "G-owner-all-gates",
+      "pass": "where",
+      "files": [
+        "fixtures/G-owner-all-gates.swift",
+        "fixtures/OwnerPrimitive.swift",
+        "fixtures/OwnerVector.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-owner-all-gates.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "THE WHERE scope: borrowed value declarations are outside this reading: fixtures/OwnerPrimitive.swift:49, fixtures/OwnerVector.swift:7.",
+            "✓ THE WHERE holds: 0 equalities and 10 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    }
+  ]
+}

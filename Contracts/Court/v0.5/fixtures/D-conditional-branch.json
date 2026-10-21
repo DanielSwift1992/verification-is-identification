@@ -1,0 +1,41 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "fixtures/D-conditional-branch.swift",
+      "source": "fixtures/D-conditional-branch.swift",
+      "sha256": "c5ea2c1ace92820bb7314da0bc29b643722db11612f8adec9def53d70140631b",
+      "module": "World",
+      "namespace": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "record:fixtures/D-conditional-branch.swift/input",
+        "source": "record:fixtures/D-conditional-branch.swift/source",
+        "sha256": "record:fixtures/D-conditional-branch.swift/sha256",
+        "module": "record:fixtures/D-conditional-branch.swift/module",
+        "namespace": "record:fixtures/D-conditional-branch.swift/namespace",
+        "role": "record:fixtures/D-conditional-branch.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": [
+    {
+      "namespace": "Swift",
+      "version": "vi.court.intrinsic-swift/2",
+      "exports": [
+        "Never",
+        "String"
+      ],
+      "at": {
+        "namespace": "intrinsic/namespace",
+        "version": "intrinsic/version",
+        "exports": [
+          "Primitive.swift:130",
+          "Primitive.swift:145"
+        ]
+      }
+    }
+  ]
+}

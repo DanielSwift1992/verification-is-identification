@@ -469,7 +469,7 @@ pub fn conformer_context(
     let variables: Vec<Expression> = (0..conformer.parameters.len())
         .map(|i| Expression::name(&format!("$free_{}_{}", conformer.name, i)))
         .collect();
-    let owner = Expression::Application(conformer.name.clone(), variables.clone());
+    let owner = if variables.is_empty() && conformer.name.contains('.') { parse_term(&conformer.name)? } else { Expression::Application(conformer.name.clone(), variables.clone()) };
     let rigid: HashSet<String> = variables.iter().map(|v| v.head()).collect();
     let mut bindings: HashMap<String, Expression> =
         conformer.parameters.iter().cloned().zip(variables.into_iter()).collect();
@@ -572,6 +572,11 @@ fn judge_memberships(
         let wearer = match world.conformers.get(&head) {
             Some(w) => w,
             None => {
+                if world.contextual {
+                    let root=site.split(": ").next().unwrap_or(site);
+                    let at=world.addresses.get(root).cloned().unwrap_or_else(||format!("{}:1",world.context_source));
+                    return fail(format!("{}: no declared conformance grounds for '{}' required by '{}'",at,spelled,site));
+                }
                 if require_grounds {
                     return Err(Failure::Open(vec![format!(
                         "no declared conformance grounds for '{}' required by '{}'",
@@ -612,6 +617,7 @@ fn judge_memberships(
 // ── the judgement ──
 
 pub struct Judgment {
+    pub excluded_definitions: Vec<String>,
     pub equalities: usize,
     pub memberships: usize,
     pub uses: usize,
@@ -633,10 +639,10 @@ pub fn judge_with(load: Loader, arguments: &[String]) -> Result<Judgment, Failur
     evaluate(&prepare(arguments, &read)?)
 }
 
-struct Extra {
-    path: String,
-    text: String,
-    world: World,
+pub struct Extra {
+    pub path: String,
+    pub text: String,
+    pub world: World,
 }
 
 /// A gated head applied where this court reads no use and no certificate.
@@ -740,6 +746,11 @@ fn unread(
 }
 
 pub fn prepare(arguments: &[String], load: &dyn Fn(&str) -> Result<String, Failure>) -> Result<Prepared, Failure> {
+    if let Some(at)=arguments.iter().position(|s|s=="--context") {
+        if at+1>=arguments.len() || arguments.iter().filter(|s|s.as_str()=="--context").count()!=1 {return Err(Failure::Input(vec!["unsupported, duplicate or incomplete --context argument".into()]));}
+        let mut paths=arguments.to_vec();let context=paths.remove(at+1);paths.remove(at);
+        return crate::context::prepare(&paths,&context,load);
+    }
     let path = match arguments.first() {
         Some(p) => p.clone(),
         None => return Err(Failure::Input(vec!["usage: judge where <world.swift> [definitions.swift ...]".to_string()])),
@@ -885,7 +896,6 @@ pub fn prepare(arguments: &[String], load: &dyn Fn(&str) -> Result<String, Failu
     }
     // A gated head is judged where it is applied, so every application of one
     // is read, or refused at its line, never passed over.
-    let word = re(r"\b(\w+)\b");
     for extra in &extras {
         let mut names: Vec<&String> = extra.world.nested_names.iter().collect(); names.sort();
         for name in names {
@@ -896,6 +906,11 @@ pub fn prepare(arguments: &[String], load: &dyn Fn(&str) -> Result<String, Failu
         }
         world.namespaces.extend(extra.world.namespaces.iter().cloned());
     }
+    finish(path,world,own_aliases,excludes_conditional,extras)
+}
+
+pub fn finish(path:String,world:World,own_aliases:HashMap<String,AliasRule>,excludes_conditional:bool,extras:Vec<Extra>)->Result<Prepared,Failure>{
+    let word = re(r"\b(\w+)\b");
     let mut gated_names: HashSet<String> = world.gates.iter().map(|g| g.head.clone()).collect();
     let mut grown = true;
     while grown {
@@ -917,7 +932,7 @@ pub fn prepare(arguments: &[String], load: &dyn Fn(&str) -> Result<String, Failu
         let mut lent: Vec<(&String, &AliasRule)> = extra.world.aliases.iter().filter(|(_, r)| r.parameters.is_empty()).collect();
         lent.sort_by_key(|(k, _)| (*k).clone());
         for (name, _) in lent {
-            if gated_names.contains(name) {
+            if gated_names.contains(name) && !world.contextual {
                 return fail(format!(
                     "cannot read '{}': '{}' defines it as an application of a gated head, and this court judges \
                      certificates in the world it reads",
@@ -1022,6 +1037,7 @@ pub fn evaluate_selected(
         }
     }
     for conformer in world.conformers.values() {
+        if world.contextual && !world.context_conformers.contains(&conformer.name) {continue;}
         let (bindings, rigid) = conformer_context(conformer, world)?;
         for (name, body) in &conformer.table {
             certificates.push((
@@ -1122,6 +1138,7 @@ pub fn evaluate_selected(
     let mut conformers: Vec<&Conformer> = world.conformers.values().collect();
     conformers.sort_by(|a, b| a.name.cmp(&b.name));
     for conformer in conformers {
+        if world.contextual && !world.context_conformers.contains(&conformer.name) {continue;}
         if let Some(selected) = &selection {
             if *selected != Selection::Conformer(conformer.name.clone()) {
                 continue;
@@ -1167,6 +1184,9 @@ pub fn evaluate_selected(
         }
     }
 
+    if refusals.is_empty() && world.contextual && !world.context_unresolved.is_empty() {
+        return Err(Failure::Unsupported(world.context_unresolved.clone()));
+    }
     if refusals.is_empty() && judged == 0 && members == 0 {
         if require_grounds {
             return Err(Failure::Open(vec!["no equality or membership grounds for the selected application".to_string()]));
@@ -1174,6 +1194,7 @@ pub fn evaluate_selected(
         return fail("no equalities or memberships were judged; no certificate established");
     }
     Ok(Judgment {
+        excluded_definitions: world.excluded_definitions.clone(),
         equalities: judged,
         memberships: members,
         uses: world.uses.len(),
@@ -1191,6 +1212,9 @@ pub fn answer(load: Loader, arguments: &[String]) -> Answer {
             if result.refusals.is_empty() {
                 if result.excludes_conditional {
                     out.stdout.push_str("THE WHERE scope: conditional compilation blocks are excluded.\n");
+                }
+                if !result.excluded_definitions.is_empty() {
+                    out.stdout.push_str(&format!("THE WHERE scope: borrowed value declarations are outside this reading: {}.\n", result.excluded_definitions.join(", ")));
                 }
                 out.stdout.push_str(&format!(
                     "✓ THE WHERE holds: {} equalities and {} memberships judged across {} uses, the certificates, and \

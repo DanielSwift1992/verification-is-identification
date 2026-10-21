@@ -200,6 +200,12 @@ pub type Span = (usize, usize);
 
 #[derive(Debug, Clone, Default)]
 pub struct World {
+    pub contextual: bool,
+    pub context_source: String,
+    pub context_unresolved: Vec<String>,
+    pub excluded_definitions: Vec<String>,
+    pub addresses: HashMap<String, String>,
+    pub context_conformers: HashSet<String>,
     pub namespaces: HashSet<String>,
     pub nested_names: HashSet<String>,
     pub intrinsic_swift: bool,

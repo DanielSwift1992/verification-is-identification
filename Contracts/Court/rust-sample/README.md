@@ -62,3 +62,6 @@ A consumer that pins this court takes the module the way it takes any judge: bui
 ## Next step
 
 The next step the contract names is the structured response route. Until it is ported, this court answers the text CLI of suites 0.1 and 0.2 on every road.
+
+
+Court v0.4 adds the owner's qualified nested-enum notation, closed Swift/1 intrinsic, and explicit `--context path.json` transport. Both native and wasm routes use the same source-context reader; the Node loader carries that JSON file through the ordinary file map. The owner and port bind original source bytes before constructing the disclosed borrowed-definition view. See [v0.4](../v0.4/README.md) for its bounded scope, negative twins, and the explicit pre-release expectation erratum. Earlier historical measurements above are not a receipt for v0.4.

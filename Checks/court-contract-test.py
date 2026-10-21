@@ -118,3 +118,22 @@ with tempfile.TemporaryDirectory(prefix='vi-lines-contract-tests-') as tmp:
     else:
         check(False, 'rewritten source bytes refused before judging')
 print(f'court-contract reader: {checks} checks passed across three releases')
+
+# Context and frozen stages are complete inputs too, not optional CLI decoration.
+context_root, context_contract = contract.load_contract(HERE.parent / 'Contracts/Court/v0.4/contract.json')
+for relative in ('fixtures/G-context.json', 'stages/context-g.json'):
+    # Select the frozen context by its actual argv binding, not by a naming convention.
+    if relative.endswith('G-context.json'):
+        row = next(c for c in context_contract['cases'] if '--context' in c['args'])
+        relative = row['args'][row['args'].index('--context') + 1]
+    with tempfile.TemporaryDirectory(prefix='vi-context-contract-tests-') as tmp:
+        target = Path(tmp) / 'contract'
+        shutil.copytree(context_root, target)
+        (target / relative).write_text('{}\n')
+        try:
+            contract.load_contract(target / 'contract.json')
+        except ValueError:
+            check(True, 'changed complete context/stage is refused')
+        else:
+            check(False, 'changed complete context/stage is refused')
+print(f'court-contract reader: {checks} checks passed across four releases')

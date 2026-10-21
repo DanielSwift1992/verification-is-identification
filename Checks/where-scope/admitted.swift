@@ -1,5 +1,5 @@
 // The control for the scope refusals: a body may declare what this court
-// does not read, under names it does not resolve. A namespace holds a plain
+// does not resolve for the demand. A namespace holds distinct qualified
 // enums, a function holds a local struct and a typealias, a
 // conformer holds a member typealias, and a block under a plain flag, which
 // a compilation without the flag skips, holds a struct of the good name. A

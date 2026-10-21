@@ -11,6 +11,9 @@ pub mod expression;
 pub mod failure;
 pub mod lexical;
 pub mod notation;
+pub mod context;
+mod digest;
+mod definition_view;
 pub mod structural;
 pub mod where_judge;
 #[cfg(target_arch = "wasm32")]

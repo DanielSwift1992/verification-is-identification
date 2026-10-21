@@ -1,27 +1,12 @@
 #!/usr/bin/env bash
-# The where court resolves every name in one scope, the file's. A name it
-# resolves there is declared once, and a declaration it reads sits outside
-# every body. A second declaration of a court-read name in a function body,
-# of a form the court reads or not (an enum, a typealias, a generic
-# parameter), rebinds it where a use sits, and an enum nested in a namespace
-# can stand for a file-scope name the court does not read. A generic
-# parameter list is read to its closing bracket, however deep its
-# constraints nest and whatever arrow they spell, after a name read as a
-# word or an operator. A name bound outside the file rebinds a file-scope
-# name inside a type or an extension body, so a use there is refused, under
-# a where clause that spells `repeat` and after a comparison as well; and a
-# block under `#if true` is compiled, so only a block under a plain flag is
-# omitted. Each such world holds a real bad demand beside a good neighbour,
-# the compiler refuses it, and the court gives no verdict and names the
-# name, the use or the condition and its line instead of holding the file. A
-# definitions file that extends a type of the world is refused: the court
-# cannot tell that the extension is the world's type, or that its member
-# reaches the world; so is an extension whose owner is qualified, or a
-# typealias. The control keeps what a body may declare, a deep generic list
-# and an operator's list under fresh names, a constant named `actor`, a pack
-# type, `class` members after comparisons, a `repeat` loop, and a block
-# under a plain flag, readable: the compiler accepts it and the court admits
-# it.
+# A name has one supported lexical owner. v0.4 keeps qualified nested enums
+# separate from file-scope names; the nested negative is now a false membership.
+# Local rebinding, unread local type forms, ambiguous declarations and qualified
+# extensions remain refusals. Generic scopes, operators, conditional blocks and
+# attributes retain their compiler-backed positive/negative controls.
+# These legacy CLI calls carry no source context: a borrowed extension still
+# cannot establish ownership by its spelling. Context admission has its own
+# positive and missing/conflicting twins in Contracts/Court/v0.4.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 

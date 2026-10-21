@@ -798,6 +798,12 @@ enum WhereJudge {
     }
 
     struct World {
+        var contextual = false
+        var contextSource = ""
+        var contextUnresolved: [String] = []
+        var excludedDefinitions: [String] = []
+        var addresses: [String: String] = [:]
+        var contextConformers: Set<String> = []
         var namespaces: Set<String> = []
         var nestedNames: Set<String> = []
         var intrinsicSwift = false
@@ -1310,6 +1316,10 @@ enum WhereJudge {
                     + "generic applicability is not established by this membership reader")
             }
             guard let wearer = world.conformers[resolved.head] else {
+                if world.contextual {
+                    let root = site.components(separatedBy: ": ").first ?? site
+                    try fail("\(world.addresses[root] ?? world.contextSource + ":1"): no declared conformance grounds for '\(spelled)' required by '\(site)'")
+                }
                 if requireGrounds {
                     throw Failure.open(["no declared conformance grounds for '\(spelled)' required by '\(site)'"])
                 }
@@ -1345,6 +1355,7 @@ enum WhereJudge {
         let uses: Int
         let excludesConditional: Bool
         let refusals: [String]
+        var excludedDefinitions: [String] = []
     }
 
     /// The original text/exit interface is retained at this single boundary.
@@ -1354,6 +1365,9 @@ enum WhereJudge {
             if result.refusals.isEmpty {
                 if result.excludesConditional {
                     print("THE WHERE scope: conditional compilation blocks are excluded.")
+                }
+                if !result.excludedDefinitions.isEmpty {
+                    print("THE WHERE scope: borrowed value declarations are outside this reading: " + result.excludedDefinitions.joined(separator: ", ") + ".")
                 }
                 print("✓ THE WHERE holds: \(result.equalities) equalities and \(result.memberships) memberships judged across \(result.uses) uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v\(canonVersion)).")
             } else {
@@ -1387,7 +1401,13 @@ enum WhereJudge {
     }
 
     static func fileText(_ path: String) throws -> String {
-        guard let text = try? String(contentsOfFile: path, encoding: .utf8) else {
+        guard let bytes = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
+            throw Failure.input(["cannot read \(path)"])
+        }
+        // Foundation's text-file initializer consumes a UTF-8 BOM. The context
+        // binds the original bytes, before the notation reader takes its view.
+        let text = String(decoding: bytes, as: UTF8.self)
+        guard Data(text.utf8) == bytes else {
             throw Failure.input(["cannot read \(path)"])
         }
         return text
@@ -1399,6 +1419,15 @@ enum WhereJudge {
 
     static func prepare(_ arguments: [String],
                         notationV2: Bool = true, load: (String) throws -> String = fileText) throws -> Prepared {
+        if let at = arguments.firstIndex(of: "--context") {
+            guard notationV2, at + 1 < arguments.count, arguments.filter({ $0 == "--context" }).count == 1 else {
+                throw Failure.input(["unsupported, duplicate or incomplete --context argument"])
+            }
+            var paths = arguments
+            let contextPath = paths.remove(at: at + 1)
+            paths.remove(at: at)
+            return try WhereContext.prepare(paths, contextPath: contextPath, load: load)
+        }
         guard let path = arguments.first else {
             throw Failure.input(["usage: judge where <world.swift> [definitions.swift ...]"])
         }
@@ -1518,6 +1547,12 @@ enum WhereJudge {
                 world.namespaces.formUnion(extra.world.namespaces)
             }
         }
+        return try finish(path: path, world: world, ownAliases: ownAliases,
+                          excludesConditional: excludesConditional, extras: extras)
+    }
+
+    static func finish(path: String, world: World, ownAliases: [String: AliasRule],
+                       excludesConditional: Bool, extras: [(path: String, text: String, world: World)]) throws -> Prepared {
         // A gated head is judged where it is applied, so every application of
         // one is read, or refused at its line, never passed over. A typealias
         // whose right side names a gated head, in any file, applies it in turn,
@@ -1545,7 +1580,7 @@ enum WhereJudge {
         }
         for extra in extras {
             for (name, rule) in extra.world.aliases.sorted(by: { $0.key < $1.key }) where rule.parameters.isEmpty {
-                if gatedNames.contains(name) {
+                if gatedNames.contains(name), !world.contextual {
                     try fail("cannot read '\(name)': '\(extra.path)' defines it as an application of a gated head, and "
                         + "this court judges certificates in the world it reads")
                 }
@@ -1662,7 +1697,8 @@ enum WhereJudge {
             .map { ($0.key, try parseTerm(Substring($0.value.body)), []) }
         // A local certificate is still checked, but in its actual owner.
         // Removing it from the global namespace must not remove its obligation.
-        for conformer in world.conformers.values {
+        for conformer in world.conformers.values
+        where !world.contextual || world.contextConformers.contains(conformer.name) {
             let context = try conformerContext(conformer, world)
             for (name, body) in conformer.table {
                 certificates.append((conformer.name + "." + name,
@@ -1731,6 +1767,7 @@ enum WhereJudge {
         }
 
         for conformer in world.conformers.values.sorted(by: { $0.name < $1.name }) {
+            guard !world.contextual || world.contextConformers.contains(conformer.name) else { continue }
             guard selection == nil || selection == .conformer(conformer.name) else { continue }
             if requireGrounds { try requireProtocolGrounds(conformer.protocols, world) }
             let protocols = inheritedProtocols(conformer.protocols, world)
@@ -1760,11 +1797,14 @@ enum WhereJudge {
             }
         }
 
+        if refusals.isEmpty && world.contextual && !world.contextUnresolved.isEmpty {
+            try failAll(world.contextUnresolved)
+        }
         if refusals.isEmpty && judged == 0 && members == 0 {
             if requireGrounds { throw Failure.open(["no equality or membership grounds for the selected application"]) }
             try fail("no equalities or memberships were judged; no certificate established")
         }
         return Judgment(equalities: judged, memberships: members, uses: world.uses.count,
-                        excludesConditional: excludesConditional, refusals: refusals)
+                        excludesConditional: excludesConditional, refusals: refusals, excludedDefinitions: world.excludedDefinitions)
     }
 }

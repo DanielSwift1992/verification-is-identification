@@ -1,0 +1,38 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "fixtures/G-nested-dependent.swift",
+      "source": "fixtures/G-nested-dependent.swift",
+      "sha256": "9c6c7a09cf44d055b1e06733ba2a686b7742b3e07eb42195629c94f1f0df5795",
+      "namespace": "World",
+      "imports": [
+        "Library"
+      ],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": [
+          "language#/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "fixtures/G-nested-dependent-definitions.swift",
+      "source": "fixtures/G-nested-dependent-definitions.swift",
+      "sha256": "4ff944e4ad678999f0561d116850a783f5c1ccf7095a1353c4477152bdc708be",
+      "namespace": "Library",
+      "imports": [],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "vi.court.case-set/1",
+  "suite": "vi.court.questions/0.4",
+  "stage": "G qualified ground",
+  "files": {
+    "fixtures/G-nested-dependent.swift": {
+      "sha256": "9c6c7a09cf44d055b1e06733ba2a686b7742b3e07eb42195629c94f1f0df5795",
+      "origin": "T0053 qualified dependency twin before context-closure repair"
+    },
+    "fixtures/G-nested-dependent-definitions.swift": {
+      "sha256": "4ff944e4ad678999f0561d116850a783f5c1ccf7095a1353c4477152bdc708be",
+      "origin": "T0053 qualified dependency twin before context-closure repair"
+    },
+    "fixtures/G-nested-dependent.json": {
+      "sha256": "7193373f065782edec1b15dbdff4ea7447bcccb33d63a7880d916b0ae65ca9a7",
+      "origin": "T0053 qualified dependency twin before context-closure repair"
+    }
+  },
+  "cases": [
+    {
+      "id": "G-nested-dependent",
+      "pass": "where",
+      "files": [
+        "fixtures/G-nested-dependent.swift",
+        "fixtures/G-nested-dependent-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-nested-dependent.json"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ 'Namespace.Dependent: Checked' requires the types 'Left' (aka 'Unit') and 'Right' (aka 'Other') be equivalent"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    }
+  ]
+}

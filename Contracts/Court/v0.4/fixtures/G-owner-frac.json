@@ -1,0 +1,58 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "fixtures/G-owner-frac.swift",
+      "source": "fixtures/G-owner-frac.swift",
+      "sha256": "d364362c0ef7f36f27484b6896a5e9b870ade2a156f33cc7acdd383c67cd7179",
+      "namespace": "World",
+      "imports": [
+        "VerificationIsIdentification",
+        "DocumentKit"
+      ],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": [
+          "language#/imports/0",
+          "language#/imports/1"
+        ]
+      }
+    },
+    {
+      "input": "fixtures/OwnerPrimitive.swift",
+      "source": "fixtures/OwnerPrimitive.swift",
+      "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a",
+      "namespace": "VerificationIsIdentification",
+      "imports": [],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": []
+      }
+    },
+    {
+      "input": "fixtures/OwnerVector.swift",
+      "source": "fixtures/OwnerVector.swift",
+      "sha256": "b61eea9c279db510d66cca5119a2b11b1069be5dce9a2b1981d1ba4b075dfcf3",
+      "namespace": "DocumentKit",
+      "imports": [
+        "VerificationIsIdentification"
+      ],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": [
+          "language#/imports/0"
+        ]
+      }
+    }
+  ],
+  "intrinsics": []
+}

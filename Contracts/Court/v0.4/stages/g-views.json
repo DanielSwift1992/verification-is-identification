@@ -1,0 +1,228 @@
+{
+  "schema": "vi.court.case-set/1",
+  "suite": "vi.court.questions/0.4",
+  "stage": "G actual definitions and explicit value boundary",
+  "files": {
+    "fixtures/G-extended-world.swift": {
+      "sha256": "8a81d78e78c755c5475d1fad17886fe13e68d6c8025cdee60266c1b958f0f021",
+      "origin": "T0053 declaration-view/extension twin frozen before implementation"
+    },
+    "fixtures/G-extended-definitions.swift": {
+      "sha256": "203df4775dbfc851100891add3661bae86b27fe8f6ab105870784aa7c2b68757",
+      "origin": "T0053 declaration-view/extension twin frozen before implementation"
+    },
+    "fixtures/G-extended-false.json": {
+      "sha256": "728949417856d6d336fccf59f81fcd3ba09db9a66e119d77617962f71e8d518b",
+      "origin": "T0053 declaration-view/extension twin frozen before implementation"
+    },
+    "fixtures/V-world.swift": {
+      "sha256": "311b019c5d832dd2550043cb6e0b61b17439db9343876cf3a1a2d8cc0ae206b4",
+      "origin": "T0053 declaration-view/extension twin frozen before implementation"
+    },
+    "fixtures/V-definitions.swift": {
+      "sha256": "69ba0154c821eaff0192643844ce3f98cf969e92ad7f74bf90e95b983111805f",
+      "origin": "T0053 declaration-view/extension twin frozen before implementation"
+    },
+    "fixtures/V-values-outside.json": {
+      "sha256": "50af2d23512c82bdff0058c707e1eca6e1960bfea4b269f20ed024028aa787cd",
+      "origin": "T0053 declaration-view/extension twin frozen before implementation"
+    },
+    "fixtures/V-local-type.swift": {
+      "sha256": "0815dbf1331329d4851970fb70198b066f4e050553408bec5d74cb90c5d432de",
+      "origin": "T0053 declaration-view/extension twin frozen before implementation"
+    },
+    "fixtures/V-local-type.json": {
+      "sha256": "69cbb045d2118ce86c89356cd0360b0803a4df81cbb34144412c8fb2ec99ded0",
+      "origin": "T0053 declaration-view/extension twin frozen before implementation"
+    },
+    "fixtures/V-hidden-alias.swift": {
+      "sha256": "823b657277fd3342f3f0cde3aba7b1229dd210b417ffb631ac7dc9ede81c51d7",
+      "origin": "T0053 declaration-view/extension twin frozen before implementation"
+    },
+    "fixtures/V-hidden-alias.json": {
+      "sha256": "9465385481e4e275f7e6b2c5fa6b16249ead4d860dc53b4ac8ee2ab570a13ed5",
+      "origin": "T0053 declaration-view/extension twin frozen before implementation"
+    },
+    "fixtures/OwnerPrimitive.swift": {
+      "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a",
+      "origin": "vi@cba4be251a67fd66cf5db175074b566306a74431 Sources/VerificationIsIdentification/Primitive.swift exact bytes"
+    },
+    "fixtures/OwnerVector.swift": {
+      "sha256": "b61eea9c279db510d66cca5119a2b11b1069be5dce9a2b1981d1ba4b075dfcf3",
+      "origin": "showcase@ecca861cf8696cc246b93d436ede2f56b76b1b4e Sources/DocumentKit/Vector.swift exact bytes"
+    },
+    "fixtures/G-owner-frac.swift": {
+      "sha256": "d364362c0ef7f36f27484b6896a5e9b870ade2a156f33cc7acdd383c67cd7179",
+      "origin": "T0053 declaration-view/extension twin frozen before implementation"
+    },
+    "fixtures/G-owner-frac.json": {
+      "sha256": "4cff96069cb0af510ca5377fed3dfe23c973397f60c358f7a6a329c41afb4e32",
+      "origin": "T0053 declaration-view/extension twin frozen before implementation"
+    },
+    "fixtures/G-owner-paired.swift": {
+      "sha256": "2d7d9651c89b6c0410c5943d1be9387aac6cd7d9a7564529469830f54548e64b",
+      "origin": "T0053 declaration-view/extension twin frozen before implementation"
+    },
+    "fixtures/G-owner-paired.json": {
+      "sha256": "e3667225798aac7ce9e5903335d28397c13d30af0de389e5b37fe36cd4ac443e",
+      "origin": "T0053 declaration-view/extension twin frozen before implementation"
+    }
+  },
+  "cases": [
+    {
+      "id": "G-extended-false",
+      "pass": "where",
+      "files": [
+        "fixtures/G-extended-world.swift",
+        "fixtures/G-extended-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-extended-false.json"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ 'Dependent: Checked' requires the types 'Left' (aka 'Unit') and 'Right' (aka 'Other') be equivalent"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "V-values-outside",
+      "pass": "where",
+      "files": [
+        "fixtures/V-world.swift",
+        "fixtures/V-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/V-values-outside.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "THE WHERE scope: borrowed value declarations are outside this reading: fixtures/V-definitions.swift:5.",
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "V-local-type",
+      "pass": "where",
+      "files": [
+        "fixtures/V-world.swift",
+        "fixtures/V-local-type.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/V-local-type.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: cannot read line 5 of 'fixtures/V-local-type.swift': a value declaration contains a type declaration outside the supported binding scope"
+          ]
+        }
+      }
+    },
+    {
+      "id": "V-hidden-alias",
+      "pass": "where",
+      "files": [
+        "fixtures/V-world.swift",
+        "fixtures/V-hidden-alias.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/V-hidden-alias.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: cannot read line 5 of 'fixtures/V-hidden-alias.swift': a value declaration contains a type declaration outside the supported binding scope"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-owner-frac",
+      "pass": "where",
+      "files": [
+        "fixtures/G-owner-frac.swift",
+        "fixtures/OwnerPrimitive.swift",
+        "fixtures/OwnerVector.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-owner-frac.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "THE WHERE scope: borrowed value declarations are outside this reading: fixtures/OwnerPrimitive.swift:49, fixtures/OwnerVector.swift:7.",
+            "✓ THE WHERE holds: 0 equalities and 2 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "G-owner-paired",
+      "pass": "where",
+      "files": [
+        "fixtures/G-owner-paired.swift",
+        "fixtures/OwnerPrimitive.swift",
+        "fixtures/OwnerVector.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-owner-paired.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "THE WHERE scope: borrowed value declarations are outside this reading: fixtures/OwnerPrimitive.swift:49, fixtures/OwnerVector.swift:7.",
+            "✓ THE WHERE holds: 0 equalities and 4 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    }
+  ]
+}

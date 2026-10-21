@@ -200,6 +200,9 @@ pub type Span = (usize, usize);
 
 #[derive(Debug, Clone, Default)]
 pub struct World {
+    pub namespaces: HashSet<String>,
+    pub nested_names: HashSet<String>,
+    pub intrinsic_swift: bool,
     pub conformers: HashMap<String, Conformer>,
     pub aliases: HashMap<String, AliasRule>,
     pub gates: Vec<GatedExtension>,
@@ -315,9 +318,14 @@ impl<'a> Source<'a> {
                 Ok(Some(parse(&definition.body, false)?.substituting(&bindings)?))
             }
             Expression::Field(owner, axis) => {
+                if self.world.intrinsic_swift && expression.text()=="Swift.Never" { return Ok(Some(Expression::name("Never"))); }
+                if self.world.nested_names.contains(&expression.text()) { return Ok(None); }
+                if self.world.namespaces.contains(&owner.text()) { return Err(Failure::new(format!("no declaration of nested name '{}'",expression.text()))); }
+                let owner_name=owner.text(); let empty=Vec::new();
                 let (name, arguments) = match owner.as_ref() {
                     Expression::Application(name, arguments) => (name, arguments),
-                    Expression::Field(_, _) => return Ok(None),
+                    Expression::Field(_, _) if self.world.nested_names.contains(&owner_name) => (&owner_name,&empty),
+                    _ => return Ok(None),
                 };
                 self.check_application(name, arguments.len())?;
                 if self.rigid.contains(name) {

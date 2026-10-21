@@ -286,6 +286,14 @@ fn judge_with(load: Loader, arguments: &[String]) -> Result<(usize, usize, Vec<S
         let text = load(path).map_err(|e| Failure::new(format!("cannot read {}: {}", path, e)))?;
         files.push((path.clone(), text));
     }
+    for (path,text) in &files {
+        let clean=crate::lexical::strip_comments(text,&HashSet::new()).map_err(|e|Failure::new(e.messages().join("; ")))?;
+        let notation=crate::notation::Notation::new(&clean).map_err(|e|Failure::new(e.messages().join("; ")))?;
+        if let Some((at,name))=notation.nested.iter().min_by_key(|(at,_)|**at) {
+            let line=crate::lexical::Scope::new(&clean).line[*at];
+            return Err(Failure::new(format!("cannot read line {} of '{}': nested declaration '{}' is outside the count notation fragment",line,path,name)));
+        }
+    }
     let source = StructuralSource::new(&files)?;
     check_primitive_rules(&files, &source)?;
     let no_rigid: HashSet<String> = HashSet::new();

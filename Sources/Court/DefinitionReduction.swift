@@ -174,7 +174,15 @@ enum DefinitionReduction {
                     uniqueKeysWithValues: zip(definition.parameters, arguments))
                 return try parse(definition.body).substituting(bindings)
             case let .field(owner, axis):
-                guard case let .application(name, arguments) = owner else { return nil }
+                if world.intrinsicSwift, expression.text == "Swift.Never" { return .application("Never", []) }
+                if world.nestedNames.contains(expression.text) { return nil }
+                if world.namespaces.contains(owner.text) {
+                    throw Failure("no declaration of nested name '\(expression.text)'")
+                }
+                let name: String, arguments: [Expression]
+                if case let .application(n, a) = owner { name = n; arguments = a }
+                else if world.nestedNames.contains(owner.text) { name = owner.text; arguments = [] }
+                else { return nil }
                 try checkApplication(name, arguments.count)
                 if rigid.contains(name) { return nil }
                 if world.conformers[name] == nil, world.presentedBodies.contains(name) {

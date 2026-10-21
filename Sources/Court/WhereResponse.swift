@@ -172,7 +172,7 @@ public enum WhereResponse {
         let byName = Dictionary(uniqueKeysWithValues: sources.map { ($0.name, $0.text) })
         let prepared: WhereJudge.Prepared
         do {
-            prepared = try WhereJudge.prepare(sources.map(\.name)) { name in
+            prepared = try WhereJudge.prepare(sources.map(\.name), notationV2: false) { name in
                 guard let text = byName[name] else { throw WhereJudge.Failure.input(["missing source '\(name)'"]) }
                 return text
             }

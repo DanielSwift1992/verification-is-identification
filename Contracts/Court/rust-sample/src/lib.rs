@@ -10,6 +10,7 @@ pub mod shared_count;
 pub mod expression;
 pub mod failure;
 pub mod lexical;
+pub mod notation;
 pub mod structural;
 pub mod where_judge;
 #[cfg(target_arch = "wasm32")]

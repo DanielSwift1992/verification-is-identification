@@ -30,12 +30,24 @@ fn trim_spaces(text: &str) -> &str {
 
 pub fn read(text: &str, lent: &HashSet<String>) -> Result<World, Failure> {
     let clean = strip_comments(text, lent)?;
-    let scope = Scope::new(&clean);
+    let mut scope = Scope::new(&clean);
+    let notation = crate::notation::Notation::new(&clean)?;
+    scope.qualified = notation.nested.clone();
+    scope.namespaces = notation.namespaces.clone();
     let mut world = World::default();
+    world.namespaces=notation.namespaces.clone();
+    world.nested_names=notation.nested.values().cloned().collect();
+    world.intrinsic_swift=crate::notation::intrinsic(&clean)?;
 
     world.names = captures(r"\b(\w+)\b", &clean).into_iter().map(|c| c[0].clone()).collect();
     let (lines, file_names) = declared_names(&clean, &scope)?;
     world.declared = lines.clone();
+    if world.intrinsic_swift {
+        for name in ["Swift", "Never"] {
+            if let Some(line)=lines.get(name).and_then(|v|v.first()) { return fail(format!("cannot read line {}: declaration '{}' conflicts with intrinsic Swift/1",line,name)); }
+        }
+    }
+
     let mut repeated: Vec<&String> = file_names.iter().filter(|n| lines[*n].len() > 1).collect();
     repeated.sort_by_key(|n| (lines[*n][0], (*n).clone()));
     if let Some(name) = repeated.first() {
@@ -70,7 +82,10 @@ pub fn read(text: &str, lent: &HashSet<String>) -> Result<World, Failure> {
             if table.contains_key(&alias.fields[0]) {
                 return fail(format!("duplicate definition of '{}.{}'", name, alias.fields[0]));
             }
-            table.insert(alias.fields[0].clone(), alias.fields[2].clone());
+            let mut excluded: HashSet<String> = parameters.iter().cloned().collect();
+            excluded.insert("Self".to_string());
+            excluded.extend(read_alias_spans(&hit[3])?.into_iter().map(|a|a.fields[0].clone()));
+            table.insert(alias.fields[0].clone(), notation.resolve(&alias.fields[2],&name,&excluded));
         }
         world.conformers.insert(name.clone(), Conformer { name, parameters, protocols, table });
     }
@@ -107,8 +122,8 @@ pub fn read(text: &str, lent: &HashSet<String>) -> Result<World, Failure> {
     let file_type = re(r"\b(?:enum|struct|class|actor|protocol|typealias)\s+(\w+)");
     for m in file_type.captures_iter(&clean) {
         let whole = m.get(0).unwrap();
-        if scope.depth[whole.start()] == 0 {
-            world.file_types.insert(m.get(1).unwrap().as_str().to_string());
+        if scope.depth[whole.start()] == 0 || scope.qualified.contains_key(&whole.start()) {
+            world.file_types.insert(scope.qualified.get(&whole.start()).cloned().unwrap_or_else(||m.get(1).unwrap().as_str().to_string()));
         }
     }
     // An extension's owner is read in full; one named through a qualifier is
@@ -757,6 +772,14 @@ pub fn prepare(arguments: &[String], load: &dyn Fn(&str) -> Result<String, Failu
         let lent = read(&more, &no_lent)?;
         extras.push(Extra { path: extra.clone(), text: more, world: lent });
     }
+    if world.intrinsic_swift || extras.iter().any(|e|e.world.intrinsic_swift) {
+        for (p,w) in std::iter::once((path.as_str(),&world)).chain(extras.iter().map(|e|(e.path.as_str(),&e.world))) {
+            for name in ["Swift", "Never"] {
+                if let Some(line)=w.declared.get(name).and_then(|v|v.first()) { return fail(format!("cannot read line {} of '{}': declaration '{}' conflicts with intrinsic Swift/1",line,p,name)); }
+            }
+        }
+        world.intrinsic_swift=true;
+    }
     // A typealias of any file may be extended from another, and such an
     // extension extends the alias's type, through the alias, as well.
     let mut any_alias: HashSet<String> = world.aliases.keys().cloned().collect();
@@ -863,6 +886,16 @@ pub fn prepare(arguments: &[String], load: &dyn Fn(&str) -> Result<String, Failu
     // A gated head is judged where it is applied, so every application of one
     // is read, or refused at its line, never passed over.
     let word = re(r"\b(\w+)\b");
+    for extra in &extras {
+        let mut names: Vec<&String> = extra.world.nested_names.iter().collect(); names.sort();
+        for name in names {
+            if world.nested_names.contains(name) || world.conformers.contains_key(name) { return fail(format!("ambiguous definition of '{}' in '{}' and '{}'",name,path,extra.path)); }
+            if let Some(c)=extra.world.conformers.get(name) { world.conformers.insert(name.clone(),c.clone()); }
+            if extra.world.presented_bodies.contains(name) { world.presented_bodies.insert(name.clone()); }
+            world.nested_names.insert(name.clone());
+        }
+        world.namespaces.extend(extra.world.namespaces.iter().cloned());
+    }
     let mut gated_names: HashSet<String> = world.gates.iter().map(|g| g.head.clone()).collect();
     let mut grown = true;
     while grown {

@@ -201,6 +201,14 @@ enum CountCourt {
                 throw Failure("usage: judge count <world.swift> [definitions.swift ...] --predicate <P> --encoding <E> --sigma <S>")
             }
             let files = try paths.map { ($0, try String(contentsOfFile: $0, encoding: .utf8)) }
+            for (path, text) in files {
+                let clean = try WhereJudge.stripComments(text)
+                let notation = try NotationScope(clean)
+                if let entry = notation.nested.sorted(by: { $0.key < $1.key }).first {
+                    let line = WhereJudge.Scope(clean).line[entry.key]
+                    throw Failure("cannot read line \(line) of '\(path)': nested declaration '\(entry.value)' is outside the count notation fragment")
+                }
+            }
             let source = try StructuralSource(files: files)
             try checkPrimitiveRules(files, source: source)
             let reader = Reader(source: R.Source(world: source.syntax, rigid: []))

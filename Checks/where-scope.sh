@@ -39,7 +39,7 @@ scope_bin=$(swift build --show-bin-path)
 # cascade in three named worlds; the court exits 2 with exactly this line
 # on stderr and nothing on stdout.
 scope_world() {
-    local world="$1" errors="$2" verdict="$3"
+    local world="$1" errors="$2" verdict="$3" expected="${4:-2}"
     local compiled=0
     swiftc -typecheck -module-cache-path "$scope_tmp/cache" \
         "Checks/where-scope/$world.swift" >"$scope_tmp/$world-swift.log" 2>&1 || compiled=$?
@@ -54,12 +54,14 @@ scope_world() {
     local said=0
     "$scope_bin/Tools" judge where "Checks/where-scope/$world.swift" \
         >"$scope_tmp/$world.out" 2>"$scope_tmp/$world.err" || said=$?
-    if [ "$said" -ne 2 ] || [ -s "$scope_tmp/$world.out" ]; then
+    local answer="$scope_tmp/$world.err" other="$scope_tmp/$world.out"
+    if [ "$expected" -eq 1 ]; then answer="$scope_tmp/$world.out"; other="$scope_tmp/$world.err"; fi
+    if [ "$said" -ne "$expected" ] || [ -s "$other" ]; then
         cat "$scope_tmp/$world.out" "$scope_tmp/$world.err"
         echo "where-scope: the where court did not refuse to read $world.swift" >&2
         exit 1
     fi
-    python3 - "$world" "$scope_tmp/$world-swift.log" "$scope_tmp/$world.err" "$errors" "$verdict" <<'PY'
+    python3 - "$world" "$scope_tmp/$world-swift.log" "$answer" "$errors" "$verdict" <<'PY'
 from pathlib import Path
 import re, sys
 world, swift_log, court_log, errors, verdict = sys.argv[1:]
@@ -86,8 +88,10 @@ PY
 no_scope_rule="and this court has no scope rule to choose between them"
 scope_world shadowed "error: global function 'need' requires that 'Bad' conform to 'Required'" \
     "✗ THE WHERE: cannot read 'Bad': it is declared at lines 9 and 16, $no_scope_rule"
+# Nested enum names are read by v0.4. The file-scope Plain is still not Required;
+# reading Namespace.Plain must never make this false application hold.
 scope_world nested "error: global function 'need' requires that 'Plain' conform to 'Required'" \
-    "✗ THE WHERE: cannot read line 20: the enum 'Plain' is declared inside a body, and this court reads declarations at file scope"
+    "✗ 'Use<Plain>' requires the type 'T' (aka 'Plain') conform to 'Required', and no conformer of that name is presented [Admitted]" 1
 scope_world rebound "error: global function 'need' requires that 'Good' (aka 'Bad') conform to 'Required'" \
     "✗ THE WHERE: cannot read 'Good': it is declared at lines 10 and 17, $no_scope_rule"
 scope_world generic "error: type 'Good' does not conform to protocol 'Setting'

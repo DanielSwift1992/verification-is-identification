@@ -354,6 +354,8 @@ pub fn strip_comments(text: &str, lent: &HashSet<String>) -> Result<String, Fail
 pub struct Scope {
     pub depth: Vec<i64>,
     pub line: Vec<usize>,
+    pub qualified: HashMap<usize, String>,
+    pub namespaces: HashSet<String>,
 }
 
 impl Scope {
@@ -366,7 +368,7 @@ impl Scope {
             let last_line = line[line.len() - 1];
             line.push(last_line + if unit == b'\n' { 1 } else { 0 });
         }
-        Scope { depth, line }
+        Scope { depth, line, qualified: HashMap::new(), namespaces: HashSet::new() }
     }
 }
 
@@ -696,9 +698,10 @@ pub fn declarations(pattern: &str, text: &str, scope: &Scope) -> Result<Vec<Vec<
     let mut result = Vec::new();
     for m in regex.captures_iter(text) {
         let whole = m.get(0).unwrap();
-        let groups: Vec<String> =
+        let mut groups: Vec<String> =
             (1..m.len()).map(|i| m.get(i).map(|g| g.as_str().to_string()).unwrap_or_default()).collect();
-        if scope.depth[whole.start()] > 0 {
+        if let Some(qualified) = scope.qualified.get(&whole.start()) { groups[0] = qualified.clone(); }
+        else if scope.depth[whole.start()] > 0 {
             let keyword: String = whole.as_str().chars().take_while(|c| !c.is_whitespace()).collect();
             return fail(format!(
                 "cannot read line {}: the {} '{}' is declared inside a body, and this court reads declarations at \
@@ -732,10 +735,11 @@ pub fn declared_names(text: &str, scope: &Scope) -> Result<(HashMap<String, Vec<
     let nominal = re(r"\b(enum|struct|class|actor|protocol|typealias|associatedtype)\s+(\w+)");
     for m in nominal.captures_iter(text) {
         let kind = m.get(1).unwrap().as_str();
-        let name = m.get(2).unwrap().as_str();
+        let spelling = m.get(2).unwrap().as_str();
         let start = m.get(0).unwrap().start();
+        let name = scope.qualified.get(&start).map(String::as_str).unwrap_or(spelling);
         lines.entry(name.to_string()).or_default().push(scope.line[start]);
-        if scope.depth[start] == 0 && ["enum", "protocol", "typealias"].contains(&kind) {
+        if scope.qualified.contains_key(&start) || (scope.depth[start] == 0 && ["enum", "protocol", "typealias"].contains(&kind)) {
             file.insert(name.to_string());
         }
     }
@@ -828,6 +832,7 @@ pub fn declared_names(text: &str, scope: &Scope) -> Result<(HashMap<String, Vec<
         let list = &text[start..end - 1];
         for parameter in parameter_names(list) {
             let bare = parameter.split_whitespace().last().unwrap_or(&parameter).to_string();
+            if kind == "enum" && scope.depth[whole.start()] == 0 && scope.namespaces.contains(&bare) { continue; }
             lines.entry(bare).or_default().push(scope.line[start]);
         }
     }

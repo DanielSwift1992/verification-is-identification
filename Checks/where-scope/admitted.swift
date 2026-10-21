@@ -1,6 +1,6 @@
 // The control for the scope refusals: a body may declare what this court
 // does not read, under names it does not resolve. A namespace holds a plain
-// enum and a struct, a function holds a local struct and a typealias, a
+// enums, a function holds a local struct and a typealias, a
 // conformer holds a member typealias, and a block under a plain flag, which
 // a compilation without the flag skips, holds a struct of the good name. A
 // function's generic parameters, under fresh names, carry a constraint that
@@ -20,7 +20,7 @@ extension Use: Admitted
 where T: Required {}
 public enum Namespace {
     public enum Plain {}
-    public struct Local: Setting {}
+    public enum Local: Setting {}
 }
 public enum Holder: Setting {
     public typealias Kept = Good

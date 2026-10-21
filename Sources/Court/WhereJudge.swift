@@ -351,22 +351,18 @@ enum WhereJudge {
         }
     }
 
-    // This reader resolves every name in one scope, the file's. A name
-    // declared in a body (a function's, or another type's) is bound there,
-    // and Swift resolves a use inside that body to it. Read as file-scope, a
-    // nested declaration could stand for a name declared elsewhere or
-    // overwrite one declared here, and a second declaration of a name the
-    // reader resolves, of any form, could rebind it where a use sits: either
-    // way a good neighbour would pass the file. So a declaration this reader
-    // reads at file scope is refused when it sits inside a body, and a name
-    // it reads at file scope is refused when it is declared more than once.
-    // Each refusal names the name and its lines.
+    // The original selected-application profile keeps its file-scope boundary.
+    // The CLI's v0.4 notation additionally reads the bounded nested enum fragment
+    // through NotationScope. Qualified declarations never rebind a file name.
+    // Other local bindings and repeated identities remain conservative refusals.
 
     /// The brace depth and the line before each UTF-16 offset of the read
     /// text, the coordinates a regular expression match is reported in.
     struct Scope {
         var depth: [Int] = [0]
         var line: [Int] = [1]
+        var qualified: [Int: String] = [:]
+        var namespaces: Set<String> = []
 
         init(_ text: String) {
             for unit in text.utf16 {
@@ -516,12 +512,13 @@ enum WhereJudge {
         let regex = try! NSRegularExpression(pattern: pattern, options: [.dotMatchesLineSeparators])
         let range = NSRange(text.startIndex..., in: text)
         return try regex.matches(in: text, range: range).map { match in
-            let groups: [String] = (1..<match.numberOfRanges).map { index in
+            var groups: [String] = (1..<match.numberOfRanges).map { index in
                 guard let bounds = Range(match.range(at: index), in: text) else { return "" }
                 return String(text[bounds])
             }
             let start = match.range.location
-            if scope.depth[start] > 0 {
+            if let qualified = scope.qualified[start] { groups[0] = qualified }
+            else if scope.depth[start] > 0 {
                 let spelled = Range(match.range, in: text).map { String(text[$0]) } ?? ""
                 let keyword = spelled.prefix { !$0.isWhitespace }
                 try fail("cannot read line \(scope.line[start]): the \(keyword) '\(groups[0])' is declared "
@@ -555,10 +552,11 @@ enum WhereJudge {
         )
         for match in nominal.matches(in: text, range: range) {
             guard let kind = Range(match.range(at: 1), in: text).map({ String(text[$0]) }),
-                  let name = Range(match.range(at: 2), in: text).map({ String(text[$0]) }) else { continue }
+                  let spelled = Range(match.range(at: 2), in: text).map({ String(text[$0]) }) else { continue }
             let start = match.range.location
+            let name = scope.qualified[start] ?? spelled
             lines[name, default: []].append(scope.line[start])
-            if scope.depth[start] == 0, ["enum", "protocol", "typealias"].contains(kind) {
+            if scope.qualified[start] != nil || (scope.depth[start] == 0 && ["enum", "protocol", "typealias"].contains(kind)) {
                 file.insert(name)
             }
         }
@@ -630,6 +628,7 @@ enum WhereJudge {
             for parameter in parameterNames(list) {
                 // a parameter pack is spelled `each T`, a value parameter `let n: Int`
                 let bare = parameter.split(whereSeparator: \.isWhitespace).last.map(String.init) ?? parameter
+                if kind == "enum", scope.depth[match.range.location] == 0, scope.namespaces.contains(bare) { continue }
                 lines[bare, default: []].append(scope.line[start])
             }
         }
@@ -799,6 +798,9 @@ enum WhereJudge {
     }
 
     struct World {
+        var namespaces: Set<String> = []
+        var nestedNames: Set<String> = []
+        var intrinsicSwift = false
         var conformers: [String: Conformer] = [:]
         var aliases: [String: AliasRule] = [:]
         var gates: [GatedExtension] = []
@@ -832,16 +834,29 @@ enum WhereJudge {
         var aliasSpans: [NSRange] = []
     }
 
-    static func read(_ text: String, lent: Set<String> = []) throws -> World {
+    static func read(_ text: String, lent: Set<String> = [], notationV2: Bool = true) throws -> World {
         let clean = try stripComments(text, lent: lent)
-        let scope = Scope(clean)
+        var scope = Scope(clean)
+        let notation = try NotationScope(clean, enabled: notationV2)
+        scope.qualified = notation.nested
+        scope.namespaces = notation.namespaces
         var world = World()
+        world.namespaces = notation.namespaces
+        world.nestedNames = Set(notation.nested.values)
+        world.intrinsicSwift = notationV2 ? try NotationScope.intrinsic(clean) : false
 
         // Use the same Unicode word class as the declaration reader. A name
         // it reads cannot disappear when checking which gates reach the file.
         world.names = Set(captures(#"\b(\w+)\b"#, clean).map { $0[0] })
         let names = try declaredNames(clean, scope)
         world.declared = names.lines
+        if world.intrinsicSwift {
+            for name in ["Swift", "Never"] {
+                if let line = names.lines[name]?.first {
+                    try fail("cannot read line \(line): declaration '\(name)' conflicts with intrinsic Swift/1")
+                }
+            }
+        }
         for name in names.file.sorted(by: { (names.lines[$0]![0], $0) < (names.lines[$1]![0], $1) })
         where names.lines[name]!.count > 1 {
             try fail("cannot read '\(name)': it is declared at \(spelledLines(names.lines[name]!)), "
@@ -875,7 +890,7 @@ enum WhereJudge {
                 guard table[aliasHit[0]] == nil else {
                     try fail("duplicate definition of '\(name).\(aliasHit[0])'")
                 }
-                table[aliasHit[0]] = aliasHit[2]
+                table[aliasHit[0]] = notation.resolve(aliasHit[2], in: name, excluding: Set(parameters + ["Self"] + (try readAliases(hit[3])).map { $0[0] }))
             }
             world.conformers[name] = Conformer(
                 name: name, parameters: parameters, protocols: protocols, table: table
@@ -923,8 +938,8 @@ enum WhereJudge {
 
         let fileType = try! NSRegularExpression(pattern: #"\b(?:enum|struct|class|actor|protocol|typealias)\s+(\w+)"#)
         for match in fileType.matches(in: clean, range: NSRange(clean.startIndex..., in: clean))
-        where scope.depth[match.range.location] == 0 {
-            if let bounds = Range(match.range(at: 1), in: clean) { world.fileTypes.insert(String(clean[bounds])) }
+        where scope.depth[match.range.location] == 0 || scope.qualified[match.range.location] != nil {
+            if let bounds = Range(match.range(at: 1), in: clean) { world.fileTypes.insert(notation.name(String(clean[bounds]), at: match.range.location)) }
         }
         // An extension's owner is read in full. One named through a qualifier
         // (`main.Owner`, `Module.Type`, `Outer.Inner`, with whitespace or
@@ -1119,7 +1134,7 @@ enum WhereJudge {
             let table = spans[3]
             guard let bounds = Range(table, in: clean), let owner = Range(spans[0], in: clean) else { continue }
             for span in try readAliasSpans(String(clean[bounds])) where span.fields[1].isEmpty {
-                world.certificateLines[String(clean[owner]) + "." + span.fields[0]] = scope.line[table.location + span.declaration.location]
+                world.certificateLines[notation.name(String(clean[owner]), at: spans[0].location) + "." + span.fields[0]] = scope.line[table.location + span.declaration.location]
                 read.append(NSRange(location: table.location + span.body.location, length: span.body.length))
                 world.rootApplicationSpans.append(NSRange(location: table.location + span.body.location, length: span.body.length))
             }
@@ -1130,7 +1145,7 @@ enum WhereJudge {
             guard let owner = Range(spans[0], in: clean), world.conformers[String(clean[owner])] != nil,
                   let bounds = Range(spans[1], in: clean) else { continue }
             for span in try readAliasSpans(String(clean[bounds])) where span.fields[1].isEmpty {
-                world.certificateLines[String(clean[owner]) + "." + span.fields[0]] = scope.line[spans[1].location + span.declaration.location]
+                world.certificateLines[notation.name(String(clean[owner]), at: spans[0].location) + "." + span.fields[0]] = scope.line[spans[1].location + span.declaration.location]
                 read.append(NSRange(location: spans[1].location + span.body.location, length: span.body.length))
                 world.rootApplicationSpans.append(NSRange(location: spans[1].location + span.body.location, length: span.body.length))
             }
@@ -1383,7 +1398,7 @@ enum WhereJudge {
     }
 
     static func prepare(_ arguments: [String],
-                        load: (String) throws -> String = fileText) throws -> Prepared {
+                        notationV2: Bool = true, load: (String) throws -> String = fileText) throws -> Prepared {
         guard let path = arguments.first else {
             throw Failure.input(["usage: judge where <world.swift> [definitions.swift ...]"])
         }
@@ -1397,7 +1412,7 @@ enum WhereJudge {
             guard let more = try? load(extra), let clean = try? stripComments(more) else { return [] }
             return declaredBuilders(clean)
         })
-        var world = try read(text, lent: lentBuilders)
+        var world = try read(text, lent: lentBuilders, notationV2: notationV2)
         var excludesConditional = sourceLines(text).range(of: #"(?m)^\s*#if\b"#, options: .regularExpression) != nil
         let ownAliases = world.aliases
         // Extra files supply alias definitions, not a second version of the
@@ -1406,7 +1421,17 @@ enum WhereJudge {
         var aliasOrigins = Dictionary(uniqueKeysWithValues: world.aliases.keys.map { ($0, path) })
         let extras: [(path: String, text: String, world: World)] = try arguments.dropFirst().map { extra in
             let more = try load(extra)
-            return (extra, more, try read(more))
+            return (extra, more, try read(more, notationV2: notationV2))
+        }
+        if notationV2, world.intrinsicSwift || extras.contains(where: { $0.world.intrinsicSwift }) {
+            for file in [(path: path, world: world)] + extras.map({ (path: $0.path, world: $0.world) }) {
+                for name in ["Swift", "Never"] {
+                    if let line = file.world.declared[name]?.first {
+                        try fail("cannot read line \(line) of '\(file.path)': declaration '\(name)' conflicts with intrinsic Swift/1")
+                    }
+                }
+            }
+            world.intrinsicSwift = true
         }
         // A typealias of any file may be extended from another, and such an
         // extension extends the alias's type, through the alias, as well.
@@ -1478,6 +1503,19 @@ enum WhereJudge {
                 }
                 world.aliases[name] = rule
                 aliasOrigins[name] = extra
+            }
+        }
+        if notationV2 {
+            for extra in extras {
+                for name in extra.world.nestedNames.sorted() {
+                    guard !world.nestedNames.contains(name), world.conformers[name] == nil else {
+                        try fail("ambiguous definition of '\(name)' in '\(path)' and '\(extra.path)'")
+                    }
+                    if let value = extra.world.conformers[name] { world.conformers[name] = value }
+                    if extra.world.presentedBodies.contains(name) { world.presentedBodies.insert(name) }
+                    world.nestedNames.insert(name)
+                }
+                world.namespaces.formUnion(extra.world.namespaces)
             }
         }
         // A gated head is judged where it is applied, so every application of

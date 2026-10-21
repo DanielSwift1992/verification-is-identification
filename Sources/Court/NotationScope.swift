@@ -1,0 +1,117 @@
+import Foundation
+
+/// Source coordinates and lexical owners for the bounded nested-enum fragment.
+/// This is reader state, not another source format or a source of equations.
+struct NotationScope {
+    struct Declaration {
+        let kind: String
+        let name: String
+        let qualified: String
+        let start: Int
+        let open: Int
+        let close: Int
+        let header: String
+    }
+    var declarations: [Declaration] = []
+    var nested: [Int: String] = [:]
+    var namespaces: Set<String> = []
+
+    init(_ clean: String, enabled: Bool = true) throws {
+        guard enabled else { return }
+        let scope = WhereJudge.Scope(clean)
+        let units = Array(clean.utf16)
+        let regex = try! NSRegularExpression(pattern: #"\b(enum|struct|class|actor|protocol)\s+(\w+)[^{}]*\{"#)
+        for hit in regex.matches(in: clean, range: NSRange(clean.startIndex..., in: clean)) {
+            let start = hit.range.location, open = NSMaxRange(hit.range) - 1
+            guard let kindRange = Range(hit.range(at: 1), in: clean),
+                  let nameRange = Range(hit.range(at: 2), in: clean) else { continue }
+            let kind = String(clean[kindRange]), name = String(clean[nameRange])
+            let prefix = String(decoding: units[..<start], as: UTF16.self)
+            if prefix.range(of: #"(?:\bimport\s*|\.\s*)$"#, options: .regularExpression) != nil { continue }
+            let headerText = String(decoding: units[start..<open], as: UTF16.self)
+            if kind == "class", headerText.range(of: #"^class(?:\s+(?:public|private|fileprivate|internal|package|open|final|override|required|convenience|dynamic|nonisolated))*\s+(?:func|var|let|subscript|init)\b"#, options: .regularExpression) != nil { continue }
+            var close = open + 1, depth = 1
+            while close < units.count, depth > 0 {
+                if units[close] == 0x7B { depth += 1 }
+                if units[close] == 0x7D { depth -= 1 }
+                close += 1
+            }
+            guard depth == 0 else { try WhereJudge.fail("unterminated declaration body") }
+            let parents = declarations.filter { $0.open < start && start < $0.close }
+            var qualified = name
+            if !parents.isEmpty && parents.count == scope.depth[start] {
+                // A generic or inherited container has additional lexical bindings.
+                // They are not silently resolved as file-scope names.
+                guard parents.allSatisfy({ $0.kind == "enum" && $0.header.trimmingCharacters(in: .whitespacesAndNewlines) == "enum " + $0.name }) else {
+                    try WhereJudge.fail("cannot read line \(scope.line[start]): nested declaration '\(name)' has an unsupported enclosing type")
+                }
+                qualified = parents.last!.qualified + "." + name
+                guard kind == "enum" else {
+                    try WhereJudge.fail("cannot read line \(scope.line[start]): nested \(kind) '\(qualified)' is outside the declared notation fragment")
+                }
+                let header = String(decoding: units[start..<open], as: UTF16.self)
+                guard !header.contains("<") else {
+                    try WhereJudge.fail("cannot read line \(scope.line[start]): nested declaration '\(name)' has an unsupported enclosing type")
+                }
+                nested[start] = qualified
+                namespaces.formUnion(parents.map(\.qualified))
+            }
+            declarations.append(Declaration(kind: kind, name: name, qualified: qualified,
+                start: start, open: open, close: close,
+                header: String(decoding: units[start..<open], as: UTF16.self)
+                    .split(whereSeparator: \.isWhitespace).joined(separator: " ")))
+        }
+    }
+
+    func name(_ spelling: String, at start: Int) -> String { nested[start] ?? spelling }
+
+    func resolve(_ body: String, in owner: String, excluding: Set<String> = []) -> String {
+        let known = Set(nested.values)
+        let regex = try! NSRegularExpression(pattern: #"(?<![\w.])\b\w+\b"#)
+        let result = NSMutableString(string: body)
+        for match in regex.matches(in: body, range: NSRange(body.startIndex..., in: body)).reversed() {
+            guard let bounds = Range(match.range, in: body) else { continue }
+            let word = String(body[bounds])
+            guard !excluding.contains(word) else { continue }
+            var parent = owner.split(separator: ".").map(String.init)
+            while !parent.isEmpty {
+                let candidate = (parent + [word]).joined(separator: ".")
+                if known.contains(candidate) { result.replaceCharacters(in: match.range, with: candidate); break }
+                parent.removeLast()
+            }
+        }
+        return result as String
+    }
+
+    static func intrinsic(_ clean: String) throws -> Bool {
+        let scope = WhereJudge.Scope(clean)
+        let imports = try! NSRegularExpression(pattern: #"\bimport\s+([^\n;]+)"#)
+        var hasSwift = false
+        for hit in imports.matches(in: clean, range: NSRange(clean.startIndex..., in: clean)) {
+            guard let range = Range(hit.range(at: 1), in: clean) else { continue }
+            let spelled = clean[range].trimmingCharacters(in: .whitespaces)
+            if spelled == "Swift", scope.depth[hit.range.location] == 0 { hasSwift = true }
+            else if WhereJudge.captures(#"\b(Swift)\b"#, spelled).count > 0 {
+                try WhereJudge.fail("cannot read line \(scope.line[hit.range.location]): this court reads only the plain intrinsic import 'Swift'")
+            }
+        }
+        let uses = try! NSRegularExpression(pattern: #"\bSwift\s*\.\s*(\w+)"#)
+        for hit in uses.matches(in: clean, range: NSRange(clean.startIndex..., in: clean)) {
+            let export = Range(hit.range(at: 1), in: clean).map { String(clean[$0]) } ?? ""
+            guard hasSwift else {
+                try WhereJudge.fail("cannot read line \(scope.line[hit.range.location]): 'Swift.\(export)' requires the declared intrinsic import 'Swift'")
+            }
+            guard export == "Never" else {
+                try WhereJudge.fail("cannot read line \(scope.line[hit.range.location]): 'Swift.\(export)' is not exported by intrinsic Swift/1")
+            }
+        }
+        if hasSwift {
+            let declares = try! NSRegularExpression(pattern: #"\b(?:enum|struct|class|actor|protocol|typealias|associatedtype)\s+(Swift|Never)\b"#)
+            if let hit = declares.firstMatch(in: clean, range: NSRange(clean.startIndex..., in: clean)),
+               let name = Range(hit.range(at: 1), in: clean) {
+                try WhereJudge.fail("cannot read line \(scope.line[hit.range.location]): declaration '\(clean[name])' conflicts with intrinsic Swift/1")
+            }
+        }
+        return hasSwift
+    }
+}

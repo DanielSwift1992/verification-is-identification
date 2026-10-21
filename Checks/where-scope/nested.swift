@@ -1,9 +1,9 @@
-// A declaration this court reads is read at file scope. The enum nested in
-// a namespace wears the protocol the gate needs and shares its name with a
-// file-scope struct this court does not read; Swift resolves the demand to
-// the struct and refuses it, and the court names the nested declaration
-// instead of reading it as the file's, at its line in the source: the
-// excluded block above it is not read, and keeps its lines.
+// The nested enum belongs to Namespace. The file-scope struct Plain does
+// not wear Required. Reading the nested name must preserve this negative
+// demand; its good neighbor does not discharge it. The excluded flag keeps
+// the source line coordinates. v0.4 reads the nested identity and refuses
+// the unsatisfied membership instead of refusing all nested enums.
+
 
 public protocol Setting {}
 public protocol Required: Setting {}

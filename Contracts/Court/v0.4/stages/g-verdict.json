@@ -1,0 +1,206 @@
+{
+  "schema": "vi.court.case-set/1",
+  "suite": "vi.court.questions/0.4",
+  "stage": "Real PredicateReading and EncodingForgets with missing/false twins",
+  "files": {
+    "fixtures/OwnerPrimitive.swift": {
+      "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a",
+      "origin": "vi@cba4be251a67fd66cf5db175074b566306a74431 exact source bytes"
+    },
+    "fixtures/OwnerCore.swift": {
+      "sha256": "02c210b2ad60179484cdca994a71cc9155afd9d2d513fb13fae3742c34306911",
+      "origin": "vi@cba4be251a67fd66cf5db175074b566306a74431 exact source bytes"
+    },
+    "fixtures/OwnerVerdict.swift": {
+      "sha256": "e61b545adea928694a81079518ab1d6785a49d2dd7fcf6672056ce04946cc4f0",
+      "origin": "vi@cba4be251a67fd66cf5db175074b566306a74431 exact source bytes"
+    },
+    "fixtures/OwnerSeeing.swift": {
+      "sha256": "44c53110938ea65097afd9410adab6c8aab508c4f3470b74be7627415e028ad3",
+      "origin": "vi@cba4be251a67fd66cf5db175074b566306a74431 exact source bytes"
+    },
+    "fixtures/G-owner-reading.swift": {
+      "sha256": "3a40514be70afc0a432e56b184e4302d273db80cc8bcdaa25d461358e4bf33b3",
+      "origin": "T0053 real Verdict/Seeing question, frozen before repair"
+    },
+    "fixtures/G-owner-reading.json": {
+      "sha256": "039444672c364dc4f23837832e80620e922915fd1986936dbb5892f23b7deb4f",
+      "origin": "T0053 explicit context, no generated definitions"
+    },
+    "fixtures/G-owner-reading-false.swift": {
+      "sha256": "e05c9be6bb9b933e1c403dbcea65cde416eda8ca8684a8760fca4e16b2501c2c",
+      "origin": "T0053 real Verdict/Seeing question, frozen before repair"
+    },
+    "fixtures/G-owner-reading-false.json": {
+      "sha256": "65d92824c41852b5317ea402280c3584befc8616d94f2f9860328754e9b3b0fa",
+      "origin": "T0053 explicit context, no generated definitions"
+    },
+    "fixtures/G-owner-reading-lost.swift": {
+      "sha256": "3a40514be70afc0a432e56b184e4302d273db80cc8bcdaa25d461358e4bf33b3",
+      "origin": "T0053 real Verdict/Seeing question, frozen before repair"
+    },
+    "fixtures/G-owner-reading-lost.json": {
+      "sha256": "988f9ae9c50651ecba1377098f71a82f8391faf46515fa8ba014943fa2d88ada",
+      "origin": "T0053 explicit context, no generated definitions"
+    },
+    "fixtures/G-owner-forgets.swift": {
+      "sha256": "1af04b2c2135d6b6288052b81527124c8f8b09a9a219e8695754066d26b0df82",
+      "origin": "T0053 real Verdict/Seeing question, frozen before repair"
+    },
+    "fixtures/G-owner-forgets.json": {
+      "sha256": "262dca2b3b21ca32dea39ebf0d9d052824155568e1cf93d9526669e9fbee6a63",
+      "origin": "T0053 explicit context, no generated definitions"
+    },
+    "fixtures/G-owner-forgets-false.swift": {
+      "sha256": "20dc3195f20c63fd8910c13c3f3e0501d6ffda8c0682dc2c351650e4d02e6e1e",
+      "origin": "T0053 real Verdict/Seeing question, frozen before repair"
+    },
+    "fixtures/G-owner-forgets-false.json": {
+      "sha256": "6fdda69bdd36ac7aa55c6188a7a5fa5408a65793aa0dcb1324de7e59b1a6e3c9",
+      "origin": "T0053 explicit context, no generated definitions"
+    }
+  },
+  "cases": [
+    {
+      "id": "G-owner-reading",
+      "pass": "where",
+      "files": [
+        "fixtures/G-owner-reading.swift",
+        "fixtures/OwnerPrimitive.swift",
+        "fixtures/OwnerCore.swift",
+        "fixtures/OwnerVerdict.swift",
+        "fixtures/OwnerSeeing.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-owner-reading.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "THE WHERE scope: borrowed value declarations are outside this reading: fixtures/OwnerPrimitive.swift:49.",
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "G-owner-reading-false",
+      "pass": "where",
+      "files": [
+        "fixtures/G-owner-reading-false.swift",
+        "fixtures/OwnerPrimitive.swift",
+        "fixtures/OwnerCore.swift",
+        "fixtures/OwnerVerdict.swift",
+        "fixtures/OwnerSeeing.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-owner-reading-false.json"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ 'Reading: PredicateReading' requires the types 'Right' (aka 'Unit') and 'Answer' (aka 'Never') be equivalent"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "G-owner-reading-lost",
+      "pass": "where",
+      "files": [
+        "fixtures/G-owner-reading-lost.swift",
+        "fixtures/OwnerPrimitive.swift",
+        "fixtures/OwnerVerdict.swift",
+        "fixtures/OwnerSeeing.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-owner-reading-lost.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: fixtures/G-owner-reading-lost.swift:2: no declared protocol grounds for 'HasEncoding'"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-owner-forgets",
+      "pass": "where",
+      "files": [
+        "fixtures/G-owner-forgets.swift",
+        "fixtures/OwnerPrimitive.swift",
+        "fixtures/OwnerCore.swift",
+        "fixtures/OwnerVerdict.swift",
+        "fixtures/OwnerSeeing.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-owner-forgets.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "THE WHERE scope: borrowed value declarations are outside this reading: fixtures/OwnerPrimitive.swift:49.",
+            "✓ THE WHERE holds: 13 equalities and 2 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "G-owner-forgets-false",
+      "pass": "where",
+      "files": [
+        "fixtures/G-owner-forgets-false.swift",
+        "fixtures/OwnerPrimitive.swift",
+        "fixtures/OwnerCore.swift",
+        "fixtures/OwnerVerdict.swift",
+        "fixtures/OwnerSeeing.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-owner-forgets-false.json"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "✗ 'F: EncodingForgets' requires the types 'SharedImage' (aka 'Never') and 'Answer' (aka 'Unit') be equivalent"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    }
+  ]
+}

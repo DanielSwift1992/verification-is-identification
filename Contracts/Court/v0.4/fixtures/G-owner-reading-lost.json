@@ -1,0 +1,93 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "fixtures/G-owner-reading-lost.swift",
+      "source": "fixtures/G-owner-reading-lost.swift",
+      "sha256": "3a40514be70afc0a432e56b184e4302d273db80cc8bcdaa25d461358e4bf33b3",
+      "namespace": "World",
+      "imports": [
+        "VerificationIsIdentification"
+      ],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": [
+          "language#/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "fixtures/OwnerPrimitive.swift",
+      "source": "fixtures/OwnerPrimitive.swift",
+      "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a",
+      "namespace": "VerificationIsIdentification",
+      "imports": [
+        "Swift"
+      ],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": [
+          "language#/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "fixtures/OwnerVerdict.swift",
+      "source": "fixtures/OwnerVerdict.swift",
+      "sha256": "e61b545adea928694a81079518ab1d6785a49d2dd7fcf6672056ce04946cc4f0",
+      "namespace": "VerificationIsIdentification",
+      "imports": [
+        "Swift"
+      ],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": [
+          "language#/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "fixtures/OwnerSeeing.swift",
+      "source": "fixtures/OwnerSeeing.swift",
+      "sha256": "44c53110938ea65097afd9410adab6c8aab508c4f3470b74be7627415e028ad3",
+      "namespace": "VerificationIsIdentification",
+      "imports": [
+        "Swift"
+      ],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": [
+          "language#/imports/0"
+        ]
+      }
+    }
+  ],
+  "intrinsics": [
+    {
+      "namespace": "Swift",
+      "version": "vi.court.intrinsic-swift/1",
+      "exports": [
+        "Never"
+      ],
+      "at": {
+        "namespace": "language#/intrinsic",
+        "version": "language#/version",
+        "exports": [
+          "language#/exports/0"
+        ]
+      }
+    }
+  ]
+}

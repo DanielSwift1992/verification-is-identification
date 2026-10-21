@@ -1,0 +1,58 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "fixtures/G-child-world.swift",
+      "source": "fixtures/G-child-world.swift",
+      "sha256": "ca3c700ba676f557ec7b65ab424a9f0ff03220dc8e9c4f500c5ee5c8345cf886",
+      "namespace": "World",
+      "imports": [
+        "Library",
+        "Bridge"
+      ],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": [
+          "language#/imports/0",
+          "language#/imports/1"
+        ]
+      }
+    },
+    {
+      "input": "fixtures/G-child.swift",
+      "source": "fixtures/G-child.swift",
+      "sha256": "7cd0337f71ef79f4d8184f57a2e3f6579ef0c3a85f472af457c4a5913995faca",
+      "namespace": "Bridge",
+      "imports": [
+        "Library"
+      ],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": [
+          "language#/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "fixtures/G-library.swift",
+      "source": "fixtures/G-library.swift",
+      "sha256": "89e75d7320fb2b208dc7d772596219eb2137875b581e01dabed1605619690c7a",
+      "namespace": "Library",
+      "imports": [],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

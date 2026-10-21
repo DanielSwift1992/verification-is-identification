@@ -1,0 +1,38 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "fixtures/G-membership.swift",
+      "source": "fixtures/G-membership.swift",
+      "sha256": "2d0e91e50fa21acb2f3cd61258078f640691bea3cd73a5ad2c3340508abd9f59",
+      "namespace": "World",
+      "imports": [
+        "Library"
+      ],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": [
+          "language#/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "fixtures/G-membership-library.swift",
+      "source": "fixtures/G-membership-library.swift",
+      "sha256": "f795160ee451c34cc07d104afb285e3b0893436b26f68918f8e19a2ee4197354",
+      "namespace": "Library",
+      "imports": [],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

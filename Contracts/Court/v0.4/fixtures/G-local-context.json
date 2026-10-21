@@ -1,0 +1,20 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "fixtures/G-local.swift",
+      "source": "fixtures/G-local.swift",
+      "sha256": "e7c43799c212633d4ba27c5c172568bda03cb6bfa9cda77e47e53ca18d10fcdd",
+      "namespace": "World",
+      "imports": [],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

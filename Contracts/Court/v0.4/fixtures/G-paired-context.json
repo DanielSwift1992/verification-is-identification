@@ -1,0 +1,58 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "fixtures/G-paired-world.swift",
+      "source": "fixtures/G-paired-world.swift",
+      "sha256": "8f828e3ebef30f8e08f2cb3d7c8d2cd5204a39773da0f83414f3560a021ee8ce",
+      "namespace": "World",
+      "imports": [
+        "Core",
+        "Fractions"
+      ],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": [
+          "language#/imports/0",
+          "language#/imports/1"
+        ]
+      }
+    },
+    {
+      "input": "fixtures/G-paired.swift",
+      "source": "fixtures/G-paired.swift",
+      "sha256": "c23bd7fb1fef0571c9b0a7669bdb743df6d4c1bd546c5e42501194db61a58949",
+      "namespace": "Core",
+      "imports": [],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": []
+      }
+    },
+    {
+      "input": "fixtures/G-frac.swift",
+      "source": "fixtures/G-frac.swift",
+      "sha256": "96ac0b73ba5707da67b1a22505697dc2bd135aab39c9913e52bc36da3bfd08cc",
+      "namespace": "Fractions",
+      "imports": [
+        "Core"
+      ],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": [
+          "language#/imports/0"
+        ]
+      }
+    }
+  ],
+  "intrinsics": []
+}

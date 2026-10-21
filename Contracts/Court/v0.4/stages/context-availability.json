@@ -1,0 +1,120 @@
+{
+  "schema": "vi.court.case-set/1",
+  "suite": "vi.court.questions/0.4",
+  "stage": "Closed name availability: missing is not opaque declared content",
+  "files": {
+    "fixtures/C-missing-leaf.swift": {
+      "sha256": "1d16701144dde6b3a7b05cd46d3df6480ec105d75a2293ea6192e370bae59122",
+      "origin": "T0053 closed context missing-definition twins, frozen before repair"
+    },
+    "fixtures/C-missing-leaf-definitions.swift": {
+      "sha256": "cae4a741f504829451ed478d88b817228559f38c8564835650a8c7c630931d68",
+      "origin": "T0053 closed context missing-definition twins, frozen before repair"
+    },
+    "fixtures/C-missing-leaf.json": {
+      "sha256": "4ad3463a716ce337c9465919163519fbd2983566dab67230b420dc13626b3198",
+      "origin": "T0053 closed context missing-definition twins, frozen before repair"
+    },
+    "fixtures/C-opaque-leaf.swift": {
+      "sha256": "1d16701144dde6b3a7b05cd46d3df6480ec105d75a2293ea6192e370bae59122",
+      "origin": "T0053 closed context missing-definition twins, frozen before repair"
+    },
+    "fixtures/C-opaque-leaf-definitions.swift": {
+      "sha256": "9892add0ad51420c736a8bbfcf394b88d38c7c558b1f946d60c5f3a683525a59",
+      "origin": "T0053 closed context missing-definition twins, frozen before repair"
+    },
+    "fixtures/C-opaque-leaf.json": {
+      "sha256": "851dc4d5a5c6bbc5a4a2793a1c54d3a9092a954ea3e292cfdfb3ce654244fd21",
+      "origin": "T0053 closed context missing-definition twins, frozen before repair"
+    },
+    "fixtures/C-missing-borrowed-leaf.swift": {
+      "sha256": "2e32c7b366a63d5033caaba8d32e3e617942b3208effd482decdcfc0e92cf148",
+      "origin": "T0053 closed context missing-definition twins, frozen before repair"
+    },
+    "fixtures/C-missing-borrowed-leaf-definitions.swift": {
+      "sha256": "0a5293ec1b97931980739917dd52484a8763e3aa6815ab3f43f0877dcdbf3936",
+      "origin": "T0053 closed context missing-definition twins, frozen before repair"
+    },
+    "fixtures/C-missing-borrowed-leaf.json": {
+      "sha256": "24bce45ad4e0370f5f5016588adab6ceb869f6604f973f28e06abe56e16b0062",
+      "origin": "T0053 closed context missing-definition twins, frozen before repair"
+    }
+  },
+  "cases": [
+    {
+      "id": "C-missing-leaf",
+      "pass": "where",
+      "files": [
+        "fixtures/C-missing-leaf.swift",
+        "fixtures/C-missing-leaf-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-missing-leaf.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: fixtures/C-missing-leaf.swift: no declared definition for 'Missing' in the supplied context"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-opaque-leaf",
+      "pass": "where",
+      "files": [
+        "fixtures/C-opaque-leaf.swift",
+        "fixtures/C-opaque-leaf-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-opaque-leaf.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "C-missing-borrowed-leaf",
+      "pass": "where",
+      "files": [
+        "fixtures/C-missing-borrowed-leaf.swift",
+        "fixtures/C-missing-borrowed-leaf-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-missing-borrowed-leaf.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "✗ THE WHERE: fixtures/C-missing-borrowed-leaf-definitions.swift: no declared definition for 'Missing' in the supplied context"
+          ]
+        }
+      }
+    }
+  ]
+}

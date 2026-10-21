@@ -1,0 +1,38 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "fixtures/C-missing-borrowed-leaf.swift",
+      "source": "fixtures/C-missing-borrowed-leaf.swift",
+      "sha256": "2e32c7b366a63d5033caaba8d32e3e617942b3208effd482decdcfc0e92cf148",
+      "namespace": "World",
+      "imports": [
+        "Library"
+      ],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": [
+          "language#/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "fixtures/C-missing-borrowed-leaf-definitions.swift",
+      "source": "fixtures/C-missing-borrowed-leaf-definitions.swift",
+      "sha256": "0a5293ec1b97931980739917dd52484a8763e3aa6815ab3f43f0877dcdbf3936",
+      "namespace": "Library",
+      "imports": [],
+      "at": {
+        "input": "manifest:1",
+        "source": "record#/source",
+        "sha256": "record#/sha256",
+        "namespace": "language#/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

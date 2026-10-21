@@ -20,6 +20,7 @@ import time
 # An immutable suite name binds the exact manifest bytes, including its case set.
 # New normative expectations require a new release and a deliberate registry entry.
 SUITE_HASHES = {
+    "vi.court.questions/0.5": "b562a43ff1e74abf191738bd78386e1e53e311e081fb399dfd919e897bf75fb0",
     "vi.court.questions/0.4": "25c7b65d5dc27f1a669139061f3b166c47897a460f3967b65d99d1c30ee8b47d",
     "vi.court.questions/0.3": "85386b2809b8d36a8f74c59df6c8a6768ee10747b3850b1e2c4bf123cdf746ef",
     "vi.court.questions/0.2": "89803c35cccd5f1c3cf8f2cc451a60e08b7a82d8195b6289f9c3475eb71a54c9",
@@ -41,7 +42,7 @@ def within(root, name):
 def load_contract(path):
     root = path.resolve().parent
     contract = json.loads(path.read_text())
-    if contract.get('schema') != 'vi.court.conformance/1':
+    if contract.get('schema') not in ('vi.court.conformance/1', 'vi.court.conformance/2'):
         raise ValueError('unknown manifest schema')
     expected_hash = SUITE_HASHES.get(contract.get('suite'))
     if expected_hash is None or digest(path) != expected_hash:
@@ -69,6 +70,18 @@ def load_contract(path):
             raise ValueError(f"invalid pass or empty inputs: {case['id']}")
         if not set(case['files']) <= set(contract['files']) | absent:
             raise ValueError(f"unbound input: {case['id']}")
+        if 'response' in case['expected']:
+            if contract['schema'] != 'vi.court.conformance/2' or '--report' not in case['args']:
+                raise ValueError(f"undeclared structured response: {case['id']}")
+            response = case['expected']['response']
+            context_path = case['args'][case['args'].index('--context') + 1]
+            wanted = [{'path': name, 'sha256': contract['files'][name]['sha256']}
+                      for name in sorted(case['files'] + [context_path])]
+            if response['inputs'] != wanted or response['question'] != case['pass']:
+                raise ValueError(f"changed structured question binding: {case['id']}")
+            if not set(response['results']) <= set(case['files']):
+                raise ValueError(f"result outside source roster: {case['id']}")
+            continue
         for channel in ('stdout', 'stderr'):
             rule = case['expected'][channel]
             if ('lines' in rule) == ('line_patterns' in rule):
@@ -94,12 +107,69 @@ def channel_matches(text, rule):
     return len(lines) == len(patterns) and all(re.fullmatch(p, line) for p, line in zip(patterns, lines))
 
 
+def response_mismatches(actual, expected):
+    failures = []
+    if actual['stderr']:
+        failures.append('structured stderr')
+    try:
+        answer = json.loads(actual['stdout'])
+        if set(answer) != {'schema', 'question', 'inputs', 'outcome', 'results', 'diagnostics'}:
+            raise ValueError('response fields')
+        canonical = json.dumps(answer, ensure_ascii=False, sort_keys=True, separators=(',', ':')) + '\n'
+        if actual['stdout'] != canonical:
+            failures.append('noncanonical response bytes')
+        if answer['schema'] != 'vi.court.sources/1' or answer['question'] != expected['question']:
+            failures.append('response identity')
+        if answer['inputs'] != expected['inputs']:
+            failures.append('original input byte roster')
+        if answer['outcome'] != expected['outcome']:
+            failures.append('aggregate outcome')
+        if not isinstance(answer['diagnostics'], list) or not all(isinstance(s, str) for s in answer['diagnostics']):
+            raise ValueError('global diagnostics')
+        rows = answer['results']
+        if not isinstance(rows, list):
+            raise ValueError('results array')
+        if [r['path'] for r in rows] != sorted(expected['results']):
+            failures.append('source coverage')
+        all_diagnostics = list(answer['diagnostics'])
+        for row in rows:
+            if set(row) != {'path', 'source', 'outcome', 'equalities', 'memberships', 'readings', 'unchecked', 'diagnostics'}:
+                raise ValueError('result fields')
+            for key in ('equalities', 'memberships', 'readings'):
+                if type(row[key]) is not int or row[key] < 0:
+                    raise ValueError('result counter')
+            for key in ('unchecked', 'diagnostics'):
+                if not isinstance(row[key], list) or not all(isinstance(s, str) for s in row[key]):
+                    raise ValueError('result addresses/diagnostics')
+            count = row['equalities'] + row['memberships'] + row['readings']
+            if row['outcome'] == 'holds' and count == 0 or row['outcome'] == 'empty' and count != 0:
+                failures.append('empty/holds checked count')
+            spec = expected['results'].get(row['path'])
+            if spec:
+                if row['outcome'] != spec['outcome'] or row['source'] != spec['source']:
+                    failures.append('source outcome/address: ' + row['path'])
+                if not set(spec.get('unchecked_contain', [])) <= set(row['unchecked']):
+                    failures.append('unchecked coverage: ' + row['path'])
+                for key, minimum in spec.get('minimum', {}).items():
+                    if row[key] < minimum:
+                        failures.append('checked count: ' + row['path'])
+            all_diagnostics.extend(row['diagnostics'])
+        for fragment in expected.get('diagnostics_contain', []):
+            if not any(fragment in text for text in all_diagnostics):
+                failures.append('missing diagnostic: ' + fragment)
+    except (ValueError, TypeError, KeyError, AttributeError) as exc:
+        failures.append('invalid structured response: ' + str(exc))
+    return failures
+
+
 def mismatches(actual, expected):
     if actual.get('error'):
         return [actual['error']]
     failures = []
     if actual['exit'] != expected['exit']:
         failures.append('exit')
+    if 'response' in expected:
+        return failures + response_mismatches(actual, expected['response'])
     for channel in ('stdout', 'stderr'):
         if not channel_matches(actual[channel], expected[channel]):
             failures.append(channel)

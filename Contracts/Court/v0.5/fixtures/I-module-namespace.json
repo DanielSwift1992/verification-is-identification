@@ -1,0 +1,63 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "fixtures/I-world.swift",
+      "source": "fixtures/I-world.swift",
+      "sha256": "f8ee5b1920e9a5a4a0e389310c70f0fa3dd4f3bef329faa1505d48e04c368fe9",
+      "module": "World",
+      "namespace": "World",
+      "role": "own",
+      "imports": [
+        "HarborShapes"
+      ],
+      "at": {
+        "input": "record:fixtures/I-world.swift/input",
+        "source": "record:fixtures/I-world.swift/source",
+        "sha256": "record:fixtures/I-world.swift/sha256",
+        "module": "record:fixtures/I-world.swift/module",
+        "namespace": "record:fixtures/I-world.swift/namespace",
+        "role": "record:fixtures/I-world.swift/role",
+        "imports": [
+          "record:fixtures/I-world.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "fixtures/I-shapes.swift",
+      "source": "fixtures/I-shapes.swift",
+      "sha256": "f911ca00afde71e310fa05d67540ea38fd269ccc8a8618dd69c2d6a02bd0808f",
+      "module": "HarborShapes",
+      "namespace": "Shapes",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "record:fixtures/I-shapes.swift/input",
+        "source": "record:fixtures/I-shapes.swift/source",
+        "sha256": "record:fixtures/I-shapes.swift/sha256",
+        "module": "record:fixtures/I-shapes.swift/module",
+        "namespace": "record:fixtures/I-shapes.swift/namespace",
+        "role": "record:fixtures/I-shapes.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": [
+    {
+      "namespace": "Swift",
+      "version": "vi.court.intrinsic-swift/2",
+      "exports": [
+        "Never",
+        "String"
+      ],
+      "at": {
+        "namespace": "intrinsic/namespace",
+        "version": "intrinsic/version",
+        "exports": [
+          "Primitive.swift:130",
+          "Primitive.swift:145"
+        ]
+      }
+    }
+  ]
+}

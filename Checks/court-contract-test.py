@@ -136,4 +136,23 @@ for relative in ('fixtures/G-context.json', 'stages/context-g.json'):
             check(True, 'changed complete context/stage is refused')
         else:
             check(False, 'changed complete context/stage is refused')
-print(f'court-contract reader: {checks} checks passed across four releases')
+_, sources_suite = contract.load_contract(HERE.parent / 'Contracts/Court/v0.5/contract.json')
+expected = next(c['expected'] for c in sources_suite['cases'] if c['id'] == 'D-holds')
+response = expected['response']
+path = next(iter(response['results']))
+answer = dict(schema='vi.court.sources/1', question='where', inputs=response['inputs'], outcome='holds',
+              results=[dict(path=path, source=path, outcome='holds', equalities=1, memberships=0,
+                            readings=0, unchecked=[], diagnostics=[])], diagnostics=[])
+def structured(value):
+    return dict(exit=0, stderr='', stdout=json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(',', ':')) + '\n')
+check(not contract.mismatches(structured(answer), expected), 'source response positive')
+for mutation in ('zero', 'missing', 'digest', 'extra', 'duplicate', 'outcome'):
+    value = copy.deepcopy(answer)
+    if mutation == 'zero': value['results'][0]['equalities'] = 0
+    if mutation == 'missing': value['results'] = []
+    if mutation == 'digest': value['inputs'][0]['sha256'] = '0' * 64
+    if mutation == 'extra': value['extra'] = 1
+    if mutation == 'duplicate': value['results'] *= 2
+    if mutation == 'outcome': value['results'][0]['outcome'] = 'empty'
+    check(bool(contract.mismatches(structured(value), expected)), 'source response rejects ' + mutation)
+print(f'court-contract reader: {checks} checks passed across five releases')

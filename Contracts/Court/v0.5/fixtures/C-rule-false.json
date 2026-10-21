@@ -1,0 +1,59 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "fixtures/C-nested.swift",
+      "source": "fixtures/C-nested.swift",
+      "sha256": "143aa6aa32b04942c185e289ad3fd6111c3d286095feaf80937853391401ff63",
+      "module": "World",
+      "namespace": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "record:fixtures/C-nested.swift/input",
+        "source": "record:fixtures/C-nested.swift/source",
+        "sha256": "record:fixtures/C-nested.swift/sha256",
+        "module": "record:fixtures/C-nested.swift/module",
+        "namespace": "record:fixtures/C-nested.swift/namespace",
+        "role": "record:fixtures/C-nested.swift/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "fixtures/Primitive-changed.swift",
+      "source": "fixtures/Primitive-changed.swift",
+      "sha256": "d0e73c581f39be797f75ed19932f184b1129865974c8566351867519d6a2422a",
+      "module": "World",
+      "namespace": "World",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "record:fixtures/Primitive-changed.swift/input",
+        "source": "record:fixtures/Primitive-changed.swift/source",
+        "sha256": "record:fixtures/Primitive-changed.swift/sha256",
+        "module": "record:fixtures/Primitive-changed.swift/module",
+        "namespace": "record:fixtures/Primitive-changed.swift/namespace",
+        "role": "record:fixtures/Primitive-changed.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": [
+    {
+      "namespace": "Swift",
+      "version": "vi.court.intrinsic-swift/2",
+      "exports": [
+        "Never",
+        "String"
+      ],
+      "at": {
+        "namespace": "intrinsic/namespace",
+        "version": "intrinsic/version",
+        "exports": [
+          "Primitive.swift:130",
+          "Primitive.swift:145"
+        ]
+      }
+    }
+  ]
+}

@@ -180,6 +180,114 @@ enum CountCourt {
         return roots
     }
 
+    struct Evaluation {
+        let checked: Int
+        let refusals: [String]
+        let byPath: [String: Int]
+        let pathRefusals: [String: [String]]
+        let scope: String
+    }
+    static func evaluate(_ files: [(String, String)], source: StructuralSource,
+                         options: [String: String]) throws -> Evaluation {
+            let reader = Reader(source: R.Source(world: source.syntax, rigid: []))
+            let predicate = try reader.normal(R.parse(options["--predicate"]!))
+            let encoding = try reader.normal(R.parse(options["--encoding"]!))
+            let sigma = try reader.normal(R.parse(options["--sigma"]!))
+            // All presented files are checked: moving a counterexample into
+            // the definitions position cannot hide its selected readings.
+            var queue: [(anchor: String, site: String, input: E, nested: Bool, path: String)] = []
+            for (path, text) in files {
+                for hit in try metatypes(text) {
+                    queue.append((path + ":" + hit.input.text, hit.input.text, hit.input, hit.nested, path))
+                }
+            }
+            for d in source.declarations.values.sorted(by: { $0.name < $1.name })
+            where d.parameters.isEmpty {
+                queue.append((d.name, d.name, .application(d.name, []), false, d.origin))
+            }
+            var seen: [String: Set<E>] = [:], discovered = 0, checked = 0, refusals: [String] = []
+            var byPath: [String: Int] = [:], pathRefusals: [String: [String]] = [:]
+            while let job = queue.popLast() {
+                guard discovered < 20_000 else { throw Failure("count application discovery exceeds its budget") }
+                let reader = Reader(source: R.Source(world: source.syntax, rigid: []))
+                let root = try reader.normalHead(job.input)
+                if !seen[job.anchor, default: []].insert(root).inserted { continue }
+                discovered += 1
+                guard case let .application(name, args) = root,
+                    let declaration = source.declarations[name], declaration.kind != "protocol"
+                else { continue }
+                guard declaration.parameters.count == args.count else {
+                    throw Failure("unbound reading application '\(root.text)'")
+                }
+                let parents = source.protocolClosure(source.conformanceChoices(name).map { $0.0 })
+                if !parents.contains("PredicateReading") {
+                    // Certificate fields can carry applied generic readings.
+                    for axis in source.syntax.conformers[name]?.table.keys.sorted() ?? [] {
+                        queue.append((job.anchor, job.site + "." + axis, .field(root, axis), job.nested, job.path))
+                    }
+                    continue
+                }
+                guard !job.nested else {
+                    throw Failure("nested reading application '\(job.site)' is outside this court's binding scope; present a closed typealias")
+                }
+                let actualPredicate = try reader.normal(.field(root, "Predicate"))
+                if actualPredicate != predicate { continue }
+                checked += 1
+                byPath[job.path, default: 0] += 1
+                let beforeRefusals = refusals.count
+                guard try reader.normal(.field(root, "Encoding")) == encoding,
+                    try reader.normal(.field(root, "Sigma")) == sigma
+                else { throw Failure("'\(job.site)' changes the selected count signature") }
+                do {
+                    let result = try reader.reading(root)
+                    if !result.rightEqualsAnswer {
+                        refusals.append("'\(job.site)' requires Right == Answer [PredicateReading]")
+                    }
+                    if result.actual != result.declared {
+                        refusals.append("'\(job.site)' count Left = \(result.actual), but Answer = \(result.declared) [\(predicate.text)]")
+                    }
+                } catch { throw Failure("'\(job.site)' count reading unresolved: \(error)") }
+                pathRefusals[job.path, default: []] += refusals.dropFirst(beforeRefusals)
+
+            }
+            return Evaluation(checked: checked, refusals: refusals, byPath: byPath, pathRefusals: pathRefusals,
+                scope: "\(sigma.text) / \(encoding.text) / \(predicate.text)")
+    }
+
+    static func contextRead(_ context: CourtContext, texts: [String: String], documents: Set<String>,
+                            options: [String: String]) throws -> [CourtSourcesReport.Row] {
+        guard Set(options.keys) == ["--predicate", "--encoding", "--sigma"] else {
+            throw Failure("count context needs predicate, encoding and sigma")
+        }
+        let paths = context.sources.map(\.input)
+        guard let contextPath = texts.keys.filter({ !paths.contains($0) }).first, !paths.isEmpty else {
+            throw Failure("count context needs its explicit file and sources")
+        }
+        let selected = context.sources.filter { $0.role == "own" }.map(\.input)
+        for first in selected.isEmpty ? [paths[0]] : selected {
+            let prepared = try WhereContext.prepare([first] + paths.filter { $0 != first }, contextPath: contextPath,
+                load: { texts[$0]! }, documents: documents, batch: true, notationOnly: true)
+            if !prepared.world.contextUnresolved.isEmpty { try WhereJudge.failAll(prepared.world.contextUnresolved) }
+        }
+        let notation = try CourtNotation.read(context, texts: texts, selected: nil, documents: documents)
+        let original = context.sources.map { ($0.input, texts[$0.input]!) }
+        let source = try StructuralSource(files: original, notationFiles: notation)
+        try checkPrimitiveRules(original, source: source)
+        // Count's all-input question still discovers closed negative readings
+        // carried among definitions. Only explicitly selected Document views
+        // exclude implementation bodies; count rules always use original bytes.
+        let readings = notation.map { ($0.context.input, documents.contains($0.context.input) ? $0.view : $0.text) }
+        let evaluation = try evaluate(readings, source: source, options: options)
+        return notation.map { file in
+            var row = CourtSourcesReport.Row(path: file.context.input, source: file.context.source)
+            row.readings = evaluation.byPath[file.context.input] ?? 0
+            row.diagnostics = evaluation.pathRefusals[file.context.input] ?? []
+            row.outcome = row.diagnostics.isEmpty ? (row.readings == 0 ? "empty" : "holds") : "not-established"
+            row.unchecked = file.unchecked
+            return row
+        }
+    }
+
     static func run(_ arguments: [String]) {
         do {
             var paths: [String] = [], options: [String: String] = [:], i = 0
@@ -211,70 +319,15 @@ enum CountCourt {
             }
             let source = try StructuralSource(files: files)
             try checkPrimitiveRules(files, source: source)
-            let reader = Reader(source: R.Source(world: source.syntax, rigid: []))
-            let predicate = try reader.normal(R.parse(options["--predicate"]!))
-            let encoding = try reader.normal(R.parse(options["--encoding"]!))
-            let sigma = try reader.normal(R.parse(options["--sigma"]!))
-            // All presented files are checked: moving a counterexample into
-            // the definitions position cannot hide its selected readings.
-            var queue: [(anchor: String, site: String, input: E, nested: Bool)] = []
-            for (path, text) in files {
-                for hit in try metatypes(text) {
-                    queue.append((path + ":" + hit.input.text, hit.input.text, hit.input, hit.nested))
-                }
-            }
-            for d in source.declarations.values.sorted(by: { $0.name < $1.name })
-            where d.parameters.isEmpty {
-                queue.append((d.name, d.name, .application(d.name, []), false))
-            }
-            var seen: [String: Set<E>] = [:], discovered = 0, checked = 0, refusals: [String] = []
-            while let job = queue.popLast() {
-                guard discovered < 20_000 else { throw Failure("count application discovery exceeds its budget") }
-                let reader = Reader(source: R.Source(world: source.syntax, rigid: []))
-                let root = try reader.normalHead(job.input)
-                if !seen[job.anchor, default: []].insert(root).inserted { continue }
-                discovered += 1
-                guard case let .application(name, args) = root,
-                    let declaration = source.declarations[name], declaration.kind != "protocol"
-                else { continue }
-                guard declaration.parameters.count == args.count else {
-                    throw Failure("unbound reading application '\(root.text)'")
-                }
-                let parents = source.protocolClosure(source.conformanceChoices(name).map { $0.0 })
-                if !parents.contains("PredicateReading") {
-                    // Certificate fields can carry applied generic readings.
-                    for axis in source.syntax.conformers[name]?.table.keys.sorted() ?? [] {
-                        queue.append((job.anchor, job.site + "." + axis, .field(root, axis), job.nested))
-                    }
-                    continue
-                }
-                guard !job.nested else {
-                    throw Failure("nested reading application '\(job.site)' is outside this court's binding scope; present a closed typealias")
-                }
-                let actualPredicate = try reader.normal(.field(root, "Predicate"))
-                if actualPredicate != predicate { continue }
-                checked += 1
-                guard try reader.normal(.field(root, "Encoding")) == encoding,
-                    try reader.normal(.field(root, "Sigma")) == sigma
-                else { throw Failure("'\(job.site)' changes the selected count signature") }
-                do {
-                    let result = try reader.reading(root)
-                    if !result.rightEqualsAnswer {
-                        refusals.append("'\(job.site)' requires Right == Answer [PredicateReading]")
-                    }
-                    if result.actual != result.declared {
-                        refusals.append("'\(job.site)' count Left = \(result.actual), but Answer = \(result.declared) [\(predicate.text)]")
-                    }
-                } catch { throw Failure("'\(job.site)' count reading unresolved: \(error)") }
-
-            }
+            let evaluation = try evaluate(files, source: source, options: options)
+            let checked = evaluation.checked, refusals = evaluation.refusals
             guard checked > 0 else { throw Failure("no closed PredicateReading for the selected count signature was checked") }
             if !refusals.isEmpty {
                 for refusal in refusals { print("✗ COUNT: \(refusal)") }
                 exit(1)
             }
             print("✓ COUNT holds: \(checked) source-bound readings checked; finite Unit/Never/Plus rules and definition/count derivations replayed.")
-            print("Scope: \(sigma.text) / \(encoding.text) / \(predicate.text); all \(files.count) presented files; closed aliases/top-level metatypes; Int range and reader budgets; nominal equality and Swift conformance are separate checks.")
+            print("Scope: \(evaluation.scope); all \(files.count) presented files; closed aliases/top-level metatypes; Int range and reader budgets; nominal equality and Swift conformance are separate checks.")
         } catch {
             FileHandle.standardError.write(Data("✗ COUNT unresolved: \(error)\n".utf8))
             exit(2)

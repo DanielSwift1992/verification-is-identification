@@ -249,6 +249,7 @@ pub fn metatypes(text: &str) -> Result<Vec<(Expression, bool)>, Failure> {
 }
 
 struct Job {
+    path: String,
     anchor: String,
     site: String,
     input: Expression,
@@ -296,6 +297,13 @@ fn judge_with(load: Loader, arguments: &[String]) -> Result<(usize, usize, Vec<S
     }
     let source = StructuralSource::new(&files)?;
     check_primitive_rules(&files, &source)?;
+    let result=evaluate(&files,&source,&options)?;
+    if result.checked==0 {return Err(Failure::new("no closed PredicateReading for the selected count signature was checked"));}
+    Ok((result.checked,files.len(),result.refusals,result.sigma,result.encoding,result.predicate))
+}
+
+pub struct Evaluation {pub checked:usize,pub refusals:Vec<String>,pub by_path:HashMap<String,usize>,pub path_refusals:HashMap<String,Vec<String>>,pub sigma:Expression,pub encoding:Expression,pub predicate:Expression}
+pub fn evaluate(files:&[(String,String)],source:&StructuralSource,options:&HashMap<String,String>)->Result<Evaluation,Failure> {
     let no_rigid: HashSet<String> = HashSet::new();
     let mut reader = Reader::new(Source { world: &source.syntax, rigid: &no_rigid });
     let predicate = reader.normal(&ex::parse(&options["--predicate"], false)?)?;
@@ -304,20 +312,21 @@ fn judge_with(load: Loader, arguments: &[String]) -> Result<(usize, usize, Vec<S
     // All presented files are checked: moving a counterexample into the
     // definitions position cannot hide its selected readings.
     let mut queue: Vec<Job> = Vec::new();
-    for (path, text) in &files {
+    for (path, text) in files {
         for (input, nested) in metatypes(text)? {
-            queue.push(Job { anchor: format!("{}:{}", path, input.text()), site: input.text(), input, nested });
+            queue.push(Job { path:path.clone(), anchor: format!("{}:{}", path, input.text()), site: input.text(), input, nested });
         }
     }
     let mut declared: Vec<&st::Declaration> = source.declarations.values().filter(|d| d.parameters.is_empty()).collect();
     declared.sort_by(|a, b| a.name.cmp(&b.name));
     for d in declared {
-        queue.push(Job { anchor: d.name.clone(), site: d.name.clone(), input: Expression::name(&d.name), nested: false });
+        queue.push(Job { path:d.origin.clone(), anchor: d.name.clone(), site: d.name.clone(), input: Expression::name(&d.name), nested: false });
     }
     let mut seen: HashMap<String, HashSet<Expression>> = HashMap::new();
     let mut discovered = 0usize;
     let mut checked = 0usize;
     let mut refusals: Vec<String> = Vec::new();
+    let mut by_path=HashMap::<String,usize>::new();let mut path_refusals=HashMap::<String,Vec<String>>::new();
     while let Some(job) = queue.pop() {
         if discovered >= 20_000 {
             return Err(Failure::new("count application discovery exceeds its budget"));
@@ -348,6 +357,7 @@ fn judge_with(load: Loader, arguments: &[String]) -> Result<(usize, usize, Vec<S
                 axes.sort();
                 for axis in axes {
                     queue.push(Job {
+                        path:job.path.clone(),
                         anchor: job.anchor.clone(),
                         site: format!("{}.{}", job.site, axis),
                         input: Expression::Field(Box::new(root.clone()), axis.clone()),
@@ -369,6 +379,8 @@ fn judge_with(load: Loader, arguments: &[String]) -> Result<(usize, usize, Vec<S
             continue;
         }
         checked += 1;
+        *by_path.entry(job.path.clone()).or_default()+=1;
+        let before_refusals=refusals.len();
         if reader.normal(&field("Encoding"))? != encoding || reader.normal(&field("Sigma"))? != sigma {
             return Err(Failure::new(format!("'{}' changes the selected count signature", job.site)));
         }
@@ -389,11 +401,9 @@ fn judge_with(load: Loader, arguments: &[String]) -> Result<(usize, usize, Vec<S
                 return Err(Failure::new(format!("'{}' count reading unresolved: {}", job.site, error)));
             }
         }
+        path_refusals.entry(job.path).or_default().extend(refusals[before_refusals..].iter().cloned());
     }
-    if checked == 0 {
-        return Err(Failure::new("no closed PredicateReading for the selected count signature was checked"));
-    }
-    Ok((checked, files.len(), refusals, sigma, encoding, predicate))
+    Ok(Evaluation {checked,refusals,by_path,path_refusals,sigma,encoding,predicate})
 }
 
 pub fn answer(load: Loader, arguments: &[String]) -> Answer {
@@ -428,4 +438,35 @@ pub fn answer(load: Loader, arguments: &[String]) -> Answer {
         }
     }
     out
+}
+
+pub fn context_read(context:&crate::context::Context,texts:&HashMap<String,String>,documents:&HashSet<String>,options:&HashMap<String,String>)->Result<Vec<crate::sources_report::Row>,crate::failure::Failure> {
+    use crate::failure::Failure as WF;
+    let convert=|e:Failure|WF::Unsupported(vec![e.to_string()]);
+    if options.len()!=3 || ["--predicate","--encoding","--sigma"].iter().any(|k|!options.contains_key(*k)){return Err(convert(Failure::new("count context needs predicate, encoding and sigma")));}
+    let paths:Vec<String>=context.sources.iter().map(|s|s.input.clone()).collect();
+    let context_path=texts.keys().find(|p|!paths.contains(p));
+    if paths.is_empty() || context_path.is_none(){return Err(convert(Failure::new("count context needs its explicit file and sources")));}
+    let context_path=context_path.unwrap();
+    let mut selected:Vec<_>=context.sources.iter().filter(|s|s.role=="own").map(|s|s.input.clone()).collect();
+    if selected.is_empty(){selected.push(paths[0].clone());}
+    for first in selected {
+        let ordered:Vec<_>=std::iter::once(first.clone()).chain(paths.iter().filter(|p|**p!=first).cloned()).collect();
+        let prepared=crate::context::prepare_read(&ordered,context_path,&|p|Ok(texts[p].clone()),documents,true,true)?;
+        if !prepared.world.context_unresolved.is_empty(){return Err(WF::Unsupported(prepared.world.context_unresolved));}
+    }
+    let notation=crate::court_notation::read(context,texts,None,documents)?;
+    let original:Vec<_>=context.sources.iter().map(|s|(s.input.clone(),texts[&s.input].clone())).collect();
+    let source=StructuralSource::new_with_notation(&original,&notation).map_err(convert)?;
+    check_primitive_rules(&original,&source).map_err(convert)?;
+    let readings:Vec<_>=notation.iter().map(|f|(f.context.input.clone(),if documents.contains(&f.context.input){f.view.clone()}else{f.text.clone()})).collect();
+    let e=evaluate(&readings,&source,options).map_err(convert)?;
+    Ok(notation.iter().map(|f|{
+        let mut row=crate::sources_report::Row::new(&f.context.input,&f.context.source);
+        row.readings=*e.by_path.get(&f.context.input).unwrap_or(&0);
+        row.diagnostics=e.path_refusals.get(&f.context.input).cloned().unwrap_or_default();
+        row.outcome=if row.diagnostics.is_empty(){if row.readings==0{"empty"}else{"holds"}}else{"not-established"}.into();
+        row.unchecked=f.unchecked.clone();
+        row
+    }).collect())
 }

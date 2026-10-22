@@ -1,4 +1,4 @@
-// Shared terms and proof nodes for count. The where calculus remains unchanged.
+// Shared terms and source-equation proofs; count and contextual where share this representation.
 // Replay rebuilds the source equations in its own arena, never in the builder's cache.
 use crate::expression::{parse, Expression, Failure, Source};
 use std::cell::RefCell;
@@ -52,7 +52,7 @@ impl<'a> Arena<'a> {
         if depth > 128 { return Err(Failure::new("expression exceeds validation depth limit")); }
         match &term {
             Term::Application(n, a) => {
-                if parse(n, true)? != Expression::name(n) { return Err(Failure::new("malformed name in derivation input")); }
+                if !self.source.world.nested_names.contains(n) && parse(n, true)? != Expression::name(n) { return Err(Failure::new("malformed name in derivation input")); }
                 self.source.check_application(n, a.len())?;
             }
             Term::Field(_, a) => if parse(a, false)? != Expression::name(a) { return Err(Failure::new("malformed field")); },
@@ -63,6 +63,7 @@ impl<'a> Arena<'a> {
     pub fn read(&mut self, e: &Expression) -> Result<usize> { self.substitute(e, &HashMap::new()) }
     fn substitute(&mut self, e: &Expression, bindings: &HashMap<String, usize>) -> Result<usize> {
         self.work.borrow_mut().visit()?;
+        if self.source.world.nested_names.contains(&e.text()) { return self.add(Term::Application(e.text(),vec![])); }
         match e {
             Expression::Application(n, a) => {
                 if let Some(id) = bindings.get(n) {
@@ -93,6 +94,9 @@ impl<'a> Arena<'a> {
             }
             Term::Field(owner, axis) => {
                 let (n, a) = match self.get(owner)? { Term::Application(n, a) => (n, a), _ => return Ok(None) };
+                if self.source.world.intrinsic_swift && n=="Swift" && a.is_empty() && (axis=="Never" || (self.source.world.context_version==2 && axis=="String")) { return Ok(Some(self.add(Term::Application(axis,vec![]))?)); }
+                if self.source.world.namespaces.contains(&n) { return Err(Failure::new(format!("no declaration of nested name '{}'",self.text(id)))); }
+
                 self.source.check_application(&n, a.len())?;
                 if self.source.rigid.contains(&n) { return Ok(None); }
                 if !self.source.world.conformers.contains_key(&n) && self.source.world.presented_bodies.contains(&n) {
@@ -110,14 +114,14 @@ impl<'a> Arena<'a> {
             }
         }
     }
-    fn expression(&mut self, id: usize) -> Result<Expression> {
+    pub fn expression(&mut self, id: usize) -> Result<Expression> {
         self.work.borrow_mut().visit()?;
         match self.get(id)? {
             Term::Application(n, a) => Ok(Expression::Application(n, a.into_iter().map(|i| self.expression(i)).collect::<Result<_>>()?)),
             Term::Field(o, a) => Ok(Expression::Field(Box::new(self.expression(o)?), a)),
         }
     }
-    fn text(&self, id: usize) -> String {
+    pub fn text(&self, id: usize) -> String {
         fn walk(arena: &Arena, id: usize, left: &mut usize) -> String {
             if *left == 0 || id >= arena.terms.len() { return "…".to_string(); }
             *left -= 1;
@@ -143,14 +147,14 @@ pub struct Ends { pub input: usize, pub output: usize, depth: usize }
 #[derive(Clone, Debug)]
 pub struct Proof { pub terms: Vec<Term>, pub steps: Vec<Step> }
 pub struct Builder<'a> {
-    pub arena: Arena<'a>, pub steps: Vec<Step>, pub ends: Vec<Ends>,
+    pub depth_limit: usize, pub arena: Arena<'a>, pub steps: Vec<Step>, pub ends: Vec<Ends>,
     memo: HashMap<(usize, bool), usize>, identity: HashMap<usize, usize>, active: HashSet<(usize, bool)>,
 }
 impl<'a> Builder<'a> {
     pub fn new(source: Source<'a>, work: Meter) -> Self {
-        Self { arena: Arena::new(source, work), steps: vec![], ends: vec![], memo: HashMap::new(), identity: HashMap::new(), active: HashSet::new() }
+        Self { depth_limit:128, arena: Arena::new(source, work), steps: vec![], ends: vec![], memo: HashMap::new(), identity: HashMap::new(), active: HashSet::new() }
     }
-    fn proof(&self) -> Proof { Proof { terms: self.arena.terms.clone(), steps: self.steps.clone() } }
+    pub fn proof(&self) -> Proof { Proof { terms: self.arena.terms.clone(), steps: self.steps.clone() } }
     fn append(&mut self, step: Step, input: usize, output: usize) -> Result<usize> {
         let refs = step.refs(); let depth = 1 + refs.iter().map(|i| self.ends[*i].depth).max().unwrap_or(0);
         if depth >= 512 { return Err(Failure::new("derivation replay limit reached")); }
@@ -169,7 +173,7 @@ impl<'a> Builder<'a> {
     }
     pub fn derive(&mut self, id: usize, head: bool, depth: usize) -> Result<usize> {
         self.arena.work.borrow_mut().visit()?;
-        if depth > 128 { return Err(Failure::new(format!("normalization limit reached at '{}'; no impossibility inferred", self.arena.text(id)))); }
+        if depth > self.depth_limit { return Err(Failure::new(format!("normalization limit reached at '{}'; no impossibility inferred", self.arena.text(id)))); }
         let key = (id, head);
         if let Some(p) = self.memo.get(&key) { return Ok(*p); }
         if !self.active.insert(key) { return Err(Failure::new(format!("cyclic count definition at '{}'; no impossibility inferred", self.arena.text(id)))); }

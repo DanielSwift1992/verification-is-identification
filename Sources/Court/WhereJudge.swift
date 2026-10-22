@@ -61,10 +61,13 @@ enum WhereJudge {
         case unsupported([String])
         case input([String])
         case open([String])
+        case refused([String])
+        case empty([String])
 
         var messages: [String] {
             switch self {
-            case let .unsupported(messages), let .input(messages), let .open(messages): return messages
+            case let .unsupported(messages), let .input(messages), let .open(messages),
+                 let .refused(messages), let .empty(messages): return messages
             }
         }
     }
@@ -799,6 +802,7 @@ enum WhereJudge {
 
     struct World {
         var contextual = false
+        var contextVersion = 1
         var contextSource = ""
         var contextUnresolved: [String] = []
         var excludedDefinitions: [String] = []
@@ -814,6 +818,8 @@ enum WhereJudge {
         var protocolParents: [String: [String]] = [:]
         var protocolAxes: [String: Set<String>] = [:]
         var parameters: [String: [String]] = [:]
+        var genericRequirements: [String: [StructuralSource.Requirement]] = [:]
+        var genericUnsupported: [String: [String]] = [:]
         var conditionalDeclarations: Set<String> = []
         var presentedBodies: Set<String> = []
         var uses: [String] = []
@@ -840,7 +846,8 @@ enum WhereJudge {
         var aliasSpans: [NSRange] = []
     }
 
-    static func read(_ text: String, lent: Set<String> = [], notationV2: Bool = true) throws -> World {
+    static func read(_ text: String, lent: Set<String> = [], notationV2: Bool = true,
+                     contextV2: Bool = false) throws -> World {
         let clean = try stripComments(text, lent: lent)
         var scope = Scope(clean)
         let notation = try NotationScope(clean, enabled: notationV2)
@@ -849,7 +856,7 @@ enum WhereJudge {
         var world = World()
         world.namespaces = notation.namespaces
         world.nestedNames = Set(notation.nested.values)
-        world.intrinsicSwift = notationV2 ? try NotationScope.intrinsic(clean) : false
+        world.intrinsicSwift = notationV2 ? try NotationScope.intrinsic(clean, version: contextV2 ? 2 : 1) : false
 
         // Use the same Unicode word class as the declaration reader. A name
         // it reads cannot disappear when checking which gates reach the file.
@@ -857,9 +864,9 @@ enum WhereJudge {
         let names = try declaredNames(clean, scope)
         world.declared = names.lines
         if world.intrinsicSwift {
-            for name in ["Swift", "Never"] {
+            for name in ["Swift", "Never"] + (contextV2 ? ["String"] : []) {
                 if let line = names.lines[name]?.first {
-                    try fail("cannot read line \(line): declaration '\(name)' conflicts with intrinsic Swift/1")
+                    try fail("cannot read line \(line): declaration '\(name)' conflicts with intrinsic Swift/\(contextV2 ? 2 : 1)")
                 }
             }
         }
@@ -905,6 +912,20 @@ enum WhereJudge {
 
         for hit in try declarations(#"enum\s+(\w+)\s*<([^>]*)>"#, clean, scope) {
             world.parameters[hit[0]] = parameterNames(hit[1])
+        }
+
+        if contextV2 {
+            for declaration in try notation.structural(clean, origin: "source") {
+                guard declaration.kind == "enum", !notation.namespaces.contains(declaration.name) else { continue }
+                world.genericRequirements[declaration.name] = declaration.requirements
+                world.genericUnsupported[declaration.name] = declaration.unsupported
+                if declaration.unsupported.isEmpty {
+                    world.conformers[declaration.name] = Conformer(name: declaration.name,
+                        parameters: declaration.parameters, protocols: declaration.parents, table: declaration.fields)
+                    world.parameters[declaration.name] = declaration.parameters
+                    world.conditionalDeclarations.remove(declaration.name)
+                }
+            }
         }
 
         // An unconditional extension of a presented conformer adds the
@@ -1199,6 +1220,34 @@ enum WhereJudge {
         Press.serialize(try normalize(try parseTerm(Substring(text)), world))
     }
 
+    /// Same nominal equations, with the count reader's shared derivations.
+    /// Neither a count nor identical input spelling is an equality proof.
+    static func compared(_ left: Term, _ right: Term, _ world: World,
+                         rigid: Set<String> = []) throws -> (equal: Bool, left: String, right: String) {
+        if world.contextVersion != 2 {
+            let l = Press.serialize(try normalize(left, world, rigid: rigid))
+            let r = Press.serialize(try normalize(right, world, rigid: rigid))
+            return (l == r, l, r)
+        }
+        do {
+            let source = DefinitionReduction.Source(world: world, rigid: rigid)
+            let work = DefinitionReduction.Work(10_000, phase: "definition construction")
+            let builder = DefinitionReduction.SharedBuilder(source: source, work: work, depthLimit: 64)
+            let l = try builder.arena.read(DefinitionReduction.parse(Press.serialize(left), allowRigidNames: true))
+            let r = try builder.arena.read(DefinitionReduction.parse(Press.serialize(right), allowRigidNames: true))
+            let lp = try builder.derive(l)
+            let rp = try builder.derive(r)
+            let replay = try DefinitionReduction.replayShared(builder.proof, source: source,
+                work: DefinitionReduction.Work(20_000, phase: "definition replay"))
+            guard replay.ends[lp].input == replay.terms[l], replay.ends[rp].input == replay.terms[r] else {
+                try fail("definition equality changes its original question")
+            }
+            let lo = replay.ends[lp].output, ro = replay.ends[rp].output
+            if lo == ro { return (true, "", "") }
+            return (false, replay.arena.text(lo), replay.arena.text(ro))
+        } catch { try fail("unresolved definition reduction: \(error)") }
+    }
+
     // A claim meets the gate its definition names. A head spelled through an
     // alias or a member alias is unfolded before the gate is looked up, so an
     // intermediate name cannot carry a claim past its gate. A nominal head is
@@ -1306,8 +1355,15 @@ enum WhereJudge {
             if requireGrounds { try requireProtocolGrounds([proto], world) }
             counted += 1
             let lhsTerm = try substitute(try parseTerm(Substring(lhs)), bindings)
-            let resolved = try normalize(lhsTerm, world, rigid: rigid)
+            let resolved = world.contextVersion == 2
+                ? try GenericMembership.head(lhsTerm, world: world, rigid: rigid)
+                : try normalize(lhsTerm, world, rigid: rigid)
             let spelled = Press.serialize(resolved)
+            if world.contextVersion == 2 && (!resolved.args.isEmpty || resolved.head.contains("$free_")) {
+                refusals += try GenericMembership.check(resolved, proto: proto, site: site,
+                    world: world, rigid: rigid, counted: &counted)
+                continue
+            }
             if world.conformers[resolved.head] == nil, world.presentedBodies.contains(resolved.head) {
                 try fail("cannot read declaration '\(resolved.head)': its body is outside this court's flat-definition fragment")
             }
@@ -1720,9 +1776,9 @@ enum WhereJudge {
                     judged += 1
                     let leftTerm = try substitute(try parseTerm(Substring(left)), bindings)
                     let rightTerm = try substitute(try parseTerm(Substring(right)), bindings)
-                    let leftCanon = Press.serialize(try normalize(leftTerm, world, rigid: certificate.rigid))
-                    let rightCanon = Press.serialize(try normalize(rightTerm, world, rigid: certificate.rigid))
-                    if leftCanon != rightCanon {
+                    let comparison = try compared(leftTerm, rightTerm, world, rigid: certificate.rigid)
+                    let leftCanon = comparison.left, rightCanon = comparison.right
+                    if !comparison.equal {
                         refusals.append(
                             "'\(name) = \(body)' requires the types '\(left)' (aka '\(leftCanon)') and "
                                 + "'\(right)' (aka '\(rightCanon)') be equivalent [\(gate.proto)]"
@@ -1749,9 +1805,9 @@ enum WhereJudge {
                     judged += 1
                     let leftTerm = try substitute(try parseTerm(Substring(left)), bindings)
                     let rightTerm = try substitute(try parseTerm(Substring(right)), bindings)
-                    let leftCanon = Press.serialize(try normalize(leftTerm, world))
-                    let rightCanon = Press.serialize(try normalize(rightTerm, world))
-                    if leftCanon != rightCanon {
+                    let comparison = try compared(leftTerm, rightTerm, world)
+                    let leftCanon = comparison.left, rightCanon = comparison.right
+                    if !comparison.equal {
                         refusals.append(
                             "'\(use)' requires the types '\(left)' (aka '\(leftCanon)') and "
                                 + "'\(right)' (aka '\(rightCanon)') be equivalent [\(gate.proto)]"
@@ -1780,9 +1836,9 @@ enum WhereJudge {
                     judged += 1
                     let leftTerm = try substitute(try parseTerm(Substring(left)), bindings)
                     let rightTerm = try substitute(try parseTerm(Substring(right)), bindings)
-                    let leftCanon = Press.serialize(try normalize(leftTerm, world, rigid: rigid))
-                    let rightCanon = Press.serialize(try normalize(rightTerm, world, rigid: rigid))
-                    if leftCanon != rightCanon {
+                    let comparison = try compared(leftTerm, rightTerm, world, rigid: rigid)
+                    let leftCanon = comparison.left, rightCanon = comparison.right
+                    if !comparison.equal {
                         refusals.append(
                             "'\(conformer.name): \(protoName)' requires the types '\(left)' "
                                 + "(aka '\(leftCanon)') and '\(right)' (aka '\(rightCanon)') be equivalent"
@@ -1802,6 +1858,7 @@ enum WhereJudge {
         }
         if refusals.isEmpty && judged == 0 && members == 0 {
             if requireGrounds { throw Failure.open(["no equality or membership grounds for the selected application"]) }
+            if world.contextVersion == 2 { throw Failure.empty([]) }
             try fail("no equalities or memberships were judged; no certificate established")
         }
         return Judgment(equalities: judged, memberships: members, uses: world.uses.count,

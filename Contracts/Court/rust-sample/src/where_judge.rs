@@ -28,7 +28,8 @@ fn trim_spaces(text: &str) -> &str {
 
 // ── reading the world ──
 
-pub fn read(text: &str, lent: &HashSet<String>) -> Result<World, Failure> {
+pub fn read(text: &str, lent: &HashSet<String>) -> Result<World, Failure> { read_version(text,lent,false) }
+pub fn read_version(text: &str, lent: &HashSet<String>, context_v2: bool) -> Result<World, Failure> {
     let clean = strip_comments(text, lent)?;
     let mut scope = Scope::new(&clean);
     let notation = crate::notation::Notation::new(&clean)?;
@@ -37,14 +38,14 @@ pub fn read(text: &str, lent: &HashSet<String>) -> Result<World, Failure> {
     let mut world = World::default();
     world.namespaces=notation.namespaces.clone();
     world.nested_names=notation.nested.values().cloned().collect();
-    world.intrinsic_swift=crate::notation::intrinsic(&clean)?;
+    world.intrinsic_swift=crate::notation::intrinsic_version(&clean,if context_v2 {2} else {1})?;
 
     world.names = captures(r"\b(\w+)\b", &clean).into_iter().map(|c| c[0].clone()).collect();
     let (lines, file_names) = declared_names(&clean, &scope)?;
     world.declared = lines.clone();
     if world.intrinsic_swift {
-        for name in ["Swift", "Never"] {
-            if let Some(line)=lines.get(name).and_then(|v|v.first()) { return fail(format!("cannot read line {}: declaration '{}' conflicts with intrinsic Swift/1",line,name)); }
+        for name in if context_v2 { vec!["Swift", "Never", "String"] } else { vec!["Swift", "Never"] } {
+            if let Some(line)=lines.get(name).and_then(|v|v.first()) { return fail(format!("cannot read line {}: declaration '{}' conflicts with intrinsic Swift/{}",line,name,if context_v2 {2} else {1})); }
         }
     }
 
@@ -93,6 +94,18 @@ pub fn read(text: &str, lent: &HashSet<String>) -> Result<World, Failure> {
         world.parameters.insert(hit[0].clone(), parameter_names(&hit[1]));
     }
 
+    if context_v2 {
+        for d in notation.structural(&clean,"source")? {
+            if d.kind!="enum" || notation.namespaces.contains(&d.name) { continue; }
+            world.generic_requirements.insert(d.name.clone(),d.requirements.clone());
+            world.generic_unsupported.insert(d.name.clone(),d.unsupported.clone());
+            if d.unsupported.is_empty() {
+                world.parameters.insert(d.name.clone(),d.parameters.clone());
+                world.conditional_declarations.remove(&d.name);
+                world.conformers.insert(d.name.clone(), Conformer { name:d.name, parameters:d.parameters, protocols:d.parents, table:d.fields });
+            }
+        }
+    }
     // An unconditional extension of a presented conformer adds the protocols
     // its header lists, whatever its body holds.
     for hit in declarations(r"extension\s+(\w+)\s*:\s*([\w,\s]+?)\s*\{", &clean, &scope)? {
@@ -427,6 +440,21 @@ pub fn normalize(term: &Expression, world: &World, rigid: &HashSet<String>) -> R
         .or_else(|e| fail(format!("unresolved definition reduction: {}", e)))
 }
 
+pub fn compared(left:&Expression,right:&Expression,world:&World,rigid:&HashSet<String>)->Result<(bool,String,String),Failure> {
+    if world.context_version!=2 { let l=normalize(left,world,rigid)?.text(); let r=normalize(right,world,rigid)?.text(); return Ok((l==r,l,r)); }
+    fn shared(left:&Expression,right:&Expression,world:&World,rigid:&HashSet<String>)->Result<(bool,String,String),ex::Failure> {
+        use crate::shared_count::{Builder,Work,replay};
+        let mut builder=Builder::new(Source {world,rigid},Work::new(10_000,"definition construction")); builder.depth_limit=64;
+        let l=builder.arena.read(left)?; let r=builder.arena.read(right)?;
+        let lp=builder.derive(l,false,0)?; let rp=builder.derive(r,false,0)?;
+        let replay=replay(&builder.proof(),Source {world,rigid},Work::new(20_000,"definition replay"))?;
+        if replay.ends[lp].input!=replay.terms[l] || replay.ends[rp].input!=replay.terms[r] { return Err(ex::Failure::new("definition equality changes its original question")); }
+        let lo=replay.ends[lp].output; let ro=replay.ends[rp].output;
+        if lo==ro {Ok((true,String::new(),String::new()))} else {Ok((false,replay.arena.text(lo),replay.arena.text(ro)))}
+    }
+    shared(left,right,world,rigid).or_else(|e|fail(format!("unresolved definition reduction: {}",e)))
+}
+
 /// A claim meets the gate its definition names: a head spelled through an
 /// alias or a member alias is unfolded before the gate is looked up.
 pub fn gated_form(term: &Expression, world: &World, rigid: &HashSet<String>) -> Result<Expression, Failure> {
@@ -553,7 +581,7 @@ fn judge_memberships(
         }
         *counted += 1;
         let lhs_term = substitute(&parse_term(lhs)?, bindings)?;
-        let resolved = normalize(&lhs_term, world, rigid)?;
+        let resolved = if world.context_version==2 { crate::generic_membership::head(&lhs_term,world,rigid)? } else { normalize(&lhs_term,world,rigid)? };
         let spelled = resolved.text();
         let head = resolved.head();
         if !world.conformers.contains_key(&head) && world.presented_bodies.contains(&head) {
@@ -561,6 +589,10 @@ fn judge_memberships(
                 "cannot read declaration '{}': its body is outside this court's flat-definition fragment",
                 head
             ));
+        }
+        if world.context_version==2 && (!resolved.args().is_empty() || resolved.head().contains("$free_")) {
+            refusals.extend(crate::generic_membership::check(&resolved,proto,site,world,rigid,counted)?);
+            continue;
         }
         if !resolved.args().is_empty() {
             return fail(format!(
@@ -1069,9 +1101,8 @@ pub fn evaluate_selected(
                 judged += 1;
                 let left_term = substitute(&parse_term(left)?, &bindings)?;
                 let right_term = substitute(&parse_term(right)?, &bindings)?;
-                let left_canon = normalize(&left_term, world, rigid)?.text();
-                let right_canon = normalize(&right_term, world, rigid)?.text();
-                if left_canon != right_canon {
+                let (equal,left_canon,right_canon) = compared(&left_term,&right_term,world,rigid)?;
+                if !equal {
                     refusals.push(format!(
                         "'{} = {}' requires the types '{}' (aka '{}') and '{}' (aka '{}') be equivalent [{}]",
                         name, body, left, left_canon, right, right_canon, gate.proto
@@ -1112,9 +1143,8 @@ pub fn evaluate_selected(
                 judged += 1;
                 let left_term = substitute(&parse_term(left)?, &bindings)?;
                 let right_term = substitute(&parse_term(right)?, &bindings)?;
-                let left_canon = normalize(&left_term, world, &no_rigid)?.text();
-                let right_canon = normalize(&right_term, world, &no_rigid)?.text();
-                if left_canon != right_canon {
+                let (equal,left_canon,right_canon) = compared(&left_term,&right_term,world,&no_rigid)?;
+                if !equal {
                     refusals.push(format!(
                         "'{}' requires the types '{}' (aka '{}') and '{}' (aka '{}') be equivalent [{}]",
                         use_text, left, left_canon, right, right_canon, gate.proto
@@ -1161,9 +1191,8 @@ pub fn evaluate_selected(
                 judged += 1;
                 let left_term = substitute(&parse_term(left)?, &bindings)?;
                 let right_term = substitute(&parse_term(right)?, &bindings)?;
-                let left_canon = normalize(&left_term, world, &rigid)?.text();
-                let right_canon = normalize(&right_term, world, &rigid)?.text();
-                if left_canon != right_canon {
+                let (equal,left_canon,right_canon) = compared(&left_term,&right_term,world,&rigid)?;
+                if !equal {
                     refusals.push(format!(
                         "'{}: {}' requires the types '{}' (aka '{}') and '{}' (aka '{}') be equivalent",
                         conformer.name, proto_name, left, left_canon, right, right_canon
@@ -1191,6 +1220,7 @@ pub fn evaluate_selected(
         if require_grounds {
             return Err(Failure::Open(vec!["no equality or membership grounds for the selected application".to_string()]));
         }
+        if world.context_version==2 { return Err(Failure::Empty(vec![])); }
         return fail("no equalities or memberships were judged; no certificate established");
     }
     Ok(Judgment {

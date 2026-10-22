@@ -3,6 +3,7 @@ use crate::failure::{fail, Failure};
 use crate::lexical::{is_word_byte, re, Scope};
 use std::collections::{HashMap, HashSet};
 
+#[derive(Clone)]
 pub struct Declaration {
     pub kind: String,
     pub name: String,
@@ -12,7 +13,7 @@ pub struct Declaration {
     pub close: usize,
     pub header: String,
 }
-#[derive(Default)]
+#[derive(Default, Clone)]
 pub struct Notation {
     pub declarations: Vec<Declaration>,
     pub nested: HashMap<usize, String>,
@@ -88,6 +89,20 @@ impl Notation {
         }
         Ok(result)
     }
+    pub fn structural(&self, clean: &str, origin: &str) -> Result<Vec<crate::structural::Declaration>, Failure> {
+        let mut result=Vec::new();
+        for d in &self.declarations {
+            if !["enum","struct","protocol"].contains(&d.kind.as_str()) { continue; }
+            let header=crate::structural::tokens(&d.header).map_err(|e|Failure::Unsupported(vec![e.to_string()]))?;
+            let body=crate::structural::tokens(&clean[d.open+1..d.close-1]).map_err(|e|Failure::Unsupported(vec![e.to_string()]))?;
+            let mut read=crate::structural::declaration(&d.kind,&header[1..],&body,origin).map_err(|e|Failure::Unsupported(vec![e.to_string()]))?;
+            let excluded=read.parameters.iter().cloned().chain(read.fields.keys().cloned()).chain(std::iter::once("Self".into())).collect();
+            read.name=d.qualified.clone();
+            read.fields=read.fields.into_iter().map(|(key,value)|(key,self.resolve(&value,&d.qualified,&excluded))).collect();
+            result.push(read);
+        }
+        Ok(result)
+    }
     pub fn resolve(&self, body: &str, owner: &str, excluding: &HashSet<String>) -> String {
         let known: HashSet<&String> = self.nested.values().collect();
         let mut out = body.to_string();
@@ -116,7 +131,8 @@ impl Notation {
         out
     }
 }
-pub fn intrinsic(clean: &str) -> Result<bool, Failure> {
+pub fn intrinsic(clean: &str) -> Result<bool, Failure> { intrinsic_version(clean,1) }
+pub fn intrinsic_version(clean: &str, version: u8) -> Result<bool, Failure> {
     let scope = Scope::new(clean);
     let mut has_swift = false;
     for hit in re(r"\bimport\s+([^\n;]+)").captures_iter(clean) {
@@ -140,22 +156,22 @@ pub fn intrinsic(clean: &str) -> Result<bool, Failure> {
                 scope.line[start], export
             ));
         }
-        if export != "Never" {
+        if export != "Never" && !(version==2 && export=="String") {
             return fail(format!(
-                "cannot read line {}: 'Swift.{}' is not exported by intrinsic Swift/1",
-                scope.line[start], export
+                "cannot read line {}: 'Swift.{}' is not exported by intrinsic Swift/{}",
+                scope.line[start], export, version
             ));
         }
     }
     if has_swift {
         if let Some(hit) =
-            re(r"\b(?:enum|struct|class|actor|protocol|typealias|associatedtype)\s+(Swift|Never)\b")
+            re(&format!(r"\b(?:enum|struct|class|actor|protocol|typealias|associatedtype)\s+(Swift|Never{})\b", if version==2 {"|String"} else {""}))
                 .captures(clean)
         {
             return fail(format!(
-                "cannot read line {}: declaration '{}' conflicts with intrinsic Swift/1",
+                "cannot read line {}: declaration '{}' conflicts with intrinsic Swift/{}",
                 scope.line[hit.get(0).unwrap().start()],
-                &hit[1]
+                &hit[1], version
             ));
         }
     }

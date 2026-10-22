@@ -61,3 +61,37 @@ pub fn judge(request: &str) -> String {
 pub fn version() -> String {
     format!("vi-court {} canon v{}", env!("CARGO_PKG_VERSION"), crate::where_judge::CANON_VERSION)
 }
+
+/// Import declarations and count question selectors after an edit.
+/// This uses the where/count notation reader and establishes no judgement.
+#[wasm_bindgen]
+pub fn source_notation(request: &str) -> String {
+    let read = || -> Result<serde_json::Value, String> {
+        #[derive(Deserialize)]
+        struct MetadataRequest { files: Vec<NamedText>, questions: Vec<String> }
+        let parsed:MetadataRequest=serde_json::from_str(request).map_err(|e|e.to_string())?;
+        let selected:std::collections::HashSet<_>=parsed.questions.into_iter().collect();
+        let files=parsed.files;
+        let mut named = std::collections::BTreeMap::new();
+        for file in files {
+            let text=file.text.ok_or_else(||format!("{}: {}",file.name,file.error.unwrap_or_else(||"missing source text".into())))?;
+            if named.insert(file.name,text).is_some(){return Err("duplicate source input".into());}
+        }
+        if !selected.iter().all(|name|named.contains_key(name)){return Err("question source is missing".into());}
+        let mut lent=std::collections::HashSet::new();
+        for text in named.values() {
+            if let Ok(clean)=crate::lexical::strip_comments(text,&std::collections::HashSet::new()) {
+                lent.extend(crate::lexical::declared_builders(&clean));
+            }
+        }
+        let mut sources=Vec::new();
+        for (name,text) in named {
+            let imports=crate::court_notation::imports(&text,&lent).map_err(|e|e.messages().join("; "))?;
+            let questions=if selected.contains(&name){crate::court_notation::count_questions(&text,&name,&lent).map_err(|e|e.messages().join("; "))?}else{Vec::new()};
+            sources.push(serde_json::json!({"input":name,"sha256":crate::digest::sha256(text.as_bytes()), "questions":questions,
+                "imports":imports.into_iter().map(|(module,line)|serde_json::json!({"module":module,"line":line})).collect::<Vec<_>>()}));
+        }
+        Ok(serde_json::json!({"schema":"vi.court.notation/1","sources":sources,"diagnostics":[]}))
+    };
+    read().unwrap_or_else(|reason|serde_json::json!({"schema":"vi.court.notation/1","sources":[],"diagnostics":[reason]})).to_string()
+}

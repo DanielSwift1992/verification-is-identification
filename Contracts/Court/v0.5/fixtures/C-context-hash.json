@@ -1,0 +1,59 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "fixtures/C-document.swift",
+      "source": "fixtures/C-document.swift",
+      "sha256": "46edb793f8ded4ab7bdb7e3b6927fcac9cd9b8693fe0eda6332f245224366017",
+      "module": "World",
+      "namespace": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "record:fixtures/C-document.swift/input",
+        "source": "record:fixtures/C-document.swift/source",
+        "sha256": "record:fixtures/C-document.swift/sha256",
+        "module": "record:fixtures/C-document.swift/module",
+        "namespace": "record:fixtures/C-document.swift/namespace",
+        "role": "record:fixtures/C-document.swift/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "fixtures/Primitive.swift",
+      "source": "fixtures/Primitive.swift",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "module": "World",
+      "namespace": "World",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "record:fixtures/Primitive.swift/input",
+        "source": "record:fixtures/Primitive.swift/source",
+        "sha256": "record:fixtures/Primitive.swift/sha256",
+        "module": "record:fixtures/Primitive.swift/module",
+        "namespace": "record:fixtures/Primitive.swift/namespace",
+        "role": "record:fixtures/Primitive.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": [
+    {
+      "namespace": "Swift",
+      "version": "vi.court.intrinsic-swift/2",
+      "exports": [
+        "Never",
+        "String"
+      ],
+      "at": {
+        "namespace": "intrinsic/namespace",
+        "version": "intrinsic/version",
+        "exports": [
+          "Primitive.swift:130",
+          "Primitive.swift:145"
+        ]
+      }
+    }
+  ]
+}

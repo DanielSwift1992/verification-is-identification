@@ -12,6 +12,9 @@ pub mod failure;
 pub mod lexical;
 pub mod notation;
 pub mod context;
+pub mod court_notation;
+pub mod generic_membership;
+pub mod sources_report;
 mod digest;
 mod definition_view;
 pub mod structural;
@@ -40,6 +43,7 @@ pub fn judge_with(load: Loader, arguments: &[String]) -> Answer {
     if arguments.first().map(|a| a == "judge").unwrap_or(false) {
         arguments.remove(0);
     }
+    if arguments.iter().any(|a|a=="--report") && matches!(arguments.first().map(String::as_str),Some("where")|Some("count")) {return sources_report::answer(load,&arguments[1..],&arguments[0]);}
     match arguments.first().map(String::as_str) {
         Some("where") => where_judge::answer(load, &arguments[1..]),
         Some("count") => count_court::answer(load, &arguments[1..]),

@@ -1,0 +1,59 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "fixtures/D-page-holds.swift",
+      "source": "fixtures/D-page-holds.swift",
+      "sha256": "25a724129f92553261eb6ad8cf16c2a01cb960c1a74b922757c74832b2d964a8",
+      "module": "World",
+      "namespace": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "record:fixtures/D-page-holds.swift/input",
+        "source": "record:fixtures/D-page-holds.swift/source",
+        "sha256": "record:fixtures/D-page-holds.swift/sha256",
+        "module": "record:fixtures/D-page-holds.swift/module",
+        "namespace": "record:fixtures/D-page-holds.swift/namespace",
+        "role": "record:fixtures/D-page-holds.swift/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "fixtures/D-conditional-borrowed.swift",
+      "source": "fixtures/D-conditional-borrowed.swift",
+      "sha256": "d7889bad484f28dc7301f690024d09104e4d5af822c0010c2c3f9a627f3d343c",
+      "module": "World",
+      "namespace": "World",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "record:fixtures/D-conditional-borrowed.swift/input",
+        "source": "record:fixtures/D-conditional-borrowed.swift/source",
+        "sha256": "record:fixtures/D-conditional-borrowed.swift/sha256",
+        "module": "record:fixtures/D-conditional-borrowed.swift/module",
+        "namespace": "record:fixtures/D-conditional-borrowed.swift/namespace",
+        "role": "record:fixtures/D-conditional-borrowed.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": [
+    {
+      "namespace": "Swift",
+      "version": "vi.court.intrinsic-swift/2",
+      "exports": [
+        "Never",
+        "String"
+      ],
+      "at": {
+        "namespace": "intrinsic/namespace",
+        "version": "intrinsic/version",
+        "exports": [
+          "Primitive.swift:130",
+          "Primitive.swift:145"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "fixtures/D-page.swift",
+      "source": "fixtures/D-page.swift",
+      "sha256": "69ad2eee806afec16c6a94de4cd974ebc326b4aa67dd5469f70eeca56a70a73a",
+      "module": "World",
+      "namespace": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "record:fixtures/D-page.swift/input",
+        "source": "record:fixtures/D-page.swift/source",
+        "sha256": "record:fixtures/D-page.swift/sha256",
+        "module": "record:fixtures/D-page.swift/module",
+        "namespace": "record:fixtures/D-page.swift/namespace",
+        "role": "record:fixtures/D-page.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": [
+    {
+      "namespace": "Swift",
+      "version": "vi.court.intrinsic-swift/2",
+      "exports": [
+        "Never",
+        "String"
+      ],
+      "at": {
+        "namespace": "intrinsic/namespace",
+        "version": "intrinsic/version",
+        "exports": [
+          "Primitive.swift:130",
+          "Primitive.swift:145"
+        ]
+      }
+    }
+  ]
+}

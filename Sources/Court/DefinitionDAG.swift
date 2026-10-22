@@ -69,7 +69,9 @@ extension DefinitionReduction {
             guard depth <= 128 else { throw Failure("expression exceeds validation depth limit") }
             switch term {
             case let .application(name, args):
-                guard try parse(name, allowRigidNames: true) == .application(name, []) else {
+                let validName = source.world.nestedNames.contains(name)
+                    ? true : try parse(name, allowRigidNames: true) == .application(name, [])
+                guard validName else {
                     throw Failure("malformed name in derivation input")
                 }
                 try source.checkApplication(name, args.count)
@@ -87,6 +89,9 @@ extension DefinitionReduction {
         }
         func read(_ expression: Expression, bindings: [String: Int] = [:]) throws -> Int {
             try work.visit()
+            if source.world.nestedNames.contains(expression.text) {
+                return try add(.application(expression.text, []))
+            }
             switch expression {
             case let .application(name, args):
                 if let replacement = bindings[name] {
@@ -121,6 +126,14 @@ extension DefinitionReduction {
                 return try body(d.body, bindings: Dictionary(uniqueKeysWithValues: zip(d.parameters, args)))
             case let .field(owner, axis):
                 guard case let .application(name, args) = try get(owner) else { return nil }
+                if source.world.intrinsicSwift, name == "Swift", args.isEmpty {
+                    if axis == "Never" || (source.world.contextVersion == 2 && axis == "String") {
+                        return try add(.application(axis, []))
+                    }
+                }
+                if source.world.namespaces.contains(name) {
+                    throw Failure("no declaration of nested name '\(self.text(id))'")
+                }
                 try source.checkApplication(name, args.count)
                 if source.rigid.contains(name) { return nil }
                 if source.world.conformers[name] == nil, source.world.presentedBodies.contains(name) {
@@ -195,6 +208,7 @@ extension DefinitionReduction {
 
     final class SharedBuilder {
         let arena: Arena
+        let depthLimit: Int
         var steps: [SharedStep] = []
         var ends: [SharedEnds] = []
         private
@@ -203,7 +217,10 @@ extension DefinitionReduction {
         var identity: [Int: Int] = [:]
         private
         var active = Set<ModeKey>()
-        init(source: Source, work: Work) { arena = Arena(source: source, work: work) }
+        init(source: Source, work: Work, depthLimit: Int = 128) {
+            arena = Arena(source: source, work: work)
+            self.depthLimit = depthLimit
+        }
         var proof: SharedProof { SharedProof(terms: arena.terms, steps: steps) }
         func append(_ step: SharedStep, input: Int, output: Int) throws -> Int {
             let refs = step.references
@@ -231,7 +248,7 @@ extension DefinitionReduction {
         }
         func derive(_ id: Int, head: Bool = false, depth: Int = 0) throws -> Int {
             try arena.work.visit()
-            guard depth <= 128 else {
+            guard depth <= depthLimit else {
                 throw Failure("normalization limit reached at '\(arena.text(id))'; no impossibility inferred")
             }
             let key = ModeKey(term: id, head: head)

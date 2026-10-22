@@ -1,0 +1,59 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "fixtures/M-use.swift",
+      "source": "fixtures/M-use.swift",
+      "sha256": "40de66cba11cdd1adbf19b0cc4d04a03eddadd249f569bd658bfc6c9d216a257",
+      "module": "World",
+      "namespace": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "record:fixtures/M-use.swift/input",
+        "source": "record:fixtures/M-use.swift/source",
+        "sha256": "record:fixtures/M-use.swift/sha256",
+        "module": "record:fixtures/M-use.swift/module",
+        "namespace": "record:fixtures/M-use.swift/namespace",
+        "role": "record:fixtures/M-use.swift/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "fixtures/M-law.swift",
+      "source": "fixtures/M-law.swift",
+      "sha256": "f187639d1869e17f49ae8aec5a57ef5c8325b435f2ed634f31a5fa2d043a7365",
+      "module": "World",
+      "namespace": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "record:fixtures/M-law.swift/input",
+        "source": "record:fixtures/M-law.swift/source",
+        "sha256": "record:fixtures/M-law.swift/sha256",
+        "module": "record:fixtures/M-law.swift/module",
+        "namespace": "record:fixtures/M-law.swift/namespace",
+        "role": "record:fixtures/M-law.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": [
+    {
+      "namespace": "Swift",
+      "version": "vi.court.intrinsic-swift/2",
+      "exports": [
+        "Never",
+        "String"
+      ],
+      "at": {
+        "namespace": "intrinsic/namespace",
+        "version": "intrinsic/version",
+        "exports": [
+          "Primitive.swift:130",
+          "Primitive.swift:145"
+        ]
+      }
+    }
+  ]
+}

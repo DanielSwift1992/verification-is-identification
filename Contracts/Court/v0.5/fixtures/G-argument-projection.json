@@ -1,0 +1,59 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "fixtures/G-argument-use.swift",
+      "source": "fixtures/G-argument-use.swift",
+      "sha256": "03b5d7dba7ae8f13adf1f66947fe9ad12f7252cd2fb8a174bfa7ffe872ff0be8",
+      "module": "World",
+      "namespace": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "record:fixtures/G-argument-use.swift/input",
+        "source": "record:fixtures/G-argument-use.swift/source",
+        "sha256": "record:fixtures/G-argument-use.swift/sha256",
+        "module": "record:fixtures/G-argument-use.swift/module",
+        "namespace": "record:fixtures/G-argument-use.swift/namespace",
+        "role": "record:fixtures/G-argument-use.swift/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "fixtures/G-argument-projection.swift",
+      "source": "fixtures/G-argument-projection.swift",
+      "sha256": "8d7dc57fbee10b1aefc4cbeebcadd7616f7fdfc01b35cc2141212d7ff34a9670",
+      "module": "World",
+      "namespace": "World",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "record:fixtures/G-argument-projection.swift/input",
+        "source": "record:fixtures/G-argument-projection.swift/source",
+        "sha256": "record:fixtures/G-argument-projection.swift/sha256",
+        "module": "record:fixtures/G-argument-projection.swift/module",
+        "namespace": "record:fixtures/G-argument-projection.swift/namespace",
+        "role": "record:fixtures/G-argument-projection.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": [
+    {
+      "namespace": "Swift",
+      "version": "vi.court.intrinsic-swift/2",
+      "exports": [
+        "Never",
+        "String"
+      ],
+      "at": {
+        "namespace": "intrinsic/namespace",
+        "version": "intrinsic/version",
+        "exports": [
+          "Primitive.swift:130",
+          "Primitive.swift:145"
+        ]
+      }
+    }
+  ]
+}

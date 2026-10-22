@@ -393,7 +393,7 @@ struct StructuralSource {
         return result
     }
 
-    init(files: [(String, String)]) throws {
+    init(files: [(String, String)], notationFiles: [CourtNotation.File] = []) throws {
         for (origin, source) in files {
             let ts = try Self.tokens(source)
             var i = 0
@@ -461,6 +461,21 @@ struct StructuralSource {
                     i += 1
                 }
             }
+        }
+        for file in notationFiles {
+            let lent = Set(notationFiles.flatMap { WhereJudge.declaredBuilders($0.world.clean) })
+            let clean = try WhereJudge.stripComments(file.text, lent: lent)
+            let notation = try NotationScope(clean)
+            for declaration in try notation.structural(clean, origin: file.context.input) {
+                guard declaration.kind == "enum" || declaration.kind == "struct" || declaration.kind == "protocol" else { continue }
+                declarations[declaration.name] = declaration
+            }
+            syntax.namespaces.formUnion(notation.namespaces)
+            syntax.nestedNames.formUnion(notation.nested.values)
+        }
+        if !notationFiles.isEmpty {
+            syntax.contextVersion = 2
+            syntax.intrinsicSwift = notationFiles.contains { $0.world.intrinsicSwift }
         }
         // An extension supplies an explicitly named external nominal subject.
         // No physical or runtime interpretation of this external name is inferred.

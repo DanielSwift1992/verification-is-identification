@@ -11,6 +11,10 @@ import Foundation
 
 public enum Judge {
     public static func run(_ arguments: [String]) {
+        if let question = arguments.first, ["where", "count"].contains(question), arguments.contains("--report") {
+            CourtSourcesReport.run(Array(arguments.dropFirst()), question: question)
+            return
+        }
         if arguments.first == "where-report" || arguments.first == "where-admit" {
             WhereResponse.run(Array(arguments.dropFirst()), admission: arguments.first == "where-admit")
             return

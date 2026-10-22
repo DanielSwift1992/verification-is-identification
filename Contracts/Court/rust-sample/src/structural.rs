@@ -529,6 +529,9 @@ pub fn declaration(kind: &str, header: &[String], body: &[String], origin: &str)
 
 impl StructuralSource {
     pub fn new(files: &[(String, String)]) -> Result<StructuralSource, Failure> {
+        Self::new_with_notation(files,&[])
+    }
+    pub fn new_with_notation(files:&[(String,String)],notation_files:&[crate::court_notation::File])->Result<StructuralSource,Failure> {
         let mut source = StructuralSource::default();
         for (origin, text_of_file) in files {
             let ts = tokens(text_of_file)?;
@@ -633,6 +636,17 @@ impl StructuralSource {
                 },
             );
         }
+        for file in notation_files {
+            let lent:HashSet<String>=notation_files.iter().flat_map(|f|crate::lexical::declared_builders(&f.world.clean)).collect();
+            let clean=crate::lexical::strip_comments(&file.text,&lent).map_err(|e|Failure::new(e.messages().join("; ")))?;
+            let notation=crate::notation::Notation::new(&clean).map_err(|e|Failure::new(e.messages().join("; ")))?;
+            for d in notation.structural(&clean,&file.context.input).map_err(|e|Failure::new(e.messages().join("; ")))? {
+                if ["enum","struct","protocol"].contains(&d.kind.as_str()) {source.declarations.insert(d.name.clone(),d);}
+            }
+            source.syntax.namespaces.extend(notation.namespaces);
+            source.syntax.nested_names.extend(notation.nested.into_values());
+        }
+        if !notation_files.is_empty() {source.syntax.context_version=2;source.syntax.intrinsic_swift=notation_files.iter().any(|f|f.world.intrinsic_swift);}
         let subjects: Vec<String> = source.conditional_subjects.iter().cloned().collect();
         for name in subjects {
             if let Some(d) = source.declarations.get_mut(&name) {

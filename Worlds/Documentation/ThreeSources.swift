@@ -369,7 +369,7 @@ public enum ThreeSourcesPart0<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum ThreeSourcesPart1<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont650
     public typealias Content = ThreeSourcesAtom6
     public typealias X = ThreeSourcesAtom7
     public typealias Y = ThreeSourcesAtom8
@@ -380,7 +380,7 @@ public enum ThreeSourcesPart1<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart2<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom10
     public typealias X = ThreeSourcesAtom7
     public typealias Y = ThreeSourcesAtom11
@@ -391,7 +391,7 @@ public enum ThreeSourcesPart2<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart3<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom13
     public typealias X = ThreeSourcesAtom7
     public typealias Y = ThreeSourcesAtom14
@@ -407,25 +407,25 @@ public enum ThreeSourcesPart4<Theme: FigureTheme>: FigurePanel {
     public typealias W = ThreeSourcesAtom16
     public typealias H = ThreeSourcesAtom17
     public typealias Radius = ThreeSourcesAtom18
-    public typealias Fill = Theme.Panel
+    public typealias Fill = Theme.Recessed
     public typealias Stroke = Theme.Rule
     public typealias Width = ThreeSourcesAtom19
     public typealias Dash = ThreeSourcesAtom4
 }
 
 public enum ThreeSourcesPart5<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont700
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom20
     public typealias Y = ThreeSourcesAtom21
     public typealias Size = ThreeSourcesAtom22
-    public typealias Fill = Theme.Law
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart6<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont650
     public typealias Content = ThreeSourcesAtom23
     public typealias X = ThreeSourcesAtom24
     public typealias Y = ThreeSourcesAtom21
@@ -436,7 +436,7 @@ public enum ThreeSourcesPart6<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart7<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom26
     public typealias X = ThreeSourcesAtom27
     public typealias Y = ThreeSourcesAtom28
@@ -447,7 +447,7 @@ public enum ThreeSourcesPart7<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart8<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom30
     public typealias X = ThreeSourcesAtom31
     public typealias Y = ThreeSourcesAtom28
@@ -458,7 +458,7 @@ public enum ThreeSourcesPart8<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart9<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom32
     public typealias X = ThreeSourcesAtom33
     public typealias Y = ThreeSourcesAtom34
@@ -469,18 +469,18 @@ public enum ThreeSourcesPart9<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart10<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom35
     public typealias Y = ThreeSourcesAtom34
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart11<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom37
     public typealias Y = ThreeSourcesAtom34
@@ -491,18 +491,18 @@ public enum ThreeSourcesPart11<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart12<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom38
     public typealias Y = ThreeSourcesAtom34
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart13<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom39
     public typealias Y = ThreeSourcesAtom34
@@ -513,7 +513,7 @@ public enum ThreeSourcesPart13<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart14<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom40
     public typealias Y = ThreeSourcesAtom34
@@ -524,7 +524,7 @@ public enum ThreeSourcesPart14<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart15<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom41
     public typealias X = ThreeSourcesAtom42
     public typealias Y = ThreeSourcesAtom34
@@ -544,7 +544,7 @@ public enum ThreeSourcesPart16<Theme: FigureTheme>: FigureRoute {
 }
 
 public enum ThreeSourcesPart17<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom32
     public typealias X = ThreeSourcesAtom33
     public typealias Y = ThreeSourcesAtom46
@@ -555,18 +555,18 @@ public enum ThreeSourcesPart17<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart18<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom35
     public typealias Y = ThreeSourcesAtom46
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart19<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom37
     public typealias Y = ThreeSourcesAtom46
@@ -577,18 +577,18 @@ public enum ThreeSourcesPart19<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart20<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom38
     public typealias Y = ThreeSourcesAtom46
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart21<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom39
     public typealias Y = ThreeSourcesAtom46
@@ -599,7 +599,7 @@ public enum ThreeSourcesPart21<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart22<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom40
     public typealias Y = ThreeSourcesAtom46
@@ -610,7 +610,7 @@ public enum ThreeSourcesPart22<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart23<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom41
     public typealias X = ThreeSourcesAtom42
     public typealias Y = ThreeSourcesAtom46
@@ -630,7 +630,7 @@ public enum ThreeSourcesPart24<Theme: FigureTheme>: FigureRoute {
 }
 
 public enum ThreeSourcesPart25<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom32
     public typealias X = ThreeSourcesAtom33
     public typealias Y = ThreeSourcesAtom48
@@ -641,18 +641,18 @@ public enum ThreeSourcesPart25<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart26<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom35
     public typealias Y = ThreeSourcesAtom48
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart27<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom37
     public typealias Y = ThreeSourcesAtom48
@@ -663,18 +663,18 @@ public enum ThreeSourcesPart27<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart28<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom38
     public typealias Y = ThreeSourcesAtom48
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart29<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom39
     public typealias Y = ThreeSourcesAtom48
@@ -685,7 +685,7 @@ public enum ThreeSourcesPart29<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart30<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom49
     public typealias X = ThreeSourcesAtom40
     public typealias Y = ThreeSourcesAtom48
@@ -696,7 +696,7 @@ public enum ThreeSourcesPart30<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart31<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom41
     public typealias X = ThreeSourcesAtom42
     public typealias Y = ThreeSourcesAtom48
@@ -716,7 +716,7 @@ public enum ThreeSourcesPart32<Theme: FigureTheme>: FigureRoute {
 }
 
 public enum ThreeSourcesPart33<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom51
     public typealias X = ThreeSourcesAtom52
     public typealias Y = ThreeSourcesAtom53
@@ -727,7 +727,7 @@ public enum ThreeSourcesPart33<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart34<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom54
     public typealias X = ThreeSourcesAtom52
     public typealias Y = ThreeSourcesAtom55
@@ -747,12 +747,12 @@ public enum ThreeSourcesPart35<Theme: FigureTheme>: FigureRoute {
 }
 
 public enum ThreeSourcesPart36<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom57
     public typealias X = ThreeSourcesAtom58
     public typealias Y = ThreeSourcesAtom59
     public typealias Size = ThreeSourcesAtom29
-    public typealias Fill = Theme.Law
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
@@ -770,7 +770,7 @@ public enum ThreeSourcesPart37<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum ThreeSourcesPart38<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont650
     public typealias Content = ThreeSourcesAtom64
     public typealias X = ThreeSourcesAtom65
     public typealias Y = ThreeSourcesAtom66
@@ -781,7 +781,7 @@ public enum ThreeSourcesPart38<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart39<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom68
     public typealias X = ThreeSourcesAtom20
     public typealias Y = ThreeSourcesAtom69
@@ -797,25 +797,25 @@ public enum ThreeSourcesPart40<Theme: FigureTheme>: FigurePanel {
     public typealias W = ThreeSourcesAtom16
     public typealias H = ThreeSourcesAtom71
     public typealias Radius = ThreeSourcesAtom18
-    public typealias Fill = Theme.Panel
+    public typealias Fill = Theme.Recessed
     public typealias Stroke = Theme.Rule
     public typealias Width = ThreeSourcesAtom19
     public typealias Dash = ThreeSourcesAtom4
 }
 
 public enum ThreeSourcesPart41<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont700
     public typealias Content = ThreeSourcesAtom49
     public typealias X = ThreeSourcesAtom20
     public typealias Y = ThreeSourcesAtom72
     public typealias Size = ThreeSourcesAtom22
-    public typealias Fill = Theme.Law
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart42<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont650
     public typealias Content = ThreeSourcesAtom73
     public typealias X = ThreeSourcesAtom24
     public typealias Y = ThreeSourcesAtom72
@@ -826,7 +826,7 @@ public enum ThreeSourcesPart42<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart43<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom74
     public typealias X = ThreeSourcesAtom75
     public typealias Y = ThreeSourcesAtom76
@@ -837,7 +837,7 @@ public enum ThreeSourcesPart43<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart44<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom77
     public typealias X = ThreeSourcesAtom75
     public typealias Y = ThreeSourcesAtom78
@@ -860,7 +860,7 @@ public enum ThreeSourcesPart45<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum ThreeSourcesPart46<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont600
     public typealias Content = ThreeSourcesAtom83
     public typealias X = ThreeSourcesAtom84
     public typealias Y = ThreeSourcesAtom85
@@ -883,7 +883,7 @@ public enum ThreeSourcesPart47<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum ThreeSourcesPart48<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont600
     public typealias Content = ThreeSourcesAtom87
     public typealias X = ThreeSourcesAtom84
     public typealias Y = ThreeSourcesAtom88
@@ -899,25 +899,25 @@ public enum ThreeSourcesPart49<Theme: FigureTheme>: FigurePanel {
     public typealias W = ThreeSourcesAtom16
     public typealias H = ThreeSourcesAtom90
     public typealias Radius = ThreeSourcesAtom18
-    public typealias Fill = Theme.Panel
+    public typealias Fill = Theme.Recessed
     public typealias Stroke = Theme.Rule
     public typealias Width = ThreeSourcesAtom19
     public typealias Dash = ThreeSourcesAtom4
 }
 
 public enum ThreeSourcesPart50<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont700
     public typealias Content = ThreeSourcesAtom91
     public typealias X = ThreeSourcesAtom20
     public typealias Y = ThreeSourcesAtom92
     public typealias Size = ThreeSourcesAtom22
-    public typealias Fill = Theme.Law
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart51<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont650
     public typealias Content = ThreeSourcesAtom93
     public typealias X = ThreeSourcesAtom24
     public typealias Y = ThreeSourcesAtom92
@@ -928,7 +928,7 @@ public enum ThreeSourcesPart51<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart52<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom94
     public typealias X = ThreeSourcesAtom20
     public typealias Y = ThreeSourcesAtom95
@@ -939,7 +939,7 @@ public enum ThreeSourcesPart52<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart53<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom96
     public typealias X = ThreeSourcesAtom97
     public typealias Y = ThreeSourcesAtom98
@@ -950,7 +950,7 @@ public enum ThreeSourcesPart53<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart54<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom99
     public typealias X = ThreeSourcesAtom100
     public typealias Y = ThreeSourcesAtom98
@@ -961,7 +961,7 @@ public enum ThreeSourcesPart54<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart55<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom30
     public typealias X = ThreeSourcesAtom101
     public typealias Y = ThreeSourcesAtom98
@@ -972,7 +972,7 @@ public enum ThreeSourcesPart55<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart56<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom32
     public typealias X = ThreeSourcesAtom102
     public typealias Y = ThreeSourcesAtom103
@@ -983,18 +983,18 @@ public enum ThreeSourcesPart56<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart57<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom104
     public typealias Y = ThreeSourcesAtom103
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart58<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom105
     public typealias Y = ThreeSourcesAtom103
@@ -1005,18 +1005,18 @@ public enum ThreeSourcesPart58<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart59<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom106
     public typealias Y = ThreeSourcesAtom103
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart60<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom107
     public typealias Y = ThreeSourcesAtom103
@@ -1027,7 +1027,7 @@ public enum ThreeSourcesPart60<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart61<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom108
     public typealias Y = ThreeSourcesAtom103
@@ -1038,7 +1038,7 @@ public enum ThreeSourcesPart61<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart62<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom41
     public typealias X = ThreeSourcesAtom109
     public typealias Y = ThreeSourcesAtom103
@@ -1058,7 +1058,7 @@ public enum ThreeSourcesPart63<Theme: FigureTheme>: FigureRoute {
 }
 
 public enum ThreeSourcesPart64<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom32
     public typealias X = ThreeSourcesAtom111
     public typealias Y = ThreeSourcesAtom103
@@ -1069,18 +1069,18 @@ public enum ThreeSourcesPart64<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart65<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom112
     public typealias Y = ThreeSourcesAtom103
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart66<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom113
     public typealias Y = ThreeSourcesAtom103
@@ -1091,18 +1091,18 @@ public enum ThreeSourcesPart66<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart67<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom72
     public typealias Y = ThreeSourcesAtom103
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart68<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom114
     public typealias Y = ThreeSourcesAtom103
@@ -1113,7 +1113,7 @@ public enum ThreeSourcesPart68<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart69<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom115
     public typealias Y = ThreeSourcesAtom103
@@ -1124,7 +1124,7 @@ public enum ThreeSourcesPart69<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart70<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom41
     public typealias X = ThreeSourcesAtom116
     public typealias Y = ThreeSourcesAtom103
@@ -1156,7 +1156,7 @@ public enum ThreeSourcesPart72<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum ThreeSourcesPart73<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom122
     public typealias X = ThreeSourcesAtom123
     public typealias Y = ThreeSourcesAtom103
@@ -1167,7 +1167,7 @@ public enum ThreeSourcesPart73<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart74<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom32
     public typealias X = ThreeSourcesAtom102
     public typealias Y = ThreeSourcesAtom124
@@ -1178,18 +1178,18 @@ public enum ThreeSourcesPart74<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart75<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom104
     public typealias Y = ThreeSourcesAtom124
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart76<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom105
     public typealias Y = ThreeSourcesAtom124
@@ -1200,18 +1200,18 @@ public enum ThreeSourcesPart76<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart77<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom106
     public typealias Y = ThreeSourcesAtom124
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart78<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom107
     public typealias Y = ThreeSourcesAtom124
@@ -1222,7 +1222,7 @@ public enum ThreeSourcesPart78<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart79<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom108
     public typealias Y = ThreeSourcesAtom124
@@ -1233,7 +1233,7 @@ public enum ThreeSourcesPart79<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart80<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom41
     public typealias X = ThreeSourcesAtom109
     public typealias Y = ThreeSourcesAtom124
@@ -1253,7 +1253,7 @@ public enum ThreeSourcesPart81<Theme: FigureTheme>: FigureRoute {
 }
 
 public enum ThreeSourcesPart82<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom32
     public typealias X = ThreeSourcesAtom111
     public typealias Y = ThreeSourcesAtom124
@@ -1264,18 +1264,18 @@ public enum ThreeSourcesPart82<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart83<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom112
     public typealias Y = ThreeSourcesAtom124
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart84<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom113
     public typealias Y = ThreeSourcesAtom124
@@ -1286,18 +1286,18 @@ public enum ThreeSourcesPart84<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart85<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom72
     public typealias Y = ThreeSourcesAtom124
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart86<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom114
     public typealias Y = ThreeSourcesAtom124
@@ -1308,7 +1308,7 @@ public enum ThreeSourcesPart86<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart87<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom115
     public typealias Y = ThreeSourcesAtom124
@@ -1319,7 +1319,7 @@ public enum ThreeSourcesPart87<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart88<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom41
     public typealias X = ThreeSourcesAtom116
     public typealias Y = ThreeSourcesAtom124
@@ -1351,7 +1351,7 @@ public enum ThreeSourcesPart90<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum ThreeSourcesPart91<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom122
     public typealias X = ThreeSourcesAtom123
     public typealias Y = ThreeSourcesAtom124
@@ -1362,7 +1362,7 @@ public enum ThreeSourcesPart91<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart92<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom32
     public typealias X = ThreeSourcesAtom102
     public typealias Y = ThreeSourcesAtom128
@@ -1373,18 +1373,18 @@ public enum ThreeSourcesPart92<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart93<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom104
     public typealias Y = ThreeSourcesAtom128
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart94<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom105
     public typealias Y = ThreeSourcesAtom128
@@ -1395,18 +1395,18 @@ public enum ThreeSourcesPart94<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart95<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom106
     public typealias Y = ThreeSourcesAtom128
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart96<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom107
     public typealias Y = ThreeSourcesAtom128
@@ -1417,7 +1417,7 @@ public enum ThreeSourcesPart96<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart97<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom49
     public typealias X = ThreeSourcesAtom108
     public typealias Y = ThreeSourcesAtom128
@@ -1428,7 +1428,7 @@ public enum ThreeSourcesPart97<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart98<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom41
     public typealias X = ThreeSourcesAtom109
     public typealias Y = ThreeSourcesAtom128
@@ -1448,7 +1448,7 @@ public enum ThreeSourcesPart99<Theme: FigureTheme>: FigureRoute {
 }
 
 public enum ThreeSourcesPart100<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom32
     public typealias X = ThreeSourcesAtom111
     public typealias Y = ThreeSourcesAtom128
@@ -1459,18 +1459,18 @@ public enum ThreeSourcesPart100<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart101<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom112
     public typealias Y = ThreeSourcesAtom128
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart102<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom113
     public typealias Y = ThreeSourcesAtom128
@@ -1481,18 +1481,18 @@ public enum ThreeSourcesPart102<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart103<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom72
     public typealias Y = ThreeSourcesAtom128
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart104<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom114
     public typealias Y = ThreeSourcesAtom128
@@ -1503,7 +1503,7 @@ public enum ThreeSourcesPart104<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart105<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom49
     public typealias X = ThreeSourcesAtom115
     public typealias Y = ThreeSourcesAtom128
@@ -1514,7 +1514,7 @@ public enum ThreeSourcesPart105<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart106<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom41
     public typealias X = ThreeSourcesAtom116
     public typealias Y = ThreeSourcesAtom128
@@ -1546,7 +1546,7 @@ public enum ThreeSourcesPart108<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum ThreeSourcesPart109<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom122
     public typealias X = ThreeSourcesAtom123
     public typealias Y = ThreeSourcesAtom128
@@ -1557,7 +1557,7 @@ public enum ThreeSourcesPart109<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart110<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom132
     public typealias X = ThreeSourcesAtom20
     public typealias Y = ThreeSourcesAtom133
@@ -1568,7 +1568,7 @@ public enum ThreeSourcesPart110<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart111<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom134
     public typealias X = ThreeSourcesAtom20
     public typealias Y = ThreeSourcesAtom135
@@ -1579,23 +1579,23 @@ public enum ThreeSourcesPart111<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart112<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom136
     public typealias X = ThreeSourcesAtom20
     public typealias Y = ThreeSourcesAtom137
     public typealias Size = ThreeSourcesAtom29
-    public typealias Fill = Theme.Law
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart113<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom138
     public typealias X = ThreeSourcesAtom139
     public typealias Y = ThreeSourcesAtom137
     public typealias Size = ThreeSourcesAtom29
-    public typealias Fill = Theme.Law
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
@@ -1606,25 +1606,25 @@ public enum ThreeSourcesPart114<Theme: FigureTheme>: FigurePanel {
     public typealias W = ThreeSourcesAtom16
     public typealias H = ThreeSourcesAtom90
     public typealias Radius = ThreeSourcesAtom18
-    public typealias Fill = Theme.Panel
+    public typealias Fill = Theme.Recessed
     public typealias Stroke = Theme.Rule
     public typealias Width = ThreeSourcesAtom19
     public typealias Dash = ThreeSourcesAtom4
 }
 
 public enum ThreeSourcesPart115<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont700
     public typealias Content = ThreeSourcesAtom141
     public typealias X = ThreeSourcesAtom20
     public typealias Y = ThreeSourcesAtom142
     public typealias Size = ThreeSourcesAtom22
-    public typealias Fill = Theme.Law
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart116<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont650
     public typealias Content = ThreeSourcesAtom143
     public typealias X = ThreeSourcesAtom24
     public typealias Y = ThreeSourcesAtom142
@@ -1635,7 +1635,7 @@ public enum ThreeSourcesPart116<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart117<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom144
     public typealias X = ThreeSourcesAtom20
     public typealias Y = ThreeSourcesAtom145
@@ -1646,7 +1646,7 @@ public enum ThreeSourcesPart117<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart118<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom96
     public typealias X = ThreeSourcesAtom97
     public typealias Y = ThreeSourcesAtom146
@@ -1657,7 +1657,7 @@ public enum ThreeSourcesPart118<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart119<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom147
     public typealias X = ThreeSourcesAtom148
     public typealias Y = ThreeSourcesAtom146
@@ -1668,7 +1668,7 @@ public enum ThreeSourcesPart119<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart120<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom30
     public typealias X = ThreeSourcesAtom101
     public typealias Y = ThreeSourcesAtom146
@@ -1679,7 +1679,7 @@ public enum ThreeSourcesPart120<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart121<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom32
     public typealias X = ThreeSourcesAtom102
     public typealias Y = ThreeSourcesAtom149
@@ -1690,18 +1690,18 @@ public enum ThreeSourcesPart121<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart122<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom104
     public typealias Y = ThreeSourcesAtom149
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart123<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom105
     public typealias Y = ThreeSourcesAtom149
@@ -1712,18 +1712,18 @@ public enum ThreeSourcesPart123<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart124<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom106
     public typealias Y = ThreeSourcesAtom149
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart125<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom107
     public typealias Y = ThreeSourcesAtom149
@@ -1734,7 +1734,7 @@ public enum ThreeSourcesPart125<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart126<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom108
     public typealias Y = ThreeSourcesAtom149
@@ -1745,7 +1745,7 @@ public enum ThreeSourcesPart126<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart127<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom41
     public typealias X = ThreeSourcesAtom109
     public typealias Y = ThreeSourcesAtom149
@@ -1765,7 +1765,7 @@ public enum ThreeSourcesPart128<Theme: FigureTheme>: FigureRoute {
 }
 
 public enum ThreeSourcesPart129<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom32
     public typealias X = ThreeSourcesAtom111
     public typealias Y = ThreeSourcesAtom149
@@ -1776,18 +1776,18 @@ public enum ThreeSourcesPart129<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart130<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom112
     public typealias Y = ThreeSourcesAtom149
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Warning
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart131<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom113
     public typealias Y = ThreeSourcesAtom149
@@ -1798,18 +1798,18 @@ public enum ThreeSourcesPart131<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart132<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom72
     public typealias Y = ThreeSourcesAtom149
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Warning
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart133<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom114
     public typealias Y = ThreeSourcesAtom149
@@ -1820,7 +1820,7 @@ public enum ThreeSourcesPart133<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart134<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom115
     public typealias Y = ThreeSourcesAtom149
@@ -1831,7 +1831,7 @@ public enum ThreeSourcesPart134<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart135<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom41
     public typealias X = ThreeSourcesAtom116
     public typealias Y = ThreeSourcesAtom149
@@ -1863,7 +1863,7 @@ public enum ThreeSourcesPart137<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum ThreeSourcesPart138<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom153
     public typealias X = ThreeSourcesAtom123
     public typealias Y = ThreeSourcesAtom149
@@ -1874,7 +1874,7 @@ public enum ThreeSourcesPart138<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart139<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom32
     public typealias X = ThreeSourcesAtom102
     public typealias Y = ThreeSourcesAtom154
@@ -1885,18 +1885,18 @@ public enum ThreeSourcesPart139<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart140<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom104
     public typealias Y = ThreeSourcesAtom154
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart141<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom105
     public typealias Y = ThreeSourcesAtom154
@@ -1907,18 +1907,18 @@ public enum ThreeSourcesPart141<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart142<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom106
     public typealias Y = ThreeSourcesAtom154
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart143<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom107
     public typealias Y = ThreeSourcesAtom154
@@ -1929,7 +1929,7 @@ public enum ThreeSourcesPart143<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart144<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom108
     public typealias Y = ThreeSourcesAtom154
@@ -1940,7 +1940,7 @@ public enum ThreeSourcesPart144<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart145<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom41
     public typealias X = ThreeSourcesAtom109
     public typealias Y = ThreeSourcesAtom154
@@ -1960,7 +1960,7 @@ public enum ThreeSourcesPart146<Theme: FigureTheme>: FigureRoute {
 }
 
 public enum ThreeSourcesPart147<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom32
     public typealias X = ThreeSourcesAtom111
     public typealias Y = ThreeSourcesAtom154
@@ -1971,18 +1971,18 @@ public enum ThreeSourcesPart147<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart148<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom112
     public typealias Y = ThreeSourcesAtom154
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Warning
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart149<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom113
     public typealias Y = ThreeSourcesAtom154
@@ -1993,18 +1993,18 @@ public enum ThreeSourcesPart149<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart150<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom72
     public typealias Y = ThreeSourcesAtom154
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Warning
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart151<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom114
     public typealias Y = ThreeSourcesAtom154
@@ -2015,7 +2015,7 @@ public enum ThreeSourcesPart151<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart152<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom115
     public typealias Y = ThreeSourcesAtom154
@@ -2026,7 +2026,7 @@ public enum ThreeSourcesPart152<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart153<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom41
     public typealias X = ThreeSourcesAtom116
     public typealias Y = ThreeSourcesAtom154
@@ -2058,7 +2058,7 @@ public enum ThreeSourcesPart155<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum ThreeSourcesPart156<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom64
     public typealias X = ThreeSourcesAtom123
     public typealias Y = ThreeSourcesAtom154
@@ -2069,7 +2069,7 @@ public enum ThreeSourcesPart156<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart157<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom32
     public typealias X = ThreeSourcesAtom102
     public typealias Y = ThreeSourcesAtom158
@@ -2080,18 +2080,18 @@ public enum ThreeSourcesPart157<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart158<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom5
     public typealias X = ThreeSourcesAtom104
     public typealias Y = ThreeSourcesAtom158
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart159<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom105
     public typealias Y = ThreeSourcesAtom158
@@ -2102,18 +2102,18 @@ public enum ThreeSourcesPart159<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart160<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom106
     public typealias Y = ThreeSourcesAtom158
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Success
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart161<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom107
     public typealias Y = ThreeSourcesAtom158
@@ -2124,7 +2124,7 @@ public enum ThreeSourcesPart161<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart162<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom49
     public typealias X = ThreeSourcesAtom108
     public typealias Y = ThreeSourcesAtom158
@@ -2135,7 +2135,7 @@ public enum ThreeSourcesPart162<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart163<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom41
     public typealias X = ThreeSourcesAtom109
     public typealias Y = ThreeSourcesAtom158
@@ -2155,7 +2155,7 @@ public enum ThreeSourcesPart164<Theme: FigureTheme>: FigureRoute {
 }
 
 public enum ThreeSourcesPart165<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom32
     public typealias X = ThreeSourcesAtom111
     public typealias Y = ThreeSourcesAtom158
@@ -2166,18 +2166,18 @@ public enum ThreeSourcesPart165<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart166<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom49
     public typealias X = ThreeSourcesAtom112
     public typealias Y = ThreeSourcesAtom158
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Warning
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart167<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom113
     public typealias Y = ThreeSourcesAtom158
@@ -2188,18 +2188,18 @@ public enum ThreeSourcesPart167<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart168<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom72
     public typealias Y = ThreeSourcesAtom158
     public typealias Size = ThreeSourcesAtom25
-    public typealias Fill = Theme.Warning
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }
 
 public enum ThreeSourcesPart169<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom36
     public typealias X = ThreeSourcesAtom114
     public typealias Y = ThreeSourcesAtom158
@@ -2210,7 +2210,7 @@ public enum ThreeSourcesPart169<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart170<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom0
     public typealias X = ThreeSourcesAtom115
     public typealias Y = ThreeSourcesAtom158
@@ -2221,7 +2221,7 @@ public enum ThreeSourcesPart170<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart171<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom41
     public typealias X = ThreeSourcesAtom116
     public typealias Y = ThreeSourcesAtom158
@@ -2253,7 +2253,7 @@ public enum ThreeSourcesPart173<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum ThreeSourcesPart174<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom162
     public typealias X = ThreeSourcesAtom123
     public typealias Y = ThreeSourcesAtom158
@@ -2264,7 +2264,7 @@ public enum ThreeSourcesPart174<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart175<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom163
     public typealias X = ThreeSourcesAtom20
     public typealias Y = ThreeSourcesAtom164
@@ -2275,7 +2275,7 @@ public enum ThreeSourcesPart175<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart176<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom165
     public typealias X = ThreeSourcesAtom20
     public typealias Y = ThreeSourcesAtom166
@@ -2286,12 +2286,12 @@ public enum ThreeSourcesPart176<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ThreeSourcesPart177<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = ThreeSourcesAtom167
     public typealias X = ThreeSourcesAtom20
     public typealias Y = ThreeSourcesAtom168
     public typealias Size = ThreeSourcesAtom29
-    public typealias Fill = Theme.Law
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ThreeSourcesAtom9
     public typealias Tracking = ThreeSourcesAtom0
 }

@@ -52,8 +52,8 @@
     ]
   },
   "font": {
-    "input": "Assets/DejaVuSans.ttf",
-    "license": "Assets/DejaVuSansLicense.txt",
+    "input": "Assets/InterVariable.ttf",
+    "license": "Assets/InterLicense.txt",
     "corpus": "Worlds/Documentation/Characters.txt",
     "projection": "Worlds/Documentation/Font.swift",
     "required_codepoints": [
@@ -65,6 +65,29 @@
       945,
       946,
       8728
+    ],
+    "assignments": "Worlds/Documentation/CharacterSources.json",
+    "sources": [
+      {
+        "name": "Inter",
+        "input": "Assets/InterVariable.ttf",
+        "sha256": "4989b125924991b90d05b2d16e0e388c48f7d5bb8b30539bbf9c755278d0ccaf",
+        "license": "Assets/InterLicense.txt",
+        "licenseSHA256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+      },
+      {
+        "name": "DejaVu",
+        "input": "Assets/DejaVuSans.ttf",
+        "sha256": "7da195a74c55bef988d0d48f9508bd5d849425c1770dba5d7bfc6ce9ed848954",
+        "license": "Assets/DejaVuSansLicense.txt",
+        "licenseSHA256": "f88d5294af5a772f9114eb385009e3478d62b21f3e5bbc34d159d328047c8867"
+      }
+    ],
+    "weights": [
+      400,
+      600,
+      650,
+      700
     ]
   },
   "grounds": [

@@ -1,7 +1,7 @@
 import Notation
 
-/// Carries measured advances and outlines from one declared font file.
-/// Each line of Glyphs states codepoint, advance and SVG path, separated by `|`.
+/// Carries outlines from explicitly assigned font sources at stated weights.
+/// Each glyph row states codepoint, advance, source, weight and SVG path, separated by `|`.
 public protocol OutlineFontFace: Open {
     associatedtype Units: Structure
     associatedtype Glyphs: Structure
@@ -14,13 +14,13 @@ extension OutlineDefinitions {
         var result = "<defs>\n"
         var seen: Set<Int> = []
         for row in Face.Glyphs.typeName.split(separator: "\n") {
-            let parts = row.split(separator: "|", maxSplits: 2, omittingEmptySubsequences: false)
-            precondition(parts.count == 3, "Outline font: malformed glyph row")
-            guard let code = Int(parts[0]), let advance = Int(parts[1]) else {
+            let parts = row.split(separator: "|", maxSplits: 4, omittingEmptySubsequences: false)
+            precondition(parts.count == 5, "Outline font: malformed glyph row")
+            guard let code = Int(parts[0]), let advance = Double(parts[1]) else {
                 preconditionFailure("Outline font: malformed glyph metric")
             }
             precondition(advance >= 0 && seen.insert(code).inserted, "Outline font: duplicate or negative metric")
-            result += "<path id=\"glyph-\(code)\" d=\"\(parts[2])\"/>\n"
+            result += "<path id=\"\(Face.self)-glyph-\(code)\" data-font-source=\"\(parts[2])\" data-font-weight=\"\(parts[3])\" d=\"\(parts[4])\"/>\n"
         }
         return result + "</defs>\n"
     }
@@ -45,10 +45,10 @@ extension OutlineLabel {
               let size = Double(Size.typeName), size > 0 else {
             preconditionFailure("Outline label: invalid units or size")
         }
-        var advances: [Int: Int] = [:]
+        var advances: [Int: Double] = [:]
         for row in Font.Glyphs.typeName.split(separator: "\n") {
-            let parts = row.split(separator: "|", maxSplits: 2, omittingEmptySubsequences: false)
-            guard parts.count == 3, let code = Int(parts[0]), let advance = Int(parts[1]) else {
+            let parts = row.split(separator: "|", maxSplits: 4, omittingEmptySubsequences: false)
+            guard parts.count == 5, let code = Int(parts[0]), let advance = Double(parts[1]) else {
                 preconditionFailure("Outline label: malformed glyph row")
             }
             precondition(advance >= 0 && advances[code] == nil, "Outline label: duplicate or negative metric")
@@ -78,10 +78,10 @@ extension OutlineLabel {
         }
         let offset = anchor == "middle" ? -width / 2 : (anchor == "end" ? -width : 0)
         let scale = size / units
-        var result = "<g role=\"img\" aria-label=\"\(XMLEscaped<Content>.typeName)\" data-vi-text=\"\(XMLEscaped<Content>.typeName)\" "
+        var result = "<g role=\"img\" aria-label=\"\(XMLEscaped<Content>.typeName)\" data-vi-text=\"\(XMLEscaped<Content>.typeName)\" data-font-face=\"\(Font.self)\" "
             + "fill=\"\(XMLEscaped<Fill>.typeName)\" transform=\"translate(\(X.typeName) \(Y.typeName)) scale(\(scale) \(-scale))\">\n"
         for (code, x) in glyphs {
-            result += "<use href=\"#glyph-\(code)\" transform=\"translate(\(x + offset) 0)\"/>\n"
+            result += "<use href=\"#\(Font.self)-glyph-\(code)\" data-codepoint=\"\(code)\" transform=\"translate(\(x + offset) 0)\"/>\n"
         }
         return result + "</g>\n"
     }

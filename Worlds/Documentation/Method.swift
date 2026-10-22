@@ -315,7 +315,7 @@ public enum MethodPart0<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum MethodPart1<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont700
     public typealias Content = MethodAtom6
     public typealias X = MethodAtom7
     public typealias Y = MethodAtom8
@@ -326,7 +326,7 @@ public enum MethodPart1<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart2<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont650
     public typealias Content = MethodAtom12
     public typealias X = MethodAtom7
     public typealias Y = MethodAtom13
@@ -342,14 +342,14 @@ public enum MethodPart3<Theme: FigureTheme>: FigurePanel {
     public typealias W = MethodAtom16
     public typealias H = MethodAtom17
     public typealias Radius = MethodAtom18
-    public typealias Fill = Theme.Panel
+    public typealias Fill = Theme.Recessed
     public typealias Stroke = Theme.Rule
     public typealias Width = MethodAtom19
     public typealias Dash = MethodAtom4
 }
 
 public enum MethodPart4<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont600
     public typealias Content = MethodAtom20
     public typealias X = MethodAtom21
     public typealias Y = MethodAtom22
@@ -360,7 +360,7 @@ public enum MethodPart4<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart5<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom24
     public typealias X = MethodAtom25
     public typealias Y = MethodAtom22
@@ -383,7 +383,7 @@ public enum MethodPart6<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum MethodPart7<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont600
     public typealias Content = MethodAtom30
     public typealias X = MethodAtom31
     public typealias Y = MethodAtom32
@@ -394,7 +394,7 @@ public enum MethodPart7<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart8<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom33
     public typealias X = MethodAtom31
     public typealias Y = MethodAtom34
@@ -405,7 +405,7 @@ public enum MethodPart8<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart9<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom36
     public typealias X = MethodAtom31
     public typealias Y = MethodAtom37
@@ -416,7 +416,7 @@ public enum MethodPart9<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart10<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom38
     public typealias X = MethodAtom31
     public typealias Y = MethodAtom39
@@ -436,7 +436,7 @@ public enum MethodPart11<Theme: FigureTheme>: FigureRoute {
 }
 
 public enum MethodPart12<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom43
     public typealias X = MethodAtom44
     public typealias Y = MethodAtom45
@@ -452,30 +452,30 @@ public enum MethodPart13<Theme: FigureTheme>: FigurePanel {
     public typealias W = MethodAtom48
     public typealias H = MethodAtom49
     public typealias Radius = MethodAtom18
-    public typealias Fill = Theme.Panel
+    public typealias Fill = Theme.Highlight
     public typealias Stroke = Theme.Rule
     public typealias Width = MethodAtom19
     public typealias Dash = MethodAtom4
 }
 
 public enum MethodPart14<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont600
     public typealias Content = MethodAtom50
     public typealias X = MethodAtom51
     public typealias Y = MethodAtom52
     public typealias Size = MethodAtom23
-    public typealias Fill = Theme.Law
+    public typealias Fill = Theme.OnHighlight
     public typealias Anchor = MethodAtom46
     public typealias Tracking = MethodAtom0
 }
 
 public enum MethodPart15<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom53
     public typealias X = MethodAtom51
     public typealias Y = MethodAtom54
     public typealias Size = MethodAtom35
-    public typealias Fill = Theme.Ink
+    public typealias Fill = Theme.OnHighlight
     public typealias Anchor = MethodAtom46
     public typealias Tracking = MethodAtom0
 }
@@ -520,7 +520,7 @@ public enum MethodPart19<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum MethodPart20<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont600
     public typealias Content = MethodAtom62
     public typealias X = MethodAtom63
     public typealias Y = MethodAtom64
@@ -531,7 +531,7 @@ public enum MethodPart20<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart21<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom65
     public typealias X = MethodAtom63
     public typealias Y = MethodAtom66
@@ -554,7 +554,7 @@ public enum MethodPart22<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum MethodPart23<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom68
     public typealias X = MethodAtom63
     public typealias Y = MethodAtom69
@@ -577,7 +577,7 @@ public enum MethodPart24<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum MethodPart25<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom71
     public typealias X = MethodAtom63
     public typealias Y = MethodAtom72
@@ -588,7 +588,7 @@ public enum MethodPart25<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart26<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom73
     public typealias X = MethodAtom21
     public typealias Y = MethodAtom74
@@ -599,7 +599,7 @@ public enum MethodPart26<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart27<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom75
     public typealias X = MethodAtom21
     public typealias Y = MethodAtom76
@@ -615,14 +615,14 @@ public enum MethodPart28<Theme: FigureTheme>: FigurePanel {
     public typealias W = MethodAtom16
     public typealias H = MethodAtom78
     public typealias Radius = MethodAtom18
-    public typealias Fill = Theme.Panel
+    public typealias Fill = Theme.Recessed
     public typealias Stroke = Theme.Rule
     public typealias Width = MethodAtom19
     public typealias Dash = MethodAtom4
 }
 
 public enum MethodPart29<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont600
     public typealias Content = MethodAtom79
     public typealias X = MethodAtom21
     public typealias Y = MethodAtom80
@@ -633,7 +633,7 @@ public enum MethodPart29<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart30<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom81
     public typealias X = MethodAtom25
     public typealias Y = MethodAtom80
@@ -656,7 +656,7 @@ public enum MethodPart31<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum MethodPart32<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont600
     public typealias Content = MethodAtom85
     public typealias X = MethodAtom31
     public typealias Y = MethodAtom86
@@ -667,7 +667,7 @@ public enum MethodPart32<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart33<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom87
     public typealias X = MethodAtom31
     public typealias Y = MethodAtom88
@@ -678,7 +678,7 @@ public enum MethodPart33<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart34<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom89
     public typealias X = MethodAtom31
     public typealias Y = MethodAtom90
@@ -689,7 +689,7 @@ public enum MethodPart34<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart35<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom91
     public typealias X = MethodAtom31
     public typealias Y = MethodAtom92
@@ -700,7 +700,7 @@ public enum MethodPart35<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart36<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom93
     public typealias X = MethodAtom31
     public typealias Y = MethodAtom94
@@ -711,7 +711,7 @@ public enum MethodPart36<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart37<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom95
     public typealias X = MethodAtom31
     public typealias Y = MethodAtom96
@@ -736,85 +736,85 @@ public enum MethodPart39<Theme: FigureTheme>: FigurePanel {
     public typealias W = MethodAtom99
     public typealias H = MethodAtom84
     public typealias Radius = MethodAtom18
-    public typealias Fill = Theme.Panel
+    public typealias Fill = Theme.Highlight
     public typealias Stroke = Theme.Rule
     public typealias Width = MethodAtom19
     public typealias Dash = MethodAtom4
 }
 
 public enum MethodPart40<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont600
     public typealias Content = MethodAtom100
     public typealias X = MethodAtom101
     public typealias Y = MethodAtom86
     public typealias Size = MethodAtom23
-    public typealias Fill = Theme.Law
+    public typealias Fill = Theme.OnHighlight
     public typealias Anchor = MethodAtom10
     public typealias Tracking = MethodAtom0
 }
 
 public enum MethodPart41<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom102
     public typealias X = MethodAtom101
     public typealias Y = MethodAtom103
     public typealias Size = MethodAtom3
-    public typealias Fill = Theme.Ink
+    public typealias Fill = Theme.OnHighlight
     public typealias Anchor = MethodAtom10
     public typealias Tracking = MethodAtom0
 }
 
 public enum MethodPart42<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom104
     public typealias X = MethodAtom101
     public typealias Y = MethodAtom105
     public typealias Size = MethodAtom35
-    public typealias Fill = Theme.Ink
+    public typealias Fill = Theme.OnHighlight
     public typealias Anchor = MethodAtom10
     public typealias Tracking = MethodAtom0
 }
 
 public enum MethodPart43<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom106
     public typealias X = MethodAtom101
     public typealias Y = MethodAtom63
     public typealias Size = MethodAtom3
-    public typealias Fill = Theme.Muted
+    public typealias Fill = Theme.OnHighlight
     public typealias Anchor = MethodAtom10
     public typealias Tracking = MethodAtom0
 }
 
 public enum MethodPart44<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom107
     public typealias X = MethodAtom101
     public typealias Y = MethodAtom108
     public typealias Size = MethodAtom3
-    public typealias Fill = Theme.Muted
+    public typealias Fill = Theme.OnHighlight
     public typealias Anchor = MethodAtom10
     public typealias Tracking = MethodAtom0
 }
 
 public enum MethodPart45<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom109
     public typealias X = MethodAtom101
     public typealias Y = MethodAtom110
     public typealias Size = MethodAtom3
-    public typealias Fill = Theme.Muted
+    public typealias Fill = Theme.OnHighlight
     public typealias Anchor = MethodAtom10
     public typealias Tracking = MethodAtom0
 }
 
 public enum MethodPart46<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom111
     public typealias X = MethodAtom101
     public typealias Y = MethodAtom112
     public typealias Size = MethodAtom3
-    public typealias Fill = Theme.Muted
+    public typealias Fill = Theme.OnHighlight
     public typealias Anchor = MethodAtom10
     public typealias Tracking = MethodAtom0
 }
@@ -841,7 +841,7 @@ public enum MethodPart48<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum MethodPart49<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont600
     public typealias Content = MethodAtom116
     public typealias X = MethodAtom117
     public typealias Y = MethodAtom86
@@ -852,7 +852,7 @@ public enum MethodPart49<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart50<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom118
     public typealias X = MethodAtom117
     public typealias Y = MethodAtom119
@@ -863,7 +863,7 @@ public enum MethodPart50<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart51<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom120
     public typealias X = MethodAtom117
     public typealias Y = MethodAtom121
@@ -874,7 +874,7 @@ public enum MethodPart51<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart52<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom122
     public typealias X = MethodAtom117
     public typealias Y = MethodAtom63
@@ -885,7 +885,7 @@ public enum MethodPart52<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart53<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom123
     public typealias X = MethodAtom117
     public typealias Y = MethodAtom124
@@ -896,7 +896,7 @@ public enum MethodPart53<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart54<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom125
     public typealias X = MethodAtom117
     public typealias Y = MethodAtom126
@@ -907,7 +907,7 @@ public enum MethodPart54<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart55<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom127
     public typealias X = MethodAtom117
     public typealias Y = MethodAtom128
@@ -918,7 +918,7 @@ public enum MethodPart55<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart56<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom129
     public typealias X = MethodAtom21
     public typealias Y = MethodAtom117
@@ -929,7 +929,7 @@ public enum MethodPart56<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart57<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom130
     public typealias X = MethodAtom21
     public typealias Y = MethodAtom131
@@ -940,7 +940,7 @@ public enum MethodPart57<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart58<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom132
     public typealias X = MethodAtom21
     public typealias Y = MethodAtom133
@@ -960,7 +960,7 @@ public enum MethodPart59<Theme: FigureTheme>: FigureRoute {
 }
 
 public enum MethodPart60<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom135
     public typealias X = MethodAtom136
     public typealias Y = MethodAtom137
@@ -983,7 +983,7 @@ public enum MethodPart61<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum MethodPart62<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont600
     public typealias Content = MethodAtom140
     public typealias X = MethodAtom21
     public typealias Y = MethodAtom141
@@ -994,7 +994,7 @@ public enum MethodPart62<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum MethodPart63<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont
+    public typealias Font = FigureFont400
     public typealias Content = MethodAtom142
     public typealias X = MethodAtom21
     public typealias Y = MethodAtom143

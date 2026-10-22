@@ -33,11 +33,12 @@ enum GenerateFont {
 
     static func run(_ args: [String]) {
         let outlines = args.first == "--outlines"
-        if outlines && args.count != 4 {
-            fputs("usage: FontMetrics --outlines <font> <utf8-corpus> <output.swift>\n", stderr)
+        let coverage = args.first == "--coverage"
+        if (outlines || coverage) && (args.count < 4 || (args.count - 4) % 2 != 0) {
+            fputs("usage: FontMetrics --outlines|--coverage <font> <utf8-corpus> <output> [--name <atom>] [--source <atom>] [--weight <wght>]\n", stderr)
             exit(2)
         }
-        let fontPath = outlines ? args[1] : (args.first ?? "Assets/InterVariable.ttf")
+        let fontPath = (outlines || coverage) ? args[1] : (args.first ?? "Assets/InterVariable.ttf")
         guard let data = try? Data(contentsOf: URL(fileURLWithPath: fontPath)) else {
             FileHandle.standardError.write(Data("cannot read \(fontPath)\n".utf8))
             exit(2)
@@ -131,6 +132,19 @@ enum GenerateFont {
             return font.u16(hmtx + 4 * index)
         }
 
+        if coverage {
+            do {
+                let corpus = try String(contentsOfFile: args[2], encoding: .utf8)
+                let codes = Set(corpus.unicodeScalars.filter { !CharacterSet.newlines.contains($0) }.map { Int($0.value) }).sorted()
+                let report: [String: Any] = ["unitsPerEm": unitsPerEm, "glyphs": codes.map { ["codepoint": $0, "glyph": glyph(for: $0)] }]
+                try JSONSerialization.data(withJSONObject: report, options: [.prettyPrinted, .sortedKeys]).write(to: URL(fileURLWithPath: args[3]), options: .atomic)
+            } catch {
+                fputs("FontMetrics: \(error.localizedDescription)\n", stderr)
+                exit(2)
+            }
+            return
+        }
+
         if outlines {
             #if canImport(CoreText)
             do {
@@ -140,11 +154,57 @@ enum GenerateFont {
                       let graphics = CGFont(provider) else {
                     throw NSError(domain: "FontMetrics", code: 2, userInfo: [NSLocalizedDescriptionKey: "empty corpus or invalid font: \(fontPath)"])
                 }
-                let face = CTFontCreateWithGraphicsFont(graphics, CGFloat(unitsPerEm), nil, nil)
+                var name = "FigureFont"
+                var source = "FontFile"
+                var requestedWeight: Double?
+                for index in stride(from: 4, to: args.count, by: 2) {
+                    switch args[index] {
+                    case "--name": name = args[index + 1]
+                    case "--source": source = args[index + 1]
+                    case "--weight":
+                        guard let value = Double(args[index + 1]), value.isFinite else {
+                            throw NSError(domain: "FontMetrics", code: 2, userInfo: [NSLocalizedDescriptionKey: "invalid wght value: \(args[index + 1])"])
+                        }
+                        requestedWeight = value
+                    default: throw NSError(domain: "FontMetrics", code: 2, userInfo: [NSLocalizedDescriptionKey: "unknown outline option: \(args[index])"])
+                    }
+                }
+                guard [name, source].allSatisfy({ $0.range(of: "^[A-Za-z][A-Za-z0-9]*$", options: .regularExpression) != nil }) else {
+                    throw NSError(domain: "FontMetrics", code: 2, userInfo: [NSLocalizedDescriptionKey: "invalid outline atom: \(name)"])
+                }
+                let base = CTFontCreateWithGraphicsFont(graphics, CGFloat(unitsPerEm), nil, nil)
+                let axes = (CTFontCopyVariationAxes(base) as? [[String: Any]]) ?? []
+                var coordinates: [NSNumber: NSNumber] = [:]
+                var axisReport: [[String: Any]] = []
+                for axis in axes {
+                    let identifier = axis[kCTFontVariationAxisIdentifierKey as String] as! NSNumber
+                    let minimum = axis[kCTFontVariationAxisMinimumValueKey as String] as! NSNumber
+                    let maximum = axis[kCTFontVariationAxisMaximumValueKey as String] as! NSNumber
+                    let standard = axis[kCTFontVariationAxisDefaultValueKey as String] as! NSNumber
+                    let value = identifier.intValue == 0x77676874 ? (requestedWeight ?? standard.doubleValue) : standard.doubleValue
+                    guard value >= minimum.doubleValue && value <= maximum.doubleValue else {
+                        throw NSError(domain: "FontMetrics", code: 2, userInfo: [NSLocalizedDescriptionKey: "\(fontPath): variation outside declared axis range"])
+                    }
+                    coordinates[identifier] = NSNumber(value: value)
+                    axisReport.append(["identifier": identifier, "minimum": minimum, "maximum": maximum, "default": standard, "selected": value])
+                }
+                if requestedWeight != nil && coordinates[NSNumber(value: 0x77676874)] == nil {
+                    throw NSError(domain: "FontMetrics", code: 2, userInfo: [NSLocalizedDescriptionKey: "\(fontPath): no wght axis"])
+                }
+                let descriptor = CTFontDescriptorCreateWithAttributes([kCTFontVariationAttribute: coordinates] as CFDictionary)
+                let face = CTFontCreateCopyWithAttributes(base, CGFloat(unitsPerEm), nil, descriptor)
+                let actual = (CTFontCopyVariation(face) as? [NSNumber: NSNumber]) ?? [:]
+                for (key, value) in coordinates {
+                    let standard = axes.first { ($0[kCTFontVariationAxisIdentifierKey as String] as? NSNumber) == key }?[kCTFontVariationAxisDefaultValueKey as String] as? NSNumber
+                    guard (actual[key] ?? standard)?.doubleValue == value.doubleValue else {
+                        throw NSError(domain: "FontMetrics", code: 2, userInfo: [NSLocalizedDescriptionKey: "\(fontPath): requested variation was not applied: \(key)"])
+                    }
+                }
                 func number(_ value: CGFloat) -> String {
                     let n = Double(value)
                     return n == n.rounded() ? String(Int(n)) : String(n)
                 }
+                let weight = coordinates[NSNumber(value: 0x77676874)]?.doubleValue ?? tables["OS/2"].map { Double(font.u16($0 + 4)) } ?? 400
                 var rows: [String] = []
                 var measurements: [[String: Any]] = []
                 for code in codes {
@@ -171,20 +231,23 @@ enum GenerateFont {
                     } else if code != 32 {
                         throw NSError(domain: "FontMetrics", code: 2, userInfo: [NSLocalizedDescriptionKey: "\(fontPath): glyph U+\(String(code, radix: 16).uppercased()) has no outline"])
                     }
-                    let width = advance(forGlyph: identifier)
-                    rows.append("\(code)|\(width)|\(commands.joined())")
+                    var measuredGlyph = CGGlyph(identifier)
+                    var measuredAdvance = CGSize.zero
+                    CTFontGetAdvancesForGlyphs(face, .horizontal, &measuredGlyph, &measuredAdvance, 1)
+                    let width = Double(measuredAdvance.width)
+                    rows.append("\(code)|\(width)|\(source)|\(number(CGFloat(weight)))|\(commands.joined())")
                     measurements.append(["codepoint": code, "glyph": identifier, "advance": width])
                 }
                 let text = "import Notation\nimport DocumentKit\n\n// GENERATED by FontMetrics --outlines from the declared font and corpus.\n"
-                    + "public enum FigureFontUnits: Close {}\nextension FigureFontUnits { public static var typeName: String { \"\(unitsPerEm)\" } }\n"
-                    + "public enum FigureFontGlyphs: Close {}\nextension FigureFontGlyphs { public static var typeName: String {\n    \"\"\"\n"
+                    + "public enum \(name)Units: Close {}\nextension \(name)Units { public static var typeName: String { \"\(unitsPerEm)\" } }\n"
+                    + "public enum \(name)Glyphs: Close {}\nextension \(name)Glyphs { public static var typeName: String {\n    \"\"\"\n"
                     + rows.map { "    " + $0 }.joined(separator: "\n") + "\n    \"\"\"\n} }\n"
-                    + "public enum FigureFont: OutlineFontFace {\n    public typealias Units = FigureFontUnits\n    public typealias Glyphs = FigureFontGlyphs\n}\n"
+                    + "public enum \(name): OutlineFontFace {\n    public typealias Units = \(name)Units\n    public typealias Glyphs = \(name)Glyphs\n}\n"
                 try text.write(toFile: args[3], atomically: true, encoding: .utf8)
                 let capitalH = CTFontCreatePathForGlyph(face, CGGlyph(glyph(for: 72)), nil)?.boundingBoxOfPath.height ?? 0
                 let report: [String: Any] = ["unitsPerEm": unitsPerEm, "capHeight": capHeight,
                     "capHeightSource": capHeight > 0 ? "OS/2" : "not supplied by OS/2",
-                    "capitalHOutlineHeight": Double(capitalH), "glyphs": measurements]
+                    "capitalHOutlineHeight": Double(capitalH), "variationAxes": axisReport, "source": fontPath, "glyphs": measurements]
                 let bytes = try JSONSerialization.data(withJSONObject: report, options: [.prettyPrinted, .sortedKeys])
                 try bytes.write(to: URL(fileURLWithPath: args[3] + ".json"), options: .atomic)
                 print("outlined \(rows.count) glyphs from \(fontPath): cap \(capHeight), units \(unitsPerEm); \(args[3])")

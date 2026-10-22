@@ -2,441 +2,529 @@
   {
     "codepoint": 32,
     "character": " ",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 35,
     "character": "#",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 39,
     "character": "'",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 40,
     "character": "(",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 41,
     "character": ")",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 43,
     "character": "+",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 44,
     "character": ",",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 45,
     "character": "-",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 46,
     "character": ".",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 47,
     "character": "/",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 48,
     "character": "0",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 49,
     "character": "1",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 50,
     "character": "2",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 51,
     "character": "3",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 52,
     "character": "4",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 53,
     "character": "5",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 54,
     "character": "6",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 55,
     "character": "7",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 56,
     "character": "8",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 58,
     "character": ":",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 59,
     "character": ";",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 61,
     "character": "=",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 63,
     "character": "?",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 65,
     "character": "A",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 66,
     "character": "B",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 67,
     "character": "C",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 68,
     "character": "D",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 69,
     "character": "E",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 70,
     "character": "F",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 71,
     "character": "G",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 72,
     "character": "H",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 73,
     "character": "I",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 75,
     "character": "K",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 76,
     "character": "L",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 77,
     "character": "M",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 78,
     "character": "N",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 79,
     "character": "O",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 80,
     "character": "P",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 81,
     "character": "Q",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 82,
     "character": "R",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 83,
     "character": "S",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 84,
     "character": "T",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 85,
     "character": "U",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 86,
     "character": "V",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 87,
     "character": "W",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 88,
     "character": "X",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 89,
     "character": "Y",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 97,
     "character": "a",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 98,
     "character": "b",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 99,
     "character": "c",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 100,
     "character": "d",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 101,
     "character": "e",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 102,
     "character": "f",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 103,
     "character": "g",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 104,
     "character": "h",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 105,
     "character": "i",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 106,
     "character": "j",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 107,
     "character": "k",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 108,
     "character": "l",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 109,
     "character": "m",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 110,
     "character": "n",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 111,
     "character": "o",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 112,
     "character": "p",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 113,
     "character": "q",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 114,
     "character": "r",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 115,
     "character": "s",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 116,
     "character": "t",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 117,
     "character": "u",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 118,
     "character": "v",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 119,
     "character": "w",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 120,
     "character": "x",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 121,
     "character": "y",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 122,
     "character": "z",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 123,
     "character": "{",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 125,
     "character": "}",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 183,
     "character": "·",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 215,
     "character": "×",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 945,
     "character": "α",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 946,
     "character": "β",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 8211,
     "character": "–",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 8212,
     "character": "—",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 8594,
     "character": "→",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 8709,
     "character": "∅",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 8712,
     "character": "∈",
-    "source": "DejaVu"
+    "source": "DejaVu",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 8728,
     "character": "∘",
-    "source": "DejaVu"
+    "source": "DejaVu",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 8800,
     "character": "≠",
-    "source": "Inter"
+    "source": "Inter",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 8838,
     "character": "⊆",
-    "source": "DejaVu"
+    "source": "DejaVu",
+    "monoSource": "DejaVuMono"
   },
   {
     "codepoint": 8898,
     "character": "⋂",
-    "source": "DejaVu"
+    "source": "DejaVu",
+    "monoSource": "DejaVuMono"
   }
 ]

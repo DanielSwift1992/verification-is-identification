@@ -1,14 +1,15 @@
 {
-  "inputSHA256": "ccc53641fffd0bb1acf7c0d4d8e77c59a29b351bcab8d183d289d939cc062864",
+  "inputSHA256": "5dd812d1befd85f8d0a85215b06e321b7ca96b566b19d71c0d0622817ca7c0b3",
   "inputs": {
-    "Assets/DejaVuSans.json": "2e9821aa66637422c4cfed9d380fbe76f3ffae739ff01a647dfb1778835b5720",
+    "Assets/DejaVuSans.json": "ff0d1fed0c0aeba3eb22a207691f49191df5beb0a6cf31cf550932395ab2def3",
     "Assets/DejaVuSans.ttf": "7da195a74c55bef988d0d48f9508bd5d849425c1770dba5d7bfc6ce9ed848954",
     "Assets/DejaVuSansLicense.txt": "f88d5294af5a772f9114eb385009e3478d62b21f3e5bbc34d159d328047c8867",
+    "Assets/DejaVuSansMono.ttf": "b4a6c3e4faab8773f4ff761d56451646409f29abedd68f05d38c2df667d3c582",
     "Assets/InterLicense.txt": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
     "Assets/InterVariable.ttf": "4989b125924991b90d05b2d16e0e388c48f7d5bb8b30539bbf9c755278d0ccaf",
     "Checks/Coverage.swift": "6d4eb001cd0a0b7ba79d338bb4395740c3f458acf83809de27da31bd878169d8",
     "Checks/Transition.swift": "ff82e7a071192c10efb937f64f785491a41607d0f0d64395681f9a9c7f6cfa91",
-    "Checks/vi-figures.py": "4de42b9c674d83e83431037bab04ed16e9c2b1269bc37aeeba918e40288b01bf",
+    "Checks/vi-figures.py": "64c55543ae1f432a48eeea139bb92c24400d8ebb11cec4c900ca274265f389e1",
     "Documentation/Figures/beam-study-sources.md": "9b159db96dd1b90e6c600ac44d08a407985a657deedfd6df9b106886b7745e31",
     "Package.swift": "795ca378a19e10d26c82c6d3f577a9f36a850bbaba6d8c2232a1254ecad785be",
     "Sources/Alphabet/Alphabet.swift": "58e1462a529cbc468907ac8b1db85568962a0f921623d954a4592345b01fb7ca",
@@ -71,212 +72,2275 @@
     "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verification_is_identification.md": "7ee6858625eebf63629bf37f0570a43f43bdbe92341f9d3e7002441198536dcd",
     "Sources/VerificationIsIdentification/Voice.swift": "ffe3fa74ce3aa5dd42433e4508a03fa28895921e4cc42bcd4d220b2be93a4f13",
     "Sources/VerificationIsIdentification/Wave.swift": "8f7d1377b794185785a206b43aa59137935b7e98802ff93ab92d05f38d637c35",
-    "Worlds/Documentation/Architecture.swift": "336e4e5521036a273d671ec066b0ed52a8055972c00010e223dc93cc861aefc7",
-    "Worlds/Documentation/CharacterSources.json": "042f395268edabc66efb4dce85d51b824940253401189893ea2cebfac86b4364",
+    "Worlds/Documentation/Architecture.swift": "9af131567123ef77d073889e2e4c640412b255174188a9a5c5e29f15f9ed2cb4",
+    "Worlds/Documentation/CharacterSources.json": "acb0e4c4e6d0faec29a32d0273461eee18738ac8074617009a75b382bc2e135d",
     "Worlds/Documentation/Characters.txt": "b2218c5748302e8a180e512bf2d9b9297f66618e6b8d6ec9258d04aa3f02505e",
-    "Worlds/Documentation/Construction.swift": "e20c605a6a0e49c7262125fb55309210beac7c4d7cdffefadc68387dea3c8350",
-    "Worlds/Documentation/Font.swift": "e619728c53efb9cd0af6c1cdc64067df437f43196681fbb160339d7b19b8881e",
-    "Worlds/Documentation/Method.swift": "1e21a33846b0616cfd61831797bd32149ff1a98e318f2269115b71e7cc4f5edd",
-    "Worlds/Documentation/Theme.swift": "a0eaad5de2232ed9d99a93611cb12260ebe926a2139e39eadc40e428df64e755",
-    "Worlds/Documentation/ThreeSources.swift": "f3ba1bda7432d1083ed9e35ada0f91e82a0c6980201ab5deb0ca6a7ad5dfc48f",
-    "Worlds/Documentation/figures.json": "c96f927f51238fa4db0429d51bde6d97d9c979004283867de84fc7978fd7efe3",
-    "https://github.com/DanielSwift1992/verification-is-identification-showcase@405dfd9ff9a4e7bd834b59b668be0a39e1e28ca0:Worlds/Playground/Site/DrawingBindings.swift": "82ac340400ee61a8b20e5a444409a3aa00f2749ec92715da92524d84755223f7",
-    "https://github.com/DanielSwift1992/verification-is-identification-showcase@405dfd9ff9a4e7bd834b59b668be0a39e1e28ca0:Worlds/Playground/Site/Palette.swift": "c3a28b82fd9d14ac409c5dedba24d53158df00f9e67b7c53f9adc8c5e37d3fa5"
+    "Worlds/Documentation/Construction.swift": "cd5d4de5e9ceea23464830eaa5f30cf91f79aefaf957300e61689fcf51b7b9ed",
+    "Worlds/Documentation/Font.swift": "eff7d79a106b5f086c28dd45832089cfdb3c7bbaede266565575f42e469e8353",
+    "Worlds/Documentation/Method.swift": "fdd289d3bc6feb04b29b51c8c00d7a31565e2e13465f145e42a7c40f619e22c8",
+    "Worlds/Documentation/Registers.swift": "23b0965bb46b5bb659f7a46305fc1a5a94b9cd33c785fe07463dfa2f6b998e13",
+    "Worlds/Documentation/Theme.swift": "1b46eef9cb7057738bf60da74ff941cb33990742ef766a555b07baff42b1d01a",
+    "Worlds/Documentation/ThreeSources.swift": "0dbfecee40644f6fa5934b568b5542ae63aa136fee73ba757a2fb6952f3d56ae",
+    "Worlds/Documentation/figures.json": "f8766d67ee645146f8da40aca7cf6f65b4e8e522a9d0e5f6bc82a72e62bcbd54",
+    "https://github.com/DanielSwift1992/gate@bbd807bc504ef2146c2265d43521108c4e37c115:bin/drawing-fonts.json": "1aa7c531898300766377f0f7a6daf56453386382f02c0b8e6d3db8269dcb5098",
+    "https://github.com/DanielSwift1992/gate@bbd807bc504ef2146c2265d43521108c4e37c115:stdlib/bench-palette.swift": "6a815d104d17837cab25e342432380cd3898074305e8c6bdd298fee6fb8402cd",
+    "https://github.com/DanielSwift1992/gate@bbd807bc504ef2146c2265d43521108c4e37c115:stdlib/bench-registers.swift": "c3278902fd8251598334508423efffcde11a73c0c34e3f1e653f238814b588de",
+    "https://github.com/DanielSwift1992/gate@bbd807bc504ef2146c2265d43521108c4e37c115:web/ui.html": "2175db31f50e979e8e146a032c8726af11e0af42933af7a314bc6d0721079eec"
   },
   "outputs": {
-    "Documentation/Figures/vi-method.svg": "0a8a61ffb5ea83accda24e31ff16f49b9783a52226ffaa71c8abc83bb9fc6fc7",
-    "Documentation/Figures/answer-determination.svg": "d864eab01649d8434f3b0de2178f4d339d1663dfde9d72f5e4a74e4884e2e108",
-    "Documentation/Figures/adequate-continuation.svg": "cc7c48bc1f3d1618b63f5806087fcc129ea6c91dfc713fbfb10980837103b300",
-    "Documentation/Figures/framework-architecture.svg": "eeb82c8be4a350566a1a824043a2825fe85ac5834f799a3fb324898f526f44c1",
-    "Documentation/Figures/beam-study.svg": "ae5cf1ae08e407354a2bb3f39ed86befc3443dd20a2235358cc11e50c75ccc5d",
-    "Documentation/Figures/beam-questions.svg": "87aef44993c40e293ba2c8b09348d0ff9ca481006f94248a7e82ffff8690e179",
-    "Documentation/Figures/beam-continuation.svg": "657b0dd9d7450c5f7648503bba802c967c7937bb7e9512a1ba92d4d916462bdc",
-    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law.svg": "8a76e83859db313be6a2e9614ac14fee527d4908ab67a1d5e81381d83280733e",
-    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law~dark.svg": "6069ae9453595fba4add236f405f03961993a1db06062c1ccf84b4a9d74e1954"
+    "Documentation/Figures/vi-method.svg": "2f3adc3df97f15d8d4e135c44c86ea89d63466174779e6380bb6c62d9ce32f87",
+    "Documentation/Figures/answer-determination.svg": "bfac458684ad77a73aba6a16a59616a653b03e05abd6a93e84cceb781497c11b",
+    "Documentation/Figures/adequate-continuation.svg": "058c005495c94cecc6f7c6844086ec731edd7270011188208767038b02d105c9",
+    "Documentation/Figures/framework-architecture.svg": "008cd2367f6e37266981640d1275a405c05e7199b96a54ff93e96a1e345e7761",
+    "Documentation/Figures/beam-study.svg": "f73e4be0abc6ab42bf95602bbd31cce3479aba8714d6a7ff3549f772d508964a",
+    "Documentation/Figures/beam-questions.svg": "15ceb4033edaf82c319fb6f0aea099146f6594fb82be4280c092ec4d0c74036c",
+    "Documentation/Figures/beam-continuation.svg": "02b454a9dd3d1809fa78192b51cc4d2357f84204960f0fd179c4d9f82b5050ae",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law.svg": "a44cf01aa19bfe72dae4ceb593d553f559a4d4c135eb59f89311e40920c72d2a",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law~dark.svg": "e1450a49d30b1374b52ea2160f79f3d5758ab8d8a9de98c9b3e2711bca21dd0f"
   },
   "contrast": [
-    "TextOnPaper",
-    "MutedOnPaper",
-    "TextOnMist",
-    "MutedOnMist",
-    "InkOnAccent",
-    "LawOnPaper",
-    "OkOnPaper",
-    "RefusalOnPaper",
-    "TextOnSurfaceCardDim",
-    "MutedOnSurfaceCardDim"
+    "Paper_Ink_lit",
+    "Paper_Muted_lit",
+    "Paper_Ok_lit",
+    "Paper_Bad_lit",
+    "Paper_Action_lit",
+    "Paper_Law_lit",
+    "Paper_LocalType_lit",
+    "Paper_KnownName_lit",
+    "Paper_Seam_lit",
+    "Ink_Paper_dim",
+    "Muted_Paper_dim",
+    "Ok_Paper_dim",
+    "Bad_Paper_dim",
+    "Action_Paper_dim",
+    "Law_Paper_dim",
+    "LocalType_Paper_dim",
+    "KnownName_Paper_dim",
+    "Seam_Paper_dim"
+  ],
+  "registers": {
+    "registers": {
+      "Brand": {
+        "face": "Sans",
+        "leadingHundredths": 120,
+        "sizeTenths": 150,
+        "stress": "Firm"
+      },
+      "Caption": {
+        "face": "Sans",
+        "leadingHundredths": 140,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Captionbare": {
+        "face": "Sans",
+        "leadingHundredths": null,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Captionline": {
+        "face": "Sans",
+        "leadingHundredths": 145,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Captionloose": {
+        "face": "Sans",
+        "leadingHundredths": 150,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Codeinline": {
+        "face": "Mono",
+        "leadingHundredths": 140,
+        "sizeTenths": 120,
+        "stress": "Plain"
+      },
+      "Control": {
+        "face": "Sans",
+        "leadingHundredths": null,
+        "sizeTenths": 130,
+        "stress": "Plain"
+      },
+      "Controlsmall": {
+        "face": "Sans",
+        "leadingHundredths": null,
+        "sizeTenths": 125,
+        "stress": "Plain"
+      },
+      "Fact": {
+        "face": "Mono",
+        "leadingHundredths": 145,
+        "sizeTenths": 125,
+        "stress": "Plain"
+      },
+      "Factbare": {
+        "face": "Mono",
+        "leadingHundredths": null,
+        "sizeTenths": 125,
+        "stress": "Plain"
+      },
+      "Factfirm": {
+        "face": "Mono",
+        "leadingHundredths": 145,
+        "sizeTenths": 125,
+        "stress": "Firm"
+      },
+      "Headline": {
+        "face": "Sans",
+        "leadingHundredths": 130,
+        "sizeTenths": 150,
+        "stress": "Firm"
+      },
+      "Headsmall": {
+        "face": "Sans",
+        "leadingHundredths": 100,
+        "sizeTenths": 130,
+        "stress": "Firm"
+      },
+      "Keycap": {
+        "face": "Mono",
+        "leadingHundredths": null,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Monoline": {
+        "face": "Mono",
+        "leadingHundredths": 145,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Prose": {
+        "face": "Sans",
+        "leadingHundredths": 150,
+        "sizeTenths": 130,
+        "stress": "Plain"
+      },
+      "Proseloose": {
+        "face": "Sans",
+        "leadingHundredths": 160,
+        "sizeTenths": 130,
+        "stress": "Plain"
+      },
+      "Rubric": {
+        "face": "Sans",
+        "leadingHundredths": 140,
+        "sizeTenths": 110,
+        "stress": "Firm"
+      },
+      "Source": {
+        "face": "Mono",
+        "leadingHundredths": 152,
+        "sizeTenths": 125,
+        "stress": "Plain"
+      },
+      "Speech": {
+        "face": "Sans",
+        "leadingHundredths": 145,
+        "sizeTenths": 130,
+        "stress": "Plain"
+      }
+    },
+    "used": [
+      "Brand",
+      "Caption",
+      "Fact",
+      "Headline",
+      "Headsmall",
+      "Rubric",
+      "Speech"
+    ],
+    "equalities": [
+      "CodeinlineOverCaption",
+      "FactOverCodeinline",
+      "SpeechOverFact",
+      "BrandOverSpeech",
+      "BrandLeadClearsItsLetters",
+      "CaptionLeadClearsItsLetters",
+      "CaptionlineLeadClearsItsLetters",
+      "CaptionlooseLeadClearsItsLetters",
+      "CodeinlineLeadClearsItsLetters",
+      "FactLeadClearsItsLetters",
+      "HeadlineLeadClearsItsLetters",
+      "HeadsmallLeadClearsItsLetters",
+      "MonolineLeadClearsItsLetters",
+      "ProseLeadClearsItsLetters",
+      "ProselooseLeadClearsItsLetters",
+      "SourceLeadClearsItsLetters",
+      "RubricLeadClearsItsLetters",
+      "FactfirmIsFactSized",
+      "FactfirmLeadsLikeFact",
+      "FactfirmLeadClearsItsLetters",
+      "RubricIsCaptionSized",
+      "SpeechLeadClearsItsLetters"
+    ]
+  },
+  "labelRegisters": [
+    {
+      "world": "Method",
+      "declaration": "MethodPart1",
+      "text": "VERIFICATION IS IDENTIFICATION",
+      "register": "Brand",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart2",
+      "text": "What do the available relations determine?",
+      "register": "Headline",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart4",
+      "text": "1   Establish an answer",
+      "register": "Headsmall",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart5",
+      "text": "VI \u00b7 U2c",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart7",
+      "text": "Compatible cases",
+      "register": "Headsmall",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart8",
+      "text": "S = {s \u2208 F : C(s)}",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart9",
+      "text": "F: admitted candidates",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart10",
+      "text": "C: supplied constraints",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart12",
+      "text": "ask",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart14",
+      "text": "Question q",
+      "register": "Headsmall",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart15",
+      "text": "q : F \u2192 A",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart20",
+      "text": "One answer",
+      "register": "Headsmall",
+      "paint": "Ok"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart21",
+      "text": "S \u2260 \u2205 and q(S) = {a}",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart23",
+      "text": "Several answers: q varies on S",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart25",
+      "text": "No compatible case: S = \u2205",
+      "register": "Speech",
+      "paint": "Bad"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart26",
+      "text": "One answer can be established while several source candidates remain.",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart27",
+      "text": "A check that has not yet decided which case holds is in a separate state.",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart29",
+      "text": "2   Choose a continuation",
+      "register": "Headsmall",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart30",
+      "text": "Acquisition Keeps Its Question \u00b7 The law",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart32",
+      "text": "Source and reached state",
+      "register": "Headsmall",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart33",
+      "text": "F \u2286 X \u00d7 Y, actual relation",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart34",
+      "text": "x: initial condition",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart35",
+      "text": "y: reached state",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart36",
+      "text": "m = E(y): complete input",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart37",
+      "text": "to the choice of continuation",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart40",
+      "text": "What works throughout",
+      "register": "Headsmall",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart41",
+      "text": "S(m) = {(x,y) \u2208 F : E(y)=m}",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart42",
+      "text": "W(m) = \u22c2 W(x,y)",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart43",
+      "text": "over all (x,y) in S(m)",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart44",
+      "text": "W(x,y): available continuations",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart45",
+      "text": "that meet the original requirement",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart46",
+      "text": "at this actual source\u2013residue pair.",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart49",
+      "text": "Supply and carry it out",
+      "register": "Headsmall",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart50",
+      "text": "If W(m) \u2260 \u2205:",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart51",
+      "text": "supply d(m) \u2208 W(m)",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart52",
+      "text": "Provide its laws and access.",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart53",
+      "text": "Realize the chosen continuation.",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart54",
+      "text": "If required, every admitted",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart55",
+      "text": "execution must complete.",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart56",
+      "text": "The same chosen program can act on different unknown contents and produce different results.",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart57",
+      "text": "F lists an outcome for each admitted initial condition.",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart58",
+      "text": "W(m) \u2260 \u2205 shows that a continuation exists. Choosing it and running it are separate steps.",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart60",
+      "text": "record the actual result",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart62",
+      "text": "For the next participant",
+      "register": "Headsmall",
+      "paint": "Ink"
+    },
+    {
+      "world": "Method",
+      "declaration": "MethodPart63",
+      "text": "Keep the original requirement, actual residue, available access and grounds of the next use.",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart1",
+      "text": "THREE PACKAGES",
+      "register": "Rubric",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart2",
+      "text": "Each check has one owner of its meaning.",
+      "register": "Headline",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart4",
+      "text": "People and agents",
+      "register": "Headsmall",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart5",
+      "text": "Bring a question, a record and access to work.",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart7",
+      "text": "submit a record",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart9",
+      "text": "vi \u00b7 DocumentKit",
+      "register": "Fact",
+      "paint": "KnownName"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart10",
+      "text": "Research and constructions",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart11",
+      "text": "Papers \u00b7 relations \u00b7 examples",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart12",
+      "text": "Checks of stated consequences",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart14",
+      "text": "Semantic owner",
+      "register": "Headsmall",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart15",
+      "text": "where: declared type relations",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart16",
+      "text": "count: selected count question",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart17",
+      "text": "Canon + conformance fixtures",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart19",
+      "text": "showcase",
+      "register": "Fact",
+      "paint": "KnownName"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart20",
+      "text": "A constructed world",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart21",
+      "text": "Organization \u00b7 its worlds",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart22",
+      "text": "Pages \u00b7 SVG \u00b7 site generation",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart24",
+      "text": "Its own checks",
+      "register": "Headsmall",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart25",
+      "text": "Policy + differential judge",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart26",
+      "text": "Artifacts match constructions",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart27",
+      "text": "Seven publication refusals",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart29",
+      "text": "gate",
+      "register": "Fact",
+      "paint": "KnownName"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart30",
+      "text": "Entry and delivery",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart31",
+      "text": "Records from other projects",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart32",
+      "text": "Calls checks \u00b7 returns results",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart34",
+      "text": "Supplied implementation",
+      "register": "Headsmall",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart35",
+      "text": "Passes the selected contract",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart36",
+      "text": "Carries question + coverage",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart37",
+      "text": "Pinned revision of vi",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart39",
+      "text": "uses vi",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart41",
+      "text": "defines where / count",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart43",
+      "text": "defines organization",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart45",
+      "text": "Contract of each check",
+      "register": "Headsmall",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart46",
+      "text": "Question / semantics     \u00b7     accepted input     \u00b7     response form     \u00b7     conformance suite",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart47",
+      "text": "Each check has its own version. Passing the finite fixtures shows conformance on that suite.",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart49",
+      "text": "conforms to",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart50",
+      "text": "NOW  vi and showcase are separate repositories, and showcase pins vi. Gate pins an older revision.",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "Architecture",
+      "declaration": "ArchitecturePart51",
+      "text": "A Rust sample of the judge passes the finite suite of the contract. NEXT  Gate re-pins through the contract.",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart1",
+      "text": "One reading, three possible sources",
+      "register": "Headline",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart2",
+      "text": "The source is one of these three symbolic cases. All give the reading (1, 0).",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart3",
+      "text": "We do not know which one is present.",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart5",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart6",
+      "text": "Three sources, one reading",
+      "register": "Headline",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart7",
+      "text": "Possible source states",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart8",
+      "text": "Visible pair",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart9",
+      "text": "(",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart10",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart11",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart12",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart13",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart14",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart15",
+      "text": ")",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart17",
+      "text": "(",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart18",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart19",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart20",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart21",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart22",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart23",
+      "text": ")",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart25",
+      "text": "(",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart26",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart27",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart28",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart29",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart30",
+      "text": "2",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart31",
+      "text": ")",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart33",
+      "text": "The reading keeps",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart34",
+      "text": "two coordinates",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart36",
+      "text": "E(\u03b1, \u03b2, r) = (\u03b1, \u03b2)",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart38",
+      "text": "(1, 0)",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart39",
+      "text": "Only the third coordinate, r, differs. It is hidden from this reading.",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart41",
+      "text": "2",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart42",
+      "text": "What can this reading answer?",
+      "register": "Headline",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart43",
+      "text": "What is the visible pair?",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart44",
+      "text": "What is the hidden value?",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart46",
+      "text": "(1, 0) in every case",
+      "register": "Fact",
+      "paint": "Ok"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart48",
+      "text": "Could be 0, 1, or 2",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart50",
+      "text": "3",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart51",
+      "text": "One operation, the same visible result",
+      "register": "Headline",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart52",
+      "text": "SwapVisible exchanges the first two coordinates and keeps the hidden one.",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart53",
+      "text": "Original state",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart54",
+      "text": "After SwapVisible",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart55",
+      "text": "Visible pair",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart56",
+      "text": "(",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart57",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart58",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart59",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart60",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart61",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart62",
+      "text": ")",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart64",
+      "text": "(",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart65",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart66",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart67",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart68",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart69",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart70",
+      "text": ")",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart73",
+      "text": "(0, 1)",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart74",
+      "text": "(",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart75",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart76",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart77",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart78",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart79",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart80",
+      "text": ")",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart82",
+      "text": "(",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart83",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart84",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart85",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart86",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart87",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart88",
+      "text": ")",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart91",
+      "text": "(0, 1)",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart92",
+      "text": "(",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart93",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart94",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart95",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart96",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart97",
+      "text": "2",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart98",
+      "text": ")",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart100",
+      "text": "(",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart101",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart102",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart103",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart104",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart105",
+      "text": "2",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart106",
+      "text": ")",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart109",
+      "text": "(0, 1)",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart110",
+      "text": "The full states still differ. The visible pair is (0, 1) in every case.",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart111",
+      "text": "The new reading follows by swapping the old pair: (1, 0) \u2192 (0, 1).",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart112",
+      "text": "T(\u03b1, \u03b2, r) = (\u03b2, \u03b1, r)",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart113",
+      "text": "E \u2218 T = swap \u2218 E",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart115",
+      "text": "4",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart116",
+      "text": "A different operation makes the hidden value matter",
+      "register": "Headline",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart117",
+      "text": "From the same original states, ExposeHidden puts r in the visible pair.",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart118",
+      "text": "Original state",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart119",
+      "text": "After ExposeHidden",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart120",
+      "text": "Visible pair",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart121",
+      "text": "(",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart122",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart123",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart124",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart125",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart126",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart127",
+      "text": ")",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart129",
+      "text": "(",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart130",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart131",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart132",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart133",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart134",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart135",
+      "text": ")",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart138",
+      "text": "(0, 0)",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart139",
+      "text": "(",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart140",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart141",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart142",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart143",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart144",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart145",
+      "text": ")",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart147",
+      "text": "(",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart148",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart149",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart150",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart151",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart152",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart153",
+      "text": ")",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart156",
+      "text": "(1, 0)",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart157",
+      "text": "(",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart158",
+      "text": "1",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart159",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart160",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart161",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart162",
+      "text": "2",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart163",
+      "text": ")",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart165",
+      "text": "(",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart166",
+      "text": "2",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart167",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart168",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart169",
+      "text": ",",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart170",
+      "text": "0",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart171",
+      "text": ")",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart174",
+      "text": "(2, 0)",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart175",
+      "text": "The old reading (1, 0) alone cannot tell us which new pair results.",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart176",
+      "text": "For this new answer, we need an observation that distinguishes these cases.",
+      "register": "Speech",
+      "paint": "Ink"
+    },
+    {
+      "world": "ThreeSources",
+      "declaration": "ThreeSourcesPart177",
+      "text": "U(\u03b1, \u03b2, r) = (r, 0, 0)",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "Construction",
+      "declaration": "ConstructionPart2",
+      "text": "SEED",
+      "register": "Rubric",
+      "paint": "Muted"
+    },
+    {
+      "world": "Construction",
+      "declaration": "ConstructionPart3",
+      "text": "MOVE",
+      "register": "Rubric",
+      "paint": "Muted"
+    },
+    {
+      "world": "Construction",
+      "declaration": "ConstructionPart4",
+      "text": "FLOOR",
+      "register": "Rubric",
+      "paint": "Muted"
+    },
+    {
+      "world": "Construction",
+      "declaration": "ConstructionPart7",
+      "text": "a",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "Construction",
+      "declaration": "ConstructionPart8",
+      "text": "b",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "Construction",
+      "declaration": "ConstructionPart9",
+      "text": "Pair",
+      "register": "Fact",
+      "paint": "KnownName"
+    },
+    {
+      "world": "Construction",
+      "declaration": "ConstructionPart10",
+      "text": "two sides \u00b7 one boundary",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Construction",
+      "declaration": "ConstructionPart11",
+      "text": "expand",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "Construction",
+      "declaration": "ConstructionPart13",
+      "text": "+ axis",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Construction",
+      "declaration": "ConstructionPart14",
+      "text": "compress",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "Construction",
+      "declaration": "ConstructionPart16",
+      "text": "where",
+      "register": "Fact",
+      "paint": "KnownName"
+    },
+    {
+      "world": "Construction",
+      "declaration": "ConstructionPart17",
+      "text": "two moves",
+      "register": "Headsmall",
+      "paint": "Ink"
+    },
+    {
+      "world": "Construction",
+      "declaration": "ConstructionPart18",
+      "text": "no third",
+      "register": "Caption",
+      "paint": "Muted"
+    },
+    {
+      "world": "Construction",
+      "declaration": "ConstructionPart22",
+      "text": "\u2205",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "Construction",
+      "declaration": "ConstructionPart23",
+      "text": "\u2205",
+      "register": "Fact",
+      "paint": "Muted"
+    },
+    {
+      "world": "Construction",
+      "declaration": "ConstructionPart24",
+      "text": "width \u00d7 depth",
+      "register": "Fact",
+      "paint": "Ink"
+    },
+    {
+      "world": "Construction",
+      "declaration": "ConstructionPart25",
+      "text": "finite \u2014 every chain ends at \u2205",
+      "register": "Caption",
+      "paint": "Muted"
+    }
   ],
   "typography": {
     "Documentation/Figures/vi-method.svg": {
       "placements": {
-        "Inter": 1355,
-        "DejaVu": 5
+        "Inter": 1215,
+        "DejaVu": 0,
+        "DejaVuMono": 145
       },
       "weights": [
         400,
-        600,
-        650,
-        700
+        600
       ],
       "contrast": [
-        "InkOnAccent",
-        "LawOnPaper",
-        "MutedOnMist",
-        "MutedOnPaper",
-        "OkOnPaper",
-        "RefusalOnPaper",
-        "TextOnMist",
-        "TextOnPaper"
+        "Paper_Bad_lit",
+        "Paper_Ink_lit",
+        "Paper_Muted_lit",
+        "Paper_Ok_lit"
+      ],
+      "registers": [
+        [
+          "FigureMono400",
+          125.0
+        ],
+        [
+          "FigureSans400",
+          110.0
+        ],
+        [
+          "FigureSans400",
+          130.0
+        ],
+        [
+          "FigureSans600",
+          130.0
+        ],
+        [
+          "FigureSans600",
+          150.0
+        ]
       ]
     },
     "Documentation/Figures/answer-determination.svg": {
       "placements": {
-        "Inter": 1355,
-        "DejaVu": 5
+        "Inter": 1215,
+        "DejaVu": 0,
+        "DejaVuMono": 145
       },
       "weights": [
         400,
-        600,
-        650,
-        700
+        600
       ],
       "contrast": [
-        "InkOnAccent",
-        "LawOnPaper",
-        "MutedOnMist",
-        "MutedOnPaper",
-        "OkOnPaper",
-        "RefusalOnPaper",
-        "TextOnMist",
-        "TextOnPaper"
+        "Paper_Bad_lit",
+        "Paper_Ink_lit",
+        "Paper_Muted_lit",
+        "Paper_Ok_lit"
+      ],
+      "registers": [
+        [
+          "FigureMono400",
+          125.0
+        ],
+        [
+          "FigureSans400",
+          110.0
+        ],
+        [
+          "FigureSans400",
+          130.0
+        ],
+        [
+          "FigureSans600",
+          130.0
+        ],
+        [
+          "FigureSans600",
+          150.0
+        ]
       ]
     },
     "Documentation/Figures/adequate-continuation.svg": {
       "placements": {
-        "Inter": 1355,
-        "DejaVu": 5
+        "Inter": 1215,
+        "DejaVu": 0,
+        "DejaVuMono": 145
       },
       "weights": [
         400,
-        600,
-        650,
-        700
+        600
       ],
       "contrast": [
-        "InkOnAccent",
-        "LawOnPaper",
-        "MutedOnMist",
-        "MutedOnPaper",
-        "OkOnPaper",
-        "RefusalOnPaper",
-        "TextOnMist",
-        "TextOnPaper"
+        "Paper_Bad_lit",
+        "Paper_Ink_lit",
+        "Paper_Muted_lit",
+        "Paper_Ok_lit"
+      ],
+      "registers": [
+        [
+          "FigureMono400",
+          125.0
+        ],
+        [
+          "FigureSans400",
+          110.0
+        ],
+        [
+          "FigureSans400",
+          130.0
+        ],
+        [
+          "FigureSans600",
+          130.0
+        ],
+        [
+          "FigureSans600",
+          150.0
+        ]
       ]
     },
     "Documentation/Figures/framework-architecture.svg": {
       "placements": {
-        "Inter": 1165,
-        "DejaVu": 0
+        "Inter": 1137,
+        "DejaVu": 0,
+        "DejaVuMono": 28
       },
       "weights": [
         400,
-        600,
-        650,
-        700
+        600
       ],
       "contrast": [
-        "InkOnAccent",
-        "LawOnPaper",
-        "MutedOnMist",
-        "MutedOnPaper",
-        "OkOnPaper",
-        "TextOnMist",
-        "TextOnPaper"
+        "Paper_Ink_lit",
+        "Paper_KnownName_lit",
+        "Paper_Muted_lit"
+      ],
+      "registers": [
+        [
+          "FigureMono400",
+          125.0
+        ],
+        [
+          "FigureSans400",
+          110.0
+        ],
+        [
+          "FigureSans400",
+          130.0
+        ],
+        [
+          "FigureSans600",
+          110.0
+        ],
+        [
+          "FigureSans600",
+          130.0
+        ],
+        [
+          "FigureSans600",
+          150.0
+        ]
       ]
     },
     "Documentation/Figures/beam-study.svg": {
       "placements": {
-        "Inter": 1255,
-        "DejaVu": 2
+        "Inter": 1007,
+        "DejaVu": 0,
+        "DejaVuMono": 250
       },
       "weights": [
         400,
-        600,
-        650,
-        700
+        600
       ],
       "contrast": [
-        "MutedOnMist",
-        "OkOnPaper",
-        "RefusalOnPaper",
-        "TextOnMist",
-        "TextOnPaper"
+        "Paper_Ink_lit",
+        "Paper_Muted_lit",
+        "Paper_Ok_lit"
+      ],
+      "registers": [
+        [
+          "FigureMono400",
+          125.0
+        ],
+        [
+          "FigureSans400",
+          110.0
+        ],
+        [
+          "FigureSans400",
+          130.0
+        ],
+        [
+          "FigureSans600",
+          150.0
+        ]
       ]
     },
     "Documentation/Figures/beam-questions.svg": {
       "placements": {
-        "Inter": 1255,
-        "DejaVu": 2
+        "Inter": 1007,
+        "DejaVu": 0,
+        "DejaVuMono": 250
       },
       "weights": [
         400,
-        600,
-        650,
-        700
+        600
       ],
       "contrast": [
-        "MutedOnMist",
-        "OkOnPaper",
-        "RefusalOnPaper",
-        "TextOnMist",
-        "TextOnPaper"
+        "Paper_Ink_lit",
+        "Paper_Muted_lit",
+        "Paper_Ok_lit"
+      ],
+      "registers": [
+        [
+          "FigureMono400",
+          125.0
+        ],
+        [
+          "FigureSans400",
+          110.0
+        ],
+        [
+          "FigureSans400",
+          130.0
+        ],
+        [
+          "FigureSans600",
+          150.0
+        ]
       ]
     },
     "Documentation/Figures/beam-continuation.svg": {
       "placements": {
-        "Inter": 1255,
-        "DejaVu": 2
+        "Inter": 1007,
+        "DejaVu": 0,
+        "DejaVuMono": 250
       },
       "weights": [
         400,
-        600,
-        650,
-        700
+        600
       ],
       "contrast": [
-        "MutedOnMist",
-        "OkOnPaper",
-        "RefusalOnPaper",
-        "TextOnMist",
-        "TextOnPaper"
+        "Paper_Ink_lit",
+        "Paper_Muted_lit",
+        "Paper_Ok_lit"
+      ],
+      "registers": [
+        [
+          "FigureMono400",
+          125.0
+        ],
+        [
+          "FigureSans400",
+          110.0
+        ],
+        [
+          "FigureSans400",
+          130.0
+        ],
+        [
+          "FigureSans600",
+          150.0
+        ]
       ]
     },
     "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law.svg": {
       "placements": {
-        "Inter": 130,
-        "DejaVu": 0
+        "Inter": 90,
+        "DejaVu": 0,
+        "DejaVuMono": 40
       },
       "weights": [
         400,
         600
       ],
       "contrast": [
-        "MutedOnPaper",
-        "TextOnPaper"
+        "Paper_Ink_lit",
+        "Paper_KnownName_lit",
+        "Paper_Muted_lit"
+      ],
+      "registers": [
+        [
+          "FigureMono400",
+          125.0
+        ],
+        [
+          "FigureSans400",
+          110.0
+        ],
+        [
+          "FigureSans600",
+          110.0
+        ],
+        [
+          "FigureSans600",
+          130.0
+        ]
       ]
     },
     "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law~dark.svg": {
       "placements": {
-        "Inter": 130,
-        "DejaVu": 0
+        "Inter": 90,
+        "DejaVu": 0,
+        "DejaVuMono": 40
       },
       "weights": [
         400,
         600
       ],
       "contrast": [
-        "MutedOnSurfaceCardDim",
-        "TextOnSurfaceCardDim"
+        "Ink_Paper_dim",
+        "KnownName_Paper_dim",
+        "Muted_Paper_dim"
+      ],
+      "registers": [
+        [
+          "FigureMono400",
+          125.0
+        ],
+        [
+          "FigureSans400",
+          110.0
+        ],
+        [
+          "FigureSans600",
+          110.0
+        ],
+        [
+          "FigureSans600",
+          130.0
+        ]
       ]
     }
   }

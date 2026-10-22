@@ -144,7 +144,7 @@ public enum ConstructionGround<Theme: FigureTheme>: FigurePanel {
 public enum ConstructionPart0<Theme: FigureTheme>: FigureRoute {
     public typealias D = ConstructionAtom0
     public typealias Fill = ConstructionAtom1
-    public typealias Stroke = Theme.Rule
+    public typealias Stroke = Theme.Muted
     public typealias Width = ConstructionAtom2
     public typealias Dash = ConstructionAtom1
     public typealias Marker = ConstructionAtom1
@@ -153,40 +153,43 @@ public enum ConstructionPart0<Theme: FigureTheme>: FigureRoute {
 public enum ConstructionPart1<Theme: FigureTheme>: FigureRoute {
     public typealias D = ConstructionAtom3
     public typealias Fill = ConstructionAtom1
-    public typealias Stroke = Theme.Rule
+    public typealias Stroke = Theme.Muted
     public typealias Width = ConstructionAtom2
     public typealias Dash = ConstructionAtom1
     public typealias Marker = ConstructionAtom1
 }
 
 public enum ConstructionPart2<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont600
+    public typealias Register = FigureRubric
+    public typealias Font = Register.Font
     public typealias Content = ConstructionAtom4
     public typealias X = ConstructionAtom5
     public typealias Y = ConstructionAtom6
-    public typealias Size = ConstructionAtom7
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Muted
     public typealias Anchor = ConstructionAtom8
     public typealias Tracking = ConstructionAtom9
 }
 
 public enum ConstructionPart3<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont600
+    public typealias Register = FigureRubric
+    public typealias Font = Register.Font
     public typealias Content = ConstructionAtom10
     public typealias X = ConstructionAtom11
     public typealias Y = ConstructionAtom6
-    public typealias Size = ConstructionAtom7
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Muted
     public typealias Anchor = ConstructionAtom8
     public typealias Tracking = ConstructionAtom9
 }
 
 public enum ConstructionPart4<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont600
+    public typealias Register = FigureRubric
+    public typealias Font = Register.Font
     public typealias Content = ConstructionAtom12
     public typealias X = ConstructionAtom13
     public typealias Y = ConstructionAtom6
-    public typealias Size = ConstructionAtom7
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Muted
     public typealias Anchor = ConstructionAtom8
     public typealias Tracking = ConstructionAtom9
@@ -207,62 +210,67 @@ public enum ConstructionPart5<Theme: FigureTheme>: FigurePanel {
 public enum ConstructionPart6<Theme: FigureTheme>: FigureRoute {
     public typealias D = ConstructionAtom20
     public typealias Fill = ConstructionAtom1
-    public typealias Stroke = Theme.Rule
+    public typealias Stroke = Theme.Muted
     public typealias Width = ConstructionAtom21
     public typealias Dash = ConstructionAtom1
     public typealias Marker = ConstructionAtom1
 }
 
 public enum ConstructionPart7<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureFact
+    public typealias Font = Register.Font
     public typealias Content = ConstructionAtom22
     public typealias X = ConstructionAtom23
     public typealias Y = ConstructionAtom24
-    public typealias Size = ConstructionAtom25
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ConstructionAtom8
     public typealias Tracking = ConstructionAtom26
 }
 
 public enum ConstructionPart8<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureFact
+    public typealias Font = Register.Font
     public typealias Content = ConstructionAtom27
     public typealias X = ConstructionAtom28
     public typealias Y = ConstructionAtom24
-    public typealias Size = ConstructionAtom25
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ConstructionAtom8
     public typealias Tracking = ConstructionAtom26
 }
 
 public enum ConstructionPart9<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont600
+    public typealias Register = FigureFact
+    public typealias Font = Register.Font
     public typealias Content = ConstructionAtom29
     public typealias X = ConstructionAtom5
     public typealias Y = ConstructionAtom30
-    public typealias Size = ConstructionAtom31
-    public typealias Fill = Theme.Ink
+    public typealias Size = Register.Size
+    public typealias Fill = Theme.KnownName
     public typealias Anchor = ConstructionAtom8
     public typealias Tracking = ConstructionAtom26
 }
 
 public enum ConstructionPart10<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureCaption
+    public typealias Font = Register.Font
     public typealias Content = ConstructionAtom32
     public typealias X = ConstructionAtom5
     public typealias Y = ConstructionAtom33
-    public typealias Size = ConstructionAtom7
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Muted
     public typealias Anchor = ConstructionAtom8
     public typealias Tracking = ConstructionAtom26
 }
 
 public enum ConstructionPart11<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureFact
+    public typealias Font = Register.Font
     public typealias Content = ConstructionAtom34
     public typealias X = ConstructionAtom35
     public typealias Y = ConstructionAtom14
-    public typealias Size = ConstructionAtom36
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ConstructionAtom37
     public typealias Tracking = ConstructionAtom26
@@ -271,29 +279,31 @@ public enum ConstructionPart11<Theme: FigureTheme>: OutlineLabel {
 public enum ConstructionPart12<Theme: FigureTheme>: FigureRoute {
     public typealias D = ConstructionAtom38
     public typealias Fill = ConstructionAtom1
-    public typealias Stroke = Theme.Rule
+    public typealias Stroke = Theme.Muted
     public typealias Width = ConstructionAtom19
     public typealias Dash = ConstructionAtom1
     public typealias Marker = ConstructionAtom39
 }
 
 public enum ConstructionPart13<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureCaption
+    public typealias Font = Register.Font
     public typealias Content = ConstructionAtom40
     public typealias X = ConstructionAtom41
     public typealias Y = ConstructionAtom14
-    public typealias Size = ConstructionAtom7
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Muted
     public typealias Anchor = ConstructionAtom42
     public typealias Tracking = ConstructionAtom26
 }
 
 public enum ConstructionPart14<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureFact
+    public typealias Font = Register.Font
     public typealias Content = ConstructionAtom43
     public typealias X = ConstructionAtom35
     public typealias Y = ConstructionAtom44
-    public typealias Size = ConstructionAtom36
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ConstructionAtom37
     public typealias Tracking = ConstructionAtom26
@@ -302,40 +312,43 @@ public enum ConstructionPart14<Theme: FigureTheme>: OutlineLabel {
 public enum ConstructionPart15<Theme: FigureTheme>: FigureRoute {
     public typealias D = ConstructionAtom45
     public typealias Fill = ConstructionAtom1
-    public typealias Stroke = Theme.Rule
+    public typealias Stroke = Theme.Muted
     public typealias Width = ConstructionAtom19
     public typealias Dash = ConstructionAtom1
     public typealias Marker = ConstructionAtom39
 }
 
 public enum ConstructionPart16<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureFact
+    public typealias Font = Register.Font
     public typealias Content = ConstructionAtom46
     public typealias X = ConstructionAtom41
     public typealias Y = ConstructionAtom44
-    public typealias Size = ConstructionAtom7
-    public typealias Fill = Theme.Muted
+    public typealias Size = Register.Size
+    public typealias Fill = Theme.KnownName
     public typealias Anchor = ConstructionAtom42
     public typealias Tracking = ConstructionAtom26
 }
 
 public enum ConstructionPart17<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont600
+    public typealias Register = FigureHeadsmall
+    public typealias Font = Register.Font
     public typealias Content = ConstructionAtom47
     public typealias X = ConstructionAtom11
     public typealias Y = ConstructionAtom30
-    public typealias Size = ConstructionAtom31
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ConstructionAtom8
     public typealias Tracking = ConstructionAtom26
 }
 
 public enum ConstructionPart18<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureCaption
+    public typealias Font = Register.Font
     public typealias Content = ConstructionAtom48
     public typealias X = ConstructionAtom11
     public typealias Y = ConstructionAtom33
-    public typealias Size = ConstructionAtom7
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Muted
     public typealias Anchor = ConstructionAtom8
     public typealias Tracking = ConstructionAtom26
@@ -353,7 +366,7 @@ public enum ConstructionPart19<Theme: FigureTheme>: FigureDisk {
 public enum ConstructionPart20<Theme: FigureTheme>: FigureRoute {
     public typealias D = ConstructionAtom51
     public typealias Fill = ConstructionAtom1
-    public typealias Stroke = Theme.Rule
+    public typealias Stroke = Theme.Muted
     public typealias Width = ConstructionAtom19
     public typealias Dash = ConstructionAtom1
     public typealias Marker = ConstructionAtom1
@@ -362,51 +375,55 @@ public enum ConstructionPart20<Theme: FigureTheme>: FigureRoute {
 public enum ConstructionPart21<Theme: FigureTheme>: FigureRoute {
     public typealias D = ConstructionAtom52
     public typealias Fill = ConstructionAtom1
-    public typealias Stroke = Theme.Rule
+    public typealias Stroke = Theme.Muted
     public typealias Width = ConstructionAtom19
     public typealias Dash = ConstructionAtom1
     public typealias Marker = ConstructionAtom1
 }
 
 public enum ConstructionPart22<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureFact
+    public typealias Font = Register.Font
     public typealias Content = ConstructionAtom53
     public typealias X = ConstructionAtom54
     public typealias Y = ConstructionAtom44
-    public typealias Size = ConstructionAtom31
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Muted
     public typealias Anchor = ConstructionAtom8
     public typealias Tracking = ConstructionAtom26
 }
 
 public enum ConstructionPart23<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureFact
+    public typealias Font = Register.Font
     public typealias Content = ConstructionAtom53
     public typealias X = ConstructionAtom55
     public typealias Y = ConstructionAtom44
-    public typealias Size = ConstructionAtom31
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Muted
     public typealias Anchor = ConstructionAtom8
     public typealias Tracking = ConstructionAtom26
 }
 
 public enum ConstructionPart24<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont600
+    public typealias Register = FigureFact
+    public typealias Font = Register.Font
     public typealias Content = ConstructionAtom56
     public typealias X = ConstructionAtom13
     public typealias Y = ConstructionAtom30
-    public typealias Size = ConstructionAtom31
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ConstructionAtom8
     public typealias Tracking = ConstructionAtom26
 }
 
 public enum ConstructionPart25<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureCaption
+    public typealias Font = Register.Font
     public typealias Content = ConstructionAtom57
     public typealias X = ConstructionAtom13
     public typealias Y = ConstructionAtom33
-    public typealias Size = ConstructionAtom7
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Muted
     public typealias Anchor = ConstructionAtom8
     public typealias Tracking = ConstructionAtom26

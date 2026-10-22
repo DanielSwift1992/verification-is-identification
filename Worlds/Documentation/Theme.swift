@@ -1,55 +1,50 @@
 import Notation
 import DocumentKit
 
-// Each role selects a binding declared by the pinned palette owner.
+// The gate data reader supplies these roles and measured registers from its pin.
+public protocol FigureRegister {
+    associatedtype Font: OutlineFontFace
+    associatedtype Size: Structure
+}
+
 public protocol FigureTheme: Open {
     associatedtype Background: Structure
     associatedtype Panel: Structure
-    associatedtype Recessed: Structure
-    associatedtype Highlight: Structure
-    associatedtype OnHighlight: Structure
     associatedtype Ink: Structure
     associatedtype Muted: Structure
     associatedtype Rule: Structure
-    associatedtype Law: Structure
-    associatedtype Success: Structure
-    associatedtype Warning: Structure
+    associatedtype Ok: Structure
+    associatedtype Bad: Structure
+    associatedtype KnownName: Structure
 }
 
 public enum FigureLight: FigureTheme {
-    public typealias Background = BindPaperLight.Colour
-    public typealias Panel = BindPaperLight.Colour
-    public typealias Recessed = BindMistLight.Colour
-    public typealias Highlight = BindAccentLight.Colour
-    public typealias OnHighlight = BindInkLight.Colour
-    public typealias Ink = BindTextLight.Colour
-    public typealias Muted = BindMutedLight.Colour
-    public typealias Rule = BindMutedLight.Colour
-    public typealias Law = BindLawLight.Colour
-    public typealias Success = BindOkLight.Colour
-    public typealias Warning = BindRefusalLight.Colour
+    public typealias Background = GatePaperLit
+    public typealias Panel = GatePaperLit
+    public typealias Ink = GateInkLit
+    public typealias Muted = GateMutedLit
+    public typealias Rule = GateLineLit
+    public typealias Ok = GateOkLit
+    public typealias Bad = GateBadLit
+    public typealias KnownName = GateKnownNameLit
 }
 
 public enum FigureDark: FigureTheme {
-    public typealias Background = BindSurfaceCardDark.Colour
-    public typealias Panel = BindSurfaceCardDark.Colour
-    public typealias Recessed = BindSurfaceCardDark.Colour
-    public typealias Highlight = BindSurfaceCardDark.Colour
-    public typealias OnHighlight = BindTextDark.Colour
-    public typealias Ink = BindTextDark.Colour
-    public typealias Muted = BindMutedDark.Colour
-    public typealias Rule = BindMutedDark.Colour
-    public typealias Law = BindTextDark.Colour
-    public typealias Success = BindTextDark.Colour
-    public typealias Warning = BindTextDark.Colour
+    public typealias Background = GatePaperDim
+    public typealias Panel = GatePaperDim
+    public typealias Ink = GateInkDim
+    public typealias Muted = GateMutedDim
+    public typealias Rule = GateLineDim
+    public typealias Ok = GateOkDim
+    public typealias Bad = GateBadDim
+    public typealias KnownName = GateKnownNameDim
 }
 
 public enum FigureDefinitions<Theme: FigureTheme>: Group {
     @StructureBuilder public static var body: some Structure {
-        OutlineDefinitions<FigureFont400>.self
-        OutlineDefinitions<FigureFont600>.self
-        OutlineDefinitions<FigureFont650>.self
-        OutlineDefinitions<FigureFont700>.self
-        FigureArrow<Theme.Rule>.self
+        OutlineDefinitions<FigureSans400>.self
+        OutlineDefinitions<FigureSans600>.self
+        OutlineDefinitions<FigureMono400>.self
+        FigureArrow<Theme.Muted>.self
     }
 }

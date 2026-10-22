@@ -237,22 +237,24 @@ public enum ArchitecturePart0<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum ArchitecturePart1<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont700
+    public typealias Register = FigureRubric
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom6
     public typealias X = ArchitectureAtom7
     public typealias Y = ArchitectureAtom8
-    public typealias Size = ArchitectureAtom9
-    public typealias Fill = Theme.Law
+    public typealias Size = Register.Size
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom11
 }
 
 public enum ArchitecturePart2<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont650
+    public typealias Register = FigureHeadline
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom12
     public typealias X = ArchitectureAtom7
     public typealias Y = ArchitectureAtom13
-    public typealias Size = ArchitectureAtom14
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
@@ -264,29 +266,31 @@ public enum ArchitecturePart3<Theme: FigureTheme>: FigurePanel {
     public typealias W = ArchitectureAtom16
     public typealias H = ArchitectureAtom13
     public typealias Radius = ArchitectureAtom17
-    public typealias Fill = Theme.Recessed
+    public typealias Fill = Theme.Panel
     public typealias Stroke = Theme.Rule
     public typealias Width = ArchitectureAtom18
     public typealias Dash = ArchitectureAtom4
 }
 
 public enum ArchitecturePart4<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont600
+    public typealias Register = FigureHeadsmall
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom19
     public typealias X = ArchitectureAtom20
     public typealias Y = ArchitectureAtom21
-    public typealias Size = ArchitectureAtom22
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart5<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureCaption
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom23
     public typealias X = ArchitectureAtom20
     public typealias Y = ArchitectureAtom24
-    public typealias Size = ArchitectureAtom25
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Muted
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
@@ -295,18 +299,19 @@ public enum ArchitecturePart5<Theme: FigureTheme>: OutlineLabel {
 public enum ArchitecturePart6<Theme: FigureTheme>: FigureRoute {
     public typealias D = ArchitectureAtom26
     public typealias Fill = ArchitectureAtom4
-    public typealias Stroke = Theme.Rule
+    public typealias Stroke = Theme.Muted
     public typealias Width = ArchitectureAtom27
     public typealias Dash = ArchitectureAtom4
     public typealias Marker = ArchitectureAtom28
 }
 
 public enum ArchitecturePart7<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureCaption
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom29
     public typealias X = ArchitectureAtom30
     public typealias Y = ArchitectureAtom31
-    public typealias Size = ArchitectureAtom3
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Muted
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
@@ -318,52 +323,56 @@ public enum ArchitecturePart8<Theme: FigureTheme>: FigurePanel {
     public typealias W = ArchitectureAtom33
     public typealias H = ArchitectureAtom34
     public typealias Radius = ArchitectureAtom17
-    public typealias Fill = Theme.Highlight
+    public typealias Fill = Theme.Panel
     public typealias Stroke = Theme.Rule
     public typealias Width = ArchitectureAtom18
     public typealias Dash = ArchitectureAtom4
 }
 
 public enum ArchitecturePart9<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont650
+    public typealias Register = FigureFact
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom35
     public typealias X = ArchitectureAtom20
     public typealias Y = ArchitectureAtom36
-    public typealias Size = ArchitectureAtom14
-    public typealias Fill = Theme.OnHighlight
+    public typealias Size = Register.Size
+    public typealias Fill = Theme.KnownName
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart10<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom37
     public typealias X = ArchitectureAtom20
     public typealias Y = ArchitectureAtom38
-    public typealias Size = ArchitectureAtom25
-    public typealias Fill = Theme.OnHighlight
+    public typealias Size = Register.Size
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart11<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom39
     public typealias X = ArchitectureAtom20
     public typealias Y = ArchitectureAtom40
-    public typealias Size = ArchitectureAtom25
-    public typealias Fill = Theme.OnHighlight
+    public typealias Size = Register.Size
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart12<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom41
     public typealias X = ArchitectureAtom20
     public typealias Y = ArchitectureAtom42
-    public typealias Size = ArchitectureFittedSize0
-    public typealias Fill = Theme.OnHighlight
+    public typealias Size = Register.Size
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
     public typealias MaxWidth = ArchitectureFittedBudget0
@@ -382,22 +391,24 @@ public enum ArchitecturePart13<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum ArchitecturePart14<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont600
+    public typealias Register = FigureHeadsmall
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom47
     public typealias X = ArchitectureAtom48
     public typealias Y = ArchitectureAtom49
-    public typealias Size = ArchitectureAtom22
-    public typealias Fill = Theme.Law
+    public typealias Size = Register.Size
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart15<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom50
     public typealias X = ArchitectureAtom48
     public typealias Y = ArchitectureAtom51
-    public typealias Size = ArchitectureFittedSize2
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
@@ -405,11 +416,12 @@ public enum ArchitecturePart15<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ArchitecturePart16<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom52
     public typealias X = ArchitectureAtom48
     public typealias Y = ArchitectureAtom53
-    public typealias Size = ArchitectureFittedSize3
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
@@ -417,11 +429,12 @@ public enum ArchitecturePart16<Theme: FigureTheme>: OutlineLabel {
 }
 
 public enum ArchitecturePart17<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom54
     public typealias X = ArchitectureAtom48
     public typealias Y = ArchitectureAtom55
-    public typealias Size = ArchitectureFittedSize4
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
@@ -434,51 +447,55 @@ public enum ArchitecturePart18<Theme: FigureTheme>: FigurePanel {
     public typealias W = ArchitectureAtom33
     public typealias H = ArchitectureAtom34
     public typealias Radius = ArchitectureAtom17
-    public typealias Fill = Theme.Recessed
+    public typealias Fill = Theme.Panel
     public typealias Stroke = Theme.Rule
     public typealias Width = ArchitectureAtom18
     public typealias Dash = ArchitectureAtom4
 }
 
 public enum ArchitecturePart19<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont650
+    public typealias Register = FigureFact
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom57
     public typealias X = ArchitectureAtom58
     public typealias Y = ArchitectureAtom36
-    public typealias Size = ArchitectureAtom14
-    public typealias Fill = Theme.Ink
+    public typealias Size = Register.Size
+    public typealias Fill = Theme.KnownName
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart20<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom59
     public typealias X = ArchitectureAtom58
     public typealias Y = ArchitectureAtom38
-    public typealias Size = ArchitectureAtom25
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart21<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom60
     public typealias X = ArchitectureAtom58
     public typealias Y = ArchitectureAtom40
-    public typealias Size = ArchitectureAtom25
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart22<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom61
     public typealias X = ArchitectureAtom58
     public typealias Y = ArchitectureAtom42
-    public typealias Size = ArchitectureAtom25
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
@@ -497,44 +514,48 @@ public enum ArchitecturePart23<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum ArchitecturePart24<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont600
+    public typealias Register = FigureHeadsmall
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom63
     public typealias X = ArchitectureAtom64
     public typealias Y = ArchitectureAtom49
-    public typealias Size = ArchitectureAtom22
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart25<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom65
     public typealias X = ArchitectureAtom64
     public typealias Y = ArchitectureAtom51
-    public typealias Size = ArchitectureAtom3
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart26<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom66
     public typealias X = ArchitectureAtom64
     public typealias Y = ArchitectureAtom53
-    public typealias Size = ArchitectureAtom3
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart27<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom67
     public typealias X = ArchitectureAtom64
     public typealias Y = ArchitectureAtom55
-    public typealias Size = ArchitectureAtom3
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
@@ -553,44 +574,48 @@ public enum ArchitecturePart28<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum ArchitecturePart29<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont650
+    public typealias Register = FigureFact
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom69
     public typealias X = ArchitectureAtom70
     public typealias Y = ArchitectureAtom36
-    public typealias Size = ArchitectureAtom14
-    public typealias Fill = Theme.Success
+    public typealias Size = Register.Size
+    public typealias Fill = Theme.KnownName
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart30<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom71
     public typealias X = ArchitectureAtom70
     public typealias Y = ArchitectureAtom38
-    public typealias Size = ArchitectureAtom25
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart31<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom72
     public typealias X = ArchitectureAtom70
     public typealias Y = ArchitectureAtom40
-    public typealias Size = ArchitectureAtom25
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart32<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom73
     public typealias X = ArchitectureAtom70
     public typealias Y = ArchitectureAtom42
-    public typealias Size = ArchitectureAtom25
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
@@ -609,45 +634,49 @@ public enum ArchitecturePart33<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum ArchitecturePart34<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont600
+    public typealias Register = FigureHeadsmall
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom75
     public typealias X = ArchitectureAtom76
     public typealias Y = ArchitectureAtom49
-    public typealias Size = ArchitectureFittedSize1
-    public typealias Fill = Theme.Success
+    public typealias Size = Register.Size
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
     public typealias MaxWidth = ArchitectureFittedBudget1
 }
 
 public enum ArchitecturePart35<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom77
     public typealias X = ArchitectureAtom76
     public typealias Y = ArchitectureAtom51
-    public typealias Size = ArchitectureAtom3
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart36<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom78
     public typealias X = ArchitectureAtom76
     public typealias Y = ArchitectureAtom53
-    public typealias Size = ArchitectureAtom3
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart37<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom79
     public typealias X = ArchitectureAtom76
     public typealias Y = ArchitectureAtom55
-    public typealias Size = ArchitectureAtom3
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
@@ -656,18 +685,19 @@ public enum ArchitecturePart37<Theme: FigureTheme>: OutlineLabel {
 public enum ArchitecturePart38<Theme: FigureTheme>: FigureRoute {
     public typealias D = ArchitectureAtom80
     public typealias Fill = ArchitectureAtom4
-    public typealias Stroke = Theme.Rule
+    public typealias Stroke = Theme.Muted
     public typealias Width = ArchitectureAtom27
     public typealias Dash = ArchitectureAtom4
     public typealias Marker = ArchitectureAtom28
 }
 
 public enum ArchitecturePart39<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureCaption
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom81
     public typealias X = ArchitectureAtom82
     public typealias Y = ArchitectureAtom83
-    public typealias Size = ArchitectureAtom3
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Muted
     public typealias Anchor = ArchitectureAtom84
     public typealias Tracking = ArchitectureAtom0
@@ -676,18 +706,19 @@ public enum ArchitecturePart39<Theme: FigureTheme>: OutlineLabel {
 public enum ArchitecturePart40<Theme: FigureTheme>: FigureRoute {
     public typealias D = ArchitectureAtom85
     public typealias Fill = ArchitectureAtom4
-    public typealias Stroke = Theme.Rule
+    public typealias Stroke = Theme.Muted
     public typealias Width = ArchitectureAtom27
     public typealias Dash = ArchitectureAtom4
     public typealias Marker = ArchitectureAtom28
 }
 
 public enum ArchitecturePart41<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureCaption
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom86
     public typealias X = ArchitectureAtom87
     public typealias Y = ArchitectureAtom88
-    public typealias Size = ArchitectureAtom3
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Muted
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
@@ -696,18 +727,19 @@ public enum ArchitecturePart41<Theme: FigureTheme>: OutlineLabel {
 public enum ArchitecturePart42<Theme: FigureTheme>: FigureRoute {
     public typealias D = ArchitectureAtom89
     public typealias Fill = ArchitectureAtom4
-    public typealias Stroke = Theme.Rule
+    public typealias Stroke = Theme.Muted
     public typealias Width = ArchitectureAtom27
     public typealias Dash = ArchitectureAtom4
     public typealias Marker = ArchitectureAtom28
 }
 
 public enum ArchitecturePart43<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureCaption
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom90
     public typealias X = ArchitectureAtom91
     public typealias Y = ArchitectureAtom88
-    public typealias Size = ArchitectureAtom3
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Muted
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
@@ -726,33 +758,36 @@ public enum ArchitecturePart44<Theme: FigureTheme>: FigurePanel {
 }
 
 public enum ArchitecturePart45<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont600
+    public typealias Register = FigureHeadsmall
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom94
     public typealias X = ArchitectureAtom20
     public typealias Y = ArchitectureAtom95
-    public typealias Size = ArchitectureAtom22
-    public typealias Fill = Theme.Law
+    public typealias Size = Register.Size
+    public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart46<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom96
     public typealias X = ArchitectureAtom20
     public typealias Y = ArchitectureAtom97
-    public typealias Size = ArchitectureAtom25
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart47<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureCaption
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom98
     public typealias X = ArchitectureAtom20
     public typealias Y = ArchitectureAtom99
-    public typealias Size = ArchitectureAtom3
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Muted
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
@@ -761,40 +796,43 @@ public enum ArchitecturePart47<Theme: FigureTheme>: OutlineLabel {
 public enum ArchitecturePart48<Theme: FigureTheme>: FigureRoute {
     public typealias D = ArchitectureAtom100
     public typealias Fill = ArchitectureAtom4
-    public typealias Stroke = Theme.Rule
+    public typealias Stroke = Theme.Muted
     public typealias Width = ArchitectureAtom27
     public typealias Dash = ArchitectureAtom4
     public typealias Marker = ArchitectureAtom28
 }
 
 public enum ArchitecturePart49<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureCaption
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom101
     public typealias X = ArchitectureAtom102
     public typealias Y = ArchitectureAtom88
-    public typealias Size = ArchitectureAtom3
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Muted
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart50<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureSpeech
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom103
     public typealias X = ArchitectureAtom7
     public typealias Y = ArchitectureAtom104
-    public typealias Size = ArchitectureAtom25
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Ink
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0
 }
 
 public enum ArchitecturePart51<Theme: FigureTheme>: OutlineLabel {
-    public typealias Font = FigureFont400
+    public typealias Register = FigureCaption
+    public typealias Font = Register.Font
     public typealias Content = ArchitectureAtom105
     public typealias X = ArchitectureAtom7
     public typealias Y = ArchitectureAtom106
-    public typealias Size = ArchitectureAtom3
+    public typealias Size = Register.Size
     public typealias Fill = Theme.Muted
     public typealias Anchor = ArchitectureAtom10
     public typealias Tracking = ArchitectureAtom0

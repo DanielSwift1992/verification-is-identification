@@ -7,12 +7,14 @@ pub enum Failure {
     Unsupported(Vec<String>),
     Input(Vec<String>),
     Open(Vec<String>),
+    Refused(Vec<String>),
+    Empty(Vec<String>),
 }
 
 impl Failure {
     pub fn messages(&self) -> &[String] {
         match self {
-            Failure::Unsupported(m) | Failure::Input(m) | Failure::Open(m) => m,
+            Failure::Unsupported(m) | Failure::Input(m) | Failure::Open(m) | Failure::Refused(m) | Failure::Empty(m) => m,
         }
     }
 }

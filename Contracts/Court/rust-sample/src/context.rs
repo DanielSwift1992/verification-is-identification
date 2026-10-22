@@ -7,16 +7,19 @@ use serde_json::Value;
 use std::collections::{HashMap, HashSet};
 
 #[derive(Clone)]
-struct Source {
-    input: String,
-    source: String,
-    namespace: String,
-    imports: Vec<String>,
-    at: HashMap<String, String>,
-    import_addresses: Vec<String>,
+pub struct Source {
+    pub input: String,
+    pub source: String,
+    pub namespace: String,
+    pub module: String,
+    pub role: String,
+    pub imports: Vec<String>,
+    pub at: HashMap<String, String>,
+    pub import_addresses: Vec<String>,
 }
-struct Context {
-    sources: Vec<Source>,
+pub struct Context {
+    pub sources: Vec<Source>,
+    pub version: u8,
 }
 fn refusal<T>(at: &str, why: impl AsRef<str>) -> Result<T, Failure> {
     fail(format!("context {}: {}", at, why.as_ref()))
@@ -38,7 +41,7 @@ fn nonempty(value: &Value) -> Option<String> {
     value.as_str().filter(|s| !s.is_empty()).map(str::to_string)
 }
 impl Context {
-    fn read(
+    pub fn read(
         text: &str,
         paths: &[String],
         texts: &HashMap<String, String>,
@@ -47,7 +50,7 @@ impl Context {
             Ok(v) => v,
             Err(_) => return refusal("document", "invalid JSON"),
         };
-        if raw["schema"].as_str() != Some("vi.court.context/1") {
+        if !matches!(raw["schema"].as_str(), Some("vi.court.context/1") | Some("vi.court.context/2")) {
             return refusal("schema", "expected vi.court.context/1");
         }
         if !keys(&raw, &["schema", "sources", "intrinsics"])
@@ -59,21 +62,23 @@ impl Context {
                 "expected exactly schema, sources and intrinsics",
             );
         }
+        let second = raw["schema"].as_str() == Some("vi.court.context/2");
         let mut parsed = Vec::new();
         let mut seen = HashSet::new();
         for (i, item) in raw["sources"].as_array().unwrap().iter().enumerate() {
             let at = format!("sources[{}]", i);
             let p = &item["at"];
-            if !keys(
-                item,
-                &["input", "source", "sha256", "namespace", "imports", "at"],
-            ) || !keys(p, &["input", "source", "sha256", "namespace", "imports"])
+            let scalar_fields = if second { vec!["input","source","sha256","namespace","module","role"] }
+                else { vec!["input","source","sha256","namespace"] };
+            let mut fields=scalar_fields.clone(); fields.extend(["imports","at"]);
+            let mut provenance=scalar_fields.clone(); provenance.push("imports");
+            if !keys(item,&fields) || !keys(p,&provenance)
             {
                 return refusal(&at, "unsupported or missing source fields");
             }
             let mut values = HashMap::new();
             let mut addresses = HashMap::new();
-            for key in ["input", "source", "sha256", "namespace"] {
+            for key in scalar_fields {
                 let address = match nonempty(&p[key]) {
                     Some(v) => v,
                     None => {
@@ -123,7 +128,9 @@ impl Context {
                     format!("SHA-256 differs for '{}'", input),
                 );
             }
+            let role=values.get("role").cloned().unwrap_or_else(|| if paths.first()==Some(&input) { "own".into() } else { "borrowed".into() });
             parsed.push(Source {
+                module: values.get("module").unwrap_or(&values["namespace"]).clone(), role,
                 input,
                 source: values["source"].clone(),
                 namespace: values["namespace"].clone(),
@@ -144,58 +151,58 @@ impl Context {
             }
         }
         let mut swift = false;
+        let exports=if second { vec!["Never".to_string(),"String".to_string()] } else { vec!["Never".to_string()] };
+        let version=if second { "vi.court.intrinsic-swift/2" } else { "vi.court.intrinsic-swift/1" };
         for (i, item) in raw["intrinsics"].as_array().unwrap().iter().enumerate() {
             let p = &item["at"];
             let export_at = strings(&p["exports"]);
             if !keys(item, &["namespace", "version", "exports", "at"])
                 || item["namespace"].as_str() != Some("Swift")
-                || item["version"].as_str() != Some("vi.court.intrinsic-swift/1")
-                || strings(&item["exports"]) != Some(vec!["Never".to_string()])
+                || item["version"].as_str() != Some(version)
+                || strings(&item["exports"]) != Some(exports.clone())
                 || swift
                 || !keys(p, &["namespace", "version", "exports"])
                 || nonempty(&p["namespace"]).is_none()
                 || nonempty(&p["version"]).is_none()
                 || !export_at
-                    .map(|e| e.len() == 1 && !e[0].is_empty())
+                    .map(|e| e.len() == exports.len() && e.iter().all(|s|!s.is_empty()))
                     .unwrap_or(false)
             {
                 return refusal(
                     &format!("intrinsics[{}]", i),
-                    "expected the closed Swift/1 export Never with provenance",
+                    if second { "expected the closed Swift/2 exports Never and String with provenance" } else { "expected the closed Swift/1 export Never with provenance" },
                 );
             }
             swift = true;
         }
-        let namespaces: HashSet<String> = parsed.iter().map(|s| s.namespace.clone()).collect();
+        let namespaces: HashSet<String> = parsed.iter().map(|s| if second {s.module.clone()} else {s.namespace.clone()}).collect();
         for source in &parsed {
+            if second && !["own","borrowed"].contains(&source.role.as_str()) { return refusal(&source.at["role"],"expected own or borrowed source role"); }
+            if second && source.module=="Swift" { return refusal(&source.at["module"],"source cannot declare intrinsic module Swift"); }
             if source.namespace == "Swift" {
                 return refusal(
                     &source.at["namespace"],
                     "source cannot declare intrinsic namespace Swift",
                 );
             }
+        }
+        for source in &parsed {
             for (i, imported) in source.imports.iter().enumerate() {
                 if !namespaces.contains(imported) && !(swift && imported == "Swift") {
                     return refusal(
                         &source.import_addresses[i],
                         format!(
-                            "namespace '{}' has no supplied source or intrinsic",
-                            imported
+                            "{} '{}' has no supplied source or intrinsic",
+                            if second {"module"} else {"namespace"}, imported
                         ),
                     );
                 }
             }
         }
-        Ok(Self { sources: parsed })
+        Ok(Self { sources: parsed, version: if second {2} else {1} })
     }
 }
-#[derive(Clone)]
-struct Unit {
-    context: Source,
-    text: String,
-    world: World,
-    excluded: Option<usize>,
-}
+type Unit = crate::court_notation::File;
 #[derive(Clone)]
 struct Origin {
     unit: Unit,
@@ -211,6 +218,9 @@ pub fn prepare(
     context_path: &str,
     load: &dyn Fn(&str) -> Result<String, Failure>,
 ) -> Result<Prepared, Failure> {
+    prepare_read(paths,context_path,load,&HashSet::new(),false,false)
+}
+pub fn prepare_read(paths: &[String], context_path: &str, load: &dyn Fn(&str)->Result<String,Failure>, documents: &HashSet<String>, batch: bool, notation_only: bool) -> Result<Prepared,Failure> {
     let first = match paths.first() {
         Some(p) => p,
         None => return Err(Failure::Input(vec!["context needs a world source".into()])),
@@ -220,48 +230,16 @@ pub fn prepare(
         texts.insert(path.clone(), load(path)?);
     }
     let context = Context::read(&load(context_path)?, paths, &texts)?;
-    let mut lent = HashSet::new();
-    for text in texts.values() {
-        if let Ok(clean) = strip_comments(text, &HashSet::new()) {
-            lent.extend(declared_builders(&clean));
-        }
-    }
-    let mut units = Vec::new();
-    for source in context.sources {
-        let text = texts[&source.input].clone();
-        let (view, excluded) = if &source.input == first {
-            (text.clone(), None)
-        } else {
-            crate::definition_view::read(&text, &source.source, &lent)?
-        };
-        let read = judge::read(&view, &lent)?;
-        for (i, line) in read.clean.split('\n').enumerate() {
-            for hit in captures(r"\bimport\s+([^;\n]+)", line) {
-                let imported = hit[0].trim();
-                if !source.imports.iter().any(|s| s == imported) {
-                    return fail(format!(
-                        "{}:{}: import '{}' is not declared by the source context",
-                        source.source,
-                        i + 1,
-                        imported
-                    ));
-                }
-            }
-        }
-        units.push(Unit {
-            context: source,
-            text,
-            world: read,
-            excluded,
-        });
-    }
+    if context.version==2 && !batch { return Err(Failure::Input(vec!["context/2 requires --report for complete source coverage".into()])); }
+    let units=crate::court_notation::read(&context,&texts,if notation_only {None} else {Some(first)},documents)?;
+    let intrinsic_names=if context.version==2 {vec!["Never","String"]} else {vec!["Never"]};
     if units.iter().any(|u| u.world.intrinsic_swift) {
         let mut ordered: Vec<_> = units.iter().collect();
         ordered.sort_by_key(|u| &u.context.source);
         for unit in ordered {
-            for name in ["Swift", "Never"] {
+            for name in std::iter::once("Swift").chain(intrinsic_names.iter().copied()) {
                 if let Some(line) = unit.world.declared.get(name).and_then(|v| v.first()) {
-                    return fail(format!("cannot read line {} of '{}': declaration '{}' conflicts with intrinsic Swift/1",line,unit.context.source,name));
+                    return fail(format!("cannot read line {} of '{}': declaration '{}' conflicts with intrinsic Swift/{}",line,unit.context.source,name,context.version));
                 }
             }
         }
@@ -296,14 +274,9 @@ pub fn prepare(
     }
     let mut world = own.world.clone();
     world.contextual = true;
+    world.context_version=context.version;
     world.context_source = own.context.source.clone();
-    world.excluded_definitions = units
-        .iter()
-        .filter_map(|u| {
-            u.excluded
-                .map(|line| format!("{}:{}", u.context.source, line))
-        })
-        .collect();
+    world.excluded_definitions = units.iter().flat_map(|u|u.unchecked.clone()).collect();
     world.excluded_definitions.sort();
     world.intrinsic_swift = units.iter().any(|u| u.world.intrinsic_swift);
     let own_aliases = own.world.aliases.clone();
@@ -324,6 +297,8 @@ pub fn prepare(
         world.aliases.extend(unit.world.aliases.clone());
         world.conformers.extend(unit.world.conformers.clone());
         world.parameters.extend(unit.world.parameters.clone());
+        world.generic_requirements.extend(unit.world.generic_requirements.clone());
+        world.generic_unsupported.extend(unit.world.generic_unsupported.clone());
         world
             .protocol_parents
             .extend(unit.world.protocol_parents.clone());
@@ -356,7 +331,7 @@ pub fn prepare(
                 .split(',')
                 .map(|p| p.trim().to_string())
                 .collect::<Vec<_>>();
-            if name == "Never" && !world.conformers.contains_key(name) {
+            if intrinsic_names.contains(&name.as_str()) && !world.conformers.contains_key(name) {
                 world.conformers.insert(
                     name.clone(),
                     Conformer {
@@ -407,11 +382,11 @@ pub fn prepare(
                     && !unit
                         .context
                         .imports
-                        .contains(&origin.unit.context.namespace)
+                        .contains(&origin.unit.context.module)
                 {
                     return fail(format!(
-                        "{}:1: '{}' belongs to unimported namespace '{}'",
-                        unit.context.source, name, origin.unit.context.namespace
+                        "{}:1: '{}' belongs to unimported module '{}'",
+                        unit.context.source, name, origin.unit.context.module
                     ));
                 }
             }
@@ -443,6 +418,7 @@ pub fn prepare(
                 words.extend(c.protocols.clone());
                 words.extend(c.table.values().cloned());
             }
+            for r in world.generic_requirements.get(name).into_iter().flatten() { words.extend([r.left.clone(),r.right.clone()]); }
             if let Some(a) = world.aliases.get(name) {
                 words.push(a.body.clone());
             }
@@ -473,7 +449,7 @@ pub fn prepare(
         for name in names {
             if reached.contains(&name)
                 && !origins.contains_key(&name)
-                && name != "Never"
+                && !intrinsic_names.contains(&name.as_str())
                 && !(name == "Swift" && world.intrinsic_swift)
             {
                 world.context_unresolved.push(format!(
@@ -502,7 +478,7 @@ pub fn prepare(
                     at, name
                 ));
             }
-            if name != "Never" {
+            if !intrinsic_names.contains(&name.as_str()) {
                 let origin = match origins.get(name).and_then(|v| v.first()) {
                     Some(o) => o,
                     None => {
@@ -516,7 +492,7 @@ pub fn prepare(
                     && !unit
                         .context
                         .imports
-                        .contains(&origin.unit.context.namespace)
+                        .contains(&origin.unit.context.module)
                 {
                     return fail(format!(
                         "{}: extension target '{}' is not imported",
@@ -550,6 +526,8 @@ pub fn prepare(
             );
         }
     }
+    if notation_only { return Ok(Prepared { path:own.context.source,world,own_aliases,
+        excludes_conditional:units.iter().any(|u|re(r"(?m)^\s*#if\b").is_match(&source_lines(&u.text))) }); }
     fn visit(
         name: &str,
         world: &World,
@@ -731,7 +709,7 @@ fn grounded_memberships(world: &World) -> Result<(), Failure> {
             for (lhs, required) in &gate.memberships {
                 protocols(&[required.clone()], &address(&name, world), world)?;
                 let term = judge::substitute(&judge::parse_term(lhs)?, &bindings)?;
-                let target = judge::normalize(&term, world, &rigid)?;
+                let target = if world.context_version==2 {crate::generic_membership::head(&term,world,&rigid)?} else {judge::normalize(&term,world,&rigid)?};
                 if !target.args().is_empty() {
                     continue;
                 }
@@ -879,6 +857,7 @@ fn references(source: &World, world: &World) -> Result<HashSet<String>, Failure>
         for f in fields {
             term(&c.table[f], &bound)?;
         }
+        for r in source.generic_requirements.get(n).into_iter().flatten() { term(&r.left,&bound)?; term(&r.right,&bound)?; }
     }
     let mut names: Vec<_> = source.protocol_parents.keys().collect();
     names.sort();
@@ -934,7 +913,7 @@ fn select_conformers(
     ) -> Result<(), Failure> {
         for (lhs, _) in clauses {
             let term = judge::substitute(&judge::parse_term(lhs)?, bindings)?;
-            let target = judge::normalize(&term, world, rigid)?;
+            let target = if world.context_version==2 {crate::generic_membership::head(&term,world,rigid)?} else {judge::normalize(&term,world,rigid)?};
             if target.args().is_empty() && world.conformers.contains_key(&target.head()) {
                 selected.insert(target.head());
             }

@@ -175,6 +175,9 @@ enum DefinitionReduction {
                 return try parse(definition.body).substituting(bindings)
             case let .field(owner, axis):
                 if world.intrinsicSwift, expression.text == "Swift.Never" { return .application("Never", []) }
+                if world.intrinsicSwift, world.contextVersion == 2, expression.text == "Swift.String" {
+                    return .application("String", [])
+                }
                 if world.nestedNames.contains(expression.text) { return nil }
                 if world.namespaces.contains(owner.text) {
                     throw Failure("no declaration of nested name '\(expression.text)'")

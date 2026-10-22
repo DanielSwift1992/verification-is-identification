@@ -65,6 +65,28 @@ struct NotationScope {
 
     func name(_ spelling: String, at start: Int) -> String { nested[start] ?? spelling }
 
+    /// Both questions obtain nested declaration headers and fields from these
+    /// lexical owners. A child keeps its qualified identity; it is not emitted
+    /// as a new top-level source declaration.
+    func structural(_ clean: String, origin: String) throws -> [StructuralSource.Declaration] {
+        let units = Array(clean.utf16)
+        var result: [StructuralSource.Declaration] = []
+        for declaration in declarations {
+            guard ["enum", "struct", "protocol"].contains(declaration.kind) else { continue }
+            let header = Array(try StructuralSource.tokens(declaration.header).dropFirst())
+            let body = String(decoding: units[(declaration.open + 1)..<(declaration.close - 1)], as: UTF16.self)
+            let read = try StructuralSource.declaration(kind: declaration.kind, header: header,
+                body: StructuralSource.tokens(body), origin: origin)
+            let excluded = Set(read.parameters + Array(read.fields.keys) + ["Self"])
+            result.append(StructuralSource.Declaration(name: declaration.qualified, kind: read.kind,
+                parameters: read.parameters, parents: read.parents, requirements: read.requirements,
+                fields: read.fields.mapValues { resolve($0, in: declaration.qualified, excluding: excluded) },
+                fieldAccess: read.fieldAccess, axes: read.axes, alias: read.alias,
+                unsupported: read.unsupported, bodyWitness: read.bodyWitness, origin: origin))
+        }
+        return result
+    }
+
     func resolve(_ body: String, in owner: String, excluding: Set<String> = []) -> String {
         let known = Set(nested.values)
         let regex = try! NSRegularExpression(pattern: #"(?<![\w.])\b\w+\b"#)
@@ -83,7 +105,8 @@ struct NotationScope {
         return result as String
     }
 
-    static func intrinsic(_ clean: String) throws -> Bool {
+    static func intrinsic(_ clean: String, version: Int = 1) throws -> Bool {
+        let exports = version == 2 ? ["Never", "String"] : ["Never"]
         let scope = WhereJudge.Scope(clean)
         let imports = try! NSRegularExpression(pattern: #"\bimport\s+([^\n;]+)"#)
         var hasSwift = false
@@ -101,15 +124,15 @@ struct NotationScope {
             guard hasSwift else {
                 try WhereJudge.fail("cannot read line \(scope.line[hit.range.location]): 'Swift.\(export)' requires the declared intrinsic import 'Swift'")
             }
-            guard export == "Never" else {
-                try WhereJudge.fail("cannot read line \(scope.line[hit.range.location]): 'Swift.\(export)' is not exported by intrinsic Swift/1")
+            guard exports.contains(export) else {
+                try WhereJudge.fail("cannot read line \(scope.line[hit.range.location]): 'Swift.\(export)' is not exported by intrinsic Swift/\(version)")
             }
         }
         if hasSwift {
-            let declares = try! NSRegularExpression(pattern: #"\b(?:enum|struct|class|actor|protocol|typealias|associatedtype)\s+(Swift|Never)\b"#)
+            let declares = try! NSRegularExpression(pattern: #"\b(?:enum|struct|class|actor|protocol|typealias|associatedtype)\s+("# + (["Swift"] + exports).joined(separator: "|") + #")\b"#)
             if let hit = declares.firstMatch(in: clean, range: NSRange(clean.startIndex..., in: clean)),
                let name = Range(hit.range(at: 1), in: clean) {
-                try WhereJudge.fail("cannot read line \(scope.line[hit.range.location]): declaration '\(clean[name])' conflicts with intrinsic Swift/1")
+                try WhereJudge.fail("cannot read line \(scope.line[hit.range.location]): declaration '\(clean[name])' conflicts with intrinsic Swift/\(version)")
             }
         }
         return hasSwift

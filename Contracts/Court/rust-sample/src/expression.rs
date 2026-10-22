@@ -201,6 +201,7 @@ pub type Span = (usize, usize);
 #[derive(Debug, Clone, Default)]
 pub struct World {
     pub contextual: bool,
+    pub context_version: u8,
     pub context_source: String,
     pub context_unresolved: Vec<String>,
     pub excluded_definitions: Vec<String>,
@@ -216,6 +217,8 @@ pub struct World {
     pub protocol_parents: HashMap<String, Vec<String>>,
     pub protocol_axes: HashMap<String, HashSet<String>>,
     pub parameters: HashMap<String, Vec<String>>,
+    pub generic_requirements: HashMap<String, Vec<crate::structural::Requirement>>,
+    pub generic_unsupported: HashMap<String, Vec<String>>,
     pub conditional_declarations: HashSet<String>,
     pub presented_bodies: HashSet<String>,
     pub uses: Vec<String>,
@@ -325,6 +328,7 @@ impl<'a> Source<'a> {
             }
             Expression::Field(owner, axis) => {
                 if self.world.intrinsic_swift && expression.text()=="Swift.Never" { return Ok(Some(Expression::name("Never"))); }
+                if self.world.intrinsic_swift && self.world.context_version==2 && expression.text()=="Swift.String" { return Ok(Some(Expression::name("String"))); }
                 if self.world.nested_names.contains(&expression.text()) { return Ok(None); }
                 if self.world.namespaces.contains(&owner.text()) { return Err(Failure::new(format!("no declaration of nested name '{}'",expression.text()))); }
                 let owner_name=owner.text(); let empty=Vec::new();

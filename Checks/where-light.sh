@@ -13,11 +13,8 @@ cd "$(dirname "$0")/.."
 light_tmp=$(mktemp -d "${TMPDIR:-/tmp}/vi-where-light.XXXXXX")
 trap 'rm -rf "$light_tmp"' EXIT
 
-if ! swift build --product Tools >"$light_tmp/build.log" 2>&1; then
-    cat "$light_tmp/build.log"
-    exit 1
-fi
-light_bin=$(swift build --show-bin-path)
+. Checks/build-tools.sh
+light_bin=$(vi_check_tools_bin)
 primitive=Sources/VerificationIsIdentification/Primitive.swift
 
 across="applies a gated head in a use written across lines, which this court reads on one line"

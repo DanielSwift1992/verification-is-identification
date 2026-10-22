@@ -18,11 +18,8 @@ cd "$(dirname "$0")/.."
 lexical_tmp=$(mktemp -d "${TMPDIR:-/tmp}/vi-where-lexical.XXXXXX")
 trap 'rm -rf "$lexical_tmp"' EXIT
 
-if ! swift build --product Tools >"$lexical_tmp/build.log" 2>&1; then
-    cat "$lexical_tmp/build.log"
-    exit 1
-fi
-lexical_bin=$(swift build --show-bin-path)
+. Checks/build-tools.sh
+lexical_bin=$(vi_check_tools_bin)
 
 # lexical_world <world> <compiler flags> <compiler errors> <court refusal>:
 # the compiler refuses the world for exactly these errors, and the court

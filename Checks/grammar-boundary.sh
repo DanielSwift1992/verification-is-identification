@@ -12,11 +12,8 @@ cd "$(dirname "$0")/.."
 boundary_tmp=$(mktemp -d "${TMPDIR:-/tmp}/vi-grammar-boundary.XXXXXX")
 trap 'rm -rf "$boundary_tmp"' EXIT
 
-if ! swift build --product Tools >"$boundary_tmp/build.log" 2>&1; then
-    cat "$boundary_tmp/build.log"
-    exit 1
-fi
-boundary_bin=$(swift build --show-bin-path)
+. Checks/build-tools.sh
+boundary_bin=$(vi_check_tools_bin)
 boundary_theory=$PWD
 
 # boundary_world <directory> <expected exit> <expected line>: one file under the

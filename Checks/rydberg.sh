@@ -7,11 +7,13 @@ cd "$(dirname "$0")/.."
 ladder_tmp=$(mktemp -d "${TMPDIR:-/tmp}/vi-rydberg.XXXXXX")
 trap 'rm -rf "$ladder_tmp"' EXIT
 
-if ! swift build --product Tools >"$ladder_tmp/build.log" 2>&1; then
-    cat "$ladder_tmp/build.log"
-    exit 1
+. Checks/build-tools.sh
+ladder_bin=$(vi_check_tools_bin)
+ladder_test_command=(swift test)
+if [ -n "${VI_CHECK_BUILD_BIN:-}" ]; then
+    ladder_test_command+=(--skip-build)
 fi
-if ! swift test --filter RydbergCountTests >"$ladder_tmp/count.log" 2>&1; then
+if ! "${ladder_test_command[@]}" --filter RydbergCountTests >"$ladder_tmp/count.log" 2>&1; then
     cat "$ladder_tmp/count.log"
     exit 1
 fi
@@ -22,7 +24,6 @@ for ladder_test in testDeclaredEnergyStitchesThroughTheirOwnCountReading testEqu
         exit 1
     fi
 done
-ladder_bin=$(swift build --show-bin-path)
 
 if "$ladder_bin/Tools" judge where Sources/Examples/RydbergLadder.swift \
     Sources/VerificationIsIdentification/Primitive.swift >"$ladder_tmp/where.log" 2>&1; then

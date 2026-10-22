@@ -12,11 +12,8 @@ cd "$(dirname "$0")/.."
 conditional_tmp=$(mktemp -d "${TMPDIR:-/tmp}/vi-where-conditional.XXXXXX")
 trap 'rm -rf "$conditional_tmp"' EXIT
 
-if ! swift build --product Tools >"$conditional_tmp/build.log" 2>&1; then
-    cat "$conditional_tmp/build.log"
-    exit 1
-fi
-conditional_bin=$(swift build --show-bin-path)
+. Checks/build-tools.sh
+conditional_bin=$(vi_check_tools_bin)
 
 # conditional_world <world> <court exit> <compiler errors> <court lines>:
 # the compiler refuses the world for exactly these errors, and the court

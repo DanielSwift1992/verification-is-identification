@@ -20,11 +20,8 @@ cd "$(dirname "$0")/.."
 applications_tmp=$(mktemp -d "${TMPDIR:-/tmp}/vi-where-applications.XXXXXX")
 trap 'rm -rf "$applications_tmp"' EXIT
 
-if ! swift build --product Tools >"$applications_tmp/build.log" 2>&1; then
-    cat "$applications_tmp/build.log"
-    exit 1
-fi
-applications_bin=$(swift build --show-bin-path)
+. Checks/build-tools.sh
+applications_bin=$(vi_check_tools_bin)
 
 # applications_world <world> <compiler errors> <court refusal>: the world,
 # with its definitions file when there is one, is refused by the compiler

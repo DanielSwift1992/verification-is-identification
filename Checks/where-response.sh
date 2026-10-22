@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-swift build --product Tools
-python3 Checks/where-response.py --tools "$(swift build --show-bin-path)/Tools" "$@"
+. Checks/build-tools.sh
+response_bin=$(vi_check_tools_bin)
+python3 Checks/where-response.py --tools "$response_bin/Tools" "$@"

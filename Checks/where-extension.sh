@@ -12,11 +12,8 @@ cd "$(dirname "$0")/.."
 extension_tmp=$(mktemp -d "${TMPDIR:-/tmp}/vi-where-extension.XXXXXX")
 trap 'rm -rf "$extension_tmp"' EXIT
 
-if ! swift build --product Tools >"$extension_tmp/build.log" 2>&1; then
-    cat "$extension_tmp/build.log"
-    exit 1
-fi
-extension_bin=$(swift build --show-bin-path)
+. Checks/build-tools.sh
+extension_bin=$(vi_check_tools_bin)
 
 # The compiler refuses both refinements, each for the loose bound, and the
 # demand for the premise the extension does not add. It accepts the control.

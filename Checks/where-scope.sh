@@ -13,11 +13,8 @@ cd "$(dirname "$0")/.."
 scope_tmp=$(mktemp -d "${TMPDIR:-/tmp}/vi-where-scope.XXXXXX")
 trap 'rm -rf "$scope_tmp"' EXIT
 
-if ! swift build --product Tools >"$scope_tmp/build.log" 2>&1; then
-    cat "$scope_tmp/build.log"
-    exit 1
-fi
-scope_bin=$(swift build --show-bin-path)
+. Checks/build-tools.sh
+scope_bin=$(vi_check_tools_bin)
 
 # scope_world <world> <compiler errors> <court refusal>: the compiler
 # refuses the world for the named errors, allowing the optional inference

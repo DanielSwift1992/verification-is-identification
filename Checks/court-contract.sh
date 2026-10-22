@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# The executable must be rebuilt before judging an unchanged source checkout.
+# Use this run’s completed build, or build before a standalone judgement.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-swift build --product Tools
-court_contract_bin="$(swift build --show-bin-path)/Tools"
+. Checks/build-tools.sh
+court_contract_bin="$(vi_check_tools_bin)/Tools"
 court_contract_command=$(python3 -c 'import json,sys; print(json.dumps([sys.argv[1], "judge"]))' "$court_contract_bin")
 python3 Checks/court-contract-test.py
 python3 Checks/count-dag-arithmetic.py

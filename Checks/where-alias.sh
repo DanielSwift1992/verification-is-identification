@@ -9,11 +9,8 @@ cd "$(dirname "$0")/.."
 alias_tmp=$(mktemp -d "${TMPDIR:-/tmp}/vi-where-alias.XXXXXX")
 trap 'rm -rf "$alias_tmp"' EXIT
 
-if ! swift build --product Tools >"$alias_tmp/build.log" 2>&1; then
-    cat "$alias_tmp/build.log"
-    exit 1
-fi
-alias_bin=$(swift build --show-bin-path)
+. Checks/build-tools.sh
+alias_bin=$(vi_check_tools_bin)
 
 # The compiler refuses the four demands for one missing conformance and
 # accepts every demand of the control.

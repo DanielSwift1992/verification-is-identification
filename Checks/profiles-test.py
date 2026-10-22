@@ -215,10 +215,10 @@ exit 0
         trace = self.scratch / f'{scope}-{fault}.trace'
         trace.write_text('')
         # stand-in compilers prove nothing, so these runs keep no verdict receipt
-        env = {key: value for key, value in os.environ.items() if key != 'VERDICT_RECEIPT'}
+        env = {key: value for key, value in os.environ.items() if key not in ('VERDICT_RECEIPT', 'VI_CHECK_BUILD_BIN')}
         env = {**env, 'PATH': str(self.tools) + os.pathsep + os.environ['PATH'],
                'VI_TRACE': str(trace), 'VI_FAKE_BIN': str(self.scratch), 'VI_FAULT': fault,
-               'VI_FIRST_NAME': self.pairs[0][1]}
+               'VI_FIRST_NAME': self.pairs[0][1], 'VERDICT_JOBS': '1'}
         result = subprocess.run(['bash', 'Checks/verdict.sh', scope], cwd=ROOT, env=env, capture_output=True, text=True)
         return result, [line.split('\t') for line in trace.read_text().splitlines()]
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Check the generic implications, then reject one independent broken premise
 # per compiler run. No diagnostic from a different fixture counts as a refusal.
+# VERDICT_JOBS bounds independent fixture workers (default 3; 1 is serial).
 set -euo pipefail
 cd "$(dirname "$0")/.."
 verdict_scope="${1:-all}"
@@ -9,7 +10,7 @@ case "$verdict_scope" in
     *) echo "usage: bash Checks/verdict.sh [all|core|halt|sourcecontinuation|residuecontinuation|recordreadings|admission|localphase|localpolicy|contact|whole|ice|seeing|markers|uniqueness|distance|return|scopedlaw|knowledgeclosure|acquisition|interactions|knowledge|observer|resident|construction|boundary|common|evidence|evolution|closure|probe|routing|reuse|probepair|lawtransport|demand|frame|discovery]" >&2; exit 2 ;;
 esac
 # ── A RECEIPT FOR INPUTS THAT DID NOT CHANGE, ON THIS MACHINE ONLY. Each refusal
-# is its own compiler run, so the whole law takes most of an hour, and a
+# is its own compiler run, even when fixture workers overlap. A
 # change that touches no file the law compiles (a page, a README, a note)
 # would re-prove the same answer. The answer is fixed by what it compiles: the
 # Swift under Sources and Plugins (Examples builds through the LawCheck plugin,
@@ -28,7 +29,7 @@ if command -v sha256sum >/dev/null 2>&1; then verdict_sum="sha256sum"; else verd
 verdict_key() {
     {
         find Sources Plugins -type f -name '*.swift' | LC_ALL=C sort
-        find Checks -type f | LC_ALL=C sort
+        find Checks -type f ! -path '*/__pycache__/*' ! -name '*.pyc' | LC_ALL=C sort
         printf '%s\n' Package.swift Package.resolved
     } | while IFS= read -r f; do
         [ -f "$f" ] && $verdict_sum "$f"
@@ -36,9 +37,9 @@ verdict_key() {
     swiftc --version 2>&1
 }
 verdict_receipt=""
-if [ "$verdict_scope" = all ] && [ -n "${VERDICT_RECEIPT:-}" ]; then
+if [ "$verdict_scope" = all ] && [ -n "${VERDICT_RECEIPT:-}" ] && [ -z "${CI:-}" ]; then
     verdict_receipt=".build/receipts/verdict-$(verdict_key | $verdict_sum | cut -c1-64)"
-    if [ -z "${CI:-}" ] && [ -z "${VERDICT_FULL:-}" ] && [ -f "$verdict_receipt" ]; then
+    if [ -z "${VERDICT_FULL:-}" ] && [ -f "$verdict_receipt" ]; then
         echo "verdict: every file this law compiles is unchanged since the full green run in $verdict_receipt ($(head -1 "$verdict_receipt")); not run again here. CI runs it in full, and VERDICT_FULL=1 runs it here."
         exit 0
     fi
@@ -80,6 +81,16 @@ if [ "$verdict_scope" = localphase ] || [ "$verdict_scope" = halt ] || [ "$verdi
         -module-cache-path "$verdict_tmp/cache" \
         -I "$verdict_bin/Modules" "${verdict_examples_sources[@]}" \
         -emit-module-path "$verdict_bin/Modules/Examples.swiftmodule"
+elif [ -n "${VI_CHECK_BUILD_BIN:-}" ]; then
+    # check.sh built this frozen tree, including all products and test inputs.
+    # Standalone invocations still establish their own package build below.
+    verdict_bin="$VI_CHECK_BUILD_BIN"
+    for verdict_module in VerificationIsIdentification Examples GrammarLexicon; do
+        if [ ! -f "$verdict_bin/Modules/$verdict_module.swiftmodule" ]; then
+            echo "verdict: ERROR — prepared module is missing: $verdict_bin/Modules/$verdict_module.swiftmodule" >&2
+            exit 1
+        fi
+    done
 else
     swift build --target Examples
     # The admission fixture reads the actual vocabulary, not a cached grant.
@@ -91,182 +102,182 @@ fi
 
 typecheck() {
     if [ "$verdict_scope" = admission ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/Admission.swift "$@"
         return
     fi
     if [ "$verdict_scope" = recordreadings ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/RecordReadings.swift "$@"
         return
     fi
     if [ "$verdict_scope" = residuecontinuation ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/ResidueContinuation.swift "$@"
         return
     fi
     if [ "$verdict_scope" = sourcecontinuation ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/SourceContinuation.swift "$@"
         return
     fi
     if [ "$verdict_scope" = halt ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/Halt.swift "$@"
         return
     fi
     if [ "$verdict_scope" = localphase ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/LocalPhase.swift Checks/LocalStar.swift Checks/LocalStarObservation.swift Checks/LocalContactLift.swift Checks/LocalFourLeaf.swift Checks/PhaseLawInquiry.swift Checks/PhaseWordCatalogue.swift Checks/FourLeafResident.swift Checks/FourLeafPointProbe.swift Checks/FourLeafAcquiredLaw.swift Checks/FourLeafRecoveredUse.swift Checks/FaithfulContactLift.swift Checks/FourLeafControl.swift Checks/FourReadingAcquisition.swift Checks/FourLeafEcho.swift Checks/AlternatingLine.swift Checks/QuarterClockCalibration.swift Checks/FourLeafRecordedReturn.swift Checks/StarRecoveryFibers.swift Checks/FourLeafProfileScope.swift Checks/FourLeafValueQuestion.swift Checks/FourLeafQuestionRefinement.swift Checks/SevenQuestionPrefix.swift Checks/PhaseLawKnownTransport.swift Checks/JointPhaseQuestions.swift Checks/PhaseAlignmentObstruction.swift Checks/UnobservedPhaseBridge.swift Checks/PhaseCyclingBridge.swift Checks/PhaseClockPolicy.swift Checks/PhaseProbeClockPolicy.swift Checks/ReusablePhaseInterface.swift Checks/PhaseInterfaceResidue.swift Checks/PrimitivePhaseReturn.swift Checks/PhaseBasisProfile.swift Checks/PhaseBasisReduction.swift Checks/PhaseFrameDrift.swift Checks/JointReplyAcquisition.swift Checks/JointReplyExecution.swift Checks/OneReplyApplicability.swift Checks/PartnerProbeApplicability.swift Checks/PhaseProbeExcursion.swift Checks/PairedProbeApplicability.swift Checks/LocalProbeEcho.swift Checks/EchoOrbit.swift Checks/ReturnCoverage.swift Checks/SeparationGraph.swift Checks/AcquiredFrameAction.swift Checks/ContactCycle.swift Checks/JointContactRigidity.swift Checks/ContactContrastSupport.swift Checks/ContactProfile.swift Checks/ProfileSupportHandover.swift Checks/ProfileRelease.swift Checks/BorrowedPhase.swift Checks/ProfileRenewal.swift Checks/SharedProfileRenewal.swift Checks/CyclicProfileRenewal.swift Checks/SharedFrameCoupling.swift Checks/FrameInterference.swift Checks/MarkedFrameRequest.swift Checks/SharedChannelLaw.swift Checks/RecombinationAutonomy.swift Checks/JoinedContinuation.swift Checks/RelativeAnswerCorrection.swift Checks/OccurrenceChange.swift Checks/OverlappingReadings.swift Checks/CycleAdmission.swift Checks/JointReactionBalance.swift Checks/DirectedRepair.swift Checks/RepairWithoutAnchor.swift Checks/ClockClassMass.swift Checks/BalancedContactRows.swift Checks/SelfRecordUse.swift Checks/TargetFrameTransport.swift Checks/RelativeChannelAcquisition.swift Checks/CoarseContactComparison.swift Checks/UncalibratedComparison.swift Checks/JointReadoutSymmetry.swift Checks/TripleOrientationContact.swift Checks/PhaseSelectiveContrast.swift Checks/DetectorContrast.swift Checks/FreshPartner.swift Checks/ContactDiagram.swift Checks/ContactBoundary.swift "$@"
         return
     fi
     if [ "$verdict_scope" = localpolicy ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/LocalContactPolicy.swift "$@"
         return
     fi
     if [ "$verdict_scope" = contact ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/ContactCalibration.swift Checks/ContactInquiry.swift "$@"
         return
     fi
     if [ "$verdict_scope" = discovery ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/Discovery.swift Checks/SelfInspection.swift "$@"
         return
     fi
     if [ "$verdict_scope" = seeing ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/Seeing.swift "$@"
         return
     fi
     if [ "$verdict_scope" = ice ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/IceIncidence.swift Checks/IceCoverage.swift "$@"
         return
     fi
     if [ "$verdict_scope" = whole ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/ClosedInformation.swift Checks/Context.swift "$@"
         return
     fi
     if [ "$verdict_scope" = markers ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/ClosedInformation.swift Checks/FiniteBoundary.swift "$@"
         return
     fi
     if [ "$verdict_scope" = uniqueness ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/Coverage.swift Checks/ClosedInformation.swift "$@"
         return
     fi
     if [ "$verdict_scope" = distance ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/Distance.swift "$@"
         return
     fi
     if [ "$verdict_scope" = return ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/RelationalReturn.swift "$@"
         return
     fi
     if [ "$verdict_scope" = scopedlaw ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/QuestionScopedLaw.swift "$@"
         return
     fi
     if [ "$verdict_scope" = knowledgeclosure ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/KnowledgeClosure.swift "$@"
         return
     fi
     if [ "$verdict_scope" = frame ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/RoutingFrame.swift "$@"
         return
     fi
     if [ "$verdict_scope" = demand ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/RoutingDemand.swift "$@"
         return
     fi
     if [ "$verdict_scope" = lawtransport ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/RoutingTransport.swift "$@"
         return
     fi
     if [ "$verdict_scope" = probepair ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/ResidentProbePair.swift "$@"
         return
     fi
     if [ "$verdict_scope" = reuse ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/RoutingReuse.swift "$@"
         return
     fi
     if [ "$verdict_scope" = routing ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/RoutingProbe.swift "$@"
         return
     fi
     if [ "$verdict_scope" = probe ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/MechanismProbe.swift "$@"
         return
     fi
     if [ "$verdict_scope" = closure ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/BoundaryClosure.swift "$@"
         return
     fi
     if [ "$verdict_scope" = evolution ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/BoundaryEvolution.swift "$@"
         return
     fi
     if [ "$verdict_scope" = evidence ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/AcquiredBoundary.swift "$@"
         return
     fi
     if [ "$verdict_scope" = common ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/CommonAcquisition.swift "$@"
         return
     fi
     if [ "$verdict_scope" = boundary ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/CommonBoundary.swift "$@"
         return
     fi
     if [ "$verdict_scope" = construction ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/Construction.swift "$@"
         return
     fi
     if [ "$verdict_scope" = resident ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/ResidentExperiment.swift "$@"
         return
     fi
     if [ "$verdict_scope" = observer ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/InternalObserver.swift "$@"
         return
     fi
     if [ "$verdict_scope" = knowledge ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/InteractionKnowledge.swift "$@"
         return
     fi
     if [ "$verdict_scope" = acquisition ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/Acquisition.swift "$@"
         return
     fi
     if [ "$verdict_scope" = interactions ]; then
-        swiftc -typecheck -I "$verdict_bin/Modules" \
+        swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
             -module-cache-path "$verdict_tmp/cache" Checks/Interactions.swift "$@"
         return
     fi
@@ -409,19 +420,11 @@ typecheck() {
         Checks/Seeing.swift
         Checks/ProjectionDefectCertificate.swift
     )
-    swiftc -typecheck -I "$verdict_bin/Modules" \
+    swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
         -module-cache-path "$verdict_tmp/cache" "${verdict_positive_sources[@]}" "$@"
 }
 
-typecheck_refusal() {
-    # The modules and combined positive scope have already been checked.
-    # A refusal checks only its own fixture, with its declared source support.
-    # Rechecking every unrelated proof here costs a full scope per mutation.
-    swiftc -typecheck -I "$verdict_bin/Modules" \
-        -module-cache-path "$verdict_tmp/cache" "${verdict_case_sources[@]}" "$@"
-}
 
-verdict_checked_files=" "
 typecheck >"$verdict_tmp/positive.log" 2>&1 || {
     cat "$verdict_tmp/positive.log"
     exit 1
@@ -501,6 +504,7 @@ else
     echo "finite boundary: StructuresFinite accepts a cycle; explicit bounded floors compile"
 fi
 
+> "$verdict_tmp/cases"
 for verdict_case in \
     PE_BAD_MIDLINE:PERejectedMidline \
     PE_BAD_SCOPE:PERejectedScope \
@@ -1542,65 +1546,10 @@ do
     if [ "$verdict_scope" = seeing ] && [[ "$verdict_flag" != BAD_SENSOR_* ]]; then
         continue
     fi
-    # Missing dependencies cannot count as a refusal. Establish each fixture
-    # without a mutation once, then run every registered mutation independently.
-    verdict_case_files=()
-    while IFS= read -r verdict_case_file; do
-        verdict_case_files+=("$verdict_case_file")
-    done < <(grep -rlE --include='*.swift' "^#if ${verdict_flag}$" Checks)
-    if [ "${#verdict_case_files[@]}" -ne 1 ]; then
-        echo "verdict: ERROR — expected one fixture for $verdict_flag"
-        exit 1
-    fi
-    verdict_case_file="${verdict_case_files[0]}"
-    verdict_case_sources=("$verdict_case_file")
-    case "$verdict_case_file" in
-        Checks/Coverage.swift|Checks/Saturation.swift|Checks/Transition.swift|Checks/Transport.swift)
-            verdict_case_sources+=(Checks/Verdict.swift)
-            ;;
-        Checks/IceIncidence.swift|Checks/IceCoverage.swift)
-            verdict_case_sources=(Checks/IceIncidence.swift Checks/IceCoverage.swift)
-            ;;
-    esac
-    case "$verdict_checked_files" in
-        *" $verdict_case_file "*) ;;
-        *)
-            if ! typecheck_refusal >"$verdict_tmp/fixture-positive.log" 2>&1; then
-                cat "$verdict_tmp/fixture-positive.log"
-                echo "verdict: ERROR — standalone positive failed for $verdict_case_file"
-                exit 1
-            fi
-            verdict_checked_files="$verdict_checked_files$verdict_case_file "
-            ;;
-    esac
-    verdict_log="$verdict_tmp/$verdict_flag.log"
-    if typecheck_refusal "-D$verdict_flag" >"$verdict_log" 2>&1; then
-        echo "verdict: ERROR — $verdict_flag was accepted"
-        exit 1
-    else
-        verdict_status=$?
-    fi
-    # A compiler crash or exhausted solver is not a proof of incompatibility.
-    # Swift's ordinary type-checking refusals exit 1 and name the broken seam.
-    if [ "$verdict_status" -ne 1 ] || grep -Eq \
-        'Stack dump:|[Pp][Ll][Ee][Aa][Ss][Ee] submit a bug report|Assertion failed|cannot build rewrite system|rule (length|count) limit exceeded|reasonable time' \
-        "$verdict_log"; then
-        cat "$verdict_log"
-        echo "verdict: ERROR — compiler could not check $verdict_flag (exit $verdict_status)"
-        exit 1
-    fi
-    if grep -Eq 'error: (cannot find .* in scope|no such module )' "$verdict_log"; then
-        cat "$verdict_log"
-        echo "verdict: ERROR — missing dependency while checking $verdict_flag"
-        exit 1
-    fi
-    if ! grep -q 'error:' "$verdict_log" || ! grep -q "$verdict_name" "$verdict_log"; then
-        cat "$verdict_log"
-        echo "verdict: ERROR — failure did not name $verdict_name"
-        exit 1
-    fi
-    echo "verdict: refused $verdict_flag"
+    printf '%s:%s\n' "$verdict_flag" "$verdict_name" >> "$verdict_tmp/cases"
 done
+python3 Checks/verdict-cases.py --modules "$verdict_bin/Modules" \
+    --cache "$verdict_tmp/cache" --jobs "${VERDICT_JOBS:-3}" < "$verdict_tmp/cases"
 
 # every scope held: the receipt for these exact inputs, read by the next run,
 # and only if they are still the inputs the run began with

@@ -22,6 +22,10 @@ cd "$(dirname "$0")"
 # the verdict law may keep a receipt for inputs that did not change
 # (Checks/verdict.sh); a direct run of that law keeps none
 export VERDICT_RECEIPT=1
+# A prepared binary belongs to this invocation, never a previous shell run.
+unset VI_CHECK_BUILD_BIN
+. Checks/build-tools.sh
+run_input_key=""
 
 MODE_LIST=""
 MODE_SKIP=""
@@ -45,7 +49,7 @@ NEEDS_CLEAN=""
 
 # tag | what it holds | how to ask
 LAWS=(
-"build|the package builds and its tests pass|swift build && swift test"
+"build|the package builds and its tests pass|swift build --build-tests && swift test --skip-build"
 "verdict|finite verdict certificates hold and broken premises are refused|bash Checks/verdict.sh"
 )
 
@@ -82,15 +86,15 @@ RESEARCH=(
 )
 
 LAWS+=(
-"census|the declaration count per target|swift run Tools census"
-"voice|lexical counts do not exceed their authored pins|swift run Tools voice"
-"readme|the numbers are counted, not remembered|swift run Tools readme"
-"renames|empty intersections have one name; duplicate controls refuse|swift run Tools lint Sources/VerificationIsIdentification --docc Sources/VerificationIsIdentification/VerificationIsIdentification.docc --strict && python3 Checks/lint_duplicates.py --tools .build/debug/Tools"
+"census|the declaration count per target|bash Checks/tools.sh census"
+"voice|lexical counts do not exceed their authored pins|bash Checks/tools.sh voice"
+"readme|the numbers are counted, not remembered|bash Checks/tools.sh readme"
+"renames|empty intersections have one name; duplicate controls refuse|bash Checks/tools.sh lint Sources/VerificationIsIdentification --docc Sources/VerificationIsIdentification/VerificationIsIdentification.docc --strict && python3 Checks/lint_duplicates.py --tools .build/debug/Tools"
 "topics|the Topics tree equals the type lattice|swift package --allow-writing-to-package-directory tree-sort check"
-"families|every paper part has an owner and its readers reject lost addresses|swift run Tools papers && python3 Checks/paper_families.py --tools .build/debug/Tools --graph auto"
+"families|every paper part has an owner and its readers reject lost addresses|bash Checks/tools.sh papers && python3 Checks/paper_families.py --tools .build/debug/Tools --graph auto"
 "light|the second judge names the claims of Light it does not read, and the rest holds|bash Checks/where-light.sh"
 "ladder|the ladder's count readings agree and its nominal refusals stand|bash Checks/rydberg.sh"
-"grants|the second judge reads the grant world|swift run Tools judge where Sources/Examples/Grants.swift"
+"grants|the second judge reads the grant world|bash Checks/tools.sh judge where Sources/Examples/Grants.swift"
 "alias|a claim through an alias meets the gate its definition names|bash Checks/where-alias.sh"
 "extension|a conformance stated in an extension is worn and judged|bash Checks/where-extension.sh"
 "conditional|a conditional conformance is read as a gate or refused by name|bash Checks/where-conditional.sh"
@@ -101,10 +105,10 @@ LAWS+=(
 "court|the judge builds as a library a consumer links|bash Checks/court-library.sh"
 "response|requested where applications have addressed outcomes and complete admission coverage|bash Checks/where-response.sh"
 "contract|the named finite court contract matches its complete fixtures|bash Checks/court-contract.sh"
-"profiles|named check profiles preserve the declared coverage|python3 Checks/profiles-test.py"
+"profiles|named check profiles preserve the declared coverage|python3 Checks/profiles-test.py && python3 Checks/verdict-cases-test.py"
 "ci|CI diagnostics preserve failed checks and quote their output safely|python3 Checks/ci-check-test.py"
-"quotes|a quote of a sibling paper is that paper's sentence|swift run Tools quotes"
-"law|the grammar carries every source file|swift run Tools grammar"
+"quotes|a quote of a sibling paper is that paper's sentence|bash Checks/tools.sh quotes"
+"law|the grammar carries every source file|bash Checks/tools.sh grammar"
 "boundary|registered and external scope maps keep component boundaries, coverage and compiler grants|bash Checks/grammar-boundary.sh && python3 Checks/grammar-scopes.py && python3 Checks/grammar-chunks.py"
 )
 
@@ -140,6 +144,55 @@ fi
 
 failed=()
 skipped=()
+# These laws read the completed build and source tree; SwiftPM and graph
+# writers stay barriers. New laws run serially until their reads are reviewed.
+PARALLEL_LAWS=" census voice readme renames grants profiles ci quotes "
+check_jobs=${VI_CHECK_JOBS:-3}
+case "$check_jobs" in
+    [1-9]|[1-5][0-9]|6[0-4]) ;;
+    *) echo "check.sh: VI_CHECK_JOBS must be 1..64" >&2; exit 2 ;;
+esac
+check_tmp=""
+queued_tags=()
+queued_pids=()
+check_cleanup() {
+    for pid in "${queued_pids[@]+"${queued_pids[@]}"}"; do
+        kill "$pid" 2>/dev/null || true
+    done
+    for pid in "${queued_pids[@]+"${queued_pids[@]}"}"; do
+        wait "$pid" 2>/dev/null || true
+    done
+    [ -z "$check_tmp" ] || rm -rf "$check_tmp"
+}
+trap check_cleanup EXIT
+ask_law() {
+    local law_tag="$1" law_said="$2" law_cmd="$3" law_started law_status=0
+    export VI_CHECK_LAW="$law_tag"
+    if [ "$law_tag" = build ]; then
+        run_input_key=$(vi_check_source_key) || return 1
+    fi
+    echo "── $law_tag: $law_said"
+    law_started=$SECONDS
+    echo "   started: $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+    eval "$law_cmd" || law_status=$?
+    if [ "$law_status" -eq 0 ] && [ "$law_tag" = build ]; then
+        VI_CHECK_BUILD_BIN=$(swift build --show-bin-path) || law_status=$?
+        [ "$law_status" -ne 0 ] || export VI_CHECK_BUILD_BIN
+    fi
+    echo "   elapsed: $((SECONDS - law_started))s; exit: $law_status"
+    return "$law_status"
+}
+flush_laws() {
+    local i
+    for ((i=0; i<${#queued_pids[@]}; i++)); do
+        if ! wait "${queued_pids[$i]}"; then
+            failed+=("${queued_tags[$i]}")
+        fi
+        cat "$check_tmp/${queued_tags[$i]}.log"
+    done
+    queued_tags=()
+    queued_pids=()
+}
 for entry in "${LAWS[@]}"; do
     tag="${entry%%|*}"
     rest="${entry#*|}"
@@ -148,17 +201,34 @@ for entry in "${LAWS[@]}"; do
     [ -n "$MODE_ONLY" ] && [ "$tag" != "$MODE_ONLY" ] && continue
     [ -n "$MODE_SKIP" ] && [ "$tag" = "$MODE_SKIP" ] && continue
     if [[ " $NEEDS_CLEAN " == *" $tag "* ]] && [ -n "$(git status --porcelain)" ]; then
+        flush_laws
         echo "── $tag: $said"
         echo "   not asked: this law reads a committed tree, and yours has work in it"
         skipped+=("$tag")
         continue
     fi
-    echo "── $tag: $said"
-    if ! eval "$cmd"; then
-        failed+=("$tag")
+    if [[ "$PARALLEL_LAWS" == *" $tag "* ]]; then
+        if [ -z "$check_tmp" ]; then
+            check_tmp=$(mktemp -d "${TMPDIR:-/tmp}/vi-check.XXXXXX") || exit 1
+        fi
+        ask_law "$tag" "$said" "$cmd" >"$check_tmp/$tag.log" 2>&1 &
+        queued_tags+=("$tag")
+        queued_pids+=("$!")
+        if [ "${#queued_pids[@]}" -ge "$check_jobs" ]; then flush_laws; fi
+    else
+        flush_laws
+        if ! ask_law "$tag" "$said" "$cmd"; then failed+=("$tag"); fi
     fi
 done
+flush_laws
 
+if [ -n "$run_input_key" ]; then
+    run_final_key=$(vi_check_source_key) || exit 1
+    if [ "$run_final_key" != "$run_input_key" ]; then
+        echo "check.sh: build inputs changed during this run; the shared build does not check this tree" >&2
+        failed+=("build")
+    fi
+fi
 if [ ${#failed[@]} -gt 0 ]; then
     echo "✗ RED: ${failed[*]}"
     exit 1
@@ -172,4 +242,8 @@ if [ "$MODE_RESEARCH" = "yes" ]; then
     echo "✓ RESEARCH EXPERIMENTS REPLAY; this is not a type-proof verdict"
     exit 0
 fi
-echo "✓ ALL LAWS HOLD"
+if [ -n "$MODE_ONLY$MODE_SKIP" ]; then
+    echo "✓ SELECTED LAWS HOLD; this is not a full gate (--only ${MODE_ONLY:-none}, --skip ${MODE_SKIP:-none})"
+else
+    echo "✓ ALL LAWS HOLD"
+fi

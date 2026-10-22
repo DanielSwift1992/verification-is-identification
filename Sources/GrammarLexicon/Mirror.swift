@@ -509,6 +509,7 @@ public enum Schema {
         ("Sources/Notation", LatticeScope.self)
         ("Sources/DocumentKit", SurfaceScope.self)
         ("Sources/DocumentKitCertificates", SurfaceScope.self)
+        ("Sources/DocumentKitDemo/Landing.swift", SurfaceScope.self)
         ("Sources/DocumentKitDemo", DemoScope.self)
         ("Sources/FontMetrics", ToolsScope.self)
         ("Sources/VerificationIsIdentification", LatticeScope.self)

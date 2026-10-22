@@ -1,32 +1,6 @@
-<!--
-  DESIGN8 §3 — the inline-swap hook. DocC's own template extension point
-  (`--experimental-enable-custom-templates`), inserted verbatim into every generated page's
-  shell. The site is a SPA already (Vue reads data/*.json and renders `<picture><img>` for every
-  `Picture` DocumentKit emits) — this script is not a runtime of ours, it is an instruction to
-  that host about how to embed OUR SVGs specifically: swap the `<img>` for the literal SVG file
-  it references, so a `Linked` subtree inside it becomes a real DOM anchor. Only our own
-  generated files qualify — DESIGN14 §1: a canvas declares itself (`data-vi-canvas="1"` on its
-  own root, DocumentKit/Vector.swift's `Diagram`), read back off the fetched document, not a
-  name kept in a list here (that list was its own bug once: a new canvas shipped before its
-  name was added, and rendered untheme'd until someone noticed — the class of bug a self-
-  declaring marker cannot have, there is nothing second to forget). Every other same-origin SVG
-  is fetched once, found to carry no marker, and left exactly as DocC rendered it. Without this
-  script the page is a completely ordinary image — nothing breaks, nothing is required to read
-  the site.
-
-  DESIGN10 — theme-aware. DocC already resolves `x~dark.svg` beside `x.svg` into a real
-  `<picture><source media="(prefers-color-scheme: dark)">` (checked directly against the
-  generated site, no code of ours involved). `img.getAttribute("src")` alone is only ever the
-  light fallback; `resolvedSrc`, below, is what actually follows the dark preference (see its own
-  comment — `currentSrc` turned out to race).
-
-  DESIGN11 — the eight design-system roles (DocumentKit/Design.swift), mechanism (B): every
-  inline-canvas component (Pulse, the keypad, the architecture diagram) reads a role atom whose
-  `typeName` is `var(--vi-<role>, <light-hex>)`, never a flat hex. The two palettes those
-  variables resolve are injected by THIS SCRIPT, not a sibling `<style>` tag — checked directly
-  against the generated site: DocC wraps footer.html's whole content in
-  `<template id="custom-footer">`, whose children are inert (never part of the live document,
-  per the HTML spec) until something promotes them. DocC's own bootstrap promotes `<script>`
+<!-- drawing-binding-value-sha256: b48fe015571ece10a7d5179f63868526eabdb06ede7c94c675fbcbaff8a87cef -->
+<!-- Generated footers insert only their owner role CSS into this shared hook. -->
+<script>`
   elements (recreating and running each one — how this file's inline-swap hook has always
   worked) but leaves everything else in the template inert, including a plain `<style>` tag —
   confirmed by inspecting the live DOM: the raw HTML held the block, `document.body.children`
@@ -50,37 +24,8 @@
 (function () {
   if (window.__viInlineHook) { return; }
   window.__viInlineHook = true;
-  var ROLE_CSS =
-    ":root {" +
-    "--vi-surface-card:#FFFFFF;" +
-    "--vi-surface-page:#FFFFFF;" +
-    "--vi-surface-track:#F6F7F8;" +
-    "--vi-text-primary:rgba(0,0,0,0.80);" +
-    "--vi-text-secondary:rgba(0,0,0,0.54);" +
-    "--vi-accent:#FFDD2D;" +
-    "--vi-action:#336FEE;" +
-    "--vi-line:#EAECEE;" +
-    "--vi-on-accent:#1C1C1E;" +
-    "--vi-action-tint:rgba(66,139,249,0.16);" +
-    "--vi-on-action:#FFFFFF;" +
-    "--vi-surface-card-shadow-opacity:0.10;" +
-    "}" +
-    "@media (prefers-color-scheme: dark) {" +
-    ":root {" +
-    "--vi-surface-card:#1C1C1E;" +
-    "--vi-surface-page:#000000;" +
-    "--vi-surface-track:rgba(255,255,255,0.15);" +
-    "--vi-text-primary:rgba(255,255,255,0.90);" +
-    "--vi-text-secondary:rgba(255,255,255,0.70);" +
-    "--vi-accent:#FFDD2D;" +
-    "--vi-action:#4972CF;" +
-    "--vi-line:rgba(255,255,255,0.15);" +
-    "--vi-on-accent:#1C1C1E;" +
-    "--vi-action-tint:rgba(73,114,207,0.16);" +
-    "--vi-on-action:#FFFFFF;" +
-    "--vi-surface-card-shadow-opacity:0;" +
-    "}" +
-    "}";
+  var ROLE_CSS = ":root {--vi-surface-card:color(xyz-d65 0.898 0.945 1.029);--vi-surface-track:color(xyz-d65 0.898 0.945 1.029);--vi-surface-page:color(xyz-d65 0.898 0.945 1.029);--vi-text-primary:color(xyz-d65 0.01 0.01 0.011);--vi-text-secondary:color(xyz-d65 0.228 0.24 0.261);--vi-accent:color(xyz-d65 0.17 0.15 0.61);--vi-action:color(xyz-d65 0.17 0.15 0.61);--vi-line:color(xyz-d65 0.613 0.645 0.702);--vi-on-accent:color(xyz-d65 0.01 0.01 0.011);--vi-action-tint:color(xyz-d65 0.898 0.945 1.029);--vi-on-action:color(xyz-d65 0.01 0.01 0.011);}\n@media (prefers-color-scheme: dark) {:root {--vi-surface-card:color(xyz-d65 0.01 0.01 0.011);--vi-surface-track:color(xyz-d65 0.01 0.01 0.011);--vi-surface-page:color(xyz-d65 0.01 0.01 0.011);--vi-text-primary:color(xyz-d65 0.59 0.621 0.676);--vi-text-secondary:color(xyz-d65 0.232 0.244 0.266);--vi-accent:color(xyz-d65 0.412 0.419 0.705);--vi-action:color(xyz-d65 0.412 0.419 0.705);--vi-line:color(xyz-d65 0.048 0.05 0.054);--vi-on-accent:color(xyz-d65 0.59 0.621 0.676);--vi-action-tint:color(xyz-d65 0.01 0.01 0.011);--vi-on-action:color(xyz-d65 0.59 0.621 0.676);}}";
+  if (ROLE_CSS === null) { throw new Error("footer#binding: world drawing binding is missing"); }
   var roleStyle = document.createElement("style");
   roleStyle.textContent = ROLE_CSS;
   (document.head || document.documentElement).appendChild(roleStyle);
@@ -105,30 +50,15 @@
     }
   }
 
-  // `avatar`/`card-*` are mechanism (A): TWO literal files, `x.svg` and `x~dark.svg`
-  // (`CardPalette`, DESIGN11), the only assets a `~dark` sibling actually exists for.
-  function isCardLike(name) {
-    return name === "avatar" || name.indexOf("card-") === 0;
-  }
-
-  function prefersDark() {
-    return !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
-  }
-
-  // `img.currentSrc` is what the browser decided a `<picture>` resolves to — but that
-  // resolution is not guaranteed synchronous on an element that has not yet been laid out, so
-  // reading it right after insertion can race and return the light fallback even in dark mode
-  // (checked directly: an inlined card came back light-filled with dark active). For the ONLY
-  // assets where the choice matters (`isCardLike`), decide it ourselves from `prefersDark()` —
-  // synchronous, no race — instead of trusting `currentSrc`'s timing. Every other canvas
-  // (architecture/pulse/keypad-*, mechanism B) has exactly one file; its colour comes from
-  // the CSS variables above, not from which file got fetched, so `currentSrc` there is fine.
   function resolvedSrc(img) {
-    var attr = img.getAttribute("src") || "";
-    if (isCardLike(baseName(attr)) && prefersDark()) {
-      return attr.replace(/\.svg$/i, "~dark.svg");
+    var picture = img.closest("picture");
+    var sources = picture ? picture.querySelectorAll("source[media][srcset]") : [];
+    for (var i = 0; i < sources.length; i++) {
+      if (window.matchMedia && window.matchMedia(sources[i].getAttribute("media")).matches) {
+        return sources[i].getAttribute("srcset").split(",")[0].trim().split(/\s+/)[0];
+      }
     }
-    return img.currentSrc || attr;
+    return img.currentSrc || img.getAttribute("src") || "";
   }
 
   function inline(img) {
@@ -293,7 +223,7 @@
     ".content table, article table { display: block; overflow-x: auto; max-width: 100%; }" +
     ".content th, article th { cursor: pointer; white-space: nowrap; }" +
     ".content th::after, article th::after { content: ' \\2195'; opacity: 0.35; font-size: 0.85em; }" +
-    ".content th:hover, article th:hover { background: rgba(128,128,128,0.12); }" +
+    ".content th:hover, article th:hover { background: var(--vi-surface-track); }" +
     ".content th[data-vi-sort=down]::after, article th[data-vi-sort=down]::after { content: ' \\2193'; opacity: 0.9; }" +
     ".content th[data-vi-sort=up]::after, article th[data-vi-sort=up]::after { content: ' \\2191'; opacity: 0.9; }";
   document.head.appendChild(css);

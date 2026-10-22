@@ -50,13 +50,13 @@ Each mechanism below is shown three ways: the code that composes it, the markdow
 Used like this:
 
 ```swift
-Symbol { ExampleTarget.self }
+Symbol { RestAir.self }
 ```
 
 
 Comes out like this:
 
-``ExampleTarget``
+``RestAir``
 
 ### Page
 
@@ -65,13 +65,13 @@ Comes out like this:
 Used like this:
 
 ```swift
-Page { ExampleTarget.self }
+Page { RestAir.self }
 ```
 
 
 Comes out like this:
 
-<doc:ExampleTarget>
+<doc:RestAir>
 
 ### Link
 
@@ -80,13 +80,13 @@ Comes out like this:
 Used like this:
 
 ```swift
-Link { LinkLabel.self; ExampleTarget.self }
+Link { LinkLabel.self; RestAir.self }
 ```
 
 
 Comes out like this:
 
-[a chosen label](doc:ExampleTarget)
+[a chosen label](doc:RestAir)
 
 ### Picture
 
@@ -95,13 +95,13 @@ Comes out like this:
 Used like this:
 
 ```swift
-Picture { Symbol { ExampleTarget.self }; ExampleAsset.self }
+Picture { Symbol { RestAir.self }; ExampleAsset.self }
 ```
 
 
 Comes out like this:
 
-![``ExampleTarget``](example)
+![``RestAir``](example)
 
 ### Framed
 
@@ -110,13 +110,13 @@ Comes out like this:
 Used like this:
 
 ```swift
-Framed { Picture { Symbol { ExampleTarget.self }; ExampleAsset.self } }
+Framed { Picture { Symbol { RestAir.self }; ExampleAsset.self } }
 ```
 
 
 Comes out like this:
 
-| ![``ExampleTarget``](example) | 
+| ![``RestAir``](example) | 
 | --- | 
 
 
@@ -130,7 +130,7 @@ Used like this:
 ```swift
 SideBySide {
     Spacer<WeightOf<U1>>.self
-    PanelOf { Symbol { ExampleTarget.self } }
+    PanelOf { Symbol { RestAir.self } }
     Spacer<WeightOf<U1>>.self
 }
 ```
@@ -143,7 +143,7 @@ Comes out like this:
 
 }
 @Column {
-``ExampleTarget``
+``RestAir``
 }
 @Column(size: 1) {
 
@@ -465,6 +465,7 @@ public enum VectorCanvasExampleContent: Group {
     }
 }
 public enum VectorCanvasExampleDiagram: Diagram {
+    public typealias Binding = DocumentationBinding
     public typealias Size = VectorExampleCanvasSize
     public typealias AriaLabel = VectorCanvasExampleAlt
     public typealias Content = VectorCanvasExampleContent
@@ -541,6 +542,7 @@ Used like this:
 
 ```swift
 public enum VectorSelfShowingExampleDiagram: Diagram, SelfShowing {
+    public typealias Binding = DocumentationBinding
     public typealias Size = VectorExampleCanvasSize
     public typealias AriaLabel = VectorSelfShowingExampleAlt
     public typealias Content = VectorSelfShowingExampleContent

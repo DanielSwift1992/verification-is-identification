@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 1" role="img" data-vi-canvas="1" font-family="Inter, Roboto, system-ui, sans-serif" aria-label="Remainder">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 1" role="img" data-vi-canvas="1" font-family="Inter" aria-label="Remainder">
 <g transform="translate(0, 0)">
 <g transform="translate(2, 0)">
-<rect x="0" width="0" height="1" rx="0" fill="var(--vi-text-primary, rgba(0,0,0,0.80))"/>
+<rect x="0" width="0" height="1" rx="0" fill="#5A347D"/>
 </g>
 </g>
 </svg>

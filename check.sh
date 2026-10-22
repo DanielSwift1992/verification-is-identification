@@ -90,7 +90,7 @@ RESEARCH=(
 LAWS+=(
 "drawing|generic native Drawing preserves seven SVGs and four refusals|python3 Checks/drawing.py"
 "target-graph|notation and drawing keep their declared dependencies|python3 Checks/target-graph.py"
-"artifacts|DocumentKit and vi figure projections reproduce their source-stamped bytes|python3 Checks/documentkit-artifacts.py && python3 Checks/vi-figures.py"
+"artifacts|DocumentKit and vi figure projections reproduce their source-stamped bytes|python3 Checks/drawing-binding.py && python3 Checks/documentation-binding.py && python3 Checks/documentkit-artifacts.py && python3 Checks/vi-figures.py"
 "census|the declaration count per target|bash Checks/tools.sh census"
 "voice|lexical counts do not exceed their authored pins|bash Checks/tools.sh voice"
 "readme|the numbers are counted, not remembered|bash Checks/tools.sh readme"

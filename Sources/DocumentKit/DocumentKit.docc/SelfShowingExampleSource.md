@@ -4,6 +4,7 @@ The composition the badge on the canvas points to — the same atom the gallery'
 
 ```swift
 public enum VectorSelfShowingExampleDiagram: Diagram, SelfShowing {
+    public typealias Binding = DocumentationBinding
     public typealias Size = VectorExampleCanvasSize
     public typealias AriaLabel = VectorSelfShowingExampleAlt
     public typealias Content = VectorSelfShowingExampleContent

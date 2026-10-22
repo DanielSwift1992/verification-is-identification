@@ -7,7 +7,7 @@ extension FixtureText {
 public enum FixtureLabel: SpanLabelWrapped {
     public typealias Y = Tally<U16>
     public typealias LinePitch = Tally<U16>
-    public typealias FillColor = TextPrimary
+    public typealias FillColor = FixtureBindingTextPrimary
     public typealias Size = TextXS
     public typealias Weight = WeightRegular
     public typealias Content = TermText<Succ<Never>>
@@ -20,6 +20,7 @@ public enum FixtureRow: HFlow {
     }
 }
 public enum FixtureArt: GrownDiagram {
+    public typealias Binding = FixtureBinding
     public typealias Across = U512
     public typealias AriaLabel = FixtureText
     @StructureBuilder

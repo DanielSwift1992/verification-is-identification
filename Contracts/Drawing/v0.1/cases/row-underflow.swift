@@ -15,9 +15,10 @@ public enum FixtureRow: HFlow {
 public enum FixtureFill: SpanTrack {
     public typealias H = Tally<U1>
     public typealias Radius = Tally<Never>
-    public typealias Fill = TextPrimary
+    public typealias Fill = FixtureBindingTextPrimary
 }
 public enum FixtureArt: GrownDiagram {
+    public typealias Binding = FixtureBinding
     public typealias Across = U2
     public typealias AriaLabel = FixtureTitle
     @StructureBuilder

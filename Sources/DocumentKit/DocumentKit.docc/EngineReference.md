@@ -157,56 +157,28 @@ Mixing is a type: a line's weight per rung is a stated magnitude in 256ths, a po
 
 ### The palette and its gates
 
-Colour atoms, the eight roles and their dark halves, and the legibility gates that refuse an unreadable pairing (Design.swift).
+Paints, the required world binding, and legibility constraints belong to the mechanism. Each world supplies the paint and face readings (Design.swift).
 
-- ``Accent``
-- ``AccentRole``
-- ``AccentRoleDark``
-- ``Action``
-- ``ActionRole``
-- ``ActionRoleDark``
-- ``ActionTint``
-- ``ActionTintRole``
+- ``DrawingStyle``
+
 - ``CardPalette``
-- ``DarkCardPalette``
-- ``FontStack``
 - ``GatedBoldTextOnInk``
 - ``GatedTextOnNavyTint``
 - ``GatedTextOnSurfaceCard``
-- ``Ink``
-- ``InkPrimary``
-- ``InkSecondary``
 - ``LegibleOnAccentRole``
 - ``LegibleOnInk``
 - ``LegibleOnNavyTint``
 - ``LegibleOnSurfaceCard``
 - ``LegibleOnSurfaceTrack``
-- ``LightCardPalette``
-- ``Line``
-- ``LineRole``
-- ``LineRoleDark``
-- ``Mist``
-- ``Muted``
-- ``NavyTint``
-- ``OnAccent``
-- ``OnAccentDark``
-- ``OnActionRole``
 - ``PageBackdrop``
 - ``Paint``
-- ``Paper``
 - ``ShadowCast``
 - ``ShadowEnvelope``
-- ``ShadowRestOpacity``
 - ``Shadowed``
 - ``SoftShadow``
 - ``SoftShadowName``
-- ``SurfaceCardDark``
 - ``SurfaceCardShadow``
 - ``SurfaceCardShadowName``
-- ``SurfacePage``
-- ``SurfaceTrackDark``
-- ``TextPrimaryDark``
-- ``TextSecondaryDark``
 - ``ThemedShadowed``
 
 ### The type scale, the radii, and the anchors
@@ -232,7 +204,6 @@ The sizes text wears, the corner radii, and the text anchors (Design.swift).
 - ``TextL``
 - ``TextM``
 - ``TextS``
-- ``TextSecondary``
 - ``TextXS``
 - ``TextXXS``
 - ``TitleT``
@@ -305,10 +276,7 @@ Every extent, breath, inset, and zone the divided axes speak, defined in one hom
 - ``RtoSurface``
 - ``StatusChipWide``
 - ``StripInset``
-- ``SurfaceCard``
-- ``SurfaceTrack``
 - ``TaskCardTall``
-- ``TextPrimary``
 - ``TimelineInset``
 - ``TrackHeight``
 - ``VaultZoneTall``
@@ -487,41 +455,11 @@ Search as navigation over any composed body. `Pair` is the fork, and these five 
 
 ### The gallery, behind the landing
 
-The example canvases the landing renders and links (Landing.swift).
+DocumentKitDemo owns the example worlds and binds their paints and faces. These pages show the runnable compositions and their source.
 
-- ``DarkRolesPalette``
-- ``ExampleTarget``
-- ``GallerySection``
-- ``Landing``
-- ``LightRolesPalette``
-- ``RolesPalette``
-- ``RolesPlate``
-- ``RolesPlateAlt``
-- ``RolesPlateContent``
-- ``RolesPlateHeightStructure``
-- ``RolesPlateSize``
-- ``RolesPlateSurface``
-- ``SelfShowingExampleSourcePage``
-- ``VectorCanvasExampleAlt``
-- ``VectorCanvasExampleContent``
-- ``VectorCanvasExampleDiagram``
-- ``VectorExampleCanvasSize``
-- ``VectorExampleHeightStructure``
-- ``VectorExampleSurface``
-- ``VectorHoverExampleAlt``
-- ``VectorHoverExampleContent``
-- ``VectorHoverExampleDiagram``
-- ``VectorSelfShowingExampleAlt``
-- ``VectorSelfShowingExampleContent``
-- ``VectorSelfShowingExampleDiagram``
-- ``VectorTourExampleAlt``
-- ``VectorTourStationAContent``
-- ``VectorTourStationADiagram``
-- ``VectorTourStationAPage``
-- ``VectorTourStationBAlt``
-- ``VectorTourStationBContent``
-- ``VectorTourStationBDiagram``
-- ``VectorTourStationBPage``
+- <doc:SelfShowingExampleSource>
+- <doc:VectorTourStationA>
+- <doc:VectorTourStationB>
 
 ### The letterforms
 

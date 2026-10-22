@@ -1,0 +1,360 @@
+{
+  "format": "drawing-binding/1",
+  "name": "DocumentationBinding",
+  "source": {
+    "input": "Worlds/Documentation/figures.json",
+    "field": "style",
+    "sha256": "f8766d67ee645146f8da40aca7cf6f65b4e8e522a9d0e5f6bc82a72e62bcbd54"
+  },
+  "roles": {
+    "Ink": {
+      "light": "color(xyz-d65 0.01 0.01 0.011)",
+      "dark": "color(xyz-d65 0.59 0.621 0.676)",
+      "ownerRole": "ink"
+    },
+    "Paper": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper"
+    },
+    "Mist": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper"
+    },
+    "Accent": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper"
+    },
+    "Muted": {
+      "light": "color(xyz-d65 0.228 0.24 0.261)",
+      "dark": "color(xyz-d65 0.232 0.244 0.266)",
+      "ownerRole": "muted"
+    },
+    "Line": {
+      "light": "color(xyz-d65 0.613 0.645 0.702)",
+      "dark": "color(xyz-d65 0.048 0.05 0.054)",
+      "ownerRole": "line"
+    },
+    "InkPrimary": {
+      "light": "color(xyz-d65 0.01 0.01 0.011)",
+      "dark": "color(xyz-d65 0.59 0.621 0.676)",
+      "ownerRole": "ink"
+    },
+    "InkSecondary": {
+      "light": "color(xyz-d65 0.228 0.24 0.261)",
+      "dark": "color(xyz-d65 0.232 0.244 0.266)",
+      "ownerRole": "muted"
+    },
+    "Action": {
+      "light": "color(xyz-d65 0.17 0.15 0.61)",
+      "dark": "color(xyz-d65 0.412 0.419 0.705)",
+      "ownerRole": "action"
+    },
+    "ActionTint": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper"
+    },
+    "NavyTint": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper"
+    },
+    "SurfaceCard": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper",
+      "variable": "surface-card"
+    },
+    "SurfaceTrack": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper",
+      "variable": "surface-track"
+    },
+    "SurfacePage": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper",
+      "variable": "surface-page"
+    },
+    "TextPrimary": {
+      "light": "color(xyz-d65 0.01 0.01 0.011)",
+      "dark": "color(xyz-d65 0.59 0.621 0.676)",
+      "ownerRole": "ink",
+      "variable": "text-primary"
+    },
+    "TextSecondary": {
+      "light": "color(xyz-d65 0.228 0.24 0.261)",
+      "dark": "color(xyz-d65 0.232 0.244 0.266)",
+      "ownerRole": "muted",
+      "variable": "text-secondary"
+    },
+    "AccentRole": {
+      "light": "color(xyz-d65 0.17 0.15 0.61)",
+      "dark": "color(xyz-d65 0.412 0.419 0.705)",
+      "ownerRole": "action",
+      "variable": "accent"
+    },
+    "ActionRole": {
+      "light": "color(xyz-d65 0.17 0.15 0.61)",
+      "dark": "color(xyz-d65 0.412 0.419 0.705)",
+      "ownerRole": "action",
+      "variable": "action"
+    },
+    "LineRole": {
+      "light": "color(xyz-d65 0.613 0.645 0.702)",
+      "dark": "color(xyz-d65 0.048 0.05 0.054)",
+      "ownerRole": "line",
+      "variable": "line"
+    },
+    "OnAccent": {
+      "light": "color(xyz-d65 0.01 0.01 0.011)",
+      "dark": "color(xyz-d65 0.59 0.621 0.676)",
+      "ownerRole": "ink",
+      "variable": "on-accent"
+    },
+    "ActionTintRole": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper",
+      "variable": "action-tint"
+    },
+    "OnActionRole": {
+      "light": "color(xyz-d65 0.01 0.01 0.011)",
+      "dark": "color(xyz-d65 0.59 0.621 0.676)",
+      "ownerRole": "ink",
+      "variable": "on-action"
+    },
+    "StatusMark": {
+      "light": "color(xyz-d65 0.08 0.15 0.06)",
+      "dark": "color(xyz-d65 0.23 0.419 0.168)",
+      "ownerRole": "ok"
+    }
+  },
+  "registers": {
+    "BodyFace": "Inter",
+    "CaptionFace": "Inter"
+  },
+  "registerOrigins": {
+    "BodyFace": "Speech",
+    "CaptionFace": "Caption"
+  },
+  "registerReadings": {
+    "registers": {
+      "Brand": {
+        "face": "Sans",
+        "leadingHundredths": 120,
+        "sizeTenths": 150,
+        "stress": "Firm"
+      },
+      "Caption": {
+        "face": "Sans",
+        "leadingHundredths": 140,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Captionbare": {
+        "face": "Sans",
+        "leadingHundredths": null,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Captionline": {
+        "face": "Sans",
+        "leadingHundredths": 145,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Captionloose": {
+        "face": "Sans",
+        "leadingHundredths": 150,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Codeinline": {
+        "face": "Mono",
+        "leadingHundredths": 140,
+        "sizeTenths": 120,
+        "stress": "Plain"
+      },
+      "Control": {
+        "face": "Sans",
+        "leadingHundredths": null,
+        "sizeTenths": 130,
+        "stress": "Plain"
+      },
+      "Controlsmall": {
+        "face": "Sans",
+        "leadingHundredths": null,
+        "sizeTenths": 125,
+        "stress": "Plain"
+      },
+      "Fact": {
+        "face": "Mono",
+        "leadingHundredths": 145,
+        "sizeTenths": 125,
+        "stress": "Plain"
+      },
+      "Factbare": {
+        "face": "Mono",
+        "leadingHundredths": null,
+        "sizeTenths": 125,
+        "stress": "Plain"
+      },
+      "Factfirm": {
+        "face": "Mono",
+        "leadingHundredths": 145,
+        "sizeTenths": 125,
+        "stress": "Firm"
+      },
+      "Headline": {
+        "face": "Sans",
+        "leadingHundredths": 130,
+        "sizeTenths": 150,
+        "stress": "Firm"
+      },
+      "Headsmall": {
+        "face": "Sans",
+        "leadingHundredths": 100,
+        "sizeTenths": 130,
+        "stress": "Firm"
+      },
+      "Keycap": {
+        "face": "Mono",
+        "leadingHundredths": null,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Monoline": {
+        "face": "Mono",
+        "leadingHundredths": 145,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Prose": {
+        "face": "Sans",
+        "leadingHundredths": 150,
+        "sizeTenths": 130,
+        "stress": "Plain"
+      },
+      "Proseloose": {
+        "face": "Sans",
+        "leadingHundredths": 160,
+        "sizeTenths": 130,
+        "stress": "Plain"
+      },
+      "Rubric": {
+        "face": "Sans",
+        "leadingHundredths": 140,
+        "sizeTenths": 110,
+        "stress": "Firm"
+      },
+      "Source": {
+        "face": "Mono",
+        "leadingHundredths": 152,
+        "sizeTenths": 125,
+        "stress": "Plain"
+      },
+      "Speech": {
+        "face": "Sans",
+        "leadingHundredths": 145,
+        "sizeTenths": 130,
+        "stress": "Plain"
+      }
+    },
+    "used": [
+      "Caption",
+      "Fact",
+      "Headline",
+      "Speech"
+    ],
+    "equalities": [
+      "CodeinlineOverCaption",
+      "FactOverCodeinline",
+      "SpeechOverFact",
+      "BrandOverSpeech",
+      "BrandLeadClearsItsLetters",
+      "CaptionLeadClearsItsLetters",
+      "CaptionlineLeadClearsItsLetters",
+      "CaptionlooseLeadClearsItsLetters",
+      "CodeinlineLeadClearsItsLetters",
+      "FactLeadClearsItsLetters",
+      "HeadlineLeadClearsItsLetters",
+      "HeadsmallLeadClearsItsLetters",
+      "MonolineLeadClearsItsLetters",
+      "ProseLeadClearsItsLetters",
+      "ProselooseLeadClearsItsLetters",
+      "SourceLeadClearsItsLetters",
+      "RubricLeadClearsItsLetters",
+      "FactfirmIsFactSized",
+      "FactfirmLeadsLikeFact",
+      "FactfirmLeadClearsItsLetters",
+      "RubricIsCaptionSized",
+      "SpeechLeadClearsItsLetters"
+    ]
+  },
+  "weights": {
+    "WeightRegular": "400",
+    "WeightBold": "600"
+  },
+  "shadow": {
+    "paint": "color(xyz-d65 0.01 0.01 0.011)",
+    "opacity": "0"
+  },
+  "leafCountBases": [
+    "Structure",
+    "Close",
+    "Open",
+    "Pair"
+  ],
+  "legible": [
+    {
+      "foreground": "TextPrimary",
+      "background": "SurfaceCard",
+      "witness": "Paper_Ink_lit"
+    },
+    {
+      "foreground": "TextSecondary",
+      "background": "SurfaceCard",
+      "witness": "Paper_Muted_lit"
+    },
+    {
+      "foreground": "ActionRole",
+      "background": "SurfaceCard",
+      "witness": "Paper_Action_lit"
+    },
+    {
+      "foreground": "TextPrimary",
+      "background": "SurfaceTrack",
+      "witness": "Paper_Ink_lit"
+    },
+    {
+      "foreground": "TextSecondary",
+      "background": "SurfaceTrack",
+      "witness": "Paper_Muted_lit"
+    },
+    {
+      "foreground": "ActionRole",
+      "background": "SurfaceTrack",
+      "witness": "Paper_Action_lit"
+    },
+    {
+      "foreground": "Ink",
+      "background": "NavyTint",
+      "witness": "Paper_Ink_lit"
+    },
+    {
+      "foreground": "InkPrimary",
+      "background": "NavyTint",
+      "witness": "Paper_Ink_lit"
+    },
+    {
+      "foreground": "InkSecondary",
+      "background": "NavyTint",
+      "witness": "Paper_Muted_lit"
+    }
+  ]
+}

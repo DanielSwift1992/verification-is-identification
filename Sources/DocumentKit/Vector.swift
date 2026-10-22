@@ -95,6 +95,7 @@ extension CanvasSize {
 }
 
 public protocol Diagram: Open {
+    associatedtype Binding: DrawingStyle
     associatedtype Size: Structure
     associatedtype AriaLabel: Structure
     associatedtype Content: Structure
@@ -108,7 +109,7 @@ extension Diagram {
         // marker on the root the canvas ALREADY emits needs no second list at all.
         return "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"\(XMLEscaped<Size>.typeName)\" role=\"img\" "
             + "data-vi-canvas=\"1\" "
-            + "font-family=\"\(XMLEscaped<FontStack>.typeName)\" aria-label=\"\(XMLEscaped<AriaLabel>.typeName)\">\n"
+            + "font-family=\"\(XMLEscaped<Binding.BodyFace>.typeName)\" aria-label=\"\(XMLEscaped<AriaLabel>.typeName)\">\n"
             + Content.typeName + "\n</svg>\n"
     }
 }
@@ -160,6 +161,7 @@ extension RoundedFullBleedRect {
 /// combinator keeps X where the axis world derives it. Only the gate and architecture
 /// diagrams draw one, so its colour is the `TextSecondary` role, not a flat hex.
 public protocol ItalicLabel: Open {
+    associatedtype Binding: DrawingStyle
     associatedtype X: Structure
     associatedtype Y: Structure
     associatedtype Anchor: Structure
@@ -169,7 +171,7 @@ public protocol ItalicLabel: Open {
 extension ItalicLabel {
     public static var typeName: String {
         "<text x=\"\(XMLEscaped<X>.typeName)\" y=\"\(XMLEscaped<Y>.typeName)\" text-anchor=\"\(XMLEscaped<Anchor>.typeName)\" "
-            + "fill=\"\(XMLEscaped<TextSecondary>.typeName)\" font-size=\"\(XMLEscaped<Size>.typeName)\" font-style=\"italic\">\(XMLEscaped<Content>.typeName)</text>\n"
+            + "fill=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" font-size=\"\(XMLEscaped<Size>.typeName)\" font-family=\"\(XMLEscaped<Binding.CaptionFace>.typeName)\" font-style=\"italic\">\(XMLEscaped<Content>.typeName)</text>\n"
     }
 }
 
@@ -259,7 +261,7 @@ extension Under {
 }
 
 /// This reads a text's measured width at a size, in canvas pixels, rounded up: the sum of
-/// the stated font's own advances (GeneratedFontMetrics, spelled from Assets' Inter file
+/// the stated font's own advances (GeneratedFontMetrics, spelled from the world's stated font file
 /// by `swift run Tools generate font`). The canvas contract keeps its caveat (a fallback
 /// font approximates), so the measure serves generous boxes and honest gates: it may
 /// over-provide, never under. A character outside the table measures as an "m".
@@ -545,11 +547,12 @@ extension Halfway {
 /// This is a dashed dependency arrow: the arrow every "written in its types" diagram
 /// draws back to V=I.
 public protocol DashedArrow: Open {
+    associatedtype Binding: DrawingStyle
     associatedtype Path: Structure
 }
 extension DashedArrow {
     public static var typeName: String {
-        "<path d=\"\(XMLEscaped<Path>.typeName)\" stroke=\"\(XMLEscaped<TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<ArrowWidth>.typeName)\" stroke-dasharray=\"\(XMLEscaped<DependencyDash>.typeName)\" "
+        "<path d=\"\(XMLEscaped<Path>.typeName)\" stroke=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<ArrowWidth>.typeName)\" stroke-dasharray=\"\(XMLEscaped<DependencyDash>.typeName)\" "
             + "fill=\"none\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
     }
 }
@@ -689,7 +692,7 @@ extension HoverHighlight {
 /// interactivity the instant the trigger's `:hover` drops, killing the traverse. In SVG,
 /// `visibility: hidden` already withholds pointer events (`visiblePainted`), and visibility IS
 /// delayable. The open is instant (`transition-delay: 0s` on the matched rule).
-public enum HoverRevealStyle: Close {}
+public enum HoverRevealStyle<Binding: DrawingStyle>: Close {}
 extension HoverRevealStyle {
     public static var typeName: String {
         """
@@ -698,7 +701,7 @@ extension HoverRevealStyle {
         .hover-pair .hover-trigger { cursor: pointer; }
         .hover-pair .hover-trigger:hover ~ .hover-panel, .hover-pair .hover-panel:hover { opacity: 1; visibility: visible; transition-delay: 0s; }
         .hover-highlight { transition: stroke 150ms ease, stroke-width 150ms ease; cursor: pointer; }
-        .hover-highlight:hover { stroke: \(XMLEscaped<AccentRole>.typeName); stroke-width: 3; }
+        .hover-highlight:hover { stroke: \(XMLEscaped<Binding.AccentRole>.typeName); stroke-width: 3; }
         </style>
 
         """
@@ -863,13 +866,13 @@ extension GlyphStroke {
 }
 
 /// The two markers both arrow kinds reuse, declared once per canvas that draws arrows.
-public enum ArrowMarkers: Close {}
+public enum ArrowMarkers<Binding: DrawingStyle>: Close {}
 extension ArrowMarkers {
     public static var typeName: String {
         """
         <defs>
         <marker id="\(XMLEscaped<ArrowHeadName>.typeName)" markerWidth="9" markerHeight="9" refX="5" refY="3" orient="auto">
-        <path d="M0,0 L6,3 L0,6 Z" fill="\(XMLEscaped<TextSecondary>.typeName)"/>
+        <path d="M0,0 L6,3 L0,6 Z" fill="\(XMLEscaped<Binding.TextSecondary>.typeName)"/>
         </marker>
         </defs>
 
@@ -1374,6 +1377,7 @@ where Body: DividesY & Structure {
 /// members take. The axis admits no flexible member (there is no remainder to share on an
 /// axis that grows to fit), and no one states the frame: the axis IS the frame.
 public protocol GrownDiagram: Open {
+    associatedtype Binding: DrawingStyle
     associatedtype Across: Structure
     associatedtype AriaLabel: Structure
     /// Filters, styles, and other defs the canvas carries before its axis: not members,
@@ -1392,7 +1396,7 @@ where Body: DividesY & Structure {
             "A grown axis has no remainder to share: \(Self.self) grows to fit its members, so a flexible member cannot stand here."
         )
         return "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 \(Across.count) \(Body.Taken.count)\" role=\"img\" "
-            + "data-vi-canvas=\"1\" font-family=\"Inter, Roboto, system-ui, sans-serif\" "
+            + "data-vi-canvas=\"1\" font-family=\"\(XMLEscaped<Binding.BodyFace>.typeName)\" "
             + "aria-label=\"\(XMLEscaped<AriaLabel>.typeName)\">\n"
             + Defs.typeName
             + Backdrop.typeName
@@ -1855,6 +1859,7 @@ extension SpanHoverReveal: Spanning {
 /// This draws a solid flow arrow ACROSS its slice at a local baseline: tail on the slice's
 /// start, head on its end. The gap between two neighbours IS the arrow. No position is stated.
 public protocol SpanArrowAcross: Spanning {
+    associatedtype Binding: DrawingStyle
     associatedtype Y: Structure
 }
 extension SpanArrowAcross {
@@ -1867,11 +1872,12 @@ extension SpanArrowAcross {
     ) -> String {
         "<line x1=\"\(XMLEscaped<SpanPx<X>>.typeName)\" y1=\"\(XMLEscaped<Y>.typeName)\" "
             + "x2=\"\(XMLEscaped<SpanPx<Sum<X, W>>>.typeName)\" y2=\"\(XMLEscaped<Y>.typeName)\" "
-            + "stroke=\"\(XMLEscaped<TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<ArrowWidth>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
+            + "stroke=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<ArrowWidth>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
     }
 }
 /// The same arrow points LEFT here: head on the slice's start, for a dependency that points back.
 public protocol SpanArrowBackAcross: Spanning {
+    associatedtype Binding: DrawingStyle
     associatedtype Y: Structure
 }
 extension SpanArrowBackAcross {
@@ -1884,12 +1890,13 @@ extension SpanArrowBackAcross {
     ) -> String {
         "<line x1=\"\(XMLEscaped<SpanPx<Sum<X, W>>>.typeName)\" y1=\"\(XMLEscaped<Y>.typeName)\" "
             + "x2=\"\(XMLEscaped<SpanPx<X>>.typeName)\" y2=\"\(XMLEscaped<Y>.typeName)\" "
-            + "stroke=\"\(XMLEscaped<TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<ArrowWidth>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
+            + "stroke=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<ArrowWidth>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
     }
 }
 /// This draws a solid flow arrow DOWN the page on its slice's middle, between two stated
 /// baselines: the vertical stroke of a stacked flow.
 public protocol SpanArrowDown: Spanning {
+    associatedtype Binding: DrawingStyle
     associatedtype FromY: Structure
     associatedtype ToY: Structure
 }
@@ -1903,12 +1910,13 @@ extension SpanArrowDown {
     ) -> String {
         "<line x1=\"\(XMLEscaped<SpanPx<MidOf<X, W>>>.typeName)\" y1=\"\(XMLEscaped<FromY>.typeName)\" "
             + "x2=\"\(XMLEscaped<SpanPx<MidOf<X, W>>>.typeName)\" y2=\"\(XMLEscaped<ToY>.typeName)\" "
-            + "stroke=\"\(XMLEscaped<TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<ArrowWidth>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
+            + "stroke=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<ArrowWidth>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
     }
 }
 /// This draws the italic caption voice at its slice's origin: an arrow's aside, a
 /// difference worth a whisper. `TextSecondary` is the voice's one colour, stated here.
 public protocol SpanLabelItalic: Spanning {
+    associatedtype Binding: DrawingStyle
     associatedtype Y: Structure
     associatedtype Size: Structure
     associatedtype Content: Structure
@@ -1922,13 +1930,14 @@ extension SpanLabelItalic {
         width w: W.Type
     ) -> String {
         "<text x=\"\(XMLEscaped<SpanPx<X>>.typeName)\" y=\"\(XMLEscaped<Y>.typeName)\" text-anchor=\"start\" "
-            + "fill=\"\(XMLEscaped<TextSecondary>.typeName)\" font-size=\"\(XMLEscaped<Size>.typeName)\" "
-            + "font-style=\"italic\">\(XMLEscaped<Content>.typeName)</text>\n"
+            + "fill=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" font-size=\"\(XMLEscaped<Size>.typeName)\" "
+            + "font-family=\"\(XMLEscaped<Binding.CaptionFace>.typeName)\" font-style=\"italic\">\(XMLEscaped<Content>.typeName)</text>\n"
     }
 }
 /// The italic caption voice anchors at its slice's MIDDLE here: the label of an arrow
 /// between two boxes rather than beside one.
 public protocol SpanLabelItalicMid: Spanning {
+    associatedtype Binding: DrawingStyle
     associatedtype Y: Structure
     associatedtype Size: Structure
     associatedtype Content: Structure
@@ -1942,8 +1951,8 @@ extension SpanLabelItalicMid {
         width w: W.Type
     ) -> String {
         "<text x=\"\(XMLEscaped<SpanPx<MidOf<X, W>>>.typeName)\" y=\"\(XMLEscaped<Y>.typeName)\" text-anchor=\"middle\" "
-            + "fill=\"\(XMLEscaped<TextSecondary>.typeName)\" font-size=\"\(XMLEscaped<Size>.typeName)\" "
-            + "font-style=\"italic\">\(XMLEscaped<Content>.typeName)</text>\n"
+            + "fill=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" font-size=\"\(XMLEscaped<Size>.typeName)\" "
+            + "font-family=\"\(XMLEscaped<Binding.CaptionFace>.typeName)\" font-style=\"italic\">\(XMLEscaped<Content>.typeName)</text>\n"
     }
 }
 /// This fills the LEADING share of its slice by the data itself: the part over the whole,

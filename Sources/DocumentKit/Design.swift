@@ -1,344 +1,32 @@
 import Notation
 
-// ═══════════════════════════════════════════════════════════════
-// DESIGN states Pulse, the design system, as the same mechanism the access layer already is.
-// Tokens are atoms: a closed set, §S8, the same discipline every other palette
-// in this file's neighbourhood keeps. The rule of COMBINATION is conditional conformance, the
-// exact shape Policy.swift's `View<Who, Of>` gates an access: a pairing earns `Legible` only
-// when the palette allows it, so an unreadable (foreground, background) pair does not pass
-// review. It does not compile.
-//
-// A hex literal is declared NOWHERE: every colour is a walk from White (Spectrum.swift),
-// eight halvings per band, and the machine forms (`#RRGGBB`, `rgba(...)`) exist only at the
-// reading edge, the way a magnitude becomes digits only through `Tally`. Repainting the
-// whole system is a walk edit here, no component touched. A component may compose colours and
-// scales. It may not introduce a number of its own (§S15: stated, never computed), reviewed
-// by eye for now, a linter is a later candidate.
-//
-// THE STYLE DNA, extracted from the reference system, held by the gates.
-//
-// Surfaces: Paper cards on a Mist ground, SoftShadow, R16. Chips and keys: R10.
-// Text: Ink at two opacities (.80 primary, .54 secondary), never a third grey.
-// Yellow is SCARCE: one hero element per screen, at most, an accent, never
-// wallpaper (the reference uses it six times on a whole page). Blue is the
-// interactive voice. Numbers wear Display. Everything breathes the S8 grid:
-// a component states no number the scales do not own.
-//
-// TWO PALETTES, ONE VOCABULARY. The dark reference turned up a fact, not a coincidence: its
-// card black, #1C1C1E, is byte-identical to this file's own `Ink`, and its text reads white at
-// two opacities (.90/.70), an exact mirror of the light side's black-at-two-opacities move.
-// Light and dark are not two unrelated palettes. They are two PROJECTIONS of the same eight
-// roles (`SurfaceCard`, `SurfaceTrack`, `TextPrimary`, `TextSecondary`, `AccentRole`,
-// `ActionRole`, `LineRole`, `OnAccent`), declared once, below, each carrying both a light and a
-// dark value.
-//
-// A role is delivered to a canvas by whichever of two mechanisms fits that canvas's own use.
-//
-//   (B) INLINE CANVASES (Pulse, the keypad, the architecture diagram: anything the inline-swap
-//   hook, footer.html, turns into real DOM) emit a role's colour as
-//   `var(--vi-<role>, <light-hex>)`. Both palettes are declared exactly once, in footer.html's
-//   own `<style>` block, switched by `prefers-color-scheme`: one file per canvas, a LIVE theme
-//   switch with no reload (the file never changes, only the custom property the browser
-//   resolves does), and a light fallback that reads correctly even with no CSS in scope at all
-//   (a bare `<img>`). The role atoms below (`SurfaceCard` and its seven siblings) ARE this
-//   mechanism: every inline-canvas component reads one of them, never a flat hex directly.
-//
-//   (A) `~dark.svg` DUPLICATES: DocC's own native mechanism (a file named `x~dark.svg` beside
-//   `x.svg` resolves into a real `<picture><source media="prefers-color-scheme:dark">`, checked
-//   directly against the generated site) for the small, numerous, non-interactive
-//   grid tiles (the nine `card-*` icons, the avatar) where a second static file is cheaper than
-//   threading a CSS variable through nine near-identical glyphs. The SAME composition drives
-//   both files: `CardPalette` is a protocol two concrete types (`LightCardPalette`,
-//   `DarkCardPalette`) satisfy, and the driver (`VectorDemo/main.swift`'s `runCards()`)
-//   instantiates each card generic type TWICE, once per palette, the same lawful edge a name
-//   pool substitutes at (SurfaceLaw §S23), not a second hand-authored file.
-//
-// Both mechanisms read the SAME eight roles. Only where a role's VALUE lands (a CSS custom
-// property vs. a second literal SVG) differs, and that choice is the canvas's, made once, at
-// the driver's edge, never a component's own decision.
-//
-// TRANSPARENCY. A canvas ground is transparent: the host's page shows through, and the
-// composition must survive any host theme. Therefore text NEVER floats: every label is on a
-// surface role (card, track, chip). A floating label is legible on exactly one host theme,
-// a bug wearing a style. Where a diagram's content cannot all be on surfaces, the
-// canvas earns an explicit backdrop role instead (architecture's case), stated, not defaulted.
-// ═══════════════════════════════════════════════════════════════
+/// Supplies a world's faces, caption paint and shadow at the reading edge.
+/// Requires each canvas to name its binding for type checking.
+public protocol DrawingStyle: Structure {
+    associatedtype BodyFace: Structure
+    associatedtype CaptionFace: Structure
+    associatedtype AccentRole: Paint
+    associatedtype TextSecondary: Paint
+    associatedtype ShadowPaint: Paint
+    associatedtype ShadowOpacity: Structure
+    associatedtype LeafCountBases: Structure
+}
 
-/// This marks a colour atom over `Structure`, not `Close` directly (SurfaceLaw §2: `Close`
-/// seals a concrete leaf, a protocol may not claim to BE one), read the same way every other
-/// atom is. Every concrete colour below conforms to both: `Paint` for the palette constraints,
-/// `Close` for its reading.
+/// Marks a paint supplied by a world.
 public protocol Paint: Structure {}
 
-public enum Ink: Paint, Close {}
-extension Ink {
-    public static var typeName: String {
-        Lit<
-            Dimmer<Dimmer<Dimmer<Brighter<Brighter<Brighter<Dimmer<Dimmer<Settled>>>>>>>>,
-            Dimmer<Dimmer<Dimmer<Brighter<Brighter<Brighter<Dimmer<Dimmer<Settled>>>>>>>>,
-            Dimmer<Dimmer<Dimmer<Brighter<Brighter<Brighter<Brighter<Dimmer<Settled>>>>>>>>
-        >.typeName
-    }
-}
-public enum Paper: Paint, Close {}
-extension Paper {
-    public static var typeName: String { White.typeName }
-}
-public enum Mist: Paint, Close {}
-extension Mist {
-    public static var typeName: String {
-        Lit<
-            Brighter<Brighter<Brighter<Brighter<Dimmer<Brighter<Brighter<Dimmer<Settled>>>>>>>>,
-            Brighter<Brighter<Brighter<Brighter<Dimmer<Brighter<Brighter<Brighter<Settled>>>>>>>>,
-            Brighter<Brighter<Brighter<Brighter<Brighter<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
-        >.typeName
-    }
-}
-public enum Accent: Paint, Close {}
-extension Accent {
-    public static var typeName: String {
-        Lit<
-            Brighter<Brighter<Brighter<Brighter<Brighter<Brighter<Brighter<Brighter<Settled>>>>>>>>,
-            Brighter<Brighter<Dimmer<Brighter<Brighter<Brighter<Dimmer<Brighter<Settled>>>>>>>>,
-            Dimmer<Dimmer<Brighter<Dimmer<Brighter<Brighter<Dimmer<Brighter<Settled>>>>>>>>
-        >.typeName
-    }
-}
-public enum Muted: Paint, Close {}
-extension Muted {
-    public static var typeName: String {
-        Lit<
-            Brighter<Dimmer<Dimmer<Dimmer<Brighter<Dimmer<Brighter<Dimmer<Settled>>>>>>>>,
-            Brighter<Dimmer<Dimmer<Dimmer<Brighter<Dimmer<Brighter<Dimmer<Settled>>>>>>>>,
-            Brighter<Dimmer<Dimmer<Dimmer<Brighter<Brighter<Brighter<Dimmer<Settled>>>>>>>>
-        >.typeName
-    }
-}
-public enum Line: Paint, Close {}
-extension Line {
-    public static var typeName: String {
-        Lit<
-            Brighter<Brighter<Brighter<Dimmer<Brighter<Brighter<Dimmer<Dimmer<Settled>>>>>>>>,
-            Brighter<Brighter<Brighter<Dimmer<Brighter<Brighter<Dimmer<Brighter<Settled>>>>>>>>,
-            Brighter<Brighter<Brighter<Dimmer<Brighter<Brighter<Brighter<Brighter<Settled>>>>>>>>
-        >.typeName
-    }
-}
-
-// Black at two opacities, not a third grey, the reference's own move: `InkSecondary` is the
-// light-surface secondary text. `Muted` remains for dark surfaces (`Ink`-backed panels),
-// unchanged.
-//
-// Every atom on this page remains exactly as it was. They remain the LIGHT half of
-// mechanism (A)'s two literal files (`Cards.swift`'s `LightCardPalette` reads them directly)
-// and the light fallback baked into mechanism (B)'s role atoms below. Nothing here is deleted.
-// The role atoms are new names ADDED alongside, not a replacement of this vocabulary.
-public enum InkPrimary: Paint, Close {}
-extension InkPrimary {
-    public static var typeName: String {
-        Veiled<Quenched, Quenched, Quenched, Cover80>.typeName
-    }
-}
-public enum InkSecondary: Paint, Close {}
-extension InkSecondary {
-    public static var typeName: String {
-        Veiled<Quenched, Quenched, Quenched, Cover54>.typeName
-    }
-}
-public enum Action: Paint, Close {}
-extension Action {
-    public static var typeName: String {
-        Lit<
-            Dimmer<Dimmer<Brighter<Brighter<Dimmer<Dimmer<Brighter<Brighter<Settled>>>>>>>>,
-            Dimmer<Brighter<Brighter<Dimmer<Brighter<Brighter<Brighter<Brighter<Settled>>>>>>>>,
-            Brighter<Brighter<Brighter<Dimmer<Brighter<Brighter<Brighter<Dimmer<Settled>>>>>>>>
-        >.typeName
-    }
-}
-/// This is a background tint, not a foreground: it is not granted a `LegibleOnX` conformance
-/// (SurfaceLaw keeps `Paint` for anything wanting the gate. A tint used as `Fill` on a
-/// `Shape`-family combinator needs only `Structure`, so a bare `Close` is enough and correct).
-public enum ActionTint: Close {}
-extension ActionTint {
-    public static var typeName: String {
-        Veiled<
-            Dimmer<Brighter<Dimmer<Dimmer<Dimmer<Dimmer<Brighter<Dimmer<Settled>>>>>>>>,
-            Brighter<Dimmer<Dimmer<Dimmer<Brighter<Dimmer<Brighter<Brighter<Settled>>>>>>>>,
-            Brighter<Brighter<Brighter<Brighter<Brighter<Dimmer<Dimmer<Brighter<Settled>>>>>>>>,
-            Cover16
-        >.typeName
-    }
-}
-public enum NavyTint: Close {}
-extension NavyTint {
-    public static var typeName: String {
-        Veiled<
-            Dimmer<Dimmer<Brighter<Dimmer<Dimmer<Brighter<Dimmer<Dimmer<Settled>>>>>>>>,
-            Dimmer<Brighter<Dimmer<Dimmer<Brighter<Dimmer<Brighter<Dimmer<Settled>>>>>>>>,
-            Dimmer<Brighter<Brighter<Brighter<Brighter<Brighter<Brighter<Brighter<Settled>>>>>>>>,
-            Cover06
-        >.typeName
-    }
-}
-public enum FontStack: Close {}
-extension FontStack {
-    public static var typeName: String { "Inter, Roboto, system-ui, sans-serif" }
-}
-
-// ── The dark HALF of mechanism (A)'s two literal files. The nine cards and the avatar need
-// only two colours with a dark counterpart (the rest is in footer.html's CSS only,
-// mechanism (B)). RolesPlate is mechanism (A)'s second consumer, drawing all eight
-// roles as a grid tile, so the remaining six get their dark half here too, from footer.html's
-// OWN `@media (prefers-color-scheme: dark)` block: the SAME values that CSS block already
-// carries, read here, not reinvented. ──
-
-public enum SurfaceCardDark: Paint, Close {}
-extension SurfaceCardDark {
-    public static var typeName: String { Ink.typeName }
-}
-public enum SurfaceTrackDark: Paint, Close {}
-extension SurfaceTrackDark {
-    public static var typeName: String {
-        Veiled<Undimmed, Undimmed, Undimmed, Cover15>.typeName
-    }
-}
-public enum TextPrimaryDark: Paint, Close {}
-extension TextPrimaryDark {
-    public static var typeName: String {
-        Veiled<Undimmed, Undimmed, Undimmed, Cover90>.typeName
-    }
-}
-public enum TextSecondaryDark: Paint, Close {}
-extension TextSecondaryDark {
-    public static var typeName: String {
-        Veiled<Undimmed, Undimmed, Undimmed, Cover70>.typeName
-    }
-}
-public enum AccentRoleDark: Paint, Close {}
-extension AccentRoleDark {
-    public static var typeName: String { Accent.typeName }
-}
-public enum ActionRoleDark: Paint, Close {}
-extension ActionRoleDark {
-    public static var typeName: String {
-        Lit<
-            Dimmer<Brighter<Dimmer<Dimmer<Brighter<Dimmer<Dimmer<Brighter<Settled>>>>>>>>,
-            Dimmer<Brighter<Brighter<Brighter<Dimmer<Dimmer<Brighter<Dimmer<Settled>>>>>>>>,
-            Brighter<Brighter<Dimmer<Dimmer<Brighter<Brighter<Brighter<Brighter<Settled>>>>>>>>
-        >.typeName
-    }
-}
-// `LineRoleDark` happens to share `SurfaceTrackDark`'s value by decision: a hairline and a
-// track read the same on ink today, and the two roles keep two names, free to diverge.
-public enum LineRoleDark: Paint, Close {}
-extension LineRoleDark {
-    public static var typeName: String {
-        Veiled<Undimmed, Undimmed, Undimmed, Cover15>.typeName
-    }
-}
-public enum OnAccentDark: Paint, Close {}
-extension OnAccentDark {
-    public static var typeName: String { Ink.typeName }
-}
-
-/// This names the two colours a card icon needs: a ground and a glyph (`Accent`'s one dot
-/// is fixed, both palettes, so it is not a member: the eight-role table gives it the
-/// identical value twice). `LightCardPalette`/`DarkCardPalette` are the driver's edge
-/// substitution (SurfaceLaw
-/// §S23): the SAME nine card compositions, run twice, are what produces `card-x.svg` and
-/// `card-x~dark.svg`.
+/// Supplies the ground and glyph of the same card composition.
 public protocol CardPalette {
     associatedtype Surface: Paint
     associatedtype Glyph: Paint
 }
-public enum LightCardPalette: CardPalette {
-    public typealias Surface = Mist
-    public typealias Glyph = Ink
-}
-public enum DarkCardPalette: CardPalette {
-    public typealias Surface = SurfaceTrackDark
-    public typealias Glyph = TextPrimaryDark
-}
 
-// ── The eight roles mechanism (B) speaks. Each wraps `var(--vi-<role>, <light read>)`, and
-// the light fallback READS the pigment atom above it, one declaration point. footer.html's
-// `<style>` block restates the same values literally (that file is not Swift-rendered, so the
-// two cannot share one declaration: a seam, not an oversight, the same edge SurfaceLaw §S23
-// already names for a generated artifact's own non-generated neighbours). Keeping footer.html
-// in step is a discipline, not a guarantee. Changing a role means editing both places. ──
-
-public enum SurfaceCard: Paint, Close {}
-extension SurfaceCard {
-    public static var typeName: String { "var(--vi-surface-card, " + Paper.typeName + ")" }
-}
-public enum SurfaceTrack: Paint, Close {}
-extension SurfaceTrack {
-    public static var typeName: String { "var(--vi-surface-track, " + Mist.typeName + ")" }
-}
-/// The page role paints the ground under a whole canvas: `Paper` where no CSS resolves
-/// (a raw `<img>`, a README), the host page's own colour where footer.html's variable does,
-/// so a stated backdrop disappears into the site and remains legible everywhere else.
-public enum SurfacePage: Paint, Close {}
-extension SurfacePage {
-    public static var typeName: String { "var(--vi-surface-page, " + Paper.typeName + ")" }
-}
-/// The backdrop fills the whole frame with the page role, under every member. A canvas whose
-/// content cannot all be on surface roles states it on its `Backdrop` slot (the TRANSPARENCY
-/// law above names the architecture diagram as this case).
-public enum PageBackdrop: Close {}
+/// Paints a canvas ground from the world's stated page role.
+public enum PageBackdrop<Fill: Paint>: Close {}
 extension PageBackdrop {
     public static var typeName: String {
-        "<rect width=\"100%\" height=\"100%\" fill=\"" + SurfacePage.typeName + "\"/>\n"
+        "<rect width=\"100%\" height=\"100%\" fill=\"" + XMLEscaped<Fill>.typeName + "\"/>\n"
     }
-}
-public enum TextPrimary: Paint, Close {}
-extension TextPrimary {
-    public static var typeName: String { "var(--vi-text-primary, " + InkPrimary.typeName + ")" }
-}
-public enum TextSecondary: Paint, Close {}
-extension TextSecondary {
-    public static var typeName: String { "var(--vi-text-secondary, " + InkSecondary.typeName + ")" }
-}
-public enum AccentRole: Paint, Close {}
-extension AccentRole {
-    public static var typeName: String { "var(--vi-accent, " + Accent.typeName + ")" }
-}
-public enum ActionRole: Paint, Close {}
-extension ActionRole {
-    public static var typeName: String { "var(--vi-action, " + Action.typeName + ")" }
-}
-public enum LineRole: Paint, Close {}
-extension LineRole {
-    public static var typeName: String {
-        "var(--vi-line, " + Lit<
-                Brighter<Brighter<Brighter<Dimmer<Brighter<Dimmer<Brighter<Dimmer<Settled>>>>>>>>,
-                Brighter<Brighter<Brighter<Dimmer<Brighter<Brighter<Dimmer<Dimmer<Settled>>>>>>>>,
-                Brighter<Brighter<Brighter<Dimmer<Brighter<Brighter<Brighter<Dimmer<Settled>>>>>>>>
-            >.typeName + ")"
-    }
-}
-public enum OnAccent: Paint, Close {}
-extension OnAccent {
-    public static var typeName: String { "var(--vi-on-accent, " + Ink.typeName + ")" }
-}
-/// This is not one of the eight-role table's rows: `ActionTint` gets a role here by the same
-/// mechanism because the keypad's hover tint and `SplitBar`'s outlined segment both are in
-/// mechanism-B canvases and so cannot remain a flat hex either. Its dark value is DERIVED, not
-/// given: the light tint is `Action` at 16% alpha, so the dark tint is `ActionRole`'s dark
-/// hex (`#4972CF` = `rgb(73,114,207)`) at the same 16%, a reasoned extension
-/// of the stated table, not a silent invention.
-public enum ActionTintRole: Close {}
-extension ActionTintRole {
-    public static var typeName: String { "var(--vi-action-tint, " + ActionTint.typeName + ")" }
-}
-/// This is also not one of the eight rows: the board needs a status chip's text to read
-/// against `ActionRole` (the `InProgress` chip). `ActionRole`'s blue is dark enough, both
-/// palettes, that white text reads against either, a theme-INVARIANT value, unlike
-/// `TextPrimary`/`TextSecondary` (which flip because their backgrounds do). Reasoned the
-/// same way `ActionTintRole` was, not given by the table.
-public enum OnActionRole: Paint, Close {}
-extension OnActionRole {
-    public static var typeName: String { "var(--vi-on-action, " + Paper.typeName + ")" }
 }
 
 /// The filter's name, spelled once: the def states its `id` through this atom and every
@@ -357,29 +45,18 @@ public enum ShadowEnvelope: Close {}
 extension ShadowEnvelope {
     public static var typeName: String { "x=\"-20%\" y=\"-20%\" width=\"140%\" height=\"140%\"" }
 }
-/// The cast both shadow filters share: straight down five, blurred ten, black.
-public enum ShadowCast: Close {}
+public enum ShadowCast<Binding: DrawingStyle>: Close {}
 extension ShadowCast {
     public static var typeName: String {
-        "dx=\"0\" dy=\"5\" stdDeviation=\"10\" flood-color=\"" + Black.typeName + "\""
+        "dx=\"0\" dy=\"5\" stdDeviation=\"10\" flood-color=\"" + XMLEscaped<Binding.ShadowPaint>.typeName + "\""
     }
 }
-/// The resting opacity: `SoftShadow` reads it directly, `SurfaceCardShadow` as the
-/// light-theme fallback under its CSS variable.
-public enum ShadowRestOpacity: Close {}
-extension ShadowRestOpacity {
-    public static var typeName: String { "0.10" }
-}
-
-/// This is the one shadow every `Paper` card reads: a filter def, declared once per canvas
-/// that uses it (`ArrowMarkers`' shape), not restated per card. Fixed in both themes.
-/// `HeroKpiCard` (an `AccentRole` panel) is not the table row asked to go flat in the dark
-/// theme. Only `SurfaceCard` is (`SurfaceCardShadow`, below).
-public enum SoftShadow: Close {}
+/// Reads the shadow paint and opacity from the canvas binding.
+public enum SoftShadow<Binding: DrawingStyle>: Close {}
 extension SoftShadow {
     public static var typeName: String {
         "<filter id=\"" + SoftShadowName.typeName + "\" " + ShadowEnvelope.typeName + ">\n"
-            + "<feDropShadow " + ShadowCast.typeName + " flood-opacity=\"" + ShadowRestOpacity.typeName + "\"/>\n"
+            + "<feDropShadow " + ShadowCast<Binding>.typeName + " flood-opacity=\"" + XMLEscaped<Binding.ShadowOpacity>.typeName + "\"/>\n"
             + "</filter>\n"
     }
 }
@@ -394,17 +71,13 @@ extension Shadowed {
     }
 }
 
-/// A `SurfaceCard` panel is flat in the dark theme: no shadow, a thin `LineRole` edge instead.
-/// It therefore reads its shadow through THIS filter, not
-/// `SoftShadow`. Its opacity is a CSS variable, `0.10` light / `0` dark, declared once in
-/// footer.html next to the eight roles. Two filter defs, not one switched by a theme, because
-/// only `SurfaceCard` (not `AccentRole`) was asked to go flat.
-public enum SurfaceCardShadow: Close {}
+/// Lets the host switch a surface shadow through its named opacity variable.
+public enum SurfaceCardShadow<Binding: DrawingStyle>: Close {}
 extension SurfaceCardShadow {
     public static var typeName: String {
         "<filter id=\"" + SurfaceCardShadowName.typeName + "\" " + ShadowEnvelope.typeName + ">\n"
-            + "<feDropShadow " + ShadowCast.typeName
-            + " flood-opacity=\"var(--vi-surface-card-shadow-opacity, " + ShadowRestOpacity.typeName + ")\"/>\n"
+            + "<feDropShadow " + ShadowCast<Binding>.typeName
+            + " flood-opacity=\"var(--vi-surface-card-shadow-opacity, " + XMLEscaped<Binding.ShadowOpacity>.typeName + ")\"/>\n"
             + "</filter>\n"
     }
 }
@@ -516,74 +189,24 @@ extension Display {
     public static var typeName: String { "40" }
 }
 
-// ── The gate: a pairing renders only when the palette allows it.
-//
-// A single generic pair type, `On<Fg, Bg>`, conditionally conforming to `Legible`
-// for exactly the seven legible pairs below, is not buildable (checked directly against the
-// compiler): Swift refuses more than one conditional conformance of the SAME generic type to
-// the SAME protocol, even with disjoint `where` bounds.
-//   "conflicting conformance of 'On<Fg, Bg>' to protocol 'Legible'; there cannot be more than
-//    one conformance, even with different conditional bounds"
-// Confirmed with as few as two extensions, so no rephrasing of the `where` clause escapes it.
-//
-// The gate is still at the type level, checked by the compiler, not a linter. It just
-// routes through the BACKGROUND's identity instead of a shared generic pair: each
-// background states which foregrounds read against it, once, as an ordinary (unconditional)
-// conformance on the concrete colour. There is no limit on how many DIFFERENT protocols one
-// concrete type may conform to, only on conditionally reconforming the SAME generic/protocol
-// pair. An illegal foreground for a given background still fails to compile: it fails at the
-// component's OWN declaration (the associated type constraint below), not only at a later
-// call to `typeName`.
-//
-// The gates name the ROLE a mechanism-B component actually reads
-// (`LegibleOnSurfaceCard`, not `LegibleOnPaper`): `Paper`/`Mist`/`Accent` are mechanism (A)'s
-// own literal hexes (`Cards.swift` draws no gated text at all, so they never needed the gate).
-// `SurfaceCard`/`SurfaceTrack`/`AccentRole` are the role atoms mechanism-B components carry. The
-// legible PAIR itself is unchanged, same light-mode contrast the reference checked, only the
-// name moves to match what is actually being paired now. `LegibleOnInk`/`LegibleOnNavyTint`
-// remain untouched: no component reads them (`Ink` marks the architecture
-// diagram's own fixed dark anchor, deliberately outside the role system, see `Diagram.swift`, and
-// `NavyTint` is unused infrastructure), so there is nothing here to rename. ──
+// A world grants these categories to its paints after checking its own pairs.
+// The wrappers require the grant; the mechanism grants no concrete colour.
 
-/// This marks a foreground legible against an `Ink` background, unused (see above), kept as-is.
 public protocol LegibleOnInk: Paint {}
-extension Paper: LegibleOnInk {}
-extension Accent: LegibleOnInk {}
 
 /// This is a foreground legible against the `SurfaceCard` role.
 public protocol LegibleOnSurfaceCard: Paint {}
-extension TextPrimary: LegibleOnSurfaceCard {}
-extension TextSecondary: LegibleOnSurfaceCard {}
-extension ActionRole: LegibleOnSurfaceCard {}
 
 /// This is a foreground legible against the `SurfaceTrack` role.
 public protocol LegibleOnSurfaceTrack: Paint {}   // law:allow — a palette gate: its content is which foregrounds conform; the reading site (a Gated wrapper) comes and goes with canvases, the category stays
-extension TextPrimary: LegibleOnSurfaceTrack {}
-extension TextSecondary: LegibleOnSurfaceTrack {}
-extension ActionRole: LegibleOnSurfaceTrack {}
 
 /// This is a foreground legible against the `AccentRole` role.
 public protocol LegibleOnAccentRole: Paint {}   // law:allow — same palette-gate class as its SurfaceTrack sibling
-extension OnAccent: LegibleOnAccentRole {}
 
 /// This marks a foreground legible against a `NavyTint` background, unused (see above), kept as-is.
 public protocol LegibleOnNavyTint: Paint {}
-extension Ink: LegibleOnNavyTint {}
-extension InkPrimary: LegibleOnNavyTint {}
-extension InkSecondary: LegibleOnNavyTint {}
 
-// ── The legibility law after the span walk: the `Legible*` protocols below REMAIN the
-// pairing law — an unreadable (foreground, background) pair is still not a granted pair —
-// but the per-piece text wrappers that once carried the constraint died with their last
-// consumers. A span label states its role colour and its slice carries no surface type
-// for a constraint to bind against. Binding one needs surface-typed slices, the Canon
-// engine's own next step, stated here so the gap reads as a decision, not an oversight. ──
-
-// ── Gated text: the design system's own `Label`. `Fg` is constrained to a background's
-// legible-foreground protocol, so an off-palette pair does not conform to the associated type
-// at all. The type does not compile, the same way an access without `Authorized` does not
-// (Policy.swift). Built only where a component actually needs it (§S8): card text is on
-// `SurfaceCard`, track text on `SurfaceTrack`. ──
+// Span labels carry an explicit fill, while these wrappers also require a pairing grant.
 
 public protocol GatedBoldTextOnInk: Open {
     associatedtype Fg: LegibleOnInk

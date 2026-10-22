@@ -1,0 +1,38 @@
+{
+  "format": "drawing-binding/1",
+  "name": "FixtureBinding",
+  "roles": {
+    "TextSecondary": {
+      "light": "currentColor",
+      "dark": "currentColor"
+    },
+    "AccentRole": {
+      "light": "currentColor",
+      "dark": "currentColor"
+    },
+    "TextPrimary": {
+      "light": "#5A347D",
+      "dark": "#E7DDF2"
+    }
+  },
+  "registers": {
+    "BodyFace": "Inter",
+    "CaptionFace": "Inter"
+  },
+  "leafCountBases": [
+    "Structure",
+    "Close",
+    "Open",
+    "Pair"
+  ],
+  "shadow": {
+    "paint": "currentColor",
+    "opacity": "0"
+  },
+  "fontInput": {
+    "path": "Assets/InterVariable.ttf",
+    "sha256": "4989b125924991b90d05b2d16e0e388c48f7d5bb8b30539bbf9c755278d0ccaf",
+    "license": "Assets/InterLicense.txt",
+    "scope": "native SVG byte serialization with the declared Inter metric table"
+  }
+}

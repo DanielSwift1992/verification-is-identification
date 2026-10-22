@@ -60,6 +60,7 @@ let package = Package(
         .target(name: "Notation"),
         .target(name: "VerificationIsIdentification", dependencies: ["Notation"]),
         .target(name: "DocumentKit", dependencies: ["Notation", "Alphabet"],
+                exclude: ["Resources"],
                 plugins: ["LawCheck"]),
         .target(name: "DocumentKitCertificates", dependencies: ["DocumentKit", "VerificationIsIdentification"],
                 exclude: ["LawCheck.strict"],

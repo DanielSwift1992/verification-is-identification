@@ -33,7 +33,7 @@ The divided axis and its members, the span leaves, the frames, and the interacti
 - ``GlyphPathThick``
 - ``GlyphRect``
 - ``GlyphRectStroked``
-- ``GlyphStroke``
+- ``BoundGlyphStroke``
 - ``Group``
 - ``GrownDiagram``
 - ``HFlow``
@@ -41,7 +41,7 @@ The divided axis and its members, the span leaves, the frames, and the interacti
 - ``HoverHighlight``
 - ``HoverReveal``
 - ``HoverRevealStyle``
-- ``HoverStyle``
+- ``BoundHoverStyle``
 - ``ItalicLabel``
 - ``Layered``
 - ``Linked``
@@ -332,14 +332,14 @@ Drawing as constrained motion, and text measured by the stated font's own metric
 - ``SlideTo``
 - ``Halfway``
 - ``Under``
-- ``TextWidth``
-- ``CenteredBaseline``
+- ``BoundTextWidth``
+- ``BoundCenteredBaseline``
 - ``SpanLabelMidFitted``
 - ``SpanLabelMidWrapped``
 - ``SpanLabelWrapped``
-- ``LineTally``
+- ``BoundLineTally``
 - ``SpanLabelWrapped``
-- ``LineTally``
+- ``BoundLineTally``
 - ``FontUnitsPerEm``
 - ``FontCapHeight``
 - ``FontAdvanceTable``

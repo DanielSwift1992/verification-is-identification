@@ -34,13 +34,16 @@ public protocol OutlineLabel: Open {
     associatedtype X: Structure
     associatedtype Y: Structure
     associatedtype Size: Structure
-    associatedtype Fill: Structure
+    associatedtype Fill: Paint
+    associatedtype Legibility: LegiblePaintPair
+    where Legibility.Foreground == Fill
     associatedtype Anchor: Structure
     associatedtype Tracking: Structure = Never
     associatedtype MaxWidth: Structure = Never
 }
 extension OutlineLabel {
     public static var typeName: String {
+        precondition(Legibility.Proof.Left.count == Legibility.Proof.Right.count, "Outline label contrast: \(Self.self)")
         guard let units = Double(Font.Units.typeName), units > 0,
               let size = Double(Size.typeName), size > 0 else {
             preconditionFailure("Outline label: invalid units or size")
@@ -78,7 +81,7 @@ extension OutlineLabel {
         }
         let offset = anchor == "middle" ? -width / 2 : (anchor == "end" ? -width : 0)
         let scale = size / units
-        var result = "<g role=\"img\" aria-label=\"\(XMLEscaped<Content>.typeName)\" data-vi-text=\"\(XMLEscaped<Content>.typeName)\" data-font-face=\"\(Font.self)\" "
+        var result = "<g role=\"img\" aria-label=\"\(XMLEscaped<Content>.typeName)\" data-vi-text=\"\(XMLEscaped<Content>.typeName)\" data-font-face=\"\(Font.self)\" data-declaration=\"\(XMLEscaped<RawName<Self>>.typeName)\" data-background=\"\(XMLEscaped<Legibility.Background>.typeName)\" data-legibility=\"\(XMLEscaped<Legibility.WitnessName>.typeName)\" "
             + "fill=\"\(XMLEscaped<Fill>.typeName)\" transform=\"translate(\(X.typeName) \(Y.typeName)) scale(\(scale) \(-scale))\">\n"
         for (code, x) in glyphs {
             result += "<use href=\"#\(Font.self)-glyph-\(code)\" data-codepoint=\"\(code)\" transform=\"translate(\(x + offset) 0)\"/>\n"
@@ -88,7 +91,7 @@ extension OutlineLabel {
 }
 
 /// Gives a composition a frame, title and description, including cropped roots.
-public protocol AccessibleFigure: Open {
+public protocol AccessibleFigure: Open, StyleBound {
     associatedtype Frame: Structure
     associatedtype Title: Structure
     associatedtype Description: Structure
@@ -97,12 +100,34 @@ public protocol AccessibleFigure: Open {
 }
 extension AccessibleFigure {
     public static var typeName: String {
-        let frame = Frame.typeName.split(separator: " ")
+        DeliveredSVG<Binding, AccessibleMarkup<Self>>.typeName
+    }
+}
+
+public enum AccessibleMarkup<Root: AccessibleFigure>: Close {}
+extension AccessibleMarkup {
+    public static var typeName: String {
+        let frame = Root.Frame.typeName.split(separator: " ")
         precondition(frame.count == 4, "Figure frame requires x, y, width and height")
-        return "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"\(frame[2])\" height=\"\(frame[3])\" viewBox=\"\(XMLEscaped<Frame>.typeName)\" role=\"img\" aria-labelledby=\"title desc\" data-vi-canvas=\"1\">\n"
-            + "<title id=\"title\">\(XMLEscaped<Title>.typeName)</title>\n"
-            + "<desc id=\"desc\">\(XMLEscaped<Description>.typeName)</desc>\n"
-            + Definitions.typeName + Content.typeName + "</svg>\n"
+        let raw = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"\(frame[2])\" height=\"\(frame[3])\" viewBox=\"\(XMLEscaped<Root.Frame>.typeName)\" role=\"img\" aria-labelledby=\"title desc\" data-vi-canvas=\"1\">\n"
+            + "<title id=\"title\">\(XMLEscaped<Root.Title>.typeName)</title>\n"
+            + "<desc id=\"desc\">\(XMLEscaped<Root.Description>.typeName)</desc>\n"
+            + Root.Definitions.typeName + Root.Content.typeName + "</svg>\n"
+        let attributes = raw.split(separator: "\"", omittingEmptySubsequences: false)
+        var references: Set<String> = []
+        for index in attributes.indices.filter({ $0 % 2 == 1 }) {
+            if attributes[index - 1].hasSuffix("href="), attributes[index].hasPrefix("#") {
+                references.insert(String(attributes[index].dropFirst()))
+            }
+        }
+        let required = raw.split(separator: "\n", omittingEmptySubsequences: false).filter { line in
+            if line.hasPrefix("<path id="), line.contains("data-font-source=") {
+                let fields = line.split(separator: "\"", omittingEmptySubsequences: false)
+                return fields.count > 1 && references.contains(String(fields[1]))
+            }
+            return true
+        }.joined(separator: "\n")
+        return required
     }
 }
 
@@ -142,11 +167,11 @@ extension FigureRoute {
 }
 
 /// Places a shared arrowhead in the declared ink of its composition.
-public enum FigureArrow<Colour: Structure>: Close {}
+public enum FigureArrow<Binding: DrawingStyle, Colour: Structure>: Close {}
 extension FigureArrow {
     public static var typeName: String {
-        "<defs><marker id=\"arrow\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto-start-reverse\">"
-            + "<path d=\"M0 0L10 5L0 10Z\" fill=\"\(XMLEscaped<Colour>.typeName)\"/></marker></defs>\n"
+        "<defs><marker id=\"arrow\" viewBox=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowBox>>.typeName)\" refX=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowX>>.typeName)\" refY=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowY>>.typeName)\" markerWidth=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowWidth>>.typeName)\" markerHeight=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowHeight>>.typeName)\" orient=\"auto-start-reverse\">"
+            + "<path d=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowPath>>.typeName)\" fill=\"\(XMLEscaped<Colour>.typeName)\"/></marker></defs>\n"
     }
 }
 

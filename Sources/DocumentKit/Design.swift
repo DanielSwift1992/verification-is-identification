@@ -3,6 +3,9 @@ import Notation
 /// Supplies a world's faces, caption paint and shadow at the reading edge.
 /// Requires each canvas to name its binding for type checking.
 public protocol DrawingStyle: Structure {
+    associatedtype Values: Structure
+    associatedtype PaintFallbacks: Structure
+    associatedtype PaintValues: Structure
     associatedtype BodyFace: Structure
     associatedtype CaptionFace: Structure
     associatedtype AccentRole: Paint
@@ -12,8 +15,83 @@ public protocol DrawingStyle: Structure {
     associatedtype LeafCountBases: Structure
 }
 
+/// Requires the reader to select a world's style when compiling its composition.
+public protocol StyleBound {
+    associatedtype Binding: DrawingStyle
+}
+
+/// Reads a named value from the world's immutable type projection.
+public enum StyleValue<Binding: DrawingStyle, Key: Structure>: Close {}
+extension StyleValue {
+    public static var typeName: String {
+        let key = Key.typeName
+        for row in Binding.Values.typeName.split(separator: "\n") {
+            let fields = row.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: false)
+            if fields.count == 2 && fields[0] == key { return String(fields[1]) }
+        }
+        preconditionFailure("\(Binding.self)#layout/\(key): missing style value")
+    }
+}
+
+/// Serializes the owner's portable paint before its exact CSS spelling.
+public enum DeliveredSVG<Binding: DrawingStyle, Markup: Structure>: Close {}
+extension DeliveredSVG {
+    public static var typeName: String {
+        var fallbacks: [String: String] = [:]
+        for row in Binding.PaintFallbacks.typeName.split(separator: "\n") {
+            let fields = row.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: false)
+            precondition(fields.count == 2, "\(Binding.self)#paints: invalid fallback row")
+            fallbacks[String(fields[0])] = String(fields[1])
+        }
+        var paints: [String: String] = [:]
+        for row in Binding.PaintValues.typeName.split(separator: "\n") {
+            let fields = row.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: false)
+            precondition(fields.count == 2, "\(Binding.self)#roles: invalid paint row")
+            paints[String(fields[0])] = String(fields[1])
+        }
+        return Markup.typeName.split(separator: ">", omittingEmptySubsequences: false).map { piece -> String in
+            var fields = piece.split(separator: "\"", omittingEmptySubsequences: false).map(String.init)
+            var declarations = ""
+            var styleIndex: Int?
+            for index in fields.indices.filter({ $0 % 2 == 1 }) {
+                let prefix = fields[index - 1]
+                if prefix.hasSuffix("style=") { styleIndex = index }
+                for property in ["fill", "stroke", "flood-color", "data-background"].filter({ prefix.hasSuffix($0 + "=") }) {
+                    var paint = fields[index]
+                    if paint.hasPrefix("var(--vi-role-"), paint.hasSuffix(")") {
+                        let role = String(paint.dropFirst("var(--vi-role-".count).dropLast())
+                        guard let reading = paints[role] else {
+                            preconditionFailure("\(Binding.self)#roles/\(role): missing paint")
+                        }
+                        paint = reading
+                        fields[index] = reading
+                    }
+                    if property != "data-background", let fallback = fallbacks[paint], fallback != paint {
+                        fields[index] = fallback
+                        declarations += property + ":" + fallback + ";" + property + ":" + paint + ";"
+                    }
+                }
+            }
+            if declarations.isEmpty { return fields.joined(separator: "\"") }
+            if let index = styleIndex {
+                fields[index] = declarations + fields[index]
+                return fields.joined(separator: "\"")
+            }
+            let tag = fields.joined(separator: "\"")
+            if tag.hasSuffix("/") { return String(tag.dropLast()) + " style=\"" + declarations + "\"/" }
+            return tag + " style=\"" + declarations + "\""
+        }.joined(separator: ">")
+    }
+}
+
 /// Marks a paint supplied by a world.
 public protocol Paint: Structure {}
+
+/// Names a CSS paint slot whose value is supplied by the world's binding.
+public protocol PaintRole: Paint {} // law:allow: named style vocabulary
+extension PaintRole {
+    public static var typeName: String { "var(--vi-role-" + String(describing: Self.self) + ")" }
+}
 
 /// Supplies the ground and glyph of the same card composition.
 public protocol CardPalette {
@@ -31,31 +109,26 @@ extension PageBackdrop {
 
 /// The filter's name, spelled once: the def states its `id` through this atom and every
 /// applier builds its `url()` from the same atom, so a rename cannot strand an applier.
-public enum SoftShadowName: Close {}
-extension SoftShadowName {
-    public static var typeName: String { "soft-shadow" }
-}
 /// `SurfaceCardShadow`'s name, held to the same rule.
-public enum SurfaceCardShadowName: Close {}
-extension SurfaceCardShadowName {
-    public static var typeName: String { "surface-card-shadow" }
-}
-/// The envelope both shadow filters share: room around the shape for the blur to paint in.
-public enum ShadowEnvelope: Close {}
+public enum ShadowEnvelope<Binding: DrawingStyle>: Close {}
 extension ShadowEnvelope {
-    public static var typeName: String { "x=\"-20%\" y=\"-20%\" width=\"140%\" height=\"140%\"" }
+    public static var typeName: String {
+        "x=\"" + XMLEscaped<StyleValue<Binding, StyleKeys.ShadowX>>.typeName + "\" y=\"" + XMLEscaped<StyleValue<Binding, StyleKeys.ShadowY>>.typeName
+            + "\" width=\"" + XMLEscaped<StyleValue<Binding, StyleKeys.ShadowWidth>>.typeName + "\" height=\"" + XMLEscaped<StyleValue<Binding, StyleKeys.ShadowHeight>>.typeName + "\""
+    }
 }
 public enum ShadowCast<Binding: DrawingStyle>: Close {}
 extension ShadowCast {
     public static var typeName: String {
-        "dx=\"0\" dy=\"5\" stdDeviation=\"10\" flood-color=\"" + XMLEscaped<Binding.ShadowPaint>.typeName + "\""
+        "dx=\"" + XMLEscaped<StyleValue<Binding, StyleKeys.ShadowDx>>.typeName + "\" dy=\"" + XMLEscaped<StyleValue<Binding, StyleKeys.ShadowDy>>.typeName
+            + "\" stdDeviation=\"" + XMLEscaped<StyleValue<Binding, StyleKeys.ShadowDeviation>>.typeName + "\" flood-color=\"" + XMLEscaped<Binding.ShadowPaint>.typeName + "\""
     }
 }
 /// Reads the shadow paint and opacity from the canvas binding.
 public enum SoftShadow<Binding: DrawingStyle>: Close {}
 extension SoftShadow {
     public static var typeName: String {
-        "<filter id=\"" + SoftShadowName.typeName + "\" " + ShadowEnvelope.typeName + ">\n"
+        "<filter id=\"" + SoftShadowName.typeName + "\" " + ShadowEnvelope<Binding>.typeName + ">\n"
             + "<feDropShadow " + ShadowCast<Binding>.typeName + " flood-opacity=\"" + XMLEscaped<Binding.ShadowOpacity>.typeName + "\"/>\n"
             + "</filter>\n"
     }
@@ -75,7 +148,7 @@ extension Shadowed {
 public enum SurfaceCardShadow<Binding: DrawingStyle>: Close {}
 extension SurfaceCardShadow {
     public static var typeName: String {
-        "<filter id=\"" + SurfaceCardShadowName.typeName + "\" " + ShadowEnvelope.typeName + ">\n"
+        "<filter id=\"" + SurfaceCardShadowName.typeName + "\" " + ShadowEnvelope<Binding>.typeName + ">\n"
             + "<feDropShadow " + ShadowCast<Binding>.typeName
             + " flood-opacity=\"var(--vi-surface-card-shadow-opacity, " + XMLEscaped<Binding.ShadowOpacity>.typeName + ")\"/>\n"
             + "</filter>\n"
@@ -92,101 +165,9 @@ extension ThemedShadowed {
     }
 }
 
-// ── Scales — the only numbers a component is allowed to introduce ──
-
-public enum S8: Close {}
-extension S8 {
-    public static var typeName: String { "8" }
-}
-public enum S16: Close {}
-extension S16 {
-    public static var typeName: String { "16" }
-}
-public enum S24: Close {}
-extension S24 {
-    public static var typeName: String { "24" }
-}
-public enum S32: Close {}
-extension S32 {
-    public static var typeName: String { "32" }
-}
-
-// ── Stroke voices: the two widths every line in the system speaks, the dash of a
-// dependency, and the one arrowhead every arrow shares. Named once, and a combinator reads
-// its voice, never a bare number. ──
-public enum HairlineWidth: Close {}
-extension HairlineWidth {
-    public static var typeName: String { "1" }
-}
-public enum ArrowWidth: Close {}
-extension ArrowWidth {
-    public static var typeName: String { "2" }
-}
-public enum DependencyDash: Close {}
-extension DependencyDash {
-    public static var typeName: String { "4 3" }
-}
 public enum ArrowHeadName: Close {}
 extension ArrowHeadName {
     public static var typeName: String { "a" }
-}
-
-public enum R4: Close {}
-extension R4 {
-    public static var typeName: String { "4" }
-}
-public enum R6: Close {}
-extension R6 {
-    public static var typeName: String { "6" }
-}
-public enum R10: Close {}
-extension R10 {
-    public static var typeName: String { "10" }
-}
-public enum R16: Close {}
-extension R16 {
-    public static var typeName: String { "16" }
-}
-public enum R20: Close {}
-extension R20 {
-    public static var typeName: String { "20" }
-}
-public enum R12: Close {}
-extension R12 {
-    public static var typeName: String { "12" }
-}
-
-public enum TextXXS: Close {}
-extension TextXXS {
-    public static var typeName: String { "10" }
-}
-public enum TextXS: Close {}
-extension TextXS {
-    public static var typeName: String { "11" }
-}
-public enum TextS: Close {}
-extension TextS {
-    public static var typeName: String { "13" }
-}
-public enum TextM: Close {}
-extension TextM {
-    public static var typeName: String { "15" }
-}
-public enum TextL: Close {}
-extension TextL {
-    public static var typeName: String { "17" }
-}
-public enum TitleT: Close {}
-extension TitleT {
-    public static var typeName: String { "21" }
-}
-public enum DisplayS: Close {}
-extension DisplayS {
-    public static var typeName: String { "28" }
-}
-public enum Display: Close {}
-extension Display {
-    public static var typeName: String { "40" }
 }
 
 // A world grants these categories to its paints after checking its own pairs.
@@ -208,7 +189,7 @@ public protocol LegibleOnNavyTint: Paint {}
 
 // Span labels carry an explicit fill, while these wrappers also require a pairing grant.
 
-public protocol GatedBoldTextOnInk: Open {
+public protocol GatedBoldTextOnInk: Open, StyleBound {
     associatedtype Fg: LegibleOnInk
     associatedtype X: Structure
     associatedtype Y: Structure
@@ -219,7 +200,7 @@ public protocol GatedBoldTextOnInk: Open {
 extension GatedBoldTextOnInk {
     public static var typeName: String {
         "<text x=\"\(X.typeName)\" y=\"\(Y.typeName)\" text-anchor=\"\(Anchor.typeName)\" "
-            + "fill=\"\(Fg.typeName)\" font-weight=\"700\" font-size=\"\(Size.typeName)\">\(Content.typeName)</text>\n"
+            + "fill=\"\(Fg.typeName)\" font-weight=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.BoldWeight>>.typeName)\" font-size=\"\(Size.typeName)\">\(Content.typeName)</text>\n"
     }
 }
 public protocol GatedTextOnNavyTint: Open {
@@ -251,29 +232,6 @@ extension GatedTextOnSurfaceCard {
     }
 }
 
-// ── Card metrics: the heights and baselines the span-drawn KPI cards read. The card art
-// itself is on the span engine (`SpanCardFace`/`SpanHeroFace` and `SpanLabel`). What the
-// design system keeps is the vertical word: how tall a metric tile is, where its title
-// and value are. `AccentRole`'s only legal foreground remains `OnAccent`: one hero per screen. ──
-
-public typealias KpiCardHeight = Plus<
-    U64,
-    Plus<
-        U32,
-        Plus<
-            U16,
-            U8
-        >
-    >
->   // the metric tile's height
-public enum KpiTitleY: Close {}
-extension KpiTitleY {
-    public static var typeName: String { "36" }
-}
-public enum KpiValueY: Close {}
-extension KpiValueY {
-    public static var typeName: String { "92" }
-}
 public enum AnchorStart: Close {}
 extension AnchorStart {
     public static var typeName: String { "start" }
@@ -287,329 +245,7 @@ extension AnchorMiddle {
     public static var typeName: String { "middle" }
 }
 
-// ── AXIS POLICY AND ELEMENT EXTENTS — the dictionary a divided axis speaks. A canvas
-// names these, and only this file spells them in rungs. `EdgeMargin` is at a canvas's
-// edges, `Breath` between neighbours. An element's extent is the width it takes off the
-// axis, one named step per element kind. ──
-
-// `EdgeMargin` and `Breath` share a rung by decision, and keep two names: the edge of a
-// canvas and the space between neighbours are different promises, free to diverge, and a
-// canvas that says which one it means survives the day one of them moves.
-public typealias EdgeMargin = U16
-public typealias HairBreath = U8
-public typealias S24Breath = Plus<U16, U8>
-public typealias StripInset = Plus<U8, U2>
-public typealias Gutter = Plus<U32, U16>
-public typealias QuadTrackBlock = Plus<
-    Times<U4, TrackHeight>,
-    Times<Plus<U2, U1>, Breath>
->   // four tracks and their three breaths
-public typealias PanelWide = Times<
-    U8,
-    Plus<
-        U32,
-        Plus<
-            U16,
-            Plus<
-                U4,
-                Plus<
-                    U2,
-                    U1
-                >
-            >
-        >
-    >
->   // eight fifty-fives: the dashboard's half panel
-public typealias Breath = U16
-public typealias CardWide = Plus<
-    U128,
-    Plus<
-        U64,
-        Plus<
-            U16,
-            Plus<
-                U8,
-                U4
-            >
-        >
-    >
->   // the catalog card, and the summary strip's chip
-public typealias DocumentCardWide = Plus<
-    U256,
-    Plus<
-        U16,
-        U8
-    >
->   // the document card
-public typealias VerdictCardTall = Plus<U64, U16>
-public typealias CatalogCardTall = Plus<
-    U64,
-    Plus<
-        U32,
-        Plus<
-            U8,
-            Plus<
-                U4,
-                U2
-            >
-        >
-    >
->
-public typealias DocumentCardTall = Plus<U32, Plus<U16, U2>>
-public typealias WideMargin = U32
-public typealias AvatarSide = Plus<U64, U32>
-public typealias PersonChipWide = Plus<
-    U128,
-    Plus<
-        U32,
-        Plus<
-            U8,
-            Plus<
-                U4,
-                Plus<
-                    U2,
-                    U1
-                >
-            >
-        >
-    >
->   // the identity chip
-public typealias ChipTripletWide = Plus<
-    Times<Plus<U2, U1>, PersonChipWide>,
-    Times<U2, HairBreath>
->   // three chips and their two breaths
-public typealias AccessWide = Plus<
-    U128,
-    Plus<
-        U64,
-        Plus<
-            U32,
-            Plus<
-                U16,
-                Plus<
-                    U8,
-                    U4
-                >
-            >
-        >
-    >
->   // the access column
-public typealias DotSlot = Plus<U8, U4>
-public typealias ChipPad = Plus<U8, Plus<U4, U2>>
-public typealias HeaderTall = Plus<AvatarSide, Twice<S24Breath>>
-public typealias WideSurface = Times<
-    U64,
-    Plus<
-        U8,
-        Plus<
-            U4,
-            Plus<
-                U2,
-                U1
-            >
-        >
-    >
->   // sixty-four fifteens: the standard page-wide surface
-public typealias RankChipWide = Plus<U128, Plus<U8, U4>>
-public typealias VerdictChipWide = Plus<U64, Plus<U16, Plus<U8, U2>>>
-public typealias VerdictChipTall = Plus<U16, Plus<U4, U2>>
-public typealias BadgeChipWide = Plus<U16, Plus<U8, Plus<U4, U2>>>
-public typealias StatusChipWide = Plus<U64, Plus<U16, Plus<U8, U4>>>
-// `ChipInset` shares `DotSlot`'s rung by decision: a chip's inner margin and the slot a
-// status dot takes are different promises that happen to measure alike today.
-public typealias ChipInset = Plus<U8, U4>
-public typealias DeadPanelWide = Plus<U256, Plus<U16, Plus<U8, Plus<U4, U1>>>>
-public typealias PanelInset = Plus<U16, U4>
-public typealias DeadInset = PanelInset
-public typealias RtoSurface = Times<
-    U16,
-    Plus<
-        U32,
-        Plus<
-            U8,
-            Plus<
-                U4,
-                U1
-            >
-        >
-    >
->   // sixteen forty-fives: the arrangements strip
-public typealias BoardTall = Times<U8, Plus<U32, Plus<U16, Plus<U8, Plus<U4, U1>>>>>
-public typealias GateTall = Times<U8, Plus<U32, Plus<U2, U1>>>
-public typealias ArchCaptionWide = Plus<U256, Plus<U16, Plus<U8, Plus<U2, U1>>>>
-// ── The gate's vertical fascia: the row's drop, the box, the fall to dead, and the reset
-// swing — every horizontal line of the diagram, named once, so the pen's stopping
-// conditions and the boxes' faces read the same rungs. `GateArrowDrop` states half the box
-// (the medium has no division of a rung). `GateFallTall` is the one free height the fall
-// takes. ──
-// ── The architecture's row rungs: the bar, the box, the gap an arrow falls through, the
-// nose it stops short by, and the footer line. The drops are sums the canvas composes. ──
-// The build-flow band: four zones across the inner width, three gutters between, every
-// width a quarter of what remains — and the zone's own storeys, summed like the boxes'.
-// ── the saturation curve's rungs (curve.svg): group and bar slots, legend slots,
-// and the summed frame — the chart's one surface, spoken here so the demo names
-// magnitudes and never spells units. ──
-public typealias CurveBarThick = Plus<U16, U8>
-public typealias CurveNameColumn = Plus<U64, U32>
-public typealias CurveLegendTextWide = Plus<U128, Plus<U32, U16>>
-public typealias CurveBuildWide3200 = Plus<U64, Plus<U32, Plus<U4, U2>>>       // 34 s × 3
-public typealias CurveBuildWide6400 = Plus<U128, Plus<U64, Plus<U32, Plus<U16, Plus<U4, U2>>>>>   // 82 s × 3
-public typealias CurveBuildWide12800 = Plus<U512, Plus<U64, Plus<U16, Plus<U4, U1>>>>             // 199 s × 3
-public typealias LegendChipWide = Plus<U16, U2>
-public typealias LegendTextWide = Plus<U64, Plus<U32, Plus<U16, U8>>>
-public typealias LegendWideTextWide = Plus<U64, Plus<U64, Plus<U32, Plus<U16, Plus<U8, Plus<U4, U2>>>>>>
-public typealias CurveWholeTall = Plus<U64, Plus<U64, Plus<U64, Plus<U64, Plus<U64, Plus<U4, U2>>>>>>
-// 150: the walk film's strip height, a count the canvas reads.
-public typealias FilmStripTall = Plus<U128, Plus<U16, Plus<U4, U2>>>
-
-public typealias FlowZoneGaps = Plus<Gutter, Twice<Gutter>>
-public typealias FlowZoneWide = Half<Half<Rest<Rest<WideSurface, Twice<EdgeMargin>>, FlowZoneGaps>>>
-public typealias FlowZoneTitleStorey = Plus<U16, Plus<U8, U4>>
-public typealias FlowCardNameStorey = Plus<U16, U4>
-public typealias FlowCardRoleStorey = Plus<U16, Plus<U8, U4>>
-public typealias FlowCardTall = Plus<FlowCardNameStorey, FlowCardRoleStorey>
-public typealias FlowCardGap = Plus<U8, U4>
-public typealias FlowCardPitch = Plus<FlowCardTall, FlowCardGap>
-public typealias FlowZoneTall = Plus<
-    FlowZoneTitleStorey,
-    Plus<Times<U4, FlowCardPitch>, Plus<U4, HairBreath>>
->
-
-// The architecture box's three storeys, summed into its tall: the title's, the component
-// plaques', the census line's. The height follows the stack, not an eyeballed slab.
-public typealias ArchTitleStorey = Plus<U32, U8>
-public typealias ArchRoleStorey = U32
-public typealias ArchPlaqueStorey = Plus<VerdictChipTall, U16>
-public typealias ArchStatsStorey = Plus<U16, Plus<U8, U4>>
-public typealias ArchStackTall = Plus<
-    ArchTitleStorey,
-    Plus<ArchRoleStorey, Plus<ArchPlaqueStorey, ArchStatsStorey>>
->
-public typealias ArchGapTall = Plus<U32, U16>
-public typealias ArchNose = Plus<U8, U2>
-public typealias ArchFooterTall = Plus<U16, U4>
-
-public typealias ArchDotDip = Plus<U8, Plus<U4, U2>>
-public typealias ArchOutputTall = U64
-public typealias GateRowDrop = Plus<U16, U4>
-public typealias GateBoxTall = Plus<U32, Plus<U16, Plus<U8, U4>>>
-public typealias GateBoxBottom = Plus<GateRowDrop, GateBoxTall>
-public typealias GateFallTall = Plus<U64, Plus<U16, Plus<U8, U2>>>
-public typealias GateDeadDrop = Plus<GateBoxBottom, GateFallTall>
-public typealias GateDeadBottom = Plus<GateDeadDrop, GateBoxTall>
-public typealias GateResetSwing = Plus<U16, U4>
-public typealias GateResetTurn = Plus<GateDeadBottom, GateResetSwing>
-public typealias GateArrowDrop = Plus<U16, Plus<U8, Plus<U4, U2>>>
-public typealias GateBoxWide = Plus<U128, U2>
-public typealias GateHalfBox = Half<GateBoxWide>
-public typealias GateStep = Plus<U32, Plus<U8, Plus<U4, U1>>>
-public typealias GateBreath = Plus<U64, Plus<U16, Plus<U8, U2>>>
-public typealias GateSurface = Times<
-    U2,
-    Plus<
-        U256,
-        Plus<
-            U128,
-            Plus<
-                U64,
-                Plus<
-                    U16,
-                    U1
-                >
-            >
-        >
-    >
->   // the gate graph's whole width
-public typealias CycleSlotWide = Times<
-    U16,
-    Plus<
-        U8,
-        Plus<
-            U4,
-            Plus<
-                U2,
-                U1
-            >
-        >
-    >
->   // a quarter of the timeline
-public typealias TimelineInset = Plus<U32, U8>
-public typealias CycleAffordanceInset = Plus<U128, U2>
-public typealias CyclePanelDropSecond = Plus<U128, Plus<U32, Plus<U16, U4>>>
-public typealias CyclePanelDropThird = Plus<U256, Plus<U128, Plus<U32, U4>>>
-public typealias CyclePanelInsetLast = Plus<U512, Plus<U64, U16>>
-public typealias RevealPanelWide = Plus<
-    U256,
-    Plus<
-        U64,
-        Plus<
-            U32,
-            U8
-        >
-    >
->   // the hover panel
-public typealias CyclesZoneTall = Plus<U128, Plus<U32, Plus<U8, U2>>>
-public typealias TaskCardTall = Plus<U64, Plus<U16, Plus<U8, U2>>>
-public typealias BoardHeaderZone = Plus<U32, U8>
-public typealias BoardSlotPitch = Plus<TaskCardTall, Breath>
-public typealias BoardEdge = Plus<U8, U4>
-public typealias BoardMatrixTall = Plus<
-    BoardHeaderZone,
-    Plus<
-        Times<Plus<U4, Plus<U2, U1>>, TaskCardTall>,
-        Times<Plus<U4, U2>, Breath>
-    >
->
-public typealias BoardColumnTall = Plus<
-    BoardHeaderZone,
-    Plus<
-        Times<U4, TaskCardTall>,
-        Times<Plus<U2, U1>, Breath>
-    >
->
-public typealias KeypadSide = Times<
-    U4,
-    Plus<
-        U64,
-        Plus<
-            U8,
-            Plus<
-                U2,
-                U1
-            >
-        >
-    >
->   // four seventy-fives: the keypad's side
-public typealias HubCardWide = Times<U64, Plus<U4, U1>>
-public typealias HubCardTall = Times<U4, Plus<U32, Plus<U8, Plus<U4, U1>>>>
-public typealias AvatarCanvasSide = Times<U8, Plus<U16, Plus<U8, U1>>>
-public typealias KeyPitch = Plus<U8, Plus<U4, Plus<U2, U1>>>
-public typealias KeySide = Plus<U64, U16>
-public typealias VaultZoneTall = Times<
-    U4,
-    Plus<
-        U64,
-        Plus<
-            U32,
-            Plus<
-                U8,
-                U1
-            >
-        >
-    >
->   // the sign-in zone under a named header
-
-// ── Track metrics: THE standard track. One height, one baseline, for every 32-tall bar,
-// chip, and split the medium draws. Three canvases once carried three names for this one
-// fact. The bar itself is span-drawn, and the design system keeps the vertical word. ──
-
-public typealias TrackHeight = U32
-// The CENTRED class of baselines derives now: `CenteredBaseline` (Vector.swift) reads the
-// zone's middle plus half the font's own capital height (GeneratedFontMetrics), and this
-// rung is its first conversion — the derived value reproduces the old stated "21" to the
-// pixel. STACKED baselines (a title over a subtitle) remain stated per canvas: they are
-// design choices, not centrings, and the hole they keep open is named in place.
-public typealias TrackBaseline = CenteredBaseline<TrackHeight, TextS>
+// Style names are declared below. The owner supplies their values and equations.
 
 public enum N0: Close {}
 extension N0 {
@@ -619,7 +255,7 @@ extension N0 {
 /// This is a rect with its fill AND stroke: the one segment (`SplitBar`'s tinted third) that
 /// needs a border to read against a near-transparent fill (§S8: built for the one place it is
 /// needed, not a general two-attribute rect).
-public protocol GlyphRectFillStroke: Open {
+public protocol GlyphRectFillStroke: Open, StyleBound {
     associatedtype X: Structure
     associatedtype Y: Structure
     associatedtype W: Structure
@@ -631,11 +267,479 @@ public protocol GlyphRectFillStroke: Open {
 extension GlyphRectFillStroke {
     public static var typeName: String {
         "<rect x=\"\(X.typeName)\" y=\"\(Y.typeName)\" width=\"\(W.typeName)\" height=\"\(H.typeName)\" rx=\"\(Radius.typeName)\" "
-            + "fill=\"\(Fill.typeName)\" stroke=\"\(Stroke.typeName)\" stroke-width=\"1\"/>\n"
+            + "fill=\"\(Fill.typeName)\" stroke=\"\(Stroke.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.HairlineWidth>>.typeName)\"/>\n"
     }
 }
 
-// ── The space ladder — the design system's rungs. Every magnitude in the medium composes
-//    from these by name, and a canvas states proportions, and the seed (`SpaceSeed`) is the one
-//    number that turns a count into pixels. The numerals themselves are the lattice's
-//    (Primitive.swift): one ladder, spelled once, read by every target. ──
+public enum Accent: PaintRole, Close {}
+
+public enum AccentRole: PaintRole, Close {}
+
+public protocol AccessWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public enum Action: PaintRole, Close {}
+
+public enum ActionRole: PaintRole, Close {}
+
+public enum ActionTint: PaintRole, Close {}
+
+public enum ActionTintRole: PaintRole, Close {}
+
+public protocol ArchCaptionWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ArchDotDip: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ArchFooterTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ArchGapTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ArchNose: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ArchOutputTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ArchPlaqueStorey: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ArchRoleStorey: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ArchStackTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ArchStatsStorey: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ArchTitleStorey: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ArrowWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol AvatarCanvasSide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol AvatarSide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public enum Bad: PaintRole, Close {}
+
+public protocol BadgeChipWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol BoardColumnTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol BoardEdge: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol BoardHeaderZone: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol BoardMatrixTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol BoardSlotPitch: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol BoardTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol BoldWeight: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol Breath: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol BreatheDuration: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol BreatheValues: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol CardWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol CatalogCardTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol CenteredBaseline: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ChipInset: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ChipPad: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ChipTripletWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol CurveBarThick: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol CurveBuildWide12800: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol CurveBuildWide3200: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol CurveBuildWide6400: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol CurveLegendTextWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol CurveNameColumn: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol CurveWholeTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol CycleAffordanceInset: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol CyclePanelDropSecond: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol CyclePanelDropThird: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol CyclePanelInsetLast: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol CycleSlotWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol CyclesZoneTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol DeadInset: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol DeadPanelWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol DependencyDash: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol Display: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol DisplayS: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol DocumentCardTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol DocumentCardWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol DotSlot: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol EdgeMargin: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FigureArrowBox: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FigureArrowHeight: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FigureArrowPath: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FigureArrowWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FigureArrowX: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FigureArrowY: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FilmStripTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FlowCardGap: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FlowCardNameStorey: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FlowCardPitch: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FlowCardRoleStorey: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FlowCardTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FlowZoneGaps: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FlowZoneTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FlowZoneTitleStorey: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FlowZoneWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FontAdvanceTable: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FontCapHeight: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FontStack: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol FontUnitsPerEm: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol GateArrowDrop: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol GateBoxBottom: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol GateBoxTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol GateBoxWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol GateBreath: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol GateDeadBottom: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol GateDeadDrop: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol GateFallTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol GateHalfBox: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol GateResetSwing: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol GateResetTurn: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol GateRowDrop: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol GateStep: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol GateSurface: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol GateTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol GlyphStrokeWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol Gutter: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol HairBreath: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol HairlineWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol HeaderTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol HoverAffordanceRadius: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol HoverFadeDelay: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol HoverGrace: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol HoverLift: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol HoverStrokeWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol HoverTransition: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol HubCardTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol HubCardWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public enum Ink: PaintRole, Close {}
+
+public enum InkPrimary: PaintRole, Close {}
+
+public enum InkSecondary: PaintRole, Close {}
+
+public protocol KeyPitch: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol KeySide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol KeypadSide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public enum KnownName: PaintRole, Close {}
+
+public protocol KpiCardHeight: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol KpiTitleY: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol KpiValueY: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol LegendChipWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol LegendTextWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol LegendWideTextWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public enum Line: PaintRole, Close {}
+
+public enum LineRole: PaintRole, Close {}
+
+public enum LocalType: PaintRole, Close {}
+
+public protocol MarkerHeight: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol MarkerPath: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol MarkerWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol MarkerX: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol MarkerY: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public enum Mist: PaintRole, Close {}
+
+public enum Muted: PaintRole, Close {}
+
+public enum NavyTint: PaintRole, Close {}
+
+public enum Ok: PaintRole, Close {}
+
+public enum OnAccent: PaintRole, Close {}
+
+public enum OnActionRole: PaintRole, Close {}
+
+public protocol PanelInset: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol PanelWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public enum Paper: PaintRole, Close {}
+
+public protocol PersonChipWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol QuadTrackBlock: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol R10: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol R12: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol R16: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol R20: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol R4: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol R6: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol RankChipWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol RevealPanelWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol RtoSurface: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol S16: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol S24: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol S24Breath: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol S32: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol S8: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ShadowDeviation: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ShadowDx: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ShadowDy: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ShadowHeight: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ShadowWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ShadowX: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ShadowY: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ShapeRadius: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public enum SoftShadowName: Close {}
+extension SoftShadowName {
+    public static var typeName: String { "soft-shadow" }
+}
+
+public protocol StatusChipWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public enum StatusMark: PaintRole, Close {}
+
+public protocol StripInset: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public enum SurfaceCard: PaintRole, Close {}
+
+public enum SurfaceCardShadowName: Close {}
+extension SurfaceCardShadowName {
+    public static var typeName: String { "surface-card-shadow" }
+}
+
+public enum SurfacePage: PaintRole, Close {}
+
+public enum SurfaceTrack: PaintRole, Close {}
+
+public protocol TaskCardTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol TextL: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol TextM: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public enum TextPrimary: PaintRole, Close {}
+
+public protocol TextS: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public enum TextSecondary: PaintRole, Close {}
+
+public protocol TextWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol TextXS: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol TextXXS: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol ThickGlyphWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol TimelineInset: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol TitleT: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol TrackBaseline: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol TrackHeight: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol VaultZoneTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol VerdictCardTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol VerdictChipTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol VerdictChipWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol WeightBold: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol WeightRegular: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol WideMargin: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol WideSurface: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol HoverStyle: Structure {} // law:allow: owner-bound interaction style name
+
+/// Requires the owner's foreground, its ground and the equality used for that pair.
+public protocol LegiblePaintPair {
+    associatedtype WitnessName: Structure
+    associatedtype Foreground: Paint
+    associatedtype Background: Paint
+    associatedtype Proof: Pair
+    where Proof.Left: Structure, Proof.Right: Structure
+}
+
+/// Names the palette channels shared by the drawing readers.
+public protocol DrawingPalette: DrawingStyle {
+    associatedtype Paper: Paint
+    associatedtype Ink: Paint
+    associatedtype Muted: Paint
+    associatedtype Line: Paint
+    associatedtype Ok: Paint
+    associatedtype Bad: Paint
+    associatedtype KnownName: Paint
+    associatedtype LocalType: Paint
+    associatedtype InkOnPaper: LegiblePaintPair
+    where InkOnPaper.Foreground == Ink, InkOnPaper.Background == Paper
+    associatedtype MutedOnPaper: LegiblePaintPair
+    where MutedOnPaper.Foreground == Muted, MutedOnPaper.Background == Paper
+    associatedtype OkOnPaper: LegiblePaintPair
+    where OkOnPaper.Foreground == Ok, OkOnPaper.Background == Paper
+    associatedtype BadOnPaper: LegiblePaintPair
+    where BadOnPaper.Foreground == Bad, BadOnPaper.Background == Paper
+    associatedtype KnownNameOnPaper: LegiblePaintPair
+    where KnownNameOnPaper.Foreground == KnownName, KnownNameOnPaper.Background == Paper
+    associatedtype LocalTypeOnPaper: LegiblePaintPair
+    where LocalTypeOnPaper.Foreground == LocalType, LocalTypeOnPaper.Background == Paper
+}
+
+/// Names the style fields requested by the library readers.
+public enum StyleKeys {
+    public enum FontFallbackAdvance: Close {}
+    public enum CaptionSlant: Close {}
+    public enum GlyphLineCap: Close {}
+    public enum GlyphLineJoin: Close {}
+    public enum HoverCursor: Close {}
+    public enum HoverEase: Close {}
+    public enum HoverVisibilityEase: Close {}
+    public enum ArrowWidth: Close {}
+    public enum BoldWeight: Close {}
+    public enum BreatheDuration: Close {}
+    public enum BreatheValues: Close {}
+    public enum DependencyDash: Close {}
+    public enum FigureArrowBox: Close {}
+    public enum FigureArrowHeight: Close {}
+    public enum FigureArrowPath: Close {}
+    public enum FigureArrowWidth: Close {}
+    public enum FigureArrowX: Close {}
+    public enum FigureArrowY: Close {}
+    public enum FontAdvanceTable: Close {}
+    public enum FontCapHeight: Close {}
+    public enum FontUnitsPerEm: Close {}
+    public enum GlyphStrokeWidth: Close {}
+    public enum HairlineWidth: Close {}
+    public enum HoverFadeDelay: Close {}
+    public enum HoverGrace: Close {}
+    public enum HoverLift: Close {}
+    public enum HoverStrokeWidth: Close {}
+    public enum HoverTransition: Close {}
+    public enum MarkerHeight: Close {}
+    public enum MarkerPath: Close {}
+    public enum MarkerWidth: Close {}
+    public enum MarkerX: Close {}
+    public enum MarkerY: Close {}
+    public enum ShadowDeviation: Close {}
+    public enum ShadowDx: Close {}
+    public enum ShadowDy: Close {}
+    public enum ShadowHeight: Close {}
+    public enum ShadowWidth: Close {}
+    public enum ShadowX: Close {}
+    public enum ShadowY: Close {}
+    public enum ShapeRadius: Close {}
+    public enum ThickGlyphWidth: Close {}
+}

@@ -131,7 +131,7 @@ def label_registers():
         path = WORLD / (world + '.swift')
         source = (ROOT / path).read_text()
         atoms = {n: json.loads('"' + v + '"') for n, v in re.findall(r'extension (\w+) \{ public static var typeName: String \{ "((?:[^"\\]|\\.)*)" \} \}', source)}
-        for name, body in re.findall(r'public enum (\w+)<Theme: FigureTheme>: OutlineLabel \{(.*?)\n\}', source, re.S):
+        for name, body in re.findall(r'public enum (\w+)<Theme: DrawingPalette>: OutlineLabel \{(.*?)\n\}', source, re.S):
             fields = dict(re.findall(r'public typealias (\w+) = ([^\n]+)', body))
             register = re.fullmatch(r'Figure([A-Za-z_0-9]+)', fields.get('Register', ''))
             paint = re.fullmatch(r'Theme\.([A-Za-z_0-9]+)', fields.get('Fill', ''))
@@ -144,21 +144,24 @@ def label_registers():
 
 def require_registers(svg, ledger, registers, paints, theme, weights, address):
     """Check the rendered face and size against the owner's measured register."""
-    allowed = set()
-    for row in ledger:
-        register = registers[row['register']]
-        allowed.add((row['text'], 'Figure' + register['face'] + str(weights[register['stress']]),
-                     register['sizeTenths'], paints[row['paint'][0].lower() + row['paint'][1:] + '-' + theme]))
+    declared = {row['declaration']:row for row in ledger}
     used = set()
     for node in ET.fromstring(svg):
         text = node.get('data-vi-text')
-        if text is None:
-            continue
+        if text is None: continue
+        name = (node.get('data-declaration') or '').split('<')[0].split('.')[-1]
+        row = declared.get(name)
+        if row is None or row['text'] != text:
+            raise ValueError(address + ': missing or changed label declaration ' + name)
+        register = registers[row['register']]
         scale = float(re.fullmatch(r'translate\([^)]+\) scale\(([^ ]+) [^)]+\)', node.get('transform'))[1])
         size_tenths = round(scale * 2048 * 10, 7)
-        item = (text, node.get('data-font-face'), size_tenths, node.get('fill'))
-        if item not in allowed:
-            raise ValueError(address + ': undeclared register, size or paint for ' + text)
+        expected_face = 'Figure' + register['face'] + str(weights[register['stress']])
+        expected_paint = paints[row['paint'][0].lower() + row['paint'][1:] + '-' + theme]
+        # Paint attributes have the clipped sRGB fallback; the following CSS retains exact XYZ.
+        style = node.get('style', '')
+        if (node.get('data-font-face'), size_tenths) != (expected_face, register['sizeTenths']) or ('fill:'+expected_paint+';' not in style and node.get('fill') != expected_paint):
+            raise ValueError(address + ':' + name + ': undeclared register, size or paint')
         used.add((node.get('data-font-face'), size_tenths))
     return sorted(used)
 
@@ -271,35 +274,39 @@ def require_sources(svg, assignments, address):
     return dict(placements=count, weights=sorted(weights))
 
 
-def require_contrast(svg, paints, colours, address):
-    """Check each label against the owner's declared pair on paper."""
+def require_grounds(svg, paints, colours, address):
+    """Match each label's actual panel with its native LegiblePaintPair ground."""
     xml = ET.fromstring(svg)
     ns = '{http://www.w3.org/2000/svg}'
-    allowed = {(paints[r['role'] + '-' + r['theme']], paints['paper-' + r['theme']]): r['contrast']
-               for r in colours if r['contrast']}
     panels = []
     used = set()
+    def paint(node, property):
+        rules=[r.split(':',1)[1] for r in node.get('style','').split(';') if r.startswith(property+':')]
+        return rules[-1] if rules else node.get(property)
     for node in xml:
-        if node.tag in [ns + 'rect', ns + 'circle'] and node.get('fill') != 'none':
-            panels.append(node)
-        if node.get('data-vi-text') is None:
-            continue
-        x, y, scale, _ = map(float, re.fullmatch(r'translate\(([^ ]+) ([^)]+)\) scale\(([^ ]+) ([^)]+)\)', node.get('transform')).groups())
-        positions = [float(re.fullmatch(r'translate\(([^ ]+) 0\)', g.get('transform'))[1]) * scale + x for g in node]
-        if positions:
-            x = (min(positions) + max(positions)) / 2
-        # The same point lies inside the glyph band rather than on a panel edge.
-        y -= scale * 2048 * .35
+        if node.tag in [ns+'rect',ns+'circle'] and paint(node,'fill') != 'none': panels.append(node)
+        if node.get('data-vi-text') is None: continue
+        x,y,scale,_=map(float,re.fullmatch(r'translate\(([^ ]+) ([^)]+)\) scale\(([^ ]+) ([^)]+)\)',node.get('transform')).groups())
+        positions=[float(re.fullmatch(r'translate\(([^ ]+) 0\)',g.get('transform'))[1])*scale+x for g in node]
+        if positions:x=(min(positions)+max(positions))/2
+        y-=scale*2048*.35
         def contains(p):
-            if p.tag == ns + 'circle':
-                return (x - float(p.get('cx')))**2 + (y - float(p.get('cy')))**2 <= float(p.get('r'))**2
-            return float(p.get('x','0')) <= x <= float(p.get('x','0')) + float(p.get('width')) and float(p.get('y','0')) <= y <= float(p.get('y','0')) + float(p.get('height'))
-        background = next((p.get('fill') for p in reversed(panels) if contains(p)), None)
-        pair = (node.get('fill'), background)
-        if pair not in allowed:
-            raise ValueError(address + ': undeclared text/background pair for ' + node.get('data-vi-text') + ': ' + str(pair))
-        used.add(allowed[pair])
+            if p.tag==ns+'circle':return (x-float(p.get('cx')))**2+(y-float(p.get('cy')))**2<=float(p.get('r'))**2
+            return float(p.get('x','0'))<=x<=float(p.get('x','0'))+float(p.get('width')) and float(p.get('y','0'))<=y<=float(p.get('y','0'))+float(p.get('height'))
+        background=next((paint(p,'fill') for p in reversed(panels) if contains(p)),None)
+        proof=node.get('data-legibility')
+        if not proof or background!=node.get('data-background'):
+            raise ValueError(address+':'+str(node.get('data-declaration'))+': undeclared text/background pair')
+        used.add(proof)
     return sorted(used)
+
+
+def prune_glyphs(svg):
+    xml=ET.fromstring(svg)
+    ns='{http://www.w3.org/2000/svg}'
+    used={node.get('href','').removeprefix('#') for node in xml.iter(ns+'use')}
+    # The native outline writer's one-line definitions are retained only when referenced.
+    return re.sub(rb'^<path id="([^"]+)" data-font-source=[^\n]*\n',lambda m:m[0] if m[1].decode() in used else b'',svg,flags=re.M)
 
 
 def main():
@@ -329,12 +336,13 @@ def main():
         inputs = {}
         sources = []
         style_data = {}
-        for kind in ['palette', 'registers', 'rule', 'fonts']:
+        for kind in ['palette', 'registers', 'rule', 'fonts', 'weightRule']:
             item = pin[kind]
             assert re.fullmatch('[a-f0-9]{64}', item['sha256']), 'style: invalid hash'
             data = pinned_bytes(pin, item, cache)
             style_data[kind] = data
             inputs[pin['repository'] + '@' + pin['revision'] + ':' + item['path']] = data
+        assert '600 ' in style_data['weightRule'].decode() and 'func registerTokens' in style_data['weightRule'].decode(), 'style: missing Plain/Firm projection rule'
         gate_fonts = json.loads(style_data['fonts'])
         assert gate_fonts['fonts'] == [next(s['sha256'] for s in font['sources'] if s['name'] == 'Inter')], 'style: primary Inter differs from gate font declaration'
         # Add the vi import context to these bare declarations; the input hash
@@ -364,7 +372,7 @@ def main():
                 destination.write_bytes(source.read_bytes())
             else:
                 require_equal(destination.relative_to(ROOT), destination.read_bytes(), source.read_bytes())
-        paths = [manifest_path, Path(font['input']), Path(font['license']), Path(font['corpus']), Path('Assets/DejaVuSans.json'), Path(font['assignments']), Path('Package.swift'), Path('Checks/vi-figures.py')]
+        paths = [Path(manifest['layout']['input']), Path('Worlds/Documentation/binding.json'), Path('Scripts/drawing-binding.py'), Path('Checks/documentation-binding.py'), manifest_path, Path(font['input']), Path(font['license']), Path(font['corpus']), Path('Assets/DejaVuSans.json'), Path(font['assignments']), Path('Package.swift'), Path('Checks/vi-figures.py')]
         paths += [Path(item[key]) for item in font['sources'] for key in ['input', 'license']]
         paths += [Path(name) for name in manifest['grounds']]
         paths += sorted((ROOT / WORLD).glob('*.swift'))
@@ -387,13 +395,11 @@ def main():
         checks = '\n'.join('precondition(' + name + '.Left.count == ' + name + '.Right.count, "gate figure contrast: ' + name + '")' for name in contrast)
         declarations = []
         paint_fields = []
+        value=json.loads((ROOT/WORLD/'binding.json').read_text())
         for row in colours:
-            name = row['declaration']
-            assert all(re.fullmatch(r'[A-Za-z_][A-Za-z_0-9]*', n) for n in [name, *row['coordinates'].values()]), 'style: invalid coordinate declaration'
-            values = ['String(Double(' + row['coordinates'][axis] + '.count) / 1000)' for axis in 'XYZ']
-            expression = '"color(xyz-d65 " + ' + ' + " " + '.join(values) + ' + ")"'
-            declarations.append('public enum ' + name + ': Close {}\nextension ' + name + ' { public static var typeName: String { ' + expression + ' } }')
-            paint_fields.append('paints["' + row['role'] + '-' + row['theme'] + '"] = ' + name + '.typeName')
+            values=['String(Double('+row['coordinates'][axis]+'.count) / 1000)' for axis in 'XYZ']
+            expression='"color(xyz-d65 " + '+' + " " + '.join(values)+' + ")"'
+            paint_fields.append('paints["'+row['role']+'-'+row['theme']+'"] = '+expression)
         paint_case = 'case "--paints": print(String(data: try! JSONSerialization.data(withJSONObject: paints, options: [.sortedKeys]), encoding: .utf8)!)\n'
         native.write_text('import Foundation\nimport Notation\nimport DocumentKit\nimport VerificationIsIdentification\npublic enum UnaryArithmeticEncoding {}\n' + checks + '\n' + '\n'.join(declarations) + '\nvar paints: [String: String] = [:]\n' + '\n'.join(paint_fields) + '\n'
             + 'enum MissingRows: Close {}\nextension MissingRows { static var typeName: String { "32|260|Inter|400|" } }\n'
@@ -401,7 +407,7 @@ def main():
             + 'enum Member: Close {}\nextension Member { static var typeName: String { "\\u{2208}" } }\n'
             + 'enum Zero: Close {}\nextension Zero { static var typeName: String { "0" } }\n'
             + 'enum Start: Close {}\nextension Start { static var typeName: String { "start" } }\n'
-            + 'enum MissingLabel: OutlineLabel { typealias Font = MissingFace; typealias Content = Member; typealias X = Zero; typealias Y = Zero; typealias Size = FigureSans400Units; typealias Fill = FigureLight.Ink; typealias Anchor = Start }\n'
+            + 'enum MissingLabel: OutlineLabel { typealias Font = MissingFace; typealias Content = Member; typealias X = Zero; typealias Y = Zero; typealias Size = FigureSans400Units; typealias Fill = FigureLight.Ink; typealias Legibility = FigureLight.InkOnPaper; typealias Anchor = Start }\n'
             + 'if CommandLine.arguments[1] == "--missing-glyph" { print(MissingLabel.typeName); exit(0) }\n'
             + 'switch CommandLine.arguments[1] {\n'
             + paint_case
@@ -416,11 +422,12 @@ def main():
         paints = json.loads(command([str(executable), "--paints"]))
         for row in outputs:
             svg = command([str(executable), row['root']], timeout=30)
+            assert svg == prune_glyphs(svg), row['output'] + ': native writer left unused glyph definitions'
             xml = ET.fromstring(svg)
             assert xml.tag == '{http://www.w3.org/2000/svg}svg', row['output'] + ': not SVG'
             assert not list(xml.iter('{http://www.w3.org/2000/svg}text')), row['output'] + ': installed font dependency'
             typography[row['output']] = require_sources(svg, assignments, row['output'])
-            typography[row['output']]['contrast'] = require_contrast(svg, paints, colours, row['output'])
+            typography[row['output']]['contrast'] = require_grounds(svg, paints, colours, row['output'])
             typography[row['output']]['registers'] = require_registers(svg, ledger, register_report['registers'], paints, row['theme'], font['stressWeights'], row['output'])
             svg = namespace(svg, row['root'])
             license_data = escape('\n'.join((ROOT / path).read_text() for path in dict.fromkeys(source['license'] for source in font['sources']))).encode()
@@ -447,11 +454,20 @@ def main():
             assert 'undeclared register, size or paint' in str(error)
         else:
             raise ValueError('admitted a label outside its owner register size')
-        # Paper witnesses do not license text on mist, even in the same theme.
-        changed_panel = first_svg.replace(('fill="' + paints['paper-Lit'] + '"').encode(),
-                                          ('fill="' + paints['mist-Lit'] + '"').encode())
+        # Identical text at different declarations cannot exchange semantic paints.
+        repeated=ET.fromstring(raw[outputs[4]['output']])
+        duplicate=next(n for n in repeated if n.get('data-vi-text')=='0' and 'fill:'+paints['ink-Lit']+';' in n.get('style',''))
+        duplicate.set('style',duplicate.get('style').replace('fill:'+paints['ink-Lit']+';', 'fill:'+paints['muted-Lit']+';'))
         try:
-            require_contrast(changed_panel, paints, colours, outputs[0]['output'])
+            require_registers(ET.tostring(repeated),ledger,register_report['registers'],paints,'Lit',font['stressWeights'],outputs[4]['output'])
+        except ValueError as error:
+            assert duplicate.get('data-declaration').split('<')[0] in str(error)
+        else:
+            raise ValueError('admitted a paint exchange between identical text at different declarations')
+        # Paper witnesses do not license text on mist, even in the same theme.
+        changed_panel = first_svg.replace(('fill:' + paints['paper-Lit'] + ';').encode(), ('fill:' + paints['mist-Lit'] + ';').encode())
+        try:
+            require_grounds(changed_panel, paints, colours, outputs[0]['output'])
         except ValueError as error:
             assert 'undeclared text/background pair' in str(error)
         else:

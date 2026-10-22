@@ -10,14 +10,14 @@
 <g class="hover-trigger">
 <g transform="translate(0, 0)">
 <a href="/documentation/documentkit/restair">
-<circle cx="20" cy="20" r="10" fill="var(--vi-action, color(xyz-d65 0.17 0.15 0.61))"/>
+<circle cx="20" cy="20" r="10" fill="#2269CF" style="fill:#2269CF;fill:var(--vi-action, color(xyz-d65 0.17 0.15 0.61));"/>
 </a>
 </g>
 </g>
 <g class="hover-panel">
-<rect width="240" height="96" rx="10" fill="var(--vi-surface-track, color(xyz-d65 0.898 0.945 1.029))"/>
+<rect width="240" height="96" rx="10" fill="#F9F9F9" style="fill:#F9F9F9;fill:var(--vi-surface-track, color(xyz-d65 0.898 0.945 1.029));"/>
 <g transform="translate(44, 0)">
-<text x="0" y="54" text-anchor="start" fill="var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011))" font-weight="400" font-size="17">Revealed on hover</text>
+<text x="0" y="54" text-anchor="start" fill="#1C191A" font-weight="400" font-size="15" style="fill:#1C191A;fill:var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011));">Revealed on hover</text>
 </g>
 </g>
 </g>

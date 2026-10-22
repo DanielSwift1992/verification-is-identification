@@ -414,6 +414,16 @@
         },
         "contrast": null
       }
-    ]
+    ],
+    "weightRule": {
+      "path": "bin/gate-cli.swift",
+      "sha256": "839115bf543878c11c8afbdba3b4c35284d04e5fe2348add0f3976d8d5f45aa1"
+    }
+  },
+  "layout": {
+    "input": "Worlds/Documentation/layout.json",
+    "canvasScale": 0.72,
+    "readmeWidth": 830,
+    "policy": "content, routes and panel ordering; registers read at native size"
   }
 }

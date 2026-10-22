@@ -1450,7 +1450,7 @@ enum VectorHoverExampleReveal: HoverReveal {
 public enum VectorHoverExampleContent: Group {
     @StructureBuilder
     public static var body: some Structure {
-        HoverRevealStyle<DocumentationBinding>.self
+        HoverRevealStyle.self
         VectorHoverExampleReveal.self
     }
 }

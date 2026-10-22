@@ -1,0 +1,159 @@
+{
+  "origin": "Documentation owner composition; text sizes and weights project pinned gate registers; metrics project the measured owner source",
+  "values": {
+    "HairBreath": {
+      "expression": "U8"
+    },
+    "S24Breath": {
+      "expression": "Plus<U16, U8>"
+    },
+    "BadgeChipWide": {
+      "expression": "Plus<U16, Plus<U8, Plus<U4, U2>>>"
+    },
+    "HairlineWidth": {
+      "text": "1"
+    },
+    "ArrowWidth": {
+      "text": "2"
+    },
+    "DependencyDash": {
+      "text": "4 3"
+    },
+    "R4": {
+      "text": "4"
+    },
+    "R6": {
+      "text": "6"
+    },
+    "R10": {
+      "text": "10"
+    },
+    "R16": {
+      "text": "16"
+    },
+    "R20": {
+      "text": "20"
+    },
+    "TextXXS": {
+      "text": "10"
+    },
+    "TextS": {
+      "text": "13"
+    },
+    "TextL": {
+      "text": "17"
+    },
+    "TitleT": {
+      "text": "21"
+    },
+    "WeightRegular": {
+      "text": "400"
+    },
+    "ShapeRadius": {
+      "text": "12"
+    },
+    "ThickGlyphWidth": {
+      "text": "6"
+    },
+    "GlyphStrokeWidth": {
+      "text": "9"
+    },
+    "BoldWeight": {
+      "text": "700"
+    },
+    "HoverTransition": {
+      "text": "150ms"
+    },
+    "HoverLift": {
+      "text": "2px"
+    },
+    "HoverFadeDelay": {
+      "text": "250ms"
+    },
+    "HoverGrace": {
+      "text": "400ms"
+    },
+    "HoverStrokeWidth": {
+      "text": "3"
+    },
+    "MarkerWidth": {
+      "text": "9"
+    },
+    "MarkerHeight": {
+      "text": "9"
+    },
+    "MarkerX": {
+      "text": "5"
+    },
+    "MarkerY": {
+      "text": "3"
+    },
+    "MarkerPath": {
+      "text": "M0,0 L6,3 L0,6 Z"
+    },
+    "FigureArrowBox": {
+      "text": "0 0 10 10"
+    },
+    "FigureArrowX": {
+      "text": "9"
+    },
+    "FigureArrowY": {
+      "text": "5"
+    },
+    "FigureArrowWidth": {
+      "text": "7"
+    },
+    "FigureArrowHeight": {
+      "text": "7"
+    },
+    "FigureArrowPath": {
+      "text": "M0 0L10 5L0 10Z"
+    },
+    "ShadowX": {
+      "text": "-20%"
+    },
+    "ShadowY": {
+      "text": "-20%"
+    },
+    "ShadowWidth": {
+      "text": "140%"
+    },
+    "ShadowHeight": {
+      "text": "140%"
+    },
+    "ShadowDx": {
+      "text": "0"
+    },
+    "ShadowDy": {
+      "text": "5"
+    },
+    "ShadowDeviation": {
+      "text": "10"
+    },
+    "BreatheValues": {
+      "text": "1;0.55;1"
+    },
+    "BreatheDuration": {
+      "text": "4s"
+    },
+    "CaptionSlant": {
+      "text": "italic"
+    },
+    "GlyphLineCap": {
+      "text": "round"
+    },
+    "GlyphLineJoin": {
+      "text": "round"
+    },
+    "HoverCursor": {
+      "text": "pointer"
+    },
+    "HoverEase": {
+      "text": "ease"
+    },
+    "HoverVisibilityEase": {
+      "text": "linear"
+    }
+  },
+  "missingAdvanceCharacter": "m"
+}

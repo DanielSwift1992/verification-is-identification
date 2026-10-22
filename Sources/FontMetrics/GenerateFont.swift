@@ -290,7 +290,7 @@ enum GenerateFont {
             "}",
         ]
         try? (o.joined(separator: "\n") + "\n").write(
-            toFile: "Sources/DocumentKit/GeneratedFontMetrics.swift", atomically: true, encoding: .utf8)
+            toFile: "Worlds/Documentation/GeneratedFontMetrics.swift", atomically: true, encoding: .utf8)
         print("generated font metrics: \(pairs.count) advances, cap \(capHeight) of \(unitsPerEm) units per em (\(fontPath))")
     }
 }

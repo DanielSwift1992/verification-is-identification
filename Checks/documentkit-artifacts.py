@@ -18,11 +18,12 @@ pages = ['DocumentKit', 'SelfShowingExampleSource', 'VectorTourStationA', 'Vecto
 svgs = ['vector-canvas-example', 'vector-hover-example', 'vector-selfshowing-example',
         'vector-tour-station-a', 'vector-tour-station-b', 'roles-plate', 'roles-plate~dark']
 outputs = [catalog / (n + '.md') for n in pages] + [catalog / 'Resources' / (n + '.svg') for n in svgs]
-outputs += [Path('Sources/DocumentKit/GeneratedFontMetrics.swift')]
+outputs += [Path('Worlds/Documentation/GeneratedFontMetrics.swift')]
 with tempfile.TemporaryDirectory(prefix='vi-kit-artifacts-') as temp:
     root = Path(temp)
     (root / catalog / 'Resources').mkdir(parents=True)
     (root / 'Assets').mkdir()
+    (root / 'Worlds/Documentation').mkdir(parents=True)
     shutil.copyfile(ROOT / 'Assets/InterVariable.ttf', root / 'Assets/InterVariable.ttf')
     for command in [[str(binary / 'DocumentKitDemo'), 'render-doc'],
                     [str(binary / 'DocumentKitDemo'), 'claim', '--write'],

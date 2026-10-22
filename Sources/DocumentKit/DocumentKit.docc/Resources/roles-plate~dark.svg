@@ -1,52 +1,52 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 148" role="img" data-vi-canvas="1" font-family="Inter" aria-label="The eight roles, each as its own colour swatch.">
-<rect width="240" height="148" rx="16" fill="color(xyz-d65 0.01 0.01 0.011)"/>
+<rect width="240" height="148" rx="16" fill="#1C191A" style="fill:#1C191A;fill:color(xyz-d65 0.01 0.01 0.011);"/>
 <g transform="translate(8, 0)">
 <g transform="translate(0, 16)">
-<rect x="0" width="50" height="24" rx="4" fill="color(xyz-d65 0.01 0.01 0.011)" stroke="color(xyz-d65 0.048 0.05 0.054)" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="#1C191A" stroke="#403F3F" stroke-width="1" style="fill:#1C191A;fill:color(xyz-d65 0.01 0.01 0.011);stroke:#403F3F;stroke:color(xyz-d65 0.048 0.05 0.054);"/>
 </g>
-<text x="0" y="56" text-anchor="start" fill="color(xyz-d65 0.59 0.621 0.676)" font-weight="400" font-size="10">Card</text>
+<text x="0" y="56" text-anchor="start" fill="#CECFCF" font-weight="400" font-size="11" style="fill:#CECFCF;fill:color(xyz-d65 0.59 0.621 0.676);">Card</text>
 </g>
 <g transform="translate(66, 0)">
 <g transform="translate(0, 16)">
-<rect x="0" width="50" height="24" rx="4" fill="color(xyz-d65 0.01 0.01 0.011)" stroke="color(xyz-d65 0.048 0.05 0.054)" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="#1C191A" stroke="#403F3F" stroke-width="1" style="fill:#1C191A;fill:color(xyz-d65 0.01 0.01 0.011);stroke:#403F3F;stroke:color(xyz-d65 0.048 0.05 0.054);"/>
 </g>
-<text x="0" y="56" text-anchor="start" fill="color(xyz-d65 0.59 0.621 0.676)" font-weight="400" font-size="10">Track</text>
+<text x="0" y="56" text-anchor="start" fill="#CECFCF" font-weight="400" font-size="11" style="fill:#CECFCF;fill:color(xyz-d65 0.59 0.621 0.676);">Track</text>
 </g>
 <g transform="translate(124, 0)">
 <g transform="translate(0, 16)">
-<rect x="0" width="50" height="24" rx="4" fill="color(xyz-d65 0.59 0.621 0.676)" stroke="color(xyz-d65 0.048 0.05 0.054)" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="#CECFCF" stroke="#403F3F" stroke-width="1" style="fill:#CECFCF;fill:color(xyz-d65 0.59 0.621 0.676);stroke:#403F3F;stroke:color(xyz-d65 0.048 0.05 0.054);"/>
 </g>
-<text x="0" y="56" text-anchor="start" fill="color(xyz-d65 0.59 0.621 0.676)" font-weight="400" font-size="10">Primary</text>
+<text x="0" y="56" text-anchor="start" fill="#CECFCF" font-weight="400" font-size="11" style="fill:#CECFCF;fill:color(xyz-d65 0.59 0.621 0.676);">Primary</text>
 </g>
 <g transform="translate(182, 0)">
 <g transform="translate(0, 16)">
-<rect x="0" width="50" height="24" rx="4" fill="color(xyz-d65 0.232 0.244 0.266)" stroke="color(xyz-d65 0.048 0.05 0.054)" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="#878788" stroke="#403F3F" stroke-width="1" style="fill:#878788;fill:color(xyz-d65 0.232 0.244 0.266);stroke:#403F3F;stroke:color(xyz-d65 0.048 0.05 0.054);"/>
 </g>
-<text x="0" y="56" text-anchor="start" fill="color(xyz-d65 0.59 0.621 0.676)" font-weight="400" font-size="10">Secondary</text>
+<text x="0" y="56" text-anchor="start" fill="#CECFCF" font-weight="400" font-size="11" style="fill:#CECFCF;fill:color(xyz-d65 0.59 0.621 0.676);">Secondary</text>
 </g>
 <g transform="translate(8, 0)">
 <g transform="translate(0, 76)">
-<rect x="0" width="50" height="24" rx="4" fill="color(xyz-d65 0.412 0.419 0.705)" stroke="color(xyz-d65 0.048 0.05 0.054)" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="#9DADD7" stroke="#403F3F" stroke-width="1" style="fill:#9DADD7;fill:color(xyz-d65 0.412 0.419 0.705);stroke:#403F3F;stroke:color(xyz-d65 0.048 0.05 0.054);"/>
 </g>
-<text x="0" y="116" text-anchor="start" fill="color(xyz-d65 0.59 0.621 0.676)" font-weight="400" font-size="10">Accent</text>
+<text x="0" y="116" text-anchor="start" fill="#CECFCF" font-weight="400" font-size="11" style="fill:#CECFCF;fill:color(xyz-d65 0.59 0.621 0.676);">Accent</text>
 </g>
 <g transform="translate(66, 0)">
 <g transform="translate(0, 76)">
-<rect x="0" width="50" height="24" rx="4" fill="color(xyz-d65 0.412 0.419 0.705)" stroke="color(xyz-d65 0.048 0.05 0.054)" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="#9DADD7" stroke="#403F3F" stroke-width="1" style="fill:#9DADD7;fill:color(xyz-d65 0.412 0.419 0.705);stroke:#403F3F;stroke:color(xyz-d65 0.048 0.05 0.054);"/>
 </g>
-<text x="0" y="116" text-anchor="start" fill="color(xyz-d65 0.59 0.621 0.676)" font-weight="400" font-size="10">Action</text>
+<text x="0" y="116" text-anchor="start" fill="#CECFCF" font-weight="400" font-size="11" style="fill:#CECFCF;fill:color(xyz-d65 0.59 0.621 0.676);">Action</text>
 </g>
 <g transform="translate(124, 0)">
 <g transform="translate(0, 76)">
-<rect x="0" width="50" height="24" rx="4" fill="color(xyz-d65 0.048 0.05 0.054)" stroke="color(xyz-d65 0.048 0.05 0.054)" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="#403F3F" stroke="#403F3F" stroke-width="1" style="fill:#403F3F;fill:color(xyz-d65 0.048 0.05 0.054);stroke:#403F3F;stroke:color(xyz-d65 0.048 0.05 0.054);"/>
 </g>
-<text x="0" y="116" text-anchor="start" fill="color(xyz-d65 0.59 0.621 0.676)" font-weight="400" font-size="10">Line</text>
+<text x="0" y="116" text-anchor="start" fill="#CECFCF" font-weight="400" font-size="11" style="fill:#CECFCF;fill:color(xyz-d65 0.59 0.621 0.676);">Line</text>
 </g>
 <g transform="translate(182, 0)">
 <g transform="translate(0, 76)">
-<rect x="0" width="50" height="24" rx="4" fill="color(xyz-d65 0.59 0.621 0.676)" stroke="color(xyz-d65 0.048 0.05 0.054)" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="#CECFCF" stroke="#403F3F" stroke-width="1" style="fill:#CECFCF;fill:color(xyz-d65 0.59 0.621 0.676);stroke:#403F3F;stroke:color(xyz-d65 0.048 0.05 0.054);"/>
 </g>
-<text x="0" y="116" text-anchor="start" fill="color(xyz-d65 0.59 0.621 0.676)" font-weight="400" font-size="10">On accent</text>
+<text x="0" y="116" text-anchor="start" fill="#CECFCF" font-weight="400" font-size="11" style="fill:#CECFCF;fill:color(xyz-d65 0.59 0.621 0.676);">On accent</text>
 </g>
 
 </svg>

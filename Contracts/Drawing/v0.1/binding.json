@@ -1,23 +1,382 @@
 {
   "format": "drawing-binding/1",
   "name": "FixtureBinding",
+  "source": {
+    "input": "Worlds/Documentation/figures.json",
+    "field": "style",
+    "sha256": "4b72b2b5bab96a64799daaea1529109a3a9b837bd7980cad5dcf15117bb0217c"
+  },
   "roles": {
-    "TextSecondary": {
-      "light": "currentColor",
-      "dark": "currentColor"
+    "Ink": {
+      "light": "color(xyz-d65 0.01 0.01 0.011)",
+      "dark": "color(xyz-d65 0.59 0.621 0.676)",
+      "ownerRole": "ink",
+      "sRGBLight": "#1C191A",
+      "sRGBDark": "#CECFCF"
     },
-    "AccentRole": {
-      "light": "currentColor",
-      "dark": "currentColor"
+    "Paper": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper",
+      "sRGBLight": "#F9F9F9",
+      "sRGBDark": "#1C191A"
+    },
+    "Mist": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper",
+      "sRGBLight": "#F9F9F9",
+      "sRGBDark": "#1C191A"
+    },
+    "Accent": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper",
+      "sRGBLight": "#F9F9F9",
+      "sRGBDark": "#1C191A"
+    },
+    "Muted": {
+      "light": "color(xyz-d65 0.228 0.24 0.261)",
+      "dark": "color(xyz-d65 0.232 0.244 0.266)",
+      "ownerRole": "muted",
+      "sRGBLight": "#868686",
+      "sRGBDark": "#878788"
+    },
+    "Line": {
+      "light": "color(xyz-d65 0.613 0.645 0.702)",
+      "dark": "color(xyz-d65 0.048 0.05 0.054)",
+      "ownerRole": "line",
+      "sRGBLight": "#D2D2D2",
+      "sRGBDark": "#403F3F"
+    },
+    "InkPrimary": {
+      "light": "color(xyz-d65 0.01 0.01 0.011)",
+      "dark": "color(xyz-d65 0.59 0.621 0.676)",
+      "ownerRole": "ink",
+      "sRGBLight": "#1C191A",
+      "sRGBDark": "#CECFCF"
+    },
+    "InkSecondary": {
+      "light": "color(xyz-d65 0.228 0.24 0.261)",
+      "dark": "color(xyz-d65 0.232 0.244 0.266)",
+      "ownerRole": "muted",
+      "sRGBLight": "#868686",
+      "sRGBDark": "#878788"
+    },
+    "Action": {
+      "light": "color(xyz-d65 0.17 0.15 0.61)",
+      "dark": "color(xyz-d65 0.412 0.419 0.705)",
+      "ownerRole": "action",
+      "sRGBLight": "#2269CF",
+      "sRGBDark": "#9DADD7"
+    },
+    "ActionTint": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper",
+      "sRGBLight": "#F9F9F9",
+      "sRGBDark": "#1C191A"
+    },
+    "NavyTint": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper",
+      "sRGBLight": "#F9F9F9",
+      "sRGBDark": "#1C191A"
+    },
+    "SurfaceCard": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper",
+      "variable": "surface-card",
+      "sRGBLight": "#F9F9F9",
+      "sRGBDark": "#1C191A"
+    },
+    "SurfaceTrack": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper",
+      "variable": "surface-track",
+      "sRGBLight": "#F9F9F9",
+      "sRGBDark": "#1C191A"
+    },
+    "SurfacePage": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper",
+      "variable": "surface-page",
+      "sRGBLight": "#F9F9F9",
+      "sRGBDark": "#1C191A"
     },
     "TextPrimary": {
-      "light": "#5A347D",
-      "dark": "#E7DDF2"
+      "light": "color(xyz-d65 0.01 0.01 0.011)",
+      "dark": "color(xyz-d65 0.59 0.621 0.676)",
+      "ownerRole": "ink",
+      "variable": "text-primary",
+      "sRGBLight": "#1C191A",
+      "sRGBDark": "#CECFCF"
+    },
+    "TextSecondary": {
+      "light": "color(xyz-d65 0.228 0.24 0.261)",
+      "dark": "color(xyz-d65 0.232 0.244 0.266)",
+      "ownerRole": "muted",
+      "variable": "text-secondary",
+      "sRGBLight": "#868686",
+      "sRGBDark": "#878788"
+    },
+    "AccentRole": {
+      "light": "color(xyz-d65 0.17 0.15 0.61)",
+      "dark": "color(xyz-d65 0.412 0.419 0.705)",
+      "ownerRole": "action",
+      "variable": "accent",
+      "sRGBLight": "#2269CF",
+      "sRGBDark": "#9DADD7"
+    },
+    "ActionRole": {
+      "light": "color(xyz-d65 0.17 0.15 0.61)",
+      "dark": "color(xyz-d65 0.412 0.419 0.705)",
+      "ownerRole": "action",
+      "variable": "action",
+      "sRGBLight": "#2269CF",
+      "sRGBDark": "#9DADD7"
+    },
+    "LineRole": {
+      "light": "color(xyz-d65 0.613 0.645 0.702)",
+      "dark": "color(xyz-d65 0.048 0.05 0.054)",
+      "ownerRole": "line",
+      "variable": "line",
+      "sRGBLight": "#D2D2D2",
+      "sRGBDark": "#403F3F"
+    },
+    "OnAccent": {
+      "light": "color(xyz-d65 0.01 0.01 0.011)",
+      "dark": "color(xyz-d65 0.59 0.621 0.676)",
+      "ownerRole": "ink",
+      "variable": "on-accent",
+      "sRGBLight": "#1C191A",
+      "sRGBDark": "#CECFCF"
+    },
+    "ActionTintRole": {
+      "light": "color(xyz-d65 0.898 0.945 1.029)",
+      "dark": "color(xyz-d65 0.01 0.01 0.011)",
+      "ownerRole": "paper",
+      "variable": "action-tint",
+      "sRGBLight": "#F9F9F9",
+      "sRGBDark": "#1C191A"
+    },
+    "OnActionRole": {
+      "light": "color(xyz-d65 0.01 0.01 0.011)",
+      "dark": "color(xyz-d65 0.59 0.621 0.676)",
+      "ownerRole": "ink",
+      "variable": "on-action",
+      "sRGBLight": "#1C191A",
+      "sRGBDark": "#CECFCF"
+    },
+    "StatusMark": {
+      "light": "color(xyz-d65 0.08 0.15 0.06)",
+      "dark": "color(xyz-d65 0.23 0.419 0.168)",
+      "ownerRole": "ok",
+      "sRGBLight": "#007D36",
+      "sRGBDark": "#24C75B"
+    },
+    "Ok": {
+      "light": "color(xyz-d65 0.08 0.15 0.06)",
+      "dark": "color(xyz-d65 0.23 0.419 0.168)",
+      "ownerRole": "ok",
+      "sRGBLight": "#007D36",
+      "sRGBDark": "#24C75B"
+    },
+    "Bad": {
+      "light": "color(xyz-d65 0.24 0.15 0.05)",
+      "dark": "color(xyz-d65 0.461 0.419 0.168)",
+      "ownerRole": "bad",
+      "sRGBLight": "#BF4035",
+      "sRGBDark": "#E39F60"
+    },
+    "KnownName": {
+      "light": "color(xyz-d65 0.25 0.15 0.63)",
+      "dark": "color(xyz-d65 0.454 0.419 0.691)",
+      "ownerRole": "knownName",
+      "sRGBLight": "#8D48D3",
+      "sRGBDark": "#B9A5D6"
+    },
+    "LocalType": {
+      "light": "color(xyz-d65 0.124 0.15 0.346)",
+      "dark": "color(xyz-d65 0.307 0.419 0.656)",
+      "ownerRole": "localType",
+      "sRGBLight": "#00749E",
+      "sRGBDark": "#2BBECF"
     }
   },
   "registers": {
     "BodyFace": "Inter",
     "CaptionFace": "Inter"
+  },
+  "registerOrigins": {
+    "BodyFace": "Speech",
+    "CaptionFace": "Caption"
+  },
+  "registerReadings": {
+    "registers": {
+      "Brand": {
+        "face": "Sans",
+        "leadingHundredths": 120,
+        "sizeTenths": 150,
+        "stress": "Firm"
+      },
+      "Caption": {
+        "face": "Sans",
+        "leadingHundredths": 140,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Captionbare": {
+        "face": "Sans",
+        "leadingHundredths": null,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Captionline": {
+        "face": "Sans",
+        "leadingHundredths": 145,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Captionloose": {
+        "face": "Sans",
+        "leadingHundredths": 150,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Codeinline": {
+        "face": "Mono",
+        "leadingHundredths": 140,
+        "sizeTenths": 120,
+        "stress": "Plain"
+      },
+      "Control": {
+        "face": "Sans",
+        "leadingHundredths": null,
+        "sizeTenths": 130,
+        "stress": "Plain"
+      },
+      "Controlsmall": {
+        "face": "Sans",
+        "leadingHundredths": null,
+        "sizeTenths": 125,
+        "stress": "Plain"
+      },
+      "Fact": {
+        "face": "Mono",
+        "leadingHundredths": 145,
+        "sizeTenths": 125,
+        "stress": "Plain"
+      },
+      "Factbare": {
+        "face": "Mono",
+        "leadingHundredths": null,
+        "sizeTenths": 125,
+        "stress": "Plain"
+      },
+      "Factfirm": {
+        "face": "Mono",
+        "leadingHundredths": 145,
+        "sizeTenths": 125,
+        "stress": "Firm"
+      },
+      "Headline": {
+        "face": "Sans",
+        "leadingHundredths": 130,
+        "sizeTenths": 150,
+        "stress": "Firm"
+      },
+      "Headsmall": {
+        "face": "Sans",
+        "leadingHundredths": 100,
+        "sizeTenths": 130,
+        "stress": "Firm"
+      },
+      "Keycap": {
+        "face": "Mono",
+        "leadingHundredths": null,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Monoline": {
+        "face": "Mono",
+        "leadingHundredths": 145,
+        "sizeTenths": 110,
+        "stress": "Plain"
+      },
+      "Prose": {
+        "face": "Sans",
+        "leadingHundredths": 150,
+        "sizeTenths": 130,
+        "stress": "Plain"
+      },
+      "Proseloose": {
+        "face": "Sans",
+        "leadingHundredths": 160,
+        "sizeTenths": 130,
+        "stress": "Plain"
+      },
+      "Rubric": {
+        "face": "Sans",
+        "leadingHundredths": 140,
+        "sizeTenths": 110,
+        "stress": "Firm"
+      },
+      "Source": {
+        "face": "Mono",
+        "leadingHundredths": 152,
+        "sizeTenths": 125,
+        "stress": "Plain"
+      },
+      "Speech": {
+        "face": "Sans",
+        "leadingHundredths": 145,
+        "sizeTenths": 130,
+        "stress": "Plain"
+      }
+    },
+    "used": [
+      "Caption",
+      "Fact",
+      "Headline",
+      "Speech"
+    ],
+    "equalities": [
+      "CodeinlineOverCaption",
+      "FactOverCodeinline",
+      "SpeechOverFact",
+      "BrandOverSpeech",
+      "BrandLeadClearsItsLetters",
+      "CaptionLeadClearsItsLetters",
+      "CaptionlineLeadClearsItsLetters",
+      "CaptionlooseLeadClearsItsLetters",
+      "CodeinlineLeadClearsItsLetters",
+      "FactLeadClearsItsLetters",
+      "HeadlineLeadClearsItsLetters",
+      "HeadsmallLeadClearsItsLetters",
+      "MonolineLeadClearsItsLetters",
+      "ProseLeadClearsItsLetters",
+      "ProselooseLeadClearsItsLetters",
+      "SourceLeadClearsItsLetters",
+      "RubricLeadClearsItsLetters",
+      "FactfirmIsFactSized",
+      "FactfirmLeadsLikeFact",
+      "FactfirmLeadClearsItsLetters",
+      "RubricIsCaptionSized",
+      "SpeechLeadClearsItsLetters"
+    ]
+  },
+  "weights": {
+    "WeightRegular": "400",
+    "WeightBold": "600"
+  },
+  "shadow": {
+    "paint": "color(xyz-d65 0.01 0.01 0.011)",
+    "opacity": "0"
   },
   "leafCountBases": [
     "Structure",
@@ -25,14 +384,233 @@
     "Open",
     "Pair"
   ],
-  "shadow": {
-    "paint": "currentColor",
-    "opacity": "0"
-  },
-  "fontInput": {
-    "path": "Assets/InterVariable.ttf",
-    "sha256": "4989b125924991b90d05b2d16e0e388c48f7d5bb8b30539bbf9c755278d0ccaf",
-    "license": "Assets/InterLicense.txt",
-    "scope": "native SVG byte serialization with the declared Inter metric table"
+  "legible": [
+    {
+      "foreground": "TextPrimary",
+      "background": "SurfaceCard",
+      "witness": "Paper_Ink_lit"
+    },
+    {
+      "foreground": "TextSecondary",
+      "background": "SurfaceCard",
+      "witness": "Paper_Muted_lit"
+    },
+    {
+      "foreground": "ActionRole",
+      "background": "SurfaceCard",
+      "witness": "Paper_Action_lit"
+    },
+    {
+      "foreground": "TextPrimary",
+      "background": "SurfaceTrack",
+      "witness": "Paper_Ink_lit"
+    },
+    {
+      "foreground": "TextSecondary",
+      "background": "SurfaceTrack",
+      "witness": "Paper_Muted_lit"
+    },
+    {
+      "foreground": "ActionRole",
+      "background": "SurfaceTrack",
+      "witness": "Paper_Action_lit"
+    },
+    {
+      "foreground": "Ink",
+      "background": "NavyTint",
+      "witness": "Paper_Ink_lit"
+    },
+    {
+      "foreground": "InkPrimary",
+      "background": "NavyTint",
+      "witness": "Paper_Ink_lit"
+    },
+    {
+      "foreground": "InkSecondary",
+      "background": "NavyTint",
+      "witness": "Paper_Muted_lit"
+    }
+  ],
+  "layout": {
+    "HairBreath": {
+      "expression": "U8"
+    },
+    "S24Breath": {
+      "expression": "Plus<U16, U8>"
+    },
+    "BadgeChipWide": {
+      "expression": "Plus<U16, Plus<U8, Plus<U4, U2>>>"
+    },
+    "HairlineWidth": {
+      "text": "1"
+    },
+    "ArrowWidth": {
+      "text": "2"
+    },
+    "DependencyDash": {
+      "text": "4 3"
+    },
+    "R4": {
+      "text": "4"
+    },
+    "R6": {
+      "text": "6"
+    },
+    "R10": {
+      "text": "10"
+    },
+    "R16": {
+      "text": "16"
+    },
+    "R20": {
+      "text": "20"
+    },
+    "TextXXS": {
+      "text": "11"
+    },
+    "TextS": {
+      "text": "13"
+    },
+    "TextL": {
+      "text": "15"
+    },
+    "TitleT": {
+      "text": "15"
+    },
+    "WeightRegular": {
+      "text": "400"
+    },
+    "ShapeRadius": {
+      "text": "12"
+    },
+    "ThickGlyphWidth": {
+      "text": "6"
+    },
+    "GlyphStrokeWidth": {
+      "text": "9"
+    },
+    "BoldWeight": {
+      "text": "600"
+    },
+    "HoverTransition": {
+      "text": "150ms"
+    },
+    "HoverLift": {
+      "text": "2px"
+    },
+    "HoverFadeDelay": {
+      "text": "250ms"
+    },
+    "HoverGrace": {
+      "text": "400ms"
+    },
+    "HoverStrokeWidth": {
+      "text": "3"
+    },
+    "MarkerWidth": {
+      "text": "9"
+    },
+    "MarkerHeight": {
+      "text": "9"
+    },
+    "MarkerX": {
+      "text": "5"
+    },
+    "MarkerY": {
+      "text": "3"
+    },
+    "MarkerPath": {
+      "text": "M0,0 L6,3 L0,6 Z"
+    },
+    "FigureArrowBox": {
+      "text": "0 0 10 10"
+    },
+    "FigureArrowX": {
+      "text": "9"
+    },
+    "FigureArrowY": {
+      "text": "5"
+    },
+    "FigureArrowWidth": {
+      "text": "7"
+    },
+    "FigureArrowHeight": {
+      "text": "7"
+    },
+    "FigureArrowPath": {
+      "text": "M0 0L10 5L0 10Z"
+    },
+    "ShadowX": {
+      "text": "-20%"
+    },
+    "ShadowY": {
+      "text": "-20%"
+    },
+    "ShadowWidth": {
+      "text": "140%"
+    },
+    "ShadowHeight": {
+      "text": "140%"
+    },
+    "ShadowDx": {
+      "text": "0"
+    },
+    "ShadowDy": {
+      "text": "5"
+    },
+    "ShadowDeviation": {
+      "text": "10"
+    },
+    "BreatheValues": {
+      "text": "1;0.55;1"
+    },
+    "BreatheDuration": {
+      "text": "4s"
+    },
+    "CaptionSlant": {
+      "text": "italic"
+    },
+    "GlyphLineCap": {
+      "text": "round"
+    },
+    "GlyphLineJoin": {
+      "text": "round"
+    },
+    "HoverCursor": {
+      "text": "pointer"
+    },
+    "HoverEase": {
+      "text": "ease"
+    },
+    "HoverVisibilityEase": {
+      "text": "linear"
+    },
+    "FontUnitsPerEm": {
+      "text": "2048"
+    },
+    "FontCapHeight": {
+      "text": "1490"
+    },
+    "FontAdvanceTable": {
+      "text": "32:576 33:589 34:954 35:1297 36:1314 37:2011 38:1319 39:614 40:747 41:747 42:1026 43:1355 44:590 45:942 46:590 47:738 48:1292 49:833 50:1249 51:1265 52:1323 53:1215 54:1270 55:1159 56:1267 57:1270 58:590 59:618 60:1355 61:1355 62:1355 63:1047 64:1978 65:1413 66:1340 67:1496 68:1478 69:1231 70:1209 71:1528 72:1522 73:550 74:1169 75:1376 76:1158 77:1850 78:1543 79:1566 80:1308 81:1566 82:1318 83:1314 84:1322 85:1524 86:1413 87:2018 88:1397 89:1390 90:1288 91:747 92:738 93:747 94:965 95:934 96:661 97:1150 98:1254 99:1170 100:1254 101:1194 102:758 103:1256 104:1211 105:496 106:496 107:1124 108:496 109:1794 110:1210 111:1228 112:1254 113:1254 114:771 115:1081 116:670 117:1211 118:1151 119:1676 120:1118 121:1151 122:1131 123:873 124:681 125:873 126:1355 160:576 161:589 162:1170 163:1251 164:1484 165:1126 166:553 167:1164 168:1210 169:1872 170:929 171:1193 172:1355 174:1364 175:978 176:933 177:1355 178:905 179:913 180:661 181:1200 182:1234 183:590 184:549 185:623 186:988 187:1193 188:1643 189:1735 190:1806 191:1047 192:1413 193:1413 194:1413 195:1413 196:1413 197:1413 198:2035 199:1496 200:1231 201:1231 202:1231 203:1231 204:550 205:550 206:550 207:550 208:1505 209:1543 210:1566 211:1566 212:1566 213:1566 214:1566 215:1355 216:1566 217:1524 218:1524 219:1524 220:1524 221:1390 222:1302 223:1262 224:1150 225:1150 226:1150 227:1150 228:1150 229:1150 230:1879 231:1170 232:1194 233:1194 234:1194 235:1194 236:496 237:496 238:496 239:496 240:1193 241:1210 242:1228 243:1228 244:1228 245:1228 246:1228 247:1355 248:1228 249:1211 250:1211 251:1211 252:1211 253:1151 254:1254 255:1151 8211:1024 8212:2048 8216:534 8217:534 8220:902 8221:902 8230:1770 8594:1954"
+    },
+    "FontFallbackAdvance": {
+      "text": "1794"
+    },
+    "TextXS": {
+      "text": "11"
+    },
+    "TextM": {
+      "text": "13"
+    },
+    "DisplayS": {
+      "text": "15"
+    },
+    "Display": {
+      "text": "15"
+    },
+    "WeightBold": {
+      "text": "600"
+    }
   }
 }

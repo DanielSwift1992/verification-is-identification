@@ -47,18 +47,61 @@ def main():
         roles = {}
         # All text-bearing documentation surfaces use paper, the stated contrast ground.
         links = {'Ink':'ink','Paper':'paper','Mist':'paper','Accent':'paper','Muted':'muted','Line':'line','InkPrimary':'ink','InkSecondary':'muted','Action':'action','ActionTint':'paper','NavyTint':'paper',
-                 'SurfaceCard':'paper','SurfaceTrack':'paper','SurfacePage':'paper','TextPrimary':'ink','TextSecondary':'muted','AccentRole':'action','ActionRole':'action','LineRole':'line','OnAccent':'ink','ActionTintRole':'paper','OnActionRole':'ink','StatusMark':'ok'}
+                 'SurfaceCard':'paper','SurfaceTrack':'paper','SurfacePage':'paper','TextPrimary':'ink','TextSecondary':'muted','AccentRole':'action','ActionRole':'action','LineRole':'line','OnAccent':'ink','ActionTintRole':'paper','OnActionRole':'ink','StatusMark':'ok','Ok':'ok','Bad':'bad','KnownName':'knownName','LocalType':'localType'}
         variables = {'SurfaceCard':'surface-card','SurfaceTrack':'surface-track','SurfacePage':'surface-page','TextPrimary':'text-primary','TextSecondary':'text-secondary','AccentRole':'accent','ActionRole':'action','LineRole':'line','OnAccent':'on-accent','ActionTintRole':'action-tint','OnActionRole':'on-action'}
         for role, owner in links.items():
             row = dict(light=paints[owner+'-Lit'], dark=paints[owner+'-Dim'], ownerRole=owner)
             if role in variables: row['variable'] = variables[role]
+            for theme, suffix in [('light','Light'), ('dark','Dark')]:
+                coordinates = [float(n) for n in row[theme].removeprefix('color(xyz-d65 ').removesuffix(')').split()]
+                x,y,z=coordinates
+                channels=[3.2406*x-1.5372*y-0.4986*z, -.9689*x+1.8758*y+.0415*z, .0557*x-.2040*y+1.0570*z]
+                rgb=[max(0,min(255,round(255*(12.92*c if c<=.0031308 else 1.055*max(c,0)**(1/2.4)-.055)))) for c in channels]
+                row['sRGB'+suffix]='#%02X%02X%02X'%tuple(rgb)
             roles[role] = row
         family = next(s['name'] for s in plan['font']['sources'] if s['name'] == 'Inter')
         value = dict(format='drawing-binding/1', name='DocumentationBinding', source=dict(input='Worlds/Documentation/figures.json',field='style',sha256=figures.digest((ROOT/'Worlds/Documentation/figures.json').read_bytes())),
                      roles=roles, registers={'BodyFace':family,'CaptionFace':family}, registerOrigins={'BodyFace':'Speech','CaptionFace':'Caption'}, registerReadings=registers,
                      weights={'WeightRegular':str(plan['font']['stressWeights'][registers['registers']['Speech']['stress']]),'WeightBold':str(plan['font']['stressWeights'][registers['registers']['Headline']['stress']])}, shadow=dict(paint=paints['ink-Lit'],opacity='0'), leafCountBases=['Structure','Close','Open','Pair'],
                      legible=[dict(foreground=fg,background=bg,witness=next(r['contrast'] for r in rows if r['role']==links[fg] and r['theme']=='Lit')) for fg,bg in [('TextPrimary','SurfaceCard'),('TextSecondary','SurfaceCard'),('ActionRole','SurfaceCard'),('TextPrimary','SurfaceTrack'),('TextSecondary','SurfaceTrack'),('ActionRole','SurfaceTrack'),('Ink','NavyTint'),('InkPrimary','NavyTint'),('InkSecondary','NavyTint')]])
+        layout = json.loads((ROOT/'Worlds/Documentation/layout.json').read_text())['values']
+        import re
+        metrics=(ROOT/'Worlds/Documentation/GeneratedFontMetrics.swift').read_text()
+        for name,text in re.findall(r'public enum (\w+): Close \{\}\nextension \1 \{\n    public static var typeName: String \{\s*"([^"]*)"\s*\}\n\}',metrics):
+            layout[name]={'text':text}
+        character=json.loads((ROOT/'Worlds/Documentation/layout.json').read_text())['missingAdvanceCharacter']
+        assert len(character)==1,'layout: missing-advance character must be declared'
+        advances=dict(pair.split(':') for pair in layout['FontAdvanceTable']['text'].split())
+        layout['FontFallbackAdvance']={'text':advances[str(ord(character))]}
+        # These are checked projections of gate registers; composition rungs remain this owner's choices.
+        for name, register in {'TextXXS':'Caption','TextXS':'Caption','TextS':'Speech','TextM':'Speech','TextL':'Headline','TitleT':'Headline','DisplayS':'Headline','Display':'Headline'}.items():
+            layout[name]={'text':format(registers['registers'][register]['sizeTenths']/10,'g')}
+        layout['WeightRegular']={'text':value['weights']['WeightRegular']}
+        layout['WeightBold']={'text':value['weights']['WeightBold']}
+        layout['BoldWeight']={'text':value['weights']['WeightBold']}
+        value['layout']=layout
+        themes = projection.swift(value)
+        for theme, mode, suffix in [('FigureLight','Lit',''),('FigureDark','Dim','Dark')]:
+            pairs=[]
+            for role in ['Ink','Muted','Ok','Bad','KnownName','LocalType']:
+                owner=links[role]
+                proof=next(r['contrast'] for r in rows if r['role']==owner and r['theme']==mode)
+                pair=theme+role+'OnPaper'
+                themes+='public enum '+pair+'Name: Close {}\nextension '+pair+'Name { public static var typeName: String { \"'+proof+'\" } }\n'
+                themes+='public enum '+pair+': LegiblePaintPair {\n    public typealias WitnessName = '+pair+'Name\n    public typealias Foreground = DocumentationBinding'+role+suffix+'\n    public typealias Background = DocumentationBindingPaper'+suffix+'\n    public typealias Proof = '+proof+'\n}\n'
+                pairs.append((role+'OnPaper',pair))
+            themes+='public enum '+theme+': DrawingPalette, Close {\n'
+            for role in ['Paper','Ink','Muted','Line','Ok','Bad','KnownName','LocalType','TextSecondary','AccentRole']:
+                themes+='    public typealias '+role+' = DocumentationBinding'+role+suffix+'\n'
+            for key in ['BodyFace','CaptionFace','ShadowPaint','ShadowOpacity','LeafCountBases']:
+                themes+='    public typealias '+key+' = DocumentationBinding'+key+'\n'
+            for key,pair in pairs:themes+='    public typealias '+key+' = '+pair+'\n'
+            themes+='    public typealias Values = DocumentationBindingValues\n    public typealias PaintFallbacks = DocumentationBindingPaintFallbacks\n    public typealias PaintValues = DocumentationBindingPaintValues\n}\n'
+        fixture=dict(value,name='FixtureBinding')
         outputs = {'Worlds/Documentation/binding.json':json.dumps(value,indent=2)+'\n',
+                   'Worlds/Documentation/DrawingBinding.swift':themes,
+                   'Contracts/Drawing/v0.1/binding.json':json.dumps(fixture,indent=2)+'\n',
+                   'Contracts/Drawing/v0.1/Binding.swift':projection.swift(fixture,aliases=True),
                    'Sources/DocumentKitDemo/Binding.swift':projection.swift(value,aliases=True),
                    'Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html':projection.footer(value),
                    'Sources/DocumentKit/DocumentKit.docc/footer.html':projection.footer(value)}
@@ -66,8 +109,8 @@ def main():
             paper=value['roles']['Paper'][theme]
             mark=value['roles']['StatusMark'][theme]
             outputs['Sources/DocumentKit/DocumentKit.docc/Resources/example'+suffix+'.svg'] = ('<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">\n'
-                + '  <rect width="120" height="120" rx="12" fill="'+paper+'"/>\n'
-                + '  <path d="M30 60 L55 85 L92 40" stroke="'+mark+'" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>\n</svg>\n')
+                + '  <rect width="120" height="120" rx="12" fill="'+value['roles']['Paper']['sRGB'+('Light' if theme=='light' else 'Dark')]+'" style="fill:'+value['roles']['Paper']['sRGB'+('Light' if theme=='light' else 'Dark')]+';fill:'+paper+';"/>\n'
+                + '  <path d="M30 60 L55 85 L92 40" stroke="'+value['roles']['StatusMark']['sRGB'+('Light' if theme=='light' else 'Dark')]+'" style="stroke:'+value['roles']['StatusMark']['sRGB'+('Light' if theme=='light' else 'Dark')]+';stroke:'+mark+';" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>\n</svg>\n')
         for name,text in outputs.items():
             path = ROOT / name
             if args.write: path.write_text(text)

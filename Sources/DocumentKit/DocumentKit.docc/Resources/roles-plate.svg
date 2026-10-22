@@ -1,52 +1,52 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 148" role="img" data-vi-canvas="1" font-family="Inter" aria-label="The eight roles, each as its own colour swatch.">
-<rect width="240" height="148" rx="16" fill="var(--vi-surface-card, color(xyz-d65 0.898 0.945 1.029))"/>
+<rect width="240" height="148" rx="16" fill="#F9F9F9" style="fill:#F9F9F9;fill:var(--vi-surface-card, color(xyz-d65 0.898 0.945 1.029));"/>
 <g transform="translate(8, 0)">
 <g transform="translate(0, 16)">
-<rect x="0" width="50" height="24" rx="4" fill="var(--vi-surface-card, color(xyz-d65 0.898 0.945 1.029))" stroke="var(--vi-line, color(xyz-d65 0.613 0.645 0.702))" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="#F9F9F9" stroke="#D2D2D2" stroke-width="1" style="fill:#F9F9F9;fill:var(--vi-surface-card, color(xyz-d65 0.898 0.945 1.029));stroke:#D2D2D2;stroke:var(--vi-line, color(xyz-d65 0.613 0.645 0.702));"/>
 </g>
-<text x="0" y="56" text-anchor="start" fill="var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011))" font-weight="400" font-size="10">Card</text>
+<text x="0" y="56" text-anchor="start" fill="#1C191A" font-weight="400" font-size="11" style="fill:#1C191A;fill:var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011));">Card</text>
 </g>
 <g transform="translate(66, 0)">
 <g transform="translate(0, 16)">
-<rect x="0" width="50" height="24" rx="4" fill="var(--vi-surface-track, color(xyz-d65 0.898 0.945 1.029))" stroke="var(--vi-line, color(xyz-d65 0.613 0.645 0.702))" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="#F9F9F9" stroke="#D2D2D2" stroke-width="1" style="fill:#F9F9F9;fill:var(--vi-surface-track, color(xyz-d65 0.898 0.945 1.029));stroke:#D2D2D2;stroke:var(--vi-line, color(xyz-d65 0.613 0.645 0.702));"/>
 </g>
-<text x="0" y="56" text-anchor="start" fill="var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011))" font-weight="400" font-size="10">Track</text>
+<text x="0" y="56" text-anchor="start" fill="#1C191A" font-weight="400" font-size="11" style="fill:#1C191A;fill:var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011));">Track</text>
 </g>
 <g transform="translate(124, 0)">
 <g transform="translate(0, 16)">
-<rect x="0" width="50" height="24" rx="4" fill="var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011))" stroke="var(--vi-line, color(xyz-d65 0.613 0.645 0.702))" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="#1C191A" stroke="#D2D2D2" stroke-width="1" style="fill:#1C191A;fill:var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011));stroke:#D2D2D2;stroke:var(--vi-line, color(xyz-d65 0.613 0.645 0.702));"/>
 </g>
-<text x="0" y="56" text-anchor="start" fill="var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011))" font-weight="400" font-size="10">Primary</text>
+<text x="0" y="56" text-anchor="start" fill="#1C191A" font-weight="400" font-size="11" style="fill:#1C191A;fill:var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011));">Primary</text>
 </g>
 <g transform="translate(182, 0)">
 <g transform="translate(0, 16)">
-<rect x="0" width="50" height="24" rx="4" fill="var(--vi-text-secondary, color(xyz-d65 0.228 0.24 0.261))" stroke="var(--vi-line, color(xyz-d65 0.613 0.645 0.702))" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="#868686" stroke="#D2D2D2" stroke-width="1" style="fill:#868686;fill:var(--vi-text-secondary, color(xyz-d65 0.228 0.24 0.261));stroke:#D2D2D2;stroke:var(--vi-line, color(xyz-d65 0.613 0.645 0.702));"/>
 </g>
-<text x="0" y="56" text-anchor="start" fill="var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011))" font-weight="400" font-size="10">Secondary</text>
+<text x="0" y="56" text-anchor="start" fill="#1C191A" font-weight="400" font-size="11" style="fill:#1C191A;fill:var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011));">Secondary</text>
 </g>
 <g transform="translate(8, 0)">
 <g transform="translate(0, 76)">
-<rect x="0" width="50" height="24" rx="4" fill="var(--vi-accent, color(xyz-d65 0.17 0.15 0.61))" stroke="var(--vi-line, color(xyz-d65 0.613 0.645 0.702))" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="#2269CF" stroke="#D2D2D2" stroke-width="1" style="fill:#2269CF;fill:var(--vi-accent, color(xyz-d65 0.17 0.15 0.61));stroke:#D2D2D2;stroke:var(--vi-line, color(xyz-d65 0.613 0.645 0.702));"/>
 </g>
-<text x="0" y="116" text-anchor="start" fill="var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011))" font-weight="400" font-size="10">Accent</text>
+<text x="0" y="116" text-anchor="start" fill="#1C191A" font-weight="400" font-size="11" style="fill:#1C191A;fill:var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011));">Accent</text>
 </g>
 <g transform="translate(66, 0)">
 <g transform="translate(0, 76)">
-<rect x="0" width="50" height="24" rx="4" fill="var(--vi-action, color(xyz-d65 0.17 0.15 0.61))" stroke="var(--vi-line, color(xyz-d65 0.613 0.645 0.702))" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="#2269CF" stroke="#D2D2D2" stroke-width="1" style="fill:#2269CF;fill:var(--vi-action, color(xyz-d65 0.17 0.15 0.61));stroke:#D2D2D2;stroke:var(--vi-line, color(xyz-d65 0.613 0.645 0.702));"/>
 </g>
-<text x="0" y="116" text-anchor="start" fill="var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011))" font-weight="400" font-size="10">Action</text>
+<text x="0" y="116" text-anchor="start" fill="#1C191A" font-weight="400" font-size="11" style="fill:#1C191A;fill:var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011));">Action</text>
 </g>
 <g transform="translate(124, 0)">
 <g transform="translate(0, 76)">
-<rect x="0" width="50" height="24" rx="4" fill="var(--vi-line, color(xyz-d65 0.613 0.645 0.702))" stroke="var(--vi-line, color(xyz-d65 0.613 0.645 0.702))" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="#D2D2D2" stroke="#D2D2D2" stroke-width="1" style="fill:#D2D2D2;fill:var(--vi-line, color(xyz-d65 0.613 0.645 0.702));stroke:#D2D2D2;stroke:var(--vi-line, color(xyz-d65 0.613 0.645 0.702));"/>
 </g>
-<text x="0" y="116" text-anchor="start" fill="var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011))" font-weight="400" font-size="10">Line</text>
+<text x="0" y="116" text-anchor="start" fill="#1C191A" font-weight="400" font-size="11" style="fill:#1C191A;fill:var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011));">Line</text>
 </g>
 <g transform="translate(182, 0)">
 <g transform="translate(0, 76)">
-<rect x="0" width="50" height="24" rx="4" fill="var(--vi-on-accent, color(xyz-d65 0.01 0.01 0.011))" stroke="var(--vi-line, color(xyz-d65 0.613 0.645 0.702))" stroke-width="1"/>
+<rect x="0" width="50" height="24" rx="4" fill="#1C191A" stroke="#D2D2D2" stroke-width="1" style="fill:#1C191A;fill:var(--vi-on-accent, color(xyz-d65 0.01 0.01 0.011));stroke:#D2D2D2;stroke:var(--vi-line, color(xyz-d65 0.613 0.645 0.702));"/>
 </g>
-<text x="0" y="116" text-anchor="start" fill="var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011))" font-weight="400" font-size="10">On accent</text>
+<text x="0" y="116" text-anchor="start" fill="#1C191A" font-weight="400" font-size="11" style="fill:#1C191A;fill:var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011));">On accent</text>
 </g>
 
 </svg>

@@ -1,5 +1,5 @@
 {
-  "inputSHA256": "348c38af1aa2e71c01f6ae07d8398b5e0ff58aec1783603ea91c95efc21745ad",
+  "inputSHA256": "f0b36884e346291cfe7a996de2a2ce4e1f3b6187f6fec1cfb78d6a4074830222",
   "inputs": {
     "Assets/DejaVuSans.json": "ff0d1fed0c0aeba3eb22a207691f49191df5beb0a6cf31cf550932395ab2def3",
     "Assets/DejaVuSans.ttf": "7da195a74c55bef988d0d48f9508bd5d849425c1770dba5d7bfc6ce9ed848954",
@@ -9,24 +9,25 @@
     "Assets/InterVariable.ttf": "4989b125924991b90d05b2d16e0e388c48f7d5bb8b30539bbf9c755278d0ccaf",
     "Checks/Coverage.swift": "6d4eb001cd0a0b7ba79d338bb4395740c3f458acf83809de27da31bd878169d8",
     "Checks/Transition.swift": "ff82e7a071192c10efb937f64f785491a41607d0f0d64395681f9a9c7f6cfa91",
-    "Checks/vi-figures.py": "64c55543ae1f432a48eeea139bb92c24400d8ebb11cec4c900ca274265f389e1",
+    "Checks/documentation-binding.py": "b6eaedd7fa03d71b48fa5f9d0196d4919d58aa1495b6ef3b119b7dee3d34915c",
+    "Checks/vi-figures.py": "b1277a191344cc01f386c67a9149bf28fb0fcc367343dce4b6b30406b35b0632",
     "Documentation/Figures/beam-study-sources.md": "9b159db96dd1b90e6c600ac44d08a407985a657deedfd6df9b106886b7745e31",
     "Package.swift": "f06560f6c77c4cf1150b4ebdf5a5b5981766d862ef80e43c6b529a3fb08d201c",
+    "Scripts/drawing-binding.py": "d1e7651967b98c33d649533cf578206d5c329d0c9e689232c1073715d66a6d99",
     "Sources/Alphabet/Alphabet.swift": "58e1462a529cbc468907ac8b1db85568962a0f921623d954a4592345b01fb7ca",
     "Sources/DocumentKit/Alphabet.swift": "c262960811dd033d8f8a5c6c3d0e39d77f812ee804fd5b928a35c3fcf1e9c1b2",
-    "Sources/DocumentKit/Design.swift": "6976b409cc2c731f6848871cdc5591a4867142faa31e981311412639506f8726",
+    "Sources/DocumentKit/Design.swift": "b2f879a5b371cc5b65069b597a20c6cdd0421db26eba74d25ba5a06cb1c8cff8",
     "Sources/DocumentKit/Dynamics.swift": "aba1f0a3409ae7f5a3b93c2d57038b5024fc796723107c380c12bceaa10fa8e2",
-    "Sources/DocumentKit/GeneratedFontMetrics.swift": "8c416b3db06cace60bdfaf51e4dd295d93dcbe5ec0a39cee6c6bb2761c49d19e",
     "Sources/DocumentKit/Markup.swift": "be82e61f915138fe1bde19215487c0502814b0a0e305a5e475187091752dda23",
-    "Sources/DocumentKit/OutlinedFigure.swift": "c80fa8010ef0e4b42baafa48ffa2f9596fa4dd985b15b49d6d4cb31b53bf1950",
+    "Sources/DocumentKit/OutlinedFigure.swift": "8ef7c5dcf24c344cb91a9c7596a23672e575d70153aea1726fa63c972e2830a0",
     "Sources/DocumentKit/Spectrum.swift": "0b5e6641f82014a57dbaadb3fa9d09c5f212b304861de8999bb6fe62e7ef7ac7",
     "Sources/DocumentKit/SurfaceLaw.swift": "d5660d184fc7f1f4ecf86f3e114cdc6f703d08062bb0905035311963a716a95a",
-    "Sources/DocumentKit/Vector.swift": "fd84078dec3017c0d474d74a95438716707997289509339b704ca77248e14461",
+    "Sources/DocumentKit/Vector.swift": "d6bbf60b0ea3fe10312c7a8e415821c6b5c43bdb64c0a2d060dc80d4c65f4425",
     "Sources/DocumentKit/Walk.swift": "4791f529a4ff1b44df850ed5776ccfd9996ea9411bed70972e4b05484b81b094",
     "Sources/Examples/Light.swift": "27dc914be0c24003d40ff208b6f9581de5aed2765611f92fec85348c3b8c7ad9",
     "Sources/Examples/Transition.swift": "251811fdf9836aff938a58afc5d656c7d9b303da442fb7c981d47fd14a5d0929",
     "Sources/Examples/Verdict.swift": "83c2ea73322e52a7895cc624858e20f3675b4e862258dbbe85ff12c0dc1046d0",
-    "Sources/FontMetrics/GenerateFont.swift": "620cfb981e223125638c33d1ccb5bdd3dccc6bf677c804eb118cf1c727ceb8e8",
+    "Sources/FontMetrics/GenerateFont.swift": "8a27191c4047b5dbdd143a9d99d6aa9884d858ab856dc7beb140cbf213170680",
     "Sources/FontMetrics/main.swift": "8dd932c7c675081b1fa9f5e47029942d04173eb5e4d0dca302bff828b9a26de1",
     "Sources/Notation/IntegerValued.swift": "6a9f9b39d3654c21c64ff4b813b30738bcc4b5f8be07aaf80a46982fe01ce9b7",
     "Sources/Notation/Numeral.swift": "d8ac23e0fce85f0dce4b873d312d8c9be0820b1c747d7ac6f702e269691488c7",
@@ -71,31 +72,36 @@
     "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verification_is_identification.md": "7ee6858625eebf63629bf37f0570a43f43bdbe92341f9d3e7002441198536dcd",
     "Sources/VerificationIsIdentification/Voice.swift": "ffe3fa74ce3aa5dd42433e4508a03fa28895921e4cc42bcd4d220b2be93a4f13",
     "Sources/VerificationIsIdentification/Wave.swift": "8f7d1377b794185785a206b43aa59137935b7e98802ff93ab92d05f38d637c35",
-    "Worlds/Documentation/Architecture.swift": "9af131567123ef77d073889e2e4c640412b255174188a9a5c5e29f15f9ed2cb4",
+    "Worlds/Documentation/Architecture.swift": "4d6b9ef7a815ced1c00a4d17250d7d663b00f7d8123b621ad3876bb0b2089cbb",
     "Worlds/Documentation/CharacterSources.json": "acb0e4c4e6d0faec29a32d0273461eee18738ac8074617009a75b382bc2e135d",
     "Worlds/Documentation/Characters.txt": "b2218c5748302e8a180e512bf2d9b9297f66618e6b8d6ec9258d04aa3f02505e",
-    "Worlds/Documentation/Construction.swift": "cd5d4de5e9ceea23464830eaa5f30cf91f79aefaf957300e61689fcf51b7b9ed",
+    "Worlds/Documentation/Construction.swift": "42d0c97130abd5262144af2570eb29ac4373e05b43c7b040947214761945eb9d",
+    "Worlds/Documentation/DrawingBinding.swift": "57c330258b324d85d9d0cc72d4b5d27e383be2e1e73dc63cea1acc6981b3c012",
     "Worlds/Documentation/Font.swift": "eff7d79a106b5f086c28dd45832089cfdb3c7bbaede266565575f42e469e8353",
-    "Worlds/Documentation/Method.swift": "fdd289d3bc6feb04b29b51c8c00d7a31565e2e13465f145e42a7c40f619e22c8",
+    "Worlds/Documentation/GeneratedFontMetrics.swift": "8c416b3db06cace60bdfaf51e4dd295d93dcbe5ec0a39cee6c6bb2761c49d19e",
+    "Worlds/Documentation/Method.swift": "c23e0b153f5337f8e8d033927c5f9fee8aac9841947406010203f21e909d48f7",
     "Worlds/Documentation/Registers.swift": "23b0965bb46b5bb659f7a46305fc1a5a94b9cd33c785fe07463dfa2f6b998e13",
-    "Worlds/Documentation/Theme.swift": "1b46eef9cb7057738bf60da74ff941cb33990742ef766a555b07baff42b1d01a",
-    "Worlds/Documentation/ThreeSources.swift": "0dbfecee40644f6fa5934b568b5542ae63aa136fee73ba757a2fb6952f3d56ae",
-    "Worlds/Documentation/figures.json": "f8766d67ee645146f8da40aca7cf6f65b4e8e522a9d0e5f6bc82a72e62bcbd54",
+    "Worlds/Documentation/Theme.swift": "5352013ea2d8884b288f0c971e6d8695d19e787eefd1f8dcdda82a145f0996f2",
+    "Worlds/Documentation/ThreeSources.swift": "9409501c4af64ca95a914113d67b26ade3aae4c50e8a8cdb15d83aba4ab29b01",
+    "Worlds/Documentation/binding.json": "d1d109f339706d1f714bf8d002620a074242716b08021c9a2a65932999148e69",
+    "Worlds/Documentation/figures.json": "4b72b2b5bab96a64799daaea1529109a3a9b837bd7980cad5dcf15117bb0217c",
+    "Worlds/Documentation/layout.json": "bf42506994244b624da8db72fcb199bf6d6c75c0f47d380632874b526333ea85",
     "https://github.com/DanielSwift1992/gate@bbd807bc504ef2146c2265d43521108c4e37c115:bin/drawing-fonts.json": "1aa7c531898300766377f0f7a6daf56453386382f02c0b8e6d3db8269dcb5098",
+    "https://github.com/DanielSwift1992/gate@bbd807bc504ef2146c2265d43521108c4e37c115:bin/gate-cli.swift": "839115bf543878c11c8afbdba3b4c35284d04e5fe2348add0f3976d8d5f45aa1",
     "https://github.com/DanielSwift1992/gate@bbd807bc504ef2146c2265d43521108c4e37c115:stdlib/bench-palette.swift": "6a815d104d17837cab25e342432380cd3898074305e8c6bdd298fee6fb8402cd",
     "https://github.com/DanielSwift1992/gate@bbd807bc504ef2146c2265d43521108c4e37c115:stdlib/bench-registers.swift": "c3278902fd8251598334508423efffcde11a73c0c34e3f1e653f238814b588de",
     "https://github.com/DanielSwift1992/gate@bbd807bc504ef2146c2265d43521108c4e37c115:web/ui.html": "2175db31f50e979e8e146a032c8726af11e0af42933af7a314bc6d0721079eec"
   },
   "outputs": {
-    "Documentation/Figures/vi-method.svg": "14f8ab77cc29f13d7e46fff99d94ba5f857fe4c5cccae5b12c892d6897607bf3",
-    "Documentation/Figures/answer-determination.svg": "c7c99061e5fceeed27e954eafa1bb3c8eb0ae3a4ef407baae203e3da1f9dff04",
-    "Documentation/Figures/adequate-continuation.svg": "2c56b4f9cb25d49b4fc796383df63705fed04be3c0509ad4e0428be8fa44d32b",
-    "Documentation/Figures/framework-architecture.svg": "2d0421b235708a4806f02d658c4ad25898838c721c93a04b99cd29e616f90c6a",
-    "Documentation/Figures/beam-study.svg": "99f5009ddf2412a1d6e9a1b095e12c1e88a1f2fad1f2d089d71e2cc67f51ee30",
-    "Documentation/Figures/beam-questions.svg": "288eab35345f1a9a6c702a1fc8b943c80473b1cd586386ef2bf6a3969a01be4f",
-    "Documentation/Figures/beam-continuation.svg": "5234e732a84a8ab6b69656a57990c7e5378f7974293f8fb2150b61fc23fc17e1",
-    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law.svg": "859ac093cd44ee2c29d4b3098b4cef870510168493f93b624459acfb7c5c7fe7",
-    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law~dark.svg": "7646187c021853321ccfe557e30b0d3cff1f92266780856c6e13c16eaea5dd9a"
+    "Documentation/Figures/vi-method.svg": "0b04bb1885a74c59ba24dce88917fcb7f70d78b2df1e473e046938d55cd5aae4",
+    "Documentation/Figures/answer-determination.svg": "fb6c9e6d4660c7f6a1803393f5317891e2c75e418badcfe1d7fb13f3ac7e55a8",
+    "Documentation/Figures/adequate-continuation.svg": "82ea967976d0b9f3b9b01fe87bdd106eaeb0fbc933284d8fd71d08df5cea0428",
+    "Documentation/Figures/framework-architecture.svg": "859ae08ae08d6f2a8dc915d10a795b4065a5a8be940b96335cdd3448484398a9",
+    "Documentation/Figures/beam-study.svg": "a767718d1e9ff5bdf6d7e1297b50370737c4731e4aa40510e7fc8a738edb51cb",
+    "Documentation/Figures/beam-questions.svg": "60e69fb623c006119888d01195188a96cd38a6d9c863d8dcf7d0f4a1470b873f",
+    "Documentation/Figures/beam-continuation.svg": "e231f8d0fa6471640620a3068e3cf613ccddb3456cfdf73568911e74e43a6fed",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law.svg": "3e00ab6a5dff8ebd37f24cc556572e77af2466a9948ce66365f089d9f4262110",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law~dark.svg": "c4877937cdb73d59587be44197c97e7d1394a5c403f24546c74a5d5f02f426ea"
   },
   "contrast": [
     "Paper_Ink_lit",
@@ -370,14 +376,14 @@
       "world": "Method",
       "declaration": "MethodPart23",
       "text": "Several answers: q varies on S",
-      "register": "Speech",
+      "register": "Headsmall",
       "paint": "Ink"
     },
     {
       "world": "Method",
       "declaration": "MethodPart25",
       "text": "No compatible case: S = \u2205",
-      "register": "Speech",
+      "register": "Headsmall",
       "paint": "Bad"
     },
     {
@@ -629,8 +635,8 @@
       "world": "Architecture",
       "declaration": "ArchitecturePart9",
       "text": "vi \u00b7 DocumentKit",
-      "register": "Fact",
-      "paint": "KnownName"
+      "register": "Headline",
+      "paint": "LocalType"
     },
     {
       "world": "Architecture",
@@ -685,7 +691,7 @@
       "world": "Architecture",
       "declaration": "ArchitecturePart19",
       "text": "showcase",
-      "register": "Fact",
+      "register": "Headline",
       "paint": "KnownName"
     },
     {
@@ -741,7 +747,7 @@
       "world": "Architecture",
       "declaration": "ArchitecturePart29",
       "text": "gate",
-      "register": "Fact",
+      "register": "Headline",
       "paint": "KnownName"
     },
     {
@@ -888,7 +894,7 @@
       "world": "ThreeSources",
       "declaration": "ThreeSourcesPart6",
       "text": "Three sources, one reading",
-      "register": "Headline",
+      "register": "Headsmall",
       "paint": "Ink"
     },
     {
@@ -1098,7 +1104,7 @@
       "world": "ThreeSources",
       "declaration": "ThreeSourcesPart42",
       "text": "What can this reading answer?",
-      "register": "Headline",
+      "register": "Headsmall",
       "paint": "Ink"
     },
     {
@@ -1119,14 +1125,14 @@
       "world": "ThreeSources",
       "declaration": "ThreeSourcesPart46",
       "text": "(1, 0) in every case",
-      "register": "Fact",
+      "register": "Headsmall",
       "paint": "Ok"
     },
     {
       "world": "ThreeSources",
       "declaration": "ThreeSourcesPart48",
       "text": "Could be 0, 1, or 2",
-      "register": "Speech",
+      "register": "Headsmall",
       "paint": "Ink"
     },
     {
@@ -1140,7 +1146,7 @@
       "world": "ThreeSources",
       "declaration": "ThreeSourcesPart51",
       "text": "One operation, the same visible result",
-      "register": "Headline",
+      "register": "Headsmall",
       "paint": "Ink"
     },
     {
@@ -1525,7 +1531,7 @@
       "world": "ThreeSources",
       "declaration": "ThreeSourcesPart116",
       "text": "A different operation makes the hidden value matter",
-      "register": "Headline",
+      "register": "Headsmall",
       "paint": "Ink"
     },
     {
@@ -1931,8 +1937,8 @@
       "world": "Construction",
       "declaration": "ConstructionPart9",
       "text": "Pair",
-      "register": "Fact",
-      "paint": "KnownName"
+      "register": "Headsmall",
+      "paint": "LocalType"
     },
     {
       "world": "Construction",
@@ -1967,7 +1973,7 @@
       "declaration": "ConstructionPart16",
       "text": "where",
       "register": "Fact",
-      "paint": "KnownName"
+      "paint": "LocalType"
     },
     {
       "world": "Construction",
@@ -2001,7 +2007,7 @@
       "world": "Construction",
       "declaration": "ConstructionPart24",
       "text": "width \u00d7 depth",
-      "register": "Fact",
+      "register": "Headsmall",
       "paint": "Ink"
     },
     {
@@ -2132,9 +2138,9 @@
     },
     "Documentation/Figures/framework-architecture.svg": {
       "placements": {
-        "Inter": 1137,
+        "Inter": 1165,
         "DejaVu": 0,
-        "DejaVuMono": 28
+        "DejaVuMono": 0
       },
       "weights": [
         400,
@@ -2143,13 +2149,10 @@
       "contrast": [
         "Paper_Ink_lit",
         "Paper_KnownName_lit",
+        "Paper_LocalType_lit",
         "Paper_Muted_lit"
       ],
       "registers": [
-        [
-          "FigureMono400",
-          125.0
-        ],
         [
           "FigureSans400",
           110.0
@@ -2174,9 +2177,9 @@
     },
     "Documentation/Figures/beam-study.svg": {
       "placements": {
-        "Inter": 1007,
+        "Inter": 1027,
         "DejaVu": 0,
-        "DejaVuMono": 250
+        "DejaVuMono": 230
       },
       "weights": [
         400,
@@ -2198,6 +2201,10 @@
         ],
         [
           "FigureSans400",
+          130.0
+        ],
+        [
+          "FigureSans600",
           130.0
         ],
         [
@@ -2208,9 +2215,9 @@
     },
     "Documentation/Figures/beam-questions.svg": {
       "placements": {
-        "Inter": 1007,
+        "Inter": 1027,
         "DejaVu": 0,
-        "DejaVuMono": 250
+        "DejaVuMono": 230
       },
       "weights": [
         400,
@@ -2232,6 +2239,10 @@
         ],
         [
           "FigureSans400",
+          130.0
+        ],
+        [
+          "FigureSans600",
           130.0
         ],
         [
@@ -2242,9 +2253,9 @@
     },
     "Documentation/Figures/beam-continuation.svg": {
       "placements": {
-        "Inter": 1007,
+        "Inter": 1027,
         "DejaVu": 0,
-        "DejaVuMono": 250
+        "DejaVuMono": 230
       },
       "weights": [
         400,
@@ -2270,15 +2281,19 @@
         ],
         [
           "FigureSans600",
+          130.0
+        ],
+        [
+          "FigureSans600",
           150.0
         ]
       ]
     },
     "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law.svg": {
       "placements": {
-        "Inter": 90,
+        "Inter": 107,
         "DejaVu": 0,
-        "DejaVuMono": 40
+        "DejaVuMono": 23
       },
       "weights": [
         400,
@@ -2286,7 +2301,7 @@
       ],
       "contrast": [
         "Paper_Ink_lit",
-        "Paper_KnownName_lit",
+        "Paper_LocalType_lit",
         "Paper_Muted_lit"
       ],
       "registers": [
@@ -2310,9 +2325,9 @@
     },
     "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law~dark.svg": {
       "placements": {
-        "Inter": 90,
+        "Inter": 107,
         "DejaVu": 0,
-        "DejaVuMono": 40
+        "DejaVuMono": 23
       },
       "weights": [
         400,
@@ -2320,7 +2335,7 @@
       ],
       "contrast": [
         "Ink_Paper_dim",
-        "KnownName_Paper_dim",
+        "LocalType_Paper_dim",
         "Muted_Paper_dim"
       ],
       "registers": [

@@ -66,7 +66,7 @@ public enum LayoutGate {
 
     /// Checks that the measured-width type can supply a fixed slot. Its numeric
     /// text measurement and the renderer's use of that value are separate readings.
-    public typealias WordsSizeTheSlot = Fixed<TextWidth<MeasuredWord, TextS>, SpanNothing>
+    public typealias WordsSizeTheSlot<Binding: DrawingStyle, Size: Structure> = Fixed<BoundTextWidth<Binding, MeasuredWord, Size>, SpanNothing>
 }
 
 /// The word the certificate measures: any text serves, this one names the act.

@@ -1,9 +1,10 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 // Apply each tuple to ONE current-source index. No new Correct/Trusted marker.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const single=require('./resident_goal_synthesis_court.js'),base=require('./court_bridge.js');
 const root=path.resolve(__dirname,'../..');
-const {judgeWhereTexts}=require(path.join(root,'../gate/bin/judge-where.js'));
+const {judgeWhereTexts}=require(path.join(root,'Checks/Archive/WhereV2/judge-where.js'));
 const chain=xs=>xs.reduceRight((tail,x)=>`Paired<${x}, ${tail}>`,'Never');
 
 function build(directory){

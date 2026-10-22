@@ -1,8 +1,9 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const base=require('./court_bridge.js'),cost=require('./resident_reading_cost_court.js');
 const root=path.resolve(__dirname,'../..');
-const {judgeWhereTexts}=require(path.join(root,'../gate/bin/judge-where.js'));
+const {judgeWhereTexts}=require(path.join(root,'Checks/Archive/WhereV2/judge-where.js'));
 function context(){const c=cost.context(),n='Sources/Examples/ResidentStoppedRead.swift',s=fs.readFileSync(path.join(root,n),'utf8');c.source+='\n'+s;c.fingerprints[n]=base.digest(s);return c;}
 function tree(rows,prefix=[]){const choices=rows.filter(r=>prefix.every((b,i)=>r.votes[i]===b));assert(choices.length);const answers=[...new Set(choices.map(r=>r.answer))];
  if(answers.length===1)return{prefix,answer:answers[0],completions:choices.map(r=>r.votes)};

@@ -50,6 +50,8 @@ NEEDS_CLEAN=""
 # tag | what it holds | how to ask
 LAWS=(
 "build|the package builds and its tests pass|swift build --build-tests && swift test --skip-build"
+"lawcheck-policy|the consumer declares strictness independently of its target name|bash Checks/lawcheck-policy.sh"
+"archive-where|historical where readers stay frozen without live sibling reads|python3 Checks/archived-where.py && python3 Checks/archived-where-test.py"
 "verdict|finite verdict certificates hold and broken premises are refused|bash Checks/verdict.sh"
 )
 

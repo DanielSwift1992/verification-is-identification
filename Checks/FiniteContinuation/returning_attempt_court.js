@@ -1,9 +1,10 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 // Bounded application of the existing judge. No new parser or trusted marker.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const base=require('./court_bridge.js');
 const root=path.resolve(__dirname,'../..');
-const {judgeWhereTexts}=require(path.join(root,'../gate/bin/judge-where.js'));
+const {judgeWhereTexts}=require(path.join(root,'Checks/Archive/WhereV2/judge-where.js'));
 function context(){
  const c=base.context();
  // The monitor root has additional dependencies; only these three complete

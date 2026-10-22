@@ -1,3 +1,4 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 
 // A test adapter for the existing gate court, not another equality checker.
@@ -8,9 +9,8 @@ const assert = require("node:assert/strict");
 const os = require("node:os");
 const { spawnSync } = require("node:child_process");
 const root = path.resolve(__dirname, "..");
-const judgePath = process.argv[2];
-if (!judgePath) throw new Error("usage: node Checks/local-policy-court.js /path/to/gate/bin/judge-where.js [matching native Tools]");
-const nativePath = process.argv[3];
+const judgePath = path.join(root, "Checks/Archive/WhereV2/judge-where.js");
+const nativePath = process.argv[2];
 const { judgeWhereTexts } = require(path.resolve(judgePath));
 
 function flatDeclaration(file, name) {

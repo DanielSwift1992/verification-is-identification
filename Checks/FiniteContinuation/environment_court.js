@@ -1,3 +1,4 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 // Source of the environment's finite semantics remains the current Swift
 // constructions. This adapter also checks the finite controller by induction
@@ -5,7 +6,7 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const base=require('./court_bridge.js'),renewal=require('./renewal_court.js');
 const root=path.resolve(__dirname,'../..');
-const {judgeWhereTexts}=require(path.resolve(process.env.VI_WHERE_JUDGE||path.join(root,'../gate/bin/judge-where.js')));
+const {judgeWhereTexts}=require(path.resolve(path.join(root,'Checks/Archive/WhereV2/judge-where.js')));
 const rows=m=>Array.from({length:16},(_,i)=>i).filter(i=>(m>>i)&1);
 const mask=xs=>xs.reduce((m,i)=>m|(1<<i),0);
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);

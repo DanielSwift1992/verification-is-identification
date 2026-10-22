@@ -1,3 +1,4 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 // A finite acquired key for a DIFFERENT consumer: live monomial unitaries.
 // These row equalities certify the key; the continuous recovery law is proved
@@ -5,7 +6,7 @@
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const base=require('./court_bridge.js'),contact=require('./contact_court.js');
 const root=path.resolve(__dirname,'../..');
-const {judgeWhereTexts}=require(path.resolve(process.env.VI_WHERE_JUDGE||path.join(root,'../gate/bin/judge-where.js')));
+const {judgeWhereTexts}=require(path.resolve(path.join(root,'Checks/Archive/WhereV2/judge-where.js')));
 const request={consumer:'live-unitary',family:'X^t Rz(theta)',port:'A middle B'};
 const bits=value=>`Paired<QBit${value[0]}, Paired<QBit${value[1]}, QBit${value[2]}>>`;
 

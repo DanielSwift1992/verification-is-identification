@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Bounded completion audit of the 15 September resident research session.
+"""Frozen reader: see Checks/Archive/WhereV2/README.md.
+
+Bounded completion audit of the 15 September resident research session.
 
 Reads sealed evidence; writes only to a new output directory. No network,
 calibration, QPU submission, Swift build, or general repository regression.
@@ -18,7 +20,7 @@ import time
 ROOT = Path(__file__).resolve().parents[2]
 ARTIFACTS = ROOT / 'Research/Artifacts'
 NATIVE = ROOT / '.build/arm64-apple-macosx/debug/Tools'
-JUDGE = ROOT.parent / 'gate/bin/judge-where.js'
+JUDGE = ROOT / 'Checks/Archive/WhereV2/judge-where.js'
 # New, unrelated research folders must not invalidate this night's reading.
 # Its acquisition scope is these packages, not every future dated directory.
 PACKAGES = tuple('resident-' + name + '-20260915' for name in (

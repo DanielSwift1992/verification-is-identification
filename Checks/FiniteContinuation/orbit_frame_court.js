@@ -1,9 +1,10 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 // Read the coordinate exchange from the current Swift root and apply it.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const old=require('./orbit_return_court.js'),base=require('./court_bridge.js');
 const root=path.resolve(__dirname,'../..');
-const {judgeWhereTexts}=require(path.join(root,'../gate/bin/judge-where.js'));
+const {judgeWhereTexts}=require(path.join(root,'Checks/Archive/WhereV2/judge-where.js'));
 function context(){
  const c=old.context(),name='Sources/Examples/OrbitSourceFrame.swift',s=fs.readFileSync(path.join(root,name),'utf8');
  c.source+='\n'+s;c.fingerprints[name]=base.digest(s);return c;

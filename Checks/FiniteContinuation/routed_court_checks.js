@@ -1,10 +1,11 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),os=require('node:os');
 const {spawnSync}=require('node:child_process');
 const {createHash}=require('node:crypto');
 const court=require('./routed_court.js');
 const root=path.resolve(__dirname,'../..');
-const {judgeWhereTexts}=require(path.resolve(process.env.VI_WHERE_JUDGE||path.join(root,'../gate/bin/judge-where.js')));
+const {judgeWhereTexts}=require(path.resolve(path.join(root,'Checks/Archive/WhereV2/judge-where.js')));
 const directory=process.argv[2],d=court.current();
 const routes=JSON.parse(fs.readFileSync(path.join(directory,'routes.json'))).actions;
 const h=d.goals.find(g=>JSON.stringify(g.word)==='["h"]').id;

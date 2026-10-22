@@ -8,6 +8,7 @@ from pathlib import Path
 import tempfile
 import subprocess
 import shutil
+import sys
 import unittest
 from unittest import mock
 
@@ -116,6 +117,39 @@ print('error: '+{'A_ONE':'RejectedAOne','A_TWO':'RejectedATwo','B_ONE':'Rejected
         self.assertFalse(any(row['event']=='end' for row in slow))
         for row in slow:
             with self.assertRaises(ProcessLookupError):os.kill(row['pid'],0)
+
+    def test_cleanup_reaps_an_exited_but_uncollected_session_leader(self):
+        process = subprocess.Popen([sys.executable, '-c', 'import os; os._exit(0)'],
+                                   start_new_session=True, stdout=subprocess.PIPE)
+        self.addCleanup(process.wait)
+        # EOF comes from process exit; do not poll/communicate/wait beforehand.
+        with process.stdout:
+            self.assertEqual(process.stdout.read(), b'')
+        self.assertIsNone(process.returncode)
+        engine.stop_compiler(process)
+        self.assertEqual(process.returncode, 0)
+
+    def test_cleanup_handles_exit_after_poll_but_preserves_live_permission_denial(self):
+        exited = mock.Mock(pid=123)
+        exited.poll.return_value = 0
+        with mock.patch.object(engine.os, 'killpg') as kill:
+            engine.stop_compiler(exited)
+            kill.assert_not_called()
+        for completed in (True, False):
+            with self.subTest(completed=completed):
+                process = mock.Mock(pid=123)
+                process.poll.return_value = None
+                denied = PermissionError('injected Darwin EPERM before collection')
+                if not completed:
+                    process.wait.side_effect = subprocess.TimeoutExpired('compiler', 1)
+                with mock.patch.object(engine.os, 'killpg', side_effect=denied):
+                    if completed:
+                        engine.stop_compiler(process)
+                    else:
+                        with self.assertRaises(PermissionError) as caught:
+                            engine.stop_compiler(process)
+                        self.assertIs(caught.exception, denied)
+                process.wait.assert_called_once_with(timeout=1)
 
     def test_missing_compiler_is_not_a_refusal(self):
         with mock.patch.dict(os.environ, {'PATH':str(self.root/'absent')}):

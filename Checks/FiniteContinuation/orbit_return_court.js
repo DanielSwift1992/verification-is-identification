@@ -1,10 +1,11 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 // Read and apply the new successor to the current old law, using the existing
 // bounded court. No new parser, trust flag, or physical-phase assertion.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const base=require('./court_bridge.js'),old=require('./returning_attempt_court.js');
 const root=path.resolve(__dirname,'../..');
-const {judgeWhereTexts}=require(path.join(root,'../gate/bin/judge-where.js'));
+const {judgeWhereTexts}=require(path.join(root,'Checks/Archive/WhereV2/judge-where.js'));
 function context(){
  const c=old.context(),name='Sources/Examples/OrbitReturn.swift';
  const text=fs.readFileSync(path.join(root,name),'utf8');

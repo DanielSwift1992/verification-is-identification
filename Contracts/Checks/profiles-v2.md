@@ -6,6 +6,6 @@
 | --- | --- | --- |
 | `vi` | Every verdict certificate and refusal; lattice names, Topics, paper families and quotations | Existing Swift package, Tools and plugins |
 | `court` | Actual library consumer; existing where/count controls, finite contract and structured response/admission controls | Tools build and current example fixtures; this is the registered acceptance set, not general equivalence |
-| `integration` | Whole-package build/tests; repository census, voice, README, grammar and check-driver controls | The whole repository |
+| `integration` | Whole-package build/tests; repository census, voice, README, grammar, consumer-declared LawCheck policy, frozen research-reader boundary and check-driver controls | The whole repository |
 
 `bash Checks/verdict.sh core` and `bash Checks/verdict.sh all` now ask the same fixtures and flags: no publication source remains in this package, and `verdict.sh publication` is refused as an unknown scope. The profile driver and its measurement rules are those of profiles-v1, unchanged.

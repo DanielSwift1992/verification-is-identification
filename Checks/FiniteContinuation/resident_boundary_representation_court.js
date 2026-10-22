@@ -1,9 +1,10 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 // Read two actual Swift presentations using the unchanged relation judge.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const source=require('./resident_goal_synthesis_court.js'),base=require('./court_bridge.js');
 const root=path.resolve(__dirname,'../..');
-const {judgeWhereTexts}=require(path.join(root,'../gate/bin/judge-where.js'));
+const {judgeWhereTexts}=require(path.join(root,'Checks/Archive/WhereV2/judge-where.js'));
 function context(){const c=source.context(),n='Sources/Examples/ResidentBoundaryRepresentation.swift';
  const text=fs.readFileSync(path.join(root,n),'utf8');c.source+='\n'+text;c.fingerprints[n]=base.digest(text);return c;}
 function read(){

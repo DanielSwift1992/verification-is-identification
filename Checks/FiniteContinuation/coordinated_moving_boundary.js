@@ -1,10 +1,11 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 // A moving algebra of usable readings. Symbolic source ports, conditional
 // coherent interpretation, and physical control availability remain separate.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const C=require('./coordinated_continuation.js'),R=require('./coordinated_relation_resolve.js');
 const {c,z,one,ii,nz,sub,mul,div,mat,eye,scale,plus,minus,adj,mm,comm,kron,tr,eq,isZero}=C.exact;
-const root=path.resolve(__dirname,'../..'),judgeFile=path.resolve(root,'../gate/bin/judge-where.js');
+const root=path.resolve(__dirname,'../..'),judgeFile=path.resolve(root,'Checks/Archive/WhereV2/judge-where.js');
 const {judgeWhereTexts}=require(judgeFile),hash=x=>crypto.createHash('sha256').update(x).digest('hex'),key=C.json;
 const issued=new WeakSet();
 const counters={normalFormClosures:0};

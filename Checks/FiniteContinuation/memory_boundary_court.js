@@ -1,9 +1,10 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 // Read the actual finite choice tree through the existing equality court.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const frame=require('./whole_word_frame.js'),joint=require('./joint_return_court.js'),base=require('./court_bridge.js');
 const root=path.resolve(__dirname,'../..');
-const {judgeWhereTexts}=require(path.resolve(process.env.VI_WHERE_JUDGE||path.join(root,'../gate/bin/judge-where.js')));
+const {judgeWhereTexts}=require(path.resolve(path.join(root,'Checks/Archive/WhereV2/judge-where.js')));
 function context(){
  const c=frame.context(),name='Sources/Examples/MemoryBoundaryPreparation.swift',s=fs.readFileSync(path.join(root,name),'utf8');
  c.source+='\n'+s;c.fingerprints[name]=base.digest(s);return c;

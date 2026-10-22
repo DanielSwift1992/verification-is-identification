@@ -1,8 +1,9 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const base=require('./court_bridge.js'),orientation=require('./resident_orientation_word_court.js');
 const root=path.resolve(__dirname,'../..');
-const {judgeWhereTexts}=require(path.join(root,'../gate/bin/judge-where.js'));
+const {judgeWhereTexts}=require(path.join(root,'Checks/Archive/WhereV2/judge-where.js'));
 function context(){const c=orientation.context(),n='Sources/Examples/ResidentReadingCost.swift',s=fs.readFileSync(path.join(root,n),'utf8');c.source+='\n'+s;c.fingerprints[n]=base.digest(s);return c;}
 function read(c){const prior=orientation.read(orientation.context());const single=[0,1].map(b=>({votes:[b],answer:Number(base.reading(c,'ResidentReadingCostRoot.Single.'+(b?'Right':'Left'),['QBit0','QBit1']).slice(-1))}));
  const candidates={Single:single,...prior.policy.policies};return{schema:'vi.resident-reading-cost.v1',source_sha256:c.fingerprints,orientation:prior,candidates,

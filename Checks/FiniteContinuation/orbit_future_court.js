@@ -1,10 +1,11 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 // Apply a proposed finite word to the actual current Swift successor. Integer
 // counts/observable semantics and optimality are proved in the companion layer.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const old=require('./orbit_return_court.js'),base=require('./court_bridge.js');
 const root=path.resolve(__dirname,'../..');
-const {judgeWhereTexts}=require(path.join(root,'../gate/bin/judge-where.js'));
+const {judgeWhereTexts}=require(path.join(root,'Checks/Archive/WhereV2/judge-where.js'));
 function check(payload,directory){
  const c=old.context(),source=old.read(c);assert.deepEqual(payload.source,source,'Must use the actual current root');
  assert.equal(new Set(source.rows.map(r=>JSON.stringify(r))).size,8);

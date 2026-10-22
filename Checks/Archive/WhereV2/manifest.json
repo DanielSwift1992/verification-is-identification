@@ -1,0 +1,1660 @@
+{
+  "schema": "vi.research.where-archive/1",
+  "state": "frozen; not current Court evidence",
+  "vi_before_revision": "b4ac5a3ff2238a53bef84bda3edc6f0ddb50ce5e",
+  "origin": {
+    "repository": "https://github.com/DanielSwift1992/gate",
+    "revision": "cd5c55750b4639e15136ded0592920c573ad89ce",
+    "path": "bin/judge-where.js",
+    "deleted_in": "78c603c16406fd780942f5f73be72aa54293e8c0",
+    "sha256": "3beed68f0ec30c7a2ca233b9754adfeb905a1502146129211bd4b51c62c67185",
+    "canon": 2
+  },
+  "consumers": {
+    "Checks/FiniteContinuation/coarse_acquisition_court.js": {
+      "before_sha256": "97ae3edc777b0c1d4b90db42f9c05a8dd9de62ac65e719285821678ee777717a",
+      "frozen_sha256": "ab56e3ff3a1000a4427ac1f5aff28b03391c991e5d827b2bb6db15ffc8b7ac67"
+    },
+    "Checks/FiniteContinuation/contact_court.js": {
+      "before_sha256": "8e13b0ce4457000772724adff79767f9a52d030f0455cd831b45a4ee6dcfc5d6",
+      "frozen_sha256": "a218733ee1881f109a1b198593c6f9833c8a5805f76f4a413c94ca3706bf22cd"
+    },
+    "Checks/FiniteContinuation/coordinated_moving_boundary.js": {
+      "before_sha256": "8b07ce06e80d7419a3a4bb72d46911b2f2b333645e31c7a45fd21252cd47412c",
+      "frozen_sha256": "6859d191e4cc480c5dda718a1759f03d59aa903df96b41fb2036bc5dcd98a394"
+    },
+    "Checks/FiniteContinuation/court_bridge.js": {
+      "before_sha256": "a619060f5c12016879ccbee087120649b4cb7db4e14e853fa8d8ce7e30300fc9",
+      "frozen_sha256": "f25175971f7d29133bdf38d41a51f2d88da3a917fa7f2184986dae88fb60a20b"
+    },
+    "Checks/FiniteContinuation/court_bridge_checks.js": {
+      "before_sha256": "dc5cdeede55971abc155b354faee532f3cdf1198e82c6e7b04b1b927e149f33f",
+      "frozen_sha256": "61a0ace2b778834d4682381a5c859db476163bdfcb6d942b612cfa046b857364"
+    },
+    "Checks/FiniteContinuation/derived_contact_boundary_checks.js": {
+      "before_sha256": "03c545c621c88c63eca9e239b100c009fc1d4424637b2720ad6c031d91681a8b",
+      "frozen_sha256": "f222db63c57fdb3d192a0f787666d93c332fe58208d4e576df39d1dcfa51fbe0"
+    },
+    "Checks/FiniteContinuation/environment_court.js": {
+      "before_sha256": "e8f806c76ef69de1dba5c4658d3430740863bf3e3ede5a095245739bec05f2d7",
+      "frozen_sha256": "55dfa98b9c1164b32026d4c88e3d090e826a820887b1bc6b88a89a95bf61aa65"
+    },
+    "Checks/FiniteContinuation/environment_court_checks.js": {
+      "before_sha256": "977a7a77fb26ffcbda3b960823e4817db4f0cd8f9a00bba518635c9e916c8907",
+      "frozen_sha256": "789e078825a019b4cf8654eae23cfdeb42cf9908739d27535c2e224dca7c9263"
+    },
+    "Checks/FiniteContinuation/joint_return_court.js": {
+      "before_sha256": "7cfa167a70f642f0c42b63eef1c0578cabf094bf8a72034269ca2a5f25fd7bba",
+      "frozen_sha256": "81a264001391d5ce7427d3156f5b053fc34408bbc4ad03e7c32def555f7a66b9"
+    },
+    "Checks/FiniteContinuation/memory_boundary_court.js": {
+      "before_sha256": "c28e2b0d665e23010d7559fa339f6c8c73b5ec58a3cc8768673e9a0595cf6150",
+      "frozen_sha256": "f22d261f64ea513d9b2b3fc43dedb2b803039f54df21c41ec199ac7e3768f32a"
+    },
+    "Checks/FiniteContinuation/orbit_frame_court.js": {
+      "before_sha256": "0b0d71263beda73fd44e0eb07885f0b6cae94bdb7d11a65c8c7d24824a1fd709",
+      "frozen_sha256": "6e5bddb36d46cb2516efb04b480f42a6d0b80bddd09d9ce5d8ff2e2a31991a74"
+    },
+    "Checks/FiniteContinuation/orbit_future_court.js": {
+      "before_sha256": "8e0f511a771a9efdf600914b137518aa403470c17db1b0e02f2b88bdb16b8911",
+      "frozen_sha256": "65ba101a71d1c45ed8d14eeb8cf118dbaa1c655f5409fb1948510353feea619a"
+    },
+    "Checks/FiniteContinuation/orbit_reflection_court.js": {
+      "before_sha256": "c8a97c288148c1c353e5c9d102a26a3a2f488845066a0cae6b8336a975b14d08",
+      "frozen_sha256": "c06c6f6286ed06f8c2a9543ef2a3ae89257301c4c0b349e72e9fb444c6f118ac"
+    },
+    "Checks/FiniteContinuation/orbit_return_court.js": {
+      "before_sha256": "a7692dbe5e95e4658455d4630b793eaad2596b5a332ba6fd3ceb608735467059",
+      "frozen_sha256": "6c83f5f2cbe11b67a754b91bb2cbdeac16b5a439228adb37ad2589243ec4250b"
+    },
+    "Checks/FiniteContinuation/renewal_court.js": {
+      "before_sha256": "7cfe7d0c5caa0ad8f4ef5310d3b9581bda5ee20e1b74b7ef392b4acd3ea58ad4",
+      "frozen_sha256": "25f87a482058b78890fa453e773e859f7bbfbd05bfb80a1d8e8a74c37e7a6615"
+    },
+    "Checks/FiniteContinuation/resident_acquisition_court.js": {
+      "before_sha256": "a63ca5a85e15fd060432f1f58e453167a666c2dfcdbdb53988352aa50237468c",
+      "frozen_sha256": "26ed9fd7ed91ea8866e9b7d001f3b360a32ed6a2065d004d8d6279fdb00ded44"
+    },
+    "Checks/FiniteContinuation/resident_boundary_representation_court.js": {
+      "before_sha256": "77c9ee036f9cd6a3d8adb1972d614dcac3053ef3610827a5917ca0d3da29192e",
+      "frozen_sha256": "05b228639d19f65cfc9338da9baefb3af179af3c8249c8dd6b999d4ee32f585f"
+    },
+    "Checks/FiniteContinuation/resident_classical_court.js": {
+      "before_sha256": "15b6e677fe2862d9cc73700166d95a0c15ded3012c114a063585a6bc43e74b7f",
+      "frozen_sha256": "1814d67828e86d28616dcaf59d57e63633eb0a4855d42afeacb39957753a82c8"
+    },
+    "Checks/FiniteContinuation/resident_completion_court.js": {
+      "before_sha256": "8930b22bdabfc3e17460f5164ac40ffe53d44112b6913b5dd5d934127c4931e3",
+      "frozen_sha256": "dd1a35b91733ef7c6659a2a8a54566ac20b48900762e3e668b986bcb79aad169"
+    },
+    "Checks/FiniteContinuation/resident_framed_court.js": {
+      "before_sha256": "c80ff3e2a92811ce7a09bccce4f6c770422ee4703431db2620f8d01e2d3e1d8d",
+      "frozen_sha256": "af3e75a05cc130241b30f5e2dabdf0ac65207da7159a2b84645b5efb8217c3a0"
+    },
+    "Checks/FiniteContinuation/resident_goal_acquisition_court.js": {
+      "before_sha256": "4d5c09a2af17f6f8626a969c7e71a6826573a30f2d14887dc6dc14f57e4fd330",
+      "frozen_sha256": "18987ceb03c0e6743ff398adbf12651136b4394a9887f0fe924809fe26e37822"
+    },
+    "Checks/FiniteContinuation/resident_goal_court.js": {
+      "before_sha256": "8b6685c62dc9370de7c93b65ab7056aee996f0c967df9421e1d0830d66940dba",
+      "frozen_sha256": "bb05f2d682fb7882f7aa4d88d48b7ae7e7242fc174492cfee5446178be5f090e"
+    },
+    "Checks/FiniteContinuation/resident_goal_synthesis_court.js": {
+      "before_sha256": "22ccb744c1a8bd5cb9def33e26570fe4d18d66992f9632aedb8067dc92a16909",
+      "frozen_sha256": "feba7e00d573bea7073519eea38ebea085659c2762bf293c6c6b02d89382a267"
+    },
+    "Checks/FiniteContinuation/resident_joint_goals_court.js": {
+      "before_sha256": "da9b51c8c63e4a2984e151ad843015af15f6d601426713870a249c513ad3f2d1",
+      "frozen_sha256": "ec6a64b5e475a751cadd36c00092449b3fed2d78afe77f920f7151ad1d13c997"
+    },
+    "Checks/FiniteContinuation/resident_measurement_wire_court.js": {
+      "before_sha256": "70b203da6ee602b4993c93681ac0a5d1c77b5b3f2a5001bdd1f212093ab0d446",
+      "frozen_sha256": "8c81b8145ecaf9bf99c05cdf7491c71c48a88864bb36143437abda111a3669e2"
+    },
+    "Checks/FiniteContinuation/resident_night_final_audit.py": {
+      "before_sha256": "679863052cb2df3b1157fd02798ba226b5b3e547d6fa90d2863ddb7fd04ce10b",
+      "frozen_sha256": "dc9db932a4d3f034ac2839422e592c9bbb2cbf01d02bcccc69393a5f4767dd52"
+    },
+    "Checks/FiniteContinuation/resident_orientation_word_court.js": {
+      "before_sha256": "08083beb74009c11af58cbaab45463f0d41f3f31002f4fb8e2d2350854a36c93",
+      "frozen_sha256": "5964bef69f302ba23f905f760d0b7afa809b99b13fea8d3ff964600a14bc8a5b"
+    },
+    "Checks/FiniteContinuation/resident_program_court.js": {
+      "before_sha256": "8930767def12829663e862cf546eb437cb4df76ebbf5004097d2c35442908778",
+      "frozen_sha256": "e87c4011b950a94a79fc7130b001205445287cc68365791fd74053af419b40a1"
+    },
+    "Checks/FiniteContinuation/resident_raw_reply_court.js": {
+      "before_sha256": "9216f7c4b5c0c89e743187e341c82d6877d5bbf2f988d67b7bb63af63fd26255",
+      "frozen_sha256": "d1b0353d6510cb56635989767a01b82634ab50357c27cf0b224c71f370090686"
+    },
+    "Checks/FiniteContinuation/resident_reading_cost_court.js": {
+      "before_sha256": "5970c032822d368f3bbd3967cb28b3f4531844da77cd5a69a4b7203614b62316",
+      "frozen_sha256": "1f34014731df16501a01962454b1740a9a8e61fac5debb7278fa82be3f75aaf9"
+    },
+    "Checks/FiniteContinuation/resident_repeated_read_court.js": {
+      "before_sha256": "f4d72eda3df157544d394fe900d7a3523b70c57488964c354cc8ee8accc031d5",
+      "frozen_sha256": "20871fc079790bc99cecec3c8a92c90347f1abffb06057360abdcd05ef7f54b2"
+    },
+    "Checks/FiniteContinuation/resident_reporter_policy_court.js": {
+      "before_sha256": "b5e62863e8a5c594483a7aeb74a4ef28a2dc30edb95f26ca6183952ca707e8f8",
+      "frozen_sha256": "bc61a7964f66b75a037380a89ef558add2c967fd3e9c33374f8d294a4ebc05e1"
+    },
+    "Checks/FiniteContinuation/resident_stopped_read_court.js": {
+      "before_sha256": "dca12378ef26be40d77c460ed766a2c29159a4d0988f5fb026a25ed33b0ea2fb",
+      "frozen_sha256": "702a8d67e82ac7a15ab21039ec429f32cbac08f2ca317fe8dee7f827de41fff9"
+    },
+    "Checks/FiniteContinuation/resident_supported_contact_court.js": {
+      "before_sha256": "6cb9307d5403e9f4781fba6dba2677ac82195ca28c14c39384c6812a38314d10",
+      "frozen_sha256": "9ec50c98c936e8b91adc247a3bd7baa48e54f903eef82e98de2711f23adc98bb"
+    },
+    "Checks/FiniteContinuation/returning_attempt_court.js": {
+      "before_sha256": "d0f825110814c1e37efb0a2db58e540eeb0da21bead9ccfcd5e24496065b5766",
+      "frozen_sha256": "40ef4f4eec774e80fcf42044317a5c6a402329d212dcb7cac1856a6ad3c6848f"
+    },
+    "Checks/FiniteContinuation/reuse_scope_court.js": {
+      "before_sha256": "ab08c012c5f61b3c5b713aca485cc5e231c908d9e356f245da038c2a056847cc",
+      "frozen_sha256": "5760e0cf5f78137659b8a52ee4bbedcb0c67a31437baf55482993faa10a2caef"
+    },
+    "Checks/FiniteContinuation/routed_court.js": {
+      "before_sha256": "e01e4a3a42292cd6fbe86cd8db8b8a9290a5d9a74daa2fec4edd4da609a02bae",
+      "frozen_sha256": "c2a60758e1ddb880db81be4a641b8a097dddc81deaaa7d745641efc0715ddeda"
+    },
+    "Checks/FiniteContinuation/routed_court_checks.js": {
+      "before_sha256": "5a222d6cd8f5e111c9754374a8cf88d141ee50146103c361166b3667112b0cc6",
+      "frozen_sha256": "e5e5d3e992e2c1b8c04f592c75d9d3ecd97f294c770b01fc30e8263867f00623"
+    },
+    "Checks/FiniteContinuation/whole_word_frame.js": {
+      "before_sha256": "3a35403b36dc1934d065d46936243fde57aeb78201d45688b5bf7e626e65ca37",
+      "frozen_sha256": "e7356bba908606e4d8e44938eb2f6879e29ec0a634de13a1cbcfe7092d5ed08b"
+    },
+    "Checks/contact-boundary-court.js": {
+      "before_sha256": "7a8b88a733376d8fcf55bc73b3e94455f8ccb31eb9d32fd1cac28968e3c385ab",
+      "frozen_sha256": "60a83ed777704a6e456bbdb4c441ba340acc851f89b3bf84cc27d8d65a530857"
+    },
+    "Checks/four-contact-court.js": {
+      "before_sha256": "a94bac19981e2d277d340c6cc4a697408ee4c6ea2abc00646687e43b92109ec2",
+      "frozen_sha256": "111c294cc18aa5bde395aef79de3782140277f78433fd301d0112ef1c4b9bcec"
+    },
+    "Checks/local-policy-court.js": {
+      "before_sha256": "352b0edbcd673a3e399886156f211411e12a945ee75b9ef2691704045902e881",
+      "frozen_sha256": "9f07d76ae4060fadf418462db0a2c6e99947baf999aa1b8ef32e13d95e86590a"
+    }
+  },
+  "related_native_consumers": {
+    "Checks/FiniteContinuation/returning_night_audit.py": {
+      "before_sha256": "9930be5091dd9adc2006a1d8f8eecd41bbfd1390452290c393f2868de1024b01",
+      "frozen_sha256": "721abee2a6422e593929981eb1c82265c8e5797efa9c40a80ee0800a8289f92e"
+    }
+  },
+  "documentation_provenance": {
+    "Checks/README.md": {
+      "before_sha256": "ae1b9effe6216d406c1b52dfb24ea71c31b1036793ea03f176fbc1d61c6691f2",
+      "initial_migration_sha256": "a89a4f79227982161c134846a86ca85faacfe2407032dd67f3edf5906fe7fdb2",
+      "status": "provenance only; documentation is not a frozen executable consumer"
+    }
+  },
+  "recorded_reader_sha256": "9d64a7db35ca82eb043f82702d8386dcc389cd7e90218f7ed6084c7317ed4088",
+  "recorded_reader_provenance": {
+    "bytes": 25161,
+    "revision": null,
+    "revision_status": "uncommitted reader; no matching gate revision, as established by the Opus review",
+    "relationship": "not the archived cd5c5575 reader; historical receipt replay is not supplied by this archive",
+    "included": false,
+    "receipt_file_count": 207,
+    "receipt_hash_occurrences": 1103,
+    "receipt_address_scope": "207 JSON receipts, one parent pointer and relative key suffix per file; file hashes identify the complete receipts. Another 14 QPY payloads contain the same reader hash and are not addressed here.",
+    "evidence_basis": "Independent audit of the preserved receipt bytes; the recorded reader has no matching repository revision.",
+    "unaddressed_qpy_payload_count": 14
+  },
+  "recorded_reader_receipts": [
+    {
+      "path": "Research/Artifacts/acquisition-future-synthesis-20260916/audit.json",
+      "sha256": "e1bb8c25470369eb8be2aefbaa9daa8f8b44efcd874e6a6bb47c93839989a801",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/acquisition-future-synthesis-20260916/manifest.json",
+      "sha256": "d734bb497fdbb90adeaf7f5954d40f60706a24942b179d233adccd45752cedae",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/composed-contact-20260914/result.json",
+      "sha256": "4d26136a31b348b5d3c89f9adf1c517f9e42c012d800d662723a07b1cf4a71a0",
+      "matching_pointer_count": 5,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/composed-contact-20260914/source-reading.json",
+      "sha256": "e70e15bd87ad6de9002cfe797331d8e9e2ea34e0f4fbbf0c230ee88e88e9fb7e",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/constructive-acquisition-20260916/audit.json",
+      "sha256": "695a2ebe8a58682d492073a4842789711381825c7c08633057655199559a59c4",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/continuing-environment-20260914/build.json",
+      "sha256": "b50cba2518325872c78d0e9902fad06efe4068d19fea2d49d720d83666d99492",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/continuing-environment-20260914/controller.json",
+      "sha256": "a9441377bdddd0fc111db9cc2bbdad207a5317a4c752489f8f00e5c6c5c5c686",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/continuing-environment-20260914/source-reading.json",
+      "sha256": "a94ab1b74087e8ed6751272b40a0c9937e7e480c9e1eb62fb5f915a187f29350",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/continuing-environment-routed-base-20260914/build.json",
+      "sha256": "e71befcf3a83074f910fdb5aae0fe88482fd6d645182b8a53c311ce2fd7da84b",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/continuing-environment-routed-base-20260914/controller.json",
+      "sha256": "a9441377bdddd0fc111db9cc2bbdad207a5317a4c752489f8f00e5c6c5c5c686",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/continuing-environment-routed-base-20260914/source-reading.json",
+      "sha256": "a94ab1b74087e8ed6751272b40a0c9937e7e480c9e1eb62fb5f915a187f29350",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/final-aggregate-audit.json",
+      "sha256": "e10e692f997ffc727c7a1d6d02eb8ee168360bcadd63a5f195bba3c9c6d99a21",
+      "matching_pointer_count": 3,
+      "json_pointer_parent": "/results/0/result/source/sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/final-scope-audit.json",
+      "sha256": "09372baa934cf906a2e42f6a903521ad32d6d569bc8ec0e5f00281cc54692859",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/currentRootHashes",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-1-checks.json",
+      "sha256": "aa889837bdd033743cc65636d93adebc66784f4f509df97e99f20e90500b5966",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-10-probe-certificates.json",
+      "sha256": "786f1c50ced7c2b32c2b3792413554f88bed94665356808b9720e50f2f106629",
+      "matching_pointer_count": 30,
+      "json_pointer_parent": "/0/certificate/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-10-probe-realization.json",
+      "sha256": "72a3290bf3fa8c84c912a6b196aed4e479ea0d319e8e5142be3b0c99943196a8",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/loweredQ/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-11-session-reusable-proof.json",
+      "sha256": "ee732dbcea2e78bc34459da739a035d087c719004f3a16f0ddfb791e72d101f8",
+      "matching_pointer_count": 5,
+      "json_pointer_parent": "/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-12-question-bound-certificates.json",
+      "sha256": "db3f615c99899f09ae9c82713b2e0b5888dd7112bf0f2a6b8131c4d7066a6b8a",
+      "matching_pointer_count": 15,
+      "json_pointer_parent": "/0/certificate/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-13-cut-certificates.json",
+      "sha256": "41348faf82da1abf4740eae23c0aa294767078e7abe68b6f47ce13663f4870a0",
+      "matching_pointer_count": 21,
+      "json_pointer_parent": "/0/spec/program/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-13-cut-realizations.json",
+      "sha256": "84c5fc767ab15239b50042b9e5fd6b35a5214697af76b621fe6bbbb3ac401b57",
+      "matching_pointer_count": 3,
+      "json_pointer_parent": "/direct/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-14-pulse-certificates.json",
+      "sha256": "8362eb18b4b1c57cdb151136eafa2d542f93995438f18700c627aeb232110214",
+      "matching_pointer_count": 25,
+      "json_pointer_parent": "/0/spec/program/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-14-pulse-realizations.json",
+      "sha256": "e96b834c50e2c9144cdb122d935ebfc014fab03bb2c05b7975ed67b2152ddaaf",
+      "matching_pointer_count": 3,
+      "json_pointer_parent": "/direct/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-15-cq-certificates.json",
+      "sha256": "6eac12fd4ce1460eea0ce971a624f6cc45081fe826c9be751bf2bc6fbe0984b6",
+      "matching_pointer_count": 62,
+      "json_pointer_parent": "/0/plan/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-16-family-certificates.json",
+      "sha256": "8c3ef56c6a85089ed09441acdd8196835c8f7ee9d6f733b39f82ffaeb9b6334f",
+      "matching_pointer_count": 135,
+      "json_pointer_parent": "/0/template/plan/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-16-family-realizations.json",
+      "sha256": "f30adcf0621404645a7bc92cb96d8e9a8f4f9ec0eb42acc54c7f6c4de08a9588",
+      "matching_pointer_count": 14,
+      "json_pointer_parent": "/derivedAdmission/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-17-protected-certificates.json",
+      "sha256": "b13851dbc570366060d539283cc2b736ede68ab6bca3974065a6232717f71264",
+      "matching_pointer_count": 16,
+      "json_pointer_parent": "/decompositions/0/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-18-encoder-certificates.json",
+      "sha256": "8357c3a131780f1d12df101fc2893ef8bf5bad18bb40e73d8a778798f8e53ce9",
+      "matching_pointer_count": 4,
+      "json_pointer_parent": "/claims/0/certificate/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-19-native-certificates.json",
+      "sha256": "968e5243764932d457d2958d070c38971db6a556d69e78c099641fd63d83a393",
+      "matching_pointer_count": 3,
+      "json_pointer_parent": "/encoder/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-2-access-obstruction.json",
+      "sha256": "f344d481bb96352030d884eb60066c95b921679e6b4cd56f7db05bd3fd8440c4",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/resolution/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-2-inconsistent-certificate.json",
+      "sha256": "6e7a0615ba65bd22d6fcd8125b4936497aa06392c30a589a564e84c655e5dcd1",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/resolution/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-2-relational-certificate.json",
+      "sha256": "a595e2f2e10e903cbd76ef69696b2cb18cc7311dc2d1a73c6e85e33f410b869d",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/resolution/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-20-exit-certificates.json",
+      "sha256": "3d52a7b72b6ef84aecd968429bc9d861edb42a9b8e6b928bb852255791955b51",
+      "matching_pointer_count": 6,
+      "json_pointer_parent": "/entry/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-21-aggregate-audit.json",
+      "sha256": "bd3ac48070a8bee76cf3dc65d1cf0ff4c5e6e5f5d0e3f5446b63aee3b6ccc95f",
+      "matching_pointer_count": 3,
+      "json_pointer_parent": "/results/0/result/source/sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-22-control-certificates.json",
+      "sha256": "5bebbbadadae7da998a3d92527838aab9f18b2a67a1c44e290d14c07f4738999",
+      "matching_pointer_count": 11,
+      "json_pointer_parent": "/entry/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-23-agreement-certificates.json",
+      "sha256": "c530bef4ad147a78b252a4208807009ee6746c0e08ce58a5304bab318719a7ae",
+      "matching_pointer_count": 17,
+      "json_pointer_parent": "/space/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-24-aggregate-audit.json",
+      "sha256": "c88931ae92e6af85a8df187e1f70e9b77f141c03901d588c4de52737fdf4ba3f",
+      "matching_pointer_count": 3,
+      "json_pointer_parent": "/results/0/result/source/sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-25-future-certificates.json",
+      "sha256": "e7e8b51faaec8b868d72870d99e00474548a892cc9b8c642c2c91caad7e429c4",
+      "matching_pointer_count": 5,
+      "json_pointer_parent": "/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-25-maximal-logical-future.json",
+      "sha256": "5658de6c2e0e6a24c549bd9d19010d14dd17a177c87394559110424364a8e5f8",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-26-live-swift-audit.json",
+      "sha256": "ddb635512270affc8a61b7f42ed5ef9e7bae6312fe31e5aec459b857ee929d79",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-26-readout-certificates.json",
+      "sha256": "0c78df2dc2934d3ac4023b3decc4062d6b6fdc4b3412a5bb3768e32eeb2ab8f8",
+      "matching_pointer_count": 5,
+      "json_pointer_parent": "/0/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-26-readout-realizations.json",
+      "sha256": "9d80ecbee84b4b7888f3f65154f7c7e4052191083467fe4a653b0aab8c37b68c",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/readoutStage/cases/0/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-3-generator-obstructions.json",
+      "sha256": "a26c9eb0921da16ebe9f26b9e6da4e085aa72875e01d6335467139811cf75b79",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/badSector/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-3-uniform-certificate.json",
+      "sha256": "1c43116d88ff60f289b11368d4e5376e70c4eb8c702fbff21e417d0539cb5ac6",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/certificate/resolution/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-4-moving-certificates.json",
+      "sha256": "537cdd58588e1981b831d9fa7234f297e0e148273b7a24c7e10679d7dafacc45",
+      "matching_pointer_count": 7,
+      "json_pointer_parent": "/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-5-dynamic-obstruction.json",
+      "sha256": "08307e78336ef55f5c1c5619c434068f53557c863f7f72d6b16dc23e41c615f9",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-5-dynamic-route.json",
+      "sha256": "8d72ad3a18a0d6080f9c21aade0cad07154fead2a0a4222fcee09390cc149bf5",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/cycle/program/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-6-instrument-certificates.json",
+      "sha256": "2dbc934aaf6d1ce38aaabdc24ea31e27296d33854629734bd69642ecc0918013",
+      "matching_pointer_count": 8,
+      "json_pointer_parent": "/0/certificate/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-6-source-continuation.json",
+      "sha256": "89446b5f72e0a747324819a448f2db63969d23e0c3ffa332c78ad65c877d0c44",
+      "matching_pointer_count": 5,
+      "json_pointer_parent": "/r1/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-7-algebra-certificates.json",
+      "sha256": "649c3f7da18535bc3ebe8fc9e951c0e041ac5a30a9305c915837f5c2669c42d4",
+      "matching_pointer_count": 17,
+      "json_pointer_parent": "/0/certificate/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-8-port-certificates.json",
+      "sha256": "246abed082bbddd421b257d9e5624fc0320a057bb4d3a2e1fcdd8caef71931e5",
+      "matching_pointer_count": 6,
+      "json_pointer_parent": "/0/certificate/resolution/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/coordinated-continuation-20260917/wave-9-acquisition-certificates.json",
+      "sha256": "f65bbb64918561b44759c52b3f89eefec4ed8c3652c729fde5c20e15898d5786",
+      "matching_pointer_count": 5,
+      "json_pointer_parent": "/0/certificate/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/derived-contact-boundary-20260916/checks.json",
+      "sha256": "2d788bbc02f7ebb44e1798c3240b0c976497780a8058c74b8498eb1f77717ed5",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source/sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/finite-acquired-family-example-20260914/result.json",
+      "sha256": "5c3d8be731567673ac3a7e5ce5f0cd362c583ebf6c1582ab8acac96de8c287e9",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/proof/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/finite-current-root-20260914/proof.json",
+      "sha256": "461d2db995cd17178283ae081f2396b20318c03e97c47b28fed5aec6f1529626",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/proof/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/finite-current-root-20260914/source-reading.json",
+      "sha256": "54a30a4c4c0b809890a53564c9d73ba03423d66d1e354162629b038759a4870d",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/ibm-acquired-family-final-20260914/result.json",
+      "sha256": "fe60894f5a45704f714e9855f77724a1079d1d39dafde6daf23a0cf6ea732fbb",
+      "matching_pointer_count": 17,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/ibm-acquired-family-final-20260914/source-reading.json",
+      "sha256": "54a30a4c4c0b809890a53564c9d73ba03423d66d1e354162629b038759a4870d",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/ibm-acquired-family-pending-20260914-1843/result.json",
+      "sha256": "e21b6a61a97fce6e870a23ff64140e094d83714dd40ed01942a321c815fb1b11",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/ibm-acquired-family-pending-20260914-1843/source-reading.json",
+      "sha256": "54a30a4c4c0b809890a53564c9d73ba03423d66d1e354162629b038759a4870d",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/ibm-acquired-family-round01-20260914/result.json",
+      "sha256": "a750d028ca44f08c4f7015979c1efbd9fe45c6651fd6fa8812c26ac44a4bc00c",
+      "matching_pointer_count": 17,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/ibm-acquired-family-round01-20260914/source-reading.json",
+      "sha256": "54a30a4c4c0b809890a53564c9d73ba03423d66d1e354162629b038759a4870d",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/ibm-joint-memory-20260914.json",
+      "sha256": "6824fb1ecda4e459e9c9e9aebdf1d1ae301345e04612394a5b49d565036a1a1d",
+      "matching_pointer_count": 10,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/joint-relation-application-20260916/audit.json",
+      "sha256": "70cb283a7c30f92ac365727d47074d5dac067f40abac0a7404c6d20e1d36c33d",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/joint-returns-complete-20260914/build.json",
+      "sha256": "f897c44aebd353ed9d554a42e02e6b8ad9221bd2c11e39bb4cae63f702776412",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/certificate/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/joint-returns-complete-20260914/decisions.json",
+      "sha256": "000ddcdcc574f5b8fee83bdf64bdc043105b9cbea8cf0366e2a625335954b0c6",
+      "matching_pointer_count": 48,
+      "json_pointer_parent": "/0/decision/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/joint-returns-complete-20260914/source-reading.json",
+      "sha256": "accfc9d7433640c3cc53bc8ff711f3cbbd43ab0cbd5487cdaa9c7ea99963a1c3",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/memory-boundary-20260914/boundary-reading.json",
+      "sha256": "a6a69587af1ae58a96924f4253195efd91a7ee6e7bd659ddbaf3f7cb41208bd9",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/memory-boundary-20260914/build.json",
+      "sha256": "d9154c914f1829795a6af3408866a47e03377a6d175c59d2476a293a2c479da3",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/phase-key-renewal-20260914/cases.json",
+      "sha256": "ea06bf8dc365aa846d253315db79f1ec0b39d5f7036119029ec6a16650a49e8b",
+      "matching_pointer_count": 48,
+      "json_pointer_parent": "/0/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/phase-key-renewal-20260914/result.json",
+      "sha256": "9ab89e82afff4f15ad6b24782d6d7b2274087303caad56d75781edf622608fe5",
+      "matching_pointer_count": 49,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/phase-key-renewal-20260914/source-reading.json",
+      "sha256": "aa57ad849e7bcfabed313da7b0abfd4132d318dafc2b9ba782cb2f5160885641",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/phase-key-renewal-final-20260914/cases.json",
+      "sha256": "a09da88c2ef63f732bb0789ae55dd281bfa2e536444c74c642694c5adbb98ec9",
+      "matching_pointer_count": 56,
+      "json_pointer_parent": "/0/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/phase-key-renewal-final-20260914/court-checks.json",
+      "sha256": "365cb8ba83061afd741c4b53a37829811c729dc2daf2135cb1fce70ea288edfa",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/phase-key-renewal-final-20260914/detection.json",
+      "sha256": "4b567134912e7b05672e28fa669fbc7c960a8b41b6f5e379535593b9b041a945",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/phase-key-renewal-final-20260914/result.json",
+      "sha256": "4ff616a1b09822e88899157bd29bd244459ad6c779e5b9c75d5e614c52e3a41e",
+      "matching_pointer_count": 57,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/phase-key-renewal-final-20260914/source-reading.json",
+      "sha256": "f6b6735aa0e41b48939b264a6db05daf8e7c724dcad1d501aa43b2b44f2cb200",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/renewable-boundary-20260917/certificates.json",
+      "sha256": "b70c9cc9b21e7f85c299bdeaa059bda64b3346e48dfb11b69ad69292ad880882",
+      "matching_pointer_count": 7,
+      "json_pointer_parent": "/completion/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/renewable-boundary-20260917/final/certificates.json",
+      "sha256": "b70c9cc9b21e7f85c299bdeaa059bda64b3346e48dfb11b69ad69292ad880882",
+      "matching_pointer_count": 7,
+      "json_pointer_parent": "/completion/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/renewable-boundary-20260917/final/operator-evidence.json",
+      "sha256": "68bb69d255c83e7063d54d68e08f85485443a76f62068873e27ee5926b511f87",
+      "matching_pointer_count": 4,
+      "json_pointer_parent": "/transported/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/renewable-boundary-20260917/manifest.json",
+      "sha256": "762f93de2bd1d43a54776ce2780eac8b3c266b914b592307dc5ef9417245b25f",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/renewable-boundary-20260917/operator-evidence.json",
+      "sha256": "68bb69d255c83e7063d54d68e08f85485443a76f62068873e27ee5926b511f87",
+      "matching_pointer_count": 4,
+      "json_pointer_parent": "/transported/source",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-acquisition-20260915/acquisition-reading.json",
+      "sha256": "0d5cc6ad80e38889a69f5b6a675f41936399863e806c79f8757e41a481f9d386",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-acquisition-20260915/build.json",
+      "sha256": "99ebc41c61ddddf9fbc692fa3481bdafe10642c78aab3ab733fad41832016783",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-boundary-composition-20260915/audit.json",
+      "sha256": "45bbb8a04b6443c814dd6b08ae798df80007747a152170ba60ff7c5d162a1da0",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-boundary-composition-20260915/check-output.json",
+      "sha256": "45bbb8a04b6443c814dd6b08ae798df80007747a152170ba60ff7c5d162a1da0",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-boundary-composition-20260915/reading.json",
+      "sha256": "caef691c0f685e4be905f03ca9599e28385d5037a153a7bf079c8dc34c29b3c8",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-classical-control-20260915/audit.json",
+      "sha256": "76ade4dde320a400a8c1b091886a81804ae372c889b1a72c8f421f3fd2d33e05",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-classical-control-20260915/build.json",
+      "sha256": "7d1c85dbcdce977f3e3c81b8167054a46957e9ed5e6d00830c72600864ae157b",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-classical-control-20260915/classical-reading.json",
+      "sha256": "c8d3f4fc21c4e69fd6d080423295e2dd822ea76a50fd5520402a7939de74a9c4",
+      "matching_pointer_count": 3,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-common-endpoint-20260915/audit.json",
+      "sha256": "4200271c13b30fd8fd307b041a9417346f93e9ccc693d07e812c6973de9a530d",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/courts/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-common-endpoint-20260915/court.json",
+      "sha256": "6213351d1583b517199d961821ca8565cb268343b888f0e2076e82babd056f56",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-common-endpoint-20260915/receipt.json",
+      "sha256": "12678dc8d0d722e633ef0f89506536cdcd06ba2c3806f545e9cc247ade2a2db7",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/engine_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-common-endpoint-20260915/source-reading.json",
+      "sha256": "d265b867dee646771f1316586c699f92a5a3821a6fa557cba290cfe85920937c",
+      "matching_pointer_count": 6,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-common-endpoint-hardware-20260915/correct-metadata.json",
+      "sha256": "e84c0e0789d6cffb80a05f3e00a9fd51b9e72d13b2769c0fd8e12d074d2ebfa5",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-common-endpoint-hardware-20260915/ignore-metadata.json",
+      "sha256": "554e3191174d1952fbbaa4839d6e8190f5fe5e2371ae188ab66975f6b2fda121",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-common-endpoint-hardware-20260915/plan.json",
+      "sha256": "feb031e046d6b32e7fd986b910b00aa85557f93e6217d4c1f4f74ce49a949101",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-common-endpoint-hardware-20260915/receipt.json",
+      "sha256": "909da7bf633c71310e5d15ebd35ccf185545e28498febc4ad37be38a6ea41e93",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/engine_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-completion-20260915/build.json",
+      "sha256": "930b52b9adaf929a431081526dc8d6963953ed47e42c68ab939b14b1aa27d643",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-completion-20260915/completion-reading.json",
+      "sha256": "6eda75cfac42b3f9160ea094f24a84d5b360cc16167ac5467335bf85e5aed18d",
+      "matching_pointer_count": 7,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-contact-memory-20260915/audit.json",
+      "sha256": "ad5ce19f665ec6d618e003a16e56ce306a86f781e826fc7c8e7c348de4d0e59e",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-context-design-20260915/audit.json",
+      "sha256": "bcb3b69aacc7a6ddb4c087823732941149deab316689a7d25f6379a98604be9e",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-context-design-20260915/context-design-review/Research/Artifacts/resident-context-design-20260915/audit.json",
+      "sha256": "bcb3b69aacc7a6ddb4c087823732941149deab316689a7d25f6379a98604be9e",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-continuation-memory-20260914/build.json",
+      "sha256": "7b466c75c1a17e42fbd5fc4c92a96efe38f001443a38f7d55766c0641c594e19",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-continuation-memory-20260914/resident-reading.json",
+      "sha256": "822ccd5b2f678f0273a5b911c37977e3e192a8e06e2703e0fe9c2f6f1d757739",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-flat-controller-20260915/local-audit.json",
+      "sha256": "98f9c02e6a1be5b69c2d394ad85bee212c57fdf9a8a9047178d580b927d21301",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-framed-contact-20260915/audit.json",
+      "sha256": "017a16f30117c6f6b895ef1de1c1b8e6aecc0c7192c2d8b0cab3f121ef42cb80",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-framed-contact-20260915/build.json",
+      "sha256": "6d8a52e2407d5164e78936f76b2831ba4d96bda63204b77f3eb7b861eae4e981",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-framed-contact-20260915/framed-reading.json",
+      "sha256": "4a71457a431696dc2be05a7328ab37485ac5ab2ef1be7244c3dab195718a5e16",
+      "matching_pointer_count": 4,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-future-boundary-20260915/audit.json",
+      "sha256": "f35569603f692895deaa9b58770d539d53d42476bf5b85dacb6b2aff3c8587e1",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-future-boundary-20260915/check-output.json",
+      "sha256": "f35569603f692895deaa9b58770d539d53d42476bf5b85dacb6b2aff3c8587e1",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-goal-acquisition-20260915/acquisition-reading.json",
+      "sha256": "dfde0b7715433c3fd843a79ebba39e4b864e4c9da24dadb66a13eece9f8997fb",
+      "matching_pointer_count": 6,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-goal-acquisition-20260915/audit.json",
+      "sha256": "a077d6872fb891760fc3969b6a8b3d975bb53b4110959e10c822cc5df32df485",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-goal-acquisition-20260915/build.json",
+      "sha256": "0fad7f5a074a45aab3a596a39db657803a8b378c12730f862ca0af6c5b4efe79",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-goal-memory-20260915/audit.json",
+      "sha256": "4d4bea0580b0e3337eb02e9936e967017607e894986bc23a724a8b852f3ff369",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-goal-memory-20260915/build.json",
+      "sha256": "0238a320da9ea6bdf2ce330a9ef1013f21484348c89892a29a16711f4d6582cb",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-goal-memory-20260915/goal-reading.json",
+      "sha256": "5d42f7177718f7cc835f18d7de73049d888fb675c20d6c5282750c7358907071",
+      "matching_pointer_count": 5,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-goal-synthesis-20260915/audit.json",
+      "sha256": "6fcd66e2081b8049dcde3b2c9030047fcc05c49042ad2c5ef5ab51c7f3576634",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/courts/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-goal-synthesis-20260915/build.json",
+      "sha256": "7e5261593ed27038b001c58891b03e2da59276ebae62686f7de6d8167a1b4182",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-goal-synthesis-20260915/receipt.json",
+      "sha256": "293df0df101ba4337fe7a3183d36caae373d296c5a0ade3db1e007e59ecd7bc2",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/engine_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-goal-synthesis-20260915/synthesis-reading.json",
+      "sha256": "d265b867dee646771f1316586c699f92a5a3821a6fa557cba290cfe85920937c",
+      "matching_pointer_count": 6,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-goal-synthesis-20260915-review/Research/Artifacts/resident-goal-synthesis-20260915/audit.json",
+      "sha256": "6fcd66e2081b8049dcde3b2c9030047fcc05c49042ad2c5ef5ab51c7f3576634",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/courts/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-goal-synthesis-20260915-review/Research/Artifacts/resident-goal-synthesis-20260915/build.json",
+      "sha256": "7e5261593ed27038b001c58891b03e2da59276ebae62686f7de6d8167a1b4182",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-goal-synthesis-20260915-review/Research/Artifacts/resident-goal-synthesis-20260915/receipt.json",
+      "sha256": "293df0df101ba4337fe7a3183d36caae373d296c5a0ade3db1e007e59ecd7bc2",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/engine_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-goal-synthesis-20260915-review/Research/Artifacts/resident-goal-synthesis-20260915/synthesis-reading.json",
+      "sha256": "d265b867dee646771f1316586c699f92a5a3821a6fa557cba290cfe85920937c",
+      "matching_pointer_count": 6,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-joint-reading-scope-20260915/numeric.json",
+      "sha256": "f78b558b445e58b0cf4eb93fe7fbbac082670634c9b56324d953eea954abb046",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-measurement-wire-20260915/build.json",
+      "sha256": "eab4da2db96666d1d354350ba0b93db17d6f3ba75b14349661195a91cce6c706",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-measurement-wire-20260915/wire-reading.json",
+      "sha256": "fc3e219c91322fc16af79a6c60e034d351ad769c24971bd08b8be0517168b70b",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-night-final-audit-20260915/audit.json",
+      "sha256": "cf34782c5593a9b1bdf4ab6fb405d026a08d43214d918a74bcb4df4a50d0a16b",
+      "matching_pointer_count": 4,
+      "json_pointer_parent": "/verified_input_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-orientation-word-20260915/build.json",
+      "sha256": "8b84452618598671095fdadf79a43d4ddd7c6e74acc572dc36fa0e789d377da1",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-orientation-word-20260915/four-step-draft/build.json",
+      "sha256": "fadc01ec3b8dd65ea61183552fc9779c2cc84d8f757e1476b321d4565b71708a",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-orientation-word-20260915/four-step-draft/orientation-reading.json",
+      "sha256": "b557a16a5186a4a3190f954cfc5042f3761340fc5cfe6fe36ba9af854b235fa0",
+      "matching_pointer_count": 4,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-orientation-word-20260915/orientation-reading.json",
+      "sha256": "0ec45bc0e384e89dae2c8166053cc7541c24dc015c8b4ad0add499e6e13c0423",
+      "matching_pointer_count": 4,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-raw-reply-20260915/build.json",
+      "sha256": "3338f35929a16e81750980b1ef82ea17c164a869a4ef26238780b41f97b517b8",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-raw-reply-20260915/raw-reply-reading.json",
+      "sha256": "c3c44ce64ab221cb0eee84f9aa70d04ba657f06fc87d24f48c506ddb75b8e3f6",
+      "matching_pointer_count": 4,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-reading-cost-20260915/build.json",
+      "sha256": "143ff895792d5565c0a6e7b904c5038655d9b0a50e71e41ff2fb320c0b5877a3",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-reading-cost-20260915/cost-reading.json",
+      "sha256": "f4468f14d61ab9a43c992ecd38d9350e2dc34fd1082c7b29c8802ff692d5a651",
+      "matching_pointer_count": 5,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-repeated-read-20260915/build.json",
+      "sha256": "b7b397ac7d348ae07f9468b1d043f27cd7467faf7ac9265f07f0f78bdc8bbdf9",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-repeated-read-20260915/repeated-reading.json",
+      "sha256": "0188718603b4f557b4888788306716d0597339821720fde0dd263a1837a7578e",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-reporter-policy-20260915/build.json",
+      "sha256": "ef89808397c51d2840d59b5195ac72f101eb8603267ffb01c701b3a31b96dcea",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-reporter-policy-20260915/policy-reading.json",
+      "sha256": "a19c615903a362bf82d574cd3e7cc55f68c15ea75e6ee8671cbbc24a58238914",
+      "matching_pointer_count": 3,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-reusable-ability-20260915/audit.json",
+      "sha256": "4316fc12a1bbfd6b3886a3c240c4b31c9a090db1e8efc4e4be8f989f33784227",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-reusable-ability-20260915/check-output.json",
+      "sha256": "4316fc12a1bbfd6b3886a3c240c4b31c9a090db1e8efc4e4be8f989f33784227",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/evidence/boundary/Baseline11-Z-actual-ISA.json",
+      "sha256": "985969bc0041b2a3c0f87d87f90357bff6d2173c8220cbfb395c9aeff6e65121",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/metadata/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/evidence/boundary/Toggle00-Z-actual-ISA.json",
+      "sha256": "8c4685a636c840b674cd48bb6295c0a6b1c46e79538e76ad3194df0b84b546a7",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/metadata/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/evidence/boundary/plan-view.json",
+      "sha256": "2d46190f7e82213e52b7fbbf5b35076baf4da16b3c4b3f4f687c4b2fcea3e22f",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/evidence/boundary/raw-result.json",
+      "sha256": "ecd2df9258a8d3693057e586f75eac105bfad7730bc93a59b42e8b1fa23978bb",
+      "matching_pointer_count": 16,
+      "json_pointer_parent": "/__value__/pub_results/0/__value__/metadata/circuit_metadata/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/evidence/boundary/source-reading.json",
+      "sha256": "0d5cc6ad80e38889a69f5b6a675f41936399863e806c79f8757e41a481f9d386",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/evidence/feedback/plan-view.json",
+      "sha256": "bb9db4266b8fb255a872e585c927e06627667d7aa5475c0373ed6874f9774ca3",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/evidence/feedback/raw-result.json",
+      "sha256": "a0b1822b6594fa9e58fccf73e7cd252e1f27586ee6512f26d17c4eea7075ebe7",
+      "matching_pointer_count": 10,
+      "json_pointer_parent": "/__value__/pub_results/0/__value__/metadata/circuit_metadata/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/evidence/feedback/source-reading.json",
+      "sha256": "0d5cc6ad80e38889a69f5b6a675f41936399863e806c79f8757e41a481f9d386",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/evidence/manifest.json",
+      "sha256": "5cde375c1a547a37f7f941b992f93c1a772b20f06e70a4ece06df2fbb5fcb87f",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/original_packet_sha256",
+      "key_suffix": "ibm-resident-acquisition-20260915/source/external/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/vi-hardware-evidence/boundary/Baseline11-Z-actual-ISA.json",
+      "sha256": "985969bc0041b2a3c0f87d87f90357bff6d2173c8220cbfb395c9aeff6e65121",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/metadata/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/vi-hardware-evidence/boundary/Toggle00-Z-actual-ISA.json",
+      "sha256": "8c4685a636c840b674cd48bb6295c0a6b1c46e79538e76ad3194df0b84b546a7",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/metadata/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/vi-hardware-evidence/boundary/plan-view.json",
+      "sha256": "2d46190f7e82213e52b7fbbf5b35076baf4da16b3c4b3f4f687c4b2fcea3e22f",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/vi-hardware-evidence/boundary/raw-result.json",
+      "sha256": "ecd2df9258a8d3693057e586f75eac105bfad7730bc93a59b42e8b1fa23978bb",
+      "matching_pointer_count": 16,
+      "json_pointer_parent": "/__value__/pub_results/0/__value__/metadata/circuit_metadata/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/vi-hardware-evidence/boundary/source-reading.json",
+      "sha256": "0d5cc6ad80e38889a69f5b6a675f41936399863e806c79f8757e41a481f9d386",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/vi-hardware-evidence/feedback/plan-view.json",
+      "sha256": "bb9db4266b8fb255a872e585c927e06627667d7aa5475c0373ed6874f9774ca3",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/vi-hardware-evidence/feedback/raw-result.json",
+      "sha256": "a0b1822b6594fa9e58fccf73e7cd252e1f27586ee6512f26d17c4eea7075ebe7",
+      "matching_pointer_count": 10,
+      "json_pointer_parent": "/__value__/pub_results/0/__value__/metadata/circuit_metadata/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/vi-hardware-evidence/feedback/source-reading.json",
+      "sha256": "0d5cc6ad80e38889a69f5b6a675f41936399863e806c79f8757e41a481f9d386",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915/vi-hardware-evidence/manifest.json",
+      "sha256": "5cde375c1a547a37f7f941b992f93c1a772b20f06e70a4ece06df2fbb5fcb87f",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/original_packet_sha256",
+      "key_suffix": "ibm-resident-acquisition-20260915/source/external/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915-draft/evidence/boundary/Baseline11-Z-actual-ISA.json",
+      "sha256": "1f9ca9d5c69fbcd9f850b168c20060a7034e01122f909a783a4d475bd4ea4113",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/metadata/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915-draft/evidence/boundary/Toggle00-Z-actual-ISA.json",
+      "sha256": "78f71a19f67eb9245a9e75c29201ed3dac485ab8773cfd3e418fe2b1c4e955c7",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/metadata/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915-draft/evidence/boundary/plan-view.json",
+      "sha256": "2d46190f7e82213e52b7fbbf5b35076baf4da16b3c4b3f4f687c4b2fcea3e22f",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915-draft/evidence/boundary/raw-result.json",
+      "sha256": "ecd2df9258a8d3693057e586f75eac105bfad7730bc93a59b42e8b1fa23978bb",
+      "matching_pointer_count": 16,
+      "json_pointer_parent": "/__value__/pub_results/0/__value__/metadata/circuit_metadata/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915-draft/evidence/boundary/source-reading.json",
+      "sha256": "0d5cc6ad80e38889a69f5b6a675f41936399863e806c79f8757e41a481f9d386",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915-draft/evidence/feedback/plan-view.json",
+      "sha256": "bb9db4266b8fb255a872e585c927e06627667d7aa5475c0373ed6874f9774ca3",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915-draft/evidence/feedback/raw-result.json",
+      "sha256": "a0b1822b6594fa9e58fccf73e7cd252e1f27586ee6512f26d17c4eea7075ebe7",
+      "matching_pointer_count": 10,
+      "json_pointer_parent": "/__value__/pub_results/0/__value__/metadata/circuit_metadata/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915-draft/evidence/feedback/source-reading.json",
+      "sha256": "0d5cc6ad80e38889a69f5b6a675f41936399863e806c79f8757e41a481f9d386",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-review-followup-20260915-draft/evidence/manifest.json",
+      "sha256": "164a475c45e30e3885153e4f95076dfc67cf3cd2469041439b089537a817433b",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/original_packet_sha256",
+      "key_suffix": "ibm-resident-acquisition-20260915/source/external/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-scheduler-pilot-20260915/audit.json",
+      "sha256": "3487682aee3a96be5304630bc90a6446c8e084bbdde177f8eba83b5b3535c15b",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/payload/source_root_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-scheduler-pilot-20260915/plan-review.json",
+      "sha256": "a30751fcd79766590d9a03055b42accc7b4d21e215b6a09f9220a2b8c2db4029",
+      "matching_pointer_count": 9,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-stopped-read-20260915/build.json",
+      "sha256": "c9332e1b17dad32258bef21052a14616b8cae7b7bdb440d7b1d8d28958db9d05",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-stopped-read-20260915/stopped-reading.json",
+      "sha256": "cb3d62879a59f848bfe4e2648073aa6c11c8dfc220b8cd4be2f97efcfabccbc8",
+      "matching_pointer_count": 6,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-stream-20260915/audit.json",
+      "sha256": "f7bcaed7c546e233888ff465a1859636cbc3d2993173a35166efc4fc91b6d6ee",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-supported-contact-20260915/build.json",
+      "sha256": "645cdbfd3ce5928296e3253150f25980bb7b4841a0dbff0e5e244355951b6942",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-supported-contact-20260915/support-reading.json",
+      "sha256": "9da060524aefec2b3c6e06a4b3f44cb24a7ccc95af6892192eb376b9e9f860b0",
+      "matching_pointer_count": 8,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/resident-wire-audit-20260915/audit.json",
+      "sha256": "4efd9559131b21ed998af4170078e7d3534d01b70bda3ed4ff394e88d4bc2c24",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/original_packet_sha256",
+      "key_suffix": "ibm-resident-acquisition-20260915/source/external/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/acquired-memory/model.json",
+      "sha256": "57a9f8910b1720367baffeb2c0825ef971c783f04cadd071c98440c062814f3a",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/coarse/court.json",
+      "sha256": "9e0ff70d9d8c8482adc52f58481855764daa9a01dea7fc49fe0452d2552114c5",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/coarse/manifest.json",
+      "sha256": "6d96a1fc717ddd7507b931d6a96cc933233c1fae8f6083db7cb0a1bcfd4ef5a3",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/current_source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/frame-orbit/checks.json",
+      "sha256": "35f37dc1135ea7d9166d6fa72fa97a28280f5556367ec78cf602ddf570b4583b",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/Swift_JS_court/source/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/future-orbit/checks.json",
+      "sha256": "470703bae3dee255dfd7b305eb68a3a92d24a3e32d42e1129e9956d26ec9cf2d",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/Swift_bounded_court/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/future-orbit/court-input.json",
+      "sha256": "caab296160acc5239d8e356a9ca003d817d8bb968b23226e99783f8fd036fdaf",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/future-orbit/court.json",
+      "sha256": "397d30b12a52fe9574ef8e0231cc8da007ac69f4e6e156b0579a95fad9026b9a",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/horizon-memory/checks.json",
+      "sha256": "2ba37ce911741c529d5d4f45192d66f6a89ae6a92c554bfe246f16349a320b45",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/model/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/horizon-memory/model.json",
+      "sha256": "00f8c3ba6b742e112ecbee9adde82d9f4865b94d379da9f487b3a2aa4694b83b",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/learning/checks.json",
+      "sha256": "bfdae04be37433443b8e6093159d4071391cd9bd35c007a411ef3ebb344b6b26",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/learning/court.json",
+      "sha256": "a28e2f2b53d0256fa6e610d2396697fcfbe8b8e6b773d8326b856ba07de9d5be",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/js/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/learning/manifest.json",
+      "sha256": "0a187aa577136b661ba9f1a70c5aab09dda7a2ff262c67d6d0eacd0ad95593ec",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/live-orbit/checks.json",
+      "sha256": "2a7483efbe67a1f0140f18c1b69fb4a7eb9400b404d63bd7813ec05d3afba2ac",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/Swift_bounded_court/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/live-orbit/court-input.json",
+      "sha256": "1ee70044fa24c52e40dabc0fe2e5989e0fdc8e0c974ea75f9749a2a2ade5d2e3",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/memory-future/interfaces.json",
+      "sha256": "e6456dba3e0eeeb572b662644ae5aef7387c9fe4c2aee79286d548443314eff9",
+      "matching_pointer_count": 4,
+      "json_pointer_parent": "/common_factor/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/memory-query-bound/checks.json",
+      "sha256": "fd8f97ed7855758ee7e7ca4502398751d791968274b384b8daf6bedc14c8a87f",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/model/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/orbit/court.json",
+      "sha256": "0253f0f0070629e4c21c24750fdef3ff4d8ed8d1c88782c80deb6c61ac73c09a",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/reflection-memory/checks.json",
+      "sha256": "9189e8b0e8f840dcabfba620572e6a6f20172cbe417fdaef8b4e3531c2d647a4",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/bounded_Swift_court/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/reflection-memory/court-input.json",
+      "sha256": "17fb36482d077dd69a1a42aee249a31f0b3fff0f341684367b0154f15a1c34c3",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/returning-attempt-20260916/resource-choice/checks.json",
+      "sha256": "90bbd30e18f053333c394be9684653506d85cb2c3ff29a9fa7209849a0248bac",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/model/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/reusable-phase-scope-20260914/court-checks.json",
+      "sha256": "7ce1597a73627253353b6dbeae825e16194cf798e23054fa0f051a2238e903a8",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/reusable-phase-scope-20260914/proposal.json",
+      "sha256": "1021d6f9156b6119cfacc0c919e95ca25d51dc43fb0c94dd29de519e490a407a",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/reusable-phase-scope-20260914/result.json",
+      "sha256": "ae205108ce79258688f4f2c71f3754b8cbbcd665c03f1940f5a5f9e9a2e554bd",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/reusable-phase-scope-20260914/source-reading.json",
+      "sha256": "ea169bd02e93cae416042c9e4ccc48ed665d812022184180368aae997bd17d25",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/routed-access-final-20260914/build.json",
+      "sha256": "0bf1fd8d8a340e3e332c2a17e467b56c50f2a59bb0b3d3fba07e1195876e6fb1",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/certificate/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/routed-access-final-20260914/routes.json",
+      "sha256": "c40bd742d67f4878e77461e45f2995b209be4c9f75e44ff968ed44ffc0862bf9",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/routed-access-final-20260914/source-reading.json",
+      "sha256": "2236b1314bf3cacfcad11c314f583205428e1bb917c8da48067c32db60107494",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/whole-word-admission-20260914/audit.json",
+      "sha256": "df9f99ccf800c67a5b8c9c14474a5858bdc0a1c9a021489e1ffd494bb95401ae",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/application/record/binding/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/whole-word-admission-20260914/build.json",
+      "sha256": "326e7c744a94dfa8484b5acf4fe024e7d03eaf3ae7f1d24cba1b20a9fa38f9d0",
+      "matching_pointer_count": 1,
+      "json_pointer_parent": "/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    },
+    {
+      "path": "Research/Artifacts/whole-word-admission-20260914/frame-reading.json",
+      "sha256": "864042477620cbc2382bdedc9f3aea9fa63a25814b154ac3fac4ce158290165f",
+      "matching_pointer_count": 2,
+      "json_pointer_parent": "/source/source_sha256",
+      "key_suffix": "gate/bin/judge-where.js"
+    }
+  ]
+}

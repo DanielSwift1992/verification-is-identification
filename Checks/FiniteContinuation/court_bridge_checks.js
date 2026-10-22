@@ -1,9 +1,10 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 const fs=require("node:fs"),path=require("node:path"),os=require("node:os");
 const assert=require("node:assert/strict"),{spawnSync}=require("node:child_process");
 const {context,sourceModel,applyPlan}=require("./court_bridge.js");
 const root=path.resolve(__dirname,"../..");
-const {judgeWhereTexts}=require(path.resolve(process.env.VI_WHERE_JUDGE||path.join(root,"../gate/bin/judge-where.js")));
+const {judgeWhereTexts}=require(path.resolve(path.join(root,"Checks/Archive/WhereV2/judge-where.js")));
 const original=JSON.parse(fs.readFileSync(process.argv[2],"utf8"));
 const ctx=context(),model=sourceModel(ctx),good=applyPlan(ctx,model,original);
 assert.equal(good.verdict.judged,17);

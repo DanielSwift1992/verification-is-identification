@@ -1,3 +1,4 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 
 // A bounded adapter to the EXISTING court, not a new Swift parser or judge.
@@ -8,7 +9,7 @@ const path=require("node:path");
 const crypto=require("node:crypto");
 const assert=require("node:assert/strict");
 const root=path.resolve(__dirname,"../..");
-const judgePath=path.resolve(process.env.VI_WHERE_JUDGE || path.join(root,"../gate/bin/judge-where.js"));
+const judgePath=path.resolve(path.join(root,"Checks/Archive/WhereV2/judge-where.js"));
 const {judgeWhereTexts}=require(judgePath);
 const digest=x=>crypto.createHash("sha256").update(x).digest("hex");
 const inputs=["Sources/VerificationIsIdentification/Primitive.swift",

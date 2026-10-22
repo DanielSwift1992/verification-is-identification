@@ -1,9 +1,10 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 // New application of the existing finite reader; no new parser or judge.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const base=require('./court_bridge.js'),joint=require('./joint_return_court.js'),contact=require('./contact_court.js');
 const root=path.resolve(__dirname,'../..');
-const {judgeWhereTexts}=require(path.resolve(process.env.VI_WHERE_JUDGE||path.join(root,'../gate/bin/judge-where.js')));
+const {judgeWhereTexts}=require(path.resolve(path.join(root,'Checks/Archive/WhereV2/judge-where.js')));
 function context(){
  const c=joint.context();
  for(const name of ['Sources/Examples/MemoryBoundaryPreparation.swift','Sources/Examples/ResidentInterpreter.swift']){

@@ -54,6 +54,24 @@ def refusal_error(status, output, flag, name):
     return None
 
 
+def stop_compiler(process):
+    # Reap an exited leader before Darwin killpg can report EPERM for it.
+    if process.poll() is not None:
+        return
+    try:
+        os.killpg(process.pid, signal.SIGTERM)
+    except ProcessLookupError:
+        pass
+    except PermissionError as error:
+        # Exit can race the poll above. communicate() may also own Popen's
+        # waitpid lock, so a second nonblocking poll need not observe it yet.
+        # Accept EPERM only after wait confirms exit; a live denial stays red.
+        try:
+            process.wait(timeout=1)
+        except subprocess.TimeoutExpired:
+            raise error
+
+
 def run(root, cases, modules, cache, jobs, output):
     if not cases:
         raise ValueError('no registered mutations selected')
@@ -119,12 +137,7 @@ def run(root, cases, modules, cache, jobs, output):
             with process_lock:
                 stop.set()
                 for process in running:
-                    if process.returncode is not None:
-                        continue
-                    try:
-                        os.killpg(process.pid, signal.SIGTERM)
-                    except ProcessLookupError:
-                        pass
+                    stop_compiler(process)
             for future in pending: future.cancel()
 
     return 0

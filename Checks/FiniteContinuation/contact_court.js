@@ -1,10 +1,11 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 // Compose probe laws from current fields through the EXISTING court. No
 // numerical quantum model and no caller-supplied probe reply table.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const base=require('./court_bridge.js');
 const root=path.resolve(__dirname,'../..');
-const {judgeWhereTexts}=require(path.resolve(process.env.VI_WHERE_JUDGE||path.join(root,'../gate/bin/judge-where.js')));
+const {judgeWhereTexts}=require(path.resolve(path.join(root,'Checks/Archive/WhereV2/judge-where.js')));
 const blocks={X:'CoherentX<CoherentPhase0>',Y:'CoherentXZ<CoherentPhase1>',Z:'CoherentZ<CoherentPhase0>'};
 const signed={
   'CoherentX<CoherentPhase0>':{axis:'X',sign:1},'CoherentX<CoherentPhase2>':{axis:'X',sign:-1},

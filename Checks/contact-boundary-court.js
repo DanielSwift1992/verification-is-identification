@@ -1,3 +1,4 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 
 // Adapter only: current declarations are carried verbatim to the existing
@@ -8,9 +9,8 @@ const os = require("node:os");
 const assert = require("node:assert/strict");
 const { spawnSync } = require("node:child_process");
 const root = path.resolve(__dirname, "..");
-const judgePath = process.argv[2];
-const nativePath = process.argv[3];
-if (!judgePath) throw new Error("usage: node Checks/contact-boundary-court.js /path/to/gate/bin/judge-where.js [matching native court]");
+const judgePath = path.join(root, "Checks/Archive/WhereV2/judge-where.js");
+const nativePath = process.argv[2];
 const { judgeWhereTexts } = require(path.resolve(judgePath));
 
 function declaration(file, name, flat = true) {

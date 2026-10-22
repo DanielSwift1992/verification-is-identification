@@ -60,11 +60,7 @@ preventing missing standalone dependencies from being counted as a refusal.
 twelve actions on (A,B,B,B), and separates it from whole-law identification.
 The general query lower bound is the paper's argument, not a test result.
 
-For the smaller declaration-equality fragment, run
-`node Checks/four-contact-court.js ../gate/bin/judge-where.js .build/arm64-apple-macosx/debug/Tools`.
-The JS reader and the already built native judge read the current source
-relations directly; the modeled process is not built for this check.
-Unsupported syntax is a reader failure, not a proof of incompatibility.
+The historical reader checks are frozen under [WhereV2](Archive/WhereV2/README.md): 42 executable consumers and one additional native consumer have fixed hashes; this README retains only its original provenance hash. The public archived reader is a deliberate substitute for the different uncommitted reader named in 207 local historical receipts. Their separate identities and receipt addresses are recorded in the manifest. The three small archived programs remain red because the reader was substituted, not because the source questions drifted. `python3 Checks/archived-where.py` verifies the frozen bytes and scans all Checks JavaScript, Python and shell files for literal live sibling paths and reader overrides. These archived runs do not establish the current Court contract: canon v2 accepts three false claims in the five-case v0.1 comparison. Current judgments use `Sources/Court` and the versioned [Court contract](../Contracts/Court/v0.1/README.md). Unsupported syntax is a reader failure, not a proof of incompatibility.
 
 `Context.swift`, also checked by `whole`, derives which answers survive an
 expanded source family. The first coordinate and a coarser descendant remain

@@ -1,8 +1,9 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const base=require('./court_bridge.js'),acquisition=require('./resident_goal_acquisition_court.js');
 const root=path.resolve(__dirname,'../..');
-const {judgeWhereTexts}=require(path.join(root,'../gate/bin/judge-where.js'));
+const {judgeWhereTexts}=require(path.join(root,'Checks/Archive/WhereV2/judge-where.js'));
 function context(){const c=acquisition.context(),n='Sources/Examples/ResidentCompletion.swift',s=fs.readFileSync(path.join(root,n),'utf8');c.source+='\n'+s;c.fingerprints[n]=base.digest(s);return c;}
 function bit(c,t){return Number(base.reading(c,t,['QBit0','QBit1']).slice(-1));}
 function term(r,f,l){return `ResidentHistoryLast${l}<QBit${r},QBit${f}>`;}

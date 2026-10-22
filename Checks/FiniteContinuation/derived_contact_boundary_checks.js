@@ -1,10 +1,11 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 // Independent exact finite mathematics. No SDK, QPU, physical-admission flag,
 // floating-point tolerance, or new runtime executor. See the paired note.
 const fs = require("node:fs"), path = require("node:path");
 const assert = require("node:assert/strict"), crypto = require("node:crypto");
 const root = path.resolve(__dirname, "../..");
-const judgeFile = path.resolve(root, "../gate/bin/judge-where.js");
+const judgeFile = path.resolve(root, "Checks/Archive/WhereV2/judge-where.js");
 const { judgeWhereTexts } = require(judgeFile);
 const sha = x => crypto.createHash("sha256").update(x).digest("hex");
 

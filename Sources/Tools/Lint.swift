@@ -8,9 +8,8 @@ import Foundation
 // PROVENANCE are cross-file/whole-module checks the mirror's per-file design has no way to
 // express yet, so this tool stays alive to cover them
 // (`swift run Tools lint <dir>… [--strict] [--docc <path>]`). The LawCheck plugin runs it on
-// every build: `--strict` on the library targets (Organization, DocumentKit), where a
-// violation refuses the build, and report mode on VectorDemo, whose drivers are the
-// sanctioned value edge (the plugin header argues the split).
+// every build: the consumer's LawCheck.strict declaration selects refusal on a
+// violation; without that declaration, the plugin retains report mode.
 //
 //   THE LAW (Sources/VerificationIsIdentification/Law.swift), the checkable subset:
 //     §0′ PURE TYPES : no runtime, no values, types only.        (per line)
@@ -359,19 +358,23 @@ func disconnectedPapers(routedPaperDir: String) -> [Violation] {
     return out
 }
 
-// ── arguments: .swift files, `--stamp PATH`, `--docc DIR`, `--strict` ──
-func collect(_ arguments: [String]) -> (files: [String], stamp: String?, docc: String?, strict: Bool) {
+// ── arguments: sources, stamp, provenance and consumer strictness ──
+func collect(_ arguments: [String]) -> (files: [String], stamp: String?, docc: String?, strict: Bool, declaration: String?) {
     let fm = FileManager.default
     var files: [String] = []
     var stamp: String?
     var docc: String?
     var strict = false
+    var declaration: String?
     var iterator = arguments.makeIterator()
     while let argument = iterator.next() {
         switch argument {
         case "--stamp": stamp = iterator.next()
         case "--docc": docc = iterator.next()
         case "--strict": strict = true
+        case "--strict-declaration":
+            declaration = iterator.next()
+            strict = true
         default:
             var isDirectory: ObjCBool = false
             if fm.fileExists(atPath: argument, isDirectory: &isDirectory), isDirectory.boolValue {
@@ -385,12 +388,26 @@ func collect(_ arguments: [String]) -> (files: [String], stamp: String?, docc: S
             }
         }
     }
-    return (files.sorted(), stamp, docc, strict)
+    return (files.sorted(), stamp, docc, strict, declaration)
 }
 
 enum Lint {
 static func run(_ args: [String]) {
-let (files, stamp, docc, strict) = collect(args)
+let (files, stamp, docc, strict, declaration) = collect(args)
+// A plugin plan may be cached while an input file changes. Validate the
+// declaration on execution as well as during planning, before writing a stamp.
+if let declaration {
+    do {
+        let policy = try String(contentsOfFile: declaration, encoding: .utf8)
+        guard policy.trimmingCharacters(in: .whitespacesAndNewlines) == "strict" else {
+            FileHandle.standardError.write(Data("error: \(declaration): expected strict\n".utf8))
+            exit(1)
+        }
+    } catch {
+        FileHandle.standardError.write(Data("error: \(declaration): unreadable UTF-8 strict declaration: \(error.localizedDescription)\n".utf8))
+        exit(1)
+    }
+}
 let runProvenance = docc != nil
 if let docc { loadLegend((docc as NSString).appendingPathComponent("Sources.md")) }
 files.forEach { scan(file: $0, checkProvenance: runProvenance) }

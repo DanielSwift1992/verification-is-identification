@@ -1,9 +1,10 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 // A new application of the existing court, not a parser or a noise proof.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const joint=require('./joint_return_court.js'),base=require('./court_bridge.js');
 const root=path.resolve(__dirname,'../..');
-const judgeFile=path.resolve(process.env.VI_WHERE_JUDGE||path.join(root,'../gate/bin/judge-where.js'));
+const judgeFile=path.resolve(path.join(root,'Checks/Archive/WhereV2/judge-where.js'));
 const {judgeWhereTexts}=require(judgeFile);
 const frame=(p,t)=>p==='I'?t:`WholeWord${p}<${t}>`;
 const apply=(word,t)=>word.reduce((s,g)=>`Joint${g.toUpperCase()}<${s}>`,t);

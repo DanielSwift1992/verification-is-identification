@@ -1,5 +1,7 @@
 # Acquiring a sufficient continuation
 
+The reader consumers listed in [WhereV2](../Archive/WhereV2/README.md) are frozen research code. Their canon-v2 results are historical observations, not current Court proofs; live sibling readers and environment overrides are forbidden. Existing descriptions below retain their historical scope. The modern Court contract rejects three claims accepted by this archived reader.
+
 For the fixed ideal T/X case, the source now lives in
 `Sources/Examples/FinitePauliTSource.swift`. `build_from_source.py` reads its
 actual fields through the existing court, searches, and checks the resulting

@@ -6,7 +6,7 @@ job or full Swift build. Frozen positive court failures are reported as such.
 """
 from collections import Counter
 from datetime import datetime,timezone
-import hashlib,json,subprocess,sys,time
+import hashlib,json,os,subprocess,sys,time
 from pathlib import Path
 import numpy as np
 from qiskit import qpy
@@ -97,7 +97,10 @@ def hardware():
 
 
 def native_court(out):
-    executable=ROOT.parent/'gate/bin/gate-judge';rows=[]
+    declared=os.environ.get('VI_ARCHIVED_NATIVE_TOOLS')
+    if not declared:
+        raise RuntimeError('Frozen native audit: explicitly supply VI_ARCHIVED_NATIVE_TOOLS with the historical binary; see Checks/Archive/WhereV2/README.md')
+    executable=Path(declared).resolve();rows=[]
     for folder in ('reflection-memory','frame-orbit','live-orbit','future-orbit'):
         previous=read(BASE/folder/'native-court.json')
         assert sha(executable)==previous.get('native_binary_sha256',previous.get('binary_sha256'))

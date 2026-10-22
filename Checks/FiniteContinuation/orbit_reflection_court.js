@@ -1,10 +1,11 @@
+// Frozen research reader: see Checks/Archive/WhereV2/README.md; not current Court evidence.
 "use strict";
 // Ordered pair cancellation applies at the actual source addresses. The
 // device-square operator law is a separate constructed physical interpretation.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const old=require('./orbit_return_court.js'),base=require('./court_bridge.js');
 const root=path.resolve(__dirname,'../..');
-const {judgeWhereTexts}=require(path.join(root,'../gate/bin/judge-where.js'));
+const {judgeWhereTexts}=require(path.join(root,'Checks/Archive/WhereV2/judge-where.js'));
 function check(payload,directory){
  const c=old.context(),source=old.read(c);assert.deepEqual(source,payload.source);
  let claims='',count=0;const eq=(a,b)=>claims+=base.equation('ReflectionReturn'+count++,a,b);

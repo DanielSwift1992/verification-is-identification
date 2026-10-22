@@ -1,0 +1,448 @@
+{
+  "capHeight" : 0,
+  "capHeightSource" : "not supplied by OS\/2",
+  "capitalHOutlineHeight" : 1493,
+  "glyphs" : [
+    {
+      "advance" : 651,
+      "codepoint" : 32,
+      "glyph" : 3
+    },
+    {
+      "advance" : 1716,
+      "codepoint" : 35,
+      "glyph" : 6
+    },
+    {
+      "advance" : 563,
+      "codepoint" : 39,
+      "glyph" : 10
+    },
+    {
+      "advance" : 799,
+      "codepoint" : 40,
+      "glyph" : 11
+    },
+    {
+      "advance" : 799,
+      "codepoint" : 41,
+      "glyph" : 12
+    },
+    {
+      "advance" : 1716,
+      "codepoint" : 43,
+      "glyph" : 14
+    },
+    {
+      "advance" : 651,
+      "codepoint" : 44,
+      "glyph" : 15
+    },
+    {
+      "advance" : 739,
+      "codepoint" : 45,
+      "glyph" : 16
+    },
+    {
+      "advance" : 651,
+      "codepoint" : 46,
+      "glyph" : 17
+    },
+    {
+      "advance" : 690,
+      "codepoint" : 47,
+      "glyph" : 18
+    },
+    {
+      "advance" : 1303,
+      "codepoint" : 48,
+      "glyph" : 19
+    },
+    {
+      "advance" : 1303,
+      "codepoint" : 49,
+      "glyph" : 20
+    },
+    {
+      "advance" : 1303,
+      "codepoint" : 50,
+      "glyph" : 21
+    },
+    {
+      "advance" : 1303,
+      "codepoint" : 51,
+      "glyph" : 22
+    },
+    {
+      "advance" : 1303,
+      "codepoint" : 52,
+      "glyph" : 23
+    },
+    {
+      "advance" : 1303,
+      "codepoint" : 53,
+      "glyph" : 24
+    },
+    {
+      "advance" : 1303,
+      "codepoint" : 54,
+      "glyph" : 25
+    },
+    {
+      "advance" : 1303,
+      "codepoint" : 55,
+      "glyph" : 26
+    },
+    {
+      "advance" : 1303,
+      "codepoint" : 56,
+      "glyph" : 27
+    },
+    {
+      "advance" : 690,
+      "codepoint" : 58,
+      "glyph" : 29
+    },
+    {
+      "advance" : 690,
+      "codepoint" : 59,
+      "glyph" : 30
+    },
+    {
+      "advance" : 1716,
+      "codepoint" : 61,
+      "glyph" : 32
+    },
+    {
+      "advance" : 1087,
+      "codepoint" : 63,
+      "glyph" : 34
+    },
+    {
+      "advance" : 1401,
+      "codepoint" : 65,
+      "glyph" : 36
+    },
+    {
+      "advance" : 1405,
+      "codepoint" : 66,
+      "glyph" : 37
+    },
+    {
+      "advance" : 1430,
+      "codepoint" : 67,
+      "glyph" : 38
+    },
+    {
+      "advance" : 1577,
+      "codepoint" : 68,
+      "glyph" : 39
+    },
+    {
+      "advance" : 1294,
+      "codepoint" : 69,
+      "glyph" : 40
+    },
+    {
+      "advance" : 1178,
+      "codepoint" : 70,
+      "glyph" : 41
+    },
+    {
+      "advance" : 1587,
+      "codepoint" : 71,
+      "glyph" : 42
+    },
+    {
+      "advance" : 1540,
+      "codepoint" : 72,
+      "glyph" : 43
+    },
+    {
+      "advance" : 604,
+      "codepoint" : 73,
+      "glyph" : 44
+    },
+    {
+      "advance" : 1343,
+      "codepoint" : 75,
+      "glyph" : 46
+    },
+    {
+      "advance" : 1141,
+      "codepoint" : 76,
+      "glyph" : 47
+    },
+    {
+      "advance" : 1767,
+      "codepoint" : 77,
+      "glyph" : 48
+    },
+    {
+      "advance" : 1532,
+      "codepoint" : 78,
+      "glyph" : 49
+    },
+    {
+      "advance" : 1612,
+      "codepoint" : 79,
+      "glyph" : 50
+    },
+    {
+      "advance" : 1235,
+      "codepoint" : 80,
+      "glyph" : 51
+    },
+    {
+      "advance" : 1612,
+      "codepoint" : 81,
+      "glyph" : 52
+    },
+    {
+      "advance" : 1423,
+      "codepoint" : 82,
+      "glyph" : 53
+    },
+    {
+      "advance" : 1300,
+      "codepoint" : 83,
+      "glyph" : 54
+    },
+    {
+      "advance" : 1251,
+      "codepoint" : 84,
+      "glyph" : 55
+    },
+    {
+      "advance" : 1499,
+      "codepoint" : 85,
+      "glyph" : 56
+    },
+    {
+      "advance" : 1401,
+      "codepoint" : 86,
+      "glyph" : 57
+    },
+    {
+      "advance" : 2025,
+      "codepoint" : 87,
+      "glyph" : 58
+    },
+    {
+      "advance" : 1403,
+      "codepoint" : 88,
+      "glyph" : 59
+    },
+    {
+      "advance" : 1251,
+      "codepoint" : 89,
+      "glyph" : 60
+    },
+    {
+      "advance" : 1255,
+      "codepoint" : 97,
+      "glyph" : 68
+    },
+    {
+      "advance" : 1300,
+      "codepoint" : 98,
+      "glyph" : 69
+    },
+    {
+      "advance" : 1126,
+      "codepoint" : 99,
+      "glyph" : 70
+    },
+    {
+      "advance" : 1300,
+      "codepoint" : 100,
+      "glyph" : 71
+    },
+    {
+      "advance" : 1260,
+      "codepoint" : 101,
+      "glyph" : 72
+    },
+    {
+      "advance" : 721,
+      "codepoint" : 102,
+      "glyph" : 73
+    },
+    {
+      "advance" : 1300,
+      "codepoint" : 103,
+      "glyph" : 74
+    },
+    {
+      "advance" : 1298,
+      "codepoint" : 104,
+      "glyph" : 75
+    },
+    {
+      "advance" : 569,
+      "codepoint" : 105,
+      "glyph" : 76
+    },
+    {
+      "advance" : 569,
+      "codepoint" : 106,
+      "glyph" : 77
+    },
+    {
+      "advance" : 1186,
+      "codepoint" : 107,
+      "glyph" : 78
+    },
+    {
+      "advance" : 569,
+      "codepoint" : 108,
+      "glyph" : 79
+    },
+    {
+      "advance" : 1995,
+      "codepoint" : 109,
+      "glyph" : 80
+    },
+    {
+      "advance" : 1298,
+      "codepoint" : 110,
+      "glyph" : 81
+    },
+    {
+      "advance" : 1253,
+      "codepoint" : 111,
+      "glyph" : 82
+    },
+    {
+      "advance" : 1300,
+      "codepoint" : 112,
+      "glyph" : 83
+    },
+    {
+      "advance" : 1300,
+      "codepoint" : 113,
+      "glyph" : 84
+    },
+    {
+      "advance" : 842,
+      "codepoint" : 114,
+      "glyph" : 85
+    },
+    {
+      "advance" : 1067,
+      "codepoint" : 115,
+      "glyph" : 86
+    },
+    {
+      "advance" : 803,
+      "codepoint" : 116,
+      "glyph" : 87
+    },
+    {
+      "advance" : 1298,
+      "codepoint" : 117,
+      "glyph" : 88
+    },
+    {
+      "advance" : 1212,
+      "codepoint" : 118,
+      "glyph" : 89
+    },
+    {
+      "advance" : 1675,
+      "codepoint" : 119,
+      "glyph" : 90
+    },
+    {
+      "advance" : 1212,
+      "codepoint" : 120,
+      "glyph" : 91
+    },
+    {
+      "advance" : 1212,
+      "codepoint" : 121,
+      "glyph" : 92
+    },
+    {
+      "advance" : 1075,
+      "codepoint" : 122,
+      "glyph" : 93
+    },
+    {
+      "advance" : 1303,
+      "codepoint" : 123,
+      "glyph" : 94
+    },
+    {
+      "advance" : 1303,
+      "codepoint" : 125,
+      "glyph" : 96
+    },
+    {
+      "advance" : 651,
+      "codepoint" : 183,
+      "glyph" : 121
+    },
+    {
+      "advance" : 1716,
+      "codepoint" : 215,
+      "glyph" : 153
+    },
+    {
+      "advance" : 1350,
+      "codepoint" : 945,
+      "glyph" : 838
+    },
+    {
+      "advance" : 1307,
+      "codepoint" : 946,
+      "glyph" : 839
+    },
+    {
+      "advance" : 1024,
+      "codepoint" : 8211,
+      "glyph" : 2806
+    },
+    {
+      "advance" : 2048,
+      "codepoint" : 8212,
+      "glyph" : 2807
+    },
+    {
+      "advance" : 1716,
+      "codepoint" : 8594,
+      "glyph" : 3101
+    },
+    {
+      "advance" : 1784,
+      "codepoint" : 8709,
+      "glyph" : 3216
+    },
+    {
+      "advance" : 1784,
+      "codepoint" : 8712,
+      "glyph" : 3219
+    },
+    {
+      "advance" : 1282,
+      "codepoint" : 8728,
+      "glyph" : 3235
+    },
+    {
+      "advance" : 1716,
+      "codepoint" : 8800,
+      "glyph" : 3307
+    },
+    {
+      "advance" : 1716,
+      "codepoint" : 8838,
+      "glyph" : 3345
+    },
+    {
+      "advance" : 1680,
+      "codepoint" : 8898,
+      "glyph" : 3405
+    }
+  ],
+  "unitsPerEm" : 2048
+}

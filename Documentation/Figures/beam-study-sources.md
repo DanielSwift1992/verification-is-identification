@@ -13,4 +13,4 @@ The supplied constructors and generic equalities are established in the typed mo
 
 The companion formal diagrams state U2c and the adequacy law from [Acquisition Keeps Its Question](../../Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/acquisition_keeps_its_question.md). This example does not establish all obligations of that action law. In particular, it does not acquire or execute a physical operation.
 
-Regenerate with `python3 Documentation/Figures/beam-study.py`. The renderer uses the drawing primitives in `render.py`. Review the displayed source mapping and the existing positive/negative fixtures when changing any frame; visual agreement alone is not a semantic check.
+Regenerate with `python3 Checks/vi-figures.py --write`. The composition is the DocumentKit world in [ThreeSources.swift](../../Worlds/Documentation/ThreeSources.swift). Review the displayed source mapping and the existing positive/negative fixtures when changing any frame; visual agreement alone is not a semantic check.

@@ -1,6 +1,1539 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="890" viewBox="0 0 1120 890" role="img" aria-labelledby="title desc">
-<title id="title">vi, showcase and gate</title><desc id="desc">vi owns the research, the constructions and the where and count semantics. showcase is a separate repository with the worked company, its rendering and its policy, and it pins a revision of vi. gate brings records from other projects to a judge built from a pinned revision of vi. A versioned contract with conformance fixtures states what an implementation of a check must pass.</desc>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker></defs>
-<style>text{font-family:Inter,'Segoe UI',Arial,sans-serif;fill:#18263b}.muted{fill:#526174}.blue{fill:#204f8f}.green{fill:#16634b}.amber{fill:#8b5e16}.math{font-family:'DejaVu Sans',sans-serif}.small{font-size:16px}.body{font-size:18px}.label{font-size:20px;font-weight:600}.heading{font-size:28px;font-weight:650}.eyebrow{font-size:14px;font-weight:700;letter-spacing:1.6px}</style>
-<rect width="1120" height="890" rx="16" fill="#ffffff"/>
-<text x="40" y="42" class="eyebrow blue" >THREE PACKAGES</text><text x="40" y="83" class="heading" >Each check has one owner of its meaning.</text><rect x="40" y="149" width="1040" height="83" rx="12" fill="#f6f8fb" stroke="#dde3eb" stroke-width="1.5"/><text x="62" y="180" class="label" >People and agents</text><text x="62" y="209" class="body muted" >Bring a question, a record and access to work.</text><path d="M905 232V290" fill="none" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrow)"/><text x="919" y="266" class="small muted" >submit a record</text><rect x="40" y="302" width="300" height="326" rx="12" fill="#edf3fb" stroke="#7c9fc9" stroke-width="1.5"/><text x="62" y="339" class="heading blue" >vi</text><text x="62" y="376" class="body" >Research and constructions</text><text x="62" y="405" class="body" >Papers · relations · examples</text><text x="62" y="434" class="body" >Checks of stated consequences</text><rect x="60" y="478" width="260" height="125" rx="12" fill="#ffffff" stroke="#bdcfe7" stroke-width="1.5"/><text x="78" y="509" class="label blue" >Semantic owner</text><text x="78" y="540" class="small" >where: declared type relations</text><text x="78" y="565" class="small" >count: selected count question</text><text x="78" y="590" class="small" >Canon + conformance fixtures</text><rect x="410" y="302" width="300" height="326" rx="12" fill="#f7f8fa" stroke="#98a5b7" stroke-width="1.5"/><text x="432" y="339" class="heading" >showcase</text><text x="432" y="376" class="body" >A constructed world</text><text x="432" y="405" class="body" >Organization · DocumentKit</text><text x="432" y="434" class="body" >Pages · SVG · site generation</text><rect x="430" y="478" width="260" height="125" rx="12" fill="#ffffff" stroke="#dde3eb" stroke-width="1.5"/><text x="448" y="509" class="label" >Its own checks</text><text x="448" y="540" class="small" >Policy + differential judge</text><text x="448" y="565" class="small" >Artifacts match constructions</text><text x="448" y="590" class="small" >Seven publication refusals</text><rect x="780" y="302" width="300" height="326" rx="12" fill="#edf7f1" stroke="#7aa68f" stroke-width="1.5"/><text x="802" y="339" class="heading green" >gate</text><text x="802" y="376" class="body" >Entry and delivery</text><text x="802" y="405" class="body" >Records from other projects</text><text x="802" y="434" class="body" >Calls checks · returns results</text><rect x="800" y="478" width="260" height="125" rx="12" fill="#ffffff" stroke="#bad9c8" stroke-width="1.5"/><text x="818" y="509" class="label green" >Supplied implementation</text><text x="818" y="540" class="small" >Passes the selected contract</text><text x="818" y="565" class="small" >Carries question + coverage</text><text x="818" y="590" class="small" >Pinned revision of vi</text><path d="M410 442H340" fill="none" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrow)"/><text x="375" y="424" class="small muted" text-anchor="middle">uses vi</text><path d="M190 628V684" fill="none" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrow)"/><text x="205" y="663" class="small muted" >defines where / count</text><path d="M560 628V684" fill="none" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrow)"/><text x="575" y="663" class="small muted" >defines organization</text><rect x="40" y="698" width="1040" height="99" rx="12" fill="#ffffff" stroke="#8ba2be" stroke-width="1.5"/><text x="62" y="730" class="label blue" >Contract of each check</text><text x="62" y="758" class="body" >Question / semantics     ·     accepted input     ·     response form     ·     conformance suite</text><text x="62" y="783" class="small muted" >Each check has its own version. Passing the finite fixtures shows conformance on that suite.</text><path d="M930 628V684" fill="none" stroke="#64748b" stroke-width="1.8" marker-end="url(#arrow)"/><text x="945" y="663" class="small muted" >conforms to</text><text x="40" y="829" class="body" >NOW  vi and showcase are separate repositories, and showcase pins vi. Gate pins an older revision.</text><text x="40" y="856" class="small muted" >A Rust sample of the judge passes the finite suite of the contract. NEXT  Gate re-pins through the contract.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="890" viewBox="0 0 1120 890" role="img" aria-labelledby="ArchitectureView0-title ArchitectureView0-desc" data-vi-canvas="1">
+<!-- vi-input-sha256: 70fb465a900bfb8df7b6edd70fe059069601d4ba26c8964f4502973dc69beb74 -->
+<metadata id="ArchitectureView0-font-license">Fonts are (c) Bitstream (see below). DejaVu changes are in public domain.
+Glyphs imported from Arev fonts are (c) Tavmjong Bah (see below)
+
+
+Bitstream Vera Fonts Copyright
+------------------------------
+
+Copyright (c) 2003 by Bitstream, Inc. All Rights Reserved. Bitstream Vera is
+a trademark of Bitstream, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of the fonts accompanying this license (&quot;Fonts&quot;) and associated
+documentation files (the &quot;Font Software&quot;), to reproduce and distribute the
+Font Software, including without limitation the rights to use, copy, merge,
+publish, distribute, and/or sell copies of the Font Software, and to permit
+persons to whom the Font Software is furnished to do so, subject to the
+following conditions:
+
+The above copyright and trademark notices and this permission notice shall
+be included in all copies of one or more of the Font Software typefaces.
+
+The Font Software may be modified, altered, or added to, and in particular
+the designs of glyphs or characters in the Fonts may be modified and
+additional glyphs or characters may be added to the Fonts, only if the fonts
+are renamed to names not containing either the words &quot;Bitstream&quot; or the word
+&quot;Vera&quot;.
+
+This License becomes null and void to the extent applicable to Fonts or Font
+Software that has been modified and is distributed under the &quot;Bitstream
+Vera&quot; names.
+
+The Font Software may be sold as part of a larger software package but no
+copy of one or more of the Font Software typefaces may be sold by itself.
+
+THE FONT SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT,
+TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL BITSTREAM OR THE GNOME
+FOUNDATION BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING
+ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
+THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE
+FONT SOFTWARE.
+
+Except as contained in this notice, the names of Gnome, the Gnome
+Foundation, and Bitstream Inc., shall not be used in advertising or
+otherwise to promote the sale, use or other dealings in this Font Software
+without prior written authorization from the Gnome Foundation or Bitstream
+Inc., respectively. For further information, contact: fonts at gnome dot
+org.
+
+Arev Fonts Copyright
+------------------------------
+
+Copyright (c) 2006 by Tavmjong Bah. All Rights Reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the fonts accompanying this license (&quot;Fonts&quot;) and
+associated documentation files (the &quot;Font Software&quot;), to reproduce
+and distribute the modifications to the Bitstream Vera Font Software,
+including without limitation the rights to use, copy, merge, publish,
+distribute, and/or sell copies of the Font Software, and to permit
+persons to whom the Font Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright and trademark notices and this permission notice
+shall be included in all copies of one or more of the Font Software
+typefaces.
+
+The Font Software may be modified, altered, or added to, and in
+particular the designs of glyphs or characters in the Fonts may be
+modified and additional glyphs or characters may be added to the
+Fonts, only if the fonts are renamed to names not containing either
+the words &quot;Tavmjong Bah&quot; or the word &quot;Arev&quot;.
+
+This License becomes null and void to the extent applicable to Fonts
+or Font Software that has been modified and is distributed under the
+&quot;Tavmjong Bah Arev&quot; names.
+
+The Font Software may be sold as part of a larger software package but
+no copy of one or more of the Font Software typefaces may be sold by
+itself.
+
+THE FONT SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL
+TAVMJONG BAH BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+Except as contained in this notice, the name of Tavmjong Bah shall not
+be used in advertising or otherwise to promote the sale, use or other
+dealings in this Font Software without prior written authorization
+from Tavmjong Bah. For further information, contact: tavmjong @ free
+. fr.
+
+TeX Gyre DJV Math
+-----------------
+Fonts are (c) Bitstream (see below). DejaVu changes are in public domain.
+
+Math extensions done by B. Jackowski, P. Strzelczyk and P. Pianowski
+(on behalf of TeX users groups) are in public domain.
+
+Letters imported from Euler Fraktur from AMSfonts are (c) American
+Mathematical Society (see below).
+Bitstream Vera Fonts Copyright
+Copyright (c) 2003 by Bitstream, Inc. All Rights Reserved. Bitstream Vera
+is a trademark of Bitstream, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of the fonts accompanying this license (“Fonts”) and associated
+documentation
+files (the “Font Software”), to reproduce and distribute the Font Software,
+including without limitation the rights to use, copy, merge, publish,
+distribute,
+and/or sell copies of the Font Software, and to permit persons  to whom
+the Font Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright and trademark notices and this permission notice
+shall be
+included in all copies of one or more of the Font Software typefaces.
+
+The Font Software may be modified, altered, or added to, and in particular
+the designs of glyphs or characters in the Fonts may be modified and
+additional
+glyphs or characters may be added to the Fonts, only if the fonts are
+renamed
+to names not containing either the words “Bitstream” or the word “Vera”.
+
+This License becomes null and void to the extent applicable to Fonts or
+Font Software
+that has been modified and is distributed under the “Bitstream Vera”
+names.
+
+The Font Software may be sold as part of a larger software package but
+no copy
+of one or more of the Font Software typefaces may be sold by itself.
+
+THE FONT SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT,
+TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL BITSTREAM OR THE GNOME
+FOUNDATION
+BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING ANY GENERAL,
+SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, WHETHER IN AN
+ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF THE USE OR
+INABILITY TO USE
+THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE FONT SOFTWARE.
+Except as contained in this notice, the names of GNOME, the GNOME
+Foundation,
+and Bitstream Inc., shall not be used in advertising or otherwise to promote
+the sale, use or other dealings in this Font Software without prior written
+authorization from the GNOME Foundation or Bitstream Inc., respectively.
+For further information, contact: fonts at gnome dot org.
+
+AMSFonts (v. 2.2) copyright
+
+The PostScript Type 1 implementation of the AMSFonts produced by and
+previously distributed by Blue Sky Research and Y&amp;Y, Inc. are now freely
+available for general use. This has been accomplished through the
+cooperation
+of a consortium of scientific publishers with Blue Sky Research and Y&amp;Y.
+Members of this consortium include:
+
+Elsevier Science IBM Corporation Society for Industrial and Applied
+Mathematics (SIAM) Springer-Verlag American Mathematical Society (AMS)
+
+In order to assure the authenticity of these fonts, copyright will be
+held by
+the American Mathematical Society. This is not meant to restrict in any way
+the legitimate use of the fonts, such as (but not limited to) electronic
+distribution of documents containing these fonts, inclusion of these fonts
+into other public domain or commercial font collections or computer
+applications, use of the outline data to create derivative fonts and/or
+faces, etc. However, the AMS does require that the AMS copyright notice be
+removed from any derivative versions of the fonts which have been altered in
+any way. In addition, to ensure the fidelity of TeX documents using Computer
+Modern fonts, Professor Donald Knuth, creator of the Computer Modern faces,
+has requested that any alterations which yield different font metrics be
+given a different name.
+
+$Id$
+</metadata>
+<title id="ArchitectureView0-title">vi, showcase and gate</title>
+<desc id="ArchitectureView0-desc">vi owns the research, the constructions and the where and count semantics. showcase is a separate repository with the worked company, its rendering and its policy, and it pins a revision of vi. gate brings records from other projects to a judge built from a pinned revision of vi. A versioned contract with conformance fixtures states what an implementation of a check must pass.</desc>
+<defs>
+<path id="ArchitectureView0-glyph-32" d=""/>
+<path id="ArchitectureView0-glyph-35" d="M1047 901L756 901L672 567L965 567ZM897 1470L793 1055L1085 1055L1190 1470L1350 1470L1247 1055L1559 1055L1559 901L1208 901L1126 567L1444 567L1444 414L1087 414L983 0L823 0L926 414L633 414L530 0L369 0L473 414L158 414L158 567L510 567L594 901L272 901L272 1055L633 1055L735 1470Z"/>
+<path id="ArchitectureView0-glyph-39" d="M367 1493L367 938L197 938L197 1493Z"/>
+<path id="ArchitectureView0-glyph-40" d="M635 1554Q501 1324 436 1099Q371 874 371 643Q371 412 436.5 185.5Q502 -41 635 -270L475 -270Q325 -35 250.5 192Q176 419 176 643Q176 866 250 1092Q324 1318 475 1554Z"/>
+<path id="ArchitectureView0-glyph-41" d="M164 1554L324 1554Q474 1318 548.5 1092Q623 866 623 643Q623 419 548.5 192Q474 -35 324 -270L164 -270Q297 -41 362.5 185.5Q428 412 428 643Q428 874 362.5 1099Q297 1324 164 1554Z"/>
+<path id="ArchitectureView0-glyph-43" d="M942 1284L942 727L1499 727L1499 557L942 557L942 0L774 0L774 557L217 557L217 727L774 727L774 1284Z"/>
+<path id="ArchitectureView0-glyph-44" d="M240 254L451 254L451 82L287 -238L158 -238L240 82Z"/>
+<path id="ArchitectureView0-glyph-45" d="M100 643L639 643L639 479L100 479Z"/>
+<path id="ArchitectureView0-glyph-46" d="M219 254L430 254L430 0L219 0Z"/>
+<path id="ArchitectureView0-glyph-47" d="M520 1493L690 1493L170 -190L0 -190Z"/>
+<path id="ArchitectureView0-glyph-48" d="M651 1360Q495 1360 416.5 1206.5Q338 1053 338 745Q338 438 416.5 284.5Q495 131 651 131Q808 131 886.5 284.5Q965 438 965 745Q965 1053 886.5 1206.5Q808 1360 651 1360ZM651 1520Q902 1520 1034.5 1321.5Q1167 1123 1167 745Q1167 368 1034.5 169.5Q902 -29 651 -29Q400 -29 267.5 169.5Q135 368 135 745Q135 1123 267.5 1321.5Q400 1520 651 1520Z"/>
+<path id="ArchitectureView0-glyph-49" d="M254 170L584 170L584 1309L225 1237L225 1421L582 1493L784 1493L784 170L1114 170L1114 0L254 0Z"/>
+<path id="ArchitectureView0-glyph-50" d="M393 170L1098 170L1098 0L150 0L150 170Q265 289 463.5 489.5Q662 690 713 748Q810 857 848.5 932.5Q887 1008 887 1081Q887 1200 803.5 1275Q720 1350 586 1350Q491 1350 385.5 1317Q280 1284 160 1217L160 1421Q282 1470 388 1495Q494 1520 582 1520Q814 1520 952 1404Q1090 1288 1090 1094Q1090 1002 1055.5 919.5Q1021 837 930 725Q905 696 771 557.5Q637 419 393 170Z"/>
+<path id="ArchitectureView0-glyph-51" d="M831 805Q976 774 1057.5 676Q1139 578 1139 434Q1139 213 987 92Q835 -29 555 -29Q461 -29 361.5 -10.5Q262 8 156 45L156 240Q240 191 340 166Q440 141 549 141Q739 141 838.5 216Q938 291 938 434Q938 566 845.5 640.5Q753 715 588 715L414 715L414 881L596 881Q745 881 824 940.5Q903 1000 903 1112Q903 1227 821.5 1288.5Q740 1350 588 1350Q505 1350 410 1332Q315 1314 201 1276L201 1456Q316 1488 416.5 1504Q517 1520 606 1520Q836 1520 970 1415.5Q1104 1311 1104 1133Q1104 1009 1033 923.5Q962 838 831 805Z"/>
+<path id="ArchitectureView0-glyph-52" d="M774 1317L264 520L774 520ZM721 1493L975 1493L975 520L1188 520L1188 352L975 352L975 0L774 0L774 352L100 352L100 547Z"/>
+<path id="ArchitectureView0-glyph-53" d="M221 1493L1014 1493L1014 1323L406 1323L406 957Q450 972 494 979.5Q538 987 582 987Q832 987 978 850Q1124 713 1124 479Q1124 238 974 104.5Q824 -29 551 -29Q457 -29 359.5 -13Q262 3 158 35L158 238Q248 189 344 165Q440 141 547 141Q720 141 821 232Q922 323 922 479Q922 635 821 726Q720 817 547 817Q466 817 385.5 799Q305 781 221 743Z"/>
+<path id="ArchitectureView0-glyph-54" d="M676 827Q540 827 460.5 734Q381 641 381 479Q381 318 460.5 224.5Q540 131 676 131Q812 131 891.5 224.5Q971 318 971 479Q971 641 891.5 734Q812 827 676 827ZM1077 1460L1077 1276Q1001 1312 923.5 1331Q846 1350 770 1350Q570 1350 464.5 1215Q359 1080 344 807Q403 894 492 940.5Q581 987 688 987Q913 987 1043.5 850.5Q1174 714 1174 479Q1174 249 1038 110Q902 -29 676 -29Q417 -29 280 169.5Q143 368 143 745Q143 1099 311 1309.5Q479 1520 762 1520Q838 1520 915.5 1505Q993 1490 1077 1460Z"/>
+<path id="ArchitectureView0-glyph-55" d="M168 1493L1128 1493L1128 1407L586 0L375 0L885 1323L168 1323Z"/>
+<path id="ArchitectureView0-glyph-56" d="M651 709Q507 709 424.5 632Q342 555 342 420Q342 285 424.5 208Q507 131 651 131Q795 131 878 208.5Q961 286 961 420Q961 555 878.5 632Q796 709 651 709ZM449 795Q319 827 246.5 916Q174 1005 174 1133Q174 1312 301.5 1416Q429 1520 651 1520Q874 1520 1001 1416Q1128 1312 1128 1133Q1128 1005 1055.5 916Q983 827 854 795Q1000 761 1081.5 662Q1163 563 1163 420Q1163 203 1030.5 87Q898 -29 651 -29Q404 -29 271.5 87Q139 203 139 420Q139 563 221 662Q303 761 449 795ZM375 1114Q375 998 447.5 933Q520 868 651 868Q781 868 854.5 933Q928 998 928 1114Q928 1230 854.5 1295Q781 1360 651 1360Q520 1360 447.5 1295Q375 1230 375 1114Z"/>
+<path id="ArchitectureView0-glyph-58" d="M240 254L451 254L451 0L240 0ZM240 1059L451 1059L451 805L240 805Z"/>
+<path id="ArchitectureView0-glyph-59" d="M240 1059L451 1059L451 805L240 805ZM240 254L451 254L451 82L287 -238L158 -238L240 82Z"/>
+<path id="ArchitectureView0-glyph-61" d="M217 930L1499 930L1499 762L217 762ZM217 522L1499 522L1499 352L217 352Z"/>
+<path id="ArchitectureView0-glyph-63" d="M391 254L594 254L594 0L391 0ZM588 401L397 401L397 555Q397 656 425 721Q453 786 543 872L633 961Q690 1014 715.5 1061Q741 1108 741 1157Q741 1246 675.5 1301Q610 1356 502 1356Q423 1356 333.5 1321Q244 1286 147 1219L147 1407Q241 1464 337.5 1492Q434 1520 537 1520Q721 1520 832.5 1423Q944 1326 944 1167Q944 1091 908 1022.5Q872 954 782 868L694 782Q647 735 627.5 708.5Q608 682 600 657Q594 636 591 606Q588 576 588 524Z"/>
+<path id="ArchitectureView0-glyph-65" d="M700 1294L426 551L975 551ZM586 1493L815 1493L1384 0L1174 0L1038 383L365 383L229 0L16 0Z"/>
+<path id="ArchitectureView0-glyph-66" d="M403 713L403 166L727 166Q890 166 968.5 233.5Q1047 301 1047 440Q1047 580 968.5 646.5Q890 713 727 713ZM403 1327L403 877L702 877Q850 877 922.5 932.5Q995 988 995 1102Q995 1215 922.5 1271Q850 1327 702 1327ZM201 1493L717 1493Q948 1493 1073 1397Q1198 1301 1198 1124Q1198 987 1134 906Q1070 825 946 805Q1095 773 1177.5 671.5Q1260 570 1260 418Q1260 218 1124 109Q988 0 737 0L201 0Z"/>
+<path id="ArchitectureView0-glyph-67" d="M1319 1378L1319 1165Q1217 1260 1101.5 1307Q986 1354 856 1354Q600 1354 464 1197.5Q328 1041 328 745Q328 450 464 293.5Q600 137 856 137Q986 137 1101.5 184Q1217 231 1319 326L1319 115Q1213 43 1094.5 7Q976 -29 844 -29Q505 -29 310 178.5Q115 386 115 745Q115 1105 310 1312.5Q505 1520 844 1520Q978 1520 1096.5 1484.5Q1215 1449 1319 1378Z"/>
+<path id="ArchitectureView0-glyph-68" d="M403 1327L403 166L647 166Q956 166 1099.5 306Q1243 446 1243 748Q1243 1048 1099.5 1187.5Q956 1327 647 1327ZM201 1493L616 1493Q1050 1493 1253 1312.5Q1456 1132 1456 748Q1456 362 1252 181Q1048 0 616 0L201 0Z"/>
+<path id="ArchitectureView0-glyph-69" d="M201 1493L1145 1493L1145 1323L403 1323L403 881L1114 881L1114 711L403 711L403 170L1163 170L1163 0L201 0Z"/>
+<path id="ArchitectureView0-glyph-70" d="M201 1493L1059 1493L1059 1323L403 1323L403 883L995 883L995 713L403 713L403 0L201 0Z"/>
+<path id="ArchitectureView0-glyph-71" d="M1219 213L1219 614L889 614L889 780L1419 780L1419 139Q1302 56 1161 13.5Q1020 -29 860 -29Q510 -29 312.5 175.5Q115 380 115 745Q115 1111 312.5 1315.5Q510 1520 860 1520Q1006 1520 1137.5 1484Q1269 1448 1380 1378L1380 1163Q1268 1258 1142 1306Q1016 1354 877 1354Q603 1354 465.5 1201Q328 1048 328 745Q328 443 465.5 290Q603 137 877 137Q984 137 1068 155.5Q1152 174 1219 213Z"/>
+<path id="ArchitectureView0-glyph-72" d="M201 1493L403 1493L403 881L1137 881L1137 1493L1339 1493L1339 0L1137 0L1137 711L403 711L403 0L201 0Z"/>
+<path id="ArchitectureView0-glyph-73" d="M201 1493L403 1493L403 0L201 0Z"/>
+<path id="ArchitectureView0-glyph-75" d="M201 1493L403 1493L403 862L1073 1493L1333 1493L592 797L1386 0L1120 0L403 719L403 0L201 0Z"/>
+<path id="ArchitectureView0-glyph-76" d="M201 1493L403 1493L403 170L1130 170L1130 0L201 0Z"/>
+<path id="ArchitectureView0-glyph-77" d="M201 1493L502 1493L883 477L1266 1493L1567 1493L1567 0L1370 0L1370 1311L985 287L782 287L397 1311L397 0L201 0Z"/>
+<path id="ArchitectureView0-glyph-78" d="M201 1493L473 1493L1135 244L1135 1493L1331 1493L1331 0L1059 0L397 1249L397 0L201 0Z"/>
+<path id="ArchitectureView0-glyph-79" d="M807 1356Q587 1356 457.5 1192Q328 1028 328 745Q328 463 457.5 299Q587 135 807 135Q1027 135 1155.5 299Q1284 463 1284 745Q1284 1028 1155.5 1192Q1027 1356 807 1356ZM807 1520Q1121 1520 1309 1309.5Q1497 1099 1497 745Q1497 392 1309 181.5Q1121 -29 807 -29Q492 -29 303.5 181Q115 391 115 745Q115 1099 303.5 1309.5Q492 1520 807 1520Z"/>
+<path id="ArchitectureView0-glyph-80" d="M403 1327L403 766L657 766Q798 766 875 839Q952 912 952 1047Q952 1181 875 1254Q798 1327 657 1327ZM201 1493L657 1493Q908 1493 1036.5 1379.5Q1165 1266 1165 1047Q1165 826 1036.5 713Q908 600 657 600L403 600L403 0L201 0Z"/>
+<path id="ArchitectureView0-glyph-81" d="M807 1356Q587 1356 457.5 1192Q328 1028 328 745Q328 463 457.5 299Q587 135 807 135Q1027 135 1155.5 299Q1284 463 1284 745Q1284 1028 1155.5 1192Q1027 1356 807 1356ZM1090 27L1356 -264L1112 -264L891 -25Q858 -27 840.5 -28Q823 -29 807 -29Q492 -29 303.5 181.5Q115 392 115 745Q115 1099 303.5 1309.5Q492 1520 807 1520Q1121 1520 1309 1309.5Q1497 1099 1497 745Q1497 485 1392.5 300Q1288 115 1090 27Z"/>
+<path id="ArchitectureView0-glyph-82" d="M909 700Q974 678 1035.5 606Q1097 534 1159 408L1364 0L1147 0L956 383Q882 533 812.5 582Q743 631 623 631L403 631L403 0L201 0L201 1493L657 1493Q913 1493 1039 1386Q1165 1279 1165 1063Q1165 922 1099.5 829Q1034 736 909 700ZM403 1327L403 797L657 797Q803 797 877.5 864.5Q952 932 952 1063Q952 1194 877.5 1260.5Q803 1327 657 1327Z"/>
+<path id="ArchitectureView0-glyph-83" d="M1096 1444L1096 1247Q981 1302 879 1329Q777 1356 682 1356Q517 1356 427.5 1292Q338 1228 338 1110Q338 1011 397.5 960.5Q457 910 623 879L745 854Q971 811 1078.5 702.5Q1186 594 1186 412Q1186 195 1040.5 83Q895 -29 614 -29Q508 -29 388.5 -5Q269 19 141 66L141 274Q264 205 382 170Q500 135 614 135Q787 135 881 203Q975 271 975 397Q975 507 907.5 569Q840 631 686 662L563 686Q337 731 236 827Q135 923 135 1094Q135 1292 274.5 1406Q414 1520 659 1520Q764 1520 873 1501Q982 1482 1096 1444Z"/>
+<path id="ArchitectureView0-glyph-84" d="M-6 1493L1257 1493L1257 1323L727 1323L727 0L524 0L524 1323L-6 1323Z"/>
+<path id="ArchitectureView0-glyph-85" d="M178 1493L381 1493L381 586Q381 346 468 240.5Q555 135 750 135Q944 135 1031 240.5Q1118 346 1118 586L1118 1493L1321 1493L1321 561Q1321 269 1176.5 120Q1032 -29 750 -29Q467 -29 322.5 120Q178 269 178 561Z"/>
+<path id="ArchitectureView0-glyph-86" d="M586 0L16 1493L227 1493L700 236L1174 1493L1384 1493L815 0Z"/>
+<path id="ArchitectureView0-glyph-87" d="M68 1493L272 1493L586 231L899 1493L1126 1493L1440 231L1753 1493L1958 1493L1583 0L1329 0L1014 1296L696 0L442 0Z"/>
+<path id="ArchitectureView0-glyph-88" d="M129 1493L346 1493L717 938L1090 1493L1307 1493L827 776L1339 0L1122 0L702 635L279 0L61 0L594 797Z"/>
+<path id="ArchitectureView0-glyph-89" d="M-4 1493L213 1493L627 879L1038 1493L1255 1493L727 711L727 0L524 0L524 711Z"/>
+<path id="ArchitectureView0-glyph-97" d="M702 563Q479 563 393 512Q307 461 307 338Q307 240 371.5 182.5Q436 125 547 125Q700 125 792.5 233.5Q885 342 885 522L885 563ZM1069 639L1069 0L885 0L885 170Q822 68 728 19.5Q634 -29 498 -29Q326 -29 224.5 67.5Q123 164 123 326Q123 515 249.5 611Q376 707 627 707L885 707L885 725Q885 852 801.5 921.5Q718 991 567 991Q471 991 380 968Q289 945 205 899L205 1069Q306 1108 401 1127.5Q496 1147 586 1147Q829 1147 949 1021Q1069 895 1069 639Z"/>
+<path id="ArchitectureView0-glyph-98" d="M997 559Q997 762 913.5 877.5Q830 993 684 993Q538 993 454.5 877.5Q371 762 371 559Q371 356 454.5 240.5Q538 125 684 125Q830 125 913.5 240.5Q997 356 997 559ZM371 950Q429 1050 517.5 1098.5Q606 1147 729 1147Q933 1147 1060.5 985Q1188 823 1188 559Q1188 295 1060.5 133Q933 -29 729 -29Q606 -29 517.5 19.5Q429 68 371 168L371 0L186 0L186 1556L371 1556Z"/>
+<path id="ArchitectureView0-glyph-99" d="M999 1077L999 905Q921 948 842.5 969.5Q764 991 684 991Q505 991 406 877.5Q307 764 307 559Q307 354 406 240.5Q505 127 684 127Q764 127 842.5 148.5Q921 170 999 213L999 43Q922 7 839.5 -11Q757 -29 664 -29Q411 -29 262 130Q113 289 113 559Q113 833 263.5 990Q414 1147 676 1147Q761 1147 842 1129.5Q923 1112 999 1077Z"/>
+<path id="ArchitectureView0-glyph-100" d="M930 950L930 1556L1114 1556L1114 0L930 0L930 168Q872 68 783.5 19.5Q695 -29 571 -29Q368 -29 240.5 133Q113 295 113 559Q113 823 240.5 985Q368 1147 571 1147Q695 1147 783.5 1098.5Q872 1050 930 950ZM303 559Q303 356 386.5 240.5Q470 125 616 125Q762 125 846 240.5Q930 356 930 559Q930 762 846 877.5Q762 993 616 993Q470 993 386.5 877.5Q303 762 303 559Z"/>
+<path id="ArchitectureView0-glyph-101" d="M1151 606L1151 516L305 516Q317 326 419.5 226.5Q522 127 705 127Q811 127 910.5 153Q1010 179 1108 231L1108 57Q1009 15 905 -7Q801 -29 694 -29Q426 -29 269.5 127Q113 283 113 549Q113 824 261.5 985.5Q410 1147 662 1147Q888 1147 1019.5 1001.5Q1151 856 1151 606ZM967 660Q965 811 882.5 901Q800 991 664 991Q510 991 417.5 904Q325 817 311 659Z"/>
+<path id="ArchitectureView0-glyph-102" d="M760 1556L760 1403L584 1403Q485 1403 446.5 1363Q408 1323 408 1219L408 1120L711 1120L711 977L408 977L408 0L223 0L223 977L47 977L47 1120L223 1120L223 1198Q223 1385 310 1470.5Q397 1556 586 1556Z"/>
+<path id="ArchitectureView0-glyph-103" d="M930 573Q930 773 847.5 883Q765 993 616 993Q468 993 385.5 883Q303 773 303 573Q303 374 385.5 264Q468 154 616 154Q765 154 847.5 264Q930 374 930 573ZM1114 139Q1114 -147 987 -286.5Q860 -426 598 -426Q501 -426 415 -411.5Q329 -397 248 -367L248 -188Q329 -232 408 -253Q487 -274 569 -274Q750 -274 840 -179.5Q930 -85 930 106L930 197Q873 98 784 49Q695 0 571 0Q365 0 239 157Q113 314 113 573Q113 833 239 990Q365 1147 571 1147Q695 1147 784 1098Q873 1049 930 950L930 1120L1114 1120Z"/>
+<path id="ArchitectureView0-glyph-104" d="M1124 676L1124 0L940 0L940 670Q940 829 878 908Q816 987 692 987Q543 987 457 892Q371 797 371 633L371 0L186 0L186 1556L371 1556L371 946Q437 1047 526.5 1097Q616 1147 733 1147Q926 1147 1025 1027.5Q1124 908 1124 676Z"/>
+<path id="ArchitectureView0-glyph-105" d="M193 1120L377 1120L377 0L193 0ZM193 1556L377 1556L377 1323L193 1323Z"/>
+<path id="ArchitectureView0-glyph-106" d="M193 1120L377 1120L377 -20Q377 -234 295.5 -330Q214 -426 33 -426L-37 -426L-37 -270L12 -270Q117 -270 155 -221.5Q193 -173 193 -20ZM193 1556L377 1556L377 1323L193 1323Z"/>
+<path id="ArchitectureView0-glyph-107" d="M186 1556L371 1556L371 637L920 1120L1155 1120L561 596L1180 0L940 0L371 547L371 0L186 0Z"/>
+<path id="ArchitectureView0-glyph-108" d="M193 1556L377 1556L377 0L193 0Z"/>
+<path id="ArchitectureView0-glyph-109" d="M1065 905Q1134 1029 1230 1088Q1326 1147 1456 1147Q1631 1147 1726 1024.5Q1821 902 1821 676L1821 0L1636 0L1636 670Q1636 831 1579 909Q1522 987 1405 987Q1262 987 1179 892Q1096 797 1096 633L1096 0L911 0L911 670Q911 832 854 909.5Q797 987 678 987Q537 987 454 891.5Q371 796 371 633L371 0L186 0L186 1120L371 1120L371 946Q434 1049 522 1098Q610 1147 731 1147Q853 1147 938.5 1085Q1024 1023 1065 905Z"/>
+<path id="ArchitectureView0-glyph-110" d="M1124 676L1124 0L940 0L940 670Q940 829 878 908Q816 987 692 987Q543 987 457 892Q371 797 371 633L371 0L186 0L186 1120L371 1120L371 946Q437 1047 526.5 1097Q616 1147 733 1147Q926 1147 1025 1027.5Q1124 908 1124 676Z"/>
+<path id="ArchitectureView0-glyph-111" d="M627 991Q479 991 393 875.5Q307 760 307 559Q307 358 392.5 242.5Q478 127 627 127Q774 127 860 243Q946 359 946 559Q946 758 860 874.5Q774 991 627 991ZM627 1147Q867 1147 1004 991Q1141 835 1141 559Q1141 284 1004 127.5Q867 -29 627 -29Q386 -29 249.5 127.5Q113 284 113 559Q113 835 249.5 991Q386 1147 627 1147Z"/>
+<path id="ArchitectureView0-glyph-112" d="M371 168L371 -426L186 -426L186 1120L371 1120L371 950Q429 1050 517.5 1098.5Q606 1147 729 1147Q933 1147 1060.5 985Q1188 823 1188 559Q1188 295 1060.5 133Q933 -29 729 -29Q606 -29 517.5 19.5Q429 68 371 168ZM997 559Q997 762 913.5 877.5Q830 993 684 993Q538 993 454.5 877.5Q371 762 371 559Q371 356 454.5 240.5Q538 125 684 125Q830 125 913.5 240.5Q997 356 997 559Z"/>
+<path id="ArchitectureView0-glyph-113" d="M303 559Q303 356 386.5 240.5Q470 125 616 125Q762 125 846 240.5Q930 356 930 559Q930 762 846 877.5Q762 993 616 993Q470 993 386.5 877.5Q303 762 303 559ZM930 168Q872 68 783.5 19.5Q695 -29 571 -29Q368 -29 240.5 133Q113 295 113 559Q113 823 240.5 985Q368 1147 571 1147Q695 1147 783.5 1098.5Q872 1050 930 950L930 1120L1114 1120L1114 -426L930 -426Z"/>
+<path id="ArchitectureView0-glyph-114" d="M842 948Q811 966 774.5 974.5Q738 983 694 983Q538 983 454.5 881.5Q371 780 371 590L371 0L186 0L186 1120L371 1120L371 946Q429 1048 522 1097.5Q615 1147 748 1147Q767 1147 790 1144.5Q813 1142 841 1137Z"/>
+<path id="ArchitectureView0-glyph-115" d="M907 1087L907 913Q829 953 745 973Q661 993 571 993Q434 993 365.5 951Q297 909 297 825Q297 761 346 724.5Q395 688 543 655L606 641Q802 599 884.5 522.5Q967 446 967 309Q967 153 843.5 62Q720 -29 504 -29Q414 -29 316.5 -11.5Q219 6 111 41L111 231Q213 178 312 151.5Q411 125 508 125Q638 125 708 169.5Q778 214 778 295Q778 370 727.5 410Q677 450 506 487L442 502Q271 538 195 612.5Q119 687 119 817Q119 975 231 1061Q343 1147 549 1147Q651 1147 741 1132Q831 1117 907 1087Z"/>
+<path id="ArchitectureView0-glyph-116" d="M375 1438L375 1120L754 1120L754 977L375 977L375 369Q375 232 412.5 193Q450 154 565 154L754 154L754 0L565 0Q352 0 271 79.5Q190 159 190 369L190 977L55 977L55 1120L190 1120L190 1438Z"/>
+<path id="ArchitectureView0-glyph-117" d="M174 442L174 1120L358 1120L358 449Q358 290 420 210.5Q482 131 606 131Q755 131 841.5 226Q928 321 928 485L928 1120L1112 1120L1112 0L928 0L928 172Q861 70 772.5 20.5Q684 -29 567 -29Q374 -29 274 91Q174 211 174 442ZM637 1147"/>
+<path id="ArchitectureView0-glyph-118" d="M61 1120L256 1120L606 180L956 1120L1151 1120L731 0L481 0Z"/>
+<path id="ArchitectureView0-glyph-119" d="M86 1120L270 1120L500 246L729 1120L946 1120L1176 246L1405 1120L1589 1120L1296 0L1079 0L838 918L596 0L379 0Z"/>
+<path id="ArchitectureView0-glyph-120" d="M1124 1120L719 575L1145 0L928 0L602 440L276 0L59 0L494 586L96 1120L313 1120L610 721L907 1120Z"/>
+<path id="ArchitectureView0-glyph-121" d="M659 -104Q581 -304 507 -365Q433 -426 309 -426L162 -426L162 -272L270 -272Q346 -272 388 -236Q430 -200 481 -66L514 18L61 1120L256 1120L606 244L956 1120L1151 1120Z"/>
+<path id="ArchitectureView0-glyph-122" d="M113 1120L987 1120L987 952L295 147L987 147L987 0L88 0L88 168L780 973L113 973Z"/>
+<path id="ArchitectureView0-glyph-123" d="M1047 -190L1047 -334L985 -334Q736 -334 651.5 -260Q567 -186 567 35L567 274Q567 425 513 483Q459 541 317 541L256 541L256 684L317 684Q460 684 513.5 741.5Q567 799 567 948L567 1188Q567 1409 651.5 1482.5Q736 1556 985 1556L1047 1556L1047 1413L979 1413Q838 1413 795 1369Q752 1325 752 1184L752 936Q752 779 706.5 708Q661 637 551 612Q662 585 707 514Q752 443 752 287L752 39Q752 -102 795 -146Q838 -190 979 -190Z"/>
+<path id="ArchitectureView0-glyph-125" d="M256 -190L326 -190Q466 -190 508.5 -147Q551 -104 551 39L551 287Q551 443 596 514Q641 585 752 612Q641 637 596 708Q551 779 551 936L551 1184Q551 1326 508.5 1369.5Q466 1413 326 1413L256 1413L256 1556L319 1556Q568 1556 651.5 1482.5Q735 1409 735 1188L735 948Q735 799 789 741.5Q843 684 985 684L1047 684L1047 541L985 541Q843 541 789 483Q735 425 735 274L735 35Q735 -186 651.5 -260Q568 -334 319 -334L256 -334Z"/>
+<path id="ArchitectureView0-glyph-183" d="M219 838L430 838L430 584L219 584Z"/>
+<path id="ArchitectureView0-glyph-215" d="M1436 1100L979 641L1436 184L1317 63L858 522L399 63L281 184L737 641L281 1100L399 1221L858 762L1317 1221Z"/>
+<path id="ArchitectureView0-glyph-945" d="M846 521L802 752Q757 989 579 989Q445 989 384 879Q307 741 307 559Q307 339 382 234Q458 127 579 127Q713 127 785 340ZM949 827L1048 1120L1212 1120L1007 513L1047 294Q1056 245 1091 204Q1132 156 1164 156L1252 156L1252 0L1142 0Q1048 0 964 84Q923 126 906 214Q860 103 766 16Q722 -25 579 -25Q344 -25 230 127Q113 284 113 559Q113 853 240 991Q381 1145 579 1145Q890 1145 949 827Z"/>
+<path id="ArchitectureView0-glyph-946" d="M377 69L377 -426L192 -426L192 1113Q192 1569 618 1569Q1052 1569 1052 1184Q1052 910 880 810Q1160 720 1160 453Q1160 -21 678 -21Q466 -21 377 69ZM377 309Q488 136 685 136Q973 136 973 450Q973 732 509 710L509 880Q872 880 872 1200Q872 1419 638 1419Q377 1419 377 1107Z"/>
+<path id="ArchitectureView0-glyph-8211" d="M100 633L924 633L924 489L100 489Z"/>
+<path id="ArchitectureView0-glyph-8212" d="M100 633L1948 633L1948 489L100 489Z"/>
+<path id="ArchitectureView0-glyph-8594" d="M1616 687L1616 597L1223 204L1103 324L1336 557L117 557L117 727L1336 727L1103 960L1223 1080Z"/>
+<path id="ArchitectureView0-glyph-8709" d="M1288 1339L1377 1449L1483 1449L1355 1292Q1460 1209 1529 1087Q1629 909 1629 717Q1629 525 1529 347.5Q1429 170 1253 75Q1077 -20 892 -20Q705 -20 529 75Q473 105 425 144L299 -12L194 -12L364 198Q301 264 254 348Q155 525 155 717Q155 909 254 1086.5Q353 1264 529 1359Q705 1454 892 1454Q1077 1454 1253 1359Q1271 1349 1288 1339ZM448 302L1204 1235L1190 1243Q1045 1321 892 1321Q738 1321 592.5 1242.5Q447 1164 365 1017Q284 872 283 717Q284 562 365 417Q401 353 448 302ZM1272 1189L509 247Q548 216 593 192Q738 113 892 113Q1045 113 1190 191.5Q1335 270 1418 417Q1500 562 1501 717Q1500 872 1418 1017Q1360 1120 1272 1189Z"/>
+<path id="ArchitectureView0-glyph-8712" d="M343 627Q350 553 413 433Q487 294 627 216Q764 140 912 139L1609 139L1609 -20L912 -20Q720 -20 542.5 79Q365 178 270 354Q175 530 175 717Q175 902 270 1078Q365 1254 542.5 1354Q720 1454 912 1454L1609 1454L1609 1295L912 1295Q764 1294 627 1217Q488 1138 413 1000Q349 880 340 787L1609 787L1609 627Z"/>
+<path id="ArchitectureView0-glyph-8728" d="M641 833Q561 833 506 777.5Q451 722 451 642Q451 563 506 508.5Q561 454 641 454Q721 454 776 508.5Q831 563 831 642Q831 721 775.5 777Q720 833 641 833ZM641 962Q705 962 764 937.5Q823 913 866 867Q912 822 935 765Q958 708 958 642Q958 510 865.5 418.5Q773 327 639 327Q504 327 414 417Q324 507 324 642Q324 776 416 869Q508 962 641 962Z"/>
+<path id="ArchitectureView0-glyph-8800" d="M217 930L989 930L1245 1245L1370 1143L1196 930L1499 930L1499 762L1059 762L864 522L1499 522L1499 352L725 352L467 39L342 141L516 352L217 352L217 522L655 522L850 762L217 762Z"/>
+<path id="ArchitectureView0-glyph-8838" d="M242 150L1499 150L1499 0L242 0ZM1499 300L668 300Q467 300 329 439Q190 578 190 778Q190 976 329 1117Q467 1256 667 1256L1499 1256L1499 1106L667 1106Q530 1106 435 1010Q340 914 340 778Q340 640 435 546Q531 450 667 450L1499 450Z"/>
+<path id="ArchitectureView0-glyph-8898" d="M840 1309Q621 1309 467 1195.5Q313 1082 313 830L313 -393L140 -393L140 855Q140 1177 362.5 1325Q585 1473 840 1473Q1095 1473 1317.5 1325Q1540 1177 1540 855L1540 -393L1367 -393L1367 830Q1367 1080 1214.5 1194.5Q1062 1309 840 1309Z"/>
+</defs>
+<defs><marker id="ArchitectureView0-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="color(xyz-d65 0.153 0.164 0.179)"/></marker></defs>
+<rect x="0" y="0" width="1120" height="890" rx="16" fill="color(xyz-d65 0.937 1.000 1.093)" stroke="none" stroke-width="1" stroke-dasharray="none"/>
+<g role="img" aria-label="THREE PACKAGES" data-vi-text="THREE PACKAGES" fill="color(xyz-d65 0.237 0.169 0.026)" transform="translate(40 42) scale(0.0068359375 -0.0068359375)">
+<use href="#ArchitectureView0-glyph-84" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-72" transform="translate(1485.057142857143 0)"/>
+<use href="#ArchitectureView0-glyph-82" transform="translate(3259.114285714286 0)"/>
+<use href="#ArchitectureView0-glyph-69" transform="translate(4916.171428571429 0)"/>
+<use href="#ArchitectureView0-glyph-69" transform="translate(6444.228571428572 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(7972.285714285715 0)"/>
+<use href="#ArchitectureView0-glyph-80" transform="translate(8857.342857142858 0)"/>
+<use href="#ArchitectureView0-glyph-65" transform="translate(10326.400000000001 0)"/>
+<use href="#ArchitectureView0-glyph-67" transform="translate(11961.457142857143 0)"/>
+<use href="#ArchitectureView0-glyph-75" transform="translate(13625.514285714286 0)"/>
+<use href="#ArchitectureView0-glyph-65" transform="translate(15202.571428571428 0)"/>
+<use href="#ArchitectureView0-glyph-71" transform="translate(16837.62857142857 0)"/>
+<use href="#ArchitectureView0-glyph-69" transform="translate(18658.68571428571 0)"/>
+<use href="#ArchitectureView0-glyph-83" transform="translate(20186.742857142854 0)"/>
+</g>
+<g role="img" aria-label="Each check has one owner of its meaning." data-vi-text="Each check has one owner of its meaning." fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(40 83) scale(0.013671875 -0.013671875)">
+<use href="#ArchitectureView0-glyph-69" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(1294.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(2549.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(3675.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(4973.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(5624.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(6750.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(8048.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(9308.0 0)"/>
+<use href="#ArchitectureView0-glyph-107" transform="translate(10434.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(11620.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(12271.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(13569.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(14824.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(15891.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(16542.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(17795.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(19093.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(20353.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(21004.0 0)"/>
+<use href="#ArchitectureView0-glyph-119" transform="translate(22257.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(23932.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(25230.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(26490.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(27332.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(27983.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(29236.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(29957.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(30608.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(31177.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(31980.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(33047.0 0)"/>
+<use href="#ArchitectureView0-glyph-109" transform="translate(33698.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(35693.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(36953.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(38208.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(39506.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(40075.0 0)"/>
+<use href="#ArchitectureView0-glyph-103" transform="translate(41373.0 0)"/>
+<use href="#ArchitectureView0-glyph-46" transform="translate(42673.0 0)"/>
+</g>
+<rect x="40" y="149" width="1040" height="83" rx="12" fill="color(xyz-d65 0.937 1.000 1.093)" stroke="color(xyz-d65 0.153 0.164 0.179)" stroke-width="1.5" stroke-dasharray="none"/>
+<g role="img" aria-label="People and agents" data-vi-text="People and agents" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(62 180) scale(0.009765625 -0.009765625)">
+<use href="#ArchitectureView0-glyph-80" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(1235.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(2495.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(3748.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(5048.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(5617.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(6877.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(7528.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(8783.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(10081.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(11381.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(12032.0 0)"/>
+<use href="#ArchitectureView0-glyph-103" transform="translate(13287.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(14587.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(15847.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(17145.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(17948.0 0)"/>
+</g>
+<g role="img" aria-label="Bring a question, a record and access to work." data-vi-text="Bring a question, a record and access to work." fill="color(xyz-d65 0.153 0.164 0.179)" transform="translate(62 209) scale(0.0087890625 -0.0087890625)">
+<use href="#ArchitectureView0-glyph-66" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(1405.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(2247.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(2816.0 0)"/>
+<use href="#ArchitectureView0-glyph-103" transform="translate(4114.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(5414.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(6065.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(7320.0 0)"/>
+<use href="#ArchitectureView0-glyph-113" transform="translate(7971.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(9271.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(10569.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(11829.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(12896.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(13699.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(14268.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(15521.0 0)"/>
+<use href="#ArchitectureView0-glyph-44" transform="translate(16819.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(17470.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(18121.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(19376.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(20027.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(20869.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(22129.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(23255.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(24508.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(25350.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(26650.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(27301.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(28556.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(29854.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(31154.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(31805.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(33060.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(34186.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(35312.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(36572.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(37639.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(38706.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(39357.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(40160.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(41413.0 0)"/>
+<use href="#ArchitectureView0-glyph-119" transform="translate(42064.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(43739.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(44992.0 0)"/>
+<use href="#ArchitectureView0-glyph-107" transform="translate(45834.0 0)"/>
+<use href="#ArchitectureView0-glyph-46" transform="translate(47020.0 0)"/>
+</g>
+<path d="M905 232V290" fill="none" stroke="color(xyz-d65 0.153 0.164 0.179)" stroke-width="1.8" stroke-dasharray="none" marker-end="url(#ArchitectureView0-arrow)"/>
+<g role="img" aria-label="submit a record" data-vi-text="submit a record" fill="color(xyz-d65 0.153 0.164 0.179)" transform="translate(919 266) scale(0.0078125 -0.0078125)">
+<use href="#ArchitectureView0-glyph-115" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(1067.0 0)"/>
+<use href="#ArchitectureView0-glyph-98" transform="translate(2365.0 0)"/>
+<use href="#ArchitectureView0-glyph-109" transform="translate(3665.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(5660.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(6229.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(7032.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(7683.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(8938.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(9589.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(10431.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(11691.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(12817.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(14070.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(14912.0 0)"/>
+</g>
+<rect x="40" y="302" width="300" height="326" rx="12" fill="color(xyz-d65 0.937 1.000 1.093)" stroke="color(xyz-d65 0.153 0.164 0.179)" stroke-width="1.5" stroke-dasharray="none"/>
+<g role="img" aria-label="vi · DocumentKit" data-vi-text="vi · DocumentKit" fill="color(xyz-d65 0.237 0.169 0.026)" transform="translate(62 339) scale(0.013671875 -0.013671875)">
+<use href="#ArchitectureView0-glyph-118" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(1212.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(1781.0 0)"/>
+<use href="#ArchitectureView0-glyph-183" transform="translate(2432.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(3083.0 0)"/>
+<use href="#ArchitectureView0-glyph-68" transform="translate(3734.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(5311.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(6564.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(7690.0 0)"/>
+<use href="#ArchitectureView0-glyph-109" transform="translate(8988.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(10983.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(12243.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(13541.0 0)"/>
+<use href="#ArchitectureView0-glyph-75" transform="translate(14344.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(15687.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(16256.0 0)"/>
+</g>
+<g role="img" aria-label="Research and constructions" data-vi-text="Research and constructions" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(62 376) scale(0.0087890625 -0.0087890625)">
+<use href="#ArchitectureView0-glyph-82" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(1423.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(2683.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(3750.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(5010.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(6265.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(7107.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(8233.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(9531.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(10182.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(11437.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(12735.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(14035.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(14686.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(15812.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(17065.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(18363.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(19430.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(20233.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(21075.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(22373.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(23499.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(24302.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(24871.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(26124.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(27422.0 0)"/>
+</g>
+<g role="img" aria-label="Papers · relations · examples" data-vi-text="Papers · relations · examples" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(62 405) scale(0.0087890625 -0.0087890625)">
+<use href="#ArchitectureView0-glyph-80" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(1235.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(2490.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(3790.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(5050.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(5892.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(6959.0 0)"/>
+<use href="#ArchitectureView0-glyph-183" transform="translate(7610.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(8261.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(8912.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(9754.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(11014.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(11583.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(12838.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(13641.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(14210.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(15463.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(16761.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(17828.0 0)"/>
+<use href="#ArchitectureView0-glyph-183" transform="translate(18479.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(19130.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(19781.0 0)"/>
+<use href="#ArchitectureView0-glyph-120" transform="translate(21041.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(22253.0 0)"/>
+<use href="#ArchitectureView0-glyph-109" transform="translate(23508.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(25503.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(26803.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(27372.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(28632.0 0)"/>
+</g>
+<g role="img" aria-label="Checks of stated consequences" data-vi-text="Checks of stated consequences" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(62 434) scale(0.0078125 -0.0078125)">
+<use href="#ArchitectureView0-glyph-67" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(1430.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(2728.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(3988.0 0)"/>
+<use href="#ArchitectureView0-glyph-107" transform="translate(5114.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(6300.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(7367.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(8018.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(9271.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(9992.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(10643.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(11710.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(12513.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(13768.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(14571.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(15831.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(17131.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(17782.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(18908.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(20161.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(21459.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(22526.0 0)"/>
+<use href="#ArchitectureView0-glyph-113" transform="translate(23786.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(25086.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(26384.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(27644.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(28942.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(30068.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(31328.0 0)"/>
+</g>
+<rect x="60" y="478" width="260" height="125" rx="12" fill="color(xyz-d65 0.937 1.000 1.093)" stroke="color(xyz-d65 0.153 0.164 0.179)" stroke-width="1.5" stroke-dasharray="none"/>
+<g role="img" aria-label="Semantic owner" data-vi-text="Semantic owner" fill="color(xyz-d65 0.237 0.169 0.026)" transform="translate(78 509) scale(0.009765625 -0.009765625)">
+<use href="#ArchitectureView0-glyph-83" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(1300.0 0)"/>
+<use href="#ArchitectureView0-glyph-109" transform="translate(2560.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(4555.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(5810.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(7108.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(7911.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(8480.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(9606.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(10257.0 0)"/>
+<use href="#ArchitectureView0-glyph-119" transform="translate(11510.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(13185.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(14483.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(15743.0 0)"/>
+</g>
+<g role="img" aria-label="where: declared type relations" data-vi-text="where: declared type relations" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(78 540) scale(0.00732421875 -0.00732421875)">
+<use href="#ArchitectureView0-glyph-119" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(1675.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(2973.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(4233.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(5075.0 0)"/>
+<use href="#ArchitectureView0-glyph-58" transform="translate(6335.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(7025.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(7676.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(8976.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(10236.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(11362.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(11931.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(13186.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(14028.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(15288.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(16588.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(17239.0 0)"/>
+<use href="#ArchitectureView0-glyph-121" transform="translate(18042.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(19254.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(20554.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(21814.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(22465.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(23307.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(24567.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(25136.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(26391.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(27194.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(27763.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(29016.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(30314.0 0)"/>
+</g>
+<g role="img" aria-label="count: selected count question" data-vi-text="count: selected count question" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(78 565) scale(0.00732421875 -0.00732421875)">
+<use href="#ArchitectureView0-glyph-99" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(1126.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(2379.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(3677.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(4975.0 0)"/>
+<use href="#ArchitectureView0-glyph-58" transform="translate(5778.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(6468.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(7119.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(8186.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(9446.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(10015.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(11275.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(12401.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(13204.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(14464.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(15764.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(16415.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(17541.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(18794.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(20092.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(21390.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(22193.0 0)"/>
+<use href="#ArchitectureView0-glyph-113" transform="translate(22844.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(24144.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(25442.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(26702.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(27769.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(28572.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(29141.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(30394.0 0)"/>
+</g>
+<g role="img" aria-label="Canon + conformance fixtures" data-vi-text="Canon + conformance fixtures" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(78 590) scale(0.00732421875 -0.00732421875)">
+<use href="#ArchitectureView0-glyph-67" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(1430.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(2685.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(3983.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(5236.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(6534.0 0)"/>
+<use href="#ArchitectureView0-glyph-43" transform="translate(7185.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(8901.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(9552.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(10678.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(11931.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(13229.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(13950.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(15203.0 0)"/>
+<use href="#ArchitectureView0-glyph-109" transform="translate(16045.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(18040.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(19295.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(20593.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(21719.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(22979.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(23630.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(24351.0 0)"/>
+<use href="#ArchitectureView0-glyph-120" transform="translate(24920.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(26132.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(26935.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(28233.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(29075.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(30335.0 0)"/>
+</g>
+<rect x="410" y="302" width="300" height="326" rx="12" fill="color(xyz-d65 0.937 1.000 1.093)" stroke="color(xyz-d65 0.153 0.164 0.179)" stroke-width="1.5" stroke-dasharray="none"/>
+<g role="img" aria-label="showcase" data-vi-text="showcase" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(432 339) scale(0.013671875 -0.013671875)">
+<use href="#ArchitectureView0-glyph-115" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(1067.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(2365.0 0)"/>
+<use href="#ArchitectureView0-glyph-119" transform="translate(3618.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(5293.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(6419.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(7674.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(8741.0 0)"/>
+</g>
+<g role="img" aria-label="A constructed world" data-vi-text="A constructed world" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(432 376) scale(0.0087890625 -0.0087890625)">
+<use href="#ArchitectureView0-glyph-65" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(1401.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(2052.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(3178.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(4431.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(5729.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(6796.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(7599.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(8441.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(9739.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(10865.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(11668.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(12928.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(14228.0 0)"/>
+<use href="#ArchitectureView0-glyph-119" transform="translate(14879.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(16554.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(17807.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(18649.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(19218.0 0)"/>
+</g>
+<g role="img" aria-label="Organization · its worlds" data-vi-text="Organization · its worlds" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(432 405) scale(0.0087890625 -0.0087890625)">
+<use href="#ArchitectureView0-glyph-79" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(1612.0 0)"/>
+<use href="#ArchitectureView0-glyph-103" transform="translate(2454.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(3754.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(5009.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(6307.0 0)"/>
+<use href="#ArchitectureView0-glyph-122" transform="translate(6876.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(7951.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(9206.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(10009.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(10578.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(11831.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(13129.0 0)"/>
+<use href="#ArchitectureView0-glyph-183" transform="translate(13780.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(14431.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(15082.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(15651.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(16454.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(17521.0 0)"/>
+<use href="#ArchitectureView0-glyph-119" transform="translate(18172.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(19847.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(21100.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(21942.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(22511.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(23811.0 0)"/>
+</g>
+<g role="img" aria-label="Pages · SVG · site generation" data-vi-text="Pages · SVG · site generation" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(432 434) scale(0.0087890625 -0.0087890625)">
+<use href="#ArchitectureView0-glyph-80" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(1235.0 0)"/>
+<use href="#ArchitectureView0-glyph-103" transform="translate(2490.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(3790.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(5050.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(6117.0 0)"/>
+<use href="#ArchitectureView0-glyph-183" transform="translate(6768.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(7419.0 0)"/>
+<use href="#ArchitectureView0-glyph-83" transform="translate(8070.0 0)"/>
+<use href="#ArchitectureView0-glyph-86" transform="translate(9370.0 0)"/>
+<use href="#ArchitectureView0-glyph-71" transform="translate(10771.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(12358.0 0)"/>
+<use href="#ArchitectureView0-glyph-183" transform="translate(13009.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(13660.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(14311.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(15378.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(15947.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(16750.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(18010.0 0)"/>
+<use href="#ArchitectureView0-glyph-103" transform="translate(18661.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(19961.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(21221.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(22519.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(23779.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(24621.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(25876.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(26679.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(27248.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(28501.0 0)"/>
+</g>
+<rect x="430" y="478" width="260" height="125" rx="12" fill="color(xyz-d65 0.937 1.000 1.093)" stroke="color(xyz-d65 0.153 0.164 0.179)" stroke-width="1.5" stroke-dasharray="none"/>
+<g role="img" aria-label="Its own checks" data-vi-text="Its own checks" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(448 509) scale(0.009765625 -0.009765625)">
+<use href="#ArchitectureView0-glyph-73" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(604.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(1407.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(2474.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(3125.0 0)"/>
+<use href="#ArchitectureView0-glyph-119" transform="translate(4378.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(6053.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(7351.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(8002.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(9128.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(10426.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(11686.0 0)"/>
+<use href="#ArchitectureView0-glyph-107" transform="translate(12812.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(13998.0 0)"/>
+</g>
+<g role="img" aria-label="Policy + differential judge" data-vi-text="Policy + differential judge" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(448 540) scale(0.0078125 -0.0078125)">
+<use href="#ArchitectureView0-glyph-80" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(1235.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(2488.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(3057.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(3626.0 0)"/>
+<use href="#ArchitectureView0-glyph-121" transform="translate(4752.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(5964.0 0)"/>
+<use href="#ArchitectureView0-glyph-43" transform="translate(6615.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(8331.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(8982.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(10282.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(10851.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(11572.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(12293.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(13553.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(14395.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(15655.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(16953.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(17756.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(18325.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(19580.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(20149.0 0)"/>
+<use href="#ArchitectureView0-glyph-106" transform="translate(20800.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(21369.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(22667.0 0)"/>
+<use href="#ArchitectureView0-glyph-103" transform="translate(23967.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(25267.0 0)"/>
+</g>
+<g role="img" aria-label="Artifacts match constructions" data-vi-text="Artifacts match constructions" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(448 565) scale(0.0078125 -0.0078125)">
+<use href="#ArchitectureView0-glyph-65" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(1401.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(2243.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(3046.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(3615.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(4336.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(5591.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(6717.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(7520.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(8587.0 0)"/>
+<use href="#ArchitectureView0-glyph-109" transform="translate(9238.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(11233.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(12488.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(13291.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(14417.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(15715.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(16366.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(17492.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(18745.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(20043.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(21110.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(21913.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(22755.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(24053.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(25179.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(25982.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(26551.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(27804.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(29102.0 0)"/>
+</g>
+<g role="img" aria-label="Seven publication refusals" data-vi-text="Seven publication refusals" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(448 590) scale(0.0078125 -0.0078125)">
+<use href="#ArchitectureView0-glyph-83" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(1300.0 0)"/>
+<use href="#ArchitectureView0-glyph-118" transform="translate(2560.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(3772.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(5032.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(6330.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(6981.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(8281.0 0)"/>
+<use href="#ArchitectureView0-glyph-98" transform="translate(9579.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(10879.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(11448.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(12017.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(13143.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(14398.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(15201.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(15770.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(17023.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(18321.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(18972.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(19814.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(21074.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(21795.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(23093.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(24160.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(25415.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(25984.0 0)"/>
+</g>
+<rect x="780" y="302" width="300" height="326" rx="12" fill="color(xyz-d65 0.937 1.000 1.093)" stroke="color(xyz-d65 0.153 0.164 0.179)" stroke-width="1.5" stroke-dasharray="none"/>
+<g role="img" aria-label="gate" data-vi-text="gate" fill="color(xyz-d65 0.098 0.172 0.069)" transform="translate(802 339) scale(0.013671875 -0.013671875)">
+<use href="#ArchitectureView0-glyph-103" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(1300.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(2555.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(3358.0 0)"/>
+</g>
+<g role="img" aria-label="Entry and delivery" data-vi-text="Entry and delivery" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(802 376) scale(0.0087890625 -0.0087890625)">
+<use href="#ArchitectureView0-glyph-69" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(1294.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(2592.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(3395.0 0)"/>
+<use href="#ArchitectureView0-glyph-121" transform="translate(4237.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(5449.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(6100.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(7355.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(8653.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(9953.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(10604.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(11904.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(13164.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(13733.0 0)"/>
+<use href="#ArchitectureView0-glyph-118" transform="translate(14302.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(15514.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(16774.0 0)"/>
+<use href="#ArchitectureView0-glyph-121" transform="translate(17616.0 0)"/>
+</g>
+<g role="img" aria-label="Records from other projects" data-vi-text="Records from other projects" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(802 405) scale(0.0087890625 -0.0087890625)">
+<use href="#ArchitectureView0-glyph-82" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(1423.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(2683.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(3809.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(5062.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(5904.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(7204.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(8271.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(8922.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(9643.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(10485.0 0)"/>
+<use href="#ArchitectureView0-glyph-109" transform="translate(11738.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(13733.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(14384.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(15637.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(16440.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(17738.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(18998.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(19840.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(20491.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(21791.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(22633.0 0)"/>
+<use href="#ArchitectureView0-glyph-106" transform="translate(23886.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(24455.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(25715.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(26841.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(27644.0 0)"/>
+</g>
+<g role="img" aria-label="Calls checks · returns results" data-vi-text="Calls checks · returns results" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(802 434) scale(0.0087890625 -0.0087890625)">
+<use href="#ArchitectureView0-glyph-67" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(1430.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(2685.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(3254.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(3823.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(4890.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(5541.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(6667.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(7965.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(9225.0 0)"/>
+<use href="#ArchitectureView0-glyph-107" transform="translate(10351.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(11537.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(12604.0 0)"/>
+<use href="#ArchitectureView0-glyph-183" transform="translate(13255.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(13906.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(14557.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(15399.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(16659.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(17462.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(18760.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(19602.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(20900.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(21967.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(22618.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(23460.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(24720.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(25787.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(27085.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(27654.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(28457.0 0)"/>
+</g>
+<rect x="800" y="478" width="260" height="125" rx="12" fill="color(xyz-d65 0.937 1.000 1.093)" stroke="color(xyz-d65 0.153 0.164 0.179)" stroke-width="1.5" stroke-dasharray="none"/>
+<g role="img" aria-label="Supplied implementation" data-vi-text="Supplied implementation" fill="color(xyz-d65 0.098 0.172 0.069)" transform="translate(818 509) scale(0.0087890625 -0.0087890625)">
+<use href="#ArchitectureView0-glyph-83" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(1300.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(2598.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(3898.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(5198.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(5767.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(6336.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(7596.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(8896.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(9547.0 0)"/>
+<use href="#ArchitectureView0-glyph-109" transform="translate(10116.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(12111.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(13411.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(13980.0 0)"/>
+<use href="#ArchitectureView0-glyph-109" transform="translate(15240.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(17235.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(18495.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(19793.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(20596.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(21851.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(22654.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(23223.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(24476.0 0)"/>
+</g>
+<g role="img" aria-label="Passes the selected contract" data-vi-text="Passes the selected contract" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(818 540) scale(0.0078125 -0.0078125)">
+<use href="#ArchitectureView0-glyph-80" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(1235.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(2490.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(3557.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(4624.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(5884.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(6951.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(7602.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(8405.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(9703.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(10963.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(11614.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(12681.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(13941.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(14510.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(15770.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(16896.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(17699.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(18959.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(20259.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(20910.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(22036.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(23289.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(24587.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(25390.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(26232.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(27487.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(28613.0 0)"/>
+</g>
+<g role="img" aria-label="Carries question + coverage" data-vi-text="Carries question + coverage" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(818 565) scale(0.0078125 -0.0078125)">
+<use href="#ArchitectureView0-glyph-67" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(1430.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(2685.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(3527.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(4369.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(4938.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(6198.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(7265.0 0)"/>
+<use href="#ArchitectureView0-glyph-113" transform="translate(7916.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(9216.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(10514.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(11774.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(12841.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(13644.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(14213.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(15466.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(16764.0 0)"/>
+<use href="#ArchitectureView0-glyph-43" transform="translate(17415.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(19131.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(19782.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(20908.0 0)"/>
+<use href="#ArchitectureView0-glyph-118" transform="translate(22161.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(23373.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(24633.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(25475.0 0)"/>
+<use href="#ArchitectureView0-glyph-103" transform="translate(26730.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(28030.0 0)"/>
+</g>
+<g role="img" aria-label="Pinned revision of vi" data-vi-text="Pinned revision of vi" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(818 590) scale(0.0078125 -0.0078125)">
+<use href="#ArchitectureView0-glyph-80" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(1235.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(1804.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(3102.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(4400.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(5660.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(6960.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(7611.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(8453.0 0)"/>
+<use href="#ArchitectureView0-glyph-118" transform="translate(9713.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(10925.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(11494.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(12561.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(13130.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(14383.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(15681.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(16332.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(17585.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(18306.0 0)"/>
+<use href="#ArchitectureView0-glyph-118" transform="translate(18957.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(20169.0 0)"/>
+</g>
+<path d="M410 442H340" fill="none" stroke="color(xyz-d65 0.153 0.164 0.179)" stroke-width="1.8" stroke-dasharray="none" marker-end="url(#ArchitectureView0-arrow)"/>
+<g role="img" aria-label="uses vi" data-vi-text="uses vi" fill="color(xyz-d65 0.153 0.164 0.179)" transform="translate(375 424) scale(0.0078125 -0.0078125)">
+<use href="#ArchitectureView0-glyph-117" transform="translate(-3562.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(-2264.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(-1197.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(63.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(1130.0 0)"/>
+<use href="#ArchitectureView0-glyph-118" transform="translate(1781.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(2993.0 0)"/>
+</g>
+<path d="M190 628V684" fill="none" stroke="color(xyz-d65 0.153 0.164 0.179)" stroke-width="1.8" stroke-dasharray="none" marker-end="url(#ArchitectureView0-arrow)"/>
+<g role="img" aria-label="defines where / count" data-vi-text="defines where / count" fill="color(xyz-d65 0.153 0.164 0.179)" transform="translate(205 663) scale(0.0078125 -0.0078125)">
+<use href="#ArchitectureView0-glyph-100" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(1300.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(2560.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(3281.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(3850.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(5148.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(6408.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(7475.0 0)"/>
+<use href="#ArchitectureView0-glyph-119" transform="translate(8126.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(9801.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(11099.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(12359.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(13201.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(14461.0 0)"/>
+<use href="#ArchitectureView0-glyph-47" transform="translate(15112.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(15802.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(16453.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(17579.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(18832.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(20130.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(21428.0 0)"/>
+</g>
+<path d="M560 628V684" fill="none" stroke="color(xyz-d65 0.153 0.164 0.179)" stroke-width="1.8" stroke-dasharray="none" marker-end="url(#ArchitectureView0-arrow)"/>
+<g role="img" aria-label="defines organization" data-vi-text="defines organization" fill="color(xyz-d65 0.153 0.164 0.179)" transform="translate(575 663) scale(0.0078125 -0.0078125)">
+<use href="#ArchitectureView0-glyph-100" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(1300.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(2560.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(3281.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(3850.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(5148.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(6408.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(7475.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(8126.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(9379.0 0)"/>
+<use href="#ArchitectureView0-glyph-103" transform="translate(10221.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(11521.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(12776.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(14074.0 0)"/>
+<use href="#ArchitectureView0-glyph-122" transform="translate(14643.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(15718.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(16973.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(17776.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(18345.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(19598.0 0)"/>
+</g>
+<rect x="40" y="698" width="1040" height="99" rx="12" fill="color(xyz-d65 0.937 1.000 1.093)" stroke="color(xyz-d65 0.153 0.164 0.179)" stroke-width="1.5" stroke-dasharray="none"/>
+<g role="img" aria-label="Contract of each check" data-vi-text="Contract of each check" fill="color(xyz-d65 0.237 0.169 0.026)" transform="translate(62 730) scale(0.009765625 -0.009765625)">
+<use href="#ArchitectureView0-glyph-67" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(1430.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(2683.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(3981.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(4784.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(5626.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(6881.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(8007.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(8810.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(9461.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(10714.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(11435.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(12086.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(13346.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(14601.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(15727.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(17025.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(17676.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(18802.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(20100.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(21360.0 0)"/>
+<use href="#ArchitectureView0-glyph-107" transform="translate(22486.0 0)"/>
+</g>
+<g role="img" aria-label="Question / semantics     ·     accepted input     ·     response form     ·     conformance suite" data-vi-text="Question / semantics     ·     accepted input     ·     response form     ·     conformance suite" fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(62 758) scale(0.0087890625 -0.0087890625)">
+<use href="#ArchitectureView0-glyph-81" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(1612.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(2910.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(4170.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(5237.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(6040.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(6609.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(7862.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(9160.0 0)"/>
+<use href="#ArchitectureView0-glyph-47" transform="translate(9811.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(10501.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(11152.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(12219.0 0)"/>
+<use href="#ArchitectureView0-glyph-109" transform="translate(13479.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(15474.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(16729.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(18027.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(18830.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(19399.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(20525.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(21592.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(22243.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(22894.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(23545.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(24196.0 0)"/>
+<use href="#ArchitectureView0-glyph-183" transform="translate(24847.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(25498.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(26149.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(26800.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(27451.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(28102.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(28753.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(30008.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(31134.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(32260.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(33520.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(34820.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(35623.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(36883.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(38183.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(38834.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(39403.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(40701.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(42001.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(43299.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(44102.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(44753.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(45404.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(46055.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(46706.0 0)"/>
+<use href="#ArchitectureView0-glyph-183" transform="translate(47357.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(48008.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(48659.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(49310.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(49961.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(50612.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(51263.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(52105.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(53365.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(54432.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(55732.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(56985.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(58283.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(59350.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(60610.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(61261.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(61982.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(63235.0 0)"/>
+<use href="#ArchitectureView0-glyph-109" transform="translate(64077.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(66072.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(66723.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(67374.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(68025.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(68676.0 0)"/>
+<use href="#ArchitectureView0-glyph-183" transform="translate(69327.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(69978.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(70629.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(71280.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(71931.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(72582.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(73233.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(74359.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(75612.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(76910.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(77631.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(78884.0 0)"/>
+<use href="#ArchitectureView0-glyph-109" transform="translate(79726.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(81721.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(82976.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(84274.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(85400.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(86660.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(87311.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(88378.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(89676.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(90245.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(91048.0 0)"/>
+</g>
+<g role="img" aria-label="Each check has its own version. Passing the finite fixtures shows conformance on that suite." data-vi-text="Each check has its own version. Passing the finite fixtures shows conformance on that suite." fill="color(xyz-d65 0.153 0.164 0.179)" transform="translate(62 783) scale(0.0078125 -0.0078125)">
+<use href="#ArchitectureView0-glyph-69" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(1294.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(2549.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(3675.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(4973.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(5624.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(6750.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(8048.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(9308.0 0)"/>
+<use href="#ArchitectureView0-glyph-107" transform="translate(10434.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(11620.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(12271.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(13569.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(14824.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(15891.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(16542.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(17111.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(17914.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(18981.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(19632.0 0)"/>
+<use href="#ArchitectureView0-glyph-119" transform="translate(20885.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(22560.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(23858.0 0)"/>
+<use href="#ArchitectureView0-glyph-118" transform="translate(24509.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(25721.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(26981.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(27823.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(28890.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(29459.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(30712.0 0)"/>
+<use href="#ArchitectureView0-glyph-46" transform="translate(32010.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(32661.0 0)"/>
+<use href="#ArchitectureView0-glyph-80" transform="translate(33312.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(34547.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(35802.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(36869.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(37936.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(38505.0 0)"/>
+<use href="#ArchitectureView0-glyph-103" transform="translate(39803.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(41103.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(41754.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(42557.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(43855.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(45115.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(45766.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(46487.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(47056.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(48354.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(48923.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(49726.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(50986.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(51637.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(52358.0 0)"/>
+<use href="#ArchitectureView0-glyph-120" transform="translate(52927.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(54139.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(54942.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(56240.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(57082.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(58342.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(59409.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(60060.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(61127.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(62425.0 0)"/>
+<use href="#ArchitectureView0-glyph-119" transform="translate(63678.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(65353.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(66420.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(67071.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(68197.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(69450.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(70748.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(71469.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(72722.0 0)"/>
+<use href="#ArchitectureView0-glyph-109" transform="translate(73564.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(75559.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(76814.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(78112.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(79238.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(80498.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(81149.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(82402.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(83700.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(84351.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(85154.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(86452.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(87707.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(88510.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(89161.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(90228.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(91526.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(92095.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(92898.0 0)"/>
+<use href="#ArchitectureView0-glyph-46" transform="translate(94158.0 0)"/>
+</g>
+<path d="M930 628V684" fill="none" stroke="color(xyz-d65 0.153 0.164 0.179)" stroke-width="1.8" stroke-dasharray="none" marker-end="url(#ArchitectureView0-arrow)"/>
+<g role="img" aria-label="conforms to" data-vi-text="conforms to" fill="color(xyz-d65 0.153 0.164 0.179)" transform="translate(945 663) scale(0.0078125 -0.0078125)">
+<use href="#ArchitectureView0-glyph-99" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(1126.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(2379.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(3677.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(4398.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(5651.0 0)"/>
+<use href="#ArchitectureView0-glyph-109" transform="translate(6493.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(8488.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(9555.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(10206.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(11009.0 0)"/>
+</g>
+<g role="img" aria-label="NOW  vi and showcase are separate repositories, and showcase pins vi. Gate pins an older revision." data-vi-text="NOW  vi and showcase are separate repositories, and showcase pins vi. Gate pins an older revision." fill="color(xyz-d65 0.029 0.031 0.034)" transform="translate(40 829) scale(0.0087890625 -0.0087890625)">
+<use href="#ArchitectureView0-glyph-78" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-79" transform="translate(1532.0 0)"/>
+<use href="#ArchitectureView0-glyph-87" transform="translate(3144.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(5169.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(5820.0 0)"/>
+<use href="#ArchitectureView0-glyph-118" transform="translate(6471.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(7683.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(8252.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(8903.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(10158.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(11456.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(12756.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(13407.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(14474.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(15772.0 0)"/>
+<use href="#ArchitectureView0-glyph-119" transform="translate(17025.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(18700.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(19826.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(21081.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(22148.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(23408.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(24059.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(25314.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(26156.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(27416.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(28067.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(29134.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(30394.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(31694.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(32949.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(33791.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(35046.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(35849.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(37109.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(37760.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(38602.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(39862.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(41162.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(42415.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(43482.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(44051.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(44854.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(46107.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(46949.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(47518.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(48778.0 0)"/>
+<use href="#ArchitectureView0-glyph-44" transform="translate(49845.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(50496.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(51147.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(52402.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(53700.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(55000.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(55651.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(56718.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(58016.0 0)"/>
+<use href="#ArchitectureView0-glyph-119" transform="translate(59269.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(60944.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(62070.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(63325.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(64392.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(65652.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(66303.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(67603.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(68172.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(69470.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(70537.0 0)"/>
+<use href="#ArchitectureView0-glyph-118" transform="translate(71188.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(72400.0 0)"/>
+<use href="#ArchitectureView0-glyph-46" transform="translate(72969.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(73620.0 0)"/>
+<use href="#ArchitectureView0-glyph-71" transform="translate(74271.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(75858.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(77113.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(77916.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(79176.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(79827.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(81127.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(81696.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(82994.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(84061.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(84712.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(85967.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(87265.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(87916.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(89169.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(89738.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(91038.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(92298.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(93140.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(93791.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(94633.0 0)"/>
+<use href="#ArchitectureView0-glyph-118" transform="translate(95893.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(97105.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(97674.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(98741.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(99310.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(100563.0 0)"/>
+<use href="#ArchitectureView0-glyph-46" transform="translate(101861.0 0)"/>
+</g>
+<g role="img" aria-label="A Rust sample of the judge passes the finite suite of the contract. NEXT  Gate re-pins through the contract." data-vi-text="A Rust sample of the judge passes the finite suite of the contract. NEXT  Gate re-pins through the contract." fill="color(xyz-d65 0.153 0.164 0.179)" transform="translate(40 856) scale(0.0078125 -0.0078125)">
+<use href="#ArchitectureView0-glyph-65" transform="translate(0.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(1401.0 0)"/>
+<use href="#ArchitectureView0-glyph-82" transform="translate(2052.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(3475.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(4773.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(5840.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(6643.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(7294.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(8361.0 0)"/>
+<use href="#ArchitectureView0-glyph-109" transform="translate(9616.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(11611.0 0)"/>
+<use href="#ArchitectureView0-glyph-108" transform="translate(12911.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(13480.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(14740.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(15391.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(16644.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(17365.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(18016.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(18819.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(20117.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(21377.0 0)"/>
+<use href="#ArchitectureView0-glyph-106" transform="translate(22028.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(22597.0 0)"/>
+<use href="#ArchitectureView0-glyph-100" transform="translate(23895.0 0)"/>
+<use href="#ArchitectureView0-glyph-103" transform="translate(25195.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(26495.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(27755.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(28406.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(29706.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(30961.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(32028.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(33095.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(34355.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(35422.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(36073.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(36876.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(38174.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(39434.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(40085.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(40806.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(41375.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(42673.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(43242.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(44045.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(45305.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(45956.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(47023.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(48321.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(48890.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(49693.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(50953.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(51604.0 0)"/>
+<use href="#ArchitectureView0-glyph-102" transform="translate(52857.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(53578.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(54229.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(55032.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(56330.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(57590.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(58241.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(59367.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(60620.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(61918.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(62721.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(63563.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(64818.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(65944.0 0)"/>
+<use href="#ArchitectureView0-glyph-46" transform="translate(66747.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(67398.0 0)"/>
+<use href="#ArchitectureView0-glyph-78" transform="translate(68049.0 0)"/>
+<use href="#ArchitectureView0-glyph-69" transform="translate(69581.0 0)"/>
+<use href="#ArchitectureView0-glyph-88" transform="translate(70875.0 0)"/>
+<use href="#ArchitectureView0-glyph-84" transform="translate(72278.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(73529.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(74180.0 0)"/>
+<use href="#ArchitectureView0-glyph-71" transform="translate(74831.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(76418.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(77673.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(78476.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(79736.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(80387.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(81229.0 0)"/>
+<use href="#ArchitectureView0-glyph-45" transform="translate(82489.0 0)"/>
+<use href="#ArchitectureView0-glyph-112" transform="translate(83228.0 0)"/>
+<use href="#ArchitectureView0-glyph-105" transform="translate(84528.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(85097.0 0)"/>
+<use href="#ArchitectureView0-glyph-115" transform="translate(86395.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(87462.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(88113.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(88916.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(90214.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(91056.0 0)"/>
+<use href="#ArchitectureView0-glyph-117" transform="translate(92309.0 0)"/>
+<use href="#ArchitectureView0-glyph-103" transform="translate(93607.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(94907.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(96205.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(96856.0 0)"/>
+<use href="#ArchitectureView0-glyph-104" transform="translate(97659.0 0)"/>
+<use href="#ArchitectureView0-glyph-101" transform="translate(98957.0 0)"/>
+<use href="#ArchitectureView0-glyph-32" transform="translate(100217.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(100868.0 0)"/>
+<use href="#ArchitectureView0-glyph-111" transform="translate(101994.0 0)"/>
+<use href="#ArchitectureView0-glyph-110" transform="translate(103247.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(104545.0 0)"/>
+<use href="#ArchitectureView0-glyph-114" transform="translate(105348.0 0)"/>
+<use href="#ArchitectureView0-glyph-97" transform="translate(106190.0 0)"/>
+<use href="#ArchitectureView0-glyph-99" transform="translate(107445.0 0)"/>
+<use href="#ArchitectureView0-glyph-116" transform="translate(108571.0 0)"/>
+<use href="#ArchitectureView0-glyph-46" transform="translate(109374.0 0)"/>
+</g>
+</svg>

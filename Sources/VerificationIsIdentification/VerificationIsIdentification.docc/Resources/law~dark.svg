@@ -1,44 +1,458 @@
-<svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The construction law: one seed, two moves, one floor.">
-  <title>The construction law</title>
-  <desc>One seed — Pair: two sides, one boundary. Two moves — expand, compress. One floor — finite: width times depth.</desc>
-  <defs>
-    <marker id="ahD" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-      <path d="M0,0 L6,3 L0,6 Z" fill="#f5f5f7"/>
-    </marker>
-  </defs>
-  <g font-family="-apple-system, system-ui, 'Helvetica Neue', Arial, sans-serif">
-    <line x1="240" y1="46" x2="240" y2="178" stroke="#424245" stroke-width="1"/>
-    <line x1="480" y1="46" x2="480" y2="178" stroke="#424245" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="200" viewBox="0 0 720 200" role="img" aria-labelledby="ConstructionView1-title ConstructionView1-desc" data-vi-canvas="1">
+<!-- vi-input-sha256: 70fb465a900bfb8df7b6edd70fe059069601d4ba26c8964f4502973dc69beb74 -->
+<metadata id="ConstructionView1-font-license">Fonts are (c) Bitstream (see below). DejaVu changes are in public domain.
+Glyphs imported from Arev fonts are (c) Tavmjong Bah (see below)
 
-    <text x="120" y="32" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="2.5" fill="#a1a1a6">SEED</text>
-    <text x="360" y="32" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="2.5" fill="#a1a1a6">MOVE</text>
-    <text x="600" y="32" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="2.5" fill="#a1a1a6">FLOOR</text>
 
-    <!-- SEED: one boundary divides one thing into two sides -->
-    <rect x="82" y="63" width="76" height="46" rx="9" fill="none" stroke="#5a5a5e" stroke-width="1.5"/>
-    <line x1="120" y1="63" x2="120" y2="109" stroke="#2997ff" stroke-width="2"/>
-    <text x="101" y="91" text-anchor="middle" font-size="15" fill="#f5f5f7">a</text>
-    <text x="139" y="91" text-anchor="middle" font-size="15" fill="#f5f5f7">b</text>
-    <text x="120" y="150" text-anchor="middle" font-size="14" font-weight="600" fill="#f5f5f7">Pair</text>
-    <text x="120" y="170" text-anchor="middle" font-size="11" fill="#a1a1a6">two sides · one boundary</text>
+Bitstream Vera Fonts Copyright
+------------------------------
 
-    <!-- MOVE: two moves, no third -->
-    <text x="346" y="82" text-anchor="end" font-size="12.5" fill="#f5f5f7">expand</text>
-    <line x1="352" y1="78" x2="384" y2="78" stroke="#f5f5f7" stroke-width="1.5" marker-end="url(#ahD)"/>
-    <text x="394" y="82" text-anchor="start" font-size="11" fill="#a1a1a6">+ axis</text>
-    <text x="346" y="104" text-anchor="end" font-size="12.5" fill="#f5f5f7">compress</text>
-    <line x1="384" y1="100" x2="352" y2="100" stroke="#f5f5f7" stroke-width="1.5" marker-end="url(#ahD)"/>
-    <text x="394" y="104" text-anchor="start" font-size="11" fill="#a1a1a6">where</text>
-    <text x="360" y="150" text-anchor="middle" font-size="14" font-weight="600" fill="#f5f5f7">two moves</text>
-    <text x="360" y="170" text-anchor="middle" font-size="11" fill="#a1a1a6">no third</text>
+Copyright (c) 2003 by Bitstream, Inc. All Rights Reserved. Bitstream Vera is
+a trademark of Bitstream, Inc.
 
-    <!-- FLOOR: finite — width × depth, every chain ends at ∅ -->
-    <circle cx="600" cy="66" r="5" fill="#2997ff"/>
-    <line x1="599" y1="71" x2="584" y2="92" stroke="#f5f5f7" stroke-width="1.5"/>
-    <line x1="601" y1="71" x2="616" y2="92" stroke="#f5f5f7" stroke-width="1.5"/>
-    <text x="584" y="104" text-anchor="middle" font-size="14" fill="#a1a1a6">∅</text>
-    <text x="616" y="104" text-anchor="middle" font-size="14" fill="#a1a1a6">∅</text>
-    <text x="600" y="150" text-anchor="middle" font-size="14" font-weight="600" fill="#f5f5f7">width × depth</text>
-    <text x="600" y="170" text-anchor="middle" font-size="11" fill="#a1a1a6">finite — every chain ends at ∅</text>
-  </g>
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of the fonts accompanying this license (&quot;Fonts&quot;) and associated
+documentation files (the &quot;Font Software&quot;), to reproduce and distribute the
+Font Software, including without limitation the rights to use, copy, merge,
+publish, distribute, and/or sell copies of the Font Software, and to permit
+persons to whom the Font Software is furnished to do so, subject to the
+following conditions:
+
+The above copyright and trademark notices and this permission notice shall
+be included in all copies of one or more of the Font Software typefaces.
+
+The Font Software may be modified, altered, or added to, and in particular
+the designs of glyphs or characters in the Fonts may be modified and
+additional glyphs or characters may be added to the Fonts, only if the fonts
+are renamed to names not containing either the words &quot;Bitstream&quot; or the word
+&quot;Vera&quot;.
+
+This License becomes null and void to the extent applicable to Fonts or Font
+Software that has been modified and is distributed under the &quot;Bitstream
+Vera&quot; names.
+
+The Font Software may be sold as part of a larger software package but no
+copy of one or more of the Font Software typefaces may be sold by itself.
+
+THE FONT SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT,
+TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL BITSTREAM OR THE GNOME
+FOUNDATION BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING
+ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
+THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE
+FONT SOFTWARE.
+
+Except as contained in this notice, the names of Gnome, the Gnome
+Foundation, and Bitstream Inc., shall not be used in advertising or
+otherwise to promote the sale, use or other dealings in this Font Software
+without prior written authorization from the Gnome Foundation or Bitstream
+Inc., respectively. For further information, contact: fonts at gnome dot
+org.
+
+Arev Fonts Copyright
+------------------------------
+
+Copyright (c) 2006 by Tavmjong Bah. All Rights Reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the fonts accompanying this license (&quot;Fonts&quot;) and
+associated documentation files (the &quot;Font Software&quot;), to reproduce
+and distribute the modifications to the Bitstream Vera Font Software,
+including without limitation the rights to use, copy, merge, publish,
+distribute, and/or sell copies of the Font Software, and to permit
+persons to whom the Font Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright and trademark notices and this permission notice
+shall be included in all copies of one or more of the Font Software
+typefaces.
+
+The Font Software may be modified, altered, or added to, and in
+particular the designs of glyphs or characters in the Fonts may be
+modified and additional glyphs or characters may be added to the
+Fonts, only if the fonts are renamed to names not containing either
+the words &quot;Tavmjong Bah&quot; or the word &quot;Arev&quot;.
+
+This License becomes null and void to the extent applicable to Fonts
+or Font Software that has been modified and is distributed under the
+&quot;Tavmjong Bah Arev&quot; names.
+
+The Font Software may be sold as part of a larger software package but
+no copy of one or more of the Font Software typefaces may be sold by
+itself.
+
+THE FONT SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL
+TAVMJONG BAH BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+Except as contained in this notice, the name of Tavmjong Bah shall not
+be used in advertising or otherwise to promote the sale, use or other
+dealings in this Font Software without prior written authorization
+from Tavmjong Bah. For further information, contact: tavmjong @ free
+. fr.
+
+TeX Gyre DJV Math
+-----------------
+Fonts are (c) Bitstream (see below). DejaVu changes are in public domain.
+
+Math extensions done by B. Jackowski, P. Strzelczyk and P. Pianowski
+(on behalf of TeX users groups) are in public domain.
+
+Letters imported from Euler Fraktur from AMSfonts are (c) American
+Mathematical Society (see below).
+Bitstream Vera Fonts Copyright
+Copyright (c) 2003 by Bitstream, Inc. All Rights Reserved. Bitstream Vera
+is a trademark of Bitstream, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of the fonts accompanying this license (“Fonts”) and associated
+documentation
+files (the “Font Software”), to reproduce and distribute the Font Software,
+including without limitation the rights to use, copy, merge, publish,
+distribute,
+and/or sell copies of the Font Software, and to permit persons  to whom
+the Font Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright and trademark notices and this permission notice
+shall be
+included in all copies of one or more of the Font Software typefaces.
+
+The Font Software may be modified, altered, or added to, and in particular
+the designs of glyphs or characters in the Fonts may be modified and
+additional
+glyphs or characters may be added to the Fonts, only if the fonts are
+renamed
+to names not containing either the words “Bitstream” or the word “Vera”.
+
+This License becomes null and void to the extent applicable to Fonts or
+Font Software
+that has been modified and is distributed under the “Bitstream Vera”
+names.
+
+The Font Software may be sold as part of a larger software package but
+no copy
+of one or more of the Font Software typefaces may be sold by itself.
+
+THE FONT SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT,
+TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL BITSTREAM OR THE GNOME
+FOUNDATION
+BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING ANY GENERAL,
+SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, WHETHER IN AN
+ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF THE USE OR
+INABILITY TO USE
+THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE FONT SOFTWARE.
+Except as contained in this notice, the names of GNOME, the GNOME
+Foundation,
+and Bitstream Inc., shall not be used in advertising or otherwise to promote
+the sale, use or other dealings in this Font Software without prior written
+authorization from the GNOME Foundation or Bitstream Inc., respectively.
+For further information, contact: fonts at gnome dot org.
+
+AMSFonts (v. 2.2) copyright
+
+The PostScript Type 1 implementation of the AMSFonts produced by and
+previously distributed by Blue Sky Research and Y&amp;Y, Inc. are now freely
+available for general use. This has been accomplished through the
+cooperation
+of a consortium of scientific publishers with Blue Sky Research and Y&amp;Y.
+Members of this consortium include:
+
+Elsevier Science IBM Corporation Society for Industrial and Applied
+Mathematics (SIAM) Springer-Verlag American Mathematical Society (AMS)
+
+In order to assure the authenticity of these fonts, copyright will be
+held by
+the American Mathematical Society. This is not meant to restrict in any way
+the legitimate use of the fonts, such as (but not limited to) electronic
+distribution of documents containing these fonts, inclusion of these fonts
+into other public domain or commercial font collections or computer
+applications, use of the outline data to create derivative fonts and/or
+faces, etc. However, the AMS does require that the AMS copyright notice be
+removed from any derivative versions of the fonts which have been altered in
+any way. In addition, to ensure the fidelity of TeX documents using Computer
+Modern fonts, Professor Donald Knuth, creator of the Computer Modern faces,
+has requested that any alterations which yield different font metrics be
+given a different name.
+
+$Id$
+</metadata>
+<title id="ConstructionView1-title">The construction law</title>
+<desc id="ConstructionView1-desc">One seed — Pair: two sides, one boundary. Two moves — expand, compress. One floor — finite: width times depth.</desc>
+<defs>
+<path id="ConstructionView1-glyph-32" d=""/>
+<path id="ConstructionView1-glyph-35" d="M1047 901L756 901L672 567L965 567ZM897 1470L793 1055L1085 1055L1190 1470L1350 1470L1247 1055L1559 1055L1559 901L1208 901L1126 567L1444 567L1444 414L1087 414L983 0L823 0L926 414L633 414L530 0L369 0L473 414L158 414L158 567L510 567L594 901L272 901L272 1055L633 1055L735 1470Z"/>
+<path id="ConstructionView1-glyph-39" d="M367 1493L367 938L197 938L197 1493Z"/>
+<path id="ConstructionView1-glyph-40" d="M635 1554Q501 1324 436 1099Q371 874 371 643Q371 412 436.5 185.5Q502 -41 635 -270L475 -270Q325 -35 250.5 192Q176 419 176 643Q176 866 250 1092Q324 1318 475 1554Z"/>
+<path id="ConstructionView1-glyph-41" d="M164 1554L324 1554Q474 1318 548.5 1092Q623 866 623 643Q623 419 548.5 192Q474 -35 324 -270L164 -270Q297 -41 362.5 185.5Q428 412 428 643Q428 874 362.5 1099Q297 1324 164 1554Z"/>
+<path id="ConstructionView1-glyph-43" d="M942 1284L942 727L1499 727L1499 557L942 557L942 0L774 0L774 557L217 557L217 727L774 727L774 1284Z"/>
+<path id="ConstructionView1-glyph-44" d="M240 254L451 254L451 82L287 -238L158 -238L240 82Z"/>
+<path id="ConstructionView1-glyph-45" d="M100 643L639 643L639 479L100 479Z"/>
+<path id="ConstructionView1-glyph-46" d="M219 254L430 254L430 0L219 0Z"/>
+<path id="ConstructionView1-glyph-47" d="M520 1493L690 1493L170 -190L0 -190Z"/>
+<path id="ConstructionView1-glyph-48" d="M651 1360Q495 1360 416.5 1206.5Q338 1053 338 745Q338 438 416.5 284.5Q495 131 651 131Q808 131 886.5 284.5Q965 438 965 745Q965 1053 886.5 1206.5Q808 1360 651 1360ZM651 1520Q902 1520 1034.5 1321.5Q1167 1123 1167 745Q1167 368 1034.5 169.5Q902 -29 651 -29Q400 -29 267.5 169.5Q135 368 135 745Q135 1123 267.5 1321.5Q400 1520 651 1520Z"/>
+<path id="ConstructionView1-glyph-49" d="M254 170L584 170L584 1309L225 1237L225 1421L582 1493L784 1493L784 170L1114 170L1114 0L254 0Z"/>
+<path id="ConstructionView1-glyph-50" d="M393 170L1098 170L1098 0L150 0L150 170Q265 289 463.5 489.5Q662 690 713 748Q810 857 848.5 932.5Q887 1008 887 1081Q887 1200 803.5 1275Q720 1350 586 1350Q491 1350 385.5 1317Q280 1284 160 1217L160 1421Q282 1470 388 1495Q494 1520 582 1520Q814 1520 952 1404Q1090 1288 1090 1094Q1090 1002 1055.5 919.5Q1021 837 930 725Q905 696 771 557.5Q637 419 393 170Z"/>
+<path id="ConstructionView1-glyph-51" d="M831 805Q976 774 1057.5 676Q1139 578 1139 434Q1139 213 987 92Q835 -29 555 -29Q461 -29 361.5 -10.5Q262 8 156 45L156 240Q240 191 340 166Q440 141 549 141Q739 141 838.5 216Q938 291 938 434Q938 566 845.5 640.5Q753 715 588 715L414 715L414 881L596 881Q745 881 824 940.5Q903 1000 903 1112Q903 1227 821.5 1288.5Q740 1350 588 1350Q505 1350 410 1332Q315 1314 201 1276L201 1456Q316 1488 416.5 1504Q517 1520 606 1520Q836 1520 970 1415.5Q1104 1311 1104 1133Q1104 1009 1033 923.5Q962 838 831 805Z"/>
+<path id="ConstructionView1-glyph-52" d="M774 1317L264 520L774 520ZM721 1493L975 1493L975 520L1188 520L1188 352L975 352L975 0L774 0L774 352L100 352L100 547Z"/>
+<path id="ConstructionView1-glyph-53" d="M221 1493L1014 1493L1014 1323L406 1323L406 957Q450 972 494 979.5Q538 987 582 987Q832 987 978 850Q1124 713 1124 479Q1124 238 974 104.5Q824 -29 551 -29Q457 -29 359.5 -13Q262 3 158 35L158 238Q248 189 344 165Q440 141 547 141Q720 141 821 232Q922 323 922 479Q922 635 821 726Q720 817 547 817Q466 817 385.5 799Q305 781 221 743Z"/>
+<path id="ConstructionView1-glyph-54" d="M676 827Q540 827 460.5 734Q381 641 381 479Q381 318 460.5 224.5Q540 131 676 131Q812 131 891.5 224.5Q971 318 971 479Q971 641 891.5 734Q812 827 676 827ZM1077 1460L1077 1276Q1001 1312 923.5 1331Q846 1350 770 1350Q570 1350 464.5 1215Q359 1080 344 807Q403 894 492 940.5Q581 987 688 987Q913 987 1043.5 850.5Q1174 714 1174 479Q1174 249 1038 110Q902 -29 676 -29Q417 -29 280 169.5Q143 368 143 745Q143 1099 311 1309.5Q479 1520 762 1520Q838 1520 915.5 1505Q993 1490 1077 1460Z"/>
+<path id="ConstructionView1-glyph-55" d="M168 1493L1128 1493L1128 1407L586 0L375 0L885 1323L168 1323Z"/>
+<path id="ConstructionView1-glyph-56" d="M651 709Q507 709 424.5 632Q342 555 342 420Q342 285 424.5 208Q507 131 651 131Q795 131 878 208.5Q961 286 961 420Q961 555 878.5 632Q796 709 651 709ZM449 795Q319 827 246.5 916Q174 1005 174 1133Q174 1312 301.5 1416Q429 1520 651 1520Q874 1520 1001 1416Q1128 1312 1128 1133Q1128 1005 1055.5 916Q983 827 854 795Q1000 761 1081.5 662Q1163 563 1163 420Q1163 203 1030.5 87Q898 -29 651 -29Q404 -29 271.5 87Q139 203 139 420Q139 563 221 662Q303 761 449 795ZM375 1114Q375 998 447.5 933Q520 868 651 868Q781 868 854.5 933Q928 998 928 1114Q928 1230 854.5 1295Q781 1360 651 1360Q520 1360 447.5 1295Q375 1230 375 1114Z"/>
+<path id="ConstructionView1-glyph-58" d="M240 254L451 254L451 0L240 0ZM240 1059L451 1059L451 805L240 805Z"/>
+<path id="ConstructionView1-glyph-59" d="M240 1059L451 1059L451 805L240 805ZM240 254L451 254L451 82L287 -238L158 -238L240 82Z"/>
+<path id="ConstructionView1-glyph-61" d="M217 930L1499 930L1499 762L217 762ZM217 522L1499 522L1499 352L217 352Z"/>
+<path id="ConstructionView1-glyph-63" d="M391 254L594 254L594 0L391 0ZM588 401L397 401L397 555Q397 656 425 721Q453 786 543 872L633 961Q690 1014 715.5 1061Q741 1108 741 1157Q741 1246 675.5 1301Q610 1356 502 1356Q423 1356 333.5 1321Q244 1286 147 1219L147 1407Q241 1464 337.5 1492Q434 1520 537 1520Q721 1520 832.5 1423Q944 1326 944 1167Q944 1091 908 1022.5Q872 954 782 868L694 782Q647 735 627.5 708.5Q608 682 600 657Q594 636 591 606Q588 576 588 524Z"/>
+<path id="ConstructionView1-glyph-65" d="M700 1294L426 551L975 551ZM586 1493L815 1493L1384 0L1174 0L1038 383L365 383L229 0L16 0Z"/>
+<path id="ConstructionView1-glyph-66" d="M403 713L403 166L727 166Q890 166 968.5 233.5Q1047 301 1047 440Q1047 580 968.5 646.5Q890 713 727 713ZM403 1327L403 877L702 877Q850 877 922.5 932.5Q995 988 995 1102Q995 1215 922.5 1271Q850 1327 702 1327ZM201 1493L717 1493Q948 1493 1073 1397Q1198 1301 1198 1124Q1198 987 1134 906Q1070 825 946 805Q1095 773 1177.5 671.5Q1260 570 1260 418Q1260 218 1124 109Q988 0 737 0L201 0Z"/>
+<path id="ConstructionView1-glyph-67" d="M1319 1378L1319 1165Q1217 1260 1101.5 1307Q986 1354 856 1354Q600 1354 464 1197.5Q328 1041 328 745Q328 450 464 293.5Q600 137 856 137Q986 137 1101.5 184Q1217 231 1319 326L1319 115Q1213 43 1094.5 7Q976 -29 844 -29Q505 -29 310 178.5Q115 386 115 745Q115 1105 310 1312.5Q505 1520 844 1520Q978 1520 1096.5 1484.5Q1215 1449 1319 1378Z"/>
+<path id="ConstructionView1-glyph-68" d="M403 1327L403 166L647 166Q956 166 1099.5 306Q1243 446 1243 748Q1243 1048 1099.5 1187.5Q956 1327 647 1327ZM201 1493L616 1493Q1050 1493 1253 1312.5Q1456 1132 1456 748Q1456 362 1252 181Q1048 0 616 0L201 0Z"/>
+<path id="ConstructionView1-glyph-69" d="M201 1493L1145 1493L1145 1323L403 1323L403 881L1114 881L1114 711L403 711L403 170L1163 170L1163 0L201 0Z"/>
+<path id="ConstructionView1-glyph-70" d="M201 1493L1059 1493L1059 1323L403 1323L403 883L995 883L995 713L403 713L403 0L201 0Z"/>
+<path id="ConstructionView1-glyph-71" d="M1219 213L1219 614L889 614L889 780L1419 780L1419 139Q1302 56 1161 13.5Q1020 -29 860 -29Q510 -29 312.5 175.5Q115 380 115 745Q115 1111 312.5 1315.5Q510 1520 860 1520Q1006 1520 1137.5 1484Q1269 1448 1380 1378L1380 1163Q1268 1258 1142 1306Q1016 1354 877 1354Q603 1354 465.5 1201Q328 1048 328 745Q328 443 465.5 290Q603 137 877 137Q984 137 1068 155.5Q1152 174 1219 213Z"/>
+<path id="ConstructionView1-glyph-72" d="M201 1493L403 1493L403 881L1137 881L1137 1493L1339 1493L1339 0L1137 0L1137 711L403 711L403 0L201 0Z"/>
+<path id="ConstructionView1-glyph-73" d="M201 1493L403 1493L403 0L201 0Z"/>
+<path id="ConstructionView1-glyph-75" d="M201 1493L403 1493L403 862L1073 1493L1333 1493L592 797L1386 0L1120 0L403 719L403 0L201 0Z"/>
+<path id="ConstructionView1-glyph-76" d="M201 1493L403 1493L403 170L1130 170L1130 0L201 0Z"/>
+<path id="ConstructionView1-glyph-77" d="M201 1493L502 1493L883 477L1266 1493L1567 1493L1567 0L1370 0L1370 1311L985 287L782 287L397 1311L397 0L201 0Z"/>
+<path id="ConstructionView1-glyph-78" d="M201 1493L473 1493L1135 244L1135 1493L1331 1493L1331 0L1059 0L397 1249L397 0L201 0Z"/>
+<path id="ConstructionView1-glyph-79" d="M807 1356Q587 1356 457.5 1192Q328 1028 328 745Q328 463 457.5 299Q587 135 807 135Q1027 135 1155.5 299Q1284 463 1284 745Q1284 1028 1155.5 1192Q1027 1356 807 1356ZM807 1520Q1121 1520 1309 1309.5Q1497 1099 1497 745Q1497 392 1309 181.5Q1121 -29 807 -29Q492 -29 303.5 181Q115 391 115 745Q115 1099 303.5 1309.5Q492 1520 807 1520Z"/>
+<path id="ConstructionView1-glyph-80" d="M403 1327L403 766L657 766Q798 766 875 839Q952 912 952 1047Q952 1181 875 1254Q798 1327 657 1327ZM201 1493L657 1493Q908 1493 1036.5 1379.5Q1165 1266 1165 1047Q1165 826 1036.5 713Q908 600 657 600L403 600L403 0L201 0Z"/>
+<path id="ConstructionView1-glyph-81" d="M807 1356Q587 1356 457.5 1192Q328 1028 328 745Q328 463 457.5 299Q587 135 807 135Q1027 135 1155.5 299Q1284 463 1284 745Q1284 1028 1155.5 1192Q1027 1356 807 1356ZM1090 27L1356 -264L1112 -264L891 -25Q858 -27 840.5 -28Q823 -29 807 -29Q492 -29 303.5 181.5Q115 392 115 745Q115 1099 303.5 1309.5Q492 1520 807 1520Q1121 1520 1309 1309.5Q1497 1099 1497 745Q1497 485 1392.5 300Q1288 115 1090 27Z"/>
+<path id="ConstructionView1-glyph-82" d="M909 700Q974 678 1035.5 606Q1097 534 1159 408L1364 0L1147 0L956 383Q882 533 812.5 582Q743 631 623 631L403 631L403 0L201 0L201 1493L657 1493Q913 1493 1039 1386Q1165 1279 1165 1063Q1165 922 1099.5 829Q1034 736 909 700ZM403 1327L403 797L657 797Q803 797 877.5 864.5Q952 932 952 1063Q952 1194 877.5 1260.5Q803 1327 657 1327Z"/>
+<path id="ConstructionView1-glyph-83" d="M1096 1444L1096 1247Q981 1302 879 1329Q777 1356 682 1356Q517 1356 427.5 1292Q338 1228 338 1110Q338 1011 397.5 960.5Q457 910 623 879L745 854Q971 811 1078.5 702.5Q1186 594 1186 412Q1186 195 1040.5 83Q895 -29 614 -29Q508 -29 388.5 -5Q269 19 141 66L141 274Q264 205 382 170Q500 135 614 135Q787 135 881 203Q975 271 975 397Q975 507 907.5 569Q840 631 686 662L563 686Q337 731 236 827Q135 923 135 1094Q135 1292 274.5 1406Q414 1520 659 1520Q764 1520 873 1501Q982 1482 1096 1444Z"/>
+<path id="ConstructionView1-glyph-84" d="M-6 1493L1257 1493L1257 1323L727 1323L727 0L524 0L524 1323L-6 1323Z"/>
+<path id="ConstructionView1-glyph-85" d="M178 1493L381 1493L381 586Q381 346 468 240.5Q555 135 750 135Q944 135 1031 240.5Q1118 346 1118 586L1118 1493L1321 1493L1321 561Q1321 269 1176.5 120Q1032 -29 750 -29Q467 -29 322.5 120Q178 269 178 561Z"/>
+<path id="ConstructionView1-glyph-86" d="M586 0L16 1493L227 1493L700 236L1174 1493L1384 1493L815 0Z"/>
+<path id="ConstructionView1-glyph-87" d="M68 1493L272 1493L586 231L899 1493L1126 1493L1440 231L1753 1493L1958 1493L1583 0L1329 0L1014 1296L696 0L442 0Z"/>
+<path id="ConstructionView1-glyph-88" d="M129 1493L346 1493L717 938L1090 1493L1307 1493L827 776L1339 0L1122 0L702 635L279 0L61 0L594 797Z"/>
+<path id="ConstructionView1-glyph-89" d="M-4 1493L213 1493L627 879L1038 1493L1255 1493L727 711L727 0L524 0L524 711Z"/>
+<path id="ConstructionView1-glyph-97" d="M702 563Q479 563 393 512Q307 461 307 338Q307 240 371.5 182.5Q436 125 547 125Q700 125 792.5 233.5Q885 342 885 522L885 563ZM1069 639L1069 0L885 0L885 170Q822 68 728 19.5Q634 -29 498 -29Q326 -29 224.5 67.5Q123 164 123 326Q123 515 249.5 611Q376 707 627 707L885 707L885 725Q885 852 801.5 921.5Q718 991 567 991Q471 991 380 968Q289 945 205 899L205 1069Q306 1108 401 1127.5Q496 1147 586 1147Q829 1147 949 1021Q1069 895 1069 639Z"/>
+<path id="ConstructionView1-glyph-98" d="M997 559Q997 762 913.5 877.5Q830 993 684 993Q538 993 454.5 877.5Q371 762 371 559Q371 356 454.5 240.5Q538 125 684 125Q830 125 913.5 240.5Q997 356 997 559ZM371 950Q429 1050 517.5 1098.5Q606 1147 729 1147Q933 1147 1060.5 985Q1188 823 1188 559Q1188 295 1060.5 133Q933 -29 729 -29Q606 -29 517.5 19.5Q429 68 371 168L371 0L186 0L186 1556L371 1556Z"/>
+<path id="ConstructionView1-glyph-99" d="M999 1077L999 905Q921 948 842.5 969.5Q764 991 684 991Q505 991 406 877.5Q307 764 307 559Q307 354 406 240.5Q505 127 684 127Q764 127 842.5 148.5Q921 170 999 213L999 43Q922 7 839.5 -11Q757 -29 664 -29Q411 -29 262 130Q113 289 113 559Q113 833 263.5 990Q414 1147 676 1147Q761 1147 842 1129.5Q923 1112 999 1077Z"/>
+<path id="ConstructionView1-glyph-100" d="M930 950L930 1556L1114 1556L1114 0L930 0L930 168Q872 68 783.5 19.5Q695 -29 571 -29Q368 -29 240.5 133Q113 295 113 559Q113 823 240.5 985Q368 1147 571 1147Q695 1147 783.5 1098.5Q872 1050 930 950ZM303 559Q303 356 386.5 240.5Q470 125 616 125Q762 125 846 240.5Q930 356 930 559Q930 762 846 877.5Q762 993 616 993Q470 993 386.5 877.5Q303 762 303 559Z"/>
+<path id="ConstructionView1-glyph-101" d="M1151 606L1151 516L305 516Q317 326 419.5 226.5Q522 127 705 127Q811 127 910.5 153Q1010 179 1108 231L1108 57Q1009 15 905 -7Q801 -29 694 -29Q426 -29 269.5 127Q113 283 113 549Q113 824 261.5 985.5Q410 1147 662 1147Q888 1147 1019.5 1001.5Q1151 856 1151 606ZM967 660Q965 811 882.5 901Q800 991 664 991Q510 991 417.5 904Q325 817 311 659Z"/>
+<path id="ConstructionView1-glyph-102" d="M760 1556L760 1403L584 1403Q485 1403 446.5 1363Q408 1323 408 1219L408 1120L711 1120L711 977L408 977L408 0L223 0L223 977L47 977L47 1120L223 1120L223 1198Q223 1385 310 1470.5Q397 1556 586 1556Z"/>
+<path id="ConstructionView1-glyph-103" d="M930 573Q930 773 847.5 883Q765 993 616 993Q468 993 385.5 883Q303 773 303 573Q303 374 385.5 264Q468 154 616 154Q765 154 847.5 264Q930 374 930 573ZM1114 139Q1114 -147 987 -286.5Q860 -426 598 -426Q501 -426 415 -411.5Q329 -397 248 -367L248 -188Q329 -232 408 -253Q487 -274 569 -274Q750 -274 840 -179.5Q930 -85 930 106L930 197Q873 98 784 49Q695 0 571 0Q365 0 239 157Q113 314 113 573Q113 833 239 990Q365 1147 571 1147Q695 1147 784 1098Q873 1049 930 950L930 1120L1114 1120Z"/>
+<path id="ConstructionView1-glyph-104" d="M1124 676L1124 0L940 0L940 670Q940 829 878 908Q816 987 692 987Q543 987 457 892Q371 797 371 633L371 0L186 0L186 1556L371 1556L371 946Q437 1047 526.5 1097Q616 1147 733 1147Q926 1147 1025 1027.5Q1124 908 1124 676Z"/>
+<path id="ConstructionView1-glyph-105" d="M193 1120L377 1120L377 0L193 0ZM193 1556L377 1556L377 1323L193 1323Z"/>
+<path id="ConstructionView1-glyph-106" d="M193 1120L377 1120L377 -20Q377 -234 295.5 -330Q214 -426 33 -426L-37 -426L-37 -270L12 -270Q117 -270 155 -221.5Q193 -173 193 -20ZM193 1556L377 1556L377 1323L193 1323Z"/>
+<path id="ConstructionView1-glyph-107" d="M186 1556L371 1556L371 637L920 1120L1155 1120L561 596L1180 0L940 0L371 547L371 0L186 0Z"/>
+<path id="ConstructionView1-glyph-108" d="M193 1556L377 1556L377 0L193 0Z"/>
+<path id="ConstructionView1-glyph-109" d="M1065 905Q1134 1029 1230 1088Q1326 1147 1456 1147Q1631 1147 1726 1024.5Q1821 902 1821 676L1821 0L1636 0L1636 670Q1636 831 1579 909Q1522 987 1405 987Q1262 987 1179 892Q1096 797 1096 633L1096 0L911 0L911 670Q911 832 854 909.5Q797 987 678 987Q537 987 454 891.5Q371 796 371 633L371 0L186 0L186 1120L371 1120L371 946Q434 1049 522 1098Q610 1147 731 1147Q853 1147 938.5 1085Q1024 1023 1065 905Z"/>
+<path id="ConstructionView1-glyph-110" d="M1124 676L1124 0L940 0L940 670Q940 829 878 908Q816 987 692 987Q543 987 457 892Q371 797 371 633L371 0L186 0L186 1120L371 1120L371 946Q437 1047 526.5 1097Q616 1147 733 1147Q926 1147 1025 1027.5Q1124 908 1124 676Z"/>
+<path id="ConstructionView1-glyph-111" d="M627 991Q479 991 393 875.5Q307 760 307 559Q307 358 392.5 242.5Q478 127 627 127Q774 127 860 243Q946 359 946 559Q946 758 860 874.5Q774 991 627 991ZM627 1147Q867 1147 1004 991Q1141 835 1141 559Q1141 284 1004 127.5Q867 -29 627 -29Q386 -29 249.5 127.5Q113 284 113 559Q113 835 249.5 991Q386 1147 627 1147Z"/>
+<path id="ConstructionView1-glyph-112" d="M371 168L371 -426L186 -426L186 1120L371 1120L371 950Q429 1050 517.5 1098.5Q606 1147 729 1147Q933 1147 1060.5 985Q1188 823 1188 559Q1188 295 1060.5 133Q933 -29 729 -29Q606 -29 517.5 19.5Q429 68 371 168ZM997 559Q997 762 913.5 877.5Q830 993 684 993Q538 993 454.5 877.5Q371 762 371 559Q371 356 454.5 240.5Q538 125 684 125Q830 125 913.5 240.5Q997 356 997 559Z"/>
+<path id="ConstructionView1-glyph-113" d="M303 559Q303 356 386.5 240.5Q470 125 616 125Q762 125 846 240.5Q930 356 930 559Q930 762 846 877.5Q762 993 616 993Q470 993 386.5 877.5Q303 762 303 559ZM930 168Q872 68 783.5 19.5Q695 -29 571 -29Q368 -29 240.5 133Q113 295 113 559Q113 823 240.5 985Q368 1147 571 1147Q695 1147 783.5 1098.5Q872 1050 930 950L930 1120L1114 1120L1114 -426L930 -426Z"/>
+<path id="ConstructionView1-glyph-114" d="M842 948Q811 966 774.5 974.5Q738 983 694 983Q538 983 454.5 881.5Q371 780 371 590L371 0L186 0L186 1120L371 1120L371 946Q429 1048 522 1097.5Q615 1147 748 1147Q767 1147 790 1144.5Q813 1142 841 1137Z"/>
+<path id="ConstructionView1-glyph-115" d="M907 1087L907 913Q829 953 745 973Q661 993 571 993Q434 993 365.5 951Q297 909 297 825Q297 761 346 724.5Q395 688 543 655L606 641Q802 599 884.5 522.5Q967 446 967 309Q967 153 843.5 62Q720 -29 504 -29Q414 -29 316.5 -11.5Q219 6 111 41L111 231Q213 178 312 151.5Q411 125 508 125Q638 125 708 169.5Q778 214 778 295Q778 370 727.5 410Q677 450 506 487L442 502Q271 538 195 612.5Q119 687 119 817Q119 975 231 1061Q343 1147 549 1147Q651 1147 741 1132Q831 1117 907 1087Z"/>
+<path id="ConstructionView1-glyph-116" d="M375 1438L375 1120L754 1120L754 977L375 977L375 369Q375 232 412.5 193Q450 154 565 154L754 154L754 0L565 0Q352 0 271 79.5Q190 159 190 369L190 977L55 977L55 1120L190 1120L190 1438Z"/>
+<path id="ConstructionView1-glyph-117" d="M174 442L174 1120L358 1120L358 449Q358 290 420 210.5Q482 131 606 131Q755 131 841.5 226Q928 321 928 485L928 1120L1112 1120L1112 0L928 0L928 172Q861 70 772.5 20.5Q684 -29 567 -29Q374 -29 274 91Q174 211 174 442ZM637 1147"/>
+<path id="ConstructionView1-glyph-118" d="M61 1120L256 1120L606 180L956 1120L1151 1120L731 0L481 0Z"/>
+<path id="ConstructionView1-glyph-119" d="M86 1120L270 1120L500 246L729 1120L946 1120L1176 246L1405 1120L1589 1120L1296 0L1079 0L838 918L596 0L379 0Z"/>
+<path id="ConstructionView1-glyph-120" d="M1124 1120L719 575L1145 0L928 0L602 440L276 0L59 0L494 586L96 1120L313 1120L610 721L907 1120Z"/>
+<path id="ConstructionView1-glyph-121" d="M659 -104Q581 -304 507 -365Q433 -426 309 -426L162 -426L162 -272L270 -272Q346 -272 388 -236Q430 -200 481 -66L514 18L61 1120L256 1120L606 244L956 1120L1151 1120Z"/>
+<path id="ConstructionView1-glyph-122" d="M113 1120L987 1120L987 952L295 147L987 147L987 0L88 0L88 168L780 973L113 973Z"/>
+<path id="ConstructionView1-glyph-123" d="M1047 -190L1047 -334L985 -334Q736 -334 651.5 -260Q567 -186 567 35L567 274Q567 425 513 483Q459 541 317 541L256 541L256 684L317 684Q460 684 513.5 741.5Q567 799 567 948L567 1188Q567 1409 651.5 1482.5Q736 1556 985 1556L1047 1556L1047 1413L979 1413Q838 1413 795 1369Q752 1325 752 1184L752 936Q752 779 706.5 708Q661 637 551 612Q662 585 707 514Q752 443 752 287L752 39Q752 -102 795 -146Q838 -190 979 -190Z"/>
+<path id="ConstructionView1-glyph-125" d="M256 -190L326 -190Q466 -190 508.5 -147Q551 -104 551 39L551 287Q551 443 596 514Q641 585 752 612Q641 637 596 708Q551 779 551 936L551 1184Q551 1326 508.5 1369.5Q466 1413 326 1413L256 1413L256 1556L319 1556Q568 1556 651.5 1482.5Q735 1409 735 1188L735 948Q735 799 789 741.5Q843 684 985 684L1047 684L1047 541L985 541Q843 541 789 483Q735 425 735 274L735 35Q735 -186 651.5 -260Q568 -334 319 -334L256 -334Z"/>
+<path id="ConstructionView1-glyph-183" d="M219 838L430 838L430 584L219 584Z"/>
+<path id="ConstructionView1-glyph-215" d="M1436 1100L979 641L1436 184L1317 63L858 522L399 63L281 184L737 641L281 1100L399 1221L858 762L1317 1221Z"/>
+<path id="ConstructionView1-glyph-945" d="M846 521L802 752Q757 989 579 989Q445 989 384 879Q307 741 307 559Q307 339 382 234Q458 127 579 127Q713 127 785 340ZM949 827L1048 1120L1212 1120L1007 513L1047 294Q1056 245 1091 204Q1132 156 1164 156L1252 156L1252 0L1142 0Q1048 0 964 84Q923 126 906 214Q860 103 766 16Q722 -25 579 -25Q344 -25 230 127Q113 284 113 559Q113 853 240 991Q381 1145 579 1145Q890 1145 949 827Z"/>
+<path id="ConstructionView1-glyph-946" d="M377 69L377 -426L192 -426L192 1113Q192 1569 618 1569Q1052 1569 1052 1184Q1052 910 880 810Q1160 720 1160 453Q1160 -21 678 -21Q466 -21 377 69ZM377 309Q488 136 685 136Q973 136 973 450Q973 732 509 710L509 880Q872 880 872 1200Q872 1419 638 1419Q377 1419 377 1107Z"/>
+<path id="ConstructionView1-glyph-8211" d="M100 633L924 633L924 489L100 489Z"/>
+<path id="ConstructionView1-glyph-8212" d="M100 633L1948 633L1948 489L100 489Z"/>
+<path id="ConstructionView1-glyph-8594" d="M1616 687L1616 597L1223 204L1103 324L1336 557L117 557L117 727L1336 727L1103 960L1223 1080Z"/>
+<path id="ConstructionView1-glyph-8709" d="M1288 1339L1377 1449L1483 1449L1355 1292Q1460 1209 1529 1087Q1629 909 1629 717Q1629 525 1529 347.5Q1429 170 1253 75Q1077 -20 892 -20Q705 -20 529 75Q473 105 425 144L299 -12L194 -12L364 198Q301 264 254 348Q155 525 155 717Q155 909 254 1086.5Q353 1264 529 1359Q705 1454 892 1454Q1077 1454 1253 1359Q1271 1349 1288 1339ZM448 302L1204 1235L1190 1243Q1045 1321 892 1321Q738 1321 592.5 1242.5Q447 1164 365 1017Q284 872 283 717Q284 562 365 417Q401 353 448 302ZM1272 1189L509 247Q548 216 593 192Q738 113 892 113Q1045 113 1190 191.5Q1335 270 1418 417Q1500 562 1501 717Q1500 872 1418 1017Q1360 1120 1272 1189Z"/>
+<path id="ConstructionView1-glyph-8712" d="M343 627Q350 553 413 433Q487 294 627 216Q764 140 912 139L1609 139L1609 -20L912 -20Q720 -20 542.5 79Q365 178 270 354Q175 530 175 717Q175 902 270 1078Q365 1254 542.5 1354Q720 1454 912 1454L1609 1454L1609 1295L912 1295Q764 1294 627 1217Q488 1138 413 1000Q349 880 340 787L1609 787L1609 627Z"/>
+<path id="ConstructionView1-glyph-8728" d="M641 833Q561 833 506 777.5Q451 722 451 642Q451 563 506 508.5Q561 454 641 454Q721 454 776 508.5Q831 563 831 642Q831 721 775.5 777Q720 833 641 833ZM641 962Q705 962 764 937.5Q823 913 866 867Q912 822 935 765Q958 708 958 642Q958 510 865.5 418.5Q773 327 639 327Q504 327 414 417Q324 507 324 642Q324 776 416 869Q508 962 641 962Z"/>
+<path id="ConstructionView1-glyph-8800" d="M217 930L989 930L1245 1245L1370 1143L1196 930L1499 930L1499 762L1059 762L864 522L1499 522L1499 352L725 352L467 39L342 141L516 352L217 352L217 522L655 522L850 762L217 762Z"/>
+<path id="ConstructionView1-glyph-8838" d="M242 150L1499 150L1499 0L242 0ZM1499 300L668 300Q467 300 329 439Q190 578 190 778Q190 976 329 1117Q467 1256 667 1256L1499 1256L1499 1106L667 1106Q530 1106 435 1010Q340 914 340 778Q340 640 435 546Q531 450 667 450L1499 450Z"/>
+<path id="ConstructionView1-glyph-8898" d="M840 1309Q621 1309 467 1195.5Q313 1082 313 830L313 -393L140 -393L140 855Q140 1177 362.5 1325Q585 1473 840 1473Q1095 1473 1317.5 1325Q1540 1177 1540 855L1540 -393L1367 -393L1367 830Q1367 1080 1214.5 1194.5Q1062 1309 840 1309Z"/>
+</defs>
+<defs><marker id="ConstructionView1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="color(xyz-d65 0.377 0.402 0.440)"/></marker></defs>
+<rect x="0" y="0" width="720" height="200" rx="0" fill="color(xyz-d65 0.010 0.011 0.012)" stroke="none" stroke-width="0" stroke-dasharray="none"/>
+<path d="M240 46L240 178" fill="none" stroke="color(xyz-d65 0.377 0.402 0.440)" stroke-width="1" stroke-dasharray="none" marker-end="none"/>
+<path d="M480 46L480 178" fill="none" stroke="color(xyz-d65 0.377 0.402 0.440)" stroke-width="1" stroke-dasharray="none" marker-end="none"/>
+<g role="img" aria-label="SEED" data-vi-text="SEED" fill="color(xyz-d65 0.377 0.402 0.440)" transform="translate(120 32) scale(0.00537109375 -0.00537109375)">
+<use href="#ConstructionView1-glyph-83" transform="translate(-3430.6818181818185 0)"/>
+<use href="#ConstructionView1-glyph-69" transform="translate(-1665.227272727273 0)"/>
+<use href="#ConstructionView1-glyph-69" transform="translate(94.22727272727252 0)"/>
+<use href="#ConstructionView1-glyph-68" transform="translate(1853.6818181818176 0)"/>
+</g>
+<g role="img" aria-label="MOVE" data-vi-text="MOVE" fill="color(xyz-d65 0.377 0.402 0.440)" transform="translate(360 32) scale(0.00537109375 -0.00537109375)">
+<use href="#ConstructionView1-glyph-77" transform="translate(-3735.1818181818185 0)"/>
+<use href="#ConstructionView1-glyph-79" transform="translate(-1502.727272727273 0)"/>
+<use href="#ConstructionView1-glyph-86" transform="translate(574.7272727272725 0)"/>
+<use href="#ConstructionView1-glyph-69" transform="translate(2441.1818181818176 0)"/>
+</g>
+<g role="img" aria-label="FLOOR" data-vi-text="FLOOR" fill="color(xyz-d65 0.377 0.402 0.440)" transform="translate(600 32) scale(0.00537109375 -0.00537109375)">
+<use href="#ConstructionView1-glyph-70" transform="translate(-4413.909090909091 0)"/>
+<use href="#ConstructionView1-glyph-76" transform="translate(-2770.4545454545455 0)"/>
+<use href="#ConstructionView1-glyph-79" transform="translate(-1164.0 0)"/>
+<use href="#ConstructionView1-glyph-79" transform="translate(913.454545454545 0)"/>
+<use href="#ConstructionView1-glyph-82" transform="translate(2990.909090909091 0)"/>
+</g>
+<rect x="82" y="63" width="76" height="46" rx="9" fill="none" stroke="color(xyz-d65 0.377 0.402 0.440)" stroke-width="1.5" stroke-dasharray="none"/>
+<path d="M120 63L120 109" fill="none" stroke="color(xyz-d65 0.377 0.402 0.440)" stroke-width="2" stroke-dasharray="none" marker-end="none"/>
+<g role="img" aria-label="a" data-vi-text="a" fill="color(xyz-d65 0.717 0.765 0.837)" transform="translate(101 91) scale(0.00732421875 -0.00732421875)">
+<use href="#ConstructionView1-glyph-97" transform="translate(-627.5 0)"/>
+</g>
+<g role="img" aria-label="b" data-vi-text="b" fill="color(xyz-d65 0.717 0.765 0.837)" transform="translate(139 91) scale(0.00732421875 -0.00732421875)">
+<use href="#ConstructionView1-glyph-98" transform="translate(-650.0 0)"/>
+</g>
+<g role="img" aria-label="Pair" data-vi-text="Pair" fill="color(xyz-d65 0.717 0.765 0.837)" transform="translate(120 150) scale(0.0068359375 -0.0068359375)">
+<use href="#ConstructionView1-glyph-80" transform="translate(-1950.5 0)"/>
+<use href="#ConstructionView1-glyph-97" transform="translate(-715.5 0)"/>
+<use href="#ConstructionView1-glyph-105" transform="translate(539.5 0)"/>
+<use href="#ConstructionView1-glyph-114" transform="translate(1108.5 0)"/>
+</g>
+<g role="img" aria-label="two sides · one boundary" data-vi-text="two sides · one boundary" fill="color(xyz-d65 0.377 0.402 0.440)" transform="translate(120 170) scale(0.00537109375 -0.00537109375)">
+<use href="#ConstructionView1-glyph-116" transform="translate(-12909.0 0)"/>
+<use href="#ConstructionView1-glyph-119" transform="translate(-12106.0 0)"/>
+<use href="#ConstructionView1-glyph-111" transform="translate(-10431.0 0)"/>
+<use href="#ConstructionView1-glyph-32" transform="translate(-9178.0 0)"/>
+<use href="#ConstructionView1-glyph-115" transform="translate(-8527.0 0)"/>
+<use href="#ConstructionView1-glyph-105" transform="translate(-7460.0 0)"/>
+<use href="#ConstructionView1-glyph-100" transform="translate(-6891.0 0)"/>
+<use href="#ConstructionView1-glyph-101" transform="translate(-5591.0 0)"/>
+<use href="#ConstructionView1-glyph-115" transform="translate(-4331.0 0)"/>
+<use href="#ConstructionView1-glyph-32" transform="translate(-3264.0 0)"/>
+<use href="#ConstructionView1-glyph-183" transform="translate(-2613.0 0)"/>
+<use href="#ConstructionView1-glyph-32" transform="translate(-1962.0 0)"/>
+<use href="#ConstructionView1-glyph-111" transform="translate(-1311.0 0)"/>
+<use href="#ConstructionView1-glyph-110" transform="translate(-58.0 0)"/>
+<use href="#ConstructionView1-glyph-101" transform="translate(1240.0 0)"/>
+<use href="#ConstructionView1-glyph-32" transform="translate(2500.0 0)"/>
+<use href="#ConstructionView1-glyph-98" transform="translate(3151.0 0)"/>
+<use href="#ConstructionView1-glyph-111" transform="translate(4451.0 0)"/>
+<use href="#ConstructionView1-glyph-117" transform="translate(5704.0 0)"/>
+<use href="#ConstructionView1-glyph-110" transform="translate(7002.0 0)"/>
+<use href="#ConstructionView1-glyph-100" transform="translate(8300.0 0)"/>
+<use href="#ConstructionView1-glyph-97" transform="translate(9600.0 0)"/>
+<use href="#ConstructionView1-glyph-114" transform="translate(10855.0 0)"/>
+<use href="#ConstructionView1-glyph-121" transform="translate(11697.0 0)"/>
+</g>
+<g role="img" aria-label="expand" data-vi-text="expand" fill="color(xyz-d65 0.717 0.765 0.837)" transform="translate(346 82) scale(0.006103515625 -0.006103515625)">
+<use href="#ConstructionView1-glyph-101" transform="translate(-7625.0 0)"/>
+<use href="#ConstructionView1-glyph-120" transform="translate(-6365.0 0)"/>
+<use href="#ConstructionView1-glyph-112" transform="translate(-5153.0 0)"/>
+<use href="#ConstructionView1-glyph-97" transform="translate(-3853.0 0)"/>
+<use href="#ConstructionView1-glyph-110" transform="translate(-2598.0 0)"/>
+<use href="#ConstructionView1-glyph-100" transform="translate(-1300.0 0)"/>
+</g>
+<path d="M352 78L384 78" fill="none" stroke="color(xyz-d65 0.377 0.402 0.440)" stroke-width="1.5" stroke-dasharray="none" marker-end="url(#ConstructionView1-arrow)"/>
+<g role="img" aria-label="+ axis" data-vi-text="+ axis" fill="color(xyz-d65 0.377 0.402 0.440)" transform="translate(394 82) scale(0.00537109375 -0.00537109375)">
+<use href="#ConstructionView1-glyph-43" transform="translate(0.0 0)"/>
+<use href="#ConstructionView1-glyph-32" transform="translate(1716.0 0)"/>
+<use href="#ConstructionView1-glyph-97" transform="translate(2367.0 0)"/>
+<use href="#ConstructionView1-glyph-120" transform="translate(3622.0 0)"/>
+<use href="#ConstructionView1-glyph-105" transform="translate(4834.0 0)"/>
+<use href="#ConstructionView1-glyph-115" transform="translate(5403.0 0)"/>
+</g>
+<g role="img" aria-label="compress" data-vi-text="compress" fill="color(xyz-d65 0.717 0.765 0.837)" transform="translate(346 104) scale(0.006103515625 -0.006103515625)">
+<use href="#ConstructionView1-glyph-99" transform="translate(-9910.0 0)"/>
+<use href="#ConstructionView1-glyph-111" transform="translate(-8784.0 0)"/>
+<use href="#ConstructionView1-glyph-109" transform="translate(-7531.0 0)"/>
+<use href="#ConstructionView1-glyph-112" transform="translate(-5536.0 0)"/>
+<use href="#ConstructionView1-glyph-114" transform="translate(-4236.0 0)"/>
+<use href="#ConstructionView1-glyph-101" transform="translate(-3394.0 0)"/>
+<use href="#ConstructionView1-glyph-115" transform="translate(-2134.0 0)"/>
+<use href="#ConstructionView1-glyph-115" transform="translate(-1067.0 0)"/>
+</g>
+<path d="M384 100L352 100" fill="none" stroke="color(xyz-d65 0.377 0.402 0.440)" stroke-width="1.5" stroke-dasharray="none" marker-end="url(#ConstructionView1-arrow)"/>
+<g role="img" aria-label="where" data-vi-text="where" fill="color(xyz-d65 0.377 0.402 0.440)" transform="translate(394 104) scale(0.00537109375 -0.00537109375)">
+<use href="#ConstructionView1-glyph-119" transform="translate(0.0 0)"/>
+<use href="#ConstructionView1-glyph-104" transform="translate(1675.0 0)"/>
+<use href="#ConstructionView1-glyph-101" transform="translate(2973.0 0)"/>
+<use href="#ConstructionView1-glyph-114" transform="translate(4233.0 0)"/>
+<use href="#ConstructionView1-glyph-101" transform="translate(5075.0 0)"/>
+</g>
+<g role="img" aria-label="two moves" data-vi-text="two moves" fill="color(xyz-d65 0.717 0.765 0.837)" transform="translate(360 150) scale(0.0068359375 -0.0068359375)">
+<use href="#ConstructionView1-glyph-116" transform="translate(-5584.5 0)"/>
+<use href="#ConstructionView1-glyph-119" transform="translate(-4781.5 0)"/>
+<use href="#ConstructionView1-glyph-111" transform="translate(-3106.5 0)"/>
+<use href="#ConstructionView1-glyph-32" transform="translate(-1853.5 0)"/>
+<use href="#ConstructionView1-glyph-109" transform="translate(-1202.5 0)"/>
+<use href="#ConstructionView1-glyph-111" transform="translate(792.5 0)"/>
+<use href="#ConstructionView1-glyph-118" transform="translate(2045.5 0)"/>
+<use href="#ConstructionView1-glyph-101" transform="translate(3257.5 0)"/>
+<use href="#ConstructionView1-glyph-115" transform="translate(4517.5 0)"/>
+</g>
+<g role="img" aria-label="no third" data-vi-text="no third" fill="color(xyz-d65 0.377 0.402 0.440)" transform="translate(360 170) scale(0.00537109375 -0.00537109375)">
+<use href="#ConstructionView1-glyph-110" transform="translate(-4007.0 0)"/>
+<use href="#ConstructionView1-glyph-111" transform="translate(-2709.0 0)"/>
+<use href="#ConstructionView1-glyph-32" transform="translate(-1456.0 0)"/>
+<use href="#ConstructionView1-glyph-116" transform="translate(-805.0 0)"/>
+<use href="#ConstructionView1-glyph-104" transform="translate(-2.0 0)"/>
+<use href="#ConstructionView1-glyph-105" transform="translate(1296.0 0)"/>
+<use href="#ConstructionView1-glyph-114" transform="translate(1865.0 0)"/>
+<use href="#ConstructionView1-glyph-100" transform="translate(2707.0 0)"/>
+</g>
+<circle cx="600" cy="66" r="5" fill="color(xyz-d65 0.010 0.011 0.012)" stroke="none" stroke-width="1"/>
+<path d="M599 71L584 92" fill="none" stroke="color(xyz-d65 0.377 0.402 0.440)" stroke-width="1.5" stroke-dasharray="none" marker-end="none"/>
+<path d="M601 71L616 92" fill="none" stroke="color(xyz-d65 0.377 0.402 0.440)" stroke-width="1.5" stroke-dasharray="none" marker-end="none"/>
+<g role="img" aria-label="∅" data-vi-text="∅" fill="color(xyz-d65 0.377 0.402 0.440)" transform="translate(584 104) scale(0.0068359375 -0.0068359375)">
+<use href="#ConstructionView1-glyph-8709" transform="translate(-892.0 0)"/>
+</g>
+<g role="img" aria-label="∅" data-vi-text="∅" fill="color(xyz-d65 0.377 0.402 0.440)" transform="translate(616 104) scale(0.0068359375 -0.0068359375)">
+<use href="#ConstructionView1-glyph-8709" transform="translate(-892.0 0)"/>
+</g>
+<g role="img" aria-label="width × depth" data-vi-text="width × depth" fill="color(xyz-d65 0.717 0.765 0.837)" transform="translate(600 150) scale(0.0068359375 -0.0068359375)">
+<use href="#ConstructionView1-glyph-119" transform="translate(-7312.0 0)"/>
+<use href="#ConstructionView1-glyph-105" transform="translate(-5637.0 0)"/>
+<use href="#ConstructionView1-glyph-100" transform="translate(-5068.0 0)"/>
+<use href="#ConstructionView1-glyph-116" transform="translate(-3768.0 0)"/>
+<use href="#ConstructionView1-glyph-104" transform="translate(-2965.0 0)"/>
+<use href="#ConstructionView1-glyph-32" transform="translate(-1667.0 0)"/>
+<use href="#ConstructionView1-glyph-215" transform="translate(-1016.0 0)"/>
+<use href="#ConstructionView1-glyph-32" transform="translate(700.0 0)"/>
+<use href="#ConstructionView1-glyph-100" transform="translate(1351.0 0)"/>
+<use href="#ConstructionView1-glyph-101" transform="translate(2651.0 0)"/>
+<use href="#ConstructionView1-glyph-112" transform="translate(3911.0 0)"/>
+<use href="#ConstructionView1-glyph-116" transform="translate(5211.0 0)"/>
+<use href="#ConstructionView1-glyph-104" transform="translate(6014.0 0)"/>
+</g>
+<g role="img" aria-label="finite — every chain ends at ∅" data-vi-text="finite — every chain ends at ∅" fill="color(xyz-d65 0.377 0.402 0.440)" transform="translate(600 170) scale(0.00537109375 -0.00537109375)">
+<use href="#ConstructionView1-glyph-102" transform="translate(-15636.5 0)"/>
+<use href="#ConstructionView1-glyph-105" transform="translate(-14915.5 0)"/>
+<use href="#ConstructionView1-glyph-110" transform="translate(-14346.5 0)"/>
+<use href="#ConstructionView1-glyph-105" transform="translate(-13048.5 0)"/>
+<use href="#ConstructionView1-glyph-116" transform="translate(-12479.5 0)"/>
+<use href="#ConstructionView1-glyph-101" transform="translate(-11676.5 0)"/>
+<use href="#ConstructionView1-glyph-32" transform="translate(-10416.5 0)"/>
+<use href="#ConstructionView1-glyph-8212" transform="translate(-9765.5 0)"/>
+<use href="#ConstructionView1-glyph-32" transform="translate(-7717.5 0)"/>
+<use href="#ConstructionView1-glyph-101" transform="translate(-7066.5 0)"/>
+<use href="#ConstructionView1-glyph-118" transform="translate(-5806.5 0)"/>
+<use href="#ConstructionView1-glyph-101" transform="translate(-4594.5 0)"/>
+<use href="#ConstructionView1-glyph-114" transform="translate(-3334.5 0)"/>
+<use href="#ConstructionView1-glyph-121" transform="translate(-2492.5 0)"/>
+<use href="#ConstructionView1-glyph-32" transform="translate(-1280.5 0)"/>
+<use href="#ConstructionView1-glyph-99" transform="translate(-629.5 0)"/>
+<use href="#ConstructionView1-glyph-104" transform="translate(496.5 0)"/>
+<use href="#ConstructionView1-glyph-97" transform="translate(1794.5 0)"/>
+<use href="#ConstructionView1-glyph-105" transform="translate(3049.5 0)"/>
+<use href="#ConstructionView1-glyph-110" transform="translate(3618.5 0)"/>
+<use href="#ConstructionView1-glyph-32" transform="translate(4916.5 0)"/>
+<use href="#ConstructionView1-glyph-101" transform="translate(5567.5 0)"/>
+<use href="#ConstructionView1-glyph-110" transform="translate(6827.5 0)"/>
+<use href="#ConstructionView1-glyph-100" transform="translate(8125.5 0)"/>
+<use href="#ConstructionView1-glyph-115" transform="translate(9425.5 0)"/>
+<use href="#ConstructionView1-glyph-32" transform="translate(10492.5 0)"/>
+<use href="#ConstructionView1-glyph-97" transform="translate(11143.5 0)"/>
+<use href="#ConstructionView1-glyph-116" transform="translate(12398.5 0)"/>
+<use href="#ConstructionView1-glyph-32" transform="translate(13201.5 0)"/>
+<use href="#ConstructionView1-glyph-8709" transform="translate(13852.5 0)"/>
+</g>
 </svg>

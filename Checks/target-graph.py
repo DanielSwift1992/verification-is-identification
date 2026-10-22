@@ -9,7 +9,8 @@ import subprocess
 ROOT = Path(__file__).resolve().parent.parent
 
 
-def validate(targets, sources):
+def validate(targets, sources, dependencies):
+    assert len(dependencies) == 1 and 'https://github.com/swiftlang/swift-docc-plugin' in json.dumps(dependencies), 'Package.swift: vi may take only its documentation plugin; reverse package dependency refused'
     expected = {
         'Notation': set(),
         'Alphabet': {'Notation'},
@@ -34,12 +35,12 @@ manifest = json.loads(subprocess.check_output(['swift', 'package', 'dump-package
 targets = {t['name']: t for t in manifest['targets']}
 sources = {name: {str(p.relative_to(ROOT)): p.read_text() for p in (ROOT / 'Sources' / name).glob('*.swift')}
            for name in ['Notation', 'DocumentKit']}
-validate(targets, sources)
+validate(targets, sources, manifest['dependencies'])
 for target, dependency in [('Notation', 'Alphabet'), ('DocumentKit', 'VerificationIsIdentification')]:
     broken = copy.deepcopy(targets)
     broken[target]['dependencies'].append({'byName': [dependency, None]})
     try:
-        validate(broken, sources)
+        validate(broken, sources, manifest['dependencies'])
     except AssertionError:
         pass
     else:
@@ -48,9 +49,15 @@ for target, module in [('Notation', 'Foundation'), ('DocumentKit', 'Verification
     broken = copy.deepcopy(sources)
     broken[target]['negative-control.swift'] = 'import ' + module + '\n'
     try:
-        validate(targets, broken)
+        validate(targets, broken, manifest['dependencies'])
     except AssertionError:
         pass
     else:
         raise AssertionError('admitted forbidden import: ' + target)
-print('target graph: exact boundaries, reexport, strict plugins; four forbidden twins refused')
+try:
+    validate(targets, sources, manifest['dependencies'] + [{'sourceControl': [{'location': 'https://github.com/DanielSwift1992/verification-is-identification-showcase'}]}])
+except AssertionError:
+    pass
+else:
+    raise AssertionError('admitted reverse package dependency on showcase')
+print('target graph: exact boundaries, reexport, strict plugins; five forbidden twins refused')

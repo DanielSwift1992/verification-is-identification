@@ -88,6 +88,8 @@ The acquisition checks run a family of generic consequences and nearby construct
 
 ![vi owns the research and the where and count semantics. showcase contains the constructed company and its policy. gate supplies an implementation that passes a versioned contract.](Documentation/Figures/framework-architecture.svg)
 
+The nine SVG figures are projections of four [DocumentKit worlds](Worlds/Documentation). `python3 Checks/vi-figures.py --write` regenerates them from the declared inputs. Every SVG carries its input hash and the font license. Labels use measured glyph paths from the pinned DejaVu Sans file. The palette and its role bindings are pinned inputs from showcase. The `artifacts` law checks their delivery and all nine outputs.
+
 ## Notation and drawing
 
 `Notation` supplies the shared structure and numeral constructors without dependencies. `VerificationIsIdentification` reexports them. `Alphabet` depends on Notation; `DocumentKit` depends on Notation and Alphabet. `DocumentKitCertificates` optionally connects the drawing declarations to the theory. `DocumentKitDemo` renders the kit’s pages and examples, while `FontMetrics` reads the licensed Inter source.

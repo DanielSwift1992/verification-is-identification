@@ -1,0 +1,82 @@
+{
+  "outputs": [
+    {
+      "root": "MethodView0",
+      "output": "Documentation/Figures/vi-method.svg"
+    },
+    {
+      "root": "MethodView1",
+      "output": "Documentation/Figures/answer-determination.svg"
+    },
+    {
+      "root": "MethodView2",
+      "output": "Documentation/Figures/adequate-continuation.svg"
+    },
+    {
+      "root": "ArchitectureView0",
+      "output": "Documentation/Figures/framework-architecture.svg"
+    },
+    {
+      "root": "ThreeSourcesView0",
+      "output": "Documentation/Figures/beam-study.svg"
+    },
+    {
+      "root": "ThreeSourcesView1",
+      "output": "Documentation/Figures/beam-questions.svg"
+    },
+    {
+      "root": "ThreeSourcesView2",
+      "output": "Documentation/Figures/beam-continuation.svg"
+    },
+    {
+      "root": "ConstructionView0",
+      "output": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law.svg"
+    },
+    {
+      "root": "ConstructionView1",
+      "output": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law~dark.svg"
+    }
+  ],
+  "palette": {
+    "repository": "https://github.com/DanielSwift1992/verification-is-identification-showcase",
+    "revision": "405dfd9ff9a4e7bd834b59b668be0a39e1e28ca0",
+    "files": [
+      {
+        "path": "Worlds/Playground/Site/Palette.swift",
+        "sha256": "c3a28b82fd9d14ac409c5dedba24d53158df00f9e67b7c53f9adc8c5e37d3fa5"
+      },
+      {
+        "path": "Worlds/Playground/Site/DrawingBindings.swift",
+        "sha256": "82ac340400ee61a8b20e5a444409a3aa00f2749ec92715da92524d84755223f7"
+      }
+    ]
+  },
+  "font": {
+    "input": "Assets/DejaVuSans.ttf",
+    "license": "Assets/DejaVuSansLicense.txt",
+    "corpus": "Worlds/Documentation/Characters.txt",
+    "projection": "Worlds/Documentation/Font.swift",
+    "required_codepoints": [
+      8709,
+      8712,
+      8800,
+      8838,
+      8898,
+      945,
+      946,
+      8728
+    ]
+  },
+  "grounds": [
+    "Documentation/Figures/beam-study-sources.md",
+    "Sources/Examples/Light.swift",
+    "Sources/Examples/Verdict.swift",
+    "Sources/Examples/Transition.swift",
+    "Checks/Coverage.swift",
+    "Checks/Transition.swift",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/seeing_is_encoding.md",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verification_is_identification.md",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verdict_is_invariant__finite_records.md",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/acquisition_keeps_its_question.md"
+  ]
+}

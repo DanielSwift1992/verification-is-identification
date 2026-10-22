@@ -76,7 +76,7 @@ def value_hash(value):
 def swift(value, aliases=False):
     name = value['name']
     lines = ['import Notation', 'import DocumentKit', '', '// GENERATED from the world drawing-binding/1 record.', '// drawing-binding-value-sha256: ' + value_hash(value)]
-    vocabulary=set(re.findall(r'^public protocol (\w+): (?:Paint|Structure) \{\}', (ROOT/'Sources/DocumentKit/Design.swift').read_text(),re.M))
+    vocabulary=set(re.findall(r'^public protocol (\w+): (?:Paint|Structure) \{\}', '\n'.join(p.read_text() for p in (ROOT/'Sources/DocumentKit').rglob('*.swift')),re.M))
     def atom(n, text, paint=False, role=None):
         parent='DocumentKit.'+role+', ' if role in vocabulary else ('Paint, ' if paint else '')
         lines.extend(['public enum ' + n + ': ' + parent + 'Close {}', 'extension ' + n + ' {', '    public static var typeName: String { ' + json.dumps(text, ensure_ascii=False) + ' }', '}'])
@@ -131,12 +131,14 @@ def swift(value, aliases=False):
         paint_values.append(role+'|'+reading)
     atom(name + 'PaintValues', '\n'.join(paint_values))
     for pair in value.get('legible', []):
-        lines.append('extension ' + name + pair['foreground'] + ': LegibleOn' + pair['background'] + ' {} // owner witness: ' + pair['witness'])
+        lines.append('extension ' + name + pair['foreground'] + ': ' + pair.get('standard','Legible') + 'On' + pair['background'] + ' {} // owner witness: ' + pair['witness'])
     if aliases:
         lines += ['extension StyleBound {', '    public typealias Binding = ' + name, '}']
         for key in layout:
             lines.append('public typealias ' + key + ' = ' + name + key)
-        lines += ['public typealias TextWidth<C: Structure, S: Structure> = BoundTextWidth<' + name + ', C, S>',
+        lines += ['public typealias TimedReveal<B: Structure, D: Structure, C: Structure> = BoundTimedReveal<' + name + ', B, D, C>',
+                  'public typealias FrozenReveal<B: Structure, C: Structure> = BoundFrozenReveal<' + name + ', B, C>',
+                  'public typealias TextWidth<C: Structure, S: Structure> = BoundTextWidth<' + name + ', C, S>',
                   'public typealias CenteredBaseline<Z: Structure, S: Structure> = BoundCenteredBaseline<' + name + ', Z, S>',
                   'public typealias LineTally<C: Structure, W: Structure, S: Structure> = BoundLineTally<' + name + ', C, W, S>',
                   'public typealias GlyphStroke<C: Paint> = BoundGlyphStroke<' + name + ', C>',
@@ -179,9 +181,23 @@ def css(value, dark_selector=None):
     return '\n'.join(result)
 
 
+def table_css(value):
+    def reading(key):
+        row=value.get('layout',{}).get(key)
+        if not isinstance(row,dict) or set(row)!={'text'}:
+            raise ValueError(value['name']+'#layout/'+key+': table style needs a textual owner value')
+        return row['text']
+    return ('.content table, article table { display:block; overflow-x:auto; max-width:100%; }'
+            '.content th, article th { cursor:'+reading('TableSortCursor')+'; white-space:nowrap; }'
+            ".content th::after, article th::after { content:' \\2195'; opacity:"+reading('TableSortHintOpacity')+'; font-size:'+reading('TableSortHintSize')+'; }'
+            '.content th:hover, article th:hover { background:var(--vi-surface-track); }'
+            ".content th[data-vi-sort=down]::after, article th[data-vi-sort=down]::after { content:' \\2193'; opacity:"+reading('TableSortActiveOpacity')+'; }'
+            ".content th[data-vi-sort=up]::after, article th[data-vi-sort=up]::after { content:' \\2191'; opacity:"+reading('TableSortActiveOpacity')+'; }')
+
+
 def footer(value):
     template = (ROOT / 'Sources/DocumentKit/Resources/footer.html').read_text()
-    return ('<!-- drawing-binding-value-sha256: '+value_hash(value)+' -->\n'+template).replace('/* WORLD_ROLE_CSS */ null', json.dumps(css(value)).replace('<', '\\u003c'))
+    return ('<!-- drawing-binding-value-sha256: '+value_hash(value)+' -->\n'+template).replace('/* WORLD_ROLE_CSS */ null', json.dumps(css(value)).replace('<', '\\u003c')).replace('/* WORLD_TABLE_CSS */ null',json.dumps(table_css(value)).replace('<','\\u003c'))
 
 
 def main():

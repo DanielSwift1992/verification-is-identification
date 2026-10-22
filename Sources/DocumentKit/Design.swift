@@ -173,19 +173,22 @@ extension ArrowHeadName {
 // A world grants these categories to its paints after checking its own pairs.
 // The wrappers require the grant; the mechanism grants no concrete colour.
 
-public protocol LegibleOnInk: Paint {}
+public protocol LegibleOnInk: Paint {} // law:allow: owner-declared contrast category
 
 /// This is a foreground legible against the `SurfaceCard` role.
-public protocol LegibleOnSurfaceCard: Paint {}
+public protocol ReadableOnSurfaceCard: Paint {} // law:allow: owner-declared contrast category
+public protocol LegibleOnSurfaceCard: ReadableOnSurfaceCard {} // law:allow: owner-declared contrast category
 
 /// This is a foreground legible against the `SurfaceTrack` role.
-public protocol LegibleOnSurfaceTrack: Paint {}   // law:allow — a palette gate: its content is which foregrounds conform; the reading site (a Gated wrapper) comes and goes with canvases, the category stays
+public protocol ReadableOnSurfaceTrack: Paint {} // law:allow: owner-declared contrast category
+public protocol LegibleOnSurfaceTrack: ReadableOnSurfaceTrack {}   // law:allow — a palette gate: its content is which foregrounds conform; the reading site (a Gated wrapper) comes and goes with canvases, the category stays
 
 /// This is a foreground legible against the `AccentRole` role.
 public protocol LegibleOnAccentRole: Paint {}   // law:allow — same palette-gate class as its SurfaceTrack sibling
 
 /// This marks a foreground legible against a `NavyTint` background, unused (see above), kept as-is.
-public protocol LegibleOnNavyTint: Paint {}
+public protocol ReadableOnNavyTint: Paint {} // law:allow: owner-declared contrast category
+public protocol LegibleOnNavyTint: ReadableOnNavyTint {} // law:allow: owner-declared contrast category
 
 // Span labels carry an explicit fill, while these wrappers also require a pairing grant.
 
@@ -204,7 +207,7 @@ extension GatedBoldTextOnInk {
     }
 }
 public protocol GatedTextOnNavyTint: Open {
-    associatedtype Fg: LegibleOnNavyTint
+    associatedtype Fg: ReadableOnNavyTint
     associatedtype X: Structure
     associatedtype Y: Structure
     associatedtype Anchor: Structure
@@ -218,7 +221,7 @@ extension GatedTextOnNavyTint {
     }
 }
 public protocol GatedTextOnSurfaceCard: Open {
-    associatedtype Fg: LegibleOnSurfaceCard
+    associatedtype Fg: ReadableOnSurfaceCard
     associatedtype X: Structure
     associatedtype Y: Structure
     associatedtype Anchor: Structure
@@ -666,13 +669,16 @@ public protocol WideSurface: Structure {} // law:allow: owner-bound style name; 
 public protocol HoverStyle: Structure {} // law:allow: owner-bound interaction style name
 
 /// Requires the owner's foreground, its ground and the equality used for that pair.
-public protocol LegiblePaintPair {
+public protocol ReadablePaintPair {
     associatedtype WitnessName: Structure
     associatedtype Foreground: Paint
     associatedtype Background: Paint
     associatedtype Proof: Pair
     where Proof.Left: Structure, Proof.Right: Structure
 }
+
+/// Marks an owner pair checked by its stated Legible equality.
+public protocol LegiblePaintPair: ReadablePaintPair {} // law:allow: named contrast category
 
 /// Names the palette channels shared by the drawing readers.
 public protocol DrawingPalette: DrawingStyle {
@@ -686,7 +692,7 @@ public protocol DrawingPalette: DrawingStyle {
     associatedtype LocalType: Paint
     associatedtype InkOnPaper: LegiblePaintPair
     where InkOnPaper.Foreground == Ink, InkOnPaper.Background == Paper
-    associatedtype MutedOnPaper: LegiblePaintPair
+    associatedtype MutedOnPaper: ReadablePaintPair
     where MutedOnPaper.Foreground == Muted, MutedOnPaper.Background == Paper
     associatedtype OkOnPaper: LegiblePaintPair
     where OkOnPaper.Foreground == Ok, OkOnPaper.Background == Paper
@@ -700,6 +706,23 @@ public protocol DrawingPalette: DrawingStyle {
 
 /// Names the style fields requested by the library readers.
 public enum StyleKeys {
+    public enum NoPaint: Close {}
+    public enum SquareRadius: Close {}
+    public enum HiddenOpacity: Close {}
+    public enum VisibleOpacity: Close {}
+    public enum ImmediateDuration: Close {}
+    public enum TableSortHintOpacity: Close {}
+    public enum TableSortActiveOpacity: Close {}
+    public enum TableSortHintSize: Close {}
+    public enum TableSortCursor: Close {}
+    public enum Cover06: Close {}
+    public enum Cover15: Close {}
+    public enum Cover16: Close {}
+    public enum Cover54: Close {}
+    public enum Cover70: Close {}
+    public enum Cover80: Close {}
+    public enum Cover90: Close {}
+
     public enum FontFallbackAdvance: Close {}
     public enum CaptionSlant: Close {}
     public enum GlyphLineCap: Close {}
@@ -743,3 +766,6 @@ public enum StyleKeys {
     public enum ShapeRadius: Close {}
     public enum ThickGlyphWidth: Close {}
 }
+
+public protocol TimedReveal: Structure {} // law:allow: owner-bound composition name
+public protocol FrozenReveal: Structure {} // law:allow: owner-bound composition name

@@ -563,7 +563,7 @@ public protocol DashedArrow: Open, StyleBound {
 extension DashedArrow {
     public static var typeName: String {
         "<path d=\"\(XMLEscaped<Path>.typeName)\" stroke=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.ArrowWidth>>.typeName)\" stroke-dasharray=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.DependencyDash>>.typeName)\" "
-            + "fill=\"none\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
+            + "fill=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.NoPaint>>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
     }
 }
 
@@ -696,20 +696,20 @@ extension HoverHighlight {
 /// The panel is INTERACTIVE, not a tooltip: links inside it must be reachable and clickable.
 /// Two mechanics carry that (both checked against the standard CSS traps): the reveal rule
 /// includes `.hover-panel:hover`. Once the pointer reaches the panel, the panel holds itself
-/// open, and the close is a GRACE WINDOW, not an instant: `visibility` flips only \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverGrace>>.typeName) after
+/// open; the world supplies the grace window after
 /// the pointer leaves, so the traverse from trigger to panel survives the gap between them.
 /// `pointer-events` is deliberately absent: it is not animatable, so toggling it would end
 /// interactivity the instant the trigger's `:hover` drops, killing the traverse. In SVG,
 /// `visibility: hidden` already withholds pointer events (`visiblePainted`), and visibility IS
-/// delayable. The open is instant (`transition-delay: 0s` on the matched rule).
+/// delayable. The world supplies both transition intervals.
 public enum HoverRevealStyle<Binding: DrawingStyle>: Close {}
 extension HoverRevealStyle {
     public static var typeName: String {
         """
         <style>
-        .hover-pair .hover-panel { opacity: 0; visibility: hidden; transition: opacity \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverTransition>>.typeName) \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverEase>>.typeName) \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverFadeDelay>>.typeName), visibility 0s \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverVisibilityEase>>.typeName) \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverGrace>>.typeName); }
+        .hover-pair .hover-panel { opacity: \(XMLEscaped<StyleValue<Binding, StyleKeys.HiddenOpacity>>.typeName); visibility: hidden; transition: opacity \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverTransition>>.typeName) \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverEase>>.typeName) \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverFadeDelay>>.typeName), visibility \(XMLEscaped<StyleValue<Binding, StyleKeys.ImmediateDuration>>.typeName) \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverVisibilityEase>>.typeName) \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverGrace>>.typeName); }
         .hover-pair .hover-trigger { cursor: \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverCursor>>.typeName); }
-        .hover-pair .hover-trigger:hover ~ .hover-panel, .hover-pair .hover-panel:hover { opacity: 1; visibility: visible; transition-delay: 0s; }
+        .hover-pair .hover-trigger:hover ~ .hover-panel, .hover-pair .hover-panel:hover { opacity: \(XMLEscaped<StyleValue<Binding, StyleKeys.VisibleOpacity>>.typeName); visibility: visible; transition-delay: \(XMLEscaped<StyleValue<Binding, StyleKeys.ImmediateDuration>>.typeName); }
         .hover-highlight { transition: stroke \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverTransition>>.typeName) \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverEase>>.typeName), stroke-width \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverTransition>>.typeName) \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverEase>>.typeName); cursor: \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverCursor>>.typeName); }
         .hover-highlight:hover { stroke: \(XMLEscaped<Binding.AccentRole>.typeName); stroke-width: \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverStrokeWidth>>.typeName); }
         </style>
@@ -763,7 +763,7 @@ public protocol GlyphRectStroked: Open, StyleBound {
 extension GlyphRectStroked {
     public static var typeName: String {
         "<rect x=\"\(XMLEscaped<X>.typeName)\" y=\"\(XMLEscaped<Y>.typeName)\" width=\"\(XMLEscaped<W>.typeName)\" height=\"\(XMLEscaped<H>.typeName)\" rx=\"\(XMLEscaped<Radius>.typeName)\" "
-            + "fill=\"none\" stroke=\"\(XMLEscaped<Stroke>.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.HairlineWidth>>.typeName)\"/>\n"
+            + "fill=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.NoPaint>>.typeName)\" stroke=\"\(XMLEscaped<Stroke>.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.HairlineWidth>>.typeName)\"/>\n"
     }
 }
 
@@ -868,7 +868,7 @@ public enum BoundGlyphStroke<
 >: Close {}
 extension BoundGlyphStroke {
     public static var typeName: String {
-        "stroke=\"\(XMLEscaped<C>.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.GlyphStrokeWidth>>.typeName)\" stroke-linecap=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.GlyphLineCap>>.typeName)\" stroke-linejoin=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.GlyphLineJoin>>.typeName)\" fill=\"none\""
+        "stroke=\"\(XMLEscaped<C>.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.GlyphStrokeWidth>>.typeName)\" stroke-linecap=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.GlyphLineCap>>.typeName)\" stroke-linejoin=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.GlyphLineJoin>>.typeName)\" fill=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.NoPaint>>.typeName)\""
     }
 }
 
@@ -1598,14 +1598,15 @@ extension SpanDot {
 /// of a film, run by SVG's own clock (SMIL `set`, no script). A film is a sequence of
 /// these with consecutive cues. The reader's browser executes the schedule, and the
 /// artifact remains a pure composition.
-public enum TimedReveal<
+public enum BoundTimedReveal<
+    Binding: DrawingStyle,
     Begin: Structure,
     Dwell: Structure,
     Content: Structure
 >: Close {}
-extension TimedReveal {
+extension BoundTimedReveal {
     public static var typeName: String {
-        "<g opacity=\"0\"><set attributeName=\"opacity\" to=\"1\" "
+        "<g opacity=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.HiddenOpacity>>.typeName)\"><set attributeName=\"opacity\" to=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.VisibleOpacity>>.typeName)\" "
             + "begin=\"\(XMLEscaped<Begin>.typeName)s\" dur=\"\(XMLEscaped<Dwell>.typeName)s\"/>\n"
             + Content.typeName + "</g>\n"
     }
@@ -1614,13 +1615,14 @@ extension TimedReveal {
 /// This reveals its content on a stated cue and keeps it: a film's last frame, the fixed
 /// point the sequence rests in. The freeze is the film's whole ending: nothing loops,
 /// nothing runs, and the survivor is on screen for good.
-public enum FrozenReveal<
+public enum BoundFrozenReveal<
+    Binding: DrawingStyle,
     Begin: Structure,
     Content: Structure
 >: Close {}
-extension FrozenReveal {
+extension BoundFrozenReveal {
     public static var typeName: String {
-        "<g opacity=\"0\"><set attributeName=\"opacity\" to=\"1\" "
+        "<g opacity=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.HiddenOpacity>>.typeName)\"><set attributeName=\"opacity\" to=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.VisibleOpacity>>.typeName)\" "
             + "begin=\"\(XMLEscaped<Begin>.typeName)s\" fill=\"freeze\"/>\n"
             + Content.typeName + "</g>\n"
     }
@@ -1990,7 +1992,7 @@ extension SpanDataFill {
 }
 /// One data segment of a stacked bar starts after the parts already laid (`Prefix`)
 /// and spans its part, both as fractions of the whole over the handed width.
-public protocol SpanDataSegment: Spanning {
+public protocol SpanDataSegment: Spanning, StyleBound {
     associatedtype Prefix: Structure
     associatedtype Part: Structure
     associatedtype Whole: Structure
@@ -2007,7 +2009,7 @@ extension SpanDataSegment {
     ) -> String {
         "<rect x=\"\(XMLEscaped<SpanPx<Sum<X, Paired<Times<W.Left, Prefix>, Times<W.Right, Whole>>>>>.typeName)\" "
             + "width=\"\(XMLEscaped<SpanPx<Paired<Times<W.Left, Part>, Times<W.Right, Whole>>>>.typeName)\" "
-            + "height=\"\(XMLEscaped<H>.typeName)\" rx=\"0\" fill=\"\(XMLEscaped<Fill>.typeName)\"/>\n"
+            + "height=\"\(XMLEscaped<H>.typeName)\" rx=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.SquareRadius>>.typeName)\" fill=\"\(XMLEscaped<Fill>.typeName)\"/>\n"
     }
 }
 /// A label whose anchor is the MIDDLE of its slice: a key's digit, a column's title.

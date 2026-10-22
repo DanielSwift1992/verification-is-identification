@@ -13,44 +13,46 @@ binding = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(binding)
 
 
+style_spec=importlib.util.spec_from_file_location('style_literals',ROOT/'Scripts/style-literals.py')
+style_literals=importlib.util.module_from_spec(style_spec);style_spec.loader.exec_module(style_literals)
+footer_spec=importlib.util.spec_from_file_location('footer_check',ROOT/'Scripts/footer-check.py')
+footer_check=importlib.util.module_from_spec(footer_spec);footer_spec.loader.exec_module(footer_check)
+
 def mechanism(sources):
-    for path, text in sources.items():
-        closed=set(re.findall(r'\benum\s+(\w+)\s*:[^{}]*\{\}',text))
-        for atom in re.finditer(r'extension\s+(\w+)\s*\{(.*?)\n\}',text,re.S):
-            if atom[1] in closed and re.search(r'\b(?:Lit|Veiled|XYZWrite|XYZRatioWrite)\s*<',atom[2]):
-                raise ValueError(path+':'+str(text[:atom.start()].count('\n')+1)+': concrete colour walk belongs to a world')
-        for alias in re.finditer(r'typealias\s+(\w+)\s*=\s*(?:Lit|Veiled|XYZWrite|XYZRatioWrite)\s*<',text):
-            if alias[1] not in ['White','Black']:
-                raise ValueError(path+':'+str(text[:alias.start()].count('\n')+1)+': concrete colour alias belongs to a world')
-        for face in re.finditer(r'enum\s+(\w*(?:Face|Font|Typeface)\w*)\s*:[^{}]*\{\}\s*extension[^{}]*\{[^{}]*var typeName:[^{}]*\{\s*"([^"]+)"',text):
-            if re.search('[A-Za-z]',face[2]):
-                raise ValueError(path+':'+str(text[:face.start()].count('\n')+1)+': concrete face belongs to a world')
-        if path.endswith(('Design.swift','Vector.swift')) or path.endswith('negative.swift'):
-            for atom in re.finditer(r'extension\s+(\w+)\s*\{[^{}]*var typeName: String\s*\{\s*"([0-9]+(?:\.[0-9]+)?)"',text):
-                if float(atom[2])>0:
-                    raise ValueError(path+':'+str(text[:atom.start()].count('\n')+1)+': numeric style atom belongs to a world')
-            for alias in re.finditer(r'typealias\s+\w+\s*=\s*(?:U(?:[1-9][0-9]*)|(?:Plus|Times|Half|Rest)<\s*U[1-9])',text):
-                raise ValueError(path+':'+str(text[:alias.start()].count('\n')+1)+': layout value belongs to a world')
-        for number, line in enumerate(text.splitlines(), 1):
-            code = '' if line.lstrip().startswith('//') else line
-            if re.search(r'#[A-Fa-f0-9]{3}(?:[A-Fa-f0-9]{3})?\b|(?:rgba?|color)\(\s*[0-9.]', code):
-                raise ValueError(path + ':' + str(number) + ': world colour in drawing mechanism')
-            if re.search(r'\b(?:Inter|Roboto|DejaVu|system-ui|sans-serif)\b', code):
-                raise ValueError(path + ':' + str(number) + ': world face in drawing mechanism')
-            if 'font-family=' in code and 'Binding.' not in code:
-                raise ValueError(path + ':' + str(number) + ': literal face in drawing mechanism')
-            if re.search(r'enum\s+\w+\s*:\s*Paint\s*,', code):
-                raise ValueError(path + ':' + str(number) + ': concrete paint belongs to a world')
+    for path,text in sources.items():style_literals.check(text,path,swift=path.endswith('.swift'))
 
 
 def main():
-    sources = {str(p.relative_to(ROOT)):p.read_text() for p in (ROOT / 'Sources/DocumentKit').glob('*.swift')}
+    sources = {str(p.relative_to(ROOT)):p.read_text() for p in (ROOT / 'Sources/DocumentKit').rglob('*.swift')}
     sources['Sources/DocumentKit/Resources/footer.html'] = (ROOT / 'Sources/DocumentKit/Resources/footer.html').read_text()
+    sources.update({str(p.relative_to(ROOT)):p.read_text() for p in (ROOT/'Sources/DocumentKit').rglob('*.md')})
     mechanism(sources)
-    for line in ['enum Sneak: Close {} extension Sneak { static var typeName: String { \"12\" } }', 'typealias SecretMargin = U16', 'public enum Stowaway: Paint, Close {}', 'let paint = "#123ABC"', 'let face = "Inter"', 'let svg = "font-family=SecretTypeface"', 'enum NewFace: Close {} extension NewFace { static var typeName: String { "Avenir" } }', 'typealias SecretTone = Lit<Quenched, Undimmed, Quenched>', 'let svg = \"<svg xmlns=\\\"http://example.test\\\" fill=\\\"#123456\\\"/>\"']:
-        try: mechanism({'Sources/DocumentKit/negative.swift':line})
-        except ValueError as e: assert 'negative.swift:1:' in str(e)
-        else: raise AssertionError('mechanism admitted ' + line)
+    refusals=['enum X: Paint {}','enum X: Close, Paint {}',
+              'let svg = "<text font-family=\\\"Helvetica\\\"/>"',
+              'let svg = "<text font-family=\\\"serif\\\"/>"',
+              'let svg = "<text font-family=\\\"monospace\\\"/>"',
+              'let svg = "<rect fill=\\\"hsl(0 0% 0%)\\\"/>"',
+              'let svg = "<rect fill=\\\"oklch(50% 0 0)\\\"/>"',
+              'let svg = "<rect fill=\\\"red\\\"/>"',
+              'let svg = "<rect fill=\\\"#33" + "6FEE\\\"/>"',
+              'let paint = 0x336FEE; let svg = "<rect fill=\\\"\\(paint)\\\"/>"',
+              'let svg = "<path stroke-width=\\\"9\\\"/>"',
+              'let svg = "<text font-weight=\\\"700\\\"/>"',
+              'let svg = "<marker markerWidth=\\\"9\\\"/>"',
+              'enum Cover99: Close {} extension Cover99 { static var typeName: String { "0.99" } }']
+    for line in refusals:
+        try:mechanism({'Sources/DocumentKit/subfolder/negative.swift':line})
+        except ValueError as e:assert 'negative.swift:1:' in str(e)
+        else:raise AssertionError('mechanism admitted '+line)
+    mechanism({'Sources/DocumentKit/positive.swift':'let title="Inter-world"; let text="#abc"; let count=12/2'})
+    footer=binding.footer(binding.read(ROOT/'Worlds/Documentation/binding.json'))
+    assert footer_check.check(footer,'documentation/footer.html')==2
+    broken='<script>unquoted prose document' + footer
+    try:footer_check.check(broken,'broken/footer.html')
+    except ValueError:pass
+    else:raise AssertionError('broken footer comment admitted')
+    for path in [ROOT/'Sources/DocumentKit/DocumentKit.docc/footer.html',ROOT/'Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html']:
+        assert footer_check.check(path.read_text(),str(path.relative_to(ROOT)))==2
     fixture = ROOT / 'Contracts/Drawing/v0.1/binding.json'
     value = binding.read(fixture)
     assert (ROOT / 'Contracts/Drawing/v0.1/Binding.swift').read_text() == binding.swift(value,aliases=True), str(fixture) + ': stale Swift binding'

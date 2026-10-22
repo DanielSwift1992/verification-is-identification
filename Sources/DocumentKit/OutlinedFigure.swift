@@ -35,7 +35,7 @@ public protocol OutlineLabel: Open {
     associatedtype Y: Structure
     associatedtype Size: Structure
     associatedtype Fill: Paint
-    associatedtype Legibility: LegiblePaintPair
+    associatedtype Legibility: ReadablePaintPair
     where Legibility.Foreground == Fill
     associatedtype Anchor: Structure
     associatedtype Tracking: Structure = Never

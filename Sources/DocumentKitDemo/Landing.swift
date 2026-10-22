@@ -2082,7 +2082,7 @@ public enum RolesPlateContent<Palette: RolesPalette>: Group {
 }
 public enum RolesPlateAlt: Close {}
 extension RolesPlateAlt {
-    public static var typeName: String { "The eight roles, each as its own colour swatch." }
+    public static var typeName: String { "Eight role names, shown with the documentation world’s paints." }
 }
 public enum RolesPlate<Palette: RolesPalette>: Diagram {
     public typealias Binding = DocumentationBinding

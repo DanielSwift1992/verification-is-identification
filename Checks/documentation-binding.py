@@ -80,6 +80,8 @@ def main():
         layout['WeightBold']={'text':value['weights']['WeightBold']}
         layout['BoldWeight']={'text':value['weights']['WeightBold']}
         value['layout']=layout
+        for pair in value['legible']:
+            if pair['foreground'] in ['TextSecondary','InkSecondary']:pair['standard']='Readable'
         themes = projection.swift(value)
         for theme, mode, suffix in [('FigureLight','Lit',''),('FigureDark','Dim','Dark')]:
             pairs=[]
@@ -88,7 +90,7 @@ def main():
                 proof=next(r['contrast'] for r in rows if r['role']==owner and r['theme']==mode)
                 pair=theme+role+'OnPaper'
                 themes+='public enum '+pair+'Name: Close {}\nextension '+pair+'Name { public static var typeName: String { \"'+proof+'\" } }\n'
-                themes+='public enum '+pair+': LegiblePaintPair {\n    public typealias WitnessName = '+pair+'Name\n    public typealias Foreground = DocumentationBinding'+role+suffix+'\n    public typealias Background = DocumentationBindingPaper'+suffix+'\n    public typealias Proof = '+proof+'\n}\n'
+                themes+='public enum '+pair+': '+('ReadablePaintPair' if role=='Muted' else 'LegiblePaintPair')+' {\n    public typealias WitnessName = '+pair+'Name\n    public typealias Foreground = DocumentationBinding'+role+suffix+'\n    public typealias Background = DocumentationBindingPaper'+suffix+'\n    public typealias Proof = '+proof+'\n}\n'
                 pairs.append((role+'OnPaper',pair))
             themes+='public enum '+theme+': DrawingPalette, Close {\n'
             for role in ['Paper','Ink','Muted','Line','Ok','Bad','KnownName','LocalType','TextSecondary','AccentRole']:

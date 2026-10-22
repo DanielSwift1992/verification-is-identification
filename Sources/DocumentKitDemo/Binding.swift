@@ -2,7 +2,7 @@ import Notation
 import DocumentKit
 
 // GENERATED from the world drawing-binding/1 record.
-// drawing-binding-value-sha256: e4eb7043bdb76c24e716d01b7cc9efb8ad8e8fb4ef3963a7e8eb0418ec9c9427
+// drawing-binding-value-sha256: 40ac7c8e2d2dbe82e453a8731f3980e34fd387ee302c148ce97471798fdc4619
 public enum DocumentationBindingInk: Paint, Close {}
 extension DocumentationBindingInk {
     public static var typeName: String { "color(xyz-d65 0.01 0.01 0.011)" }
@@ -449,6 +449,70 @@ public enum DocumentationBindingHoverVisibilityEase: Close {}
 extension DocumentationBindingHoverVisibilityEase {
     public static var typeName: String { "linear" }
 }
+public enum DocumentationBindingNoPaint: Close {}
+extension DocumentationBindingNoPaint {
+    public static var typeName: String { "none" }
+}
+public enum DocumentationBindingSquareRadius: Close {}
+extension DocumentationBindingSquareRadius {
+    public static var typeName: String { "0" }
+}
+public enum DocumentationBindingHiddenOpacity: Close {}
+extension DocumentationBindingHiddenOpacity {
+    public static var typeName: String { "0" }
+}
+public enum DocumentationBindingVisibleOpacity: Close {}
+extension DocumentationBindingVisibleOpacity {
+    public static var typeName: String { "1" }
+}
+public enum DocumentationBindingImmediateDuration: Close {}
+extension DocumentationBindingImmediateDuration {
+    public static var typeName: String { "0s" }
+}
+public enum DocumentationBindingTableSortHintOpacity: Close {}
+extension DocumentationBindingTableSortHintOpacity {
+    public static var typeName: String { "0.35" }
+}
+public enum DocumentationBindingTableSortActiveOpacity: Close {}
+extension DocumentationBindingTableSortActiveOpacity {
+    public static var typeName: String { "0.9" }
+}
+public enum DocumentationBindingTableSortHintSize: Close {}
+extension DocumentationBindingTableSortHintSize {
+    public static var typeName: String { "0.85em" }
+}
+public enum DocumentationBindingTableSortCursor: Close {}
+extension DocumentationBindingTableSortCursor {
+    public static var typeName: String { "pointer" }
+}
+public enum DocumentationBindingCover06: DocumentKit.Cover06, Close {}
+extension DocumentationBindingCover06 {
+    public static var typeName: String { "0.06" }
+}
+public enum DocumentationBindingCover15: DocumentKit.Cover15, Close {}
+extension DocumentationBindingCover15 {
+    public static var typeName: String { "0.15" }
+}
+public enum DocumentationBindingCover16: DocumentKit.Cover16, Close {}
+extension DocumentationBindingCover16 {
+    public static var typeName: String { "0.16" }
+}
+public enum DocumentationBindingCover54: DocumentKit.Cover54, Close {}
+extension DocumentationBindingCover54 {
+    public static var typeName: String { "0.54" }
+}
+public enum DocumentationBindingCover70: DocumentKit.Cover70, Close {}
+extension DocumentationBindingCover70 {
+    public static var typeName: String { "0.70" }
+}
+public enum DocumentationBindingCover80: DocumentKit.Cover80, Close {}
+extension DocumentationBindingCover80 {
+    public static var typeName: String { "0.80" }
+}
+public enum DocumentationBindingCover90: DocumentKit.Cover90, Close {}
+extension DocumentationBindingCover90 {
+    public static var typeName: String { "0.90" }
+}
 public enum DocumentationBindingFontUnitsPerEm: DocumentKit.FontUnitsPerEm, Close {}
 extension DocumentationBindingFontUnitsPerEm {
     public static var typeName: String { "2048" }
@@ -577,6 +641,22 @@ extension DocumentationBindingValues {
             "HoverCursor|" + DocumentationBindingHoverCursor.typeName,
             "HoverEase|" + DocumentationBindingHoverEase.typeName,
             "HoverVisibilityEase|" + DocumentationBindingHoverVisibilityEase.typeName,
+            "NoPaint|" + DocumentationBindingNoPaint.typeName,
+            "SquareRadius|" + DocumentationBindingSquareRadius.typeName,
+            "HiddenOpacity|" + DocumentationBindingHiddenOpacity.typeName,
+            "VisibleOpacity|" + DocumentationBindingVisibleOpacity.typeName,
+            "ImmediateDuration|" + DocumentationBindingImmediateDuration.typeName,
+            "TableSortHintOpacity|" + DocumentationBindingTableSortHintOpacity.typeName,
+            "TableSortActiveOpacity|" + DocumentationBindingTableSortActiveOpacity.typeName,
+            "TableSortHintSize|" + DocumentationBindingTableSortHintSize.typeName,
+            "TableSortCursor|" + DocumentationBindingTableSortCursor.typeName,
+            "Cover06|" + DocumentationBindingCover06.typeName,
+            "Cover15|" + DocumentationBindingCover15.typeName,
+            "Cover16|" + DocumentationBindingCover16.typeName,
+            "Cover54|" + DocumentationBindingCover54.typeName,
+            "Cover70|" + DocumentationBindingCover70.typeName,
+            "Cover80|" + DocumentationBindingCover80.typeName,
+            "Cover90|" + DocumentationBindingCover90.typeName,
             "FontUnitsPerEm|" + DocumentationBindingFontUnitsPerEm.typeName,
             "FontCapHeight|" + DocumentationBindingFontCapHeight.typeName,
             "FontAdvanceTable|" + DocumentationBindingFontAdvanceTable.typeName,
@@ -598,14 +678,14 @@ extension DocumentationBindingPaintValues {
     public static var typeName: String { "Ink|color(xyz-d65 0.01 0.01 0.011)\nPaper|color(xyz-d65 0.898 0.945 1.029)\nMist|color(xyz-d65 0.898 0.945 1.029)\nAccent|color(xyz-d65 0.898 0.945 1.029)\nMuted|color(xyz-d65 0.228 0.24 0.261)\nLine|color(xyz-d65 0.613 0.645 0.702)\nInkPrimary|color(xyz-d65 0.01 0.01 0.011)\nInkSecondary|color(xyz-d65 0.228 0.24 0.261)\nAction|color(xyz-d65 0.17 0.15 0.61)\nActionTint|color(xyz-d65 0.898 0.945 1.029)\nNavyTint|color(xyz-d65 0.898 0.945 1.029)\nSurfaceCard|var(--vi-surface-card, color(xyz-d65 0.898 0.945 1.029))\nSurfaceTrack|var(--vi-surface-track, color(xyz-d65 0.898 0.945 1.029))\nSurfacePage|var(--vi-surface-page, color(xyz-d65 0.898 0.945 1.029))\nTextPrimary|var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011))\nTextSecondary|var(--vi-text-secondary, color(xyz-d65 0.228 0.24 0.261))\nAccentRole|var(--vi-accent, color(xyz-d65 0.17 0.15 0.61))\nActionRole|var(--vi-action, color(xyz-d65 0.17 0.15 0.61))\nLineRole|var(--vi-line, color(xyz-d65 0.613 0.645 0.702))\nOnAccent|var(--vi-on-accent, color(xyz-d65 0.01 0.01 0.011))\nActionTintRole|var(--vi-action-tint, color(xyz-d65 0.898 0.945 1.029))\nOnActionRole|var(--vi-on-action, color(xyz-d65 0.01 0.01 0.011))\nStatusMark|color(xyz-d65 0.08 0.15 0.06)\nOk|color(xyz-d65 0.08 0.15 0.06)\nBad|color(xyz-d65 0.24 0.15 0.05)\nKnownName|color(xyz-d65 0.25 0.15 0.63)\nLocalType|color(xyz-d65 0.124 0.15 0.346)" }
 }
 extension DocumentationBindingTextPrimary: LegibleOnSurfaceCard {} // owner witness: Paper_Ink_lit
-extension DocumentationBindingTextSecondary: LegibleOnSurfaceCard {} // owner witness: Paper_Muted_lit
+extension DocumentationBindingTextSecondary: ReadableOnSurfaceCard {} // owner witness: Paper_Muted_lit
 extension DocumentationBindingActionRole: LegibleOnSurfaceCard {} // owner witness: Paper_Action_lit
 extension DocumentationBindingTextPrimary: LegibleOnSurfaceTrack {} // owner witness: Paper_Ink_lit
-extension DocumentationBindingTextSecondary: LegibleOnSurfaceTrack {} // owner witness: Paper_Muted_lit
+extension DocumentationBindingTextSecondary: ReadableOnSurfaceTrack {} // owner witness: Paper_Muted_lit
 extension DocumentationBindingActionRole: LegibleOnSurfaceTrack {} // owner witness: Paper_Action_lit
 extension DocumentationBindingInk: LegibleOnNavyTint {} // owner witness: Paper_Ink_lit
 extension DocumentationBindingInkPrimary: LegibleOnNavyTint {} // owner witness: Paper_Ink_lit
-extension DocumentationBindingInkSecondary: LegibleOnNavyTint {} // owner witness: Paper_Muted_lit
+extension DocumentationBindingInkSecondary: ReadableOnNavyTint {} // owner witness: Paper_Muted_lit
 extension StyleBound {
     public typealias Binding = DocumentationBinding
 }
@@ -660,6 +740,22 @@ public typealias GlyphLineJoin = DocumentationBindingGlyphLineJoin
 public typealias HoverCursor = DocumentationBindingHoverCursor
 public typealias HoverEase = DocumentationBindingHoverEase
 public typealias HoverVisibilityEase = DocumentationBindingHoverVisibilityEase
+public typealias NoPaint = DocumentationBindingNoPaint
+public typealias SquareRadius = DocumentationBindingSquareRadius
+public typealias HiddenOpacity = DocumentationBindingHiddenOpacity
+public typealias VisibleOpacity = DocumentationBindingVisibleOpacity
+public typealias ImmediateDuration = DocumentationBindingImmediateDuration
+public typealias TableSortHintOpacity = DocumentationBindingTableSortHintOpacity
+public typealias TableSortActiveOpacity = DocumentationBindingTableSortActiveOpacity
+public typealias TableSortHintSize = DocumentationBindingTableSortHintSize
+public typealias TableSortCursor = DocumentationBindingTableSortCursor
+public typealias Cover06 = DocumentationBindingCover06
+public typealias Cover15 = DocumentationBindingCover15
+public typealias Cover16 = DocumentationBindingCover16
+public typealias Cover54 = DocumentationBindingCover54
+public typealias Cover70 = DocumentationBindingCover70
+public typealias Cover80 = DocumentationBindingCover80
+public typealias Cover90 = DocumentationBindingCover90
 public typealias FontUnitsPerEm = DocumentationBindingFontUnitsPerEm
 public typealias FontCapHeight = DocumentationBindingFontCapHeight
 public typealias FontAdvanceTable = DocumentationBindingFontAdvanceTable
@@ -669,6 +765,8 @@ public typealias TextM = DocumentationBindingTextM
 public typealias DisplayS = DocumentationBindingDisplayS
 public typealias Display = DocumentationBindingDisplay
 public typealias WeightBold = DocumentationBindingWeightBold
+public typealias TimedReveal<B: Structure, D: Structure, C: Structure> = BoundTimedReveal<DocumentationBinding, B, D, C>
+public typealias FrozenReveal<B: Structure, C: Structure> = BoundFrozenReveal<DocumentationBinding, B, C>
 public typealias TextWidth<C: Structure, S: Structure> = BoundTextWidth<DocumentationBinding, C, S>
 public typealias CenteredBaseline<Z: Structure, S: Structure> = BoundCenteredBaseline<DocumentationBinding, Z, S>
 public typealias LineTally<C: Structure, W: Structure, S: Structure> = BoundLineTally<DocumentationBinding, C, W, S>

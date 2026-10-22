@@ -2,7 +2,7 @@ import Notation
 import DocumentKit
 
 // GENERATED from the world drawing-binding/1 record.
-// drawing-binding-value-sha256: 56c8523c960d27ead45ebdc1ac1385087bf09e9c8aee27b22c0444191efa554d
+// drawing-binding-value-sha256: afe4329e645ac94472047871865a84a6b9a9ea983a7b2087196ec7e712e38bc7
 public enum FixtureBindingInk: Paint, Close {}
 extension FixtureBindingInk {
     public static var typeName: String { "color(xyz-d65 0.01 0.01 0.011)" }
@@ -449,6 +449,70 @@ public enum FixtureBindingHoverVisibilityEase: Close {}
 extension FixtureBindingHoverVisibilityEase {
     public static var typeName: String { "linear" }
 }
+public enum FixtureBindingNoPaint: Close {}
+extension FixtureBindingNoPaint {
+    public static var typeName: String { "none" }
+}
+public enum FixtureBindingSquareRadius: Close {}
+extension FixtureBindingSquareRadius {
+    public static var typeName: String { "0" }
+}
+public enum FixtureBindingHiddenOpacity: Close {}
+extension FixtureBindingHiddenOpacity {
+    public static var typeName: String { "0" }
+}
+public enum FixtureBindingVisibleOpacity: Close {}
+extension FixtureBindingVisibleOpacity {
+    public static var typeName: String { "1" }
+}
+public enum FixtureBindingImmediateDuration: Close {}
+extension FixtureBindingImmediateDuration {
+    public static var typeName: String { "0s" }
+}
+public enum FixtureBindingTableSortHintOpacity: Close {}
+extension FixtureBindingTableSortHintOpacity {
+    public static var typeName: String { "0.35" }
+}
+public enum FixtureBindingTableSortActiveOpacity: Close {}
+extension FixtureBindingTableSortActiveOpacity {
+    public static var typeName: String { "0.9" }
+}
+public enum FixtureBindingTableSortHintSize: Close {}
+extension FixtureBindingTableSortHintSize {
+    public static var typeName: String { "0.85em" }
+}
+public enum FixtureBindingTableSortCursor: Close {}
+extension FixtureBindingTableSortCursor {
+    public static var typeName: String { "pointer" }
+}
+public enum FixtureBindingCover06: DocumentKit.Cover06, Close {}
+extension FixtureBindingCover06 {
+    public static var typeName: String { "0.06" }
+}
+public enum FixtureBindingCover15: DocumentKit.Cover15, Close {}
+extension FixtureBindingCover15 {
+    public static var typeName: String { "0.15" }
+}
+public enum FixtureBindingCover16: DocumentKit.Cover16, Close {}
+extension FixtureBindingCover16 {
+    public static var typeName: String { "0.16" }
+}
+public enum FixtureBindingCover54: DocumentKit.Cover54, Close {}
+extension FixtureBindingCover54 {
+    public static var typeName: String { "0.54" }
+}
+public enum FixtureBindingCover70: DocumentKit.Cover70, Close {}
+extension FixtureBindingCover70 {
+    public static var typeName: String { "0.70" }
+}
+public enum FixtureBindingCover80: DocumentKit.Cover80, Close {}
+extension FixtureBindingCover80 {
+    public static var typeName: String { "0.80" }
+}
+public enum FixtureBindingCover90: DocumentKit.Cover90, Close {}
+extension FixtureBindingCover90 {
+    public static var typeName: String { "0.90" }
+}
 public enum FixtureBindingFontUnitsPerEm: DocumentKit.FontUnitsPerEm, Close {}
 extension FixtureBindingFontUnitsPerEm {
     public static var typeName: String { "2048" }
@@ -577,6 +641,22 @@ extension FixtureBindingValues {
             "HoverCursor|" + FixtureBindingHoverCursor.typeName,
             "HoverEase|" + FixtureBindingHoverEase.typeName,
             "HoverVisibilityEase|" + FixtureBindingHoverVisibilityEase.typeName,
+            "NoPaint|" + FixtureBindingNoPaint.typeName,
+            "SquareRadius|" + FixtureBindingSquareRadius.typeName,
+            "HiddenOpacity|" + FixtureBindingHiddenOpacity.typeName,
+            "VisibleOpacity|" + FixtureBindingVisibleOpacity.typeName,
+            "ImmediateDuration|" + FixtureBindingImmediateDuration.typeName,
+            "TableSortHintOpacity|" + FixtureBindingTableSortHintOpacity.typeName,
+            "TableSortActiveOpacity|" + FixtureBindingTableSortActiveOpacity.typeName,
+            "TableSortHintSize|" + FixtureBindingTableSortHintSize.typeName,
+            "TableSortCursor|" + FixtureBindingTableSortCursor.typeName,
+            "Cover06|" + FixtureBindingCover06.typeName,
+            "Cover15|" + FixtureBindingCover15.typeName,
+            "Cover16|" + FixtureBindingCover16.typeName,
+            "Cover54|" + FixtureBindingCover54.typeName,
+            "Cover70|" + FixtureBindingCover70.typeName,
+            "Cover80|" + FixtureBindingCover80.typeName,
+            "Cover90|" + FixtureBindingCover90.typeName,
             "FontUnitsPerEm|" + FixtureBindingFontUnitsPerEm.typeName,
             "FontCapHeight|" + FixtureBindingFontCapHeight.typeName,
             "FontAdvanceTable|" + FixtureBindingFontAdvanceTable.typeName,
@@ -598,14 +678,14 @@ extension FixtureBindingPaintValues {
     public static var typeName: String { "Ink|color(xyz-d65 0.01 0.01 0.011)\nPaper|color(xyz-d65 0.898 0.945 1.029)\nMist|color(xyz-d65 0.898 0.945 1.029)\nAccent|color(xyz-d65 0.898 0.945 1.029)\nMuted|color(xyz-d65 0.228 0.24 0.261)\nLine|color(xyz-d65 0.613 0.645 0.702)\nInkPrimary|color(xyz-d65 0.01 0.01 0.011)\nInkSecondary|color(xyz-d65 0.228 0.24 0.261)\nAction|color(xyz-d65 0.17 0.15 0.61)\nActionTint|color(xyz-d65 0.898 0.945 1.029)\nNavyTint|color(xyz-d65 0.898 0.945 1.029)\nSurfaceCard|var(--vi-surface-card, color(xyz-d65 0.898 0.945 1.029))\nSurfaceTrack|var(--vi-surface-track, color(xyz-d65 0.898 0.945 1.029))\nSurfacePage|var(--vi-surface-page, color(xyz-d65 0.898 0.945 1.029))\nTextPrimary|var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011))\nTextSecondary|var(--vi-text-secondary, color(xyz-d65 0.228 0.24 0.261))\nAccentRole|var(--vi-accent, color(xyz-d65 0.17 0.15 0.61))\nActionRole|var(--vi-action, color(xyz-d65 0.17 0.15 0.61))\nLineRole|var(--vi-line, color(xyz-d65 0.613 0.645 0.702))\nOnAccent|var(--vi-on-accent, color(xyz-d65 0.01 0.01 0.011))\nActionTintRole|var(--vi-action-tint, color(xyz-d65 0.898 0.945 1.029))\nOnActionRole|var(--vi-on-action, color(xyz-d65 0.01 0.01 0.011))\nStatusMark|color(xyz-d65 0.08 0.15 0.06)\nOk|color(xyz-d65 0.08 0.15 0.06)\nBad|color(xyz-d65 0.24 0.15 0.05)\nKnownName|color(xyz-d65 0.25 0.15 0.63)\nLocalType|color(xyz-d65 0.124 0.15 0.346)" }
 }
 extension FixtureBindingTextPrimary: LegibleOnSurfaceCard {} // owner witness: Paper_Ink_lit
-extension FixtureBindingTextSecondary: LegibleOnSurfaceCard {} // owner witness: Paper_Muted_lit
+extension FixtureBindingTextSecondary: ReadableOnSurfaceCard {} // owner witness: Paper_Muted_lit
 extension FixtureBindingActionRole: LegibleOnSurfaceCard {} // owner witness: Paper_Action_lit
 extension FixtureBindingTextPrimary: LegibleOnSurfaceTrack {} // owner witness: Paper_Ink_lit
-extension FixtureBindingTextSecondary: LegibleOnSurfaceTrack {} // owner witness: Paper_Muted_lit
+extension FixtureBindingTextSecondary: ReadableOnSurfaceTrack {} // owner witness: Paper_Muted_lit
 extension FixtureBindingActionRole: LegibleOnSurfaceTrack {} // owner witness: Paper_Action_lit
 extension FixtureBindingInk: LegibleOnNavyTint {} // owner witness: Paper_Ink_lit
 extension FixtureBindingInkPrimary: LegibleOnNavyTint {} // owner witness: Paper_Ink_lit
-extension FixtureBindingInkSecondary: LegibleOnNavyTint {} // owner witness: Paper_Muted_lit
+extension FixtureBindingInkSecondary: ReadableOnNavyTint {} // owner witness: Paper_Muted_lit
 extension StyleBound {
     public typealias Binding = FixtureBinding
 }
@@ -660,6 +740,22 @@ public typealias GlyphLineJoin = FixtureBindingGlyphLineJoin
 public typealias HoverCursor = FixtureBindingHoverCursor
 public typealias HoverEase = FixtureBindingHoverEase
 public typealias HoverVisibilityEase = FixtureBindingHoverVisibilityEase
+public typealias NoPaint = FixtureBindingNoPaint
+public typealias SquareRadius = FixtureBindingSquareRadius
+public typealias HiddenOpacity = FixtureBindingHiddenOpacity
+public typealias VisibleOpacity = FixtureBindingVisibleOpacity
+public typealias ImmediateDuration = FixtureBindingImmediateDuration
+public typealias TableSortHintOpacity = FixtureBindingTableSortHintOpacity
+public typealias TableSortActiveOpacity = FixtureBindingTableSortActiveOpacity
+public typealias TableSortHintSize = FixtureBindingTableSortHintSize
+public typealias TableSortCursor = FixtureBindingTableSortCursor
+public typealias Cover06 = FixtureBindingCover06
+public typealias Cover15 = FixtureBindingCover15
+public typealias Cover16 = FixtureBindingCover16
+public typealias Cover54 = FixtureBindingCover54
+public typealias Cover70 = FixtureBindingCover70
+public typealias Cover80 = FixtureBindingCover80
+public typealias Cover90 = FixtureBindingCover90
 public typealias FontUnitsPerEm = FixtureBindingFontUnitsPerEm
 public typealias FontCapHeight = FixtureBindingFontCapHeight
 public typealias FontAdvanceTable = FixtureBindingFontAdvanceTable
@@ -669,6 +765,8 @@ public typealias TextM = FixtureBindingTextM
 public typealias DisplayS = FixtureBindingDisplayS
 public typealias Display = FixtureBindingDisplay
 public typealias WeightBold = FixtureBindingWeightBold
+public typealias TimedReveal<B: Structure, D: Structure, C: Structure> = BoundTimedReveal<FixtureBinding, B, D, C>
+public typealias FrozenReveal<B: Structure, C: Structure> = BoundFrozenReveal<FixtureBinding, B, C>
 public typealias TextWidth<C: Structure, S: Structure> = BoundTextWidth<FixtureBinding, C, S>
 public typealias CenteredBaseline<Z: Structure, S: Structure> = BoundCenteredBaseline<FixtureBinding, Z, S>
 public typealias LineTally<C: Structure, W: Structure, S: Structure> = BoundLineTally<FixtureBinding, C, W, S>

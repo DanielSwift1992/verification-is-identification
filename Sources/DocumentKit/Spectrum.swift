@@ -78,8 +78,8 @@ extension Lit {
     }
 }
 
-/// This reads the same three bands carried at partial cover, `rgba(R,G,B,A)`: ink at eighty
-/// hundredths, a hairline at fifteen. The levels fold the way ``Lit``'s do, printed decimal
+/// Reads the same three bands at the cover supplied by their owner, `rgba(R,G,B,A)`.
+/// The levels fold the way ``Lit``'s do, printed decimal
 /// because the `rgba` spelling wants them so. The cover is a stated atom (``Cover06`` and
 /// its siblings), never a computed number.
 public enum Veiled<
@@ -120,37 +120,15 @@ public typealias White = Lit<Undimmed, Undimmed, Undimmed>
 /// This is White fully eaten, the far end of every walk. Shadows read it.
 public typealias Black = Lit<Quenched, Quenched, Quenched>
 
-// ── The covers: how much of the ground a veiled colour hides, in hundredths. Seven rungs
-// exist because seven are used, and a component states no cover these do not own. ──
+// Historical cover names identify owner-supplied alpha readings.
 
-public enum Cover06: Close {}
-extension Cover06 {
-    public static var typeName: String { "0.06" }
-}
-public enum Cover15: Close {}
-extension Cover15 {
-    public static var typeName: String { "0.15" }
-}
-public enum Cover16: Close {}
-extension Cover16 {
-    public static var typeName: String { "0.16" }
-}
-public enum Cover54: Close {}
-extension Cover54 {
-    public static var typeName: String { "0.54" }
-}
-public enum Cover70: Close {}
-extension Cover70 {
-    public static var typeName: String { "0.70" }
-}
-public enum Cover80: Close {}
-extension Cover80 {
-    public static var typeName: String { "0.80" }
-}
-public enum Cover90: Close {}
-extension Cover90 {
-    public static var typeName: String { "0.90" }
-}
+public protocol Cover06: Structure {} // law:allow: owner-bound alpha name
+public protocol Cover15: Structure {} // law:allow: owner-bound alpha name
+public protocol Cover16: Structure {} // law:allow: owner-bound alpha name
+public protocol Cover54: Structure {} // law:allow: owner-bound alpha name
+public protocol Cover70: Structure {} // law:allow: owner-bound alpha name
+public protocol Cover80: Structure {} // law:allow: owner-bound alpha name
+public protocol Cover90: Structure {} // law:allow: owner-bound alpha name
 
 // ── The spectral bridge: mixing is a type. A line's weight per rung is a
 // stated magnitude (256ths of one full pour), a level is a stated rung, and a

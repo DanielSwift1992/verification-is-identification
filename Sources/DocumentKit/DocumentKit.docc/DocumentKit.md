@@ -592,4 +592,4 @@ writeSVG(RolesPlate<DarkRolesPalette>.typeName, "roles-plate~dark")
 
 Comes out like this:
 
-![The eight roles, each as its own colour swatch.](roles-plate)
+![Eight role names, shown with the documentation world’s paints.](roles-plate)

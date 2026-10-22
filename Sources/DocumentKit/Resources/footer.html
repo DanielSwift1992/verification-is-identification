@@ -1,24 +1,4 @@
-<!-- Generated footers insert only their owner role CSS into this shared hook. -->
-<script>`
-  elements (recreating and running each one — how this file's inline-swap hook has always
-  worked) but leaves everything else in the template inert, including a plain `<style>` tag —
-  confirmed by inspecting the live DOM: the raw HTML held the block, `document.body.children`
-  showed a `TEMPLATE#custom-footer` still holding it, and no `<style>` reached the document at
-  all. The fix is to build the `<style>` element ourselves, in script, the one channel already
-  proven to reach the live page — appended to `<head>` before the scan below runs, so the first
-  inlined SVG already has the variables in scope. A canvas file never changes after that; only
-  which custom property the browser resolves does, so the theme switches LIVE, with no reload,
-  the moment the OS/browser preference changes — the interim round's "already-inlined SVGs
-  freeze at whatever theme was active when the page loaded" caveat does not apply to a colour
-  carried by a CSS variable, only to which of two SEPARATE FILES got inlined (mechanism A, the
-  card grid — DESIGN10's `x~dark.svg` mechanism, unaffected by this block).
-
-  These hexes are also declared, literally, as Swift atoms in Design.swift (the light values) and
-  as `SurfaceTrackDark`/`TextPrimaryDark` (the two dark values `CardPalette` needs) — this file is
-  not Swift-rendered, so the two lists cannot share one declaration the way the rest of
-  Design.swift's palette does. Keeping them in step is a manual discipline (SurfaceLaw §S23's own
-  edge), not a mechanism that enforces it.
--->
+<!-- Shared inline-SVG and table hooks; the world supplies their style projection. -->
 <script>
 (function () {
   if (window.__viInlineHook) { return; }
@@ -218,13 +198,8 @@
   // direction, and hover tints the cell. A cursor change alone is a hint
   // only the mouse sees.
   var css = document.createElement("style");
-  css.textContent =
-    ".content table, article table { display: block; overflow-x: auto; max-width: 100%; }" +
-    ".content th, article th { cursor: pointer; white-space: nowrap; }" +
-    ".content th::after, article th::after { content: ' \\2195'; opacity: 0.35; font-size: 0.85em; }" +
-    ".content th:hover, article th:hover { background: var(--vi-surface-track); }" +
-    ".content th[data-vi-sort=down]::after, article th[data-vi-sort=down]::after { content: ' \\2193'; opacity: 0.9; }" +
-    ".content th[data-vi-sort=up]::after, article th[data-vi-sort=up]::after { content: ' \\2191'; opacity: 0.9; }";
+  css.textContent = /* WORLD_TABLE_CSS */ null;
+  if (css.textContent === "null") { throw new Error("footer#layout: table style is missing"); }
   document.head.appendChild(css);
   function keyOf(row, index) {
     var cell = row.cells[index];

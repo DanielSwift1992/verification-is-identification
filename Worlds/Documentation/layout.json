@@ -153,6 +153,54 @@
     },
     "HoverVisibilityEase": {
       "text": "linear"
+    },
+    "NoPaint": {
+      "text": "none"
+    },
+    "SquareRadius": {
+      "text": "0"
+    },
+    "HiddenOpacity": {
+      "text": "0"
+    },
+    "VisibleOpacity": {
+      "text": "1"
+    },
+    "ImmediateDuration": {
+      "text": "0s"
+    },
+    "TableSortHintOpacity": {
+      "text": "0.35"
+    },
+    "TableSortActiveOpacity": {
+      "text": "0.9"
+    },
+    "TableSortHintSize": {
+      "text": "0.85em"
+    },
+    "TableSortCursor": {
+      "text": "pointer"
+    },
+    "Cover06": {
+      "text": "0.06"
+    },
+    "Cover15": {
+      "text": "0.15"
+    },
+    "Cover16": {
+      "text": "0.16"
+    },
+    "Cover54": {
+      "text": "0.54"
+    },
+    "Cover70": {
+      "text": "0.70"
+    },
+    "Cover80": {
+      "text": "0.80"
+    },
+    "Cover90": {
+      "text": "0.90"
     }
   },
   "missingAdvanceCharacter": "m"

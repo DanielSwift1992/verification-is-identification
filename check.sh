@@ -112,6 +112,7 @@ LAWS+=(
 "quotes|a quote of a sibling paper is that paper's sentence|bash Checks/tools.sh quotes"
 "law|the grammar carries every source file|bash Checks/tools.sh grammar"
 "boundary|registered and external scope maps keep component boundaries, coverage and compiler grants|bash Checks/grammar-boundary.sh && python3 Checks/grammar-scopes.py && python3 Checks/grammar-chunks.py"
+"dependencies|consumer behavior debt shrinks; references and frozen inputs are declared|python3 Checks/dependency-boundary.py && python3 Checks/dependency-boundary-controls.py"
 )
 
 RESEARCH+=(

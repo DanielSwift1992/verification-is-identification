@@ -1,0 +1,3334 @@
+{
+  "format": "boundary-ledger/3",
+  "baseline_revision": "55f3e354a9b8682229caa15782513effa84b2afb",
+  "scope": [
+    "Package.swift",
+    "Sources",
+    "Contracts",
+    "Checks",
+    "Documentation",
+    "Plugins",
+    "README.md"
+  ],
+  "vocabulary": [
+    {
+      "name": "worked-product repository",
+      "pattern": "(?i)\\b(?:verification-is-identification-)?showcase\\b",
+      "source": "T0067 request: consumer repository name and its short spelling"
+    },
+    {
+      "name": "tool repository references",
+      "pattern": "(?i)(?:\\b(?:[A-Za-z0-9_.-]+/)+gate(?:\\.git)?(?=[/\\s\\\"\\x27<>)]|$)(?:/[^\\s\\\"\\x27<>)]*)?|(?:\\.\\./|/path/to/|/[Pp]rojects/)gate(?![A-Za-z0-9_.-])(?:/[A-Za-z0-9_./-]+)?|\\bgate/(?:bin|stdlib)/[A-Za-z0-9_./-]+|\\bgate@[0-9a-fA-F]{7,40}\\b)",
+      "source": "T0067 request: consumer repository URLs, paths and explicitly named origin pins; one match per reference"
+    },
+    {
+      "name": "archived origin path",
+      "pattern": "\\bgate-bench-[A-Za-z0-9_.-]+",
+      "source": "T0067 request: the named Court v0.2 archived origin"
+    },
+    {
+      "name": "consumer targets",
+      "pattern": "\\b(?:Organization|ShowcaseTools|VectorDemo)\\b",
+      "source": "T0070 and audit N3/N9: actual LawCheck target selection, consumer tool and descriptive references"
+    },
+    {
+      "name": "consumer target selection",
+      "pattern": "\\bDocumentKit\\b",
+      "paths": [
+        "Plugins"
+      ],
+      "source": "T0070: consumer-target selection only; DocumentKit sources are owned by this repository."
+    },
+    {
+      "name": "distinctive palette colors",
+      "pattern": "(?i)#(?:FFDD2D|336FEE)(?:[0-9a-f]{2})?\\b",
+      "source": "T0068: company style values in the documentation mechanism."
+    },
+    {
+      "name": "declared font family",
+      "pattern": "Inter,\\s*Roboto,\\s*system-ui,\\s*sans-serif",
+      "source": "T0068: company typography in the documentation mechanism."
+    },
+    {
+      "name": "documentation style defaults",
+      "pattern": "--vi-[a-z-]+:[^;\\\"\\n]+;",
+      "paths": [
+        "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html"
+      ],
+      "source": "T0068: literal role values in the documentation mechanism, parallel to the renderer default table."
+    }
+  ],
+  "fixtures": [],
+  "probe_names": [
+    "verification-is-identification-showcase",
+    "DanielSwift1992/gate",
+    "Organization",
+    "VectorDemo",
+    "#FFDD2DFF"
+  ],
+  "definition": "Literal consumer names, repository URLs, paths and named origin pins. Bare mathematical uses of the word gate are not repository dependencies. Declared references/inputs are reviewed exact occurrences, not removal debt; an unlisted occurrence still refuses. This finite lexical vocabulary does not decide the meaning of arbitrary new words. Common English words are matched only in declared source contexts or subject paths. Text without NUL must decode as UTF-8. Historical selectors retain their retirement limits when this policy is extended.",
+  "opaque_digests": "SHA-1 and SHA-256 fields in an otherwise unchanged line are opaque; input contracts check their bytes.",
+  "removal_tasks": {
+    "T0070": "Consumer declares plugin strictness; research checks move to the owner court or an explicitly frozen input, with no live neighboring checkout.",
+    "T0068": "Owner style values replace company palette and typography in documentation mechanism."
+  },
+  "exceptions": [
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 55,
+      "name": "--vi-surface-card:#FFFFFF;",
+      "text": "\"--vi-surface-card:#FFFFFF;\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 56,
+      "name": "--vi-surface-page:#FFFFFF;",
+      "text": "\"--vi-surface-page:#FFFFFF;\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 57,
+      "name": "--vi-surface-track:#F6F7F8;",
+      "text": "\"--vi-surface-track:#F6F7F8;\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 58,
+      "name": "--vi-text-primary:rgba(0,0,0,0.80);",
+      "text": "\"--vi-text-primary:rgba(0,0,0,0.80);\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 59,
+      "name": "--vi-text-secondary:rgba(0,0,0,0.54);",
+      "text": "\"--vi-text-secondary:rgba(0,0,0,0.54);\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 60,
+      "name": "#FFDD2D",
+      "text": "\"--vi-accent:#FFDD2D;\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 60,
+      "name": "--vi-accent:#FFDD2D;",
+      "text": "\"--vi-accent:#FFDD2D;\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 61,
+      "name": "#336FEE",
+      "text": "\"--vi-action:#336FEE;\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 61,
+      "name": "--vi-action:#336FEE;",
+      "text": "\"--vi-action:#336FEE;\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 62,
+      "name": "--vi-line:#EAECEE;",
+      "text": "\"--vi-line:#EAECEE;\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 63,
+      "name": "--vi-on-accent:#1C1C1E;",
+      "text": "\"--vi-on-accent:#1C1C1E;\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 64,
+      "name": "--vi-action-tint:rgba(66,139,249,0.16);",
+      "text": "\"--vi-action-tint:rgba(66,139,249,0.16);\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 65,
+      "name": "--vi-on-action:#FFFFFF;",
+      "text": "\"--vi-on-action:#FFFFFF;\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 66,
+      "name": "--vi-surface-card-shadow-opacity:0.10;",
+      "text": "\"--vi-surface-card-shadow-opacity:0.10;\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 70,
+      "name": "--vi-surface-card:#1C1C1E;",
+      "text": "\"--vi-surface-card:#1C1C1E;\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 71,
+      "name": "--vi-surface-page:#000000;",
+      "text": "\"--vi-surface-page:#000000;\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 72,
+      "name": "--vi-surface-track:rgba(255,255,255,0.15);",
+      "text": "\"--vi-surface-track:rgba(255,255,255,0.15);\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 73,
+      "name": "--vi-text-primary:rgba(255,255,255,0.90);",
+      "text": "\"--vi-text-primary:rgba(255,255,255,0.90);\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 74,
+      "name": "--vi-text-secondary:rgba(255,255,255,0.70);",
+      "text": "\"--vi-text-secondary:rgba(255,255,255,0.70);\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 75,
+      "name": "#FFDD2D",
+      "text": "\"--vi-accent:#FFDD2D;\" +",
+      "occurrence": 2,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 75,
+      "name": "--vi-accent:#FFDD2D;",
+      "text": "\"--vi-accent:#FFDD2D;\" +",
+      "occurrence": 2,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 76,
+      "name": "--vi-action:#4972CF;",
+      "text": "\"--vi-action:#4972CF;\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 77,
+      "name": "--vi-line:rgba(255,255,255,0.15);",
+      "text": "\"--vi-line:rgba(255,255,255,0.15);\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 78,
+      "name": "--vi-on-accent:#1C1C1E;",
+      "text": "\"--vi-on-accent:#1C1C1E;\" +",
+      "occurrence": 2,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 79,
+      "name": "--vi-action-tint:rgba(73,114,207,0.16);",
+      "text": "\"--vi-action-tint:rgba(73,114,207,0.16);\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 80,
+      "name": "--vi-on-action:#FFFFFF;",
+      "text": "\"--vi-on-action:#FFFFFF;\" +",
+      "occurrence": 2,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 81,
+      "name": "--vi-surface-card-shadow-opacity:0;",
+      "text": "\"--vi-surface-card-shadow-opacity:0;\" +",
+      "occurrence": 1,
+      "task": "T0068",
+      "reason": "Owner style values replace company palette and typography in documentation mechanism."
+    }
+  ],
+  "declaration_classes": {
+    "reference": "Reviewed navigation, explanatory prose or a diagnostic destination; it neither selects behavior by the name nor reads the named repository.",
+    "frozen-input": "Exact versioned contract, copied origin or negative test input. It is data, not a live dependency on the consumer.",
+    "declared-input": "An explicitly pinned external input, not built-in subject behavior. The input contract separately checks provenance and bytes."
+  },
+  "declarations": [
+    {
+      "path": "Checks/Archive/WhereV2/README.md",
+      "channel": "text",
+      "line": 7,
+      "name": "gate@cd5c55750b4639e15136ded0592920c573ad89ce",
+      "text": "[judge-where.js](judge-where.js) is a byte-for-byte copy of `bin/judge-where.js` at [gate@cd5c55750b4639e15136ded0592920c573ad89ce](https://github.com/DanielSwift1992/gate/blob/cd5c55750b4639e15136ded0592920c573ad89ce/bin/judge-where.js), immediately before [deletion 78c603c16406fd780942f5f73be72aa54293e8c0](https://github.com/DanielSwift1992/gate/commit/78c603c16406fd780942f5f73be72aa54293e8c0). Its SHA-256 is `3beed68f0ec30c7a2ca233b9754adfeb905a1502146129211bd4b51c62c67185` (20,587 bytes). `judge-cli.js` is a local wrapper for historical `judge where`, loading those same archived bytes. Neither requires a sibling checkout or a network connection.",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/README.md",
+      "channel": "text",
+      "line": 7,
+      "name": "github.com/DanielSwift1992/gate/blob/cd5c55750b4639e15136ded0592920c573ad89ce/bin/judge-where.js",
+      "text": "[judge-where.js](judge-where.js) is a byte-for-byte copy of `bin/judge-where.js` at [gate@cd5c55750b4639e15136ded0592920c573ad89ce](https://github.com/DanielSwift1992/gate/blob/cd5c55750b4639e15136ded0592920c573ad89ce/bin/judge-where.js), immediately before [deletion 78c603c16406fd780942f5f73be72aa54293e8c0](https://github.com/DanielSwift1992/gate/commit/78c603c16406fd780942f5f73be72aa54293e8c0). Its SHA-256 is `3beed68f0ec30c7a2ca233b9754adfeb905a1502146129211bd4b51c62c67185` (20,587 bytes). `judge-cli.js` is a local wrapper for historical `judge where`, loading those same archived bytes. Neither requires a sibling checkout or a network connection.",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/README.md",
+      "channel": "text",
+      "line": 7,
+      "name": "github.com/DanielSwift1992/gate/commit/78c603c16406fd780942f5f73be72aa54293e8c0",
+      "text": "[judge-where.js](judge-where.js) is a byte-for-byte copy of `bin/judge-where.js` at [gate@cd5c55750b4639e15136ded0592920c573ad89ce](https://github.com/DanielSwift1992/gate/blob/cd5c55750b4639e15136ded0592920c573ad89ce/bin/judge-where.js), immediately before [deletion 78c603c16406fd780942f5f73be72aa54293e8c0](https://github.com/DanielSwift1992/gate/commit/78c603c16406fd780942f5f73be72aa54293e8c0). Its SHA-256 is `3beed68f0ec30c7a2ca233b9754adfeb905a1502146129211bd4b51c62c67185` (20,587 bytes). `judge-cli.js` is a local wrapper for historical `judge where`, loading those same archived bytes. Neither requires a sibling checkout or a network connection.",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 6,
+      "name": "github.com/DanielSwift1992/gate",
+      "text": "\"repository\": \"https://github.com/DanielSwift1992/gate\",",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 215,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 222,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 2,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 229,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 3,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 236,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 4,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 243,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 5,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 250,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 6,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 257,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 7,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 264,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 8,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 271,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 9,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 278,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 10,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 285,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 11,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 292,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 12,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 299,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 13,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 306,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 14,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 313,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 15,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 320,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 16,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 327,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 17,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 334,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 18,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 341,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 19,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 348,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 20,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 355,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 21,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 362,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 22,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 369,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 23,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 376,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 24,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 383,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 25,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 390,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 26,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 397,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 27,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 404,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 28,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 411,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 29,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 418,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 30,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 425,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 31,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 432,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 32,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 439,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 33,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 446,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 34,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 453,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 35,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 460,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 36,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 467,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 37,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 474,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 38,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 481,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 39,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 488,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 40,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 495,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 41,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 502,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 42,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 509,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 43,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 516,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 44,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 523,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 45,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 530,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 46,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 537,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 47,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 544,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 48,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 551,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 49,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 558,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 50,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 565,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 51,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 572,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 52,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 579,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 53,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 586,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 54,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 593,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 55,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 600,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 56,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 607,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 57,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 614,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 58,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 621,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 59,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 628,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 60,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 635,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 61,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 642,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 62,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 649,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 63,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 656,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 64,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 663,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 65,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 670,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 66,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 677,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 67,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 684,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 68,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 691,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 69,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 698,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 70,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 705,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 71,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 712,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 72,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 719,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 73,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 726,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 74,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 733,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 75,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 740,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 76,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 747,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 77,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 754,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 78,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 761,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 79,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 768,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 80,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 775,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 81,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 782,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 82,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 789,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 83,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 796,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 84,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 803,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 85,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 810,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 86,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 817,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 87,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 824,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 88,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 831,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 89,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 838,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 90,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 845,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 91,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 852,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 92,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 859,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 93,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 866,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 94,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 873,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 95,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 880,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 96,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 887,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 97,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 894,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 98,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 901,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 99,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 908,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 100,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 915,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 101,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 922,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 102,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 929,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 103,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 936,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 104,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 943,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 105,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 950,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 106,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 957,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 107,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 964,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 108,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 971,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 109,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 978,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 110,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 985,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 111,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 992,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 112,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 999,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 113,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1006,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 114,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1013,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 115,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1020,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 116,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1027,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 117,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1034,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 118,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1041,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 119,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1048,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 120,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1055,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 121,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1062,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 122,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1069,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 123,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1076,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 124,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1083,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 125,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1090,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 126,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1097,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 127,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1104,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 128,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1111,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 129,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1118,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 130,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1125,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 131,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1132,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 132,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1139,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 133,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1146,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 134,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1153,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 135,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1160,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 136,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1167,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 137,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1174,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 138,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1181,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 139,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1188,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 140,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1195,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 141,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1202,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 142,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1209,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 143,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1216,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 144,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1223,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 145,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1230,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 146,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1237,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 147,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1244,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 148,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1251,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 149,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1258,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 150,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1272,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 151,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1279,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 152,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1286,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 153,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1293,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 154,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1300,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 155,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1307,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 156,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1314,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 157,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1321,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 158,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1335,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 159,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1342,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 160,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1349,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 161,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1356,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 162,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1363,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 163,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1370,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 164,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1377,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 165,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1384,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 166,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1398,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 167,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1405,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 168,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1412,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 169,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1419,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 170,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1426,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 171,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1433,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 172,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1440,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 173,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1454,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 174,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1461,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 175,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1468,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 176,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1475,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 177,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1482,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 178,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1489,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 179,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1496,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 180,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1503,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 181,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1510,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 182,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1517,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 183,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1524,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 184,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1531,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 185,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1538,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 186,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1545,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 187,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1552,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 188,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1559,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 189,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1566,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 190,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1573,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 191,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1580,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 192,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1587,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 193,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1594,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 194,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1601,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 195,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1608,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 196,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1615,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 197,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1622,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 198,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1629,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 199,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1636,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 200,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1643,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 201,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1650,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 202,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/Archive/WhereV2/manifest.json",
+      "channel": "text",
+      "line": 1657,
+      "name": "gate/bin/judge-where.js",
+      "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
+      "occurrence": 203,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/archived-where-test.py",
+      "channel": "text",
+      "line": 36,
+      "name": "gate/bin/tool",
+      "text": "('Checks/FiniteContinuation/new-live.js', 'require(\"../' + 'gate/bin/tool\");\\n', 'nested JS sibling'),",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/archived-where-test.py",
+      "channel": "text",
+      "line": 37,
+      "name": "gate/bin/gate-judge",
+      "text": "('Checks/IBMBridge/new_probe.py', \"JUDGE = ROOT.\" + \"parent / 'gate/bin/gate-judge'\\n\", 'nested Python ROOT.parent'),",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/archived-where-test.py",
+      "channel": "text",
+      "line": 38,
+      "name": "gate/bin/tool",
+      "text": "('Checks/new_probe.py', \"JUDGE = '../\" + \"gate/bin/tool'\\n\", 'top-level Python sibling'),",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/archived-where-test.py",
+      "channel": "text",
+      "line": 40,
+      "name": "gate/bin/gate-judge",
+      "text": "('Checks/Other/new_probe.sh', '#!/bin/sh\\nexec ../' + 'gate/bin/gate-judge\\n', 'nested shell sibling'),",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/archived-where.py",
+      "channel": "text",
+      "line": 78,
+      "name": "gate/bin/judge-where.js",
+      "text": "or item.get('key_suffix') not in {'gate/bin/judge-where.js', 'ibm-resident-acquisition-20260915/source/external/judge-where.js'}):",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/count-dag-arithmetic.py",
+      "channel": "text",
+      "line": 89,
+      "name": "gate-bench-palette.swift",
+      "text": "original = (ROOT / 'origins/gate-bench-palette.swift').read_text()",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
+    },
+    {
+      "path": "Checks/lawcheck-policy.py",
+      "channel": "text",
+      "line": 20,
+      "name": "Organization",
+      "text": "names = ['Organization', 'DocumentKit', 'RenamedConsumer']",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
+    },
+    {
+      "path": "Checks/profiles-test.py",
+      "channel": "text",
+      "line": 39,
+      "name": "showcase",
+      "text": "# The company's laws moved to the showcase package; naming one here is not coverage.",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
+    },
+    {
+      "path": "Checks/profiles-test.py",
+      "channel": "text",
+      "line": 40,
+      "name": "showcase",
+      "text": "with mock.patch.dict(profiles.PROFILES, {'showcase': ['rules', 'artifacts', 'judge']}):",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
+    },
+    {
+      "path": "Contracts/Checks/profiles-v1.md",
+      "channel": "text",
+      "line": 8,
+      "name": "showcase",
+      "text": "| `showcase` | Publication positives and all seven `PUBLICATION_*` refusals; demo rules, regenerated artifacts and the organizational differential judge | Current core and showcase source in one pinned checkout |",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
+    },
+    {
+      "path": "Contracts/Checks/profiles-v1.md",
+      "channel": "text",
+      "line": 10,
+      "name": "showcase",
+      "text": "| `integration` | Whole-package build/tests; repository census, voice, README, grammar and check-driver controls | The whole repository, including showcase targets |",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
+    },
+    {
+      "path": "Contracts/Checks/profiles-v1.md",
+      "channel": "text",
+      "line": 16,
+      "name": "showcase",
+      "text": "Caches are retained and reported, not cleared. A first run in a new checkout is not necessarily cold because Swift and plugin caches may be shared. Measure profiles sequentially, retain order and host conditions, and compare only stated equivalent conditions. These profiles group verification obligations before extraction; their durations do not measure independent package build costs. Moving targets and tests still requires pinned core/showcase dependencies and another acceptance run.",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
+    },
+    {
+      "path": "Contracts/Checks/profiles-v2.md",
+      "channel": "text",
+      "line": 3,
+      "name": "showcase",
+      "text": "`python3 Checks/profiles.py --list` lists three profiles and checks that every law registered by `check.sh --list` is assigned to exactly one. The fourth profile of [profiles-v1](profiles-v1.md), `showcase`, moved with the company to the showcase package (T-0015): its publication positives and seven `PUBLICATION_*` refusals run there as `Checks/publication.sh`, and its demo rules, regenerated artifacts and differential judge are laws of that package's `check.sh`.",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
+    },
+    {
+      "path": "Contracts/Court/v0.1/README.md",
+      "channel": "text",
+      "line": 16,
+      "name": "showcase",
+      "text": "The where normalization canon remains `4`. That number does not version the entire reader, the count question or the response format. VI owns these two questions and their controls. The organizational judge belongs with the showcase's policy; it is outside this suite. Gate supplies a callable implementation and delivery. A fourth package is unnecessary for this contract.",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
+    },
+    {
+      "path": "Contracts/Court/v0.1/contract.json",
+      "channel": "text",
+      "line": 17,
+      "name": "showcase",
+      "text": "\"organization\": \"showcase (planned; excluded from this suite)\",",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
+    },
+    {
+      "path": "Contracts/Court/v0.2/contract.json",
+      "channel": "text",
+      "line": 40,
+      "name": "gate-bench-palette.swift",
+      "text": "\"origins/gate-bench-palette.swift\": {",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
+    },
+    {
+      "path": "Contracts/Court/v0.2/origins/gate-bench-palette.swift",
+      "channel": "path",
+      "line": 1,
+      "name": "gate-bench-palette.swift",
+      "text": "Contracts/Court/v0.2/origins/gate-bench-palette.swift",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
+    },
+    {
+      "path": "Contracts/Court/v0.4/contract.json",
+      "channel": "text",
+      "line": 377,
+      "name": "showcase",
+      "text": "\"origin\": \"showcase@ecca861cf8696cc246b93d436ede2f56b76b1b4e Sources/DocumentKit/Vector.swift exact bytes\"",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
+    },
+    {
+      "path": "Contracts/Court/v0.4/fixtures/OwnerVector.swift",
+      "channel": "text",
+      "line": 78,
+      "name": "VectorDemo",
+      "text": "/// VectorDemo's decompiler, a driver-level, value-level concern. This medium only carries the",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
+    },
+    {
+      "path": "Contracts/Court/v0.4/fixtures/OwnerVector.swift",
+      "channel": "text",
+      "line": 85,
+      "name": "Organization",
+      "text": "/// `Fragment` (Organization/View/Screen.swift), local here since DocumentKit does not depend on",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
+    },
+    {
+      "path": "Contracts/Court/v0.4/fixtures/OwnerVector.swift",
+      "channel": "text",
+      "line": 86,
+      "name": "Organization",
+      "text": "/// Organization. A canvas's `Content` hole is usually one of these.",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
+    },
+    {
+      "path": "Contracts/Court/v0.4/fixtures/OwnerVector.swift",
+      "channel": "text",
+      "line": 1395,
+      "name": "Inter, Roboto, system-ui, sans-serif",
+      "text": "+ \"data-vi-canvas=\\\"1\\\" font-family=\\\"Inter, Roboto, system-ui, sans-serif\\\" \"",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Versioned court fixture; its historical bytes are part of the frozen contract."
+    },
+    {
+      "path": "Contracts/Court/v0.4/stages/g-views.json",
+      "channel": "text",
+      "line": 52,
+      "name": "showcase",
+      "text": "\"origin\": \"showcase@ecca861cf8696cc246b93d436ede2f56b76b1b4e Sources/DocumentKit/Vector.swift exact bytes\"",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
+    },
+    {
+      "path": "Documentation/Figures/framework-architecture.svg",
+      "channel": "text",
+      "line": 2,
+      "name": "showcase",
+      "text": "<title id=\"title\">vi, showcase and gate</title><desc id=\"desc\">vi owns the research, the constructions and the where and count semantics. showcase is a separate repository with the worked company, its rendering and its policy, and it pins a revision of vi. gate brings records from other projects to a judge built from a pinned revision of vi. A versioned contract with conformance fixtures states what an implementation of a check must pass.</desc>",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Documentation/Figures/framework-architecture.svg",
+      "channel": "text",
+      "line": 6,
+      "name": "Organization",
+      "text": "<text x=\"40\" y=\"42\" class=\"eyebrow blue\" >THREE PACKAGES</text><text x=\"40\" y=\"83\" class=\"heading\" >Each check has one owner of its meaning.</text><rect x=\"40\" y=\"149\" width=\"1040\" height=\"83\" rx=\"12\" fill=\"#f6f8fb\" stroke=\"#dde3eb\" stroke-width=\"1.5\"/><text x=\"62\" y=\"180\" class=\"label\" >People and agents</text><text x=\"62\" y=\"209\" class=\"body muted\" >Bring a question, a record and access to work.</text><path d=\"M905 232V290\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"919\" y=\"266\" class=\"small muted\" >submit a record</text><rect x=\"40\" y=\"302\" width=\"300\" height=\"326\" rx=\"12\" fill=\"#edf3fb\" stroke=\"#7c9fc9\" stroke-width=\"1.5\"/><text x=\"62\" y=\"339\" class=\"heading blue\" >vi</text><text x=\"62\" y=\"376\" class=\"body\" >Research and constructions</text><text x=\"62\" y=\"405\" class=\"body\" >Papers · relations · examples</text><text x=\"62\" y=\"434\" class=\"body\" >Checks of stated consequences</text><rect x=\"60\" y=\"478\" width=\"260\" height=\"125\" rx=\"12\" fill=\"#ffffff\" stroke=\"#bdcfe7\" stroke-width=\"1.5\"/><text x=\"78\" y=\"509\" class=\"label blue\" >Semantic owner</text><text x=\"78\" y=\"540\" class=\"small\" >where: declared type relations</text><text x=\"78\" y=\"565\" class=\"small\" >count: selected count question</text><text x=\"78\" y=\"590\" class=\"small\" >Canon + conformance fixtures</text><rect x=\"410\" y=\"302\" width=\"300\" height=\"326\" rx=\"12\" fill=\"#f7f8fa\" stroke=\"#98a5b7\" stroke-width=\"1.5\"/><text x=\"432\" y=\"339\" class=\"heading\" >showcase</text><text x=\"432\" y=\"376\" class=\"body\" >A constructed world</text><text x=\"432\" y=\"405\" class=\"body\" >Organization · DocumentKit</text><text x=\"432\" y=\"434\" class=\"body\" >Pages · SVG · site generation</text><rect x=\"430\" y=\"478\" width=\"260\" height=\"125\" rx=\"12\" fill=\"#ffffff\" stroke=\"#dde3eb\" stroke-width=\"1.5\"/><text x=\"448\" y=\"509\" class=\"label\" >Its own checks</text><text x=\"448\" y=\"540\" class=\"small\" >Policy + differential judge</text><text x=\"448\" y=\"565\" class=\"small\" >Artifacts match constructions</text><text x=\"448\" y=\"590\" class=\"small\" >Seven publication refusals</text><rect x=\"780\" y=\"302\" width=\"300\" height=\"326\" rx=\"12\" fill=\"#edf7f1\" stroke=\"#7aa68f\" stroke-width=\"1.5\"/><text x=\"802\" y=\"339\" class=\"heading green\" >gate</text><text x=\"802\" y=\"376\" class=\"body\" >Entry and delivery</text><text x=\"802\" y=\"405\" class=\"body\" >Records from other projects</text><text x=\"802\" y=\"434\" class=\"body\" >Calls checks · returns results</text><rect x=\"800\" y=\"478\" width=\"260\" height=\"125\" rx=\"12\" fill=\"#ffffff\" stroke=\"#bad9c8\" stroke-width=\"1.5\"/><text x=\"818\" y=\"509\" class=\"label green\" >Supplied implementation</text><text x=\"818\" y=\"540\" class=\"small\" >Passes the selected contract</text><text x=\"818\" y=\"565\" class=\"small\" >Carries question + coverage</text><text x=\"818\" y=\"590\" class=\"small\" >Pinned revision of vi</text><path d=\"M410 442H340\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"375\" y=\"424\" class=\"small muted\" text-anchor=\"middle\">uses vi</text><path d=\"M190 628V684\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"205\" y=\"663\" class=\"small muted\" >defines where / count</text><path d=\"M560 628V684\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"575\" y=\"663\" class=\"small muted\" >defines organization</text><rect x=\"40\" y=\"698\" width=\"1040\" height=\"99\" rx=\"12\" fill=\"#ffffff\" stroke=\"#8ba2be\" stroke-width=\"1.5\"/><text x=\"62\" y=\"730\" class=\"label blue\" >Contract of each check</text><text x=\"62\" y=\"758\" class=\"body\" >Question / semantics     ·     accepted input     ·     response form     ·     conformance suite</text><text x=\"62\" y=\"783\" class=\"small muted\" >Each check has its own version. Passing the finite fixtures shows conformance on that suite.</text><path d=\"M930 628V684\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"945\" y=\"663\" class=\"small muted\" >conforms to</text><text x=\"40\" y=\"829\" class=\"body\" >NOW  vi and showcase are separate repositories, and showcase pins vi. Gate pins an older revision.</text><text x=\"40\" y=\"856\" class=\"small muted\" >A Rust sample of the judge passes the finite suite of the contract. NEXT  Gate re-pins through the contract.</text></svg>",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Documentation/Figures/framework-architecture.svg",
+      "channel": "text",
+      "line": 6,
+      "name": "showcase",
+      "text": "<text x=\"40\" y=\"42\" class=\"eyebrow blue\" >THREE PACKAGES</text><text x=\"40\" y=\"83\" class=\"heading\" >Each check has one owner of its meaning.</text><rect x=\"40\" y=\"149\" width=\"1040\" height=\"83\" rx=\"12\" fill=\"#f6f8fb\" stroke=\"#dde3eb\" stroke-width=\"1.5\"/><text x=\"62\" y=\"180\" class=\"label\" >People and agents</text><text x=\"62\" y=\"209\" class=\"body muted\" >Bring a question, a record and access to work.</text><path d=\"M905 232V290\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"919\" y=\"266\" class=\"small muted\" >submit a record</text><rect x=\"40\" y=\"302\" width=\"300\" height=\"326\" rx=\"12\" fill=\"#edf3fb\" stroke=\"#7c9fc9\" stroke-width=\"1.5\"/><text x=\"62\" y=\"339\" class=\"heading blue\" >vi</text><text x=\"62\" y=\"376\" class=\"body\" >Research and constructions</text><text x=\"62\" y=\"405\" class=\"body\" >Papers · relations · examples</text><text x=\"62\" y=\"434\" class=\"body\" >Checks of stated consequences</text><rect x=\"60\" y=\"478\" width=\"260\" height=\"125\" rx=\"12\" fill=\"#ffffff\" stroke=\"#bdcfe7\" stroke-width=\"1.5\"/><text x=\"78\" y=\"509\" class=\"label blue\" >Semantic owner</text><text x=\"78\" y=\"540\" class=\"small\" >where: declared type relations</text><text x=\"78\" y=\"565\" class=\"small\" >count: selected count question</text><text x=\"78\" y=\"590\" class=\"small\" >Canon + conformance fixtures</text><rect x=\"410\" y=\"302\" width=\"300\" height=\"326\" rx=\"12\" fill=\"#f7f8fa\" stroke=\"#98a5b7\" stroke-width=\"1.5\"/><text x=\"432\" y=\"339\" class=\"heading\" >showcase</text><text x=\"432\" y=\"376\" class=\"body\" >A constructed world</text><text x=\"432\" y=\"405\" class=\"body\" >Organization · DocumentKit</text><text x=\"432\" y=\"434\" class=\"body\" >Pages · SVG · site generation</text><rect x=\"430\" y=\"478\" width=\"260\" height=\"125\" rx=\"12\" fill=\"#ffffff\" stroke=\"#dde3eb\" stroke-width=\"1.5\"/><text x=\"448\" y=\"509\" class=\"label\" >Its own checks</text><text x=\"448\" y=\"540\" class=\"small\" >Policy + differential judge</text><text x=\"448\" y=\"565\" class=\"small\" >Artifacts match constructions</text><text x=\"448\" y=\"590\" class=\"small\" >Seven publication refusals</text><rect x=\"780\" y=\"302\" width=\"300\" height=\"326\" rx=\"12\" fill=\"#edf7f1\" stroke=\"#7aa68f\" stroke-width=\"1.5\"/><text x=\"802\" y=\"339\" class=\"heading green\" >gate</text><text x=\"802\" y=\"376\" class=\"body\" >Entry and delivery</text><text x=\"802\" y=\"405\" class=\"body\" >Records from other projects</text><text x=\"802\" y=\"434\" class=\"body\" >Calls checks · returns results</text><rect x=\"800\" y=\"478\" width=\"260\" height=\"125\" rx=\"12\" fill=\"#ffffff\" stroke=\"#bad9c8\" stroke-width=\"1.5\"/><text x=\"818\" y=\"509\" class=\"label green\" >Supplied implementation</text><text x=\"818\" y=\"540\" class=\"small\" >Passes the selected contract</text><text x=\"818\" y=\"565\" class=\"small\" >Carries question + coverage</text><text x=\"818\" y=\"590\" class=\"small\" >Pinned revision of vi</text><path d=\"M410 442H340\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"375\" y=\"424\" class=\"small muted\" text-anchor=\"middle\">uses vi</text><path d=\"M190 628V684\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"205\" y=\"663\" class=\"small muted\" >defines where / count</text><path d=\"M560 628V684\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"575\" y=\"663\" class=\"small muted\" >defines organization</text><rect x=\"40\" y=\"698\" width=\"1040\" height=\"99\" rx=\"12\" fill=\"#ffffff\" stroke=\"#8ba2be\" stroke-width=\"1.5\"/><text x=\"62\" y=\"730\" class=\"label blue\" >Contract of each check</text><text x=\"62\" y=\"758\" class=\"body\" >Question / semantics     ·     accepted input     ·     response form     ·     conformance suite</text><text x=\"62\" y=\"783\" class=\"small muted\" >Each check has its own version. Passing the finite fixtures shows conformance on that suite.</text><path d=\"M930 628V684\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"945\" y=\"663\" class=\"small muted\" >conforms to</text><text x=\"40\" y=\"829\" class=\"body\" >NOW  vi and showcase are separate repositories, and showcase pins vi. Gate pins an older revision.</text><text x=\"40\" y=\"856\" class=\"small muted\" >A Rust sample of the judge passes the finite suite of the contract. NEXT  Gate re-pins through the contract.</text></svg>",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Documentation/Figures/render.py",
+      "channel": "text",
+      "line": 105,
+      "name": "showcase",
+      "text": "f=Figure('vi, showcase and gate', 'vi owns the research, the constructions and the where and count semantics. showcase is a separate repository with the worked company, its rendering and its policy, and it pins a revision of vi. gate brings records from other projects to a judge built from a pinned revision of vi. A versioned contract with conformance fixtures states what an implementation of a check must pass.', 890)",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Documentation/Figures/render.py",
+      "channel": "text",
+      "line": 122,
+      "name": "showcase",
+      "text": "f.text(432,339,'showcase','heading')",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Documentation/Figures/render.py",
+      "channel": "text",
+      "line": 123,
+      "name": "Organization",
+      "text": "f.lines(432,376,['A constructed world','Organization · DocumentKit','Pages · SVG · site generation'],'body',29)",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Documentation/Figures/render.py",
+      "channel": "text",
+      "line": 147,
+      "name": "showcase",
+      "text": "f.text(40,829,'NOW  vi and showcase are separate repositories, and showcase pins vi. Gate pins an older revision.','body')",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Package.swift",
+      "channel": "text",
+      "line": 23,
+      "name": "showcase",
+      "text": "// vocabulary the showcase's DocumentKit prose and GrammarLexicon's stream both need,",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Package.swift",
+      "channel": "text",
+      "line": 33,
+      "name": "showcase",
+      "text": "// Tools and LawCheck as products: the showcase package, which depends on this one,",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Package.swift",
+      "channel": "text",
+      "line": 58,
+      "name": "showcase",
+      "text": "// (Press); the differential seat moved with the company to the showcase package. Foundation only, so a consumer links the judge without",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Package.swift",
+      "channel": "text",
+      "line": 71,
+      "name": "showcase",
+      "text": "// The character vocabulary the showcase's DocumentKit and GrammarLexicon's stream both read —",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "README.md",
+      "channel": "text",
+      "line": 54,
+      "name": "showcase",
+      "text": "- Worked models, among them the three sources above and the company of the showcase package.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "README.md",
+      "channel": "text",
+      "line": 87,
+      "name": "github.com/DanielSwift1992/gate",
+      "text": "[gate](https://github.com/DanielSwift1992/gate) is another kind of application. It uses a judge built from a pinned revision of this corpus to check declarations imported from records such as ownership files. Other commands inspect API contracts and their clients under separate contracts. The contract of each command defines what its result means.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Reviewed explanation of provenance, compatibility or the boundary; no subject-based dispatch."
+    },
+    {
+      "path": "README.md",
+      "channel": "text",
+      "line": 89,
+      "name": "showcase",
+      "text": "![vi owns the research and the where and count semantics. showcase contains the constructed company and its policy. gate supplies an implementation that passes a versioned contract.](Documentation/Figures/framework-architecture.svg)",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "README.md",
+      "channel": "text",
+      "line": 93,
+      "name": "Organization",
+      "text": "The [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) declares a company, its access policy and its intranet website as types, and the compiler checks the declared access requests against the policy. Its [company site](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/) presents the result, and [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) renders the pages from types. The company is a declared world: the checked access assertions are about its declarations. The showcase runs this package's `Tools` and `LawCheck`, and its [package diagram](https://github.com/DanielSwift1992/verification-is-identification-showcase/blob/main/Sources/Organization/Organization.docc/Resources/architecture.svg) shows the application and its generated representations.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "README.md",
+      "channel": "text",
+      "line": 93,
+      "name": "showcase",
+      "text": "The [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) declares a company, its access policy and its intranet website as types, and the compiler checks the declared access requests against the policy. Its [company site](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/) presents the result, and [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) renders the pages from types. The company is a declared world: the checked access assertions are about its declarations. The showcase runs this package's `Tools` and `LawCheck`, and its [package diagram](https://github.com/DanielSwift1992/verification-is-identification-showcase/blob/main/Sources/Organization/Organization.docc/Resources/architecture.svg) shows the application and its generated representations.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "README.md",
+      "channel": "text",
+      "line": 93,
+      "name": "verification-is-identification-showcase",
+      "text": "The [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) declares a company, its access policy and its intranet website as types, and the compiler checks the declared access requests against the policy. Its [company site](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/) presents the result, and [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) renders the pages from types. The company is a declared world: the checked access assertions are about its declarations. The showcase runs this package's `Tools` and `LawCheck`, and its [package diagram](https://github.com/DanielSwift1992/verification-is-identification-showcase/blob/main/Sources/Organization/Organization.docc/Resources/architecture.svg) shows the application and its generated representations.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "README.md",
+      "channel": "text",
+      "line": 103,
+      "name": "github.com/DanielSwift1992/gate",
+      "text": "| Readers | Contracts stated by each reader | [`Sources/Court`](Sources/Court), [gate](https://github.com/DanielSwift1992/gate) |",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Reviewed explanation of provenance, compatibility or the boundary; no subject-based dispatch."
+    },
+    {
+      "path": "README.md",
+      "channel": "text",
+      "line": 104,
+      "name": "Organization",
+      "text": "| Company and rendering | [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/), [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) | [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) |",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "README.md",
+      "channel": "text",
+      "line": 104,
+      "name": "showcase",
+      "text": "| Company and rendering | [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/), [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) | [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) |",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "README.md",
+      "channel": "text",
+      "line": 104,
+      "name": "verification-is-identification-showcase",
+      "text": "| Company and rendering | [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/), [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) | [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) |",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Court/Judge.swift",
+      "channel": "text",
+      "line": 7,
+      "name": "ShowcaseTools",
+      "text": "// policy it reads, in the showcase (OrganizationCourt, `swift run ShowcaseTools judge`), and",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Court/Judge.swift",
+      "channel": "text",
+      "line": 7,
+      "name": "showcase",
+      "text": "// policy it reads, in the showcase (OrganizationCourt, `swift run ShowcaseTools judge`), and",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Court/Judge.swift",
+      "channel": "text",
+      "line": 45,
+      "name": "ShowcaseTools",
+      "text": "\"✗ judge \\(arguments[0]) moved with the company: run `swift run ShowcaseTools judge \\(arguments[0])` in the showcase package\\n\".utf8))",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Court/Judge.swift",
+      "channel": "text",
+      "line": 45,
+      "name": "showcase",
+      "text": "\"✗ judge \\(arguments[0]) moved with the company: run `swift run ShowcaseTools judge \\(arguments[0])` in the showcase package\\n\".utf8))",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Court/Judge.swift",
+      "channel": "text",
+      "line": 53,
+      "name": "showcase",
+      "text": "// live in the showcase now (T-0028).",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Court/Judge.swift",
+      "channel": "text",
+      "line": 55,
+      "name": "ShowcaseTools",
+      "text": "\"✗ the plain court moved with the company: run `swift run ShowcaseTools judge <paths>` in the showcase package\\n\".utf8))",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Court/Judge.swift",
+      "channel": "text",
+      "line": 55,
+      "name": "showcase",
+      "text": "\"✗ the plain court moved with the company: run `swift run ShowcaseTools judge <paths>` in the showcase package\\n\".utf8))",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Court/Press.swift",
+      "channel": "text",
+      "line": 9,
+      "name": "showcase",
+      "text": "// stands here or ever will: a system's behaviour is its triples (the showcase's",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Examples/Examples.docc/Examples.md",
+      "channel": "text",
+      "line": 104,
+      "name": "verification-is-identification-showcase",
+      "text": "The [published visible claim](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/coveredvisibleclaim) reads its support,",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Examples/Grants.swift",
+      "channel": "text",
+      "line": 13,
+      "name": "Organization",
+      "text": "// and knowing no name in advance. The Organization showcase adds a second,",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Examples/Grants.swift",
+      "channel": "text",
+      "line": 13,
+      "name": "showcase",
+      "text": "// and knowing no name in advance. The Organization showcase adds a second,",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/GrammarLexicon/Mirror.swift",
+      "channel": "text",
+      "line": 10,
+      "name": "Organization",
+      "text": "// an allowed form compiles, a refused one names its own reason, the same shape Organization's",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Tools/Census.swift",
+      "channel": "text",
+      "line": 15,
+      "name": "showcase",
+      "text": "// refused: a dependent package (the showcase, T-0015) counts its own targets and the",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Tools/Grammar/Linter.swift",
+      "channel": "text",
+      "line": 467,
+      "name": "showcase",
+      "text": "// from the theory they sit under this root; the showcase package runs the same gate from",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Tools/ReadmeCheck.swift",
+      "channel": "text",
+      "line": 6,
+      "name": "showcase",
+      "text": "// showcase package, whose readme check counts them (T-0015). A claim that drifts fails the gate by name, and a claim that",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Tools/Site.swift",
+      "channel": "text",
+      "line": 7,
+      "name": "showcase",
+      "text": "// for every module of the theory (the company's pages are the showcase package's own",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Tools/Site.swift",
+      "channel": "text",
+      "line": 8,
+      "name": "ShowcaseTools",
+      "text": "// `swift run ShowcaseTools site`), and",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Tools/Voice.swift",
+      "channel": "text",
+      "line": 36,
+      "name": "showcase",
+      "text": "// On 2026-10-19 the company moved to the showcase package (T-0015) with its prose:",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Tools/Voice.swift",
+      "channel": "text",
+      "line": 37,
+      "name": "Organization",
+      "text": "// the kit scope (DocumentKit doc comments, pin 18) and the Organization and",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Tools/Voice.swift",
+      "channel": "text",
+      "line": 41,
+      "name": "showcase",
+      "text": "// On 2026-10-19 the Curve page and the covered visible claim, both rendered by showcase",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Tools/Voice.swift",
+      "channel": "text",
+      "line": 56,
+      "name": "showcase",
+      "text": "// a dependent package (the showcase, T-0015) scans its own prose against its own pins.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Tools/main.swift",
+      "channel": "text",
+      "line": 5,
+      "name": "showcase",
+      "text": "// so the docs build has a single support module instead of one per tool. The showcase",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Tools/main.swift",
+      "channel": "text",
+      "line": 8,
+      "name": "ShowcaseTools",
+      "text": "// ShowcaseTools.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/Tools/main.swift",
+      "channel": "text",
+      "line": 10,
+      "name": "showcase",
+      "text": "//              LawCheck build plugin on the showcase's library targets, checked by hand here.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/Law.swift",
+      "channel": "text",
+      "line": 8,
+      "name": "Organization",
+      "text": "// the LawCheck plugin on Organization and by hand elsewhere. What neither",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Encoding.md",
+      "channel": "text",
+      "line": 82,
+      "name": "Organization",
+      "text": "The surface is the same discipline: a page is a type, and its markdown is the type's name. [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit) builds a page in five steps, and [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) is that surface run at scale: the encoded company and its site, one build.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Encoding.md",
+      "channel": "text",
+      "line": 82,
+      "name": "verification-is-identification-showcase",
+      "text": "The surface is the same discipline: a page is a type, and its markdown is the type's name. [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit) builds a page in five steps, and [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) is that surface run at scale: the encoded company and its site, one build.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Neighbors.md",
+      "channel": "text",
+      "line": 21,
+      "name": "Organization",
+      "text": "The login keypad in the Organization showcase accepts one four-digit code out of 9⁴ = 6561. Drawn as a tree, that is thousands of states. The keypad uses four prefix fragments, `k0` through `k3`, and one shared `dead` fragment. Each wrong digit links to `dead`. The last correct digit links to the person's unlocked page. PiP6 of <doc:program_is_path> treats this failure response as part of the supplied execution rule.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Neighbors.md",
+      "channel": "text",
+      "line": 21,
+      "name": "showcase",
+      "text": "The login keypad in the Organization showcase accepts one four-digit code out of 9⁴ = 6561. Drawn as a tree, that is thousands of states. The keypad uses four prefix fragments, `k0` through `k3`, and one shared `dead` fragment. Each wrong digit links to `dead`. The last correct digit links to the person's unlocked page. PiP6 of <doc:program_is_path> treats this failure response as part of the supplied execution rule.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/form_is_gauge.md",
+      "channel": "text",
+      "line": 5,
+      "name": "showcase",
+      "text": "The historical measurements are recorded on [the curve page of the showcase](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/curve). They motivate the question without proving a universal preferred packing.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/form_is_gauge.md",
+      "channel": "text",
+      "line": 5,
+      "name": "verification-is-identification-showcase",
+      "text": "The historical measurements are recorded on [the curve page of the showcase](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/curve). They motivate the question without proving a universal preferred packing.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/form_is_gauge.md",
+      "channel": "text",
+      "line": 75,
+      "name": "showcase",
+      "text": "| The record | [the curve page of the showcase](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/curve) (historical measurements), CodeForm (selected parameters) |",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/form_is_gauge.md",
+      "channel": "text",
+      "line": 75,
+      "name": "verification-is-identification-showcase",
+      "text": "| The record | [the curve page of the showcase](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/curve) (historical measurements), CodeForm (selected parameters) |",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/halt_is_ignition.md",
+      "channel": "text",
+      "line": 115,
+      "name": "Organization",
+      "text": "**HF6 (The examples carry particular continuation relations).** Organization's keypad describes missing and available outgoing links. `ReviewCycle.swift` separately connects each displayed year to its predecessor and committed cut, through Y2030. These are concrete declared continuations. The listed examples do not exhibit every cardinality class, and compiling their constraints does not prove an exhaustive physical fate or uniqueness among every possible successor encoding. They illustrate where a successor relation must be written.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/record_is_system.md",
+      "channel": "text",
+      "line": 5,
+      "name": "showcase",
+      "text": "The evidence base is concrete: the repository around this paper. Its showcase is a whole organization (people, roles, documents, access policy, review cycles) written as pure types, and every page of the resulting site, every access verdict, every audit figure is read off those types at build time. After a policy edit, the next build re-derives two hundred pages, with no step where a description could lag the system it describes.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Purpose.md",
+      "channel": "text",
+      "line": 17,
+      "name": "Organization",
+      "text": "**The record shows itself.** The Organization showcase and DocumentKit gallery render pages from the types the compiler checks. The artifact check regenerates those pages and compares them with their committed copies. Authored prose has its own claims, and a reading answers its question only when it preserves the required distinctions. The projection and these proof obligations are written out in <doc:record_is_system> (SW2–SW3).",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Purpose.md",
+      "channel": "text",
+      "line": 17,
+      "name": "showcase",
+      "text": "**The record shows itself.** The Organization showcase and DocumentKit gallery render pages from the types the compiler checks. The artifact check regenerates those pages and compares them with their committed copies. Authored prose has its own claims, and a reading answers its question only when it preserves the required distinctions. The projection and these proof obligations are written out in <doc:record_is_system> (SW2–SW3).",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Purpose.md",
+      "channel": "text",
+      "line": 35,
+      "name": "Organization",
+      "text": "**To build your own:** <doc:Encoding> maps your part of a system onto the notation, and ``Law`` is the grammar you write in: one seed, two moves, one floor. **To see it at scale:** the [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) showcase is two hundred people, an access policy, and a dashboard and catalogs rendered from the type model. The compiler checks the access assertions presented in that model. **To see why it is true:** <doc:verification_is_identification> proves the result from one postulate, <doc:existence_is_finite> grounds it, and <doc:play_is_proof> is the game played whole. The papers behind each claim are gathered in <doc:Sources>.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Purpose.md",
+      "channel": "text",
+      "line": 35,
+      "name": "showcase",
+      "text": "**To build your own:** <doc:Encoding> maps your part of a system onto the notation, and ``Law`` is the grammar you write in: one seed, two moves, one floor. **To see it at scale:** the [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) showcase is two hundred people, an access policy, and a dashboard and catalogs rendered from the type model. The compiler checks the access assertions presented in that model. **To see why it is true:** <doc:verification_is_identification> proves the result from one postulate, <doc:existence_is_finite> grounds it, and <doc:play_is_proof> is the game played whole. The papers behind each claim are gathered in <doc:Sources>.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Purpose.md",
+      "channel": "text",
+      "line": 35,
+      "name": "verification-is-identification-showcase",
+      "text": "**To build your own:** <doc:Encoding> maps your part of a system onto the notation, and ``Law`` is the grammar you write in: one seed, two moves, one floor. **To see it at scale:** the [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) showcase is two hundred people, an access policy, and a dashboard and catalogs rendered from the type model. The compiler checks the access assertions presented in that model. **To see why it is true:** <doc:verification_is_identification> proves the result from one postulate, <doc:existence_is_finite> grounds it, and <doc:play_is_proof> is the game played whole. The papers behind each claim are gathered in <doc:Sources>.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/VerificationIsIdentification.md",
+      "channel": "text",
+      "line": 49,
+      "name": "Organization",
+      "text": "- term **See it at scale:** [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) is a whole company in the notation: browse its generated dashboard and catalogs, walk a login keypad, read the access verdicts. [The curve](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/curve) measures the build as the company grows, to 12800 employees.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/VerificationIsIdentification.md",
+      "channel": "text",
+      "line": 49,
+      "name": "verification-is-identification-showcase",
+      "text": "- term **See it at scale:** [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) is a whole company in the notation: browse its generated dashboard and catalogs, walk a login keypad, read the access verdicts. [The curve](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/curve) measures the build as the company grows, to 12800 employees.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/VerificationIsIdentification.md",
+      "channel": "text",
+      "line": 52,
+      "name": "verification-is-identification-showcase",
+      "text": "- term **Build your own:** <doc:Purpose> states what the notation buys and where it stops, <doc:Encoding> maps your part of a system onto it, and ``Law`` is the grammar you write in. These pages are themselves rendered by [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit): the site is written in the notation it documents.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+    }
+  ],
+  "behavior_probes": [
+    {
+      "path": "Plugins/LawCheck/LawCheck.swift",
+      "text": "let strictTargets = [\"DocumentKit\"]"
+    },
+    {
+      "path": "Package.swift",
+      "text": ".package(url: \"git@github.com:DanielSwift1992/gate.git\", from: \"1.0.0\")"
+    },
+    {
+      "path": "Package.swift",
+      "text": ".package(url: \"github.com/DanielSwift1992/gate\", from: \"1.0.0\")"
+    },
+    {
+      "path": "Package.swift",
+      "text": ".package(url: \"DanielSwift1992/gate\", from: \"1.0.0\")"
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "text": "\"--vi-surface-card:#102030;\" +"
+    },
+    {
+      "path": "Plugins/OtherPlugin/Plugin.swift",
+      "text": "let strictTargets = [\"DocumentKit\"]"
+    },
+    {
+      "path": "Package.swift",
+      "text": ".package(url: \"https://github.com/DanielSwift1992/Gate.git\", from: \"1.0.0\")"
+    },
+    {
+      "path": "Package.swift",
+      "text": ".package(url: \"git@github.com:danielswift1992/GATE\", from: \"1.0.0\")"
+    }
+  ],
+  "positive_probes": [
+    {
+      "path": "Sources/DocumentKit/BoundaryOwn.swift",
+      "text": "import DocumentKit\nstruct DocumentKitValue {}"
+    }
+  ]
+}

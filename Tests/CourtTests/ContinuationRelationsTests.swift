@@ -64,7 +64,7 @@ final class ContinuationRelationsTests: XCTestCase {
                 print("T0088 \(name): \(holds ? "constructed" : "obstructed"); serialized replay agrees")
             }
         }
-        XCTAssertEqual(cases.count, 21)
+        XCTAssertEqual(cases.count, 24)
     }
     func testOneEdgeChainAndAddressAreDifferentGrounds() throws {
         let (_, identity, _) = try constructed("AddressIdentity")
@@ -220,6 +220,28 @@ final class ContinuationRelationsTests: XCTestCase {
         partition.residue!.connections[1][0].edge = [.left]
         p.conclusion = .obstructed(partition)
         refuses("residue-foreign-edge", address: "certificate.residue.connections[1][0]") {
+            _ = try C.verifyRelated(p.request, certificate: p, source: world())
+        }
+    }
+    func testLiveWholeCannotAcquireAnUnreadAxis() throws {
+        let (helpers, _, _) = try constructed("ReadWholeHelperAxes")
+        XCTAssertTrue(try C.verifyRelated(helpers.request, certificate: helpers, source: world()))
+        let (p, _, _) = try constructed("AddressIdentity")
+        for axis in ["Equality", "Spare"] {
+            let changed = try world {
+                $0.replacingOccurrences(of: "enum AddressIdentity<S: Structure> {",
+                    with: "enum AddressIdentity<S: Structure> {\n    typealias " + axis + " = Source.Right")
+            }
+            refuses("unread-live-axis-" + axis, address: "AddressIdentity." + axis) {
+                _ = try C.verifyRelated(p.request, certificate: p, source: changed)
+            }
+        }
+    }
+    func testNonleafPartitionEntryHasItsCertificateAddress() throws {
+        var (p, partition) = try obstructed()
+        partition.classes[1].leaves = [[.right]]
+        p.conclusion = .obstructed(partition)
+        refuses("partition-nonleaf", address: "certificate.partition[1]: Source.Right") {
             _ = try C.verifyRelated(p.request, certificate: p, source: world())
         }
     }

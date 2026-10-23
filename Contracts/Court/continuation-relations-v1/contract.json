@@ -1,7 +1,7 @@
 {
   "schema": "vi.continuation.relations/1",
   "fixture": "cases.swift",
-  "sha256": "0704ee0e32d6ae43ed13add0498e9d3255873ecb94d0440211802d18da6951fe",
+  "sha256": "950825307b8d0b72be1b75ea9042e52227c053f02d74a2d1577f363885e42c54",
   "cases": [
     {
       "request": "AddressIdentity",
@@ -92,6 +92,20 @@
     {
       "request": "ResiduePartialQuestion",
       "outcome": "obstructed"
+    },
+    {
+      "request": "MisspelledWholeAxis",
+      "outcome": "unsupported",
+      "address": "MisspelledWholeAxis.Equality"
+    },
+    {
+      "request": "UnreadWholeAxis",
+      "outcome": "unsupported",
+      "address": "UnreadWholeAxis.Spare"
+    },
+    {
+      "request": "ReadWholeHelperAxes",
+      "outcome": "constructed"
     }
   ]
 }

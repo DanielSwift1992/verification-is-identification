@@ -165,6 +165,47 @@ extension ContinuationCourt {
         }
         return try walk(proof, 0)
     }
+    static func checkWholeAxes(_ certificate: RelatedCertificate, context c: Context,
+                               source: StructuralSource) throws {
+        var read: Set<String> = []
+        func mark(_ expression: E) {
+            if case let .field(owner, axis) = expression, owner == c.root { read.insert(axis) }
+        }
+        func shape(_ proof: ReadProof) {
+            switch proof {
+            case .leaf: break
+            case let .pair(l, r):
+                shape(l)
+                shape(r)
+            case let .projection(_, child): shape(child)
+            case let .definition(input, arguments, child):
+                mark(input)
+                for argument in arguments { shape(argument) }
+                shape(child)
+            }
+        }
+        func route(_ proof: RouteProof) {
+            switch proof {
+            case .source: read.insert("Source")
+            case let .pair(l, r):
+                route(l)
+                route(r)
+            case let .projection(_, child): route(child)
+            case let .definition(input, arguments, child):
+                mark(input)
+                for argument in arguments { shape(argument) }
+                route(child)
+            }
+        }
+        shape(certificate.source)
+        route(certificate.observation)
+        route(certificate.question)
+        if let equalities = certificate.equalities { route(equalities) }
+        for axis in (source.declarations[c.request]?.fields.keys.sorted() ?? [])
+        where !read.contains(axis) {
+            throw Failure(c.request + "." + axis + ": unread axis in the declared whole")
+        }
+    }
     static func relatedReading(_ request: String, certificate: RelatedCertificate,
                                source: StructuralSource, constructor: String = "Paired") throws -> RelatedReading {
         guard certificate.request == request, certificate.constructor == constructor else {
@@ -206,6 +247,7 @@ extension ContinuationCourt {
             }
             try zipEdges(left, right, [])
         }
+        try checkWholeAxes(certificate, context: c, source: source)
         return RelatedReading(source: s.1, observation: p, question: q, edges: edges)
     }
     static func assembledProgram(_ shape: Places, inputs: [Path]) throws -> Program {
@@ -314,9 +356,11 @@ extension ContinuationCourt {
             for (index, block) in obstruction.classes.enumerated() {
                 guard !block.leaves.isEmpty else { throw Failure("certificate.partition[\(index)]: empty class") }
                 for path in block.leaves {
-                    guard try r.sort(path) == block.sort, blocks.updateValue(index, forKey: path) == nil else {
-                        throw Failure("certificate.partition[\(index)]: repeated leaf or different sort")
-                    }
+                    do {
+                        guard try r.sort(path) == block.sort, blocks.updateValue(index, forKey: path) == nil else {
+                            throw Failure("repeated leaf or different sort")
+                        }
+                    } catch { throw Failure("certificate.partition[\(index)]: " + String(describing: error)) }
                 }
             }
             guard Set(blocks.keys) == Set(all.map { $0.0 }) else { throw Failure("certificate.partition: incomplete source coverage") }

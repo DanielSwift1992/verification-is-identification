@@ -125,3 +125,22 @@ enum ResiduePartialQuestion<S: Structure> {
     typealias Question = Paired<Source.Left.Right, Paired<Source.Right.Left, Source.Right.Right>>
     typealias Equalities = Paired<Source.Left.Left, Source.Left.Right>
 }
+enum MisspelledWholeAxis<S: Structure> {
+    typealias Source = Paired<S, S>
+    typealias Observation = Source.Left
+    typealias Question = Source.Right
+    typealias Equality = Paired<Source.Left, Source.Right>
+}
+enum UnreadWholeAxis<S: Structure> {
+    typealias Source = Paired<S, S>
+    typealias Observation = Source.Left
+    typealias Question = Source.Right
+    typealias Spare = Source.Right
+}
+enum ReadWholeHelperAxes<S: Structure> {
+    typealias WholeShape = Paired<S, S>
+    typealias Source = WholeShape
+    typealias Observation = Source.Left
+    typealias Required = Source.Left
+    typealias Question = Required
+}

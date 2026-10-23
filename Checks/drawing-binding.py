@@ -44,6 +44,14 @@ def main():
         try:mechanism({'Sources/DocumentKit/subfolder/negative.swift':line})
         except ValueError as e:assert 'negative.swift:1:' in str(e)
         else:raise AssertionError('mechanism admitted '+line)
+    for source,swift in [(r'let svg = "<path stroke-width=\"\(9)\"/>"',True),
+                         (r'let svg = "<text font-family=\"\(face("Inter"))\"/>"',True),
+                         ('const svg = `<path stroke-width="${9}"/>`;',False),
+                         ('const svg = `<text font-family="${face("Inter")}"/>`;',False)]:
+        try:style_literals.check(source,'interpolated-value.swift' if swift else 'interpolated-value.js',swift)
+        except ValueError:pass
+        else:raise AssertionError('literal interpolation admitted: '+source)
+    style_literals.check(r'let svg = "<path stroke-width=\"\(Binding.width / 2)\"/>"','arithmetic.swift')
     mechanism({'Sources/DocumentKit/positive.swift':'let title="Inter-world"; let text="#abc"; let count=12/2'})
     footer=binding.footer(binding.read(ROOT/'Worlds/Documentation/binding.json'))
     assert footer_check.check(footer,'documentation/footer.html')==2

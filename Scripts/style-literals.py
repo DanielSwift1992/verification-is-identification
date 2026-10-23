@@ -25,20 +25,36 @@ def readout(text,literals=None):
     return text.replace('\\"','"').replace("\\'", "'")
 
 
+def interpolation(expression):
+    expression=expression.strip()
+    scalar=r'(?:0x[0-9a-fA-F]+|[+-]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+))'
+    if re.fullmatch(scalar,expression):return expression
+    if re.fullmatch(r'"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'',expression):return expression[1:-1]
+    # A literal passed at this serialization edge is a selected value. Counts
+    # inside an arithmetic expression (such as a division by two) stay readings.
+    argument=r'(?:"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'|'+scalar+r')'
+    if re.search(r'[(,:]\s*'+argument+r'\s*(?=[,)])',expression):return 'literal-style-argument'
+    return '{reading}'
+
+
 def dynamic(text):
-    # Swift interpolation, including nested calls, is a type/value reading.
     out='';index=0
     while index<len(text):
         if text.startswith('\\(',index):
-            at=index+2;depth=1
+            at=index+2;depth=1;quote=None
             while at<len(text) and depth:
-                if text[at]=='(':depth+=1
-                if text[at]==')':depth-=1
+                char=text[at]
+                if quote:
+                    if char=='\\':at+=2;continue
+                    if char==quote:quote=None
+                elif char in ['"',"'"]:quote=char
+                elif char=='(':depth+=1
+                elif char==')':depth-=1
                 at+=1
-            out+='{reading}'+'\n'*text[index:at].count('\n');index=at
+            out+=interpolation(text[index+2:at-1])+'\n'*text[index:at].count('\n');index=at
         else:out+=text[index];index+=1
-    # JS template interpolation is the other serialization carrier.
-    return re.sub(r'\$\{[^}]*\}','{reading}',out)
+    return re.sub(r'\$\{([^}]*)\}',lambda m:interpolation(m[1]),out)
+
 
 def check(text,address,swift=True):
     code=code_without_comments(text)
@@ -52,8 +68,9 @@ def check(text,address,swift=True):
                 fail(declaration.start(),'alpha or weight value belongs to a world')
     # Fold adjacent literal pieces and the simple literal atoms used by this edge.
     literals={}
-    for m in re.finditer(r'\b(?:let|var|const)\s+(\w+)\s*=\s*(0x[0-9a-fA-F]+|[0-9.]+|"(?:\\.|[^"\\])*")',code):literals[m[1]]=m[2].strip('"')
+    for m in re.finditer(r'\b(?:let|var|const)\s+(\w+)(?:\s*:\s*[\w.]+)?\s*=\s*(0x[0-9a-fA-F]+|[0-9.]+|"(?:\\.|[^"\\])*")',code):literals[m[1]]=m[2].strip('"')
     for m in re.finditer(r'extension\s+(\w+)\s*\{[^{}]*typeName[^{}]*\{\s*"([^"\\]*)"\s*\}',code):literals[m[1]+'.typeName']=m[2]
+    for m in re.finditer(r'(?:enum|struct|class)\s+(\w+)[^{}]*\{[^{}]*typeName[^{}]*\{\s*"([^"\\]*)"\s*\}',code):literals[m[1]+'.typeName']=m[2]
     for name,value in literals.items():
         code=code.replace('\\('+name+')',value).replace('${'+name+'}',value)
         code=re.sub(r'\\\(XMLEscaped<'+re.escape(name.removesuffix('.typeName'))+r'>\.typeName\)',lambda _:value,code) if name.endswith('.typeName') else code

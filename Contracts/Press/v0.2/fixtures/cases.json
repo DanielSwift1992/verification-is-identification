@@ -16645,7 +16645,7 @@
       "dictionaryPath": "rules.swift"
     },
     "expected": {
-      "state": "typealias Mode = On\n// enum Helper { static var pattern: Regex<Substring> { #/\"/# } }\n// // \" } } enum TurnOn { typealias Slot = ModeSlot; typealias From = On; typealias Into = On } //\"\n",
+      "state": "typealias Mode = On\n// enum Helper { static var pattern: Regex<Substring> { #/\"/# } }\n// // \" } } enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On } //\"\n",
       "changed": true,
       "refusal": null,
       "replayed": true
@@ -18177,7 +18177,7 @@
       "dictionaryPath": "rules.swift"
     },
     "expected": {
-      "state": "typealias Mode = On\n// enum Helper { static var pattern: Regex<Substring> { /\"/ } }\n// // \" } } enum TurnOn { typealias Slot = ModeSlot; typealias From = On; typealias Into = On } //\"\n",
+      "state": "typealias Mode = On\n// enum Helper { static var pattern: Regex<Substring> { /\"/ } }\n// // \" } } enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On } //\"\n",
       "changed": true,
       "refusal": null,
       "replayed": true
@@ -19702,7 +19702,7 @@
       "dictionaryPath": "rules.swift"
     },
     "expected": {
-      "state": "typealias Mode = On\n// enum Helper { static var s: String { #\"\\#(\"\\\"#\" + \"\\\"\")\"# } }\n// // \" } } enum TurnOn { typealias Slot = ModeSlot; typealias From = On; typealias Into = On } //\"\n",
+      "state": "typealias Mode = On\n// enum Helper { static var s: String { #\"\\#(\"\\\"#\" + \"\\\"\")\"# } }\n// // \" } } enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On } //\"\n",
       "changed": true,
       "refusal": null,
       "replayed": true
@@ -23870,7 +23870,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\nenum Helper { static var value: String { 8 / 2 } }\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\nenum Helper { static var value: Int { 8 / 2 } }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },

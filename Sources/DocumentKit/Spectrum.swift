@@ -12,7 +12,7 @@ import Notation
 // parts the short into the middle band (green) and the blue. A cut makes two doors, and the
 // two doors of one cut are COMPLEMENTS: eat the red band and the survivor is cyan, eat the
 // green and it is magenta, eat the blue and it is yellow. The colour wheel's opposite pairs
-// fall out of the cuts, the way the phone book's shelves fall out of the roster.
+// are determined by these cuts.
 //
 // The walk is the identity, so a relation between colours is a relation between words: a
 // shared prefix is a shared neighbourhood, and flipping every door is taking the complement.

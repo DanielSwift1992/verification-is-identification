@@ -51,9 +51,9 @@
 ///
 /// - a `Close` READER: ``RawName`` (§S10), `ProtocolReference`, a verdict proxy, a derived
 ///   line. A `Close` is an empty enum. An `init` is a member it cannot carry (core Law §0″), so
-///   the door is structurally unavailable: `ProtocolReference<any Workplace>.self` is its one
+///   the door is structurally unavailable: `ProtocolReference<any Polygon>.self` is its one
 ///   spelling, not a lapse.
-/// - a page-local `Fragment` whose parameter is a single named type (a cut, a person, a team)
+/// - a page-local `Fragment` whose parameter is a single named type (a cut, a vertex, an edge)
 ///   consumed by one page: a door there buys nothing back (§S8's test): `TimelineRow<
 ///   Cut2026>.self` reads as what it is, one row derived from one anchor.
 ///
@@ -132,10 +132,10 @@
 ///
 /// A protocol-plus-enum pair is worth writing when many different holes fill the same shape:
 /// `Symbol` wraps hundreds of distinct types across every page. It is not worth writing for a
-/// small, closed set in a diagram: four compass directions can be four named atoms,
+/// small, closed set in a diagram: four cardinal directions can be four named atoms,
 /// composed directly wherever they appear. A new point does not add a fifth direction.
 /// A reusable wrapper earns its cost when its set of fillings can grow independently of
-/// the wrapper; the number of current uses alone does not establish that need.
+/// the wrapper. The number of current uses alone does not establish that need.
 ///
 /// ## §S9 · A multi-hole combinator still takes one door, not several
 ///

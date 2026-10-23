@@ -218,6 +218,111 @@
       "records": [
         "X"
       ]
+    },
+    {
+      "id": "N3a-refused",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "\n\nenum X: P { static var typeName: String { #/\"/# } }\n"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "unsupported",
+      "records": [],
+      "diagnostic": "second.swift:3: a regular expression literal is not among the forms this court reads"
+    },
+    {
+      "id": "N3a-neighbor",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "\n\nenum X: P { static var typeName: String { #\"plain\"# } }\n"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "holds",
+      "records": [
+        "X"
+      ]
+    },
+    {
+      "id": "N3b-refused",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "\n\nenum X: P { static var typeName: String { /\"/ } }\n"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "unsupported",
+      "records": [],
+      "diagnostic": "second.swift:3: a slash with no whitespace after it may open a regular expression literal"
+    },
+    {
+      "id": "N3b-neighbor",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "\n\nenum X: P { static var typeName: String { #\"plain\"# } }\n"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "holds",
+      "records": [
+        "X"
+      ]
+    },
+    {
+      "id": "N4-refused",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "\n\nenum X: P { static var typeName: String { #\"\\#(1)\"# } }\n"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "unsupported",
+      "records": [],
+      "diagnostic": "second.swift:3: raw string interpolation is outside structural reader scope"
+    },
+    {
+      "id": "N4-neighbor",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "\n\nenum X: P { static var typeName: String { #\"plain\"# } }\n"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "holds",
+      "records": [
+        "X"
+      ]
     }
   ]
 }

@@ -23,6 +23,8 @@ def main():
     args = parser.parse_args()
     plan = json.loads((ROOT / 'Worlds/Documentation/figures.json').read_text())
     pin = plan['style']
+    owner_layout=json.loads((ROOT/'Worlds/Documentation/layout.json').read_text())
+    declared=owner_layout['documentationProjection']
     for target in ['DocumentKit', 'VerificationIsIdentification']:
         subprocess.run(['swift', 'build', '--target', target], cwd=ROOT, check=True)
     binary = Path(subprocess.check_output(['swift', 'build', '--show-bin-path'], cwd=ROOT, text=True).strip())
@@ -43,27 +45,25 @@ def main():
         executable = temp / 'read'
         figures.command(['swiftc', '-whole-module-optimization', '-I', str(binary / 'Modules'), '-module-cache-path', str(temp / 'modules'), str(source), str(native), *objects, '-o', str(executable)], timeout=240)
         paints = json.loads(figures.command([str(executable)]))
-        _, registers = figures.read_registers(figures.pinned_bytes(pin, pin['registers'], ROOT / '.build/figure-inputs'), binary, temp, {'Speech', 'Caption', 'Fact', 'Headline'}, plan['font']['stressWeights'])
+        _, registers = figures.read_registers(figures.pinned_bytes(pin, pin['registers'], ROOT / '.build/figure-inputs'), binary, temp, set(declared['readRegisters']), plan['font']['stressWeights'])
         roles = {}
-        # All text-bearing documentation surfaces use paper, the stated contrast ground.
-        links = {'Ink':'ink','Paper':'paper','Mist':'paper','Accent':'paper','Muted':'muted','Line':'line','InkPrimary':'ink','InkSecondary':'muted','Action':'action','ActionTint':'paper','NavyTint':'paper',
-                 'SurfaceCard':'paper','SurfaceTrack':'paper','SurfacePage':'paper','TextPrimary':'ink','TextSecondary':'muted','AccentRole':'action','ActionRole':'action','LineRole':'line','OnAccent':'ink','ActionTintRole':'paper','OnActionRole':'ink','StatusMark':'ok','Ok':'ok','Bad':'bad','KnownName':'knownName','LocalType':'localType'}
-        variables = {'SurfaceCard':'surface-card','SurfaceTrack':'surface-track','SurfacePage':'surface-page','TextPrimary':'text-primary','TextSecondary':'text-secondary','AccentRole':'accent','ActionRole':'action','LineRole':'line','OnAccent':'on-accent','ActionTintRole':'action-tint','OnActionRole':'on-action'}
+        links = declared['links']
+        variables = declared['variables']
         for role, owner in links.items():
             row = dict(light=paints[owner+'-Lit'], dark=paints[owner+'-Dim'], ownerRole=owner)
             if role in variables: row['variable'] = variables[role]
             saved=json.loads((ROOT/'Worlds/Documentation/binding.json').read_text())['roles'][role]
             for suffix in ['Light','Dark']:row['sRGB'+suffix]=saved['sRGB'+suffix]
             roles[role] = row
-        family = next(s['name'] for s in plan['font']['sources'] if s['name'] == 'Inter')
+        family = next(s['name'] for s in plan['font']['sources'] if s['name'] == declared['primaryFace'])
         value = dict(format='drawing-binding/1', name='DocumentationBinding', source=dict(input='Worlds/Documentation/figures.json',field='style',sha256=figures.digest((ROOT/'Worlds/Documentation/figures.json').read_bytes())),
-                     roles=roles, registers={'BodyFace':family,'CaptionFace':family}, registerOrigins={'BodyFace':'Speech','CaptionFace':'Caption'}, registerReadings=registers,
-                     weights={'WeightRegular':str(plan['font']['stressWeights'][registers['registers']['Speech']['stress']]),'WeightBold':str(plan['font']['stressWeights'][registers['registers']['Headline']['stress']])}, shadow=dict(paint=paints['ink-Lit'],opacity='0'), leafCountBases=['Structure','Close','Open','Pair'],
-                     legible=[dict(foreground=fg,background=bg,witness=next(r['contrast'] for r in rows if r['role']==links[fg] and r['theme']=='Lit')) for fg,bg in [('TextPrimary','SurfaceCard'),('TextSecondary','SurfaceCard'),('ActionRole','SurfaceCard'),('TextPrimary','SurfaceTrack'),('TextSecondary','SurfaceTrack'),('ActionRole','SurfaceTrack'),('Ink','NavyTint'),('InkPrimary','NavyTint'),('InkSecondary','NavyTint')]])
-        owner_layout=json.loads((ROOT/'Worlds/Documentation/layout.json').read_text())
+                     roles=roles, registers={key:family for key in declared['faces']}, registerOrigins=declared['faces'], registerReadings=registers,
+                     weights={key:str(plan['font']['stressWeights'][registers['registers'][register]['stress']]) for key,register in declared['weights'].items()}, shadow=dict(paint=paints[declared['shadow']['role']+'-'+declared['shadow']['theme']],opacity=declared['shadow']['opacity']), leafCountBases=declared['leafCountBases'],
+                     legible=[dict(pair,witness=next(r['contrast'] for r in rows if r['role']==links[pair['foreground']] and r['theme']=='Lit')) for pair in declared['legible']])
         value['tableStyle']=owner_layout['tableStyle']
         value['portableColour']=owner_layout['portableColour']
         if args.write:projection.project_paints(value)
+        else:projection.check_paints(value, 'Worlds/Documentation/binding.json', 'python3 Checks/documentation-binding.py --write')
         layout = owner_layout['values']
         import re
         metrics=(ROOT/'Worlds/Documentation/GeneratedFontMetrics.swift').read_text()
@@ -74,23 +74,21 @@ def main():
         advances=dict(pair.split(':') for pair in layout['FontAdvanceTable']['text'].split())
         layout['FontFallbackAdvance']={'text':advances[str(ord(character))]}
         # These are checked projections of gate registers; composition rungs remain this owner's choices.
-        for name, register in {'TextXXS':'Caption','TextXS':'Caption','TextS':'Speech','TextM':'Speech','TextL':'Headline','TitleT':'Headline','DisplayS':'Headline','Display':'Headline'}.items():
+        for name, register in declared['sizeRegisters'].items():
             layout[name]={'text':format(registers['registers'][register]['sizeTenths']/10,'g')}
-        layout['WeightRegular']={'text':value['weights']['WeightRegular']}
-        layout['WeightBold']={'text':value['weights']['WeightBold']}
-        layout['BoldWeight']={'text':value['weights']['WeightBold']}
+        for key,weight in declared['weightAliases'].items():
+            layout[key]={'text':value['weights'][weight]}
         value['layout']=layout
-        for pair in value['legible']:
-            if pair['foreground'] in ['TextSecondary','InkSecondary']:pair['standard']='Readable'
         themes = projection.swift(value)
         for theme, mode, suffix in [('FigureLight','Lit',''),('FigureDark','Dim','Dark')]:
             pairs=[]
-            for role in ['Ink','Muted','Ok','Bad','KnownName','LocalType']:
+            for pair_spec in declared['figurePairs']:
+                role=pair_spec['role']
                 owner=links[role]
                 proof=next(r['contrast'] for r in rows if r['role']==owner and r['theme']==mode)
                 pair=theme+role+'OnPaper'
                 themes+='public enum '+pair+'Name: Close {}\nextension '+pair+'Name { public static var typeName: String { \"'+proof+'\" } }\n'
-                themes+='public enum '+pair+': '+('ReadablePaintPair' if role=='Muted' else 'LegiblePaintPair')+' {\n    public typealias WitnessName = '+pair+'Name\n    public typealias Foreground = DocumentationBinding'+role+suffix+'\n    public typealias Background = DocumentationBindingPaper'+suffix+'\n    public typealias Proof = '+proof+'\n}\n'
+                themes+='public enum '+pair+': '+pair_spec['standard']+' {\n    public typealias WitnessName = '+pair+'Name\n    public typealias Foreground = DocumentationBinding'+role+suffix+'\n    public typealias Background = DocumentationBindingPaper'+suffix+'\n    public typealias Proof = '+proof+'\n}\n'
                 pairs.append((role+'OnPaper',pair))
             themes+='public enum '+theme+': DrawingPalette, Close {\n'
             for role in value['roles']:
@@ -107,12 +105,17 @@ def main():
                    'Sources/DocumentKitDemo/Binding.swift':projection.swift(value,aliases=True),
                    'Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html':projection.footer(value),
                    'Sources/DocumentKit/DocumentKit.docc/footer.html':projection.footer(value)}
+        from xml.sax.saxutils import quoteattr
         for theme,suffix in [('light',''),('dark','~dark')]:
-            paper=value['roles']['Paper'][theme]
-            mark=value['roles']['StatusMark'][theme]
-            outputs['Sources/DocumentKit/DocumentKit.docc/Resources/example'+suffix+'.svg'] = ('<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">\n'
-                + '  <rect width="120" height="120" rx="12" fill="'+value['roles']['Paper']['sRGB'+('Light' if theme=='light' else 'Dark')]+'" style="fill:'+value['roles']['Paper']['sRGB'+('Light' if theme=='light' else 'Dark')]+';fill:'+paper+';"/>\n'
-                + '  <path d="M30 60 L55 85 L92 40" stroke="'+value['roles']['StatusMark']['sRGB'+('Light' if theme=='light' else 'Dark')]+'" style="stroke:'+value['roles']['StatusMark']['sRGB'+('Light' if theme=='light' else 'Dark')]+';stroke:'+mark+';" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>\n</svg>\n')
+            example=declared['example']
+            def element(tag, spec, attribute):
+                attributes=dict(spec); role=attributes.pop('role');row=value['roles'][role]
+                paint=row['sRGB'+('Light' if theme=='light' else 'Dark')]
+                attributes[attribute]=paint
+                attributes['style']=attribute+':'+paint+';'+attribute+':'+row[theme]+';'
+                return '  <'+tag+' '+ ' '.join(key+'='+quoteattr(text) for key,text in attributes.items())+'/>\n'
+            outputs['Sources/DocumentKit/DocumentKit.docc/Resources/example'+suffix+'.svg'] = ('<svg viewBox='+quoteattr(example['viewBox'])+' xmlns="http://www.w3.org/2000/svg">\n'
+                +element('rect',example['background'],'fill')+element('path',example['mark'],'stroke')+'</svg>\n')
         for name,text in outputs.items():
             path = ROOT / name
             if args.write: path.write_text(text)

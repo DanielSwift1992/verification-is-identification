@@ -3,7 +3,7 @@
 // The lattice's law (VerificationIsIdentification/Law.swift) governs the theory: pure types,
 // no runtime, ever. `init` itself is forbidden there (§0′). The surface is one level up. It
 // renders the lattice as text, so it needs a construction the theory does not: a `{ }`-callable
-// shorthand for a generic leaf (`Symbol { Alice.self }` instead of `Symbol<Alice>.self`). This
+// shorthand for a generic leaf (`Symbol { Triangle.self }` instead of `Symbol<Triangle>.self`). This
 // file is that one exception, stated once, so it reads as a decision and not a drift. `Tools
 // surface` (SurfaceLint.swift) checks the checkable subset on every build, and the rest is checked
 // by review, the same split the core Law uses.
@@ -43,7 +43,7 @@
 /// ## §S3 · A door where a door exists — bare angles where none can
 ///
 /// A combinator that HAS a door (an `Open` kind with its `init`, §S5) is always called
-/// through it: `TableCell { Symbol { Alice.self } }`, not `TableCell<Symbol<Alice>>.self`.
+/// through it: `TableCell { Symbol { Triangle.self } }`, not `TableCell<Symbol<Triangle>>.self`.
 /// Composition nests, and `{ }` reads left-to-right, the way the rendered text itself is built.
 ///
 /// Two shapes have no door, and their use sites lawfully read the bare generic leaf,
@@ -68,7 +68,7 @@
 /// Swift will not let a type and a free function share one name: `enum Symbol<T>` and
 /// `func Symbol(...)` collide (checked directly: "invalid redeclaration"). An `init` has no such
 /// problem: it is a member of the type it constructs, not a second top-level declaration, so
-/// `Symbol { Alice.self }` calls `Symbol.init(_:)` the same way `String(...)` calls `String`'s.
+/// `Symbol { Triangle.self }` calls `Symbol.init(_:)` the same way `String(...)` calls `String`'s.
 /// No `Kind`-suffixed second name, nothing to route around.
 ///
 /// > Warning: a bare `Capitalized` free function is still forbidden (`Tools grammar` rejects it).
@@ -103,9 +103,9 @@
 /// public init(_ target: () -> Target.Type) { fatalError() }                // wrong — breaks nesting
 /// ```
 ///
-/// A leaf like `Alice.self` is a metatype (`Alice.Type`), but a NESTED combinator call
-/// (`Symbol { Alice.self }`, used as someone else's hole) is already a VALUE of type
-/// `Symbol<Alice>`: its `init` produced it. A hole typed `() -> Target.Type` accepts the
+/// A leaf like `Triangle.self` is a metatype (`Triangle.Type`), but a NESTED combinator call
+/// (`Symbol { Triangle.self }`, used as someone else's hole) is already a VALUE of type
+/// `Symbol<Triangle>`: its `init` produced it. A hole typed `() -> Target.Type` accepts the
 /// first case and rejects the second (checked directly: "generic parameter could not be
 /// inferred"), so every door's hole is `@StructureBuilder () -> Target`, not `.Type`. The
 /// builder's `buildExpression` converts either a bare metatype or an already-built value into
@@ -132,19 +132,14 @@
 ///
 /// A protocol-plus-enum pair is worth writing when many different holes fill the same shape:
 /// `Symbol` wraps hundreds of distinct types across every page. It is not worth writing for a
-/// small, closed, named set that will not grow: the department/rank/workplace facets (ten rows,
-/// a consuming module's `FinanceCountRow`, `LeadCountRow`, …) are ten plain named
-/// enums, no generic, no door, the same call already made for the four-person named team
-/// (`Alice`, `Bob`, `Carol`, `Dave`, hand-enumerated everywhere they appear). Fewer than a
-/// handful of uses, over a set that will not scale, does not buy back a combinator's cost.
-///
-/// > Tip: the test is not the current use count, it is whether the set could ever grow. `Symbol`
-/// > gains a use every time a new page names a new type, genuinely open-ended. A department
-/// > facet does not gain a fourth workplace next quarter.
+/// small, closed set in a diagram: four compass directions can be four named atoms,
+/// composed directly wherever they appear. A new point does not add a fifth direction.
+/// A reusable wrapper earns its cost when its set of fillings can grow independently of
+/// the wrapper; the number of current uses alone does not establish that need.
 ///
 /// ## §S9 · A multi-hole combinator still takes one door, not several
 ///
-/// A combinator with N holes (four in `OwnersLine`, two in `Link`) still gets exactly one
+/// A combinator with N holes (four in a row of cells, two in `Link`) still gets exactly one
 /// `@StructureBuilder` `init` parameter, not one parameter per hole. The builder folds the N
 /// statements left-associatively into nested `Paired`s (`Primitive.swift`'s `buildPartialBlock`):
 /// for holes `s1…sN`, the fold is `Paired<Paired<…Paired<s1,s2>…,s(N-1)>,sN>`. A single generic
@@ -168,10 +163,10 @@
 /// ## §S10 · A link reads the target's bare name, never its rendered content
 ///
 /// `Target.typeName` walks `Target`'s `body`, correct for a combinator, wrong for a link. Linking
-/// to a `Screen` with real content (`Page { EmployeesPage.self }`) would inline that whole page's
+/// to a `Screen` with real content (`Page { VerticesPage.self }`) would inline that whole page's
 /// rendering inside the `<doc:…>` parentheses, because `DocLink`'s body composes `Target.self`
 /// directly, and `Open.typeName` always walks down to `Body.typeName` (checked directly: a link
-/// to a body-less marker like `Nav.Employees` renders fine, since it has no body to walk into.
+/// to a body-less marker like `Nav.Vertices` renders fine, since it has no body to walk into.
 /// A link to an actual `Screen` does not). The fix is a wrapper that
 /// reads the identifier and stops there:
 ///
@@ -181,8 +176,8 @@
 /// // DocLink's body composes `RawName<Target>.self`, not `Target.self` directly.
 /// ```
 ///
-/// > Note: this is also why the `Nav` enum (Site.swift) exists as a SEPARATE set of body-less
-/// > markers from the real `Screen` types they name: `Nav.Employees` is an address, `EmployeesPage`
+/// > Note: this is also why a diagram may keep a `Nav` enum as a SEPARATE set of body-less
+/// > markers from the real `Screen` types they name: `Nav.Vertices` is an address, `VerticesPage`
 /// > is the content. `RawName` makes that separation unnecessary for anything new: a link can
 /// > name the real page directly.
 ///
@@ -200,15 +195,14 @@
 /// ## §S12 · A verdict with more than one `where` needs a literal read, not a combinator
 ///
 /// A cell whose `typeName` picks among several conditional extensions at different
-/// specificities (`Capability`, `ViewCapability`, a consuming module) reads correctly
+/// specificities (for example, a tile-style predicate) reads correctly
 /// at a literal call site, but reads the BASE case, wrong, the moment that reference passes
 /// through ANY generic layer between the literal instantiation and the `.typeName` read. A door's
 /// `init`, a shared protocol default, an associated-type delegate, or a plain generic function all
-/// reproduce it identically (each checked directly, Cells.swift's header). This is not one of the
+/// reproduce the same loss of specificity. This is not one of the
 /// eleven rules above with a workaround: the fix is a NON-GENERIC proxy per concrete case,
-/// resolved once at a literal site (`AliceFinanceView`, …), with nothing generic between that
-/// resolution and its use. See Cells.swift for the full derivation: this entry exists so the
-/// symptom (a verdict silently reading the wrong case) is recognized fast, not re-derived.
+/// resolved once at a literal site (`SolidTriangleStyle`, …), with nothing generic between that
+/// resolution and its use. §S17 traces how the builder itself introduces such a generic layer.
 ///
 /// ## §S13 · A DocC directive's own argument syntax is never assumed, only checked
 ///
@@ -266,7 +260,7 @@
 ///
 /// ## §S17 · §S12's trap is not about generic FUNCTIONS — it is about `@StructureBuilder` itself
 ///
-/// A multi-`where` type (`Gap`'s `SpaceBetween<Left, Right>`, the same shape as `Capability`)
+/// A multi-`where` type (`Gap`'s `SpaceBetween<Left, Right>`, a conditional style predicate)
 /// read the wrong, unconditional case even used seemingly directly as a body leaf:
 /// `SpaceBetween<Quiet, Loud>.self`, written literally, with no function or protocol default in
 /// sight (checked directly: rendered "" instead of the specific override). The reason: any
@@ -353,14 +347,14 @@
 ///
 /// ## §S23 · Generation is a gated construction
 ///
-/// A generated artifact (a roster file, a card, a diagram) is a page whose medium is source
+/// A generated artifact (a coordinate table, a card, a diagram) is a page whose medium is source
 /// text: a `SourceFile` template composes typed skeleton atoms, its `typeName` IS the file, and
 /// a thin driver writes it, the same three lines `render-doc` uses for markdown. The emitter
 /// PROPOSES. The build is the gate: compilation, the linters, and the parity gates cut the
 /// proposal to one survivor, Program Is Path's gated construction run on artifacts.
 /// Where the template and its rules admit exactly one output, regeneration is idempotent, and
 /// the md5 gate is measuring `|S| = 1` at the artifact level. Two edges: the ENUMERATION
-/// (two hundred employees) is a value-level fold in the driver (a type cannot be chosen by a
+/// (two hundred vertices) is a value-level fold in the driver (a type cannot be chosen by a
 /// runtime index), and the data pools are typed chains read via `labels`, so only the
 /// iteration itself is outside the notation.
 ///

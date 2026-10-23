@@ -281,5 +281,174 @@
     },
     "symbol": "srgbHex",
     "rounding": "nearest-even"
+  },
+  "documentationProjection": {
+    "links": {
+      "Ink": "ink",
+      "Paper": "paper",
+      "Mist": "paper",
+      "Accent": "paper",
+      "Muted": "muted",
+      "Line": "line",
+      "InkPrimary": "ink",
+      "InkSecondary": "muted",
+      "Action": "action",
+      "ActionTint": "paper",
+      "NavyTint": "paper",
+      "SurfaceCard": "paper",
+      "SurfaceTrack": "paper",
+      "SurfacePage": "paper",
+      "TextPrimary": "ink",
+      "TextSecondary": "muted",
+      "AccentRole": "action",
+      "ActionRole": "action",
+      "LineRole": "line",
+      "OnAccent": "ink",
+      "ActionTintRole": "paper",
+      "OnActionRole": "ink",
+      "StatusMark": "ok",
+      "Ok": "ok",
+      "Bad": "bad",
+      "KnownName": "knownName",
+      "LocalType": "localType"
+    },
+    "variables": {
+      "SurfaceCard": "surface-card",
+      "SurfaceTrack": "surface-track",
+      "SurfacePage": "surface-page",
+      "TextPrimary": "text-primary",
+      "TextSecondary": "text-secondary",
+      "AccentRole": "accent",
+      "ActionRole": "action",
+      "LineRole": "line",
+      "OnAccent": "on-accent",
+      "ActionTintRole": "action-tint",
+      "OnActionRole": "on-action"
+    },
+    "faces": {
+      "BodyFace": "Speech",
+      "CaptionFace": "Caption"
+    },
+    "weights": {
+      "WeightRegular": "Speech",
+      "WeightBold": "Headline"
+    },
+    "sizeRegisters": {
+      "TextXXS": "Caption",
+      "TextXS": "Caption",
+      "TextS": "Speech",
+      "TextM": "Speech",
+      "TextL": "Headline",
+      "TitleT": "Headline",
+      "DisplayS": "Headline",
+      "Display": "Headline"
+    },
+    "legible": [
+      {
+        "foreground": "TextPrimary",
+        "background": "SurfaceCard"
+      },
+      {
+        "foreground": "TextSecondary",
+        "background": "SurfaceCard",
+        "standard": "Readable"
+      },
+      {
+        "foreground": "ActionRole",
+        "background": "SurfaceCard"
+      },
+      {
+        "foreground": "TextPrimary",
+        "background": "SurfaceTrack"
+      },
+      {
+        "foreground": "TextSecondary",
+        "background": "SurfaceTrack",
+        "standard": "Readable"
+      },
+      {
+        "foreground": "ActionRole",
+        "background": "SurfaceTrack"
+      },
+      {
+        "foreground": "Ink",
+        "background": "NavyTint"
+      },
+      {
+        "foreground": "InkPrimary",
+        "background": "NavyTint"
+      },
+      {
+        "foreground": "InkSecondary",
+        "background": "NavyTint",
+        "standard": "Readable"
+      }
+    ],
+    "figurePairs": [
+      {
+        "role": "Ink",
+        "standard": "LegiblePaintPair"
+      },
+      {
+        "role": "Muted",
+        "standard": "ReadablePaintPair"
+      },
+      {
+        "role": "Ok",
+        "standard": "LegiblePaintPair"
+      },
+      {
+        "role": "Bad",
+        "standard": "LegiblePaintPair"
+      },
+      {
+        "role": "KnownName",
+        "standard": "LegiblePaintPair"
+      },
+      {
+        "role": "LocalType",
+        "standard": "LegiblePaintPair"
+      }
+    ],
+    "example": {
+      "viewBox": "0 0 120 120",
+      "background": {
+        "width": "120",
+        "height": "120",
+        "rx": "12",
+        "role": "Paper"
+      },
+      "mark": {
+        "d": "M30 60 L55 85 L92 40",
+        "stroke-width": "10",
+        "fill": "none",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "role": "StatusMark"
+      }
+    },
+    "primaryFace": "Inter",
+    "readRegisters": [
+      "Speech",
+      "Caption",
+      "Fact",
+      "Headline"
+    ],
+    "shadow": {
+      "role": "ink",
+      "theme": "Lit",
+      "opacity": "0"
+    },
+    "leafCountBases": [
+      "Structure",
+      "Close",
+      "Open",
+      "Pair"
+    ],
+    "weightAliases": {
+      "WeightRegular": "WeightRegular",
+      "WeightBold": "WeightBold",
+      "BoldWeight": "WeightBold"
+    }
   }
 }

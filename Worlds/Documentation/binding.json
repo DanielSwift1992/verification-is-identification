@@ -393,8 +393,8 @@
     {
       "foreground": "TextSecondary",
       "background": "SurfaceCard",
-      "witness": "Paper_Muted_lit",
-      "standard": "Readable"
+      "standard": "Readable",
+      "witness": "Paper_Muted_lit"
     },
     {
       "foreground": "ActionRole",
@@ -409,8 +409,8 @@
     {
       "foreground": "TextSecondary",
       "background": "SurfaceTrack",
-      "witness": "Paper_Muted_lit",
-      "standard": "Readable"
+      "standard": "Readable",
+      "witness": "Paper_Muted_lit"
     },
     {
       "foreground": "ActionRole",
@@ -430,8 +430,8 @@
     {
       "foreground": "InkSecondary",
       "background": "NavyTint",
-      "witness": "Paper_Muted_lit",
-      "standard": "Readable"
+      "standard": "Readable",
+      "witness": "Paper_Muted_lit"
     }
   ],
   "tableStyle": [

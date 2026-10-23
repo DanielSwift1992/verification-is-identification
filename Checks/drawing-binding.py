@@ -68,6 +68,17 @@ def main():
         assert footer_check.check(path.read_text(),str(path.relative_to(ROOT)))==2
     fixture = ROOT / 'Contracts/Drawing/v0.1/binding.json'
     value = binding.read(fixture)
+    binding.check_paints(value, str(fixture.relative_to(ROOT)), 'python3 Checks/documentation-binding.py --write')
+    forged = json.loads(json.dumps(value))
+    forged['roles']['TextSecondary']['sRGBLight'] = '#010203'
+    before = json.dumps(forged, sort_keys=True)
+    try:
+        binding.check_paints(forged, 'forged/binding.json', 'regenerate the owner binding')
+    except ValueError as error:
+        assert 'forged/binding.json#roles/TextSecondary/sRGBLight' in str(error), str(error)
+    else:
+        raise AssertionError('stored hex escaped the pinned projector relation')
+    assert json.dumps(forged, sort_keys=True) == before, 'checking rewrote the owner input'
     assert (ROOT / 'Contracts/Drawing/v0.1/Binding.swift').read_text() == binding.swift(value,aliases=True), str(fixture) + ': stale Swift binding'
     binary = Path(subprocess.check_output(['swift','build','--show-bin-path'],cwd=ROOT,text=True).strip())
     with tempfile.TemporaryDirectory(prefix='vi-binding-control-') as directory:

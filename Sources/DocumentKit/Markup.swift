@@ -57,8 +57,7 @@ extension PipeSep {
     public static var typeName: String { " | " }
 }
 
-/// This renders a breadcrumb's own separator: `Parent › Child`, the same trail `Nav`/`Place`
-/// (Site.swift) already reads through `Up`.
+/// Render a breadcrumb's separator: `Parent › Child`. The enclosing trail reads its parent through `Up`.
 public enum Chevron: Close {}
 extension Chevron {
     public static var typeName: String { " › " }
@@ -323,7 +322,7 @@ public enum PageTitle<
 // ── Section: ## Heading\n\nContent\n\n, no combinator: a page's own body just writes the
 // five atoms directly (`DoubleHash.self; Heading.self; Break.self`, then the content, then
 // `Break.self`). The pattern is five atoms, and writing it inline each time is not repetition worth
-// a combinator, the same call made for ``CountRow``/``Ratio`` (the consuming module).
+// a combinator. Compose the atoms directly until a reusable hole is needed.
 
 // ── Note ──
 
@@ -675,7 +674,7 @@ public enum CodeSample<
 // ── Spacer: a column of width alone, no content. `Content` is fixed to `Never` (the
 // lattice's own empty leaf, `typeName = ""`), so there is nothing to compose, only a weight to
 // state. No `{ }` door, `Spacer<TextDigit._1>.self` is complete on its own, a bare metatype
-// leaf the same as `Alice.self` anywhere else. Flank real content with two of these to get
+// leaf the same as `Triangle.self` anywhere else. Flank real content with two of these to get
 // horizontal padding, the cheapest read of "insert something that is only space."
 
 public enum Spacer<
@@ -691,8 +690,7 @@ public enum Spacer<
 // classic CSS collapse). One type reads the boundary, once. The default (no more specific
 // `where` matched) is zero: adjacent by default, spaced only where a pairing says so.
 //
-// > Warning: this is the SAME shape `Capability` (a consuming module, Surface Law
-// > §S12) already hit: a type whose `typeName` picks among several `where`-conditioned
+// > Warning: Surface Law §S12 describes this shape: a type whose `typeName` picks among several `where`-conditioned
 // > extensions reads correctly ONLY at a literal, concrete call site (`Gap<Quiet, Loud>.self`,
 // > written directly), never through a generic parameter standing in for `Left`/`Right`. This
 // > is not a general "the compiler infers the right gap between any two things" mechanism. It

@@ -214,6 +214,18 @@ def project_paints(value):
     return value
 
 
+def check_paints(value, address, repair):
+    """Compare stored hex with the pinned projector on a copy; keep the input unchanged."""
+    import copy
+    projected=project_paints(copy.deepcopy(value))
+    for role,row in projected['roles'].items():
+        for suffix in ['Light','Dark']:
+            field='sRGB'+suffix
+            if value['roles'][role].get(field)!=row[field]:
+                raise ValueError(address+'#roles/'+role+'/'+field+': differs from pinned portableColour projection; run '+repair)
+    return value
+
+
 def footer(value):
     template = (ROOT / 'Sources/DocumentKit/Resources/footer.html').read_text()
     return ('<!-- drawing-binding-value-sha256: '+value_hash(value)+' -->\n'+template).replace('/* WORLD_ROLE_CSS */ null', json.dumps(css(value)).replace('<', '\\u003c')).replace('/* WORLD_TABLE_CSS */ null',json.dumps(table_css(value)).replace('<','\\u003c'))

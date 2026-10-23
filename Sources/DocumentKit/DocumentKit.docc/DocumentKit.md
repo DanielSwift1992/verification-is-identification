@@ -14,7 +14,7 @@ A page is built the way everything else in this package is built: declare a type
 
 ## Two kinds of combinator
 
-Every combinator on the surface is an `Open` protocol carrying the hole (an `associatedtype`) plus the composition that reads it (`body`), realized by a caseless `enum` — never the reverse. A one-hole combinator's `{ }` door (`init`) lives on the protocol extension, shared by every conformer. A combinator with more than one hole (``Link``, ``Picture``, ``SizedPanel``) folds its statements through a single `Whole: Pair` parameter instead, the door living on the concrete enum. The gallery further down this page is a live instance of every shape below, rendered by the engine it exercises — reading it is reading what each row actually produces, not a description of it.
+Every combinator on the surface is an `Open` protocol carrying the hole (an `associatedtype`) plus the composition that reads it (`body`), realized by a caseless `enum` — never the reverse. A one-hole combinator's `{ }` door (`init`) lives on the protocol extension, shared by every conformer. A combinator with more than one hole (``Link``, ``Picture``, ``SizedPanel``) folds its statements through a single `Whole: Pair` parameter instead, the door living on the concrete enum. The gallery presents SDK declarations and selected readouts. The declarations keep the caller's parameters open; the rendered examples show particular compositions.
 
 | Combinator | Is | 
 | --- | --- | 
@@ -39,7 +39,7 @@ Every combinator on the surface is an `Open` protocol carrying the hole (an `ass
 
 > Warning: `typeName`'s walk concatenates strings on the way back up the tree (`Paired.typeName = L.typeName + R.typeName`), so it is not tail-recursive — one `Structure` with enough total content in its own `body` can exhaust the call stack before it ever mis-renders (checked directly). Prefer several linked pages over one page trying to hold everything, with independently linked content.
 
-## The gallery — every mechanism, live
+## The gallery — declarations and readouts
 
 Each mechanism below is shown three ways: the code that composes it, the markdown it renders to, and the render itself — produced by this page's own build.
 
@@ -347,7 +347,7 @@ Comes out like this:
 
 ## The second medium: Vector
 
-The gallery above is markdown, DocC's own document medium. `Vector` is DocumentKit's second: SVG, read by the identical mechanism — an atom is a `Close` reading its own `typeName`, a combinator is an `Open` protocol whose `body` composes atoms. A `viewBox` fixes the coordinate system, so embedding the result as an `<img>` scales both axes together, deterministically. Both examples at the end of this section are real compositions, generating their own drawing, the same way every markdown example above generates its own text.
+The gallery above is markdown, DocC's own document medium. `Vector` is DocumentKit's second: SVG, read by the identical mechanism — an atom is a `Close` reading its own `typeName`, a combinator is an `Open` protocol whose `body` composes atoms. A `viewBox` fixes the coordinate system, so embedding the result as an `<img>` scales both axes together, deterministically. The SVG examples in this section are declared compositions; the demo renders their readouts as resources.
 
 ### The canvas contract
 

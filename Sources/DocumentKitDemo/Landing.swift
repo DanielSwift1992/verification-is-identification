@@ -119,7 +119,7 @@ extension TwoKindsHeading {
 enum TwoKindsIntro: Close {}
 extension TwoKindsIntro {
     static var typeName: String {
-        "Every combinator on the surface is an `Open` protocol carrying the hole (an `associatedtype`) plus the composition that reads it (`body`), realized by a caseless `enum` — never the reverse. A one-hole combinator's `{ }` door (`init`) lives on the protocol extension, shared by every conformer. A combinator with more than one hole (``Link``, ``Picture``, ``SizedPanel``) folds its statements through a single `Whole: Pair` parameter instead, the door living on the concrete enum. The gallery further down this page is a live instance of every shape below, rendered by the engine it exercises — reading it is reading what each row actually produces, not a description of it."
+        "Every combinator on the surface is an `Open` protocol carrying the hole (an `associatedtype`) plus the composition that reads it (`body`), realized by a caseless `enum` — never the reverse. A one-hole combinator's `{ }` door (`init`) lives on the protocol extension, shared by every conformer. A combinator with more than one hole (``Link``, ``Picture``, ``SizedPanel``) folds its statements through a single `Whole: Pair` parameter instead, the door living on the concrete enum. The gallery presents SDK declarations and selected readouts. The declarations keep the caller's parameters open; the rendered examples show particular compositions."
     }
 }
 
@@ -301,7 +301,7 @@ extension RenderingPathWarning {
 
 enum GallerySectionHeading: Close {}
 extension GallerySectionHeading {
-    static var typeName: String { "The gallery — every mechanism, live" }
+    static var typeName: String { "The gallery — declarations and readouts" }
 }
 
 enum GallerySectionIntro: Close {}
@@ -887,7 +887,7 @@ extension VectorSectionHeading {
 enum VectorSectionIntro: Close {}
 extension VectorSectionIntro {
     static var typeName: String {
-        "The gallery above is markdown, DocC's own document medium. `Vector` is DocumentKit's second: SVG, read by the identical mechanism — an atom is a `Close` reading its own `typeName`, a combinator is an `Open` protocol whose `body` composes atoms. A `viewBox` fixes the coordinate system, so embedding the result as an `<img>` scales both axes together, deterministically. Both examples at the end of this section are real compositions, generating their own drawing, the same way every markdown example above generates its own text."
+        "The gallery above is markdown, DocC's own document medium. `Vector` is DocumentKit's second: SVG, read by the identical mechanism — an atom is a `Close` reading its own `typeName`, a combinator is an `Open` protocol whose `body` composes atoms. A `viewBox` fixes the coordinate system, so embedding the result as an `<img>` scales both axes together, deterministically. The SVG examples in this section are declared compositions; the demo renders their readouts as resources."
     }
 }
 

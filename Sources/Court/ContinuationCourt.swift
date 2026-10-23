@@ -8,7 +8,7 @@ enum ContinuationCourt {
     typealias E = R.Expression
     typealias Failure = R.Failure
 
-    enum Side: String, Codable { case left = "Left", right = "Right" }
+    enum Side: String, Codable, Hashable { case left = "Left", right = "Right" }
     typealias Path = [Side]
 
     indirect enum Shape: Equatable {
@@ -43,7 +43,7 @@ enum ContinuationCourt {
         case definition(E, [ReadProof], ReadProof)
     }
 
-    indirect enum Program: Codable {
+    indirect enum Program: Codable, Equatable {
         case pick(Path), pair(Program, Program)
         func apply(to input: Shape) throws -> Shape {
             var remaining = 100_000
@@ -487,6 +487,10 @@ enum ContinuationCourt {
     }
 
     static func run(_ arguments: [String], replay: Bool = false) {
+        if arguments.first == "--relations" {
+            runRelations(Array(arguments.dropFirst()), replay: replay)
+            return
+        }
         do {
             var args = arguments
             let retain = args.first == "--retain"

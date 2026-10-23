@@ -1,0 +1,62 @@
+{
+  "schema": "vi.continuation.relations/1",
+  "fixture": "cases.swift",
+  "sha256": "c423c1213285b3c45d916eec0a2ae9f99de3e888031bf323667675b470ca86ca",
+  "cases": [
+    {
+      "request": "AddressIdentity",
+      "outcome": "constructed"
+    },
+    {
+      "request": "OneEquality",
+      "outcome": "constructed"
+    },
+    {
+      "request": "EqualityChain",
+      "outcome": "constructed"
+    },
+    {
+      "request": "ReversedChain",
+      "outcome": "constructed"
+    },
+    {
+      "request": "JointQuestion",
+      "outcome": "constructed"
+    },
+    {
+      "request": "AliasedView",
+      "outcome": "constructed"
+    },
+    {
+      "request": "DisconnectedClass",
+      "outcome": "obstructed"
+    },
+    {
+      "request": "SameSortDifferentPlaces",
+      "outcome": "obstructed"
+    },
+    {
+      "request": "DisplayCoincidence",
+      "outcome": "obstructed"
+    },
+    {
+      "request": "TwoSorts",
+      "outcome": "obstructed"
+    },
+    {
+      "request": "CrossSortEquality",
+      "outcome": "unsupported",
+      "address": "CrossSortEquality.Equalities"
+    },
+    {
+      "request": "MismatchedEdgeTrees",
+      "outcome": "unsupported",
+      "address": "MismatchedEdgeTrees.Equalities"
+    },
+    {
+      "request": "SortIsNotSourcePlace",
+      "outcome": "unsupported",
+      "address": "unsupported or conditional declaration"
+    }
+  ]
+}

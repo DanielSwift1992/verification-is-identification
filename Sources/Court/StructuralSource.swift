@@ -92,14 +92,18 @@ struct StructuralSource {
     }
     /// One scanner; carrying retains the original byte coordinates in the tape.
     /// Literal contents are carried without evaluating Swift escapes or values.
-    static func scan(_ source: String, carrying: Bool = false) throws -> Lexed {
-        let chars = Array(source)
+    static func scan(_ source: String, carrying: Bool = false, rawLiterals: Bool = false) throws -> Lexed {
+        // Delimiters are Unicode scalars, not grapheme clusters: a combining
+        // scalar after a quote or slash cannot hide the delimiter.
+        let chars = Array(source.unicodeScalars)
         var offsets = [0], lines = [1]
-        for c in chars {
+        for (at, c) in chars.enumerated() {
             offsets.append(offsets.last! + String(c).utf8.count)
-            lines.append(lines.last! + ((c == "\n" || c == "\r\n" || c == "\r") ? 1 : 0))
+            let breakLine = c == "\r" || (c == "\n" && (at == 0 || chars[at - 1] != "\r"))
+            lines.append(lines.last! + (breakLine ? 1 : 0))
         }
-        func newline(_ c: Character) -> Bool { c == "\n" || (c == "\r\n" || c == "\r") }
+        func newline(_ c: Unicode.Scalar) -> Bool { c == "\n" || c == "\r" }
+        func spelling(_ range: Range<Int>) -> String { String(String.UnicodeScalarView(chars[range])) }
         var result = Lexed(), i = 0, interpolationCount = 0
         func emit(_ word: String, from start: Int, to end: Int) {
             result.words.append(word)
@@ -118,11 +122,28 @@ struct StructuralSource {
             while j < chars.count, chars[j] == "#" { j += 1 }
             return j < chars.count && chars[j] == "\""
         }
+        // Same conservative regex boundary as WhereJudge. Comments have
+        // already been consumed at each call site, including interpolation.
+        func refuseUnreadLiteral() throws {
+            if chars[i] == "#" {
+                var end = i
+                while end < chars.count, chars[end] == "#" { end += 1 }
+                if end < chars.count, chars[end] == "/" {
+                    throw failure("a regular expression literal is not among the forms this court reads", at: i)
+                }
+            }
+            if chars[i] == "/" {
+                guard i + 1 < chars.count, [" ", "\t", "\n", "\r"].contains(chars[i + 1]) else {
+                    throw failure("a slash with no whitespace after it may open a regular expression literal, which this court does not read", at: i)
+                }
+            }
+        }
         func skipString() throws {
             let start = i
             let triple = i + 2 < chars.count && chars[i + 1] == "\"" && chars[i + 2] == "\""
             i += triple ? 3 : 1
             while i < chars.count {
+                if !triple && newline(chars[i]) { throw failure("unterminated string", at: start) }
                 if chars[i] == "\\" {
                     if i + 1 < chars.count, chars[i + 1] == "(" {
                         interpolationCount += 1
@@ -177,6 +198,7 @@ struct StructuralSource {
                     if comments != 0 { throw failure("unterminated interpolation comment", at: commentStart) }
                     continue
                 }
+                try refuseUnreadLiteral()
                 if chars[i] == "(" { depth += 1 }
                 if chars[i] == ")" {
                     depth -= 1
@@ -191,12 +213,13 @@ struct StructuralSource {
         }
         while i < chars.count {
             let c = chars[i]
-            if c == "\n" || (c == "\r\n" || c == "\r") {
-                emit("\n", from: i, to: i + 1)
-                i += 1
+            if newline(c) {
+                let end = i + (c == "\r" && i + 1 < chars.count && chars[i + 1] == "\n" ? 2 : 1)
+                emit("\n", from: i, to: end)
+                i = end
                 continue
             }
-            if c.isWhitespace {
+            if c.properties.isWhitespace {
                 i += 1
                 continue
             }
@@ -217,27 +240,40 @@ struct StructuralSource {
                         depth -= 1
                         i += 2
                     } else {
-                        if newline(chars[i]) { emit("\n", from: i, to: i + 1) }
-                        i += 1
+                        let end = i + (chars[i] == "\r" && i + 1 < chars.count && chars[i + 1] == "\n" ? 2 : 1)
+                        if newline(chars[i]) { emit("\n", from: i, to: end) }
+                        i = end
                     }
                 }
                 if depth != 0 { throw failure("unterminated block comment", at: commentStart) }
                 continue
             }
+            try refuseUnreadLiteral()
             if rawStringBegins() {
                 let start = i
+                guard rawLiterals else { throw failure("raw string literals are outside structural reader scope", at: start) }
                 while chars[i] == "#" { i += 1 }
                 let hashes = i - start
                 let quotes = i + 2 < chars.count && chars[i + 1] == "\"" && chars[i + 2] == "\"" ? 3 : 1
                 i += quotes
                 let content = i
-                let closer = Array(String(repeating: "\"", count: quotes) + String(repeating: "#", count: hashes))
-                while i + closer.count <= chars.count && Array(chars[i..<(i + closer.count)]) != closer { i += 1 }
-                guard i + closer.count <= chars.count else { throw failure("unterminated raw string literal", at: start) }
-                result.literals[result.words.count] = offsets[content]..<offsets[i]
-                if String(chars[content..<i]).contains("\\" + String(repeating: "#", count: hashes) + "(") {
-                    result.interpolated.insert(result.words.count)
+                let closer = Array((String(repeating: "\"", count: quotes) + String(repeating: "#", count: hashes)).unicodeScalars)
+                while i < chars.count {
+                    if i + closer.count <= chars.count && Array(chars[i..<(i + closer.count)]) == closer { break }
+                    if quotes == 1 && newline(chars[i]) { throw failure("unterminated raw string literal", at: start) }
+                    if chars[i] == "\\", i + hashes < chars.count,
+                        chars[(i + 1)...(i + hashes)].allSatisfy({ $0 == "#" }) {
+                        let escaped = i + hashes + 1
+                        if escaped < chars.count && chars[escaped] == "(" {
+                            throw failure("raw string interpolation is outside structural reader scope", at: i)
+                        }
+                        // A raw escape quotes its next scalar; an escaped quote
+                        // cannot close the carrier and expose a following comment.
+                        i = min(escaped + 1, chars.count)
+                    } else { i += 1 }
                 }
+                guard i + closer.count <= chars.count else { throw failure("unterminated raw string literal", at: start) }
+                if carrying { result.literals[result.words.count] = offsets[content]..<offsets[i] }
                 i += closer.count
                 emit("@literal", from: start, to: i)
                 continue
@@ -252,13 +288,13 @@ struct StructuralSource {
                 emit("@literal", from: start, to: i)
                 continue
             }
-            if c.isLetter || c == "_" {
+            if c.properties.isAlphabetic || c == "_" {
                 let start = i
                 i += 1
-                while i < chars.count, chars[i].isLetter || chars[i].isNumber || chars[i] == "_" {
+                while i < chars.count, chars[i].properties.isAlphabetic || chars[i].properties.numericType != nil || chars[i].properties.generalCategory == .nonspacingMark || chars[i].properties.generalCategory == .spacingMark || chars[i] == "_" {
                     i += 1
                 }
-                emit(String(chars[start..<i]), from: start, to: i)
+                emit(spelling(start..<i), from: start, to: i)
                 continue
             }
             if c == "=", i + 1 < chars.count, chars[i + 1] == "=" {
@@ -545,7 +581,7 @@ struct StructuralSource {
     /// token boundary, including the base case before the first token.
     static func regions(_ source: String, origin: String, scope: ReadingScope = .declarations) throws -> FileReading {
         let lexed: Lexed
-        do { lexed = try scan(source, carrying: true) }
+        do { lexed = try scan(source, carrying: true, rawLiterals: scope == .declarations) }
         catch let error as ScanFailure {
             throw AddressedFailure("\(origin):\(error.line): \(error.description) (byte \(error.byte))")
         }

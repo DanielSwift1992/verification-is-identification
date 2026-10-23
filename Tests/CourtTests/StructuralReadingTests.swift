@@ -3,6 +3,31 @@ import XCTest
 @testable import Court
 
 final class StructuralReadingTests: XCTestCase {
+    func testUnreadLiteralBoundariesReachBothStructuralConsumers() throws {
+        let hazardous = ["#/\"/#", "/\"/", "##/\"/##", "\"v \\(/\"/)\"", "#\"\\#(1)\"#"]
+        for literal in hazardous {
+            let text = "enum Helper { static var value: String { \(literal) } }\n// enum Hidden {}\n"
+            XCTAssertThrowsError(try StructuralSource.regions(text, origin: "input.swift"))
+            XCTAssertThrowsError(try StructuralSource.tokens(text))
+            XCTAssertThrowsError(try CountCourt.blocks([("input.swift", text)]))
+        }
+        let neighbor = "enum Helper { static var value: Int { 8 / 2 } }\n// #/\"/# /\"/\n"
+        XCTAssertNoThrow(try StructuralSource.regions(neighbor, origin: "input.swift"))
+        XCTAssertEqual(try CountCourt.blocks([("input.swift", neighbor)]).map(\.name), ["Helper"])
+    }
+
+    func testLiteralScopeIsExplicitAndScalarDelimitersCannotHide() throws {
+        let raw = "enum X { static var typeName: String { #\"direct\"# } }"
+        XCTAssertNoThrow(try StructuralSource.regions(raw, origin: "input.swift"))
+        XCTAssertThrowsError(try StructuralSource.regions(raw, origin: "input.swift", scope: .projection))
+        XCTAssertThrowsError(try StructuralSource.tokens(raw))
+        let text = "enum X { static var typeName: String { \"\u{301}text\" } }\n// enum Hidden {}\n"
+        let reading = try StructuralSource.regions(text, origin: "input.swift")
+        XCTAssertEqual(reading.regions.map { $0.declaration.name }, ["X"])
+        XCTAssertNoThrow(try StructuralSource.replayReading(reading.certificate, source: text, origin: "input.swift"))
+        XCTAssertThrowsError(try StructuralSource.regions("enum X { static var r: Int { /\u{301}/ } }", origin: "input.swift"))
+    }
+
     func testStrictConsumersShareTheSameAddressedReading() throws {
         let text = "// Ω\r\nprotocol P {}\r\nenum X: P {}\r\n"
         let read = try StructuralSource.regions(text, origin: "world.swift")

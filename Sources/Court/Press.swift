@@ -174,6 +174,14 @@ public enum Press {
                 try addressed(inputs[index].path) { try readInput(index) }
             }
             let all = [read, dictionaryRead] + extraReads
+            // A place is established by its declaration across the complete
+            // input, independently of whether this rule needs bound proofs.
+            for other in [dictionaryRead] + extraReads {
+                if let duplicate = (other.regions.first { $0.declaration.name == alias && $0.declaration.kind != "extension" }) {
+                    let line = other.lexed.lines[duplicate.tokenRange.lowerBound]
+                    try fail("slot \(alias) has another declaration", at: "\(other.origin):\(line)")
+                }
+            }
             let needsSource = members.contains { !$0.0.declaration.requirements.isEmpty }
             let source = try needsSource ? addressed("\(dictionaryPath)#\(invocation)") {
                 try StructuralSource(files: [], readings: all)
@@ -425,7 +433,7 @@ public enum Press {
             while let d = arguments.firstIndex(of: "--definitions") {
                 guard d + 1 < arguments.count else { try fail("--definitions needs a path") }
                 let path = arguments[d + 1]
-                definitions.append(Input(path: path, text: try String(contentsOfFile: path, encoding: .utf8)))
+                definitions.append(Input(path: path, text: try addressed(path) { try WhereJudge.fileText(path) }))
                 arguments.removeSubrange(d...d + 1)
             }
             let dictionary: String
@@ -433,14 +441,9 @@ public enum Press {
                 // Literal editing never reads the triple dictionary.
                 dictionary = ""
             } else {
-                guard let text = try? String(contentsOfFile: dictionaryPath, encoding: .utf8) else {
-                    try fail("cannot read \(dictionaryPath)", at: dictionaryPath)
-                }
-                dictionary = text
+                dictionary = try addressed(dictionaryPath) { try WhereJudge.fileText(dictionaryPath) }
             }
-            guard let state = try? String(contentsOfFile: statePath, encoding: .utf8) else {
-                try fail("cannot read \(statePath)", at: statePath)
-            }
+            let state = try addressed(statePath) { try WhereJudge.fileText(statePath) }
             let result = try apply(arguments, state: state, dictionary: dictionary,
                 definitions: definitions, statePath: statePath, dictionaryPath: dictionaryPath)
             if result.changed {

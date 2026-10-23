@@ -163,9 +163,10 @@ class LawSchedulingControls(unittest.TestCase):
             root=Path(directory); (root/'Checks').mkdir()
             source=Path(__file__).resolve().parent.parent
             script=(source/'check.sh').read_text()
-            a=script.index('LAWS=(\n'); b=script.index('RESEARCH+=(\n',a)
-            entries=[f'"{tag}|probe|python3 probe.py {tag}"'
-                     for tag in ('census','voice','readme','topics')]
+            a=script.index('# This list is a Court roster projection')
+            b=script.index('if [ "$MODE_LIST" = "yes" ]; then',a)
+            entries=[f'"{tag}|{group}|probe|python3 probe.py {tag}"'
+                     for tag,group in [('census','parallel'),('voice','parallel'),('readme','parallel'),('topics','serial')]]
             script=script[:a]+'LAWS=(\n'+'\n'.join(entries)+'\n)\n'+script[b:]
             (root/'check.sh').write_text(script)
             shutil.copy(source/'Checks/build-tools.sh',root/'Checks/build-tools.sh')
@@ -256,6 +257,18 @@ if [ "${2:-}" = --show-bin-path ]; then printf '%s\\n' "$BUILD_BIN"; fi
                   'BUILD_TRACE':str(self.trace),'BUILD_BIN':str(self.bin)}
         self.env.pop('VI_CHECK_BUILD_BIN',None)
 
+    def driver(self, root):
+        # A physical-runner fixture supplies the Court projection at its boundary;
+        # it does not claim to prove the roster or profile relation (debt T0084).
+        (root/'Checks').mkdir(parents=True,exist_ok=True)
+        script=(self.root/'check.sh').read_text()
+        a=script.index('# This list is a Court roster projection')
+        b=script.index('if [ "$MODE_LIST" = "yes" ]; then',a)
+        script=script[:a]+'LAWS=("build|serial|probe|swift build --build-tests && swift test --skip-build" "census|parallel|probe|bash Checks/tools.sh census")\n'+script[b:]
+        (root/'check.sh').write_text(script)
+        shutil.copy(self.root/'Checks/build-tools.sh',root/'Checks/build-tools.sh')
+        shutil.copy(self.root/'Checks/tools.sh',root/'Checks/tools.sh')
+
     def helper(self, prepared=None):
         env=dict(self.env)
         if prepared is not None: env['VI_CHECK_BUILD_BIN']=str(prepared)
@@ -279,11 +292,23 @@ if [ "${2:-}" = --show-bin-path ]; then printf '%s\\n' "$BUILD_BIN"; fi
         self.assertIn(str(self.scratch/'missing/Tools'),lost.stderr)
         self.assertFalse(self.trace.exists())
 
+    def test_changed_projection_cannot_execute_a_stale_roster(self):
+        root=self.scratch/'projection'; (root/'Checks').mkdir(parents=True)
+        (root/'Sources').mkdir()
+        (root/'Sources/Probe.swift').write_text('before')
+        shutil.copy(self.root/'check.sh',root/'check.sh')
+        shutil.copy(self.root/'Checks/build-tools.sh',root/'Checks/build-tools.sh')
+        (root/'Checks/profiles.py').write_text("from pathlib import Path\nPath('Sources/Probe.swift').write_text('after')\nprint('probe|serial|physical witness|touch executed')\n")
+        result=subprocess.run(['bash','check.sh'],cwd=root,env=self.env,capture_output=True,text=True)
+        self.assertEqual(result.returncode,1,result.stdout+result.stderr)
+        self.assertIn('Checks/Laws.swift:1: inputs changed',result.stderr)
+        self.assertFalse((root/'executed').exists())
+
     def test_changed_build_inputs_cannot_receive_a_green_receipt(self):
         root=self.scratch/'source'; (root/'Checks').mkdir(parents=True)
         (root/'Sources').mkdir()
         source=root/'Sources/Probe.swift'; source.write_text('original')
-        shutil.copy(self.root/'check.sh',root/'check.sh')
+        self.driver(root)
         shutil.copy(self.root/'Checks/build-tools.sh',root/'Checks/build-tools.sh')
         env={**self.env,'BUILD_MUTATE':str(source)}
         result=subprocess.run(['bash','check.sh','--only','build'],cwd=root,env=env,
@@ -295,7 +320,8 @@ if [ "${2:-}" = --show-bin-path ]; then printf '%s\\n' "$BUILD_BIN"; fi
 
     def test_check_discards_an_inherited_build_and_names_partial_selection(self):
         env={**self.env,'VI_CHECK_BUILD_BIN':str(self.scratch/'stale')}
-        result=subprocess.run(['bash','check.sh','--only','census'],cwd=self.root,env=env,
+        root=self.scratch/'selection'; self.driver(root)
+        result=subprocess.run(['bash','check.sh','--only','census'],cwd=root,env=env,
                               capture_output=True,text=True)
         self.assertEqual(result.returncode,0,result.stdout+result.stderr)
         self.assertIn('Tools: census',result.stdout)

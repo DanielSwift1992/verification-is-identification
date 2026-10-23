@@ -1,0 +1,30 @@
+{
+  "schema": "vi.check-law.observations/1",
+  "source": "Checks/Laws.swift",
+  "protocol": "LawRecord",
+  "controls": [
+    {
+      "id": "no-profile",
+      "old": "    typealias Profile = Integration\n",
+      "new": "",
+      "outcome": "not-established"
+    },
+    {
+      "id": "two-profiles",
+      "old": "    typealias Profile = Integration\n",
+      "new": "    typealias Profile = Integration\n    typealias Profile = Court\n",
+      "outcome": "unsupported"
+    },
+    {
+      "id": "command-without-record",
+      "append": "\nenum OrphanCommand: LawRecord { static var typeName: String { #\"echo orphan\"# } }\n",
+      "outcome": "not-established"
+    },
+    {
+      "id": "record-without-command",
+      "old": "    typealias Command = Self\n",
+      "new": "",
+      "outcome": "not-established"
+    }
+  ]
+}

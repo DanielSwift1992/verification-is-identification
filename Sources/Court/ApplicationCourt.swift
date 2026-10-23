@@ -234,10 +234,10 @@ enum ApplicationCourt {
         }
     }
 
-    static func derive(_ root: E, source: StructuralSource, nodeLimit: Int = 20_000) throws
+    static func derive(_ root: E, source: StructuralSource, nodeLimit: Int = 20_000, predicate: String? = nil) throws
         -> Derivation
     {
-        var nodes: [Goal: Node] = [:], work: [Goal] = [.root(root)]
+        var nodes: [Goal: Node] = [:], work: [Goal] = [predicate.map { .member(root, $0) } ?? .root(root)]
         while let goal = work.popLast() {
             if nodes[goal] != nil { continue }
             guard nodes.count < nodeLimit else { throw Failure("application graph limit reached") }
@@ -246,15 +246,15 @@ enum ApplicationCourt {
             work += node.dependencies.sorted { $0.text > $1.text }
         }
         let result = Derivation(root: root, nodes: nodes)
-        try verify(root, derivation: result, source: source)
+        try verify(root, derivation: result, source: source, predicate: predicate)
         return result
     }
 
-    static func verify(_ root: E, derivation: Derivation, source: StructuralSource) throws {
+    static func verify(_ root: E, derivation: Derivation, source: StructuralSource, predicate: String? = nil) throws {
         guard root == derivation.root else {
             throw Failure("application proof belongs to a different root")
         }
-        var seen: Set<Goal> = [], work: [Goal] = [.root(root)]
+        var seen: Set<Goal> = [], work: [Goal] = [predicate.map { .member(root, $0) } ?? .root(root)]
         while let goal = work.popLast() {
             if !seen.insert(goal).inserted { continue }
             guard let proposed = derivation.nodes[goal] else {

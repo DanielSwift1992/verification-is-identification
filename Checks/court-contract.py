@@ -17,6 +17,48 @@ import tempfile
 import time
 
 
+if __name__ == '__main__' and len(sys.argv) > 1 and sys.argv[1] == '--roster':
+    ROOT=Path(__file__).resolve().parents[1]
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--tools',required=True)
+    args=parser.parse_args(sys.argv[2:])
+    manifest=ROOT/'Contracts/Court/roster-v1/contract.json'
+    contract=json.loads(manifest.read_text())
+    for case in contract['cases']:
+        source=manifest.parent/case['input']
+        assert hashlib.sha256(source.read_bytes()).hexdigest()==case['sha256'],case['id']
+        result=subprocess.run([args.tools,'judge','roster',str(source),'--protocol',case['protocol']],capture_output=True,text=True)
+        answer=json.loads(result.stdout)
+        assert answer['schema']=='vi.court.roster/1' and not result.stderr,case['id']
+        assert answer['outcome']==case['outcome'],(case['id'],answer['diagnostics'])
+        assert [r['name'] for r in answer['records']]==case['records'],case['id']
+        assert result.returncode==({'holds':0,'not-established':1}.get(case['outcome'],2)),case['id']
+        if answer['outcome'] not in ('holds','empty'):
+            assert any(str(source)+':' in d for d in answer['diagnostics']),case['id']
+        else:
+            with tempfile.TemporaryDirectory(prefix='vi-roster-replay-') as tmp:
+                receipt=Path(tmp)/'response.json';receipt.write_text(result.stdout)
+                replay=subprocess.run([args.tools,'judge','roster-replay',str(receipt),str(source),'--protocol',case['protocol']],capture_output=True,text=True)
+                assert replay.returncode==result.returncode and replay.stdout==result.stdout,(case['id'],replay.stdout,replay.stderr)
+        print('roster observation:',case['id'],answer['outcome'])
+    print('Court roster observations: %d/%d'%(len(contract['cases']),len(contract['cases'])))
+
+    # These transformations reference the owner record once, never a copied roster.
+    variants=json.loads((ROOT/'Contracts/Checks/law-record-controls.json').read_text())
+    original=(ROOT/variants['source']).read_text()
+    for case in variants['controls']:
+        text=original + case['append'] if 'append' in case else original.replace(case['old'],case['new'],1)
+        assert text!=original,case['id']
+        with tempfile.TemporaryDirectory(prefix='vi-law-record-') as tmp:
+            source=Path(tmp)/'Laws.swift';source.write_text(text)
+            result=subprocess.run([args.tools,'judge','roster',str(source),'--protocol',variants['protocol']],capture_output=True,text=True)
+            answer=json.loads(result.stdout)
+            assert answer['outcome']==case['outcome'],(case['id'],answer['diagnostics'])
+            assert result.returncode!=0 and any(str(source)+':' in d for d in answer['diagnostics']),case['id']
+            print('law record observation:',case['id'],answer['outcome'])
+    sys.exit(0)
+
+
 # An immutable suite name binds the exact manifest bytes, including its case set.
 # New normative expectations require a new release and a deliberate registry entry.
 SUITE_HASHES = {

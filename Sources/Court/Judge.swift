@@ -11,6 +11,10 @@ import Foundation
 
 public enum Judge {
     public static func run(_ arguments: [String]) {
+        if arguments.first == "roster" || arguments.first == "roster-replay" {
+            RosterResponse.run(Array(arguments.dropFirst()), replay: arguments.first == "roster-replay")
+            return
+        }
         if let question = arguments.first, ["where", "count"].contains(question), arguments.contains("--report") {
             CourtSourcesReport.run(Array(arguments.dropFirst()), question: question)
             return

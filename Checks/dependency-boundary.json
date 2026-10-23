@@ -2500,26 +2500,6 @@
       "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
     },
     {
-      "path": "Checks/profiles-test.py",
-      "channel": "text",
-      "line": 39,
-      "name": "showcase",
-      "text": "# The company's laws moved to the showcase package; naming one here is not coverage.",
-      "occurrence": 1,
-      "class": "frozen-input",
-      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
-    },
-    {
-      "path": "Checks/profiles-test.py",
-      "channel": "text",
-      "line": 40,
-      "name": "showcase",
-      "text": "with mock.patch.dict(profiles.PROFILES, {'showcase': ['rules', 'artifacts', 'judge']}):",
-      "occurrence": 1,
-      "class": "frozen-input",
-      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
-    },
-    {
       "path": "Contracts/Checks/profiles-v1.md",
       "channel": "text",
       "line": 8,
@@ -2892,7 +2872,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 45,
+      "line": 49,
       "name": "ShowcaseTools",
       "text": "\"✗ judge \\(arguments[0]) moved with the company: run `swift run ShowcaseTools judge \\(arguments[0])` in the showcase package\\n\".utf8))",
       "occurrence": 1,
@@ -2902,7 +2882,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 45,
+      "line": 49,
       "name": "showcase",
       "text": "\"✗ judge \\(arguments[0]) moved with the company: run `swift run ShowcaseTools judge \\(arguments[0])` in the showcase package\\n\".utf8))",
       "occurrence": 1,
@@ -2912,7 +2892,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 53,
+      "line": 57,
       "name": "showcase",
       "text": "// live in the showcase now (T-0028).",
       "occurrence": 1,
@@ -2922,7 +2902,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 55,
+      "line": 59,
       "name": "ShowcaseTools",
       "text": "\"✗ the plain court moved with the company: run `swift run ShowcaseTools judge <paths>` in the showcase package\\n\".utf8))",
       "occurrence": 1,
@@ -2932,7 +2912,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 55,
+      "line": 59,
       "name": "showcase",
       "text": "\"✗ the plain court moved with the company: run `swift run ShowcaseTools judge <paths>` in the showcase package\\n\".utf8))",
       "occurrence": 1,

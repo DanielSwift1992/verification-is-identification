@@ -1,5 +1,5 @@
 {
-  "inputSHA256": "33fdfdb9a81954384af8bd3ffda04deb0cd2d0fa42109f691ac1d0bdb31d5658",
+  "inputSHA256": "a0ebefe1f9c05c824e1046eba3dea27e04fc71c10144660f0881250b31390555",
   "inputs": {
     "Assets/DejaVuSans.json": "ff0d1fed0c0aeba3eb22a207691f49191df5beb0a6cf31cf550932395ab2def3",
     "Assets/DejaVuSans.ttf": "7da195a74c55bef988d0d48f9508bd5d849425c1770dba5d7bfc6ce9ed848954",
@@ -23,7 +23,7 @@
     "Sources/DocumentKit/OutlinedFigure.swift": "0b298c462dd182055cd1a05dc708a633b0a1b4b4ee26db495bf991652a4d99a0",
     "Sources/DocumentKit/Spectrum.swift": "220e3dbff2cdaddcd8a29dc03c2df5257d1464e9fc0d13387f0946491ab83f5b",
     "Sources/DocumentKit/SurfaceLaw.swift": "22d84f2e5af9aa2c79f6760514a91cf857d0d8756f773b789198d3c1662dd7be",
-    "Sources/DocumentKit/Vector.swift": "d3fda19cfe6355b69922b78df49a3d0c157e1e9d920058c5c34f3599e33aa554",
+    "Sources/DocumentKit/Vector.swift": "8ad764ec1f101cd7bed981a127e7eb158c49b7623e2610e9bfe809e988a6735c",
     "Sources/DocumentKit/Walk.swift": "4791f529a4ff1b44df850ed5776ccfd9996ea9411bed70972e4b05484b81b094",
     "Sources/Examples/Light.swift": "27dc914be0c24003d40ff208b6f9581de5aed2765611f92fec85348c3b8c7ad9",
     "Sources/Examples/Transition.swift": "251811fdf9836aff938a58afc5d656c7d9b303da442fb7c981d47fd14a5d0929",
@@ -94,15 +94,15 @@
     "https://github.com/DanielSwift1992/gate@bbd807bc504ef2146c2265d43521108c4e37c115:web/ui.html": "2175db31f50e979e8e146a032c8726af11e0af42933af7a314bc6d0721079eec"
   },
   "outputs": {
-    "Documentation/Figures/vi-method.svg": "6b134857dc85a005709658f18228cc881d359fa204b1033623c9ebcdec0c1e28",
-    "Documentation/Figures/answer-determination.svg": "73fc4c7dc30aa14648335e8690c2de967c5387d61d20dc679cde7e4e376e2456",
-    "Documentation/Figures/adequate-continuation.svg": "d43987145a3286416b33a0b3b5ac9fd30d883d4e6ed8dcc150db6030cfe67717",
-    "Documentation/Figures/framework-architecture.svg": "776c3c2115948315dba489deb0fc3615beeaabc7c60f27c2c1b1144ac3de8a3d",
-    "Documentation/Figures/beam-study.svg": "295608d0daa4efb74e6d9fafc64719692070a330e929e0b60868ea7c0004216b",
-    "Documentation/Figures/beam-questions.svg": "8279cd77d3aaf892a6ac11f969c8c402034e2f5bfef0ca3be97b716ff7849fec",
-    "Documentation/Figures/beam-continuation.svg": "e8203c3e26cdb4996329ac4d8226512ccedb0129768c69721bc313fa2f612ac7",
-    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law.svg": "c135bed1b24ea8678793f5bdd538c5b0aabe7ef6fb70a8efb2911251c1974990",
-    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law~dark.svg": "b2e0d2dee973bea0dae58b7a489cef5d8d6fbf133754f04bb8f2643138a69997"
+    "Documentation/Figures/vi-method.svg": "845dcaec555d1aaf413f9ad743509eb9d3ae5fd1f02d2323cde15fc61186a65e",
+    "Documentation/Figures/answer-determination.svg": "4b061070272e280c3e613d6a3490776a66e09af5eadbf43b9b2859e4f3a625f8",
+    "Documentation/Figures/adequate-continuation.svg": "e56ee669d53da7ba0e63225d34792f3c0eb877f26c5854181ec98642b59451d9",
+    "Documentation/Figures/framework-architecture.svg": "5c10adb94bade749295051caf01ff28710e91313f8d9f728fbabb793ac70a840",
+    "Documentation/Figures/beam-study.svg": "6c22f72f2caf4e9774df9e922a1489e419dcfd9bbba5a58867bdd44ac9f30b10",
+    "Documentation/Figures/beam-questions.svg": "88b55ab6294a010e3fbeb56be6ab2047f5d13c8e38f1408fbede0671b5739272",
+    "Documentation/Figures/beam-continuation.svg": "9bcf8b4ff3a1ac2db70bdf53c1a8d674ba02ce946462dec920b5485d9846d6b9",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law.svg": "5bb35a63513bcdb88e384ca70e0d7c9207acaa01e5e8a0640aff79ef6f59c5d5",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law~dark.svg": "2ed5ba9b8f325e955c202e361062f90deae5aa2883338e1e4019b8133cf7bbb2"
   },
   "contrast": [
     "Paper_Ink_lit",

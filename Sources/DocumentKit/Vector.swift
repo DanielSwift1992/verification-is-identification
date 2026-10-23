@@ -75,7 +75,7 @@ extension Seconds {
 /// conformance: the composition a conforming canvas's `body` shows is ALREADY the exact type its
 /// `@StructureBuilder` folded (a left-nested `Paired` chain), so a reader can read that
 /// SAME type back through `String(reflecting: Body.self)` and print it. The reader is
-/// VectorDemo's decompiler, a driver-level, value-level concern. This medium only carries the
+/// consuming driver's decompiler, a value-level concern. This medium only carries the
 /// marker and, per canvas, the small `{ }` chip built from existing atoms (`GlyphRect`,
 /// `Label`, `Linked`).
 /// Nothing here can drift from what compiled, because nothing here is a second copy of it.

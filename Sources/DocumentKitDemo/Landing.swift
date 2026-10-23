@@ -11,9 +11,8 @@ import DocumentKit
 // hand. Every gallery example below is a REAL composition, not a description of one. Reading
 // this file's output is reading what the engine actually does.
 //
-// A category marker, local to this file: DocumentKit itself has no `Screen`/`Fragment`
-// (those are Organization's naming, not the engine's: `Sources/Organization/View/
-// Screen.swift`). `DocumentKit` depends on nothing, so it does not borrow them.
+// A page category local to this composition. DocumentKit supplies the mechanism
+// through Notation and Alphabet; this world owns its Screen and Fragment names.
 //
 // Three attempts at a drawn, two-axis border (a table of pixel images, a text-drawn box, a
 // wider table with an extra "island" column) were tried here and removed, kept only in
@@ -81,13 +80,13 @@ extension BuildAPageIntro {
 enum BuildAPageStep1: Close {}
 extension BuildAPageStep1 {
     static var typeName: String {
-        "1. **Declare the screen.** `enum MyPage: Screen {}` — a caseless enum, like every concrete type on the surface (SurfaceLaw §S2). `Screen` is your app's own page kind, one line — `public protocol Screen: Open {}` — declared beside your pages, the way the Organization showcase declares its own. There is nothing to instantiate: the page is the type."
+        "1. **Declare the screen.** `enum MyPage: Screen {}` — a caseless enum, like every concrete type on the surface (SurfaceLaw §S2). `Screen` is your app's own page kind, one line — `public protocol Screen: Open {}` — declared beside your pages, beside its own page declarations. There is nothing to instantiate: the page is the type."
     }
 }
 enum BuildAPageStep2: Close {}
 extension BuildAPageStep2 {
     static var typeName: String {
-        "2. **Compose the body.** `@StructureBuilder static var body: some Structure { … }` — statements fold into a `Pair`-cons chain. Every leaf is an atom or another combinator: a name enters through `Symbol`, a count through `Tally`, prose through a prose atom — a type whose `typeName` is the sentence. Organization spells its prose from a JSON manifest through a build plugin. This page carries its own."
+        "2. **Compose the body.** `@StructureBuilder static var body: some Structure { … }` — statements fold into a `Pair`-cons chain. Every leaf is an atom or another combinator: a name enters through `Symbol`, a count through `Tally`, prose through a prose atom — a type whose `typeName` is the sentence. A consuming module may generate its prose from a manifest; this page carries its own."
     }
 }
 enum BuildAPageStep3: Close {}
@@ -286,14 +285,14 @@ extension RenderingPathHeading {
 enum RenderingPathIntro: Close {}
 extension RenderingPathIntro {
     static var typeName: String {
-        "`typeName` (`Structure`) is the whole engine: an atom (`Close`) overrides it to its own character; a combinator's default reads `Body.typeName`, recursing through whatever `body` composed. `DocumentKit` depends only on `Notation` and `Alphabet` — the same mechanism draws the Organization showcase and this page, gallery included."
+        "`typeName` (`Structure`) is the whole engine: an atom (`Close`) overrides it to its own character; a combinator's default reads `Body.typeName`, recursing through whatever `body` composed. `DocumentKit` depends only on `Notation` and `Alphabet` — the same mechanism draws consuming worlds and this page, gallery included."
     }
 }
 
 enum RenderingPathWarning: Close {}
 extension RenderingPathWarning {
     static var typeName: String {
-        "`typeName`'s walk concatenates strings on the way back up the tree (`Paired.typeName = L.typeName + R.typeName`), so it is not tail-recursive — one `Structure` with enough total content in its own `body` can exhaust the call stack before it ever mis-renders (checked directly). Prefer several linked pages over one page trying to hold everything, the same choice Organization's showcase already makes."
+        "`typeName`'s walk concatenates strings on the way back up the tree (`Paired.typeName = L.typeName + R.typeName`), so it is not tail-recursive — one `Structure` with enough total content in its own `body` can exhaust the call stack before it ever mis-renders (checked directly). Prefer several linked pages over one page trying to hold everything, with independently linked content."
     }
 }
 
@@ -1239,7 +1238,7 @@ extension GateTiersBody {
 enum LiveGatesLine: Close {}
 extension LiveGatesLine {
     static var typeName: String {
-        "Three of these are live in the site today. The five `Legible*` protocols above (`LegibleOnSurfaceCard`, `LegibleOnSurfaceTrack`, `LegibleOnAccentRole`, and two more) are compile gates on every (foreground, background) pairing — an unreadable pair does not build. `WithinCyclesHero` (Organization's review-cycle diagram) is the same tier applied to placement: a canvas's closed set of legal positions, so a position only one canvas vetted cannot satisfy a different canvas's layout by accident. `BudgetedLabel` is the generation gate — a stated character ceiling, checked once, at generate time, against the real text a label carries (checked directly: lowering a label's budget below its longest real name crashes `generate` with exactly this precondition, then raised back)."
+        "Three of these are live in the site today. The five `Legible*` protocols above (`LegibleOnSurfaceCard`, `LegibleOnSurfaceTrack`, `LegibleOnAccentRole`, and two more) are compile gates on every (foreground, background) pairing — an unreadable pair does not build. `WithinCyclesHero` (a placement-constrained diagram) is the same tier applied to placement: a canvas's closed set of legal positions, so a position only one canvas vetted cannot satisfy a different canvas's layout by accident. `BudgetedLabel` is the generation gate — a stated character ceiling, checked once, at generate time, against the real text a label carries (checked directly: lowering a label's budget below its longest real name crashes `generate` with exactly this precondition, then raised back)."
     }
 }
 

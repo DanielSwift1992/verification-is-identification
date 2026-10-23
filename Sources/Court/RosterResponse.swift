@@ -153,38 +153,38 @@ public enum RosterResponse {
         init(_ files: [(String, String)], predicate: String) throws {
             guard !files.isEmpty, Set(files.map { $0.0 }).count == files.count,
                   files.allSatisfy({ !$0.0.isEmpty }) else {
-                throw DefinitionReduction.Failure("roster:1: source paths must be nonempty and distinct")
+                throw StructuralSource.AddressedFailure("roster:1: source paths must be nonempty and distinct")
             }
             self.files = files
             self.predicate = predicate
             let source = try StructuralSource(files: files, roster: true)
             self.source = source
             guard let p = source.declarations[predicate], p.kind == "protocol" else {
-                throw DefinitionReduction.Failure("\(files[0].0):1: no declared protocol '\(predicate)'")
+                throw StructuralSource.AddressedFailure("\(files[0].0):1: no declared protocol '\(predicate)'")
             }
             let closure = source.protocolClosure([predicate])
             for name in closure {
                 guard let d = source.declarations[name], d.kind == "protocol" else {
-                    throw DefinitionReduction.Failure("\(p.origin):1: unavailable protocol '\(name)'")
+                    throw StructuralSource.AddressedFailure("\(p.origin):1: unavailable protocol '\(name)'")
                 }
             }
             for d in source.declarations.values {
                 for parent in source.conformanceChoices(d.name).map({ $0.0 }) {
                     guard source.declarations[parent]?.kind == "protocol" else {
                         let at = source.addresses[d.name]
-                        throw DefinitionReduction.Failure("\(at?.path ?? d.origin):\(at?.line ?? 1): unavailable or aliased protocol '\(parent)' on '\(d.name)'")
+                        throw StructuralSource.AddressedFailure("\(at?.path ?? d.origin):\(at?.line ?? 1): unavailable or aliased protocol '\(parent)' on '\(d.name)'")
                     }
                 }
                 if d.kind == "typealias", source.extensions[d.name] != nil {
                     let at = source.addresses[d.name]!
-                    throw DefinitionReduction.Failure("\(at.path):\(at.line): extension through alias '\(d.name)' is outside roster scope")
+                    throw StructuralSource.AddressedFailure("\(at.path):\(at.line): extension through alias '\(d.name)' is outside roster scope")
                 }
             }
             var names = Set<String>()
             for proto in closure {
                 for axis in source.declarations[proto]!.axes {
                     guard names.insert(axis.name).inserted else {
-                        throw DefinitionReduction.Failure("\(p.origin):1: repeated inherited axis '\(axis.name)' is outside roster scope")
+                        throw StructuralSource.AddressedFailure("\(p.origin):1: repeated inherited axis '\(axis.name)' is outside roster scope")
                     }
                 }
             }
@@ -199,7 +199,7 @@ public enum RosterResponse {
                 let d = source.declarations[name]!
                 guard d.parameters.isEmpty, d.kind != "external" else {
                     let at = source.addresses[name]
-                    throw DefinitionReduction.Failure("\(at?.path ?? d.origin):\(at?.line ?? 1): open/external conformer '\(name)' is outside finite roster scope")
+                    throw StructuralSource.AddressedFailure("\(at?.path ?? d.origin):\(at?.line ?? 1): open/external conformer '\(name)' is outside finite roster scope")
                 }
             }
         }
@@ -275,6 +275,10 @@ public enum RosterResponse {
             }
         }
     }
+    static func diagnostic(_ error: Error, fallback: String) -> String {
+        if let addressed = error as? StructuralSource.AddressedFailure { return addressed.description }
+        return "\(fallback):1: \(error)"
+    }
     static func answer(_ files: [(String, String)], predicate: String) -> Report {
         var inputs = files.map { Input(path: $0.0, sha256: courtSHA256(Data($0.1.utf8))) }.sorted { $0.path < $1.path }
         do {
@@ -295,24 +299,24 @@ public enum RosterResponse {
             return report
         } catch {
             return Report(schema: schema, question: predicate, reader: "vi.roster.flat-declarations/1", inputs: inputs,
-                outcome: "unsupported", records: [], diagnostics: ["\(files.first?.0 ?? "roster"):1: \(error)"])
+                outcome: "unsupported", records: [], diagnostics: [diagnostic(error, fallback: files.first?.0 ?? "roster")])
         }
     }
     static func run(_ arguments: [String], replay: Bool = false) {
         do {
             var args = arguments, certificate: String?
             if replay {
-                guard !args.isEmpty else { throw DefinitionReduction.Failure("roster:1: missing certificate") }
+                guard !args.isEmpty else { throw StructuralSource.AddressedFailure("roster:1: missing certificate") }
                 certificate = args.removeFirst()
             }
             guard let at = args.firstIndex(of: "--protocol"), at + 1 < args.count,
                 args.filter({ $0 == "--protocol" }).count == 1 else {
-                throw DefinitionReduction.Failure("roster:1: usage: judge roster <files.swift...> --protocol <name>")
+                throw StructuralSource.AddressedFailure("roster:1: usage: judge roster <files.swift...> --protocol <name>")
             }
             let predicate = args.remove(at: at + 1)
             args.remove(at: at)
             guard !args.isEmpty, args.allSatisfy({ !$0.hasPrefix("--") }) else {
-                throw DefinitionReduction.Failure("roster:1: missing sources or unknown option")
+                throw StructuralSource.AddressedFailure("roster:1: missing sources or unknown option")
             }
             let files = try args.map { ($0, try WhereJudge.fileText($0)) }
             let report: Report
@@ -330,7 +334,7 @@ public enum RosterResponse {
             let encoder = JSONEncoder()
             encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
             let report = Report(schema: schema, question: "", reader: "vi.roster.flat-declarations/1", inputs: [],
-                outcome: "unsupported", records: [], diagnostics: ["\(arguments.first ?? "roster"):1: \(error)"])
+                outcome: "unsupported", records: [], diagnostics: [diagnostic(error, fallback: arguments.first ?? "roster")])
             if let encoded = try? encoder.encode(report) {
                 var data = encoded
                 data.append(10)

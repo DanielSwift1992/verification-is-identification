@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Physical profile execution and timing; debt T0084. Selection is a Court projection."""
+"""Physical profile execution and timing; debt T0084. Selection is a host filter over the Court projection (выборка — фильтр хоста поверх проекции суда)."""
 import argparse
 import datetime
 import fcntl
@@ -15,8 +15,19 @@ import time
 ROOT = Path(__file__).resolve().parent.parent
 import base64
 
+# Physical scheduling vocabulary: debt T0084, not captions from the source.
+EXECUTION_GROUPS = {
+    'Serial': 'serial', 'Parallel': 'parallel',
+    'Experiment': 'research', 'Optional': 'optional',
+}
+
 
 def roster(root=ROOT):
+    # Registry typing precedes literal transport, including bootstrap/listing.
+    typed = subprocess.run(['swiftc', '-typecheck', 'Checks/Laws.swift'], cwd=root,
+                           capture_output=True, text=True)
+    if typed.returncode:
+        raise ValueError('Checks/Laws.swift: compiler refused registry:\n' + typed.stderr)
     build = subprocess.run(['swift', 'build', '--product', 'Tools'], cwd=root, stdout=sys.stderr)
     if build.returncode:
         raise ValueError('check registry: Tools build failed')
@@ -41,7 +52,9 @@ def records(answer):
     for row in answer['records']:
         at = row['at']['path'] + ':' + str(row['at']['line'])
         fields = row['axes']
-        item = {'record': row['name'], 'at': at}
+        item = {'record': row['name'], 'at': at,
+                'profile_normal': fields.get('Profile', {}).get('normal'),
+                'group_normal': fields.get('Group', {}).get('normal')}
         for name in ('Name', 'Description', 'Command', 'Profile', 'Group'):
             item[name.lower()] = carried(fields.get(name, {}).get('literal'), at + '.' + name)
         # Delimiter/transport failures do not pretend to be profile proofs.
@@ -52,17 +65,47 @@ def records(answer):
             raise ValueError(at + ': the shell-line transport cannot carry LF/CR/NUL')
         if any('|' in item[key] for key in ('name', 'description', 'profile', 'group')):
             raise ValueError(at + ': the shell-line transport cannot carry a separator in metadata')
-        if item['group'] not in ('serial', 'parallel', 'research', 'optional'):
-            raise ValueError(at + '.Group: unsupported physical execution group ' + item['group'])
+        if item['group_normal'] not in EXECUTION_GROUPS:
+            raise ValueError(at + '.Group: unsupported physical execution group ' + str(item['group_normal']))
         result.append(item)
+    # Captions are CLI/display transport only. They cannot merge two judged types.
+    for axis in ('profile', 'group'):
+        captions, nominals = {}, {}
+        for item in result:
+            normal, caption = item[axis + '_normal'], item[axis]
+            at = item['at'] + '.' + axis.title()
+            if not normal:
+                raise ValueError(at + ': missing judged normal form')
+            if caption in captions and captions[caption] != normal:
+                raise ValueError(at + ': ambiguous caption ' + caption + ' for ' + normal + ' and ' + captions[caption])
+            if normal in nominals and nominals[normal] != caption:
+                raise ValueError(at + ': inconsistent caption for ' + normal)
+            captions[caption], nominals[normal] = normal, caption
+    selectors = {}
+    for item in result:
+        normal = item['profile_normal']
+        key = normal.casefold()
+        if key in selectors and selectors[key] != normal:
+            raise ValueError(item['at'] + '.Profile: ambiguous normal-form CLI key ' + key)
+        selectors[key] = normal
     return result
 
 
+def profile_normal(items, selector):
+    if selector is None:
+        return None
+    normals = {row['profile_normal'] for row in items if row['profile_normal'].casefold() == selector.casefold()}
+    if len(normals) != 1:
+        raise ValueError('Checks/Laws.swift:1.Profile: no unambiguous normal-form profile ' + selector)
+    return normals.pop()
+
+
 def selected(items, research=False, only='', profile=None):
+    normal = profile_normal(items, profile)
     result = [r for r in items if
-            (r['group'] == 'research' if research else
-             r['group'] in ('serial', 'parallel') or (r['group'] == 'optional' and r['name'] == only))
-            and (profile is None or r['profile'] == profile)]
+            (r['group_normal'] == 'Experiment' if research else
+             r['group_normal'] in ('Serial', 'Parallel') or (r['group_normal'] == 'Optional' and r['name'] == only))
+            and (normal is None or r['profile_normal'] == normal)]
     names = set()
     for row in result:
         if row['name'] in names:
@@ -111,7 +154,8 @@ def measure(root, profile, output):
         commit = git(root, 'rev-parse', 'HEAD')
         require_snapshot(root, commit)
         registry_raw, registry = read_registry(root)
-        selected = [row['name'] for row in registry if row['profile'] == profile]
+        normal = profile_normal(registry, profile)
+        selected = [row['name'] for row in registry if row['profile_normal'] == normal]
         if not selected:
             raise ValueError('Checks/Laws.swift:1: no profile ' + profile)
         require_snapshot(root, commit)
@@ -185,15 +229,17 @@ def main():
             if not items:
                 raise ValueError('Checks/Laws.swift:1: no records for the requested selection')
             for r in items:
-                print('|'.join(r[k] for k in ('name', 'group', 'description', 'command')))
+                # This scheduling vocabulary is the host's declared capability, not a caption.
+                mode = EXECUTION_GROUPS[r['group_normal']]
+                print('|'.join((r['name'], mode, r['description'], r['command'])))
             return 0
         if args.list:
             if args.profile or args.output:
                 parser.error('--list cannot measure a profile')
             _, rows = read_registry(ROOT)
-            print(json.dumps({name: [{'obligation': x['name'], 'command': command_for(x['name'])}
-                                    for x in rows if x['profile'] == name]
-                              for name in sorted({x['profile'] for x in rows})}, indent=2))
+            print(json.dumps({normal.casefold(): [{'obligation': x['name'], 'command': command_for(x['name'])}
+                                    for x in rows if x['profile_normal'] == normal]
+                              for normal in sorted({x['profile_normal'] for x in rows})}, indent=2))
             return 0
         if not args.profile or not args.output:
             parser.error('choose --list, --project, or --profile NAME --output NEW_DIRECTORY')

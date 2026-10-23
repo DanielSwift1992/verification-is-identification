@@ -24,19 +24,32 @@ class PhysicalRunControls(unittest.TestCase):
         def packet(group):
             values = dict(Name='one', Description='observed', Command='echo value', Profile='vi', Group=group)
             return {'records': [{'name':'Example', 'at':{'path':'Checks/Laws.swift','line':20},
-                'axes':{k:{'literal':{'judged':False,'bytes':runner.base64.b64encode(v.encode()).decode()}} for k,v in values.items()}}]}
+                'axes':{k:{'normal':{'Profile':'VI','Group':{'serial':'Serial'}.get(group,group)}.get(k,k), 'literal':{'judged':False,'bytes':runner.base64.b64encode(v.encode()).decode()}} for k,v in values.items()}}]}
         with self.assertRaisesRegex(ValueError, r'Checks/Laws.swift:20.Group: unsupported'):
             runner.records(packet('unread'))
         known = runner.records(packet('serial'))
         with self.assertRaisesRegex(ValueError, r'Checks/Laws.swift:20.Name: ambiguous'):
             runner.selected(known + known)
         self.assertEqual(len(runner.selected(known)),1)
+        renamed = packet('serial')
+        renamed['records'][0]['axes']['Profile']['literal']['bytes'] = runner.base64.b64encode(b'primary').decode()
+        renamed['records'][0]['axes']['Group']['literal']['bytes'] = runner.base64.b64encode(b'later').decode()
+        self.assertEqual(len(runner.selected(runner.records(renamed), profile='vi')), 1)
+        with self.assertRaises(ValueError): runner.selected(runner.records(renamed), profile='primary')
+        collision = packet('serial')
+        other = json.loads(json.dumps(collision['records'][0]))
+        other['axes']['Profile']['normal'] = 'Vi'
+        other['axes']['Profile']['literal']['bytes'] = runner.base64.b64encode(b'other').decode()
+        collision['records'].append(other)
+        with self.assertRaisesRegex(ValueError, r'Checks/Laws.swift:20.Profile: ambiguous normal-form CLI key'):
+            runner.records(collision)
+
 
     def test_lock_clean_tree_new_output_and_failed_step_receipts(self):
         with tempfile.TemporaryDirectory(prefix='vi-physical-run-') as tmp:
             root = Path(tmp)/'source'; root.mkdir()
             lock = Path(tmp)/'lock'
-            rows = [{'name':'first','profile':'probe'}, {'name':'second','profile':'probe'}]
+            rows = [{'name':'first','profile':'probe','profile_normal':'Probe'}, {'name':'second','profile':'probe','profile_normal':'Probe'}]
             def git(_root, *args):
                 if args == ('rev-parse','--git-path','vi-profiles.lock'): return str(lock)
                 if args == ('rev-parse','HEAD'): return 'a'*40
@@ -68,7 +81,7 @@ class PhysicalRunControls(unittest.TestCase):
             def git(_root,*args):
                 return str(Path(tmp)/'lock') if '--git-path' in args else ('a'*40 if 'HEAD' in args else '')
             with mock.patch.object(runner,'git',git), \
-                 mock.patch.object(runner,'read_registry',return_value=('response',[{'name':'first','profile':'probe'}])), \
+                 mock.patch.object(runner,'read_registry',return_value=('response',[{'name':'first','profile':'probe','profile_normal':'Probe'}])), \
                  mock.patch.object(runner.subprocess,'check_output',side_effect=OSError('missing compiler')):
                 output=Path(tmp)/'interrupted'
                 with self.assertRaises(OSError): runner.measure(root,'probe',output)

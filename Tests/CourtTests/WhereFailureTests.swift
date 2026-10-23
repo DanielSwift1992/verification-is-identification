@@ -221,6 +221,11 @@ final class RosterTests: XCTestCase {
             XCTAssertTrue(r.diagnostics.contains { $0.contains("bad.swift:") }, suffix)
         }
         XCTAssertEqual(RosterResponse.answer([("empty.swift", "protocol P {}")], predicate: "P").outcome, "empty")
+        let duplicate = RosterResponse.answer([("first.swift", "protocol P {}\nenum X: P {}"), ("second.swift", "enum X: P {}")], predicate: "P")
+        XCTAssertEqual(duplicate.diagnostics, ["second.swift:1: duplicate declaration X"])
+        let external = RosterResponse.answer([("external.swift", "protocol P {}\n\nextension Missing: P {}")], predicate: "P")
+        XCTAssertEqual(external.diagnostics, ["external.swift:3: open/external conformer 'Missing' is outside finite roster scope"])
+
     }
     func testLiteralByteSpanIsOriginalCRLFUnicodeAndNeverAClaim() throws {
         let text = "// Ω\r\nprotocol P {}\r\nenum X: P { static var typeName: String { #\"β\\n\"# } }\r\n"

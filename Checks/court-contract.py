@@ -56,6 +56,53 @@ if __name__ == '__main__' and len(sys.argv) > 1 and sys.argv[1] == '--roster':
             assert answer['outcome']==case['outcome'],(case['id'],answer['diagnostics'])
             assert result.returncode!=0 and any(str(source)+':' in d for d in answer['diagnostics']),case['id']
             print('law record observation:',case['id'],answer['outcome'])
+    import importlib.util
+    spec=importlib.util.spec_from_file_location('physical_host',ROOT/'Checks/profiles.py')
+    host=importlib.util.module_from_spec(spec);spec.loader.exec_module(host)
+    # Compiler checks the LawText obligation. Missing explicit Command is a
+    # stricter Court-reader requirement: Swift can infer it from Command == Self.
+    for case in variants['compiler_controls']:
+        text=original.replace(case['old'],case['new'],1)
+        assert text!=original,case['id']
+        with tempfile.TemporaryDirectory(prefix='vi-law-compiler-') as tmp:
+            source=Path(tmp)/'Checks'/'Laws.swift';source.parent.mkdir();source.write_text(text)
+            result=subprocess.run(['swiftc','-typecheck',str(source)],capture_output=True,text=True)
+            assert (result.returncode==0)==(case['exit']=='holds'),(case['id'],result.stderr)
+            if result.returncode:
+                assert str(source)+':' in result.stderr,(case['id'],result.stderr)
+                try:
+                    host.roster(Path(tmp))
+                except ValueError as error:
+                    assert 'compiler refused registry' in str(error) and 'Checks/Laws.swift:' in str(error),(case['id'],str(error))
+                else:
+                    raise AssertionError('bootstrap accepted an untyped command carrier')
+            print('compiler observation:',case['id'],case['exit'],result.stderr.splitlines()[0] if result.stderr else '')
+    baseline_result=subprocess.run([args.tools,'judge','roster',str(ROOT/variants['source']),'--protocol',variants['protocol']],capture_output=True,text=True)
+    assert baseline_result.returncode==0,baseline_result.stdout
+    baseline=host.records(json.loads(baseline_result.stdout))
+    for case in variants['selection_controls']:
+        text=original.replace(case['old'],case['new'],1)
+        assert text!=original,case['id']
+        with tempfile.TemporaryDirectory(prefix='vi-law-caption-') as tmp:
+            source=Path(tmp)/'Laws.swift';source.write_text(text)
+            result=subprocess.run([args.tools,'judge','roster',str(source),'--protocol',variants['protocol']],capture_output=True,text=True)
+            answer=json.loads(result.stdout)
+            assert result.returncode==0 and answer['outcome']=='holds',(case['id'],answer['diagnostics'])
+            try:
+                rows=host.records(answer)
+            except ValueError as error:
+                assert 'refusal' in case and case['refusal'] in str(error) and str(source)+':' in str(error),(case['id'],str(error))
+                print('selection refusal:',str(error))
+            else:
+                assert 'refusal' not in case,case['id']
+                chosen=host.selected(rows,profile=case.get('profile'))
+                assert case['same_selection_as_source'],case['id']
+                expected=host.selected(baseline,profile=case.get('profile'))
+                identity=lambda rows:[tuple(row[key] for key in ('record','name','description','command','profile_normal','group_normal')) for row in rows]
+                assert identity(chosen)==identity(expected),case['id']
+                if 'normal' in case:
+                    assert all(row['profile_normal']==case['normal'] for row in chosen),case['id']
+            print('selection observation:',case['id'])
     sys.exit(0)
 
 

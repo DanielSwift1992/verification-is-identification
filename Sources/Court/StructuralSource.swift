@@ -4,6 +4,10 @@ import Foundation
 /// retained only as balanced regions; they are not claims proved by this reader.
 struct StructuralSource {
     typealias Failure = DefinitionReduction.Failure
+    struct AddressedFailure: Error, CustomStringConvertible {
+        let description: String
+        init(_ description: String) { self.description = description }
+    }
     struct Requirement: Equatable {
         enum Kind { case equal, member }
         let kind: Kind
@@ -62,6 +66,7 @@ struct StructuralSource {
         var interpolated: Set<Int> = []
     }
     var addresses: [String: Address] = [:]
+    var extensionAddresses: [String: Address] = [:]
     var literals: [String: Literal] = [:]
 
     static func tokens(_ source: String) throws -> [String] {
@@ -467,7 +472,7 @@ struct StructuralSource {
             let lexed: Lexed
             do { lexed = try Self.scan(source, carrying: roster) }
             catch {
-                if roster { throw Failure("\(origin):1: \(error)") }
+                if roster { throw AddressedFailure("\(origin):1: \(error)") }
                 throw error
             }
             let ts = lexed.words
@@ -483,7 +488,7 @@ struct StructuralSource {
                 }
                 if ["import", "let", "var", "func"].contains(ts[i]) { pendingAccess = "internal" }
                 if ts[i] == "#", i + 1 < ts.count, ts[i + 1] == "if" {
-                    if roster { throw Failure("\(origin):\(lexed.lines[i]): conditional declarations are outside roster scope") }
+                    if roster { throw AddressedFailure("\(origin):\(lexed.lines[i]): conditional declarations are outside roster scope") }
                     excludedConditionals += 1
                     var depth = 1
                     i += 2
@@ -525,11 +530,12 @@ struct StructuralSource {
                         kind: kind, header: header, body: body, origin: origin)
                     if roster {
                         let at = Address(path: origin, line: lexed.lines[start], start: lexed.starts[start], end: lexed.ends[max(start, i - 1)])
-                        guard d.unsupported.isEmpty else { throw Failure("\(origin):\(at.line): \(d.name): \(d.unsupported.joined(separator: "; "))") }
+                        guard d.unsupported.isEmpty else { throw AddressedFailure("\(origin):\(at.line): \(d.name): \(d.unsupported.joined(separator: "; "))") }
                         if kind != "extension" { addresses[d.name] = at }
+                        else if extensionAddresses[d.name] == nil { extensionAddresses[d.name] = at }
                         let literal = try Self.rosterLiteral(lexed, body: kind == "typealias" ? bodyStart..<bodyStart : bodyStart..<bodyEnd, source: source, origin: origin)
                         if let literal {
-                            guard literals[d.name] == nil else { throw Failure("\(origin):\(literal.at.line): duplicate typeName on \(d.name)") }
+                            guard literals[d.name] == nil else { throw AddressedFailure("\(origin):\(literal.at.line): duplicate typeName on \(d.name)") }
                             literals[d.name] = literal
                         }
                     }
@@ -537,7 +543,8 @@ struct StructuralSource {
                         extensions[d.name, default: []].append(d)
                     } else {
                         guard declarations[d.name] == nil else {
-                            throw Failure(roster ? "\(origin):\(lexed.lines[start]): duplicate declaration \(d.name)" : "duplicate declaration \(d.name)")
+                            if roster { throw AddressedFailure("\(origin):\(lexed.lines[start]): duplicate declaration \(d.name)") }
+                            throw Failure("duplicate declaration \(d.name)")
                         }
                         declarations[d.name] = d
                         access[d.name] = pendingAccess
@@ -545,11 +552,11 @@ struct StructuralSource {
                     pendingAccess = "internal"
                 } else if roster && ts[i] == "import" {
                     i += 1
-                    guard i < ts.count, Self.identifier(ts[i]) else { throw Failure("\(origin):1: unsupported import") }
+                    guard i < ts.count, Self.identifier(ts[i]) else { throw AddressedFailure("\(origin):1: unsupported import") }
                     i += 1
-                    guard i == ts.count || ["\n", ";"].contains(ts[i]) else { throw Failure("\(origin):\(lexed.lines[i]): unsupported import suffix") }
+                    guard i == ts.count || ["\n", ";"].contains(ts[i]) else { throw AddressedFailure("\(origin):\(lexed.lines[i]): unsupported import suffix") }
                 } else if roster && !["\n", ";"].contains(ts[i]) {
-                    throw Failure("\(origin):\(lexed.lines[i]): '\(ts[i])' is outside roster declaration scope")
+                    throw AddressedFailure("\(origin):\(lexed.lines[i]): '\(ts[i])' is outside roster declaration scope")
                 } else if ts[i] == "{" {
                     _ = try Self.balanced(ts, index: &i, open: "{", close: "}")
                     pendingAccess = "internal"
@@ -582,6 +589,7 @@ struct StructuralSource {
                 requirements: [], fields: [:], fieldAccess: [:], axes: [], alias: nil,
                 unsupported: [], bodyWitness: false,
                 origin: exts[0].origin)
+            if roster { addresses[name] = extensionAddresses[name] }
         }
         for name in conditionalSubjects
         where declarations[name] != nil {
@@ -599,18 +607,18 @@ struct StructuralSource {
         var result: Literal?
         for n in words.indices {
             if ["func", "init", "subscript", "enum", "struct", "class", "actor", "protocol"].contains(words[n]) {
-                throw Failure("\(origin):\(lexed.lines[indices[n]]): nested declarations/functions are outside roster scope")
+                throw AddressedFailure("\(origin):\(lexed.lines[indices[n]]): nested declarations/functions are outside roster scope")
             }
             guard ["let", "var"].contains(words[n]) else { continue }
             guard n > 0, words[n - 1] == "static", n + 5 < words.count,
                 words[n + 1] == "typeName", words[n + 2] == ":", words[n + 3] == "String"
-            else { throw Failure("\(origin):\(lexed.lines[indices[n]]): only a static typeName byte carrier is supported") }
+            else { throw AddressedFailure("\(origin):\(lexed.lines[indices[n]]): only a static typeName byte carrier is supported") }
             if words[n + 4] == "{", words[n + 5] == "get", n + 6 < words.count, words[n + 6] == "}" { continue }
             let value = n + 5
             guard (words[n + 4] == "{" && n + 6 < words.count && words[n + 6] == "}") || words[n + 4] == "=",
                 let range = lexed.literals[indices[value]], !lexed.interpolated.contains(indices[value]), result == nil,
                 words[n + 4] != "=" || value + 1 == words.count || lexed.words[(indices[value] + 1)..<indices[value + 1]].contains("\n") || words[value + 1] == ";"
-            else { throw Failure("\(origin):\(lexed.lines[indices[n]]): typeName must be one direct literal, not a computed value") }
+            else { throw AddressedFailure("\(origin):\(lexed.lines[indices[n]]): typeName must be one direct literal, not a computed value") }
             let bytes = Array(source.utf8)
             result = Literal(at: Address(path: origin, line: lexed.lines[indices[value]], start: range.lowerBound, end: range.upperBound),
                 bytes: Data(bytes[range]).base64EncodedString(), judged: false)

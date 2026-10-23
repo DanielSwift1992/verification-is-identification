@@ -282,7 +282,7 @@ enum LawCheckDriver: LawRecord {
     typealias Description = LawCheckDriverDescription
     typealias Profile = Integration
     typealias Group = Parallel
-    static var typeName: String { #"python3 Checks/verdict-cases-test.py && python3 Checks/profiles-test.py"# }
+    static var typeName: String { #"swiftc -typecheck Checks/Laws.swift && python3 Checks/verdict-cases-test.py && python3 Checks/profiles-test.py"# }
 }
 
 enum LawHardwareInputsName: LawText { static var typeName: String { #"hardware-inputs"# } }

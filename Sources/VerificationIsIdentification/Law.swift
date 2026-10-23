@@ -409,10 +409,25 @@
 /// | a string identity | `typeName`, read off the type | every rendered page |
 /// | a pure function's call | a generic type applied to its argument | `Succ<N>`, `PageSlug<X>` |
 ///
-/// What never translates: contact with the world. Reading a file, emitting a
-/// file, invoking the compiler, these are functions, few and named, at the
-/// package's doors (Play Is Proof PP15: the gate is given, not self-certified).
-/// The census keeps the running count of both kinds, per target.
+/// What never translates: contact with the world. The medium is the type
+/// system (§0′), so a compiler run, bytes and a physical act lie outside its
+/// carrier, and each needs one named door. The first is the given judge: §0′
+/// assigns every reading to the type checker, so the medium presupposes it.
+/// Inspecting that checker from inside is relative to a stated transition
+/// and reference (Play Is Proof PP21). A judge moved outside the medium meets
+/// the same bound on its own codes: no total evaluator represents the
+/// complement of its own diagonal (PP15). The second is a program that
+/// carries an external byte grammar into atoms and classifies nothing, a
+/// transcriber. The third is the physical act. Each door must record its
+/// relation, carrier and grounds. A reader that decides which bytes matter
+/// carries domain logic. Its relation must then be declared as types. A
+/// court, a checker with a declared calculus, must check the derivation the
+/// reader emits over every input byte. Any other code outside the medium
+/// needs a proof, in the form of Verdict VC23a, that the type grammar cannot
+/// express its relation. Code without that proof needs a recorded task that
+/// removes it. Such code is debt.
+/// The census counts each declaration kind per target, with runtime functions
+/// in their own column.
 ///
 /// ## §7 · The tree obeys the law
 ///

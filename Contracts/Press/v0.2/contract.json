@@ -7,7 +7,7 @@
     "transport": "vi.press.json/2"
   },
   "files": {
-    "fixtures/cases.json": "6a79d18de2ea09d89581213bc3051d6dbbe77e7690c0f82578eb00ea1a3478e7"
+    "fixtures/cases.json": "eba13a7d7e3d8564019f942c1ee482b8e93c698ac5bd57408dfd80e8dd4b3e23"
   },
   "cases_file": "fixtures/cases.json",
   "cases": [
@@ -62,6 +62,27 @@
     "unknown-attribute",
     "unattached-result-builder",
     "owner-BumpUp",
-    "owner-BumpUp-outside-bound"
+    "owner-BumpUp-outside-bound",
+    "replay-F7c-leading-line-comment-dictionary",
+    "replay-H3-leading-line-comment-definitions",
+    "replay-G1-mid-file-line-comment",
+    "replay-G2-leading-spaces-line-comment",
+    "replay-G3-leading-doc-comment",
+    "replay-G4-leading-block-comment",
+    "replay-leading-line-comment-state",
+    "replay-leading-spaces-line-comment-state",
+    "replay-leading-doc-comment-state",
+    "replay-leading-spaces-line-comment-definitions",
+    "replay-leading-doc-comment-definitions",
+    "replay-legal-leading-line-comment-dictionary",
+    "replay-legal-leading-spaces-line-comment-dictionary",
+    "replay-legal-leading-doc-comment-dictionary",
+    "replay-legal-leading-line-comment-state",
+    "replay-legal-leading-spaces-line-comment-state",
+    "replay-legal-leading-doc-comment-state",
+    "replay-legal-leading-line-comment-definitions",
+    "replay-legal-leading-spaces-line-comment-definitions",
+    "replay-legal-leading-doc-comment-definitions",
+    "replay-legal-leading-block-comment-dictionary"
   ]
 }

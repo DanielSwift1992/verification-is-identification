@@ -256,42 +256,15 @@ public enum Press {
         let args: [Term]
     }
 
-    static func parseTerm(_ text: Substring) -> Term {
-        let trimmed = text.trimmingCharacters(in: .whitespaces)
-        guard let open = trimmed.firstIndex(of: "<"), trimmed.hasSuffix(">") else {
-            return Term(head: trimmed, args: [])
-        }
-        let head = String(trimmed[trimmed.startIndex..<open])
-        let inner = trimmed[trimmed.index(after: open)...].dropLast()
-        var args: [Term] = []
-        var depth = 0
-        var piece = ""
-        for ch in inner {
-            if ch == "<" { depth += 1 }
-            if ch == ">" { depth -= 1 }
-            if ch == ",", depth == 0 {
-                args.append(parseTerm(Substring(piece)))
-                piece = ""
-            } else {
-                piece.append(ch)
-            }
-        }
-        if !piece.trimmingCharacters(in: .whitespaces).isEmpty {
-            args.append(parseTerm(Substring(piece)))
-        }
-        return Term(head: head, args: args)
-    }
-
     static func serialize(_ term: Term) -> String {
         term.args.isEmpty
             ? term.head
             : term.head + "<" + term.args.map(serialize).joined(separator: ", ") + ">"
     }
 
-    /// The literal alphabet: what free text may carry into a typeName. Everything
-    /// that could escape the literal (quotes, slashes, angles) is outside it, so
-    /// the literal's FORM survives every press and the judge only ever sees a
-    /// well-formed file. The refusal names the character.
+    /// Legacy literal alphabet, pending the declared step-B relation. This
+    /// character filter does not prove that the line-based editor selects an
+    /// active literal: a commented typeName can still be edited (T0083, L1).
     static func vetLiteral(_ text: String, address: String) throws {
         for ch in text {
             let allowed = ch.isLetter || ch.isNumber || ch == " " || ch == "."

@@ -569,6 +569,14 @@ struct StructuralSource {
                     joined[1].bytes == (token.bytes.lowerBound - offset)..<(token.bytes.upperBound - offset) else {
                     throw Failure("non-maximal lexical production at \(origin):byte \(offset)")
                 }
+            } else {
+                // Base of the lexical induction: trivia cannot end a line
+                // comment merely because the proposed first span begins there.
+                let leading = try locatedTokens(slice(0, token.bytes.upperBound))
+                guard leading.count == 1, leading[0].word == token.word,
+                    leading[0].bytes == token.bytes else {
+                    throw Failure("non-maximal lexical production at \(origin):byte 0")
+                }
             }
             previous = token
             end = token.bytes.upperBound

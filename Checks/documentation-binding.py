@@ -52,19 +52,19 @@ def main():
         for role, owner in links.items():
             row = dict(light=paints[owner+'-Lit'], dark=paints[owner+'-Dim'], ownerRole=owner)
             if role in variables: row['variable'] = variables[role]
-            for theme, suffix in [('light','Light'), ('dark','Dark')]:
-                coordinates = [float(n) for n in row[theme].removeprefix('color(xyz-d65 ').removesuffix(')').split()]
-                x,y,z=coordinates
-                channels=[3.2406*x-1.5372*y-0.4986*z, -.9689*x+1.8758*y+.0415*z, .0557*x-.2040*y+1.0570*z]
-                rgb=[max(0,min(255,round(255*(12.92*c if c<=.0031308 else 1.055*max(c,0)**(1/2.4)-.055)))) for c in channels]
-                row['sRGB'+suffix]='#%02X%02X%02X'%tuple(rgb)
+            saved=json.loads((ROOT/'Worlds/Documentation/binding.json').read_text())['roles'][role]
+            for suffix in ['Light','Dark']:row['sRGB'+suffix]=saved['sRGB'+suffix]
             roles[role] = row
         family = next(s['name'] for s in plan['font']['sources'] if s['name'] == 'Inter')
         value = dict(format='drawing-binding/1', name='DocumentationBinding', source=dict(input='Worlds/Documentation/figures.json',field='style',sha256=figures.digest((ROOT/'Worlds/Documentation/figures.json').read_bytes())),
                      roles=roles, registers={'BodyFace':family,'CaptionFace':family}, registerOrigins={'BodyFace':'Speech','CaptionFace':'Caption'}, registerReadings=registers,
                      weights={'WeightRegular':str(plan['font']['stressWeights'][registers['registers']['Speech']['stress']]),'WeightBold':str(plan['font']['stressWeights'][registers['registers']['Headline']['stress']])}, shadow=dict(paint=paints['ink-Lit'],opacity='0'), leafCountBases=['Structure','Close','Open','Pair'],
                      legible=[dict(foreground=fg,background=bg,witness=next(r['contrast'] for r in rows if r['role']==links[fg] and r['theme']=='Lit')) for fg,bg in [('TextPrimary','SurfaceCard'),('TextSecondary','SurfaceCard'),('ActionRole','SurfaceCard'),('TextPrimary','SurfaceTrack'),('TextSecondary','SurfaceTrack'),('ActionRole','SurfaceTrack'),('Ink','NavyTint'),('InkPrimary','NavyTint'),('InkSecondary','NavyTint')]])
-        layout = json.loads((ROOT/'Worlds/Documentation/layout.json').read_text())['values']
+        owner_layout=json.loads((ROOT/'Worlds/Documentation/layout.json').read_text())
+        value['tableStyle']=owner_layout['tableStyle']
+        value['portableColour']=owner_layout['portableColour']
+        if args.write:projection.project_paints(value)
+        layout = owner_layout['values']
         import re
         metrics=(ROOT/'Worlds/Documentation/GeneratedFontMetrics.swift').read_text()
         for name,text in re.findall(r'public enum (\w+): Close \{\}\nextension \1 \{\n    public static var typeName: String \{\s*"([^"]*)"\s*\}\n\}',metrics):
@@ -93,12 +93,12 @@ def main():
                 themes+='public enum '+pair+': '+('ReadablePaintPair' if role=='Muted' else 'LegiblePaintPair')+' {\n    public typealias WitnessName = '+pair+'Name\n    public typealias Foreground = DocumentationBinding'+role+suffix+'\n    public typealias Background = DocumentationBindingPaper'+suffix+'\n    public typealias Proof = '+proof+'\n}\n'
                 pairs.append((role+'OnPaper',pair))
             themes+='public enum '+theme+': DrawingPalette, Close {\n'
-            for role in ['Paper','Ink','Muted','Line','Ok','Bad','KnownName','LocalType','TextSecondary','AccentRole']:
+            for role in value['roles']:
                 themes+='    public typealias '+role+' = DocumentationBinding'+role+suffix+'\n'
-            for key in ['BodyFace','CaptionFace','ShadowPaint','ShadowOpacity','LeafCountBases']:
+            for key in [*value['registers'], *value['layout'], 'ShadowPaint','ShadowOpacity','LeafCountBases']:
                 themes+='    public typealias '+key+' = DocumentationBinding'+key+'\n'
             for key,pair in pairs:themes+='    public typealias '+key+' = '+pair+'\n'
-            themes+='    public typealias Values = DocumentationBindingValues\n    public typealias PaintFallbacks = DocumentationBindingPaintFallbacks\n    public typealias PaintValues = DocumentationBindingPaintValues\n}\n'
+            themes+='    public typealias PaintFallbacks = DocumentationBindingPaintFallbacks\n}\n'
         fixture=dict(value,name='FixtureBinding')
         outputs = {'Worlds/Documentation/binding.json':json.dumps(value,indent=2)+'\n',
                    'Worlds/Documentation/DrawingBinding.swift':themes,

@@ -133,7 +133,7 @@
 /// A protocol-plus-enum pair is worth writing when many different holes fill the same shape:
 /// `Symbol` wraps hundreds of distinct types across every page. It is not worth writing for a
 /// small, closed, named set that will not grow: the department/rank/workplace facets (ten rows,
-/// Organization/View/Employees.swift's `FinanceCountRow`, `LeadCountRow`, …) are ten plain named
+/// a consuming module's `FinanceCountRow`, `LeadCountRow`, …) are ten plain named
 /// enums, no generic, no door, the same call already made for the four-person named team
 /// (`Alice`, `Bob`, `Carol`, `Dave`, hand-enumerated everywhere they appear). Fewer than a
 /// handful of uses, over a set that will not scale, does not buy back a combinator's cost.
@@ -200,7 +200,7 @@
 /// ## §S12 · A verdict with more than one `where` needs a literal read, not a combinator
 ///
 /// A cell whose `typeName` picks among several conditional extensions at different
-/// specificities (`Capability`, `ViewCapability`, Organization/View/Cells.swift) reads correctly
+/// specificities (`Capability`, `ViewCapability`, a consuming module) reads correctly
 /// at a literal call site, but reads the BASE case, wrong, the moment that reference passes
 /// through ANY generic layer between the literal instantiation and the `.typeName` read. A door's
 /// `init`, a shared protocol default, an associated-type delegate, or a plain generic function all
@@ -260,7 +260,7 @@
 /// sections crashed `EXC_BAD_ACCESS` inside `Paired.typeName.getter`, in both debug and release,
 /// while every one of those sections rendered fine read separately). The fix is not a deeper
 /// stack, it is fewer statements in one `body`: prefer several linked pages (the same design
-/// Organization's showcase already uses for 235 pages) over one page with everything
+/// a consuming package can use) over one page with everything
 /// in its composition. A single `Structure` should read as one screen's worth of content,
 /// not a whole site flattened into one type.
 ///
@@ -333,7 +333,7 @@
 /// change this, the same wall §S19 already names). The same image inside a `TableCell` gets
 /// `margin: 0`, flush against the cell's edge. So "picture pinned to one side, content
 /// beside it" is not a `@Row`/`@Column` job here. It is a one-row `Table`/`TableRow`/`TableCell`
-/// (`CardPictureRow`, Organization/View/Dashboard.swift), the same cheap-reuse move §S15 already
+/// (`CardPictureRow`, a consuming module), the same cheap-reuse move §S15 already
 /// names, for alignment instead of a border.
 ///
 /// ## §S22 · Prose has two doors, and length picks one
@@ -342,7 +342,7 @@
 /// whose mangled name grows with every character. Past a few hundred characters the compiled
 /// binary hits a metadata ceiling before any rendering starts: "failed to demangle witness for
 /// associated type 'Body' … Mangled type is too complex" (checked directly, on a ~500-character
-/// paragraph, Organization/View/Reports.swift keeps the site and the exact text). This is a
+/// paragraph, the consuming module keeps the site and the exact text). This is a
 /// DIFFERENT wall from §S16: not the render stack overflowing on the way up, but the type
 /// itself too complex to instantiate at all. So prose has two doors, and length picks one:
 /// SHORT prose (a caption, a heading, a template with typed holes) is spelled from atoms,

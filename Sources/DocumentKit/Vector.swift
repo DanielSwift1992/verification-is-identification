@@ -82,8 +82,7 @@ extension Seconds {
 public protocol SelfShowing {}
 
 /// This is several drawn pieces, composed through `body` into one: the SVG-medium counterpart of
-/// `Fragment` (Organization/View/Screen.swift), local here since DocumentKit does not depend on
-/// Organization. A canvas's `Content` hole is usually one of these.
+/// Keeps the content fragment local to the drawing vocabulary. A canvas's `Content` hole accepts its composition.
 public protocol Group: Open {}
 
 /// This is the SVG root, like `Screen`/`Reference`, but the medium is source text, not markdown.
@@ -120,7 +119,7 @@ extension DiagramMarkup {
     }
 }
 
-/// This is a rounded panel, corner-radius 12: the diagram's boxes.
+/// Positions a rounded panel with the radius supplied by its binding.
 public protocol Shape: Open, StyleBound {
     associatedtype X: Structure
     associatedtype Y: Structure
@@ -131,7 +130,7 @@ public protocol Shape: Open, StyleBound {
 extension Shape {
     public static var typeName: String {
         "<rect x=\"\(XMLEscaped<X>.typeName)\" y=\"\(XMLEscaped<Y>.typeName)\" width=\"\(XMLEscaped<W>.typeName)\" height=\"\(XMLEscaped<H>.typeName)\" "
-            + "rx=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.ShapeRadius>>.typeName)\" fill=\"\(XMLEscaped<Fill>.typeName)\"/>\n"
+            + "rx=\"\(XMLEscaped<Binding.ShapeRadius>.typeName)\" fill=\"\(XMLEscaped<Fill>.typeName)\"/>\n"
     }
 }
 
@@ -147,8 +146,7 @@ extension FullBleedRect {
     }
 }
 
-/// This is a rounded panel at the origin: the avatar's full-bleed background (radius 16, the one
-/// place a full-bleed panel is rounded).
+/// Positions a rounded full-bleed panel at the origin with its declared radius.
 public protocol RoundedFullBleedRect: Open {
     associatedtype W: Structure
     associatedtype H: Structure
@@ -176,7 +174,7 @@ public protocol ItalicLabel: Open, StyleBound {
 extension ItalicLabel {
     public static var typeName: String {
         "<text x=\"\(XMLEscaped<X>.typeName)\" y=\"\(XMLEscaped<Y>.typeName)\" text-anchor=\"\(XMLEscaped<Anchor>.typeName)\" "
-            + "fill=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" font-size=\"\(XMLEscaped<Size>.typeName)\" font-family=\"\(XMLEscaped<Binding.CaptionFace>.typeName)\" font-style=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.CaptionSlant>>.typeName)\">\(XMLEscaped<Content>.typeName)</text>\n"
+            + "fill=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" font-size=\"\(XMLEscaped<Size>.typeName)\" font-family=\"\(XMLEscaped<Binding.CaptionFace>.typeName)\" font-style=\"\(XMLEscaped<Binding.CaptionSlant>.typeName)\">\(XMLEscaped<Content>.typeName)</text>\n"
     }
 }
 
@@ -277,15 +275,15 @@ public enum BoundTextWidth<
 extension BoundTextWidth {
     public static var count: Int {
         var advances: [Int: Int] = [:]
-        for pair in StyleValue<Binding, StyleKeys.FontAdvanceTable>.typeName.split(separator: " ") {
+        for pair in Binding.FontAdvanceTable.typeName.split(separator: " ") {
             let parts = pair.split(separator: ":")
             if parts.count == 2, let code = Int(parts[0]), let width = Int(parts[1]) {
                 advances[code] = width
             }
         }
-        let units = Int(StyleValue<Binding, StyleKeys.FontUnitsPerEm>.typeName) ?? 0
+        let units = Int(Binding.FontUnitsPerEm.typeName) ?? 0
         let size = Int(TextSize.typeName) ?? 0
-        let fallback = Int(StyleValue<Binding, StyleKeys.FontFallbackAdvance>.typeName) ?? 0
+        let fallback = Int(Binding.FontFallbackAdvance.typeName) ?? 0
         precondition(fallback > 0, "\(Binding.self)#layout/FontFallbackAdvance: invalid metric")
         let total = Content.typeName.unicodeScalars.reduce(0) { sum, scalar in
             sum + (advances[Int(scalar.value)] ?? fallback)
@@ -337,8 +335,8 @@ public enum BoundCenteredBaseline<
 >: Close {}
 extension BoundCenteredBaseline {
     public static var typeName: String {
-        let units = Int(StyleValue<Binding, StyleKeys.FontUnitsPerEm>.typeName) ?? 0
-        let cap = Int(StyleValue<Binding, StyleKeys.FontCapHeight>.typeName) ?? 0
+        let units = Int(Binding.FontUnitsPerEm.typeName) ?? 0
+        let cap = Int(Binding.FontCapHeight.typeName) ?? 0
         let size = Int(TextSize.typeName) ?? 0
         return String((ZoneTall.count * units + cap * size + units) / (2 * units))
     }
@@ -366,15 +364,15 @@ extension SpanLabelMidWrapped {
         width w: W.Type
     ) -> String {
         var advances: [Int: Int] = [:]
-        for pair in StyleValue<Binding, StyleKeys.FontAdvanceTable>.typeName.split(separator: " ") {
+        for pair in Binding.FontAdvanceTable.typeName.split(separator: " ") {
             let parts = pair.split(separator: ":")
             if parts.count == 2, let code = Int(parts[0]), let width = Int(parts[1]) {
                 advances[code] = width
             }
         }
-        let units = Int(StyleValue<Binding, StyleKeys.FontUnitsPerEm>.typeName) ?? 0
+        let units = Int(Binding.FontUnitsPerEm.typeName) ?? 0
         let size = Int(Size.typeName) ?? 0
-        let fallback = Int(StyleValue<Binding, StyleKeys.FontFallbackAdvance>.typeName) ?? 0
+        let fallback = Int(Binding.FontFallbackAdvance.typeName) ?? 0
         precondition(fallback > 0, "\(Binding.self)#layout/FontFallbackAdvance: invalid metric")
         let given = (2 * W.Left.count + W.Right.count) / (2 * W.Right.count)
         let measured: (Substring) -> Int = { text in
@@ -441,15 +439,15 @@ extension SpanLabelWrapped {
         width w: W.Type
     ) -> String {
         var advances: [Int: Int] = [:]
-        for pair in StyleValue<Binding, StyleKeys.FontAdvanceTable>.typeName.split(separator: " ") {
+        for pair in Binding.FontAdvanceTable.typeName.split(separator: " ") {
             let parts = pair.split(separator: ":")
             if parts.count == 2, let code = Int(parts[0]), let width = Int(parts[1]) {
                 advances[code] = width
             }
         }
-        let units = Int(StyleValue<Binding, StyleKeys.FontUnitsPerEm>.typeName) ?? 0
+        let units = Int(Binding.FontUnitsPerEm.typeName) ?? 0
         let size = Int(Size.typeName) ?? 0
-        let fallback = Int(StyleValue<Binding, StyleKeys.FontFallbackAdvance>.typeName) ?? 0
+        let fallback = Int(Binding.FontFallbackAdvance.typeName) ?? 0
         precondition(fallback > 0, "\(Binding.self)#layout/FontFallbackAdvance: invalid metric")
         let given = (2 * W.Left.count + W.Right.count) / (2 * W.Right.count)
         let measured: (Substring) -> Int = { text in
@@ -510,15 +508,15 @@ extension BoundLineTally {
     public static var typeName: String { String(count) }
     public static var count: Int {
         var advances: [Int: Int] = [:]
-        for pair in StyleValue<Binding, StyleKeys.FontAdvanceTable>.typeName.split(separator: " ") {
+        for pair in Binding.FontAdvanceTable.typeName.split(separator: " ") {
             let parts = pair.split(separator: ":")
             if parts.count == 2, let code = Int(parts[0]), let width = Int(parts[1]) {
                 advances[code] = width
             }
         }
-        let units = Int(StyleValue<Binding, StyleKeys.FontUnitsPerEm>.typeName) ?? 0
+        let units = Int(Binding.FontUnitsPerEm.typeName) ?? 0
         let size = Int(Size.typeName) ?? 0
-        let fallback = Int(StyleValue<Binding, StyleKeys.FontFallbackAdvance>.typeName) ?? 0
+        let fallback = Int(Binding.FontFallbackAdvance.typeName) ?? 0
         precondition(fallback > 0, "\(Binding.self)#layout/FontFallbackAdvance: invalid metric")
         let given = Wide.count
         let measured: (Substring) -> Int = { text in
@@ -562,8 +560,8 @@ public protocol DashedArrow: Open, StyleBound {
 }
 extension DashedArrow {
     public static var typeName: String {
-        "<path d=\"\(XMLEscaped<Path>.typeName)\" stroke=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.ArrowWidth>>.typeName)\" stroke-dasharray=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.DependencyDash>>.typeName)\" "
-            + "fill=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.NoPaint>>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
+        "<path d=\"\(XMLEscaped<Path>.typeName)\" stroke=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<Binding.ArrowWidth>.typeName)\" stroke-dasharray=\"\(XMLEscaped<Binding.DependencyDash>.typeName)\" "
+            + "fill=\"\(XMLEscaped<Binding.NoPaint>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
     }
 }
 
@@ -628,7 +626,7 @@ extension PlacedScaled {
 public protocol WithinBounds: Structure {}   // law:allow — the §S25 floor: a per-case grant certificate, conformance IS the vetting, refined per canvas as the comment above states
 
 /// This wraps a subtree in a real link. `Target` is a page path from the site's closed set of
-/// addresses (the same universe `<doc:…>` links resolve into: `/documentation/organization/…`),
+/// addresses (the same universe `<doc:…>` links resolve into: `/documentation/<module>/…`),
 /// not an arbitrary URL, a curated destination, named at the call site, not computed. Always
 /// emitted: the atom does not know or care which host reads it. Inert inside a plain `<img>`
 /// (DocC's choice), made a real DOM anchor by the inline-swap hook, which is a decision the
@@ -649,8 +647,8 @@ extension BoundHoverStyle {
     public static var typeName: String {
         """
         <style>
-        .hover-lift { transform: translate(var(--tx), var(--ty)); transition: transform \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverTransition>>.typeName) \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverEase>>.typeName); cursor: \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverCursor>>.typeName); }
-        .hover-lift:hover { transform: translate(var(--tx), calc(var(--ty) - \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverLift>>.typeName))); }
+        .hover-lift { transform: translate(var(--tx), var(--ty)); transition: transform \(XMLEscaped<Binding.HoverTransition>.typeName) \(XMLEscaped<Binding.HoverEase>.typeName); cursor: \(XMLEscaped<Binding.HoverCursor>.typeName); }
+        .hover-lift:hover { transform: translate(var(--tx), calc(var(--ty) - \(XMLEscaped<Binding.HoverLift>.typeName))); }
         </style>
 
         """
@@ -707,23 +705,21 @@ extension HoverRevealStyle {
     public static var typeName: String {
         """
         <style>
-        .hover-pair .hover-panel { opacity: \(XMLEscaped<StyleValue<Binding, StyleKeys.HiddenOpacity>>.typeName); visibility: hidden; transition: opacity \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverTransition>>.typeName) \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverEase>>.typeName) \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverFadeDelay>>.typeName), visibility \(XMLEscaped<StyleValue<Binding, StyleKeys.ImmediateDuration>>.typeName) \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverVisibilityEase>>.typeName) \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverGrace>>.typeName); }
-        .hover-pair .hover-trigger { cursor: \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverCursor>>.typeName); }
-        .hover-pair .hover-trigger:hover ~ .hover-panel, .hover-pair .hover-panel:hover { opacity: \(XMLEscaped<StyleValue<Binding, StyleKeys.VisibleOpacity>>.typeName); visibility: visible; transition-delay: \(XMLEscaped<StyleValue<Binding, StyleKeys.ImmediateDuration>>.typeName); }
-        .hover-highlight { transition: stroke \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverTransition>>.typeName) \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverEase>>.typeName), stroke-width \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverTransition>>.typeName) \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverEase>>.typeName); cursor: \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverCursor>>.typeName); }
-        .hover-highlight:hover { stroke: \(XMLEscaped<Binding.AccentRole>.typeName); stroke-width: \(XMLEscaped<StyleValue<Binding, StyleKeys.HoverStrokeWidth>>.typeName); }
+        .hover-pair .hover-panel { opacity: \(XMLEscaped<Binding.HiddenOpacity>.typeName); visibility: hidden; transition: opacity \(XMLEscaped<Binding.HoverTransition>.typeName) \(XMLEscaped<Binding.HoverEase>.typeName) \(XMLEscaped<Binding.HoverFadeDelay>.typeName), visibility \(XMLEscaped<Binding.ImmediateDuration>.typeName) \(XMLEscaped<Binding.HoverVisibilityEase>.typeName) \(XMLEscaped<Binding.HoverGrace>.typeName); }
+        .hover-pair .hover-trigger { cursor: \(XMLEscaped<Binding.HoverCursor>.typeName); }
+        .hover-pair .hover-trigger:hover ~ .hover-panel, .hover-pair .hover-panel:hover { opacity: \(XMLEscaped<Binding.VisibleOpacity>.typeName); visibility: visible; transition-delay: \(XMLEscaped<Binding.ImmediateDuration>.typeName); }
+        .hover-highlight { transition: stroke \(XMLEscaped<Binding.HoverTransition>.typeName) \(XMLEscaped<Binding.HoverEase>.typeName), stroke-width \(XMLEscaped<Binding.HoverTransition>.typeName) \(XMLEscaped<Binding.HoverEase>.typeName); cursor: \(XMLEscaped<Binding.HoverCursor>.typeName); }
+        .hover-highlight:hover { stroke: \(XMLEscaped<Binding.AccentRole>.typeName); stroke-width: \(XMLEscaped<Binding.HoverStrokeWidth>.typeName); }
         </style>
 
         """
     }
 }
 
-/// The affordance dot's one radius: the small blue "there is more here" marker at a
-/// hoverable box's corner, sized once, so the affordance is visible before a reader's
-/// cursor finds it.
+/// Marks a hover affordance with the paint and radius declared by its world.
 
 /// This reads a type's Swift name, lowercased: the URL slug DocC's static-hosting build assigns each
-/// page (`CompanyDashboard` renders at `.../companydashboard`), read the same mechanical way
+/// page (`ExamplePage` renders at `.../examplepage`), read the same mechanical way
 /// `RawName` reads a symbol's bare identifier (Markup.swift), not restated by hand. A caller
 /// builds a real site path from a page TYPE with this plus its base path, the way `Linked`'s
 /// targets are meant to be built, not a string someone has to keep in sync with the symbol.
@@ -763,7 +759,7 @@ public protocol GlyphRectStroked: Open, StyleBound {
 extension GlyphRectStroked {
     public static var typeName: String {
         "<rect x=\"\(XMLEscaped<X>.typeName)\" y=\"\(XMLEscaped<Y>.typeName)\" width=\"\(XMLEscaped<W>.typeName)\" height=\"\(XMLEscaped<H>.typeName)\" rx=\"\(XMLEscaped<Radius>.typeName)\" "
-            + "fill=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.NoPaint>>.typeName)\" stroke=\"\(XMLEscaped<Stroke>.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.HairlineWidth>>.typeName)\"/>\n"
+            + "fill=\"\(XMLEscaped<Binding.NoPaint>.typeName)\" stroke=\"\(XMLEscaped<Stroke>.typeName)\" stroke-width=\"\(XMLEscaped<Binding.HairlineWidth>.typeName)\"/>\n"
     }
 }
 
@@ -791,14 +787,13 @@ extension GlyphPath {
     }
 }
 
-/// This is a bare path whose stroke is thicker than the group around it (Board's three connectors,
-/// width 6 against the group's inherited 9).
+/// Reads a path stroke from the binding independently of its surrounding group.
 public protocol GlyphPathThick: Open, StyleBound {
     associatedtype D: Structure
 }
 extension GlyphPathThick {
     public static var typeName: String {
-        "<path d=\"\(XMLEscaped<D>.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.ThickGlyphWidth>>.typeName)\"/>\n"
+        "<path d=\"\(XMLEscaped<D>.typeName)\" stroke-width=\"\(XMLEscaped<Binding.ThickGlyphWidth>.typeName)\"/>\n"
     }
 }
 
@@ -844,10 +839,7 @@ extension FilledGroupClassed {
     }
 }
 
-/// This is a group tinted by stroke, width 9: every glyph drawn as outlines (Employees' figures,
-/// Departments' org chart, Documents' page, Tasks' checkmarks, Directories' rows, Cycles'
-/// arrows, Board's columns). `Stroke` is a `CardPalette`'s `Glyph`, see
-/// `StandaloneStrokedPath`.
+/// Groups outlined glyphs with the binding's stroke and the selected card paint.
 public protocol StrokedGroup: Open, StyleBound {
     associatedtype Stroke: Paint
     associatedtype Content: Structure
@@ -858,17 +850,15 @@ extension StrokedGroup {
     }
 }
 
-/// This is the stroke convention every outline glyph uses: width 9, rounded caps and joins, no
-/// fill, declared once, read by `StrokedGroup` and `StandaloneStrokedPath`. Generic over its
-/// colour (`C`) since the cards' glyph colour is a `CardPalette` choice (mechanism
-/// A: the same composition driven twice, light and dark) rather than a fixed `Ink`.
+/// Reads the binding's glyph width, caps, joins and fill for the selected card paint.
+/// Shares that reading between `StrokedGroup` and `StandaloneStrokedPath`.
 public enum BoundGlyphStroke<
     Binding: DrawingStyle,
     C: Paint
 >: Close {}
 extension BoundGlyphStroke {
     public static var typeName: String {
-        "stroke=\"\(XMLEscaped<C>.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.GlyphStrokeWidth>>.typeName)\" stroke-linecap=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.GlyphLineCap>>.typeName)\" stroke-linejoin=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.GlyphLineJoin>>.typeName)\" fill=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.NoPaint>>.typeName)\""
+        "stroke=\"\(XMLEscaped<C>.typeName)\" stroke-width=\"\(XMLEscaped<Binding.GlyphStrokeWidth>.typeName)\" stroke-linecap=\"\(XMLEscaped<Binding.GlyphLineCap>.typeName)\" stroke-linejoin=\"\(XMLEscaped<Binding.GlyphLineJoin>.typeName)\" fill=\"\(XMLEscaped<Binding.NoPaint>.typeName)\""
     }
 }
 
@@ -878,8 +868,8 @@ extension ArrowMarkers {
     public static var typeName: String {
         """
         <defs>
-        <marker id="\(XMLEscaped<ArrowHeadName>.typeName)" markerWidth="\(XMLEscaped<StyleValue<Binding, StyleKeys.MarkerWidth>>.typeName)" markerHeight="\(XMLEscaped<StyleValue<Binding, StyleKeys.MarkerHeight>>.typeName)" refX="\(XMLEscaped<StyleValue<Binding, StyleKeys.MarkerX>>.typeName)" refY="\(XMLEscaped<StyleValue<Binding, StyleKeys.MarkerY>>.typeName)" orient="\(XMLEscaped<StyleValue<Binding, StyleKeys.MarkerOrient>>.typeName)">
-        <path d="\(XMLEscaped<StyleValue<Binding, StyleKeys.MarkerPath>>.typeName)" fill="\(XMLEscaped<Binding.TextSecondary>.typeName)"/>
+        <marker id="\(XMLEscaped<ArrowHeadName>.typeName)" markerWidth="\(XMLEscaped<Binding.MarkerWidth>.typeName)" markerHeight="\(XMLEscaped<Binding.MarkerHeight>.typeName)" refX="\(XMLEscaped<Binding.MarkerX>.typeName)" refY="\(XMLEscaped<Binding.MarkerY>.typeName)" orient="\(XMLEscaped<Binding.MarkerOrient>.typeName)">
+        <path d="\(XMLEscaped<Binding.MarkerPath>.typeName)" fill="\(XMLEscaped<Binding.TextSecondary>.typeName)"/>
         </marker>
         </defs>
 
@@ -1546,7 +1536,7 @@ extension SpanCardFace {
     ) -> String {
         "<g filter=\"url(#" + SurfaceCardShadowName.typeName + ")\">\n"
             + "<rect x=\"\(XMLEscaped<SpanPx<X>>.typeName)\" width=\"\(XMLEscaped<SpanPx<W>>.typeName)\" height=\"\(XMLEscaped<H>.typeName)\" "
-            + "rx=\"\(XMLEscaped<Radius>.typeName)\" fill=\"\(XMLEscaped<Fill>.typeName)\" stroke=\"\(XMLEscaped<Stroke>.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.HairlineWidth>>.typeName)\"/>\n"
+            + "rx=\"\(XMLEscaped<Radius>.typeName)\" fill=\"\(XMLEscaped<Fill>.typeName)\" stroke=\"\(XMLEscaped<Stroke>.typeName)\" stroke-width=\"\(XMLEscaped<Binding.HairlineWidth>.typeName)\"/>\n"
             + "</g>\n"
     }
 }
@@ -1606,7 +1596,7 @@ public enum BoundTimedReveal<
 >: Close {}
 extension BoundTimedReveal {
     public static var typeName: String {
-        "<g opacity=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.HiddenOpacity>>.typeName)\"><set attributeName=\"opacity\" to=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.VisibleOpacity>>.typeName)\" "
+        "<g opacity=\"\(XMLEscaped<Binding.HiddenOpacity>.typeName)\"><set attributeName=\"opacity\" to=\"\(XMLEscaped<Binding.VisibleOpacity>.typeName)\" "
             + "begin=\"\(XMLEscaped<Begin>.typeName)s\" dur=\"\(XMLEscaped<Dwell>.typeName)s\"/>\n"
             + Content.typeName + "</g>\n"
     }
@@ -1622,7 +1612,7 @@ public enum BoundFrozenReveal<
 >: Close {}
 extension BoundFrozenReveal {
     public static var typeName: String {
-        "<g opacity=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.HiddenOpacity>>.typeName)\"><set attributeName=\"opacity\" to=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.VisibleOpacity>>.typeName)\" "
+        "<g opacity=\"\(XMLEscaped<Binding.HiddenOpacity>.typeName)\"><set attributeName=\"opacity\" to=\"\(XMLEscaped<Binding.VisibleOpacity>.typeName)\" "
             + "begin=\"\(XMLEscaped<Begin>.typeName)s\" fill=\"freeze\"/>\n"
             + Content.typeName + "</g>\n"
     }
@@ -1649,7 +1639,7 @@ extension SpanBreathingDot {
     ) -> String {
         "<circle cx=\"\(XMLEscaped<SpanPx<MidOf<X, W>>>.typeName)\" cy=\"\(XMLEscaped<CY>.typeName)\" "
             + "r=\"\(XMLEscaped<R>.typeName)\" fill=\"\(XMLEscaped<Fill>.typeName)\">"
-            + "<animate attributeName=\"opacity\" values=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.BreatheValues>>.typeName)\" dur=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.BreatheDuration>>.typeName)\" "
+            + "<animate attributeName=\"opacity\" values=\"\(XMLEscaped<Binding.BreatheValues>.typeName)\" dur=\"\(XMLEscaped<Binding.BreatheDuration>.typeName)\" "
             + "repeatCount=\"indefinite\"/></circle>\n"
     }
 }
@@ -1807,7 +1797,7 @@ extension SpanRule {
     ) -> String {
         "<line x1=\"\(XMLEscaped<SpanPx<X>>.typeName)\" y1=\"\(XMLEscaped<Y>.typeName)\" "
             + "x2=\"\(XMLEscaped<SpanPx<Sum<X, W>>>.typeName)\" y2=\"\(XMLEscaped<Y>.typeName)\" "
-            + "stroke=\"\(XMLEscaped<Stroke>.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.ArrowWidth>>.typeName)\"/>\n"
+            + "stroke=\"\(XMLEscaped<Stroke>.typeName)\" stroke-width=\"\(XMLEscaped<Binding.ArrowWidth>.typeName)\"/>\n"
     }
 }
 /// This wraps spanning content in the fixed soft shadow, the same filter `Shadowed` reads.
@@ -1842,7 +1832,7 @@ extension SpanTrackDashed {
         width w: W.Type
     ) -> String {
         "<rect x=\"\(XMLEscaped<SpanPx<X>>.typeName)\" width=\"\(XMLEscaped<SpanPx<W>>.typeName)\" height=\"\(XMLEscaped<H>.typeName)\" rx=\"\(XMLEscaped<Radius>.typeName)\" "
-            + "fill=\"\(XMLEscaped<Fill>.typeName)\" stroke=\"\(XMLEscaped<Stroke>.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.HairlineWidth>>.typeName)\" stroke-dasharray=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.DependencyDash>>.typeName)\"/>\n"
+            + "fill=\"\(XMLEscaped<Fill>.typeName)\" stroke=\"\(XMLEscaped<Stroke>.typeName)\" stroke-width=\"\(XMLEscaped<Binding.HairlineWidth>.typeName)\" stroke-dasharray=\"\(XMLEscaped<Binding.DependencyDash>.typeName)\"/>\n"
     }
 }
 /// This draws nothing and spans anything: the empty slot of a generic column.
@@ -1888,7 +1878,7 @@ extension SpanArrowAcross {
     ) -> String {
         "<line x1=\"\(XMLEscaped<SpanPx<X>>.typeName)\" y1=\"\(XMLEscaped<Y>.typeName)\" "
             + "x2=\"\(XMLEscaped<SpanPx<Sum<X, W>>>.typeName)\" y2=\"\(XMLEscaped<Y>.typeName)\" "
-            + "stroke=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.ArrowWidth>>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
+            + "stroke=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<Binding.ArrowWidth>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
     }
 }
 /// The same arrow points LEFT here: head on the slice's start, for a dependency that points back.
@@ -1905,7 +1895,7 @@ extension SpanArrowBackAcross {
     ) -> String {
         "<line x1=\"\(XMLEscaped<SpanPx<Sum<X, W>>>.typeName)\" y1=\"\(XMLEscaped<Y>.typeName)\" "
             + "x2=\"\(XMLEscaped<SpanPx<X>>.typeName)\" y2=\"\(XMLEscaped<Y>.typeName)\" "
-            + "stroke=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.ArrowWidth>>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
+            + "stroke=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<Binding.ArrowWidth>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
     }
 }
 /// This draws a solid flow arrow DOWN the page on its slice's middle, between two stated
@@ -1924,7 +1914,7 @@ extension SpanArrowDown {
     ) -> String {
         "<line x1=\"\(XMLEscaped<SpanPx<MidOf<X, W>>>.typeName)\" y1=\"\(XMLEscaped<FromY>.typeName)\" "
             + "x2=\"\(XMLEscaped<SpanPx<MidOf<X, W>>>.typeName)\" y2=\"\(XMLEscaped<ToY>.typeName)\" "
-            + "stroke=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.ArrowWidth>>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
+            + "stroke=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<Binding.ArrowWidth>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
     }
 }
 /// This draws the italic caption voice at its slice's origin: an arrow's aside, a
@@ -1944,7 +1934,7 @@ extension SpanLabelItalic {
     ) -> String {
         "<text x=\"\(XMLEscaped<SpanPx<X>>.typeName)\" y=\"\(XMLEscaped<Y>.typeName)\" text-anchor=\"start\" "
             + "fill=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" font-size=\"\(XMLEscaped<Size>.typeName)\" "
-            + "font-family=\"\(XMLEscaped<Binding.CaptionFace>.typeName)\" font-style=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.CaptionSlant>>.typeName)\">\(XMLEscaped<Content>.typeName)</text>\n"
+            + "font-family=\"\(XMLEscaped<Binding.CaptionFace>.typeName)\" font-style=\"\(XMLEscaped<Binding.CaptionSlant>.typeName)\">\(XMLEscaped<Content>.typeName)</text>\n"
     }
 }
 /// The italic caption voice anchors at its slice's MIDDLE here: the label of an arrow
@@ -1964,7 +1954,7 @@ extension SpanLabelItalicMid {
     ) -> String {
         "<text x=\"\(XMLEscaped<SpanPx<MidOf<X, W>>>.typeName)\" y=\"\(XMLEscaped<Y>.typeName)\" text-anchor=\"middle\" "
             + "fill=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" font-size=\"\(XMLEscaped<Size>.typeName)\" "
-            + "font-family=\"\(XMLEscaped<Binding.CaptionFace>.typeName)\" font-style=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.CaptionSlant>>.typeName)\">\(XMLEscaped<Content>.typeName)</text>\n"
+            + "font-family=\"\(XMLEscaped<Binding.CaptionFace>.typeName)\" font-style=\"\(XMLEscaped<Binding.CaptionSlant>.typeName)\">\(XMLEscaped<Content>.typeName)</text>\n"
     }
 }
 /// This fills the LEADING share of its slice by the data itself: the part over the whole,
@@ -2009,7 +1999,7 @@ extension SpanDataSegment {
     ) -> String {
         "<rect x=\"\(XMLEscaped<SpanPx<Sum<X, Paired<Times<W.Left, Prefix>, Times<W.Right, Whole>>>>>.typeName)\" "
             + "width=\"\(XMLEscaped<SpanPx<Paired<Times<W.Left, Part>, Times<W.Right, Whole>>>>.typeName)\" "
-            + "height=\"\(XMLEscaped<H>.typeName)\" rx=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.SquareRadius>>.typeName)\" fill=\"\(XMLEscaped<Fill>.typeName)\"/>\n"
+            + "height=\"\(XMLEscaped<H>.typeName)\" rx=\"\(XMLEscaped<Binding.SquareRadius>.typeName)\" fill=\"\(XMLEscaped<Fill>.typeName)\"/>\n"
     }
 }
 /// A label whose anchor is the MIDDLE of its slice: a key's digit, a column's title.
@@ -2112,7 +2102,7 @@ extension SpanTrackOutlined {
         width w: W.Type
     ) -> String {
         "<rect x=\"\(XMLEscaped<SpanPx<X>>.typeName)\" width=\"\(XMLEscaped<SpanPx<W>>.typeName)\" height=\"\(XMLEscaped<H>.typeName)\" rx=\"\(XMLEscaped<Radius>.typeName)\" "
-            + "fill=\"\(XMLEscaped<Fill>.typeName)\" stroke=\"\(XMLEscaped<Stroke>.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.HairlineWidth>>.typeName)\"/>\n"
+            + "fill=\"\(XMLEscaped<Fill>.typeName)\" stroke=\"\(XMLEscaped<Stroke>.typeName)\" stroke-width=\"\(XMLEscaped<Binding.HairlineWidth>.typeName)\"/>\n"
     }
 }
 

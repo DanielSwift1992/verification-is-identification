@@ -77,6 +77,15 @@ def main():
         file = temp / 'MissingBinding.swift';file.write_text(source)
         p = subprocess.run(['swiftc','-typecheck','-I',str(binary/'Modules'),'-module-cache-path',str(temp/'modules'),str(file)],capture_output=True)
         assert p.returncode and b'MissingBinding.swift:' in p.stderr and b'Binding' in p.stderr, p.stderr.decode()
+    # Font and size are equalities of the label protocol, not a source spelling test.
+    controls=ROOT/'Contracts/Drawing/BindingControls'
+    declarations=json.loads((controls/'requests.json').read_text())
+    with tempfile.TemporaryDirectory(prefix='vi-register-relation-') as directory:
+        temp=Path(directory)
+        for request in declarations['registers']:
+            source=controls/request['file']
+            result=subprocess.run(['swiftc','-typecheck','-I',str(binary/'Modules'),'-module-cache-path',str(temp/'modules'),str(source)],capture_output=True)
+            assert (result.returncode==0)==request['admitted'],result.stderr.decode()
     # The world has the same source and imports under two owner projections.
     world = '''import VerificationIsIdentification
 import DocumentKit
@@ -146,11 +155,11 @@ public enum SlotWorld: GrownDiagram {
         readout=subprocess.check_output([str(executable)],text=True)
         assert 'var(--vi-role-' not in readout and record['roles']['LineRole']['sRGBLight'] in readout,readout
         assert '--vi-role-LineRole:' in binding.css(record)
-        missing_paint=json.loads(json.dumps(record));missing_paint['roles'].pop('LineRole')
-        companion.write_text(binding.swift(missing_paint,aliases=True))
-        result=subprocess.run(command,capture_output=True);assert result.returncode==0,result.stderr.decode()
-        refusal=subprocess.run([str(executable)],capture_output=True)
-        assert refusal.returncode and b'#roles/LineRole: missing paint' in refusal.stderr,refusal.stderr.decode()
+        for request in declarations['incompleteStyles']:
+            incomplete=json.loads(json.dumps(record));incomplete[request['section']].pop(request['key'])
+            companion.write_text(binding.swift(incomplete,aliases=True))
+            result=subprocess.run(command,capture_output=True)
+            assert result.returncode and request['key'].encode() in result.stderr,result.stderr.decode()
         missing=subprocess.run(['swiftc','-typecheck','-I',str(binary/'Modules'),'-module-cache-path',str(temp/'modules'),str(file)],capture_output=True)
         assert missing.returncode and b'Unchanged.swift:' in missing.stderr,missing.stderr.decode()
         broken=json.loads(json.dumps(record));broken['layout'].pop('EdgeMargin',None)

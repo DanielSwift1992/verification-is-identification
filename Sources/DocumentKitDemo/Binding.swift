@@ -2,7 +2,7 @@ import Notation
 import DocumentKit
 
 // GENERATED from the world drawing-binding/1 record.
-// drawing-binding-value-sha256: da75e97e8abbffbcb8b090961a3ea3b97c610ce16f9d133188a5ae3cb82bff96
+// drawing-binding-value-sha256: 596984acacd7cd5d73a7fa90bb2bd4a26cdcfd7eda1feeb7c6997a257911285a
 public enum DocumentationBindingInk: Paint, Close {}
 extension DocumentationBindingInk {
     public static var typeName: String { "color(xyz-d65 0.01 0.01 0.011)" }
@@ -590,102 +590,89 @@ public enum DocumentationBinding: DrawingStyle, Close {
     public typealias ShadowPaint = DocumentationBindingShadowPaint
     public typealias ShadowOpacity = DocumentationBindingShadowOpacity
     public typealias LeafCountBases = DocumentationBindingLeafCountBases
-    public typealias Values = DocumentationBindingValues
+    public typealias HairBreath = DocumentationBindingHairBreath
+    public typealias S24Breath = DocumentationBindingS24Breath
+    public typealias BadgeChipWide = DocumentationBindingBadgeChipWide
+    public typealias HairlineWidth = DocumentationBindingHairlineWidth
+    public typealias ArrowWidth = DocumentationBindingArrowWidth
+    public typealias DependencyDash = DocumentationBindingDependencyDash
+    public typealias R4 = DocumentationBindingR4
+    public typealias R6 = DocumentationBindingR6
+    public typealias R10 = DocumentationBindingR10
+    public typealias R16 = DocumentationBindingR16
+    public typealias R20 = DocumentationBindingR20
+    public typealias TextXXS = DocumentationBindingTextXXS
+    public typealias TextS = DocumentationBindingTextS
+    public typealias TextL = DocumentationBindingTextL
+    public typealias TitleT = DocumentationBindingTitleT
+    public typealias WeightRegular = DocumentationBindingWeightRegular
+    public typealias ShapeRadius = DocumentationBindingShapeRadius
+    public typealias ThickGlyphWidth = DocumentationBindingThickGlyphWidth
+    public typealias GlyphStrokeWidth = DocumentationBindingGlyphStrokeWidth
+    public typealias BoldWeight = DocumentationBindingBoldWeight
+    public typealias HoverTransition = DocumentationBindingHoverTransition
+    public typealias HoverLift = DocumentationBindingHoverLift
+    public typealias HoverFadeDelay = DocumentationBindingHoverFadeDelay
+    public typealias HoverGrace = DocumentationBindingHoverGrace
+    public typealias HoverStrokeWidth = DocumentationBindingHoverStrokeWidth
+    public typealias MarkerWidth = DocumentationBindingMarkerWidth
+    public typealias MarkerHeight = DocumentationBindingMarkerHeight
+    public typealias MarkerX = DocumentationBindingMarkerX
+    public typealias MarkerY = DocumentationBindingMarkerY
+    public typealias MarkerPath = DocumentationBindingMarkerPath
+    public typealias FigureArrowBox = DocumentationBindingFigureArrowBox
+    public typealias FigureArrowX = DocumentationBindingFigureArrowX
+    public typealias FigureArrowY = DocumentationBindingFigureArrowY
+    public typealias FigureArrowWidth = DocumentationBindingFigureArrowWidth
+    public typealias FigureArrowHeight = DocumentationBindingFigureArrowHeight
+    public typealias FigureArrowPath = DocumentationBindingFigureArrowPath
+    public typealias ShadowX = DocumentationBindingShadowX
+    public typealias ShadowY = DocumentationBindingShadowY
+    public typealias ShadowWidth = DocumentationBindingShadowWidth
+    public typealias ShadowHeight = DocumentationBindingShadowHeight
+    public typealias ShadowDx = DocumentationBindingShadowDx
+    public typealias ShadowDy = DocumentationBindingShadowDy
+    public typealias ShadowDeviation = DocumentationBindingShadowDeviation
+    public typealias BreatheValues = DocumentationBindingBreatheValues
+    public typealias BreatheDuration = DocumentationBindingBreatheDuration
+    public typealias CaptionSlant = DocumentationBindingCaptionSlant
+    public typealias GlyphLineCap = DocumentationBindingGlyphLineCap
+    public typealias GlyphLineJoin = DocumentationBindingGlyphLineJoin
+    public typealias HoverCursor = DocumentationBindingHoverCursor
+    public typealias HoverEase = DocumentationBindingHoverEase
+    public typealias HoverVisibilityEase = DocumentationBindingHoverVisibilityEase
+    public typealias NoPaint = DocumentationBindingNoPaint
+    public typealias SquareRadius = DocumentationBindingSquareRadius
+    public typealias HiddenOpacity = DocumentationBindingHiddenOpacity
+    public typealias VisibleOpacity = DocumentationBindingVisibleOpacity
+    public typealias ImmediateDuration = DocumentationBindingImmediateDuration
+    public typealias TableSortHintOpacity = DocumentationBindingTableSortHintOpacity
+    public typealias TableSortActiveOpacity = DocumentationBindingTableSortActiveOpacity
+    public typealias TableSortHintSize = DocumentationBindingTableSortHintSize
+    public typealias TableSortCursor = DocumentationBindingTableSortCursor
+    public typealias Cover06 = DocumentationBindingCover06
+    public typealias Cover15 = DocumentationBindingCover15
+    public typealias Cover16 = DocumentationBindingCover16
+    public typealias Cover54 = DocumentationBindingCover54
+    public typealias Cover70 = DocumentationBindingCover70
+    public typealias Cover80 = DocumentationBindingCover80
+    public typealias Cover90 = DocumentationBindingCover90
+    public typealias MarkerOrient = DocumentationBindingMarkerOrient
+    public typealias FigureArrowOrient = DocumentationBindingFigureArrowOrient
+    public typealias FontUnitsPerEm = DocumentationBindingFontUnitsPerEm
+    public typealias FontCapHeight = DocumentationBindingFontCapHeight
+    public typealias FontAdvanceTable = DocumentationBindingFontAdvanceTable
+    public typealias FontFallbackAdvance = DocumentationBindingFontFallbackAdvance
+    public typealias TextXS = DocumentationBindingTextXS
+    public typealias TextM = DocumentationBindingTextM
+    public typealias DisplayS = DocumentationBindingDisplayS
+    public typealias Display = DocumentationBindingDisplay
+    public typealias WeightBold = DocumentationBindingWeightBold
     public typealias PaintFallbacks = DocumentationBindingPaintFallbacks
-    public typealias PaintValues = DocumentationBindingPaintValues
-}
-public enum DocumentationBindingValues: Close {}
-extension DocumentationBindingValues {
-    public static var typeName: String {
-        [
-            "HairBreath|" + String(DocumentationBindingHairBreath.count),
-            "S24Breath|" + String(DocumentationBindingS24Breath.count),
-            "BadgeChipWide|" + String(DocumentationBindingBadgeChipWide.count),
-            "HairlineWidth|" + DocumentationBindingHairlineWidth.typeName,
-            "ArrowWidth|" + DocumentationBindingArrowWidth.typeName,
-            "DependencyDash|" + DocumentationBindingDependencyDash.typeName,
-            "R4|" + DocumentationBindingR4.typeName,
-            "R6|" + DocumentationBindingR6.typeName,
-            "R10|" + DocumentationBindingR10.typeName,
-            "R16|" + DocumentationBindingR16.typeName,
-            "R20|" + DocumentationBindingR20.typeName,
-            "TextXXS|" + DocumentationBindingTextXXS.typeName,
-            "TextS|" + DocumentationBindingTextS.typeName,
-            "TextL|" + DocumentationBindingTextL.typeName,
-            "TitleT|" + DocumentationBindingTitleT.typeName,
-            "WeightRegular|" + DocumentationBindingWeightRegular.typeName,
-            "ShapeRadius|" + DocumentationBindingShapeRadius.typeName,
-            "ThickGlyphWidth|" + DocumentationBindingThickGlyphWidth.typeName,
-            "GlyphStrokeWidth|" + DocumentationBindingGlyphStrokeWidth.typeName,
-            "BoldWeight|" + DocumentationBindingBoldWeight.typeName,
-            "HoverTransition|" + DocumentationBindingHoverTransition.typeName,
-            "HoverLift|" + DocumentationBindingHoverLift.typeName,
-            "HoverFadeDelay|" + DocumentationBindingHoverFadeDelay.typeName,
-            "HoverGrace|" + DocumentationBindingHoverGrace.typeName,
-            "HoverStrokeWidth|" + DocumentationBindingHoverStrokeWidth.typeName,
-            "MarkerWidth|" + DocumentationBindingMarkerWidth.typeName,
-            "MarkerHeight|" + DocumentationBindingMarkerHeight.typeName,
-            "MarkerX|" + DocumentationBindingMarkerX.typeName,
-            "MarkerY|" + DocumentationBindingMarkerY.typeName,
-            "MarkerPath|" + DocumentationBindingMarkerPath.typeName,
-            "FigureArrowBox|" + DocumentationBindingFigureArrowBox.typeName,
-            "FigureArrowX|" + DocumentationBindingFigureArrowX.typeName,
-            "FigureArrowY|" + DocumentationBindingFigureArrowY.typeName,
-            "FigureArrowWidth|" + DocumentationBindingFigureArrowWidth.typeName,
-            "FigureArrowHeight|" + DocumentationBindingFigureArrowHeight.typeName,
-            "FigureArrowPath|" + DocumentationBindingFigureArrowPath.typeName,
-            "ShadowX|" + DocumentationBindingShadowX.typeName,
-            "ShadowY|" + DocumentationBindingShadowY.typeName,
-            "ShadowWidth|" + DocumentationBindingShadowWidth.typeName,
-            "ShadowHeight|" + DocumentationBindingShadowHeight.typeName,
-            "ShadowDx|" + DocumentationBindingShadowDx.typeName,
-            "ShadowDy|" + DocumentationBindingShadowDy.typeName,
-            "ShadowDeviation|" + DocumentationBindingShadowDeviation.typeName,
-            "BreatheValues|" + DocumentationBindingBreatheValues.typeName,
-            "BreatheDuration|" + DocumentationBindingBreatheDuration.typeName,
-            "CaptionSlant|" + DocumentationBindingCaptionSlant.typeName,
-            "GlyphLineCap|" + DocumentationBindingGlyphLineCap.typeName,
-            "GlyphLineJoin|" + DocumentationBindingGlyphLineJoin.typeName,
-            "HoverCursor|" + DocumentationBindingHoverCursor.typeName,
-            "HoverEase|" + DocumentationBindingHoverEase.typeName,
-            "HoverVisibilityEase|" + DocumentationBindingHoverVisibilityEase.typeName,
-            "NoPaint|" + DocumentationBindingNoPaint.typeName,
-            "SquareRadius|" + DocumentationBindingSquareRadius.typeName,
-            "HiddenOpacity|" + DocumentationBindingHiddenOpacity.typeName,
-            "VisibleOpacity|" + DocumentationBindingVisibleOpacity.typeName,
-            "ImmediateDuration|" + DocumentationBindingImmediateDuration.typeName,
-            "TableSortHintOpacity|" + DocumentationBindingTableSortHintOpacity.typeName,
-            "TableSortActiveOpacity|" + DocumentationBindingTableSortActiveOpacity.typeName,
-            "TableSortHintSize|" + DocumentationBindingTableSortHintSize.typeName,
-            "TableSortCursor|" + DocumentationBindingTableSortCursor.typeName,
-            "Cover06|" + DocumentationBindingCover06.typeName,
-            "Cover15|" + DocumentationBindingCover15.typeName,
-            "Cover16|" + DocumentationBindingCover16.typeName,
-            "Cover54|" + DocumentationBindingCover54.typeName,
-            "Cover70|" + DocumentationBindingCover70.typeName,
-            "Cover80|" + DocumentationBindingCover80.typeName,
-            "Cover90|" + DocumentationBindingCover90.typeName,
-            "MarkerOrient|" + DocumentationBindingMarkerOrient.typeName,
-            "FigureArrowOrient|" + DocumentationBindingFigureArrowOrient.typeName,
-            "FontUnitsPerEm|" + DocumentationBindingFontUnitsPerEm.typeName,
-            "FontCapHeight|" + DocumentationBindingFontCapHeight.typeName,
-            "FontAdvanceTable|" + DocumentationBindingFontAdvanceTable.typeName,
-            "FontFallbackAdvance|" + DocumentationBindingFontFallbackAdvance.typeName,
-            "TextXS|" + DocumentationBindingTextXS.typeName,
-            "TextM|" + DocumentationBindingTextM.typeName,
-            "DisplayS|" + DocumentationBindingDisplayS.typeName,
-            "Display|" + DocumentationBindingDisplay.typeName,
-            "WeightBold|" + DocumentationBindingWeightBold.typeName,
-        ].joined(separator: "\n")
-    }
 }
 public enum DocumentationBindingPaintFallbacks: Close {}
 extension DocumentationBindingPaintFallbacks {
     public static var typeName: String { "color(xyz-d65 0.01 0.01 0.011)|#1C191A\ncolor(xyz-d65 0.59 0.621 0.676)|#CECFCF\ncolor(xyz-d65 0.898 0.945 1.029)|#F9F9F9\ncolor(xyz-d65 0.228 0.24 0.261)|#868686\ncolor(xyz-d65 0.232 0.244 0.266)|#878788\ncolor(xyz-d65 0.613 0.645 0.702)|#D2D2D2\ncolor(xyz-d65 0.048 0.05 0.054)|#403F3F\ncolor(xyz-d65 0.17 0.15 0.61)|#2269CF\ncolor(xyz-d65 0.412 0.419 0.705)|#9DADD7\nvar(--vi-surface-card, color(xyz-d65 0.898 0.945 1.029))|#F9F9F9\nvar(--vi-surface-track, color(xyz-d65 0.898 0.945 1.029))|#F9F9F9\nvar(--vi-surface-page, color(xyz-d65 0.898 0.945 1.029))|#F9F9F9\nvar(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011))|#1C191A\nvar(--vi-text-secondary, color(xyz-d65 0.228 0.24 0.261))|#868686\nvar(--vi-accent, color(xyz-d65 0.17 0.15 0.61))|#2269CF\nvar(--vi-action, color(xyz-d65 0.17 0.15 0.61))|#2269CF\nvar(--vi-line, color(xyz-d65 0.613 0.645 0.702))|#D2D2D2\nvar(--vi-on-accent, color(xyz-d65 0.01 0.01 0.011))|#1C191A\nvar(--vi-action-tint, color(xyz-d65 0.898 0.945 1.029))|#F9F9F9\nvar(--vi-on-action, color(xyz-d65 0.01 0.01 0.011))|#1C191A\ncolor(xyz-d65 0.08 0.15 0.06)|#007D36\ncolor(xyz-d65 0.23 0.419 0.168)|#24C75B\ncolor(xyz-d65 0.24 0.15 0.05)|#BF4035\ncolor(xyz-d65 0.461 0.419 0.168)|#E39F60\ncolor(xyz-d65 0.25 0.15 0.63)|#8D48D3\ncolor(xyz-d65 0.454 0.419 0.691)|#B9A5D6\ncolor(xyz-d65 0.124 0.15 0.346)|#00749E\ncolor(xyz-d65 0.307 0.419 0.656)|#2BBECF" }
-}
-public enum DocumentationBindingPaintValues: Close {}
-extension DocumentationBindingPaintValues {
-    public static var typeName: String { "Ink|color(xyz-d65 0.01 0.01 0.011)\nPaper|color(xyz-d65 0.898 0.945 1.029)\nMist|color(xyz-d65 0.898 0.945 1.029)\nAccent|color(xyz-d65 0.898 0.945 1.029)\nMuted|color(xyz-d65 0.228 0.24 0.261)\nLine|color(xyz-d65 0.613 0.645 0.702)\nInkPrimary|color(xyz-d65 0.01 0.01 0.011)\nInkSecondary|color(xyz-d65 0.228 0.24 0.261)\nAction|color(xyz-d65 0.17 0.15 0.61)\nActionTint|color(xyz-d65 0.898 0.945 1.029)\nNavyTint|color(xyz-d65 0.898 0.945 1.029)\nSurfaceCard|var(--vi-surface-card, color(xyz-d65 0.898 0.945 1.029))\nSurfaceTrack|var(--vi-surface-track, color(xyz-d65 0.898 0.945 1.029))\nSurfacePage|var(--vi-surface-page, color(xyz-d65 0.898 0.945 1.029))\nTextPrimary|var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011))\nTextSecondary|var(--vi-text-secondary, color(xyz-d65 0.228 0.24 0.261))\nAccentRole|var(--vi-accent, color(xyz-d65 0.17 0.15 0.61))\nActionRole|var(--vi-action, color(xyz-d65 0.17 0.15 0.61))\nLineRole|var(--vi-line, color(xyz-d65 0.613 0.645 0.702))\nOnAccent|var(--vi-on-accent, color(xyz-d65 0.01 0.01 0.011))\nActionTintRole|var(--vi-action-tint, color(xyz-d65 0.898 0.945 1.029))\nOnActionRole|var(--vi-on-action, color(xyz-d65 0.01 0.01 0.011))\nStatusMark|color(xyz-d65 0.08 0.15 0.06)\nOk|color(xyz-d65 0.08 0.15 0.06)\nBad|color(xyz-d65 0.24 0.15 0.05)\nKnownName|color(xyz-d65 0.25 0.15 0.63)\nLocalType|color(xyz-d65 0.124 0.15 0.346)" }
 }
 extension DocumentationBindingTextPrimary: LegibleOnSurfaceCard {} // owner witness: Paper_Ink_lit
 extension DocumentationBindingTextSecondary: ReadableOnSurfaceCard {} // owner witness: Paper_Muted_lit

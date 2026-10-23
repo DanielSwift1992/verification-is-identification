@@ -1543,7 +1543,7 @@ public enum MethodPart59LayoutD: Close {}
 extension MethodPart59LayoutD { public static var typeName: String { "M649.44 526.32V624.96H403.2V638.64" } }
 
 public enum MethodPart60LayoutX: Close {}
-extension MethodPart60LayoutX { public static var typeName: String { "650.88" } }
+extension MethodPart60LayoutX { public static var typeName: String { "639.36" } }
 
 public enum MethodPart60LayoutY: Close {}
 extension MethodPart60LayoutY { public static var typeName: String { "615" } }

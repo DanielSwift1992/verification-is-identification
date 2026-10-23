@@ -6,8 +6,8 @@ A render engine with no runtime. A page is a type: its `body` composes other typ
 
 A page is built the way everything else in this package is built: declare a type, compose its body, read the name.
 
-1. **Declare the screen.** `enum MyPage: Screen {}` — a caseless enum, like every concrete type on the surface (SurfaceLaw §S2). `Screen` is your app's own page kind, one line — `public protocol Screen: Open {}` — declared beside your pages, the way the Organization showcase declares its own. There is nothing to instantiate: the page is the type.
-2. **Compose the body.** `@StructureBuilder static var body: some Structure { … }` — statements fold into a `Pair`-cons chain. Every leaf is an atom or another combinator: a name enters through `Symbol`, a count through `Tally`, prose through a prose atom — a type whose `typeName` is the sentence. Organization spells its prose from a JSON manifest through a build plugin. This page carries its own.
+1. **Declare the screen.** `enum MyPage: Screen {}` — a caseless enum, like every concrete type on the surface (SurfaceLaw §S2). `Screen` is your app's own page kind, one line — `public protocol Screen: Open {}` — declared beside your pages, beside its own page declarations. There is nothing to instantiate: the page is the type.
+2. **Compose the body.** `@StructureBuilder static var body: some Structure { … }` — statements fold into a `Pair`-cons chain. Every leaf is an atom or another combinator: a name enters through `Symbol`, a count through `Tally`, prose through a prose atom — a type whose `typeName` is the sentence. A consuming module may generate its prose from a manifest; this page carries its own.
 3. **Compile.** Type-checking the body is the render happening: a table missing its header rule, a tab out of place, a count that does not fold — each is a build error, not a bad page.
 4. **Read it.** `MyPage.typeName` is the markdown. A demo executable writes it into the `.docc` catalog, so a `doc:` link resolves to this content instead of an empty auto-generated stub — that is the whole publishing pipeline.
 5. **Curate it.** Add the page to the landing's Topics so it hangs where readers look, not at the navigator's root.
@@ -35,9 +35,9 @@ Every combinator on the surface is an `Open` protocol carrying the hole (an `ass
 
 ## The one rendering path
 
-`typeName` (`Structure`) is the whole engine: an atom (`Close`) overrides it to its own character; a combinator's default reads `Body.typeName`, recursing through whatever `body` composed. `DocumentKit` depends only on `Notation` and `Alphabet` — the same mechanism draws the Organization showcase and this page, gallery included.
+`typeName` (`Structure`) is the whole engine: an atom (`Close`) overrides it to its own character; a combinator's default reads `Body.typeName`, recursing through whatever `body` composed. `DocumentKit` depends only on `Notation` and `Alphabet` — the same mechanism draws consuming worlds and this page, gallery included.
 
-> Warning: `typeName`'s walk concatenates strings on the way back up the tree (`Paired.typeName = L.typeName + R.typeName`), so it is not tail-recursive — one `Structure` with enough total content in its own `body` can exhaust the call stack before it ever mis-renders (checked directly). Prefer several linked pages over one page trying to hold everything, the same choice Organization's showcase already makes.
+> Warning: `typeName`'s walk concatenates strings on the way back up the tree (`Paired.typeName = L.typeName + R.typeName`), so it is not tail-recursive — one `Structure` with enough total content in its own `body` can exhaust the call stack before it ever mis-renders (checked directly). Prefer several linked pages over one page trying to hold everything, with independently linked content.
 
 ## The gallery — every mechanism, live
 
@@ -439,7 +439,7 @@ Light and dark are two projections of the same eight roles, each declared once, 
 
 **Compile gate.** An illegal type does not build (`Legible`, `WithinBounds` — the strongest form). **Generation gate.** An illegal value stops `generate` with a named precondition (`BudgetedLabel`) — weaker, still before anything ships. **Host gate.** What only the browser decides (hover, theme) — declared, never trusted with correctness.
 
-Three of these are live in the site today. The five `Legible*` protocols above (`LegibleOnSurfaceCard`, `LegibleOnSurfaceTrack`, `LegibleOnAccentRole`, and two more) are compile gates on every (foreground, background) pairing — an unreadable pair does not build. `WithinCyclesHero` (Organization's review-cycle diagram) is the same tier applied to placement: a canvas's closed set of legal positions, so a position only one canvas vetted cannot satisfy a different canvas's layout by accident. `BudgetedLabel` is the generation gate — a stated character ceiling, checked once, at generate time, against the real text a label carries (checked directly: lowering a label's budget below its longest real name crashes `generate` with exactly this precondition, then raised back).
+Three of these are live in the site today. The five `Legible*` protocols above (`LegibleOnSurfaceCard`, `LegibleOnSurfaceTrack`, `LegibleOnAccentRole`, and two more) are compile gates on every (foreground, background) pairing — an unreadable pair does not build. `WithinCyclesHero` (a placement-constrained diagram) is the same tier applied to placement: a canvas's closed set of legal positions, so a position only one canvas vetted cannot satisfy a different canvas's layout by accident. `BudgetedLabel` is the generation gate — a stated character ceiling, checked once, at generate time, against the real text a label carries (checked directly: lowering a label's budget below its longest real name crashes `generate` with exactly this precondition, then raised back).
 
 ### The interactive layer
 

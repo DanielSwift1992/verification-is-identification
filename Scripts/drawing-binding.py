@@ -117,19 +117,10 @@ def swift(value, aliases=False):
             if paint in fallbacks and fallbacks[paint] != fallback:
                 raise ValueError('roles/' + role + ': conflicting fallback for a shared paint')
             fallbacks[paint] = fallback
-    lines += ['    public typealias Values = ' + name + 'Values', '    public typealias PaintFallbacks = ' + name + 'PaintFallbacks', '    public typealias PaintValues = ' + name + 'PaintValues', '}']
-    rows = []
-    for key,row in layout.items():
-        reading = name + key + '.typeName' if 'text' in row else 'String(' + name + key + '.count)'
-        rows.append('            "' + key + '|" + ' + reading + ',')
-    lines += ['public enum ' + name + 'Values: Close {}', 'extension ' + name + 'Values {', '    public static var typeName: String {', '        [', *rows, '        ].joined(separator: "\\n")', '    }', '}']
+    for key in layout:
+        lines.append('    public typealias ' + key + ' = ' + name + key)
+    lines += ['    public typealias PaintFallbacks = ' + name + 'PaintFallbacks', '}']
     atom(name + 'PaintFallbacks', '\n'.join(paint+'|'+fallback for paint,fallback in fallbacks.items()))
-    paint_values=[]
-    for role,row in value['roles'].items():
-        reading=row.get('fallbackLight',row['light'])
-        if row.get('variable'):reading='var(--vi-'+row['variable']+', '+reading+')'
-        paint_values.append(role+'|'+reading)
-    atom(name + 'PaintValues', '\n'.join(paint_values))
     for pair in value.get('legible', []):
         lines.append('extension ' + name + pair['foreground'] + ': ' + pair.get('standard','Legible') + 'On' + pair['background'] + ' {} // owner witness: ' + pair['witness'])
     if aliases:
@@ -182,17 +173,45 @@ def css(value, dark_selector=None):
 
 
 def table_css(value):
-    def reading(key):
-        row=value.get('layout',{}).get(key)
-        if not isinstance(row,dict) or set(row)!={'text'}:
-            raise ValueError(value['name']+'#layout/'+key+': table style needs a textual owner value')
-        return row['text']
-    return ('.content table, article table { display:block; overflow-x:auto; max-width:100%; }'
-            '.content th, article th { cursor:'+reading('TableSortCursor')+'; white-space:nowrap; }'
-            ".content th::after, article th::after { content:' \\2195'; opacity:"+reading('TableSortHintOpacity')+'; font-size:'+reading('TableSortHintSize')+'; }'
-            '.content th:hover, article th:hover { background:var(--vi-surface-track); }'
-            ".content th[data-vi-sort=down]::after, article th[data-vi-sort=down]::after { content:' \\2193'; opacity:"+reading('TableSortActiveOpacity')+'; }'
-            ".content th[data-vi-sort=up]::after, article th[data-vi-sort=up]::after { content:' \\2191'; opacity:"+reading('TableSortActiveOpacity')+'; }')
+    def reading(cell):
+        if isinstance(cell,str):return cell
+        if set(cell)=={'layout'}:
+            return value['layout'][cell['layout']]['text']
+        if set(cell)=={'role'}:
+            if cell['role'] not in value['roles']:raise ValueError(value['name']+'#tableStyle: missing paint')
+            return 'var(--vi-role-'+cell['role']+')'
+        raise ValueError(value['name']+'#tableStyle: unknown owner reference')
+    return ''.join(rule['selector']+' {'+''.join(key+':'+reading(cell)+';' for key,cell in rule['declarations'].items())+'}' for rule in value['tableStyle'])
+
+
+def project_paints(value):
+    """Run the owner's one pinned projection and write portable spellings to its record."""
+    import importlib.util,subprocess,tempfile
+    declared=value['portableColour'];source=declared['source'];span=declared['span']
+    if declared['rounding']!='nearest-even' or not NAME.fullmatch(declared['symbol']):raise ValueError(value['name']+'#portableColour: unsupported projection')
+    spec=importlib.util.spec_from_file_location('pinned_input',ROOT/'Scripts/pinned-input.py')
+    reader=importlib.util.module_from_spec(spec);spec.loader.exec_module(reader)
+    raw=reader.pinned_bytes(source,source,ROOT/'.build/figure-inputs')
+    code=raw[span['start']:span['end']]
+    if hashlib.sha256(code).hexdigest()!=span['sha256']:raise ValueError(value['name']+'#portableColour/span: input differs')
+    inputs=[]
+    for role,row in value['roles'].items():
+        for theme,suffix in [('light','Light'),('dark','Dark')]:
+            text=row[theme]
+            if not text.startswith('color(xyz-d65 ') or not text.endswith(')'):raise ValueError(value['name']+'#roles: XYZ input required')
+            xyz=list(map(float,text[len('color(xyz-d65 '):-1].split()))
+            if len(xyz)!=3:raise ValueError(value['name']+'#roles: three coordinates required')
+            inputs.append([role,suffix,*xyz])
+    with tempfile.TemporaryDirectory(prefix='owner-paint-projection-') as directory:
+        temp=Path(directory);program=temp/'main.swift'
+        program.write_bytes(b'import Foundation\n'+code+b'\n'+('let input = try JSONSerialization.jsonObject(with: FileHandle.standardInput.readDataToEndOfFile()) as! [[Any]]\nlet output = input.map { row in '+declared['symbol']+'((row[2] as! NSNumber).doubleValue,(row[3] as! NSNumber).doubleValue,(row[4] as! NSNumber).doubleValue) }\nprint(String(data: try JSONSerialization.data(withJSONObject: output),encoding:.utf8)!)\n').encode())
+        result=subprocess.run(['swiftc','-module-cache-path',str(temp/'modules'),str(program),'-o',str(temp/'read')],capture_output=True)
+        if result.returncode:raise ValueError(result.stderr.decode(errors='replace'))
+        result=subprocess.run([str(temp/'read')],input=json.dumps(inputs).encode(),capture_output=True,check=True)
+        for (role,suffix,*_),paint in zip(inputs,json.loads(result.stdout)):
+            value['roles'][role]['sRGB'+suffix]=paint
+            value['roles'][role].pop('fallback'+suffix,None)
+    return value
 
 
 def footer(value):

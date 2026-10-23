@@ -323,7 +323,7 @@ public enum PageTitle<
 // ── Section: ## Heading\n\nContent\n\n, no combinator: a page's own body just writes the
 // five atoms directly (`DoubleHash.self; Heading.self; Break.self`, then the content, then
 // `Break.self`). The pattern is five atoms, and writing it inline each time is not repetition worth
-// a combinator, the same call made for ``CountRow``/``Ratio`` (Organization).
+// a combinator, the same call made for ``CountRow``/``Ratio`` (the consuming module).
 
 // ── Note ──
 
@@ -691,7 +691,7 @@ public enum Spacer<
 // classic CSS collapse). One type reads the boundary, once. The default (no more specific
 // `where` matched) is zero: adjacent by default, spaced only where a pairing says so.
 //
-// > Warning: this is the SAME shape `Capability` (Organization/View/Cells.swift, Surface Law
+// > Warning: this is the SAME shape `Capability` (a consuming module, Surface Law
 // > §S12) already hit: a type whose `typeName` picks among several `where`-conditioned
 // > extensions reads correctly ONLY at a literal, concrete call site (`Gap<Quiet, Loud>.self`,
 // > written directly), never through a generic parameter standing in for `Left`/`Right`. This

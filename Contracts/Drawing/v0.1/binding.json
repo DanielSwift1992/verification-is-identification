@@ -434,6 +434,78 @@
       "standard": "Readable"
     }
   ],
+  "tableStyle": [
+    {
+      "selector": ".content table, article table",
+      "declarations": {
+        "display": "block",
+        "overflow-x": "auto",
+        "max-width": "100%"
+      }
+    },
+    {
+      "selector": ".content th, article th",
+      "declarations": {
+        "cursor": {
+          "layout": "TableSortCursor"
+        },
+        "white-space": "nowrap"
+      }
+    },
+    {
+      "selector": ".content th::after, article th::after",
+      "declarations": {
+        "content": "' \\2195'",
+        "opacity": {
+          "layout": "TableSortHintOpacity"
+        },
+        "font-size": {
+          "layout": "TableSortHintSize"
+        }
+      }
+    },
+    {
+      "selector": ".content th:hover, article th:hover",
+      "declarations": {
+        "background": {
+          "role": "SurfaceTrack"
+        }
+      }
+    },
+    {
+      "selector": ".content th[data-vi-sort=down]::after, article th[data-vi-sort=down]::after",
+      "declarations": {
+        "content": "' \\2193'",
+        "opacity": {
+          "layout": "TableSortActiveOpacity"
+        }
+      }
+    },
+    {
+      "selector": ".content th[data-vi-sort=up]::after, article th[data-vi-sort=up]::after",
+      "declarations": {
+        "content": "' \\2191'",
+        "opacity": {
+          "layout": "TableSortActiveOpacity"
+        }
+      }
+    }
+  ],
+  "portableColour": {
+    "source": {
+      "repository": "https://github.com/DanielSwift1992/gate",
+      "revision": "bbd807bc504ef2146c2265d43521108c4e37c115",
+      "path": "bin/gate-cli.swift",
+      "sha256": "839115bf543878c11c8afbdba3b4c35284d04e5fe2348add0f3976d8d5f45aa1"
+    },
+    "span": {
+      "start": 657578,
+      "end": 658225,
+      "sha256": "394ec68faaac808a883f77aa3aa07b1c5267fe9aac5b4549da0f9930b76605a1"
+    },
+    "symbol": "srgbHex",
+    "rounding": "nearest-even"
+  },
   "layout": {
     "HairBreath": {
       "expression": "U8"

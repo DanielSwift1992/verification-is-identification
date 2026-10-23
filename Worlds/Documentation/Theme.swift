@@ -1,10 +1,7 @@
 import Notation
 import DocumentKit
 
-public protocol FigureRegister {
-    associatedtype Font: OutlineFontFace
-    associatedtype Size: Structure
-}
+public typealias FigureRegister = OutlineRegister
 
 public enum FigureDefinitions<Theme: DrawingPalette>: Group {
     @StructureBuilder public static var body: some Structure {

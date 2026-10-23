@@ -2,13 +2,36 @@ import Notation
 
 /// Supplies a world's faces, caption paint and shadow at the reading edge.
 /// Requires each canvas to name its binding for type checking.
-public protocol DrawingStyle: Structure {
-    associatedtype Values: Structure
+public protocol DrawingStyle: Structure, StyleKeys {
     associatedtype PaintFallbacks: Structure
-    associatedtype PaintValues: Structure
     associatedtype BodyFace: Structure
     associatedtype CaptionFace: Structure
+    associatedtype Accent: Paint
     associatedtype AccentRole: Paint
+    associatedtype Action: Paint
+    associatedtype ActionRole: Paint
+    associatedtype ActionTint: Paint
+    associatedtype ActionTintRole: Paint
+    associatedtype Bad: Paint
+    associatedtype Ink: Paint
+    associatedtype InkPrimary: Paint
+    associatedtype InkSecondary: Paint
+    associatedtype KnownName: Paint
+    associatedtype Line: Paint
+    associatedtype LineRole: Paint
+    associatedtype LocalType: Paint
+    associatedtype Mist: Paint
+    associatedtype Muted: Paint
+    associatedtype NavyTint: Paint
+    associatedtype Ok: Paint
+    associatedtype OnAccent: Paint
+    associatedtype OnActionRole: Paint
+    associatedtype Paper: Paint
+    associatedtype StatusMark: Paint
+    associatedtype SurfaceCard: Paint
+    associatedtype SurfacePage: Paint
+    associatedtype SurfaceTrack: Paint
+    associatedtype TextPrimary: Paint
     associatedtype TextSecondary: Paint
     associatedtype ShadowPaint: Paint
     associatedtype ShadowOpacity: Structure
@@ -18,19 +41,6 @@ public protocol DrawingStyle: Structure {
 /// Requires the reader to select a world's style when compiling its composition.
 public protocol StyleBound {
     associatedtype Binding: DrawingStyle
-}
-
-/// Reads a named value from the world's immutable type projection.
-public enum StyleValue<Binding: DrawingStyle, Key: Structure>: Close {}
-extension StyleValue {
-    public static var typeName: String {
-        let key = Key.typeName
-        for row in Binding.Values.typeName.split(separator: "\n") {
-            let fields = row.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: false)
-            if fields.count == 2 && fields[0] == key { return String(fields[1]) }
-        }
-        preconditionFailure("\(Binding.self)#layout/\(key): missing style value")
-    }
 }
 
 /// Serializes the owner's portable paint before its exact CSS spelling.
@@ -43,12 +53,35 @@ extension DeliveredSVG {
             precondition(fields.count == 2, "\(Binding.self)#paints: invalid fallback row")
             fallbacks[String(fields[0])] = String(fields[1])
         }
-        var paints: [String: String] = [:]
-        for row in Binding.PaintValues.typeName.split(separator: "\n") {
-            let fields = row.split(separator: "|", maxSplits: 1, omittingEmptySubsequences: false)
-            precondition(fields.count == 2, "\(Binding.self)#roles: invalid paint row")
-            paints[String(fields[0])] = String(fields[1])
-        }
+        let paints: [String: String] = [
+            "Accent": Binding.Accent.typeName,
+            "AccentRole": Binding.AccentRole.typeName,
+            "Action": Binding.Action.typeName,
+            "ActionRole": Binding.ActionRole.typeName,
+            "ActionTint": Binding.ActionTint.typeName,
+            "ActionTintRole": Binding.ActionTintRole.typeName,
+            "Bad": Binding.Bad.typeName,
+            "Ink": Binding.Ink.typeName,
+            "InkPrimary": Binding.InkPrimary.typeName,
+            "InkSecondary": Binding.InkSecondary.typeName,
+            "KnownName": Binding.KnownName.typeName,
+            "Line": Binding.Line.typeName,
+            "LineRole": Binding.LineRole.typeName,
+            "LocalType": Binding.LocalType.typeName,
+            "Mist": Binding.Mist.typeName,
+            "Muted": Binding.Muted.typeName,
+            "NavyTint": Binding.NavyTint.typeName,
+            "Ok": Binding.Ok.typeName,
+            "OnAccent": Binding.OnAccent.typeName,
+            "OnActionRole": Binding.OnActionRole.typeName,
+            "Paper": Binding.Paper.typeName,
+            "StatusMark": Binding.StatusMark.typeName,
+            "SurfaceCard": Binding.SurfaceCard.typeName,
+            "SurfacePage": Binding.SurfacePage.typeName,
+            "SurfaceTrack": Binding.SurfaceTrack.typeName,
+            "TextPrimary": Binding.TextPrimary.typeName,
+            "TextSecondary": Binding.TextSecondary.typeName,
+        ]
         return Markup.typeName.split(separator: ">", omittingEmptySubsequences: false).map { piece -> String in
             var fields = piece.split(separator: "\"", omittingEmptySubsequences: false).map(String.init)
             var declarations = ""
@@ -61,7 +94,7 @@ extension DeliveredSVG {
                     if paint.hasPrefix("var(--vi-role-"), paint.hasSuffix(")") {
                         let role = String(paint.dropFirst("var(--vi-role-".count).dropLast())
                         guard let reading = paints[role] else {
-                            preconditionFailure("\(Binding.self)#roles/\(role): missing paint")
+                            preconditionFailure("SVG paint reference is outside the declared role vocabulary: \(role)")
                         }
                         paint = reading
                         fields[index] = reading
@@ -88,9 +121,10 @@ extension DeliveredSVG {
 public protocol Paint: Structure {}
 
 /// Names a CSS paint slot whose value is supplied by the world's binding.
-public protocol PaintRole: Paint {} // law:allow: named style vocabulary
-extension PaintRole {
-    public static var typeName: String { "var(--vi-role-" + String(describing: Self.self) + ")" }
+protocol PaintRole: Paint {} // law:allow: closed SDK slot vocabulary; owners supply Paint values
+private enum PaintSlot<Role: PaintRole>: Close {}
+extension PaintSlot {
+    static var typeName: String { "var(--vi-role-" + String(describing: Role.self) + ")" }
 }
 
 /// Supplies the ground and glyph of the same card composition.
@@ -113,15 +147,15 @@ extension PageBackdrop {
 public enum ShadowEnvelope<Binding: DrawingStyle>: Close {}
 extension ShadowEnvelope {
     public static var typeName: String {
-        "x=\"" + XMLEscaped<StyleValue<Binding, StyleKeys.ShadowX>>.typeName + "\" y=\"" + XMLEscaped<StyleValue<Binding, StyleKeys.ShadowY>>.typeName
-            + "\" width=\"" + XMLEscaped<StyleValue<Binding, StyleKeys.ShadowWidth>>.typeName + "\" height=\"" + XMLEscaped<StyleValue<Binding, StyleKeys.ShadowHeight>>.typeName + "\""
+        "x=\"" + XMLEscaped<Binding.ShadowX>.typeName + "\" y=\"" + XMLEscaped<Binding.ShadowY>.typeName
+            + "\" width=\"" + XMLEscaped<Binding.ShadowWidth>.typeName + "\" height=\"" + XMLEscaped<Binding.ShadowHeight>.typeName + "\""
     }
 }
 public enum ShadowCast<Binding: DrawingStyle>: Close {}
 extension ShadowCast {
     public static var typeName: String {
-        "dx=\"" + XMLEscaped<StyleValue<Binding, StyleKeys.ShadowDx>>.typeName + "\" dy=\"" + XMLEscaped<StyleValue<Binding, StyleKeys.ShadowDy>>.typeName
-            + "\" stdDeviation=\"" + XMLEscaped<StyleValue<Binding, StyleKeys.ShadowDeviation>>.typeName + "\" flood-color=\"" + XMLEscaped<Binding.ShadowPaint>.typeName + "\""
+        "dx=\"" + XMLEscaped<Binding.ShadowDx>.typeName + "\" dy=\"" + XMLEscaped<Binding.ShadowDy>.typeName
+            + "\" stdDeviation=\"" + XMLEscaped<Binding.ShadowDeviation>.typeName + "\" flood-color=\"" + XMLEscaped<Binding.ShadowPaint>.typeName + "\""
     }
 }
 /// Reads the shadow paint and opacity from the canvas binding.
@@ -203,7 +237,7 @@ public protocol GatedBoldTextOnInk: Open, StyleBound {
 extension GatedBoldTextOnInk {
     public static var typeName: String {
         "<text x=\"\(X.typeName)\" y=\"\(Y.typeName)\" text-anchor=\"\(Anchor.typeName)\" "
-            + "fill=\"\(Fg.typeName)\" font-weight=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.BoldWeight>>.typeName)\" font-size=\"\(Size.typeName)\">\(Content.typeName)</text>\n"
+            + "fill=\"\(Fg.typeName)\" font-weight=\"\(XMLEscaped<Binding.BoldWeight>.typeName)\" font-size=\"\(Size.typeName)\">\(Content.typeName)</text>\n"
     }
 }
 public protocol GatedTextOnNavyTint: Open {
@@ -270,23 +304,41 @@ public protocol GlyphRectFillStroke: Open, StyleBound {
 extension GlyphRectFillStroke {
     public static var typeName: String {
         "<rect x=\"\(X.typeName)\" y=\"\(Y.typeName)\" width=\"\(W.typeName)\" height=\"\(H.typeName)\" rx=\"\(Radius.typeName)\" "
-            + "fill=\"\(Fill.typeName)\" stroke=\"\(Stroke.typeName)\" stroke-width=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.HairlineWidth>>.typeName)\"/>\n"
+            + "fill=\"\(Fill.typeName)\" stroke=\"\(Stroke.typeName)\" stroke-width=\"\(XMLEscaped<Binding.HairlineWidth>.typeName)\"/>\n"
     }
 }
 
 public enum Accent: PaintRole, Close {}
+extension Accent {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public enum AccentRole: PaintRole, Close {}
+extension AccentRole {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public protocol AccessWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public enum Action: PaintRole, Close {}
+extension Action {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public enum ActionRole: PaintRole, Close {}
+extension ActionRole {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public enum ActionTint: PaintRole, Close {}
+extension ActionTint {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public enum ActionTintRole: PaintRole, Close {}
+extension ActionTintRole {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public protocol ArchCaptionWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
@@ -317,6 +369,9 @@ public protocol AvatarCanvasSide: Structure {} // law:allow: owner-bound style n
 public protocol AvatarSide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public enum Bad: PaintRole, Close {}
+extension Bad {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public protocol BadgeChipWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
@@ -495,10 +550,19 @@ public protocol HubCardTall: Structure {} // law:allow: owner-bound style name; 
 public protocol HubCardWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public enum Ink: PaintRole, Close {}
+extension Ink {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public enum InkPrimary: PaintRole, Close {}
+extension InkPrimary {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public enum InkSecondary: PaintRole, Close {}
+extension InkSecondary {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public protocol KeyPitch: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
@@ -507,6 +571,9 @@ public protocol KeySide: Structure {} // law:allow: owner-bound style name; the 
 public protocol KeypadSide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public enum KnownName: PaintRole, Close {}
+extension KnownName {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public protocol KpiCardHeight: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
@@ -521,10 +588,19 @@ public protocol LegendTextWide: Structure {} // law:allow: owner-bound style nam
 public protocol LegendWideTextWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public enum Line: PaintRole, Close {}
+extension Line {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public enum LineRole: PaintRole, Close {}
+extension LineRole {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public enum LocalType: PaintRole, Close {}
+extension LocalType {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public protocol MarkerHeight: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
@@ -539,22 +615,43 @@ public protocol MarkerX: Structure {} // law:allow: owner-bound style name; the 
 public protocol MarkerY: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public enum Mist: PaintRole, Close {}
+extension Mist {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public enum Muted: PaintRole, Close {}
+extension Muted {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public enum NavyTint: PaintRole, Close {}
+extension NavyTint {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public enum Ok: PaintRole, Close {}
+extension Ok {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public enum OnAccent: PaintRole, Close {}
+extension OnAccent {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public enum OnActionRole: PaintRole, Close {}
+extension OnActionRole {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public protocol PanelInset: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public protocol PanelWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public enum Paper: PaintRole, Close {}
+extension Paper {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public protocol PersonChipWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
@@ -612,10 +709,16 @@ extension SoftShadowName {
 public protocol StatusChipWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public enum StatusMark: PaintRole, Close {}
+extension StatusMark {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public protocol StripInset: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public enum SurfaceCard: PaintRole, Close {}
+extension SurfaceCard {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public enum SurfaceCardShadowName: Close {}
 extension SurfaceCardShadowName {
@@ -623,8 +726,14 @@ extension SurfaceCardShadowName {
 }
 
 public enum SurfacePage: PaintRole, Close {}
+extension SurfacePage {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public enum SurfaceTrack: PaintRole, Close {}
+extension SurfaceTrack {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public protocol TaskCardTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
@@ -633,10 +742,16 @@ public protocol TextL: Structure {} // law:allow: owner-bound style name; the wo
 public protocol TextM: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public enum TextPrimary: PaintRole, Close {}
+extension TextPrimary {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public protocol TextS: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public enum TextSecondary: PaintRole, Close {}
+extension TextSecondary {
+    public static var typeName: String { PaintSlot<Self>.typeName }
+}
 
 public protocol TextWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
@@ -686,14 +801,6 @@ public protocol LegiblePaintPair: ReadablePaintPair {} // law:allow: named contr
 
 /// Names the palette channels shared by the drawing readers.
 public protocol DrawingPalette: DrawingStyle {
-    associatedtype Paper: Paint
-    associatedtype Ink: Paint
-    associatedtype Muted: Paint
-    associatedtype Line: Paint
-    associatedtype Ok: Paint
-    associatedtype Bad: Paint
-    associatedtype KnownName: Paint
-    associatedtype LocalType: Paint
     associatedtype InkOnPaper: LegiblePaintPair
     where InkOnPaper.Foreground == Ink, InkOnPaper.Background == Paper
     associatedtype MutedOnPaper: ReadablePaintPair
@@ -708,69 +815,68 @@ public protocol DrawingPalette: DrawingStyle {
     where LocalTypeOnPaper.Foreground == LocalType, LocalTypeOnPaper.Background == Paper
 }
 
-/// Names the style fields requested by the library readers.
-public enum StyleKeys {
-    public enum NoPaint: Close {}
-    public enum SquareRadius: Close {}
-    public enum HiddenOpacity: Close {}
-    public enum VisibleOpacity: Close {}
-    public enum ImmediateDuration: Close {}
-    public enum TableSortHintOpacity: Close {}
-    public enum TableSortActiveOpacity: Close {}
-    public enum TableSortHintSize: Close {}
-    public enum TableSortCursor: Close {}
-    public enum Cover06: Close {}
-    public enum Cover15: Close {}
-    public enum Cover16: Close {}
-    public enum Cover54: Close {}
-    public enum Cover70: Close {}
-    public enum Cover80: Close {}
-    public enum Cover90: Close {}
-
-    public enum FontFallbackAdvance: Close {}
-    public enum CaptionSlant: Close {}
-    public enum GlyphLineCap: Close {}
-    public enum GlyphLineJoin: Close {}
-    public enum HoverCursor: Close {}
-    public enum HoverEase: Close {}
-    public enum HoverVisibilityEase: Close {}
-    public enum ArrowWidth: Close {}
-    public enum BoldWeight: Close {}
-    public enum BreatheDuration: Close {}
-    public enum BreatheValues: Close {}
-    public enum DependencyDash: Close {}
-    public enum FigureArrowBox: Close {}
-    public enum FigureArrowHeight: Close {}
-    public enum FigureArrowPath: Close {}
-    public enum FigureArrowOrient: Close {}
-    public enum FigureArrowWidth: Close {}
-    public enum FigureArrowX: Close {}
-    public enum FigureArrowY: Close {}
-    public enum FontAdvanceTable: Close {}
-    public enum FontCapHeight: Close {}
-    public enum FontUnitsPerEm: Close {}
-    public enum GlyphStrokeWidth: Close {}
-    public enum HairlineWidth: Close {}
-    public enum HoverFadeDelay: Close {}
-    public enum HoverGrace: Close {}
-    public enum HoverLift: Close {}
-    public enum HoverStrokeWidth: Close {}
-    public enum HoverTransition: Close {}
-    public enum MarkerHeight: Close {}
-    public enum MarkerPath: Close {}
-    public enum MarkerOrient: Close {}
-    public enum MarkerWidth: Close {}
-    public enum MarkerX: Close {}
-    public enum MarkerY: Close {}
-    public enum ShadowDeviation: Close {}
-    public enum ShadowDx: Close {}
-    public enum ShadowDy: Close {}
-    public enum ShadowHeight: Close {}
-    public enum ShadowWidth: Close {}
-    public enum ShadowX: Close {}
-    public enum ShadowY: Close {}
-    public enum ShapeRadius: Close {}
-    public enum ThickGlyphWidth: Close {}
+/// Requires every named style field before a world can supply a binding.
+public protocol StyleKeys {
+    associatedtype NoPaint: Structure
+    associatedtype SquareRadius: Structure
+    associatedtype HiddenOpacity: Structure
+    associatedtype VisibleOpacity: Structure
+    associatedtype ImmediateDuration: Structure
+    associatedtype TableSortHintOpacity: Structure
+    associatedtype TableSortActiveOpacity: Structure
+    associatedtype TableSortHintSize: Structure
+    associatedtype TableSortCursor: Structure
+    associatedtype Cover06: Structure
+    associatedtype Cover15: Structure
+    associatedtype Cover16: Structure
+    associatedtype Cover54: Structure
+    associatedtype Cover70: Structure
+    associatedtype Cover80: Structure
+    associatedtype Cover90: Structure
+    associatedtype FontFallbackAdvance: Structure
+    associatedtype CaptionSlant: Structure
+    associatedtype GlyphLineCap: Structure
+    associatedtype GlyphLineJoin: Structure
+    associatedtype HoverCursor: Structure
+    associatedtype HoverEase: Structure
+    associatedtype HoverVisibilityEase: Structure
+    associatedtype ArrowWidth: Structure
+    associatedtype BoldWeight: Structure
+    associatedtype BreatheDuration: Structure
+    associatedtype BreatheValues: Structure
+    associatedtype DependencyDash: Structure
+    associatedtype FigureArrowBox: Structure
+    associatedtype FigureArrowHeight: Structure
+    associatedtype FigureArrowPath: Structure
+    associatedtype FigureArrowOrient: Structure
+    associatedtype FigureArrowWidth: Structure
+    associatedtype FigureArrowX: Structure
+    associatedtype FigureArrowY: Structure
+    associatedtype FontAdvanceTable: Structure
+    associatedtype FontCapHeight: Structure
+    associatedtype FontUnitsPerEm: Structure
+    associatedtype GlyphStrokeWidth: Structure
+    associatedtype HairlineWidth: Structure
+    associatedtype HoverFadeDelay: Structure
+    associatedtype HoverGrace: Structure
+    associatedtype HoverLift: Structure
+    associatedtype HoverStrokeWidth: Structure
+    associatedtype HoverTransition: Structure
+    associatedtype MarkerHeight: Structure
+    associatedtype MarkerPath: Structure
+    associatedtype MarkerOrient: Structure
+    associatedtype MarkerWidth: Structure
+    associatedtype MarkerX: Structure
+    associatedtype MarkerY: Structure
+    associatedtype ShadowDeviation: Structure
+    associatedtype ShadowDx: Structure
+    associatedtype ShadowDy: Structure
+    associatedtype ShadowHeight: Structure
+    associatedtype ShadowWidth: Structure
+    associatedtype ShadowX: Structure
+    associatedtype ShadowY: Structure
+    associatedtype ShapeRadius: Structure
+    associatedtype ThickGlyphWidth: Structure
 }
 
 public protocol TimedReveal: Structure {} // law:allow: owner-bound composition name

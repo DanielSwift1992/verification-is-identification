@@ -26,14 +26,21 @@ extension OutlineDefinitions {
     }
 }
 
+/// Relates a register to its declared face and size.
+public protocol OutlineRegister {
+    associatedtype Font: OutlineFontFace
+    associatedtype Size: Structure
+}
+
 /// Positions text with the same advances that supplied its glyph paths.
 /// Missing glyphs refuse at generation with their Unicode address.
 public protocol OutlineLabel: Open {
-    associatedtype Font: OutlineFontFace
+    associatedtype Register: OutlineRegister
+    associatedtype Font: OutlineFontFace where Font == Register.Font
     associatedtype Content: Structure
     associatedtype X: Structure
     associatedtype Y: Structure
-    associatedtype Size: Structure
+    associatedtype Size: Structure where Size == Register.Size
     associatedtype Fill: Paint
     associatedtype Legibility: ReadablePaintPair
     where Legibility.Foreground == Fill
@@ -170,8 +177,8 @@ extension FigureRoute {
 public enum FigureArrow<Binding: DrawingStyle, Colour: Structure>: Close {}
 extension FigureArrow {
     public static var typeName: String {
-        "<defs><marker id=\"arrow\" viewBox=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowBox>>.typeName)\" refX=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowX>>.typeName)\" refY=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowY>>.typeName)\" markerWidth=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowWidth>>.typeName)\" markerHeight=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowHeight>>.typeName)\" orient=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowOrient>>.typeName)\">"
-            + "<path d=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowPath>>.typeName)\" fill=\"\(XMLEscaped<Colour>.typeName)\"/></marker></defs>\n"
+        "<defs><marker id=\"arrow\" viewBox=\"\(XMLEscaped<Binding.FigureArrowBox>.typeName)\" refX=\"\(XMLEscaped<Binding.FigureArrowX>.typeName)\" refY=\"\(XMLEscaped<Binding.FigureArrowY>.typeName)\" markerWidth=\"\(XMLEscaped<Binding.FigureArrowWidth>.typeName)\" markerHeight=\"\(XMLEscaped<Binding.FigureArrowHeight>.typeName)\" orient=\"\(XMLEscaped<Binding.FigureArrowOrient>.typeName)\">"
+            + "<path d=\"\(XMLEscaped<Binding.FigureArrowPath>.typeName)\" fill=\"\(XMLEscaped<Colour>.typeName)\"/></marker></defs>\n"
     }
 }
 

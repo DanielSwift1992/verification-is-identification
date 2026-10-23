@@ -1,0 +1,27 @@
+{
+  "registers": [
+    {
+      "file": "register-valid.swift",
+      "admitted": true
+    },
+    {
+      "file": "register-font-refused.swift",
+      "admitted": false
+    },
+    {
+      "file": "register-size-refused.swift",
+      "admitted": false
+    }
+  ],
+  "incompleteStyles": [
+    {
+      "section": "roles",
+      "key": "LineRole"
+    },
+    {
+      "section": "layout",
+      "key": "MarkerWidth"
+    }
+  ],
+  "forbiddenImport": "forbidden-import.swift"
+}

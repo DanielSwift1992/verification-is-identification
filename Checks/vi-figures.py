@@ -28,29 +28,10 @@ def command(argv, **kwargs):
 
 
 def pinned_bytes(pin, item, cache):
-    address = pin['repository'] + '@' + pin['revision'] + ':' + item['path']
-    target = cache / item['sha256']
-    if target.exists():
-        data = target.read_bytes()
-    else:
-        repository = pin['repository'].removeprefix('https://github.com/')
-        if '/' not in repository or not re.fullmatch('[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', repository):
-            raise ValueError(address + ': unsupported input repository')
-        url = 'https://raw.githubusercontent.com/' + repository + '/' + pin['revision'] + '/' + item['path']
-        try:
-            data = urllib.request.urlopen(url, timeout=60).read()
-        except Exception as error:
-            raise ValueError(address + ': unavailable pinned input: ' + str(error)) from error
-        if digest(data) != item['sha256']:
-            raise ValueError(address + ': input SHA-256 differs')
-        cache.mkdir(parents=True, exist_ok=True)
-        with tempfile.NamedTemporaryFile(dir=cache, delete=False) as stream:
-            stream.write(data)
-            temporary = Path(stream.name)
-        os.replace(temporary, target)
-    if digest(data) != item['sha256']:
-        raise ValueError(address + ': input SHA-256 differs')
-    return data
+    import importlib.util
+    spec=importlib.util.spec_from_file_location('pinned_input',ROOT/'Scripts/pinned-input.py')
+    reader=importlib.util.module_from_spec(spec);spec.loader.exec_module(reader)
+    return reader.pinned_bytes(pin,item,cache)
 
 
 def stamp(svg, input_hash):
@@ -135,8 +116,8 @@ def label_registers():
             fields = dict(re.findall(r'public typealias (\w+) = ([^\n]+)', body))
             register = re.fullmatch(r'Figure([A-Za-z_0-9]+)', fields.get('Register', ''))
             paint = re.fullmatch(r'Theme\.([A-Za-z_0-9]+)', fields.get('Fill', ''))
-            if not register or not paint or fields.get('Font') != 'Register.Font' or fields.get('Size') != 'Register.Size':
-                raise ValueError(str(path) + ':' + name + ': face and size must name the declared gate register')
+            if not register or not paint:
+                raise ValueError(str(path) + ':' + name + ': label must declare its register and paint')
             ledger.append(dict(world=world, declaration=name, text=atoms[fields['Content']], register=register[1], paint=paint[1]))
     assert ledger, 'figures: no declared labels'
     return ledger
@@ -372,7 +353,7 @@ def main():
                 destination.write_bytes(source.read_bytes())
             else:
                 require_equal(destination.relative_to(ROOT), destination.read_bytes(), source.read_bytes())
-        paths = [Path(manifest['layout']['input']), Path('Worlds/Documentation/binding.json'), Path('Scripts/drawing-binding.py'), Path('Checks/documentation-binding.py'), manifest_path, Path(font['input']), Path(font['license']), Path(font['corpus']), Path('Assets/DejaVuSans.json'), Path(font['assignments']), Path('Package.swift'), Path('Checks/vi-figures.py')]
+        paths = [Path(manifest['layout']['input']), Path('Worlds/Documentation/binding.json'), Path('Scripts/drawing-binding.py'), Path('Scripts/pinned-input.py'), Path('Checks/documentation-binding.py'), manifest_path, Path(font['input']), Path(font['license']), Path(font['corpus']), Path('Assets/DejaVuSans.json'), Path(font['assignments']), Path('Package.swift'), Path('Checks/vi-figures.py')]
         paths += [Path(item[key]) for item in font['sources'] for key in ['input', 'license']]
         paths += [Path(name) for name in manifest['grounds']]
         paths += sorted((ROOT / WORLD).glob('*.swift'))
@@ -407,7 +388,7 @@ def main():
             + 'enum Member: Close {}\nextension Member { static var typeName: String { "\\u{2208}" } }\n'
             + 'enum Zero: Close {}\nextension Zero { static var typeName: String { "0" } }\n'
             + 'enum Start: Close {}\nextension Start { static var typeName: String { "start" } }\n'
-            + 'enum MissingLabel: OutlineLabel { typealias Font = MissingFace; typealias Content = Member; typealias X = Zero; typealias Y = Zero; typealias Size = FigureSans400Units; typealias Fill = FigureLight.Ink; typealias Legibility = FigureLight.InkOnPaper; typealias Anchor = Start }\n'
+            + 'enum MissingRegister: OutlineRegister { typealias Font = MissingFace; typealias Size = FigureSans400Units }\nenum MissingLabel: OutlineLabel { typealias Register = MissingRegister; typealias Font = MissingFace; typealias Content = Member; typealias X = Zero; typealias Y = Zero; typealias Size = FigureSans400Units; typealias Fill = FigureLight.Ink; typealias Legibility = FigureLight.InkOnPaper; typealias Anchor = Start }\n'
             + 'if CommandLine.arguments[1] == "--missing-glyph" { print(MissingLabel.typeName); exit(0) }\n'
             + 'switch CommandLine.arguments[1] {\n'
             + paint_case

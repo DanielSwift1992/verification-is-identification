@@ -2,7 +2,7 @@ import Notation
 import DocumentKit
 
 // GENERATED from the world drawing-binding/1 record.
-// drawing-binding-value-sha256: 2be22fdfe05e945976b46140ba82cc66114a2cf93b991e4f7c41d95ef54ae716
+// drawing-binding-value-sha256: 4bb095a8d4c6547bd8fa54bf5f456b7c6c89b4fbe09ca84f75a94d493cc40f37
 public enum FixtureBindingInk: Paint, Close {}
 extension FixtureBindingInk {
     public static var typeName: String { "color(xyz-d65 0.01 0.01 0.011)" }
@@ -590,102 +590,89 @@ public enum FixtureBinding: DrawingStyle, Close {
     public typealias ShadowPaint = FixtureBindingShadowPaint
     public typealias ShadowOpacity = FixtureBindingShadowOpacity
     public typealias LeafCountBases = FixtureBindingLeafCountBases
-    public typealias Values = FixtureBindingValues
+    public typealias HairBreath = FixtureBindingHairBreath
+    public typealias S24Breath = FixtureBindingS24Breath
+    public typealias BadgeChipWide = FixtureBindingBadgeChipWide
+    public typealias HairlineWidth = FixtureBindingHairlineWidth
+    public typealias ArrowWidth = FixtureBindingArrowWidth
+    public typealias DependencyDash = FixtureBindingDependencyDash
+    public typealias R4 = FixtureBindingR4
+    public typealias R6 = FixtureBindingR6
+    public typealias R10 = FixtureBindingR10
+    public typealias R16 = FixtureBindingR16
+    public typealias R20 = FixtureBindingR20
+    public typealias TextXXS = FixtureBindingTextXXS
+    public typealias TextS = FixtureBindingTextS
+    public typealias TextL = FixtureBindingTextL
+    public typealias TitleT = FixtureBindingTitleT
+    public typealias WeightRegular = FixtureBindingWeightRegular
+    public typealias ShapeRadius = FixtureBindingShapeRadius
+    public typealias ThickGlyphWidth = FixtureBindingThickGlyphWidth
+    public typealias GlyphStrokeWidth = FixtureBindingGlyphStrokeWidth
+    public typealias BoldWeight = FixtureBindingBoldWeight
+    public typealias HoverTransition = FixtureBindingHoverTransition
+    public typealias HoverLift = FixtureBindingHoverLift
+    public typealias HoverFadeDelay = FixtureBindingHoverFadeDelay
+    public typealias HoverGrace = FixtureBindingHoverGrace
+    public typealias HoverStrokeWidth = FixtureBindingHoverStrokeWidth
+    public typealias MarkerWidth = FixtureBindingMarkerWidth
+    public typealias MarkerHeight = FixtureBindingMarkerHeight
+    public typealias MarkerX = FixtureBindingMarkerX
+    public typealias MarkerY = FixtureBindingMarkerY
+    public typealias MarkerPath = FixtureBindingMarkerPath
+    public typealias FigureArrowBox = FixtureBindingFigureArrowBox
+    public typealias FigureArrowX = FixtureBindingFigureArrowX
+    public typealias FigureArrowY = FixtureBindingFigureArrowY
+    public typealias FigureArrowWidth = FixtureBindingFigureArrowWidth
+    public typealias FigureArrowHeight = FixtureBindingFigureArrowHeight
+    public typealias FigureArrowPath = FixtureBindingFigureArrowPath
+    public typealias ShadowX = FixtureBindingShadowX
+    public typealias ShadowY = FixtureBindingShadowY
+    public typealias ShadowWidth = FixtureBindingShadowWidth
+    public typealias ShadowHeight = FixtureBindingShadowHeight
+    public typealias ShadowDx = FixtureBindingShadowDx
+    public typealias ShadowDy = FixtureBindingShadowDy
+    public typealias ShadowDeviation = FixtureBindingShadowDeviation
+    public typealias BreatheValues = FixtureBindingBreatheValues
+    public typealias BreatheDuration = FixtureBindingBreatheDuration
+    public typealias CaptionSlant = FixtureBindingCaptionSlant
+    public typealias GlyphLineCap = FixtureBindingGlyphLineCap
+    public typealias GlyphLineJoin = FixtureBindingGlyphLineJoin
+    public typealias HoverCursor = FixtureBindingHoverCursor
+    public typealias HoverEase = FixtureBindingHoverEase
+    public typealias HoverVisibilityEase = FixtureBindingHoverVisibilityEase
+    public typealias NoPaint = FixtureBindingNoPaint
+    public typealias SquareRadius = FixtureBindingSquareRadius
+    public typealias HiddenOpacity = FixtureBindingHiddenOpacity
+    public typealias VisibleOpacity = FixtureBindingVisibleOpacity
+    public typealias ImmediateDuration = FixtureBindingImmediateDuration
+    public typealias TableSortHintOpacity = FixtureBindingTableSortHintOpacity
+    public typealias TableSortActiveOpacity = FixtureBindingTableSortActiveOpacity
+    public typealias TableSortHintSize = FixtureBindingTableSortHintSize
+    public typealias TableSortCursor = FixtureBindingTableSortCursor
+    public typealias Cover06 = FixtureBindingCover06
+    public typealias Cover15 = FixtureBindingCover15
+    public typealias Cover16 = FixtureBindingCover16
+    public typealias Cover54 = FixtureBindingCover54
+    public typealias Cover70 = FixtureBindingCover70
+    public typealias Cover80 = FixtureBindingCover80
+    public typealias Cover90 = FixtureBindingCover90
+    public typealias MarkerOrient = FixtureBindingMarkerOrient
+    public typealias FigureArrowOrient = FixtureBindingFigureArrowOrient
+    public typealias FontUnitsPerEm = FixtureBindingFontUnitsPerEm
+    public typealias FontCapHeight = FixtureBindingFontCapHeight
+    public typealias FontAdvanceTable = FixtureBindingFontAdvanceTable
+    public typealias FontFallbackAdvance = FixtureBindingFontFallbackAdvance
+    public typealias TextXS = FixtureBindingTextXS
+    public typealias TextM = FixtureBindingTextM
+    public typealias DisplayS = FixtureBindingDisplayS
+    public typealias Display = FixtureBindingDisplay
+    public typealias WeightBold = FixtureBindingWeightBold
     public typealias PaintFallbacks = FixtureBindingPaintFallbacks
-    public typealias PaintValues = FixtureBindingPaintValues
-}
-public enum FixtureBindingValues: Close {}
-extension FixtureBindingValues {
-    public static var typeName: String {
-        [
-            "HairBreath|" + String(FixtureBindingHairBreath.count),
-            "S24Breath|" + String(FixtureBindingS24Breath.count),
-            "BadgeChipWide|" + String(FixtureBindingBadgeChipWide.count),
-            "HairlineWidth|" + FixtureBindingHairlineWidth.typeName,
-            "ArrowWidth|" + FixtureBindingArrowWidth.typeName,
-            "DependencyDash|" + FixtureBindingDependencyDash.typeName,
-            "R4|" + FixtureBindingR4.typeName,
-            "R6|" + FixtureBindingR6.typeName,
-            "R10|" + FixtureBindingR10.typeName,
-            "R16|" + FixtureBindingR16.typeName,
-            "R20|" + FixtureBindingR20.typeName,
-            "TextXXS|" + FixtureBindingTextXXS.typeName,
-            "TextS|" + FixtureBindingTextS.typeName,
-            "TextL|" + FixtureBindingTextL.typeName,
-            "TitleT|" + FixtureBindingTitleT.typeName,
-            "WeightRegular|" + FixtureBindingWeightRegular.typeName,
-            "ShapeRadius|" + FixtureBindingShapeRadius.typeName,
-            "ThickGlyphWidth|" + FixtureBindingThickGlyphWidth.typeName,
-            "GlyphStrokeWidth|" + FixtureBindingGlyphStrokeWidth.typeName,
-            "BoldWeight|" + FixtureBindingBoldWeight.typeName,
-            "HoverTransition|" + FixtureBindingHoverTransition.typeName,
-            "HoverLift|" + FixtureBindingHoverLift.typeName,
-            "HoverFadeDelay|" + FixtureBindingHoverFadeDelay.typeName,
-            "HoverGrace|" + FixtureBindingHoverGrace.typeName,
-            "HoverStrokeWidth|" + FixtureBindingHoverStrokeWidth.typeName,
-            "MarkerWidth|" + FixtureBindingMarkerWidth.typeName,
-            "MarkerHeight|" + FixtureBindingMarkerHeight.typeName,
-            "MarkerX|" + FixtureBindingMarkerX.typeName,
-            "MarkerY|" + FixtureBindingMarkerY.typeName,
-            "MarkerPath|" + FixtureBindingMarkerPath.typeName,
-            "FigureArrowBox|" + FixtureBindingFigureArrowBox.typeName,
-            "FigureArrowX|" + FixtureBindingFigureArrowX.typeName,
-            "FigureArrowY|" + FixtureBindingFigureArrowY.typeName,
-            "FigureArrowWidth|" + FixtureBindingFigureArrowWidth.typeName,
-            "FigureArrowHeight|" + FixtureBindingFigureArrowHeight.typeName,
-            "FigureArrowPath|" + FixtureBindingFigureArrowPath.typeName,
-            "ShadowX|" + FixtureBindingShadowX.typeName,
-            "ShadowY|" + FixtureBindingShadowY.typeName,
-            "ShadowWidth|" + FixtureBindingShadowWidth.typeName,
-            "ShadowHeight|" + FixtureBindingShadowHeight.typeName,
-            "ShadowDx|" + FixtureBindingShadowDx.typeName,
-            "ShadowDy|" + FixtureBindingShadowDy.typeName,
-            "ShadowDeviation|" + FixtureBindingShadowDeviation.typeName,
-            "BreatheValues|" + FixtureBindingBreatheValues.typeName,
-            "BreatheDuration|" + FixtureBindingBreatheDuration.typeName,
-            "CaptionSlant|" + FixtureBindingCaptionSlant.typeName,
-            "GlyphLineCap|" + FixtureBindingGlyphLineCap.typeName,
-            "GlyphLineJoin|" + FixtureBindingGlyphLineJoin.typeName,
-            "HoverCursor|" + FixtureBindingHoverCursor.typeName,
-            "HoverEase|" + FixtureBindingHoverEase.typeName,
-            "HoverVisibilityEase|" + FixtureBindingHoverVisibilityEase.typeName,
-            "NoPaint|" + FixtureBindingNoPaint.typeName,
-            "SquareRadius|" + FixtureBindingSquareRadius.typeName,
-            "HiddenOpacity|" + FixtureBindingHiddenOpacity.typeName,
-            "VisibleOpacity|" + FixtureBindingVisibleOpacity.typeName,
-            "ImmediateDuration|" + FixtureBindingImmediateDuration.typeName,
-            "TableSortHintOpacity|" + FixtureBindingTableSortHintOpacity.typeName,
-            "TableSortActiveOpacity|" + FixtureBindingTableSortActiveOpacity.typeName,
-            "TableSortHintSize|" + FixtureBindingTableSortHintSize.typeName,
-            "TableSortCursor|" + FixtureBindingTableSortCursor.typeName,
-            "Cover06|" + FixtureBindingCover06.typeName,
-            "Cover15|" + FixtureBindingCover15.typeName,
-            "Cover16|" + FixtureBindingCover16.typeName,
-            "Cover54|" + FixtureBindingCover54.typeName,
-            "Cover70|" + FixtureBindingCover70.typeName,
-            "Cover80|" + FixtureBindingCover80.typeName,
-            "Cover90|" + FixtureBindingCover90.typeName,
-            "MarkerOrient|" + FixtureBindingMarkerOrient.typeName,
-            "FigureArrowOrient|" + FixtureBindingFigureArrowOrient.typeName,
-            "FontUnitsPerEm|" + FixtureBindingFontUnitsPerEm.typeName,
-            "FontCapHeight|" + FixtureBindingFontCapHeight.typeName,
-            "FontAdvanceTable|" + FixtureBindingFontAdvanceTable.typeName,
-            "FontFallbackAdvance|" + FixtureBindingFontFallbackAdvance.typeName,
-            "TextXS|" + FixtureBindingTextXS.typeName,
-            "TextM|" + FixtureBindingTextM.typeName,
-            "DisplayS|" + FixtureBindingDisplayS.typeName,
-            "Display|" + FixtureBindingDisplay.typeName,
-            "WeightBold|" + FixtureBindingWeightBold.typeName,
-        ].joined(separator: "\n")
-    }
 }
 public enum FixtureBindingPaintFallbacks: Close {}
 extension FixtureBindingPaintFallbacks {
     public static var typeName: String { "color(xyz-d65 0.01 0.01 0.011)|#1C191A\ncolor(xyz-d65 0.59 0.621 0.676)|#CECFCF\ncolor(xyz-d65 0.898 0.945 1.029)|#F9F9F9\ncolor(xyz-d65 0.228 0.24 0.261)|#868686\ncolor(xyz-d65 0.232 0.244 0.266)|#878788\ncolor(xyz-d65 0.613 0.645 0.702)|#D2D2D2\ncolor(xyz-d65 0.048 0.05 0.054)|#403F3F\ncolor(xyz-d65 0.17 0.15 0.61)|#2269CF\ncolor(xyz-d65 0.412 0.419 0.705)|#9DADD7\nvar(--vi-surface-card, color(xyz-d65 0.898 0.945 1.029))|#F9F9F9\nvar(--vi-surface-track, color(xyz-d65 0.898 0.945 1.029))|#F9F9F9\nvar(--vi-surface-page, color(xyz-d65 0.898 0.945 1.029))|#F9F9F9\nvar(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011))|#1C191A\nvar(--vi-text-secondary, color(xyz-d65 0.228 0.24 0.261))|#868686\nvar(--vi-accent, color(xyz-d65 0.17 0.15 0.61))|#2269CF\nvar(--vi-action, color(xyz-d65 0.17 0.15 0.61))|#2269CF\nvar(--vi-line, color(xyz-d65 0.613 0.645 0.702))|#D2D2D2\nvar(--vi-on-accent, color(xyz-d65 0.01 0.01 0.011))|#1C191A\nvar(--vi-action-tint, color(xyz-d65 0.898 0.945 1.029))|#F9F9F9\nvar(--vi-on-action, color(xyz-d65 0.01 0.01 0.011))|#1C191A\ncolor(xyz-d65 0.08 0.15 0.06)|#007D36\ncolor(xyz-d65 0.23 0.419 0.168)|#24C75B\ncolor(xyz-d65 0.24 0.15 0.05)|#BF4035\ncolor(xyz-d65 0.461 0.419 0.168)|#E39F60\ncolor(xyz-d65 0.25 0.15 0.63)|#8D48D3\ncolor(xyz-d65 0.454 0.419 0.691)|#B9A5D6\ncolor(xyz-d65 0.124 0.15 0.346)|#00749E\ncolor(xyz-d65 0.307 0.419 0.656)|#2BBECF" }
-}
-public enum FixtureBindingPaintValues: Close {}
-extension FixtureBindingPaintValues {
-    public static var typeName: String { "Ink|color(xyz-d65 0.01 0.01 0.011)\nPaper|color(xyz-d65 0.898 0.945 1.029)\nMist|color(xyz-d65 0.898 0.945 1.029)\nAccent|color(xyz-d65 0.898 0.945 1.029)\nMuted|color(xyz-d65 0.228 0.24 0.261)\nLine|color(xyz-d65 0.613 0.645 0.702)\nInkPrimary|color(xyz-d65 0.01 0.01 0.011)\nInkSecondary|color(xyz-d65 0.228 0.24 0.261)\nAction|color(xyz-d65 0.17 0.15 0.61)\nActionTint|color(xyz-d65 0.898 0.945 1.029)\nNavyTint|color(xyz-d65 0.898 0.945 1.029)\nSurfaceCard|var(--vi-surface-card, color(xyz-d65 0.898 0.945 1.029))\nSurfaceTrack|var(--vi-surface-track, color(xyz-d65 0.898 0.945 1.029))\nSurfacePage|var(--vi-surface-page, color(xyz-d65 0.898 0.945 1.029))\nTextPrimary|var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011))\nTextSecondary|var(--vi-text-secondary, color(xyz-d65 0.228 0.24 0.261))\nAccentRole|var(--vi-accent, color(xyz-d65 0.17 0.15 0.61))\nActionRole|var(--vi-action, color(xyz-d65 0.17 0.15 0.61))\nLineRole|var(--vi-line, color(xyz-d65 0.613 0.645 0.702))\nOnAccent|var(--vi-on-accent, color(xyz-d65 0.01 0.01 0.011))\nActionTintRole|var(--vi-action-tint, color(xyz-d65 0.898 0.945 1.029))\nOnActionRole|var(--vi-on-action, color(xyz-d65 0.01 0.01 0.011))\nStatusMark|color(xyz-d65 0.08 0.15 0.06)\nOk|color(xyz-d65 0.08 0.15 0.06)\nBad|color(xyz-d65 0.24 0.15 0.05)\nKnownName|color(xyz-d65 0.25 0.15 0.63)\nLocalType|color(xyz-d65 0.124 0.15 0.346)" }
 }
 extension FixtureBindingTextPrimary: LegibleOnSurfaceCard {} // owner witness: Paper_Ink_lit
 extension FixtureBindingTextSecondary: ReadableOnSurfaceCard {} // owner witness: Paper_Muted_lit

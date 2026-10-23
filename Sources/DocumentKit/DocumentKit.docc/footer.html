@@ -1,4 +1,4 @@
-<!-- drawing-binding-value-sha256: da75e97e8abbffbcb8b090961a3ea3b97c610ce16f9d133188a5ae3cb82bff96 -->
+<!-- drawing-binding-value-sha256: 596984acacd7cd5d73a7fa90bb2bd4a26cdcfd7eda1feeb7c6997a257911285a -->
 <!-- Shared inline-SVG and table hooks; the world supplies their style projection. -->
 <script>
 (function () {
@@ -199,7 +199,7 @@
   // direction, and hover tints the cell. A cursor change alone is a hint
   // only the mouse sees.
   var css = document.createElement("style");
-  css.textContent = ".content table, article table { display:block; overflow-x:auto; max-width:100%; }.content th, article th { cursor:pointer; white-space:nowrap; }.content th::after, article th::after { content:' \\2195'; opacity:0.35; font-size:0.85em; }.content th:hover, article th:hover { background:var(--vi-surface-track); }.content th[data-vi-sort=down]::after, article th[data-vi-sort=down]::after { content:' \\2193'; opacity:0.9; }.content th[data-vi-sort=up]::after, article th[data-vi-sort=up]::after { content:' \\2191'; opacity:0.9; }";
+  css.textContent = ".content table, article table {display:block;overflow-x:auto;max-width:100%;}.content th, article th {cursor:pointer;white-space:nowrap;}.content th::after, article th::after {content:' \\2195';opacity:0.35;font-size:0.85em;}.content th:hover, article th:hover {background:var(--vi-role-SurfaceTrack);}.content th[data-vi-sort=down]::after, article th[data-vi-sort=down]::after {content:' \\2193';opacity:0.9;}.content th[data-vi-sort=up]::after, article th[data-vi-sort=up]::after {content:' \\2191';opacity:0.9;}";
   if (css.textContent === "null") { throw new Error("footer#layout: table style is missing"); }
   document.head.appendChild(css);
   function keyOf(row, index) {

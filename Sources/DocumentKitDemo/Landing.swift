@@ -1079,7 +1079,7 @@ extension HoverRevealLine {
 enum SelfShowingLine: Close {}
 extension SelfShowingLine {
     static var typeName: String {
-        "`SelfShowing` costs nothing beyond an empty conformance: a canvas that opts in can read its own already-compiled composition back out as text and print it as a small `{ }` chip on the page — nothing here is a second copy of what compiled, so nothing here can drift from it."
+        "This example gives a `SelfShowing` canvas a source link. The gallery and its source page display the same declared source atom."
     }
 }
 

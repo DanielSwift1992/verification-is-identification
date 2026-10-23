@@ -1582,7 +1582,7 @@ extension BoundFrozenReveal {
 }
 
 /// Draws a centered disc with an SVG opacity animation.
-/// Binding supplies the opacity sequence and duration; the host advances the timeline.
+/// Binding supplies the opacity sequence and duration. The host advances the timeline.
 public protocol SpanBreathingDot: Spanning, StyleBound {
     associatedtype CY: Structure
     associatedtype R: Structure

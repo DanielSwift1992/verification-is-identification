@@ -129,12 +129,10 @@
 ///
 /// ## §S8 · A combinator earns its protocol by genuine reuse
 ///
-/// A protocol-plus-enum pair is worth writing when many different holes fill the same shape:
-/// `Symbol` wraps hundreds of distinct types across every page. It is not worth writing for a
-/// small, closed set in a diagram: four cardinal directions can be four named atoms,
-/// composed directly wherever they appear. A new point does not add a fifth direction.
-/// A reusable wrapper earns its cost when its set of fillings can grow independently of
-/// the wrapper. The number of current uses alone does not establish that need.
+/// An Open protocol keeps its composition while callers vary its associated types.
+/// That interface earns its cost when fillings can vary independently of the wrapper.
+/// A caller with a closed requirement can compose the supplied atoms directly.
+/// The number of current uses alone does not establish the need for an interface.
 ///
 /// ## §S9 · A multi-hole combinator still takes one door, not several
 ///
@@ -171,7 +169,7 @@
 /// ```
 ///
 /// DocLink composes RawName<Target>.self at the address edge. The caller supplies
-/// Target; the SDK supplies the distinction between reference and expansion.
+/// Target. The SDK supplies the distinction between reference and expansion.
 ///
 /// ## §S11 · There is no fifth door — Swift has no higher-kinded types
 ///

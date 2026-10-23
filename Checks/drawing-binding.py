@@ -187,6 +187,10 @@ public enum SlotWorld: GrownDiagram {
             owner_command=[str(owner_contract) if argument==str(requirements) else argument for argument in command]
             admitted=subprocess.run(owner_command,capture_output=True)
             assert admitted.returncode==0,admitted.stderr.decode()
+            if 'deliveredInput' in request:
+                delivered=json.loads(json.dumps(candidate))
+                delivered['styleContract']['input']=request['deliveredInput']
+                binding.typecheck_style(delivered,['-I',str(binary/'Modules')],temp,contract_source=owner_contract.read_bytes())
             candidate['layout'].pop(request['key'])
             companion.write_text(binding.swift(candidate,aliases=True,base=temp))
             refused=subprocess.run(owner_command,capture_output=True)

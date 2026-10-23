@@ -184,7 +184,7 @@ extension RawName {
 }
 
 /// Prints the name of `X` as a double-backtick reference.
-/// The unconstrained parameter also accepts protocol existentials; `Symbol` instead
+/// The unconstrained parameter also accepts protocol existentials. `Symbol` instead
 /// requires its target to conform to `Structure`. The caller supplies that target.
 public enum ProtocolReference<X>: Close {}
 extension ProtocolReference {

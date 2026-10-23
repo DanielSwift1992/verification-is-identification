@@ -192,7 +192,7 @@ def typecheck_style(value, includes, base=None, contract_source=None):
     with tempfile.TemporaryDirectory(prefix='owner-binding-') as directory:
         root = Path(directory)
         source = root / 'Binding.swift'
-        declaration = root / Path(value['styleContract']['input']).name
+        declaration = root / 'OwnerRequirements.swift'
         declaration.write_text(style_contract(value,base,contract_source),encoding='utf-8')
         source.write_text(swift(value, base=base, contract_source=contract_source),encoding='utf-8')
         result = subprocess.run(['swiftc','-typecheck',*includes,'-module-cache-path',str(root/'modules'),str(declaration),str(source)],capture_output=True,timeout=120)

@@ -386,7 +386,7 @@ The caption and surface protocols require the declared foreground conformance. A
 
 `HoverReveal` pairs a `Trigger` and a `Panel`: hovering either reveals the panel, while the trigger's own click still navigates. The panel must survive the pointer's travel to it, so the reveal is keyed on either half's hover, the close is a delay rather than an instant cutoff, and `pointer-events` is never touched mid-transition (SurfaceLaw §S26 — found by checking directly, not assumed).
 
-`SelfShowing` costs nothing beyond an empty conformance: a canvas that opts in can read its own already-compiled composition back out as text and print it as a small `{ }` chip on the page — nothing here is a second copy of what compiled, so nothing here can drift from it.
+This example gives a `SelfShowing` canvas a source link. The gallery and its source page display the same declared source atom.
 
 ### A drawn canvas
 

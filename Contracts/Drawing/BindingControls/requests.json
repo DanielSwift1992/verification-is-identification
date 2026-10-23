@@ -38,7 +38,8 @@
     {
       "file": "owner-requirements.swift",
       "protocol": "RenamedRequirements",
-      "key": "RenamedExtent"
+      "key": "RenamedExtent",
+      "deliveredInput": "Binding.swift"
     }
   ]
 }

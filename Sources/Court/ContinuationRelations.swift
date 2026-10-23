@@ -56,9 +56,22 @@ extension ContinuationCourt {
         var sort: String
         var leaves: [Path]
     }
+    struct RequiredClass: Codable, Equatable {
+        var block: Int
+        var questions: [Path]
+    }
+    struct QuestionResidue: Codable {
+        // One incoming E-edge for every non-root member, in block order.
+        // Together with the closed partition these forests certify exact E-classes.
+        var connections: [[EqualityStep]]
+        var needed: [RequiredClass]
+    }
     struct Obstruction: Codable {
         var question: Path
         var classes: [PartitionClass]
+        // Format-2 certificates without this extension retain only the original
+        // obstruction judgment. They make no claim to name the question's residue.
+        var residue: QuestionResidue? = nil
     }
     enum RelatedConclusion: Codable {
         case constructed([Selection], Program)
@@ -211,6 +224,48 @@ extension ContinuationCourt {
         guard index == inputs.count else { throw Failure("certificate: extra output selections") }
         return result
     }
+    static func requiredClasses(_ r: RelatedReading, blocks: [Path: Int]) throws -> [RequiredClass] {
+        let observed = Set(r.observation.leaves.compactMap { blocks[$0.source] })
+        var needed: [RequiredClass] = []
+        var indices: [Int: Int] = [:]
+        for leaf in r.question.leaves {
+            guard let block = blocks[leaf.source] else { throw Failure("certificate.residue: missing source class") }
+            if observed.contains(block) { continue }
+            if let index = indices[block] {
+                needed[index].questions.append(leaf.output)
+            } else {
+                indices[block] = needed.count
+                needed.append(RequiredClass(block: block, questions: [leaf.output]))
+            }
+        }
+        return needed
+    }
+    static func verifyResidue(_ residue: QuestionResidue, classes: [PartitionClass],
+                              blocks: [Path: Int], reading r: RelatedReading,
+                              edges: [Path: SourceEdge]) throws {
+        guard residue.connections.count == classes.count else {
+            throw Failure("certificate.residue.connections: incomplete class coverage")
+        }
+        for (index, block) in classes.enumerated() {
+            let at = "certificate.residue.connections[\(index)]"
+            let steps = residue.connections[index]
+            guard steps.count == block.leaves.count - 1 else { throw Failure(at + ": incomplete class forest") }
+            var connected: Set<Path> = [block.leaves[0]]
+            for (offset, step) in steps.enumerated() {
+                let here = at + "[\(offset)]"
+                guard let edge = edges[step.edge] else { throw Failure(here + ": no declared E-edge at this address") }
+                let from = step.reversed ? edge.right : edge.left
+                let to = step.reversed ? edge.left : edge.right
+                guard connected.contains(from), to == block.leaves[offset + 1] else {
+                    throw Failure(here + ": E-edge does not connect the next class member")
+                }
+                connected.insert(to)
+            }
+        }
+        guard residue.needed == (try requiredClasses(r, blocks: blocks)) else {
+            throw Failure("certificate.residue.needed: required classes or Question addresses differ")
+        }
+    }
     static func verifyRelated(_ request: String, certificate: RelatedCertificate,
                               source: StructuralSource, constructor: String = "Paired") throws -> Bool {
         let r = try relatedReading(request, certificate: certificate, source: source, constructor: constructor)
@@ -280,19 +335,26 @@ extension ContinuationCourt {
                     throw Failure("certificate.partition.question: partition does not separate the required class from Observation")
                 }
             }
+            if let residue = obstruction.residue {
+                try verifyResidue(residue, classes: obstruction.classes, blocks: blocks, reading: r, edges: edges)
+            }
             return false
         }
     }
     static func deriveRelated(_ request: String, source: StructuralSource,
                               constructor: String = "Paired") throws -> RelatedCertificate {
         let c = try Context(request, source: source, constructor: constructor)
+        func route(_ field: String) throws -> RouteProof {
+            do { return try deriveRoute(.field(c.root, field), context: c) }
+            catch { throw Failure(request + "." + field + ": " + String(describing: error)) }
+        }
         var certificate = try RelatedCertificate(
             request: request, constructor: constructor,
             source: c.derive(.field(c.root, "Source")),
-            observation: deriveRoute(.field(c.root, "Observation"), context: c),
-            question: deriveRoute(.field(c.root, "Question"), context: c),
+            observation: route("Observation"),
+            question: route("Question"),
             equalities: source.declarations[request]?.fields["Equalities"] == nil ? nil
-                : deriveRoute(.field(c.root, "Equalities"), context: c),
+                : route("Equalities"),
             conclusion: .constructed([], .pick([])))
         let r = try relatedReading(request, certificate: certificate, source: source, constructor: constructor)
         var adjacent: [Path: [(Path, EqualityStep)]] = [:]
@@ -326,21 +388,28 @@ extension ContinuationCourt {
             guard let route = reached[target.source] else {
                 var seen: Set<Path> = []
                 var classes: [PartitionClass] = []
+                var connections: [[EqualityStep]] = []
+                var blocks: [Path: Int] = [:]
                 for (path, sort) in r.source.leaves
                 where !seen.contains(path) {
                     var component = [path]
+                    var forest: [EqualityStep] = []
                     seen.insert(path)
                     var i = 0
                     while i < component.count {
-                        for (next, _) in adjacent[component[i]] ?? []
+                        for (next, step) in adjacent[component[i]] ?? []
                         where seen.insert(next).inserted {
                             component.append(next)
+                            forest.append(step)
                         }
                         i += 1
                     }
+                    for member in component { blocks[member] = classes.count }
                     classes.append(PartitionClass(sort: sort, leaves: component))
+                    connections.append(forest)
                 }
-                certificate.conclusion = .obstructed(Obstruction(question: target.output, classes: classes))
+                let residue = try QuestionResidue(connections: connections, needed: requiredClasses(r, blocks: blocks))
+                certificate.conclusion = .obstructed(Obstruction(question: target.output, classes: classes, residue: residue))
                 _ = try verifyRelated(request, certificate: certificate, source: source, constructor: constructor)
                 return certificate
             }

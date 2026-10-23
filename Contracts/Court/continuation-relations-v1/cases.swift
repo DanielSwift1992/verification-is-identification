@@ -77,3 +77,51 @@ enum SortIsNotSourcePlace<S: Structure> {
     typealias Observation = Source.Left
     typealias Question = S
 }
+// One unknown may be visible twice; no new source occurrence is created.
+enum DuplicatedOrigin<S: Structure> {
+    typealias Source = Paired<S, S>
+    typealias Observation = Paired<Source.Left, Source.Left>
+    typealias Question = Source.Left
+}
+enum WholeAsObservation<S: Structure> {
+    typealias Source = Paired<S, S>
+    typealias Observation = Source
+    typealias Question = Paired<Source.Right, Source.Left>
+}
+enum UnrootedObservation<S: Structure> {
+    typealias Source = Paired<S, S>
+    typealias Observation = Paired<Source.Left, S>
+    typealias Question = Source.Right
+}
+typealias DetachedShape<S: Structure> = Paired<S, S>
+enum UnrootedQuestionAlias<S: Structure> {
+    typealias Source = Paired<S, S>
+    typealias Observation = Source.Left
+    typealias Question = DetachedShape<S>
+}
+enum OtherWhole<S: Structure> {
+    typealias Source = Paired<S, S>
+}
+enum ForeignWholeView<S: Structure> {
+    typealias Source = Paired<S, S>
+    typealias Observation = Source.Left
+    typealias Question = OtherWhole<S>.Source.Right
+}
+enum MultiClassResidue<S: Structure> {
+    typealias Source = Paired<Paired<S, S>, Paired<S, S>>
+    typealias Observation = Source.Left.Left
+    typealias Question = Paired<Source.Right.Left, Paired<Source.Right.Right, Source.Right.Left>>
+    typealias Equalities = Paired<Source.Left.Left, Source.Left.Right>
+}
+enum ResidueEqualityClass<S: Structure> {
+    typealias Source = Paired<S, Paired<S, S>>
+    typealias Observation = Source.Left
+    typealias Question = Paired<Source.Right.Left, Source.Right.Right>
+    typealias Equalities = Paired<Source.Right.Left, Source.Right.Right>
+}
+enum ResiduePartialQuestion<S: Structure> {
+    typealias Source = Paired<Paired<S, S>, Paired<S, S>>
+    typealias Observation = Source.Left.Left
+    typealias Question = Paired<Source.Left.Right, Paired<Source.Right.Left, Source.Right.Right>>
+    typealias Equalities = Paired<Source.Left.Left, Source.Left.Right>
+}

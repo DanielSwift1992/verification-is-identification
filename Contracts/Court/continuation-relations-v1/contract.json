@@ -1,7 +1,7 @@
 {
   "schema": "vi.continuation.relations/1",
   "fixture": "cases.swift",
-  "sha256": "c423c1213285b3c45d916eec0a2ae9f99de3e888031bf323667675b470ca86ca",
+  "sha256": "0704ee0e32d6ae43ed13add0498e9d3255873ecb94d0440211802d18da6951fe",
   "cases": [
     {
       "request": "AddressIdentity",
@@ -56,7 +56,42 @@
     {
       "request": "SortIsNotSourcePlace",
       "outcome": "unsupported",
-      "address": "unsupported or conditional declaration"
+      "address": "SortIsNotSourcePlace.Question"
+    },
+    {
+      "request": "DuplicatedOrigin",
+      "outcome": "constructed"
+    },
+    {
+      "request": "WholeAsObservation",
+      "outcome": "constructed"
+    },
+    {
+      "request": "UnrootedObservation",
+      "outcome": "unsupported",
+      "address": "UnrootedObservation.Observation"
+    },
+    {
+      "request": "UnrootedQuestionAlias",
+      "outcome": "unsupported",
+      "address": "UnrootedQuestionAlias.Question"
+    },
+    {
+      "request": "ForeignWholeView",
+      "outcome": "unsupported",
+      "address": "ForeignWholeView.Question"
+    },
+    {
+      "request": "MultiClassResidue",
+      "outcome": "obstructed"
+    },
+    {
+      "request": "ResidueEqualityClass",
+      "outcome": "obstructed"
+    },
+    {
+      "request": "ResiduePartialQuestion",
+      "outcome": "obstructed"
     }
   ]
 }

@@ -24,8 +24,8 @@ final class ContinuationRelationsTests: XCTestCase {
         }
         return (p, selections, program)
     }
-    private func obstructed() throws -> (C.RelatedCertificate, C.Obstruction) {
-        let p = try C.deriveRelated("DisconnectedClass", source: world())
+    private func obstructed(_ request: String = "DisconnectedClass") throws -> (C.RelatedCertificate, C.Obstruction) {
+        let p = try C.deriveRelated(request, source: world())
         guard case let .obstructed(partition) = p.conclusion else {
             throw C.Failure("fixture did not obstruct")
         }
@@ -64,7 +64,7 @@ final class ContinuationRelationsTests: XCTestCase {
                 print("T0088 \(name): \(holds ? "constructed" : "obstructed"); serialized replay agrees")
             }
         }
-        XCTAssertEqual(cases.count, 13)
+        XCTAssertEqual(cases.count, 21)
     }
     func testOneEdgeChainAndAddressAreDifferentGrounds() throws {
         let (_, identity, _) = try constructed("AddressIdentity")
@@ -141,12 +141,87 @@ final class ContinuationRelationsTests: XCTestCase {
     }
     func testCoarserSeparatingPartitionIsStillAValidObstruction() throws {
         var (p, partition) = try obstructed()
+        // A coarser counterexample partition asserts no exact E-class names.
+        partition.residue = nil
         partition.classes = [
             .init(sort: "$continuation0", leaves: [[.left, .left], [.left, .right]]),
             .init(sort: "$continuation0", leaves: [[.right, .left], [.right, .right]])
         ]
         p.conclusion = .obstructed(partition)
         XCTAssertFalse(try C.verifyRelated(p.request, certificate: p, source: world()))
+    }
+    func testCutsMapEachVisibleLeafToOneWholePlace() throws {
+        let (p, selections, _) = try constructed("DuplicatedOrigin")
+        let r = try C.relatedReading(p.request, certificate: p, source: world())
+        XCTAssertEqual(r.observation.leaves.map(\.source), [[.left], [.left]])
+        XCTAssertEqual(r.question.leaves.map(\.source), [[.left]])
+        XCTAssertEqual(selections[0].input, [.left])
+        let (whole, _, _) = try constructed("WholeAsObservation")
+        let w = try C.relatedReading(whole.request, certificate: whole, source: world())
+        XCTAssertEqual(w.question.leaves.map(\.source), [[.right], [.left]])
+    }
+    func testQuestionResidueNamesAllMissingClassesAndAddresses() throws {
+        let (_, partition) = try obstructed("MultiClassResidue")
+        let residue = try XCTUnwrap(partition.residue)
+        XCTAssertEqual(residue.needed, [
+            .init(block: 1, questions: [[.left], [.right, .right]]),
+            .init(block: 2, questions: [[.right, .left]])
+        ])
+        XCTAssertEqual(partition.classes[1].leaves, [[.right, .left]])
+        XCTAssertEqual(partition.classes[2].leaves, [[.right, .right]])
+        let (_, joined) = try obstructed("ResidueEqualityClass")
+        XCTAssertEqual(try XCTUnwrap(joined.residue).needed, [.init(block: 1, questions: [[.left], [.right]])])
+        XCTAssertEqual(joined.classes[1].leaves, [[.right, .left], [.right, .right]])
+        let (_, partial) = try obstructed("ResiduePartialQuestion")
+        XCTAssertEqual(try XCTUnwrap(partial.residue).needed, [
+            .init(block: 1, questions: [[.right, .left]]),
+            .init(block: 2, questions: [[.right, .right]])
+        ])
+    }
+    func testResidueCannotOmitClassesOrRetargetQuestionAddresses() throws {
+        var (p, partition) = try obstructed("MultiClassResidue")
+        partition.residue!.needed.removeLast()
+        p.conclusion = .obstructed(partition)
+        refuses("residue-omits-required-class", address: "certificate.residue.needed") {
+            _ = try C.verifyRelated(p.request, certificate: p, source: world())
+        }
+        (p, partition) = try obstructed("MultiClassResidue")
+        partition.residue!.needed[0].questions.removeLast()
+        p.conclusion = .obstructed(partition)
+        refuses("residue-omits-question-address", address: "certificate.residue.needed") {
+            _ = try C.verifyRelated(p.request, certificate: p, source: world())
+        }
+    }
+    func testClassNamesRequireDeclaredEConnections() throws {
+        var (p, partition) = try obstructed("ResidueEqualityClass")
+        partition.residue!.connections[1][0].reversed.toggle()
+        p.conclusion = .obstructed(partition)
+        refuses("residue-foreign-origin", address: "certificate.residue.connections[1][0]") {
+            _ = try C.verifyRelated(p.request, certificate: p, source: world())
+        }
+        (p, partition) = try obstructed()
+        partition.classes[1].leaves.append(contentsOf: partition.classes[2].leaves)
+        partition.classes.removeLast()
+        partition.residue!.connections.removeLast()
+        partition.residue!.connections[1] = [.init(edge: [], reversed: false)]
+        p.conclusion = .obstructed(partition)
+        refuses("residue-merges-independent-places", address: "certificate.residue.connections[1][0]") {
+            _ = try C.verifyRelated(p.request, certificate: p, source: world())
+        }
+    }
+    func testClassForestCoverageAndEdgeAddressesRefuse() throws {
+        var (p, partition) = try obstructed("ResidueEqualityClass")
+        partition.residue!.connections[1].removeLast()
+        p.conclusion = .obstructed(partition)
+        refuses("residue-incomplete-forest", address: "certificate.residue.connections[1]") {
+            _ = try C.verifyRelated(p.request, certificate: p, source: world())
+        }
+        (p, partition) = try obstructed("ResidueEqualityClass")
+        partition.residue!.connections[1][0].edge = [.left]
+        p.conclusion = .obstructed(partition)
+        refuses("residue-foreign-edge", address: "certificate.residue.connections[1][0]") {
+            _ = try C.verifyRelated(p.request, certificate: p, source: world())
+        }
     }
     func testIncompletePartitionAndDifferentSortRefuse() throws {
         var (p, partition) = try obstructed()

@@ -36,11 +36,13 @@ public protocol OutlineRegister {
 /// Missing glyphs refuse at generation with their Unicode address.
 public protocol OutlineLabel: Open {
     associatedtype Register: OutlineRegister
-    associatedtype Font: OutlineFontFace where Font == Register.Font
+    associatedtype Font: OutlineFontFace
+    where Font == Register.Font
     associatedtype Content: Structure
     associatedtype X: Structure
     associatedtype Y: Structure
-    associatedtype Size: Structure where Size == Register.Size
+    associatedtype Size: Structure
+    where Size == Register.Size
     associatedtype Fill: Paint
     associatedtype Legibility: ReadablePaintPair
     where Legibility.Foreground == Fill

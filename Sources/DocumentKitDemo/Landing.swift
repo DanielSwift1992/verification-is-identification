@@ -86,7 +86,7 @@ extension BuildAPageStep1 {
 enum BuildAPageStep2: Close {}
 extension BuildAPageStep2 {
     static var typeName: String {
-        "2. **Compose the body.** `@StructureBuilder static var body: some Structure { … }` — statements fold into a `Pair`-cons chain. Every leaf is an atom or another combinator: a name enters through `Symbol`, a count through `Tally`, prose through a prose atom — a type whose `typeName` is the sentence. A consuming module may generate its prose from a manifest; this page carries its own."
+        "2. **Compose the body.** `@StructureBuilder static var body: some Structure { … }` — statements fold into a `Pair`-cons chain. Every leaf is an atom or another combinator: a name enters through `Symbol`, a count through `Tally`, prose through a prose atom — a type whose `typeName` is the sentence. A consuming module may generate its prose from a manifest. This page carries its own."
     }
 }
 enum BuildAPageStep3: Close {}

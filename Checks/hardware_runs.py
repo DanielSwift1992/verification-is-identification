@@ -177,7 +177,9 @@ def prepared(name):
 
 
 def arguments():
-    store = configure()
+    store = configure(required=False)
+    if store is None:
+        return []
     result = ['--runs', str(store.root), '--manifest', str(store.manifest)]
     if _PREPARED_CACHE is not None:
         result += ['--prepared-cache', str(_PREPARED_CACHE)]
@@ -196,7 +198,7 @@ def owned(*parts):
 
 
 def resolve_recorded(name, sha256, source_root, *, corpus_root=None):
-    """A saved machine prefix is opaque: resolve run inputs by catalogue hash."""
+    """A saved machine prefix is opaque; catalogue origin disambiguates hashes."""
     store = configure()
     label = PurePosixPath(name)
     base = Path(source_root).resolve()
@@ -224,12 +226,29 @@ def resolve_recorded(name, sha256, source_root, *, corpus_root=None):
     matches = sorted(key for key, row in store.files.items() if row['sha256'] == sha256)
     if not matches:
         raise EvidenceError('no run input with the recorded SHA-256 in supplied MANIFEST.json: ' + sha256)
+    # Compare names as text only: never follow a retired machine prefix.
+    # Current relative references also remain readable on a subsequent replay.
+    identified = []
+    for key in matches:
+        origin = PurePosixPath(store.files[key].get('origin', '')).parts
+        if label.as_posix() == key or (origin and len(label.parts) >= len(origin)
+                                      and label.parts[-len(origin):] == origin):
+            identified.append(key)
+    if len(identified) == 1:
+        return store.path(identified[0])
+    if len(identified) > 1 or len(matches) > 1:
+        raise EvidenceError('ambiguous recorded input: MANIFEST.json origin must identify one file with SHA-256 ' + sha256)
     return store.path(matches[0])
 
 
 def rebind_map(entries, source_root):
-    return {address(resolve_recorded(name, digest, source_root), source_root): digest
-            for name, digest in entries.items()}
+    rebound = {}
+    for name, digest in entries.items():
+        key = address(resolve_recorded(name, digest, source_root), source_root)
+        if key in rebound:
+            raise EvidenceError('recorded references collapse to one catalogue identity: ' + key)
+        rebound[key] = digest
+    return rebound
 
 
 def include_reader(function):

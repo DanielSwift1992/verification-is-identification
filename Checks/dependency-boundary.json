@@ -59,7 +59,7 @@
     },
     {
       "name": "temporary evidence directory",
-      "pattern": "\\bprivate/|(?<=/)\\s*['\"]private['\"]",
+      "pattern": "['\"`](?:[^'\"`\\s]*/)?private/[^'\"`\\s]*['\"`]|(?<=/)\\s*['\"]private['\"]|(?:\\bos\\.path\\.join|\\b[A-Za-z_]\\w*(?:\\.[A-Za-z_]\\w*)*\\.joinpath|\\bPath)\\s*\\([^\\n)]*['\"]private['\"]|^Checks/(?:[^/\\s]+/)*private/",
       "paths": [
         "Checks"
       ],
@@ -3344,6 +3344,30 @@
     {
       "path": "Checks/Nested/BoundaryEvidenceProbe.py",
       "text": "DATA=ROOT / \"private\" / \"input.json\""
+    },
+    {
+      "path": "Checks/Nested/BoundaryEvidenceProbe.py",
+      "text": "DATA=os.path.join(ROOT,'private','input.json')"
+    },
+    {
+      "path": "Checks/Nested/BoundaryEvidenceProbe.py",
+      "text": "DATA=ROOT.joinpath('private','input.json')"
+    },
+    {
+      "path": "Checks/Nested/BoundaryEvidenceProbe.py",
+      "text": "DATA=ROOT.parent.joinpath(\"private\", \"input.json\")"
+    },
+    {
+      "path": "Checks/Nested/BoundaryEvidenceProbe.py",
+      "text": "DATA=Path(ROOT,\"private\",\"input.json\")"
+    },
+    {
+      "path": "Checks/Nested/BoundaryEvidenceProbe.md",
+      "text": "Archived input: `../private/input.json`"
+    },
+    {
+      "path": "Checks/private/Nested/BoundaryEvidenceProbe.py",
+      "text": "pass"
     }
   ],
   "positive_probes": [
@@ -3358,6 +3382,22 @@
     {
       "path": "Checks/BoundaryOrdinary.py",
       "text": "DATA='../privateer/input.json'"
+    },
+    {
+      "path": "Checks/BoundaryOrdinary.md",
+      "text": "The split is private/public."
+    },
+    {
+      "path": "Checks/BoundaryOrdinary.md",
+      "text": "Swift uses private/fileprivate access modifiers."
+    },
+    {
+      "path": "Checks/BoundaryOrdinary.md",
+      "text": "DATA=os.path.join(ROOT,'privateer','input.json')"
+    },
+    {
+      "path": "Checks/BoundaryOrdinary.md",
+      "text": "DATA=ROOT.joinpath('public','input.json')"
     }
   ]
 }

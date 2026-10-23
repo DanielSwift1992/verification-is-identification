@@ -2,7 +2,9 @@
 
 ## Explicit evidence inputs and interpreter
 
-Historical run names below are relative to the caller-supplied `hardware-runs` folder. Pass `--runs DIR` and `--manifest FILE` explicitly to readers of these inputs; neither has a local or neighboring default. `MANIFEST.json` supplies each input's SHA-256. Old machine-specific receipt keys are opaque: run files are resolved by that hash, and new references use a relative path inside the supplied folder. Raw provider payloads, saved receipts and the closed program wire formats are not rewritten. Reader implementation fingerprints include the shared evidence reader.
+Historical run names below are relative to the caller-supplied `hardware-runs` folder. Pass `--runs DIR` and `--manifest FILE` explicitly to readers of these inputs; neither has a local or neighboring default. `MANIFEST.json` supplies each input's SHA-256. Old machine-specific receipt keys are opaque: run files are resolved by their recorded hash and catalogue `origin` (ambiguous origins refuse), and new references use a relative path inside the supplied folder. Raw provider payloads, saved receipts and the closed program wire formats are not rewritten. Reader implementation fingerprints include the shared evidence reader.
+
+Offline analysis commands may write fixed destinations in `Research/Artifacts`. Running them in the corpus can overwrite historical receipts with new path keys and reader fingerprints. Replay in a disposable checkout with a copy of the required artifacts; retain the original receipts unchanged.
 
 ```sh
 RUNS=/path/to/hardware-runs
@@ -12,7 +14,7 @@ python3 Checks/hardware_runs.py --runs "$RUNS" --manifest "$EVIDENCE_MANIFEST" -
 
 This checksum mode imports no quantum SDK and makes no provider or hardware call. Evidence inputs reject writes. Fixed historical output slots are not assumed to be archived inputs: a prospective new run requires an explicit `--work DIR` outside the evidence store (and is not run by this task). For a fresh local preparation, choose a separate `--prepared-cache DIR` (or the bridge's explicit `--cache DIR`) outside the evidence store; an old cache is not silently requalified for changed sources or compilers. New output names in examples are examples, not selected destinations or permission to run another experiment.
 
-Use the caller-selected Python 3.12 interpreter with the pinned IBMBridge requirements: `qiskit==2.5.2`, `qiskit-ibm-runtime==0.49.0`, `qiskit-aer==0.17.2`, and `qiskit-qasm3-import==0.6.0`. The offline continuation tools use that same caller-selected environment; no virtual-environment path is built into the scripts.
+The saved IBM preparation `ready.json` records Python 3.12.11. Use a caller-selected interpreter compatible with the pinned [IBM requirements](requirements.txt). The offline continuation tools use that same caller-selected environment; no virtual-environment path is built into the scripts.
 
 
 ## Joint-return experiment with explicit quantum memory
@@ -21,15 +23,15 @@ Use the caller-selected Python 3.12 interpreter with the pinned IBMBridge requir
 
 ```sh
 python3 Checks/IBMBridge/joint_memory_checks.py --runs "$RUNS" --manifest "$EVIDENCE_MANIFEST"
-python3 Checks/IBMBridge/joint_memory.py --runs "$RUNS" --manifest "$EVIDENCE_MANIFEST" prepare \
+python3 Checks/IBMBridge/joint_memory.py prepare \
   --output new-joint-memory
-python3 Checks/IBMBridge/joint_memory.py --runs "$RUNS" --manifest "$EVIDENCE_MANIFEST" submit \
+python3 Checks/IBMBridge/joint_memory.py submit \
   --output new-joint-memory
-python3 Checks/IBMBridge/joint_memory.py --runs "$RUNS" --manifest "$EVIDENCE_MANIFEST" collect \
+python3 Checks/IBMBridge/joint_memory.py collect \
   --output new-joint-memory
 ```
 
-The saved `ibm-joint-memory-20260914` is read-only evidence; use offline replay rather than collecting or submitting it again. One job, 9×1024 shots, 45-second cap, Open/free only. Initial layout is a connected four-wire path; routing is prohibited, and all actual CZ contacts, resets and measurement wires are checked after compilation. Logical and ISA density-matrix results agree. The frozen source, proof, QPY, provider input circuits and returned metadata bind the readout to this experiment. Intent is written durably before submission; an uncertain reply permits reconciliation only, never an automatic second job.
+`joint_memory.py` operates on an explicitly selected `--output` directory and current corpus artifacts; it needs no archived input store. Its provider stages still require separate authorization. The saved `ibm-joint-memory-20260914` is read-only evidence; use offline replay rather than collecting or submitting it again. One job, 9×1024 shots, 45-second cap, Open/free only. Initial layout is a connected four-wire path; routing is prohibited, and all actual CZ contacts, resets and measurement wires are checked after compilation. Logical and ISA density-matrix results agree. The frozen source, proof, QPY, provider input circuits and returned metadata bind the readout to this experiment. Intent is written durably before submission; an uncertain reply permits reconciliation only, never an automatic second job.
 
 The [prespecified protocol](../../Research/2026-09-14-joint-memory-hardware-protocol.md) defines all 27 Bernoulli questions and simultaneous uncertainty intervals. These concern average conditional pass probabilities during the executed tests, including preparation and readout. They do not become a full-DE diamond error bound or a guarantee of future applicability. All outcomes, including failures, are retained. The old adapters and their frozen campaign remain unchanged.
 
@@ -46,7 +48,7 @@ This adapter reuses `Checks/BraketBridge/execute.py` and its checked acquisition
 
 The fixed cases are AcquireZ/plus, AcquireZ/minus and AcquireY/plus_i, 256 shots each, in one Sampler job. No paid instance is admitted. An API key must be stored outside the repository at `~/.config/vi/ibm-open-api-key`, mode 0600. The adjacent `ibm-open.json` identifies the intended instance with a `crn` field. Both its `plan=open` and `pricing_type=free` are read from IBM before use. The API key itself inherits its IBM user's permissions; the Open restriction is enforced by this runner, not by the name of the key.
 
-Use a Python 3.12 virtual environment and the pinned `requirements.txt`. Use the caller-selected interpreter; the repository selects no virtual environment. For a new experiment:
+Use an environment compatible with the pinned [requirements](requirements.txt). Use the caller-selected interpreter; the repository selects no virtual environment. For a new experiment:
 
 ```sh
 python3 Checks/IBMBridge/pilot.py --runs "$RUNS" --manifest "$EVIDENCE_MANIFEST" prepare \

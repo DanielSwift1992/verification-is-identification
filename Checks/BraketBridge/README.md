@@ -2,7 +2,9 @@
 
 ## Explicit evidence inputs and interpreter
 
-Historical run names below are relative to the caller-supplied `hardware-runs` folder. Pass `--runs DIR` and `--manifest FILE` explicitly to readers of these inputs; neither has a local or neighboring default. `MANIFEST.json` supplies each input's SHA-256. Old machine-specific receipt keys are opaque: run files are resolved by that hash, and new references use a relative path inside the supplied folder. Raw provider payloads, saved receipts and the closed program wire formats are not rewritten. Reader implementation fingerprints include the shared evidence reader.
+Historical run names below are relative to the caller-supplied `hardware-runs` folder. Pass `--runs DIR` and `--manifest FILE` explicitly to readers of these inputs; neither has a local or neighboring default. `MANIFEST.json` supplies each input's SHA-256. Old machine-specific receipt keys are opaque: run files are resolved by their recorded hash and catalogue `origin` (ambiguous origins refuse), and new references use a relative path inside the supplied folder. Raw provider payloads, saved receipts and the closed program wire formats are not rewritten. Reader implementation fingerprints include the shared evidence reader.
+
+Offline analysis commands may write fixed destinations in `Research/Artifacts`. Running them in the corpus can overwrite historical receipts with new path keys and reader fingerprints. Replay in a disposable checkout with a copy of the required artifacts; retain the original receipts unchanged.
 
 ```sh
 RUNS=/path/to/hardware-runs
@@ -12,7 +14,7 @@ python3 Checks/hardware_runs.py --runs "$RUNS" --manifest "$EVIDENCE_MANIFEST" -
 
 This checksum mode imports no quantum SDK and makes no provider or hardware call. Evidence inputs reject writes. Fixed historical output slots are not assumed to be archived inputs: a prospective new run requires an explicit `--work DIR` outside the evidence store (and is not run by this task). For a fresh local preparation, choose a separate `--prepared-cache DIR` (or the bridge's explicit `--cache DIR`) outside the evidence store; an old cache is not silently requalified for changed sources or compilers. New output names in examples are examples, not selected destinations or permission to run another experiment.
 
-Use the caller-selected Python 3.12 interpreter with `amazon-braket-sdk==1.98.0` and `amazon-braket-default-simulator==1.28.0`, the versions recorded by the saved SDK preflight. No environment is selected or installed by these scripts.
+The saved Braket records report Python 3.9.6. Use a caller-selected interpreter compatible with the pinned [SDK requirements](requirements.txt); the scripts select and install no environment.
 
 
 A bounded engineering implementation of IiS45–46. The same typed source constructs the H/S/Z path, its Pauli frame, the acquired record, and the final question. A finite planner proposes a decoder from the public joint law. Generated Swift applications check that decoder against the actual source fields before its operations are exported and executed in Amazon Braket's local density-matrix simulator.
@@ -63,8 +65,10 @@ The first real submission was rejected by AWS with `AccessDeniedException` befor
 From the repository root, with Swift and an existing Python environment containing `amazon-braket-sdk` and `amazon-braket-default-simulator`:
 
 ```sh
-BRAKET_PYTHON=/path/to/python Checks/BraketBridge/run.sh --runs "$RUNS" --manifest "$EVIDENCE_MANIFEST" --output NEW_BUILD_DIRECTORY
+BRAKET_PYTHON=/path/to/python Checks/BraketBridge/run.sh --output NEW_BUILD_DIRECTORY
 ```
+
+`build.py` reads current corpus sources and writes a fresh build; it needs no evidence store. `--prepare` and `--execute` also work without archived inputs when an explicit fresh `--cache DIR` is supplied. Omitting that cache selects an archived preparation and requires both evidence arguments.
 
 `BRAKET_PYTHON` defaults to `python3`. The command installs nothing, reads no AWS profile, and imports only the local simulator. A new output directory must be passed explicitly with `--output`; archived evidence is read-only. `--output /absolute/new/directory` selects another empty destination. A timeout is an infrastructure failure, never an expected logical refusal.
 

@@ -9,7 +9,7 @@ import sys as _evidence_sys
 from pathlib import Path as _EvidencePath
 _evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
 import hardware_runs as _runs
-_runs.configure(required=(__name__ == "__main__"))
+_runs.configure(required=False)
 import argparse
 import fcntl
 import hashlib

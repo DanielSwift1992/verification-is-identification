@@ -67,6 +67,32 @@ class EvidenceControls(unittest.TestCase):
         self.assertEqual(inputs.address(path, ROOT), 'campaign/raw-result.json')
         with self.assertRaises(inputs.EvidenceError):inputs.resolve_recorded('missing', '0'*64, ROOT)
 
+    def test_equal_hash_files_follow_catalogue_origin_and_ambiguity_refuses(self):
+        first = 'campaign/raw-result.json'
+        second = 'other-run/same.json'
+        raw = (self.runs/first).read_bytes()
+        duplicate = self.runs/second
+        duplicate.parent.mkdir(); duplicate.write_bytes(raw)
+        data = json.loads(self.manifest.read_text())
+        data['files'][0]['origin'] = 'retired/'+first
+        data['files'].append({'path': 'hardware-runs/'+second, 'origin': 'retired/'+second,
+                              'sha256': hashlib.sha256(raw).hexdigest(), 'bytes': len(raw)})
+        self.manifest.write_text(json.dumps(data))
+        store = inputs.Evidence(self.runs, self.manifest)
+        digest = hashlib.sha256(raw).hexdigest()
+        with mock.patch.object(inputs, '_STORE', store):
+            entries = {'retired/'+first: digest, '/old/machine/retired/'+second: digest}
+            self.assertEqual(inputs.rebind_map(entries, ROOT), {first: digest, second: digest})
+            self.assertEqual(inputs.address(inputs.resolve_recorded(second, digest, ROOT), ROOT), second)
+            with self.assertRaisesRegex(inputs.EvidenceError, 'ambiguous'):
+                inputs.resolve_recorded('unknown-name', digest, ROOT)
+            store.files[second]['origin'] = store.files[first]['origin']
+            with self.assertRaisesRegex(inputs.EvidenceError, 'ambiguous'):
+                inputs.resolve_recorded('retired/'+first, digest, ROOT)
+            store.files[second]['origin'] = 'retired/'+second
+            with self.assertRaisesRegex(inputs.EvidenceError, 'collapse'):
+                inputs.rebind_map({'retired/'+first: digest, first: digest}, ROOT)
+
     def test_retired_machine_path_is_not_resolved_or_opened(self):
         retired = Path('/retired/machine/data.json')
         original_resolve = Path.resolve
@@ -135,13 +161,38 @@ class EvidenceControls(unittest.TestCase):
         marker = b'_runs.' + b'configure(required='
         scripts = [p for p in (ROOT/'Checks').rglob('*.py') if marker in p.read_bytes()]
         self.assertEqual(len(scripts), 41)
+        optional = {'Checks/BraketBridge/build.py', 'Checks/BraketBridge/prepare.py',
+                    'Checks/BraketBridge/execute.py', 'Checks/IBMBridge/joint_memory.py'}
         for path in scripts:
+            if path.relative_to(ROOT).as_posix() in optional:
+                continue
             with self.subTest(path=path.relative_to(ROOT)):
                 result = subprocess.run([sys.executable, str(path)], capture_output=True, text=True, timeout=10)
                 self.assertEqual(result.returncode, 2, result.stderr)
                 self.assertIn('hardware-runs folder', result.stderr)
                 self.assertNotIn('ModuleNotFoundError', result.stderr)
-        print(f'evidence entrypoints: {len(scripts)}/{len(scripts)} refuse before SDK imports without explicit inputs')
+        print(f'evidence readers: {len(scripts)-len(optional)} refuse before SDK imports without explicit inputs; {len(optional)} allow explicit fresh outputs/cache')
+
+
+    def test_fresh_writers_need_output_and_help_needs_no_evidence_or_sdk(self):
+        for name, extra in [('BraketBridge/build.py', []), ('IBMBridge/joint_memory.py', ['prepare'])]:
+            command = [sys.executable, str(ROOT/'Checks'/name)]
+            refused = subprocess.run(command+extra, capture_output=True, text=True, timeout=10)
+            self.assertEqual(refused.returncode, 2, refused.stderr)
+            self.assertIn('--output', refused.stderr)
+            self.assertNotIn('hardware-runs folder', refused.stderr)
+            self.assertNotIn('ModuleNotFoundError', refused.stderr)
+            help_result = subprocess.run(command+['--help'], capture_output=True, text=True, timeout=10)
+            self.assertEqual(help_result.returncode, 0, help_result.stderr)
+            self.assertIn('--output', help_result.stdout)
+        for name in ('BraketBridge/prepare.py', 'BraketBridge/execute.py'):
+            result = subprocess.run([sys.executable, str(ROOT/'Checks'/name), '--help'],
+                                    capture_output=True, text=True, timeout=10)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn('--cache', result.stdout)
+        with mock.patch.object(inputs, '_STORE', None), mock.patch.object(sys, 'argv', ['writer']):
+            self.assertEqual(inputs.arguments(), [])
+            self.assertEqual(inputs.bind_receipt({'new': True}), {'new': True})
 
 
 if __name__ == '__main__':

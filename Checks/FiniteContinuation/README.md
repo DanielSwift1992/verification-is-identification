@@ -4,7 +4,9 @@ The reader consumers listed in [WhereV2](../Archive/WhereV2/README.md) are froze
 
 ## Explicit evidence inputs and interpreter
 
-Historical run names below are relative to the caller-supplied `hardware-runs` folder. Pass `--runs DIR` and `--manifest FILE` explicitly to readers of these inputs; neither has a local or neighboring default. `MANIFEST.json` supplies each input's SHA-256. Old machine-specific receipt keys are opaque: run files are resolved by that hash, and new references use a relative path inside the supplied folder. Raw provider payloads, saved receipts and the closed program wire formats are not rewritten. Reader implementation fingerprints include the shared evidence reader.
+Historical run names below are relative to the caller-supplied `hardware-runs` folder. Pass `--runs DIR` and `--manifest FILE` explicitly to readers of these inputs; neither has a local or neighboring default. `MANIFEST.json` supplies each input's SHA-256. Old machine-specific receipt keys are opaque: run files are resolved by their recorded hash and catalogue `origin` (ambiguous origins refuse), and new references use a relative path inside the supplied folder. Raw provider payloads, saved receipts and the closed program wire formats are not rewritten. Reader implementation fingerprints include the shared evidence reader.
+
+Offline analysis commands may write fixed destinations in `Research/Artifacts`. Running them in the corpus can overwrite historical receipts with new path keys and reader fingerprints. Replay in a disposable checkout with a copy of the required artifacts; retain the original receipts unchanged.
 
 ```sh
 RUNS=/path/to/hardware-runs
@@ -14,7 +16,7 @@ python3 Checks/hardware_runs.py --runs "$RUNS" --manifest "$EVIDENCE_MANIFEST" -
 
 This checksum mode imports no quantum SDK and makes no provider or hardware call. Evidence inputs reject writes. Fixed historical output slots are not assumed to be archived inputs: a prospective new run requires an explicit `--work DIR` outside the evidence store (and is not run by this task). For a fresh local preparation, choose a separate `--prepared-cache DIR` (or the bridge's explicit `--cache DIR`) outside the evidence store; an old cache is not silently requalified for changed sources or compilers. New output names in examples are examples, not selected destinations or permission to run another experiment.
 
-Use the caller-selected Python 3.12 interpreter with the pinned IBMBridge requirements: `qiskit==2.5.2`, `qiskit-ibm-runtime==0.49.0`, `qiskit-aer==0.17.2`, and `qiskit-qasm3-import==0.6.0`. The offline continuation tools use that same caller-selected environment; no virtual-environment path is built into the scripts.
+Use a caller-selected environment compatible with the pinned [IBM requirements](../IBMBridge/requirements.txt). The [IBM interpreter record](../IBMBridge/README.md#explicit-evidence-inputs-and-interpreter) identifies the saved preparation environment; no virtual-environment path is built into the scripts.
 
 
 For the fixed ideal T/X case, the source now lives in `Sources/Examples/FinitePauliTSource.swift`. `build_from_source.py` reads its actual fields through the existing court, searches, and checks the resulting applications against all sixteen current rows using both JS and native courts. See the [source-binding report](../../Research/2026-09-14-current-source-continuation.md). The broader models described below remain separately scoped research code.

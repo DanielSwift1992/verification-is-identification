@@ -7,7 +7,7 @@
     "transport": "vi.press.json/2"
   },
   "files": {
-    "fixtures/cases.json": "eba13a7d7e3d8564019f942c1ee482b8e93c698ac5bd57408dfd80e8dd4b3e23"
+    "fixtures/cases.json": "be14f39e217cc64fdb23fbe2a193bb237d214a252ad42022e91dacacd456f05a"
   },
   "cases_file": "fixtures/cases.json",
   "cases": [
@@ -83,6 +83,8 @@
     "replay-legal-leading-line-comment-definitions",
     "replay-legal-leading-spaces-line-comment-definitions",
     "replay-legal-leading-doc-comment-definitions",
-    "replay-legal-leading-block-comment-dictionary"
+    "replay-legal-leading-block-comment-dictionary",
+    "duplicate-slot-place",
+    "separate-slot-place"
   ]
 }

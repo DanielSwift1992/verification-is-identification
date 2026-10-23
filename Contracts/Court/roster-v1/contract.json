@@ -85,5 +85,9 @@
       "outcome": "not-established",
       "records": []
     }
-  ]
+  ],
+  "reading_cases": {
+    "file": "reading-cases.json",
+    "sha256": "757d3509f38bc5afd7a68a007183adacbf95331f6a541db72e29f174ab5c0d35"
+  }
 }

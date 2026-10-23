@@ -1,0 +1,223 @@
+{
+  "schema": "vi.court.reading-observations/1",
+  "cases": [
+    {
+      "id": "second-file-brace-refused",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "// leading\nenum X: P {\n"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "unsupported",
+      "records": [],
+      "diagnostic": "second.swift:2: unclosed {"
+    },
+    {
+      "id": "second-file-brace-neighbor",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "// leading\nenum X: P {}\n"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "holds",
+      "records": [
+        "X"
+      ]
+    },
+    {
+      "id": "third-file-header-refused",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "enum Q {}\n"
+        ],
+        [
+          "third.swift",
+          "\n\nenum 9Z: P {}\n"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "unsupported",
+      "records": [],
+      "diagnostic": "third.swift:3: unread declaration header"
+    },
+    {
+      "id": "third-file-header-neighbor",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "enum Q {}\n"
+        ],
+        [
+          "third.swift",
+          "\n\nenum X: P {}\n"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "holds",
+      "records": [
+        "X"
+      ]
+    },
+    {
+      "id": "fourth-line-string-refused",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "\n\nenum X: P {\nstatic var typeName: String { \"unterminated\n}\n}"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "unsupported",
+      "records": [],
+      "diagnostic": "second.swift:4: unterminated string"
+    },
+    {
+      "id": "fourth-line-string-neighbor",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "\n\nenum X: P {\nstatic var typeName: String { \"closed\" }\n}"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "holds",
+      "records": [
+        "X"
+      ]
+    },
+    {
+      "id": "third-line-comment-refused",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "enum X: P {}\n\n/* unclosed"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "unsupported",
+      "records": [],
+      "diagnostic": "second.swift:3: unterminated block comment"
+    },
+    {
+      "id": "third-line-comment-neighbor",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "enum X: P {}\n\n/* closed */"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "holds",
+      "records": [
+        "X"
+      ]
+    },
+    {
+      "id": "crlf-fourth-line-string-refused",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "\r\nenum X: P {\r\n\r\nstatic var typeName: String { \"unterminated\r\n}\r\n}"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "unsupported",
+      "records": [],
+      "diagnostic": "second.swift:4: unterminated string"
+    },
+    {
+      "id": "crlf-fourth-line-string-neighbor",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "\r\nenum X: P {\r\n\r\nstatic var typeName: String { \"closed\" }\r\n}"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "holds",
+      "records": [
+        "X"
+      ]
+    },
+    {
+      "id": "fourth-line-raw-string-refused",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "\n\nenum X: P {\nstatic var typeName: String { #\"unterminated\n}\n}"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "unsupported",
+      "records": [],
+      "diagnostic": "second.swift:4: unterminated raw string literal"
+    },
+    {
+      "id": "fourth-line-raw-string-neighbor",
+      "files": [
+        [
+          "first.swift",
+          "protocol P {}\n"
+        ],
+        [
+          "second.swift",
+          "\n\nenum X: P {\nstatic var typeName: String { #\"closed\"# }\n}"
+        ]
+      ],
+      "protocol": "P",
+      "outcome": "holds",
+      "records": [
+        "X"
+      ]
+    }
+  ]
+}

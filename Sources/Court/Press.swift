@@ -46,7 +46,7 @@ public enum Press {
         let substitution: [String: String]
         // A path to a constructor disagreement; nil denotes a complete match.
         let mismatch: [Int]?
-        let bounds: ApplicationCourt.Obligations?
+        let bounds: ApplicationCourt.Derivation?
     }
     public struct Substitution {
         public let state: String
@@ -67,6 +67,12 @@ public enum Press {
     static func addressed<T>(_ address: String, _ action: () throws -> T) throws -> T {
         do { return try action() }
         catch let error as Failure { throw error }
+        catch let error as StructuralSource.AddressedFailure {
+            if case let .duplicateDeclaration(name)? = error.issue {
+                try fail("\(error.description); \(name) appears twice", at: address)
+            }
+            try fail(error.description, at: address)
+        }
         catch { try fail(String(describing: error), at: address) }
     }
 
@@ -382,7 +388,7 @@ public enum Press {
                 candidates.append(Candidate(rule: rule.name, substitution: prebound.mapValues(\.text), mismatch: path, bounds: nil))
                 continue
             }
-            let proof: ApplicationCourt.Obligations? = try addressed("\(dictionaryPath)#\(rule.name)") {
+            let proof: ApplicationCourt.Derivation? = try addressed("\(dictionaryPath)#\(rule.name)") {
                 let goals = try obligations(rule, bindings)
                 if goals.isEmpty { return nil }
                 guard let source = read.source else { throw R.Failure("missing definitions for bound") }

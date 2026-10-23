@@ -5,8 +5,13 @@ import Foundation
 struct StructuralSource {
     typealias Failure = DefinitionReduction.Failure
     struct AddressedFailure: Error, CustomStringConvertible {
+        enum Issue { case duplicateDeclaration(String) }
         let description: String
-        init(_ description: String) { self.description = description }
+        let issue: Issue?
+        init(_ description: String, issue: Issue? = nil) {
+            self.description = description
+            self.issue = issue
+        }
     }
     struct Requirement: Equatable {
         enum Kind { case equal, member }
@@ -69,30 +74,32 @@ struct StructuralSource {
     var extensionAddresses: [String: Address] = [:]
     var literals: [String: Literal] = [:]
 
-    struct Token: Codable {
+    struct Token: Codable, Equatable {
         let word: String
         let bytes: Range<Int>
-    }
-    static func locatedTokens(_ source: String) throws -> [Token] {
-        let read = try scan(source, carrying: true)
-        return read.words.indices.map { Token(word: read.words[$0], bytes: read.starts[$0]..<read.ends[$0]) }
+        static func == (lhs: Token, rhs: Token) -> Bool {
+            lhs.bytes == rhs.bytes && Data(lhs.word.utf8) == Data(rhs.word.utf8)
+        }
     }
     static func tokens(_ source: String) throws -> [String] {
         try scan(source).words
     }
 
-    /// The roster uses the same scanner, retaining original byte coordinates.
+    struct ScanFailure: Error, CustomStringConvertible {
+        let line: Int
+        let byte: Int
+        let description: String
+    }
+    /// One scanner; carrying retains the original byte coordinates in the tape.
     /// Literal contents are carried without evaluating Swift escapes or values.
     static func scan(_ source: String, carrying: Bool = false) throws -> Lexed {
-        let chars = Array(carrying ? source : WhereJudge.sourceLines(source))
+        let chars = Array(source)
         var offsets = [0], lines = [1]
-        if carrying {
-            for c in chars {
-                offsets.append(offsets.last! + String(c).utf8.count)
-                lines.append(lines.last! + ((c == "\n" || c == "\r\n" || c == "\r") ? 1 : 0))
-            }
+        for c in chars {
+            offsets.append(offsets.last! + String(c).utf8.count)
+            lines.append(lines.last! + ((c == "\n" || c == "\r\n" || c == "\r") ? 1 : 0))
         }
-        func newline(_ c: Character) -> Bool { c == "\n" || (carrying && (c == "\r\n" || c == "\r")) }
+        func newline(_ c: Character) -> Bool { c == "\n" || (c == "\r\n" || c == "\r") }
         var result = Lexed(), i = 0, interpolationCount = 0
         func emit(_ word: String, from start: Int, to end: Int) {
             result.words.append(word)
@@ -102,6 +109,9 @@ struct StructuralSource {
                 result.lines.append(lines[start])
             }
         }
+        func failure(_ message: String, at start: Int) -> ScanFailure {
+            ScanFailure(line: lines[start], byte: offsets[start], description: message)
+        }
         func rawStringBegins() -> Bool {
             guard i < chars.count, chars[i] == "#" else { return false }
             var j = i
@@ -109,6 +119,7 @@ struct StructuralSource {
             return j < chars.count && chars[j] == "\""
         }
         func skipString() throws {
+            let start = i
             let triple = i + 2 < chars.count && chars[i + 1] == "\"" && chars[i + 2] == "\""
             i += triple ? 3 : 1
             while i < chars.count {
@@ -130,13 +141,14 @@ struct StructuralSource {
                 }
                 i += 1
             }
-            throw Failure("unterminated string")
+            throw failure("unterminated string", at: start)
         }
         func skipInterpolation() throws {
+            let start = i
             var depth = 1
             while i < chars.count {
                 if rawStringBegins() {
-                    throw Failure("raw string literals are outside structural reader scope")
+                    throw failure("raw string literals are outside structural reader scope", at: i)
                 }
                 if chars[i] == "\"" {
                     try skipString()
@@ -148,6 +160,7 @@ struct StructuralSource {
                     continue
                 }
                 if i + 1 < chars.count, chars[i] == "/", chars[i + 1] == "*" {
+                    let commentStart = i
                     i += 2
                     var comments = 1
                     while i < chars.count, comments > 0 {
@@ -161,7 +174,7 @@ struct StructuralSource {
                             i += 1
                         }
                     }
-                    if comments != 0 { throw Failure("unterminated interpolation comment") }
+                    if comments != 0 { throw failure("unterminated interpolation comment", at: commentStart) }
                     continue
                 }
                 if chars[i] == "(" { depth += 1 }
@@ -174,11 +187,11 @@ struct StructuralSource {
                 }
                 i += 1
             }
-            throw Failure("unterminated string interpolation")
+            throw failure("unterminated string interpolation", at: start)
         }
         while i < chars.count {
             let c = chars[i]
-            if c == "\n" || (carrying && (c == "\r\n" || c == "\r")) {
+            if c == "\n" || (c == "\r\n" || c == "\r") {
                 emit("\n", from: i, to: i + 1)
                 i += 1
                 continue
@@ -193,6 +206,7 @@ struct StructuralSource {
                 continue
             }
             if c == "/", i + 1 < chars.count, chars[i + 1] == "*" {
+                let commentStart = i
                 i += 2
                 var depth = 1
                 while i < chars.count, depth > 0 {
@@ -207,11 +221,10 @@ struct StructuralSource {
                         i += 1
                     }
                 }
-                if depth != 0 { throw Failure("unterminated block comment") }
+                if depth != 0 { throw failure("unterminated block comment", at: commentStart) }
                 continue
             }
             if rawStringBegins() {
-                guard carrying else { throw Failure("raw string literals are outside structural reader scope") }
                 let start = i
                 while chars[i] == "#" { i += 1 }
                 let hashes = i - start
@@ -220,7 +233,7 @@ struct StructuralSource {
                 let content = i
                 let closer = Array(String(repeating: "\"", count: quotes) + String(repeating: "#", count: hashes))
                 while i + closer.count <= chars.count && Array(chars[i..<(i + closer.count)]) != closer { i += 1 }
-                guard i + closer.count <= chars.count else { throw Failure("unterminated raw string literal") }
+                guard i + closer.count <= chars.count else { throw failure("unterminated raw string literal", at: start) }
                 result.literals[result.words.count] = offsets[content]..<offsets[i]
                 if String(chars[content..<i]).contains("\\" + String(repeating: "#", count: hashes) + "(") {
                     result.interpolated.insert(result.words.count)
@@ -501,7 +514,7 @@ struct StructuralSource {
     }
 
     struct ReadingCertificate: Codable {
-        struct Unit: Codable {
+        struct Unit: Codable, Equatable {
             let kind: String
             let lower: Int
             let upper: Int
@@ -510,227 +523,162 @@ struct StructuralSource {
         let units: [Unit]
     }
     struct FileReading {
-        let tokens: [Token]
+        let origin: String
+        let source: String
+        let lexed: Lexed
+        let scope: ReadingScope
         let regions: [Region]
         let certificate: ReadingCertificate
+        let excludedConditionals: Int
+        let conditionalSubjects: Set<String>
+        var tokens: [Token] { certificate.tokens }
     }
-    /// Every non-trivia token is covered by one top-level grammar production.
-    /// Value bodies are balanced carried regions, not established relations.
-    static func regions(_ source: String, origin: String) throws -> FileReading {
-        let located = try locatedTokens(source), ts = located.map(\.word)
-        var units: [ReadingCertificate.Unit] = [], i = 0
+    enum ReadingScope {
+        // Complete flat-declaration grammar, used by both Press and roster.
+        case declarations
+        // Historical structural projection carries executable/conditional
+        // regions without deriving relations from their contents.
+        case projection
+    }
+    /// One complete reading, with an explicit scope for carried productions.
+    /// The scanner starts at byte zero. A comment cannot reset at a submitted
+    /// token boundary, including the base case before the first token.
+    static func regions(_ source: String, origin: String, scope: ReadingScope = .declarations) throws -> FileReading {
+        let lexed: Lexed
+        do { lexed = try scan(source, carrying: true) }
+        catch let error as ScanFailure {
+            throw AddressedFailure("\(origin):\(error.line): \(error.description) (byte \(error.byte))")
+        }
+        let ts = lexed.words
+        let located = ts.indices.map { Token(word: ts[$0], bytes: lexed.starts[$0]..<lexed.ends[$0]) }
+        var units: [ReadingCertificate.Unit] = [], regions: [Region] = [], i = 0
+        var excluded = 0, conditionalSubjects: Set<String> = [], declared: Set<String> = []
+        let qualifiers = ["public", "internal", "private", "fileprivate", "package", "open"]
+        let declarations = ["enum", "struct", "protocol", "extension", "typealias"]
+        func nextAfterQualifiers(_ start: Int) -> Int {
+            var next = start
+            while next < ts.count, ts[next] == "\n" || qualifiers.contains(ts[next]) { next += 1 }
+            return next
+        }
         while i < ts.count {
             let start = i, kind = ts[i]
-            if ["\n", ";", "public", "internal", "private", "fileprivate", "package", "open"].contains(kind) {
-                i += 1
-            } else if kind == "@" {
-                guard i + 1 < ts.count, ts[i + 1] == "resultBuilder" else { throw Failure("unsupported attribute in \(origin)") }
-                i += 2
-            } else if kind == "import" {
-                i += 1
-                _ = statement(ts, index: &i)
-            } else if ["enum", "struct", "protocol", "extension", "typealias"].contains(kind) {
-                _ = try readDeclaration(ts, index: &i, origin: origin)
-            } else {
-                throw Failure("unread token '\(kind)' at \(origin):byte \(located[i].bytes.lowerBound)")
-            }
-            units.append(.init(kind: kind, lower: start, upper: i))
-        }
-        return try replayReading(ReadingCertificate(tokens: located, units: units), source: source, origin: origin)
-    }
-    /// Grammar judgement on supplied byte spans and production boundaries.
-    /// No whole-file declaration search and no printer/round-trip is involved.
-    /// Each lexical production is judged on its own raw bytes by the same
-    /// lexical grammar; gaps must derive trivia, never an omitted token.
-    static func replayReading(_ proof: ReadingCertificate, source: String, origin: String) throws -> FileReading {
-        let bytes = Array(source.utf8)
-        func slice(_ lower: Int, _ upper: Int) throws -> String {
-            guard lower >= 0, upper >= lower, upper <= bytes.count,
-                let text = String(bytes: bytes[lower..<upper], encoding: .utf8) else {
-                throw Failure("invalid UTF-8 span at \(origin):byte \(lower)")
-            }
-            return text
-        }
-        var end = 0
-        var previous: Token?
-        for token in proof.tokens {
-            guard token.bytes.lowerBound >= end, token.bytes.upperBound > token.bytes.lowerBound else { throw Failure("overlapping lexical spans in \(origin)") }
-            guard try locatedTokens(slice(end, token.bytes.lowerBound)).isEmpty else { throw Failure("uncovered token at \(origin):byte \(end)") }
-            let raw = try slice(token.bytes.lowerBound, token.bytes.upperBound)
-            let local = try locatedTokens(raw)
-            guard local.count == 1, local[0].word == token.word, local[0].bytes == 0..<raw.utf8.count else {
-                throw Failure("invalid lexical production at \(origin):byte \(token.bytes.lowerBound)")
-            }
-            if let previous {
-                let joined = try locatedTokens(slice(previous.bytes.lowerBound, token.bytes.upperBound))
-                let offset = previous.bytes.lowerBound
-                guard joined.count == 2, joined[0].word == previous.word, joined[1].word == token.word,
-                    joined[0].bytes == 0..<(previous.bytes.upperBound - offset),
-                    joined[1].bytes == (token.bytes.lowerBound - offset)..<(token.bytes.upperBound - offset) else {
-                    throw Failure("non-maximal lexical production at \(origin):byte \(offset)")
-                }
-            } else {
-                // Base of the lexical induction: trivia cannot end a line
-                // comment merely because the proposed first span begins there.
-                let leading = try locatedTokens(slice(0, token.bytes.upperBound))
-                guard leading.count == 1, leading[0].word == token.word,
-                    leading[0].bytes == token.bytes else {
-                    throw Failure("non-maximal lexical production at \(origin):byte 0")
-                }
-            }
-            previous = token
-            end = token.bytes.upperBound
-        }
-        guard try locatedTokens(slice(end, bytes.count)).isEmpty else { throw Failure("uncovered token at \(origin):byte \(end)") }
-        let ts = proof.tokens.map(\.word)
-        var regions: [Region] = [], next = 0
-        for unit in proof.units {
-            guard unit.lower == next, unit.upper > next, unit.upper <= ts.count, ts[next] == unit.kind else { throw Failure("uncovered or changed grammar production in \(origin)") }
-            let part = Array(ts[unit.lower..<unit.upper])
-            if ["import", "typealias"].contains(unit.kind), unit.upper < ts.count,
-                part.last != "\n", part.last != ";" {
-                throw Failure("false statement boundary in \(origin)")
-            }
-            if ["\n", ";", "public", "internal", "private", "fileprivate", "package", "open"].contains(unit.kind) {
-                guard part.count == 1 else { throw Failure("extra tokens in qualifier/separator production") }
-                if unit.kind != "\n" && unit.kind != ";" {
-                    var following = unit.upper
-                    while following < ts.count, ["\n", "public", "internal", "private", "fileprivate", "package", "open"].contains(ts[following]) { following += 1 }
-                    guard following < ts.count, ["import", "enum", "struct", "protocol", "extension", "typealias"].contains(ts[following]) else { throw Failure("unattached qualifier in \(origin)") }
-                }
-            } else if unit.kind == "@" {
-                guard part == ["@", "resultBuilder"] else { throw Failure("unsupported attribute in \(origin)") }
-                var following = unit.upper
-                while following < ts.count, ["\n", "public", "internal", "private", "fileprivate", "package"].contains(ts[following]) { following += 1 }
-                guard following < ts.count, ["enum", "struct"].contains(ts[following]) else { throw Failure("unattached resultBuilder attribute in \(origin)") }
-            } else if unit.kind == "import" {
-                var i = 1
-                let path = plain(statement(part, index: &i))
-                guard i == part.count, path.count % 2 == 1, path.enumerated().allSatisfy({ $0.offset % 2 == 0 ? identifier($0.element) : $0.element == "." }) else { throw Failure("unsupported import in \(origin)") }
-            } else {
-                guard ["enum", "struct", "protocol", "extension", "typealias"].contains(unit.kind) else { throw Failure("unknown grammar production in \(origin)") }
-                var i = 0
-                let region = try readDeclaration(part, index: &i, origin: origin)
-                guard i == part.count else { throw Failure("unread declaration suffix in \(origin)") }
-                regions.append(Region(declaration: region.declaration, body: region.body,
-                    tokenRange: unit.lower..<unit.upper,
-                    headerRange: (unit.lower + region.headerRange.lowerBound)..<(unit.lower + region.headerRange.upperBound)))
-            }
-            next = unit.upper
-        }
-        guard next == ts.count else { throw Failure("uncovered grammar suffix in \(origin)") }
-        return FileReading(tokens: proof.tokens, regions: regions, certificate: proof)
-    }
-
-    init(files: [(String, String)], notationFiles: [CourtNotation.File] = [], roster: Bool = false, readings: [FileReading] = []) throws {
-        // Already replayed structural readings can feed the same court without
-        // a second textual read. Clients cannot inject declarations into a proof:
-        // FileReading is constructed by replayReading, not decoded from JSON.
-        for reading in readings {
-            for region in reading.regions {
-                let d = region.declaration
-                if d.kind == "extension" { extensions[d.name, default: []].append(d) }
-                else {
-                    guard declarations[d.name] == nil else { throw Failure("duplicate declaration \(d.name)") }
-                    declarations[d.name] = d
-                }
-            }
-        }
-        for (origin, source) in files {
-            let lexed: Lexed
-            do { lexed = try Self.scan(source, carrying: roster) }
-            catch {
-                if roster { throw AddressedFailure("\(origin):1: \(error)") }
-                throw error
-            }
-            let ts = lexed.words
-            var i = 0
-            var pendingAccess = "internal"
-            while i < ts.count {
-                if ["public", "internal", "private", "fileprivate", "package", "open"].contains(
-                    ts[i])
-                {
-                    pendingAccess = ts[i]
+            do {
+                if ["\n", ";"].contains(kind) {
                     i += 1
-                    continue
-                }
-                if ["import", "let", "var", "func"].contains(ts[i]) { pendingAccess = "internal" }
-                if ts[i] == "#", i + 1 < ts.count, ts[i + 1] == "if" {
-                    if roster { throw AddressedFailure("\(origin):\(lexed.lines[i]): conditional declarations are outside roster scope") }
-                    excludedConditionals += 1
+                } else if qualifiers.contains(kind) {
+                    i += 1
+                    if scope == .declarations {
+                        let next = nextAfterQualifiers(i)
+                        guard next < ts.count, declarations.contains(ts[next]) || ts[next] == "import" else {
+                            throw Failure("unattached qualifier")
+                        }
+                    }
+                } else if kind == "@", i + 1 < ts.count, ts[i + 1] == "resultBuilder" {
+                    i += 2
+                    let next = nextAfterQualifiers(i)
+                    guard next < ts.count, ["enum", "struct"].contains(ts[next]) else { throw Failure("unattached resultBuilder attribute") }
+                } else if kind == "import" {
+                    i += 1
+                    let path = plain(statement(ts, index: &i))
+                    if scope == .declarations {
+                        guard path.count % 2 == 1, path.enumerated().allSatisfy({ $0.offset % 2 == 0 ? identifier($0.element) : $0.element == "." }) else { throw Failure("unsupported import") }
+                    }
+                } else if declarations.contains(kind) {
+                    let region = try readDeclaration(ts, index: &i, origin: origin)
+                    if kind != "extension", !declared.insert(region.declaration.name).inserted {
+                        throw AddressedFailure("\(origin):\(lexed.lines[start]): duplicate declaration \(region.declaration.name)", issue: .duplicateDeclaration(region.declaration.name))
+                    }
+                    regions.append(region)
+                } else if scope == .projection, kind == "#", i + 1 < ts.count, ts[i + 1] == "if" {
+                    excluded += 1
                     var depth = 1
                     i += 2
                     while i < ts.count, depth > 0 {
-                        // A skipped branch may alter a declaration used outside
-                        // it. Do not silently choose the branch's absence.
-                        if ["enum", "struct", "class", "protocol", "extension", "typealias"]
-                            .contains(ts[i]),
-                            i + 1 < ts.count, Self.identifier(ts[i + 1])
-                        {
-                            conditionalSubjects.insert(ts[i + 1])
-                        }
+                        if (declarations + ["class"]).contains(ts[i]), i + 1 < ts.count, identifier(ts[i + 1]) { conditionalSubjects.insert(ts[i + 1]) }
                         if ts[i] == "#", i + 1 < ts.count {
                             if ts[i + 1] == "if" { depth += 1 }
                             if ts[i + 1] == "endif" { depth -= 1 }
                         }
                         i += 1
                     }
-                    if depth != 0 { throw Failure("unclosed #if in \(origin)") }
-                    pendingAccess = "internal"
+                    guard depth == 0 else { throw Failure("unclosed #if") }
+                } else if scope == .projection {
+                    if kind == "{" { _ = try balanced(ts, index: &i, open: "{", close: "}") }
+                    else { i += 1 }
+                } else {
+                    if kind == "@" { throw Failure("unsupported attribute") }
+                    throw Failure("unread token '\(kind)' is outside structural reader scope")
+                }
+            } catch let error as AddressedFailure { throw error }
+            catch { throw AddressedFailure("\(origin):\(lexed.lines[start]): \(error)") }
+            units.append(.init(kind: kind, lower: start, upper: i))
+        }
+        return FileReading(origin: origin, source: source, lexed: lexed, scope: scope, regions: regions,
+            certificate: ReadingCertificate(tokens: located, units: units),
+            excludedConditionals: excluded, conditionalSubjects: conditionalSubjects)
+    }
+    /// Reading replay is a judgement against the same full-input reader as the
+    /// roster. Correctness of that reader/replayer is an explicit premise.
+    /// Equal tape and production spans preserve coverage, including byte zero;
+    /// a certificate supplies neither an AST nor a second lexical interpretation.
+    static func replayReading(_ proof: ReadingCertificate, source: String, origin: String) throws -> FileReading {
+        let read = try regions(source, origin: origin)
+        guard proof.tokens == read.tokens else {
+            let at = zip(proof.tokens, read.tokens).first { $0 != $1 }?.0.bytes.lowerBound
+                ?? proof.tokens.last?.bytes.upperBound ?? 0
+            let line = (read.lexed.starts.firstIndex { $0 >= at }).map { read.lexed.lines[$0] } ?? 1
+            throw AddressedFailure("\(origin):\(line): lexical certificate disagrees with whole-source reading (byte \(at))")
+        }
+        guard proof.units == read.certificate.units else {
+            throw AddressedFailure("\(origin):1: grammar certificate disagrees with whole-source reading")
+        }
+        return read
+    }
+
+    init(files: [(String, String)], notationFiles: [CourtNotation.File] = [], roster: Bool = false, readings: [FileReading] = []) throws {
+        // A FileReading is built by the common grammar judgement, never decoded
+        // from an untrusted AST. Roster applies its stricter member relation below.
+        let presented = try readings + files.map { try Self.regions($0.1, origin: $0.0, scope: roster ? .declarations : .projection) }
+        for reading in presented {
+            guard !roster || reading.scope == .declarations else {
+                throw AddressedFailure("\(reading.origin):1: roster requires a strict declaration reading")
+            }
+            let origin = reading.origin, lexed = reading.lexed
+            excludedConditionals += reading.excludedConditionals
+            conditionalSubjects.formUnion(reading.conditionalSubjects)
+            var pendingAccess = "internal"
+            var byStart: [Int: Region] = [:]
+            for region in reading.regions { byStart[region.tokenRange.lowerBound] = region }
+            for unit in reading.certificate.units {
+                if ["public", "internal", "private", "fileprivate", "package", "open"].contains(unit.kind) {
+                    pendingAccess = unit.kind
                     continue
                 }
-                let kind = ts[i]
-                if ["enum", "struct", "protocol", "extension", "typealias"].contains(kind) {
-                    let start = i
-                    i += 1
-                    var header: [String] = [], body: [String] = [], bodyStart = i, bodyEnd = i
-                    if kind == "typealias" {
-                        header = Self.statement(ts, index: &i)
-                    } else {
-                        let begin = i
-                        while i < ts.count, ts[i] != "{" { i += 1 }
-                        header = Array(ts[begin..<i])
-                        bodyStart = i + 1
-                        body = try Self.balanced(ts, index: &i, open: "{", close: "}")
-                    }
-                    bodyEnd = max(bodyStart, i - 1)
-                    let d = try Self.declaration(
-                        kind: kind, header: header, body: body, origin: origin)
-                    if roster {
-                        let at = Address(path: origin, line: lexed.lines[start], start: lexed.starts[start], end: lexed.ends[max(start, i - 1)])
-                        guard d.unsupported.isEmpty else { throw AddressedFailure("\(origin):\(at.line): \(d.name): \(d.unsupported.joined(separator: "; "))") }
-                        if kind != "extension" { addresses[d.name] = at }
-                        else if extensionAddresses[d.name] == nil { extensionAddresses[d.name] = at }
-                        let literal = try Self.rosterLiteral(lexed, body: kind == "typealias" ? bodyStart..<bodyStart : bodyStart..<bodyEnd, source: source, origin: origin)
-                        if let literal {
-                            guard literals[d.name] == nil else { throw AddressedFailure("\(origin):\(literal.at.line): duplicate typeName on \(d.name)") }
-                            literals[d.name] = literal
-                        }
-                    }
-                    if kind == "extension" {
-                        extensions[d.name, default: []].append(d)
-                    } else {
-                        guard declarations[d.name] == nil else {
-                            if roster { throw AddressedFailure("\(origin):\(lexed.lines[start]): duplicate declaration \(d.name)") }
-                            throw Failure("duplicate declaration \(d.name)")
-                        }
-                        declarations[d.name] = d
-                        access[d.name] = pendingAccess
-                    }
-                    pendingAccess = "internal"
-                } else if roster && ts[i] == "import" {
-                    i += 1
-                    guard i < ts.count, Self.identifier(ts[i]) else { throw AddressedFailure("\(origin):1: unsupported import") }
-                    i += 1
-                    guard i == ts.count || ["\n", ";"].contains(ts[i]) else { throw AddressedFailure("\(origin):\(lexed.lines[i]): unsupported import suffix") }
-                } else if roster && !["\n", ";"].contains(ts[i]) {
-                    throw AddressedFailure("\(origin):\(lexed.lines[i]): '\(ts[i])' is outside roster declaration scope")
-                } else if ts[i] == "{" {
-                    _ = try Self.balanced(ts, index: &i, open: "{", close: "}")
-                    pendingAccess = "internal"
-                } else {
-                    i += 1
+                guard let region = byStart[unit.lower] else {
+                    if unit.kind != "\n" && unit.kind != ";" && unit.kind != "@" { pendingAccess = "internal" }
+                    continue
                 }
+                let d = region.declaration, start = region.tokenRange.lowerBound, end = region.tokenRange.upperBound
+                let at = Address(path: origin, line: lexed.lines[start], start: lexed.starts[start], end: lexed.ends[end - 1])
+                if roster {
+                    guard d.unsupported.isEmpty else { throw AddressedFailure("\(origin):\(at.line): \(d.name): \(d.unsupported.joined(separator: "; "))") }
+                    let bodyStart = region.headerRange.upperBound + 1
+                    let body = d.kind == "typealias" ? end..<end : bodyStart..<(end - 1)
+                    if let literal = try Self.rosterLiteral(lexed, body: body, source: reading.source, origin: origin) {
+                        guard literals[d.name] == nil else { throw AddressedFailure("\(origin):\(literal.at.line): duplicate typeName on \(d.name)") }
+                        literals[d.name] = literal
+                    }
+                }
+                if d.kind == "extension" {
+                    extensions[d.name, default: []].append(d)
+                    if extensionAddresses[d.name] == nil { extensionAddresses[d.name] = at }
+                } else {
+                    guard declarations[d.name] == nil else { throw AddressedFailure("\(origin):\(at.line): duplicate declaration \(d.name)", issue: .duplicateDeclaration(d.name)) }
+                    declarations[d.name] = d
+                    addresses[d.name] = at
+                    access[d.name] = pendingAccess
+                }
+                pendingAccess = "internal"
             }
         }
         for file in notationFiles {

@@ -64,6 +64,10 @@ public enum RosterResponse {
                 relation = "member"
                 subject = e.text
                 predicate = p
+            case let .equal(a, b):
+                relation = "equal"
+                subject = a.text
+                predicate = b.text
             case let .contract(e, p):
                 relation = "contract"
                 subject = e.text
@@ -79,6 +83,7 @@ public enum RosterResponse {
             where predicate.isEmpty: return .form(e)
             case "member": return .member(e, predicate)
             case "contract": return .contract(e, predicate)
+            case "equal": return .equal(e, try DefinitionReduction.parse(predicate))
             default: throw DefinitionReduction.Failure("invalid application relation")
             }
         }
@@ -112,7 +117,8 @@ public enum RosterResponse {
                     dependencies: Set(try n.dependencies.map { try $0.goal() }),
                     prerequisites: Set(try n.prerequisites.map { try $0.goal() }))
             }
-            try ApplicationCourt.verify(root, derivation: .init(root: root, nodes: graph), source: source, predicate: predicate)
+            let roots: Set<ApplicationCourt.Goal> = [.member(root, predicate)]
+            try ApplicationCourt.verify(roots, derivation: .init(roots: roots, nodes: graph), source: source)
         }
     }
     struct Axis: Codable {
@@ -229,7 +235,7 @@ public enum RosterResponse {
             }
             // This graph includes required associated types and declared bounds;
             // an absent field is never a successful empty projection.
-            let admission = Admission(try ApplicationCourt.derive(root, source: source, predicate: predicate))
+            let admission = Admission(try ApplicationCourt.derive([.member(root, predicate)], source: source))
             var fields: [String: Axis] = [:]
             let raw = DefinitionReduction.Source(world: source.syntax, rigid: [])
             for a in axes {

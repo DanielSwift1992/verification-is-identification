@@ -25,9 +25,11 @@ enum ApplicationCourt {
         let dependencies: Set<Goal>
         let prerequisites: Set<Goal>
     }
-    struct Derivation {
-        let root: E
-        var nodes: [Goal: Node]
+    /// One closed graph for every finite set of questions, including roster
+    /// membership and Press bounds. The caller cannot replace its root set.
+    struct Derivation: Codable {
+        let roots: Set<Goal>
+        let nodes: [Goal: Node]
     }
 
     /// A local rule interpreter. During replay, every requested reduction must
@@ -239,17 +241,10 @@ enum ApplicationCourt {
         }
     }
 
-    /// A finite set of obligations uses the same calculus and replay as root
-    /// applications. Clients supply questions, never a replacement membership test.
-    struct Obligations: Codable {
-        let roots: Set<Goal>
-        let nodes: [Goal: Node]
+    static func derive(_ root: E, source: StructuralSource, nodeLimit: Int = 20_000) throws -> Derivation {
+        try derive([.root(root)], source: source, nodeLimit: nodeLimit)
     }
-    static func derive(_ root: E, source: StructuralSource, nodeLimit: Int = 20_000, predicate: String? = nil) throws -> Derivation {
-        let proof = try derive([predicate.map { .member(root, $0) } ?? .root(root)], source: source, nodeLimit: nodeLimit)
-        return Derivation(root: root, nodes: proof.nodes)
-    }
-    static func derive(_ roots: Set<Goal>, source: StructuralSource, nodeLimit: Int = 20_000) throws -> Obligations {
+    static func derive(_ roots: Set<Goal>, source: StructuralSource, nodeLimit: Int = 20_000) throws -> Derivation {
         var nodes: [Goal: Node] = [:], work = roots.sorted { $0.text > $1.text }
         while let goal = work.popLast() {
             if nodes[goal] != nil { continue }
@@ -258,19 +253,15 @@ enum ApplicationCourt {
             nodes[goal] = node
             work += node.dependencies.sorted { $0.text > $1.text }
         }
-        let result = Obligations(roots: roots, nodes: nodes)
+        let result = Derivation(roots: roots, nodes: nodes)
         try verify(roots, derivation: result, source: source)
         return result
     }
 
-    static func verify(_ root: E, derivation: Derivation, source: StructuralSource, predicate: String? = nil) throws {
-        guard root == derivation.root else {
-            throw Failure("application proof belongs to a different root")
-        }
-        let roots: Set<Goal> = [predicate.map { .member(root, $0) } ?? .root(root)]
-        try verify(roots, derivation: Obligations(roots: roots, nodes: derivation.nodes), source: source)
+    static func verify(_ root: E, derivation: Derivation, source: StructuralSource) throws {
+        try verify([.root(root)], derivation: derivation, source: source)
     }
-    static func verify(_ roots: Set<Goal>, derivation: Obligations, source: StructuralSource) throws {
+    static func verify(_ roots: Set<Goal>, derivation: Derivation, source: StructuralSource) throws {
         guard roots == derivation.roots else { throw Failure("application proof changes its obligations") }
         var seen: Set<Goal> = [], work = Array(roots)
         while let goal = work.popLast() {

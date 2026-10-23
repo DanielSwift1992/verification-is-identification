@@ -4796,7 +4796,7 @@
       "changed": false,
       "refusal": {
         "address": "state.swift#Mode",
-        "reason_contains": "uncovered grammar suffix"
+        "reason_contains": "grammar certificate disagrees with whole-source reading"
       }
     }
   },
@@ -5048,7 +5048,7 @@
       "changed": false,
       "refusal": {
         "address": "state.swift#Mode",
-        "reason_contains": "invalid lexical production"
+        "reason_contains": "lexical certificate disagrees with whole-source reading"
       }
     }
   },
@@ -5307,7 +5307,7 @@
       "changed": false,
       "refusal": {
         "address": "state.swift#Mode",
-        "reason_contains": "non-maximal lexical production"
+        "reason_contains": "lexical certificate disagrees with whole-source reading"
       }
     }
   },
@@ -5576,7 +5576,7 @@
       "changed": false,
       "refusal": {
         "address": "state.swift#Mode",
-        "reason_contains": "false statement boundary"
+        "reason_contains": "grammar certificate disagrees with whole-source reading"
       }
     }
   },
@@ -6125,7 +6125,7 @@
       "changed": false,
       "refusal": {
         "address": "rules.swift#TurnOn",
-        "reason_contains": "non-maximal lexical production at rules.swift:byte 0"
+        "reason_contains": "lexical certificate disagrees with whole-source reading"
       }
     }
   },
@@ -6863,7 +6863,7 @@
       "changed": false,
       "refusal": {
         "address": "defs.swift",
-        "reason_contains": "non-maximal lexical production at defs.swift:byte 0"
+        "reason_contains": "lexical certificate disagrees with whole-source reading"
       }
     }
   },
@@ -7258,7 +7258,7 @@
       "changed": false,
       "refusal": {
         "address": "rules.swift#TurnOn",
-        "reason_contains": "non-maximal lexical production at rules.swift:byte 93"
+        "reason_contains": "lexical certificate disagrees with whole-source reading"
       }
     }
   },
@@ -7653,7 +7653,7 @@
       "changed": false,
       "refusal": {
         "address": "rules.swift#TurnOn",
-        "reason_contains": "non-maximal lexical production at rules.swift:byte 0"
+        "reason_contains": "lexical certificate disagrees with whole-source reading"
       }
     }
   },
@@ -8048,7 +8048,7 @@
       "changed": false,
       "refusal": {
         "address": "rules.swift#TurnOn",
-        "reason_contains": "non-maximal lexical production at rules.swift:byte 0"
+        "reason_contains": "lexical certificate disagrees with whole-source reading"
       }
     }
   },
@@ -8443,7 +8443,7 @@
       "changed": false,
       "refusal": {
         "address": "rules.swift#TurnOn",
-        "reason_contains": "unterminated block comment"
+        "reason_contains": "lexical certificate disagrees with whole-source reading"
       }
     }
   },
@@ -8838,7 +8838,7 @@
       "changed": false,
       "refusal": {
         "address": "state.swift#Mode",
-        "reason_contains": "non-maximal lexical production at state.swift:byte 0"
+        "reason_contains": "lexical certificate disagrees with whole-source reading"
       }
     }
   },
@@ -9233,7 +9233,7 @@
       "changed": false,
       "refusal": {
         "address": "state.swift#Mode",
-        "reason_contains": "non-maximal lexical production at state.swift:byte 0"
+        "reason_contains": "lexical certificate disagrees with whole-source reading"
       }
     }
   },
@@ -9628,7 +9628,7 @@
       "changed": false,
       "refusal": {
         "address": "state.swift#Mode",
-        "reason_contains": "non-maximal lexical production at state.swift:byte 0"
+        "reason_contains": "lexical certificate disagrees with whole-source reading"
       }
     }
   },
@@ -10366,7 +10366,7 @@
       "changed": false,
       "refusal": {
         "address": "defs.swift",
-        "reason_contains": "non-maximal lexical production at defs.swift:byte 0"
+        "reason_contains": "lexical certificate disagrees with whole-source reading"
       }
     }
   },
@@ -11104,7 +11104,7 @@
       "changed": false,
       "refusal": {
         "address": "defs.swift",
-        "reason_contains": "non-maximal lexical production at defs.swift:byte 0"
+        "reason_contains": "lexical certificate disagrees with whole-source reading"
       }
     }
   },
@@ -16170,6 +16170,44 @@
     },
     "expected": {
       "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "duplicate-slot-place",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "enum Mode {}\ntypealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "enum Mode {}\ntypealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mode",
+        "reason_contains": "duplicate declaration Mode"
+      }
+    }
+  },
+  {
+    "id": "separate-slot-place",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "enum Spare {}\ntypealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "enum Spare {}\ntypealias Mode = On\n",
       "changed": true,
       "refusal": null,
       "replayed": true

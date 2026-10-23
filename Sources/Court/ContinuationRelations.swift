@@ -212,7 +212,9 @@ extension ContinuationCourt {
             throw Failure("certificate: request or constructor substituted")
         }
         let c = try Context(request, source: source, constructor: constructor)
-        let s = try c.replay(certificate.source)
+        let s: (E, Shape)
+        do { s = try c.replay(certificate.source) }
+        catch { throw Failure(request + ".Source: " + String(describing: error)) }
         guard s.0 == .field(c.root, "Source") else { throw Failure(request + ".Source: endpoint substituted") }
         func read(_ proof: RouteProof, _ field: String) throws -> Places {
             do {
@@ -392,9 +394,12 @@ extension ContinuationCourt {
             do { return try deriveRoute(.field(c.root, field), context: c) }
             catch { throw Failure(request + "." + field + ": " + String(describing: error)) }
         }
+        let sourceProof: ReadProof
+        do { sourceProof = try c.derive(.field(c.root, "Source")) }
+        catch { throw Failure(request + ".Source: " + String(describing: error)) }
         var certificate = try RelatedCertificate(
             request: request, constructor: constructor,
-            source: c.derive(.field(c.root, "Source")),
+            source: sourceProof,
             observation: route("Observation"),
             question: route("Question"),
             equalities: source.declarations[request]?.fields["Equalities"] == nil ? nil

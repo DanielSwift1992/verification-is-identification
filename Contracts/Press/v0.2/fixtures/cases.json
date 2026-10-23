@@ -1,0 +1,5737 @@
+[
+  {
+    "id": "prefix-name-refused",
+    "request": {
+      "arguments": [
+        "Turn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#Turn",
+        "reason_contains": "no rule named"
+      }
+    }
+  },
+  {
+    "id": "exact-name",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "comment-cannot-supply-triple",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    // typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "no full Slot/From/Into"
+      }
+    }
+  },
+  {
+    "id": "comment-cannot-replace-triple",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n    // typealias Into = Off\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "block-comment-cannot-replace-triple",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n    /* nested /* comment */ typealias Into = Off */\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "unread-state-tail",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off garbage\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off garbage\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mode",
+        "reason_contains": "unsupported term suffix"
+      }
+    }
+  },
+  {
+    "id": "state-comment-is-carried",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off // start\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On // start\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "unread-rule-tail",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On garbage\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "unsupported term suffix"
+      }
+    }
+  },
+  {
+    "id": "unread-file-tail",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\ngarbage\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\ngarbage\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mode",
+        "reason_contains": "unread token"
+      }
+    }
+  },
+  {
+    "id": "unread-invocation-tail",
+    "request": {
+      "arguments": [
+        "TurnOn extra"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "arguments",
+        "reason_contains": "unsupported term suffix"
+      }
+    }
+  },
+  {
+    "id": "chord-two-matches",
+    "request": {
+      "arguments": [
+        "TurnOn,Same"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\nenum Same {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mode",
+        "reason_contains": "ambiguous chord"
+      }
+    }
+  },
+  {
+    "id": "chord-one-match",
+    "request": {
+      "arguments": [
+        "TurnOn,TurnOff"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\nenum TurnOff {\n    typealias Slot = ModeSlot\n    typealias From = On\n    typealias Into = Off\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "chord-zero-match",
+    "request": {
+      "arguments": [
+        "TurnOn,TurnOff"
+      ],
+      "state": "typealias Mode = Other\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\nenum TurnOff {\n    typealias Slot = ModeSlot\n    typealias From = On\n    typealias Into = Off\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Other\n",
+      "changed": false,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "outside-bound",
+    "request": {
+      "arguments": [
+        "Bump"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "protocol Counting {}\nenum Zero: Counting {}\nenum Off {}\nenum Tick<T: Counting>: Counting {}\nenum Bump<T: Counting> {\n    typealias Slot = ModeSlot\n    typealias From = T\n    typealias Into = Tick<T>\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#Bump",
+        "reason_contains": "no source conformance"
+      }
+    }
+  },
+  {
+    "id": "inside-bound",
+    "request": {
+      "arguments": [
+        "Bump"
+      ],
+      "state": "typealias Mode = Zero\n",
+      "dictionary": "protocol Counting {}\nenum Zero: Counting {}\nenum Off {}\nenum Tick<T: Counting>: Counting {}\nenum Bump<T: Counting> {\n    typealias Slot = ModeSlot\n    typealias From = T\n    typealias Into = Tick<T>\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Tick<Zero>\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "bound-definition-missing",
+    "request": {
+      "arguments": [
+        "Bump"
+      ],
+      "state": "typealias Mode = Zero\n",
+      "dictionary": "enum Bump<T: Counting> {\n    typealias Slot = ModeSlot\n    typealias From = T\n    typealias Into = Tick<T>\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Zero\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#Bump",
+        "reason_contains": "no source declaration"
+      }
+    }
+  },
+  {
+    "id": "bound-definition-explicit",
+    "request": {
+      "arguments": [
+        "Bump"
+      ],
+      "state": "typealias Mode = Zero\n",
+      "dictionary": "enum Bump<T: Counting> {\n    typealias Slot = ModeSlot\n    typealias From = T\n    typealias Into = Tick<T>\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "alphabet.swift",
+          "text": "protocol Counting {}\nenum Zero: Counting {}\nenum Off {}\nenum Tick<T: Counting>: Counting {}\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = Tick<Zero>\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "bound-through-generic",
+    "request": {
+      "arguments": [
+        "Bump"
+      ],
+      "state": "typealias Mode = Tick<Zero>\n",
+      "dictionary": "protocol Counting {}\nenum Zero: Counting {}\nenum Off {}\nenum Tick<T: Counting>: Counting {}\nenum Bump<T: Counting> {\n    typealias Slot = ModeSlot\n    typealias From = T\n    typealias Into = Tick<T>\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Tick<Tick<Zero>>\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "generic-argument-outside-bound",
+    "request": {
+      "arguments": [
+        "Bump"
+      ],
+      "state": "typealias Mode = Tick<Off>\n",
+      "dictionary": "protocol Counting {}\nenum Zero: Counting {}\nenum Off {}\nenum Tick<T: Counting>: Counting {}\nenum Bump<T: Counting> {\n    typealias Slot = ModeSlot\n    typealias From = T\n    typealias Into = Tick<T>\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Tick<Off>\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#Bump",
+        "reason_contains": "no source conformance"
+      }
+    }
+  },
+  {
+    "id": "where-equality-holds",
+    "request": {
+      "arguments": [
+        "Keep"
+      ],
+      "state": "typealias Mode = Zero\n",
+      "dictionary": "protocol Counting {}\nenum Zero: Counting {}\nenum Off {}\nenum Tick<T: Counting>: Counting {}\nenum Keep<T> where T == Zero {\n    typealias Slot = ModeSlot\n    typealias From = T\n    typealias Into = T\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Zero\n",
+      "changed": false,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "where-equality-refuses",
+    "request": {
+      "arguments": [
+        "Keep"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "protocol Counting {}\nenum Zero: Counting {}\nenum Off {}\nenum Tick<T: Counting>: Counting {}\nenum Keep<T> where T == Zero {\n    typealias Slot = ModeSlot\n    typealias From = T\n    typealias Into = T\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#Keep",
+        "reason_contains": "unproved equality"
+      }
+    }
+  },
+  {
+    "id": "public-slot",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "public typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "public typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "crlf-and-unicode-byte-range",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "// λ🦉\r\npublic typealias Mode = Off // start\r\n",
+      "dictionary": "enum TurnOn {\r\n    typealias Slot = ModeSlot\r\n    typealias From = Off\r\n    typealias Into = On\r\n}\r\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "// λ🦉\r\npublic typealias Mode = On // start\r\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "cr-byte-range",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\r",
+      "dictionary": "enum TurnOn {\r    typealias Slot = ModeSlot\r    typealias From = Off\r    typealias Into = On\r}\r",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\r",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "multiline-term",
+    "request": {
+      "arguments": [
+        "Wrap"
+      ],
+      "state": "typealias Mode = Pair<\n A, B\n> // tail\n",
+      "dictionary": "enum Wrap<X, Y> {\n    typealias Slot = ModeSlot\n    typealias From = Pair<X, Y>\n    typealias Into = Pair<Y, X>\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Pair<B, A> // tail\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "underscore-variable",
+    "request": {
+      "arguments": [
+        "Wrap"
+      ],
+      "state": "typealias Mode = A\n",
+      "dictionary": "enum Wrap<Old_Value> {\n    typealias Slot = ModeSlot\n    typealias From = Old_Value\n    typealias Into = Box<Old_Value>\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Box<A>\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "duplicate-active-field",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n    typealias Into = Off\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "duplicate field"
+      }
+    }
+  },
+  {
+    "id": "unchecked-body-refuses-rule",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n    static func surprise() {}\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "not a triple"
+      }
+    }
+  },
+  {
+    "id": "raw-string-is-unsupported",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\nlet x = #\"text\"#\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "outside structural reader scope"
+      }
+    }
+  },
+  {
+    "id": "replay-valid",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "4a78c10641dd9c735f985000c77aa91daba33ad237d91392c45d6127e937368d",
+          "e52a8e68b6d562dee4a5f9810a3b749dac63679a2cfc66f5aff0333d2f6d9caa"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  18,
+                  27
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  28,
+                  32
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  33,
+                  34
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  35,
+                  43
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  48,
+                  57
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  58,
+                  62
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  65,
+                  68
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  68,
+                  69
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  73,
+                  82
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  83,
+                  87
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  88,
+                  89
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  90,
+                  92
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  92,
+                  93
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  93,
+                  94
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  94,
+                  95
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 20
+              },
+              {
+                "kind": "\n",
+                "lower": 20,
+                "upper": 21
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On\n"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "replay-bound-valid",
+    "request": {
+      "arguments": [
+        "Bump"
+      ],
+      "state": "typealias Mode = Zero\n",
+      "dictionary": "protocol Counting {}\nenum Zero: Counting {}\nenum Off {}\nenum Tick<T: Counting>: Counting {}\nenum Bump<T: Counting> {\n    typealias Slot = ModeSlot\n    typealias From = T\n    typealias Into = Tick<T>\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "Bump"
+        ],
+        "candidates": [
+          {
+            "bounds": {
+              "nodes": [
+                {
+                  "member": {
+                    "_0": "Zero",
+                    "_1": "Counting"
+                  }
+                },
+                {
+                  "dependencies": [
+                    {
+                      "form": {
+                        "_0": "Zero"
+                      }
+                    },
+                    {
+                      "contract": {
+                        "_0": "Zero",
+                        "_1": "Counting"
+                      }
+                    }
+                  ],
+                  "prerequisites": [
+                    {
+                      "form": {
+                        "_0": "Zero"
+                      }
+                    }
+                  ],
+                  "reductions": [
+                    {
+                      "name": {
+                        "_0": "Zero"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "form": {
+                    "_0": "Zero"
+                  }
+                },
+                {
+                  "dependencies": [],
+                  "prerequisites": [],
+                  "reductions": []
+                },
+                {
+                  "contract": {
+                    "_0": "Zero",
+                    "_1": "Counting"
+                  }
+                },
+                {
+                  "dependencies": [],
+                  "prerequisites": [],
+                  "reductions": []
+                }
+              ],
+              "roots": [
+                {
+                  "member": {
+                    "_0": "Zero",
+                    "_1": "Counting"
+                  }
+                }
+              ]
+            },
+            "rule": "Bump",
+            "substitution": {
+              "T": "Zero"
+            }
+          }
+        ],
+        "inputs": [
+          "de4f4de28a72030db6b5e4cb7a49bc8c2108f718913ddb2986a0a19a4d96db49",
+          "db54336feabe855a2c5e8ecd54cee86b0dbe6408aa0c90a2ff3cb6bf3f3ec02d"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  21
+                ],
+                "word": "Zero"
+              },
+              {
+                "bytes": [
+                  21,
+                  22
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  8
+                ],
+                "word": "protocol"
+              },
+              {
+                "bytes": [
+                  9,
+                  17
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  18,
+                  19
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  19,
+                  20
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  21,
+                  25
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  26,
+                  30
+                ],
+                "word": "Zero"
+              },
+              {
+                "bytes": [
+                  30,
+                  31
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  32,
+                  40
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  41,
+                  42
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  42,
+                  43
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  44,
+                  48
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  49,
+                  52
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  53,
+                  54
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  54,
+                  55
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  55,
+                  56
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  56,
+                  60
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  61,
+                  65
+                ],
+                "word": "Tick"
+              },
+              {
+                "bytes": [
+                  65,
+                  66
+                ],
+                "word": "<"
+              },
+              {
+                "bytes": [
+                  66,
+                  67
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  67,
+                  68
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  69,
+                  77
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  77,
+                  78
+                ],
+                "word": ">"
+              },
+              {
+                "bytes": [
+                  78,
+                  79
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  80,
+                  88
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  89,
+                  90
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  90,
+                  91
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  91,
+                  92
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  92,
+                  96
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  97,
+                  101
+                ],
+                "word": "Bump"
+              },
+              {
+                "bytes": [
+                  101,
+                  102
+                ],
+                "word": "<"
+              },
+              {
+                "bytes": [
+                  102,
+                  103
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  103,
+                  104
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  105,
+                  113
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  113,
+                  114
+                ],
+                "word": ">"
+              },
+              {
+                "bytes": [
+                  115,
+                  116
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  116,
+                  117
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  121,
+                  130
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  131,
+                  135
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  136,
+                  137
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  138,
+                  146
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  146,
+                  147
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  151,
+                  160
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  161,
+                  165
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  166,
+                  167
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  168,
+                  169
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  169,
+                  170
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  174,
+                  183
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  184,
+                  188
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  189,
+                  190
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  191,
+                  195
+                ],
+                "word": "Tick"
+              },
+              {
+                "bytes": [
+                  195,
+                  196
+                ],
+                "word": "<"
+              },
+              {
+                "bytes": [
+                  196,
+                  197
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  197,
+                  198
+                ],
+                "word": ">"
+              },
+              {
+                "bytes": [
+                  198,
+                  199
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  199,
+                  200
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  200,
+                  201
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "protocol",
+                "lower": 0,
+                "upper": 4
+              },
+              {
+                "kind": "\n",
+                "lower": 4,
+                "upper": 5
+              },
+              {
+                "kind": "enum",
+                "lower": 5,
+                "upper": 11
+              },
+              {
+                "kind": "\n",
+                "lower": 11,
+                "upper": 12
+              },
+              {
+                "kind": "enum",
+                "lower": 12,
+                "upper": 16
+              },
+              {
+                "kind": "\n",
+                "lower": 16,
+                "upper": 17
+              },
+              {
+                "kind": "enum",
+                "lower": 17,
+                "upper": 28
+              },
+              {
+                "kind": "\n",
+                "lower": 28,
+                "upper": 29
+              },
+              {
+                "kind": "enum",
+                "lower": 29,
+                "upper": 57
+              },
+              {
+                "kind": "\n",
+                "lower": 57,
+                "upper": 58
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 21,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = Tick<Zero>\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Tick<Zero>\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "replay-wrong-output",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "4a78c10641dd9c735f985000c77aa91daba33ad237d91392c45d6127e937368d",
+          "e52a8e68b6d562dee4a5f9810a3b749dac63679a2cfc66f5aff0333d2f6d9caa"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  18,
+                  27
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  28,
+                  32
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  33,
+                  34
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  35,
+                  43
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  48,
+                  57
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  58,
+                  62
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  65,
+                  68
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  68,
+                  69
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  73,
+                  82
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  83,
+                  87
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  88,
+                  89
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  90,
+                  92
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  92,
+                  93
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  93,
+                  94
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  94,
+                  95
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 20
+              },
+              {
+                "kind": "\n",
+                "lower": 20,
+                "upper": 21
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = Off\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "certificate",
+        "reason_contains": "new slot is not Into"
+      }
+    }
+  },
+  {
+    "id": "replay-extra-binding",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {
+              "X": "Off"
+            }
+          }
+        ],
+        "inputs": [
+          "4a78c10641dd9c735f985000c77aa91daba33ad237d91392c45d6127e937368d",
+          "e52a8e68b6d562dee4a5f9810a3b749dac63679a2cfc66f5aff0333d2f6d9caa"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  18,
+                  27
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  28,
+                  32
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  33,
+                  34
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  35,
+                  43
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  48,
+                  57
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  58,
+                  62
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  65,
+                  68
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  68,
+                  69
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  73,
+                  82
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  83,
+                  87
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  88,
+                  89
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  90,
+                  92
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  92,
+                  93
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  93,
+                  94
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  94,
+                  95
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 20
+              },
+              {
+                "kind": "\n",
+                "lower": 20,
+                "upper": 21
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "certificate",
+        "reason_contains": "old slot is not From"
+      }
+    }
+  },
+  {
+    "id": "replay-wrong-input",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "0000000000000000000000000000000000000000000000000000000000000000",
+          "e52a8e68b6d562dee4a5f9810a3b749dac63679a2cfc66f5aff0333d2f6d9caa"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  18,
+                  27
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  28,
+                  32
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  33,
+                  34
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  35,
+                  43
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  48,
+                  57
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  58,
+                  62
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  65,
+                  68
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  68,
+                  69
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  73,
+                  82
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  83,
+                  87
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  88,
+                  89
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  90,
+                  92
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  92,
+                  93
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  93,
+                  94
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  94,
+                  95
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 20
+              },
+              {
+                "kind": "\n",
+                "lower": 20,
+                "upper": 21
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "certificate",
+        "reason_contains": "different input"
+      }
+    }
+  },
+  {
+    "id": "replay-wrong-selection",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "4a78c10641dd9c735f985000c77aa91daba33ad237d91392c45d6127e937368d",
+          "e52a8e68b6d562dee4a5f9810a3b749dac63679a2cfc66f5aff0333d2f6d9caa"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  18,
+                  27
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  28,
+                  32
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  33,
+                  34
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  35,
+                  43
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  48,
+                  57
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  58,
+                  62
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  65,
+                  68
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  68,
+                  69
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  73,
+                  82
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  83,
+                  87
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  88,
+                  89
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  90,
+                  92
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  92,
+                  93
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  93,
+                  94
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  94,
+                  95
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 20
+              },
+              {
+                "kind": "\n",
+                "lower": 20,
+                "upper": 21
+              }
+            ]
+          }
+        ],
+        "selected": null,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "certificate",
+        "reason_contains": "changed selection"
+      }
+    }
+  },
+  {
+    "id": "replay-wrong-span",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "4a78c10641dd9c735f985000c77aa91daba33ad237d91392c45d6127e937368d",
+          "e52a8e68b6d562dee4a5f9810a3b749dac63679a2cfc66f5aff0333d2f6d9caa"
+        ],
+        "lowerByte": 0,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  18,
+                  27
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  28,
+                  32
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  33,
+                  34
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  35,
+                  43
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  48,
+                  57
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  58,
+                  62
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  65,
+                  68
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  68,
+                  69
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  73,
+                  82
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  83,
+                  87
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  88,
+                  89
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  90,
+                  92
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  92,
+                  93
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  93,
+                  94
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  94,
+                  95
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 20
+              },
+              {
+                "kind": "\n",
+                "lower": 20,
+                "upper": 21
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "certificate",
+        "reason_contains": "changes the slot"
+      }
+    }
+  },
+  {
+    "id": "replay-lost-chord-member",
+    "request": {
+      "arguments": [
+        "TurnOn,TurnOff"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\nenum TurnOff {\n    typealias Slot = ModeSlot\n    typealias From = On\n    typealias Into = Off\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn,TurnOff"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "4a78c10641dd9c735f985000c77aa91daba33ad237d91392c45d6127e937368d",
+          "58397f7ef7cf3ea17785345d9de34de2610ab9198e476a4f655fa3bb5048dc39"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  18,
+                  27
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  28,
+                  32
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  33,
+                  34
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  35,
+                  43
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  48,
+                  57
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  58,
+                  62
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  65,
+                  68
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  68,
+                  69
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  73,
+                  82
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  83,
+                  87
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  88,
+                  89
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  90,
+                  92
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  92,
+                  93
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  93,
+                  94
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  94,
+                  95
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  95,
+                  99
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  100,
+                  107
+                ],
+                "word": "TurnOff"
+              },
+              {
+                "bytes": [
+                  108,
+                  109
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  109,
+                  110
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  114,
+                  123
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  124,
+                  128
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  129,
+                  130
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  131,
+                  139
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  139,
+                  140
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  144,
+                  153
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  154,
+                  158
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  159,
+                  160
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  161,
+                  163
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  163,
+                  164
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  168,
+                  177
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  178,
+                  182
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  183,
+                  184
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  185,
+                  188
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  188,
+                  189
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  189,
+                  190
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  190,
+                  191
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 20
+              },
+              {
+                "kind": "\n",
+                "lower": 20,
+                "upper": 21
+              },
+              {
+                "kind": "enum",
+                "lower": 21,
+                "upper": 41
+              },
+              {
+                "kind": "\n",
+                "lower": 41,
+                "upper": 42
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "certificate",
+        "reason_contains": "chord coverage"
+      }
+    }
+  },
+  {
+    "id": "replay-false-no-match",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {},
+            "mismatch": []
+          }
+        ],
+        "inputs": [
+          "4a78c10641dd9c735f985000c77aa91daba33ad237d91392c45d6127e937368d",
+          "e52a8e68b6d562dee4a5f9810a3b749dac63679a2cfc66f5aff0333d2f6d9caa"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  18,
+                  27
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  28,
+                  32
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  33,
+                  34
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  35,
+                  43
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  48,
+                  57
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  58,
+                  62
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  65,
+                  68
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  68,
+                  69
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  73,
+                  82
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  83,
+                  87
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  88,
+                  89
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  90,
+                  92
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  92,
+                  93
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  93,
+                  94
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  94,
+                  95
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 20
+              },
+              {
+                "kind": "\n",
+                "lower": 20,
+                "upper": 21
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "certificate",
+        "reason_contains": "invalid no-match"
+      }
+    }
+  },
+  {
+    "id": "replay-missing-bound-proof",
+    "request": {
+      "arguments": [
+        "Bump"
+      ],
+      "state": "typealias Mode = Zero\n",
+      "dictionary": "protocol Counting {}\nenum Zero: Counting {}\nenum Off {}\nenum Tick<T: Counting>: Counting {}\nenum Bump<T: Counting> {\n    typealias Slot = ModeSlot\n    typealias From = T\n    typealias Into = Tick<T>\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "Bump"
+        ],
+        "candidates": [
+          {
+            "rule": "Bump",
+            "substitution": {
+              "T": "Zero"
+            }
+          }
+        ],
+        "inputs": [
+          "de4f4de28a72030db6b5e4cb7a49bc8c2108f718913ddb2986a0a19a4d96db49",
+          "db54336feabe855a2c5e8ecd54cee86b0dbe6408aa0c90a2ff3cb6bf3f3ec02d"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  21
+                ],
+                "word": "Zero"
+              },
+              {
+                "bytes": [
+                  21,
+                  22
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  8
+                ],
+                "word": "protocol"
+              },
+              {
+                "bytes": [
+                  9,
+                  17
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  18,
+                  19
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  19,
+                  20
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  21,
+                  25
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  26,
+                  30
+                ],
+                "word": "Zero"
+              },
+              {
+                "bytes": [
+                  30,
+                  31
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  32,
+                  40
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  41,
+                  42
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  42,
+                  43
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  44,
+                  48
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  49,
+                  52
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  53,
+                  54
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  54,
+                  55
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  55,
+                  56
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  56,
+                  60
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  61,
+                  65
+                ],
+                "word": "Tick"
+              },
+              {
+                "bytes": [
+                  65,
+                  66
+                ],
+                "word": "<"
+              },
+              {
+                "bytes": [
+                  66,
+                  67
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  67,
+                  68
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  69,
+                  77
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  77,
+                  78
+                ],
+                "word": ">"
+              },
+              {
+                "bytes": [
+                  78,
+                  79
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  80,
+                  88
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  89,
+                  90
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  90,
+                  91
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  91,
+                  92
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  92,
+                  96
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  97,
+                  101
+                ],
+                "word": "Bump"
+              },
+              {
+                "bytes": [
+                  101,
+                  102
+                ],
+                "word": "<"
+              },
+              {
+                "bytes": [
+                  102,
+                  103
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  103,
+                  104
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  105,
+                  113
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  113,
+                  114
+                ],
+                "word": ">"
+              },
+              {
+                "bytes": [
+                  115,
+                  116
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  116,
+                  117
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  121,
+                  130
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  131,
+                  135
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  136,
+                  137
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  138,
+                  146
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  146,
+                  147
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  151,
+                  160
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  161,
+                  165
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  166,
+                  167
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  168,
+                  169
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  169,
+                  170
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  174,
+                  183
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  184,
+                  188
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  189,
+                  190
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  191,
+                  195
+                ],
+                "word": "Tick"
+              },
+              {
+                "bytes": [
+                  195,
+                  196
+                ],
+                "word": "<"
+              },
+              {
+                "bytes": [
+                  196,
+                  197
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  197,
+                  198
+                ],
+                "word": ">"
+              },
+              {
+                "bytes": [
+                  198,
+                  199
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  199,
+                  200
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  200,
+                  201
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "protocol",
+                "lower": 0,
+                "upper": 4
+              },
+              {
+                "kind": "\n",
+                "lower": 4,
+                "upper": 5
+              },
+              {
+                "kind": "enum",
+                "lower": 5,
+                "upper": 11
+              },
+              {
+                "kind": "\n",
+                "lower": 11,
+                "upper": 12
+              },
+              {
+                "kind": "enum",
+                "lower": 12,
+                "upper": 16
+              },
+              {
+                "kind": "\n",
+                "lower": 16,
+                "upper": 17
+              },
+              {
+                "kind": "enum",
+                "lower": 17,
+                "upper": 28
+              },
+              {
+                "kind": "\n",
+                "lower": 28,
+                "upper": 29
+              },
+              {
+                "kind": "enum",
+                "lower": 29,
+                "upper": 57
+              },
+              {
+                "kind": "\n",
+                "lower": 57,
+                "upper": 58
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 21,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = Tick<Zero>\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Zero\n",
+      "changed": false,
+      "refusal": {
+        "address": "certificate",
+        "reason_contains": "missing bound proof"
+      }
+    }
+  },
+  {
+    "id": "replay-empty-bound-graph",
+    "request": {
+      "arguments": [
+        "Bump"
+      ],
+      "state": "typealias Mode = Zero\n",
+      "dictionary": "protocol Counting {}\nenum Zero: Counting {}\nenum Off {}\nenum Tick<T: Counting>: Counting {}\nenum Bump<T: Counting> {\n    typealias Slot = ModeSlot\n    typealias From = T\n    typealias Into = Tick<T>\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "Bump"
+        ],
+        "candidates": [
+          {
+            "bounds": {
+              "nodes": [],
+              "roots": [
+                {
+                  "member": {
+                    "_0": "Zero",
+                    "_1": "Counting"
+                  }
+                }
+              ]
+            },
+            "rule": "Bump",
+            "substitution": {
+              "T": "Zero"
+            }
+          }
+        ],
+        "inputs": [
+          "de4f4de28a72030db6b5e4cb7a49bc8c2108f718913ddb2986a0a19a4d96db49",
+          "db54336feabe855a2c5e8ecd54cee86b0dbe6408aa0c90a2ff3cb6bf3f3ec02d"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  21
+                ],
+                "word": "Zero"
+              },
+              {
+                "bytes": [
+                  21,
+                  22
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  8
+                ],
+                "word": "protocol"
+              },
+              {
+                "bytes": [
+                  9,
+                  17
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  18,
+                  19
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  19,
+                  20
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  21,
+                  25
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  26,
+                  30
+                ],
+                "word": "Zero"
+              },
+              {
+                "bytes": [
+                  30,
+                  31
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  32,
+                  40
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  41,
+                  42
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  42,
+                  43
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  44,
+                  48
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  49,
+                  52
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  53,
+                  54
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  54,
+                  55
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  55,
+                  56
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  56,
+                  60
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  61,
+                  65
+                ],
+                "word": "Tick"
+              },
+              {
+                "bytes": [
+                  65,
+                  66
+                ],
+                "word": "<"
+              },
+              {
+                "bytes": [
+                  66,
+                  67
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  67,
+                  68
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  69,
+                  77
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  77,
+                  78
+                ],
+                "word": ">"
+              },
+              {
+                "bytes": [
+                  78,
+                  79
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  80,
+                  88
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  89,
+                  90
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  90,
+                  91
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  91,
+                  92
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  92,
+                  96
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  97,
+                  101
+                ],
+                "word": "Bump"
+              },
+              {
+                "bytes": [
+                  101,
+                  102
+                ],
+                "word": "<"
+              },
+              {
+                "bytes": [
+                  102,
+                  103
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  103,
+                  104
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  105,
+                  113
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  113,
+                  114
+                ],
+                "word": ">"
+              },
+              {
+                "bytes": [
+                  115,
+                  116
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  116,
+                  117
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  121,
+                  130
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  131,
+                  135
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  136,
+                  137
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  138,
+                  146
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  146,
+                  147
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  151,
+                  160
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  161,
+                  165
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  166,
+                  167
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  168,
+                  169
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  169,
+                  170
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  174,
+                  183
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  184,
+                  188
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  189,
+                  190
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  191,
+                  195
+                ],
+                "word": "Tick"
+              },
+              {
+                "bytes": [
+                  195,
+                  196
+                ],
+                "word": "<"
+              },
+              {
+                "bytes": [
+                  196,
+                  197
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  197,
+                  198
+                ],
+                "word": ">"
+              },
+              {
+                "bytes": [
+                  198,
+                  199
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  199,
+                  200
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  200,
+                  201
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "protocol",
+                "lower": 0,
+                "upper": 4
+              },
+              {
+                "kind": "\n",
+                "lower": 4,
+                "upper": 5
+              },
+              {
+                "kind": "enum",
+                "lower": 5,
+                "upper": 11
+              },
+              {
+                "kind": "\n",
+                "lower": 11,
+                "upper": 12
+              },
+              {
+                "kind": "enum",
+                "lower": 12,
+                "upper": 16
+              },
+              {
+                "kind": "\n",
+                "lower": 16,
+                "upper": 17
+              },
+              {
+                "kind": "enum",
+                "lower": 17,
+                "upper": 28
+              },
+              {
+                "kind": "\n",
+                "lower": 28,
+                "upper": 29
+              },
+              {
+                "kind": "enum",
+                "lower": 29,
+                "upper": 57
+              },
+              {
+                "kind": "\n",
+                "lower": 57,
+                "upper": 58
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 21,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = Tick<Zero>\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Zero\n",
+      "changed": false,
+      "refusal": {
+        "address": "certificate",
+        "reason_contains": "missing dependency"
+      }
+    }
+  },
+  {
+    "id": "replay-lost-reading",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "4a78c10641dd9c735f985000c77aa91daba33ad237d91392c45d6127e937368d",
+          "e52a8e68b6d562dee4a5f9810a3b749dac63679a2cfc66f5aff0333d2f6d9caa"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "certificate",
+        "reason_contains": "reading certificate changes input coverage"
+      }
+    }
+  },
+  {
+    "id": "replay-lost-production",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "4a78c10641dd9c735f985000c77aa91daba33ad237d91392c45d6127e937368d",
+          "e52a8e68b6d562dee4a5f9810a3b749dac63679a2cfc66f5aff0333d2f6d9caa"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": []
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  18,
+                  27
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  28,
+                  32
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  33,
+                  34
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  35,
+                  43
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  48,
+                  57
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  58,
+                  62
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  65,
+                  68
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  68,
+                  69
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  73,
+                  82
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  83,
+                  87
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  88,
+                  89
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  90,
+                  92
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  92,
+                  93
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  93,
+                  94
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  94,
+                  95
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 20
+              },
+              {
+                "kind": "\n",
+                "lower": 20,
+                "upper": 21
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mode",
+        "reason_contains": "uncovered grammar suffix"
+      }
+    }
+  },
+  {
+    "id": "replay-lying-lexeme",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "4a78c10641dd9c735f985000c77aa91daba33ad237d91392c45d6127e937368d",
+          "e52a8e68b6d562dee4a5f9810a3b749dac63679a2cfc66f5aff0333d2f6d9caa"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  18,
+                  27
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  28,
+                  32
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  33,
+                  34
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  35,
+                  43
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  48,
+                  57
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  58,
+                  62
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  65,
+                  68
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  68,
+                  69
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  73,
+                  82
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  83,
+                  87
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  88,
+                  89
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  90,
+                  92
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  92,
+                  93
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  93,
+                  94
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  94,
+                  95
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 20
+              },
+              {
+                "kind": "\n",
+                "lower": 20,
+                "upper": 21
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mode",
+        "reason_contains": "invalid lexical production"
+      }
+    }
+  },
+  {
+    "id": "replay-split-identifier",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "4a78c10641dd9c735f985000c77aa91daba33ad237d91392c45d6127e937368d",
+          "e52a8e68b6d562dee4a5f9810a3b749dac63679a2cfc66f5aff0333d2f6d9caa"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "word": "O",
+                "bytes": [
+                  17,
+                  18
+                ]
+              },
+              {
+                "word": "ff",
+                "bytes": [
+                  18,
+                  20
+                ]
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 6
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  18,
+                  27
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  28,
+                  32
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  33,
+                  34
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  35,
+                  43
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  48,
+                  57
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  58,
+                  62
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  65,
+                  68
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  68,
+                  69
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  73,
+                  82
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  83,
+                  87
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  88,
+                  89
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  90,
+                  92
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  92,
+                  93
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  93,
+                  94
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  94,
+                  95
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 20
+              },
+              {
+                "kind": "\n",
+                "lower": 20,
+                "upper": 21
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mode",
+        "reason_contains": "non-maximal lexical production"
+      }
+    }
+  },
+  {
+    "id": "replay-false-statement-end",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off public\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "9a7b63f54471cee43bd61b28cba707057b7dc4040884a9081492ace0ac5272ed",
+          "e52a8e68b6d562dee4a5f9810a3b749dac63679a2cfc66f5aff0333d2f6d9caa"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "Off"
+              },
+              {
+                "word": "public",
+                "bytes": [
+                  21,
+                  27
+                ]
+              },
+              {
+                "word": "\n",
+                "bytes": [
+                  27,
+                  28
+                ]
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 4
+              },
+              {
+                "kind": "public",
+                "lower": 4,
+                "upper": 5
+              },
+              {
+                "kind": "\n",
+                "lower": 5,
+                "upper": 6
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  18,
+                  27
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  28,
+                  32
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  33,
+                  34
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  35,
+                  43
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  48,
+                  57
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  58,
+                  62
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  65,
+                  68
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  68,
+                  69
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  73,
+                  82
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  83,
+                  87
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  88,
+                  89
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  90,
+                  92
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  92,
+                  93
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  93,
+                  94
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  94,
+                  95
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 20
+              },
+              {
+                "kind": "\n",
+                "lower": 20,
+                "upper": 21
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On public\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off public\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mode",
+        "reason_contains": "false statement boundary"
+      }
+    }
+  },
+  {
+    "id": "instance-bound-refused",
+    "request": {
+      "arguments": [
+        "Put<Off>"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "protocol Counting {}\nenum Zero: Counting {}\nenum Off {}\nenum Put<C: Counting> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = C\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#Put",
+        "reason_contains": "no source conformance"
+      }
+    }
+  },
+  {
+    "id": "instance-bound-holds",
+    "request": {
+      "arguments": [
+        "Put<Zero>"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "protocol Counting {}\nenum Zero: Counting {}\nenum Off {}\nenum Put<C: Counting> {\n typealias Slot = ModeSlot\n typealias From = Off\n typealias Into = C\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Zero\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "declared-result-builder",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n@resultBuilder\nenum Builder {}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "unknown-attribute",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n@Invented\nenum Builder {}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "unsupported attribute"
+      }
+    }
+  },
+  {
+    "id": "unattached-result-builder",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n@resultBuilder\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "unattached resultBuilder"
+      }
+    }
+  },
+  {
+    "id": "owner-BumpUp",
+    "request": {
+      "arguments": [
+        "BumpUp"
+      ],
+      "state": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// THE WORLD: one file, four slots, and that is the whole state of the system.\n// Three slots are terms moved by the dictionary's triples; the fourth is a\n// LITERAL slot: free text in a typeName, the medium's prose genre. Its three\n// movements — append, rubout, clear — are the applier's own\n// (`swift run Tools press append Note …`), the judge vets the FORM of the\n// file, and a label draws the literal with no reader in between.\n\ntypealias LampMode = LampOff\ntypealias Count = Never\ntypealias PinProgress = PinStage0\n\nenum Note: Close {}\nextension Note {\n    static var typeName: String { \"\" }\n}\n",
+      "dictionary": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// ═══════════════════════════════════════════════════════════════\n// THE RULES: the world's whole dynamics as triples on the dynamics medium\n// (DocumentKit/Dynamics.swift), over the terms of Examples/Dynamics.swift.\n// Pressing is `swift run Tools press <Rule>`: compare, substitute, or stand.\n// A rule with a variable is a generic declaration, so the judge admits every\n// application at once, before the first press.\n// ═══════════════════════════════════════════════════════════════\n\n// ── the lamp: one slot, two level-0 rules, a two-state automaton written as data ──\n\n/// Off becomes on: a whole transition as one triple, no code anywhere.\npublic enum PowerOn: SlotRule {\n    public typealias Slot = LampModeSlot\n    public typealias From = LampOff\n    public typealias Into = LampOn\n}\n/// On becomes off: the reverse triple, which is why undo is a button, not a mechanism.\npublic enum PowerOff: SlotRule {\n    public typealias Slot = LampModeSlot\n    public typealias From = LampOn\n    public typealias Into = LampOff\n}\n\n// ── the counter: one slot, one level-1 rule, an infinite space from one triple ──\n\n/// Whatever the count is, wrap it once: a rule with a variable. The generic\n/// declaration IS the theorem that every application is well-typed: the compiler\n/// admits `Tick<T>` for every `T: Counting`, so no reachable state can go wrong.\npublic enum BumpUp<T: Counting>: SlotRule {\n    public typealias Slot = CountSlot\n    public typealias From = T\n    public typealias Into = Tick<T>\n}\n\n// ── the keypad: a walk of four right digits, its whole table written as\n// thirty-one triples. The pin is 4-2-4-2. A right digit advances, a wrong digit\n// mid-walk resets, and a wrong digit at the start needs NO rule at all: its\n// press finds no matching pattern and the file stands, a no-op by absence. One\n// physical key is a chord over its rules (Chord, one slot by the bound), and at\n// any stage exactly one leaf can match: the table is data, end to end. ──\n\n/// The right digits of the walk: 4 starts, 2 advances, 4 advances again, 2 unlocks.\npublic enum Key4StartsWalk: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage0\n    public typealias Into = PinStage1\n}\npublic enum Key2AdvancesStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage2\n}\npublic enum Key4AdvancesStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage3\n}\npublic enum Key2Unlocks: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinUnlocked\n}\n/// The right digits pressed at the wrong stage reset like any other wrong digit.\npublic enum Key4ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key4ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key2ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\n/// Every other digit resets at every mid-walk stage: the off-path rows of the\n/// table spelled out rather than computed, three triples per key.\npublic enum Key0ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key0ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key0ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\n\n",
+      "statePath": "WorldState.swift",
+      "dictionaryPath": "Rules.swift",
+      "definitions": [
+        {
+          "path": "Sources/Examples/Dynamics.swift",
+          "text": "import VerificationIsIdentification\n\n// ═══════════════════════════════════════════════════════════════\n// THE DYNAMICS TERMS: the worlds a state file can carry, as pure types. The lamp's\n// two faces, the counter's floor and wrap, the keypad's three stages. The rules\n// that move a world between these terms are triples beside the world itself\n// (DynamicsDemo/Rules.swift) on the dynamics medium (DocumentKit/Dynamics.swift):\n// this file is the alphabet alone. A slot marker names its alias by dropping the\n// `Slot` suffix, so a marker and a live alias never share a name in any module.\n// ═══════════════════════════════════════════════════════════════\n\n/// The lamp's one slot: the marker drops its `Slot` suffix to name the alias a\n/// state file carries, `typealias LampMode = <term>`.\npublic enum LampModeSlot {}\npublic enum LampOff {}\npublic enum LampOn {}\n\n/// This marks the terms the counter's slot may hold: the floor and every wrap of\n/// it. The constraint is what the judge checks a press against, for all bindings\n/// at once. A counting term is a structure, so its chain folds to a number the\n/// way every chain in this package does, and `Tally` reads it with no reader\n/// written anywhere.\n///\n/// > Important: `Counting` deliberately stands apart from `IntegerValued`, and\n/// > ``Tick`` is no alias of `Succ`, though both wrap by one. The axis is the\n/// > grammar of moves: a number can be added and halved, a count of events can\n/// > only grow. Merged, every numeric rule would match the counter's slot and\n/// > the counter's rule would match every numeric slot — the axis split is what\n/// > keeps a button on its own slot.\npublic protocol Counting: Structure {}\nextension Never: Counting {}\n/// One step more than its content: the counter's only constructor. Its count is\n/// the structural fold: one more than what it wraps.\npublic enum Tick<Previous: Counting>: Counting {}\nextension Tick {\n    public static var count: Int { Previous.count + 1 }\n}\n\n/// The counter's one slot: the state file's alias is `Count`.\npublic enum CountSlot {}\n\n/// The keypad's one slot: the state file's alias is `PinProgress`.\npublic enum PinProgressSlot {}\npublic enum PinStage0 {}\npublic enum PinStage1 {}\npublic enum PinStage2 {}\npublic enum PinStage3 {}\npublic enum PinUnlocked {}\n"
+        },
+        {
+          "path": "Sources/VerificationIsIdentification/Primitive.swift",
+          "text": "// ═══════════════════════════════════════════════════════\n// THE FOUNDATION names Structure, Open, Close, Pair, Null.\n//\n// To be one of our things is to be a STRUCTURE. A structure is OPEN (a protocol\n// that opens a tunnel) or CLOSE (an empty enum that seals). The sole structural\n// primitive is PAIR: two named sides. NULL equates their types. A finite-tree\n// interpretation requires separate constructor and termination premises,\n// including a syntax leaf distinct from constructed pairs. [EiF EF2, EF4]\n//\n// For a supplied Null conformance, the compiler checks `Left == Right`\n// at the declared addresses. An answer to a declared question is determined\n// when the compatible set is nonempty and every compatible candidate gives\n// that answer. A proof can derive this agreement from the actual constraint\n// relations without enumerating candidates. Applying the answer to an\n// intended target needs a justified source relation. [V=I U2c, §1b]\n//\n// ── PROTOCOL CREATION RULES (summary, canonical form: Law.swift) ──\n//\n// Only two operations exist:\n//\n//   EXPAND:   associatedtype adds an axis (degree of freedom)\n//   COMPRESS: where clause removes a degree of freedom\n//\n// A valid protocol does at least one of:\n//\n//   associatedtype:  EXPAND   (open an axis)\n//   where:           COMPRESS (constrain an axis)\n//   inherit from 2+: COMPRESS (intersect: A ∩ B, smaller than either)\n//\n// `protocol X: Y {}` (single parent, no where, no axis)\n// is a rename, not a claim. Zero information added.\n//\n// At the meta-level, these rules ARE Pair/Null:\n//   associatedtype = Pair  (two sides: type and protocol)\n//   where X == Y   = Null  (sides collapse)\n//   where X: M     = partial Null (axis constrained)\n// ═══════════════════════════════════════════════════════\n\n// ── Structure / Open / Close ──\n\n/// This names the root ability: what it is to participate in the world. A new name is not written\n/// `: Structure` directly: it is ``Open`` (a `protocol` tunnel, still extensible) or ``Close`` (an\n/// empty `enum` seal, concrete). These are the repository's construction rules. Swift permits\n/// recursive associated types, so conformance does not guarantee that following components\n/// reaches a terminal. The finite-tree interpretation requires that additional premise (EiF EF4).\npublic protocol Structure {\n    /// This gives the name of this type: the edge reading. Dynamic dispatch ensures overrides are\n    /// called through generic contexts (Paired chains, associated types).\n    static var typeName: String { get }\n\n    /// This gives the size of this type: how many leaves it is built from. An atom is one. The floor\n    /// (`Never`) is none. A composed ``Open`` folds the count of everything its `body` lists. Any\n    /// structure has a length, the same way any structure has a name, the second reading the\n    /// builder's ``Paired`` chain gives for free, replacing the hand-rolled `Length` a cons-list\n    /// (`Chain`/`Roster`) used to carry.\n    static var count: Int { get }\n\n    /// This gives the names of this type's leaves, in body order. An atom is its own one-element list. A\n    /// composed ``Open`` folds its `body`'s leaves in the order they were written. The third\n    /// reading the builder's ``Paired`` chain gives for free: where `typeName` collapses a body\n    /// to one string and `count` to one number, `labels` keeps each leaf's name, so a leaf that\n    /// carries its identity (an employee in a batch) can be read back individually.\n    static var labels: [String] { get }\n}\n\n/// This is an OPEN tunnel, written ONLY as a `protocol`. A new name is Open by default: it opens an\n/// axis with `associatedtype` (a hole) and narrows it with `where`. It is extensible, dot-readable,\n/// a criterion. `enum X: Open` is the contradiction the check rejects: an `enum` has already sealed what\n/// Open must keep open.\n///\n/// Every Open type carries a ``Body``: the tunnel for composition. A type that has nothing to compose\n/// defaults to `Never` (the floor). A type that composes children defines its `body` with the one\n/// ``StructureBuilder``, and the builder folds the braces into a ``Paired`` chain.\npublic protocol Open: Structure {\n    associatedtype Body: Structure = Never\n    @StructureBuilder\n    static var body: Body { get }\n}\n\n/// This is the default body: `Never`. Lattice protocols, markers, axes, none compose children, so their body is\n/// the floor. The extension gives it for free: conform to ``Open`` and you get `Never` unless you say\n/// otherwise.\nextension Open\nwhere Body == Never {\n    public static var body: Never { fatalError(\"a type with Body == Never has no body\") }\n}\n\n/// This is a CLOSE: a terminal seal, written ONLY as an empty `enum`: no cases, no `init`, the branch\n/// ends and Swift is handed a concrete empty type. `protocol X: Close` is the contradiction: a Close must be\n/// concrete. A foreign value joins the world here too: a layer writes `extension String: Close` to make\n/// a string one of the sealed leaves, the one place for a value (a `String`), at the edge.\npublic protocol Close: Structure {}   // law:allow: the seal half of Open/Close, not a rename of Structure\n\n// ── Pair / Null ──\n\n/// This provides two named roles for representing a distinction. It is the chosen structural primitive.\n/// Their contents can agree: every ``Null`` is also a ``Pair``. A realized contrast\n/// needs an actual separating relation, not just these two names. [Matter M71]\n/// Its unconstrained axes alone guarantee neither recursive structure nor finite depth.\n/// ``Pair`` is ``Open``: it opens two tunnels (`Left`, `Right`). [EiF EF2, EF4]\n///\n/// - term Left: one side of the distinction.\n/// - term Right: the other side.\n///\n/// > Note: ``Pair`` is the one thing the lattice rests on, and the one thing no\n/// > protocol derives. Trace any type up its parents (§5 of ``Law``) and it ends\n/// > here: an entry in no library, certified by no game.\npublic protocol Pair: Open {\n    associatedtype Left\n    associatedtype Right\n}\n\n/// This requires equality of ``Pair``'s two associated types at the declared addresses.\n/// It does not identify the conforming type with either side or with the syntax leaf.\n/// `Never` is one conformer. Other nominal equality witnesses remain distinct. [EiF EF4]\n///\n/// > Note: For a supplied ``Null`` conformance, the compiler checks\n/// > `Left == Right` at these addresses. An answer to a declared question is\n/// > determined when the compatible set is nonempty and every compatible\n/// > candidate gives that answer. The proof can derive this agreement from the\n/// > actual constraint relations without enumerating candidates. Applying the\n/// > answer to an intended target needs a justified source relation. [V=I U2c, §1b]\npublic protocol Null: Pair\nwhere Left == Right {}\n\n// Never conforms to Null by choosing equal associated types.\n// Equality of these sides is not a claim that every Null conformer is Never.\n// typeName = \"\" / count = 0 / labels = [] break recursion (Never: Open, Open.typeName =\n// Body.typeName, Open.count = Body.count, Open.labels = Body.labels, Never.Body = Never).\nextension Never: Null {\n    public typealias Left = Never\n    public typealias Right = Never\n    public static var typeName: String { \"\" }\n    public static var count: Int { 0 }\n    public static var labels: [String] { [] }\n}\n\n// Never IS Close: the empty type is the seal, the floor every chain reaches. This is the point\n// where ``Open`` and ``Close`` coincide (``Null``'s `Left == Right`): the one type that is both the\n// empty tunnel and the empty seal, so identification is where opening meets closing.\nextension Never: Close {}\n\n// String IS Close: the sealed leaf where a value is. The one foreign value that enters our world,\n// at the edge (§S6). Above it, the structure carries only types. Here, the String carries text.\nextension String: Close {}\n\n// ── typeName: the one rendering mechanism ──\n\n/// This defaults to the Swift type name. Atoms override for their character.\nextension Structure {\n    public static var typeName: String { String(describing: Self.self) }\n}\n\n/// This is an `Open` type that has not customized `body`: it is `Pair`-shaped, not list-shaped\n/// (``Employee``, a verdict gate), a LEAF, so it renders its Swift name, the same as a ``Close`` atom.\n/// Without this, the rule below would read `Body.typeName` and silently render every such leaf\n/// as the empty string.\nextension Open\nwhere Body == Never {\n    public static var typeName: String { String(describing: Self.self) }\n}\n\n/// This is an `Open` type that DOES compose children: it renders its body, `Body.typeName` recurses\n/// through the Paired chain.\nextension Open {\n    public static var typeName: String { Body.typeName }\n}\n\n/// Paired concatenates Left and Right type names.\nextension Paired {\n    public static var typeName: String { L.typeName + R.typeName }\n}\n\n// ── count: the second rendering: how many leaves a body lists ──\n\n/// This is the default, one: a structure counts itself. Atoms (``Close``) keep this: it is also the\n/// floor a leaf ``Open`` type (no custom `body`) falls back to, below.\nextension Structure {\n    public static var count: Int { 1 }\n}\n\n/// This is an `Open` type that has not customized `body`: it is `Pair`-shaped, not list-shaped,\n/// `Employee` (`Pair` for its `Rank`/`Home` coordinate), a verdict gate, an axis marker. It is a LEAF,\n/// the same as a ``Close`` atom, so it counts as one. Without this, the general rule below would read\n/// `Body.count` and silently count every such leaf as zero, exactly the case a roster's members\n/// are made of, so this is the override that keeps `count` correct for a roster's members.\nextension Open\nwhere Body == Never {\n    public static var count: Int { 1 }\n}\n\n/// This is an `Open` type that DOES compose children: it counts through its body, the builder folds a `{ }`\n/// block into a ``Paired`` chain, and that chain's count is the number of statements written.\nextension Open {\n    public static var count: Int { Body.count }\n}\n\n/// Paired sums its two sides: composing is exactly what makes a count more than one.\nextension Paired {\n    public static var count: Int { L.count + R.count }\n}\n\n// ── labels: the third reading: each leaf's name, in body order ──\n\n/// This is the default, one label: a structure's `typeName`. Atoms (``Close``) keep this: it is also\n/// the floor a leaf ``Open`` type (no custom `body`) falls back to, below, the same `Body ==\n/// Never` exception `count` needs, for the same reason.\nextension Structure {\n    public static var labels: [String] { [typeName] }\n}\n\nextension Open\nwhere Body == Never {\n    public static var labels: [String] { [typeName] }\n}\n\n/// An `Open` type that DOES compose children reads its labels through its body.\nextension Open {\n    public static var labels: [String] { Body.labels }\n}\n\n/// This is Paired: it concatenates its two sides' labels, in body order.\nextension Paired {\n    public static var labels: [String] { L.labels + R.labels }\n}\n\n// ── The builder: the ONE @resultBuilder ──\n//\n// The one allowed callable (§S4): folds a `{ }` body into a Pair-chain of Structures, floored at\n// `Never`. ``Paired`` is the ONE concrete `<>` (§S3 plumbing): it keeps two Structures as a value\n// so the builder can return them. Everything else is a protocol.\n\n/// This is the concrete Pair realizer: the ONE `<>` in the system, the framework's plumbing that the\n/// builder folds into. It keeps a left and a right as a value and conforms to ``Pair``. Not written in domain code.\n/// The builder produces it behind the `{ }` curtain.\npublic enum Paired<\n    L: Structure,\n    R: Structure\n>: Pair {\n    case paired(L, R)\n    public typealias Left = L\n    public typealias Right = R\n}\n\n/// This is the one result builder: it folds a `{ }` body into a ``Pair``-chain of Structures, floored at `Never`.\n/// This is the single `@resultBuilder` the system allows (§S4). The builder is the boundary between the\n/// brace-syntax and the type tree: inside the braces, each statement is a ``Structure``. Outside, the\n/// whole body is a single ``Paired`` chain.\n@resultBuilder\npublic enum StructureBuilder {\n    public static func buildExpression<\n        T: Structure\n    >(_ type: T.Type) -> T { fatalError() }\n    public static func buildExpression(_ string: String) -> String { string }\n    @_disfavoredOverload public static func buildExpression<\n        V: Structure\n    >(_ value: V) -> V { value }\n    public static func buildPartialBlock<\n        V: Structure\n    >(first: V) -> V { first }\n    public static func buildPartialBlock<\n        A: Structure,\n        B: Structure\n    >(accumulated: A, next: B) -> Paired<\n        A,\n        B\n    > { .paired(accumulated, next) }\n    public static func buildBlock() -> Never { fatalError() }\n    public static func buildEither<\n        A: Structure,\n        B: Structure\n    >(first: A) -> Paired<\n        A,\n        B\n    > { fatalError() }\n    public static func buildEither<\n        A: Structure,\n        B: Structure\n    >(second: B) -> Paired<\n        A,\n        B\n    > { fatalError() }\n}\n// ── MAGNITUDES — space as structure, and the counting reader. A magnitude is a chain of\n// these atoms. The house fold counts it, and nothing else measures anything. They are in\n// this engine room because `Plus` composes through the one builder and the readers below\n// speak digits: the same §0′ exemption are already on. The design system\n// (DocumentKit) names the rungs, and canvases speak in its names, never in chains of these. ──\n\n/// Unit counts one: the atom of magnitude. `Close` keeps the default count, which is also\n/// the definition.\npublic enum Unit: Close {}\n\n/// Plus sums by composition: the pair of two magnitudes counts as both. The house fold does\n/// the arithmetic, and no member states it.\npublic enum Plus<\n    A: Structure,\n    B: Structure\n>: Open {\n    @StructureBuilder\n    public static var body: some Structure {\n        A.self\n        B.self\n    }\n}\n\n/// Twice is no separate object: doubling IS the pair of a thing with itself.\npublic typealias Twice<S: Structure> = Plus<S, S>\n\n/// Times composes two counts into their product, the way `Paired` composes them into their\n/// sum: one witness, no other member. With it a fraction needs no further arithmetic.\npublic enum Times<\n    A: Structure,\n    B: Structure\n>: Close {}\nextension Times {\n    public static var count: Int { A.count * B.count }\n}\n\n/// The numerals: the powers of two, spelled once as the doubling ladder. Every target\n/// reads these names from here, so a magnitude's meaning is its one written definition,\n/// and a judge unfolds it from this source.\npublic typealias U1 = Unit\npublic typealias U2 = Twice<U1>\npublic typealias U4 = Twice<U2>\npublic typealias U8 = Twice<U4>\npublic typealias U16 = Twice<U8>\npublic typealias U32 = Twice<U16>\npublic typealias U64 = Twice<U32>\npublic typealias U128 = Twice<U64>\npublic typealias U256 = Twice<U128>\npublic typealias U512 = Twice<U256>\n\n/// Rest is what remains: the whole minus what was taken, the subtractive witness beside\n/// `Times`' product. Layout divides space (known pieces come off a given whole, and the\n/// rest is handed on), so subtraction enters the lattice the same way multiplication did:\n/// one witness, counted only at the reading edge. Taking more than the whole has is\n/// refused right there, at the read, the fit made a checked fact.\npublic enum Rest<\n    Whole: Structure,\n    Taken: Structure\n>: Close {}\nextension Rest {\n    public static var count: Int {\n        let whole = Whole.count\n        let taken = Taken.count\n        precondition(\n            taken <= whole,\n            \"Rest underflow: \\(Taken.self) takes \\(taken) from \\(Whole.self) holding \\(whole)\"\n        )\n        return whole - taken\n    }\n}\n\n/// Half is the even split of a magnitude: a box's centre line, a shelf's midpoint. The\n/// count must divide cleanly, and an odd magnitude refuses at generation, loudly, since a\n/// half-pixel would be a number no rung owns.\npublic enum Half<Of: Structure>: Close {}\nextension Half {\n    public static var count: Int {\n        precondition(Of.count % 2 == 0, \"Half of an odd magnitude: \\(Of.count) does not split\")\n        return Of.count / 2\n    }\n}\n\n/// Tally is the counting read: a structure in, its count out as digits, through `typeName`\n/// like every other reading. The one door a canvas may take to a number, and a bare `count`\n/// call outside the readers is the smell this door exists to remove.\npublic enum Tally<Of: Structure>: Close {}\nextension Tally {\n    public static var typeName: String { String(Of.count) }\n}\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// THE WORLD: one file, four slots, and that is the whole state of the system.\n// Three slots are terms moved by the dictionary's triples; the fourth is a\n// LITERAL slot: free text in a typeName, the medium's prose genre. Its three\n// movements — append, rubout, clear — are the applier's own\n// (`swift run Tools press append Note …`), the judge vets the FORM of the\n// file, and a label draws the literal with no reader in between.\n\ntypealias LampMode = LampOff\ntypealias Count = Tick<Never>\ntypealias PinProgress = PinStage0\n\nenum Note: Close {}\nextension Note {\n    static var typeName: String { \"\" }\n}\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "owner-BumpUp-outside-bound",
+    "request": {
+      "arguments": [
+        "BumpUp"
+      ],
+      "state": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// THE WORLD: one file, four slots, and that is the whole state of the system.\n// Three slots are terms moved by the dictionary's triples; the fourth is a\n// LITERAL slot: free text in a typeName, the medium's prose genre. Its three\n// movements — append, rubout, clear — are the applier's own\n// (`swift run Tools press append Note …`), the judge vets the FORM of the\n// file, and a label draws the literal with no reader in between.\n\ntypealias LampMode = LampOff\ntypealias Count = LampOff\ntypealias PinProgress = PinStage0\n\nenum Note: Close {}\nextension Note {\n    static var typeName: String { \"\" }\n}\n",
+      "dictionary": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// ═══════════════════════════════════════════════════════════════\n// THE RULES: the world's whole dynamics as triples on the dynamics medium\n// (DocumentKit/Dynamics.swift), over the terms of Examples/Dynamics.swift.\n// Pressing is `swift run Tools press <Rule>`: compare, substitute, or stand.\n// A rule with a variable is a generic declaration, so the judge admits every\n// application at once, before the first press.\n// ═══════════════════════════════════════════════════════════════\n\n// ── the lamp: one slot, two level-0 rules, a two-state automaton written as data ──\n\n/// Off becomes on: a whole transition as one triple, no code anywhere.\npublic enum PowerOn: SlotRule {\n    public typealias Slot = LampModeSlot\n    public typealias From = LampOff\n    public typealias Into = LampOn\n}\n/// On becomes off: the reverse triple, which is why undo is a button, not a mechanism.\npublic enum PowerOff: SlotRule {\n    public typealias Slot = LampModeSlot\n    public typealias From = LampOn\n    public typealias Into = LampOff\n}\n\n// ── the counter: one slot, one level-1 rule, an infinite space from one triple ──\n\n/// Whatever the count is, wrap it once: a rule with a variable. The generic\n/// declaration IS the theorem that every application is well-typed: the compiler\n/// admits `Tick<T>` for every `T: Counting`, so no reachable state can go wrong.\npublic enum BumpUp<T: Counting>: SlotRule {\n    public typealias Slot = CountSlot\n    public typealias From = T\n    public typealias Into = Tick<T>\n}\n\n// ── the keypad: a walk of four right digits, its whole table written as\n// thirty-one triples. The pin is 4-2-4-2. A right digit advances, a wrong digit\n// mid-walk resets, and a wrong digit at the start needs NO rule at all: its\n// press finds no matching pattern and the file stands, a no-op by absence. One\n// physical key is a chord over its rules (Chord, one slot by the bound), and at\n// any stage exactly one leaf can match: the table is data, end to end. ──\n\n/// The right digits of the walk: 4 starts, 2 advances, 4 advances again, 2 unlocks.\npublic enum Key4StartsWalk: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage0\n    public typealias Into = PinStage1\n}\npublic enum Key2AdvancesStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage2\n}\npublic enum Key4AdvancesStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage3\n}\npublic enum Key2Unlocks: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinUnlocked\n}\n/// The right digits pressed at the wrong stage reset like any other wrong digit.\npublic enum Key4ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key4ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key2ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\n/// Every other digit resets at every mid-walk stage: the off-path rows of the\n/// table spelled out rather than computed, three triples per key.\npublic enum Key0ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key0ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key0ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\n\n",
+      "statePath": "WorldState.swift",
+      "dictionaryPath": "Rules.swift",
+      "definitions": [
+        {
+          "path": "Sources/Examples/Dynamics.swift",
+          "text": "import VerificationIsIdentification\n\n// ═══════════════════════════════════════════════════════════════\n// THE DYNAMICS TERMS: the worlds a state file can carry, as pure types. The lamp's\n// two faces, the counter's floor and wrap, the keypad's three stages. The rules\n// that move a world between these terms are triples beside the world itself\n// (DynamicsDemo/Rules.swift) on the dynamics medium (DocumentKit/Dynamics.swift):\n// this file is the alphabet alone. A slot marker names its alias by dropping the\n// `Slot` suffix, so a marker and a live alias never share a name in any module.\n// ═══════════════════════════════════════════════════════════════\n\n/// The lamp's one slot: the marker drops its `Slot` suffix to name the alias a\n/// state file carries, `typealias LampMode = <term>`.\npublic enum LampModeSlot {}\npublic enum LampOff {}\npublic enum LampOn {}\n\n/// This marks the terms the counter's slot may hold: the floor and every wrap of\n/// it. The constraint is what the judge checks a press against, for all bindings\n/// at once. A counting term is a structure, so its chain folds to a number the\n/// way every chain in this package does, and `Tally` reads it with no reader\n/// written anywhere.\n///\n/// > Important: `Counting` deliberately stands apart from `IntegerValued`, and\n/// > ``Tick`` is no alias of `Succ`, though both wrap by one. The axis is the\n/// > grammar of moves: a number can be added and halved, a count of events can\n/// > only grow. Merged, every numeric rule would match the counter's slot and\n/// > the counter's rule would match every numeric slot — the axis split is what\n/// > keeps a button on its own slot.\npublic protocol Counting: Structure {}\nextension Never: Counting {}\n/// One step more than its content: the counter's only constructor. Its count is\n/// the structural fold: one more than what it wraps.\npublic enum Tick<Previous: Counting>: Counting {}\nextension Tick {\n    public static var count: Int { Previous.count + 1 }\n}\n\n/// The counter's one slot: the state file's alias is `Count`.\npublic enum CountSlot {}\n\n/// The keypad's one slot: the state file's alias is `PinProgress`.\npublic enum PinProgressSlot {}\npublic enum PinStage0 {}\npublic enum PinStage1 {}\npublic enum PinStage2 {}\npublic enum PinStage3 {}\npublic enum PinUnlocked {}\n"
+        },
+        {
+          "path": "Sources/VerificationIsIdentification/Primitive.swift",
+          "text": "// ═══════════════════════════════════════════════════════\n// THE FOUNDATION names Structure, Open, Close, Pair, Null.\n//\n// To be one of our things is to be a STRUCTURE. A structure is OPEN (a protocol\n// that opens a tunnel) or CLOSE (an empty enum that seals). The sole structural\n// primitive is PAIR: two named sides. NULL equates their types. A finite-tree\n// interpretation requires separate constructor and termination premises,\n// including a syntax leaf distinct from constructed pairs. [EiF EF2, EF4]\n//\n// For a supplied Null conformance, the compiler checks `Left == Right`\n// at the declared addresses. An answer to a declared question is determined\n// when the compatible set is nonempty and every compatible candidate gives\n// that answer. A proof can derive this agreement from the actual constraint\n// relations without enumerating candidates. Applying the answer to an\n// intended target needs a justified source relation. [V=I U2c, §1b]\n//\n// ── PROTOCOL CREATION RULES (summary, canonical form: Law.swift) ──\n//\n// Only two operations exist:\n//\n//   EXPAND:   associatedtype adds an axis (degree of freedom)\n//   COMPRESS: where clause removes a degree of freedom\n//\n// A valid protocol does at least one of:\n//\n//   associatedtype:  EXPAND   (open an axis)\n//   where:           COMPRESS (constrain an axis)\n//   inherit from 2+: COMPRESS (intersect: A ∩ B, smaller than either)\n//\n// `protocol X: Y {}` (single parent, no where, no axis)\n// is a rename, not a claim. Zero information added.\n//\n// At the meta-level, these rules ARE Pair/Null:\n//   associatedtype = Pair  (two sides: type and protocol)\n//   where X == Y   = Null  (sides collapse)\n//   where X: M     = partial Null (axis constrained)\n// ═══════════════════════════════════════════════════════\n\n// ── Structure / Open / Close ──\n\n/// This names the root ability: what it is to participate in the world. A new name is not written\n/// `: Structure` directly: it is ``Open`` (a `protocol` tunnel, still extensible) or ``Close`` (an\n/// empty `enum` seal, concrete). These are the repository's construction rules. Swift permits\n/// recursive associated types, so conformance does not guarantee that following components\n/// reaches a terminal. The finite-tree interpretation requires that additional premise (EiF EF4).\npublic protocol Structure {\n    /// This gives the name of this type: the edge reading. Dynamic dispatch ensures overrides are\n    /// called through generic contexts (Paired chains, associated types).\n    static var typeName: String { get }\n\n    /// This gives the size of this type: how many leaves it is built from. An atom is one. The floor\n    /// (`Never`) is none. A composed ``Open`` folds the count of everything its `body` lists. Any\n    /// structure has a length, the same way any structure has a name, the second reading the\n    /// builder's ``Paired`` chain gives for free, replacing the hand-rolled `Length` a cons-list\n    /// (`Chain`/`Roster`) used to carry.\n    static var count: Int { get }\n\n    /// This gives the names of this type's leaves, in body order. An atom is its own one-element list. A\n    /// composed ``Open`` folds its `body`'s leaves in the order they were written. The third\n    /// reading the builder's ``Paired`` chain gives for free: where `typeName` collapses a body\n    /// to one string and `count` to one number, `labels` keeps each leaf's name, so a leaf that\n    /// carries its identity (an employee in a batch) can be read back individually.\n    static var labels: [String] { get }\n}\n\n/// This is an OPEN tunnel, written ONLY as a `protocol`. A new name is Open by default: it opens an\n/// axis with `associatedtype` (a hole) and narrows it with `where`. It is extensible, dot-readable,\n/// a criterion. `enum X: Open` is the contradiction the check rejects: an `enum` has already sealed what\n/// Open must keep open.\n///\n/// Every Open type carries a ``Body``: the tunnel for composition. A type that has nothing to compose\n/// defaults to `Never` (the floor). A type that composes children defines its `body` with the one\n/// ``StructureBuilder``, and the builder folds the braces into a ``Paired`` chain.\npublic protocol Open: Structure {\n    associatedtype Body: Structure = Never\n    @StructureBuilder\n    static var body: Body { get }\n}\n\n/// This is the default body: `Never`. Lattice protocols, markers, axes, none compose children, so their body is\n/// the floor. The extension gives it for free: conform to ``Open`` and you get `Never` unless you say\n/// otherwise.\nextension Open\nwhere Body == Never {\n    public static var body: Never { fatalError(\"a type with Body == Never has no body\") }\n}\n\n/// This is a CLOSE: a terminal seal, written ONLY as an empty `enum`: no cases, no `init`, the branch\n/// ends and Swift is handed a concrete empty type. `protocol X: Close` is the contradiction: a Close must be\n/// concrete. A foreign value joins the world here too: a layer writes `extension String: Close` to make\n/// a string one of the sealed leaves, the one place for a value (a `String`), at the edge.\npublic protocol Close: Structure {}   // law:allow: the seal half of Open/Close, not a rename of Structure\n\n// ── Pair / Null ──\n\n/// This provides two named roles for representing a distinction. It is the chosen structural primitive.\n/// Their contents can agree: every ``Null`` is also a ``Pair``. A realized contrast\n/// needs an actual separating relation, not just these two names. [Matter M71]\n/// Its unconstrained axes alone guarantee neither recursive structure nor finite depth.\n/// ``Pair`` is ``Open``: it opens two tunnels (`Left`, `Right`). [EiF EF2, EF4]\n///\n/// - term Left: one side of the distinction.\n/// - term Right: the other side.\n///\n/// > Note: ``Pair`` is the one thing the lattice rests on, and the one thing no\n/// > protocol derives. Trace any type up its parents (§5 of ``Law``) and it ends\n/// > here: an entry in no library, certified by no game.\npublic protocol Pair: Open {\n    associatedtype Left\n    associatedtype Right\n}\n\n/// This requires equality of ``Pair``'s two associated types at the declared addresses.\n/// It does not identify the conforming type with either side or with the syntax leaf.\n/// `Never` is one conformer. Other nominal equality witnesses remain distinct. [EiF EF4]\n///\n/// > Note: For a supplied ``Null`` conformance, the compiler checks\n/// > `Left == Right` at these addresses. An answer to a declared question is\n/// > determined when the compatible set is nonempty and every compatible\n/// > candidate gives that answer. The proof can derive this agreement from the\n/// > actual constraint relations without enumerating candidates. Applying the\n/// > answer to an intended target needs a justified source relation. [V=I U2c, §1b]\npublic protocol Null: Pair\nwhere Left == Right {}\n\n// Never conforms to Null by choosing equal associated types.\n// Equality of these sides is not a claim that every Null conformer is Never.\n// typeName = \"\" / count = 0 / labels = [] break recursion (Never: Open, Open.typeName =\n// Body.typeName, Open.count = Body.count, Open.labels = Body.labels, Never.Body = Never).\nextension Never: Null {\n    public typealias Left = Never\n    public typealias Right = Never\n    public static var typeName: String { \"\" }\n    public static var count: Int { 0 }\n    public static var labels: [String] { [] }\n}\n\n// Never IS Close: the empty type is the seal, the floor every chain reaches. This is the point\n// where ``Open`` and ``Close`` coincide (``Null``'s `Left == Right`): the one type that is both the\n// empty tunnel and the empty seal, so identification is where opening meets closing.\nextension Never: Close {}\n\n// String IS Close: the sealed leaf where a value is. The one foreign value that enters our world,\n// at the edge (§S6). Above it, the structure carries only types. Here, the String carries text.\nextension String: Close {}\n\n// ── typeName: the one rendering mechanism ──\n\n/// This defaults to the Swift type name. Atoms override for their character.\nextension Structure {\n    public static var typeName: String { String(describing: Self.self) }\n}\n\n/// This is an `Open` type that has not customized `body`: it is `Pair`-shaped, not list-shaped\n/// (``Employee``, a verdict gate), a LEAF, so it renders its Swift name, the same as a ``Close`` atom.\n/// Without this, the rule below would read `Body.typeName` and silently render every such leaf\n/// as the empty string.\nextension Open\nwhere Body == Never {\n    public static var typeName: String { String(describing: Self.self) }\n}\n\n/// This is an `Open` type that DOES compose children: it renders its body, `Body.typeName` recurses\n/// through the Paired chain.\nextension Open {\n    public static var typeName: String { Body.typeName }\n}\n\n/// Paired concatenates Left and Right type names.\nextension Paired {\n    public static var typeName: String { L.typeName + R.typeName }\n}\n\n// ── count: the second rendering: how many leaves a body lists ──\n\n/// This is the default, one: a structure counts itself. Atoms (``Close``) keep this: it is also the\n/// floor a leaf ``Open`` type (no custom `body`) falls back to, below.\nextension Structure {\n    public static var count: Int { 1 }\n}\n\n/// This is an `Open` type that has not customized `body`: it is `Pair`-shaped, not list-shaped,\n/// `Employee` (`Pair` for its `Rank`/`Home` coordinate), a verdict gate, an axis marker. It is a LEAF,\n/// the same as a ``Close`` atom, so it counts as one. Without this, the general rule below would read\n/// `Body.count` and silently count every such leaf as zero, exactly the case a roster's members\n/// are made of, so this is the override that keeps `count` correct for a roster's members.\nextension Open\nwhere Body == Never {\n    public static var count: Int { 1 }\n}\n\n/// This is an `Open` type that DOES compose children: it counts through its body, the builder folds a `{ }`\n/// block into a ``Paired`` chain, and that chain's count is the number of statements written.\nextension Open {\n    public static var count: Int { Body.count }\n}\n\n/// Paired sums its two sides: composing is exactly what makes a count more than one.\nextension Paired {\n    public static var count: Int { L.count + R.count }\n}\n\n// ── labels: the third reading: each leaf's name, in body order ──\n\n/// This is the default, one label: a structure's `typeName`. Atoms (``Close``) keep this: it is also\n/// the floor a leaf ``Open`` type (no custom `body`) falls back to, below, the same `Body ==\n/// Never` exception `count` needs, for the same reason.\nextension Structure {\n    public static var labels: [String] { [typeName] }\n}\n\nextension Open\nwhere Body == Never {\n    public static var labels: [String] { [typeName] }\n}\n\n/// An `Open` type that DOES compose children reads its labels through its body.\nextension Open {\n    public static var labels: [String] { Body.labels }\n}\n\n/// This is Paired: it concatenates its two sides' labels, in body order.\nextension Paired {\n    public static var labels: [String] { L.labels + R.labels }\n}\n\n// ── The builder: the ONE @resultBuilder ──\n//\n// The one allowed callable (§S4): folds a `{ }` body into a Pair-chain of Structures, floored at\n// `Never`. ``Paired`` is the ONE concrete `<>` (§S3 plumbing): it keeps two Structures as a value\n// so the builder can return them. Everything else is a protocol.\n\n/// This is the concrete Pair realizer: the ONE `<>` in the system, the framework's plumbing that the\n/// builder folds into. It keeps a left and a right as a value and conforms to ``Pair``. Not written in domain code.\n/// The builder produces it behind the `{ }` curtain.\npublic enum Paired<\n    L: Structure,\n    R: Structure\n>: Pair {\n    case paired(L, R)\n    public typealias Left = L\n    public typealias Right = R\n}\n\n/// This is the one result builder: it folds a `{ }` body into a ``Pair``-chain of Structures, floored at `Never`.\n/// This is the single `@resultBuilder` the system allows (§S4). The builder is the boundary between the\n/// brace-syntax and the type tree: inside the braces, each statement is a ``Structure``. Outside, the\n/// whole body is a single ``Paired`` chain.\n@resultBuilder\npublic enum StructureBuilder {\n    public static func buildExpression<\n        T: Structure\n    >(_ type: T.Type) -> T { fatalError() }\n    public static func buildExpression(_ string: String) -> String { string }\n    @_disfavoredOverload public static func buildExpression<\n        V: Structure\n    >(_ value: V) -> V { value }\n    public static func buildPartialBlock<\n        V: Structure\n    >(first: V) -> V { first }\n    public static func buildPartialBlock<\n        A: Structure,\n        B: Structure\n    >(accumulated: A, next: B) -> Paired<\n        A,\n        B\n    > { .paired(accumulated, next) }\n    public static func buildBlock() -> Never { fatalError() }\n    public static func buildEither<\n        A: Structure,\n        B: Structure\n    >(first: A) -> Paired<\n        A,\n        B\n    > { fatalError() }\n    public static func buildEither<\n        A: Structure,\n        B: Structure\n    >(second: B) -> Paired<\n        A,\n        B\n    > { fatalError() }\n}\n// ── MAGNITUDES — space as structure, and the counting reader. A magnitude is a chain of\n// these atoms. The house fold counts it, and nothing else measures anything. They are in\n// this engine room because `Plus` composes through the one builder and the readers below\n// speak digits: the same §0′ exemption are already on. The design system\n// (DocumentKit) names the rungs, and canvases speak in its names, never in chains of these. ──\n\n/// Unit counts one: the atom of magnitude. `Close` keeps the default count, which is also\n/// the definition.\npublic enum Unit: Close {}\n\n/// Plus sums by composition: the pair of two magnitudes counts as both. The house fold does\n/// the arithmetic, and no member states it.\npublic enum Plus<\n    A: Structure,\n    B: Structure\n>: Open {\n    @StructureBuilder\n    public static var body: some Structure {\n        A.self\n        B.self\n    }\n}\n\n/// Twice is no separate object: doubling IS the pair of a thing with itself.\npublic typealias Twice<S: Structure> = Plus<S, S>\n\n/// Times composes two counts into their product, the way `Paired` composes them into their\n/// sum: one witness, no other member. With it a fraction needs no further arithmetic.\npublic enum Times<\n    A: Structure,\n    B: Structure\n>: Close {}\nextension Times {\n    public static var count: Int { A.count * B.count }\n}\n\n/// The numerals: the powers of two, spelled once as the doubling ladder. Every target\n/// reads these names from here, so a magnitude's meaning is its one written definition,\n/// and a judge unfolds it from this source.\npublic typealias U1 = Unit\npublic typealias U2 = Twice<U1>\npublic typealias U4 = Twice<U2>\npublic typealias U8 = Twice<U4>\npublic typealias U16 = Twice<U8>\npublic typealias U32 = Twice<U16>\npublic typealias U64 = Twice<U32>\npublic typealias U128 = Twice<U64>\npublic typealias U256 = Twice<U128>\npublic typealias U512 = Twice<U256>\n\n/// Rest is what remains: the whole minus what was taken, the subtractive witness beside\n/// `Times`' product. Layout divides space (known pieces come off a given whole, and the\n/// rest is handed on), so subtraction enters the lattice the same way multiplication did:\n/// one witness, counted only at the reading edge. Taking more than the whole has is\n/// refused right there, at the read, the fit made a checked fact.\npublic enum Rest<\n    Whole: Structure,\n    Taken: Structure\n>: Close {}\nextension Rest {\n    public static var count: Int {\n        let whole = Whole.count\n        let taken = Taken.count\n        precondition(\n            taken <= whole,\n            \"Rest underflow: \\(Taken.self) takes \\(taken) from \\(Whole.self) holding \\(whole)\"\n        )\n        return whole - taken\n    }\n}\n\n/// Half is the even split of a magnitude: a box's centre line, a shelf's midpoint. The\n/// count must divide cleanly, and an odd magnitude refuses at generation, loudly, since a\n/// half-pixel would be a number no rung owns.\npublic enum Half<Of: Structure>: Close {}\nextension Half {\n    public static var count: Int {\n        precondition(Of.count % 2 == 0, \"Half of an odd magnitude: \\(Of.count) does not split\")\n        return Of.count / 2\n    }\n}\n\n/// Tally is the counting read: a structure in, its count out as digits, through `typeName`\n/// like every other reading. The one door a canvas may take to a number, and a bare `count`\n/// call outside the readers is the smell this door exists to remove.\npublic enum Tally<Of: Structure>: Close {}\nextension Tally {\n    public static var typeName: String { String(Of.count) }\n}\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// THE WORLD: one file, four slots, and that is the whole state of the system.\n// Three slots are terms moved by the dictionary's triples; the fourth is a\n// LITERAL slot: free text in a typeName, the medium's prose genre. Its three\n// movements — append, rubout, clear — are the applier's own\n// (`swift run Tools press append Note …`), the judge vets the FORM of the\n// file, and a label draws the literal with no reader in between.\n\ntypealias LampMode = LampOff\ntypealias Count = LampOff\ntypealias PinProgress = PinStage0\n\nenum Note: Close {}\nextension Note {\n    static var typeName: String { \"\" }\n}\n",
+      "changed": false,
+      "refusal": {
+        "address": "Rules.swift#BumpUp",
+        "reason_contains": "no source conformance"
+      }
+    }
+  }
+]

@@ -214,7 +214,7 @@ enum DefinitionReduction {
 
     /// A finite proposed derivation, not a trusted verdict. Its endpoints are
     /// reconstructed by replay; the caller cannot append an asserted result.
-    indirect enum Derivation {
+    indirect enum Derivation: Codable {
         case name(String)
         case arguments(String, [Derivation])
         case field(Derivation, String)

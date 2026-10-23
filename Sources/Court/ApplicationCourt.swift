@@ -8,10 +8,11 @@ enum ApplicationCourt {
     typealias E = R.Expression
     typealias Failure = R.Failure
 
-    enum Goal: Hashable {
-        case root(E), form(E), member(E, String), contract(E, String)
+    enum Goal: Hashable, Codable {
+        case root(E), form(E), member(E, String), contract(E, String), equal(E, E)
         var text: String {
             switch self {
+            case let .equal(a, b): return a.text + " == " + b.text
             case let .root(e): return "root " + e.text
             case let .form(e): return "form " + e.text
             case let .member(e, p): return e.text + " : " + p
@@ -19,7 +20,7 @@ enum ApplicationCourt {
             }
         }
     }
-    struct Node {
+    struct Node: Codable {
         let reductions: [R.Derivation]
         let dependencies: Set<Goal>
         let prerequisites: Set<Goal>
@@ -149,6 +150,10 @@ enum ApplicationCourt {
 
         func plan() throws -> Node {
             switch goal {
+            case let .equal(a, b):
+                guard try read(a, headOnly: false) == read(b, headOnly: false) else {
+                    throw Failure("unproved equality at \(goal.text)")
+                }
             case let .root(expression):
                 add(.form(expression), strict: true)
                 let head = try read(expression)
@@ -234,10 +239,18 @@ enum ApplicationCourt {
         }
     }
 
-    static func derive(_ root: E, source: StructuralSource, nodeLimit: Int = 20_000, predicate: String? = nil) throws
-        -> Derivation
-    {
-        var nodes: [Goal: Node] = [:], work: [Goal] = [predicate.map { .member(root, $0) } ?? .root(root)]
+    /// A finite set of obligations uses the same calculus and replay as root
+    /// applications. Clients supply questions, never a replacement membership test.
+    struct Obligations: Codable {
+        let roots: Set<Goal>
+        let nodes: [Goal: Node]
+    }
+    static func derive(_ root: E, source: StructuralSource, nodeLimit: Int = 20_000, predicate: String? = nil) throws -> Derivation {
+        let proof = try derive([predicate.map { .member(root, $0) } ?? .root(root)], source: source, nodeLimit: nodeLimit)
+        return Derivation(root: root, nodes: proof.nodes)
+    }
+    static func derive(_ roots: Set<Goal>, source: StructuralSource, nodeLimit: Int = 20_000) throws -> Obligations {
+        var nodes: [Goal: Node] = [:], work = roots.sorted { $0.text > $1.text }
         while let goal = work.popLast() {
             if nodes[goal] != nil { continue }
             guard nodes.count < nodeLimit else { throw Failure("application graph limit reached") }
@@ -245,8 +258,8 @@ enum ApplicationCourt {
             nodes[goal] = node
             work += node.dependencies.sorted { $0.text > $1.text }
         }
-        let result = Derivation(root: root, nodes: nodes)
-        try verify(root, derivation: result, source: source, predicate: predicate)
+        let result = Obligations(roots: roots, nodes: nodes)
+        try verify(roots, derivation: result, source: source)
         return result
     }
 
@@ -254,7 +267,12 @@ enum ApplicationCourt {
         guard root == derivation.root else {
             throw Failure("application proof belongs to a different root")
         }
-        var seen: Set<Goal> = [], work: [Goal] = [predicate.map { .member(root, $0) } ?? .root(root)]
+        let roots: Set<Goal> = [predicate.map { .member(root, $0) } ?? .root(root)]
+        try verify(roots, derivation: Obligations(roots: roots, nodes: derivation.nodes), source: source)
+    }
+    static func verify(_ roots: Set<Goal>, derivation: Obligations, source: StructuralSource) throws {
+        guard roots == derivation.roots else { throw Failure("application proof changes its obligations") }
+        var seen: Set<Goal> = [], work = Array(roots)
         while let goal = work.popLast() {
             if !seen.insert(goal).inserted { continue }
             guard let proposed = derivation.nodes[goal] else {

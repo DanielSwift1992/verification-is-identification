@@ -1,110 +1,252 @@
 import Foundation
 
-// ═══════════════════════════════════════════════════════
-// Press applies one rewrite triple to one state file: `swift run Tools press <Rule>
-// --file <path> --rules <path>`. This is the whole applier the dynamics medium ever needs, for
-// every domain at once: find the rule's slot alias, compare the slot's term with the
-// rule's pattern, substitute the template. One match or none, never a search; a
-// mismatch is a lawful no-op that leaves the file byte-identical. No domain logic
-// stands here or ever will: a system's behaviour is its triples (the showcase's
-// Sources/DynamicsDemo/Rules.swift), and the judge already admitted every press
-// when it compiled the rule's generic declaration.
-// ═══════════════════════════════════════════════════════
+// Linear triples are declarations, read by the court's structural grammar.
+// apply proposes a finite certificate; replay checks every chord member, the
+// two substitution equations, and the declared bounds before publication.
+// Literal edits retain the v0.1 behavior pending the explicit T0083 step-B design.
 
 public enum Press {
 
-    struct Rule {
-        let name: String
-        let variables: [String]
-        let slot: String
-        let from: String
-        let into: String
-    }
+    typealias E = DefinitionReduction.Expression
+    typealias R = DefinitionReduction
 
+    struct Rule {
+        let declaration: StructuralSource.Declaration
+        let slot: String
+        let from: E
+        let into: E
+        var name: String { declaration.name }
+        var variables: [String] { declaration.parameters }
+    }
+    public struct Input: Codable {
+        public let path: String
+        public let text: String
+        public init(path: String, text: String) {
+            self.path = path
+            self.text = text
+        }
+    }
     public struct Failure: Error, CustomStringConvertible {
         public let description: String
         public let address: String
+    }
+    public struct Certificate: Codable {
+        let version: String
+        let arguments: [String]
+        let inputs: [String]
+        let readings: [StructuralSource.ReadingCertificate]
+        let slot: String
+        let lowerByte: Int
+        let upperByte: Int
+        let candidates: [Candidate]
+        let selected: Int?
+    }
+    struct Candidate: Codable {
+        let rule: String
+        let substitution: [String: String]
+        // A path to a constructor disagreement; nil denotes a complete match.
+        let mismatch: [Int]?
+        let bounds: ApplicationCourt.Obligations?
     }
     public struct Substitution {
         public let state: String
         public let changed: Bool
         public let message: String
+        // Literal operations are the explicit T0083 step-B debt, not triple proofs.
+        public let certificate: Certificate?
+        init(state: String, changed: Bool, message: String, certificate: Certificate? = nil) {
+            self.state = state
+            self.changed = changed
+            self.message = message
+            self.certificate = certificate
+        }
     }
     static func fail(_ message: String, at address: String = "arguments") throws -> Never {
         throw Failure(description: message, address: address)
     }
-
-    /// Reads one rule's triple out of the dictionary's text: the enum's generic
-    /// parameter names, and its Slot/From/Into aliases.
-    static func readRule(named name: String, from text: String, path: String) throws -> Rule {
-        var variables: [String] = []
-        var slot = ""
-        var from = ""
-        var into = ""
-        var inside = false
-        for raw in text.split(separator: "\n", omittingEmptySubsequences: false) {
-            let line = raw.trimmingCharacters(in: .whitespaces)
-            if !inside {
-                guard line.hasPrefix("public enum \(name)") || line.hasPrefix("enum \(name)") else { continue }
-                let head = line
-                if let open = head.firstIndex(of: "<"), let close = head.firstIndex(of: ">") {
-                    let inner = head[head.index(after: open)..<close]
-                    for piece in inner.split(separator: ",") {
-                        let variable = piece.split(separator: ":").first.map {
-                            $0.trimmingCharacters(in: .whitespaces)
-                        } ?? ""
-                        if !variable.isEmpty {
-                            variables.append(variable)
-                        }
-                    }
-                }
-                inside = true
-                continue
-            }
-            if line.hasPrefix("}") {
-                break
-            }
-            var carried = line.isEmpty || line.hasPrefix("//")
-            for (key, sink) in [("Slot", 0), ("From", 1), ("Into", 2)] {
-                let marker = "typealias \(key) = "
-                guard let range = line.range(of: marker) else { continue }
-                let value = String(line[range.upperBound...])
-                switch sink {
-                case 0: slot = value
-                case 1: from = value
-                default: into = value
-                }
-                carried = true
-            }
-            // §S28's edge at the point of use: a rule is one substitution, so a body
-            // line that is not one of the three aliases refuses the whole press.
-            guard carried else {
-                try fail("\(name) is not a triple: \(line)", at: "\(path)#\(name)")
-            }
-        }
-        guard inside else { try fail("no rule named \(name) in \(path)", at: "\(path)#\(name)") }
-        guard !slot.isEmpty, !from.isEmpty, !into.isEmpty else {
-            try fail("\(name) states no full Slot/From/Into triple", at: "\(path)#\(name)")
-        }
-        return Rule(name: name, variables: variables, slot: slot, from: from, into: into)
+    static func addressed<T>(_ address: String, _ action: () throws -> T) throws -> T {
+        do { return try action() }
+        catch let error as Failure { throw error }
+        catch { try fail(String(describing: error), at: address) }
     }
 
-    /// Substitutes bound variables into a template by whole-word replacement.
-    static func fill(_ template: String, _ bindings: [String: String]) -> String {
-        var out = ""
-        var word = ""
-        for ch in template + " " {
-            if ch.isLetter || ch.isNumber {
-                word.append(ch)
-            } else {
-                out += bindings[word] ?? word
-                word = ""
-                if ch != " " || out.last == "," {
-                    out.append(ch)
+    /// The grammar and declaration production are StructuralSource's, shared
+    /// with ApplicationCourt. The Press question restricts a selected body to
+    /// exactly three ordinary aliases; it does not search line substrings.
+    static func readRule(named name: String, read: StructuralSource.FileReading, path: String) throws -> Rule {
+        try addressed("\(path)#\(name)") {
+            let found = read.regions.filter { $0.declaration.name == name && $0.declaration.kind != "extension" }
+            guard let region = found.first else { try fail("no rule named \(name) in \(path)", at: "\(path)#\(name)") }
+            guard found.count == 1 else { throw R.Failure("duplicate rule \(name)") }
+            let d = region.declaration
+            guard d.kind == "enum", d.unsupported.isEmpty else { throw R.Failure("unsupported rule \(name): \(d.unsupported)") }
+            var i = 0, aliases: [StructuralSource.Declaration] = []
+            while i < region.body.count {
+                if ["\n", ";", "public", "internal", "private", "fileprivate", "package"].contains(region.body[i]) {
+                    i += 1
+                    continue
                 }
+                guard region.body[i] == "typealias" else { throw R.Failure("\(name) is not a triple: \(region.body[i])") }
+                aliases.append(try StructuralSource.readDeclaration(region.body, index: &i, origin: path).declaration)
+            }
+            guard aliases.count == 3, Set(aliases.map(\.name)) == Set(["Slot", "From", "Into"]),
+                aliases.allSatisfy({ $0.parameters.isEmpty && $0.requirements.isEmpty && $0.unsupported.isEmpty }) else {
+                throw R.Failure("\(name) states no full Slot/From/Into triple")
+            }
+            let slot = try R.parse(d.fields["Slot"]!)
+            guard case let .application(slotName, args) = slot, args.isEmpty, !d.parameters.contains(slotName) else {
+                throw R.Failure("Slot must be a constant name")
+            }
+            let from = try R.parse(d.fields["From"]!), into = try R.parse(d.fields["Into"]!)
+            var counts: [String: Int] = [:]
+            try variables(from, d.parameters, counts: &counts)
+            for variable in d.parameters
+            where counts[variable, default: 0] > 1 {
+                throw R.Failure("\(name) repeats \(variable) in its pattern: linearity is the premise of the unique match")
+            }
+            var outputCounts: [String: Int] = [:]
+            try variables(into, d.parameters, counts: &outputCounts)
+            return Rule(declaration: d, slot: slotName, from: from, into: into)
+        }
+    }
+    static func variables(_ e: E, _ parameters: [String], counts: inout [String: Int]) throws {
+        switch e {
+        case let .application(name, args):
+            if parameters.contains(name) {
+                guard args.isEmpty else { throw R.Failure("variable used as a constructor: \(name)") }
+                counts[name, default: 0] += 1
+            } else { for a in args { try variables(a, parameters, counts: &counts) } }
+        case let .field(owner, _): try variables(owner, parameters, counts: &counts)
+        }
+    }
+
+    struct Reading {
+        let members: [(Rule, [E])]
+        let slot: String
+        let bytes: Range<Int>
+        let current: E
+        let source: StructuralSource?
+        let readings: [StructuralSource.ReadingCertificate]
+    }
+    static func reading(_ arguments: [String], state: String, dictionary: String, definitions: [Input], statePath: String, dictionaryPath: String, certificates: [StructuralSource.ReadingCertificate]? = nil) throws -> Reading {
+        guard arguments.count == 1, let invocation = arguments.first else { try fail("usage: Tools press <Rule>[,<Rule>…] --file <state file> --rules <rule file>") }
+        let inputs = [Input(path: statePath, text: state), Input(path: dictionaryPath, text: dictionary)] + definitions
+        if let certificates, certificates.count != inputs.count { try fail("reading certificate changes input coverage", at: "certificate") }
+        // Dictionary first so an absent rule still names the dictionary. The slot
+        // address is established below before judging the state production.
+        func readInput(_ index: Int) throws -> StructuralSource.FileReading {
+            let input = inputs[index]
+            if let certificates { return try StructuralSource.replayReading(certificates[index], source: input.text, origin: input.path) }
+            return try StructuralSource.regions(input.text, origin: input.path)
+        }
+        let dictionaryRead = try addressed("\(dictionaryPath)#\(invocation)") { try readInput(1) }
+        let members: [(Rule, [E])] = try addressed("arguments") {
+            let tokens = try StructuralSource.tokens(invocation)
+            return try StructuralSource.split(tokens, at: ",").map { part in
+                let e = try R.parse(StructuralSource.text(part))
+                guard case let .application(name, args) = e else { throw R.Failure("rule invocation must name a declaration") }
+                return (try readRule(named: name, read: dictionaryRead, path: dictionaryPath), args)
             }
         }
-        return String(out.dropLast(out.hasSuffix(" ") ? 1 : 0))
+        guard let slot = members.first?.0.slot, members.allSatisfy({ $0.0.slot == slot }) else {
+            try fail("a chord holds one slot: \(invocation) mixes \(Set(members.map { $0.0.slot }).sorted().joined(separator: ", "))", at: "\(dictionaryPath)#\(invocation)")
+        }
+        let alias = slot.hasSuffix("Slot") ? String(slot.dropLast(4)) : slot
+        return try addressed("\(statePath)#\(alias)") {
+            let read = try readInput(0)
+            let found = read.regions.filter { $0.declaration.kind == "typealias" && $0.declaration.name == alias }
+            guard let region = found.first else { try fail("no slot \(alias) in \(statePath)", at: "\(statePath)#\(alias)") }
+            guard found.count == 1 else { try fail("slot \(alias) appears twice in \(statePath)", at: "\(statePath)#\(alias)") }
+            let d = region.declaration
+            guard d.parameters.isEmpty, d.requirements.isEmpty, d.unsupported.isEmpty, let body = d.alias else { throw R.Failure("unsupported slot declaration") }
+            let current = try R.parse(body)
+            let header = Array(read.tokens[region.headerRange])
+            guard let equal = (header.firstIndex { $0.word == "=" }) else { throw R.Failure("missing slot equation") }
+            let term = header.dropFirst(equal + 1).filter { $0.word != "\n" }
+            guard let first = term.first, let last = term.last else { throw R.Failure("empty slot term") }
+            let extraReads = try inputs.indices.dropFirst(2).map { index in
+                try addressed(inputs[index].path) { try readInput(index) }
+            }
+            let all = [read, dictionaryRead] + extraReads
+            let needsSource = members.contains { !$0.0.declaration.requirements.isEmpty }
+            let source = try needsSource ? addressed("\(dictionaryPath)#\(invocation)") {
+                try StructuralSource(files: [], readings: all)
+            } : nil
+            return Reading(members: members, slot: alias, bytes: first.bytes.lowerBound..<last.bytes.upperBound,
+                current: current, source: source, readings: all.map(\.certificate))
+        }
+    }
+    static func prebindings(_ rule: Rule, _ instance: [E], dictionaryPath: String) throws -> [String: E] {
+        try addressed("\(dictionaryPath)#\(rule.name)") {
+            var counts: [String: Int] = [:]
+            try variables(rule.from, rule.variables, counts: &counts)
+            let names = rule.variables.filter { counts[$0] == nil }
+            guard instance.count <= names.count else { throw R.Failure("\(rule.name) takes \(names.count) instance argument(s), \(instance.count) given") }
+            guard instance.count == names.count else { throw R.Failure("\(rule.name) needs its instance argument(s) \(names.joined(separator: ", ")): press \(rule.name)<…>") }
+            return Dictionary(uniqueKeysWithValues: zip(names, instance))
+        }
+    }
+    /// Search returns either a complete substitution or one constructor
+    /// disagreement. Replay below follows the supplied path, without matching.
+    static func match(_ pattern: E, _ term: E, variables: [String], bindings: inout [String: E], path: [Int] = []) -> [Int]? {
+        if case let .application(name, args) = pattern, args.isEmpty, variables.contains(name) {
+            bindings[name] = term
+            return nil
+        }
+        switch (pattern, term) {
+        case let (.application(a, xs), .application(b, ys))
+        where a == b && xs.count == ys.count:
+            for i in xs.indices { if let no = match(xs[i], ys[i], variables: variables, bindings: &bindings, path: path + [i]) { return no } }
+            return nil
+        case let (.field(a, x), .field(b, y))
+        where x == y:
+            return match(a, b, variables: variables, bindings: &bindings, path: path + [-1])
+        default: return path
+        }
+    }
+    static func disagreement(_ path: [Int], _ pattern: E, _ term: E, variables: [String]) -> Bool {
+        if case let .application(name, args) = pattern, args.isEmpty, variables.contains(name) { return false }
+        if let first = path.first {
+            switch (pattern, term) {
+            case let (.application(a, xs), .application(b, ys))
+            where a == b && xs.count == ys.count && xs.indices.contains(first):
+                return disagreement(Array(path.dropFirst()), xs[first], ys[first], variables: variables)
+            case let (.field(a, x), .field(b, y))
+            where x == y && first == -1:
+                return disagreement(Array(path.dropFirst()), a, b, variables: variables)
+            default: return false
+            }
+        }
+        switch (pattern, term) {
+        case let (.application(a, xs), .application(b, ys)): return a != b || xs.count != ys.count
+        case let (.field(_, x), .field(_, y)): return x != y
+        default: return true
+        }
+    }
+    static func obligations(_ rule: Rule, _ bindings: [String: E]) throws -> Set<ApplicationCourt.Goal> {
+        var environment = bindings
+        environment["Self"] = .application(rule.name, try rule.variables.map {
+            guard let value = bindings[$0] else { throw R.Failure("missing binding \($0)") }
+            return value
+        })
+        return try Set(rule.declaration.requirements.map { requirement in
+            let left = try R.parse(requirement.left).substituting(environment)
+            switch requirement.kind {
+            case .member: return .member(left, requirement.right)
+            case .equal: return .equal(left, try R.parse(requirement.right).substituting(environment))
+            }
+        })
+    }
+    static func inputDigests(_ state: String, _ dictionary: String, _ definitions: [Input], _ statePath: String, _ dictionaryPath: String) -> [String] {
+        ([Input(path: statePath, text: state), Input(path: dictionaryPath, text: dictionary)] + definitions).map {
+            var bytes = Data()
+            for field in [$0.path, $0.text] {
+                let value = Array(field.utf8), count = UInt64(value.count)
+                for shift in (0..<8).reversed() { bytes.append(UInt8((count >> (shift * 8)) & 255)) }
+                bytes.append(contentsOf: value)
+            }
+            return courtSHA256(bytes)
+        }
     }
 
     /// A term as its head and arguments: the one shape every pattern, every slot
@@ -144,42 +286,6 @@ public enum Press {
         term.args.isEmpty
             ? term.head
             : term.head + "<" + term.args.map(serialize).joined(separator: ", ") + ">"
-    }
-
-    /// Collects each variable's occurrence count across a pattern: linearity is
-    /// the theorem's premise (one occurrence keeps the match unique), so a
-    /// repeated variable refuses the rule before any state is touched.
-    static func occurrences(in pattern: Term, of variables: [String], into counts: inout [String: Int]) {
-        if pattern.args.isEmpty, variables.contains(pattern.head) {
-            counts[pattern.head, default: 0] += 1
-            return
-        }
-        for argument in pattern.args {
-            occurrences(in: argument, of: variables, into: &counts)
-        }
-    }
-
-    /// Structural unification of a linear pattern against a term: a variable node
-    /// binds whole (or agrees with its instance pre-binding), a constant node
-    /// demands the same head and unifies its arguments. One match or none.
-    static func unify(_ pattern: Term, _ term: Term, variables: [String], bindings: inout [String: String]) -> Bool {
-        if pattern.args.isEmpty, variables.contains(pattern.head) {
-            let value = serialize(term)
-            if let bound = bindings[pattern.head] {
-                return bound == value
-            }
-            bindings[pattern.head] = value
-            return true
-        }
-        guard pattern.head == term.head, pattern.args.count == term.args.count else {
-            return false
-        }
-        for (patternArgument, termArgument) in zip(pattern.args, term.args) {
-            guard unify(patternArgument, termArgument, variables: variables, bindings: &bindings) else {
-                return false
-            }
-        }
-        return true
     }
 
     /// The literal alphabet: what free text may carry into a typeName. Everything
@@ -233,109 +339,95 @@ public enum Press {
         try fail("no literal slot \(slotName) in \(statePath)", at: "\(statePath)#\(slotName)")
     }
 
-    /// A substitution is computed from bytes; publishing it is the carrier's act.
+    /// Replay is a decision on a supplied finite witness. It does not discover
+    /// a rule, match a pattern, normalize a bound, or search for a derivation.
+    public static func replay(_ certificate: Certificate, arguments: [String], state: String, dictionary: String,
+        definitions: [Input] = [], output: String, statePath: String = "state.swift", dictionaryPath: String = "rules.swift") throws {
+        try addressed("certificate") {
+            guard certificate.version == "vi.press.linear-certificate/1", certificate.arguments == arguments,
+                certificate.inputs == inputDigests(state, dictionary, definitions, statePath, dictionaryPath) else {
+                throw R.Failure("certificate belongs to different input")
+            }
+            let read = try reading(arguments, state: state, dictionary: dictionary, definitions: definitions, statePath: statePath, dictionaryPath: dictionaryPath, certificates: certificate.readings)
+            guard certificate.slot == read.slot, certificate.lowerByte == read.bytes.lowerBound,
+                certificate.upperByte == read.bytes.upperBound, certificate.candidates.count == read.members.count else {
+                throw R.Failure("certificate changes the slot or chord coverage")
+            }
+            var matches: [Int] = []
+            for (i, member) in read.members.enumerated() {
+                let (rule, instance) = member, proposed = certificate.candidates[i]
+                guard proposed.rule == rule.name else { throw R.Failure("certificate changes the rule") }
+                let prebound = try prebindings(rule, instance, dictionaryPath: dictionaryPath)
+                let bindings = try proposed.substitution.mapValues { try R.parse($0) }
+                if let path = proposed.mismatch {
+                    guard bindings == prebound, proposed.bounds == nil,
+                        disagreement(path, rule.from, read.current, variables: rule.variables) else {
+                        throw R.Failure("invalid no-match witness")
+                    }
+                    continue
+                }
+                guard Set(bindings.keys) == Set(rule.variables), prebound.allSatisfy({ bindings[$0.key] == $0.value }),
+                    try rule.from.substituting(bindings) == read.current else { throw R.Failure("old slot is not From[sigma]") }
+                let goals = try obligations(rule, bindings)
+                if goals.isEmpty {
+                    guard proposed.bounds == nil else { throw R.Failure("unrelated bound proof") }
+                } else {
+                    guard let source = read.source, let proof = proposed.bounds else { throw R.Failure("missing bound proof") }
+                    try ApplicationCourt.verify(goals, derivation: proof, source: source)
+                }
+                matches.append(i)
+            }
+            guard matches.count <= 1, certificate.selected == matches.first else { throw R.Failure("ambiguous or changed selection") }
+            let expected: String
+            if let i = matches.first {
+                let candidate = certificate.candidates[i], rule = read.members[i].0
+                let bindings = try candidate.substitution.mapValues { try R.parse($0) }
+                expected = replace(state, bytes: read.bytes, with: try rule.into.substituting(bindings).text)
+            } else { expected = state }
+            guard output.utf8.elementsEqual(expected.utf8) else { throw R.Failure("new slot is not Into[sigma], or carried bytes changed") }
+        }
+    }
+    static func replace(_ text: String, bytes: Range<Int>, with replacement: String) -> String {
+        let raw = Array(text.utf8)
+        return String(decoding: raw[..<bytes.lowerBound] + Array(replacement.utf8) + raw[bytes.upperBound...], as: UTF8.self)
+    }
+
+    /// A substitution is computed from explicit bytes. Publication is the host's
+    /// act; bounded rules require declarations in dictionary/state/definitions.
     public static func apply(_ arguments: [String], state: String, dictionary: String,
-        statePath: String = "state.swift", dictionaryPath: String = "rules.swift") throws -> Substitution {
-        if let first = arguments.first, first == "append" || first == "rubout" || first == "clear" {
+        definitions: [Input] = [], statePath: String = "state.swift", dictionaryPath: String = "rules.swift") throws -> Substitution {
+        if let first = arguments.first, ["append", "rubout", "clear"].contains(first) {
             return try pressLiteral(first, Array(arguments.dropFirst()), state: state, statePath: statePath)
         }
-        guard let ruleArgument = arguments.first else {
-            try fail("usage: Tools press <Rule>[,<Rule>…] --file <state file> --rules <rule file>")
-        }
-        // A comma at depth zero spells a chord: several rules of ONE slot behind one
-        // face (§S30). An angle bracket spells an instance: `Rule<Atom>` hands the rule
-        // the arguments its pattern cannot bind (§S28's typed input). At any
-        // state at most one member may match; two matches name an unlawful chord.
-        var memberTexts: [String] = []
-        var depth = 0
-        var piece = ""
-        for ch in ruleArgument {
-            if ch == "<" { depth += 1 }
-            if ch == ">" { depth -= 1 }
-            if ch == ",", depth == 0 {
-                memberTexts.append(piece)
-                piece = ""
-            } else {
-                piece.append(ch)
-            }
-        }
-        memberTexts.append(piece)
-        let members = try memberTexts.map { text -> (rule: Rule, instance: [Term]) in
-            let spelled = parseTerm(Substring(text))
-            return (try readRule(named: spelled.head, from: dictionary, path: dictionaryPath), spelled.args)
-        }
-        let rules = members.map(\.rule)
-        guard let firstSlot = rules.first?.slot, rules.allSatisfy({ $0.slot == firstSlot }) else {
-            try fail("a chord holds one slot: \(ruleArgument) mixes \(Set(rules.map(\.slot)).sorted().joined(separator: ", "))", at: "\(dictionaryPath)#\(ruleArgument)")
-        }
-
-        // The slot marker drops its `Slot` suffix to name the alias in the state file.
-        var aliasName = firstSlot
-        if aliasName.hasSuffix("Slot") {
-            aliasName = String(aliasName.dropLast(4))
-        }
-        let marker = "typealias \(aliasName) = "
-        var lines = state.split(separator: "\n", omittingEmptySubsequences: false).map(String.init)
-        var slotLine: Int?
-        for (number, line) in lines.enumerated() {
-            if line.trimmingCharacters(in: .whitespaces).hasPrefix(marker) {
-                guard slotLine == nil else { try fail("slot \(aliasName) appears twice in \(statePath)", at: "\(statePath)#\(aliasName)") }
-                slotLine = number
-            }
-        }
-        guard let found = slotLine else {
-            try fail("no slot \(aliasName) in \(statePath)", at: "\(statePath)#\(aliasName)")
-        }
-        let current = String(
-            lines[found][lines[found].range(of: marker)!.upperBound...]
-        ).trimmingCharacters(in: .whitespaces)
-
-        // The match: a variable node binds whole, a constant node demands its head,
-        // and the pattern is LINEAR (each variable once) so the match is unique or
-        // absent (T1). A parameter the pattern never mentions is instance-bound: it
-        // must arrive with the press, and the judge of the NEXT state is what vets
-        // it — an atom outside the alphabet refuses to build, so typed input never
-        // widens the judged world. One match or none, across the whole chord.
-        let currentTerm = parseTerm(Substring(current))
-        var matched: (rule: Rule, bindings: [String: String])?
-        for (rule, instance) in members {
-            let pattern = parseTerm(Substring(rule.from))
-            var counts: [String: Int] = [:]
-            occurrences(in: pattern, of: rule.variables, into: &counts)
-            for (variable, count) in counts {
-                if count > 1 {
-                    try fail("\(rule.name) repeats \(variable) in its pattern: linearity is the premise of the unique match", at: "\(dictionaryPath)#\(rule.name)")
-                }
-            }
-            var bindings: [String: String] = [:]
-            let instanceBound = rule.variables.filter { counts[$0] == nil }
-            guard instance.count <= instanceBound.count else {
-                try fail("\(rule.name) takes \(instanceBound.count) instance argument(s), \(instance.count) given", at: "\(dictionaryPath)#\(rule.name)")
-            }
-            guard instance.count == instanceBound.count else {
-                try fail("\(rule.name) needs its instance argument(s) \(instanceBound.joined(separator: ", ")): press \(rule.name)<…>", at: "\(dictionaryPath)#\(rule.name)")
-            }
-            for (variable, argument) in zip(instanceBound, instance) {
-                bindings[variable] = serialize(argument)
-            }
-            guard unify(pattern, currentTerm, variables: rule.variables, bindings: &bindings) else {
+        let read = try reading(arguments, state: state, dictionary: dictionary, definitions: definitions, statePath: statePath, dictionaryPath: dictionaryPath)
+        var candidates: [Candidate] = [], selected: Int?, nextState = state
+        for (i, member) in read.members.enumerated() {
+            let (rule, instance) = member
+            let prebound = try prebindings(rule, instance, dictionaryPath: dictionaryPath)
+            var bindings = prebound
+            if let path = match(rule.from, read.current, variables: rule.variables, bindings: &bindings) {
+                candidates.append(Candidate(rule: rule.name, substitution: prebound.mapValues(\.text), mismatch: path, bounds: nil))
                 continue
             }
-            guard matched == nil else {
-                try fail("ambiguous chord: \(matched!.rule.name) and \(rule.name) both match \(aliasName) = \(current)", at: "\(statePath)#\(aliasName)")
+            let proof: ApplicationCourt.Obligations? = try addressed("\(dictionaryPath)#\(rule.name)") {
+                let goals = try obligations(rule, bindings)
+                if goals.isEmpty { return nil }
+                guard let source = read.source else { throw R.Failure("missing definitions for bound") }
+                return try ApplicationCourt.derive(goals, source: source)
             }
-            matched = (rule, bindings)
+            guard selected == nil else {
+                try fail("ambiguous chord: \(read.members[selected!].0.name) and \(rule.name) both match \(read.slot) = \(read.current.text)", at: "\(statePath)#\(read.slot)")
+            }
+            candidates.append(Candidate(rule: rule.name, substitution: bindings.mapValues(\.text), mismatch: nil, bounds: proof))
+            selected = i
+            nextState = try addressed("\(dictionaryPath)#\(rule.name)") { replace(state, bytes: read.bytes, with: try rule.into.substituting(bindings).text) }
         }
-        guard let (rule, bindings) = matched else {
-            let expected = rules.map(\.from).joined(separator: " or ")
-            return Substitution(state: state, changed: false, message: "no-op: \(aliasName) is \(current), \(ruleArgument) expects \(expected)")
-        }
-        let next = fill(rule.into, bindings)
-        let indent = lines[found].prefix(while: { $0 == " " })
-        lines[found] = indent + marker + next
-        let nextState = lines.joined(separator: "\n")
+        let certificate = Certificate(version: "vi.press.linear-certificate/1", arguments: arguments,
+            inputs: inputDigests(state, dictionary, definitions, statePath, dictionaryPath), readings: read.readings, slot: read.slot,
+            lowerByte: read.bytes.lowerBound, upperByte: read.bytes.upperBound, candidates: candidates, selected: selected)
+        try replay(certificate, arguments: arguments, state: state, dictionary: dictionary, definitions: definitions, output: nextState, statePath: statePath, dictionaryPath: dictionaryPath)
         return Substitution(state: nextState, changed: !nextState.utf8.elementsEqual(state.utf8),
-            message: "pressed \(rule.name): \(aliasName) \(current) -> \(next)")
+            message: selected.map { "pressed \(read.members[$0].0.name): \(read.slot) \(read.current.text)" } ?? "no-op: \(read.slot) is \(read.current.text)", certificate: certificate)
     }
     public static func run(_ args: [String]) {
         do {
@@ -350,6 +442,13 @@ public enum Press {
             }
             let dictionaryPath = arguments[r + 1]
             arguments.removeSubrange(r...r + 1)
+            var definitions: [Input] = []
+            while let d = arguments.firstIndex(of: "--definitions") {
+                guard d + 1 < arguments.count else { try fail("--definitions needs a path") }
+                let path = arguments[d + 1]
+                definitions.append(Input(path: path, text: try String(contentsOfFile: path, encoding: .utf8)))
+                arguments.removeSubrange(d...d + 1)
+            }
             let dictionary: String
             if let operation = arguments.first, ["append", "rubout", "clear"].contains(operation) {
                 // Literal editing never reads the triple dictionary.
@@ -364,11 +463,19 @@ public enum Press {
                 try fail("cannot read \(statePath)", at: statePath)
             }
             let result = try apply(arguments, state: state, dictionary: dictionary,
-                statePath: statePath, dictionaryPath: dictionaryPath)
+                definitions: definitions, statePath: statePath, dictionaryPath: dictionaryPath)
             if result.changed {
                 try result.state.write(toFile: statePath, atomically: true, encoding: .utf8)
             }
             print(result.message)
+            if let certificate = result.certificate {
+                let encoder = JSONEncoder()
+                encoder.outputFormatting = [.sortedKeys]
+                print(String(decoding: try encoder.encode(certificate), as: UTF8.self))
+            }
+        } catch let failure as Failure {
+            FileHandle.standardError.write(Data(("press: " + failure.address + ": " + failure.description + "\n").utf8))
+            exit(1)
         } catch {
             FileHandle.standardError.write(Data(("press: " + String(describing: error) + "\n").utf8))
             exit(1)

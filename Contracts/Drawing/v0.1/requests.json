@@ -5,7 +5,8 @@
     "address": "Contracts/Drawing/v0.1/cases/half-even.swift#FixtureArt",
     "sources": [
       "Contracts/Drawing/v0.1/cases/half-even.swift",
-      "Contracts/Drawing/v0.1/Binding.swift"
+      "Contracts/Drawing/v0.1/Binding.swift",
+      "Contracts/Drawing/v0.1/StyleContract.swift"
     ],
     "expect": "svg"
   },
@@ -15,7 +16,8 @@
     "address": "Contracts/Drawing/v0.1/cases/half-odd.swift#FixtureArt",
     "sources": [
       "Contracts/Drawing/v0.1/cases/half-odd.swift",
-      "Contracts/Drawing/v0.1/Binding.swift"
+      "Contracts/Drawing/v0.1/Binding.swift",
+      "Contracts/Drawing/v0.1/StyleContract.swift"
     ],
     "expect": "refused"
   },
@@ -25,7 +27,8 @@
     "address": "Contracts/Drawing/v0.1/cases/rest-within.swift#FixtureArt",
     "sources": [
       "Contracts/Drawing/v0.1/cases/rest-within.swift",
-      "Contracts/Drawing/v0.1/Binding.swift"
+      "Contracts/Drawing/v0.1/Binding.swift",
+      "Contracts/Drawing/v0.1/StyleContract.swift"
     ],
     "expect": "svg"
   },
@@ -35,7 +38,8 @@
     "address": "Contracts/Drawing/v0.1/cases/rest-underflow.swift#FixtureArt",
     "sources": [
       "Contracts/Drawing/v0.1/cases/rest-underflow.swift",
-      "Contracts/Drawing/v0.1/Binding.swift"
+      "Contracts/Drawing/v0.1/Binding.swift",
+      "Contracts/Drawing/v0.1/StyleContract.swift"
     ],
     "expect": "refused"
   },
@@ -45,7 +49,8 @@
     "address": "Contracts/Drawing/v0.1/cases/succ-count.swift#FixtureArt",
     "sources": [
       "Contracts/Drawing/v0.1/cases/succ-count.swift",
-      "Contracts/Drawing/v0.1/Binding.swift"
+      "Contracts/Drawing/v0.1/Binding.swift",
+      "Contracts/Drawing/v0.1/StyleContract.swift"
     ],
     "expect": "svg"
   },
@@ -55,7 +60,8 @@
     "address": "Contracts/Drawing/v0.1/cases/xml-plain.swift#FixtureArt",
     "sources": [
       "Contracts/Drawing/v0.1/cases/xml-plain.swift",
-      "Contracts/Drawing/v0.1/Binding.swift"
+      "Contracts/Drawing/v0.1/Binding.swift",
+      "Contracts/Drawing/v0.1/StyleContract.swift"
     ]
   },
   {
@@ -64,7 +70,8 @@
     "address": "Contracts/Drawing/v0.1/cases/xml-special.swift#FixtureArt",
     "sources": [
       "Contracts/Drawing/v0.1/cases/xml-special.swift",
-      "Contracts/Drawing/v0.1/Binding.swift"
+      "Contracts/Drawing/v0.1/Binding.swift",
+      "Contracts/Drawing/v0.1/StyleContract.swift"
     ]
   },
   {
@@ -73,7 +80,8 @@
     "address": "Contracts/Drawing/v0.1/cases/row-within.swift#FixtureArt",
     "sources": [
       "Contracts/Drawing/v0.1/cases/row-within.swift",
-      "Contracts/Drawing/v0.1/Binding.swift"
+      "Contracts/Drawing/v0.1/Binding.swift",
+      "Contracts/Drawing/v0.1/StyleContract.swift"
     ],
     "expect": "svg"
   },
@@ -83,7 +91,8 @@
     "address": "Contracts/Drawing/v0.1/cases/row-underflow.swift#FixtureArt",
     "sources": [
       "Contracts/Drawing/v0.1/cases/row-underflow.swift",
-      "Contracts/Drawing/v0.1/Binding.swift"
+      "Contracts/Drawing/v0.1/Binding.swift",
+      "Contracts/Drawing/v0.1/StyleContract.swift"
     ],
     "expect": "refused"
   },
@@ -93,7 +102,8 @@
     "address": "Contracts/Drawing/v0.1/cases/term-text.swift#FixtureArt",
     "sources": [
       "Contracts/Drawing/v0.1/cases/term-text.swift",
-      "Contracts/Drawing/v0.1/Binding.swift"
+      "Contracts/Drawing/v0.1/Binding.swift",
+      "Contracts/Drawing/v0.1/StyleContract.swift"
     ],
     "text": "Succ<Never>"
   },
@@ -103,7 +113,8 @@
     "address": "Contracts/Drawing/v0.1/cases/text-overflow.swift#FixtureArt",
     "sources": [
       "Contracts/Drawing/v0.1/cases/text-overflow.swift",
-      "Contracts/Drawing/v0.1/Binding.swift"
+      "Contracts/Drawing/v0.1/Binding.swift",
+      "Contracts/Drawing/v0.1/StyleContract.swift"
     ],
     "expect": "refused"
   }

@@ -434,6 +434,39 @@
       "witness": "Paper_Muted_lit"
     }
   ],
+  "styleContract": {
+    "name": "DocumentationStyle",
+    "input": "Worlds/Documentation/StyleContract.swift",
+    "sha256": "2691ac9d466ece4a61b81cb2f3ccbff5328109a25c2838586bb6a32928f744b8",
+    "projections": [
+      "Sources/DocumentKitDemo/StyleContract.swift",
+      "Contracts/Drawing/v0.1/StyleContract.swift"
+    ]
+  },
+  "cardPalettes": [
+    {
+      "name": "LightCardPalette",
+      "surface": {
+        "role": "Mist",
+        "suffix": ""
+      },
+      "glyph": {
+        "role": "Ink",
+        "suffix": ""
+      }
+    },
+    {
+      "name": "DarkCardPalette",
+      "surface": {
+        "role": "SurfaceTrack",
+        "suffix": "Dark"
+      },
+      "glyph": {
+        "role": "TextPrimary",
+        "suffix": "Dark"
+      }
+    }
+  ],
   "tableStyle": [
     {
       "selector": ".content table, article table",
@@ -512,9 +545,6 @@
     },
     "S24Breath": {
       "expression": "Plus<U16, U8>"
-    },
-    "BadgeChipWide": {
-      "expression": "Plus<U16, Plus<U8, Plus<U4, U2>>>"
     },
     "HairlineWidth": {
       "text": "1"
@@ -713,6 +743,9 @@
     },
     "FigureArrowOrient": {
       "text": "auto-start-reverse"
+    },
+    "SourceLinkWidth": {
+      "expression": "Plus<U16, Plus<U8, Plus<U4, U2>>>"
     },
     "FontUnitsPerEm": {
       "text": "2048"

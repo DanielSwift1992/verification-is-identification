@@ -1,6 +1,6 @@
 # ``DocumentKit``
 
-A render engine with no runtime. A page is a type: its `body` composes other types, and reading `typeName` (`Structure`, Notation) walks the composition once into markdown. There is no second pass and no node tree to interpret. The type is the page, and reading its name is the render.
+DocumentKit composes types through `body` and reads the resulting structure through `typeName` at the string edge. The caller supplies content and a binding; the SDK supplies the relations that compose and read them.
 
 ## Build a page
 
@@ -8,7 +8,7 @@ A page is built the way everything else in this package is built: declare a type
 
 1. **Declare the screen.** `enum MyPage: Screen {}` — a caseless enum, like every concrete type on the surface (SurfaceLaw §S2). `Screen` is your app's own page kind, one line — `public protocol Screen: Open {}` — declared beside your pages, beside its own page declarations. There is nothing to instantiate: the page is the type.
 2. **Compose the body.** `@StructureBuilder static var body: some Structure { … }` — statements fold into a `Pair`-cons chain. Every leaf is an atom or another combinator: a name enters through `Symbol`, a count through `Tally`, prose through a prose atom — a type whose `typeName` is the sentence. A consuming module may generate its prose from a manifest. This page carries its own.
-3. **Compile.** Type-checking the body is the render happening: a table missing its header rule, a tab out of place, a count that does not fold — each is a build error, not a bad page.
+3. **Compile.** The compiler checks the declared type requirements of the composition. Reading its `typeName` then produces the markup; validity and presentation on the host require their own stated relations.
 4. **Read it.** `MyPage.typeName` is the markdown. A demo executable writes it into the `.docc` catalog, so a `doc:` link resolves to this content instead of an empty auto-generated stub — that is the whole publishing pipeline.
 5. **Curate it.** Add the page to the landing's Topics so it hangs where readers look, not at the navigator's root.
 
@@ -153,91 +153,28 @@ Comes out like this:
 
 ### Gap — a rule table
 
-A gap belongs to which two states are adjacent, not to either state alone. Below, five workflow transitions: an expected step gets a plain arrow, a step that skips or backslides gets a named, wider gap.
+`Gap` relates the two neighboring types supplied by the caller. A concrete pairing is resolved at its use site; this gallery keeps both places open. The default reading is the empty composition. SurfaceLaw S12 explains why a specialized reading must be resolved before generic composition.
 
 Used like this:
 
 ```swift
-// the rule is on the SPACE, stated once per pairing:
-extension SpaceBetween where Left == ToDo, Right == Doing {
-    static var typeName: String { " -> " }
+public protocol Gap: Structure {
+    associatedtype Left
+    associatedtype Right
 }
-extension SpaceBetween where Left == ToDo, Right == Done {
-    static var typeName: String { "  ⚠ skipped review ⚠  " }
-}
-
-// read through a non-generic proxy (Surface Law §S17), once per pairing:
-enum NormalToDoDoing: Close {}
-extension NormalToDoDoing {
-    static var typeName: String { SpaceBetween<ToDo, Doing>.typeName }
-}
-
-// used in a body:
-ToDo.self; NormalToDoDoing.self; Doing.self
+public enum SpaceBetween<Left, Right>: Gap {}
 ```
 
-
-Comes out like this:
-
-ToDo -> Doing
-
-Doing -> Done
-
-Blocked -> resumed -> Doing
-
-ToDo  ⚠ skipped review ⚠  Done
-
-Doing  ⚠ needs attention ⚠  Blocked
 
 ### Spacer, chosen by neighbor
 
-The same rule, rendering a real column width instead of text: the gap beside a LOUD neighbor is wider than the gap between two quiet neighbors.
+`SpacerBetween` reads a column-weight composition for the caller's two neighboring types. The owner declares the pair and its weight; the SDK supplies the relative-column operation.
 
 Used like this:
 
 ```swift
-extension SpacerBetween where Left == Quiet, Right == Loud {
-    static var typeName: String { Spacer<WeightOf<Plus<U2, U1>>>.typeName }
-}
-
-enum WideGapQuietLoud: Close {}
-extension WideGapQuietLoud {
-    static var typeName: String { SpacerBetween<Quiet, Loud>.typeName }
-}
-
-// used in a body:
-SideBySide {
-    PanelOf { Quiet.self }
-    WideGapQuietLoud.self
-    PanelOf { Loud.self }
-}
+public enum SpacerBetween<Left, Right>: Gap {}
 ```
-
-
-Comes out like this:
-
-@Row {
-@Column {
-quiet
-}
-@Column(size: 3) {
-
-}
-@Column {
-LOUD
-}
-}
-@Row {
-@Column {
-quiet
-}
-@Column(size: 1) {
-
-}
-@Column {
-quiet
-}
-}
 
 
 ### Table
@@ -420,7 +357,7 @@ The gallery above is markdown, DocC's own document medium. `Vector` is DocumentK
 
 ### Roles and themes
 
-Light and dark are two projections of the same eight roles, each declared once, carrying both a light and a dark value. A role reaches a canvas by whichever of two mechanisms fits that canvas's own use: inline canvases (anything the inline-swap hook, `footer.html`, turns into real DOM) read a role as `var(--vi-<role>, <light-hex>)`, switched live by `prefers-color-scheme`, with a light fallback that still reads correctly even with no CSS in scope at all — a bare `<img>`. The small, numerous, non-interactive grid tiles use the other mechanism instead: a second, literal `x~dark.svg` file beside `x.svg`, DocC's own native asset-swap. Both read the same eight roles. Only where a role's value lands differs, and that choice is the canvas's own, made once, at the driver's edge. One rule holds regardless of mechanism: a canvas's ground is transparent, so text never floats — every label sits on a surface role (card, track, chip), never directly on the transparent ground, because a floating label is only legible on the one host theme its fallback hex happens to match.
+A role is a place in the binding. The owner supplies its paints and the foreground/background witnesses that relate them. CSS can select a theme on an inline canvas; a host can instead select a separate theme resource. These are two deliveries of the owner's declared binding. The SDK does not choose a world's emphasis, frequency of accent or surface policy.
 
 | Role | What it is | 
 | --- | --- | 
@@ -428,10 +365,10 @@ Light and dark are two projections of the same eight roles, each declared once, 
 | `SurfaceTrack` | a track or chip's own background | 
 | `TextPrimary` | primary text, on either surface above | 
 | `TextSecondary` | secondary text, on either surface above | 
-| `AccentRole` | the one scarce accent — a hero element per screen, never wallpaper | 
+| `AccentRole` | the owner-selected paint for the accent role | 
 | `OnAccent` | text legible against `AccentRole` | 
 | `ActionRole` | the interactive voice — links, live values | 
-| `LineRole` | a thin border, or a denied/neutral dot | 
+| `LineRole` | the owner-selected paint for a rule | 
 
 
 
@@ -439,7 +376,7 @@ Light and dark are two projections of the same eight roles, each declared once, 
 
 **Compile gate.** An illegal type does not build (`Legible`, `WithinBounds` — the strongest form). **Generation gate.** An illegal value stops `generate` with a named precondition (`BudgetedLabel`) — weaker, still before anything ships. **Host gate.** What only the browser decides (hover, theme) — declared, never trusted with correctness.
 
-Three of these are live in the site today. The five `Legible*` protocols above (`LegibleOnSurfaceCard`, `LegibleOnSurfaceTrack`, `LegibleOnAccentRole`, and two more) are compile gates on every (foreground, background) pairing — an unreadable pair does not build. `WithinCyclesHero` (a placement-constrained diagram) is the same tier applied to placement: a canvas's closed set of legal positions, so a position only one canvas vetted cannot satisfy a different canvas's layout by accident. `BudgetedLabel` is the generation gate — a stated character ceiling, checked once, at generate time, against the real text a label carries (checked directly: lowering a label's budget below its longest real name crashes `generate` with exactly this precondition, then raised back).
+The caption and surface protocols require the declared foreground conformance. A placement relation belongs to the composition that declares its coordinates and canvas. Binding supplies the style slots read by these operations. A compile-time conformance establishes its stated type requirements; it does not establish an arbitrary rendered string or a numerical layout bound.
 
 ### The interactive layer
 
@@ -536,7 +473,7 @@ conform to 'LegibleOnSurfaceCard'
 
 ### A canvas that shows its own code
 
-`SelfShowing` costs nothing beyond the marker — the badge in the corner links to a page carrying this canvas's composition, read off the same atom the code block below shows, so it cannot drift from what actually compiled.
+The badge links to a source page that reads the same source atom as this gallery's code block.
 
 Used like this:
 
@@ -580,7 +517,7 @@ Comes out like this:
 
 ### RolesPlate, both themes
 
-The table above, drawn: the same `Palette`, instantiated once per theme, the same edge substitution `LightCardPalette`/`DarkCardPalette` already stands on. DocC swaps the file, never the type.
+The role table is drawn with the Palette parameter supplied by this documentation owner. Each theme is a separate instantiation; DocC selects the corresponding resource.
 
 Used like this:
 

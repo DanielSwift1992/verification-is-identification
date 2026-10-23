@@ -2891,7 +2891,7 @@
     {
       "path": "Contracts/Drawing/v0.1/binding.json",
       "channel": "text",
-      "line": 496,
+      "line": 529,
       "name": "github.com/DanielSwift1992/gate",
       "text": "\"repository\": \"https://github.com/DanielSwift1992/gate\",",
       "occurrence": 1,
@@ -3007,86 +3007,6 @@
       "occurrence": 1,
       "class": "reference",
       "reason": "Updated public navigation to the owner of worked examples and explanatory prose; no subject dispatch or live reverse dependency."
-    },
-    {
-      "path": "Sources/DocumentKitDemo/Landing.swift",
-      "channel": "text",
-      "line": 462,
-      "name": "Organization",
-      "text": "// `View`/`Administer`/`Delete` (Organization/System/Policy.swift) already use for access,",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Prose and displayed source in the optional worked composition. It illustrates consumers without importing their model or selecting SDK behavior by name."
-    },
-    {
-      "path": "Sources/DocumentKitDemo/Landing.swift",
-      "channel": "text",
-      "line": 999,
-      "name": "Organization",
-      "text": "// there is only ever one state to show), the same call Organization's `EmployeeCard` makes. ──",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Prose and displayed source in the optional worked composition. It illustrates consumers without importing their model or selecting SDK behavior by name."
-    },
-    {
-      "path": "Sources/DocumentKitDemo/Landing.swift",
-      "channel": "text",
-      "line": 1556,
-      "name": "Organization",
-      "text": "//    beyond the marker. DocumentKit has no decompiler (Organization/VectorDemo's own SelfShowing",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Prose and displayed source in the optional worked composition. It illustrates consumers without importing their model or selecting SDK behavior by name."
-    },
-    {
-      "path": "Sources/DocumentKitDemo/Landing.swift",
-      "channel": "text",
-      "line": 1556,
-      "name": "VectorDemo",
-      "text": "//    beyond the marker. DocumentKit has no decompiler (Organization/VectorDemo's own SelfShowing",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Prose and displayed source in the optional worked composition. It illustrates consumers without importing their model or selecting SDK behavior by name."
-    },
-    {
-      "path": "Sources/DocumentKitDemo/main.swift",
-      "channel": "text",
-      "line": 7,
-      "name": "Organization",
-      "text": "// .docc catalog as the module's landing page (DocumentKit.md), the same shape Organization's",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Prose and displayed source in the optional worked composition. It illustrates consumers without importing their model or selecting SDK behavior by name."
-    },
-    {
-      "path": "Sources/DocumentKitDemo/main.swift",
-      "channel": "text",
-      "line": 8,
-      "name": "Organization",
-      "text": "// OrgDemo already proved out, scoped entirely to DocumentKit (no Organization dependency).",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Prose and displayed source in the optional worked composition. It illustrates consumers without importing their model or selecting SDK behavior by name."
-    },
-    {
-      "path": "Sources/DocumentKitDemo/main.swift",
-      "channel": "text",
-      "line": 47,
-      "name": "Organization",
-      "text": "// `Diagram` compositions, written the same way VectorDemo writes Organization's.",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Prose and displayed source in the optional worked composition. It illustrates consumers without importing their model or selecting SDK behavior by name."
-    },
-    {
-      "path": "Sources/DocumentKitDemo/main.swift",
-      "channel": "text",
-      "line": 47,
-      "name": "VectorDemo",
-      "text": "// `Diagram` compositions, written the same way VectorDemo writes Organization's.",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Prose and displayed source in the optional worked composition. It illustrates consumers without importing their model or selecting SDK behavior by name."
     },
     {
       "path": "Sources/Tools/Voice.swift",

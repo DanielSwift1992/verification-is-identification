@@ -2,7 +2,8 @@ import Notation
 import DocumentKit
 
 // GENERATED from the world drawing-binding/1 record.
-// drawing-binding-value-sha256: 596984acacd7cd5d73a7fa90bb2bd4a26cdcfd7eda1feeb7c6997a257911285a
+// drawing-binding-value-sha256: 0b422238947ce99f46de706928acd5b5ee571880283eaf0bdb9153f047d3f168
+// Owner requirement source: "Worlds/Documentation/StyleContract.swift"@sha256:2691ac9d466ece4a61b81cb2f3ccbff5328109a25c2838586bb6a32928f744b8
 public enum DocumentationBindingInk: Paint, Close {}
 extension DocumentationBindingInk {
     public static var typeName: String { "color(xyz-d65 0.01 0.01 0.011)" }
@@ -239,189 +240,183 @@ public enum DocumentationBindingLeafCountBases: Close {}
 extension DocumentationBindingLeafCountBases {
     public static var typeName: String { "Structure Close Open Pair" }
 }
-public enum DocumentationBindingHairBreath: DocumentKit.HairBreath, Open {
+public enum DocumentationBindingHairBreath: Open {
     @StructureBuilder
     public static var body: some Structure {
         U8.self
     }
 }
-public enum DocumentationBindingS24Breath: DocumentKit.S24Breath, Open {
+public enum DocumentationBindingS24Breath: Open {
     @StructureBuilder
     public static var body: some Structure {
         Plus<U16, U8>.self
     }
 }
-public enum DocumentationBindingBadgeChipWide: DocumentKit.BadgeChipWide, Open {
-    @StructureBuilder
-    public static var body: some Structure {
-        Plus<U16, Plus<U8, Plus<U4, U2>>>.self
-    }
-}
-public enum DocumentationBindingHairlineWidth: DocumentKit.HairlineWidth, Close {}
+public enum DocumentationBindingHairlineWidth: Close {}
 extension DocumentationBindingHairlineWidth {
     public static var typeName: String { "1" }
 }
-public enum DocumentationBindingArrowWidth: DocumentKit.ArrowWidth, Close {}
+public enum DocumentationBindingArrowWidth: Close {}
 extension DocumentationBindingArrowWidth {
     public static var typeName: String { "2" }
 }
-public enum DocumentationBindingDependencyDash: DocumentKit.DependencyDash, Close {}
+public enum DocumentationBindingDependencyDash: Close {}
 extension DocumentationBindingDependencyDash {
     public static var typeName: String { "4 3" }
 }
-public enum DocumentationBindingR4: DocumentKit.R4, Close {}
+public enum DocumentationBindingR4: Close {}
 extension DocumentationBindingR4 {
     public static var typeName: String { "4" }
 }
-public enum DocumentationBindingR6: DocumentKit.R6, Close {}
+public enum DocumentationBindingR6: Close {}
 extension DocumentationBindingR6 {
     public static var typeName: String { "6" }
 }
-public enum DocumentationBindingR10: DocumentKit.R10, Close {}
+public enum DocumentationBindingR10: Close {}
 extension DocumentationBindingR10 {
     public static var typeName: String { "10" }
 }
-public enum DocumentationBindingR16: DocumentKit.R16, Close {}
+public enum DocumentationBindingR16: Close {}
 extension DocumentationBindingR16 {
     public static var typeName: String { "16" }
 }
-public enum DocumentationBindingR20: DocumentKit.R20, Close {}
+public enum DocumentationBindingR20: Close {}
 extension DocumentationBindingR20 {
     public static var typeName: String { "20" }
 }
-public enum DocumentationBindingTextXXS: DocumentKit.TextXXS, Close {}
+public enum DocumentationBindingTextXXS: Close {}
 extension DocumentationBindingTextXXS {
     public static var typeName: String { "11" }
 }
-public enum DocumentationBindingTextS: DocumentKit.TextS, Close {}
+public enum DocumentationBindingTextS: Close {}
 extension DocumentationBindingTextS {
     public static var typeName: String { "13" }
 }
-public enum DocumentationBindingTextL: DocumentKit.TextL, Close {}
+public enum DocumentationBindingTextL: Close {}
 extension DocumentationBindingTextL {
     public static var typeName: String { "15" }
 }
-public enum DocumentationBindingTitleT: DocumentKit.TitleT, Close {}
+public enum DocumentationBindingTitleT: Close {}
 extension DocumentationBindingTitleT {
     public static var typeName: String { "15" }
 }
-public enum DocumentationBindingWeightRegular: DocumentKit.WeightRegular, Close {}
+public enum DocumentationBindingWeightRegular: Close {}
 extension DocumentationBindingWeightRegular {
     public static var typeName: String { "400" }
 }
-public enum DocumentationBindingShapeRadius: DocumentKit.ShapeRadius, Close {}
+public enum DocumentationBindingShapeRadius: Close {}
 extension DocumentationBindingShapeRadius {
     public static var typeName: String { "12" }
 }
-public enum DocumentationBindingThickGlyphWidth: DocumentKit.ThickGlyphWidth, Close {}
+public enum DocumentationBindingThickGlyphWidth: Close {}
 extension DocumentationBindingThickGlyphWidth {
     public static var typeName: String { "6" }
 }
-public enum DocumentationBindingGlyphStrokeWidth: DocumentKit.GlyphStrokeWidth, Close {}
+public enum DocumentationBindingGlyphStrokeWidth: Close {}
 extension DocumentationBindingGlyphStrokeWidth {
     public static var typeName: String { "9" }
 }
-public enum DocumentationBindingBoldWeight: DocumentKit.BoldWeight, Close {}
+public enum DocumentationBindingBoldWeight: Close {}
 extension DocumentationBindingBoldWeight {
     public static var typeName: String { "600" }
 }
-public enum DocumentationBindingHoverTransition: DocumentKit.HoverTransition, Close {}
+public enum DocumentationBindingHoverTransition: Close {}
 extension DocumentationBindingHoverTransition {
     public static var typeName: String { "150ms" }
 }
-public enum DocumentationBindingHoverLift: DocumentKit.HoverLift, Close {}
+public enum DocumentationBindingHoverLift: Close {}
 extension DocumentationBindingHoverLift {
     public static var typeName: String { "2px" }
 }
-public enum DocumentationBindingHoverFadeDelay: DocumentKit.HoverFadeDelay, Close {}
+public enum DocumentationBindingHoverFadeDelay: Close {}
 extension DocumentationBindingHoverFadeDelay {
     public static var typeName: String { "250ms" }
 }
-public enum DocumentationBindingHoverGrace: DocumentKit.HoverGrace, Close {}
+public enum DocumentationBindingHoverGrace: Close {}
 extension DocumentationBindingHoverGrace {
     public static var typeName: String { "400ms" }
 }
-public enum DocumentationBindingHoverStrokeWidth: DocumentKit.HoverStrokeWidth, Close {}
+public enum DocumentationBindingHoverStrokeWidth: Close {}
 extension DocumentationBindingHoverStrokeWidth {
     public static var typeName: String { "3" }
 }
-public enum DocumentationBindingMarkerWidth: DocumentKit.MarkerWidth, Close {}
+public enum DocumentationBindingMarkerWidth: Close {}
 extension DocumentationBindingMarkerWidth {
     public static var typeName: String { "9" }
 }
-public enum DocumentationBindingMarkerHeight: DocumentKit.MarkerHeight, Close {}
+public enum DocumentationBindingMarkerHeight: Close {}
 extension DocumentationBindingMarkerHeight {
     public static var typeName: String { "9" }
 }
-public enum DocumentationBindingMarkerX: DocumentKit.MarkerX, Close {}
+public enum DocumentationBindingMarkerX: Close {}
 extension DocumentationBindingMarkerX {
     public static var typeName: String { "5" }
 }
-public enum DocumentationBindingMarkerY: DocumentKit.MarkerY, Close {}
+public enum DocumentationBindingMarkerY: Close {}
 extension DocumentationBindingMarkerY {
     public static var typeName: String { "3" }
 }
-public enum DocumentationBindingMarkerPath: DocumentKit.MarkerPath, Close {}
+public enum DocumentationBindingMarkerPath: Close {}
 extension DocumentationBindingMarkerPath {
     public static var typeName: String { "M0,0 L6,3 L0,6 Z" }
 }
-public enum DocumentationBindingFigureArrowBox: DocumentKit.FigureArrowBox, Close {}
+public enum DocumentationBindingFigureArrowBox: Close {}
 extension DocumentationBindingFigureArrowBox {
     public static var typeName: String { "0 0 10 10" }
 }
-public enum DocumentationBindingFigureArrowX: DocumentKit.FigureArrowX, Close {}
+public enum DocumentationBindingFigureArrowX: Close {}
 extension DocumentationBindingFigureArrowX {
     public static var typeName: String { "9" }
 }
-public enum DocumentationBindingFigureArrowY: DocumentKit.FigureArrowY, Close {}
+public enum DocumentationBindingFigureArrowY: Close {}
 extension DocumentationBindingFigureArrowY {
     public static var typeName: String { "5" }
 }
-public enum DocumentationBindingFigureArrowWidth: DocumentKit.FigureArrowWidth, Close {}
+public enum DocumentationBindingFigureArrowWidth: Close {}
 extension DocumentationBindingFigureArrowWidth {
     public static var typeName: String { "7" }
 }
-public enum DocumentationBindingFigureArrowHeight: DocumentKit.FigureArrowHeight, Close {}
+public enum DocumentationBindingFigureArrowHeight: Close {}
 extension DocumentationBindingFigureArrowHeight {
     public static var typeName: String { "7" }
 }
-public enum DocumentationBindingFigureArrowPath: DocumentKit.FigureArrowPath, Close {}
+public enum DocumentationBindingFigureArrowPath: Close {}
 extension DocumentationBindingFigureArrowPath {
     public static var typeName: String { "M0 0L10 5L0 10Z" }
 }
-public enum DocumentationBindingShadowX: DocumentKit.ShadowX, Close {}
+public enum DocumentationBindingShadowX: Close {}
 extension DocumentationBindingShadowX {
     public static var typeName: String { "-20%" }
 }
-public enum DocumentationBindingShadowY: DocumentKit.ShadowY, Close {}
+public enum DocumentationBindingShadowY: Close {}
 extension DocumentationBindingShadowY {
     public static var typeName: String { "-20%" }
 }
-public enum DocumentationBindingShadowWidth: DocumentKit.ShadowWidth, Close {}
+public enum DocumentationBindingShadowWidth: Close {}
 extension DocumentationBindingShadowWidth {
     public static var typeName: String { "140%" }
 }
-public enum DocumentationBindingShadowHeight: DocumentKit.ShadowHeight, Close {}
+public enum DocumentationBindingShadowHeight: Close {}
 extension DocumentationBindingShadowHeight {
     public static var typeName: String { "140%" }
 }
-public enum DocumentationBindingShadowDx: DocumentKit.ShadowDx, Close {}
+public enum DocumentationBindingShadowDx: Close {}
 extension DocumentationBindingShadowDx {
     public static var typeName: String { "0" }
 }
-public enum DocumentationBindingShadowDy: DocumentKit.ShadowDy, Close {}
+public enum DocumentationBindingShadowDy: Close {}
 extension DocumentationBindingShadowDy {
     public static var typeName: String { "5" }
 }
-public enum DocumentationBindingShadowDeviation: DocumentKit.ShadowDeviation, Close {}
+public enum DocumentationBindingShadowDeviation: Close {}
 extension DocumentationBindingShadowDeviation {
     public static var typeName: String { "10" }
 }
-public enum DocumentationBindingBreatheValues: DocumentKit.BreatheValues, Close {}
+public enum DocumentationBindingBreatheValues: Close {}
 extension DocumentationBindingBreatheValues {
     public static var typeName: String { "1;0.55;1" }
 }
-public enum DocumentationBindingBreatheDuration: DocumentKit.BreatheDuration, Close {}
+public enum DocumentationBindingBreatheDuration: Close {}
 extension DocumentationBindingBreatheDuration {
     public static var typeName: String { "4s" }
 }
@@ -485,51 +480,57 @@ public enum DocumentationBindingTableSortCursor: Close {}
 extension DocumentationBindingTableSortCursor {
     public static var typeName: String { "pointer" }
 }
-public enum DocumentationBindingCover06: DocumentKit.Cover06, Close {}
+public enum DocumentationBindingCover06: Close {}
 extension DocumentationBindingCover06 {
     public static var typeName: String { "0.06" }
 }
-public enum DocumentationBindingCover15: DocumentKit.Cover15, Close {}
+public enum DocumentationBindingCover15: Close {}
 extension DocumentationBindingCover15 {
     public static var typeName: String { "0.15" }
 }
-public enum DocumentationBindingCover16: DocumentKit.Cover16, Close {}
+public enum DocumentationBindingCover16: Close {}
 extension DocumentationBindingCover16 {
     public static var typeName: String { "0.16" }
 }
-public enum DocumentationBindingCover54: DocumentKit.Cover54, Close {}
+public enum DocumentationBindingCover54: Close {}
 extension DocumentationBindingCover54 {
     public static var typeName: String { "0.54" }
 }
-public enum DocumentationBindingCover70: DocumentKit.Cover70, Close {}
+public enum DocumentationBindingCover70: Close {}
 extension DocumentationBindingCover70 {
     public static var typeName: String { "0.70" }
 }
-public enum DocumentationBindingCover80: DocumentKit.Cover80, Close {}
+public enum DocumentationBindingCover80: Close {}
 extension DocumentationBindingCover80 {
     public static var typeName: String { "0.80" }
 }
-public enum DocumentationBindingCover90: DocumentKit.Cover90, Close {}
+public enum DocumentationBindingCover90: Close {}
 extension DocumentationBindingCover90 {
     public static var typeName: String { "0.90" }
 }
-public enum DocumentationBindingMarkerOrient: DocumentKit.MarkerOrient, Close {}
+public enum DocumentationBindingMarkerOrient: Close {}
 extension DocumentationBindingMarkerOrient {
     public static var typeName: String { "auto" }
 }
-public enum DocumentationBindingFigureArrowOrient: DocumentKit.FigureArrowOrient, Close {}
+public enum DocumentationBindingFigureArrowOrient: Close {}
 extension DocumentationBindingFigureArrowOrient {
     public static var typeName: String { "auto-start-reverse" }
 }
-public enum DocumentationBindingFontUnitsPerEm: DocumentKit.FontUnitsPerEm, Close {}
+public enum DocumentationBindingSourceLinkWidth: Open {
+    @StructureBuilder
+    public static var body: some Structure {
+        Plus<U16, Plus<U8, Plus<U4, U2>>>.self
+    }
+}
+public enum DocumentationBindingFontUnitsPerEm: Close {}
 extension DocumentationBindingFontUnitsPerEm {
     public static var typeName: String { "2048" }
 }
-public enum DocumentationBindingFontCapHeight: DocumentKit.FontCapHeight, Close {}
+public enum DocumentationBindingFontCapHeight: Close {}
 extension DocumentationBindingFontCapHeight {
     public static var typeName: String { "1490" }
 }
-public enum DocumentationBindingFontAdvanceTable: DocumentKit.FontAdvanceTable, Close {}
+public enum DocumentationBindingFontAdvanceTable: Close {}
 extension DocumentationBindingFontAdvanceTable {
     public static var typeName: String { "32:576 33:589 34:954 35:1297 36:1314 37:2011 38:1319 39:614 40:747 41:747 42:1026 43:1355 44:590 45:942 46:590 47:738 48:1292 49:833 50:1249 51:1265 52:1323 53:1215 54:1270 55:1159 56:1267 57:1270 58:590 59:618 60:1355 61:1355 62:1355 63:1047 64:1978 65:1413 66:1340 67:1496 68:1478 69:1231 70:1209 71:1528 72:1522 73:550 74:1169 75:1376 76:1158 77:1850 78:1543 79:1566 80:1308 81:1566 82:1318 83:1314 84:1322 85:1524 86:1413 87:2018 88:1397 89:1390 90:1288 91:747 92:738 93:747 94:965 95:934 96:661 97:1150 98:1254 99:1170 100:1254 101:1194 102:758 103:1256 104:1211 105:496 106:496 107:1124 108:496 109:1794 110:1210 111:1228 112:1254 113:1254 114:771 115:1081 116:670 117:1211 118:1151 119:1676 120:1118 121:1151 122:1131 123:873 124:681 125:873 126:1355 160:576 161:589 162:1170 163:1251 164:1484 165:1126 166:553 167:1164 168:1210 169:1872 170:929 171:1193 172:1355 174:1364 175:978 176:933 177:1355 178:905 179:913 180:661 181:1200 182:1234 183:590 184:549 185:623 186:988 187:1193 188:1643 189:1735 190:1806 191:1047 192:1413 193:1413 194:1413 195:1413 196:1413 197:1413 198:2035 199:1496 200:1231 201:1231 202:1231 203:1231 204:550 205:550 206:550 207:550 208:1505 209:1543 210:1566 211:1566 212:1566 213:1566 214:1566 215:1355 216:1566 217:1524 218:1524 219:1524 220:1524 221:1390 222:1302 223:1262 224:1150 225:1150 226:1150 227:1150 228:1150 229:1150 230:1879 231:1170 232:1194 233:1194 234:1194 235:1194 236:496 237:496 238:496 239:496 240:1193 241:1210 242:1228 243:1228 244:1228 245:1228 246:1228 247:1355 248:1228 249:1211 250:1211 251:1211 252:1211 253:1151 254:1254 255:1151 8211:1024 8212:2048 8216:534 8217:534 8220:902 8221:902 8230:1770 8594:1954" }
 }
@@ -537,27 +538,27 @@ public enum DocumentationBindingFontFallbackAdvance: Close {}
 extension DocumentationBindingFontFallbackAdvance {
     public static var typeName: String { "1794" }
 }
-public enum DocumentationBindingTextXS: DocumentKit.TextXS, Close {}
+public enum DocumentationBindingTextXS: Close {}
 extension DocumentationBindingTextXS {
     public static var typeName: String { "11" }
 }
-public enum DocumentationBindingTextM: DocumentKit.TextM, Close {}
+public enum DocumentationBindingTextM: Close {}
 extension DocumentationBindingTextM {
     public static var typeName: String { "13" }
 }
-public enum DocumentationBindingDisplayS: DocumentKit.DisplayS, Close {}
+public enum DocumentationBindingDisplayS: Close {}
 extension DocumentationBindingDisplayS {
     public static var typeName: String { "15" }
 }
-public enum DocumentationBindingDisplay: DocumentKit.Display, Close {}
+public enum DocumentationBindingDisplay: Close {}
 extension DocumentationBindingDisplay {
     public static var typeName: String { "15" }
 }
-public enum DocumentationBindingWeightBold: DocumentKit.WeightBold, Close {}
+public enum DocumentationBindingWeightBold: Close {}
 extension DocumentationBindingWeightBold {
     public static var typeName: String { "600" }
 }
-public enum DocumentationBinding: DrawingStyle, Close {
+public enum DocumentationBinding: DocumentationStyle, Close {
     public typealias Ink = DocumentationBindingInk
     public typealias Paper = DocumentationBindingPaper
     public typealias Mist = DocumentationBindingMist
@@ -592,7 +593,6 @@ public enum DocumentationBinding: DrawingStyle, Close {
     public typealias LeafCountBases = DocumentationBindingLeafCountBases
     public typealias HairBreath = DocumentationBindingHairBreath
     public typealias S24Breath = DocumentationBindingS24Breath
-    public typealias BadgeChipWide = DocumentationBindingBadgeChipWide
     public typealias HairlineWidth = DocumentationBindingHairlineWidth
     public typealias ArrowWidth = DocumentationBindingArrowWidth
     public typealias DependencyDash = DocumentationBindingDependencyDash
@@ -659,6 +659,7 @@ public enum DocumentationBinding: DrawingStyle, Close {
     public typealias Cover90 = DocumentationBindingCover90
     public typealias MarkerOrient = DocumentationBindingMarkerOrient
     public typealias FigureArrowOrient = DocumentationBindingFigureArrowOrient
+    public typealias SourceLinkWidth = DocumentationBindingSourceLinkWidth
     public typealias FontUnitsPerEm = DocumentationBindingFontUnitsPerEm
     public typealias FontCapHeight = DocumentationBindingFontCapHeight
     public typealias FontAdvanceTable = DocumentationBindingFontAdvanceTable
@@ -688,7 +689,6 @@ extension StyleBound {
 }
 public typealias HairBreath = DocumentationBindingHairBreath
 public typealias S24Breath = DocumentationBindingS24Breath
-public typealias BadgeChipWide = DocumentationBindingBadgeChipWide
 public typealias HairlineWidth = DocumentationBindingHairlineWidth
 public typealias ArrowWidth = DocumentationBindingArrowWidth
 public typealias DependencyDash = DocumentationBindingDependencyDash
@@ -755,6 +755,7 @@ public typealias Cover80 = DocumentationBindingCover80
 public typealias Cover90 = DocumentationBindingCover90
 public typealias MarkerOrient = DocumentationBindingMarkerOrient
 public typealias FigureArrowOrient = DocumentationBindingFigureArrowOrient
+public typealias SourceLinkWidth = DocumentationBindingSourceLinkWidth
 public typealias FontUnitsPerEm = DocumentationBindingFontUnitsPerEm
 public typealias FontCapHeight = DocumentationBindingFontCapHeight
 public typealias FontAdvanceTable = DocumentationBindingFontAdvanceTable
@@ -830,10 +831,10 @@ public typealias KnownNameDark = DocumentationBindingKnownNameDark
 public typealias LocalType = DocumentationBindingLocalType
 public typealias LocalTypeDark = DocumentationBindingLocalTypeDark
 public enum LightCardPalette: CardPalette {
-    public typealias Surface = Mist
-    public typealias Glyph = Ink
+    public typealias Surface = DocumentationBindingMist
+    public typealias Glyph = DocumentationBindingInk
 }
 public enum DarkCardPalette: CardPalette {
-    public typealias Surface = SurfaceTrackDark
-    public typealias Glyph = TextPrimaryDark
+    public typealias Surface = DocumentationBindingSurfaceTrackDark
+    public typealias Glyph = DocumentationBindingTextPrimaryDark
 }

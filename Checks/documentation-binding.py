@@ -50,7 +50,7 @@ def main():
         links = declared['links']
         variables = declared['variables']
         for role, owner in links.items():
-            row = dict(light=paints[owner+'-Lit'], dark=paints[owner+'-Dim'], ownerRole=owner)
+            row = dict(light=paints[owner+'-'+declared['themeModes']['light']], dark=paints[owner+'-'+declared['themeModes']['dark']], ownerRole=owner)
             if role in variables: row['variable'] = variables[role]
             saved=json.loads((ROOT/'Worlds/Documentation/binding.json').read_text())['roles'][role]
             for suffix in ['Light','Dark']:row['sRGB'+suffix]=saved['sRGB'+suffix]
@@ -59,7 +59,9 @@ def main():
         value = dict(format='drawing-binding/1', name='DocumentationBinding', source=dict(input='Worlds/Documentation/figures.json',field='style',sha256=figures.digest((ROOT/'Worlds/Documentation/figures.json').read_bytes())),
                      roles=roles, registers={key:family for key in declared['faces']}, registerOrigins=declared['faces'], registerReadings=registers,
                      weights={key:str(plan['font']['stressWeights'][registers['registers'][register]['stress']]) for key,register in declared['weights'].items()}, shadow=dict(paint=paints[declared['shadow']['role']+'-'+declared['shadow']['theme']],opacity=declared['shadow']['opacity']), leafCountBases=declared['leafCountBases'],
-                     legible=[dict(pair,witness=next(r['contrast'] for r in rows if r['role']==links[pair['foreground']] and r['theme']=='Lit')) for pair in declared['legible']])
+                     legible=[dict(pair,witness=next(r['contrast'] for r in rows if r['role']==links[pair['foreground']] and r['theme']==declared['legibleTheme'])) for pair in declared['legible']])
+        value['styleContract']=owner_layout['styleContract']
+        value['cardPalettes']=owner_layout['cardPalettes']
         value['tableStyle']=owner_layout['tableStyle']
         value['portableColour']=owner_layout['portableColour']
         if args.write:projection.project_paints(value)
@@ -79,18 +81,22 @@ def main():
         for key,weight in declared['weightAliases'].items():
             layout[key]={'text':value['weights'][weight]}
         value['layout']=layout
+        projection.typecheck_style(value,['-I',str(binary/'Modules')],ROOT)
         themes = projection.swift(value)
-        for theme, mode, suffix in [('FigureLight','Lit',''),('FigureDark','Dim','Dark')]:
+        for selection in declared['figureThemes']:
+            theme, mode, suffix = (selection[key] for key in ['name','theme','suffix'])
             pairs=[]
             for pair_spec in declared['figurePairs']:
                 role=pair_spec['role']
                 owner=links[role]
                 proof=next(r['contrast'] for r in rows if r['role']==owner and r['theme']==mode)
-                pair=theme+role+'OnPaper'
+                background=pair_spec['background']
+                field=pair_spec['name']
+                pair=theme+field
                 themes+='public enum '+pair+'Name: Close {}\nextension '+pair+'Name { public static var typeName: String { \"'+proof+'\" } }\n'
-                themes+='public enum '+pair+': '+pair_spec['standard']+' {\n    public typealias WitnessName = '+pair+'Name\n    public typealias Foreground = DocumentationBinding'+role+suffix+'\n    public typealias Background = DocumentationBindingPaper'+suffix+'\n    public typealias Proof = '+proof+'\n}\n'
-                pairs.append((role+'OnPaper',pair))
-            themes+='public enum '+theme+': DrawingPalette, Close {\n'
+                themes+='public enum '+pair+': '+pair_spec['standard']+' {\n    public typealias WitnessName = '+pair+'Name\n    public typealias Foreground = DocumentationBinding'+role+suffix+'\n    public typealias Background = DocumentationBinding'+background+suffix+'\n    public typealias Proof = '+proof+'\n}\n'
+                pairs.append((field,pair))
+            themes+='public enum '+theme+': DrawingPalette, '+value['styleContract']['name']+', Close {\n'
             for role in value['roles']:
                 themes+='    public typealias '+role+' = DocumentationBinding'+role+suffix+'\n'
             for key in [*value['registers'], *value['layout'], 'ShadowPaint','ShadowOpacity','LeafCountBases']:
@@ -105,6 +111,11 @@ def main():
                    'Sources/DocumentKitDemo/Binding.swift':projection.swift(value,aliases=True),
                    'Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html':projection.footer(value),
                    'Sources/DocumentKit/DocumentKit.docc/footer.html':projection.footer(value)}
+        for destination in value['styleContract']['projections']:
+            outputs[destination] = projection.style_contract(value,ROOT)
+        publication=owner_layout['publication']
+        outputs[publication['projection']] = ('// GENERATED owner publication: '+publication['input']+'@sha256:'+publication['sha256']+'\n'
+            +projection.source_input(publication,ROOT,'documentation#publication'))
         from xml.sax.saxutils import quoteattr
         for theme,suffix in [('light',''),('dark','~dark')]:
             example=declared['example']
@@ -120,6 +131,6 @@ def main():
             path = ROOT / name
             if args.write: path.write_text(text)
             elif not path.exists() or path.read_text()!=text: raise ValueError(name+': stale; run python3 Checks/documentation-binding.py --write')
-    print('documentation binding: pinned gate paints/registers; eighteen native paper equalities; shared Swift and footer projections')
+    print('documentation binding: pinned gate paints/registers; declared native contrast equalities; shared Swift and footer projections')
 
 if __name__ == '__main__': main()

@@ -4,8 +4,7 @@ import VerificationIsIdentification
 import DocumentKit
 
 // `swift run DocumentKitDemo render-doc`: writes Landing.typeName into DocumentKit's own
-// .docc catalog as the module's landing page (DocumentKit.md), the same shape Organization's
-// OrgDemo already proved out, scoped entirely to DocumentKit (no Organization dependency).
+// .docc catalog as the module's landing page (DocumentKit.md).
 
 let catalog = "Sources/DocumentKit/DocumentKit.docc/"
 
@@ -43,8 +42,7 @@ guard CommandLine.arguments.contains("render-doc") else {
     exit(0)
 }
 
-// The Vector-medium section's live examples (DESIGN14 §2, ROUND-UNIFY.md Phase 5): real
-// `Diagram` compositions, written the same way VectorDemo writes Organization's.
+// Each Vector example writes the readout of its declared Diagram composition.
 writeSVG(VectorCanvasExampleDiagram.typeName, "vector-canvas-example")
 writeSVG(VectorHoverExampleDiagram.typeName, "vector-hover-example")
 writeSVG(VectorSelfShowingExampleDiagram.typeName, "vector-selfshowing-example")
@@ -52,7 +50,7 @@ writeSVG(VectorTourStationADiagram.typeName, "vector-tour-station-a")
 writeSVG(VectorTourStationBDiagram.typeName, "vector-tour-station-b")
 
 // RolesPlate, both themes: one Palette, instantiated twice, DocC's own x/x~dark asset-swap
-// (the same mechanism the nine cards + avatar already use).
+// The caller supplies each palette; DocC selects the corresponding resource.
 writeSVG(RolesPlate<LightRolesPalette>.typeName, "roles-plate")
 writeSVG(RolesPlate<DarkRolesPalette>.typeName, "roles-plate~dark")
 

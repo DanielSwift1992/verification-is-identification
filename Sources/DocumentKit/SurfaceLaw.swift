@@ -51,11 +51,10 @@
 ///
 /// - a `Close` READER: ``RawName`` (§S10), `ProtocolReference`, a verdict proxy, a derived
 ///   line. A `Close` is an empty enum. An `init` is a member it cannot carry (core Law §0″), so
-///   the door is structurally unavailable: `ProtocolReference<any Polygon>.self` is its one
+///   the door is structurally unavailable: `ProtocolReference<X>.self` is its one
 ///   spelling, not a lapse.
-/// - a page-local `Fragment` whose parameter is a single named type (a cut, a vertex, an edge)
-///   consumed by one page: a door there buys nothing back (§S8's test): `TimelineRow<
-///   Cut2026>.self` reads as what it is, one row derived from one anchor.
+/// - a page-local `Fragment` whose parameter names a caller-supplied type rather
+///   than composing a body. Its generic argument occupies that open place directly.
 ///
 /// > Note: neither is a hand-written cons-chain (the thing §6 of the core lattice's
 /// > authored-layer check forbids, `Paired`/`Cons`/`Seq` spelled by hand). Both are ordinary
@@ -162,24 +161,17 @@
 ///
 /// ## §S10 · A link reads the target's bare name, never its rendered content
 ///
-/// `Target.typeName` walks `Target`'s `body`, correct for a combinator, wrong for a link. Linking
-/// to a `Screen` with real content (`Page { VerticesPage.self }`) would inline that whole page's
-/// rendering inside the `<doc:…>` parentheses, because `DocLink`'s body composes `Target.self`
-/// directly, and `Open.typeName` always walks down to `Body.typeName` (checked directly: a link
-/// to a body-less marker like `Nav.Vertices` renders fine, since it has no body to walk into.
-/// A link to an actual `Screen` does not). The fix is a wrapper that
-/// reads the identifier and stops there:
+/// A link takes the identity of its Target, while a composed body reads Content.
+/// Reading Target.typeName for a link to a Screen would recursively expand the page
+/// into the address. RawName carries the same open target and reads its identifier:
 ///
 /// ```swift
 /// public enum RawName<X>: Close {}
 /// extension RawName { public static var typeName: String { String(describing: X.self) } }
-/// // DocLink's body composes `RawName<Target>.self`, not `Target.self` directly.
 /// ```
 ///
-/// > Note: this is also why a diagram may keep a `Nav` enum as a SEPARATE set of body-less
-/// > markers from the real `Screen` types they name: `Nav.Vertices` is an address, `VerticesPage`
-/// > is the content. `RawName` makes that separation unnecessary for anything new: a link can
-/// > name the real page directly.
+/// DocLink composes RawName<Target>.self at the address edge. The caller supplies
+/// Target; the SDK supplies the distinction between reference and expansion.
 ///
 /// ## §S11 · There is no fifth door — Swift has no higher-kinded types
 ///
@@ -283,8 +275,7 @@
 /// ASSOCIATED type, and Swift resolves an associated type once per concrete type, not
 /// conditionally per `where` clause, the same wall §S12 names for a static witness, and a
 /// harder one for a value meant to be DERIVED by recursion rather than read off one case. So
-/// each row states its total by hand, the same discipline `Y2029: Cycle { Length = Three }`
-/// already uses (ReviewCycle.swift). The type system verifies the two DECLARATIONS agree,
+/// each row states its Total. The type system verifies that the declarations agree,
 /// not that either declaration is arithmetically correct. A real guarantee, smaller than it
 /// first sounds: use it knowing which half is proved.
 ///
@@ -309,7 +300,7 @@
 ///
 /// `Spacer` (invisible), `Block`'s bars (filled), and a text frame's edges (`HLine`/`VLine`,
 /// ruled) look like three features. They are one: state a unit and a count, by hand (the same
-/// discipline `Y2029: Cycle { Length = Three }` and `TwoRowGrid`'s `Total` already use, §S18),
+/// discipline as TwoRowGrid's declared Total, §S18),
 /// and repeat the unit that many times. The unit decides what it LOOKS like (`Space`, nothing
 /// visible, `Block`, "█", a bar, `HLine`/`VLine`, a ruled edge), not what the mechanism
 /// IS. This is also why no true two-axis grid exists here (§S15's note, revisited):
@@ -327,8 +318,8 @@
 /// change this, the same wall §S19 already names). The same image inside a `TableCell` gets
 /// `margin: 0`, flush against the cell's edge. So "picture pinned to one side, content
 /// beside it" is not a `@Row`/`@Column` job here. It is a one-row `Table`/`TableRow`/`TableCell`
-/// (`CardPictureRow`, a consuming module), the same cheap-reuse move §S15 already
-/// names, for alignment instead of a border.
+/// composition, with image and adjacent content remaining parameters. The same table
+/// relation used for a border in §S15 also supplies this alignment.
 ///
 /// ## §S22 · Prose has two doors, and length picks one
 ///

@@ -167,8 +167,7 @@ extension SoftShadow {
             + "</filter>\n"
     }
 }
-/// This is `SoftShadow` applied to a subtree, the one place a `Paper` card differs from a flat
-/// `RoundedFullBleedRect`.
+/// Wraps Content with the soft-shadow filter reference.
 public protocol Shadowed: Open {
     associatedtype Content: Structure
 }
@@ -188,8 +187,7 @@ extension SurfaceCardShadow {
             + "</filter>\n"
     }
 }
-/// This is `SurfaceCardShadow` applied to a subtree: `KpiCardBackground`'s wrapper, the
-/// theme-conditional twin of `Shadowed`.
+/// Wraps Content with the surface-card shadow filter reference.
 public protocol ThemedShadowed: Open {
     associatedtype Content: Structure
 }
@@ -318,8 +316,6 @@ extension AccentRole {
     public static var typeName: String { PaintSlot<Self>.typeName }
 }
 
-public protocol AccessWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
 public enum Action: PaintRole, Close {}
 extension Action {
     public static var typeName: String { PaintSlot<Self>.typeName }
@@ -340,214 +336,10 @@ extension ActionTintRole {
     public static var typeName: String { PaintSlot<Self>.typeName }
 }
 
-public protocol ArchCaptionWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ArchDotDip: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ArchFooterTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ArchGapTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ArchNose: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ArchOutputTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ArchPlaqueStorey: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ArchRoleStorey: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ArchStackTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ArchStatsStorey: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ArchTitleStorey: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ArrowWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol AvatarCanvasSide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol AvatarSide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
 public enum Bad: PaintRole, Close {}
 extension Bad {
     public static var typeName: String { PaintSlot<Self>.typeName }
 }
-
-public protocol BadgeChipWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol BoardColumnTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol BoardEdge: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol BoardHeaderZone: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol BoardMatrixTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol BoardSlotPitch: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol BoardTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol BoldWeight: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol Breath: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol BreatheDuration: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol BreatheValues: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol CardWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol CatalogCardTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol CenteredBaseline: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ChipInset: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ChipPad: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ChipTripletWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol CurveBarThick: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol CurveBuildWide12800: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol CurveBuildWide3200: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol CurveBuildWide6400: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol CurveLegendTextWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol CurveNameColumn: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol CurveWholeTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol CycleAffordanceInset: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol CyclePanelDropSecond: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol CyclePanelDropThird: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol CyclePanelInsetLast: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol CycleSlotWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol CyclesZoneTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol DeadInset: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol DeadPanelWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol DependencyDash: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol Display: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol DisplayS: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol DocumentCardTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol DocumentCardWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol DotSlot: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol EdgeMargin: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FigureArrowBox: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FigureArrowHeight: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FigureArrowPath: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FigureArrowOrient: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FigureArrowWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FigureArrowX: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FigureArrowY: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FilmStripTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FlowCardGap: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FlowCardNameStorey: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FlowCardPitch: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FlowCardRoleStorey: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FlowCardTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FlowZoneGaps: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FlowZoneTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FlowZoneTitleStorey: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FlowZoneWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FontAdvanceTable: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FontCapHeight: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FontStack: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol FontUnitsPerEm: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol GateArrowDrop: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol GateBoxBottom: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol GateBoxTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol GateBoxWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol GateBreath: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol GateDeadBottom: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol GateDeadDrop: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol GateFallTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol GateHalfBox: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol GateResetSwing: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol GateResetTurn: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol GateRowDrop: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol GateStep: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol GateSurface: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol GateTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol GlyphStrokeWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol Gutter: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol HairBreath: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol HairlineWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol HeaderTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol HoverAffordanceRadius: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol HoverFadeDelay: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol HoverGrace: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol HoverLift: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol HoverStrokeWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol HoverTransition: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol HubCardTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol HubCardWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public enum Ink: PaintRole, Close {}
 extension Ink {
@@ -564,28 +356,10 @@ extension InkSecondary {
     public static var typeName: String { PaintSlot<Self>.typeName }
 }
 
-public protocol KeyPitch: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol KeySide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol KeypadSide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
 public enum KnownName: PaintRole, Close {}
 extension KnownName {
     public static var typeName: String { PaintSlot<Self>.typeName }
 }
-
-public protocol KpiCardHeight: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol KpiTitleY: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol KpiValueY: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol LegendChipWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol LegendTextWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol LegendWideTextWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public enum Line: PaintRole, Close {}
 extension Line {
@@ -601,18 +375,6 @@ public enum LocalType: PaintRole, Close {}
 extension LocalType {
     public static var typeName: String { PaintSlot<Self>.typeName }
 }
-
-public protocol MarkerHeight: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol MarkerPath: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol MarkerOrient: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol MarkerWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol MarkerX: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol MarkerY: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public enum Mist: PaintRole, Close {}
 extension Mist {
@@ -644,76 +406,20 @@ extension OnActionRole {
     public static var typeName: String { PaintSlot<Self>.typeName }
 }
 
-public protocol PanelInset: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol PanelWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
 public enum Paper: PaintRole, Close {}
 extension Paper {
     public static var typeName: String { PaintSlot<Self>.typeName }
 }
-
-public protocol PersonChipWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol QuadTrackBlock: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol R10: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol R12: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol R16: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol R20: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol R4: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol R6: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol RankChipWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol RevealPanelWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol RtoSurface: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol S16: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol S24: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol S24Breath: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol S32: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol S8: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ShadowDeviation: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ShadowDx: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ShadowDy: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ShadowHeight: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ShadowWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ShadowX: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ShadowY: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ShapeRadius: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public enum SoftShadowName: Close {}
 extension SoftShadowName {
     public static var typeName: String { "soft-shadow" }
 }
 
-public protocol StatusChipWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
 public enum StatusMark: PaintRole, Close {}
 extension StatusMark {
     public static var typeName: String { PaintSlot<Self>.typeName }
 }
-
-public protocol StripInset: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public enum SurfaceCard: PaintRole, Close {}
 extension SurfaceCard {
@@ -735,55 +441,15 @@ extension SurfaceTrack {
     public static var typeName: String { PaintSlot<Self>.typeName }
 }
 
-public protocol TaskCardTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol TextL: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol TextM: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
 public enum TextPrimary: PaintRole, Close {}
 extension TextPrimary {
     public static var typeName: String { PaintSlot<Self>.typeName }
 }
 
-public protocol TextS: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
 public enum TextSecondary: PaintRole, Close {}
 extension TextSecondary {
     public static var typeName: String { PaintSlot<Self>.typeName }
 }
-
-public protocol TextWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol TextXS: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol TextXXS: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol ThickGlyphWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol TimelineInset: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol TitleT: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol TrackBaseline: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol TrackHeight: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol VaultZoneTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol VerdictCardTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol VerdictChipTall: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol VerdictChipWide: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol WeightBold: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol WeightRegular: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol WideMargin: Structure {} // law:allow: owner-bound style name; the world supplies its reading
-
-public protocol WideSurface: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public protocol HoverStyle: Structure {} // law:allow: owner-bound interaction style name
 

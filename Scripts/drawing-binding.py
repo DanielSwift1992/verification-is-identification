@@ -10,9 +10,8 @@ ROOT = Path(__file__).resolve().parent.parent
 NAME = re.compile(r'[A-Za-z_][A-Za-z_0-9]*\Z')
 
 
-def read(path):
-    value = json.loads(path.read_text())
-    at = str(path)
+def validate(value, at='binding'):
+    at = str(at)
     def demand(ok, field):
         if not ok:
             raise ValueError(at + '#' + field + ': missing or invalid drawing binding')
@@ -53,6 +52,11 @@ def read(path):
             demand(isinstance(row['text'], str) and bool(row['text']) and not any(c in row['text'] for c in '<>\n"|'), 'layout/' + key)
         else:
             demand(isinstance(row['expression'], str) and re.fullmatch(r'[A-Za-z_0-9<>, \n]+', row['expression']), 'layout/' + key)
+    for palette in value.get('cardPalettes', []):
+        demand(isinstance(palette, dict) and isinstance(palette.get('name'), str) and NAME.fullmatch(palette['name']), 'cardPalettes/name')
+        for field in ['surface','glyph']:
+            choice=palette.get(field,{})
+            demand(isinstance(choice,dict) and choice.get('role') in roles and choice.get('suffix') in ['', 'Dark'], 'cardPalettes/'+field)
     pending=set()
     visited=set()
     def walk(key):
@@ -65,20 +69,46 @@ def read(path):
         visited.add(key)
     for key in value.get('layout', {}): walk(key)
     for pair in value.get('legible', []):
+        demand(isinstance(pair.get('standard','Legible'),str) and NAME.fullmatch(pair.get('standard','Legible')), 'legible/standard')
         demand(pair.get('foreground') in roles and pair.get('background') in roles and NAME.fullmatch(pair.get('witness', '')), 'legible')
     return value
+
+
+def read(path):
+    return validate(json.loads(path.read_text()), str(path))
 
 
 def value_hash(value):
     return hashlib.sha256(json.dumps(value,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()
 
 
-def swift(value, aliases=False):
+def source_input(record, base=None, address='binding#input', source=None):
+    if not isinstance(record.get('input'), str) or not record['input']:
+        raise ValueError(address + ': expected an owner-relative source')
+    path = Path(record['input'])
+    if path.is_absolute() or '..' in path.parts:
+        raise ValueError(address + ': expected an owner-relative source')
+    if source is None: source = (Path(base or ROOT) / path).read_bytes()
+    if hashlib.sha256(source).hexdigest() != record.get('sha256'):
+        raise ValueError(str(path) + ': source differs from the declared SHA-256')
+    return source.decode('utf-8')
+
+
+def style_contract(value, base=None, source=None):
+    contract = value.get('styleContract')
+    if not isinstance(contract, dict) or not NAME.fullmatch(contract.get('name', '')):
+        raise ValueError('binding#styleContract/name: declare the owner protocol')
+    return source_input(contract, base, 'binding#styleContract/input', source)
+
+
+def swift(value, aliases=False, base=None, contract_source=None):
+    validate(value)
     name = value['name']
     lines = ['import Notation', 'import DocumentKit', '', '// GENERATED from the world drawing-binding/1 record.', '// drawing-binding-value-sha256: ' + value_hash(value)]
-    vocabulary=set(re.findall(r'^public protocol (\w+): (?:Paint|Structure) \{\}', '\n'.join(p.read_text() for p in (ROOT/'Sources/DocumentKit').rglob('*.swift')),re.M))
+    style_contract(value, base, contract_source)
+    lines += ['// Owner requirement source: ' + json.dumps(value['styleContract']['input']) + '@sha256:' + value['styleContract']['sha256']]
     def atom(n, text, paint=False, role=None):
-        parent='DocumentKit.'+role+', ' if role in vocabulary else ('Paint, ' if paint else '')
+        parent='Paint, ' if paint else ''
         lines.extend(['public enum ' + n + ': ' + parent + 'Close {}', 'extension ' + n + ' {', '    public static var typeName: String { ' + json.dumps(text, ensure_ascii=False) + ' }', '}'])
     for role, row in value['roles'].items():
         literal = row.get('fallbackLight', row['light'])
@@ -102,8 +132,8 @@ def swift(value, aliases=False):
             atom(name + key, row['text'], role=key)
         else:
             expression = re.sub(r'\b[A-Za-z_][A-Za-z_0-9]*\b', lambda m: name + m[0] if m[0] in layout else m[0], row['expression'])
-            lines += ['public enum ' + name + key + ': DocumentKit.' + key + ', Open {', '    @StructureBuilder', '    public static var body: some Structure {', '        ' + expression + '.self', '    }', '}'] if key in vocabulary else ['public typealias ' + name + key + ' = ' + expression]
-    lines += ['public enum ' + name + ': DrawingStyle, Close {']
+            lines += ['public enum ' + name + key + ': Open {', '    @StructureBuilder', '    public static var body: some Structure {', '        ' + expression + '.self', '    }', '}']
+    lines += ['public enum ' + name + ': ' + value['styleContract']['name'] + ', Close {']
     for field in [*value['roles'], *value['registers'], 'ShadowPaint', 'ShadowOpacity', 'LeafCountBases']:
         lines.append('    public typealias ' + field + ' = ' + name + field)
     fallbacks = {}
@@ -146,11 +176,28 @@ def swift(value, aliases=False):
         for role in value['roles']:
             lines += ['public typealias ' + role + ' = ' + name + role,
                       'public typealias ' + role + 'Dark = ' + name + role + 'Dark']
-        if {'Mist','Ink'} <= set(value['roles']):
-            lines += ['public enum LightCardPalette: CardPalette {', '    public typealias Surface = Mist', '    public typealias Glyph = Ink', '}']
-        if {'SurfaceTrack','TextPrimary'} <= set(value['roles']):
-            lines += ['public enum DarkCardPalette: CardPalette {', '    public typealias Surface = SurfaceTrackDark', '    public typealias Glyph = TextPrimaryDark', '}']
+    for palette in value.get('cardPalettes', []):
+        lines.append('public enum '+palette['name']+': CardPalette {')
+        for field,key in [('Surface','surface'),('Glyph','glyph')]:
+            selection=palette[key]
+            lines.append('    public typealias '+field+' = '+name+selection['role']+selection['suffix'])
+        lines.append('}')
     return '\n'.join(lines) + '\n'
+
+
+def typecheck_style(value, includes, base=None, contract_source=None):
+    """Ask Swift to check the declared owner requirements, independently of use."""
+    import subprocess
+    import tempfile
+    with tempfile.TemporaryDirectory(prefix='owner-binding-') as directory:
+        root = Path(directory)
+        source = root / 'Binding.swift'
+        declaration = root / Path(value['styleContract']['input']).name
+        declaration.write_text(style_contract(value,base,contract_source),encoding='utf-8')
+        source.write_text(swift(value, base=base, contract_source=contract_source),encoding='utf-8')
+        result = subprocess.run(['swiftc','-typecheck',*includes,'-module-cache-path',str(root/'modules'),str(declaration),str(source)],capture_output=True,timeout=120)
+        if result.returncode:
+            raise ValueError(value['styleContract']['input']+'#binding/'+value['name']+': owner requirements refused by Swift\n'+result.stderr.decode(errors='replace'))
 
 
 def css(value, dark_selector=None):
@@ -237,9 +284,10 @@ def main():
     p.add_argument('--swift', type=Path)
     p.add_argument('--footer', type=Path)
     p.add_argument('--aliases', action='store_true')
+    p.add_argument('--repository',type=Path,default=Path.cwd(),help='owner repository for declared contract inputs')
     args = p.parse_args()
     value = read(args.binding)
-    for target, text in [(args.swift, swift(value, args.aliases)), (args.footer, footer(value))]:
+    for target, text in [(args.swift, swift(value, args.aliases, base=args.repository)), (args.footer, footer(value))]:
         if target:
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(text)

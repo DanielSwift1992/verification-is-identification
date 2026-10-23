@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Keep world style data outside the mechanism and exercise the native binding boundary."""
 import importlib.util
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -117,6 +118,7 @@ public enum OwnerWorld: GrownDiagram {
         temp=Path(directory)
         file=temp/'Unchanged.swift';file.write_text(world)
         main=temp/'main.swift';main.write_text('print(OwnerWorld.typeName, terminator: "")\n')
+        requirements=ROOT/value['styleContract']['input']
         objects=[str(p) for name in ['Notation','Alphabet','DocumentKit','VerificationIsIdentification'] for p in sorted((binary/(name+'.build')).glob('*.o'))]
         for name,edge,height in [('FirstOwner','U16',60),('OtherOwner','U8',52)]:
             record=json.loads(json.dumps(value));record['name']=name
@@ -124,7 +126,7 @@ public enum OwnerWorld: GrownDiagram {
             for key,expr in [('TrackHeight','U32'),('DotSlot','Plus<U8,U4>')]:record['layout'][key]={'expression':expr}
             companion=temp/'Binding.swift';companion.write_text(binding.swift(record,aliases=True))
             executable=temp/'read'
-            result=subprocess.run(['swiftc','-I',str(binary/'Modules'),'-module-cache-path',str(temp/'modules'),str(companion),str(file),str(main),*objects,'-o',str(executable)],capture_output=True)
+            result=subprocess.run(['swiftc','-I',str(binary/'Modules'),'-module-cache-path',str(temp/'modules'),str(requirements),str(companion),str(file),str(main),*objects,'-o',str(executable)],capture_output=True)
             assert result.returncode==0,result.stderr.decode()
             readout=subprocess.check_output([str(executable)],text=True)
             assert 'viewBox="0 0 64 '+str(height)+'"' in readout,readout
@@ -160,7 +162,7 @@ public enum SlotWorld: GrownDiagram {
 }
 ''')
         main.write_text('print(SlotWorld.typeName, terminator: "")\n')
-        command=['swiftc','-I',str(binary/'Modules'),'-I',str(temp),'-module-cache-path',str(temp/'modules'),str(companion),str(slot_world),str(main),str(obj),*objects,'-o',str(executable)]
+        command=['swiftc','-I',str(binary/'Modules'),'-I',str(temp),'-module-cache-path',str(temp/'modules'),str(requirements),str(companion),str(slot_world),str(main),str(obj),*objects,'-o',str(executable)]
         companion.write_text(binding.swift(record,aliases=True))
         result=subprocess.run(command,capture_output=True);assert result.returncode==0,result.stderr.decode()
         readout=subprocess.check_output([str(executable)],text=True)
@@ -171,11 +173,31 @@ public enum SlotWorld: GrownDiagram {
             companion.write_text(binding.swift(incomplete,aliases=True))
             result=subprocess.run(command,capture_output=True)
             assert result.returncode and request['key'].encode() in result.stderr,result.stderr.decode()
+            print('required style slot '+request['key']+': missing value refused by Swift')
+        # These owner requirements are independent of the supplied layout values.
+        # No drawing reads either extent; the compiler still requires its witness.
+        for request in declarations['ownerStyles']:
+            contract=controls/request['file']
+            owner_contract=temp/'OwnerRequirements.swift';owner_contract.write_bytes(contract.read_bytes())
+            candidate=json.loads(json.dumps(record))
+            candidate['styleContract']=dict(name=request['protocol'],input=owner_contract.name,
+                                           sha256=hashlib.sha256(owner_contract.read_bytes()).hexdigest())
+            candidate['layout'][request['key']]={'text':'1'}
+            companion.write_text(binding.swift(candidate,aliases=True,base=temp))
+            owner_command=[str(owner_contract) if argument==str(requirements) else argument for argument in command]
+            admitted=subprocess.run(owner_command,capture_output=True)
+            assert admitted.returncode==0,admitted.stderr.decode()
+            candidate['layout'].pop(request['key'])
+            companion.write_text(binding.swift(candidate,aliases=True,base=temp))
+            refused=subprocess.run(owner_command,capture_output=True)
+            assert refused.returncode and request['key'].encode() in refused.stderr,refused.stderr.decode()
+            print('owner protocol '+request['protocol']+': '+request['key']+' admitted; absent unused key refused by Swift')
+        companion.write_text(binding.swift(record,aliases=True))
         missing=subprocess.run(['swiftc','-typecheck','-I',str(binary/'Modules'),'-module-cache-path',str(temp/'modules'),str(file)],capture_output=True)
         assert missing.returncode and b'Unchanged.swift:' in missing.stderr,missing.stderr.decode()
         broken=json.loads(json.dumps(record));broken['layout'].pop('EdgeMargin',None)
         companion.write_text(binding.swift(broken,aliases=True))
-        missing=subprocess.run(['swiftc','-typecheck','-I',str(binary/'Modules'),'-module-cache-path',str(temp/'modules'),str(companion),str(file)],capture_output=True)
+        missing=subprocess.run(['swiftc','-typecheck','-I',str(binary/'Modules'),'-module-cache-path',str(temp/'modules'),str(requirements),str(companion),str(file)],capture_output=True)
         assert missing.returncode and b'EdgeMargin' in missing.stderr,missing.stderr.decode()
         broken=json.loads(json.dumps(record));broken['layout']['EdgeMargin']={'expression':'EdgeMargin'}
         path=temp/'cyclic.json';path.write_text(json.dumps(broken))

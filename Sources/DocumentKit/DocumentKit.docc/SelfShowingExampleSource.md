@@ -1,6 +1,6 @@
 # Self-showing
 
-The composition the badge on the canvas points to — the same atom the gallery's code block reads, never a second copy.
+The source page and the gallery's code block read the same declared source atom.
 
 ```swift
 public enum VectorSelfShowingExampleDiagram: Diagram, SelfShowing {

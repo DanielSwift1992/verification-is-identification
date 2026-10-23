@@ -2,7 +2,8 @@ import Notation
 import DocumentKit
 
 // GENERATED from the world drawing-binding/1 record.
-// drawing-binding-value-sha256: 4bb095a8d4c6547bd8fa54bf5f456b7c6c89b4fbe09ca84f75a94d493cc40f37
+// drawing-binding-value-sha256: b782c24e9916a62463dfd7583449331563e47dce14f6bcaedab5dc7f22e4c9df
+// Owner requirement source: "Worlds/Documentation/StyleContract.swift"@sha256:2691ac9d466ece4a61b81cb2f3ccbff5328109a25c2838586bb6a32928f744b8
 public enum FixtureBindingInk: Paint, Close {}
 extension FixtureBindingInk {
     public static var typeName: String { "color(xyz-d65 0.01 0.01 0.011)" }
@@ -239,189 +240,183 @@ public enum FixtureBindingLeafCountBases: Close {}
 extension FixtureBindingLeafCountBases {
     public static var typeName: String { "Structure Close Open Pair" }
 }
-public enum FixtureBindingHairBreath: DocumentKit.HairBreath, Open {
+public enum FixtureBindingHairBreath: Open {
     @StructureBuilder
     public static var body: some Structure {
         U8.self
     }
 }
-public enum FixtureBindingS24Breath: DocumentKit.S24Breath, Open {
+public enum FixtureBindingS24Breath: Open {
     @StructureBuilder
     public static var body: some Structure {
         Plus<U16, U8>.self
     }
 }
-public enum FixtureBindingBadgeChipWide: DocumentKit.BadgeChipWide, Open {
-    @StructureBuilder
-    public static var body: some Structure {
-        Plus<U16, Plus<U8, Plus<U4, U2>>>.self
-    }
-}
-public enum FixtureBindingHairlineWidth: DocumentKit.HairlineWidth, Close {}
+public enum FixtureBindingHairlineWidth: Close {}
 extension FixtureBindingHairlineWidth {
     public static var typeName: String { "1" }
 }
-public enum FixtureBindingArrowWidth: DocumentKit.ArrowWidth, Close {}
+public enum FixtureBindingArrowWidth: Close {}
 extension FixtureBindingArrowWidth {
     public static var typeName: String { "2" }
 }
-public enum FixtureBindingDependencyDash: DocumentKit.DependencyDash, Close {}
+public enum FixtureBindingDependencyDash: Close {}
 extension FixtureBindingDependencyDash {
     public static var typeName: String { "4 3" }
 }
-public enum FixtureBindingR4: DocumentKit.R4, Close {}
+public enum FixtureBindingR4: Close {}
 extension FixtureBindingR4 {
     public static var typeName: String { "4" }
 }
-public enum FixtureBindingR6: DocumentKit.R6, Close {}
+public enum FixtureBindingR6: Close {}
 extension FixtureBindingR6 {
     public static var typeName: String { "6" }
 }
-public enum FixtureBindingR10: DocumentKit.R10, Close {}
+public enum FixtureBindingR10: Close {}
 extension FixtureBindingR10 {
     public static var typeName: String { "10" }
 }
-public enum FixtureBindingR16: DocumentKit.R16, Close {}
+public enum FixtureBindingR16: Close {}
 extension FixtureBindingR16 {
     public static var typeName: String { "16" }
 }
-public enum FixtureBindingR20: DocumentKit.R20, Close {}
+public enum FixtureBindingR20: Close {}
 extension FixtureBindingR20 {
     public static var typeName: String { "20" }
 }
-public enum FixtureBindingTextXXS: DocumentKit.TextXXS, Close {}
+public enum FixtureBindingTextXXS: Close {}
 extension FixtureBindingTextXXS {
     public static var typeName: String { "11" }
 }
-public enum FixtureBindingTextS: DocumentKit.TextS, Close {}
+public enum FixtureBindingTextS: Close {}
 extension FixtureBindingTextS {
     public static var typeName: String { "13" }
 }
-public enum FixtureBindingTextL: DocumentKit.TextL, Close {}
+public enum FixtureBindingTextL: Close {}
 extension FixtureBindingTextL {
     public static var typeName: String { "15" }
 }
-public enum FixtureBindingTitleT: DocumentKit.TitleT, Close {}
+public enum FixtureBindingTitleT: Close {}
 extension FixtureBindingTitleT {
     public static var typeName: String { "15" }
 }
-public enum FixtureBindingWeightRegular: DocumentKit.WeightRegular, Close {}
+public enum FixtureBindingWeightRegular: Close {}
 extension FixtureBindingWeightRegular {
     public static var typeName: String { "400" }
 }
-public enum FixtureBindingShapeRadius: DocumentKit.ShapeRadius, Close {}
+public enum FixtureBindingShapeRadius: Close {}
 extension FixtureBindingShapeRadius {
     public static var typeName: String { "12" }
 }
-public enum FixtureBindingThickGlyphWidth: DocumentKit.ThickGlyphWidth, Close {}
+public enum FixtureBindingThickGlyphWidth: Close {}
 extension FixtureBindingThickGlyphWidth {
     public static var typeName: String { "6" }
 }
-public enum FixtureBindingGlyphStrokeWidth: DocumentKit.GlyphStrokeWidth, Close {}
+public enum FixtureBindingGlyphStrokeWidth: Close {}
 extension FixtureBindingGlyphStrokeWidth {
     public static var typeName: String { "9" }
 }
-public enum FixtureBindingBoldWeight: DocumentKit.BoldWeight, Close {}
+public enum FixtureBindingBoldWeight: Close {}
 extension FixtureBindingBoldWeight {
     public static var typeName: String { "600" }
 }
-public enum FixtureBindingHoverTransition: DocumentKit.HoverTransition, Close {}
+public enum FixtureBindingHoverTransition: Close {}
 extension FixtureBindingHoverTransition {
     public static var typeName: String { "150ms" }
 }
-public enum FixtureBindingHoverLift: DocumentKit.HoverLift, Close {}
+public enum FixtureBindingHoverLift: Close {}
 extension FixtureBindingHoverLift {
     public static var typeName: String { "2px" }
 }
-public enum FixtureBindingHoverFadeDelay: DocumentKit.HoverFadeDelay, Close {}
+public enum FixtureBindingHoverFadeDelay: Close {}
 extension FixtureBindingHoverFadeDelay {
     public static var typeName: String { "250ms" }
 }
-public enum FixtureBindingHoverGrace: DocumentKit.HoverGrace, Close {}
+public enum FixtureBindingHoverGrace: Close {}
 extension FixtureBindingHoverGrace {
     public static var typeName: String { "400ms" }
 }
-public enum FixtureBindingHoverStrokeWidth: DocumentKit.HoverStrokeWidth, Close {}
+public enum FixtureBindingHoverStrokeWidth: Close {}
 extension FixtureBindingHoverStrokeWidth {
     public static var typeName: String { "3" }
 }
-public enum FixtureBindingMarkerWidth: DocumentKit.MarkerWidth, Close {}
+public enum FixtureBindingMarkerWidth: Close {}
 extension FixtureBindingMarkerWidth {
     public static var typeName: String { "9" }
 }
-public enum FixtureBindingMarkerHeight: DocumentKit.MarkerHeight, Close {}
+public enum FixtureBindingMarkerHeight: Close {}
 extension FixtureBindingMarkerHeight {
     public static var typeName: String { "9" }
 }
-public enum FixtureBindingMarkerX: DocumentKit.MarkerX, Close {}
+public enum FixtureBindingMarkerX: Close {}
 extension FixtureBindingMarkerX {
     public static var typeName: String { "5" }
 }
-public enum FixtureBindingMarkerY: DocumentKit.MarkerY, Close {}
+public enum FixtureBindingMarkerY: Close {}
 extension FixtureBindingMarkerY {
     public static var typeName: String { "3" }
 }
-public enum FixtureBindingMarkerPath: DocumentKit.MarkerPath, Close {}
+public enum FixtureBindingMarkerPath: Close {}
 extension FixtureBindingMarkerPath {
     public static var typeName: String { "M0,0 L6,3 L0,6 Z" }
 }
-public enum FixtureBindingFigureArrowBox: DocumentKit.FigureArrowBox, Close {}
+public enum FixtureBindingFigureArrowBox: Close {}
 extension FixtureBindingFigureArrowBox {
     public static var typeName: String { "0 0 10 10" }
 }
-public enum FixtureBindingFigureArrowX: DocumentKit.FigureArrowX, Close {}
+public enum FixtureBindingFigureArrowX: Close {}
 extension FixtureBindingFigureArrowX {
     public static var typeName: String { "9" }
 }
-public enum FixtureBindingFigureArrowY: DocumentKit.FigureArrowY, Close {}
+public enum FixtureBindingFigureArrowY: Close {}
 extension FixtureBindingFigureArrowY {
     public static var typeName: String { "5" }
 }
-public enum FixtureBindingFigureArrowWidth: DocumentKit.FigureArrowWidth, Close {}
+public enum FixtureBindingFigureArrowWidth: Close {}
 extension FixtureBindingFigureArrowWidth {
     public static var typeName: String { "7" }
 }
-public enum FixtureBindingFigureArrowHeight: DocumentKit.FigureArrowHeight, Close {}
+public enum FixtureBindingFigureArrowHeight: Close {}
 extension FixtureBindingFigureArrowHeight {
     public static var typeName: String { "7" }
 }
-public enum FixtureBindingFigureArrowPath: DocumentKit.FigureArrowPath, Close {}
+public enum FixtureBindingFigureArrowPath: Close {}
 extension FixtureBindingFigureArrowPath {
     public static var typeName: String { "M0 0L10 5L0 10Z" }
 }
-public enum FixtureBindingShadowX: DocumentKit.ShadowX, Close {}
+public enum FixtureBindingShadowX: Close {}
 extension FixtureBindingShadowX {
     public static var typeName: String { "-20%" }
 }
-public enum FixtureBindingShadowY: DocumentKit.ShadowY, Close {}
+public enum FixtureBindingShadowY: Close {}
 extension FixtureBindingShadowY {
     public static var typeName: String { "-20%" }
 }
-public enum FixtureBindingShadowWidth: DocumentKit.ShadowWidth, Close {}
+public enum FixtureBindingShadowWidth: Close {}
 extension FixtureBindingShadowWidth {
     public static var typeName: String { "140%" }
 }
-public enum FixtureBindingShadowHeight: DocumentKit.ShadowHeight, Close {}
+public enum FixtureBindingShadowHeight: Close {}
 extension FixtureBindingShadowHeight {
     public static var typeName: String { "140%" }
 }
-public enum FixtureBindingShadowDx: DocumentKit.ShadowDx, Close {}
+public enum FixtureBindingShadowDx: Close {}
 extension FixtureBindingShadowDx {
     public static var typeName: String { "0" }
 }
-public enum FixtureBindingShadowDy: DocumentKit.ShadowDy, Close {}
+public enum FixtureBindingShadowDy: Close {}
 extension FixtureBindingShadowDy {
     public static var typeName: String { "5" }
 }
-public enum FixtureBindingShadowDeviation: DocumentKit.ShadowDeviation, Close {}
+public enum FixtureBindingShadowDeviation: Close {}
 extension FixtureBindingShadowDeviation {
     public static var typeName: String { "10" }
 }
-public enum FixtureBindingBreatheValues: DocumentKit.BreatheValues, Close {}
+public enum FixtureBindingBreatheValues: Close {}
 extension FixtureBindingBreatheValues {
     public static var typeName: String { "1;0.55;1" }
 }
-public enum FixtureBindingBreatheDuration: DocumentKit.BreatheDuration, Close {}
+public enum FixtureBindingBreatheDuration: Close {}
 extension FixtureBindingBreatheDuration {
     public static var typeName: String { "4s" }
 }
@@ -485,51 +480,57 @@ public enum FixtureBindingTableSortCursor: Close {}
 extension FixtureBindingTableSortCursor {
     public static var typeName: String { "pointer" }
 }
-public enum FixtureBindingCover06: DocumentKit.Cover06, Close {}
+public enum FixtureBindingCover06: Close {}
 extension FixtureBindingCover06 {
     public static var typeName: String { "0.06" }
 }
-public enum FixtureBindingCover15: DocumentKit.Cover15, Close {}
+public enum FixtureBindingCover15: Close {}
 extension FixtureBindingCover15 {
     public static var typeName: String { "0.15" }
 }
-public enum FixtureBindingCover16: DocumentKit.Cover16, Close {}
+public enum FixtureBindingCover16: Close {}
 extension FixtureBindingCover16 {
     public static var typeName: String { "0.16" }
 }
-public enum FixtureBindingCover54: DocumentKit.Cover54, Close {}
+public enum FixtureBindingCover54: Close {}
 extension FixtureBindingCover54 {
     public static var typeName: String { "0.54" }
 }
-public enum FixtureBindingCover70: DocumentKit.Cover70, Close {}
+public enum FixtureBindingCover70: Close {}
 extension FixtureBindingCover70 {
     public static var typeName: String { "0.70" }
 }
-public enum FixtureBindingCover80: DocumentKit.Cover80, Close {}
+public enum FixtureBindingCover80: Close {}
 extension FixtureBindingCover80 {
     public static var typeName: String { "0.80" }
 }
-public enum FixtureBindingCover90: DocumentKit.Cover90, Close {}
+public enum FixtureBindingCover90: Close {}
 extension FixtureBindingCover90 {
     public static var typeName: String { "0.90" }
 }
-public enum FixtureBindingMarkerOrient: DocumentKit.MarkerOrient, Close {}
+public enum FixtureBindingMarkerOrient: Close {}
 extension FixtureBindingMarkerOrient {
     public static var typeName: String { "auto" }
 }
-public enum FixtureBindingFigureArrowOrient: DocumentKit.FigureArrowOrient, Close {}
+public enum FixtureBindingFigureArrowOrient: Close {}
 extension FixtureBindingFigureArrowOrient {
     public static var typeName: String { "auto-start-reverse" }
 }
-public enum FixtureBindingFontUnitsPerEm: DocumentKit.FontUnitsPerEm, Close {}
+public enum FixtureBindingSourceLinkWidth: Open {
+    @StructureBuilder
+    public static var body: some Structure {
+        Plus<U16, Plus<U8, Plus<U4, U2>>>.self
+    }
+}
+public enum FixtureBindingFontUnitsPerEm: Close {}
 extension FixtureBindingFontUnitsPerEm {
     public static var typeName: String { "2048" }
 }
-public enum FixtureBindingFontCapHeight: DocumentKit.FontCapHeight, Close {}
+public enum FixtureBindingFontCapHeight: Close {}
 extension FixtureBindingFontCapHeight {
     public static var typeName: String { "1490" }
 }
-public enum FixtureBindingFontAdvanceTable: DocumentKit.FontAdvanceTable, Close {}
+public enum FixtureBindingFontAdvanceTable: Close {}
 extension FixtureBindingFontAdvanceTable {
     public static var typeName: String { "32:576 33:589 34:954 35:1297 36:1314 37:2011 38:1319 39:614 40:747 41:747 42:1026 43:1355 44:590 45:942 46:590 47:738 48:1292 49:833 50:1249 51:1265 52:1323 53:1215 54:1270 55:1159 56:1267 57:1270 58:590 59:618 60:1355 61:1355 62:1355 63:1047 64:1978 65:1413 66:1340 67:1496 68:1478 69:1231 70:1209 71:1528 72:1522 73:550 74:1169 75:1376 76:1158 77:1850 78:1543 79:1566 80:1308 81:1566 82:1318 83:1314 84:1322 85:1524 86:1413 87:2018 88:1397 89:1390 90:1288 91:747 92:738 93:747 94:965 95:934 96:661 97:1150 98:1254 99:1170 100:1254 101:1194 102:758 103:1256 104:1211 105:496 106:496 107:1124 108:496 109:1794 110:1210 111:1228 112:1254 113:1254 114:771 115:1081 116:670 117:1211 118:1151 119:1676 120:1118 121:1151 122:1131 123:873 124:681 125:873 126:1355 160:576 161:589 162:1170 163:1251 164:1484 165:1126 166:553 167:1164 168:1210 169:1872 170:929 171:1193 172:1355 174:1364 175:978 176:933 177:1355 178:905 179:913 180:661 181:1200 182:1234 183:590 184:549 185:623 186:988 187:1193 188:1643 189:1735 190:1806 191:1047 192:1413 193:1413 194:1413 195:1413 196:1413 197:1413 198:2035 199:1496 200:1231 201:1231 202:1231 203:1231 204:550 205:550 206:550 207:550 208:1505 209:1543 210:1566 211:1566 212:1566 213:1566 214:1566 215:1355 216:1566 217:1524 218:1524 219:1524 220:1524 221:1390 222:1302 223:1262 224:1150 225:1150 226:1150 227:1150 228:1150 229:1150 230:1879 231:1170 232:1194 233:1194 234:1194 235:1194 236:496 237:496 238:496 239:496 240:1193 241:1210 242:1228 243:1228 244:1228 245:1228 246:1228 247:1355 248:1228 249:1211 250:1211 251:1211 252:1211 253:1151 254:1254 255:1151 8211:1024 8212:2048 8216:534 8217:534 8220:902 8221:902 8230:1770 8594:1954" }
 }
@@ -537,27 +538,27 @@ public enum FixtureBindingFontFallbackAdvance: Close {}
 extension FixtureBindingFontFallbackAdvance {
     public static var typeName: String { "1794" }
 }
-public enum FixtureBindingTextXS: DocumentKit.TextXS, Close {}
+public enum FixtureBindingTextXS: Close {}
 extension FixtureBindingTextXS {
     public static var typeName: String { "11" }
 }
-public enum FixtureBindingTextM: DocumentKit.TextM, Close {}
+public enum FixtureBindingTextM: Close {}
 extension FixtureBindingTextM {
     public static var typeName: String { "13" }
 }
-public enum FixtureBindingDisplayS: DocumentKit.DisplayS, Close {}
+public enum FixtureBindingDisplayS: Close {}
 extension FixtureBindingDisplayS {
     public static var typeName: String { "15" }
 }
-public enum FixtureBindingDisplay: DocumentKit.Display, Close {}
+public enum FixtureBindingDisplay: Close {}
 extension FixtureBindingDisplay {
     public static var typeName: String { "15" }
 }
-public enum FixtureBindingWeightBold: DocumentKit.WeightBold, Close {}
+public enum FixtureBindingWeightBold: Close {}
 extension FixtureBindingWeightBold {
     public static var typeName: String { "600" }
 }
-public enum FixtureBinding: DrawingStyle, Close {
+public enum FixtureBinding: DocumentationStyle, Close {
     public typealias Ink = FixtureBindingInk
     public typealias Paper = FixtureBindingPaper
     public typealias Mist = FixtureBindingMist
@@ -592,7 +593,6 @@ public enum FixtureBinding: DrawingStyle, Close {
     public typealias LeafCountBases = FixtureBindingLeafCountBases
     public typealias HairBreath = FixtureBindingHairBreath
     public typealias S24Breath = FixtureBindingS24Breath
-    public typealias BadgeChipWide = FixtureBindingBadgeChipWide
     public typealias HairlineWidth = FixtureBindingHairlineWidth
     public typealias ArrowWidth = FixtureBindingArrowWidth
     public typealias DependencyDash = FixtureBindingDependencyDash
@@ -659,6 +659,7 @@ public enum FixtureBinding: DrawingStyle, Close {
     public typealias Cover90 = FixtureBindingCover90
     public typealias MarkerOrient = FixtureBindingMarkerOrient
     public typealias FigureArrowOrient = FixtureBindingFigureArrowOrient
+    public typealias SourceLinkWidth = FixtureBindingSourceLinkWidth
     public typealias FontUnitsPerEm = FixtureBindingFontUnitsPerEm
     public typealias FontCapHeight = FixtureBindingFontCapHeight
     public typealias FontAdvanceTable = FixtureBindingFontAdvanceTable
@@ -688,7 +689,6 @@ extension StyleBound {
 }
 public typealias HairBreath = FixtureBindingHairBreath
 public typealias S24Breath = FixtureBindingS24Breath
-public typealias BadgeChipWide = FixtureBindingBadgeChipWide
 public typealias HairlineWidth = FixtureBindingHairlineWidth
 public typealias ArrowWidth = FixtureBindingArrowWidth
 public typealias DependencyDash = FixtureBindingDependencyDash
@@ -755,6 +755,7 @@ public typealias Cover80 = FixtureBindingCover80
 public typealias Cover90 = FixtureBindingCover90
 public typealias MarkerOrient = FixtureBindingMarkerOrient
 public typealias FigureArrowOrient = FixtureBindingFigureArrowOrient
+public typealias SourceLinkWidth = FixtureBindingSourceLinkWidth
 public typealias FontUnitsPerEm = FixtureBindingFontUnitsPerEm
 public typealias FontCapHeight = FixtureBindingFontCapHeight
 public typealias FontAdvanceTable = FixtureBindingFontAdvanceTable
@@ -830,10 +831,10 @@ public typealias KnownNameDark = FixtureBindingKnownNameDark
 public typealias LocalType = FixtureBindingLocalType
 public typealias LocalTypeDark = FixtureBindingLocalTypeDark
 public enum LightCardPalette: CardPalette {
-    public typealias Surface = Mist
-    public typealias Glyph = Ink
+    public typealias Surface = FixtureBindingMist
+    public typealias Glyph = FixtureBindingInk
 }
 public enum DarkCardPalette: CardPalette {
-    public typealias Surface = SurfaceTrackDark
-    public typealias Glyph = TextPrimaryDark
+    public typealias Surface = FixtureBindingSurfaceTrackDark
+    public typealias Glyph = FixtureBindingTextPrimaryDark
 }

@@ -7,9 +7,7 @@ import DocumentKit
 // weights truly sum to what it claims (`IntegerValued`'s `Right` is an ASSOCIATED type, and
 // Swift resolves an associated type once per concrete type, never per `where` clause: the
 // same wall §S12 already names for a static witness, harder still for a type derived by
-// recursion). What IS checked, for real: each row states its own `Total` by hand (the same
-// discipline `Y2029: Cycle { Length = Three }` already uses, ReviewCycle.swift. The script
-// decides only WHEN, never derives WHICH), and `TwoRowGrid` requires `Row1.Total == Row2.Total`
+// recursion). Each row declares its Total; TwoRowGrid requires their identity
 // as a `where` clause on its own `body`. A row whose declared total does not match its
 // partner's does not get a `body` at all, so the grid fails to compile, not fails to align.
 

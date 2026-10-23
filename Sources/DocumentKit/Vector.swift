@@ -37,13 +37,10 @@ extension Seconds {
 // deterministically. The walls this file's laws name for markdown (§S15 no column width,
 // §S19 no visible weight, §S21 fixed image margins) are walls of THAT medium, not this one.
 //
-// Vocabulary is exactly what today's artifacts need (§S8, no general solver), and it is
-// three languages of one geometry: the DIVIDED AXIS (a row or column hands each member its
-// slice and the remainder derives), the SPANS (leaves drawn into the slice they are handed),
-// and the PEN (a path as constrained motion: straight until a named line, so corners
-// derive). Every number a drawing speaks is a rung of the dictionary (Design.swift) or a
-// magnitude of the lattice, read through `Tally`, `SpanPx`, `Halfway`, `Under`, and the stated
-// remainders are named holes (text baselines, glyph art), each argued in place.
+// The geometry has three compositional interfaces: a divided axis hands each
+// member its slice and derives the remainder; a span draws into that slice; a pen
+// composes a path. Magnitudes come from the caller and are read through Tally,
+// SpanPx, Halfway and Under. Binding supplies the required style readings.
 // Per-instance content (a glyph's path data, a line's text) is a `Structure` hole, exactly
 // like `Symbol`'s target or `TableCell`'s content.
 // ═══════════════════════════════════════════════════════════════
@@ -159,11 +156,8 @@ extension RoundedFullBleedRect {
     }
 }
 
-/// This is the italic annotation of a stated drawing: an arrow bundle's label, offset clear of
-/// its lines. Its coordinates are the route-data class (a drawing's own facts, stated once,
-/// never derived, the same law GlyphAtlas and DiagramGeometry are under), which is why this
-/// combinator keeps X where the axis world derives it. Only the gate and architecture
-/// diagrams draw one, so its colour is the `TextSecondary` role, not a flat hex.
+/// Draws Content at X and Y with the caption face, slant and paint of Binding.
+/// Coordinates and size are supplied by the composition.
 public protocol ItalicLabel: Open, StyleBound {
     associatedtype X: Structure
     associatedtype Y: Structure
@@ -577,10 +571,8 @@ extension Dropped {
     }
 }
 
-/// This is a drop with a uniform scale: the one hook a canvas needs to reuse ANOTHER canvas's
-/// glyph at a different size (a person card's small avatar disc, drawn from the SAME
-/// `AvatarShapes` the full-size avatar canvas already draws, not a second, redrawn-smaller
-/// copy of the same two shapes).
+/// Translates Content to X and Y, then applies its declared uniform Scale.
+/// The same Content can participate in several placements without redrawing its path.
 public protocol PlacedScaled: Open {
     associatedtype X: Structure
     associatedtype Y: Structure
@@ -593,37 +585,12 @@ extension PlacedScaled {
     }
 }
 
-// ── DESIGN11/12 — the space gate (prototype, one canvas). A coordinate atom's VALUE (its
-// `typeName` string) is never checked against a canvas's bounds — nothing here proves
-// `X + W <= CanvasWidth`. The natural fix, a generic `AtMost<A, B>` Peano `≤` via recursive
-// conditional conformance, hits the SAME wall the contrast gate did (SurfaceLaw §S25): Swift
-// refuses a second conditional conformance of one generic pair type to one protocol, so the
-// base case and the inductive step cannot both be written as conformances of the same `AtMost`.
-// Checked directly — an isolated two-extension probe reproduces the identical
-// "conflicting conformance" error `On<Fg, Bg>: Legible` gave.
-//
-// The move that DOES work is the same one the contrast gate found: route through the CASE'S OWN
-// identity, not a shared generic pair. `WithinBounds` is the FLOOR every canvas marker
-// refines — `Paint`'s own role relative to `LegibleOnInk` and its siblings, not a thing granted
-// directly. A canvas's legal positions are a small, closed, ENUMERATED set (`CycleNodeX1`…`X4`,
-// not "any integer"), and its own marker (`WithinCyclesHero`, CyclesHero.swift — the reference
-// instance) is granted, unconditionally, only to the coordinate atoms THAT canvas's author has
-// checked fit — an ungranted value is not rejected by a computed comparison, it is never
-// GRANTED, the illegal-state-unrepresentable move (ReviewCycle.swift's "the next state does not
-// exist until") applied to geometry.
-//
-// DESIGN12 §3 — a first draft of this file left `WithinBounds` itself doing the granting, which
-// over-promises: a grant is a fact about the ATOM, GLOBAL and permanent (`extension N100:
-// WithinBounds {}` reads as legal everywhere `WithinBounds` is asked for, on any canvas, not
-// scoped to the one that checked it) — the same way granting `Paper: LegibleOnInk` is a global
-// fact about `Paper`, not a per-call-site promise. The floor remains shared, and what must NOT be
-// shared is the thing that actually gets CHECKED (a drop whose vertical is
-// bound). That belongs to each canvas, declared locally — `CyclesLowered` (CyclesHero.swift)
-// requires `X`/`Y`: `WithinCyclesHero`, not the bare floor, so a position only ONE canvas
-// vetted cannot satisfy a DIFFERENT canvas's placement by accident. No shared `GriddedPlaced`
-// is here for that reason: copying its four lines per canvas is the price of a guarantee
-// that is real. At a second canvas the pattern above is already the right shape to repeat.
-public protocol WithinBounds: Structure {}   // law:allow — the §S25 floor: a per-case grant certificate, conformance IS the vetting, refined per canvas as the comment above states
+// WithinBounds is the common interface for an owner's placement grant.
+// A canvas refines it with its own relation and requires that refinement at the
+// placement site. A conformance to the common interface alone does not establish
+// X + W <= CanvasWidth or any other numerical bound. The owner must supply the
+// relation that connects the coordinate, extent and canvas.
+public protocol WithinBounds: Structure {}   // law:allow — common interface for an owner-declared placement relation
 
 /// This wraps a subtree in a real link. `Target` is a page path from the site's closed set of
 /// addresses (the same universe `<doc:…>` links resolve into: `/documentation/<module>/…`),
@@ -797,10 +764,8 @@ extension GlyphPathThick {
     }
 }
 
-/// This is a path that carries its full stroke rather than inheriting one, a sibling of a tinted
-/// group, not a child of it (Reports' baseline, drawn after the bars it marks). `Stroke` is a
-/// `CardPalette`'s `Glyph` (mechanism A): the only consumer, `Cards.swift`, is a
-/// grid-tile context, driven twice (light/dark) at the driver's edge, not a CSS role.
+/// Draws D with its own Stroke and the glyph-stroke readings of Binding.
+/// The path can participate outside a group that supplies an inherited fill.
 public protocol StandaloneStrokedPath: Open, StyleBound {
     associatedtype Stroke: Paint
     associatedtype D: Structure
@@ -811,8 +776,7 @@ extension StandaloneStrokedPath {
     }
 }
 
-/// This is a group tinted by fill: every glyph drawn as solid shapes (Dashboard's tiles, Reports'
-/// bars, the avatar's silhouette).
+/// Supplies Fill to the shapes composed by Content.
 public protocol FilledGroup: Open {
     associatedtype Fill: Structure
     associatedtype Content: Structure
@@ -1056,9 +1020,8 @@ extension FragmentOf {
     public static var typeName: String { "#" + X.typeName }
 }
 
-// THE MAGNITUDES are in the lattice's engine room (VerificationIsIdentification,
-// Primitive.swift): Unit, Plus, Twice, Times, and Tally, the counting read. The design
-// system's ladder (Design.swift) names the rungs, and the walk below only ever slices them.
+// Notation supplies Unit, Plus, Twice, Times and Tally. The caller composes
+// magnitudes from those constructors; the walk divides the supplied magnitudes.
 
 /// A fraction is any pair of structures: the left side counts the numerator, the right side
 /// the denominator. Nothing else exists to know about it.
@@ -1618,12 +1581,8 @@ extension BoundFrozenReveal {
     }
 }
 
-/// This dot breathes: the same centered disc a ``SpanDot`` places, carrying SVG's own
-/// declarative clock: opacity swings once every four seconds, forever (SMIL, the
-/// medium's stated timeline, no script). Time is in the reader's browser, never in
-/// the artifact: the animation is a child element of the circle, and the drawing remains
-/// a pure composition. The voice is for one fact per canvas: a claim that is re-proved
-/// by every build may breathe, wallpaper may not.
+/// Draws a centered disc with an SVG opacity animation.
+/// Binding supplies the opacity sequence and duration; the host advances the timeline.
 public protocol SpanBreathingDot: Spanning, StyleBound {
     associatedtype CY: Structure
     associatedtype R: Structure
@@ -1684,8 +1643,8 @@ extension SpanTrack {
             + "rx=\"\(XMLEscaped<Radius>.typeName)\" fill=\"\(XMLEscaped<Fill>.typeName)\"/>\n"
     }
 }
-/// This face carries the accent panel: the one hero a screen may carry. The accent never goes flat
-/// in the dark theme, so its shadow is the fixed soft one, and it has no edge.
+/// Fills the slice with a rounded face and the referenced shadow filter.
+/// The composition supplies height, radius and paint.
 public protocol SpanHeroFace: Spanning {
     associatedtype H: Structure
     associatedtype Radius: Structure
@@ -1723,7 +1682,7 @@ extension SpanLift: Spanning {
 }
 /// A structure hosted in a slice: the walk's translate places it, and inside it draws
 /// from local zero, the same hospitality a column's `Band` extends. The door that puts whole
-/// composed regions (a keypad, a legend) on a weighted row.
+/// composed Content on a weighted row.
 public enum SpanHosted<Content: Structure>: Close {}
 extension SpanHosted: Spanning {
     public static func rendered<
@@ -1782,7 +1741,7 @@ extension SpanLowered: Spanning {
     }
 }
 /// This draws a horizontal rule across its slice at a stated baseline: a timeline's track,
-/// a divider. Two units of stroke, the rule's own weight, stated here once.
+/// a divider. Binding supplies its stroke width.
 public protocol SpanRule: Spanning, StyleBound {
     associatedtype Y: Structure
     associatedtype Stroke: Structure
@@ -1957,9 +1916,8 @@ extension SpanLabelItalicMid {
             + "font-family=\"\(XMLEscaped<Binding.CaptionFace>.typeName)\" font-style=\"\(XMLEscaped<Binding.CaptionSlant>.typeName)\">\(XMLEscaped<Content>.typeName)</text>\n"
     }
 }
-/// This fills the LEADING share of its slice by the data itself: the part over the whole,
-/// a fraction of the handed width, digits once at the edge. The chart IS the data. No
-/// weight layer is between a team and its bar.
+/// Fills Part over Whole of the handed width.
+/// The composition supplies the counted structures, height, radius and paint.
 public protocol SpanDataFill: Spanning {
     associatedtype Part: Structure
     associatedtype Whole: Structure

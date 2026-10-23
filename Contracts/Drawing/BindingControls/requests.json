@@ -21,7 +21,24 @@
     {
       "section": "layout",
       "key": "MarkerWidth"
+    },
+    {
+      "section": "layout",
+      "key": "R20",
+      "purpose": "Owner requirement unused by the drawing"
     }
   ],
-  "forbiddenImport": "forbidden-import.swift"
+  "forbiddenImport": "forbidden-import.swift",
+  "ownerStyles": [
+    {
+      "file": "owner-requirements.swift",
+      "protocol": "FirstRequirements",
+      "key": "ReservedExtent"
+    },
+    {
+      "file": "owner-requirements.swift",
+      "protocol": "RenamedRequirements",
+      "key": "RenamedExtent"
+    }
+  ]
 }

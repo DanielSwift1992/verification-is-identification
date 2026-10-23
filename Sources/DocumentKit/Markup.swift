@@ -183,12 +183,9 @@ extension RawName {
     public static var typeName: String { String(describing: X.self) }
 }
 
-/// This gives a double-backtick reference to a PROTOCOL, the same visible shape `Symbol` gives
-/// a concrete type, for the one case `Symbol` cannot take: `Symbol<Target: Structure>` requires
-/// a concrete, `Structure`-conforming type, and a bare protocol (`CanView`, a directory) is
-/// neither concrete nor, by itself, `Structure`-conforming: `Symbol { CanView.self }` does not
-/// compile (checked directly). `X` carries no constraint at all, exactly `RawName`'s door, so
-/// any protocol name fits.
+/// Prints the name of `X` as a double-backtick reference.
+/// The unconstrained parameter also accepts protocol existentials; `Symbol` instead
+/// requires its target to conform to `Structure`. The caller supplies that target.
 public enum ProtocolReference<X>: Close {}
 extension ProtocolReference {
     public static var typeName: String { "``" + String(describing: X.self) + "``" }
@@ -250,13 +247,9 @@ where Whole.Left: Structure, Whole.Right: Structure {
     public init(@StructureBuilder _ content: () -> Whole) { fatalError() }
 }
 
-// ── Picture: ![Alt](Asset), an image embedded IN the body, distinct from `@PageImage`
-// (Metadata, written at the render boundary in OrgDemo): that shows a page's picture only when
-// the page is a TILE in a link grid. This shows it on the page itself, the way a hero image
-// reads. Checked directly: a page with only `@PageImage` and no `Picture` in its own body shows
-// no image at all when you navigate to the page directly — the two are not the same door.
-// `Asset` is a plain `Close` naming an asset file (its own `typeName` IS the file's bare name,
-// no `RawName` indirection needed — there is no body to recurse into).
+// Picture composes Alt and Asset as an image inside the document body.
+// PageImage metadata instead supplies the picture of a navigation tile.
+// Asset supplies its own file name at the reading edge.
 public protocol ImageEmbed: Open {
     associatedtype Alt: Structure
     associatedtype Asset: Structure
@@ -561,15 +554,9 @@ public enum PanelOf<
 
 // ── SizedPanel — @Column(size: N) { Content }, a panel that also states its relative weight ──
 //
-// The weight is a TYPE, not a computed value: `TextDigit._2` reads "2" the same way it reads a
-// password digit. Nothing here counts or measures anything, the caller states the weight
-// directly, the way a `where` clause states a constraint rather than solving for one. This is
-// deliberately NOT a general layout solver: GFM/markdown tables have no column-width primitive
-// at all (checked directly, there is no syntax to carry a computed width to), and DocC's own
-// `@Column` only ever takes a relative weight, never a size a solver would compute. `SizedPanel`
-// is the one foothold this render target actually has, not a first step toward one that
-// does not exist.
-
+// Weight supplies the reading of DocC's relative column size. Content remains an
+// independent parameter. The reader emits that declared weight at the directive edge;
+// it does not solve the host renderer's column widths.
 /// The markdown surface reads the same magnitudes the vector surface weighs: a column's
 /// relative size is a count-structure's reading, digits born at this one door. One lexicon
 /// of magnitudes serves both media. Only the reading differs by surface.
@@ -691,11 +678,9 @@ public enum Spacer<
 // `where` matched) is zero: adjacent by default, spaced only where a pairing says so.
 //
 // > Warning: Surface Law §S12 describes this shape: a type whose `typeName` picks among several `where`-conditioned
-// > extensions reads correctly ONLY at a literal, concrete call site (`Gap<Quiet, Loud>.self`,
-// > written directly), never through a generic parameter standing in for `Left`/`Right`. This
+// > extensions reads correctly ONLY at a literal, concrete call site (`SpaceBetween` with both arguments concrete), never through a generic parameter standing in for `Left`/`Right`. This
 // > is not a general "the compiler infers the right gap between any two things" mechanism. It
-// > is a literal lookup table, one entry at a time, the same discipline Cells.swift's proxies
-// > already use for access.
+// > resolves one declared case at its concrete use site.
 
 public protocol Gap: Structure {
     associatedtype Left

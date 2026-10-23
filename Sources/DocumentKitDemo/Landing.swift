@@ -8,8 +8,8 @@ import DocumentKit
 // DocumentKit.md`, the module's doc-extension, title `` ``DocumentKit`` ``, merged onto
 // the auto-generated module stub, never a second address) renders the intro prose, the mechanism
 // reference, AND the gallery: one page, one build, no hand-authored duplicate kept in step by
-// hand. Every gallery example below is a REAL composition, not a description of one. Reading
-// this file's output is reading what the engine actually does.
+// hand. Concrete examples read their declared compositions; parameterized interfaces
+// leave their consumer places open and display the declarations they describe.
 //
 // A page category local to this composition. DocumentKit supplies the mechanism
 // through Notation and Alphabet; this world owns its Screen and Fragment names.
@@ -59,7 +59,7 @@ extension ModuleTitleTarget {
 enum LandingIntro: Close {}
 extension LandingIntro {
     static var typeName: String {
-        "A render engine with no runtime. A page is a type: its `body` composes other types, and reading `typeName` (`Structure`, Notation) walks the composition once into markdown. There is no second pass and no node tree to interpret. The type is the page, and reading its name is the render."
+        "DocumentKit composes types through `body` and reads the resulting structure through `typeName` at the string edge. The caller supplies content and a binding; the SDK supplies the relations that compose and read them."
     }
 }
 
@@ -92,7 +92,7 @@ extension BuildAPageStep2 {
 enum BuildAPageStep3: Close {}
 extension BuildAPageStep3 {
     static var typeName: String {
-        "3. **Compile.** Type-checking the body is the render happening: a table missing its header rule, a tab out of place, a count that does not fold — each is a build error, not a bad page."
+        "3. **Compile.** The compiler checks the declared type requirements of the composition. Reading its `typeName` then produces the markup; validity and presentation on the host require their own stated relations."
     }
 }
 enum BuildAPageStep4: Close {}
@@ -457,228 +457,39 @@ extension SpacerCode {
     }
 }
 
-// ── Gap — a RULE TABLE, not one pair. The space between two workflow states is not stored on
-// either state — it is read off WHICH TWO are adjacent, the same conditional-conformance shape
-// `View`/`Administer`/`Delete` (Organization/System/Policy.swift) already use for access,
-// applied here to a business rule instead: an expected step gets a plain arrow, a step that
-// skips or backslides gets a named, wider gap. Five rules, five literal call sites (`Gap`'s own
-// warning, Markup.swift, and §S17 — each proxy resolves its OWN pairing, once, with nothing
-// generic in between) — the mechanism does not care whether it is asked to model two states or
-// five. The richness is in how large a rule table you are willing to write by hand. ──
-
-enum ToDo: Close {}
-extension ToDo {
-    static var typeName: String { "ToDo" }
-}
-enum Doing: Close {}
-extension Doing {
-    static var typeName: String { "Doing" }
-}
-enum Done: Close {}
-extension Done {
-    static var typeName: String { "Done" }
-}
-enum Blocked: Close {}
-extension Blocked {
-    static var typeName: String { "Blocked" }
-}
-
-// Expected steps: a plain arrow, nothing to flag.
-extension SpaceBetween
-where Left == ToDo, Right == Doing {
-    static var typeName: String { " -> " }
-}
-extension SpaceBetween
-where Left == Doing, Right == Done {
-    static var typeName: String { " -> " }
-}
-extension SpaceBetween
-where Left == Blocked, Right == Doing {
-    static var typeName: String { " -> resumed -> " }
-}
-// Exceptional steps: a wider, named gap. The space itself carries the flag, not a property on
-// either state.
-extension SpaceBetween
-where Left == ToDo, Right == Done {
-    static var typeName: String { "  ⚠ skipped review ⚠  " }
-}
-extension SpaceBetween
-where Left == Doing, Right == Blocked {
-    static var typeName: String { "  ⚠ needs attention ⚠  " }
-}
-
-enum NormalToDoDoing: Close {}
-extension NormalToDoDoing {
-    static var typeName: String {
-        SpaceBetween<
-            ToDo,
-            Doing
-        >.typeName
-    }
-}
-enum NormalDoingDone: Close {}
-extension NormalDoingDone {
-    static var typeName: String {
-        SpaceBetween<
-            Doing,
-            Done
-        >.typeName
-    }
-}
-enum ResumedBlockedDoing: Close {}
-extension ResumedBlockedDoing {
-    static var typeName: String {
-        SpaceBetween<
-            Blocked,
-            Doing
-        >.typeName
-    }
-}
-enum SkippedToDoDone: Close {}
-extension SkippedToDoDone {
-    static var typeName: String {
-        SpaceBetween<
-            ToDo,
-            Done
-        >.typeName
-    }
-}
-enum FlaggedDoingBlocked: Close {}
-extension FlaggedDoingBlocked {
-    static var typeName: String {
-        SpaceBetween<
-            Doing,
-            Blocked
-        >.typeName
-    }
-}
+// Gap keeps both neighbor types open; the caller supplies each concrete pair.
 
 enum GapCaption: Close {}
 extension GapCaption {
     static var typeName: String {
-        "A gap belongs to which two states are adjacent, not to either state alone. Below, five workflow transitions: an expected step gets a plain arrow, a step that skips or backslides gets a named, wider gap."
+        "`Gap` relates the two neighboring types supplied by the caller. A concrete pairing is resolved at its use site; this gallery keeps both places open. The default reading is the empty composition. SurfaceLaw S12 explains why a specialized reading must be resolved before generic composition."
     }
 }
-
-enum GapExample: GallerySection {
-    @StructureBuilder
-    static var body: some Structure {
-        ToDo.self; NormalToDoDoing.self; Doing.self
-        Break.self
-        Doing.self; NormalDoingDone.self; Done.self
-        Break.self
-        Blocked.self; ResumedBlockedDoing.self; Doing.self
-        Break.self
-        ToDo.self; SkippedToDoDone.self; Done.self
-        Break.self
-        Doing.self; FlaggedDoingBlocked.self; Blocked.self
-    }
-}
-
 enum GapCode: Close {}
 extension GapCode {
     static var typeName: String {
         """
-        // the rule is on the SPACE, stated once per pairing:
-        extension SpaceBetween where Left == ToDo, Right == Doing {
-            static var typeName: String { " -> " }
+        public protocol Gap: Structure {
+            associatedtype Left
+            associatedtype Right
         }
-        extension SpaceBetween where Left == ToDo, Right == Done {
-            static var typeName: String { "  ⚠ skipped review ⚠  " }
-        }
-
-        // read through a non-generic proxy (Surface Law §S17), once per pairing:
-        enum NormalToDoDoing: Close {}
-        extension NormalToDoDoing {
-            static var typeName: String { SpaceBetween<ToDo, Doing>.typeName }
-        }
-
-        // used in a body:
-        ToDo.self; NormalToDoDoing.self; Doing.self
+        public enum SpaceBetween<Left, Right>: Gap {}
         """
     }
 }
 
-// ── SpacerBetween — the same rule table, rendering a real `@Column(size:)` weight instead of
-// text: the gap next to `Loud` is wider than the gap between two `Quiet`s. Two rows, same
-// shape, different weight — the behavior is in which two things are adjacent, never in a
-// property either one carries. ──
-
-enum Quiet: Close {}
-extension Quiet {
-    static var typeName: String { "quiet" }
-}
-enum Loud: Close {}
-extension Loud {
-    static var typeName: String { "LOUD" }
-}
-
-extension SpacerBetween
-where Left == Quiet, Right == Loud {
-    static var typeName: String { Spacer<WeightOf<Plus<U2, U1>>>.typeName }
-}
-
-enum WideGapQuietLoud: Close {}
-extension WideGapQuietLoud {
-    static var typeName: String {
-        SpacerBetween<
-            Quiet,
-            Loud
-        >.typeName
-    }
-}
-enum ThinGapQuietQuiet: Close {}
-extension ThinGapQuietQuiet {
-    static var typeName: String {
-        SpacerBetween<
-            Quiet,
-            Quiet
-        >.typeName
-    }
-}
-
+// SpacerBetween exposes the same two open neighboring places at the column edge.
 enum SpacerBetweenCaption: Close {}
 extension SpacerBetweenCaption {
     static var typeName: String {
-        "The same rule, rendering a real column width instead of text: the gap beside a LOUD neighbor is wider than the gap between two quiet neighbors."
+        "`SpacerBetween` reads a column-weight composition for the caller's two neighboring types. The owner declares the pair and its weight; the SDK supplies the relative-column operation."
     }
 }
-
-enum SpacerBetweenExample: GallerySection {
-    @StructureBuilder
-    static var body: some Structure {
-        SideBySide {
-            PanelOf { Quiet.self }
-            WideGapQuietLoud.self
-            PanelOf { Loud.self }
-        }
-        SideBySide {
-            PanelOf { Quiet.self }
-            ThinGapQuietQuiet.self
-            PanelOf { Quiet.self }
-        }
-    }
-}
-
 enum SpacerBetweenCode: Close {}
 extension SpacerBetweenCode {
     static var typeName: String {
         """
-        extension SpacerBetween where Left == Quiet, Right == Loud {
-            static var typeName: String { Spacer<WeightOf<Plus<U2, U1>>>.typeName }
-        }
-
-        enum WideGapQuietLoud: Close {}
-        extension WideGapQuietLoud {
-            static var typeName: String { SpacerBetween<Quiet, Loud>.typeName }
-        }
-
-        // used in a body:
-        SideBySide {
-            PanelOf { Quiet.self }
-            WideGapQuietLoud.self
-            PanelOf { Loud.self }
-        }
+        public enum SpacerBetween<Left, Right>: Gap {}
         """
     }
 }
@@ -996,7 +807,7 @@ extension TallyCode {
 }
 
 // ── The whole gallery, one page — a doc-extension on its own symbol (no second address needed:
-// there is only ever one state to show), the same call Organization's `EmployeeCard` makes. ──
+// its title and body are supplied by this gallery). ──
 
 enum SymbolHeading: Close {}
 extension SymbolHeading {
@@ -1108,7 +919,7 @@ extension RolesHeading {
 enum RolesIntro: Close {}
 extension RolesIntro {
     static var typeName: String {
-        "Light and dark are two projections of the same eight roles, each declared once, carrying both a light and a dark value. A role reaches a canvas by whichever of two mechanisms fits that canvas's own use: inline canvases (anything the inline-swap hook, `footer.html`, turns into real DOM) read a role as `var(--vi-<role>, <light-hex>)`, switched live by `prefers-color-scheme`, with a light fallback that still reads correctly even with no CSS in scope at all — a bare `<img>`. The small, numerous, non-interactive grid tiles use the other mechanism instead: a second, literal `x~dark.svg` file beside `x.svg`, DocC's own native asset-swap. Both read the same eight roles. Only where a role's value lands differs, and that choice is the canvas's own, made once, at the driver's edge. One rule holds regardless of mechanism: a canvas's ground is transparent, so text never floats — every label sits on a surface role (card, track, chip), never directly on the transparent ground, because a floating label is only legible on the one host theme its fallback hex happens to match."
+        "A role is a place in the binding. The owner supplies its paints and the foreground/background witnesses that relate them. CSS can select a theme on an inline canvas; a host can instead select a separate theme resource. These are two deliveries of the owner's declared binding. The SDK does not choose a world's emphasis, frequency of accent or surface policy."
     }
 }
 
@@ -1163,7 +974,7 @@ extension RoleRow5Role {
 }
 enum RoleRow5Is: Close {}
 extension RoleRow5Is {
-    static var typeName: String { "the one scarce accent — a hero element per screen, never wallpaper" }
+    static var typeName: String { "the owner-selected paint for the accent role" }
 }
 
 enum RoleRow6Role: Close {}
@@ -1190,7 +1001,7 @@ extension RoleRow8Role {
 }
 enum RoleRow8Is: Close {}
 extension RoleRow8Is {
-    static var typeName: String { "a thin border, or a denied/neutral dot" }
+    static var typeName: String { "the owner-selected paint for a rule" }
 }
 
 enum RolesTableHeaderRow: GallerySection {
@@ -1238,11 +1049,9 @@ extension GateTiersBody {
 enum LiveGatesLine: Close {}
 extension LiveGatesLine {
     static var typeName: String {
-        "Three of these are live in the site today. The five `Legible*` protocols above (`LegibleOnSurfaceCard`, `LegibleOnSurfaceTrack`, `LegibleOnAccentRole`, and two more) are compile gates on every (foreground, background) pairing — an unreadable pair does not build. `WithinCyclesHero` (a placement-constrained diagram) is the same tier applied to placement: a canvas's closed set of legal positions, so a position only one canvas vetted cannot satisfy a different canvas's layout by accident. `BudgetedLabel` is the generation gate — a stated character ceiling, checked once, at generate time, against the real text a label carries (checked directly: lowering a label's budget below its longest real name crashes `generate` with exactly this precondition, then raised back)."
+        "The caption and surface protocols require the declared foreground conformance. A placement relation belongs to the composition that declares its coordinates and canvas. Binding supplies the style slots read by these operations. A compile-time conformance establishes its stated type requirements; it does not establish an arbitrary rendered string or a numerical layout bound."
     }
 }
-
-// ── The interactive layer ──
 
 enum InteractiveLayerHeading: Close {}
 extension InteractiveLayerHeading {
@@ -1552,12 +1361,8 @@ extension GateErrorQuote {
     }
 }
 
-// ── Example 4 — a canvas that shows its own code: `SelfShowing` (Vector.swift) costs nothing
-//    beyond the marker. DocumentKit has no decompiler (Organization/VectorDemo's own SelfShowing
-//    badge reads one, a driver-level, value-level concern this module cannot depend on) — so the
-//    badge here links to a page carrying this SAME canvas's own composition, read off the SAME
-//    atom the code block below shows: it cannot drift from what actually compiled, because
-//    nothing here is a second copy of it. ──
+// ── Example 4 — a canvas with a source link. The gallery and the source page
+//    read the same declared source atom. The quotation is not a compiler reflection. ──
 
 enum SelfShowingExampleSource {}   // a bare name-token — PageSlug only reads String(describing:)
 
@@ -1579,7 +1384,7 @@ typealias SelfShowingExampleSourceTitle = VectorSelfShowingExampleText
 enum SelfShowingExampleSourceCaption: Close {}
 extension SelfShowingExampleSourceCaption {
     static var typeName: String {
-        "The composition the badge on the canvas points to — the same atom the gallery's code block reads, never a second copy."
+        "The source page and the gallery's code block read the same declared source atom."
     }
 }
 public enum SelfShowingExampleSourcePage: GallerySection {
@@ -1655,7 +1460,7 @@ enum SelfShowingBadgeChipLabel: SpanLabel {
     typealias Content = SelfShowingBadgeChipText
 }
 enum SelfShowingBadgeChipInterior: HFlow {
-    typealias Given = BadgeChipWide
+    typealias Given = SourceLinkWidth
     @StructureBuilder
     static var body: some Structure & Divides {
         Air<HairBreath>.self
@@ -1668,7 +1473,7 @@ enum SelfShowingBadgeChipRow: HFlow {
     static var body: some Structure & Divides {
         RestAir.self
         Fixed<
-            BadgeChipWide,
+            SourceLinkWidth,
             SpanLink<
                 VectorExampleSitePath<SelfShowingExampleSource>,
                 Layered<SelfShowingBadgeChipTrack, SpanHosted<SelfShowingBadgeChipInterior>>
@@ -1707,7 +1512,7 @@ extension SelfShowingExampleHeading {
 enum SelfShowingExampleCaption: Close {}
 extension SelfShowingExampleCaption {
     static var typeName: String {
-        "`SelfShowing` costs nothing beyond the marker — the badge in the corner links to a page carrying this canvas's composition, read off the same atom the code block below shows, so it cannot drift from what actually compiled."
+        "The badge links to a source page that reads the same source atom as this gallery's code block."
     }
 }
 enum SelfShowingExample: GallerySection {
@@ -1899,7 +1704,7 @@ extension VectorTourStationBAsset {
 
 // ── Example 6 — RolesPlate, both themes: the eight roles table above, drawn instead of only
 //    tabulated. Mechanism (A)'s second consumer (DESIGN11) — a `Palette`, instantiated twice,
-//    the same edge substitution `LightCardPalette`/`DarkCardPalette` is already on, written
+//    the palette parameter supplied by the documentation owner, written
 //    to `roles-plate.svg`/`roles-plate~dark.svg`, DocC's own native asset-swap for a grid tile.
 //    Associated-type names carry a `Color` suffix so a palette's OWN requirement never collides
 //    with the global role atom of the (almost) same name it is bound to. ──
@@ -2097,7 +1902,7 @@ extension RolesPlateHeading {
 enum RolesPlateCaption: Close {}
 extension RolesPlateCaption {
     static var typeName: String {
-        "The table above, drawn: the same `Palette`, instantiated once per theme, the same edge substitution `LightCardPalette`/`DarkCardPalette` already stands on. DocC swaps the file, never the type."
+        "The role table is drawn with the Palette parameter supplied by this documentation owner. Each theme is a separate instantiation; DocC selects the corresponding resource."
     }
 }
 enum RolesPlateCode: Close {}
@@ -2124,8 +1929,7 @@ enum RolesPlateExample: GallerySection {
 /// gallery itself, folded in as this page's last section. `Symbol { ModuleTitleTarget.self }`,
 /// not `Symbol { Landing.self }`: a type's title referencing itself would read
 /// `Landing.typeName`, which reads `Body.typeName`, which starts with the title again, infinite
-/// recursion at the first render (checked directly, exactly the circularity `AliceUnlocked`
-/// avoids by pointing at `SecretPage<...>` instead of itself).
+/// recursion at the first render. ModuleTitleTarget supplies the independent title target.
 public enum Landing: GallerySection {
     @StructureBuilder
     public static var body: some Structure {
@@ -2241,10 +2045,6 @@ public enum Landing: GallerySection {
         Break.self
         CodeSample { GapCode.self }
         Break.self
-        ComesOutLikeThisLabel.self
-        Break.self
-        GapExample.self
-        Break.self
 
         TripleHash.self; SpacerBetweenHeading.self; Break.self
         SpacerBetweenCaption.self
@@ -2252,10 +2052,6 @@ public enum Landing: GallerySection {
         UsedLikeThisLabel.self
         Break.self
         CodeSample { SpacerBetweenCode.self }
-        Break.self
-        ComesOutLikeThisLabel.self
-        Break.self
-        SpacerBetweenExample.self
         Break.self
 
         TripleHash.self; TableHeading.self; Break.self

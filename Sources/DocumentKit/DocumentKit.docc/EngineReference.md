@@ -1,6 +1,6 @@
 # Engine reference
 
-Every public name of the engine, shelved: the vector kit that divides space, the dictionary of measures composed from the lattice's numerals, the markup that renders pages, and the law and certificates that hold it all. Each shelf is one file in the source.
+The SDK interfaces relate layout, contrast, roles and binding. The caller supplies content, magnitudes and its own declared style requirements. These topics describe the SDK side of that open composition.
 
 ## Topics
 
@@ -37,7 +37,6 @@ The divided axis and its members, the span leaves, the frames, and the interacti
 - ``Group``
 - ``GrownDiagram``
 - ``HFlow``
-- ``HoverAffordanceRadius``
 - ``HoverHighlight``
 - ``HoverReveal``
 - ``HoverRevealStyle``
@@ -95,8 +94,6 @@ The divided axis and its members, the span leaves, the frames, and the interacti
 - ``Sum``
 - ``Takes``
 - ``VFlow``
-- ``WeightBold``
-- ``WeightRegular``
 - ``WithinBounds``
 
 ### The spectrum
@@ -183,143 +180,20 @@ Paints, the required world binding, and legibility constraints belong to the mec
 
 ### The type scale, the radii, and the anchors
 
-The sizes text wears, the corner radii, and the text anchors (Design.swift).
+The owner supplies text sizes and corner radii through its binding. The SDK names the alignment operations.
 
 - ``AnchorEnd``
 - ``AnchorMiddle``
 - ``AnchorStart``
-- ``Display``
-- ``DisplayS``
-- ``R10``
-- ``R12``
-- ``R16``
-- ``R20``
-- ``R4``
-- ``R6``
-- ``S16``
-- ``S24``
-- ``S24Breath``
-- ``S32``
-- ``S8``
-- ``TextL``
-- ``TextM``
-- ``TextS``
-- ``TextXS``
-- ``TextXXS``
-- ``TitleT``
-- ``TrackBaseline``
 
 ### The dictionary of rungs
 
-Every extent, breath, inset, and zone the divided axes speak, defined in one home (Design.swift). The numerals they compose from are the lattice's own (Primitive.swift), one ladder read by every target.
+The divided axes read magnitudes supplied by their caller. Notation supplies the constructors; the owner declares its own key set independently of the values. The SDK requires only the slots its rendering relations consume.
 
-- ``AccessWide``
-- ``ArchCaptionWide``
-- ``AvatarCanvasSide``
-- ``AvatarSide``
-- ``BadgeChipWide``
-- ``BoardColumnTall``
-- ``BoardEdge``
-- ``BoardHeaderZone``
-- ``BoardMatrixTall``
-- ``BoardSlotPitch``
-- ``BoardTall``
-- ``Breath``
-- ``CardWide``
-- ``CatalogCardTall``
-- ``ChipInset``
-- ``ChipPad``
-- ``ChipTripletWide``
-- ``CurveBarThick``
-- ``CurveBuildWide3200``
-- ``CurveBuildWide6400``
-- ``CurveBuildWide12800``
-- ``CurveLegendTextWide``
-- ``CurveNameColumn``
-- ``CycleAffordanceInset``
-- ``CyclePanelDropSecond``
-- ``CyclePanelDropThird``
-- ``CyclePanelInsetLast``
-- ``CycleSlotWide``
-- ``CyclesZoneTall``
-- ``DeadInset``
-- ``DeadPanelWide``
-- ``DocumentCardTall``
-- ``DocumentCardWide``
-- ``DotSlot``
-- ``EdgeMargin``
-- ``GateBoxWide``
-- ``GateBreath``
-- ``GateHalfBox``
-- ``GateStep``
-- ``GateSurface``
-- ``GateTall``
 - ``GlyphRectFillStroke``
-- ``Gutter``
-- ``HairBreath``
-- ``HeaderTall``
-- ``HubCardTall``
-- ``HubCardWide``
-- ``KeyPitch``
-- ``KeySide``
-- ``KeypadSide``
-- ``KpiCardHeight``
-- ``KpiTitleY``
-- ``KpiValueY``
 - ``N0``
-- ``PanelInset``
-- ``PanelWide``
-- ``PersonChipWide``
-- ``QuadTrackBlock``
-- ``RankChipWide``
-- ``RevealPanelWide``
-- ``RtoSurface``
-- ``StatusChipWide``
-- ``StripInset``
-- ``TaskCardTall``
-- ``TimelineInset``
-- ``TrackHeight``
-- ``VaultZoneTall``
-- ``VerdictCardTall``
-- ``VerdictChipTall``
-- ``VerdictChipWide``
-- ``WideMargin``
-- ``WideSurface``
 
-- ``ArchTitleStorey``
-- ``ArchPlaqueStorey``
-- ``ArchStatsStorey``
-- ``ArchStackTall``
-- ``ArchRoleStorey``
-- ``FlowZoneGaps``
-- ``FlowZoneWide``
-- ``FlowZoneTitleStorey``
-- ``FlowCardNameStorey``
-- ``FlowCardRoleStorey``
-- ``FlowCardTall``
-- ``FlowCardPitch``
-- ``FlowCardGap``
-- ``FlowZoneTall``
-- ``ArchDotDip``
-- ``ArchFooterTall``
-- ``ArchGapTall``
-- ``ArchNose``
-- ``ArchOutputTall``
-- ``GateArrowDrop``
-- ``GateBoxBottom``
-- ``GateBoxTall``
-- ``GateDeadBottom``
-- ``GateDeadDrop``
-- ``GateFallTall``
-- ``GateResetSwing``
-- ``GateResetTurn``
-- ``GateRowDrop``
 
-- ``LegendChipWide``
-- ``LegendTextWide``
-- ``LegendWideTextWide``
-- ``CurveWholeTall``
-- ``FilmStripTall``
 
 ### The pen and the measure
 
@@ -340,9 +214,6 @@ Drawing as constrained motion, and text measured by the stated font's own metric
 - ``BoundLineTally``
 - ``SpanLabelWrapped``
 - ``BoundLineTally``
-- ``FontUnitsPerEm``
-- ``FontCapHeight``
-- ``FontAdvanceTable``
 
 ### The dynamics medium
 
@@ -357,11 +228,8 @@ A button over a state file is a rewrite triple, a key may fold a chord of them (
 
 ### The stroke voices
 
-The two widths every line speaks, the dependency dash, and the one arrowhead (Design.swift).
+Line and marker operations read their declared binding slots. Widths, dashes and marker geometry belong to the owner.
 
-- ``HairlineWidth``
-- ``ArrowWidth``
-- ``DependencyDash``
 - ``ArrowHeadName``
 
 ### The markup combinators

@@ -426,7 +426,7 @@
 /// needs a proof, in the form of Verdict VC23a, that the type grammar cannot
 /// express its relation. Code without that proof needs a recorded task that
 /// removes it. Such code is debt.
-/// The census counts each declaration kind per target, with runtime functions
+/// The census counts nine declaration kinds per target, with runtime functions
 /// in their own column.
 ///
 /// ## §7 · The tree obeys the law

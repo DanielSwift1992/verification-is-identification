@@ -6,6 +6,12 @@ policy's source and correction are compiled ONCE. Only native single-qubit
 analyzers and final readout are appended afterwards, without recompiling the
 whole circuit. This prevents a basis choice from selecting another state source.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 import io
 import json
@@ -157,8 +163,8 @@ def prepare_family(documents, backend, initial_layout):
 def main():
     from qiskit import qpy
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--output',type=Path,required=True)
-    p.add_argument('--archive',type=Path,default=ROOT/'private/ibm-dynamic-local-20260914')
+    p.add_argument('--output',type=_runs.owned,required=True)
+    p.add_argument('--archive',type=_runs.input_path,default=_runs.path('ibm-dynamic-local-20260914'))
     p.add_argument('--shots',type=int,default=1024)
     a=p.parse_args()
     require(not a.output.exists() and 1<=a.shots<=4096, 'invalid output/shots')
@@ -169,7 +175,7 @@ def main():
     require(archived[0].metadata['policy']=='acquired' and archived[0].metadata['basis']=='XX',
             'unexpected reference layout source')
     layout=archived[0].layout.initial_index_layout(filter_ancillas=True)
-    docs,receipt=prepare(ROOT/'private/ibm-prepared')
+    docs,receipt=prepare(_runs.prepared('ibm-prepared'))
     exact_channels(docs)
     backend=service_open().backend(old['compile_only']['backend'])
     require('if_else' in backend.operation_names, 'conditional execution unsupported')
@@ -193,11 +199,11 @@ def main():
             'initial_layout_from_archive':str(a.archive),'archived_qpy_sha256':sha(payload),
             'manifest':manifest,'qpy_sha256':sha(data.getvalue()),'shots_each':a.shots,'rows':rows,
             'compact_qubit_counts':[c.num_qubits for c in local],
-            'implementation':{str(f.relative_to(ROOT)):sha(f.read_bytes()) for f in
-                (Path(__file__),Path(__file__).with_name('dynamic.py'),Path(__file__).with_name('pilot.py'))}}
-    write_json(a.output/'result.json',report)
-    print(json.dumps({'output':str(a.output),'physical_pair':manifest[0]['physical_payload_reference'],
-                      'compiled_and_simulated':len(circuits),'hardware_submitted':False},indent=2))
+            'implementation':{_runs.address(f, ROOT):sha(f.read_bytes()) for f in
+                (_runs.owned(__file__),_runs.owned(__file__).with_name('dynamic.py'),_runs.owned(__file__).with_name('pilot.py'))}}
+    write_json(a.output/'result.json',_runs.bind_receipt(report, destination=a.output/'result.json'))
+    print(json.dumps(_runs.bind_receipt({'output':str(a.output),'physical_pair':manifest[0]['physical_payload_reference'],
+                      'compiled_and_simulated':len(circuits),'hardware_submitted':False}),indent=2))
 
 
 if __name__=='__main__':main()

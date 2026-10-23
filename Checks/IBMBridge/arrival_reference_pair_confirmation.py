@@ -4,6 +4,12 @@
 Only the reference identity is changed. No marker, new scheduler request,
 postselection, fitted correction, or automatic additional job is allowed.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from collections import Counter
 import fcntl
@@ -20,8 +26,8 @@ import arrival_reference_pair_probe as first
 import arrival_boundary_probe as old
 
 ROOT=old.ROOT
-PARENT=ROOT/'private/ibm-arrival-boundary-20260916'
-PRIVATE=ROOT/'private/ibm-xx-reference-confirmation-20260916'
+PARENT=_runs.path('ibm-arrival-boundary-20260916')
+PRIVATE=_runs.work('ibm-xx-reference-confirmation-20260916')
 ART=ROOT/'Research/Artifacts/xx-three-attempts-20260916/attempt-3'
 STATE=first.STATE
 TAG='vi-xx-three-attempts-3-20260916'
@@ -32,11 +38,12 @@ CAP=30
 
 
 def read(p):return json.loads(p.read_text())
-def write(p,v):p.write_text(json.dumps(v,indent=2)+'\n')
+def write(p,v):p.write_text(json.dumps(_runs.bind_receipt(v, destination=p),indent=2)+'\n')
 
 
+@_runs.include_reader
 def dependencies():
-    return {**first.dependencies(),str(Path(__file__).relative_to(ROOT)):sha(Path(__file__).read_bytes())}
+    return {**first.dependencies(),_runs.address(_runs.owned(__file__), ROOT):sha(_runs.owned(__file__).read_bytes())}
 
 
 def options():
@@ -180,4 +187,4 @@ def collect():
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('stage',choices=['prepare','submit','collect'])
-    print(json.dumps(globals()[p.parse_args().stage](),indent=2))
+    print(json.dumps(_runs.bind_receipt(globals()[p.parse_args().stage]()),indent=2))

@@ -1,4 +1,10 @@
 """Offline boundary checks: actual bit order, source binding and lost submission reply."""
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 from pathlib import Path
 import tempfile
 from types import SimpleNamespace
@@ -26,7 +32,7 @@ class SubmissionService:
 
 class Boundaries(unittest.TestCase):
     @classmethod
-    def setUpClass(cls): cls.docs,_ = prepare(ROOT/'private/ibm-prepared')
+    def setUpClass(cls): cls.docs,_ = prepare(_runs.prepared('ibm-prepared'))
 
     def test_bit_order_with_every_possible_reply(self):
         # Independent expression from the checked relabel table. Exhaustive,
@@ -57,7 +63,7 @@ class Boundaries(unittest.TestCase):
 
     def test_reply_loss_never_submits_twice(self):
         with tempfile.TemporaryDirectory() as tmp:
-            directory=Path(tmp); service=SubmissionService()
+            directory=_runs.owned(tmp); service=SubmissionService()
             plan={'tag':'test-tag','backend':'test','instance':'test-open','qpy_sha256':'test'}
             class Sampler:
                 def __init__(self,**kwargs):
@@ -76,7 +82,7 @@ class Boundaries(unittest.TestCase):
 
     def test_quota_rejection_precedes_submission(self):
         with tempfile.TemporaryDirectory() as tmp:
-            directory=Path(tmp); service=SubmissionService(); service.remaining=0
+            directory=_runs.owned(tmp); service=SubmissionService(); service.remaining=0
             plan={'tag':'test-tag','backend':'test','instance':'test-open','qpy_sha256':'test'}
             with self.assertRaises(CheckFailure): send_once(directory,service,plan,[],lambda **kw:self.fail('created sampler'))
             self.assertFalse((directory/'ledger.json').exists())
@@ -84,7 +90,7 @@ class Boundaries(unittest.TestCase):
     def test_complete_collection_and_foreign_occurrence_rejection(self):
         from qiskit.primitives.containers import BitArray, DataBin, SamplerPubResult, PrimitiveResult
         from pilot import read_plan, lower
-        original=ROOT/'private/ibm-qpu-pilot-20260914'
+        original=_runs.path('ibm-qpu-pilot-20260914')
         if not (original/'plan.json').exists(): self.skipTest('requires a prepared pilot, no cloud execution')
         plan,circuits=read_plan(original,current=False)
         pubs=[]
@@ -99,10 +105,10 @@ class Boundaries(unittest.TestCase):
             inputs={'pubs':[[c,None,SHOTS] for c in circuits]},result=lambda:result,metrics=lambda:{})
         service=SimpleNamespace(job=lambda _:job,active_instance=lambda:plan['instance'],usage=lambda:{})
         with tempfile.TemporaryDirectory() as tmp:
-            out=Path(tmp)
+            out=_runs.owned(tmp)
             for name in ('plan.json','isa.qpy'): shutil.copyfile(original/name,out/name)
             from runtime import write_json
-            write_json(out/'ledger.json',{'tag':plan['tag'],'qpy_sha256':plan['qpy_sha256'],'job_id':'fake-only'})
+            write_json(out/'ledger.json',_runs.bind_receipt({'tag':plan['tag'],'qpy_sha256':plan['qpy_sha256'],'job_id':'fake-only'}, destination=out/'ledger.json'))
             with patch('pilot.service_open',return_value=service),patch('builtins.print'):
                 pilot.collect(out)
                 self.assertEqual(load_json(out/'hardware-result.json')['status'],'DONE')

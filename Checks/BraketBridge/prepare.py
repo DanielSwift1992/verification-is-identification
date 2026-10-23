@@ -4,6 +4,12 @@
 Content hashes detect changed build inputs/artifacts, not forged proofs or
 physical device validity. No SDK, fixture, oracle or cloud call is needed.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=False)
 import argparse
 import fcntl
 import hashlib
@@ -29,15 +35,15 @@ def digest(path):
 
 def snapshot():
     core, common, exporter = compilation_sources('acquisition')
-    paths = notation_sources() + core + common + [exporter, HERE/'build.py', HERE/'prepare.py', HERE/'runtime.py']
+    paths = notation_sources() + core + common + [exporter, HERE/'build.py', HERE/'prepare.py', HERE/'runtime.py', _runs.owned(_runs.__file__)]
     compiler = shutil.which('swiftc')
     require(compiler is not None, 'swiftc is unavailable')
     version = run_bounded([compiler, '--version'], 15)
     require(version.returncode == 0, 'cannot identify Swift compiler')
     return {
         'schema': 'vi.braket.prepare-inputs.v1', 'mode': 'acquisition',
-        'sources': {str(p.relative_to(ROOT)): digest(p) for p in paths},
-        'compiler': str(Path(compiler).resolve()), 'compiler_sha256': digest(Path(compiler)),
+        'sources': {_runs.address(p, ROOT): digest(p) for p in paths},
+        'compiler': str(_runs.owned(compiler).resolve()), 'compiler_sha256': digest(_runs.owned(compiler)),
         'compiler_version': version.stdout, 'platform': platform.platform(),
         'python': sys.version, 'python_executable': sys.executable,
         'toolchain_environment': {k: os.environ.get(k) for k in
@@ -63,8 +69,8 @@ def validate_entry(directory, inputs):
     require(tuple(s['name'] for s in manifest['steps']) == STEPS
             and all(s['returncode'] == 0 for s in manifest['steps']), 'missing checked build step')
     core, common, exporter = compilation_sources('acquisition')
-    expected = {str(p.relative_to(ROOT)): inputs['sources'][str(p.relative_to(ROOT))]
-                for p in notation_sources() + core + common + [exporter, HERE/'build.py']}
+    expected = {_runs.address(p, ROOT): inputs['sources'][_runs.address(p, ROOT)]
+                for p in notation_sources() + core + common + [exporter, HERE/'build.py', _runs.owned(_runs.__file__)]}
     require(manifest['source_sha256'] == expected, 'build did not use these exact sources')
     return {name: load_json(directory/name) for name in EXPORTS}
 
@@ -74,6 +80,14 @@ def prepare(cache):
     inputs = snapshot()
     key = cache_key(inputs)
     cache = cache.resolve()
+    if _runs.contains(cache):
+        directory = cache/key
+        require((directory/'ready.json').is_file(),
+                'archived prepared inputs do not match the current compiler/sources; pass --cache DIR outside the evidence store for a fresh build')
+        documents = validate_entry(directory, inputs)
+        return documents, {'cache_hit': True, 'key': key,
+                           'directory': _runs.address(directory, ROOT), 'read_only': True,
+                           'seconds': perf_counter()-started}
     cache.mkdir(parents=True, exist_ok=True)
     directory = cache/key
     # Refuse concurrent writers instead of waiting behind an unbounded build.
@@ -81,13 +95,13 @@ def prepare(cache):
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         hit = directory.exists()
         if not hit:
-            result = run_bounded([sys.executable, HERE/'build.py', '--acquisition',
+            result = run_bounded([sys.executable, HERE/'build.py', *_runs.arguments(), '--acquisition',
                                   '--prepare-only', '--output', directory], 300)
             require(result.returncode == 0, 'checked build failed; inspect ' + str(directory/'logs'))
             require(snapshot() == inputs, 'inputs changed during preparation; no cache seal written')
-            write_json(directory/'ready.json', {
+            write_json(directory/'ready.json', _runs.bind_receipt({
                 'inputs': inputs, 'exports': {n: digest(directory/n) for n in EXPORTS},
-                'manifest_sha256': digest(directory/'build-manifest.json')})
+                'manifest_sha256': digest(directory/'build-manifest.json')}, destination=directory/'ready.json'))
         require((directory/'ready.json').is_file(),
                 'incomplete cache entry; preserve diagnostics and use a new --cache directory')
         documents = validate_entry(directory, inputs)
@@ -98,10 +112,11 @@ def prepare(cache):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--cache', type=Path, default=ROOT/'private/braket-prepared')
+    p.add_argument('--cache', type=_runs.owned)
     a = p.parse_args()
+    a.cache = a.cache if a.cache is not None else _runs.prepared('braket-prepared')
     _, receipt = prepare(a.cache)
-    print(json.dumps(receipt, indent=2))
+    print(json.dumps(_runs.bind_receipt(receipt), indent=2))
 
 
 if __name__ == '__main__':

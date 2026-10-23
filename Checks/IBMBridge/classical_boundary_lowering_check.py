@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 """Offline Store-free lowering of the frozen 6062 probe. Never submits a job."""
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import io
 import itertools
 import json
@@ -12,13 +18,13 @@ from qiskit_aer import AerSimulator
 from pilot import compact_active, sha, require
 from classical_boundary_probe import aer_form
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = _runs.owned(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT/'Checks/FiniteContinuation'))
 from resident_record_lowering import lower
 
 
 def run():
-    directory = ROOT/'private/ibm-classical-boundary-20260916'
+    directory = _runs.path('ibm-classical-boundary-20260916')
     public = ROOT/'Research/Artifacts/classical-boundary-probe-20260916'
     plan = json.loads((public/'plan.json').read_text())
     payload = (directory/'isa.qpy').read_bytes()
@@ -60,8 +66,8 @@ def run():
               'cases':rows, 'new_QPU_jobs':0,
               'scope':'Local alternative representation of the actual failed probe; '
                       'not a diagnosis of 6062 and not evidence of server acceptance.'}
-    (public/'offline-lowering.json').write_text(json.dumps(output,indent=2)+'\n')
-    print(json.dumps(output,indent=2))
+    (public/'offline-lowering.json').write_text(json.dumps(_runs.bind_receipt(output, destination=public/'offline-lowering.json'),indent=2)+'\n')
+    print(json.dumps(_runs.bind_receipt(output),indent=2))
 
 
 if __name__ == '__main__': run()

@@ -1,110 +1,76 @@
 # VI → checked continuation → local Braket
 
+## Explicit evidence inputs and interpreter
+
+Historical run names below are relative to the caller-supplied `hardware-runs` folder. Pass `--runs DIR` and `--manifest FILE` explicitly to readers of these inputs; neither has a local or neighboring default. `MANIFEST.json` supplies each input's SHA-256. Old machine-specific receipt keys are opaque: run files are resolved by their recorded hash and catalogue `origin` (ambiguous origins refuse), and new references use a relative path inside the supplied folder. Raw provider payloads, saved receipts and the closed program wire formats are not rewritten. Reader implementation fingerprints include the shared evidence reader.
+
+Offline analysis commands may write fixed destinations in `Research/Artifacts`. Running them in the corpus can overwrite historical receipts with new path keys and reader fingerprints. Replay in a disposable checkout with a copy of the required artifacts; retain the original receipts unchanged.
+
+```sh
+RUNS=/path/to/hardware-runs
+EVIDENCE_MANIFEST=/path/to/MANIFEST.json
+python3 Checks/hardware_runs.py --runs "$RUNS" --manifest "$EVIDENCE_MANIFEST" --check-evidence
+```
+
+This checksum mode imports no quantum SDK and makes no provider or hardware call. Evidence inputs reject writes. Fixed historical output slots are not assumed to be archived inputs: a prospective new run requires an explicit `--work DIR` outside the evidence store (and is not run by this task). For a fresh local preparation, choose a separate `--prepared-cache DIR` (or the bridge's explicit `--cache DIR`) outside the evidence store; an old cache is not silently requalified for changed sources or compilers. New output names in examples are examples, not selected destinations or permission to run another experiment.
+
+The saved Braket records report Python 3.9.6. Use a caller-selected interpreter compatible with the pinned [SDK requirements](requirements.txt); the scripts select and install no environment.
+
+
 A bounded engineering implementation of IiS45–46. The same typed source constructs the H/S/Z path, its Pauli frame, the acquired record, and the final question. A finite planner proposes a decoder from the public joint law. Generated Swift applications check that decoder against the actual source fields before its operations are exported and executed in Amazon Braket's local density-matrix simulator.
 
 This is not a general VI compiler, hardware experiment, or claim of quantum speedup.
 
-The separate `--coherent` scope retains exact phases for an owned two-block
-controlled source. Checked `Data` and `Joint` applications select one versus
-two extra memory/data interactions without acquiring the memory bit. It emits
-commands from the checked program itself and verifies full two-input Choi
-states with the local SDK. Its control-only door excludes local memory phase
-gates; granting those changes the minimum. See the
-[coherent continuation report](../../Research/2026-09-14-coherent-continuation-result.md)
-for the constructor, runtime ownership, and conservative normalization limits.
+The separate `--coherent` scope retains exact phases for an owned two-block controlled source. Checked `Data` and `Joint` applications select one versus two extra memory/data interactions without acquiring the memory bit. It emits commands from the checked program itself and verifies full two-input Choi states with the local SDK. Its control-only door excludes local memory phase gates; granting those changes the minimum. See the [coherent continuation report](../../Research/2026-09-14-coherent-continuation-result.md) for the constructor, runtime ownership, and conservative normalization limits.
 
 ## Run
 
 ### Ordinary terminal execution
 
 ```sh
-BRAKET_PYTHON=/path/to/python Checks/BraketBridge/run.sh --execute \
-  --request AcquireZ --input plus --shots 256 --output private/my-terminal-run
+BRAKET_PYTHON=/path/to/python Checks/BraketBridge/run.sh --execute --runs "$RUNS" --manifest "$EVIDENCE_MANIFEST" \
+  --request AcquireZ --input plus --shots 256 --output my-terminal-run
 ```
 
-This runs one actual sampled local SDK job, without the research oracle or
-regression suite. The first invocation builds the Swift library, derives the
-proposal, compiles its row applications, and re-exports from the checked
-consumer. Subsequent invocations reuse those exports only if current compiler
-inputs, compiler identity, build recipe and exported bytes still match.
-`--prepare` performs just that preparation; `--cache /absolute/directory`
-selects another cache. A corrupt/incomplete cache is refused, not silently used.
+This runs one actual sampled local SDK job, without the research oracle or regression suite. The first invocation builds the Swift library, derives the proposal, compiles its row applications, and re-exports from the checked consumer. Subsequent invocations reuse those exports only if current compiler inputs, compiler identity, build recipe and exported bytes still match. `--prepare` performs just that preparation; `--cache /absolute/directory` selects another cache. A corrupt/incomplete cache is refused, not silently used.
 
-The first execution provider is deliberately limited to `Uniform2`, an actual
-parity record, H/S/Z actions and one retained Z producer. It prepares two
-control/shadow pairs inside a six-qubit circuit; the reduced controls realize
-the public uniform classical law. The parity record is copied before the
-source acts and measured at the end. The resident read is of the same wire
-that controls CZ. The decoder gets actual outcome bits, never a host-selected
-row or oracle value. This is a constructed local source, not calibration of
-an unknown external device.
+The first execution provider is deliberately limited to `Uniform2`, an actual parity record, H/S/Z actions and one retained Z producer. It prepares two control/shadow pairs inside a six-qubit circuit; the reduced controls realize the public uniform classical law. The parity record is copied before the source acts and measured at the end. The resident read is of the same wire that controls CZ. The decoder gets actual outcome bits, never a host-selected row or oracle value. This is a constructed local source, not calibration of an unknown external device.
 
-Supported requests are `AcquireX`, `AcquireY`, `AcquireZ`, `RotatedX`,
-`RotatedY`, `RotatedZ`; the six input preparations are `zero`, `one`, `plus`,
-`minus`, `plus_i`, `minus_i`. The checked request selects whether the extra
-resident measurement is necessary. The initial parity measurement is separate
-from this additional-contact count. `State`, missing resident ports and
-unsupported laws fail before SDK submission. This entry point returns sampled
-classical counts, not a retained unknown quantum state or a cross-task qubit
-handle. The coherent scope remains a separate research entry point.
+Supported requests are `AcquireX`, `AcquireY`, `AcquireZ`, `RotatedX`, `RotatedY`, `RotatedZ`; the six input preparations are `zero`, `one`, `plus`, `minus`, `plus_i`, `minus_i`. The checked request selects whether the extra resident measurement is necessary. The initial parity measurement is separate from this additional-contact count. `State`, missing resident ports and unsupported laws fail before SDK submission. This entry point returns sampled classical counts, not a retained unknown quantum state or a cross-task qubit handle. The coherent scope remains a separate research entry point.
 
-`result.json` records the checked build, execution code hashes, QASM digest,
-fresh occurrence ID, package versions, actual public records and decoded
-counts. `jobs.json` and `raw-result.json` preserve the submitted circuit and
-actual measurements. Result bits follow `measured_qubits`, not an assumed
-wire order. Repeating an identical circuit creates a new occurrence ID.
+`result.json` records the checked build, execution code hashes, QASM digest, fresh occurrence ID, package versions, actual public records and decoded counts. `jobs.json` and `raw-result.json` preserve the submitted circuit and actual measurements. Result bits follow `measured_qubits`, not an assumed wire order. Repeating an identical circuit creates a new occurrence ID.
 
-Cache hashes concern trusted local build reuse; they are not a proof kernel,
-a signature against a malicious cache writer, or evidence that hardware obeys
-the supplied law. Device capabilities and calibration are separate obligations.
-Changing QA or the unrelated coherent case declarations does not invalidate
-this acquisition compilation. Changing the source, question declarations,
-selected adapters or compiler does.
+Cache hashes concern trusted local build reuse; they are not a proof kernel, a signature against a malicious cache writer, or evidence that hardware obeys the supplied law. Device capabilities and calibration are separate obligations. Changing QA or the unrelated coherent case declarations does not invalidate this acquisition compilation. Changing the source, question declarations, selected adapters or compiler does.
 
 ### Explicit hardware pilot
 
-`qpu_pilot.py` is a separate, bounded hardware entry point. It never changes
-the cloud-free behavior of `--execute`. Its three fixed cases are `AcquireZ`
-with `plus` and `minus`, and `AcquireY` with `plus_i`, at 256 shots each.
-It uses an existing same-region Braket bucket and the existing `braket-user`
-profile. There is no bucket/IAM creation, reservation or paid simulator.
+`qpu_pilot.py` is a separate, bounded hardware entry point. It never changes the cloud-free behavior of `--execute`. Its three fixed cases are `AcquireZ` with `plus` and `minus`, and `AcquireY` with `plus_i`, at 256 shots each. It uses an existing same-region Braket bucket and the existing `braket-user` profile. There is no bucket/IAM creation, reservation or paid simulator.
 
-Prepare is read-only against AWS and runs the same circuits locally first.
-Submit creates paid tasks and requires an already authorized budget. Collect
-only retrieves results; repeating it cannot submit tasks. The ledger persists
-each client token before submission, and a transport retry uses the same token
-and body. It never retries with a new task ID to get a better answer.
+Prepare is read-only against AWS and runs the same circuits locally first. Submit creates paid tasks and requires an already authorized budget. Collect only retrieves results; repeating it cannot submit tasks. The ledger persists each client token before submission, and a transport retry uses the same token and body. It never retries with a new task ID to get a better answer.
 
 ```sh
-/path/to/python Checks/BraketBridge/qpu_pilot.py prepare \
-  --budget-usd 5 --directory private/my-qpu-pilot
+/path/to/python Checks/BraketBridge/qpu_pilot.py --runs "$RUNS" --manifest "$EVIDENCE_MANIFEST" prepare \
+  --budget-usd 5 --directory my-qpu-pilot
 # Only after authorization and review of the prepared plan:
-/path/to/python Checks/BraketBridge/qpu_pilot.py submit --directory private/my-qpu-pilot
-/path/to/python Checks/BraketBridge/qpu_pilot.py collect --directory private/my-qpu-pilot
+/path/to/python Checks/BraketBridge/qpu_pilot.py --runs "$RUNS" --manifest "$EVIDENCE_MANIFEST" submit --directory my-qpu-pilot
+/path/to/python Checks/BraketBridge/qpu_pilot.py --runs "$RUNS" --manifest "$EVIDENCE_MANIFEST" collect --directory my-qpu-pilot
 ```
 
-This pilot is priced for Cepheus on 2026-09-14: $1.2264 for all three QPU tasks,
-excluding tax and small ancillary S3 costs, with at least $1 left as a reserve.
-Recheck device prices and the remaining authorized budget before a later-day
-submission; the script is a dated pilot, not a general billing enforcement
-service. An uncertain ledger reservation is not an invoice or evidence of a
-completed task. `qpu_pilot_checks.py` tests budget and retry behavior with a fake
-AWS client and makes no paid calls.
+This pilot is priced for Cepheus on 2026-09-14: $1.2264 for all three QPU tasks, excluding tax and small ancillary S3 costs, with at least $1 left as a reserve. Recheck device prices and the remaining authorized budget before a later-day submission; the script is a dated pilot, not a general billing enforcement service. An uncertain ledger reservation is not an invoice or evidence of a completed task. `qpu_pilot_checks.py` tests budget and retry behavior with a fake AWS client and makes no paid calls.
 
-The first real submission was rejected by AWS with `AccessDeniedException`
-before a task ARN was issued. No hardware result is claimed. The
-[diagnosis and prepared experiment](../../Research/2026-09-14-qpu-pilot-result.md)
-record what must be resolved before resuming.
+The first real submission was rejected by AWS with `AccessDeniedException` before a task ARN was issued. No hardware result is claimed. The [diagnosis and prepared experiment](../../Research/2026-09-14-qpu-pilot-result.md) record what must be resolved before resuming.
 
 ### Full local research regression
 
 From the repository root, with Swift and an existing Python environment containing `amazon-braket-sdk` and `amazon-braket-default-simulator`:
 
 ```sh
-BRAKET_PYTHON=/path/to/python Checks/BraketBridge/run.sh
+BRAKET_PYTHON=/path/to/python Checks/BraketBridge/run.sh --output NEW_BUILD_DIRECTORY
 ```
 
-`BRAKET_PYTHON` defaults to `python3`. The command installs nothing, reads no AWS profile, and imports only the local simulator. It creates a fresh ignored `private/braket-bridge-<UTC>/` output directory. `--output /absolute/new/directory` selects another empty destination. A timeout is an infrastructure failure, never an expected logical refusal.
+`build.py` reads current corpus sources and writes a fresh build; it needs no evidence store. `--prepare` and `--execute` also work without archived inputs when an explicit fresh `--cache DIR` is supplied. Omitting that cache selects an archived preparation and requires both evidence arguments.
+
+`BRAKET_PYTHON` defaults to `python3`. The command installs nothing, reads no AWS profile, and imports only the local simulator. A new output directory must be passed explicitly with `--output`; archived evidence is read-only. `--output /absolute/new/directory` selects another empty destination. A timeout is an infrastructure failure, never an expected logical refusal.
 
 The output includes current-source hashes, build/SDK versions and separate timings, `sources.json`, `audit.json`, generated `Certificates.swift`, checked `continuations.json`, OpenQASM jobs, numerical results, and the static-adversary report. A failed run preserves diagnostics and exits nonzero. Python files orchestrate builds, SDK calls, and independent numerical QA; the source/frame construction and continuation planner are Swift.
 
@@ -162,15 +128,6 @@ The current 20-model run passed from fresh sources: 269 density jobs, then a fix
 
 ## Source-bound acquisition extension
 
-Run `./Checks/BraketBridge/run.sh --acquisition` (with the same `BRAKET_PYTHON`
-setting if needed). This freshly builds the extra `QuantumAcquisition.swift`
-fragment and its current-source row applications. The local terminal route
-reads the same retained memory wire that controlled source CZ. X/Z consume
-that actual reply; Y skips the contact. It returns a classical question output,
-not a corrected unknown quantum payload. A small installed-SDK capability
-probe records the independent mid-measurement limitation.
+Run `./Checks/BraketBridge/run.sh --acquisition --runs "$RUNS" --manifest "$EVIDENCE_MANIFEST" --output NEW_BUILD_DIRECTORY` (with the same `BRAKET_PYTHON` setting if needed). This freshly builds the extra `QuantumAcquisition.swift` fragment and its current-source row applications. The local terminal route reads the same retained memory wire that controlled source CZ. X/Z consume that actual reply; Y skips the contact. It returns a classical question output, not a corrected unknown quantum payload. A small installed-SDK capability probe records the independent mid-measurement limitation.
 
-See [the acquisition result](../../Research/2026-09-14-braket-acquisition-result.md)
-for assumptions, the one-contact lower bound, and the wrong-carrier witness
-with identical public record statistics. The finite law is declared; no law
-learning or hardware experiment is claimed.
+See [the acquisition result](../../Research/2026-09-14-braket-acquisition-result.md) for assumptions, the one-contact lower bound, and the wrong-carrier witness with identical public record statistics. The finite law is declared; no law learning or hardware experiment is claimed.

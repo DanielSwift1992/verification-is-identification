@@ -17,7 +17,7 @@ PROFILES = {
     'vi': ['verdict', 'renames', 'topics', 'families', 'quotes'],
     'court': ['light', 'ladder', 'grants', 'alias', 'extension', 'conditional',
               'memberships', 'lexical', 'scope', 'applications', 'court', 'contract', 'response'],
-    'integration': ['build', 'lawcheck-policy', 'archive-where', 'drawing', 'target-graph', 'artifacts', 'census', 'voice', 'readme', 'profiles', 'ci', 'law', 'boundary'],
+    'integration': ['build', 'lawcheck-policy', 'archive-where', 'drawing', 'target-graph', 'artifacts', 'census', 'voice', 'readme', 'profiles', 'hardware-inputs', 'ci', 'law', 'boundary', 'dependencies'],
 }
 
 

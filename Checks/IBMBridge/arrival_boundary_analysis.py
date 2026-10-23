@@ -3,6 +3,12 @@
 
 No provider calls, filtering, fitted noise model, or inferred process fidelity.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 from collections import defaultdict
 import json
 from pathlib import Path
@@ -59,12 +65,12 @@ def analyze(status, plan):
 def run():
     verify_parent(ART/'manifest.json')
     plan=read(ART/'plan.json');status=read(ART/'status.json')
-    private=ROOT/'private/ibm-arrival-boundary-20260916'
-    require(sha((private/'raw-result.json').read_bytes())==status['raw_sha256'],'Raw evidence changed')
+    run_dir=_runs.path('ibm-arrival-boundary-20260916')
+    require(sha((run_dir/'raw-result.json').read_bytes())==status['raw_sha256'],'Raw evidence changed')
     result=analyze(status,plan)
     result['raw_sha256']=status['raw_sha256']
-    write(ART/'analysis.json',result)
-    print(json.dumps(result,indent=2))
+    write(ART/'analysis.json',_runs.bind_receipt(result, destination=ART/'analysis.json'))
+    print(json.dumps(_runs.bind_receipt(result),indent=2))
 
 
 if __name__=='__main__':run()

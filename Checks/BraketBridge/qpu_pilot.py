@@ -6,6 +6,12 @@ reservation, hybrid job, paid simulator, or automatic new-task retry.
 Ordinary local execute.py remains cloud-free. A persisted clientToken is
 reused after an uncertain submission; polling can never create a task.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from collections import Counter
 from datetime import datetime, timezone
@@ -76,7 +82,7 @@ def capabilities(client):
 def prepare_pilot(directory, profile, budget):
     validate_budget(budget)
     require(not directory.exists(), 'pilot directory must be new')
-    documents, receipt = prepare(ROOT/'private/braket-prepared')
+    documents, receipt = prepare(_runs.prepared('braket-prepared'))
     braket, s3, sts = clients(profile)
     device = capabilities(braket)
     account = sts.get_caller_identity()['Account']
@@ -90,7 +96,7 @@ def prepare_pilot(directory, profile, budget):
         cases.append({'job':job, 'descriptor':descriptor, 'request':request, 'input':state,
                       'expected_bit':expected, 'before_execution':plans[request['before']]['execution']})
     directory.mkdir(parents=True)
-    write_json(directory/'local-jobs.json', {'schema':'vi.braket.jobs.v1','jobs':[c['job'] for c in cases]})
+    write_json(directory/'local-jobs.json', _runs.bind_receipt({'schema':'vi.braket.jobs.v1','jobs':[c['job'] for c in cases]}, destination=directory/'local-jobs.json'))
     local = run_bounded([sys.executable,HERE/'runner.py','--jobs',directory/'local-jobs.json',
                          '--output',directory/'local-results.json'],90)
     (directory/'local.log').write_text(local.stdout)
@@ -111,11 +117,11 @@ def prepare_pilot(directory, profile, budget):
                         'nominal_family_alpha':0.01, 'accuracy_events':3,
                         'interval_assumption':'Hoeffding intervals assume independent shots of a stable law; not device-certified',
                         'before_comparison':'same acquired samples, with the extra contact ignored in postprocessing; not a cheaper hardware run'}}
-    write_json(directory/'device-before.json', device)
-    write_json(directory/'plan.json', plan)
-    write_json(directory/'seal.json', {'plan_sha256':sha(directory/'plan.json')})
-    write_json(directory/'ledger.json', {'schema':'vi.braket.qpu-ledger.v1','entries':{}})
-    print(json.dumps({'prepared':str(directory),'tasks':len(cases),'qpu_usd':str(len(cases)*cost()),'budget_usd':str(budget)}))
+    write_json(directory/'device-before.json', _runs.bind_receipt(device, destination=directory/'device-before.json'))
+    write_json(directory/'plan.json', _runs.bind_receipt(plan, destination=directory/'plan.json'))
+    write_json(directory/'seal.json', _runs.bind_receipt({'plan_sha256':sha(directory/'plan.json')}, destination=directory/'seal.json'))
+    write_json(directory/'ledger.json', _runs.bind_receipt({'schema':'vi.braket.qpu-ledger.v1','entries':{}}, destination=directory/'ledger.json'))
+    print(json.dumps(_runs.bind_receipt({'prepared':str(directory),'tasks':len(cases),'qpu_usd':str(len(cases)*cost()),'budget_usd':str(budget)})))
 
 
 def read_plan(directory, current=True):
@@ -150,7 +156,7 @@ def submit(directory):
                 ledger['entries'][key] = entry
             # Write the token/reservation before the network request. A resumed
             # attempt uses exactly the same body and token, never a new task ID.
-            write_json(directory/'ledger.json', ledger)
+            write_json(directory/'ledger.json', _runs.bind_receipt(ledger, destination=directory/'ledger.json'))
             try:
                 reply = braket.create_quantum_task(
                     clientToken=key, deviceArn=DEVICE, action=Program(source=job['qasm']).json(),
@@ -160,12 +166,12 @@ def submit(directory):
                 entry['error_type']=type(error).__name__
                 if hasattr(error,'response'):
                     entry['error']=error.response.get('Error',{})
-                write_json(directory/'ledger.json', ledger)
+                write_json(directory/'ledger.json', _runs.bind_receipt(ledger, destination=directory/'ledger.json'))
                 raise
             entry.update({'task_arn':reply['quantumTaskArn'],'status':'submitted','submitted_at':utc()})
-            write_json(directory/'ledger.json', ledger)
-            print(json.dumps({'case':case['request']['name']+'/'+case['input'], 'task_arn':entry['task_arn'],
-                              'reserved_qpu_usd':str(len(ledger['entries'])*cost())}), flush=True)
+            write_json(directory/'ledger.json', _runs.bind_receipt(ledger, destination=directory/'ledger.json'))
+            print(json.dumps(_runs.bind_receipt({'case':case['request']['name']+'/'+case['input'], 'task_arn':entry['task_arn'],
+                              'reserved_qpu_usd':str(len(ledger['entries'])*cost())})), flush=True)
 
 
 def collect(directory):
@@ -182,7 +188,7 @@ def collect(directory):
         task = braket.get_quantum_task(quantumTaskArn=entry['task_arn'])
         # SDK metadata contains datetimes; persist their ISO-compatible string
         # representation while preserving the raw result body separately.
-        write_json(directory/(key+'-task.json'), json.loads(json.dumps(task,default=str)))
+        write_json(directory/(key+'-task.json'), _runs.bind_receipt(json.loads(json.dumps(task,default=str)), destination=directory/(key+'-task.json')))
         require(task['quantumTaskArn'] == entry['task_arn'] and task['deviceArn'] == DEVICE
                 and task['shots'] == job['shots'] and task['outputS3Bucket'] == plan['bucket'], 'task/source metadata mismatch')
         item={'case':case['request']['name']+'/'+case['input'], 'status':task['status']}
@@ -221,14 +227,14 @@ def collect(directory):
             'reserved_qpu_usd':str(len(ledger['entries'])*cost()),'analysis':plan['analysis'],
             'cases':summaries, 'all_completed':all(c['status']=='COMPLETED' for c in summaries),
             'scope':'actual QPU shots; counts are observations, not a proof of ideal hardware or quantum advantage'}
-    write_json(directory/'hardware-result.json', report)
-    print(json.dumps(report,indent=2))
+    write_json(directory/'hardware-result.json', _runs.bind_receipt(report, destination=directory/'hardware-result.json'))
+    print(json.dumps(_runs.bind_receipt(report),indent=2))
 
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('stage',choices=('prepare','submit','collect'))
-    p.add_argument('--directory',type=Path,required=True)
+    p.add_argument('--directory',type=_runs.owned,required=True)
     p.add_argument('--profile',default='braket-user')
     p.add_argument('--budget-usd',type=Decimal)
     a=p.parse_args(); directory=a.directory.resolve()

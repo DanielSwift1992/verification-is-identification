@@ -4,6 +4,12 @@
 No assertion of equal elapsed times or a microscopic noise mechanism.
 The immutable parent instrument remains the ideal semantic reference.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from collections import Counter
 import csv
@@ -24,7 +30,7 @@ import arrival_boundary_probe as old
 
 ROOT=diag.ROOT
 ART=ROOT/'Research/Artifacts/xx-three-attempts-20260916/attempt-1'
-PRIVATE=ROOT/'private/ibm-xx-reference-pair-20260916'
+PRIVATE=_runs.work('ibm-xx-reference-pair-20260916')
 STATE=ROOT/'Research/Artifacts/xx-three-attempts-20260916/state.json'
 TAG='vi-xx-three-attempts-1-20260916'
 ARMS=('original','reference_pair')
@@ -34,15 +40,16 @@ MARKER_SITE=140
 
 
 def read(p):return json.loads(p.read_text())
-def write(p,v):p.write_text(json.dumps(v,indent=2)+'\n')
+def write(p,v):p.write_text(json.dumps(_runs.bind_receipt(v, destination=p),indent=2)+'\n')
 
 
+@_runs.include_reader
 def dependencies():
-    files=[Path(__file__),Path(diag.__file__),Path(old.__file__),
+    files=[_runs.owned(__file__),_runs.owned(diag.__file__),_runs.owned(old.__file__),
            ROOT/'Checks/IBMBridge/pilot.py',ROOT/'Checks/IBMBridge/resident_joint_confirmation.py',
            ROOT/'Checks/IBMBridge/classical_boundary_probe.py',
            ROOT/'Checks/IBMBridge/arrival_schedule_binding_audit.py']
-    return {str(p.relative_to(ROOT)):sha(p.read_bytes()) for p in files}
+    return {_runs.address(p, ROOT):sha(p.read_bytes()) for p in files}
 
 
 def cores():
@@ -230,4 +237,4 @@ def collect():
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('stage',choices=['prepare','submit','collect'])
-    print(json.dumps(globals()[p.parse_args().stage](),indent=2))
+    print(json.dumps(_runs.bind_receipt(globals()[p.parse_args().stage]()),indent=2))

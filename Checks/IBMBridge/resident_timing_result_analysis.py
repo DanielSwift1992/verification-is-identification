@@ -4,13 +4,19 @@
 Counts remain exploratory. Schedule ages refer to a matched common barrier in
 the provider's reported schedule, not a new measurement of physical fidelity.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import hashlib
 import json
 import math
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
-INPUT = ROOT/'private/ibm-context-timing-20260915'
+ROOT = _runs.owned(__file__).resolve().parents[2]
+INPUT = _runs.path('ibm-context-timing-20260915')
 OUT = ROOT/'Research/Artifacts/resident-timing-result-20260916'
 
 
@@ -100,15 +106,15 @@ def run():
                           'correct-bit probabilities in these executed shots. No IID, stationarity, '
                           'causal attribution or future fidelity assumption. Not the original acceptance test.'},
               'metrics':report['metrics'], 'source_files_sha256':{
-                  str(p.relative_to(ROOT)):digest(p) for p in
-                  [INPUT/'hardware-result.json',INPUT/'raw-result.json',INPUT/'plan.json',INPUT/'isa.qpy',Path(__file__)]},
+                  _runs.address(p, ROOT):digest(p) for p in
+                  [INPUT/'hardware-result.json',INPUT/'raw-result.json',INPUT/'plan.json',INPUT/'isa.qpy',_runs.owned(__file__)]},
               'new_jobs':0, 'physical_reset_cause_identified':False,
               'equal_reported_age_idle_and_measure_D':True,
               'equal_reported_age_all_three_contexts':False}
     OUT.mkdir(exist_ok=True)
-    (OUT/'analysis.json').write_text(json.dumps(result,indent=2)+'\n')
-    print(json.dumps({'rows':output,'feedback_extra_age_ns':result['feedback_extra_age_ns'],
-                      'simultaneous_radius':epsilon},indent=2))
+    (OUT/'analysis.json').write_text(json.dumps(_runs.bind_receipt(result, destination=OUT/'analysis.json'),indent=2)+'\n')
+    print(json.dumps(_runs.bind_receipt({'rows':output,'feedback_extra_age_ns':result['feedback_extra_age_ns'],
+                      'simultaneous_radius':epsilon}),indent=2))
 
 
 if __name__ == '__main__':

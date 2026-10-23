@@ -9,9 +9,26 @@
 use crate::failure::{fail, Failure};
 use regex::Regex;
 use std::collections::{HashMap, HashSet};
+use std::cell::RefCell;
+
+// Compiled reader patterns carry no source or match results. Keep a bounded
+// set per thread; a new pattern beyond the bound still compiles normally.
+thread_local! {
+    static PATTERNS: RefCell<HashMap<String, Regex>> = RefCell::new(HashMap::new());
+}
+const RETAINED_PATTERNS: usize = 128;
 
 pub fn re(pattern: &str) -> Regex {
-    Regex::new(&format!("(?s){}", pattern)).expect("a pattern of this reader compiles")
+    PATTERNS.with(|patterns| {
+        let mut patterns = patterns.borrow_mut();
+        if let Some(compiled) = patterns.get(pattern) { return compiled.clone(); }
+        let compiled = Regex::new(&format!("(?s){}", pattern))
+            .expect("a pattern of this reader compiles");
+        if patterns.len() < RETAINED_PATTERNS {
+            patterns.insert(pattern.to_string(), compiled.clone());
+        }
+        compiled
+    })
 }
 
 pub fn captures(pattern: &str, text: &str) -> Vec<Vec<String>> {

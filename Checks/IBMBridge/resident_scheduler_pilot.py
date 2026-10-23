@@ -5,6 +5,12 @@ No local schedule is promoted to physical timing. prepare is read-only on IBM;
 submit is explicit, at most once, and requires active Kingston. collect stores
 the full provider result before reading any optional schedule. No main sample.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from copy import deepcopy
 import csv
@@ -26,9 +32,9 @@ import resident_feedback as f
 import resident_wire_audit as w
 from pilot import service_open, sha, utc, versions
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = _runs.owned(__file__).resolve().parents[2]
 DRAFT = ROOT/'Research/Artifacts/resident-context-design-20260915'
-OLD = ROOT/'private/ibm-resident-boundary-20260915'
+OLD = _runs.path('ibm-resident-boundary-20260915')
 SHOTS, MAX_SECONDS = 128, 30
 OLD_KEYS = (('Baseline11', 'Z'), ('Toggle00', 'Z'))
 HEADER = ['Branch', 'Instruction', 'Channel', 'T0', 'Duration', 'Pulse']
@@ -40,7 +46,7 @@ def require(value, message):
 
 
 def dump(path, data):
-    path.write_text(json.dumps(data, indent=2)+'\n')
+    path.write_text(json.dumps(_runs.bind_receipt(data, destination=path), indent=2)+'\n')
 
 
 def timing_options(existing):
@@ -189,10 +195,11 @@ def source_material():
     return source, drafts, bridges
 
 
+@_runs.include_reader
 def implementation():
-    paths = [Path(__file__), Path(d.__file__), Path(f.__file__), Path(w.__file__),
-             Path(f.source_adapter.__file__), Path(f.resident.__file__)]
-    return {str(p.relative_to(ROOT)): sha(p.read_bytes()) for p in paths}
+    paths = [_runs.owned(__file__), _runs.owned(d.__file__), _runs.owned(f.__file__), _runs.owned(w.__file__),
+             _runs.owned(f.source_adapter.__file__), _runs.owned(f.resident.__file__)]
+    return {_runs.address(p, ROOT): sha(p.read_bytes()) for p in paths}
 
 
 def prepare(directory):
@@ -323,7 +330,7 @@ def collect(directory):
         return result
     result = job.result()
     # Save before interpretation, including missing or unsupported timing forms.
-    (directory/'raw-result.json').write_text(json.dumps(result, cls=RuntimeEncoder, indent=2))
+    (directory/'raw-result.json').write_text(json.dumps(_runs.bind_receipt(result, destination=directory/'raw-result.json'), cls=RuntimeEncoder, indent=2))
     pubs = job.inputs['pubs']
     require(len(pubs) == len(result) == 8, 'Wrong result cardinality')
     rows = []
@@ -351,6 +358,6 @@ def collect(directory):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('stage', choices=('prepare','submit','collect'))
-    parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--output', type=_runs.owned, required=True)
     args = parser.parse_args()
-    print(json.dumps(globals()[args.stage](args.output.resolve()), indent=2))
+    print(json.dumps(_runs.bind_receipt(globals()[args.stage](args.output.resolve())), indent=2))

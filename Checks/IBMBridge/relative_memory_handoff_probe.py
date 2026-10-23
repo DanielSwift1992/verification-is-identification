@@ -6,6 +6,12 @@ record. Mean XX alone is not the requested answer in this case. This builder
 does not submit until explicitly run, and the shared transport enforces the
 two-job Open-only campaign cap.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 import io
 import json
@@ -23,7 +29,7 @@ import arrival_boundary_probe as old
 import bounded_open_experiment as cloud
 
 ROOT = old.ROOT
-PRIVATE = ROOT / 'private/ibm-relative-memory-handoff-20260916'
+PRIVATE = _runs.work('ibm-relative-memory-handoff-20260916')
 ART = ROOT / 'Research/Artifacts/relative-acquisition-20260916/attempt-2'
 TAG = 'vi-relative-memory-handoff-2-20260916'
 
@@ -116,12 +122,12 @@ def prepare():
                         'Also retain B_X, request agreement and measured retirement A=0. '
                         'No postselection, arbitrary-state hardware certification, trusted retirement measurement '
                         'or inference that an old law applies to the new zero source.'}
-    dependencies = [Path(__file__), Path(handoff.__file__), Path(minimal.__file__), Path(relative.__file__), Path(old.__file__),
-                    Path(diag.__file__), ROOT / 'Checks/IBMBridge/classical_boundary_probe.py']
+    dependencies = [_runs.owned(__file__), _runs.owned(handoff.__file__), _runs.owned(minimal.__file__), _runs.owned(relative.__file__), _runs.owned(old.__file__),
+                    _runs.owned(diag.__file__), ROOT / 'Checks/IBMBridge/classical_boundary_probe.py']
     return cloud.freeze(PRIVATE, ART, qs, plan, service, backend, dependencies)
 
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser(); p.add_argument('stage', choices=['prepare', 'submit', 'collect'])
     stage = p.parse_args().stage
-    print(json.dumps(prepare() if stage == 'prepare' else getattr(cloud, stage)(PRIVATE, ART), indent=2))
+    print(json.dumps(_runs.bind_receipt(prepare() if stage == 'prepare' else getattr(cloud, stage)(PRIVATE, ART)), indent=2))

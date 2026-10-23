@@ -204,11 +204,11 @@ impl Context {
 }
 type Unit = crate::court_notation::File;
 #[derive(Clone)]
-struct Origin {
-    unit: Unit,
+struct Origin<'a> {
+    unit: &'a Unit,
     line: usize,
 }
-impl Origin {
+impl Origin<'_> {
     fn address(&self) -> String {
         format!("{}:{}", self.unit.context.source, self.line)
     }
@@ -249,11 +249,11 @@ pub fn prepare_read(paths: &[String], context_path: &str, load: &dyn Fn(&str)->R
         .find(|u| &u.context.input == first)
         .cloned()
         .ok_or_else(|| Failure::Input(vec!["context has no world source".into()]))?;
-    let mut origins: HashMap<String, Vec<Origin>> = HashMap::new();
+    let mut origins: HashMap<String, Vec<Origin<'_>>> = HashMap::new();
     for unit in &units {
         for name in &unit.world.file_types {
             origins.entry(name.clone()).or_default().push(Origin {
-                unit: unit.clone(),
+                unit,
                 line: *unit
                     .world
                     .declared

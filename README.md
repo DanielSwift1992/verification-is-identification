@@ -112,6 +112,8 @@ The [showcase package](https://github.com/DanielSwift1992/verification-is-identi
 
 `swift build` checks the whole package. `swift test` runs the worked demos and source-reader controls and prints "Executed 21 tests". `swift run Tools site` builds and serves the documentation locally. [`check.sh`](check.sh) lists the repository's checks: `./check.sh --only verdict` runs the registered proof and refusal fixtures, `./check.sh` runs the integration checks, and `swift run Tools readme` compares the counts on this page with their source artifacts. Optional research experiments run separately with `./check.sh --research-only`. The build law builds source and test targets together. Later laws reuse its Tools and modules. An input change during the run refuses the shared-build result. `VI_CHECK_JOBS=3` bounds independent read-only laws. SwiftPM and graph-producing laws remain barriers, and logs retain registry order. `VERDICT_JOBS=3` bounds independent refusal-fixture workers. `VERDICT_JOBS=1` runs them serially. Each mutation still has its own compiler process, after its unmutated fixture passes. Each law prints its UTC start, elapsed seconds and exit status. `--only` and `--skip` report selected laws and explicitly say that this is not a full gate. For a faster local pass use `./check.sh --skip verdict`, then run the full gate before publication. CI always runs the full verdict, and the grammar job remains required.
 
+The [boundary law](Documentation/DETAILS.md) holds the declared dependency and style debt to a shrinking ledger, with executable counterexamples.
+
 ## License
 
 MIT

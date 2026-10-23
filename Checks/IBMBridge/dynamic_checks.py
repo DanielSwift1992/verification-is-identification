@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 """Offline checks of the separately scoped dynamic State consumer."""
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 from copy import deepcopy
 import unittest
 
@@ -12,7 +18,7 @@ from runtime import CheckFailure
 class DynamicChecks(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.documents, _ = prepare(ROOT/'private/ibm-prepared')
+        cls.documents, _ = prepare(_runs.prepared('ibm-prepared'))
 
     def test_all_classical_branches_restore_arbitrary_payload(self):
         result = exact_channels(self.documents)

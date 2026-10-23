@@ -6,6 +6,12 @@ physical sites. Product inputs distinguish the two Bell partners; reported
 server schedules expose (but do not remove) duration confounding.
 No repair is selected from this sample. No automatic retry or resubmission.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from collections import Counter
 import fcntl
@@ -28,9 +34,9 @@ from resident_scheduler_pilot import schedule_evidence
 from classical_boundary_probe import aer_form
 import arrival_boundary_probe as old
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = _runs.owned(__file__).resolve().parents[2]
 ART = ROOT/'Research/Artifacts/arrival-failure-localization-20260916'
-PRIVATE = ROOT/'private/ibm-arrival-localization-20260916'
+PRIVATE = _runs.work('ibm-arrival-localization-20260916')
 OLD = ROOT/'Research/Artifacts/returning-attempt-20260916/arrival-hardware'
 TAG = 'vi-arrival-localization-20260916-a'
 ARMS = ('conditional', 'slots_only', 'slots_no_reset', 'echo')
@@ -39,7 +45,7 @@ CAP = 30
 
 
 def read(p): return json.loads(p.read_text())
-def write(p, value): p.write_text(json.dumps(value, indent=2)+'\n')
+def write(p, value): p.write_text(json.dumps(_runs.bind_receipt(value, destination=p), indent=2)+'\n')
 
 
 def contexts():
@@ -191,7 +197,7 @@ def prepare():
     with (PRIVATE/'isa.qpy').open('wb') as handle: qpy.dump(qs,handle)
     p = {'schema':'vi.arrival-failure-localization.v1','at':utc(),'tag':TAG,
          'backend':backend.name,'instance':service.active_instance(),'plan':'open',
-         'qpy_sha256':sha((PRIVATE/'isa.qpy').read_bytes()),'script_sha256':sha(Path(__file__).read_bytes()),
+         'qpy_sha256':sha((PRIVATE/'isa.qpy').read_bytes()),'script_sha256':sha(_runs.owned(__file__).read_bytes()),
          'versions':versions(),'old_manifest_sha256':sha((OLD/'manifest.json').read_bytes()),
          'shots_each':SHOTS,'total_shots':len(qs)*SHOTS,'cap_seconds':CAP,
          'options':options(),'dt':backend.dt,'PUBs':entries,'operator_checks':checks,
@@ -209,7 +215,7 @@ def prepare():
 def load():
     p = read(PRIVATE/'plan.json')
     require(p['tag']==TAG and p['options']==options() and p['versions']==versions() and
-            p['script_sha256']==sha(Path(__file__).read_bytes()), 'Frozen executor changed')
+            p['script_sha256']==sha(_runs.owned(__file__).read_bytes()), 'Frozen executor changed')
     require(sha((PRIVATE/'isa.qpy').read_bytes())==p['qpy_sha256'], 'Frozen circuit changed')
     with (PRIVATE/'isa.qpy').open('rb') as handle: qs=qpy.load(handle)
     require(len(qs)==40 and [q.metadata for q in qs]==p['PUBs'], 'PUB correspondence changed')
@@ -269,4 +275,4 @@ def collect():
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(); parser.add_argument('stage',choices=['prepare','submit','collect'])
-    print(json.dumps(globals()[parser.parse_args().stage](),indent=2))
+    print(json.dumps(_runs.bind_receipt(globals()[parser.parse_args().stage]()),indent=2))

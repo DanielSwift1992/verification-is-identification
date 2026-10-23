@@ -6,6 +6,12 @@ ndarrays are decoded without RuntimeDecoder/BitArray counts. The diagnostic
 QPY is interpreted as three separate one-qubit branch states, since it has
 no entangling gates; this does not reuse either experiment's ideal reader.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 import base64
 from collections import Counter
@@ -21,14 +27,14 @@ import zlib
 import numpy as np
 from qiskit import qpy
 
-ROOT=Path(__file__).resolve().parents[2]
+ROOT=_runs.owned(__file__).resolve().parents[2]
 I=np.eye(2,dtype=complex);X=np.array([[0,1],[1,0]],complex)
 SX=np.array([[1+1j,1-1j],[1-1j,1+1j]])/2
 
 
 def digest(path):return sha256(path.read_bytes()).hexdigest()
 def read(path):return json.loads(path.read_text())
-def write(path,value):path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(value,indent=2)+'\n')
+def write(path,value):path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(_runs.bind_receipt(value, destination=path),indent=2)+'\n')
 
 
 def raw_arrays(path):
@@ -150,8 +156,8 @@ def stationary_diagnostic(rows):
 def audit(output):
     all_rows={};original_hashes={};deep_rows=[]
     for label,dirname in [('feedback','ibm-resident-acquisition-20260915'),('boundary','ibm-resident-boundary-20260915')]:
-        directory=ROOT/'private'/dirname
-        original_hashes.update({str(p.relative_to(ROOT)):digest(p) for p in directory.rglob('*') if p.is_file()})
+        directory=_runs.root()/dirname
+        original_hashes.update({_runs.address(p, ROOT):digest(p) for p in directory.rglob('*') if p.is_file()})
         plan=read(directory/'plan.json');hardware=read(directory/'hardware-result.json')
         assert hardware['status']=='DONE' and digest(directory/'raw-result.json')==hardware['raw_sha256']
         assert digest(directory/'isa.qpy')==plan['qpy_sha256']
@@ -183,17 +189,17 @@ def audit(output):
             results.append(entry)
         all_rows[label]={'job_id':hardware['job_id'],'circuits':len(circuits),'shots':1024*len(circuits),'cases':results}
     statistics=stationary_diagnostic(deep_rows)
-    assert all(digest(ROOT/n)==h for n,h in original_hashes.items())
+    assert all(digest(_runs.resolve_recorded(n,h,ROOT))==h for n,h in original_hashes.items())
     result={'schema':'vi.resident-wire-audit.v1','raw_byte_and_QPY_audit':all_rows,
             'exploratory_stationary_channel_test':statistics,'original_packet_sha256':original_hashes,
             'original_packets_unchanged':True,'network_calls':0,'new_QPU_jobs':0,
-            'implementation_sha256':digest(Path(__file__))}
+            'implementation_sha256':digest(_runs.owned(__file__))}
     write(output/'audit.json',result);return result
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=Path,required=True)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=_runs.owned,required=True)
     result=audit(p.parse_args().output.resolve())
-    print(json.dumps({'jobs':{k:{q:v[q] for q in ('job_id','circuits','shots')} for k,v in result['raw_byte_and_QPY_audit'].items()},
+    print(json.dumps(_runs.bind_receipt({'jobs':{k:{q:v[q] for q in ('job_id','circuits','shots')} for k,v in result['raw_byte_and_QPY_audit'].items()},
                       'packets_unchanged':result['original_packets_unchanged'],
-                      'stationary_channel_rejections':result['exploratory_stationary_channel_test']['rejected_at_family_alpha']},indent=2))
+                      'stationary_channel_rejections':result['exploratory_stationary_channel_test']['rejected_at_family_alpha']}),indent=2))

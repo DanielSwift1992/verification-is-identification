@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 """Offline rejection tests on the actual compiled dynamic family."""
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import unittest
 
 from qiskit import qpy
@@ -13,7 +19,7 @@ from runtime import load_json, CheckFailure
 class PhysicalPrefixChecks(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        directory=ROOT/'private/ibm-dynamic-common-prefix-20260914'
+        directory=_runs.path('ibm-dynamic-common-prefix-20260914')
         if not (directory/'result.json').exists():
             raise RuntimeError('Prepare the dynamic common-prefix artifact before running these checks.')
         cls.report=load_json(directory/'result.json')

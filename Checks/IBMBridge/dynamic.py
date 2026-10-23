@@ -5,6 +5,12 @@ No submission API. --backend only reads an IBM compilation target. The legacy
 terminal executor still rejects State. This separately scoped consumer admits
 the same Uniform2/CZ resident source and the checked State continuation.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from collections import Counter
 import io
@@ -180,12 +186,12 @@ def simulate(circuits, shots):
 def main():
     from qiskit import qpy, transpile
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--output', type=_runs.owned, required=True)
     p.add_argument('--backend', help='Read-only IBM target; never submits')
     p.add_argument('--shots', type=int, default=1024)
     args = p.parse_args()
     require(1 <= args.shots <= 4096 and not args.output.exists(), 'invalid shots/existing output')
-    documents, receipt = prepare(ROOT/'private/ibm-prepared')
+    documents, receipt = prepare(_runs.prepared('ibm-prepared'))
     exact = exact_channels(documents)
     circuits = [witness(documents, policy, basis) for policy in POLICIES for basis in BASES]
     rows = simulate(circuits, args.shots)
@@ -201,11 +207,11 @@ def main():
               'checked_build':receipt, 'versions':versions(), 'shots_each':args.shots,
               'exact_channels':exact, 'sample_bell_fidelities':fidelities, 'rows':rows,
               'logical_qpy_sha256':sha(buffer.getvalue()),
-              'implementation':{str(f.relative_to(ROOT)):sha(f.read_bytes()) for f in
-                (Path(__file__), Path(__file__).with_name('pilot.py'),
+              'implementation':{_runs.address(f, ROOT):sha(f.read_bytes()) for f in
+                (_runs.owned(__file__), _runs.owned(__file__).with_name('pilot.py'),
                  BRIDGE/'execute.py', BRIDGE/'runtime.py')}}
     # Save local evidence before an optional network/compilation failure.
-    write_json(args.output/'result.json', report)
+    write_json(args.output/'result.json', _runs.bind_receipt(report, destination=args.output/'result.json'))
     if args.backend:
         backend = service_open().backend(args.backend)
         require('if_else' in backend.operation_names, 'backend has no conditional operation')
@@ -218,9 +224,9 @@ def main():
                                   'circuit_count':len(isa),
                                   'if_else_counts':[c.count_ops().get('if_else',0) for c in isa],
                                   'scope':'target compilation only; ISA not simulated or executed on QPU'}
-        write_json(args.output/'result.json', report)
-    print(json.dumps({'output':str(args.output), 'sample_bell_fidelities':fidelities,
-                      'compiled':args.backend, 'hardware_submitted':False}, indent=2))
+        write_json(args.output/'result.json', _runs.bind_receipt(report, destination=args.output/'result.json'))
+    print(json.dumps(_runs.bind_receipt({'output':str(args.output), 'sample_bell_fidelities':fidelities,
+                      'compiled':args.backend, 'hardware_submitted':False}), indent=2))
 
 
 if __name__ == '__main__':

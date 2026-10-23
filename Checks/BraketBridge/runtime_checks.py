@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 """Bounded QA of the ordinary execution door (never imported by that door)."""
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 import copy
 import json
@@ -20,9 +26,10 @@ from runtime import CheckFailure, load_json, write_json, require
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--cache', type=Path, default=ROOT/'private/braket-prepared')
-    p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--cache', type=_runs.owned)
+    p.add_argument('--output', type=_runs.owned, required=True)
     a = p.parse_args()
+    a.cache = a.cache if a.cache is not None else _runs.prepared('braket-prepared')
     a.output = a.output.resolve()
     require(not a.output.exists(), 'QA output must be new')
     a.output.mkdir(parents=True)
@@ -79,9 +86,9 @@ def main():
 
     # A damaged cached export is refused before source construction or SDK.
     with tempfile.TemporaryDirectory() as tmp:
-        entry = Path(tmp)
+        entry = _runs.owned(tmp)
         for name in (*prepared.EXPORTS, 'ready.json', 'build-manifest.json'):
-            shutil.copyfile(Path(receipt['directory'])/name, entry/name)
+            shutil.copyfile(_runs.owned(receipt['directory'])/name, entry/name)
         prepared.validate_entry(entry, inputs)
         with (entry/'continuations.json').open('a') as f: f.write(' ')
         rejects('modified-cached-export', lambda: prepared.validate_entry(entry, inputs))
@@ -117,9 +124,9 @@ def main():
             contexts.append((name, state, j, d, request, probability))
     require(len({j['id'] for j in jobs}) == len(jobs), 'duplicate job identity')
     tolerance = math.sqrt(math.log(2*len(jobs)/0.01)/(2*512))
-    write_json(a.output/'precommit.json', {'jobs':len(jobs), 'shots':512, 'family_alpha':0.01,
-        'absolute_tolerance':tolerance, 'retry':'one batch, no retry-until-pass'})
-    write_json(a.output/'jobs.json', {'schema':'vi.braket.jobs.v1','jobs':jobs})
+    write_json(a.output/'precommit.json', _runs.bind_receipt({'jobs':len(jobs), 'shots':512, 'family_alpha':0.01,
+        'absolute_tolerance':tolerance, 'retry':'one batch, no retry-until-pass'}, destination=a.output/'precommit.json'))
+    write_json(a.output/'jobs.json', _runs.bind_receipt({'schema':'vi.braket.jobs.v1','jobs':jobs}, destination=a.output/'jobs.json'))
     completed = run_bounded([sys.executable,HERE/'runner.py','--jobs',a.output/'jobs.json',
                              '--output',a.output/'raw.json'], 90)
     (a.output/'runner.log').write_text(completed.stdout)
@@ -138,9 +145,9 @@ def main():
               'sampling_checks':checks, 'ordinary_import_excludes_oracle':True,
               'wire_order_transport':True, 'source_invalidation':True,
               'unrelated_QA_excluded_from_key':True}
-    write_json(a.output/'result.json', report)
-    print(json.dumps({'status':'passed','refusals':len(refusals),'sampling_checks':len(checks),
-                      'output':str(a.output)},indent=2))
+    write_json(a.output/'result.json', _runs.bind_receipt(report, destination=a.output/'result.json'))
+    print(json.dumps(_runs.bind_receipt({'status':'passed','refusals':len(refusals),'sampling_checks':len(checks),
+                      'output':str(a.output)}),indent=2))
 
 
 if __name__ == '__main__':

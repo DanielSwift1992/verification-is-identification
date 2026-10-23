@@ -878,7 +878,7 @@ extension ArrowMarkers {
     public static var typeName: String {
         """
         <defs>
-        <marker id="\(XMLEscaped<ArrowHeadName>.typeName)" markerWidth="\(XMLEscaped<StyleValue<Binding, StyleKeys.MarkerWidth>>.typeName)" markerHeight="\(XMLEscaped<StyleValue<Binding, StyleKeys.MarkerHeight>>.typeName)" refX="\(XMLEscaped<StyleValue<Binding, StyleKeys.MarkerX>>.typeName)" refY="\(XMLEscaped<StyleValue<Binding, StyleKeys.MarkerY>>.typeName)" orient="auto">
+        <marker id="\(XMLEscaped<ArrowHeadName>.typeName)" markerWidth="\(XMLEscaped<StyleValue<Binding, StyleKeys.MarkerWidth>>.typeName)" markerHeight="\(XMLEscaped<StyleValue<Binding, StyleKeys.MarkerHeight>>.typeName)" refX="\(XMLEscaped<StyleValue<Binding, StyleKeys.MarkerX>>.typeName)" refY="\(XMLEscaped<StyleValue<Binding, StyleKeys.MarkerY>>.typeName)" orient="\(XMLEscaped<StyleValue<Binding, StyleKeys.MarkerOrient>>.typeName)">
         <path d="\(XMLEscaped<StyleValue<Binding, StyleKeys.MarkerPath>>.typeName)" fill="\(XMLEscaped<Binding.TextSecondary>.typeName)"/>
         </marker>
         </defs>

@@ -402,6 +402,8 @@ public protocol FigureArrowHeight: Structure {} // law:allow: owner-bound style 
 
 public protocol FigureArrowPath: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
+public protocol FigureArrowOrient: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
 public protocol FigureArrowWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public protocol FigureArrowX: Structure {} // law:allow: owner-bound style name; the world supplies its reading
@@ -527,6 +529,8 @@ public enum LocalType: PaintRole, Close {}
 public protocol MarkerHeight: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public protocol MarkerPath: Structure {} // law:allow: owner-bound style name; the world supplies its reading
+
+public protocol MarkerOrient: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
 public protocol MarkerWidth: Structure {} // law:allow: owner-bound style name; the world supplies its reading
 
@@ -738,6 +742,7 @@ public enum StyleKeys {
     public enum FigureArrowBox: Close {}
     public enum FigureArrowHeight: Close {}
     public enum FigureArrowPath: Close {}
+    public enum FigureArrowOrient: Close {}
     public enum FigureArrowWidth: Close {}
     public enum FigureArrowX: Close {}
     public enum FigureArrowY: Close {}
@@ -753,6 +758,7 @@ public enum StyleKeys {
     public enum HoverTransition: Close {}
     public enum MarkerHeight: Close {}
     public enum MarkerPath: Close {}
+    public enum MarkerOrient: Close {}
     public enum MarkerWidth: Close {}
     public enum MarkerX: Close {}
     public enum MarkerY: Close {}

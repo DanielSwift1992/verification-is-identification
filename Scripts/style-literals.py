@@ -2,8 +2,10 @@
 """Check selected visual values at the drawing mechanism's syntactic reading edge."""
 import re
 
-ATTRIBUTES=r'font-weight|font-size|font-family|font-style|stroke-width|stroke-dasharray|stroke-linecap|stroke-linejoin|rx|ry|r|markerWidth|markerHeight|refX|refY|fill-opacity|stroke-opacity|flood-opacity|opacity|color|fill|stroke|flood-color'
-CSS=r'font-weight|font-size|font-family|font-style|stroke-width|stroke-dasharray|stroke-linecap|stroke-linejoin|border-radius|opacity|color|background(?:-color)?|fill|stroke|flood-color'
+SVG_ATTRIBUTES=('font-weight', 'font-size', 'font-family', 'font-style', 'stroke-width', 'stroke-dasharray', 'stroke-linecap', 'stroke-linejoin', 'rx', 'ry', 'r', 'markerWidth', 'markerHeight', 'refX', 'refY', 'orient', 'viewBox', 'd', 'fill-opacity', 'stroke-opacity', 'flood-opacity', 'opacity', 'color', 'fill', 'stroke', 'flood-color', 'dur', 'values', 'dx', 'dy', 'stdDeviation')
+CSS_PROPERTIES=('font-weight', 'font-size', 'font-family', 'font-style', 'stroke-width', 'stroke-dasharray', 'stroke-linecap', 'stroke-linejoin', 'border-radius', 'opacity', 'color', 'background', 'background-color', 'fill', 'stroke', 'flood-color', 'transition', 'transition-duration', 'transition-delay', 'transition-timing-function', 'animation', 'animation-duration', 'animation-delay', 'animation-timing-function', 'box-shadow', 'text-shadow', 'margin', 'margin-top', 'margin-right', 'margin-bottom', 'margin-left', 'padding', 'padding-top', 'padding-right', 'padding-bottom', 'padding-left', 'gap', 'row-gap', 'column-gap')
+ATTRIBUTES='|'.join(SVG_ATTRIBUTES)
+CSS='|'.join(CSS_PROPERTIES)
 
 def code_without_comments(text):
     # Keep strings intact; only comments outside strings disappear.
@@ -27,6 +29,7 @@ def readout(text,literals=None):
 
 def interpolation(expression):
     expression=expression.strip()
+    if re.search(r'\b(?:White|Black)\b',expression):return 'fixed-spectrum-endpoint'
     scalar=r'(?:0x[0-9a-fA-F]+|[+-]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+))'
     if re.fullmatch(scalar,expression):return expression
     if re.fullmatch(r'"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'',expression):return expression[1:-1]
@@ -77,18 +80,55 @@ def check(text,address,swift=True):
     view=dynamic(readout(code,literals))
     for m in re.finditer(r'(?<![\w-])('+ATTRIBUTES+r')\s*=\s*(["\'])(.*?)\2',view,re.S):
         value=m[3]
-        before=view[max(0,m.start()-100):m.start()]
-        # SMIL's fill=freeze is a timing policy; it is not a paint attribute.
+        before=view[max(0,m.start()-400):m.start()]
+        # A frame's coordinate construction is mathematical. The selected box
+        # and path of a marker are the visual geometry of its owner.
+        if m[1] in ['viewBox','d'] and '<marker' not in before:continue
         if m[1]=='fill' and value=='freeze' and '<set ' in before:continue
-        rest=re.sub(r'\{[^}]*\}','',value).strip()
-        if not value or (not '{' in value and not re.fullmatch(r'var\(--[\w-]+\)',value)) or re.search(r'[A-Za-z0-9#]',re.sub(r'var\(--[\w-]+,?\s*|url\(#?[\w-]*|[)\s%,;]','',rest)):
+        rest=re.sub(r'\{reading\}|var\(--[\w-]+,?\s*|url\(#[\w-]+\)','',value).strip()
+        if m[1]=='dur':rest=re.sub(r'(?<![\w])(ms|s)(?![\w])','',rest)
+        if not value or ('{reading}' not in value and not re.fullmatch(r'var\(--[\w-]+\)',value)) or re.search(r'[A-Za-z0-9#]',rest):
             raise ValueError(address+':'+str(view[:m.start()].count('\n')+1)+': literal visual attribute '+m[1]+' belongs to a world')
-    for m in re.finditer(r'(?<![\w-])('+CSS+r')\s*:\s*([^;{}\n]+)',view):
+    for m in re.finditer(r'(?<![\w-])('+CSS+r')\s*:\s*((?:\{reading\}|[^;{}\n])+)',view):
         value=m[2].strip()
-        if not value and view[m.end():].startswith('{reading}'):continue
-        if value.startswith('{') or '{reading}' in value:continue
-        if re.fullmatch(r'var\(--[\w-]+\)',value):continue
-        # Match actual declarations, not Swift bindings, parameter labels or prose.
         before=view[max(0,m.start()-2):m.start()]
         if not re.search(r'[;{]\s*$',before):continue
+        rest=re.sub(r'\{reading\}|var\(--[\w-]+,?\s*|url\(#[\w-]+\)','',value).strip()
+        if m[1].startswith('transition'):
+            # The emitter names the property whose state transition it implements.
+            rest=re.sub(r'\b(?:opacity|stroke-width|stroke|transform|visibility)\b','',rest)
+        rest=re.sub(r'(?<![\w])(?:ms|s|px|em|rem)(?![\w])','',rest)
+        if value and ('{reading}' in value or re.fullmatch(r'var\(--[\w-]+\)',value)) and not re.search(r'[A-Za-z0-9#]',rest):continue
         raise ValueError(address+':'+str(view[:m.start()].count('\n')+1)+': literal visual CSS '+m[1]+' belongs to a world')
+
+
+def controls():
+    """Exercise every closed visual position in both serialization carriers."""
+    counts={'svg':0,'css':0,'refusals':0}
+    def refuse(source,swift):
+        try:check(source,'new/subfolder/Control.swift' if swift else 'new/subfolder/Control.js',swift)
+        except ValueError:counts['refusals']+=1
+        else:raise AssertionError('literal style admitted: '+source)
+    for attribute in SVG_ATTRIBUTES:
+        for swift in [True,False]:
+            opening='<marker><path ' if attribute=='d' else '<marker ' if attribute in ['viewBox','orient','markerWidth','markerHeight','refX','refY'] else '<g '
+            literal=opening+attribute+'="9"/>'
+            refuse(literal,swift)
+            owner=opening+attribute+'="'+('\\(Binding.Value)' if swift else '${binding.value}')+'"/>'
+            check(owner,'positive.swift' if swift else 'positive.js',swift)
+            interpolated=opening+attribute+'="'+('\\(9)' if swift else '${9}')+'"/>'
+            refuse(interpolated,swift)
+        counts['svg']+=1
+    for property in CSS_PROPERTIES:
+        for swift in [True,False]:
+            refuse('<style>.new{'+property+':9;}</style>',swift)
+            owner='<style>.new{'+property+':'+('\\(Binding.Value)' if swift else '${binding.value}')+';}</style>'
+            check(owner,'positive.swift' if swift else 'positive.js',swift)
+        counts['css']+=1
+    for endpoint in ['White','Black']:
+        refuse('<g fill="\\('+endpoint+'.typeName)"/>',True)
+        refuse('<g fill="${'+endpoint+'.typeName}"/>',False)
+    check('let count=12/2; let radix=8; let text="White #abc Inter-world"','algorithm.swift')
+    check('<g stroke-width="\\(Binding.width / 2)"/>','algorithm.swift')
+    check('<g stroke-width="${binding.width / 2}"/>','algorithm.js',False)
+    return counts

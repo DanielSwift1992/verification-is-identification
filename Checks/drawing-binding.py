@@ -27,6 +27,11 @@ def main():
     sources['Sources/DocumentKit/Resources/footer.html'] = (ROOT / 'Sources/DocumentKit/Resources/footer.html').read_text()
     sources.update({str(p.relative_to(ROOT)):p.read_text() for p in (ROOT/'Sources/DocumentKit').rglob('*.md')})
     mechanism(sources)
+    boundary=(ROOT/'Scripts/style-literals.md').read_text()
+    assert 'SVG: '+', '.join(style_literals.SVG_ATTRIBUTES)+'.' in boundary
+    assert 'CSS: '+', '.join(style_literals.CSS_PROPERTIES)+'.' in boundary
+    closed=style_literals.controls()
+    print("style positions: "+json.dumps(closed,sort_keys=True))
     refusals=['enum X: Paint {}','enum X: Close, Paint {}',
               'let svg = "<text font-family=\\\"Helvetica\\\"/>"',
               'let svg = "<text font-family=\\\"serif\\\"/>"',

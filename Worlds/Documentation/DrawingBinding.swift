@@ -2,7 +2,7 @@ import Notation
 import DocumentKit
 
 // GENERATED from the world drawing-binding/1 record.
-// drawing-binding-value-sha256: 40ac7c8e2d2dbe82e453a8731f3980e34fd387ee302c148ce97471798fdc4619
+// drawing-binding-value-sha256: da75e97e8abbffbcb8b090961a3ea3b97c610ce16f9d133188a5ae3cb82bff96
 public enum DocumentationBindingInk: Paint, Close {}
 extension DocumentationBindingInk {
     public static var typeName: String { "color(xyz-d65 0.01 0.01 0.011)" }
@@ -513,6 +513,14 @@ public enum DocumentationBindingCover90: DocumentKit.Cover90, Close {}
 extension DocumentationBindingCover90 {
     public static var typeName: String { "0.90" }
 }
+public enum DocumentationBindingMarkerOrient: DocumentKit.MarkerOrient, Close {}
+extension DocumentationBindingMarkerOrient {
+    public static var typeName: String { "auto" }
+}
+public enum DocumentationBindingFigureArrowOrient: DocumentKit.FigureArrowOrient, Close {}
+extension DocumentationBindingFigureArrowOrient {
+    public static var typeName: String { "auto-start-reverse" }
+}
 public enum DocumentationBindingFontUnitsPerEm: DocumentKit.FontUnitsPerEm, Close {}
 extension DocumentationBindingFontUnitsPerEm {
     public static var typeName: String { "2048" }
@@ -657,6 +665,8 @@ extension DocumentationBindingValues {
             "Cover70|" + DocumentationBindingCover70.typeName,
             "Cover80|" + DocumentationBindingCover80.typeName,
             "Cover90|" + DocumentationBindingCover90.typeName,
+            "MarkerOrient|" + DocumentationBindingMarkerOrient.typeName,
+            "FigureArrowOrient|" + DocumentationBindingFigureArrowOrient.typeName,
             "FontUnitsPerEm|" + DocumentationBindingFontUnitsPerEm.typeName,
             "FontCapHeight|" + DocumentationBindingFontCapHeight.typeName,
             "FontAdvanceTable|" + DocumentationBindingFontAdvanceTable.typeName,

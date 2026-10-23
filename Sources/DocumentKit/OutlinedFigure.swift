@@ -170,7 +170,7 @@ extension FigureRoute {
 public enum FigureArrow<Binding: DrawingStyle, Colour: Structure>: Close {}
 extension FigureArrow {
     public static var typeName: String {
-        "<defs><marker id=\"arrow\" viewBox=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowBox>>.typeName)\" refX=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowX>>.typeName)\" refY=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowY>>.typeName)\" markerWidth=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowWidth>>.typeName)\" markerHeight=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowHeight>>.typeName)\" orient=\"auto-start-reverse\">"
+        "<defs><marker id=\"arrow\" viewBox=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowBox>>.typeName)\" refX=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowX>>.typeName)\" refY=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowY>>.typeName)\" markerWidth=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowWidth>>.typeName)\" markerHeight=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowHeight>>.typeName)\" orient=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowOrient>>.typeName)\">"
             + "<path d=\"\(XMLEscaped<StyleValue<Binding, StyleKeys.FigureArrowPath>>.typeName)\" fill=\"\(XMLEscaped<Colour>.typeName)\"/></marker></defs>\n"
     }
 }

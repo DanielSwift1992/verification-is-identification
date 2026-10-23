@@ -2,7 +2,7 @@ import Notation
 import DocumentKit
 
 // GENERATED from the world drawing-binding/1 record.
-// drawing-binding-value-sha256: afe4329e645ac94472047871865a84a6b9a9ea983a7b2087196ec7e712e38bc7
+// drawing-binding-value-sha256: 2be22fdfe05e945976b46140ba82cc66114a2cf93b991e4f7c41d95ef54ae716
 public enum FixtureBindingInk: Paint, Close {}
 extension FixtureBindingInk {
     public static var typeName: String { "color(xyz-d65 0.01 0.01 0.011)" }
@@ -513,6 +513,14 @@ public enum FixtureBindingCover90: DocumentKit.Cover90, Close {}
 extension FixtureBindingCover90 {
     public static var typeName: String { "0.90" }
 }
+public enum FixtureBindingMarkerOrient: DocumentKit.MarkerOrient, Close {}
+extension FixtureBindingMarkerOrient {
+    public static var typeName: String { "auto" }
+}
+public enum FixtureBindingFigureArrowOrient: DocumentKit.FigureArrowOrient, Close {}
+extension FixtureBindingFigureArrowOrient {
+    public static var typeName: String { "auto-start-reverse" }
+}
 public enum FixtureBindingFontUnitsPerEm: DocumentKit.FontUnitsPerEm, Close {}
 extension FixtureBindingFontUnitsPerEm {
     public static var typeName: String { "2048" }
@@ -657,6 +665,8 @@ extension FixtureBindingValues {
             "Cover70|" + FixtureBindingCover70.typeName,
             "Cover80|" + FixtureBindingCover80.typeName,
             "Cover90|" + FixtureBindingCover90.typeName,
+            "MarkerOrient|" + FixtureBindingMarkerOrient.typeName,
+            "FigureArrowOrient|" + FixtureBindingFigureArrowOrient.typeName,
             "FontUnitsPerEm|" + FixtureBindingFontUnitsPerEm.typeName,
             "FontCapHeight|" + FixtureBindingFontCapHeight.typeName,
             "FontAdvanceTable|" + FixtureBindingFontAdvanceTable.typeName,
@@ -756,6 +766,8 @@ public typealias Cover54 = FixtureBindingCover54
 public typealias Cover70 = FixtureBindingCover70
 public typealias Cover80 = FixtureBindingCover80
 public typealias Cover90 = FixtureBindingCover90
+public typealias MarkerOrient = FixtureBindingMarkerOrient
+public typealias FigureArrowOrient = FixtureBindingFigureArrowOrient
 public typealias FontUnitsPerEm = FixtureBindingFontUnitsPerEm
 public typealias FontCapHeight = FixtureBindingFontCapHeight
 public typealias FontAdvanceTable = FixtureBindingFontAdvanceTable

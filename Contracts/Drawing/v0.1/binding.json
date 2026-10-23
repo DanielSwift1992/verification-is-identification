@@ -636,6 +636,12 @@
     "Cover90": {
       "text": "0.90"
     },
+    "MarkerOrient": {
+      "text": "auto"
+    },
+    "FigureArrowOrient": {
+      "text": "auto-start-reverse"
+    },
     "FontUnitsPerEm": {
       "text": "2048"
     },

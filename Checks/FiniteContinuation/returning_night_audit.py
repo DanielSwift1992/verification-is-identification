@@ -4,6 +4,12 @@
 Never invokes any prior run()/main() writer. No provider connection, simulator
 job or full Swift build. Frozen positive court failures are reported as such.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 from collections import Counter
 from datetime import datetime,timezone
 import hashlib,json,os,subprocess,sys,time
@@ -34,11 +40,11 @@ def manifests():
     for p in sorted(BASE.rglob('*manifest*.json')):
         hashes=read(p).get('sha256')
         if not isinstance(hashes,dict):continue
-        paths.append(str(p.relative_to(ROOT)))
+        paths.append(_runs.address(p, ROOT))
         for name,wanted in hashes.items():
-            f=Path(name);f=f if f.is_absolute() else ROOT/f
+            f=_runs.resolve_recorded(name,wanted,ROOT)
             assert sha(f)==wanted,(p,name)
-            key=str(f.resolve());assert key not in files or files[key]==wanted
+            key=_runs.address(f,ROOT);assert key not in files or files[key]==wanted
             files[key]=wanted;entries+=1
     return {'manifests':len(paths),'entries':entries,'distinct_files':len(files),'paths':paths},files
 
@@ -46,11 +52,11 @@ def manifests():
 def hardware():
     ledger=read(BASE/'hardware-ledger.json');assert len(ledger['jobs'])==2
     cases=[]
-    for folder,private,late in (('hardware','ibm-returning-attempt-20260916',False),
+    for folder,run_dir,late in (('hardware','ibm-returning-attempt-20260916',False),
                                ('arrival-hardware','ibm-arrival-boundary-20260916',True)):
         status=read(BASE/folder/'status.json');plan=read(BASE/folder/'plan.json')
-        raw=ROOT/'private'/private/'raw-result.json';assert sha(raw)==status['raw_sha256']
-        assert sha(ROOT/'private'/private/'isa.qpy')==plan['qpy_sha256']
+        raw=_runs.root()/run_dir/'raw-result.json';assert sha(raw)==status['raw_sha256']
+        assert sha(_runs.root()/run_dir/'isa.qpy')==plan['qpy_sha256']
         actual=json.loads(raw.read_text(),cls=RuntimeDecoder)
         assert len(actual)==len(status['rows'])==len(plan['PUBs'])==32
         totals=Counter();counters={}
@@ -100,7 +106,7 @@ def native_court(out):
     declared=os.environ.get('VI_ARCHIVED_NATIVE_TOOLS')
     if not declared:
         raise RuntimeError('Frozen native audit: explicitly supply VI_ARCHIVED_NATIVE_TOOLS with the historical binary; see Checks/Archive/WhereV2/README.md')
-    executable=Path(declared).resolve();rows=[]
+    executable=_runs.owned(declared).resolve();rows=[]
     for folder in ('reflection-memory','frame-orbit','live-orbit','future-orbit'):
         previous=read(BASE/folder/'native-court.json')
         assert sha(executable)==previous.get('native_binary_sha256',previous.get('binary_sha256'))
@@ -116,10 +122,10 @@ def native_court(out):
     reply=subprocess.run([str(executable),'judge','where',str(old)],capture_output=True,text=True,timeout=15)
     failed=sum(line.startswith('✗') for line in reply.stdout.splitlines())
     assert reply.returncode==1 and failed==16
-    rows.append({'file':str(old.relative_to(ROOT)),'exit_code':1,'output':reply.stdout,
+    rows.append({'file':_runs.address(old, ROOT),'exit_code':1,'output':reply.stdout,
         'failed_equalities':failed,'limitation':'This gate binary cannot read the positive generic file; it is not the original learning binary.'})
     original=ROOT/'.build/arm64-apple-macosx/debug/Tools'
-    assert sha(original)==read(BASE/'learning/manifest.json')['sha256'][str(original.relative_to(ROOT))]
+    assert sha(original)==read(BASE/'learning/manifest.json')['sha256'][_runs.address(original, ROOT)]
     original_rows=[]
     for row in rows:
         p=ROOT/row['file'];expected=1 if 'Rejected' in p.name else 0
@@ -129,11 +135,11 @@ def native_court(out):
     for p in sorted((BASE/'learning').glob('RejectedReturningAttempt-*.swift')):
         reply=subprocess.run([str(original),'judge','where',str(p)],capture_output=True,text=True,timeout=15)
         assert reply.returncode==1
-        original_rows.append({'file':str(p.relative_to(ROOT)),'exit_code':reply.returncode,'output':reply.stdout})
+        original_rows.append({'file':_runs.address(p, ROOT),'exit_code':reply.returncode,'output':reply.stdout})
     result={'gate_binary_sha256':sha(executable),'gate_cases':rows,
             'original_learning_binary_sha256':sha(original),'original_learning_binary_cases':original_rows,
             'original_learning_pass_reproduced_with_its_actual_binary':True,'full_Swift_build':False}
-    (out/'native-court.json').write_text(json.dumps(result,indent=2)+'\n')
+    (out/'native-court.json').write_text(json.dumps(_runs.bind_receipt(result, destination=out/'native-court.json'),indent=2)+'\n')
     return {'gate_files':len(rows),'gate_passing_files':sum(r['exit_code']==0 for r in rows),
             'expected_negative_files':sum('Rejected' in r['file'] for r in rows),
             'gate_binary_positive_limitations':[r['file'] for r in rows if r['exit_code'] and 'Rejected' not in r['file']],
@@ -164,13 +170,13 @@ def serialized():
         for acquired in (True,False):
             p=BASE/'sdk'/f'{"acquired" if acquired else "echo"}-{ports.probe}.qpy'
             with p.open('rb') as handle:q,=qpy.load(handle)
-            results.append({'file':str(p.relative_to(ROOT)),**sc.audit(q,ports,gates,acquired=acquired)})
+            results.append({'file':_runs.address(p, ROOT),**sc.audit(q,ports,gates,acquired=acquired)})
     specs=read(BASE/'arrival/checks.json')['cases']
     for spec in specs:
         name=spec['name'];p=BASE/'arrival'/f'{name}.qpy'
         with p.open('rb') as handle:q,=qpy.load(handle)
         result=ac.audit(q,arrival.ArrivalPorts(**spec['ports']),acquired=spec['acquisition_enabled'],recipient=name!='arrival')
-        results.append({'file':str(p.relative_to(ROOT)),**result})
+        results.append({'file':_runs.address(p, ROOT),**result})
     m=memory.model(o.read_source());rng=np.random.default_rng(91648)
     frames=[mc.f.I,mc.f.H,np.linalg.qr(rng.normal(size=(2,2))+1j*rng.normal(size=(2,2)))[0]]
     p=BASE/'acquired-memory/AcquiredMemoryCapability.qpy'
@@ -183,7 +189,7 @@ def serialized():
             for effect in (mc.f.I,mc.f.X,mc.f.Y,mc.f.Z):
                 worst=max(worst,float(np.max(abs(k.conj().T@np.kron(mc.f.I,effect)@k-mc.branch_effects(target,key,effect)))))
     assert len(circuits)==9 and worst<1e-12
-    results.append({'file':str(p.relative_to(ROOT)),'circuits':9,'all_input_effect_residual':worst})
+    results.append({'file':_runs.address(p, ROOT),'circuits':9,'all_input_effect_residual':worst})
     m=hc.h.model(o.read_source());port=hc.h.CommutingPhasePort(m,hc.h.f.H,[.27,-.8],[.17,1.13])
     acquisition=hc.h.acquire(m,port,3)
     words={0:['H_source','V','V'],1:['V'],2:['S_source','V','H_source'],3:['H_source','V']}
@@ -196,7 +202,7 @@ def serialized():
             if index:wanted=np.kron(np.eye(2),hc.h.compiled_word(y,4,words[y]))@wanted
             worst=max(worst,float(np.max(abs(k-wanted))))
     assert len(circuits)==2 and worst<1e-12
-    results.append({'file':str(p.relative_to(ROOT)),'circuits':2,'full_branch_residual':worst})
+    results.append({'file':_runs.address(p, ROOT),'circuits':2,'full_branch_residual':worst})
     return {'files':len(results),'circuits':20,'operator_checks':results}
 
 
@@ -209,11 +215,11 @@ def run(out):
             'native_court':native_court(out),'hardware':hardware()}
     after,again=manifests();assert again==files and after==before
     result['prior_evidence_unchanged_after_audit']=True;result['seconds']=time.perf_counter()-started
-    (out/'checks.json').write_text(json.dumps(result,indent=2)+'\n')
-    print(json.dumps({'frozen_evidence':{k:v for k,v in before.items() if k!='paths'},
+    (out/'checks.json').write_text(json.dumps(_runs.bind_receipt(result, destination=out/'checks.json'),indent=2)+'\n')
+    print(json.dumps(_runs.bind_receipt({'frozen_evidence':{k:v for k,v in before.items() if k!='paths'},
         'learning':result['current_learning'],'serialized_files':result['serialized_instruments']['files'],
         'serialized_circuits':20,'court':result['native_court'],'hardware':result['hardware'],
-        'prior_evidence_unchanged':True,'seconds':result['seconds']},indent=2))
+        'prior_evidence_unchanged':True,'seconds':result['seconds']}),indent=2))
 
 
-if __name__=='__main__':run(Path(sys.argv[1]) if len(sys.argv)>1 else BASE/'night-audit')
+if __name__=='__main__':run(_runs.owned(sys.argv[1]) if len(sys.argv)>1 else BASE/'night-audit')

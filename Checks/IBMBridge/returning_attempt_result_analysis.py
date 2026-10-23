@@ -4,15 +4,21 @@
 No postselection, repeated sampling, remote call, or IID confidence claim.
 The raw per-shot return remains in the private frozen artifact.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 from collections import Counter
 from fractions import Fraction
 import hashlib
 import json
 from pathlib import Path
 
-ROOT=Path(__file__).resolve().parents[2]
+ROOT=_runs.owned(__file__).resolve().parents[2]
 ART=ROOT/'Research/Artifacts/returning-attempt-20260916/hardware'
-PRIVATE=ROOT/'private/ibm-returning-attempt-20260916'
+PRIVATE=_runs.path('ibm-returning-attempt-20260916')
 
 
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -78,9 +84,9 @@ def run():
          'scope':'Point estimates from every shot, no postselection. Distinct variants have different depth, '
                  'feedforward and output layouts. Descriptive contrasts, not process tomography, '
                  'IID guarantee, demonstrated entanglement, isolated error cause or advantage of learning over echo.'}
-    (ART/'analysis.json').write_text(json.dumps(out,indent=2)+'\n')
-    print(json.dumps({'groups':groups,'contrasts':contrasts,'all_predicted_signs':out['point_estimate_sign_matches'],
-                      'metrics':out['metrics'],'overall':overall},indent=2))
+    (ART/'analysis.json').write_text(json.dumps(_runs.bind_receipt(out, destination=ART/'analysis.json'),indent=2)+'\n')
+    print(json.dumps(_runs.bind_receipt({'groups':groups,'contrasts':contrasts,'all_predicted_signs':out['point_estimate_sign_matches'],
+                      'metrics':out['metrics'],'overall':overall}),indent=2))
 
 
 if __name__=='__main__':run()

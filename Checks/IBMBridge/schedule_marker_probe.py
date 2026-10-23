@@ -4,6 +4,12 @@
 Two isolated qubits encode each arm's index in actual returned measurements.
 The marker is not inferred from circuit_metadata. One fixed submission only.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from collections import Counter
 import fcntl
@@ -22,9 +28,9 @@ from classical_boundary_probe import aer_form
 from resident_joint_confirmation import place, canonical_mcm
 from arrival_schedule_binding_audit import source_signature, timing_signature, classify
 
-ROOT=Path(__file__).resolve().parents[2]
+ROOT=_runs.owned(__file__).resolve().parents[2]
 ART=ROOT/'Research/Artifacts/schedule-marker-20260916'
-PRIVATE=ROOT/'private/ibm-schedule-marker-20260916'
+PRIVATE=_runs.work('ibm-schedule-marker-20260916')
 ARMS=('conditional','slots_only','slots_no_reset','echo')
 ORDER=(0,1,2,3,3,2,1,0)
 PATH=[14,15,34,35,118]
@@ -34,7 +40,7 @@ CAP=10
 
 
 def read(p):return json.loads(p.read_text())
-def write(p,v):p.write_text(json.dumps(v,indent=2)+'\n')
+def write(p,v):p.write_text(json.dumps(_runs.bind_receipt(v, destination=p),indent=2)+'\n')
 
 
 def circuit(code):
@@ -89,7 +95,7 @@ def prepare():
     with (PRIVATE/'isa.qpy').open('wb') as f:qpy.dump(qs,f)
     p={'schema':'vi.schedule-marker.v1','tag':TAG,'at':utc(),'backend':backend.name,
        'instance':service.active_instance(),'plan':'open','options':options(),'path':PATH,
-       'versions':versions(),'script_sha256':sha(Path(__file__).read_bytes()),
+       'versions':versions(),'script_sha256':sha(_runs.owned(__file__).read_bytes()),
        'qpy_sha256':sha((PRIVATE/'isa.qpy').read_bytes()),'PUBs':[q.metadata for q in qs],
        'shots_each':SHOTS,'total_shots':len(qs)*SHOTS,'cap_seconds':CAP,
        'analysis':'Compare literal submitted opcode signatures and returned schedule features; '
@@ -103,7 +109,7 @@ def prepare():
 def load():
     p=read(PRIVATE/'plan.json')
     require(p['options']==options() and p['versions']==versions() and
-            p['script_sha256']==sha(Path(__file__).read_bytes()),'Changed executor')
+            p['script_sha256']==sha(_runs.owned(__file__).read_bytes()),'Changed executor')
     require(sha((PRIVATE/'isa.qpy').read_bytes())==p['qpy_sha256'],'Changed ISA')
     with (PRIVATE/'isa.qpy').open('rb') as f:qs=qpy.load(f)
     require(len(qs)==8 and [q.metadata for q in qs]==p['PUBs'],'Changed PUBs')
@@ -161,4 +167,4 @@ def collect():
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('stage',choices=['prepare','submit','collect'])
-    print(json.dumps(globals()[p.parse_args().stage](),indent=2))
+    print(json.dumps(_runs.bind_receipt(globals()[p.parse_args().stage]()),indent=2))

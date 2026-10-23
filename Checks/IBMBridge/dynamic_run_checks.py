@@ -1,4 +1,10 @@
 """Offline fixed-criteria, joint-record and once-only submission checks."""
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 from copy import deepcopy
 from pathlib import Path
 import shutil
@@ -25,9 +31,9 @@ def fake_result(circuits):
 class DynamicRuntimeChecks(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.original=run.ROOT/'private/ibm-dynamic-qpu-ready-20260914'
+        cls.original=_runs.path('ibm-dynamic-qpu-ready-20260914')
         if not (cls.original/'plan.json').exists():
-            cls.original=run.ROOT/'private/ibm-dynamic-qpu-20260914'
+            cls.original=_runs.path('ibm-dynamic-qpu-20260914')
         cls.plan,cs=run.read_plan(cls.original)
         cls.circuits=[cs[i] for i in run.ORDER]
 
@@ -63,9 +69,9 @@ class DynamicRuntimeChecks(unittest.TestCase):
             inputs={'pubs':[[c,None,1024] for c in circuits]},result=lambda:fake_result(circuits),metrics=lambda:{})
         service=SimpleNamespace(job=lambda _:job,active_instance=lambda:plan['instance'],usage=lambda:{})
         with tempfile.TemporaryDirectory() as tmp:
-            out=Path(tmp)
+            out=_runs.owned(tmp)
             for name in ('plan.json','isa.qpy'):shutil.copyfile(self.original/name,out/name)
-            write_json(out/'ledger.json',{'tag':plan['tag'],'qpy_sha256':plan['qpy_sha256'],'job_id':'fake-dynamic-only'})
+            write_json(out/'ledger.json',_runs.bind_receipt({'tag':plan['tag'],'qpy_sha256':plan['qpy_sha256'],'job_id':'fake-dynamic-only'}, destination=out/'ledger.json'))
             with patch('dynamic_run.service_open',return_value=service),patch('builtins.print'):
                 report=run.collect(out)
                 self.assertEqual(report['status'],'DONE')
@@ -91,7 +97,7 @@ class DynamicRuntimeChecks(unittest.TestCase):
             backend=lambda _:SimpleNamespace(status=lambda:SimpleNamespace(operational=True,status_msg='active')),
             jobs=lambda **kwargs:state['jobs'])
         with tempfile.TemporaryDirectory() as tmp:
-            out=Path(tmp)
+            out=_runs.owned(tmp)
             class Sampler:
                 def __init__(self,**kwargs):
                     assert kwargs['options']['max_execution_time']==60
@@ -107,7 +113,7 @@ class DynamicRuntimeChecks(unittest.TestCase):
             self.assertEqual(state['calls'],1)
         with tempfile.TemporaryDirectory() as tmp:
             state['remaining']=0
-            with self.assertRaises(CheckFailure):run.send_once(Path(tmp),service,self.plan,self.circuits,Sampler)
+            with self.assertRaises(CheckFailure):run.send_once(_runs.owned(tmp),service,self.plan,self.circuits,Sampler)
 
 
 if __name__=='__main__':unittest.main()

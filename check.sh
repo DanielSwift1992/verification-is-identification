@@ -107,7 +107,7 @@ LAWS+=(
 "court|the judge builds as a library a consumer links|bash Checks/court-library.sh"
 "response|requested where applications have addressed outcomes and complete admission coverage|bash Checks/where-response.sh"
 "contract|the named finite court contract matches its complete fixtures|bash Checks/court-contract.sh"
-"profiles|named check profiles preserve the declared coverage|python3 Checks/profiles-test.py && python3 Checks/verdict-cases-test.py"
+"profiles|named check profiles preserve the declared coverage|python3 Checks/profiles-test.py && python3 Checks/verdict-cases-test.py && python3 Checks/hardware-runs-test.py"
 "ci|CI diagnostics preserve failed checks and quote their output safely|python3 Checks/ci-check-test.py"
 "quotes|a quote of a sibling paper is that paper's sentence|bash Checks/tools.sh quotes"
 "law|the grammar carries every source file|bash Checks/tools.sh grammar"

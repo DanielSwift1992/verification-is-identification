@@ -6,6 +6,12 @@ Analysis criteria are fixed before submission. A returned Bell score is an
 observed statistic; its interpretation as fidelity requires common preparation
 and calibrated Pauli readout, beyond a successful compiler check.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from collections import Counter
 from copy import deepcopy
@@ -27,11 +33,12 @@ ORDER = (0,4,8,3,7,2,6,1,5)
 F_RADIUS = 0.09075  # Outward-rounded simultaneous 99% bound for nine correlations.
 
 
+@_runs.include_reader
 def implementation():
-    files=[Path(__file__),*(Path(__file__).with_name(n) for n in
+    files=[_runs.owned(__file__),*(_runs.owned(__file__).with_name(n) for n in
             ('dynamic.py','dynamic_prepare.py','pilot.py')),
            *(BRIDGE/n for n in ('execute.py','runtime.py','prepare.py'))]
-    return {str(f.relative_to(ROOT)):sha(f.read_bytes()) for f in files}
+    return {_runs.address(f, ROOT):sha(f.read_bytes()) for f in files}
 
 
 def named_mid_measure(circuits, manifest, backend):
@@ -121,9 +128,9 @@ def make_plan(directory):
     from qiskit_ibm_runtime.utils.validations import validate_isa_circuits
     require(not directory.exists(),'output already exists')
     current=implementation()
-    docs,receipt=prepare(ROOT/'private/ibm-prepared')
+    docs,receipt=prepare(_runs.prepared('ibm-prepared'))
     exact_channels(docs)
-    archive=ROOT/'private/ibm-dynamic-common-prefix-20260914'
+    archive=_runs.path('ibm-dynamic-common-prefix-20260914')
     old=load_json(archive/'result.json')
     service=service_open();usage=service.usage()
     require(usage['usage_remaining_seconds']>=MAX_SECONDS,'insufficient free quota')
@@ -162,14 +169,14 @@ def make_plan(directory):
           'criteria':{'alpha':0.01,'f_radius':F_RADIUS,'primary':['acquired lower > 0.5','acquired-minus-ignore lower > 0'],
                       'fixed_family':'3 policies x 3 bases; all outcomes retained; no repeat-until-pass'},
           'assumptions':'Intervals require independent fixed-law shots within each circuit. Fidelity requires common preparation and stipulated Pauli readout; identical prefixes do not establish hardware stationarity.'}
-    write_json(directory/'plan.json',plan)
-    write_json(directory/'local-validation.json',{'scope':'IDEAL LOCAL ONLY; measure_2 mapped to ideal Measure',
-                                                 'rows':local,'analysis':analyse(local)})
+    write_json(directory/'plan.json',_runs.bind_receipt(plan, destination=directory/'plan.json'))
+    write_json(directory/'local-validation.json',_runs.bind_receipt({'scope':'IDEAL LOCAL ONLY; measure_2 mapped to ideal Measure',
+                                                 'rows':local,'analysis':analyse(local)}, destination=directory/'local-validation.json'))
     # Calibration metadata includes datetime values, unlike the finite VI exports.
     write_json(directory/'calibration-at-preparation.json',
-               json.loads(json.dumps(backend.properties().to_dict(),default=str)))
-    print(json.dumps({'prepared':True,'backend':backend.name,'shots':9*SHOTS,'max_free_seconds':MAX_SECONDS,
-                      'physical_pair':manifest[0]['physical_payload_reference'],'tag':tag},indent=2))
+               _runs.bind_receipt(json.loads(json.dumps(backend.properties().to_dict(),default=str)), destination=directory/'calibration-at-preparation.json'))
+    print(json.dumps(_runs.bind_receipt({'prepared':True,'backend':backend.name,'shots':9*SHOTS,'max_free_seconds':MAX_SECONDS,
+                      'physical_pair':manifest[0]['physical_payload_reference'],'tag':tag}),indent=2))
 
 
 def read_plan(directory,current=False):
@@ -186,7 +193,7 @@ def read_plan(directory,current=False):
                 'source occurrence mismatch')
     if current:
         require(plan['implementation']==implementation() and plan['versions']==versions(),'implementation/runtime changed')
-        _,receipt=prepare(ROOT/'private/ibm-prepared')
+        _,receipt=prepare(_runs.prepared('ibm-prepared'))
         require(receipt['key']==plan['checked_build']['key'],'current checked VI root changed')
     return plan,circuits
 
@@ -203,7 +210,7 @@ def send_once(directory,service,plan,circuits,sampler_factory=None):
             jobs=service.jobs(limit=2,job_tags=[plan['tag']])
             require(len(jobs)==1,'uncertain submission; reconcile existing jobs, do not resubmit')
             ledger.update(job_id=jobs[0].job_id(),status='recovered',at=utc())
-            write_json(path,ledger);return ledger
+            write_json(path,_runs.bind_receipt(ledger, destination=path));return ledger
         require(service.active_instance()==plan['instance'],'wrong instance')
         require(service.usage()['usage_remaining_seconds']>=MAX_SECONDS,'insufficient free quota')
         backend=service.backend(plan['backend']);status=backend.status()
@@ -211,10 +218,10 @@ def send_once(directory,service,plan,circuits,sampler_factory=None):
         sampler=(sampler_factory or SamplerV2)(mode=backend,options=plan['options'])
         ledger={'tag':plan['tag'],'qpy_sha256':plan['qpy_sha256'],'status':'submission_intent','at':utc(),
                 'backend':plan['backend'],'instance':plan['instance']}
-        write_json(path,ledger)
+        write_json(path,_runs.bind_receipt(ledger, destination=path))
         job=sampler.run([circuits[i] for i in ORDER],shots=SHOTS)
         ledger.update(job_id=job.job_id(),status='submitted')
-        write_json(path,ledger);return ledger
+        write_json(path,_runs.bind_receipt(ledger, destination=path));return ledger
 
 
 def collect(directory):
@@ -231,8 +238,8 @@ def collect(directory):
     status=job.status()
     status_record={'job_id':job.job_id(),'status':status,'checked_at':utc(),'backend':plan['backend']}
     if status in ('ERROR','CANCELLED'):status_record['error']=job.error_message()
-    write_json(directory/'status.json',status_record)
-    if status!='DONE':print(json.dumps(status_record,indent=2));return status_record
+    write_json(directory/'status.json',_runs.bind_receipt(status_record, destination=directory/'status.json'))
+    if status!='DONE':print(json.dumps(_runs.bind_receipt(status_record),indent=2));return status_record
     pubs=job.inputs['pubs']
     require(len(pubs)==9,'remote program count mismatch')
     for pub,circuit in zip(pubs,circuits):
@@ -247,21 +254,21 @@ def collect(directory):
     report={'schema':'vi.ibm.dynamic-result.v1',**status_record,'scope':'PHYSICAL QPU DATA',
             'raw_result_sha256':sha(raw.encode()),'rows':rows,'analysis':analyse(rows),
             'metrics':job.metrics(),'usage_after':service.usage(),'collector_implementation':implementation()}
-    write_json(directory/'hardware-result.json',report)
-    print(json.dumps({'status':'DONE','job_id':job.job_id(),'analysis':report['analysis'],
-                      'metrics':report['metrics'],'usage_after':report['usage_after']},indent=2,default=str))
+    write_json(directory/'hardware-result.json',_runs.bind_receipt(report, destination=directory/'hardware-result.json'))
+    print(json.dumps(_runs.bind_receipt({'status':'DONE','job_id':job.job_id(),'analysis':report['analysis'],
+                      'metrics':report['metrics'],'usage_after':report['usage_after']}),indent=2,default=str))
     return report
 
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('stage',choices=('prepare','submit','collect'))
-    p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--output',type=_runs.owned,required=True)
     a=p.parse_args();directory=a.output.resolve()
     if a.stage=='prepare':make_plan(directory)
     elif a.stage=='submit':
         plan,circuits=read_plan(directory,current=True)
-        print(json.dumps(send_once(directory,service_open(),plan,circuits),indent=2))
+        print(json.dumps(_runs.bind_receipt(send_once(directory,service_open(),plan,circuits)),indent=2))
     else:collect(directory)
 
 

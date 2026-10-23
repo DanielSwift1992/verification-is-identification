@@ -7,6 +7,12 @@ law. It creates the public parity record and reads the actual CZ resident.
 There is no hidden source row, oracle answer, host sampling or new planner.
 No arbitrary QASM input, cloud submission or live quantum-state output.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from collections import Counter
 import hashlib
@@ -158,9 +164,10 @@ def main():
     p.add_argument('--request', required=True, help='Checked request, e.g. AcquireX, AcquireY, RotatedY')
     p.add_argument('--input', choices=PREPARATIONS, default='plus')
     p.add_argument('--shots', type=int, default=256)
-    p.add_argument('--cache', type=Path, default=ROOT/'private/braket-prepared')
-    p.add_argument('--output', type=Path, required=True, help='New directory for actual execution records')
+    p.add_argument('--cache', type=_runs.owned)
+    p.add_argument('--output', type=_runs.owned, required=True, help='New directory for actual execution records')
     a = p.parse_args()
+    a.cache = a.cache if a.cache is not None else _runs.prepared('braket-prepared')
     a.output = a.output.resolve()
     started = perf_counter()
     implementation = {name: hashlib.sha256((HERE/name).read_bytes()).hexdigest()
@@ -170,7 +177,7 @@ def main():
     documents, receipt = prepare(a.cache)
     job, descriptor, request = terminal_job(documents, a.request, a.input, a.shots)
     a.output.mkdir(parents=True)
-    write_json(a.output/'jobs.json', {'schema': 'vi.braket.jobs.v1', 'jobs': [job]})
+    write_json(a.output/'jobs.json', _runs.bind_receipt({'schema': 'vi.braket.jobs.v1', 'jobs': [job]}, destination=a.output/'jobs.json'))
     run = run_bounded([sys.executable, HERE/'runner.py', '--jobs', a.output/'jobs.json',
                        '--output', a.output/'raw-result.json'], 90)
     (a.output/'runner.log').write_text(run.stdout)
@@ -190,8 +197,8 @@ def main():
               'job_id': job['id'], 'qasm_sha256': descriptor['qasm_sha256'], 'package_versions': raw['package_versions'],
               'seconds': perf_counter()-started,
               'scope': 'sampled classical output; no returned quantum state or hardware validation'}
-    write_json(a.output/'result.json', report)
-    print(json.dumps(report, indent=2))
+    write_json(a.output/'result.json', _runs.bind_receipt(report, destination=a.output/'result.json'))
+    print(json.dumps(_runs.bind_receipt(report), indent=2))
 
 
 if __name__ == '__main__':

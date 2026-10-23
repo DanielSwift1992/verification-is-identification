@@ -113,7 +113,8 @@
     },
     "Checks/FiniteContinuation/resident_night_final_audit.py": {
       "before_sha256": "679863052cb2df3b1157fd02798ba226b5b3e547d6fa90d2863ddb7fd04ce10b",
-      "frozen_sha256": "dc9db932a4d3f034ac2839422e592c9bbb2cbf01d02bcccc69393a5f4767dd52"
+      "frozen_sha256": "cb264862200af69ec4ae5d3f973c1e0a489cbfa51c3bd4882c6670949dd3b3ef",
+      "migration": "Explicit evidence-root migration; archived reader selection retained."
     },
     "Checks/FiniteContinuation/resident_orientation_word_court.js": {
       "before_sha256": "08083beb74009c11af58cbaab45463f0d41f3f31002f4fb8e2d2350854a36c93",
@@ -183,7 +184,8 @@
   "related_native_consumers": {
     "Checks/FiniteContinuation/returning_night_audit.py": {
       "before_sha256": "9930be5091dd9adc2006a1d8f8eecd41bbfd1390452290c393f2868de1024b01",
-      "frozen_sha256": "721abee2a6422e593929981eb1c82265c8e5797efa9c40a80ee0800a8289f92e"
+      "frozen_sha256": "99baee899e19448e967c0ab088aa85621c8e27e4aecb3a25757c6633bda7e570",
+      "migration": "Explicit evidence-root migration; archived reader selection retained."
     }
   },
   "documentation_provenance": {

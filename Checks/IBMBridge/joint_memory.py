@@ -5,6 +5,12 @@ Nine 4-qubit circuits, 1024 shots each; source-derived A/B words, Bell
 reference for BOTH D and E. All outcomes retained. No paid plan or retry-until-
 success. Direct H is a benchmark, never an added execution capability.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from collections import Counter
 from copy import deepcopy
@@ -17,7 +23,7 @@ from pathlib import Path
 import sys
 import uuid
 
-HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
+HERE=_runs.owned(__file__).resolve().parent;ROOT=HERE.parents[1]
 sys.path.insert(0,str(HERE));sys.path.insert(0,str(ROOT/'Checks/FiniteContinuation'))
 from pilot import service_open,compact_active,signature,sha,utc,versions
 from joint_returns import choose,validate,check_source
@@ -30,6 +36,7 @@ ORDER=(0,4,7,1,5,8,2,6,3)
 
 
 def write(path,value):
+    value=_runs.bind_receipt(value,destination=path)
     temporary=path.with_name(path.name+'.'+uuid.uuid4().hex+'.tmp')
     with temporary.open('x') as f:
         f.write(json.dumps(value,indent=2,default=str)+'\n');f.flush();os.fsync(f.fileno())
@@ -47,6 +54,7 @@ def options(tag):
             'dynamical_decoupling':{'enable':False}}
 
 
+@_runs.include_reader
 def implementation():
     names=['Checks/IBMBridge/joint_memory.py','Checks/IBMBridge/pilot.py',
            'Checks/FiniteContinuation/joint_returns.py','Checks/FiniteContinuation/joint_return_court.js',
@@ -219,7 +227,7 @@ def prepare(directory):
     buf=io.BytesIO();qpy.dump(isa,buf);raw=buf.getvalue();(directory/'isa.qpy').write_bytes(raw)
     snapshots={}
     for n,h in {**impl,**source['source_sha256']}.items():
-        relative=n if not Path(n).is_absolute() else 'external/'+Path(n).name
+        relative=n if not _runs.owned(n).is_absolute() else 'external/'+_runs.owned(n).name
         p=directory/'source'/relative;p.parent.mkdir(parents=True,exist_ok=True)
         data=(ROOT/n).read_bytes();assert sha(data)==h;p.write_bytes(data)
         snapshots[str(p.relative_to(directory))]=h
@@ -308,7 +316,7 @@ def collect(directory):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('stage',choices=['prepare','submit','collect']);p.add_argument('--output',required=True,type=Path)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('stage',choices=['prepare','submit','collect']);p.add_argument('--output',required=True,type=_runs.owned)
     a=p.parse_args();d=a.output.resolve()
     if a.stage=='prepare':prepare(d)
     elif a.stage=='submit':

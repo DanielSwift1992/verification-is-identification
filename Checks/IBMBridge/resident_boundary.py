@@ -4,6 +4,12 @@
 Source-derived PC actions, separately declared diagnostic data preparations.
 Same device/wires as the completed feedback experiment; no V or recipient.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from collections import Counter
 import io
@@ -14,12 +20,12 @@ import random
 import sys
 import uuid
 
-HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
+HERE=_runs.owned(__file__).resolve().parent;ROOT=HERE.parents[1]
 sys.path.insert(0,str(HERE))
 import resident_feedback as f
 
 PROTOCOL='Research/2026-09-15-resident-boundary-diagnostic-protocol.md'
-FIRST=ROOT/'private/ibm-resident-acquisition-20260915'
+FIRST=_runs.path('ibm-resident-acquisition-20260915')
 VARIANTS=('Baseline11','Retain11','Toggle00','Toggle11','Write11','Install11','DataFeedback11','Regenerate11')
 CASES=tuple((v,a) for v in VARIANTS for a in ('Z','X'))
 ORDER=list(range(len(CASES)));random.Random(649316).shuffle(ORDER)
@@ -27,9 +33,10 @@ QUESTIONS=('data','program','clock','joint','record_zero')
 WIRES=[23,16,3];SHOTS=1024;MAX_SECONDS=30;ALPHA=.01
 
 
+@_runs.include_reader
 def implementation():
-    names=[Path(__file__),ROOT/PROTOCOL]
-    return {**f.implementation(),**{str(p.relative_to(ROOT)):f.sha(p.read_bytes()) for p in names}}
+    names=[_runs.owned(__file__),ROOT/PROTOCOL]
+    return {**f.implementation(),**{_runs.address(p, ROOT):f.sha(p.read_bytes()) for p in names}}
 
 
 def descriptor(source,variant):
@@ -182,10 +189,10 @@ def prepare(directory):
     directory.mkdir(parents=True);buf=io.BytesIO();qpy.dump(isa,buf);raw=buf.getvalue();(directory/'isa.qpy').write_bytes(raw)
     snapshots={}
     for n,h in {**impl,**source['source_sha256']}.items():
-        rel=n if not Path(n).is_absolute() else 'external/'+Path(n).name
+        rel=n if not _runs.owned(n).is_absolute() else 'external/'+_runs.owned(n).name
         p=directory/'source'/rel;p.parent.mkdir(parents=True,exist_ok=True)
         data=(ROOT/n).read_bytes();assert f.sha(data)==h;p.write_bytes(data);snapshots[str(p.relative_to(directory))]=h
-    f.write(directory/'source-reading.json',source)
+    f.write(directory/'source-reading.json',_runs.bind_receipt(source, destination=directory/'source-reading.json'))
     plan={'schema':'vi.ibm.resident-boundary.v1','created_at':f.utc(),'tag':tag,'backend':backend.name,
           'instance':service.active_instance(),'instance_plan':'open','shots':SHOTS,'max_seconds':MAX_SECONDS,
           'physical_D_C_P':WIRES,'target_snapshot':snapshot,'usage_before':usage,'cases':list(CASES),'order':ORDER,
@@ -193,7 +200,7 @@ def prepare(directory):
           'snapshots':snapshots,'qpy_sha256':f.sha(raw),'source_reading_sha256':f.sha((directory/'source-reading.json').read_bytes()),
           'analysis':{'alpha':ALPHA,'questions':list(QUESTIONS),'no_postselection':True,'no_adaptive_repeats':True},
           'options':f.options(tag),'first_night_job':previous['job_id'],'last_planned_night_job':True}
-    f.write(directory/'plan.json',plan);f.write(directory/'ideal-validation.json',local)
+    f.write(directory/'plan.json',_runs.bind_receipt(plan, destination=directory/'plan.json'));f.write(directory/'ideal-validation.json',_runs.bind_receipt(local, destination=directory/'ideal-validation.json'))
     return {'prepared':True,'circuits':len(isa),'shots':len(isa)*SHOTS,'wires':WIRES,'max_free_QPU_seconds':MAX_SECONDS}
 
 
@@ -248,13 +255,13 @@ def collect(directory):
     if status!='DONE':
         r={'job_id':job.job_id(),'status':status}
         if status in ('ERROR','CANCELLED'):r['error']=job.error_message()
-        f.write(directory/'status.json',r);return r
+        f.write(directory/'status.json',_runs.bind_receipt(r, destination=directory/'status.json'));return r
     pubs=job.inputs['pubs'];assert len(pubs)==len(circuits)
     for pub,c in zip(pubs,circuits):
         remote=pub[0] if isinstance(pub,(list,tuple)) else pub.circuit
         assert f.signature(remote)==f.signature(c)
     result=job.result();assert len(result)==len(circuits)
-    (directory/'raw-result.json').write_text(json.dumps(result,cls=RuntimeEncoder,indent=2));rows=[]
+    (directory/'raw-result.json').write_text(json.dumps(_runs.bind_receipt(result, destination=directory/'raw-result.json'),cls=RuntimeEncoder,indent=2));rows=[]
     for pub,c in zip(result,circuits):
         assert pub.metadata.get('circuit_metadata')==c.metadata and set(pub.data.keys())=={'out'}
         bits=pub.data.out;assert bits.num_shots==SHOTS and bits.num_bits==4 and bits.shape==()
@@ -262,13 +269,13 @@ def collect(directory):
     analysis=analyse(rows,f.read(directory/'source-reading.json'));usage=service.usage()
     r={'job_id':job.job_id(),'status':'DONE','backend':p['backend'],'collected_at':f.utc(),'rows':rows,'analysis':analysis,
        'metrics':job.metrics(),'usage_after':usage,'raw_sha256':f.sha((directory/'raw-result.json').read_bytes()),'collector_sha256':implementation()}
-    f.write(directory/'hardware-result.json',r);f.write(directory/'status.json',{'job_id':job.job_id(),'status':'DONE'})
+    f.write(directory/'hardware-result.json',_runs.bind_receipt(r, destination=directory/'hardware-result.json'));f.write(directory/'status.json',_runs.bind_receipt({'job_id':job.job_id(),'status':'DONE'}, destination=directory/'status.json'))
     return {'job_id':job.job_id(),'status':'DONE','free_quota_remaining':usage['usage_remaining_seconds'],
             'frequencies':{k:{q:v['frequency'] for q,v in row['questions'].items()} for k,row in analysis['cases'].items()}}
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('stage',choices=['prepare','submit','collect']);p.add_argument('--output',required=True,type=Path)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('stage',choices=['prepare','submit','collect']);p.add_argument('--output',required=True,type=_runs.owned)
     a=p.parse_args();d=a.output.resolve()
     if a.stage=='prepare':result=prepare(d)
     elif a.stage=='submit':
@@ -277,4 +284,4 @@ if __name__=='__main__':
         assert audit['test_sha256']==f.sha((HERE/'resident_boundary_checks.py').read_bytes())
         result=f.send_once(d,f.service_open(),plan,circuits)
     else:result=collect(d)
-    print(json.dumps(result,indent=2))
+    print(json.dumps(_runs.bind_receipt(result),indent=2))

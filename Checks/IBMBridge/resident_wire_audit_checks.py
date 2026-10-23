@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 """Targeted checks for the independent byte/wire reader and exact contrasts."""
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 import base64
 from collections import Counter
@@ -23,10 +29,10 @@ def run(output):
         'metadata':{'circuit_metadata':{}},'data':{'__type__':'DataBin','__value__':{'field_names':['out'],'shape':[],
         'fields':{'out':{'__type__':'BitArray','__value__':{'num_bits':4,'array':{'__type__':'ndarray','__value__':base64.b64encode(zlib.compress(buf.getvalue())).decode()}}}}}}}}]}}
     with tempfile.TemporaryDirectory(prefix='vi-wire-decoder-') as temp:
-        p=Path(temp)/'raw.json';p.write_text(json.dumps(wrapped));decoded=w.raw_arrays(p)[0]
+        p=_runs.owned(temp)/'raw.json';p.write_text(json.dumps(_runs.bind_receipt(wrapped, destination=p)));decoded=w.raw_arrays(p)[0]
         assert decoded['ints']==[int(x) for x in values[:,0]]
         assert decoded['counts']==dict(Counter(format(int(x),'04b') for x in values[:,0]))
-    directory=w.ROOT/'private/ibm-resident-boundary-20260915'
+    directory=_runs.path('ibm-resident-boundary-20260915')
     with (directory/'isa.qpy').open('rb') as stream:circuits=qpy.load(stream)
     base=next(c for c in circuits if (c.metadata['variant'],c.metadata['probe'])==('Baseline11','Z'))
     # Remove C preparation. The independent branch calculation must reveal
@@ -55,10 +61,10 @@ def run(output):
     result={'nonuniform_packed_samples_checked':1024,'source_preparation_removal_detected':True,
             'wrong_physical_measurement_wire_rejected':True,'exact_Fisher_pairs_crosschecked':len(pairs),
             'maximum_Fisher_difference_from_SciPy':maximum,'new_QPU_jobs':0,
-            'audit_sha256':w.digest(output/'audit.json'),'check_sha256':w.digest(Path(__file__))}
-    w.write(output/'checks.json',result);return result
+            'audit_sha256':w.digest(output/'audit.json'),'check_sha256':w.digest(_runs.owned(__file__))}
+    w.write(output/'checks.json',_runs.bind_receipt(result, destination=output/'checks.json'));return result
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=Path,required=True)
-    print(json.dumps(run(p.parse_args().output.resolve()),indent=2))
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=_runs.owned,required=True)
+    print(json.dumps(_runs.bind_receipt(run(p.parse_args().output.resolve())),indent=2))

@@ -5,6 +5,12 @@ Two preparations and three surrounding programs. Matching the explicit
 padding is NOT a certificate of equal physical age across dynamic blocks.
 The question is a context contrast, not full preparation/readout tomography.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from collections import defaultdict
 from copy import deepcopy
@@ -237,8 +243,8 @@ def final_flip_nonidentifiability():
 def observed_review_check():
     root = f.ROOT
     prior = w.read(root/'Research/Artifacts/resident-wire-audit-20260915/audit.json')
-    assert all(w.digest(root/n) == h for n, h in prior['original_packet_sha256'].items())
-    folder = root/'private/ibm-resident-boundary-20260915'
+    assert all(w.digest(_runs.resolve_recorded(n,h,root)) == h for n, h in prior['original_packet_sha256'].items())
+    folder = _runs.path('ibm-resident-boundary-20260915')
     with (folder/'isa.qpy').open('rb') as stream:
         circuits = qpy.load(stream)
     arrays = w.raw_arrays(folder/'raw-result.json')
@@ -264,7 +270,7 @@ def prepare(output):
     output.mkdir(parents=True, exist_ok=False)
     source = f.current_source()
     delay_probe = delay_roundtrip_check(output)
-    snapshot = f.read(f.ROOT/'private/ibm-resident-boundary-20260915/plan.json')['target_snapshot']
+    snapshot = f.read(_runs.path('ibm-resident-boundary-20260915/plan.json'))['target_snapshot']
     bodies = [circuit(source, s, e, 2000, snapshot) for s in (0,1) for e in CONTEXTS]
     checks = [validate(source, body, snapshot) for body in bodies]
     with (output/'six-context-drafts.qpy').open('wb') as stream:
@@ -315,18 +321,18 @@ def prepare(output):
               'refusals': refusals, 'source_sha256': source['source_sha256'],
               'QPY_sha256': w.digest(output/'six-context-drafts.qpy'),
               'historical_snapshot': snapshot, 'new_QPU_jobs': 0, 'new_calibrations': 0,
-              'implementation_sha256': w.digest(Path(__file__)), 'seconds': time.perf_counter()-start,
+              'implementation_sha256': w.digest(_runs.owned(__file__)), 'seconds': time.perf_counter()-start,
               'remaining': ['Current backend compilation and layout validation',
                             'Timing basis for intended contrasts, including control-block latency',
                             'Freeze trial order, shot budget, interpretation and statistical endpoint before hardware results'],
               'scope': 'Offline diagnostic design and a finite identifiability boundary; no new hardware observation or full repository regression.'}
-    w.write(output/'audit.json', result)
+    w.write(output/'audit.json', _runs.bind_receipt(result, destination=output/'audit.json'))
     return result
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--output', type=_runs.owned, required=True)
     result = prepare(parser.parse_args().output.resolve())
-    print(json.dumps({'circuits':len(result['ideal_checks']), 'max_ideal_residual':max(x['independent_ideal_residual'] for x in result['ideal_checks']),
-                      'refusals':result['refusals'], 'seconds':result['seconds']},indent=2))
+    print(json.dumps(_runs.bind_receipt({'circuits':len(result['ideal_checks']), 'max_ideal_residual':max(x['independent_ideal_residual'] for x in result['ideal_checks']),
+                      'refusals':result['refusals'], 'seconds':result['seconds']}),indent=2))

@@ -7,6 +7,12 @@ Reads sealed evidence; writes only to a new output directory. No network,
 calibration, QPU submission, Swift build, or general repository regression.
 Hash agreement preserves provenance, not the truth of an interpretation.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from datetime import datetime, timezone
 import hashlib
@@ -17,7 +23,7 @@ import shutil
 import subprocess
 import time
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = _runs.owned(__file__).resolve().parents[2]
 ARTIFACTS = ROOT / 'Research/Artifacts'
 NATIVE = ROOT / '.build/arm64-apple-macosx/debug/Tools'
 JUDGE = ROOT / 'Checks/Archive/WhereV2/judge-where.js'
@@ -39,19 +45,19 @@ OLD_REPORTS = {
 
 
 def digest(path):
-    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+    return hashlib.sha256(_runs.owned(path).read_bytes()).hexdigest()
 
 
 def read(path):
-    return json.loads(Path(path).read_text())
+    return json.loads(_runs.owned(path).read_text())
 
 
 def verify_map(entries, base, checked):
     for name, expected in entries.items():
-        path = (base / name).resolve()
+        path = _runs.resolve_recorded(name, expected, base, corpus_root=ROOT)
         actual = digest(path)
         assert actual == expected, f'Changed sealed input: {path}'
-        key = str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path)
+        key = _runs.address(path, ROOT)
         if key in checked:
             assert checked[key] == actual
         checked[key] = actual
@@ -69,7 +75,7 @@ def receipts():
             verify_map({str(report): receipt['report_sha256']}, ROOT, checked)
             verify_map(receipt['artifact_sha256'], path.parent, checked)
             count = len(receipt['artifact_sha256']) + 1
-        rows.append({'receipt': str(path.relative_to(ROOT)),
+        rows.append({'receipt': _runs.address(path, ROOT),
                      'receipt_sha256': digest(path), 'entries': count})
     assert len(rows) == 25, f'Unexpected nightly receipt inventory: {len(rows)}'
     return rows, checked
@@ -125,7 +131,7 @@ process.stdout.write(JSON.stringify(specs.map(s=>{
         else:
             assert answer['refusals'], spec
             assert native.returncode == 1 and 'requires the types' in text, (spec, text)
-        rows.append({'file': str(Path(spec['file']).relative_to(ROOT)),
+        rows.append({'file': _runs.address(_runs.owned(spec['file']), ROOT),
                      'positive': spec['positive'], 'equalities': spec.get('equalities'),
                      'JS_judged': answer['judged'], 'JS_refusals': answer['refusals'],
                      'native_exit': native.returncode, 'native_output': text.strip()})
@@ -159,7 +165,7 @@ def qpy_control_scan():
     from qiskit import qpy
     import qiskit_aer
     paths = {path for name in PACKAGES for path in (ARTIFACTS / name).rglob('*.qpy')}
-    paths.update(ROOT / 'private' / name / 'isa.qpy' for name in
+    paths.update(_runs.root() / name / 'isa.qpy' for name in
                  ['ibm-resident-acquisition-20260915', 'ibm-resident-boundary-20260915'])
     rows, findings = [], []
 
@@ -180,7 +186,7 @@ def qpy_control_scan():
             walk(circuit, [], found)
             if found:
                 records.append({'circuit': index, 'locations': found})
-        name = str(path.relative_to(ROOT))
+        name = _runs.address(path, ROOT)
         if records:
             findings.append(name)
         rows.append({'file': name, 'sha256': digest(path),
@@ -244,16 +250,16 @@ def run(output):
               'new_calibrations': 0, 'new_QPU_jobs': 0, 'network_calls': 0,
               'full_repository_regression': False, 'full_Swift_typecheck': False,
               'check_sha256': digest(__file__), 'seconds': time.perf_counter() - start}
-    (output / 'audit.json').write_text(json.dumps(result, indent=2) + '\n')
+    (output / 'audit.json').write_text(json.dumps(_runs.bind_receipt(result, destination=output / 'audit.json'), indent=2) + '\n')
     return result
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--output', type=_runs.owned, required=True)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     value = run(args.output.resolve())
-    print(json.dumps({key: value[key] for key in
+    print(json.dumps(_runs.bind_receipt({key: value[key] for key in
                      ['completed_UTC', 'unique_checked_input_files', 'seconds',
-                      'new_calibrations', 'new_QPU_jobs', 'full_repository_regression']}))
+                      'new_calibrations', 'new_QPU_jobs', 'full_repository_regression']})))

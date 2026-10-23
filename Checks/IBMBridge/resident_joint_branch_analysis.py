@@ -5,6 +5,12 @@ No cloud calls or sender. The original contrast is retained. h(a) always uses
 the full PUB denominator. Bounds concern average conditional expectations,
 not an assumed fixed IID hardware channel.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from collections import Counter
 import hashlib
@@ -166,11 +172,11 @@ def run(result_path):
         output['hardware_origin']={'job_id':hardware['job_id'],'raw_sha256':hardware['raw_sha256']}
     else:output['hardware']={'available':False,'last_status':p.read(p.ART/'status.json')}
     output['seconds']=time.perf_counter()-before;p.dump(OUT/'analysis.json',output)
-    print(json.dumps({'ideal':output['ideal'],'uncertainty':output['uncertainty_contract'],
-                      'hardware_available':result_path.exists(),'seconds':output['seconds']},indent=2))
+    print(json.dumps(_runs.bind_receipt({'ideal':output['ideal'],'uncertainty':output['uncertainty_contract'],
+                      'hardware_available':result_path.exists(),'seconds':output['seconds']}),indent=2))
 
 
 if __name__=='__main__':
     cli=argparse.ArgumentParser(description=__doc__)
-    cli.add_argument('--result',type=Path,default=p.ROOT/'private/ibm-common-endpoint-20260915/hardware-result.json')
+    cli.add_argument('--result',type=_runs.input_path,required=True,help='Result file relative to the supplied hardware-runs folder; its SHA-256 must be declared in MANIFEST.json')
     run(cli.parse_args().result)

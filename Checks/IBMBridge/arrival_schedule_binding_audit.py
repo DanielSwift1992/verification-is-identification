@@ -4,14 +4,20 @@
 No provider, RuntimeDecoder or shot statistics are used to classify timings.
 This is not a general equivalence proof between circuits and pulse schedules.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import csv
 import io
 import json
 from pathlib import Path
 from qiskit import qpy
 
-ROOT=Path(__file__).resolve().parents[2]
-PRIVATE=ROOT/'private/ibm-arrival-localization-20260916'
+ROOT=_runs.owned(__file__).resolve().parents[2]
+PRIVATE=_runs.path('ibm-arrival-localization-20260916')
 ART=ROOT/'Research/Artifacts/arrival-failure-localization-20260916'
 
 
@@ -91,4 +97,4 @@ def require_current_binding():
 
 
 if __name__=='__main__':
-    result=audit();print(json.dumps(result,indent=2))
+    result=audit();print(json.dumps(_runs.bind_receipt(result),indent=2))

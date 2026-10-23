@@ -5,6 +5,12 @@ Read-only toward all old packets. No cloud client, credentials or new jobs.
 The small portable verifier reuses the already independent byte/wire audit,
 not the experiment's original collector or its declared ideal model.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from collections import Counter
 import json
@@ -61,15 +67,15 @@ def run(output):
     output.mkdir(parents=True, exist_ok=False)
     bundle = output/'evidence'
     bundle.mkdir()
-    frozen = w.read(w.ROOT/'Research/Artifacts/resident-wire-audit-20260915/audit.json')['original_packet_sha256']
-    assert all(w.digest(w.ROOT/n) == h for n, h in frozen.items())
+    frozen = _runs.rebind_map(w.read(w.ROOT/'Research/Artifacts/resident-wire-audit-20260915/audit.json')['original_packet_sha256'],w.ROOT)
+    assert all(w.digest(_runs.resolve_recorded(n,h,w.ROOT)) == h for n, h in frozen.items())
     prior_final = w.read(w.ROOT/'Research/Artifacts/resident-night-final-audit-20260915/receipt.json')
-    assert all(w.digest(w.ROOT/n) == h for n, h in prior_final['sha256'].items())
+    assert all(w.digest(_runs.resolve_recorded(n,h,w.ROOT)) == h for n, h in prior_final['sha256'].items())
     findings = []
     all_measures = {}
     for name, dirname in [('feedback', 'ibm-resident-acquisition-20260915'),
                           ('boundary', 'ibm-resident-boundary-20260915')]:
-        folder = w.ROOT/'private'/dirname
+        folder = _runs.root()/dirname
         dest = bundle/name
         dest.mkdir()
         for file in ['isa.qpy', 'raw-result.json', 'ideal-validation.json', 'source-reading.json']:
@@ -83,11 +89,11 @@ def run(output):
         plan_view = {k: plan[k] for k in keys if k in plan}
         plan_view['original_plan_sha256'] = w.digest(folder/'plan.json')
         plan_view['view_notice'] = 'Selected fields, not byte-identical original plan. Account and usage fields omitted.'
-        w.write(dest/'plan-view.json', plan_view)
+        w.write(dest/'plan-view.json', _runs.bind_receipt(plan_view, destination=dest/'plan-view.json'))
         hardware = w.read(folder/'hardware-result.json')
         view = {k: hardware[k] for k in ['job_id', 'status', 'backend', 'collected_at', 'rows', 'analysis', 'raw_sha256', 'collector_sha256']}
         view['original_hardware_result_sha256'] = w.digest(folder/'hardware-result.json')
-        w.write(dest/'hardware-result-view.json', view)
+        w.write(dest/'hardware-result-view.json', _runs.bind_receipt(view, destination=dest/'hardware-result-view.json'))
         with (folder/'isa.qpy').open('rb') as f:
             circuits = qpy.load(f)
         arrays = w.raw_arrays(folder/'raw-result.json')
@@ -120,9 +126,9 @@ def run(output):
             findings.append(record)
             if c.metadata['probe'] == 'Z' and c.metadata['variant'] in ('Baseline11', 'Toggle00'):
                 w.write(dest/(c.metadata['variant']+'-Z-actual-ISA.json'),
-                        {'pub_index': i, 'metadata': c.metadata, 'instructions': ops,
+                        _runs.bind_receipt({'pub_index': i, 'metadata': c.metadata, 'instructions': ops,
                          'raw_counts': raw['counts'], 'analysis': record,
-                         'scope': 'Projection of an intact submitted circuit. Not a separately executed isolated C circuit or reconstructed pulse schedule.'})
+                         'scope': 'Projection of an intact submitted circuit. Not a separately executed isolated C circuit or reconstructed pulse schedule.'}, destination=dest/(c.metadata['variant']+'-Z-actual-ISA.json')))
         all_measures[name] = [{'instruction': k[0], 'wire': k[1], 'count': v} for k, v in sorted(measure_counts.items())]
         assert not any(k[1] == 16 and k[0] == 'measure_2' for k in measure_counts)
     selected = {}
@@ -143,8 +149,9 @@ def run(output):
               'original_packets_unchanged': True, 'verified_original_files': len(frozen),
               'previous_final_receipt_files_verified': len(prior_final['sha256']),
               'new_QPU_jobs': 0, 'seconds': time.perf_counter()-start}
-    w.write(bundle/'followup.json', result)
-    shutil.copyfile(Path(w.__file__), bundle/'wire_reader.py')
+    w.write(bundle/'followup.json', _runs.bind_receipt(result, destination=bundle/'followup.json'))
+    shutil.copyfile(_runs.owned(w.__file__), bundle/'wire_reader.py')
+    shutil.copyfile(_runs.owned(_runs.__file__), bundle/'hardware_runs.py')
     (bundle/'verify.py').write_text(VERIFY)
     (bundle/'README.md').write_text('''# Actual hardware evidence, 15 September 2026
 
@@ -180,20 +187,20 @@ it is not an explanation of these jobs. Baseline0 in isolation, timing-matched
 controls and repeated C measurement are absent. Physical cause remains open.
 ''')
     package_hashes = {str(p.relative_to(bundle)): w.digest(p) for p in bundle.rglob('*') if p.is_file()}
-    w.write(bundle/'manifest.json', {'package_sha256': package_hashes,
-            'original_packet_sha256': frozen, 'generator_sha256': w.digest(Path(__file__)),
-            'scope': 'Integrity and provenance inventory, not proof of prose or physical execution.'})
-    assert all(w.digest(w.ROOT/n) == h for n, h in frozen.items())
+    w.write(bundle/'manifest.json', _runs.bind_receipt({'package_sha256': package_hashes,
+            'original_packet_sha256': frozen, 'generator_sha256': w.digest(_runs.owned(__file__)),
+            'scope': 'Integrity and provenance inventory, not proof of prose or physical execution.'}, destination=bundle/'manifest.json'))
+    assert all(w.digest(_runs.resolve_recorded(n,h,w.ROOT)) == h for n, h in frozen.items())
     with zipfile.ZipFile(output/'hardware-evidence.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
         for p in sorted(bundle.rglob('*')):
             if p.is_file():
-                archive.write(p, Path('vi-hardware-evidence')/p.relative_to(bundle))
+                archive.write(p, _runs.owned('vi-hardware-evidence')/p.relative_to(bundle))
     return result
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--output', type=_runs.owned, required=True)
     result = run(parser.parse_args().output.resolve())
-    print(json.dumps({k: result[k] for k in ['all_submitted_measurements',
-                     'review_C_measure_wait_invert_chain_present', 'verified_original_files', 'seconds']}, indent=2))
+    print(json.dumps(_runs.bind_receipt({k: result[k] for k in ['all_submitted_measurements',
+                     'review_C_measure_wait_invert_chain_present', 'verified_original_files', 'seconds']}), indent=2))

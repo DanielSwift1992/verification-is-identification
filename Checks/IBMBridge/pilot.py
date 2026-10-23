@@ -4,6 +4,12 @@
 The existing checked VI producer/decoder is reused. Qiskit changes the circuit
 representation and hardware layout, not the meaning of the acquired record.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from collections import Counter
 from datetime import datetime, timezone
@@ -16,7 +22,7 @@ from pathlib import Path
 import sys
 import uuid
 
-HERE = Path(__file__).resolve().parent
+HERE = _runs.owned(__file__).resolve().parent
 ROOT = HERE.parents[1]
 BRIDGE = ROOT / 'Checks/BraketBridge'
 sys.path.insert(0, str(BRIDGE))
@@ -43,9 +49,10 @@ def versions():
     return {x: importlib.metadata.version(x) for x in ('qiskit', 'qiskit-ibm-runtime', 'qiskit-aer')}
 
 
+@_runs.include_reader
 def implementation():
-    return {str(p.relative_to(ROOT)): sha(p.read_bytes()) for p in
-            (Path(__file__), BRIDGE/'execute.py', BRIDGE/'runtime.py', BRIDGE/'prepare.py')}
+    return {_runs.address(p, ROOT): sha(p.read_bytes()) for p in
+            (_runs.owned(__file__), BRIDGE/'execute.py', BRIDGE/'runtime.py', BRIDGE/'prepare.py')}
 
 
 def service_open():
@@ -143,7 +150,7 @@ def read_plan(directory, current=True):
     if current:
         require(p['implementation'] == implementation(), 'pilot implementation changed')
         require(p['versions'] == versions(), 'runtime version changed')
-        docs, receipt = prepare(ROOT/'private/ibm-prepared')
+        docs, receipt = prepare(_runs.prepared('ibm-prepared'))
         require(receipt['key'] == p['checked_build']['key'], 'checked VI root changed')
         for case, (name,preparation,bit) in zip(p['cases'], CASES):
             job,desc,req = terminal_job(docs,name,preparation,SHOTS)
@@ -169,7 +176,7 @@ def make_plan(directory, backend_name):
     backend = service.backend(backend_name)
     status = backend.status()
     require(status.operational and status.status_msg == 'active', 'backend is not active')
-    docs,receipt = prepare(ROOT/'private/ibm-prepared')
+    docs,receipt = prepare(_runs.prepared('ibm-prepared'))
     cases,logical = [],[]
     for name,preparation,bit in CASES:
         job,desc,req = terminal_job(docs,name,preparation,SHOTS)
@@ -198,16 +205,16 @@ def make_plan(directory, backend_name):
     require(all(x['correct_count'] == SHOTS for x in validation), 'compiled pilot failed ideal validation')
     buffer = io.BytesIO(); qpy.dump(isa,buffer)
     (directory/'isa.qpy').write_bytes(buffer.getvalue())
-    write_json(directory/'local-validation.json',validation)
+    write_json(directory/'local-validation.json',_runs.bind_receipt(validation, destination=directory/'local-validation.json'))
     plan = {'schema':'vi.ibm.pilot.v1','created_at':utc(),'tag':'vi-pilot-'+uuid.uuid4().hex,
             'backend':backend_name,'instance':service.active_instance(),'plan':'open',
             'shots':SHOTS,'max_seconds':MAX_SECONDS,'cases':cases,'checked_build':receipt,
             'qpy_sha256':sha(buffer.getvalue()),'implementation':implementation(),'versions':versions(),
             'usage_before':usage,'backend_status':status.to_dict(),
             'analysis':'Fixed 3 x 256; retain all outcomes. Compare acquired/ignored resident using identical shots. No repeat-until-success.'}
-    write_json(directory/'plan.json',plan)
-    print(json.dumps({'prepared':True,'backend':backend_name,'cases':3,'shots_each':SHOTS,
-                      'local_correct':[x['correct_count'] for x in validation]},indent=2))
+    write_json(directory/'plan.json',_runs.bind_receipt(plan, destination=directory/'plan.json'))
+    print(json.dumps(_runs.bind_receipt({'prepared':True,'backend':backend_name,'cases':3,'shots_each':SHOTS,
+                      'local_correct':[x['correct_count'] for x in validation]}),indent=2))
 
 
 def send_once(directory, service, plan, circuits, sampler_factory=None):
@@ -224,7 +231,7 @@ def send_once(directory, service, plan, circuits, sampler_factory=None):
             jobs = service.jobs(limit=2,job_tags=[plan['tag']])
             require(len(jobs) == 1,'submission uncertain; reconcile tagged jobs, never automatically resubmit')
             ledger.update(job_id=jobs[0].job_id(),status='recovered',recovered_at=utc())
-            write_json(ledger_path,ledger)
+            write_json(ledger_path,_runs.bind_receipt(ledger, destination=ledger_path))
             return ledger
         usage = service.usage()
         require(service.active_instance() == plan['instance'],'submission instance changed')
@@ -238,10 +245,10 @@ def send_once(directory, service, plan, circuits, sampler_factory=None):
         sampler = (sampler_factory or SamplerV2)(mode=backend,options=options)
         ledger = {'tag':plan['tag'],'status':'submission_intent','at':utc(),
                   'backend':plan['backend'],'instance':plan['instance'],'qpy_sha256':plan['qpy_sha256']}
-        write_json(ledger_path,ledger)
+        write_json(ledger_path,_runs.bind_receipt(ledger, destination=ledger_path))
         job = sampler.run(circuits,shots=SHOTS)
         ledger.update(job_id=job.job_id(),status='submitted')
-        write_json(ledger_path,ledger)
+        write_json(ledger_path,_runs.bind_receipt(ledger, destination=ledger_path))
         return ledger
 
 
@@ -265,8 +272,8 @@ def collect(directory):
     if status != 'DONE':
         report = {'job_id':job.job_id(),'status':status,'backend':plan['backend']}
         if status in ('ERROR','CANCELLED'): report['error'] = job.error_message()
-        write_json(directory/'status.json',report)
-        print(json.dumps(report,indent=2)); return
+        write_json(directory/'status.json',_runs.bind_receipt(report, destination=directory/'status.json'))
+        print(json.dumps(_runs.bind_receipt(report),indent=2)); return
     pubs = job.inputs['pubs']
     require(len(pubs) == len(circuits),'wrong returned program count')
     for pub,circuit in zip(pubs,circuits):
@@ -274,7 +281,7 @@ def collect(directory):
         require(signature(source) == signature(circuit),'remote program differs from submitted circuit')
     result = job.result()
     require(len(result) == 3,'wrong result count')
-    (directory/'raw-result.json').write_text(json.dumps(result,cls=RuntimeEncoder,indent=2))
+    (directory/'raw-result.json').write_text(json.dumps(_runs.bind_receipt(result, destination=directory/'raw-result.json'),cls=RuntimeEncoder,indent=2))
     summaries = []
     for case,pub in zip(plan['cases'],result):
         require(pub.metadata.get('circuit_metadata') == lower(case['job'],case['descriptor']).metadata,
@@ -288,21 +295,21 @@ def collect(directory):
               'cases':summaries,'metrics':job.metrics(),'usage_after':service.usage(),
               'collector_implementation':current,
               'scope':'Physical QPU observations, not ideal-hardware proof or quantum advantage.'}
-    write_json(directory/'hardware-result.json',report)
-    write_json(directory/'status.json',{'job_id':job.job_id(),'status':'DONE','backend':plan['backend']})
-    print(json.dumps(report,indent=2,default=str))
+    write_json(directory/'hardware-result.json',_runs.bind_receipt(report, destination=directory/'hardware-result.json'))
+    write_json(directory/'status.json',_runs.bind_receipt({'job_id':job.job_id(),'status':'DONE','backend':plan['backend']}, destination=directory/'status.json'))
+    print(json.dumps(_runs.bind_receipt(report),indent=2,default=str))
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('stage',choices=['prepare','submit','collect'])
-    p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--output',type=_runs.owned,required=True)
     p.add_argument('--backend',default='ibm_kingston')
     a = p.parse_args(); directory = a.output.resolve()
     if a.stage == 'prepare': make_plan(directory,a.backend)
     elif a.stage == 'submit':
         plan,circuits = read_plan(directory)
-        print(json.dumps(send_once(directory,service_open(),plan,circuits),indent=2))
+        print(json.dumps(_runs.bind_receipt(send_once(directory,service_open(),plan,circuits)),indent=2))
     else: collect(directory)
 
 

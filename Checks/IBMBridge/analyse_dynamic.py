@@ -4,6 +4,12 @@
 Secondary Bell-frame and per-record readings never replace the frozen primary
 comparison. The latter retains every shot. No network or hardware submission.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from collections import Counter
 from datetime import datetime
@@ -25,8 +31,8 @@ def scalar(value):
 def main():
     from qiskit_ibm_runtime import RuntimeDecoder
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--input',type=Path,required=True)
-    p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--input',type=_runs.input_path,required=True)
+    p.add_argument('--output',type=_runs.owned,required=True)
     a=p.parse_args()
     plan=json.loads((a.input/'plan.json').read_text())
     ledger=json.loads((a.input/'ledger.json').read_text())
@@ -92,7 +98,7 @@ def main():
                 'No shots are removed from the primary analysis; small negative secondary estimates are not clipped.',
                 'The three stabilizers do not determine all matrix coherences or prove separability of the baseline.']}
     a.output.parent.mkdir(parents=True,exist_ok=True)
-    a.output.write_text(json.dumps(report,indent=2)+'\n')
+    a.output.write_text(json.dumps(_runs.bind_receipt(report),indent=2)+'\n')
     print(json.dumps({'job_id':report['job_id'],'primary':report['primary'],
                       'inverted_psi_minus':scores['invert_reply']['bell_frame_scores']['Psi-'],
                       'output':str(a.output)},indent=2))

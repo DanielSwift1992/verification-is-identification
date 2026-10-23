@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 """Compare acquisition with the final actual source, and memory with its future."""
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 import io
 import json
@@ -15,7 +21,7 @@ import arrival_boundary_probe as old
 import bounded_open_experiment as cloud
 
 ROOT=old.ROOT
-PRIVATE=ROOT/'private/ibm-relative-acquisition-20260916'
+PRIVATE=_runs.work('ibm-relative-acquisition-20260916')
 ART=ROOT/'Research/Artifacts/relative-acquisition-20260916/attempt-1'
 TAG='vi-relative-acquisition-1-20260916'
 ARMS=('two_readings','one_reading','echo')
@@ -83,9 +89,9 @@ def prepare():
                      'Also B_X and Bell XX/ZZ. Main balanced cells A=0/1,B=+ across 3 arms; '
                      'B=0/1 cells diagnose original individual readings. No timing attribution, '
                      'postselection, arbitrary-state hardware certification or claim of using only the old classical probe catalogue.'}
-    dependencies=[Path(__file__),Path(relative.__file__),Path(old.__file__),Path(diag.__file__),ROOT/'Checks/IBMBridge/classical_boundary_probe.py']
+    dependencies=[_runs.owned(__file__),_runs.owned(relative.__file__),_runs.owned(old.__file__),_runs.owned(diag.__file__),ROOT/'Checks/IBMBridge/classical_boundary_probe.py']
     return cloud.freeze(PRIVATE,ART,qs,plan,service,backend,dependencies)
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('stage',choices=['prepare','submit','collect']);stage=p.parse_args().stage
-    print(json.dumps(prepare() if stage=='prepare' else getattr(cloud,stage)(PRIVATE,ART),indent=2))
+    print(json.dumps(_runs.bind_receipt(prepare() if stage=='prepare' else getattr(cloud,stage)(PRIVATE,ART)),indent=2))

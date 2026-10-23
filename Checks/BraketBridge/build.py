@@ -3,6 +3,12 @@
 
 No dependency installation, cloud call, credentials, or general Swift parser.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 import hashlib
 import json
@@ -15,7 +21,7 @@ import sys
 import time
 from datetime import datetime, timezone
 
-HERE = Path(__file__).resolve().parent
+HERE = _runs.owned(__file__).resolve().parent
 ROOT = HERE.parent.parent
 
 def utc():
@@ -54,7 +60,7 @@ def compilation_sources(mode):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', type=Path)
+    parser.add_argument('--output', type=_runs.owned)
     parser.add_argument('--acquisition', action='store_true',
                         help='Build the source-bound terminal-acquisition extension')
     parser.add_argument('--coherent', action='store_true',
@@ -65,7 +71,9 @@ def main():
     if args.acquisition and args.coherent:
         parser.error('--acquisition and --coherent are separate scopes')
     prefix = 'braket-coherent-' if args.coherent else ('braket-acquisition-' if args.acquisition else 'braket-bridge-')
-    out = (args.output or ROOT / 'private' / (prefix + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'))).resolve()
+    if args.output is None:
+        parser.error('pass --output DIR for new build artifacts; archived evidence is read-only')
+    out = args.output.resolve()
     if out.exists() and any(out.iterdir()):
         raise SystemExit('Output directory must be new or empty: ' + str(out))
     out.mkdir(parents=True, exist_ok=True)
@@ -73,10 +81,10 @@ def main():
     lib = out / 'library'; lib.mkdir()
     mode = 'coherent' if args.coherent else ('acquisition' if args.acquisition else 'continuation')
     core, common, exporter = compilation_sources(mode)
-    inputs = core + common + [exporter, HERE/'build.py']
+    inputs = core + common + [exporter, HERE/'build.py', _runs.owned(_runs.__file__)]
     if not args.prepare_only:
         inputs += sorted(HERE.glob('*.swift')) + sorted(HERE.glob('*.py')) + [HERE/'run.sh']
-    hashes = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs}
+    hashes = {_runs.address(p, ROOT): hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs}
     manifest = {'schema':'vi.braket.build.v1','started_at':utc(), 'output':str(out),
                 'mode':mode, 'scope':'checked-exports' if args.prepare_only else 'research-regression',
                 'python':sys.executable,'source_sha256':hashes,'steps':[], 'status':'running'}
@@ -93,7 +101,7 @@ def main():
         if result.returncode:
             raise RuntimeError(name+' failed; see '+str(logs/(name+'.log')))
     def save():
-        (out/'build-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+        (out/'build-manifest.json').write_text(json.dumps(_runs.bind_receipt(manifest, destination=out/'build-manifest.json'),indent=2)+'\n')
     try:
         step('versions',['swiftc','--version'])
         if not args.prepare_only:

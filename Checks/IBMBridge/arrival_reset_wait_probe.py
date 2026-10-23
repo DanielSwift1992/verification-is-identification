@@ -4,6 +4,12 @@
 This is a new C=0-only control, not a rerun or correction of the first sample.
 The returned schedule must establish whether the compared ages really match.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 import argparse
 from collections import Counter
 import fcntl
@@ -21,7 +27,7 @@ import arrival_failure_localization as diag
 
 ROOT=diag.ROOT
 ART=ROOT/'Research/Artifacts/arrival-reset-wait-20260916'
-PRIVATE=ROOT/'private/ibm-arrival-reset-wait-20260916'
+PRIVATE=_runs.work('ibm-arrival-reset-wait-20260916')
 TAG='vi-arrival-reset-wait-20260916-a'
 ARMS=('reset','matched_idle','short_slots')
 SHOTS=128
@@ -30,7 +36,7 @@ RESET_DT=680
 
 
 def read(p): return json.loads(p.read_text())
-def write(p,v): p.write_text(json.dumps(v,indent=2)+'\n')
+def write(p,v): p.write_text(json.dumps(_runs.bind_receipt(v, destination=p),indent=2)+'\n')
 
 
 def cores():
@@ -116,8 +122,8 @@ def prepare():
     with (PRIVATE/'isa.qpy').open('wb') as f:qpy.dump(qs,f)
     p={'schema':'vi.arrival-reset-wait.v1','tag':TAG,'at':utc(),'backend':backend.name,
        'instance':service.active_instance(),'plan':'open','options':options(),'dt':backend.dt,
-       'versions':versions(),'script_sha256':sha(Path(__file__).read_bytes()),
-       'helper_sha256':sha(Path(diag.__file__).read_bytes()),
+       'versions':versions(),'script_sha256':sha(_runs.owned(__file__).read_bytes()),
+       'helper_sha256':sha(_runs.owned(diag.__file__).read_bytes()),
        'prior_raw_sha256':previous['raw_sha256'],'nominal_reset_dt':RESET_DT,
        'qpy_sha256':sha((PRIVATE/'isa.qpy').read_bytes()),'PUBs':entries,'operator_checks':checks,
        'shots_each':SHOTS,'total_shots':len(qs)*SHOTS,'cap_seconds':CAP,
@@ -133,8 +139,8 @@ def prepare():
 def load():
     p=read(PRIVATE/'plan.json')
     require(p['options']==options() and p['versions']==versions()
-            and p['script_sha256']==sha(Path(__file__).read_bytes())
-            and p['helper_sha256']==sha(Path(diag.__file__).read_bytes()),'Changed executor')
+            and p['script_sha256']==sha(_runs.owned(__file__).read_bytes())
+            and p['helper_sha256']==sha(_runs.owned(diag.__file__).read_bytes()),'Changed executor')
     require(sha((PRIVATE/'isa.qpy').read_bytes())==p['qpy_sha256'],'Changed ISA')
     with (PRIVATE/'isa.qpy').open('rb') as f:qs=qpy.load(f)
     require(len(qs)==24 and [q.metadata for q in qs]==p['PUBs'],'Changed PUB correspondence')
@@ -188,4 +194,4 @@ def collect():
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('stage',choices=['prepare','submit','collect'])
-    print(json.dumps(globals()[p.parse_args().stage](),indent=2))
+    print(json.dumps(_runs.bind_receipt(globals()[p.parse_args().stage]()),indent=2))

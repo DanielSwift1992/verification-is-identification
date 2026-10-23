@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 """Offline obligations for the bounded joint-memory hardware adapter."""
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 from copy import deepcopy
 import json
 from pathlib import Path
@@ -22,7 +28,7 @@ def rejects(f):
 
 def collection_checks():
     from qiskit.primitives.containers import BitArray,DataBin,SamplerPubResult,PrimitiveResult
-    original=j.ROOT/'private/ibm-joint-memory-20260914'
+    original=_runs.path('ibm-joint-memory-20260914')
     if not original.exists():return {'prepared_collection':'not yet available'}
     plan,circuits=j.load(original,True);pubs=[]
     for circuit in circuits:
@@ -33,8 +39,8 @@ def collection_checks():
        status=lambda:'DONE',inputs={'pubs':[(c,) for c in circuits]},result=lambda:result,metrics=lambda:{'offline':True})
     service=SimpleNamespace(active_instance=lambda:plan['instance'],job=lambda key:job,usage=lambda:{'offline':True})
     with tempfile.TemporaryDirectory(prefix='vi-joint-collector-check-') as tmp:
-        target=Path(tmp)/'test';shutil.copytree(original,target)
-        j.write(target/'ledger.json',{'tag':plan['tag'],'qpy_sha256':plan['qpy_sha256'],'job_id':'offline-job'})
+        target=_runs.owned(tmp)/'test';shutil.copytree(original,target)
+        j.write(target/'ledger.json',_runs.bind_receipt({'tag':plan['tag'],'qpy_sha256':plan['qpy_sha256'],'job_id':'offline-job'}, destination=target/'ledger.json'))
         with patch.object(j,'service_open',lambda:service):
             assert j.collect(target)['status']=='DONE'
             assert j.read(target/'hardware-result.json')['rows'][0]['counts']=={'0000':1024}
@@ -44,7 +50,7 @@ def collection_checks():
             pubs[0].metadata['circuit_metadata']={'case':'foreign'}
             rejects(lambda:j.collect(target));pubs[0].metadata['circuit_metadata']=circuits[0].metadata
             result=PrimitiveResult(pubs[:-1]);rejects(lambda:j.collect(target))
-        p=j.read(target/'plan.json');p['options']['max_execution_time']=900;j.write(target/'plan.json',p)
+        p=j.read(target/'plan.json');p['options']['max_execution_time']=900;j.write(target/'plan.json',_runs.bind_receipt(p, destination=target/'plan.json'))
         rejects(lambda:j.load(target))
     return {'prepared_collection':'passed offline','foreign_or_incomplete_result_refusals':4,'altered_resource_limit_refusals':1}
 
@@ -89,7 +95,7 @@ def replay(directory,publish=None):
       'free_quota_after_seconds':r['usage_after']['usage_remaining_seconds'],
       'actual_plan':'open/free','billed_money':0,
       'scope':'Executed four-qubit tests including preparation and analyzer; no future, SPAM-free or full-DE diamond guarantee.'}
-    if publish:j.write(publish,artifact)
+    if publish:j.write(publish,_runs.bind_receipt(artifact, destination=publish))
     return {'provider_rows_replayed':9,'independently_recomputed_scores_and_intervals':27,
             'shots':sum(row['shots'] for row in rows),'criteria':r['analysis']['criteria'],
             'qpu_charge_time_seconds':artifact['qpu_charge_time_seconds'],'output':str(publish) if publish else None}
@@ -142,7 +148,7 @@ def run():
     plan={'tag':'fake-tag','qpy_sha256':'fake-digest','instance':'open-test',
           'backend':'ibm_kingston','options':j.options('fake-tag')}
     with tempfile.TemporaryDirectory(prefix='vi-joint-memory-check-') as tmp:
-        root=Path(tmp);normal=root/'normal';normal.mkdir()
+        root=_runs.owned(tmp);normal=root/'normal';normal.mkdir()
         assert j.send_once(normal,service,plan,[],Sampler)['job_id']=='fake-job'
         assert j.send_once(normal,service,plan,[],Sampler)['job_id']=='fake-job'
         assert state['calls']==1
@@ -167,6 +173,6 @@ def run():
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--replay',type=Path);parser.add_argument('--publish',type=Path)
+    parser.add_argument('--replay',type=_runs.input_path);parser.add_argument('--publish',type=_runs.owned)
     args=parser.parse_args();assert not args.publish or args.replay
-    print(json.dumps(replay(args.replay,args.publish) if args.replay else run(),indent=2))
+    print(json.dumps(_runs.bind_receipt(replay(args.replay,args.publish) if args.replay else run()),indent=2))

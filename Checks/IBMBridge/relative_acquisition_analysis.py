@@ -4,15 +4,21 @@
 Keeps these three readings distinct. An outgoing measurement is not promoted
 to a trusted value of the source. No postselection or noise-model fitting.
 """
+
+import sys as _evidence_sys
+from pathlib import Path as _EvidencePath
+_evidence_sys.path.insert(0, str(_EvidencePath(__file__).resolve().parents[1]))
+import hardware_runs as _runs
+_runs.configure(required=(__name__ == "__main__"))
 from collections import defaultdict
 import json
 import bounded_open_experiment as io
 
-def analyze(private,art):
-    plan,_=io.load(private);status=io.read(art/'status.json')
+def analyze(run_dir,art):
+    plan,_=io.load(run_dir);status=io.read(art/'status.json')
     io.require(status['status']=='DONE','Missing completed result')
     for file,key in [('raw-result.json','raw_sha256'),('provider-result.txt','provider_raw_sha256')]:
-        io.require(io.sha((private/file).read_bytes())==status[key],'Evidence changed')
+        io.require(io.sha((run_dir/file).read_bytes())==status[key],'Evidence changed')
     rows=[]
     for row,entry in zip(status['rows'],plan['PUBs']):
         io.require(all(row[k]==v for k,v in entry.items()),'Source/result mismatch')
@@ -61,4 +67,4 @@ def analyze(private,art):
 
 if __name__=='__main__':
     import relative_acquisition_probe as p
-    print(json.dumps(analyze(p.PRIVATE,p.ART),indent=2))
+    print(json.dumps(_runs.bind_receipt(analyze(p.PRIVATE,p.ART)),indent=2))

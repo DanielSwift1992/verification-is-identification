@@ -1,0 +1,111 @@
+{
+  "schema": "vi.continuation.relations/1",
+  "fixture": "cases.swift",
+  "sha256": "950825307b8d0b72be1b75ea9042e52227c053f02d74a2d1577f363885e42c54",
+  "cases": [
+    {
+      "request": "AddressIdentity",
+      "outcome": "constructed"
+    },
+    {
+      "request": "OneEquality",
+      "outcome": "constructed"
+    },
+    {
+      "request": "EqualityChain",
+      "outcome": "constructed"
+    },
+    {
+      "request": "ReversedChain",
+      "outcome": "constructed"
+    },
+    {
+      "request": "JointQuestion",
+      "outcome": "constructed"
+    },
+    {
+      "request": "AliasedView",
+      "outcome": "constructed"
+    },
+    {
+      "request": "DisconnectedClass",
+      "outcome": "obstructed"
+    },
+    {
+      "request": "SameSortDifferentPlaces",
+      "outcome": "obstructed"
+    },
+    {
+      "request": "DisplayCoincidence",
+      "outcome": "obstructed"
+    },
+    {
+      "request": "TwoSorts",
+      "outcome": "obstructed"
+    },
+    {
+      "request": "CrossSortEquality",
+      "outcome": "unsupported",
+      "address": "CrossSortEquality.Equalities"
+    },
+    {
+      "request": "MismatchedEdgeTrees",
+      "outcome": "unsupported",
+      "address": "MismatchedEdgeTrees.Equalities"
+    },
+    {
+      "request": "SortIsNotSourcePlace",
+      "outcome": "unsupported",
+      "address": "SortIsNotSourcePlace.Question"
+    },
+    {
+      "request": "DuplicatedOrigin",
+      "outcome": "constructed"
+    },
+    {
+      "request": "WholeAsObservation",
+      "outcome": "constructed"
+    },
+    {
+      "request": "UnrootedObservation",
+      "outcome": "unsupported",
+      "address": "UnrootedObservation.Observation"
+    },
+    {
+      "request": "UnrootedQuestionAlias",
+      "outcome": "unsupported",
+      "address": "UnrootedQuestionAlias.Question"
+    },
+    {
+      "request": "ForeignWholeView",
+      "outcome": "unsupported",
+      "address": "ForeignWholeView.Question"
+    },
+    {
+      "request": "MultiClassResidue",
+      "outcome": "obstructed"
+    },
+    {
+      "request": "ResidueEqualityClass",
+      "outcome": "obstructed"
+    },
+    {
+      "request": "ResiduePartialQuestion",
+      "outcome": "obstructed"
+    },
+    {
+      "request": "MisspelledWholeAxis",
+      "outcome": "unsupported",
+      "address": "MisspelledWholeAxis.Equality"
+    },
+    {
+      "request": "UnreadWholeAxis",
+      "outcome": "unsupported",
+      "address": "UnreadWholeAxis.Spare"
+    },
+    {
+      "request": "ReadWholeHelperAxes",
+      "outcome": "constructed"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "schema": "vi.court.roster-observations/1",
+  "cases": [
+    {
+      "id": "records",
+      "input": "fixtures/records.swift",
+      "sha256": "424a0c9efc7f269f775ca2b9ae77f7cc4e3e5ca0040b71c810169f2d896bdc9a",
+      "protocol": "Law",
+      "outcome": "holds",
+      "records": [
+        "First"
+      ]
+    },
+    {
+      "id": "empty",
+      "input": "fixtures/empty.swift",
+      "sha256": "a3427c5fab7e293af808ec51515b686bc42b9fe3a8f8eee7787790436d3b5cd3",
+      "protocol": "Law",
+      "outcome": "empty",
+      "records": []
+    },
+    {
+      "id": "no-profile",
+      "input": "fixtures/no-profile.swift",
+      "sha256": "a2cef8f17df52f09993427b87f8deb1239570d855cdc7887ec55855145d52bb1",
+      "protocol": "Law",
+      "outcome": "not-established",
+      "records": []
+    },
+    {
+      "id": "two-profiles",
+      "input": "fixtures/two-profiles.swift",
+      "sha256": "bd68f197edd50b8823348263370dc97936c0a0786781a4048e0b061400045647",
+      "protocol": "Law",
+      "outcome": "unsupported",
+      "records": []
+    },
+    {
+      "id": "orphan-command",
+      "input": "fixtures/orphan-command.swift",
+      "sha256": "f9e48002459a96a7b75b2ab85c4e30973090ba8c5e522324f583c6d4353f1bd3",
+      "protocol": "Law",
+      "outcome": "not-established",
+      "records": []
+    },
+    {
+      "id": "no-command",
+      "input": "fixtures/no-command.swift",
+      "sha256": "2c7475a53d03b18cd049ba88bd0499c776ea67a1cc2c0cecf590a3dc99209d23",
+      "protocol": "Law",
+      "outcome": "not-established",
+      "records": []
+    },
+    {
+      "id": "conditional",
+      "input": "fixtures/conditional.swift",
+      "sha256": "63f30e02ac7a012ea8f0bc5ff5573fb3cf772386a6d08cc1c14804e4af9d0d2a",
+      "protocol": "Law",
+      "outcome": "unsupported",
+      "records": []
+    },
+    {
+      "id": "cycle",
+      "input": "fixtures/cycle.swift",
+      "sha256": "add6855e0744a1b788132b050c3c695273cbd8534d56989dbe7dbd756e615aef",
+      "protocol": "Law",
+      "outcome": "not-established",
+      "records": []
+    },
+    {
+      "id": "alias-extension",
+      "input": "fixtures/alias-extension.swift",
+      "sha256": "46c13071d68ec0cb319473bc2913811e12f2271c1b28b4f9d6cd4eaf73e9654b",
+      "protocol": "Law",
+      "outcome": "holds",
+      "records": [
+        "Later"
+      ]
+    },
+    {
+      "id": "false-membership",
+      "input": "fixtures/false-membership.swift",
+      "sha256": "21b6241866c8f4411939369a48918f28debade8992e1c04385073ae234e19b90",
+      "protocol": "Law",
+      "outcome": "not-established",
+      "records": []
+    }
+  ]
+}

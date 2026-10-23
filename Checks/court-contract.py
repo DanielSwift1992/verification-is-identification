@@ -17,6 +17,95 @@ import tempfile
 import time
 
 
+if __name__ == '__main__' and len(sys.argv) > 1 and sys.argv[1] == '--roster':
+    ROOT=Path(__file__).resolve().parents[1]
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--tools',required=True)
+    args=parser.parse_args(sys.argv[2:])
+    manifest=ROOT/'Contracts/Court/roster-v1/contract.json'
+    contract=json.loads(manifest.read_text())
+    for case in contract['cases']:
+        source=manifest.parent/case['input']
+        assert hashlib.sha256(source.read_bytes()).hexdigest()==case['sha256'],case['id']
+        result=subprocess.run([args.tools,'judge','roster',str(source),'--protocol',case['protocol']],capture_output=True,text=True)
+        answer=json.loads(result.stdout)
+        assert answer['schema']=='vi.court.roster/1' and not result.stderr,case['id']
+        assert answer['outcome']==case['outcome'],(case['id'],answer['diagnostics'])
+        assert [r['name'] for r in answer['records']]==case['records'],case['id']
+        assert result.returncode==({'holds':0,'not-established':1}.get(case['outcome'],2)),case['id']
+        if answer['outcome'] not in ('holds','empty'):
+            assert any(str(source)+':' in d for d in answer['diagnostics']),case['id']
+        else:
+            with tempfile.TemporaryDirectory(prefix='vi-roster-replay-') as tmp:
+                receipt=Path(tmp)/'response.json';receipt.write_text(result.stdout)
+                replay=subprocess.run([args.tools,'judge','roster-replay',str(receipt),str(source),'--protocol',case['protocol']],capture_output=True,text=True)
+                assert replay.returncode==result.returncode and replay.stdout==result.stdout,(case['id'],replay.stdout,replay.stderr)
+        print('roster observation:',case['id'],answer['outcome'])
+    print('Court roster observations: %d/%d'%(len(contract['cases']),len(contract['cases'])))
+
+    # These transformations reference the owner record once, never a copied roster.
+    variants=json.loads((ROOT/'Contracts/Checks/law-record-controls.json').read_text())
+    original=(ROOT/variants['source']).read_text()
+    for case in variants['controls']:
+        text=original + case['append'] if 'append' in case else original.replace(case['old'],case['new'],1)
+        assert text!=original,case['id']
+        with tempfile.TemporaryDirectory(prefix='vi-law-record-') as tmp:
+            source=Path(tmp)/'Laws.swift';source.write_text(text)
+            result=subprocess.run([args.tools,'judge','roster',str(source),'--protocol',variants['protocol']],capture_output=True,text=True)
+            answer=json.loads(result.stdout)
+            assert answer['outcome']==case['outcome'],(case['id'],answer['diagnostics'])
+            assert result.returncode!=0 and any(str(source)+':' in d for d in answer['diagnostics']),case['id']
+            print('law record observation:',case['id'],answer['outcome'])
+    import importlib.util
+    spec=importlib.util.spec_from_file_location('physical_host',ROOT/'Checks/profiles.py')
+    host=importlib.util.module_from_spec(spec);spec.loader.exec_module(host)
+    # Compiler checks the LawText obligation. Missing explicit Command is a
+    # stricter Court-reader requirement: Swift can infer it from Command == Self.
+    for case in variants['compiler_controls']:
+        text=original.replace(case['old'],case['new'],1)
+        assert text!=original,case['id']
+        with tempfile.TemporaryDirectory(prefix='vi-law-compiler-') as tmp:
+            source=Path(tmp)/'Checks'/'Laws.swift';source.parent.mkdir();source.write_text(text)
+            result=subprocess.run(['swiftc','-typecheck',str(source)],capture_output=True,text=True)
+            assert (result.returncode==0)==(case['exit']=='holds'),(case['id'],result.stderr)
+            if result.returncode:
+                assert str(source)+':' in result.stderr,(case['id'],result.stderr)
+                try:
+                    host.roster(Path(tmp))
+                except ValueError as error:
+                    assert 'compiler refused registry' in str(error) and 'Checks/Laws.swift:' in str(error),(case['id'],str(error))
+                else:
+                    raise AssertionError('bootstrap accepted an untyped command carrier')
+            print('compiler observation:',case['id'],case['exit'],result.stderr.splitlines()[0] if result.stderr else '')
+    baseline_result=subprocess.run([args.tools,'judge','roster',str(ROOT/variants['source']),'--protocol',variants['protocol']],capture_output=True,text=True)
+    assert baseline_result.returncode==0,baseline_result.stdout
+    baseline=host.records(json.loads(baseline_result.stdout))
+    for case in variants['selection_controls']:
+        text=original.replace(case['old'],case['new'],1)
+        assert text!=original,case['id']
+        with tempfile.TemporaryDirectory(prefix='vi-law-caption-') as tmp:
+            source=Path(tmp)/'Laws.swift';source.write_text(text)
+            result=subprocess.run([args.tools,'judge','roster',str(source),'--protocol',variants['protocol']],capture_output=True,text=True)
+            answer=json.loads(result.stdout)
+            assert result.returncode==0 and answer['outcome']=='holds',(case['id'],answer['diagnostics'])
+            try:
+                rows=host.records(answer)
+            except ValueError as error:
+                assert 'refusal' in case and case['refusal'] in str(error) and str(source)+':' in str(error),(case['id'],str(error))
+                print('selection refusal:',str(error))
+            else:
+                assert 'refusal' not in case,case['id']
+                chosen=host.selected(rows,profile=case.get('profile'))
+                assert case['same_selection_as_source'],case['id']
+                expected=host.selected(baseline,profile=case.get('profile'))
+                identity=lambda rows:[tuple(row[key] for key in ('record','name','description','command','profile_normal','group_normal')) for row in rows]
+                assert identity(chosen)==identity(expected),case['id']
+                if 'normal' in case:
+                    assert all(row['profile_normal']==case['normal'] for row in chosen),case['id']
+            print('selection observation:',case['id'])
+    sys.exit(0)
+
+
 # An immutable suite name binds the exact manifest bytes, including its case set.
 # New normative expectations require a new release and a deliberate registry entry.
 SUITE_HASHES = {

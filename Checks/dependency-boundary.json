@@ -77,6 +77,7 @@
   "definition": "Literal consumer names, repository URLs, paths and named origin pins. Bare mathematical uses of the word gate are not repository dependencies. Declared references/inputs are reviewed exact occurrences, not removal debt; an unlisted occurrence still refuses. This finite lexical vocabulary does not decide the meaning of arbitrary new words. Common English words are matched only in declared source contexts or subject paths. Text without NUL must decode as UTF-8. Historical selectors retain their retirement limits when this policy is extended.",
   "opaque_digests": "SHA-1 and SHA-256 fields in an otherwise unchanged line are opaque; input contracts check their bytes.",
   "removal_tasks": {
+    "T0084": "Open debt: physical check host, source/literal reader under P4, and native-only roster question. R/C/K, locations and removal criteria: Contracts/Checks/profiles-v3.md#open-debt.",
     "T0070": "Consumer declares plugin strictness; research checks move to the owner court or an explicitly frozen input, with no live neighboring checkout.",
     "T0068": "Owner style values replace company palette and typography in documentation mechanism.",
     "T0073": "Replace temporary hardware input paths with explicit evidence roots and manifest hashes."
@@ -2229,26 +2230,6 @@
       "reason": "Frozen archive provenance, receipt key or independent negative control at the declared source revision; no live consumer checkout or consumer-specific dispatch."
     },
     {
-      "path": "Checks/profiles-test.py",
-      "channel": "text",
-      "line": 39,
-      "name": "showcase",
-      "text": "# The company's laws moved to the showcase package; naming one here is not coverage.",
-      "occurrence": 1,
-      "class": "frozen-input",
-      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
-    },
-    {
-      "path": "Checks/profiles-test.py",
-      "channel": "text",
-      "line": 40,
-      "name": "showcase",
-      "text": "with mock.patch.dict(profiles.PROFILES, {'showcase': ['rules', 'artifacts', 'judge']}):",
-      "occurrence": 1,
-      "class": "frozen-input",
-      "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
-    },
-    {
       "path": "Contracts/Checks/profiles-v1.md",
       "channel": "text",
       "line": 8,
@@ -2491,7 +2472,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 45,
+      "line": 49,
       "name": "ShowcaseTools",
       "text": "\"✗ judge \\(arguments[0]) moved with the company: run `swift run ShowcaseTools judge \\(arguments[0])` in the showcase package\\n\".utf8))",
       "occurrence": 1,
@@ -2501,7 +2482,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 45,
+      "line": 49,
       "name": "showcase",
       "text": "\"✗ judge \\(arguments[0]) moved with the company: run `swift run ShowcaseTools judge \\(arguments[0])` in the showcase package\\n\".utf8))",
       "occurrence": 1,
@@ -2511,7 +2492,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 53,
+      "line": 57,
       "name": "showcase",
       "text": "// live in the showcase now (T-0028).",
       "occurrence": 1,
@@ -2521,7 +2502,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 55,
+      "line": 59,
       "name": "ShowcaseTools",
       "text": "\"✗ the plain court moved with the company: run `swift run ShowcaseTools judge <paths>` in the showcase package\\n\".utf8))",
       "occurrence": 1,
@@ -2531,7 +2512,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 55,
+      "line": 59,
       "name": "showcase",
       "text": "\"✗ the plain court moved with the company: run `swift run ShowcaseTools judge <paths>` in the showcase package\\n\".utf8))",
       "occurrence": 1,

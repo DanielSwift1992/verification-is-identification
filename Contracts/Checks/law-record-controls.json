@@ -1,0 +1,73 @@
+{
+  "schema": "vi.check-law.observations/1",
+  "source": "Checks/Laws.swift",
+  "protocol": "LawRecord",
+  "controls": [
+    {
+      "id": "no-profile",
+      "old": "    typealias Profile = Integration\n",
+      "new": "",
+      "outcome": "not-established"
+    },
+    {
+      "id": "two-profiles",
+      "old": "    typealias Profile = Integration\n",
+      "new": "    typealias Profile = Integration\n    typealias Profile = Court\n",
+      "outcome": "unsupported"
+    },
+    {
+      "id": "command-without-record",
+      "append": "\nenum OrphanCommand: LawRecord { static var typeName: String { #\"echo orphan\"# } }\n",
+      "outcome": "not-established"
+    },
+    {
+      "id": "explicit-command-axis-required-by-court",
+      "scope": "Court strictness: Swift infers Command = Self without the explicit alias; this is not a missing command literal.",
+      "old": "    typealias Command = Self\n",
+      "new": "",
+      "outcome": "not-established"
+    }
+  ],
+  "compiler_controls": [
+    {
+      "id": "missing-command-literal",
+      "old": "    static var typeName: String { #\"swift build --build-tests && swift test --skip-build\"# }\n",
+      "new": "",
+      "exit": "refused"
+    },
+    {
+      "id": "inferred-command-axis",
+      "old": "    typealias Command = Self\n",
+      "new": "",
+      "exit": "holds"
+    }
+  ],
+  "selection_controls": [
+    {
+      "id": "profile-caption-collision",
+      "old": "enum Court: LawProfile { static var typeName: String { #\"court\"# } }",
+      "new": "enum Court: LawProfile { static var typeName: String { #\"vi\"# } }",
+      "refusal": ".Profile: ambiguous caption vi"
+    },
+    {
+      "id": "group-caption-collision",
+      "old": "enum Experiment: LawGroup { static var typeName: String { #\"research\"# } }",
+      "new": "enum Experiment: LawGroup { static var typeName: String { #\"serial\"# } }",
+      "refusal": ".Group: ambiguous caption serial"
+    },
+    {
+      "id": "renamed-profile-caption",
+      "old": "enum VI: LawProfile { static var typeName: String { #\"vi\"# } }",
+      "new": "enum VI: LawProfile { static var typeName: String { #\"primary\"# } }",
+      "profile": "vi",
+      "normal": "VI",
+      "same_selection_as_source": true
+    },
+    {
+      "id": "renamed-group-caption",
+      "old": "enum Serial: LawGroup { static var typeName: String { #\"serial\"# } }",
+      "new": "enum Serial: LawGroup { static var typeName: String { #\"later\"# } }",
+      "same_selection_as_source": true
+    }
+  ]
+}

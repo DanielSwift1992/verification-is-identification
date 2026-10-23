@@ -123,3 +123,129 @@ final class WhereFailureTests: XCTestCase {
         }
     }
 }
+
+final class RosterTests: XCTestCase {
+    let world = """
+    protocol P { associatedtype Axis: Atom }
+    protocol Atom {}
+    enum A: Atom { static var typeName: String { #"carried Ω"# } }
+    typealias Alias = A
+    enum One: P { typealias Axis = Alias }
+    enum Two { typealias Axis = A }
+    extension Two: P {}
+    """
+    func testRosterReplaysAllRecordsAndSourceDefinedAxes() throws {
+        let report = RosterResponse.answer([("world.swift", world)], predicate: "P")
+        XCTAssertEqual(report.outcome, "holds", report.diagnostics.joined())
+        XCTAssertEqual(report.records.map(\.name), ["One", "Two"])
+        XCTAssertEqual(report.records.map { $0.axes["Axis"]!.normal }, ["A", "A"])
+        XCTAssertEqual(report.records[0].axes["Axis"]!.literal?.judged, false)
+        try RosterResponse.World([("world.swift", world)], predicate: "P").replay(report)
+    }
+    func object(_ report: RosterResponse.Report) throws -> [String: Any] {
+        try JSONSerialization.jsonObject(with: JSONEncoder().encode(report)) as! [String: Any]
+    }
+    func changed(_ report: [String: Any]) throws -> RosterResponse.Report {
+        try JSONDecoder().decode(RosterResponse.Report.self, from: JSONSerialization.data(withJSONObject: report))
+    }
+    func testReplayRefusesForgedCoverageNormalFormsAndAdmission() throws {
+        let w = try RosterResponse.World([("wórld.swift", world)], predicate: "P")
+        let report = RosterResponse.answer(w.files, predicate: "P")
+        for mutation in 0..<9 {
+            var data = try object(report)
+            var rows = data["records"] as! [[String: Any]]
+            switch mutation {
+            case 0: rows.removeLast()
+            case 1:
+                var axes = rows[0]["axes"] as! [String: [String: Any]]
+                axes["Axis"]!["normal"] = "Alias"
+                rows[0]["axes"] = axes
+            case 2: rows[0]["admission"] = ["nodes": []]
+            case 3:
+                var axes = rows[0]["axes"] as! [String: [String: Any]]
+                axes["Axis"]!["derivation"] = ["rule": "name", "term": "A", "children": []]
+                rows[0]["axes"] = axes
+            case 4: rows.swapAt(0, 1)
+            case 5:
+                func stopAtAlias(_ tree: [String: Any]) -> [String: Any] {
+                    if tree["rule"] as? String == "unfold", tree["term"] as? String == "Alias" {
+                        return ["rule": "name", "term": "Alias", "children": []]
+                    }
+                    var result = tree
+                    result["children"] = (tree["children"] as! [[String: Any]]).map(stopAtAlias)
+                    return result
+                }
+                var axes = rows[0]["axes"] as! [String: [String: Any]]
+                axes["Axis"]!["normal"] = "Alias"
+                axes["Axis"]!["literal"] = NSNull()
+                axes["Axis"]!["derivation"] = stopAtAlias(axes["Axis"]!["derivation"] as! [String: Any])
+                rows[0]["axes"] = axes
+            case 6:
+                var inputs = data["inputs"] as! [[String: Any]]
+                inputs[0]["path"] = "wo\u{301}rld.swift"
+                data["inputs"] = inputs
+            case 7:
+                var at = rows[0]["at"] as! [String: Any]
+                at["path"] = "wo\u{301}rld.swift"
+                rows[0]["at"] = at
+            default:
+                var axes = rows[0]["axes"] as! [String: [String: Any]]
+                var literal = axes["Axis"]!["literal"] as! [String: Any]
+                var at = literal["at"] as! [String: Any]
+                at["path"] = "wo\u{301}rld.swift"
+                literal["at"] = at
+                axes["Axis"]!["literal"] = literal
+                rows[0]["axes"] = axes
+            }
+            data["records"] = rows
+            XCTAssertThrowsError(try w.replay(changed(data)), "mutation \(mutation)")
+        }
+        let altered = world.replacingOccurrences(of: "carried Ω", with: "carried β")
+        XCTAssertThrowsError(try RosterResponse.World([("wórld.swift", altered)], predicate: "P").replay(report))
+    }
+    func testMissingAndRepeatedAxesRemainAddressed() {
+        for source in ["protocol P { associatedtype A }\nenum X: P {}",
+                       "protocol P { associatedtype A }\nenum Q {}\nenum X: P { typealias A = Q\ntypealias A = Q }"] {
+            let r = RosterResponse.answer([("bad.swift", source)], predicate: "P")
+            XCTAssertNotEqual(r.outcome, "holds")
+            XCTAssertTrue(r.diagnostics.contains { $0.contains("bad.swift:") })
+        }
+    }
+    func testUnreadSyntaxCannotHideConformersAndEmptyIsNotHolds() {
+        for suffix in ["actor X: P {}", "class X: P {}", "enum Box { enum X: P {} }",
+                       "#if FLAG\nenum X: P {}\n#endif", "func f() { enum X: P {} }",
+                       "import X; actor Y: P {}", "typealias Q = P\nenum X: Q {}",
+                       "enum X {}\ntypealias Q = X\nextension Q: P {}", "enum X<T>: P {}"] {
+            let r = RosterResponse.answer([("bad.swift", "protocol P {}\n" + suffix)], predicate: "P")
+            XCTAssertEqual(r.outcome, "unsupported", suffix)
+            XCTAssertTrue(r.diagnostics.contains { $0.contains("bad.swift:") }, suffix)
+        }
+        XCTAssertEqual(RosterResponse.answer([("empty.swift", "protocol P {}")], predicate: "P").outcome, "empty")
+        let duplicate = RosterResponse.answer([("first.swift", "protocol P {}\nenum X: P {}"), ("second.swift", "enum X: P {}")], predicate: "P")
+        XCTAssertEqual(duplicate.diagnostics, ["second.swift:1: duplicate declaration X"])
+        let external = RosterResponse.answer([("external.swift", "protocol P {}\n\nextension Missing: P {}")], predicate: "P")
+        XCTAssertEqual(external.diagnostics, ["external.swift:3: open/external conformer 'Missing' is outside finite roster scope"])
+
+    }
+    func testLiteralByteSpanIsOriginalCRLFUnicodeAndNeverAClaim() throws {
+        let text = "// Ω\r\nprotocol P {}\r\nenum X: P { static var typeName: String { #\"β\\n\"# } }\r\n"
+        let r = RosterResponse.answer([("raw.swift", text)], predicate: "P")
+        XCTAssertEqual(r.outcome, "holds", r.diagnostics.joined())
+        let value = try XCTUnwrap(r.records.first?.literal)
+        let original = Data(Array(text.utf8)[value.at.start..<value.at.end])
+        XCTAssertEqual(Data(base64Encoded: value.bytes), original)
+        XCTAssertEqual(String(data: original, encoding: .utf8), "β\\n")
+        XCTAssertEqual(value.at.line, 3)
+        XCTAssertFalse(value.judged)
+    }
+    func testComputedCarrierAndErasedDeclarationsAreUnsupported() {
+        for body in ["static var typeName: String { #\"x\"# + #\"y\"# }",
+                     "static let typeName: String = #\"x\"# + #\"y\"#",
+                     "static var other: String { #\"x\"# }",
+                     #"static var typeName: String { "\(notALiteral)" }"#,
+                     ##"static var typeName: String { #"\#(notALiteral)"# }"##] {
+            let r = RosterResponse.answer([("bad.swift", "protocol P {}\nenum X: P { \(body) }")], predicate: "P")
+            XCTAssertEqual(r.outcome, "unsupported", body)
+        }
+    }
+}

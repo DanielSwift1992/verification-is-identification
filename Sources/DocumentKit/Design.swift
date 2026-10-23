@@ -1,7 +1,6 @@
 import Notation
 
-/// Supplies a world's faces, caption paint and shadow at the reading edge.
-/// Requires each canvas to name its binding for type checking.
+/// Supplies a world's faces, caption paint and shadow at the reading edge. Requires each canvas to name its binding for type checking.
 public protocol DrawingStyle: Structure, StyleKeys {
     associatedtype PaintFallbacks: Structure
     associatedtype BodyFace: Structure
@@ -141,9 +140,7 @@ extension PageBackdrop {
     }
 }
 
-/// The filter's name, spelled once: the def states its `id` through this atom and every
-/// applier builds its `url()` from the same atom, so a rename cannot strand an applier.
-/// `SurfaceCardShadow`'s name, held to the same rule.
+/// Declares the shadow filter under the shared filter identifier.
 public enum ShadowEnvelope<Binding: DrawingStyle>: Close {}
 extension ShadowEnvelope {
     public static var typeName: String {
@@ -202,9 +199,6 @@ extension ArrowHeadName {
     public static var typeName: String { "a" }
 }
 
-// A world grants these categories to its paints after checking its own pairs.
-// The wrappers require the grant; the mechanism grants no concrete colour.
-
 public protocol LegibleOnInk: Paint {} // law:allow: owner-declared contrast category
 
 /// This is a foreground legible against the `SurfaceCard` role.
@@ -218,11 +212,9 @@ public protocol LegibleOnSurfaceTrack: ReadableOnSurfaceTrack {}   // law:allow 
 /// This is a foreground legible against the `AccentRole` role.
 public protocol LegibleOnAccentRole: Paint {}   // law:allow — same palette-gate class as its SurfaceTrack sibling
 
-/// This marks a foreground legible against a `NavyTint` background, unused (see above), kept as-is.
+/// Marks a foreground granted for the NavyTint background by its owner.
 public protocol ReadableOnNavyTint: Paint {} // law:allow: owner-declared contrast category
 public protocol LegibleOnNavyTint: ReadableOnNavyTint {} // law:allow: owner-declared contrast category
-
-// Span labels carry an explicit fill, while these wrappers also require a pairing grant.
 
 public protocol GatedBoldTextOnInk: Open, StyleBound {
     associatedtype Fg: LegibleOnInk
@@ -280,16 +272,12 @@ extension AnchorMiddle {
     public static var typeName: String { "middle" }
 }
 
-// Style names are declared below. The owner supplies their values and equations.
-
 public enum N0: Close {}
 extension N0 {
     public static var typeName: String { "0" }
 }
 
-/// This is a rect with its fill AND stroke: the one segment (`SplitBar`'s tinted third) that
-/// needs a border to read against a near-transparent fill (§S8: built for the one place it is
-/// needed, not a general two-attribute rect).
+/// Draws a rectangle with its supplied fill, stroke and geometry.
 public protocol GlyphRectFillStroke: Open, StyleBound {
     associatedtype X: Structure
     associatedtype Y: Structure
@@ -451,8 +439,6 @@ extension TextSecondary {
     public static var typeName: String { PaintSlot<Self>.typeName }
 }
 
-public protocol HoverStyle: Structure {} // law:allow: owner-bound interaction style name
-
 /// Requires the owner's foreground, its ground and the equality used for that pair.
 public protocol ReadablePaintPair {
     associatedtype WitnessName: Structure
@@ -544,6 +530,3 @@ public protocol StyleKeys {
     associatedtype ShapeRadius: Structure
     associatedtype ThickGlyphWidth: Structure
 }
-
-public protocol TimedReveal: Structure {} // law:allow: owner-bound composition name
-public protocol FrozenReveal: Structure {} // law:allow: owner-bound composition name

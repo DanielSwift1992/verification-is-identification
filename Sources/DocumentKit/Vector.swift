@@ -1,7 +1,6 @@
 import Notation
 
-/// XML serialization reads characters only at the output edge. Measurement and type
-/// spelling keep the original text; composition keeps its already serialized markup.
+/// Escapes the supplied text at the XML serialization edge.
 public enum XMLEscaped<Content: Structure>: Close {}
 extension XMLEscaped {
     public static var typeName: String {
@@ -18,7 +17,7 @@ extension XMLEscaped {
     }
 }
 
-/// Time is a rational reading of integer ticks, not integer lattice division.
+/// Reads ticks divided by the supplied frequency as seconds.
 public enum Seconds<Ticks: Structure, Frequency: Structure>: Close {}
 extension Seconds {
     public static var typeName: String {
@@ -27,64 +26,13 @@ extension Seconds {
     }
 }
 
-// ═══════════════════════════════════════════════════════════════
-// VECTOR is SVG as DocumentKit's second medium, the same mechanism Markup.swift
-// uses for markdown: every atom is a `Close` read through `typeName`, every combinator is an
-// `Open` protocol whose `body` composes atoms, walked by `typeName` into the drawing. SVG is
-// text, and `typeName` already generates text: drawing is the same act as rendering a page,
-// not a second one. The geometry is OURS: a `viewBox` fixes the coordinate system and aspect
-// ratio, so embedding as an `<img>` (DocC's choice) scales both axes together,
-// deterministically. The walls this file's laws name for markdown (§S15 no column width,
-// §S19 no visible weight, §S21 fixed image margins) are walls of THAT medium, not this one.
-//
-// The geometry has three compositional interfaces: a divided axis hands each
-// member its slice and derives the remainder; a span draws into that slice; a pen
-// composes a path. Magnitudes come from the caller and are read through Tally,
-// SpanPx, Halfway and Under. Binding supplies the required style readings.
-// Per-instance content (a glyph's path data, a line's text) is a `Structure` hole, exactly
-// like `Symbol`'s target or `TableCell`'s content.
-// ═══════════════════════════════════════════════════════════════
-
-// THE CANVAS CONTRACT — what the medium guarantees, and what it does not.
-//
-// GUARANTEED. A Canvas fixes a coordinate space of its own: viewBox W×H is a pixel
-// grid that belongs to the composition. Inside it, the composition's geometry is
-// its own, and the host cannot reach in: no margin, no centering, no theme
-// rule moves anything within the viewBox. The host may scale the canvas ONLY
-// as a whole, uniformly: the aspect is preserved, so a known width fixes the
-// height. Nothing drifts.
-//
-// NOT GUARANTEED. The absolute on-screen size: markdown offers no pixel pin,
-// so the canvas renders at container width. Right SHAPE always, exact screen
-// pixels never promised. Text metrics: glyph width is the platform font's, and
-// the craft is a fixed font-family and generous boxes (§S15's discipline:
-// state the box, never compute the fit).
-// ═══════════════════════════════════════════════════════════════
-
-// GATE TIERS. Compile gate: an illegal type does not build (`Legible`,
-// `WithinBounds`, the strongest form). Generation gate: an illegal VALUE
-// stops `generate` with a named precondition (`BudgetedLabel`), weaker,
-// still before anything ships. Host gate: what only the browser decides
-// (hover, theme), declared, never trusted with correctness.
-// ═══════════════════════════════════════════════════════════════
-
-/// This marks a canvas that shows its source. Opting in costs nothing beyond this empty
-/// conformance: the composition a conforming canvas's `body` shows is ALREADY the exact type its
-/// `@StructureBuilder` folded (a left-nested `Paired` chain), so a reader can read that
-/// SAME type back through `String(reflecting: Body.self)` and print it. The reader is
-/// consuming driver's decompiler, a value-level concern. This medium only carries the
-/// marker and, per canvas, the small `{ }` chip built from existing atoms (`GlyphRect`,
-/// `Label`, `Linked`).
-/// Nothing here can drift from what compiled, because nothing here is a second copy of it.
+/// Marks a canvas whose consumer supplies a source presentation.
 public protocol SelfShowing {}
 
-/// This is several drawn pieces, composed through `body` into one: the SVG-medium counterpart of
-/// Keeps the content fragment local to the drawing vocabulary. A canvas's `Content` hole accepts its composition.
+/// Composes drawing fragments through its body.
 public protocol Group: Open {}
 
-/// This is the SVG root, like `Screen`/`Reference`, but the medium is source text, not markdown.
-/// The canvas frame reads its viewBox off the same structures the rows slice: width and
-/// height are counts, digits born here, at the edge, like every other reading.
+/// Reads the supplied width and height as the canvas frame.
 public enum CanvasSize<W: Structure, H: Structure>: Close {}
 extension CanvasSize {
     public static var typeName: String { "0 0 \(W.count) \(H.count)" }
@@ -104,11 +52,6 @@ extension Diagram {
 public enum DiagramMarkup<Root: Diagram>: Close {}
 extension DiagramMarkup {
     public static var typeName: String {
-        // `data-vi-canvas="1"` — every canvas declares ITSELF, so the host needs no separate
-        // name list to keep in sync by hand: a second list (footer.html's `WHITELIST`) is
-        // exactly the kind of bookkeeping this medium's `body`/`typeName` discipline exists
-        // to make unnecessary, and a name missing from it renders untheme'd with no error. A
-        // marker on the root the canvas ALREADY emits needs no second list at all.
         return "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"\(XMLEscaped<Root.Size>.typeName)\" role=\"img\" "
             + "data-vi-canvas=\"1\" "
             + "font-family=\"\(XMLEscaped<Root.Binding.BodyFace>.typeName)\" aria-label=\"\(XMLEscaped<Root.AriaLabel>.typeName)\">\n"
@@ -116,7 +59,7 @@ extension DiagramMarkup {
     }
 }
 
-/// Positions a rounded panel with the radius supplied by its binding.
+/// Positions a panel with the radius supplied by its binding.
 public protocol Shape: Open, StyleBound {
     associatedtype X: Structure
     associatedtype Y: Structure
@@ -131,7 +74,7 @@ extension Shape {
     }
 }
 
-/// This is a sharp-cornered panel at the origin: a card's full-bleed background.
+/// Draws a rectangle at the local origin with the supplied width, height and fill.
 public protocol FullBleedRect: Open {
     associatedtype W: Structure
     associatedtype H: Structure
@@ -143,7 +86,7 @@ extension FullBleedRect {
     }
 }
 
-/// Positions a rounded full-bleed panel at the origin with its declared radius.
+/// Draws a rectangle at the local origin with its supplied radius and paint.
 public protocol RoundedFullBleedRect: Open {
     associatedtype W: Structure
     associatedtype H: Structure
@@ -156,8 +99,7 @@ extension RoundedFullBleedRect {
     }
 }
 
-/// Draws Content at X and Y with the caption face, slant and paint of Binding.
-/// Coordinates and size are supplied by the composition.
+/// Positions the supplied content with the binding's caption face, slant and paint.
 public protocol ItalicLabel: Open, StyleBound {
     associatedtype X: Structure
     associatedtype Y: Structure
@@ -172,23 +114,13 @@ extension ItalicLabel {
     }
 }
 
-// ═══ THE PEN — drawing as constrained motion. A path is not a list of stated points: it
-// is a start and a chain of moves, each move running straight UNTIL a named line — the
-// stopping condition is a rung of the dictionary, so the endpoint DERIVES, and the free
-// part of the drawing is exactly what the constraints leave free. Horizontal position is
-// a fraction of the surface (read through `SpanPx`, the row's own coordinate language), and
-// vertical position is a magnitude (read by count). A diagonal is `SlideTo`: a straight
-// line to a point both of whose coordinates already derive. Any arrow eats a pen chain
-// whole — the chain's `typeName` IS the path's `d`. ═══
-
-/// This is a position under the pen: where it is after the moves so far. Every move
-/// exposes its end, so the next move's stopping line is all it needs to state.
+/// Exposes the endpoint of a composed path as two fractional coordinates.
 public protocol Pen: Structure {
     associatedtype AtX: Frac & Structure
     associatedtype AtY: Structure
 }
 
-/// This puts the pen down: a start names the one point no motion can derive.
+/// States the initial coordinates of a path.
 public enum StartAt<
     X: Frac & Structure,
     Y: Structure
@@ -201,8 +133,7 @@ extension StartAt: Pen {
     }
 }
 
-/// This runs the pen straight until the named horizontal line: the vertical move, its
-/// direction implied by where the line is, its endpoint derived, not stated.
+/// Extends a path vertically to the supplied ordinate.
 public enum UntilY<
     Prev: Pen,
     Line: Structure
@@ -215,7 +146,7 @@ extension UntilY: Pen {
     }
 }
 
-/// This runs the pen straight until the named vertical line: the horizontal move.
+/// Extends a path horizontally to the supplied abscissa.
 public enum UntilX<
     Prev: Pen,
     Line: Frac & Structure
@@ -228,9 +159,7 @@ extension UntilX: Pen {
     }
 }
 
-/// This slides the pen to a point whose two coordinates both derive: the diagonal. The
-/// medium solves no angled intersections (that would take roots): it connects points the
-/// rungs already determine.
+/// Extends a path to the supplied pair of coordinates.
 public enum SlideTo<
     Prev: Pen,
     X: Frac & Structure,
@@ -244,9 +173,7 @@ extension SlideTo: Pen {
     }
 }
 
-/// This reads a text line hanging a stated baseline under a named row: the structure is
-/// the row's rung, the baseline is typography (the one stated hole), and moving the row
-/// carries its words along.
+/// Positions a line below its supplied row by the stated baseline offset.
 public enum Under<
     Line: Structure,
     Baseline: Structure
@@ -257,10 +184,7 @@ extension Under {
     }
 }
 
-/// This reads a text's measured width at a size, in canvas pixels, rounded up: the sum of
-/// the stated font's own advances (GeneratedFontMetrics, spelled from the world's stated font file
-/// by `swift run FontMetrics`). The world supplies the advance for a character outside
-/// its table. A measured fit is relative to these supplied metrics.
+/// Reads text width from the binding's advances and fallback at the stated size.
 public enum BoundTextWidth<
     Binding: DrawingStyle,
     Content: Structure,
@@ -286,10 +210,7 @@ extension BoundTextWidth {
     }
 }
 
-/// This is the measured gate on a centred label: the words must fit the width the slice
-/// hands over, and the gate refuses a text that outgrows its box at generation, loudly,
-/// by name: the same floor a crashed generator already is, under every fitted
-/// label instead of a reviewer's eye.
+/// Centers the supplied text and refuses a measured width larger than its slice at rendering.
 public protocol SpanLabelMidFitted: Spanning, StyleBound {
     associatedtype Y: Structure
     associatedtype FillColor: Structure
@@ -317,11 +238,7 @@ extension SpanLabelMidFitted {
     }
 }
 
-/// This is the centred baseline, derived: the y where the reader sees text of a size
-/// centred in its zone (the zone's middle plus half the font's own capital height, rounded
-/// to the nearest pixel). With this the centred class of baselines derives. Stacked
-/// lines (a title over a subtitle) remain stated: design choices, not
-/// centrings.
+/// Reads a centered baseline from the zone and the binding's capital-height metric.
 public enum BoundCenteredBaseline<
     Binding: DrawingStyle,
     ZoneTall: Structure,
@@ -336,11 +253,7 @@ extension BoundCenteredBaseline {
     }
 }
 
-/// This is the wrapped centred label: the words fill measured lines within the width the
-/// slice hands over, breaking greedily by the same measure the fitted gate reads, each
-/// line one stated pitch below the last. Wrapping earns lines, never truncation: the gate
-/// still refuses a single word wider than the slice, loudly. The advance-table parse
-/// repeats `TextWidth`'s by law: a value helper has no lawful home outside a witness body.
+/// Centers measured lines within its slice and refuses an overwide word at rendering.
 public protocol SpanLabelMidWrapped: Spanning, StyleBound {
     associatedtype Y: Structure
     associatedtype LinePitch: Structure
@@ -411,11 +324,7 @@ extension SpanLabelMidWrapped {
     }
 }
 
-/// The wrapped label anchored at the START of its slice: the sheet's own voice, the same
-/// greedy measured break the centred twin makes, each line one stated pitch below the
-/// last. Wrapping earns lines, never truncation, and the gate refuses a single word wider than
-/// the slice, loudly. The advance-table parse repeats `TextWidth`'s by law: a value
-/// helper has no lawful home outside a witness body.
+/// Starts measured lines at the slice origin and refuses an overwide word at rendering.
 public protocol SpanLabelWrapped: Spanning, StyleBound {
     associatedtype Y: Structure
     associatedtype LinePitch: Structure
@@ -486,12 +395,7 @@ extension SpanLabelWrapped {
     }
 }
 
-/// The line count of a wrapped text as a type: how many measured lines the content
-/// breaks into across a STATED width. The width is a dictionary rung, so the count
-/// is fixed before any slice is handed over and a sheet's band may be sized as
-/// `Times<LinePitch, LineTally<…>>`. Keep the drawing's slice the same rung, or the
-/// measure lies. The break repeats the wrapped labels' own, by the same law that
-/// denies a value helper a home outside a witness body.
+/// Counts lines using the supplied width and the binding's advances.
 public enum BoundLineTally<
     Binding: DrawingStyle,
     Content: Structure,
@@ -535,8 +439,7 @@ extension BoundLineTally {
     }
 }
 
-/// This reads the line halfway between two named lines: the one division the fascia keeps
-/// (a midpoint of magnitudes), for annotations between the two.
+/// Reads the midpoint of the supplied coordinate magnitudes.
 public enum Halfway<
     A: Structure,
     B: Structure
@@ -547,8 +450,7 @@ extension Halfway {
     }
 }
 
-/// This is a dashed dependency arrow: the arrow every "written in its types" diagram
-/// draws back to V=I.
+/// Draws the supplied path with its binding's dashed stroke and arrow marker.
 public protocol DashedArrow: Open, StyleBound {
     associatedtype Path: Structure
 }
@@ -559,8 +461,7 @@ extension DashedArrow {
     }
 }
 
-/// This is an absolutely-placed subtree: a translate group, for a whole glyph or a whole box moved as
-/// one unit rather than every child restating the same offset.
+/// Translates the supplied content by its vertical offset.
 public protocol Dropped: Open {
     associatedtype Y: Structure
     associatedtype Content: Structure
@@ -571,8 +472,7 @@ extension Dropped {
     }
 }
 
-/// Translates Content to X and Y, then applies its declared uniform Scale.
-/// The same Content can participate in several placements without redrawing its path.
+/// Translates the supplied content to its coordinates and applies its uniform scale.
 public protocol PlacedScaled: Open {
     associatedtype X: Structure
     associatedtype Y: Structure
@@ -585,19 +485,9 @@ extension PlacedScaled {
     }
 }
 
-// WithinBounds is the common interface for an owner's placement grant.
-// A canvas refines it with its own relation and requires that refinement at the
-// placement site. A conformance to the common interface alone does not establish
-// X + W <= CanvasWidth or any other numerical bound. The owner must supply the
-// relation that connects the coordinate, extent and canvas.
 public protocol WithinBounds: Structure {}   // law:allow — common interface for an owner-declared placement relation
 
-/// This wraps a subtree in a real link. `Target` is a page path from the site's closed set of
-/// addresses (the same universe `<doc:…>` links resolve into: `/documentation/<module>/…`),
-/// not an arbitrary URL, a curated destination, named at the call site, not computed. Always
-/// emitted: the atom does not know or care which host reads it. Inert inside a plain `<img>`
-/// (DocC's choice), made a real DOM anchor by the inline-swap hook, which is a decision the
-/// HOST makes about how to embed the medium, not a capability this file adds.
+/// Wraps the supplied content in an SVG anchor with the supplied target.
 public protocol Linked: Open {
     associatedtype Target: Structure
     associatedtype Content: Structure
@@ -608,7 +498,7 @@ extension Linked {
     }
 }
 
-/// This is the one shared rule every lifted group reads, declared once per canvas that uses them.
+/// Reads the binding's hover-transform rule for a canvas.
 public enum BoundHoverStyle<Binding: DrawingStyle>: Close {}
 extension BoundHoverStyle {
     public static var typeName: String {
@@ -622,14 +512,7 @@ extension BoundHoverStyle {
     }
 }
 
-/// This is a trigger that reveals a panel on hover: "the diagram explaining itself." Both
-/// halves are inside a common wrapper (`.hover-pair`) so the CSS sibling rule below is scoped
-/// to THIS pair. Without that wrapper, a `.hover-trigger:hover ~ .hover-panel` selector would
-/// match every panel on the whole canvas, not just its own (checked directly: two ungrouped
-/// pairs cross-lit each other's panels). The panel is a dose of DOP-INFO, not the only copy of
-/// what it says (§S8's floor for a progressive-enhancement atom): it contains no fact a plain
-/// reading of the canvas lacks, only a closer one. It works only where the inline-swap hook has
-/// turned the embedding into real DOM (`HoverLift`'s floor), inert inside a plain `<img>`.
+/// Groups a trigger and panel within one hover scope.
 public protocol HoverReveal: Open {
     associatedtype Trigger: Structure
     associatedtype Panel: Structure
@@ -643,11 +526,7 @@ extension HoverReveal {
     }
 }
 
-/// This is a stroke with the pointer cursor that answers hover with emphasis (a flow
-/// arrow): CSS `stroke`/`stroke-width` set here outrank the SVG PRESENTATION ATTRIBUTE
-/// `SolidArrow`/`DashedArrow` already write (the same override `HoverLift`'s note names,
-/// a style-sheet rule always outranks a presentation attribute, no `!important` needed), so the
-/// line brightens without the drawing atom underneath knowing anything happened to it.
+/// Wraps content in the class selected by the shared hover rule.
 public protocol HoverHighlight: Open {
     associatedtype Content: Structure
 }
@@ -656,17 +535,7 @@ extension HoverHighlight {
         "<g class=\"hover-highlight\">\n" + Content.typeName + "</g>\n"
     }
 }
-/// This is the one shared rule every `HoverReveal`/`HoverHighlight` reads, declared once per canvas.
-///
-/// The panel is INTERACTIVE, not a tooltip: links inside it must be reachable and clickable.
-/// Two mechanics carry that (both checked against the standard CSS traps): the reveal rule
-/// includes `.hover-panel:hover`. Once the pointer reaches the panel, the panel holds itself
-/// open; the world supplies the grace window after
-/// the pointer leaves, so the traverse from trigger to panel survives the gap between them.
-/// `pointer-events` is deliberately absent: it is not animatable, so toggling it would end
-/// interactivity the instant the trigger's `:hover` drops, killing the traverse. In SVG,
-/// `visibility: hidden` already withholds pointer events (`visiblePainted`), and visibility IS
-/// delayable. The world supplies both transition intervals.
+/// Reveals a panel while either half is hovered and uses the binding's transition intervals.
 public enum HoverRevealStyle<Binding: DrawingStyle>: Close {}
 extension HoverRevealStyle {
     public static var typeName: String {
@@ -683,21 +552,13 @@ extension HoverRevealStyle {
     }
 }
 
-/// Marks a hover affordance with the paint and radius declared by its world.
-
-/// This reads a type's Swift name, lowercased: the URL slug DocC's static-hosting build assigns each
-/// page (`ExamplePage` renders at `.../examplepage`), read the same mechanical way
-/// `RawName` reads a symbol's bare identifier (Markup.swift), not restated by hand. A caller
-/// builds a real site path from a page TYPE with this plus its base path, the way `Linked`'s
-/// targets are meant to be built, not a string someone has to keep in sync with the symbol.
+/// Reads the supplied type's identifier in lowercase for the consumer's address composition.
 public enum PageSlug<X>: Close {}
 extension PageSlug {
     public static var typeName: String { String(describing: X.self).lowercased() }
 }
 
-/// This is a bare rounded rect inside a tinted group: no fill of its own, colour comes from the
-/// enclosing `FilledGroup`/`StrokedGroup` (SVG's presentation-attribute inheritance, the
-/// same reason a glyph's four tiles state one `fill` for the group, not four).
+/// Draws a rectangle whose paint is inherited from its enclosing group.
 public protocol GlyphRect: Open {
     associatedtype X: Structure
     associatedtype Y: Structure
@@ -711,10 +572,7 @@ extension GlyphRect {
     }
 }
 
-/// This is `GlyphRect` plus a border, sized to a small
-/// glyph instead of a full-bleed panel: a swatch whose fill might legitimately match
-/// whatever it is on (RolesPlate's "Card" swatch, on a Card-coloured backing) is still
-/// a shape in its own right.
+/// Draws a rectangle with a border and the supplied binding.
 public protocol GlyphRectStroked: Open, StyleBound {
     associatedtype X: Structure
     associatedtype Y: Structure
@@ -730,7 +588,7 @@ extension GlyphRectStroked {
     }
 }
 
-/// This is a bare circle inside a tinted group, the same inheritance as `GlyphRect`.
+/// Draws a circle whose paint is inherited from its enclosing group.
 public protocol GlyphCircle: Open {
     associatedtype CX: Structure
     associatedtype CY: Structure
@@ -742,9 +600,7 @@ extension GlyphCircle {
     }
 }
 
-/// This is a bare path inside a tinted group: the curve data itself is stated, not computed (the
-/// same discipline `TextDigit` keeps for a stated cap: read, not built). Only the wrapping
-/// element is typed.
+/// Draws the supplied path with inherited paint.
 public protocol GlyphPath: Open {
     associatedtype D: Structure
 }
@@ -754,7 +610,7 @@ extension GlyphPath {
     }
 }
 
-/// Reads a path stroke from the binding independently of its surrounding group.
+/// Draws the supplied path with the binding's thick stroke.
 public protocol GlyphPathThick: Open, StyleBound {
     associatedtype D: Structure
 }
@@ -764,8 +620,7 @@ extension GlyphPathThick {
     }
 }
 
-/// Draws D with its own Stroke and the glyph-stroke readings of Binding.
-/// The path can participate outside a group that supplies an inherited fill.
+/// Draws a path with its own paint and the binding's stroke readings.
 public protocol StandaloneStrokedPath: Open, StyleBound {
     associatedtype Stroke: Paint
     associatedtype D: Structure
@@ -776,7 +631,7 @@ extension StandaloneStrokedPath {
     }
 }
 
-/// Supplies Fill to the shapes composed by Content.
+/// Supplies the stated fill to its composed content.
 public protocol FilledGroup: Open {
     associatedtype Fill: Structure
     associatedtype Content: Structure
@@ -787,11 +642,7 @@ extension FilledGroup {
     }
 }
 
-/// This is `FilledGroup` plus a CSS class: the one hook a purely declarative canvas needs to let a
-/// `<style>` atom (elsewhere in the SAME file, a `@keyframes` rule the class names) reach in and
-/// animate something, the same edge `HoverReveal`'s `.hover-trigger`/`.hover-panel` classes
-/// are already on. Still no runtime: the class and the rule are both compiled text. What plays
-/// is CSS's animation clock, not a script.
+/// Supplies a fill and CSS class to its composed content.
 public protocol FilledGroupClassed: Open {
     associatedtype Class: Structure
     associatedtype Fill: Structure
@@ -803,7 +654,7 @@ extension FilledGroupClassed {
     }
 }
 
-/// Groups outlined glyphs with the binding's stroke and the selected card paint.
+/// Supplies the selected paint and binding's stroke readings to its glyphs.
 public protocol StrokedGroup: Open, StyleBound {
     associatedtype Stroke: Paint
     associatedtype Content: Structure
@@ -814,8 +665,7 @@ extension StrokedGroup {
     }
 }
 
-/// Reads the binding's glyph width, caps, joins and fill for the selected card paint.
-/// Shares that reading between `StrokedGroup` and `StandaloneStrokedPath`.
+/// Reads stroke width, caps, joins and fill from the binding and selected paint.
 public enum BoundGlyphStroke<
     Binding: DrawingStyle,
     C: Paint
@@ -826,7 +676,7 @@ extension BoundGlyphStroke {
     }
 }
 
-/// The two markers both arrow kinds reuse, declared once per canvas that draws arrows.
+/// Declares the marker referenced by arrows in the same canvas.
 public enum ArrowMarkers<Binding: DrawingStyle>: Close {}
 extension ArrowMarkers {
     public static var typeName: String {
@@ -841,19 +691,7 @@ extension ArrowMarkers {
     }
 }
 
-// THE STATE SWITCH — a canvas's own walk, read by `:target`, not a second page per position
-// (DESIGN19 §2). A fragment link (`Linked`, above) already reaches an id anywhere in the
-// document, and `StateGroup` gives that id a group to hide until it is the current one, and
-// `StateSwitchStyle` gives the whole canvas its resting position, the state nothing else
-// has targeted yet. Checked directly, in an actual inlined SVG (DESIGN19 §4 probes 1-2):
-// `:target` switches a sibling group, and `svg:not(:has(.vi-state:target)) #k0` is exactly
-// the fallback CSS `:has()` makes possible. Inert inside a plain `<img>` (DocC's own
-// fallback), the same progressive floor `Linked`'s click is already on.
-
-/// This is one addressable position in a canvas's walk: hidden until `Id` is the page's
-/// current fragment. `Id` is the BARE name (`"k0"`, the `<g id="...">` the browser matches
-/// against). A caller reaches it through `Linked`, whose `Target` wants the `"#"`-prefixed
-/// form instead (``FragmentOf``, below, reads one from the other).
+/// Associates content with a supplied fragment identifier and the shared state class.
 public protocol StateGroup: Open {
     associatedtype Id: Structure
     associatedtype Content: Structure
@@ -864,12 +702,7 @@ extension StateGroup {
     }
 }
 
-/// This is the one shared rule every `StateGroup` reads: hidden unless `:target`, and
-/// `DefaultId` shown when NOTHING has been targeted yet, `:has()` read against the canvas's
-/// sibling groups, not a script (checked directly, DESIGN19 §4 probe 2). A reset link should
-/// name a REAL state's id (`"#k0"`), never the bare empty fragment `"#"`: checked directly, on a
-/// bare `#` the browser scrolls the whole page to its top (its "top of document" special case for
-/// an empty fragment), not just this canvas back to rest.
+/// Shows the targeted group, or the supplied default when no state group is targeted.
 public enum StateSwitchStyle<DefaultId: Structure>: Close {}
 extension StateSwitchStyle {
     public static var typeName: String {
@@ -884,12 +717,7 @@ extension StateSwitchStyle {
     }
 }
 
-/// One drawn variant of an owner, independent of every other owner on the canvas. Where
-/// `StateGroup` switches the whole canvas on one `:target`, a canvas can have many owners
-/// whose variants move independently, and that product does not fit in one fragment. So a
-/// variant declares its owner and its position as data, the owner's resting variant ships
-/// visible, the rest ship hidden, and the host's inline hook flips them per owner on a key
-/// press. Inside a plain `<img>` only the resting variants are visible: the built truth.
+/// Serializes an owner's variant and initial visibility for the host reader.
 public enum SpanVariant<
     Owner: Structure,
     Position: Structure,
@@ -910,12 +738,7 @@ extension SpanVariant: Spanning {
     }
 }
 
-/// The rule key: a clickable face carrying the key's rules: one rule, or a
-/// chord of rules folded as nested pairs (`Chord`, Dynamics.swift). Placing it is a
-/// proof obligation: the key does not compile unless every leaf is a rule and the whole
-/// chord shares one slot, so a drawn button can never name a press that does not stand.
-/// The attribute lists the chord's leaves in declaration order. The host applies the ONE
-/// whose pattern matches, or stands (§S30). Inert inside a plain `<img>`.
+/// Serializes a pressable term and its slot on a clickable face. The host judges rule selection.
 public enum RuleKey<
     R: Pressable,
     Face: Spanning
@@ -928,12 +751,6 @@ extension RuleKey: Spanning {
         atX x: X.Type,
         width w: W.Type
     ) -> String {
-        // The leaf names out of a chord's cons: a `Chord` node splits at its top-level
-        // comma and both halves return to the pile (right first, so declaration order
-        // survives the pops). An `Exactly` leaf is spelled whole, spaces shed, because
-        // the press supplies the atom and the atom travels with the press. Any other
-        // leaf is named bare, its placeholder tail dropped. A stack walk, not a
-        // helper: the witness remains one body.
         var names: [String] = []
         var pile: [Substring] = [Substring(String(describing: R.self))]
         while let term = pile.popLast() {
@@ -991,9 +808,7 @@ extension RuleKey: Spanning {
     }
 }
 
-/// The key that moves an owner to a position: a clickable face carrying the move as data.
-/// The host's hook reads it and shows that owner's variant at the named position, hiding
-/// its others. Emitted always, inert inside a plain `<img>`, the same floor `Linked` is on.
+/// Serializes the owner and variant requested by a clickable face.
 public enum SpanVariantKey<
     Owner: Structure,
     Position: Structure,
@@ -1012,26 +827,19 @@ extension SpanVariantKey: Spanning {
     }
 }
 
-/// This reads a state's fragment address: `"#"` + `X`'s bare id, the one form `Linked`'s
-/// `Target` wants. One atom, not two written by hand per state, the same reuse `SitePath<X>`
-/// gives a real page address.
+/// Prefixes the supplied identifier with the fragment delimiter.
 public enum FragmentOf<X: Structure>: Close {}
 extension FragmentOf {
     public static var typeName: String { "#" + X.typeName }
 }
 
-// Notation supplies Unit, Plus, Twice, Times and Tally. The caller composes
-// magnitudes from those constructors; the walk divides the supplied magnitudes.
-
-/// A fraction is any pair of structures: the left side counts the numerator, the right side
-/// the denominator. Nothing else exists to know about it.
+/// Relates a numerator and denominator through the two sides of a Pair.
 public protocol Frac: Pair
 where Left: Structure, Right: Structure {}
 extension Paired: Frac
 where L: Structure, R: Structure {}
 
-/// The span vocabulary is spelled entirely as fractions. `GivenSpan` is a whole width over
-/// one, a sum cross-multiplies, and a midpoint doubles the denominator around the origin.
+/// Represents the supplied width over the unit denominator.
 public typealias GivenSpan<Width: Structure> = Paired<
     Width,
     Unit
@@ -1051,8 +859,7 @@ public typealias MidOf<
     Times<Twice<X.Right>, W.Right>
 >
 
-/// SpanPx is the one reading: any fraction-pair in, digits out through its own `typeName`.
-/// The left count over the right count, divided once, here, rounded to the whole pixel.
+/// Reads the fraction's counts as a rounded pixel coordinate.
 public enum SpanPx<S: Frac>: Close {}
 extension SpanPx {
     public static var typeName: String {
@@ -1060,9 +867,7 @@ extension SpanPx {
     }
 }
 
-/// Content that draws itself INTO a span it is handed, instead of owning a width: the shape
-/// the divided axis asks of leaf art. A weighed part hands its slice down. A spanning
-/// leaf fills it.
+/// Reads content at the origin and width supplied by an enclosing divided axis.
 public protocol Spanning {
     static func rendered<X: Frac & Structure, W: Frac & Structure>(
         atX x: X.Type,
@@ -1070,25 +875,13 @@ public protocol Spanning {
     ) -> String
 }
 
-/// RowStart names the zero offset a walk begins at: nothing over one.
+/// States the axis origin as zero over one.
 public typealias RowStart = Paired<
     Never,
     Unit
 >
 
-// THE DIVIDED AXIS — layout as the division of space (DESIGN21 v10). A canvas never
-// states a number, a weight, or a position: it lists what is on the axis, in order.
-// A fixed member takes its dictionary magnitude off the given whole, a space takes the
-// policy's, and whatever remains belongs to the flexible members, equally. The rest is a
-// lattice witness (`Rest`), counted only at the read, where taking too much is refused.
-// The two axes are one mechanism turned, and a vertical axis with no flexible member HAS its
-// own height — the sum of what its members take — so a canvas built of such axes derives
-// its frame instead of stating it.
-
-/// This is one member of a divided axis. `Taken` is the magnitude it removes from the
-/// whole (its dictionary size, or nothing for a flexible member). `Stretch` counts it
-/// among those sharing the remainder (`Unit`, or `Never` for a fixed one). The fold sums
-/// both chains as types, with the read left to the edge.
+/// Declares a member's fixed extent and count of flexible shares.
 public protocol Takes {
     associatedtype Taken: Structure
     associatedtype Stretch: Structure
@@ -1103,8 +896,7 @@ public protocol Divides: Takes {
     ) -> String
 }
 
-/// This scales the free share by a count of flexible members: numerator times the count,
-/// the fraction a run of stretchy neighbours spans together.
+/// Multiplies a free share by the supplied count of flexible members.
 public typealias Stretched<
     Free: Frac,
     By: Structure
@@ -1113,8 +905,7 @@ public typealias Stretched<
     Free.Right
 >
 
-/// A fixed member takes content into a slice of its stated dictionary magnitude. The walk's
-/// translate places it. Inside, it draws from local zero into its stated span.
+/// Draws content within a slice of its supplied fixed extent.
 public enum Fixed<
     W: Structure,
     Content: Spanning
@@ -1135,9 +926,7 @@ extension Fixed: Divides {
     }
 }
 
-/// RestAir is the stated empty remainder: the one member every axis under a given may end
-/// with when nothing stretches: it owns whatever is left, draws nothing, and wraps
-/// nothing. "The rest is empty," said in one word.
+/// Receives the remaining share and draws empty content.
 public enum RestAir: Close {}
 extension RestAir: Divides {
     public typealias Taken = Never
@@ -1162,7 +951,7 @@ extension RestAir: DividesY {
     ) -> String { "" }
 }
 
-/// A space member takes the axis policy's magnitude and draws nothing.
+/// Takes the supplied fixed extent and draws empty content.
 public enum Air<S: Structure>: Close {}
 extension Air: Divides {
     public typealias Taken = S
@@ -1176,8 +965,7 @@ extension Air: Divides {
     ) -> String { "" }
 }
 
-/// A flexible member spans one share of whatever remains once every fixed
-/// member and space took its magnitude.
+/// Draws content within one share of the remaining extent.
 public enum Flexible<Content: Spanning>: Close {}
 extension Flexible: Divides {
     public typealias Taken = Never
@@ -1217,9 +1005,7 @@ where L: Divides, R: Divides {
     }
 }
 
-/// The horizontal divided axis takes a given whole and members in order, no number anywhere. The
-/// free share is the lattice's Rest over the count of stretchy members. An axis with
-/// no flexible member leaves it unread.
+/// Distributes a supplied width among the composed members in body order.
 public protocol HFlow: Open {
     associatedtype Given: Structure
 }
@@ -1237,9 +1023,7 @@ where Body: Divides & Structure {
     }
 }
 
-/// This is the vertical word of the same axis: a member's `Taken` is the height it removes,
-/// its `Stretch` counts it among those sharing the vertical remainder. One lexicon of
-/// members serves both directions. The axis picks the conformance.
+/// Reads members along a vertical axis with the supplied width and free share.
 public protocol DividesY: Takes {
     static func rendered<
         Y: Frac & Structure,
@@ -1312,9 +1096,7 @@ where L: DividesY, R: DividesY {
     }
 }
 
-/// The vertical divided axis runs under a given height: members take their extents down the
-/// page, flexible ones share the vertical remainder, and every member spans the width
-/// handed across.
+/// Distributes a supplied height among members and passes the stated width across them.
 public protocol VFlow: Open {
     associatedtype Given: Structure
     associatedtype Across: Structure
@@ -1334,18 +1116,13 @@ where Body: DividesY & Structure {
     }
 }
 
-/// The grown canvas derives its own frame: width is the given, height is the sum of what the vertical
-/// members take. The axis admits no flexible member (there is no remainder to share on an
-/// axis that grows to fit), and no one states the frame: the axis IS the frame.
+/// Derives height from fixed vertical members and uses the supplied width and binding.
 public protocol GrownDiagram: Open, StyleBound {
     associatedtype Across: Structure
     associatedtype AriaLabel: Structure
-    /// Filters, styles, and other defs the canvas carries before its axis: not members,
-    /// they take no height. `Never` by default: most canvases carry none.
+    /// Supplies definitions before the axis without taking height.
     associatedtype Defs: Structure = Never
-    /// The ground under the axis, painted before any member and taking no height. `Never` by
-    /// default: a canvas ground is transparent (the design law), and a canvas whose content
-    /// cannot all be on surfaces states `PageBackdrop` here instead.
+    /// Supplies the ground before the axis without taking height.
     associatedtype Backdrop: Structure = Never
 }
 extension GrownDiagram
@@ -1377,11 +1154,7 @@ extension GrownDiagramMarkup {
     }
 }
 
-/// This reads the equality of two magnitudes at the edge and branches there:
-/// when the counts agree, the face renders. When they differ, nothing does.
-/// Equality of magnitudes is decided no earlier than the reading, the same
-/// edge a clamp or a tally is on, and a conjunction of equalities is the
-/// nesting of this form inside itself.
+/// Renders its content when the two supplied counts are equal.
 public enum EdgeSame<
     A: Structure,
     B: Structure,
@@ -1400,12 +1173,7 @@ extension EdgeSame: Spanning {
     }
 }
 
-/// This reads an order of two magnitudes at the edge and branches there: when
-/// the first count reaches the second, the face renders. Short of it, nothing
-/// does. With `Times` for cross-multiplication a ratio bound is the same
-/// comparison (4.5:1 is nine to two), and a strict bound is this form with
-/// one unit added to the bar. Thresholds of every kind are compositions of
-/// this one door.
+/// Renders its content when the first supplied count is at least the second.
 public enum EdgeAtLeast<
     A: Structure,
     B: Structure,
@@ -1424,10 +1192,7 @@ extension EdgeAtLeast: Spanning {
     }
 }
 
-/// This reads a magnitude's parity at the edge and renders on even: the count
-/// splits into pairs or it does not, and the face follows the split. With its
-/// odd twin below, a fringe is a living reader of its gap: when the gap changes,
-/// the parity follows the file, and no certificate goes stale.
+/// Renders its content when the supplied count is even.
 public enum EdgeEven<
     A: Structure,
     Then: Spanning
@@ -1445,7 +1210,7 @@ extension EdgeEven: Spanning {
     }
 }
 
-/// The odd twin of ``EdgeEven``: renders when the count leaves one over.
+/// Renders its content when the supplied count is odd.
 public enum EdgeOdd<
     A: Structure,
     Then: Spanning
@@ -1463,8 +1228,7 @@ extension EdgeOdd: Spanning {
     }
 }
 
-/// This draws two spanning layers at the same origin and width: a background under its content,
-/// a name over its chip. Order is depth, the way a body's order always is.
+/// Draws two spanning compositions at the same origin and width in body order.
 public enum Layered<
     A: Spanning,
     B: Spanning
@@ -1481,8 +1245,7 @@ extension Layered: Spanning {
     }
 }
 
-/// This face fills its slice: rounded, stroked, shadowed. Height is a stated token, the
-/// vertical axis's word here. Width is the slice, read at the edge.
+/// Fills its slice using the supplied height, radius and card palette.
 public protocol SpanCardFace: Spanning, StyleBound {
     associatedtype H: Structure
     associatedtype Radius: Structure
@@ -1504,8 +1267,7 @@ extension SpanCardFace {
     }
 }
 
-/// This text anchors at its slice's origin. The y and size are stated tokens, the
-/// vertical axis's word here. The x derives.
+/// Anchors its text at the slice origin with its declared register.
 public protocol SpanLabel: Spanning {
     associatedtype Y: Structure
     associatedtype FillColor: Structure
@@ -1527,8 +1289,7 @@ extension SpanLabel {
     }
 }
 
-/// This dot fills and centers in its slice. The vertical is a stated token, the height
-/// axis's word here.
+/// Centers a disk within its slice at the stated ordinate.
 public protocol SpanDot: Spanning {
     associatedtype CY: Structure
     associatedtype R: Structure
@@ -1547,10 +1308,7 @@ extension SpanDot {
     }
 }
 
-/// This reveals its content on a stated cue and hides it after a stated dwell: one frame
-/// of a film, run by SVG's own clock (SMIL `set`, no script). A film is a sequence of
-/// these with consecutive cues. The reader's browser executes the schedule, and the
-/// artifact remains a pure composition.
+/// Reads the binding's timed reveal rule for the supplied content.
 public enum BoundTimedReveal<
     Binding: DrawingStyle,
     Begin: Structure,
@@ -1565,9 +1323,7 @@ extension BoundTimedReveal {
     }
 }
 
-/// This reveals its content on a stated cue and keeps it: a film's last frame, the fixed
-/// point the sequence rests in. The freeze is the film's whole ending: nothing loops,
-/// nothing runs, and the survivor is on screen for good.
+/// Reads the binding's frozen reveal rule for the supplied content.
 public enum BoundFrozenReveal<
     Binding: DrawingStyle,
     Begin: Structure,
@@ -1581,8 +1337,7 @@ extension BoundFrozenReveal {
     }
 }
 
-/// Draws a centered disc with an SVG opacity animation.
-/// Binding supplies the opacity sequence and duration. The host advances the timeline.
+/// Centers a disk and reads its animation from the binding.
 public protocol SpanBreathingDot: Spanning, StyleBound {
     associatedtype CY: Structure
     associatedtype R: Structure
@@ -1603,7 +1358,7 @@ extension SpanBreathingDot {
     }
 }
 
-/// This wraps a live link around spanning content: the anchor spans whatever its content spans.
+/// Wraps spanning content in an anchor with the supplied target.
 public enum SpanLink<
     Target: Structure,
     Content: Spanning
@@ -1622,10 +1377,7 @@ extension SpanLink: Spanning {
     }
 }
 
-/// A rounded track filling its slice, and a fill weighed by the data itself: the filled part
-/// carries the very structure it charts, the air carries the rest, and the house count does
-/// the charting. A bar is a track, a data-weighed fill, a label at its start, a value at its
-/// end.
+/// Fills its slice with a rounded track at the stated height.
 public protocol SpanTrack: Spanning {
     associatedtype H: Structure
     associatedtype Radius: Structure
@@ -1643,8 +1395,7 @@ extension SpanTrack {
             + "rx=\"\(XMLEscaped<Radius>.typeName)\" fill=\"\(XMLEscaped<Fill>.typeName)\"/>\n"
     }
 }
-/// Fills the slice with a rounded face and the referenced shadow filter.
-/// The composition supplies height, radius and paint.
+/// Fills its slice with the supplied paint, radius, height and shadow reference.
 public protocol SpanHeroFace: Spanning {
     associatedtype H: Structure
     associatedtype Radius: Structure
@@ -1664,8 +1415,7 @@ extension SpanHeroFace {
             + "</g>\n"
     }
 }
-/// This wraps a spanning card in the hover affordance: the same lift class the keys carry,
-/// base transform zero. The walk already placed the card. Hover only lifts it.
+/// Wraps spanning content in the shared hover-transform class.
 public enum SpanLift<Content: Spanning>: Close {}
 extension SpanLift: Spanning {
     public static func rendered<
@@ -1680,9 +1430,7 @@ extension SpanLift: Spanning {
             + "</g>\n"
     }
 }
-/// A structure hosted in a slice: the walk's translate places it, and inside it draws
-/// from local zero, the same hospitality a column's `Band` extends. The door that puts whole
-/// composed Content on a weighted row.
+/// Places a composed structure at its slice origin.
 public enum SpanHosted<Content: Structure>: Close {}
 extension SpanHosted: Spanning {
     public static func rendered<
@@ -1695,8 +1443,7 @@ extension SpanHosted: Spanning {
         Content.typeName
     }
 }
-/// This label carries a budget: the same stated character ceiling `BudgetedLabel` enforces,
-/// checked once at generate time, in span form.
+/// Refuses text above its stated character limit at rendering.
 public protocol SpanLabelBudgeted: Spanning {
     associatedtype Y: Structure
     associatedtype FillColor: Structure
@@ -1724,8 +1471,7 @@ extension SpanLabelBudgeted {
             + "font-size=\"\(XMLEscaped<Size>.typeName)\">\(XMLEscaped<Content>.typeName)</text>\n"
     }
 }
-/// This drops spanning content down by a stated token. The y axis
-/// speaks in tokens here, and this is that door, named, in one place.
+/// Offsets spanning content vertically by the supplied magnitude.
 public enum SpanLowered<Y: Structure, Content: Spanning>: Close {}
 extension SpanLowered: Spanning {
     public static func rendered<
@@ -1740,8 +1486,7 @@ extension SpanLowered: Spanning {
             + "</g>\n"
     }
 }
-/// This draws a horizontal rule across its slice at a stated baseline: a timeline's track,
-/// a divider. Binding supplies its stroke width.
+/// Draws a horizontal rule across its slice with the binding's stroke width.
 public protocol SpanRule: Spanning, StyleBound {
     associatedtype Y: Structure
     associatedtype Stroke: Structure
@@ -1759,7 +1504,7 @@ extension SpanRule {
             + "stroke=\"\(XMLEscaped<Stroke>.typeName)\" stroke-width=\"\(XMLEscaped<Binding.ArrowWidth>.typeName)\"/>\n"
     }
 }
-/// This wraps spanning content in the fixed soft shadow, the same filter `Shadowed` reads.
+/// Wraps spanning content in the shared shadow reference.
 public enum SpanSoftShadowed<Content: Spanning>: Close {}
 extension SpanSoftShadowed: Spanning {
     public static func rendered<
@@ -1774,8 +1519,7 @@ extension SpanSoftShadowed: Spanning {
             + "</g>\n"
     }
 }
-/// This renders a slice-filling rect with a DASHED stroke: the preview's "not committed"
-/// voice, the dash pattern stated here once.
+/// Draws a slice-filling outline with the binding's dash pattern.
 public protocol SpanTrackDashed: Spanning, StyleBound {
     associatedtype H: Structure
     associatedtype Radius: Structure
@@ -1794,7 +1538,7 @@ extension SpanTrackDashed {
             + "fill=\"\(XMLEscaped<Fill>.typeName)\" stroke=\"\(XMLEscaped<Stroke>.typeName)\" stroke-width=\"\(XMLEscaped<Binding.HairlineWidth>.typeName)\" stroke-dasharray=\"\(XMLEscaped<Binding.DependencyDash>.typeName)\"/>\n"
     }
 }
-/// This draws nothing and spans anything: the empty slot of a generic column.
+/// Draws empty content for any supplied slice.
 public enum SpanNothing: Close {}
 extension SpanNothing: Spanning {
     public static func rendered<
@@ -1805,8 +1549,7 @@ extension SpanNothing: Spanning {
         width w: W.Type
     ) -> String { "" }
 }
-/// This pairs an in-walk trigger with an absolutely drawn panel under one hover scope: the
-/// same classes `HoverReveal` writes, for a trigger inside a slice.
+/// Groups a spanning trigger and supplied panel under one hover scope.
 public enum SpanHoverReveal<Trigger: Spanning, Panel: Structure>: Close {}
 extension SpanHoverReveal: Spanning {
     public static func rendered<
@@ -1822,8 +1565,7 @@ extension SpanHoverReveal: Spanning {
             + "</g>\n"
     }
 }
-/// This draws a solid flow arrow ACROSS its slice at a local baseline: tail on the slice's
-/// start, head on its end. The gap between two neighbours IS the arrow. No position is stated.
+/// Draws an arrow from the slice start to its end at the stated baseline.
 public protocol SpanArrowAcross: Spanning, StyleBound {
     associatedtype Y: Structure
 }
@@ -1840,7 +1582,7 @@ extension SpanArrowAcross {
             + "stroke=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<Binding.ArrowWidth>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
     }
 }
-/// The same arrow points LEFT here: head on the slice's start, for a dependency that points back.
+/// Draws an arrow from the slice end to its start at the stated baseline.
 public protocol SpanArrowBackAcross: Spanning, StyleBound {
     associatedtype Y: Structure
 }
@@ -1857,8 +1599,7 @@ extension SpanArrowBackAcross {
             + "stroke=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<Binding.ArrowWidth>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
     }
 }
-/// This draws a solid flow arrow DOWN the page on its slice's middle, between two stated
-/// baselines: the vertical stroke of a stacked flow.
+/// Draws an arrow at the slice midpoint between the stated baselines.
 public protocol SpanArrowDown: Spanning, StyleBound {
     associatedtype FromY: Structure
     associatedtype ToY: Structure
@@ -1876,8 +1617,7 @@ extension SpanArrowDown {
             + "stroke=\"\(XMLEscaped<Binding.TextSecondary>.typeName)\" stroke-width=\"\(XMLEscaped<Binding.ArrowWidth>.typeName)\" marker-end=\"url(#\(XMLEscaped<ArrowHeadName>.typeName))\"/>\n"
     }
 }
-/// This draws the italic caption voice at its slice's origin: an arrow's aside, a
-/// difference worth a whisper. `TextSecondary` is the voice's one colour, stated here.
+/// Reads the supplied text at the slice origin with the binding's caption paint and slant.
 public protocol SpanLabelItalic: Spanning, StyleBound {
     associatedtype Y: Structure
     associatedtype Size: Structure
@@ -1896,8 +1636,7 @@ extension SpanLabelItalic {
             + "font-family=\"\(XMLEscaped<Binding.CaptionFace>.typeName)\" font-style=\"\(XMLEscaped<Binding.CaptionSlant>.typeName)\">\(XMLEscaped<Content>.typeName)</text>\n"
     }
 }
-/// The italic caption voice anchors at its slice's MIDDLE here: the label of an arrow
-/// between two boxes rather than beside one.
+/// Reads the supplied caption at the slice midpoint.
 public protocol SpanLabelItalicMid: Spanning, StyleBound {
     associatedtype Y: Structure
     associatedtype Size: Structure
@@ -1916,8 +1655,7 @@ extension SpanLabelItalicMid {
             + "font-family=\"\(XMLEscaped<Binding.CaptionFace>.typeName)\" font-style=\"\(XMLEscaped<Binding.CaptionSlant>.typeName)\">\(XMLEscaped<Content>.typeName)</text>\n"
     }
 }
-/// Fills Part over Whole of the handed width.
-/// The composition supplies the counted structures, height, radius and paint.
+/// Fills Part over Whole of the supplied width using the stated geometry and paint.
 public protocol SpanDataFill: Spanning {
     associatedtype Part: Structure
     associatedtype Whole: Structure
@@ -1938,8 +1676,7 @@ extension SpanDataFill {
             + "height=\"\(XMLEscaped<H>.typeName)\" rx=\"\(XMLEscaped<Radius>.typeName)\" fill=\"\(XMLEscaped<Fill>.typeName)\"/>\n"
     }
 }
-/// One data segment of a stacked bar starts after the parts already laid (`Prefix`)
-/// and spans its part, both as fractions of the whole over the handed width.
+/// Starts after Prefix and fills Part over Whole of the supplied width.
 public protocol SpanDataSegment: Spanning, StyleBound {
     associatedtype Prefix: Structure
     associatedtype Part: Structure
@@ -1960,7 +1697,7 @@ extension SpanDataSegment {
             + "height=\"\(XMLEscaped<H>.typeName)\" rx=\"\(XMLEscaped<Binding.SquareRadius>.typeName)\" fill=\"\(XMLEscaped<Fill>.typeName)\"/>\n"
     }
 }
-/// A label whose anchor is the MIDDLE of its slice: a key's digit, a column's title.
+/// Anchors the supplied text at its slice midpoint.
 public protocol SpanLabelMid: Spanning {
     associatedtype Y: Structure
     associatedtype FillColor: Structure
@@ -1981,7 +1718,7 @@ extension SpanLabelMid {
             + "font-size=\"\(XMLEscaped<Size>.typeName)\">\(XMLEscaped<Content>.typeName)</text>\n"
     }
 }
-/// A label whose anchor is the END of its slice.
+/// Anchors the supplied text at its slice end.
 public protocol SpanLabelEnd: Spanning {
     associatedtype Y: Structure
     associatedtype FillColor: Structure
@@ -2003,10 +1740,7 @@ extension SpanLabelEnd {
     }
 }
 
-/// This pair draws a clip rounded to its slice, and the group that carries it: several
-/// sharp-cornered pieces on a rounded track (a stacked bar's segments, each choosing its
-/// fill) are still ONE rounded shape to the eye, not squared corners over the track's
-/// rounding. The shape derives from the slice like everything else. Only the id is a name.
+/// Declares a rounded clipping path derived from its slice and supplied identifier.
 public protocol SpanClipDef: Spanning {
     associatedtype Id: Structure
     associatedtype H: Structure
@@ -2043,8 +1777,7 @@ extension SpanClipped: Spanning {
             + "</g>\n"
     }
 }
-/// This renders a slice-filling rect with an outline: the segment whose tint alone does not draw its
-/// edge.
+/// Draws a slice-filling rectangle with its declared outline.
 public protocol SpanTrackOutlined: Spanning, StyleBound {
     associatedtype H: Structure
     associatedtype Radius: Structure
@@ -2063,6 +1796,4 @@ extension SpanTrackOutlined {
             + "fill=\"\(XMLEscaped<Fill>.typeName)\" stroke=\"\(XMLEscaped<Stroke>.typeName)\" stroke-width=\"\(XMLEscaped<Binding.HairlineWidth>.typeName)\"/>\n"
     }
 }
-
-/// These name the regular and the bold text weight, once, for span labels.
 

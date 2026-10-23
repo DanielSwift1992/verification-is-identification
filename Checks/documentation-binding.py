@@ -110,7 +110,7 @@ def main():
                    'Contracts/Drawing/v0.1/Binding.swift':projection.swift(fixture,aliases=True),
                    'Sources/DocumentKitDemo/Binding.swift':projection.swift(value,aliases=True),
                    'Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html':projection.footer(value),
-                   'Sources/DocumentKit/DocumentKit.docc/footer.html':projection.footer(value)}
+                   'Sources/DocumentKitDemo/DocumentKitDemo.docc/footer.html':projection.footer(value)}
         for destination in value['styleContract']['projections']:
             outputs[destination] = projection.style_contract(value,ROOT)
         publication=owner_layout['publication']
@@ -125,11 +125,13 @@ def main():
                 attributes[attribute]=paint
                 attributes['style']=attribute+':'+paint+';'+attribute+':'+row[theme]+';'
                 return '  <'+tag+' '+ ' '.join(key+'='+quoteattr(text) for key,text in attributes.items())+'/>\n'
-            outputs['Sources/DocumentKit/DocumentKit.docc/Resources/example'+suffix+'.svg'] = ('<svg viewBox='+quoteattr(example['viewBox'])+' xmlns="http://www.w3.org/2000/svg">\n'
+            outputs['Sources/DocumentKitDemo/DocumentKitDemo.docc/Resources/example'+suffix+'.svg'] = ('<svg viewBox='+quoteattr(example['viewBox'])+' xmlns="http://www.w3.org/2000/svg">\n'
                 +element('rect',example['background'],'fill')+element('path',example['mark'],'stroke')+'</svg>\n')
         for name,text in outputs.items():
             path = ROOT / name
-            if args.write: path.write_text(text)
+            if args.write:
+                path.parent.mkdir(parents=True,exist_ok=True)
+                path.write_text(text)
             elif not path.exists() or path.read_text()!=text: raise ValueError(name+': stale; run python3 Checks/documentation-binding.py --write')
     print('documentation binding: pinned gate paints/registers; declared native contrast equalities; shared Swift and footer projections')
 

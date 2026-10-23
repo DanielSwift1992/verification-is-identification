@@ -2,8 +2,8 @@ import Notation
 import DocumentKit
 
 // GENERATED from the world drawing-binding/1 record.
-// drawing-binding-value-sha256: 0b422238947ce99f46de706928acd5b5ee571880283eaf0bdb9153f047d3f168
-// Owner requirement source: "Worlds/Documentation/StyleContract.swift"@sha256:2691ac9d466ece4a61b81cb2f3ccbff5328109a25c2838586bb6a32928f744b8
+// drawing-binding-value-sha256: bf47cd84389202d75f631a8c0a0f32e93114b4f71bf620fdb1ab559c77adc778
+// Owner requirement source: "Worlds/Documentation/StyleContract.swift"@sha256:188ebc5307ec5bd50aea5bd7123c033d75b1d34697c78731095312ae38a4288a
 public enum DocumentationBindingInk: Paint, Close {}
 extension DocumentationBindingInk {
     public static var typeName: String { "color(xyz-d65 0.01 0.01 0.011)" }
@@ -522,6 +522,14 @@ public enum DocumentationBindingSourceLinkWidth: Open {
         Plus<U16, Plus<U8, Plus<U4, U2>>>.self
     }
 }
+public enum DocumentationBindingSDKDocumentationRoot: Close {}
+extension DocumentationBindingSDKDocumentationRoot {
+    public static var typeName: String { "https://danielswift1992.github.io/verification-is-identification/documentation/documentkit/" }
+}
+public enum DocumentationBindingDemoDocumentationRoot: Close {}
+extension DocumentationBindingDemoDocumentationRoot {
+    public static var typeName: String { "https://danielswift1992.github.io/verification-is-identification/documentation/documentkitdemo/" }
+}
 public enum DocumentationBindingFontUnitsPerEm: Close {}
 extension DocumentationBindingFontUnitsPerEm {
     public static var typeName: String { "2048" }
@@ -660,6 +668,8 @@ public enum DocumentationBinding: DocumentationStyle, Close {
     public typealias MarkerOrient = DocumentationBindingMarkerOrient
     public typealias FigureArrowOrient = DocumentationBindingFigureArrowOrient
     public typealias SourceLinkWidth = DocumentationBindingSourceLinkWidth
+    public typealias SDKDocumentationRoot = DocumentationBindingSDKDocumentationRoot
+    public typealias DemoDocumentationRoot = DocumentationBindingDemoDocumentationRoot
     public typealias FontUnitsPerEm = DocumentationBindingFontUnitsPerEm
     public typealias FontCapHeight = DocumentationBindingFontCapHeight
     public typealias FontAdvanceTable = DocumentationBindingFontAdvanceTable
@@ -839,6 +849,8 @@ public enum FigureLight: DrawingPalette, DocumentationStyle, Close {
     public typealias MarkerOrient = DocumentationBindingMarkerOrient
     public typealias FigureArrowOrient = DocumentationBindingFigureArrowOrient
     public typealias SourceLinkWidth = DocumentationBindingSourceLinkWidth
+    public typealias SDKDocumentationRoot = DocumentationBindingSDKDocumentationRoot
+    public typealias DemoDocumentationRoot = DocumentationBindingDemoDocumentationRoot
     public typealias FontUnitsPerEm = DocumentationBindingFontUnitsPerEm
     public typealias FontCapHeight = DocumentationBindingFontCapHeight
     public typealias FontAdvanceTable = DocumentationBindingFontAdvanceTable
@@ -1006,6 +1018,8 @@ public enum FigureDark: DrawingPalette, DocumentationStyle, Close {
     public typealias MarkerOrient = DocumentationBindingMarkerOrient
     public typealias FigureArrowOrient = DocumentationBindingFigureArrowOrient
     public typealias SourceLinkWidth = DocumentationBindingSourceLinkWidth
+    public typealias SDKDocumentationRoot = DocumentationBindingSDKDocumentationRoot
+    public typealias DemoDocumentationRoot = DocumentationBindingDemoDocumentationRoot
     public typealias FontUnitsPerEm = DocumentationBindingFontUnitsPerEm
     public typealias FontCapHeight = DocumentationBindingFontCapHeight
     public typealias FontAdvanceTable = DocumentationBindingFontAdvanceTable

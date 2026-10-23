@@ -1,39 +1,15 @@
 import Notation
 
-// ═══════════════════════════════════════════════════════════════
-// SPECTRUM states colour by the house's one move: division. The atom is White, the whole of
-// a screen's light, three wavelength bands at full power. Matter absorbs part of that light,
-// and the colour an eye receives is the part that SURVIVES, so a colour here is a walk: for
-// each band, eight halvings of its brightness, each door naming which half lived. Eight
-// halvings settle a band to one of 256 levels, and three settled bands name one of 16,777,216
-// colours. Every colour is 24 doors from White.
-//
-// The first cut of White parts the long waves (the red band) from the short. The second cut
-// parts the short into the middle band (green) and the blue. A cut makes two doors, and the
-// two doors of one cut are COMPLEMENTS: eat the red band and the survivor is cyan, eat the
-// green and it is magenta, eat the blue and it is yellow. The colour wheel's opposite pairs
-// are determined by these cuts.
-//
-// The walk is the identity, so a relation between colours is a relation between words: a
-// shared prefix is a shared neighbourhood, and flipping every door is taking the complement.
-// The machine forms (`#RRGGBB`, `rgba(...)`) exist only at the reading edge, the same edge
-// where a magnitude becomes digits: ``Lit`` and ``Veiled`` are to colour what `Tally` and
-// `SpanPx` are to number, the one doors a canvas may take.
-// ═══════════════════════════════════════════════════════════════
-
-/// This marks one band's brightness mid-walk: some halvings taken, the rest still open.
-/// Both doors carry it forward, and ``Settled`` closes it.
+/// Declares a composable sequence of brightness decisions.
 public protocol Shade: Structure {}
 
-/// This ends a band's walk: every halving is taken, the level is decided. Its reading adds
-/// no mark, and the readers below insist on finding exactly eight marks before it.
+/// Terminates a sequence of brightness decisions with empty text.
 public enum Settled: Shade, Close {}
 extension Settled {
     public static var typeName: String { "" }
 }
 
-/// This is the door where the brighter half of the band survives the cut. It reads as the
-/// mark `1` ahead of the rest of the walk.
+/// Prefixes the supplied brightness sequence with a set bit.
 public enum Brighter<
     Rest: Shade
 >: Shade, Close {}
@@ -41,8 +17,7 @@ extension Brighter {
     public static var typeName: String { "1" + Rest.typeName }
 }
 
-/// This is the other door of the same cut, ``Brighter``'s complement: the dimmer half
-/// survives, mark `0`.
+/// Prefixes the supplied brightness sequence with a cleared bit.
 public enum Dimmer<
     Rest: Shade
 >: Shade, Close {}
@@ -50,12 +25,7 @@ extension Dimmer {
     public static var typeName: String { "0" + Rest.typeName }
 }
 
-/// This reads three settled bands as one colour, `#RRGGBB`: the long band (red), then the
-/// middle (green), then the short (blue). Inside the read, a walk folds to its level, 0
-/// through 255, door marks taken as a binary number, most significant cut first, and a walk
-/// of any other depth refuses right here, the way `Rest` refuses an underflow. The one door
-/// a canvas may take to a colour. A bare hex anywhere else is the smell this door exists to
-/// remove.
+/// Reads three eight-bit brightness sequences as an sRGB hexadecimal paint.
 public enum Lit<
     LongBand: Shade,
     MiddleBand: Shade,
@@ -78,10 +48,7 @@ extension Lit {
     }
 }
 
-/// Reads the same three bands at the cover supplied by their owner, `rgba(R,G,B,A)`.
-/// The levels fold the way ``Lit``'s do, printed decimal
-/// because the `rgba` spelling wants them so. The cover is a stated atom (``Cover06`` and
-/// its siblings), never a computed number.
+/// Reads three brightness sequences and the supplied cover as an RGBA paint.
 public enum Veiled<
     LongBand: Shade,
     MiddleBand: Shade,
@@ -105,57 +72,28 @@ extension Veiled {
     }
 }
 
-/// This is a band kept whole: the brighter half survives all eight cuts, full power.
+/// States eight set brightness bits.
 public typealias Undimmed =
     Brighter<Brighter<Brighter<Brighter<Brighter<Brighter<Brighter<Brighter<Settled>>>>>>>>
 
-/// This is a band fully eaten: the dimmer half survives all eight cuts, no light left.
+/// States eight cleared brightness bits.
 public typealias Quenched =
     Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Dimmer<Settled>>>>>>>>
 
-/// This is the atom itself: all three bands whole. Every colour in the house walks down
-/// from here.
+/// Reads three fully set bands through Lit.
 public typealias White = Lit<Undimmed, Undimmed, Undimmed>
 
-/// This is White fully eaten, the far end of every walk. Shadows read it.
+/// Reads three fully cleared bands through Lit.
 public typealias Black = Lit<Quenched, Quenched, Quenched>
 
-// Historical cover names identify owner-supplied alpha readings.
-
-public protocol Cover06: Structure {} // law:allow: owner-bound alpha name
-public protocol Cover15: Structure {} // law:allow: owner-bound alpha name
-public protocol Cover16: Structure {} // law:allow: owner-bound alpha name
-public protocol Cover54: Structure {} // law:allow: owner-bound alpha name
-public protocol Cover70: Structure {} // law:allow: owner-bound alpha name
-public protocol Cover80: Structure {} // law:allow: owner-bound alpha name
-public protocol Cover90: Structure {} // law:allow: owner-bound alpha name
-
-// ── The spectral bridge: mixing is a type. A line's weight per rung is a
-// stated magnitude (256ths of one full pour), a level is a stated rung, and a
-// pour is Plus of Times — the sum is in the structure and Tally's own count
-// reads it. Nothing computes outside the one edge write that prints three
-// counts, the same class of door as ``Lit``'s radix print. No chart is wired
-// into the pour and nothing is clamped here: a value always exists, and the
-// device behind the edge write decides its own reach. A quenched row is
-// ``Never``, so beams differing only there pour to one identical value by
-// construction. ──
-
-/// A stated line weight per rung of the ladder: three magnitudes, chart-neutral,
-/// in 256ths of one full pour. Stating them is the bridge's whole job. Every
-/// weight below carries its pedigree: the line weights read the CIE 1931 2°
-/// observer (cvrl.org, 1 nm table) at their wavelengths, rounded to the
-/// nearest lattice pair preserving chromaticity. Each weight carries its check,
-/// the stated chromaticity against the table's, so a rounding that drifts is
-/// visible at the line that states it. The display primaries are the
-/// columns of their standards' published matrices, rounded once.
+/// Declares the three coordinate shares used by a canonical colour composition.
 public protocol CanonicalWeights {
     associatedtype XShare: Structure
     associatedtype YShare: Structure
     associatedtype ZShare: Structure
 }
 
-/// The picker's ladder, stated as magnitudes with a documented count: rung
-/// zero is the floor, rung eight is one full pour.
+/// States the empty magnitude at the origin of the intensity scale.
 public typealias Rung0 = Never
 public typealias Rung1 = Unit
 public typealias Rung2 = Twice<Unit>
@@ -166,9 +104,7 @@ public typealias Rung6 = Twice<Plus<Twice<Unit>, Unit>>
 public typealias Rung7 = Plus<Twice<Twice<Unit>>, Plus<Twice<Unit>, Unit>>
 public typealias Rung8 = Twice<Twice<Twice<Unit>>>
 
-/// The H-α line, 656 nm, per rung: CIE 1931 2° reads 0.2071, 0.0771, 0.0000,
-/// stated as the nearest lattice pair preserving chromaticity (x = 0.727
-/// against the table's 0.7286).
+/// Declares the canonical coordinate shares for this colour basis.
 public enum HAlphaGlow: CanonicalWeights, Close {}
 extension HAlphaGlow {
     public typealias XShare = Twice<Twice<Twice<Unit>>>
@@ -177,9 +113,7 @@ extension HAlphaGlow {
     public static var typeName: String { "h-alpha" }
 }
 
-/// The H-β line, 486 nm, per rung: CIE 1931 2° reads 0.0519, 0.1762, 0.5823.
-/// The stated triple keeps x = 0.065 against the table's 0.0640 and y = 0.217
-/// against its 0.2174.
+/// Declares the canonical coordinate shares for this colour basis.
 public enum HBetaGlow: CanonicalWeights, Close {}
 extension HBetaGlow {
     public typealias XShare = Plus<Twice<Unit>, Unit>
@@ -188,8 +122,7 @@ extension HBetaGlow {
     public static var typeName: String { "h-beta" }
 }
 
-/// The Paschen-α line, 1875 nm, per rung: every share `Never`, and the table
-/// agrees: far beyond the observer's reach.
+/// Declares the canonical coordinate shares for this colour basis.
 public enum PaschenGlow: CanonicalWeights, Close {}
 extension PaschenGlow {
     public typealias XShare = Never
@@ -198,8 +131,7 @@ extension PaschenGlow {
     public static var typeName: String { "paschen-alpha" }
 }
 
-/// Neon's yellow-orange line, 585 nm, per rung: CIE 1931 2° reads 0.9786,
-/// 0.8163, 0.0014.
+/// Declares the canonical coordinate shares for this colour basis.
 public enum NeonYellowGlow: CanonicalWeights, Close {}
 extension NeonYellowGlow {
     public typealias XShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Twice<Unit>>, Plus<Twice<Unit>, Unit>>>>
@@ -208,8 +140,7 @@ extension NeonYellowGlow {
     public static var typeName: String { "neon-585" }
 }
 
-/// Neon's red-orange line, 640 nm, per rung: CIE 1931 2° reads 0.4479, 0.1750,
-/// 0.0000. The stated pair keeps x = 0.722 against the table's 0.7194.
+/// Declares the canonical coordinate shares for this colour basis.
 public enum NeonRedGlow: CanonicalWeights, Close {}
 extension NeonRedGlow {
     public typealias XShare = Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Twice<Unit>>, Unit>>
@@ -218,8 +149,7 @@ extension NeonRedGlow {
     public static var typeName: String { "neon-640" }
 }
 
-/// Sodium's D doublet, 589 nm, per rung: CIE 1931 2° reads 1.0180, 0.7692,
-/// 0.0011. The X share passes one full pour: the canon has no ceiling.
+/// Declares the canonical coordinate shares for this colour basis.
 public enum SodiumDGlow: CanonicalWeights, Close {}
 extension SodiumDGlow {
     public typealias XShare = Plus<Twice<Twice<Twice<Twice<Twice<Unit>>>>>, Unit>
@@ -228,8 +158,7 @@ extension SodiumDGlow {
     public static var typeName: String { "sodium-589" }
 }
 
-/// Sodium's infrared line, 819 nm, per rung: every share `Never`, and the
-/// table agrees to six decimal places. The blind row is measured, not assumed.
+/// Declares the canonical coordinate shares for this colour basis.
 public enum SodiumIRGlow: CanonicalWeights, Close {}
 extension SodiumIRGlow {
     public typealias XShare = Never
@@ -238,21 +167,14 @@ extension SodiumIRGlow {
     public static var typeName: String { "sodium-819" }
 }
 
-/// One canonical coordinate of a pour: three levels times their line's share,
-/// summed by composition. The sum IS this type: Tally's count reads it, and
-/// no code adds anything anywhere.
+/// Composes three level-share products as one counted coordinate.
 public typealias PouredCoordinate<
     A: Structure, ShareA: Structure,
     B: Structure, ShareB: Structure,
     C: Structure, ShareC: Structure
 > = Plus<Times<A, ShareA>, Plus<Times<B, ShareB>, Times<C, ShareC>>>
 
-/// The chart-neutral edge write: three canonical sums printed as the browser's
-/// own device-independent form, `color(xyz-d65 …)`, in 256ths. The device maps
-/// the value onto whatever it can reach: the clamp, where one must happen, is
-/// the device's own, never the canon's. This door reads three counts and
-/// prints them, the same class of door as ``Lit``'s radix print. A narrower
-/// chart is one more door beside it, never a new pour.
+/// Reads three supplied counts as XYZ coordinates at the canonical scale.
 public enum XYZWrite<
     X: Structure,
     Y: Structure,
@@ -262,9 +184,7 @@ extension XYZWrite {
     public static var typeName: String { XYZRatioWrite<X, Y, Z, Unit>.typeName }
 }
 
-/// Prints integer coordinates at an explicitly stated positive scale. Scaling
-/// belongs to this textual door, so a fractional coordinate never asks Half
-/// to divide an odd count. Unit keeps the original XYZWrite reading.
+/// Reads three coordinates at the explicitly supplied scale.
 public enum XYZRatioWrite<X: Structure, Y: Structure, Z: Structure, Scale: Structure>: Close {}
 extension XYZRatioWrite {
     public static var typeName: String {
@@ -283,15 +203,7 @@ extension XYZRatioWrite {
     }
 }
 
-// ── The stated displays: a primary is a stated source like any line, so a
-// display is three CanonicalWeights atoms and nothing new. Unlike the lines,
-// a primary's pedigree is exact: each triple below is the column of the
-// standard's own published conversion matrix (sRGB: IEC 61966-2-1; Display
-// P3: SMPTE EG 432-1; Rec.2020: ITU-R BT.2020), stated on the lattice at one
-// thirty-second per rung, rounded once. With them a chart's cone is data, and
-// a gamut badge is a threshold read at the edge, never a clamp in the canon. ──
-
-/// The sRGB red primary: 0.4124, 0.2126, 0.0193, in thirty-seconds per rung.
+/// Declares the canonical coordinate shares for this colour basis.
 public enum SRGBRedPrimary: CanonicalWeights, Close {}
 extension SRGBRedPrimary {
     public typealias XShare = Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Twice<Unit>>, Unit>>
@@ -300,7 +212,7 @@ extension SRGBRedPrimary {
     public static var typeName: String { "srgb-red" }
 }
 
-/// The sRGB green primary: 0.3576, 0.7152, 0.1192.
+/// Declares the canonical coordinate shares for this colour basis.
 public enum SRGBGreenPrimary: CanonicalWeights, Close {}
 extension SRGBGreenPrimary {
     public typealias XShare = Plus<Twice<Twice<Twice<Unit>>>, Plus<Twice<Unit>, Unit>>
@@ -309,7 +221,7 @@ extension SRGBGreenPrimary {
     public static var typeName: String { "srgb-green" }
 }
 
-/// The sRGB blue primary: 0.1805, 0.0722, 0.9505.
+/// Declares the canonical coordinate shares for this colour basis.
 public enum SRGBBluePrimary: CanonicalWeights, Close {}
 extension SRGBBluePrimary {
     public typealias XShare = Twice<Plus<Twice<Unit>, Unit>>
@@ -318,7 +230,7 @@ extension SRGBBluePrimary {
     public static var typeName: String { "srgb-blue" }
 }
 
-/// The Display P3 red primary: 0.4866, 0.2290, 0.0000.
+/// Declares the canonical coordinate shares for this colour basis.
 public enum P3RedPrimary: CanonicalWeights, Close {}
 extension P3RedPrimary {
     public typealias XShare = Twice<Twice<Twice<Twice<Unit>>>>
@@ -327,7 +239,7 @@ extension P3RedPrimary {
     public static var typeName: String { "p3-red" }
 }
 
-/// The Display P3 green primary: 0.2657, 0.6917, 0.0451.
+/// Declares the canonical coordinate shares for this colour basis.
 public enum P3GreenPrimary: CanonicalWeights, Close {}
 extension P3GreenPrimary {
     public typealias XShare = Plus<Twice<Twice<Twice<Unit>>>, Unit>
@@ -336,8 +248,7 @@ extension P3GreenPrimary {
     public static var typeName: String { "p3-green" }
 }
 
-/// The Display P3 blue primary: 0.1982, 0.0793, 1.0439. The Z share passes one
-/// full pour: the canon has no ceiling, and the lattice states beyond it.
+/// Declares the canonical coordinate shares for this colour basis.
 public enum P3BluePrimary: CanonicalWeights, Close {}
 extension P3BluePrimary {
     public typealias XShare = Twice<Plus<Twice<Unit>, Unit>>
@@ -346,7 +257,7 @@ extension P3BluePrimary {
     public static var typeName: String { "p3-blue" }
 }
 
-/// The Rec.2020 red primary: 0.6370, 0.2627, 0.0000.
+/// Declares the canonical coordinate shares for this colour basis.
 public enum Rec2020RedPrimary: CanonicalWeights, Close {}
 extension Rec2020RedPrimary {
     public typealias XShare = Plus<Twice<Twice<Twice<Twice<Unit>>>>, Twice<Twice<Unit>>>
@@ -355,7 +266,7 @@ extension Rec2020RedPrimary {
     public static var typeName: String { "rec2020-red" }
 }
 
-/// The Rec.2020 green primary: 0.1446, 0.6780, 0.0281.
+/// Declares the canonical coordinate shares for this colour basis.
 public enum Rec2020GreenPrimary: CanonicalWeights, Close {}
 extension Rec2020GreenPrimary {
     public typealias XShare = Plus<Twice<Twice<Unit>>, Unit>
@@ -364,8 +275,7 @@ extension Rec2020GreenPrimary {
     public static var typeName: String { "rec2020-green" }
 }
 
-/// The Rec.2020 blue primary: 0.1689, 0.0593, 1.0610. The widest stated blue,
-/// and its Z passes one full pour by two thirty-seconds.
+/// Declares the canonical coordinate shares for this colour basis.
 public enum Rec2020BluePrimary: CanonicalWeights, Close {}
 extension Rec2020BluePrimary {
     public typealias XShare = Plus<Twice<Twice<Unit>>, Unit>
@@ -374,11 +284,7 @@ extension Rec2020BluePrimary {
     public static var typeName: String { "rec2020-blue" }
 }
 
-/// This reads a band's perceptual rung at the edge: the position of the
-/// highest lit door, zero for a quenched band. Brightness perception runs on
-/// ratios, a halving is one ratio, so the rung is the level's logarithm and
-/// equal rung-steps are equal felt steps. Felt distance is a difference of
-/// rungs, never of counts.
+/// Declares the canonical coordinate shares for this colour basis.
 public enum PerceptualRung<Band: Shade>: Close {}
 extension PerceptualRung {
     public static var typeName: String {

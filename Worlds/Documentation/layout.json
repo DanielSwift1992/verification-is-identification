@@ -207,6 +207,12 @@
     },
     "SourceLinkWidth": {
       "expression": "Plus<U16, Plus<U8, Plus<U4, U2>>>"
+    },
+    "SDKDocumentationRoot": {
+      "text": "https://danielswift1992.github.io/verification-is-identification/documentation/documentkit/"
+    },
+    "DemoDocumentationRoot": {
+      "text": "https://danielswift1992.github.io/verification-is-identification/documentation/documentkitdemo/"
     }
   },
   "missingAdvanceCharacter": "m",
@@ -483,7 +489,7 @@
   "styleContract": {
     "name": "DocumentationStyle",
     "input": "Worlds/Documentation/StyleContract.swift",
-    "sha256": "2691ac9d466ece4a61b81cb2f3ccbff5328109a25c2838586bb6a32928f744b8",
+    "sha256": "188ebc5307ec5bd50aea5bd7123c033d75b1d34697c78731095312ae38a4288a",
     "projections": [
       "Sources/DocumentKitDemo/StyleContract.swift",
       "Contracts/Drawing/v0.1/StyleContract.swift"

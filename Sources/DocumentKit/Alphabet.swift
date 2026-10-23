@@ -1,26 +1,7 @@
 import Alphabet
 import Notation
 
-// ═══════════════════════════════════════════════════════════════
-// THE ALPHABET spells prose from atoms, the way `Numeral` spells a number from digits.
-//
-// `Glyph` and the punctuation/medium atoms come from the shared `Alphabet` target.
-// GrammarLexicon reads the same declarations, so a character's identifier and its rendered
-// content cannot drift apart the way three separate copies once did. Only letters and digits
-// remain here: this common set (`Letter.a`...`z`, `TextDigit`) is named by hand, so generated
-// prose reads as `Letter.t; Letter.h; Letter.e` rather than opaque code points, and the stream
-// reads whole word runs instead of one character at a time. Anything outside this set (an em
-// dash, …) the ProseGen plugin generates on demand, named by Unicode scalar (`Char8212`) into
-// GeneratedAlphabet.swift, so the alphabet remains exactly as big as the content needs and no
-// bigger. Only readability is traded away for the rare case, not coverage. A word is an `Open`
-// type whose `body` chains glyphs, and a sentence chains words the same way `Numeral` chains
-// digits. No string is hand-set on a sentence: every character is a real, checked atom. A hole
-// in a template (`{count}`) becomes a generic parameter, filled at the call site by a real
-// `Structure` (``Tally``, ``Reference``).
-// ═══════════════════════════════════════════════════════════════
-
-/// Lowercase letters, namespaced under `Letter` so `a`...`z` do not collide with the rest of
-/// the lattice. Write `Letter.a` for the character, `Cap<Letter.a>` for its capital.
+/// Names the lowercase glyphs shared by composed text.
 public enum Letter {
     public enum a: Glyph {}
     public enum b: Glyph {}
@@ -128,8 +109,7 @@ extension Letter.z {
     public static var typeName: String { "z" }
 }
 
-/// This is the capital of any single-character `Structure`: it reads `L`'s one character and
-/// upper-cases it, so the alphabet remains 26 atoms, not 52.
+/// Reads the supplied character in uppercase.
 public enum Cap<
     L: Structure
 >: Close {}
@@ -137,8 +117,7 @@ extension Cap {
     public static var typeName: String { L.typeName.uppercased() }
 }
 
-/// The ten digits, as text glyphs (distinct from `Numeral`'s counting atoms: a glyph's
-/// `typeName` is its digit character, a `Numeral`'s is its Swift case name).
+/// Names the decimal digit glyphs used in composed text.
 public enum TextDigit {
     public enum _0: Glyph {}
     public enum _1: Glyph {}

@@ -21,4 +21,6 @@ public protocol DocumentationStyle: DrawingStyle {
     associatedtype Display: Structure
     associatedtype WeightBold: Structure
     associatedtype SourceLinkWidth: Structure
+    associatedtype SDKDocumentationRoot: Structure
+    associatedtype DemoDocumentationRoot: Structure
 }

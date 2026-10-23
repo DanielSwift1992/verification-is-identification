@@ -9,13 +9,9 @@
   roleStyle.textContent = ROLE_CSS;
   (document.head || document.documentElement).appendChild(roleStyle);
 
-  // `notOurs` records a fetched-and-rejected URL, cached so an SPA route change never re-fetches
-  // something already known not to carry the marker.
   var notOurs = Object.create(null);
 
   function baseName(src) {
-    // Strip DocC's own light/dark suffix (`x~dark.svg`) so either variant of the same asset is
-    // recognised as the same name.
     return (src || "").split("/").pop().replace(/\.svg$/i, "").replace(/~dark$/, "");
   }
 
@@ -44,14 +40,6 @@
     var src = resolvedSrc(img);
     if (notOurs[src]) { return; }
     img.dataset.vectorInlined = "pending";
-    // `fetch` is async — between this call and its resolution, the raw `<img>` is still what
-    // paints. That file's own `var(--vi-x, #lighthex)` fallbacks are the ONLY colours a plain
-    // `<img>` ever sees (an image element has no access to the host document's CSS custom
-    // properties), so in dark mode the untouched image is the LIGHT theme, briefly, regardless
-    // of the page around it — a light flash at each of this image's own corners, most visible
-    // where an image sits early in paint order. Hidden here, synchronously, before the fetch
-    // starts; restored if the fetch fails OR the fetched document turns out not to carry our
-    // own marker (some other same-origin SVG DocC itself references).
     img.style.visibility = "hidden";
     fetch(src)
       .then(function (response) { return response.text(); })
@@ -64,16 +52,6 @@
           img.style.visibility = "visible";
           return;
         }
-        // Fill the container width DocC already laid out (a grid cell, a table cell, the full
-        // content column) rather than copying the `<img>`'s own width — DocC picks a fixed,
-        // conservative default (300px) for a bare image regardless of the SVG's own aspect, far
-        // smaller than the declared container of a wide canvas. Height follows the viewBox's own
-        // aspect ratio (the canvas contract, Vector.swift) — nothing drifts.
-        // The host owns its base. A canvas states site-absolute addresses
-        // ("/documentation/..."), and only the embedding page knows where the site's
-        // root actually lives — GitHub Pages serves a project under its repository's
-        // own prefix. Rewritten here, at inline time, the one moment both sides meet;
-        // at a domain root the base is empty and nothing changes.
         var docsBase = window.location.pathname.split("/documentation/")[0] || "";
         if (docsBase) {
           var anchors = svg.querySelectorAll("a[href]");
@@ -105,10 +83,6 @@
 
   scan(document);
 
-  // Speculative background navigation: every in-site link on the current page gets its
-  // data JSON prefetched, so following any door is a cache hit. The state graph is known
-  // and finite, so the "profile" a hot-path optimizer would gather at run time is read
-  // off the page itself — both halves of a fork load while the reader decides.
   var prefetched = {};
   function prefetchDoors(root) {
     var docsBase = window.location.pathname.split("/documentation/")[0] || "";
@@ -130,11 +104,6 @@
   }
   prefetchDoors(document);
 
-  // A fragment press inside one of our canvases (the keypad's digits) must change the
-  // canvas's own :target state and nothing else. The browser and the SPA router both answer
-  // a hash change by scrolling the anchor into view, which reads as the page leaping on
-  // every key. The state needs the real hash (CSS :target), so the navigation is allowed
-  // through and the scroll is put back on the frames that follow it.
   document.addEventListener("click", function (event) {
     var anchor = event.target && event.target.closest ? event.target.closest("a") : null;
     if (!anchor) { return; }
@@ -150,9 +119,6 @@
     setTimeout(hold, 160);
   }, true);
 
-  // A variant key inside one of our canvases moves its owner between drawn positions:
-  // every position is already in the SVG, the hook only chooses which one shows. No hash,
-  // no navigation, nothing to scroll. Inert inside a plain <img>, like every enhancement here.
   document.addEventListener("click", function (event) {
     var key = event.target && event.target.closest ? event.target.closest(".vi-variant-key") : null;
     if (!key) { return; }
@@ -186,16 +152,6 @@
 (function () {
   if (window.__viTableHook) { return; }
   window.__viTableHook = true;
-  // Wide tables scroll inside their own box instead of pushing the page
-  // sideways, and a header cell sorts its column on click, numbers as
-  // numbers. The style goes through createElement because a plain <style>
-  // in this template never reaches the live document (the note at the top
-  // of this file), and the click listener sits on document, so a table
-  // rendered by any later SPA navigation is covered without a rescan.
-  // the hint that a header answers a click is on the header itself: every
-  // sortable header wears a dim double arrow, the sorted one wears the
-  // direction, and hover tints the cell. A cursor change alone is a hint
-  // only the mouse sees.
   var css = document.createElement("style");
   css.textContent = /* WORLD_TABLE_CSS */ null;
   if (css.textContent === "null") { throw new Error("footer#layout: table style is missing"); }

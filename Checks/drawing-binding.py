@@ -65,7 +65,7 @@ def main():
     try:footer_check.check(broken,'broken/footer.html')
     except ValueError:pass
     else:raise AssertionError('broken footer comment admitted')
-    for path in [ROOT/'Sources/DocumentKit/DocumentKit.docc/footer.html',ROOT/'Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html']:
+    for path in [ROOT/'Sources/DocumentKitDemo/DocumentKitDemo.docc/footer.html',ROOT/'Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html']:
         assert footer_check.check(path.read_text(),str(path.relative_to(ROOT)))==2
     fixture = ROOT / 'Contracts/Drawing/v0.1/binding.json'
     value = binding.read(fixture)

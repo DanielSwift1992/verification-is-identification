@@ -2,8 +2,8 @@ import Notation
 import DocumentKit
 
 // GENERATED from the world drawing-binding/1 record.
-// drawing-binding-value-sha256: b782c24e9916a62463dfd7583449331563e47dce14f6bcaedab5dc7f22e4c9df
-// Owner requirement source: "Worlds/Documentation/StyleContract.swift"@sha256:2691ac9d466ece4a61b81cb2f3ccbff5328109a25c2838586bb6a32928f744b8
+// drawing-binding-value-sha256: f9095c39029e9351d575d61b767b34b90d668d196d8d2c78056246a31dd6c481
+// Owner requirement source: "Worlds/Documentation/StyleContract.swift"@sha256:188ebc5307ec5bd50aea5bd7123c033d75b1d34697c78731095312ae38a4288a
 public enum FixtureBindingInk: Paint, Close {}
 extension FixtureBindingInk {
     public static var typeName: String { "color(xyz-d65 0.01 0.01 0.011)" }
@@ -522,6 +522,14 @@ public enum FixtureBindingSourceLinkWidth: Open {
         Plus<U16, Plus<U8, Plus<U4, U2>>>.self
     }
 }
+public enum FixtureBindingSDKDocumentationRoot: Close {}
+extension FixtureBindingSDKDocumentationRoot {
+    public static var typeName: String { "https://danielswift1992.github.io/verification-is-identification/documentation/documentkit/" }
+}
+public enum FixtureBindingDemoDocumentationRoot: Close {}
+extension FixtureBindingDemoDocumentationRoot {
+    public static var typeName: String { "https://danielswift1992.github.io/verification-is-identification/documentation/documentkitdemo/" }
+}
 public enum FixtureBindingFontUnitsPerEm: Close {}
 extension FixtureBindingFontUnitsPerEm {
     public static var typeName: String { "2048" }
@@ -660,6 +668,8 @@ public enum FixtureBinding: DocumentationStyle, Close {
     public typealias MarkerOrient = FixtureBindingMarkerOrient
     public typealias FigureArrowOrient = FixtureBindingFigureArrowOrient
     public typealias SourceLinkWidth = FixtureBindingSourceLinkWidth
+    public typealias SDKDocumentationRoot = FixtureBindingSDKDocumentationRoot
+    public typealias DemoDocumentationRoot = FixtureBindingDemoDocumentationRoot
     public typealias FontUnitsPerEm = FixtureBindingFontUnitsPerEm
     public typealias FontCapHeight = FixtureBindingFontCapHeight
     public typealias FontAdvanceTable = FixtureBindingFontAdvanceTable
@@ -756,6 +766,8 @@ public typealias Cover90 = FixtureBindingCover90
 public typealias MarkerOrient = FixtureBindingMarkerOrient
 public typealias FigureArrowOrient = FixtureBindingFigureArrowOrient
 public typealias SourceLinkWidth = FixtureBindingSourceLinkWidth
+public typealias SDKDocumentationRoot = FixtureBindingSDKDocumentationRoot
+public typealias DemoDocumentationRoot = FixtureBindingDemoDocumentationRoot
 public typealias FontUnitsPerEm = FixtureBindingFontUnitsPerEm
 public typealias FontCapHeight = FixtureBindingFontCapHeight
 public typealias FontAdvanceTable = FixtureBindingFontAdvanceTable

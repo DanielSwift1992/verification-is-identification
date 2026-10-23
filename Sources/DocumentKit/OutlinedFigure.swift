@@ -1,7 +1,6 @@
 import Notation
 
-/// Carries outlines from explicitly assigned font sources at stated weights.
-/// Each glyph row states codepoint, advance, source, weight and SVG path, separated by `|`.
+/// Carries outlines from explicitly assigned font sources at stated weights. Each glyph row states codepoint, advance, source, weight and SVG path, separated by `|`.
 public protocol OutlineFontFace: Open {
     associatedtype Units: Structure
     associatedtype Glyphs: Structure
@@ -32,8 +31,7 @@ public protocol OutlineRegister {
     associatedtype Size: Structure
 }
 
-/// Positions text with the same advances that supplied its glyph paths.
-/// Missing glyphs refuse at generation with their Unicode address.
+/// Positions text with the same advances that supplied its glyph paths. Missing glyphs refuse at generation with their Unicode address.
 public protocol OutlineLabel: Open {
     associatedtype Register: OutlineRegister
     associatedtype Font: OutlineFontFace

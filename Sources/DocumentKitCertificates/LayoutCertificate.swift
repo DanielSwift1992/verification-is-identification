@@ -1,9 +1,6 @@
 import DocumentKit
 import VerificationIsIdentification
 
-// These declarations check the layout vocabulary's type relations. Their scope is
-// the encoded endpoint and carrier shapes. The rendering walk, numeric counts and
-// fit checks have separate implementations in Vector.swift and Primitive.swift.
 
 /// Constructs two legs sharing the supplied Cut. MetricProperty checks exactly
 /// Left.Right == Right.Left. This establishes the encoded seam, not a triangle
@@ -17,14 +14,6 @@ public enum AdjacentSlices<
     public typealias Right = Paired<Cut, B>
 }
 
-// The refused twin, checked directly: two DIFFERENT cuts do not build, `Left.Right ==
-// Right.Left` fails, the same way a torn row cannot say where a part begins. Kept as
-// prose because the point is that the compiler refuses to keep it as code:
-//
-//     enum Torn: Pair, MetricProperty {              // does not compile
-//         typealias Left = Paired<U4, U8>
-//         typealias Right = Paired<U16, U4>          // U8 is not U16: no shared midpoint
-//     }
 
 /// Supplies Surface and a unit-step numeral as coordinates of HasDistance.
 /// No distance function on Surface is constructed here. SpanPx separately reads

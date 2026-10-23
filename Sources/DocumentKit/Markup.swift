@@ -1,27 +1,6 @@
 import Alphabet
 import Notation
 
-// ═══════════════════════════════════════════════════════════════
-// DOCUMENTKIT composes documents as type-level chains of atoms. A symbol is a `Close`
-// whose `typeName` is its character, and a combinator is an `Open` protocol whose body
-// composes atoms through `{ Type.self }`, and `typeName` walks the chain and prints the page.
-//
-// A combinator is used through its `init`: the call takes a `@StructureBuilder` closure,
-// so a nested combinator call composes the same way a bare `X.self` leaf does. The
-// `init` is written once, on the protocol's extension, and every concrete realizer is an
-// empty enum that inherits it along with `body`.
-//
-// Walls, each checked directly against the toolchain: the `init` parameter is typed as
-// a builder closure returning a VALUE, since nesting breaks under an `X.Type` parameter.
-// The `init` body is `fatalError()` and never runs, and Swift needs the `init` for call
-// syntax and generic inference only, and no reading (`typeName`, `count`, `labels`)
-// ever constructs an instance or executes a getter.
-// ═══════════════════════════════════════════════════════════════
-
-// ── Atoms: Backtick/Hash/Space/Newline/At/Quote come from the shared Alphabet target.
-//    Everything below is a markdown-structural COMPOUND (its own surrounding whitespace baked
-//    in), not a single character, so it remains here. ──
-
 public enum DoubleHash: Close {}
 extension DoubleHash {
     public static var typeName: String { "## " }
@@ -37,11 +16,7 @@ extension Break {
     public static var typeName: String { "\n\n" }
 }
 
-/// This forces a line break WITHIN one block: two trailing spaces before the newline, the
-/// CommonMark "hard break" (checked directly: a bare `Newline` inside an aside collapses to a
-/// single space in the rendered model, a soft break. This does not). It is the only way to get
-/// a second visual line inside the SAME `> Note: …` box without a blank line, which would close
-/// the aside instead.
+/// Writes a CommonMark hard line break within a block.
 public enum HardBreak: Close {}
 extension HardBreak {
     public static var typeName: String { "  \n" }
@@ -57,18 +32,13 @@ extension PipeSep {
     public static var typeName: String { " | " }
 }
 
-/// Render a breadcrumb's separator: `Parent › Child`. The enclosing trail reads its parent through `Up`.
+/// Writes the separator between adjacent breadcrumb labels.
 public enum Chevron: Close {}
 extension Chevron {
     public static var typeName: String { " › " }
 }
 
-/// This renders the GFM header-delimiter cell (`---`): a `TableCell { RuleMark.self }` reads
-/// exactly like any other cell, so a header's own rule row is written with the same
-/// `TableRow { TableCell { … } }` shape as the header itself, one `RuleMark` per column. GFM
-/// (and DocC's renderer) needs this delimiter line to tell a header from an ordinary
-/// row. A grid missing it renders as one run-together paragraph, not a table. Named `RuleMark`,
-/// not `Dash`, because `Alphabet.swift` already has a `Dash` (a single `-`, a prose glyph).
+/// Writes the delimiter cell separating a table header from its body.
 public enum RuleMark: Close {}
 extension RuleMark {
     public static var typeName: String { "---" }
@@ -98,8 +68,6 @@ public enum CloseBrace: Close {}
 extension CloseBrace {
     public static var typeName: String { "}\n" }
 }
-
-// ── Word atoms ──
 
 public enum NoteLabel: Close {}
 extension NoteLabel {
@@ -146,8 +114,7 @@ extension ColumnLabel {
     public static var typeName: String { "Column" }
 }
 
-// ── Reference — ``Target`` ──
-
+/// Composes a target through one associated place. Its shared builder initializer supplies the call syntax.
 public protocol Reference: Open {
     associatedtype Target: Structure
 }
@@ -162,37 +129,29 @@ extension Reference {
     }
     public init(@StructureBuilder _ target: () -> Target) { fatalError() }
 }
-/// This renders `Target` as a symbol link, read at render (the type's name, backtick-quoted).
+/// Writes the supplied target identifier as a symbol reference.
 public enum Symbol<
     Target: Structure
 >: Reference {}
 
-/// This reads a type's Swift name, never its rendered content: `X.typeName` walks `X`'s `body`
-/// (that is the whole point of the cascade everywhere else), but a link needs the page's ID,
-/// not the page's content embedded inline. `String(describing:)` reads the bare identifier
-/// regardless of what `X` composes, so linking to an actual `Screen` (real body, real content)
-/// does not inline that screen's whole rendering into the link.
-/// This renders a bare curation link, `<doc:Name>`: the one form DocC's Topics accept for
-/// nesting an article under another, read off the type name like every address.
+/// Writes the supplied target identifier as a DocC topic reference.
 public enum TopicReference<X>: Close {}
 extension TopicReference {
     public static var typeName: String { "<doc:\(RawName<X>.typeName)>" }
 }
+/// Reads a target identifier independently of the target content.
 public enum RawName<X>: Close {}
 extension RawName {
     public static var typeName: String { String(describing: X.self) }
 }
 
-/// Prints the name of `X` as a double-backtick reference.
-/// The unconstrained parameter also accepts protocol existentials. `Symbol` instead
-/// requires its target to conform to `Structure`. The caller supplies that target.
+/// Writes the supplied type identifier as a symbol reference.
 public enum ProtocolReference<X>: Close {}
 extension ProtocolReference {
     public static var typeName: String { "``" + String(describing: X.self) + "``" }
 }
 
-// ── DocLink — <doc:Target>, a link to a rendered page (not a declared Swift symbol) ──
-
+/// Composes the target identifier into a DocC address.
 public protocol DocLink: Open {
     associatedtype Target: Structure
 }
@@ -209,13 +168,12 @@ extension DocLink {
     }
     public init(@StructureBuilder _ target: () -> Target) { fatalError() }
 }
-/// This renders `<doc:Target>`, a link to another rendered page, by its page id.
+/// Writes a DocC reference to the supplied target identifier.
 public enum Page<
     Target: Structure
 >: DocLink {}
 
-// ── TitledLink — [Label](doc:Target), a link with its own display text ──
-
+/// Composes the supplied label and target identifier into a titled DocC link.
 public protocol TitledLink: Open {
     associatedtype Label: Structure
     associatedtype Target: Structure
@@ -235,9 +193,7 @@ extension TitledLink {
         ParenClose.self
     }
 }
-/// This renders `[Label](doc:Target)`, a link whose display text is chosen, not the target's
-/// name. Two holes, one `{ }` body of two statements, the same `Paired.Left`/`.Right` reading
-/// generic prose entries with more than one hole use (`Tools/Prose.swift`).
+/// Reads label and target from the two sides of its composed Pair.
 public enum Link<
     Whole: Pair
 >: TitledLink
@@ -247,9 +203,7 @@ where Whole.Left: Structure, Whole.Right: Structure {
     public init(@StructureBuilder _ content: () -> Whole) { fatalError() }
 }
 
-// Picture composes Alt and Asset as an image inside the document body.
-// PageImage metadata instead supplies the picture of a navigation tile.
-// Asset supplies its own file name at the reading edge.
+/// Composes the supplied alternative text and resource into an image reference.
 public protocol ImageEmbed: Open {
     associatedtype Alt: Structure
     associatedtype Asset: Structure
@@ -266,7 +220,7 @@ extension ImageEmbed {
         ParenClose.self
     }
 }
-/// This renders `![Alt](Asset)`, two holes, the same `Whole: Pair` fold `Link` uses.
+/// Reads alternative text and asset from the two sides of its composed Pair.
 public enum Picture<
     Whole: Pair
 >: ImageEmbed
@@ -276,24 +230,14 @@ where Whole.Left: Structure, Whole.Right: Structure {
     public init(@StructureBuilder _ content: () -> Whole) { fatalError() }
 }
 
-// ── Tally — a Structure's count, rendered as digits ──
-
-/// This is the concrete count-reader, never spelled directly: call ``Tally(_:)``. Not `Open`,
-/// it has nothing to compose, only a derived string to show, and a `Close` is written ONLY as
-/// an empty enum, no cases, no `init` (Law, Primitive.swift), so it cannot take the
-/// `init`-is-the-door shortcut every `Open` combinator above uses. A free function is the one
-/// place that shortcut is unavailable, not a choice.
+/// Reads the supplied structure count as text.
 public typealias TallyKind<
     Of: Structure
 > = Notation.Tally<Of>
-/// This renders the count of a `Structure` as its digits, the boundary where a type-level fold
-/// (`count`, VerificationIsIdentification) becomes visible text, the way ``Symbol`` gives a
-/// type's name.
+/// Reads the supplied structure count at the composition edge.
 public func Tally<
     Of: Structure
 >(_ of: () -> Of.Type) -> TallyKind<Of>.Type { TallyKind<Of>.self }
-
-// ── Title — # Content\n\n ──
 
 public protocol Title: Open {
     associatedtype Content: Structure
@@ -312,13 +256,7 @@ public enum PageTitle<
     Content: Structure
 >: Title {}
 
-// ── Section: ## Heading\n\nContent\n\n, no combinator: a page's own body just writes the
-// five atoms directly (`DoubleHash.self; Heading.self; Break.self`, then the content, then
-// `Break.self`). The pattern is five atoms, and writing it inline each time is not repetition worth
-// a combinator. Compose the atoms directly until a reusable hole is needed.
-
-// ── Note ──
-
+/// Composes its content into a note block.
 public protocol Note: Open {
     associatedtype Message: Structure
 }
@@ -336,8 +274,6 @@ extension Note {
 public enum Noted<
     Message: Structure
 >: Note {}
-
-// ── Important ──
 
 public protocol Important: Open {
     associatedtype Message: Structure
@@ -357,8 +293,6 @@ public enum Flagged<
     Message: Structure
 >: Important {}
 
-// ── Warning ──
-
 public protocol Warning: Open {
     associatedtype Message: Structure
 }
@@ -376,8 +310,6 @@ extension Warning {
 public enum Warned<
     Message: Structure
 >: Warning {}
-
-// ── Tip ──
 
 public protocol Tip: Open {
     associatedtype Message: Structure
@@ -397,8 +329,6 @@ public enum Tipped<
     Message: Structure
 >: Tip {}
 
-// ── Grid ──
-
 public protocol Grid: Open {
     associatedtype Rows: Structure
 }
@@ -413,8 +343,6 @@ extension Grid {
 public enum Table<
     Rows: Structure
 >: Grid {}
-
-// ── Row ──
 
 public protocol Row: Open {
     associatedtype Cells: Structure
@@ -432,8 +360,6 @@ public enum TableRow<
     Cells: Structure
 >: Row {}
 
-// ── Field ──
-
 public protocol Field: Open {
     associatedtype Content: Structure
 }
@@ -445,11 +371,10 @@ extension Field {
     }
     public init(@StructureBuilder _ content: () -> Content) { fatalError() }
 }
+/// Composes the supplied content as one field of a row.
 public enum TableCell<
     Content: Structure
 >: Field {}
-
-// ── Item ──
 
 public protocol Item: Open {
     associatedtype Content: Structure
@@ -467,8 +392,7 @@ public enum ListItem<
     Content: Structure
 >: Item {}
 
-// ── Tabs ──
-
+/// Composes its content within a tab navigator and terminates the directive on its own line.
 public protocol Tabs: Open {
     associatedtype Content: Structure
 }
@@ -486,12 +410,6 @@ extension Tabs {
 public enum TabGroup<
     Content: Structure
 >: Tabs {}
-
-// ── Tab: @Tab("Title") { Content }, no combinator, the same call as ``Section`` above: a
-// page's own body writes the atoms directly. DocC requires the parenthesized form — a bare
-// `@Tab "Title"` does not parse (checked directly: "Missing argument for unlabeled parameter"). ──
-
-// ── Links ──
 
 public protocol Links: Open {
     associatedtype Content: Structure
@@ -511,8 +429,7 @@ public enum LinkGrid<
     Content: Structure
 >: Links {}
 
-// ── Columns ──
-
+/// Composes its content within a row and terminates the directive on its own line.
 public protocol Columns: Open {
     associatedtype Panels: Structure
 }
@@ -531,8 +448,7 @@ public enum SideBySide<
     Panels: Structure
 >: Columns {}
 
-// ── Panel ──
-
+/// Composes its content within a column and terminates the directive on its own line.
 public protocol Panel: Open {
     associatedtype Content: Structure
 }
@@ -552,19 +468,13 @@ public enum PanelOf<
     Content: Structure
 >: Panel {}
 
-// ── SizedPanel — @Column(size: N) { Content }, a panel that also states its relative weight ──
-//
-// Weight supplies the reading of DocC's relative column size. Content remains an
-// independent parameter. The reader emits that declared weight at the directive edge;
-// it does not solve the host renderer's column widths.
-/// The markdown surface reads the same magnitudes the vector surface weighs: a column's
-/// relative size is a count-structure's reading, digits born at this one door. One lexicon
-/// of magnitudes serves both media. Only the reading differs by surface.
+/// Reads the supplied count as a relative column weight.
 public enum WeightOf<S: Structure>: Close {}
 extension WeightOf {
     public static var typeName: String { String(S.count) }
 }
 
+/// Composes content within a column whose relative size is the supplied Weight.
 public protocol WeightedPanel: Open {
     associatedtype Content: Structure
     associatedtype Weight: Structure
@@ -584,10 +494,7 @@ extension WeightedPanel {
         CloseBrace.self
     }
 }
-/// This renders `@Column(size: Weight) { Content }`, two holes, the same `Whole: Pair` fold
-/// `Link`/`Picture` use. The door is HERE, not on `WeightedPanel`'s extension, because
-/// `Whole` is not one of the protocol's associated types, the same shape `Link`/`Picture`
-/// already settled on for every two-hole combinator.
+/// Reads weight and content from its composed Pair and writes a weighted column.
 public enum SizedPanel<
     Whole: Pair
 >: WeightedPanel
@@ -597,15 +504,7 @@ where Whole.Left: Structure, Whole.Right: Structure {
     public init(@StructureBuilder _ content: () -> Whole) { fatalError() }
 }
 
-// ── Frame — content in a one-cell table. One header cell, a delimiter row, no body rows: the
-// minimum a GFM table needs to be a table at all (Surface Law: a delimiter row is not optional,
-// RuleMark's whole reason for existing). Lightweight because it reuses Table/TableRow/TableCell
-// as-is, no new atoms, no new rendering path.
-//
-// > Warning: checked directly. DocC's theme does not draw a full ring around a table cell, so
-// > `Framed` alone reads as left-aligned content, not a bordered box. A drawn border was tried
-// > and removed (SurfaceLaw §S19/§S20): this render target has no primitive for one.
-
+/// Composes content and a delimiter in a single-column table.
 public protocol Frame: Open {
     associatedtype Content: Structure
 }
@@ -623,14 +522,6 @@ public enum Framed<
     Content: Structure
 >: Frame {}
 
-// ── CodeFence: ```swift\nContent\n```, a real Swift call site, fenced so DocC renders it as
-// code rather than prose. `Reference`/`DocLink`/etc. above show a combinator's OUTPUT. This
-// shows the call that produced it, the thing a developer copies. `Content` is always a literal
-// snippet (a `Close` atom whose `typeName` IS the source text), never derived from the type it
-// documents: there is no reflection from a `body`'s type-level composition back to the Swift
-// source that wrote it, so the two are kept side by side by hand and must be kept in sync by
-// hand, the same discipline `TwoRowGrid`'s hand-stated `Total` already relies on.
-
 public enum TripleBacktickSwift: Close {}
 extension TripleBacktickSwift {
     public static var typeName: String { "```swift\n" }
@@ -641,6 +532,7 @@ extension TripleBacktick {
     public static var typeName: String { "```\n" }
 }
 
+/// Composes content between code delimiters with a final line break.
 public protocol CodeFence: Open {
     associatedtype Content: Structure
 }
@@ -658,34 +550,19 @@ public enum CodeSample<
     Content: Structure
 >: CodeFence {}
 
-// ── Spacer: a column of width alone, no content. `Content` is fixed to `Never` (the
-// lattice's own empty leaf, `typeName = ""`), so there is nothing to compose, only a weight to
-// state. No `{ }` door, `Spacer<TextDigit._1>.self` is complete on its own, a bare metatype
-// leaf the same as `Triangle.self` anywhere else. Flank real content with two of these to get
-// horizontal padding, the cheapest read of "insert something that is only space."
-
+/// Writes a weighted column with empty content.
 public enum Spacer<
     Weight: Structure
 >: WeightedPanel {
     public typealias Content = Never
 }
 
-// ── Gap: the rule of behavior belongs to the SPACE, not to either neighbor. `Gap<Left,
-// Right>` names what is adjacent; its own `typeName` is the width, chosen by which specific
-// pairing matched, never stored as a property on `Left` or `Right`. No neighbor ever states
-// "my own margin," so there is nothing for two neighbors' margins to disagree about (the
-// classic CSS collapse). One type reads the boundary, once. The default (no more specific
-// `where` matched) is zero: adjacent by default, spaced only where a pairing says so.
-//
-// > Warning: Surface Law §S12 describes this shape: a type whose `typeName` picks among several `where`-conditioned
-// > extensions reads correctly ONLY at a literal, concrete call site (`SpaceBetween` with both arguments concrete), never through a generic parameter standing in for `Left`/`Right`. This
-// > is not a general "the compiler infers the right gap between any two things" mechanism. It
-// > resolves one declared case at its concrete use site.
-
+/// Declares two open neighboring places for a consumer-defined reading.
 public protocol Gap: Structure {
     associatedtype Left
     associatedtype Right
 }
+/// Supplies the empty default reading for two neighboring places. Specialized readings are resolved at a concrete consumer site.
 public enum SpaceBetween<
     Left,
     Right
@@ -694,16 +571,7 @@ extension SpaceBetween {
     public static var typeName: String { "" }
 }
 
-// ── SpacerBetween — the same rule (the pairing chooses, not either neighbor), rendering a
-// real `@Column(size:)` weight instead of text spaces: a `Gap` meant to be inside a
-// `SideBySide` row, next to `PanelOf`/`SizedPanel`. Default weight 1 (a thin gap, never zero:
-// a zero-weight `@Column` is still a column DocC has to lay out, unlike `SpaceBetween`'s "" for
-// plain text, so the floor here is the thinnest real column, not none at all).
-//
-// > Warning: read this only through a non-generic proxy (§S17). Used directly as a body leaf,
-// > it folds into `Paired` the same as any other statement, and reads the unconditional default
-// > regardless of which pairing it names.
-
+/// Supplies a unit-width column for two neighboring places. Specialized readings are resolved at a concrete consumer site.
 public enum SpacerBetween<
     Left,
     Right

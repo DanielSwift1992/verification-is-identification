@@ -68,15 +68,18 @@ struct NotationScope {
     /// Both questions obtain nested declaration headers and fields from these
     /// lexical owners. A child keeps its qualified identity; it is not emitted
     /// as a new top-level source declaration.
-    func structural(_ clean: String, origin: String) throws -> [StructuralSource.Declaration] {
+    func structural(_ clean: String, origin: String, lent: Set<String>) throws -> [StructuralSource.Declaration] {
         let units = Array(clean.utf16)
+        let builders = lent.union(WhereJudge.declaredBuilders(clean))
         var result: [StructuralSource.Declaration] = []
         for declaration in declarations {
             guard ["enum", "struct", "protocol"].contains(declaration.kind) else { continue }
             let header = Array(try StructuralSource.tokens(declaration.header).dropFirst())
             let body = String(decoding: units[(declaration.open + 1)..<(declaration.close - 1)], as: UTF16.self)
+            let words = try WhereJudge.lexicalReading(body, scope: .projection,
+                lent: builders, carrying: false).tape.words
             let read = try StructuralSource.declaration(kind: declaration.kind, header: header,
-                body: StructuralSource.tokens(body), origin: origin)
+                body: words, origin: origin)
             let excluded = Set(read.parameters + Array(read.fields.keys) + ["Self"])
             result.append(StructuralSource.Declaration(name: declaration.qualified, kind: read.kind,
                 parameters: read.parameters, parents: read.parents, requirements: read.requirements,

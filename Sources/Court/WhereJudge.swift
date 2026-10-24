@@ -772,7 +772,7 @@ enum WhereJudge {
         }
 
         if contextV2 {
-            for declaration in try notation.structural(clean, origin: "source") {
+            for declaration in try notation.structural(clean, origin: "source", lent: lent) {
                 guard declaration.kind == "enum", !notation.namespaces.contains(declaration.name) else { continue }
                 world.genericRequirements[declaration.name] = declaration.requirements
                 world.genericUnsupported[declaration.name] = declaration.unsupported

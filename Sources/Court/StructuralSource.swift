@@ -498,7 +498,7 @@ struct StructuralSource {
             let lent = Set(notationFiles.flatMap { WhereJudge.declaredBuilders($0.world.clean) })
             let clean = try WhereJudge.stripComments(file.text, lent: lent)
             let notation = try NotationScope(clean)
-            for declaration in try notation.structural(clean, origin: file.context.input) {
+            for declaration in try notation.structural(clean, origin: file.context.input, lent: lent) {
                 guard declaration.kind == "enum" || declaration.kind == "struct" || declaration.kind == "protocol" else { continue }
                 declarations[declaration.name] = declaration
             }

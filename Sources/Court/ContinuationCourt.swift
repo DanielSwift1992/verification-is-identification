@@ -114,7 +114,8 @@ enum ContinuationCourt {
         let root: E
         var raw: R.Source { R.Source(world: source.syntax, rigid: rigid) }
 
-        init(_ request: String, source: StructuralSource, constructor: String = "Paired") throws {
+        init(_ request: String, source: StructuralSource, constructor: String = "Paired",
+             requiredFields: [String] = ["Source", "Observation", "Question"]) throws {
             self.source = source
             self.request = request
             self.constructor = constructor
@@ -128,12 +129,13 @@ enum ContinuationCourt {
             try checkFoundation()
             _ = try declaration(request)
             guard ["enum", "struct"].contains(d.kind), d.parents.isEmpty, !d.parameters.isEmpty,
-                Set(d.parameters).isDisjoint(with: ["Self", "Source", "Observation", "Question"]),
-                ["Source", "Observation", "Question"].allSatisfy({ d.fields[$0] != nil }),
+                Set(d.parameters).isDisjoint(with: Set(["Self"] + requiredFields)),
+                requiredFields.allSatisfy({ d.fields[$0] != nil }),
                 structureParameters(d)
             else {
                 throw Failure(
-                    "request needs opaque Structure parameters and Source/Observation/Question fields; no other premises"
+                    "request needs opaque Structure parameters and " + requiredFields.joined(separator: "/")
+                        + " fields; no other premises"
                 )
             }
         }

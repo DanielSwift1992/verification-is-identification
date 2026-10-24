@@ -36,20 +36,28 @@ jobs:
       - name: Every law but the grammar mirror
         run: python3 Checks/ci-check.py --skip law
 
+      # Job logs need a signed-in reader; the toolchain and the first DocC
+      # diagnostics are repeated as annotations, which the public API serves.
       - name: Generate the combined documentation site
-        run: >
-          swift package
-          --allow-writing-to-directory "$GITHUB_WORKSPACE/_site"
-          generate-documentation
-          --enable-experimental-combined-documentation
-          --experimental-enable-custom-templates
-          --warnings-as-errors
-          --target VerificationIsIdentification --target Examples
-          --target GrammarLexicon --target Alphabet --target Notation
-          --target DocumentKit --target DocumentKitCertificates --target DocumentKitDemo
-          --transform-for-static-hosting
-          --hosting-base-path verification-is-identification
-          --output-path "$GITHUB_WORKSPACE/_site"
+        run: |
+          xcodebuild -version | tr '\n' ' ' | sed 's/^/::notice::/'; echo
+          set +e
+          swift package \
+            --allow-writing-to-directory "$GITHUB_WORKSPACE/_site" \
+            generate-documentation \
+            --enable-experimental-combined-documentation \
+            --experimental-enable-custom-templates \
+            --warnings-as-errors \
+            --target VerificationIsIdentification --target Examples \
+            --target GrammarLexicon --target Alphabet --target Notation \
+            --target DocumentKit --target DocumentKitCertificates --target DocumentKitDemo \
+            --transform-for-static-hosting \
+            --hosting-base-path verification-is-identification \
+            --output-path "$GITHUB_WORKSPACE/_site" 2>&1 | tee "$RUNNER_TEMP/docc.log"
+          status=${PIPESTATUS[0]}
+          set -e
+          grep -E "(warning|error):" "$RUNNER_TEMP/docc.log" | head -10 | sed 's/^/::error::/' || true
+          exit "$status"
 
       - name: One hook in every shell (the guard makes a second copy inert)
         run: |

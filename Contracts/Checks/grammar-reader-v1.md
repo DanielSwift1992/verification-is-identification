@@ -27,4 +27,4 @@ actor Hidden {}
 enum Y { static let t = "" }
 ```
 
-The visible `actor Hidden {}` alone is the refusal control. These exact inputs name the outstanding obligation; no new control or repair is implemented in the carrier. Execution observations and their input/log hashes belong to the maintenance receipt, not to a proof of this relation.
+The visible `actor Hidden {}` alone is the refusal control. These exact inputs name the outstanding obligation; no new control or repair is implemented in the carrier. With the reader body of 85604916 unchanged, the grammar law passed both inputs (exit 0) and refused both controls (exit 1); the receipt with input and log hashes is held with task T0095 and is not a proof of this relation. `removal_tasks` in Checks/dependency-boundary.json links to this record.

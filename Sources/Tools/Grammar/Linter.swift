@@ -14,7 +14,7 @@ import VerificationIsIdentification
 // Rules for which bytes matter must be declared as types; the court checks
 // the derivation against that declaration, including coverage and bindings.
 // Correctness of replay and of the type checker are premises of the verdict.
-// Lexemes come from registries, with no source literal spelling a lexeme;
+// Lexemes come from registries, with no literal in the reading path spelling a lexeme;
 // a new registered atom is carried without edits to this file.
 // Reflective names still need source bindings checked against the input.
 // Portable findings run no child type check and share the open reader debt.
@@ -352,7 +352,7 @@ enum Linter {
             lastType = atom
         }
 
-        while frames.count > 1 {   // cannot happen for source that itself compiles
+        while frames.count > 1 {   // reached by a raw string the reader misreads (grammar-reader-v1)
             let frame = frames.removeLast()
             frames[frames.count - 1].text += frame.text
         }

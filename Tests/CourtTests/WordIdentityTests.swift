@@ -58,11 +58,14 @@ final class WordIdentityTests: XCTestCase {
                         "imports": imports.map { _ in "manifest:\(i).imports" }]]
             }
             let json = try JSONSerialization.data(withJSONObject: ["schema": "vi.court.context/2", "sources": entries, "intrinsics": []])
-            let context = try CourtContext(text: String(decoding: json, as: UTF8.self), paths: files.map { $0.0 }, texts: texts)
+            func read() throws {
+                let context = try CourtContext(text: String(decoding: json, as: UTF8.self), paths: files.map { $0.0 }, texts: texts)
+                _ = try CourtNotation.read(context, texts: texts, selected: "world.swift", documents: [])
+            }
             if imported.unicodeScalars.elementsEqual("Módulo".unicodeScalars) {
-                XCTAssertNoThrow(try CourtNotation.read(context, texts: texts, selected: "world.swift", documents: []))
+                XCTAssertNoThrow(try read())
             } else {
-                XCTAssertThrowsError(try CourtNotation.read(context, texts: texts, selected: "world.swift", documents: [])) { error in
+                XCTAssertThrowsError(try read()) { error in
                     let text = String(describing: error)
                     XCTAssertTrue(text.contains("distinct scalar spellings"), text)
                     XCTAssertTrue(text.contains("world.swift:1"), text)

@@ -127,7 +127,7 @@ final class ScalarIdentityTests: XCTestCase {
     }
 
     func testContinuationAndCoverCertificateNamesUseTheSameIdentity() throws {
-        let primitive = "Sources/VerificationIsIdentification/Primitive.swift"
+        let primitive = "Sources/Notation/Primitive.swift"
         let primitives = try String(contentsOf: root.appendingPathComponent(primitive), encoding: .utf8)
         let world = try StructuralSource(files: [(primitive, primitives), ("world.swift", """
         enum Identité<S: Structure> {
@@ -182,7 +182,7 @@ final class ScalarIdentityTests: XCTestCase {
         // Its word guard must run before a question-specific field decision.
         for (label, fixture) in [("actions-U9", "image-cases.swift"), ("actions-U10", "agreement-cases.swift")] {
             let material = root.appendingPathComponent("Contracts/Court/continuation-relations-v1/" + fixture)
-            let primitive = root.appendingPathComponent("Sources/VerificationIsIdentification/Primitive.swift")
+            let primitive = root.appendingPathComponent("Sources/Notation/Primitive.swift")
             cases.append((label, ["continue", "--relations", "--actions", bad, source.path, primitive.path, material.path], "request"))
         }
         for (label, arguments, origin) in cases {

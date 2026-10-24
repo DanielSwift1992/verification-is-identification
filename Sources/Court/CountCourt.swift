@@ -162,8 +162,8 @@ enum CountCourt {
     }
 
     /// Metatype applications are discovered from tokens, not comment/string text.
-    static func metatypes(_ text: String) throws -> [(input: E, nested: Bool)] {
-        let ts = StructuralSource.plain(try StructuralSource.tokens(text))
+    static func metatypes(_ words: [String]) -> [(input: E, nested: Bool)] {
+        let ts = StructuralSource.plain(words)
         var roots: [(input: E, nested: Bool)] = [], braces = 0
         for i in ts.indices {
             if ts[i] == "{" { braces += 1 }
@@ -201,8 +201,10 @@ enum CountCourt {
             // All presented files are checked: moving a counterexample into
             // the definitions position cannot hide its selected readings.
             var queue: [(anchor: String, site: String, input: E, nested: Bool, path: String)] = []
-            for (path, text) in files {
-                for hit in try metatypes(text) {
+            let scanned = try WhereJudge.lexicalReadings(files, scope: .projection, carrying: false)
+            for (file, read) in zip(files, scanned) {
+                let path = file.0
+                for hit in metatypes(read.tape.words) {
                     queue.append((path + ":" + hit.input.text, hit.input.text, hit.input, hit.nested, path))
                 }
             }

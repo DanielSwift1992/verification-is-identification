@@ -8,7 +8,7 @@ import subprocess
 import sys
 import time
 
-SUITE_HASHES = {'vi.press.substitution/0.1': 'cf01573a6326db2c7749046867c10de5e6a8ef50b41941ffcbbaf630dc105b64', 'vi.press.substitution/0.2': '562ff91f5d3dc7338249cc6b4792702f24a15c61ab6295cfd5a51538cb728e26'}
+SUITE_HASHES = {'vi.press.substitution/0.1': 'cf01573a6326db2c7749046867c10de5e6a8ef50b41941ffcbbaf630dc105b64', 'vi.press.substitution/0.2': '52e5622bab37e3fa62bec67005e6a040844d477b08a39b723ac71bb2693de219'}
 
 
 def digest(path):

@@ -19,7 +19,7 @@ The paper studies one loop, 26 properties and five central theorems (compilation
 7. Finite data of bounded size is in a finite space F. *[from 1 + 6: the structure has finite size n over its finite set of distinct components. All structures over those components up to size n form a finite set by combinatorics.]*
 
 > Argues: ``StructuresFinite`` needs ``HasSigma``.
-> Argues: ``StructuresFinite`` needs ``Pair``.
+> Argues: ``StructuresFinite`` needs ``/Notation/Pair``.
 8. S = {y ∈ F : COMPARE(y, target) = EQUAL} is computable. *[from 4 + 7: structural equality is decidable (step 4) + finite space (step 7) = enumerate F and check each.]*
 9. The structure is representable in F. *[from 1 + 7: it is finite (step 1) and F contains all finite structures up to its size (step 7) → it is in F.]* Under an encoding whose test recognizes it, it passes and enters S.
 
@@ -481,7 +481,7 @@ GC2 is a logical cache law. Realizing it inside a fixed finite reversible whole 
 
 One act: distinction. Three derived aspects: where it ends (boundary), whether two histories match (identity), which side you examine (access). The author keeps NULL and COMPARE as notation: they name structural properties of distinction, never independent entities. This is uniqueness of the primitive; see the note on uniqueness at the end of §0.
 
-> Argues: ``OperationsClosed`` needs ``Pair``.
+> Argues: ``OperationsClosed`` needs ``/Notation/Pair``.
 
 ## §3. Problem
 

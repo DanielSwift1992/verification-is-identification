@@ -1,3 +1,5 @@
+import Notation
+
 import Swift
 
 /// A supplied spelling factorization answers its declared admission question

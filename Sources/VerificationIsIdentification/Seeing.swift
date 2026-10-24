@@ -1,3 +1,5 @@
+import Notation
+
 import Swift
 
 /// Two supplied readings of one question have the same encoded answer.

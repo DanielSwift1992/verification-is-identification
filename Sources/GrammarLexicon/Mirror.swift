@@ -1,3 +1,5 @@
+// Surface-history citations are historical scope, not current SDK contracts.
+// Source: vi@f95b6c69d5ad49ede6cf953b8be42e725bde6ba6 Sources/DocumentKit/SurfaceLaw.swift; SHA-256 d51b07d4195eddee64d0a3e7daf91dc6667bc4c79665c53249222b8350dc4881.
 import Alphabet
 import VerificationIsIdentification
 
@@ -94,7 +96,7 @@ extension Quote: ForeignOpener, ForeignAtom {
 extension Backslash: Escapes {}
 
 /// Atoms conforming here mean "the block that follows is a builder body," routed through
-/// identity (SurfaceLaw §S25): the stream asks one protocol question, not a specific word.
+/// identity (SurfaceLaw [Surface history S25](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L365)): the stream asks one protocol question, not a specific word.
 public protocol OpensBuilder: LintAtom {}
 extension StructureBuilderMark: OpensBuilder {}
 
@@ -296,8 +298,8 @@ extension Semicolon: BuilderToken {}     // the one asymmetric grant — PlainTo
 public enum LatticeScope: LintAtom {}
 /// This scope names the lattice's engine room: `Primitive.swift` alone, keyed by its path (a
 /// path is as mechanical a fact as a directory). The law itself carves this exception: the ONE
-/// `@resultBuilder` the system allows (SurfaceLaw §S4) and the readers (`typeName`, `count`,
-/// `labels`, §S7's doors) live there, and nowhere else in the lattice may a `func`, a `var`
+/// `@resultBuilder` the system allows (SurfaceLaw [Surface history S4](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L65)) and the readers (`typeName`, `count`,
+/// `labels`, [Surface history S7](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L113)'s doors) live there, and nowhere else in the lattice may a `func`, a `var`
 /// or an operator appear. The registry line IS that sentence of the law.
 public enum EngineScope: LintAtom {}
 public enum SurfaceScope: LintAtom {}
@@ -505,7 +507,14 @@ public enum Schema {
     }
     @ScopeCensus
     public static var scopes: [(prefix: String, scope: any LintAtom.Type)] {
-        ("Sources/VerificationIsIdentification/Primitive.swift", EngineScope.self)
+        ("Sources/Notation/Primitive.swift", EngineScope.self)
+        ("Sources/Notation", LatticeScope.self)
+        ("Sources/DocumentKit", SurfaceScope.self)
+        ("Sources/DocumentKitCertificates", SurfaceScope.self)
+        ("Sources/DocumentKitDemo/Landing.swift", SurfaceScope.self)
+        ("Sources/DocumentKitDemo/Compositions.swift", SurfaceScope.self)
+        ("Sources/DocumentKitDemo", DemoScope.self)
+        ("Sources/FontMetrics", ToolsScope.self)
         ("Sources/VerificationIsIdentification", LatticeScope.self)
         ("Sources/Tools", ToolsScope.self)
         ("Sources/Court", ToolsScope.self)
@@ -522,14 +531,14 @@ public enum Schema {
 //    that does not exist here. The fold is flat (every step lands on `Never` — the seed's
 //    own floor: checked means nothing remains to be distinguished, which is Null), the nesting
 //    is the source's own bracket nesting — closure inside closure, never a cons chain
-//    (SurfaceLaw §S22). ──
+//    (SurfaceLaw [Surface history S22](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L322)). ──
 
 /// One carried block — a small declaration whose `body` re-states the block's atoms and
 /// REFERENCES its child blocks by name, the way a page references a fragment. Navigation, not
 /// duplication: the compiler checks many small bodies quickly (linear). One large inlined
 /// expression can starve the solver instead (261 closures nested in one initializer, measured
 /// against the same code as separate declarations: seconds versus a stall). Finiteness comes
-/// from small parts and links, the house's §S22 answer.
+/// from small parts and links, the house's [Surface history S22](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L322) answer.
 public protocol Formation {
     static var body: Never.Type { get }
 }

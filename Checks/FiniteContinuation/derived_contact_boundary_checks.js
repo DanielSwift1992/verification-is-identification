@@ -87,7 +87,7 @@ function closure(seed,steps) {
   return basis;
 }
 function readSource() {
-  const paths=["Sources/VerificationIsIdentification/Primitive.swift","Checks/LocalPolicyCourt.swift","Checks/DerivedContactRelations.swift"];
+  const paths=["Sources/Notation/Primitive.swift","Checks/LocalPolicyCourt.swift","Checks/DerivedContactRelations.swift"];
   const texts=paths.map(p=>fs.readFileSync(path.join(root,p),"utf8"));
   const paired=texts[0].match(/public enum Paired\b[^{}]*\{[^{}]*\}/g);assert.equal(paired.length,1);
   const gate=texts[1].slice(0,texts[1].indexOf("public typealias CourtPolicy"));

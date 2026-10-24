@@ -74,9 +74,33 @@ let papers = PaperFamilies.require((docc as NSString).appendingPathComponent("Pa
 let mentions = papers.mentions()
 
 guard let data = FileManager.default.contents(atPath: graphPath),
-      let G = try? JSONDecoder().decode(Graph.self, from: data) else {
+      var G = try? JSONDecoder().decode(Graph.self, from: data) else {
     FileHandle.standardError.write(Data("✗ cannot read symbol graph: \(graphPath)\n".utf8))
     exit(2)
+}
+
+// The public theory reexports Notation. Retain its constructor nodes and edges in
+// this account of the lattice rather than silently dropping imported premises.
+if !G.symbols.contains(
+    where: { $0.kind.identifier == "swift.protocol" && $0.names.title == "Pair" }) {
+    let directory = (graphPath as NSString).deletingLastPathComponent
+    // SwiftPM writes graphs either together or in per-target sibling directories.
+    let notationPaths = [directory + "/Notation.symbols.json",
+        (directory as NSString).deletingLastPathComponent + "/Notation/Notation.symbols.json"]
+    guard let notation = notationPaths.compactMap({ path -> Graph? in
+        guard let bytes = FileManager.default.contents(atPath: path) else { return nil }
+        return try? JSONDecoder().decode(Graph.self, from: bytes)
+    }).first else {
+        FileHandle.standardError.write(Data("cannot read constructor graph: \(notationPaths.joined(separator: ", ")); run swift package tree-sort check\n".utf8))
+        exit(2)
+    }
+    var ids = Set(G.symbols.map { $0.identifier.precise })
+    let added = notation.symbols.filter { ids.insert($0.identifier.precise).inserted }
+    var edges = Set<String>()
+    let relationships = (G.relationships + notation.relationships).filter {
+        edges.insert($0.kind + "\0" + $0.source + "\0" + $0.target).inserted
+    }
+    G = Graph(symbols: G.symbols + added, relationships: relationships)
 }
 
 // ── indexed tables (index = order in G.symbols, to emulate Python's stable sort) ──
@@ -98,6 +122,28 @@ func file(_ p: String) -> String {
 func frags(_ p: String) -> [Symbol.Fragment] { sym[p]?.declarationFragments ?? [] }
 
 let protos = G.symbols.filter { $0.kind.identifier == "swift.protocol" }.map { $0.identifier.precise }
+
+// A DocC reference names a symbol in its defining module. Keep that address in
+// generated links and recover the same declared node when reading Argues records.
+func isNotation(_ p: String) -> Bool {
+    sym[p]?.location?.uri?.contains("/Sources/Notation/") == true
+}
+func unqualifiedReference(_ reference: String) -> String {
+    let prefix = "/Notation/"
+    guard reference.hasPrefix(prefix),
+          let p = pidOf[String(reference.dropFirst(prefix.count))], isNotation(p) else { return reference }
+    return title(p)
+}
+func qualifiedLinks(_ text: String) -> String {
+    var output = text
+    for p in protos
+    where isNotation(p) {
+        let name = title(p)
+        output = output.replacingOccurrences(of: "``" + name + "``", with: "``/Notation/" + name + "``")
+    }
+    return output
+}
+
 let SEED = Set(protos.filter { title($0) == "Pair" || title($0) == "Null" })
 
 // opens an axis: target of a requirementOf edge from an associatedtype
@@ -183,7 +229,8 @@ where cls[p] == "theorem" { theoremsOn[realClosure(p).first!]!.append(p) }
 // file -> paper doc page (the route). Foundation files (Primitive/Core/Identification)
 // map to verification_is_identification; Witness/Law have no paper; Spec/Projection live on the landing.
 let PAPER: [String: String] = [
-    "Primitive.swift": "verification_is_identification", "Core.swift": "verification_is_identification",
+    "Primitive.swift": "verification_is_identification", "IntegerValued.swift": "verification_is_identification",
+    "Core.swift": "verification_is_identification",
     "Identification.swift": "verification_is_identification", "Intelligence.swift": "intelligence_is_inevitable",
     "Matter.swift": "permanence_is_resistance", "Space.swift": "difference_is_distance",
     "Interference.swift": "interference_is_intelligence",
@@ -359,14 +406,18 @@ func arguesParse(_ text: String) -> [(child: String, parent: String, line: Int)]
         guard line.hasPrefix("> Argues: ``") else { continue }
         let pieces = line.components(separatedBy: "``")
         if pieces.count >= 5 && pieces[2] == " needs " {
-            out.append((pieces[1], pieces[3], i + 1))
+            out.append((unqualifiedReference(pieces[1]), unqualifiedReference(pieces[3]), i + 1))
         }
     }
     return out
 }
 func arguesWalkFires() -> Bool {
     let toy = arguesParse("prose\n> Argues: ``B`` needs ``A``.\nmore")
+    let qualified = arguesParse("> Argues: ``B`` needs ``/Notation/Pair``.")
+    let pairIsNotation = pidOf["Pair"].map(isNotation) ?? false
     return toy.count == 1 && toy[0].child == "B" && toy[0].parent == "A" && toy[0].line == 2
+        && qualified.first?.parent == (pairIsNotation ? "Pair" : "/Notation/Pair")
+        && unqualifiedReference("/Notation/Missing") == "/Notation/Missing"
 }
 func arguesRecords() -> [(child: String, parent: String, paper: String, line: Int)] {
     var out: [(String, String, String, Int)] = []
@@ -505,14 +556,14 @@ func parseGroups(_ md: String) -> [String: [String]] {
     var cur: String?
     let body = md.components(separatedBy: "## Topics").last ?? md
     let headRe = try! NSRegularExpression(pattern: #"^###\s+(.*)"#)
-    let bulRe = try! NSRegularExpression(pattern: #"^-\s+``([A-Za-z0-9_]+)``"#)
+    let bulRe = try! NSRegularExpression(pattern: #"^-\s+``((?:/Notation/)?[A-Za-z0-9_]+)``"#)
     for raw in body.components(separatedBy: "\n") {
         let ns = raw as NSString
         if let m = headRe.firstMatch(in: raw, range: NSRange(location: 0, length: ns.length)) {
             cur = ns.substring(with: m.range(at: 1)).trimmingCharacters(in: .whitespaces)
             groups[cur!] = []
         } else if let cur, let m = bulRe.firstMatch(in: raw, range: NSRange(location: 0, length: ns.length)) {
-            groups[cur, default: []].append(ns.substring(with: m.range(at: 1)))
+            groups[cur, default: []].append(unqualifiedReference(ns.substring(with: m.range(at: 1))))
         }
     }
     return groups
@@ -549,7 +600,7 @@ func target(_ path: String, _ block: String) -> String {
         FileHandle.standardError.write(Data("refusing to write empty-prose file: \(path)\n".utf8))
         exit(2)
     }
-    let tail = block.trimmingCharacters(in: .whitespacesAndNewlines)
+    let tail = qualifiedLinks(block).trimmingCharacters(in: .whitespacesAndNewlines)
     return trimmedHead + (tail.isEmpty ? "\n" : "\n\n" + tail + "\n")
 }
 func eachFile() -> [(String, String)] {

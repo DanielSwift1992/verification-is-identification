@@ -1,3 +1,5 @@
+import Notation
+
 import Swift
 
 // InterferenceIsSubstitution/Contribution and DarknessIsNormalForm/Observed

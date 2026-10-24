@@ -1,4 +1,4 @@
-import VerificationIsIdentification
+import Notation
 
 // ═══════════════════════════════════════════════════════
 // ALPHABET declares one type per character, shared by both readers in the package:

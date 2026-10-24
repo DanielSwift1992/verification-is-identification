@@ -15,7 +15,7 @@ trap 'rm -rf "$light_tmp"' EXIT
 
 . Checks/build-tools.sh
 light_bin=$(vi_check_tools_bin)
-primitive=Sources/VerificationIsIdentification/Primitive.swift
+primitive=Sources/Notation/Primitive.swift
 
 across="applies a gated head in a use written across lines, which this court reads on one line"
 said=0

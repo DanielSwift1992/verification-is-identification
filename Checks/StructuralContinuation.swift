@@ -18,7 +18,7 @@ import Foundation
             Judge.run(Array(CommandLine.arguments.dropFirst(2)))
             return
         }
-        let paths = ["Sources/VerificationIsIdentification/Primitive.swift",
+        let paths = ["Sources/Notation/Primitive.swift",
                      "Sources/Examples/TargetFrameTransport.swift",
                      "Sources/Examples/ContinuationRequests.swift"]
         let files = try paths.map { ($0,try String(contentsOfFile:$0,encoding:.utf8)) }

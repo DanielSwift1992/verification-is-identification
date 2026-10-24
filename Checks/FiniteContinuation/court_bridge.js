@@ -12,7 +12,7 @@ const root=path.resolve(__dirname,"../..");
 const judgePath=path.resolve(path.join(root,"Checks/Archive/WhereV2/judge-where.js"));
 const {judgeWhereTexts}=require(judgePath);
 const digest=x=>crypto.createHash("sha256").update(x).digest("hex");
-const inputs=["Sources/VerificationIsIdentification/Primitive.swift",
+const inputs=["Sources/Notation/Primitive.swift",
   "Sources/Examples/QuantumContinuation.swift","Sources/Examples/FinitePauliTSource.swift",
   "Checks/LocalPolicyCourt.swift"];
 

@@ -1,3 +1,5 @@
+import Notation
+
 import Swift
 
 // ── the presented half of the axis. ``LawIsTarget`` reaches the law from

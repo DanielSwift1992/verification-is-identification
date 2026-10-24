@@ -53,7 +53,12 @@ if [ "$verdict_scope" = localphase ] || [ "$verdict_scope" = halt ] || [ "$verdi
     # generating object code for the modeled constructions.
     verdict_bin="$verdict_tmp"
     mkdir -p "$verdict_bin/Modules"
-    swiftc -emit-module -parse-as-library -module-name VerificationIsIdentification \
+    swiftc -emit-module -parse-as-library -module-name Notation \
+    Sources/Notation/*.swift \
+    -module-cache-path "$verdict_bin/cache" \
+    -emit-module-path "$verdict_bin/Modules/Notation.swiftmodule"
+swiftc -emit-module -parse-as-library -module-name VerificationIsIdentification \
+    -I "$verdict_bin/Modules" \
         -module-cache-path "$verdict_tmp/cache" \
         Sources/VerificationIsIdentification/*.swift \
         -emit-module-path "$verdict_bin/Modules/VerificationIsIdentification.swiftmodule"

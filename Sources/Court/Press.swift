@@ -76,7 +76,7 @@ public enum Press {
                 }
                 carried = true
             }
-            // §S28's edge at the point of use: a rule is one substitution, so a body
+            // SlotRule (Sources/DocumentKit/Dynamics.swift) declares one substitution, so a body
             // line that is not one of the three aliases refuses the whole press.
             guard carried else {
                 try fail("\(name) is not a triple: \(line)", at: "\(path)#\(name)")
@@ -243,8 +243,8 @@ public enum Press {
             try fail("usage: Tools press <Rule>[,<Rule>…] --file <state file> --rules <rule file>")
         }
         // A comma at depth zero spells a chord: several rules of ONE slot behind one
-        // face (§S30). An angle bracket spells an instance: `Rule<Atom>` hands the rule
-        // the arguments its pattern cannot bind (§S28's typed input). At any
+        // face (Chord in Sources/DocumentKit/Dynamics.swift). An angle bracket spells an instance: `Rule<Atom>` hands the rule
+        // the arguments its pattern cannot bind (the declared SlotRule.Pattern input). At any
         // state at most one member may match; two matches name an unlawful chord.
         var memberTexts: [String] = []
         var depth = 0

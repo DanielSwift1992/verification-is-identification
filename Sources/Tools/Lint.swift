@@ -1,3 +1,5 @@
+// Surface-history citations are historical scope, not current SDK contracts.
+// Source: vi@f95b6c69d5ad49ede6cf953b8be42e725bde6ba6 Sources/DocumentKit/SurfaceLaw.swift; SHA-256 d51b07d4195eddee64d0a3e7daf91dc6667bc4c79665c53249222b8350dc4881.
 import Foundation
 
 // ═══════════════════════════════════════════════════════
@@ -90,7 +92,7 @@ let renderedWitnessRegex = try! NSRegularExpression(
 // idiom). Admitted whole, as spelled. An `init` that builds anything falls back under §0′.
 let builderDoorRegex = try! NSRegularExpression(
     pattern: #"\binit\s*\(@StructureBuilder.*\{\s*fatalError\(\)\s*\}\s*$"#)
-// The metatype door, §S17's other spelling: a Type-cased free function (`Tally`, `Link`) that
+// The metatype door, [Surface history S17](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L251)'s other spelling: a Type-cased free function (`Tally`, `Link`) that
 // hands back `Something.self` so a builder can read it. The codebase's own naming law is the
 // key: a door is Type-cased because it NAMES a combinator, and value code is lowercase,
 // staying under §0′.
@@ -206,8 +208,8 @@ func scan(file path: String, checkProvenance: Bool) {
     // `rendered`) is still one pure function of the type, and its internal bindings are that
     // function's spelling, not shipped runtime. Tracked by brace balance from the head line.
     var witnessDepth = 0
-    // §S28's mechanical edge: a SlotRule conformer is one substitution, so its body may hold
-    // nothing but the three aliases. Anything else is an engine trying to enter through a
+    // SlotRule (Sources/DocumentKit/Dynamics.swift) declares one substitution; this reader admits
+    // the three aliases in its body. Anything else is an engine trying to enter through a
     // rule's door, refused by name.
     var insideSlotRule = false
     // A `rendered<…>` head opens its `{` lines later, after the generic signature closes; the
@@ -260,7 +262,7 @@ func scan(file path: String, checkProvenance: Bool) {
                 insideSlotRule = false
             } else if !trimmed.isEmpty, !trimmed.hasPrefix("//"),
                       !matches(slotRuleMemberRegex, source) {
-                lineViolations.append(Violation(file: name, line: number, rule: "§S28 SLOT RULE",
+                lineViolations.append(Violation(file: name, line: number, rule: "SlotRule",
                     detail: "a rule is one substitution, three aliases only: " + trimmed))
             }
         } else if source.contains(": SlotRule"), bare.contains("{") {

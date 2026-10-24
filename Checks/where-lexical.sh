@@ -109,7 +109,7 @@ fi
 # The lent attribute: a result builder Primitive.swift declares is a form the
 # court reads in a world that file is lent to, and not in the world alone.
 if ! swiftc -typecheck -module-cache-path "$lexical_tmp/cache" \
-    Checks/where-lexical/attribute-lent.swift Sources/VerificationIsIdentification/Primitive.swift \
+    Checks/where-lexical/attribute-lent.swift Sources/Notation/Primitive.swift \
     >"$lexical_tmp/lent-swift.log" 2>&1; then
     cat "$lexical_tmp/lent-swift.log"
     echo "where-lexical: Swift refused the lent-attribute control" >&2
@@ -125,7 +125,7 @@ if [ "$lexical_said" -ne 2 ] || [ -s "$lexical_tmp/lent-alone.out" ] \
     exit 1
 fi
 if ! "$lexical_bin/Tools" judge where Checks/where-lexical/attribute-lent.swift \
-    Sources/VerificationIsIdentification/Primitive.swift >"$lexical_tmp/lent.log" 2>&1; then
+    Sources/Notation/Primitive.swift >"$lexical_tmp/lent.log" 2>&1; then
     cat "$lexical_tmp/lent.log"
     echo "where-lexical: the where court refused the lent-attribute control" >&2
     exit 1
@@ -140,7 +140,7 @@ fi
 # flat fragment: the court gives no verdict, and the compiler, which reads
 # the body, refuses the demand.
 if swiftc -typecheck -module-cache-path "$lexical_tmp/cache" \
-    Checks/where-lexical/attribute-lent-body.swift Sources/VerificationIsIdentification/Primitive.swift \
+    Checks/where-lexical/attribute-lent-body.swift Sources/Notation/Primitive.swift \
     >"$lexical_tmp/lent-body-swift.log" 2>&1; then
     echo "where-lexical: Swift accepted the Body demand of the lent-attribute boundary" >&2
     exit 1
@@ -153,7 +153,7 @@ if [ "$(grep -c "^Checks/where-lexical/attribute-lent-body.swift:[0-9]*:[0-9]*: 
 fi
 lexical_said=0
 "$lexical_bin/Tools" judge where Checks/where-lexical/attribute-lent-body.swift \
-    Sources/VerificationIsIdentification/Primitive.swift \
+    Sources/Notation/Primitive.swift \
     >"$lexical_tmp/lent-body.out" 2>"$lexical_tmp/lent-body.err" || lexical_said=$?
 if [ "$lexical_said" -ne 2 ] || [ -s "$lexical_tmp/lent-body.out" ] \
     || [ "$(cat "$lexical_tmp/lent-body.err")" != "✗ THE WHERE: unresolved definition reduction: cannot read declaration 'Page': body outside flat-definition fragment" ]; then
@@ -165,7 +165,7 @@ fi
 # lent builder's name is refused, at the macro's own form; the compiler
 # refuses the pair too.
 if swiftc -typecheck -module-cache-path "$lexical_tmp/cache" \
-    Checks/where-lexical/attribute-lent-shadow.swift Sources/VerificationIsIdentification/Primitive.swift \
+    Checks/where-lexical/attribute-lent-shadow.swift Sources/Notation/Primitive.swift \
     >"$lexical_tmp/lent-shadow-swift.log" 2>&1; then
     echo "where-lexical: Swift accepted the world that shadows the lent builder with a macro" >&2
     exit 1
@@ -177,7 +177,7 @@ if [ "$(grep -c "^Checks/where-lexical/attribute-lent-shadow.swift:[0-9]*:[0-9]*
 fi
 lexical_said=0
 "$lexical_bin/Tools" judge where Checks/where-lexical/attribute-lent-shadow.swift \
-    Sources/VerificationIsIdentification/Primitive.swift \
+    Sources/Notation/Primitive.swift \
     >"$lexical_tmp/lent-shadow.out" 2>"$lexical_tmp/lent-shadow.err" || lexical_said=$?
 if [ "$lexical_said" -ne 2 ] || [ -s "$lexical_tmp/lent-shadow.out" ] \
     || [ "$(cat "$lexical_tmp/lent-shadow.err")" != "✗ THE WHERE: cannot read line 17: the macro '#externalMacro' is not among the forms this court reads" ]; then

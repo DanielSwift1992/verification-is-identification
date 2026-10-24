@@ -1,44 +1,530 @@
-<svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The construction law: one seed, two moves, one floor.">
-  <title>The construction law</title>
-  <desc>One seed — Pair: two sides, one boundary. Two moves — expand, compress. One floor — finite: width times depth.</desc>
-  <defs>
-    <marker id="ahD" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-      <path d="M0,0 L6,3 L0,6 Z" fill="#f5f5f7"/>
-    </marker>
-  </defs>
-  <g font-family="-apple-system, system-ui, 'Helvetica Neue', Arial, sans-serif">
-    <line x1="240" y1="46" x2="240" y2="178" stroke="#424245" stroke-width="1"/>
-    <line x1="480" y1="46" x2="480" y2="178" stroke="#424245" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="518.4" height="144" viewBox="0 0 518.4 144" role="img" aria-labelledby="ConstructionView1-title ConstructionView1-desc" data-vi-canvas="1">
+<!-- vi-input-sha256: 4974b244c4346938051445f99cfa43c42b173a0bc4f0487ca84d060676b1e294 -->
+<metadata id="ConstructionView1-font-license">Copyright (c) 2016 The Inter Project Authors (https://github.com/rsms/inter)
 
-    <text x="120" y="32" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="2.5" fill="#a1a1a6">SEED</text>
-    <text x="360" y="32" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="2.5" fill="#a1a1a6">MOVE</text>
-    <text x="600" y="32" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="2.5" fill="#a1a1a6">FLOOR</text>
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
 
-    <!-- SEED: one boundary divides one thing into two sides -->
-    <rect x="82" y="63" width="76" height="46" rx="9" fill="none" stroke="#5a5a5e" stroke-width="1.5"/>
-    <line x1="120" y1="63" x2="120" y2="109" stroke="#2997ff" stroke-width="2"/>
-    <text x="101" y="91" text-anchor="middle" font-size="15" fill="#f5f5f7">a</text>
-    <text x="139" y="91" text-anchor="middle" font-size="15" fill="#f5f5f7">b</text>
-    <text x="120" y="150" text-anchor="middle" font-size="14" font-weight="600" fill="#f5f5f7">Pair</text>
-    <text x="120" y="170" text-anchor="middle" font-size="11" fill="#a1a1a6">two sides · one boundary</text>
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
 
-    <!-- MOVE: two moves, no third -->
-    <text x="346" y="82" text-anchor="end" font-size="12.5" fill="#f5f5f7">expand</text>
-    <line x1="352" y1="78" x2="384" y2="78" stroke="#f5f5f7" stroke-width="1.5" marker-end="url(#ahD)"/>
-    <text x="394" y="82" text-anchor="start" font-size="11" fill="#a1a1a6">+ axis</text>
-    <text x="346" y="104" text-anchor="end" font-size="12.5" fill="#f5f5f7">compress</text>
-    <line x1="384" y1="100" x2="352" y2="100" stroke="#f5f5f7" stroke-width="1.5" marker-end="url(#ahD)"/>
-    <text x="394" y="104" text-anchor="start" font-size="11" fill="#a1a1a6">where</text>
-    <text x="360" y="150" text-anchor="middle" font-size="14" font-weight="600" fill="#f5f5f7">two moves</text>
-    <text x="360" y="170" text-anchor="middle" font-size="11" fill="#a1a1a6">no third</text>
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
 
-    <!-- FLOOR: finite — width × depth, every chain ends at ∅ -->
-    <circle cx="600" cy="66" r="5" fill="#2997ff"/>
-    <line x1="599" y1="71" x2="584" y2="92" stroke="#f5f5f7" stroke-width="1.5"/>
-    <line x1="601" y1="71" x2="616" y2="92" stroke="#f5f5f7" stroke-width="1.5"/>
-    <text x="584" y="104" text-anchor="middle" font-size="14" fill="#a1a1a6">∅</text>
-    <text x="616" y="104" text-anchor="middle" font-size="14" fill="#a1a1a6">∅</text>
-    <text x="600" y="150" text-anchor="middle" font-size="14" font-weight="600" fill="#f5f5f7">width × depth</text>
-    <text x="600" y="170" text-anchor="middle" font-size="11" fill="#a1a1a6">finite — every chain ends at ∅</text>
-  </g>
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded,
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+&quot;Font Software&quot; refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+&quot;Reserved Font Name&quot; refers to any names specified as such after the
+copyright statement(s).
+
+&quot;Original Version&quot; refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+&quot;Modified Version&quot; refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+&quot;Author&quot; refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION AND CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+Fonts are (c) Bitstream (see below). DejaVu changes are in public domain.
+Glyphs imported from Arev fonts are (c) Tavmjong Bah (see below)
+
+
+Bitstream Vera Fonts Copyright
+------------------------------
+
+Copyright (c) 2003 by Bitstream, Inc. All Rights Reserved. Bitstream Vera is
+a trademark of Bitstream, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of the fonts accompanying this license (&quot;Fonts&quot;) and associated
+documentation files (the &quot;Font Software&quot;), to reproduce and distribute the
+Font Software, including without limitation the rights to use, copy, merge,
+publish, distribute, and/or sell copies of the Font Software, and to permit
+persons to whom the Font Software is furnished to do so, subject to the
+following conditions:
+
+The above copyright and trademark notices and this permission notice shall
+be included in all copies of one or more of the Font Software typefaces.
+
+The Font Software may be modified, altered, or added to, and in particular
+the designs of glyphs or characters in the Fonts may be modified and
+additional glyphs or characters may be added to the Fonts, only if the fonts
+are renamed to names not containing either the words &quot;Bitstream&quot; or the word
+&quot;Vera&quot;.
+
+This License becomes null and void to the extent applicable to Fonts or Font
+Software that has been modified and is distributed under the &quot;Bitstream
+Vera&quot; names.
+
+The Font Software may be sold as part of a larger software package but no
+copy of one or more of the Font Software typefaces may be sold by itself.
+
+THE FONT SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT,
+TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL BITSTREAM OR THE GNOME
+FOUNDATION BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING
+ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
+THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE
+FONT SOFTWARE.
+
+Except as contained in this notice, the names of Gnome, the Gnome
+Foundation, and Bitstream Inc., shall not be used in advertising or
+otherwise to promote the sale, use or other dealings in this Font Software
+without prior written authorization from the Gnome Foundation or Bitstream
+Inc., respectively. For further information, contact: fonts at gnome dot
+org.
+
+Arev Fonts Copyright
+------------------------------
+
+Copyright (c) 2006 by Tavmjong Bah. All Rights Reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the fonts accompanying this license (&quot;Fonts&quot;) and
+associated documentation files (the &quot;Font Software&quot;), to reproduce
+and distribute the modifications to the Bitstream Vera Font Software,
+including without limitation the rights to use, copy, merge, publish,
+distribute, and/or sell copies of the Font Software, and to permit
+persons to whom the Font Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright and trademark notices and this permission notice
+shall be included in all copies of one or more of the Font Software
+typefaces.
+
+The Font Software may be modified, altered, or added to, and in
+particular the designs of glyphs or characters in the Fonts may be
+modified and additional glyphs or characters may be added to the
+Fonts, only if the fonts are renamed to names not containing either
+the words &quot;Tavmjong Bah&quot; or the word &quot;Arev&quot;.
+
+This License becomes null and void to the extent applicable to Fonts
+or Font Software that has been modified and is distributed under the
+&quot;Tavmjong Bah Arev&quot; names.
+
+The Font Software may be sold as part of a larger software package but
+no copy of one or more of the Font Software typefaces may be sold by
+itself.
+
+THE FONT SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL
+TAVMJONG BAH BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+Except as contained in this notice, the name of Tavmjong Bah shall not
+be used in advertising or otherwise to promote the sale, use or other
+dealings in this Font Software without prior written authorization
+from Tavmjong Bah. For further information, contact: tavmjong @ free
+. fr.
+
+TeX Gyre DJV Math
+-----------------
+Fonts are (c) Bitstream (see below). DejaVu changes are in public domain.
+
+Math extensions done by B. Jackowski, P. Strzelczyk and P. Pianowski
+(on behalf of TeX users groups) are in public domain.
+
+Letters imported from Euler Fraktur from AMSfonts are (c) American
+Mathematical Society (see below).
+Bitstream Vera Fonts Copyright
+Copyright (c) 2003 by Bitstream, Inc. All Rights Reserved. Bitstream Vera
+is a trademark of Bitstream, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of the fonts accompanying this license (“Fonts”) and associated
+documentation
+files (the “Font Software”), to reproduce and distribute the Font Software,
+including without limitation the rights to use, copy, merge, publish,
+distribute,
+and/or sell copies of the Font Software, and to permit persons  to whom
+the Font Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright and trademark notices and this permission notice
+shall be
+included in all copies of one or more of the Font Software typefaces.
+
+The Font Software may be modified, altered, or added to, and in particular
+the designs of glyphs or characters in the Fonts may be modified and
+additional
+glyphs or characters may be added to the Fonts, only if the fonts are
+renamed
+to names not containing either the words “Bitstream” or the word “Vera”.
+
+This License becomes null and void to the extent applicable to Fonts or
+Font Software
+that has been modified and is distributed under the “Bitstream Vera”
+names.
+
+The Font Software may be sold as part of a larger software package but
+no copy
+of one or more of the Font Software typefaces may be sold by itself.
+
+THE FONT SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT,
+TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL BITSTREAM OR THE GNOME
+FOUNDATION
+BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING ANY GENERAL,
+SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, WHETHER IN AN
+ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF THE USE OR
+INABILITY TO USE
+THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE FONT SOFTWARE.
+Except as contained in this notice, the names of GNOME, the GNOME
+Foundation,
+and Bitstream Inc., shall not be used in advertising or otherwise to promote
+the sale, use or other dealings in this Font Software without prior written
+authorization from the GNOME Foundation or Bitstream Inc., respectively.
+For further information, contact: fonts at gnome dot org.
+
+AMSFonts (v. 2.2) copyright
+
+The PostScript Type 1 implementation of the AMSFonts produced by and
+previously distributed by Blue Sky Research and Y&amp;Y, Inc. are now freely
+available for general use. This has been accomplished through the
+cooperation
+of a consortium of scientific publishers with Blue Sky Research and Y&amp;Y.
+Members of this consortium include:
+
+Elsevier Science IBM Corporation Society for Industrial and Applied
+Mathematics (SIAM) Springer-Verlag American Mathematical Society (AMS)
+
+In order to assure the authenticity of these fonts, copyright will be
+held by
+the American Mathematical Society. This is not meant to restrict in any way
+the legitimate use of the fonts, such as (but not limited to) electronic
+distribution of documents containing these fonts, inclusion of these fonts
+into other public domain or commercial font collections or computer
+applications, use of the outline data to create derivative fonts and/or
+faces, etc. However, the AMS does require that the AMS copyright notice be
+removed from any derivative versions of the fonts which have been altered in
+any way. In addition, to ensure the fidelity of TeX documents using Computer
+Modern fonts, Professor Donald Knuth, creator of the Computer Modern faces,
+has requested that any alterations which yield different font metrics be
+given a different name.
+
+$Id$
+</metadata>
+<title id="ConstructionView1-title">The construction law</title>
+<desc id="ConstructionView1-desc">One seed — Pair: two sides, one boundary. Two moves — expand, compress. One floor — finite: width times depth.</desc>
+<defs>
+<path id="ConstructionView1-FigureSans400-glyph-32" data-font-source="Inter" data-font-weight="400" d=""/>
+<path id="ConstructionView1-FigureSans400-glyph-43" data-font-source="Inter" data-font-weight="400" d="M593 100L593 1066L762 1066L762 100ZM195 504L195 663L1160 663L1160 504Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-97" data-font-source="Inter" data-font-weight="400" d="M471 -26Q365 -26 278.5 14Q192 54 141 131Q90 208 90 318Q90 414 128 474Q166 534 229.5 568.5Q293 603 370 620Q447 637 525 647Q625 660 688 667Q751 674 781.5 691Q812 708 812 749L812 755Q812 825 786 873.5Q760 922 708 948Q656 974 578 974Q498 974 441 949Q384 924 348.5 886.5Q313 849 295 810L122 867Q165 969 238 1026.5Q311 1084 399 1108Q487 1132 573 1132Q629 1132 700.5 1118.5Q772 1105 838.5 1065Q905 1025 948.5 946.5Q992 868 992 737L992 0L815 0L815 152L803 152Q784 113 742 71.5Q700 30 633 2Q566 -26 471 -26ZM502 133Q602 133 671 172Q740 211 776 273.5Q812 336 812 404L812 559Q801 546 764 535.5Q727 525 679.5 517Q632 509 587.5 503.5Q543 498 517 495Q452 487 395.5 467.5Q339 448 305 410.5Q271 373 271 309Q271 251 301 212Q331 173 383 153Q435 133 502 133Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-98" data-font-source="Inter" data-font-weight="400" d="M677 -24Q571 -24 506 12.5Q441 49 406 95.5Q371 142 352 173L332 173L332 0L158 0L158 1490L338 1490L338 939L352 939Q371 969 405 1014.5Q439 1060 503 1096Q567 1132 676 1132Q816 1132 922.5 1062Q1029 992 1089.5 862.5Q1150 733 1150 556Q1150 378 1090 248Q1030 118 923.5 47Q817 -24 677 -24ZM650 137Q755 137 825.5 193.5Q896 250 931.5 345.5Q967 441 967 558Q967 674 932 767.5Q897 861 826.5 916Q756 971 650 971Q547 971 477 919Q407 867 371.5 774.5Q336 682 336 558Q336 434 372 339Q408 244 478.5 190.5Q549 137 650 137Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-99" data-font-source="Inter" data-font-weight="400" d="M613 -24Q461 -24 346.5 48Q232 120 168 250Q104 380 104 552Q104 727 168 857.5Q232 988 346.5 1060Q461 1132 613 1132Q694 1132 766 1111Q838 1090 897.5 1050.5Q957 1011 1000 953.5Q1043 896 1066 823L893 774Q881 817 856 853Q831 889 795.5 915.5Q760 942 714 956.5Q668 971 613 971Q501 971 429 912.5Q357 854 322 759Q287 664 287 552Q287 442 322 347.5Q357 253 429 195Q501 137 613 137Q669 137 716 152Q763 167 799.5 194.5Q836 222 861 260Q886 298 898 343L1070 294Q1048 219 1004.5 160.5Q961 102 901 60.5Q841 19 768 -2.5Q695 -24 613 -24Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-100" data-font-source="Inter" data-font-weight="400" d="M577 -24Q438 -24 331 47Q224 118 164 248Q104 378 104 556Q104 733 164.5 862.5Q225 992 332 1062Q439 1132 578 1132Q687 1132 751 1096Q815 1060 849.5 1014.5Q884 969 902 939L916 939L916 1490L1096 1490L1096 0L922 0L922 173L902 173Q884 142 848.5 95.5Q813 49 748.5 12.5Q684 -24 577 -24ZM604 137Q706 137 776 190.5Q846 244 882 339Q918 434 918 558Q918 682 882.5 774.5Q847 867 777 919Q707 971 604 971Q498 971 427.5 916Q357 861 322 767.5Q287 674 287 558Q287 441 322.5 345.5Q358 250 429 193.5Q500 137 604 137Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-101" data-font-source="Inter" data-font-weight="400" d="M628 -24Q466 -24 348.5 48Q231 120 167.5 249Q104 378 104 550Q104 722 166 853Q228 984 341.5 1058Q455 1132 607 1132Q696 1132 782.5 1102.5Q869 1073 939.5 1007.5Q1010 942 1052 835Q1094 728 1094 573L1094 498L226 498L226 650L997 650L913 594Q913 704 878.5 789.5Q844 875 776 923.5Q708 972 607 972Q506 972 434 922.5Q362 873 324 793.5Q286 714 286 623L286 522Q286 398 329 311.5Q372 225 449.5 180.5Q527 136 629 136Q695 136 749 155Q803 174 842 212.5Q881 251 902 308L1076 260Q1050 176 988 112Q926 48 834.5 12Q743 -24 628 -24Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-102" data-font-source="Inter" data-font-weight="400" d="M678 1118L678 964L20 964L20 1118ZM240 0L240 1267Q240 1364 285.5 1429Q331 1494 404 1527Q477 1560 558 1560Q622 1560 664 1549.5Q706 1539 726 1530L676 1376Q662 1381 639.5 1387Q617 1393 579 1393Q496 1393 458 1350.5Q420 1308 420 1227L420 0Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-104" data-font-source="Inter" data-font-weight="400" d="M338 670L338 0L158 0L158 1490L338 1490L338 847L307 847Q358 1002 452.5 1067Q547 1132 674 1132Q787 1132 872.5 1085.5Q958 1039 1005.5 945.5Q1053 852 1053 710L1053 0L872 0L872 695Q872 824 804.5 897Q737 970 620 970Q540 970 476 935Q412 900 375 833Q338 766 338 670Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-105" data-font-source="Inter" data-font-weight="400" d="M158 0L158 1118L338 1118L338 0ZM249 1301Q198 1301 161 1336Q124 1371 124 1420Q124 1470 161 1504.5Q198 1539 249 1539Q301 1539 338 1504.5Q375 1470 375 1420Q375 1371 338 1336Q301 1301 249 1301Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-110" data-font-source="Inter" data-font-weight="400" d="M338 670L338 0L158 0L158 1118L331 1118L332 847L307 847Q358 1002 452.5 1067Q547 1132 674 1132Q787 1132 872 1085.5Q957 1039 1004.5 945.5Q1052 852 1052 710L1052 0L872 0L872 695Q872 824 804.5 897Q737 970 620 970Q540 970 476 935Q412 900 375 833Q338 766 338 670Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-111" data-font-source="Inter" data-font-weight="400" d="M613 -24Q461 -24 346.5 48Q232 120 168 250Q104 380 104 552Q104 727 168 857.5Q232 988 346.5 1060Q461 1132 613 1132Q766 1132 881 1060Q996 988 1060 857.5Q1124 727 1124 552Q1124 380 1060 250Q996 120 881 48Q766 -24 613 -24ZM613 137Q726 137 799 195Q872 253 907 347.5Q942 442 942 552Q942 663 907 758.5Q872 854 799 912.5Q726 971 613 971Q501 971 429 912.5Q357 854 322 759Q287 664 287 552Q287 442 322 347.5Q357 253 429 195Q501 137 613 137Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-114" data-font-source="Inter" data-font-weight="400" d="M158 0L158 1118L332 1118L332 946L344 946Q375 1031 454.5 1082.5Q534 1134 634 1134Q654 1134 681.5 1133Q709 1132 725 1131L725 950Q717 952 685 956Q653 960 617 960Q537 960 473.5 926.5Q410 893 374 834.5Q338 776 338 700L338 0Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-115" data-font-source="Inter" data-font-weight="400" d="M538 -24Q423 -24 333.5 9.5Q244 43 186 109Q128 175 108 271L279 312Q303 220 369.5 177Q436 134 536 134Q653 134 722.5 184Q792 234 792 303Q792 361 751.5 399.5Q711 438 628 457L442 501Q290 537 216 612.5Q142 688 142 806Q142 902 196 975.5Q250 1049 343.5 1090.5Q437 1132 556 1132Q671 1132 751.5 1097.5Q832 1063 882.5 1002.5Q933 942 958 863L795 821Q772 881 718.5 930Q665 979 557 979Q457 979 390.5 933Q324 887 324 817Q324 755 369 717.5Q414 680 512 657L681 617Q833 581 906 505.5Q979 430 979 315Q979 217 923.5 140.5Q868 64 768.5 20Q669 -24 538 -24Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-116" data-font-source="Inter" data-font-weight="400" d="M598 1118L598 964L20 964L20 1118ZM188 1384L368 1384L368 290Q368 215 398.5 180.5Q429 146 500 146Q517 146 543.5 150Q570 154 592 158L629 6Q601 -4 565.5 -9Q530 -14 495 -14Q350 -14 269 62.5Q188 139 188 276Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-117" data-font-source="Inter" data-font-weight="400" d="M537 -14Q424 -14 338.5 32.5Q253 79 205.5 173Q158 267 158 408L158 1118L338 1118L338 423Q338 294 406 221Q474 148 591 148Q671 148 734.5 183Q798 218 835 285.5Q872 353 872 448L872 1118L1053 1118L1053 0L879 0L879 271L903 271Q851 114 755.5 50Q660 -14 537 -14Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-118" data-font-source="Inter" data-font-weight="400" d="M481 0L54 1118L251 1118L489 455Q527 352 553.5 249.5Q580 147 609 51L543 51Q572 147 598.5 249.5Q625 352 662 455L900 1118L1097 1118L670 0Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-119" data-font-source="Inter" data-font-weight="400" d="M409 0L70 1118L261 1118L397 630Q425 530 457 403.5Q489 277 520 117L489 117Q519 270 550 397Q581 524 610 630L744 1118L936 1118L1068 630Q1096 527 1126.5 400.5Q1157 274 1187 117L1155 117Q1187 272 1218.5 398.5Q1250 525 1279 630L1415 1118L1606 1118L1267 0L1088 0L943 506Q921 583 900 663Q879 743 859 827Q839 911 818 998L858 998Q838 912 817.5 827.5Q797 743 776 662Q755 581 733 506L588 0Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-120" data-font-source="Inter" data-font-weight="400" d="M65 0L506 643L505 505L88 1118L298 1118L437 901Q491 817 530.5 744Q570 671 612 603L518 603Q561 671 596.5 744Q632 817 687 901L829 1118L1035 1118L616 497L616 630L1053 0L844 0L680 251Q627 333 588.5 403.5Q550 474 509 539L604 539Q563 474 528 403.5Q493 333 439 251L273 0Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-121" data-font-source="Inter" data-font-weight="400" d="M140 -405L186 -249L205 -254Q260 -268 305 -261.5Q350 -255 386 -217Q422 -179 449 -99L481 -6L54 1118L251 1118L489 455Q527 351 553 249Q579 147 608 51L542 51Q571 147 597.5 249.5Q624 352 661 455L901 1118L1097 1118L606 -167Q572 -256 524.5 -313.5Q477 -371 414 -398.5Q351 -426 272 -426Q224 -426 189 -419Q154 -412 140 -405Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-183" data-font-source="Inter" data-font-weight="400" d="M295 573Q239 573 199.5 612.5Q160 652 160 708Q160 764 199.5 803.5Q239 843 295 843Q351 843 390.5 803.5Q430 764 430 708Q430 652 390.5 612.5Q351 573 295 573Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-8212" data-font-source="Inter" data-font-weight="400" d="M2048 719L2048 553L0 553L0 719Z"/>
+<path id="ConstructionView1-FigureSans400-glyph-8709" data-font-source="Inter" data-font-weight="400" d="M172 -50L94 30L1230 1166L1310 1090ZM704 -18Q584 -18 479.5 27Q375 72 296 151Q217 230 172.5 334.5Q128 439 128 558Q128 677 172.5 780.5Q217 884 296 963.5Q375 1043 479.5 1087.5Q584 1132 704 1132Q822 1132 925.5 1087.5Q1029 1043 1108.5 963.5Q1188 884 1233 780.5Q1278 677 1278 558Q1278 439 1233 334.5Q1188 230 1108.5 151Q1029 72 925.5 27Q822 -18 704 -18ZM704 166Q811 166 899.5 219Q988 272 1041 361Q1094 450 1094 558Q1094 666 1041 755Q988 844 899.5 897Q811 950 704 950Q622 950 550 919.5Q478 889 424.5 835Q371 781 340.5 710Q310 639 310 558Q310 450 362.5 361Q415 272 504.5 219Q594 166 704 166Z"/>
+</defs>
+<defs>
+<path id="ConstructionView1-FigureSans600-glyph-32" data-font-source="Inter" data-font-weight="600" d=""/>
+<path id="ConstructionView1-FigureSans600-glyph-68" data-font-source="Inter" data-font-weight="600" d="M654 0L276.71875 0L276.71875 231.359375L640.5625 231.359375Q797 231.359375 901.7421875 288.4375Q1006.484375 345.515625 1059 460.21875Q1111.515625 574.921875 1111.515625 746.5625Q1111.515625 917.28125 1058.9609375 1031.0234375Q1006.40625 1144.765625 903.5 1201.703125Q800.59375 1258.640625 647.765625 1258.640625L269.4375 1258.640625L269.4375 1490L664 1490Q886.3125 1490 1045.3125 1400.8203125Q1204.3125 1311.640625 1289.875 1144.9609375Q1375.4375 978.28125 1375.4375 746.5625Q1375.4375 513.921875 1289.7421875 346.6015625Q1204.046875 179.28125 1042.5234375 89.640625Q881 0 654 0ZM416.796875 1490L416.796875 0L149.765625 0L149.765625 1490Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-69" data-font-source="Inter" data-font-weight="600" d="M149.765625 0L149.765625 1490L1117.515625 1490L1117.515625 1265.125L416.796875 1265.125L416.796875 863.359375L1066 863.359375L1066 641.359375L416.796875 641.359375L416.796875 224.875L1121.84375 224.875L1121.84375 0Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-70" data-font-source="Inter" data-font-weight="600" d="M149.765625 0L149.765625 1490L1103.671875 1490L1103.671875 1265.125L416.796875 1265.125L416.796875 817.765625L1037.125 817.765625L1037.125 595.765625L416.796875 595.765625L416.796875 0Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-76" data-font-source="Inter" data-font-weight="600" d="M149.765625 0L149.765625 1490L416.796875 1490L416.796875 224.875L1075.125 224.875L1075.125 0Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-77" data-font-source="Inter" data-font-weight="600" d="M149.765625 0L149.765625 1490L552.234375 1490L835.359375 720.640625Q849.796875 677.90625 868.28125 610.59375Q886.765625 543.28125 906.34375 465.296875Q925.921875 387.3125 943.28125 312.8984375Q960.640625 238.484375 972.5625 181.203125L918.671875 181.203125Q931.234375 236.5625 948.4140625 310.3359375Q965.59375 384.109375 985.1796875 462.4140625Q1004.765625 540.71875 1023.3828125 609Q1042 677.28125 1056.4375 720.640625L1335.640625 1490L1739.125 1490L1739.125 0L1472.5625 0L1472.5625 752Q1472.5625 799.796875 1473.78125 867.9765625Q1475 936.15625 1477.0390625 1014.1171875Q1479.078125 1092.078125 1480.9375 1171.6796875Q1482.796875 1251.28125 1483.4375 1322.5625L1501.953125 1322.5625Q1482.046875 1244.203125 1458.7265625 1161.5390625Q1435.40625 1078.875 1412.359375 1001.21875Q1389.3125 923.5625 1368.59375 859.0234375Q1347.875 794.484375 1333.15625 752L1057.765625 0L831.203125 0L551.515625 752Q536.796875 793.84375 516.5390625 857.421875Q496.28125 921 472.8828125 998.0234375Q449.484375 1075.046875 425.6640625 1158.34375Q401.84375 1241.640625 379 1322.5625L400.953125 1322.5625Q402.234375 1255.765625 404.09375 1177.4453125Q405.953125 1099.125 407.671875 1020.203125Q409.390625 941.28125 410.9375 871.5Q412.484375 801.71875 412.484375 752L412.484375 0Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-79" data-font-source="Inter" data-font-weight="600" d="M787.59375 -20Q592.28125 -20 437.3828125 70.8828125Q282.484375 161.765625 192.8828125 332.90625Q103.28125 504.046875 103.28125 744Q103.28125 985.3125 192.8828125 1156.6328125Q282.484375 1327.953125 437.3828125 1418.9765625Q592.28125 1510 787.59375 1510Q982.921875 1510 1137.3203125 1418.9765625Q1291.71875 1327.953125 1381.1796875 1156.6328125Q1470.640625 985.3125 1470.640625 744Q1470.640625 503.6875 1381.1796875 332.546875Q1291.71875 161.40625 1137.3203125 70.703125Q982.921875 -20 787.59375 -20ZM787.59375 219.359375Q909.078125 219.359375 1002.5390625 279.65625Q1096 339.953125 1149.2421875 457.234375Q1202.484375 574.515625 1202.484375 744Q1202.484375 915.125 1149.2421875 1032.5859375Q1096 1150.046875 1002.5390625 1210.34375Q909.078125 1270.640625 787.59375 1270.640625Q665.84375 1270.640625 572.0625 1210.0234375Q478.28125 1149.40625 424.859375 1031.9453125Q371.4375 914.484375 371.4375 744Q371.4375 574.515625 424.859375 457.5546875Q478.28125 340.59375 572.0625 279.9765625Q665.84375 219.359375 787.59375 219.359375Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-80" data-font-source="Inter" data-font-weight="600" d="M149.765625 0L149.765625 1490L707.28125 1490Q878.40625 1490 995.2265625 1425.78125Q1112.046875 1361.5625 1171.9453125 1250.2421875Q1231.84375 1138.921875 1231.84375 996.5625Q1231.84375 853.84375 1171.3984375 742.78125Q1110.953125 631.71875 993.1953125 567.8984375Q875.4375 504.078125 702.875 504.078125L333.59375 504.078125L333.59375 724L667.59375 724Q769.046875 724 833.484375 759.1015625Q897.921875 794.203125 928.4453125 855.8828125Q958.96875 917.5625 958.96875 996.5625Q958.96875 1076.28125 928.4453125 1137.140625Q897.921875 1198 833.1640625 1232.2421875Q768.40625 1266.484375 666.328125 1266.484375L416.796875 1266.484375L416.796875 0Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-82" data-font-source="Inter" data-font-weight="600" d="M149.765625 0L149.765625 1490L707.28125 1490Q878.40625 1490 995.2265625 1430.140625Q1112.046875 1370.28125 1171.9453125 1262.859375Q1231.84375 1155.4375 1231.84375 1013.4375Q1231.84375 870.71875 1171.3984375 765.84375Q1110.953125 660.96875 993.1953125 604.0078125Q875.4375 547.046875 702.875 547.046875L305.4375 547.046875L305.4375 768.234375L667.59375 768.234375Q769.046875 768.234375 833.1640625 796.796875Q897.28125 825.359375 928.125 880.0390625Q958.96875 934.71875 958.96875 1013.4375Q958.96875 1093.4375 928.125 1149.7578125Q897.28125 1206.078125 832.84375 1236.28125Q768.40625 1266.484375 666.328125 1266.484375L416.796875 1266.484375L416.796875 0ZM987.765625 0L626.328125 675.6875L918.078125 675.6875L1286.953125 0Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-83" data-font-source="Inter" data-font-weight="600" d="M673.203125 -23.125Q500.3125 -23.125 372.453125 30.859375Q244.59375 84.84375 172.9140625 187.8828125Q101.234375 290.921875 95.125 438.234375L358.15625 438.234375Q364.71875 360 407.0625 308.1953125Q449.40625 256.390625 518.34375 230.796875Q587.28125 205.203125 671.046875 205.203125Q759.078125 205.203125 826.4375 232.078125Q893.796875 258.953125 931.9765625 307.6171875Q970.15625 356.28125 970.15625 420.15625Q970.15625 478.484375 936.5 516.4609375Q902.84375 554.4375 842.3203125 580.5625Q781.796875 606.6875 700.71875 626.875L531.515625 671.046875Q345.40625 718.796875 240.546875 816.140625Q135.6875 913.484375 135.6875 1071.203125Q135.6875 1202.953125 206.921875 1301.7734375Q278.15625 1400.59375 401.1796875 1455.296875Q524.203125 1510 680.078125 1510Q839.3125 1510 958.9765625 1454.9375Q1078.640625 1399.875 1146.296875 1303.1796875Q1213.953125 1206.484375 1216.875 1081.59375L958.15625 1081.59375Q948.046875 1177.640625 872.34375 1230.3046875Q796.640625 1282.96875 676.234375 1282.96875Q592.484375 1282.96875 531.6796875 1257.5859375Q470.875 1232.203125 438.4375 1187.9609375Q406 1143.71875 406 1087.046875Q406 1024.515625 444.421875 984.578125Q482.84375 944.640625 541.421875 920.65625Q600 896.671875 659.765625 881.671875L799.046875 846.078125Q881.71875 826.484375 959.9765625 793.078125Q1038.234375 759.671875 1100.8125 709.21875Q1163.390625 658.765625 1200.1328125 587.0859375Q1236.875 515.40625 1236.875 418.234375Q1236.875 287.234375 1170.140625 187.6171875Q1103.40625 88 977.359375 32.4375Q851.3125 -23.125 673.203125 -23.125Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-86" data-font-source="Inter" data-font-weight="600" d="M580.5625 0L49.84375 1490L342.71875 1490L606.59375 716.15625Q644.03125 599.84375 686.875 448.5390625Q729.71875 297.234375 780.125 106.203125L724.03125 106.203125Q773.71875 300.4375 815.15625 450.140625Q856.59375 599.84375 892.671875 716.15625L1148.5625 1490L1440.5625 1490L919.4375 0Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-97" data-font-source="Inter" data-font-weight="600" d="M450.484375 -23.125Q344.125 -23.125 259.0625 15.2578125Q174 53.640625 124.796875 128.84375Q75.59375 204.046875 75.59375 314.40625Q75.59375 408.953125 111.078125 470.7578125Q146.5625 532.5625 207.359375 569.578125Q268.15625 606.59375 344.2578125 625.578125Q420.359375 644.5625 501.59375 653.125Q599.4375 663.953125 660.1015625 672.0390625Q720.765625 680.125 749.4609375 698.0234375Q778.15625 715.921875 778.15625 753.6875L778.15625 758.953125Q778.15625 814.203125 755.9375 852.4453125Q733.71875 890.6875 690.359375 911.1015625Q647 931.515625 583.046875 931.515625Q518.15625 931.515625 470.515625 911.5546875Q422.875 891.59375 392.7734375 859.6796875Q362.671875 827.765625 348.640625 790.5625L107.59375 840Q140.875 939.125 209.921875 1003.640625Q278.96875 1068.15625 374.703125 1100.078125Q470.4375 1132 582 1132Q660.671875 1132 741.171875 1113.28125Q821.671875 1094.5625 888.8984375 1050.9609375Q956.125 1007.359375 997.1015625 933.1796875Q1038.078125 859 1038.078125 747.4375L1038.078125 0L789.4375 0L789.4375 154.15625L778.875 154.15625Q754.484375 106.515625 710.5 66.1015625Q666.515625 25.6875 602.0390625 1.28125Q537.5625 -23.125 450.484375 -23.125ZM517.125 170.078125Q597.6875 170.078125 656.421875 201.875Q715.15625 233.671875 747.375 286.453125Q779.59375 339.234375 779.59375 401.125L779.59375 533.4375Q766.796875 522.96875 736.640625 514.0859375Q706.484375 505.203125 668.703125 498.28125Q630.921875 491.359375 594.703125 486.3984375Q558.484375 481.4375 533.203125 478.078125Q474.671875 470.4375 427.8984375 452.015625Q381.125 433.59375 354.3203125 401.140625Q327.515625 368.6875 327.515625 317.28125Q327.515625 269 352.1171875 236.296875Q376.71875 203.59375 419.359375 186.8359375Q462 170.078125 517.125 170.078125Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-100" data-font-source="Inter" data-font-weight="600" d="M550 -20.40625Q418.203125 -20.40625 313.5390625 47.5390625Q208.875 115.484375 148.875 244.3984375Q88.875 373.3125 88.875 556.71875Q88.875 743.078125 150.28125 871.5Q211.6875 999.921875 316.1640625 1065.9609375Q420.640625 1132 549.203125 1132Q648.84375 1132 712.3046875 1098.703125Q775.765625 1065.40625 813.140625 1019Q850.515625 972.59375 869.59375 932.875L880.71875 932.875L880.71875 1490L1140.640625 1490L1140.640625 0L886 0L886 176.953125L869.59375 176.953125Q849.796875 136.59375 811.6015625 90.8203125Q773.40625 45.046875 710.1640625 12.3203125Q646.921875 -20.40625 550 -20.40625ZM620.5625 193.515625Q705.640625 193.515625 764.84375 239.453125Q824.046875 285.390625 854.8203125 367.4375Q885.59375 449.484375 885.59375 558Q885.59375 667.234375 855.140625 747.859375Q824.6875 828.484375 765.484375 873.28125Q706.28125 918.078125 620.5625 918.078125Q532.921875 918.078125 473.7578125 871.359375Q414.59375 824.640625 384.8125 743.3828125Q355.03125 662.125 355.03125 558Q355.03125 453.59375 385.1328125 371.0546875Q415.234375 288.515625 474.71875 241.015625Q534.203125 193.515625 620.5625 193.515625Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-101" data-font-source="Inter" data-font-weight="600" d="M631.59375 -22.5625Q463.484375 -22.5625 341.6640625 48.1796875Q219.84375 118.921875 154.359375 247.921875Q88.875 376.921875 88.875 552.15625Q88.875 724.515625 153.578125 854.9765625Q218.28125 985.4375 336.640625 1058.71875Q455 1132 614.5625 1132Q717.234375 1132 809.5 1098.8984375Q901.765625 1065.796875 973.1640625 997.0625Q1044.5625 928.328125 1085.484375 821.6875Q1126.40625 715.046875 1126.40625 567.59375L1126.40625 486.484375L211.59375 486.484375L211.59375 662.953125L996.640625 662.953125L875.203125 610.5625Q875.203125 705.4375 845.921875 776.8984375Q816.640625 848.359375 759.078125 888.21875Q701.515625 928.078125 616 928.078125Q530.484375 928.078125 470.359375 887.578125Q410.234375 847.078125 378.71875 779.4609375Q347.203125 711.84375 347.203125 629.125L347.203125 506.875Q347.203125 400.875 383.1796875 328.0546875Q419.15625 255.234375 484.234375 218.296875Q549.3125 181.359375 635.125 181.359375Q692.125 181.359375 738.7421875 197.65625Q785.359375 213.953125 818.9609375 246.3359375Q852.5625 278.71875 870.328125 326.359375L1109.125 276.921875Q1082.40625 187.15625 1017.1640625 119.734375Q951.921875 52.3125 854.296875 14.875Q756.671875 -22.5625 631.59375 -22.5625Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-104" data-font-source="Inter" data-font-weight="600" d="M397.75 654.875L397.75 0L137.84375 0L137.84375 1490L394.15625 1490L394.15625 841.59375L367.484375 841.59375Q413.796875 986.515625 505.0546875 1059.2578125Q596.3125 1132 733.03125 1132Q848.203125 1132 934.421875 1082.796875Q1020.640625 1033.59375 1068.3203125 939.5546875Q1116 845.515625 1116 710.71875L1116 0L855.4375 0L855.4375 670.875Q855.4375 783.328125 797.1171875 847.1484375Q738.796875 910.96875 636.5625 910.96875Q567.71875 910.96875 513.6171875 880.828125Q459.515625 850.6875 428.6328125 793.5859375Q397.75 736.484375 397.75 654.875Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-105" data-font-source="Inter" data-font-weight="600" d="M138 0L138 1118L398 1118L398 0ZM268 1276Q206 1276 161.5 1318Q117 1360 117 1418Q117 1478 161.5 1519.5Q206 1561 268 1561Q331 1561 375.5 1519.5Q420 1478 420 1419Q420 1360 375.5 1318Q331 1276 268 1276Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-109" data-font-source="Inter" data-font-weight="600" d="M137.84375 0L137.84375 1118L381.953125 1118L391.953125 849.28125L372.921875 849.28125Q397.359375 948.5625 447.7578125 1011.6640625Q498.15625 1074.765625 565.734375 1105.3046875Q633.3125 1135.84375 707.125 1135.84375Q828.03125 1135.84375 902.6328125 1059.765625Q977.234375 983.6875 1007.875 836.484375L976.671875 836.484375Q999.921875 936.328125 1055.4375 1002.90625Q1110.953125 1069.484375 1187.5390625 1102.6640625Q1264.125 1135.84375 1350.953125 1135.84375Q1451.5625 1135.84375 1531.921875 1092.0390625Q1612.28125 1048.234375 1659.0625 963.4140625Q1705.84375 878.59375 1705.84375 754L1705.84375 0L1445.921875 0L1445.921875 714.078125Q1445.921875 817.796875 1389.078125 866.0234375Q1332.234375 914.25 1252.3125 914.25Q1189.5625 914.25 1143.703125 887.2421875Q1097.84375 860.234375 1073.203125 812.6171875Q1048.5625 765 1048.5625 701.921875L1048.5625 0L795.125 0L795.125 725.609375Q795.125 811.40625 742.125 862.828125Q689.125 914.25 606 914.25Q549.28125 914.25 501.6796875 887.8828125Q454.078125 861.515625 425.9140625 810.6953125Q397.75 759.875 397.75 685.28125L397.75 0Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-111" data-font-source="Inter" data-font-weight="600" d="M623.078125 -22.5625Q460.28125 -22.5625 340.203125 49.6171875Q220.125 121.796875 154.5 251.6171875Q88.875 381.4375 88.875 553.4375Q88.875 727.359375 154.5 857.5Q220.125 987.640625 340.203125 1059.8203125Q460.28125 1132 623.078125 1132Q786.515625 1132 906.5546875 1059.8203125Q1026.59375 987.640625 1092.21875 857.5Q1157.84375 727.359375 1157.84375 553.4375Q1157.84375 381.4375 1092.21875 251.6171875Q1026.59375 121.796875 906.5546875 49.6171875Q786.515625 -22.5625 623.078125 -22.5625ZM623.078125 188.484375Q714.125 188.484375 774.34375 237.484375Q834.5625 286.484375 864.1640625 369.4609375Q893.765625 452.4375 893.765625 554.15625Q893.765625 656.875 864.1640625 739.9609375Q834.5625 823.046875 774.34375 872.0078125Q714.125 920.96875 623.078125 920.96875Q532.3125 920.96875 472.5546875 872.0078125Q412.796875 823.046875 383.1953125 740.28125Q353.59375 657.515625 353.59375 554.15625Q353.59375 452.4375 383.1953125 369.4609375Q412.796875 286.484375 472.5546875 237.484375Q532.3125 188.484375 623.078125 188.484375Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-112" data-font-source="Inter" data-font-weight="600" d="M137.84375 -418L137.84375 1118L392.484375 1118L392.484375 932.875L408.875 932.875Q428.953125 972.59375 465.8359375 1019Q502.71875 1065.40625 566.1796875 1098.703125Q629.640625 1132 729.28125 1132Q858.84375 1132 962.8203125 1065.9609375Q1066.796875 999.921875 1128.1953125 871.5Q1189.59375 743.078125 1189.59375 556.71875Q1189.59375 373.3125 1129.59375 244.3984375Q1069.59375 115.484375 965.4375 47.5390625Q861.28125 -20.40625 728.484375 -20.40625Q632.5625 -20.40625 568.8203125 12.3203125Q505.078125 45.046875 467.1953125 90.8203125Q429.3125 136.59375 408.875 176.953125L397.75 176.953125L397.75 -418ZM657.921875 193.515625Q745.28125 193.515625 804.2578125 241.015625Q863.234375 288.515625 893.3359375 371.0546875Q923.4375 453.59375 923.4375 558Q923.4375 662.125 893.65625 743.3828125Q863.875 824.640625 804.8984375 871.359375Q745.921875 918.078125 657.921875 918.078125Q572.203125 918.078125 513 873.28125Q453.796875 828.484375 423.3359375 747.859375Q392.875 667.234375 392.875 558Q392.875 449.484375 423.65625 367.4375Q454.4375 285.390625 513.9609375 239.453125Q573.484375 193.515625 657.921875 193.515625Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-114" data-font-source="Inter" data-font-weight="600" d="M137.84375 0L137.84375 1118L389.59375 1118L389.59375 930.875L401.59375 930.875Q432.234375 1028.125 507.0546875 1080.703125Q581.875 1133.28125 677.921875 1133.28125Q700.078125 1133.28125 727.0390625 1131.203125Q754 1129.125 772.875 1125.59375L772.875 886.640625Q756.953125 891.875 720.8125 896.0625Q684.671875 900.25 650.484375 900.25Q578.03125 900.25 520.4765625 869.265625Q462.921875 838.28125 430.3359375 783.7421875Q397.75 729.203125 397.75 657.515625L397.75 0Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-115" data-font-source="Inter" data-font-weight="600" d="M560.671875 -22.5625Q432.359375 -22.5625 333.140625 14.359375Q233.921875 51.28125 170.703125 122.140625Q107.484375 193 87.84375 294.046875L331.203125 339.71875Q353.765625 257.078125 412.5234375 216.78125Q471.28125 176.484375 565.875 176.484375Q662 176.484375 718.359375 214.9609375Q774.71875 253.4375 774.71875 309.84375Q774.71875 358.484375 737.640625 389.9609375Q700.5625 421.4375 623.6875 437.921875L433.359375 479.046875Q274.875 513.234375 196.921875 591.2578125Q118.96875 669.28125 118.96875 792.328125Q118.96875 895.875 176.0234375 972.078125Q233.078125 1048.28125 334.5 1090.140625Q435.921875 1132 569.671875 1132Q696.5625 1132 788.0390625 1096.0625Q879.515625 1060.125 936.1328125 995.484375Q992.75 930.84375 1014.875 843.5625L783.125 798.328125Q763.71875 856.515625 713.640625 897.0625Q663.5625 937.609375 573.203125 937.609375Q490.484375 937.609375 434.9609375 901.5078125Q379.4375 865.40625 379.4375 808Q379.4375 759.3125 415.9765625 727.3984375Q452.515625 695.484375 537.921875 676.796875L728.15625 636.796875Q887 602.953125 964.140625 528Q1041.28125 453.046875 1041.28125 334.796875Q1041.28125 228.875 980.0234375 148.4140625Q918.765625 67.953125 810.4453125 22.6953125Q702.125 -22.5625 560.671875 -22.5625Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-116" data-font-source="Inter" data-font-weight="600" d="M654.875 1118L654.875 914.328125L20 914.328125L20 1118ZM178.640625 1384L438.5625 1384L438.5625 314.84375Q438.5625 254.234375 464.5625 225.859375Q490.5625 197.484375 550.390625 197.484375Q567.765625 197.484375 597.140625 201.6640625Q626.515625 205.84375 644.5625 209.84375L685.515625 9.234375Q642.765625 -4 598.0859375 -9.5390625Q553.40625 -15.078125 511.5625 -15.078125Q351.078125 -15.078125 264.859375 64.84375Q178.640625 144.765625 178.640625 292.5625Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-118" data-font-source="Inter" data-font-weight="600" d="M455.4375 0L38.875 1118L316.875 1118L521.40625 510.078125Q557.234375 403.484375 583.015625 295.21875Q608.796875 186.953125 636.359375 75.84375L571.4375 75.84375Q598.640625 186.953125 624.2421875 295.0390625Q649.84375 403.125 684.671875 510.078125L887.765625 1118L1163.59375 1118L746.3125 0Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-119" data-font-source="Inter" data-font-weight="600" d="M376.96875 0L44.078125 1118L317.515625 1118L427.59375 679.671875Q453.4375 572.484375 483.4609375 443.28125Q513.484375 314.078125 540.15625 155.515625L507 155.515625Q534.484375 309.59375 565.484375 439.296875Q596.484375 569 624.046875 679.671875L736.796875 1118L984.953125 1118L1095 679.671875Q1121.5625 570.5625 1152.421875 441.359375Q1183.28125 312.15625 1210.765625 155.515625L1177.671875 155.515625Q1204.640625 310.875 1233.4375 440.078125Q1262.234375 569.28125 1288.71875 679.671875L1398.796875 1118L1675.125 1118L1340.796875 0L1077.921875 0L946.953125 456.328125Q927.484375 524.6875 908.4609375 603.78125Q889.4375 682.875 871.421875 765.2578125Q853.40625 847.640625 834.5625 923.84375L883.203125 923.84375Q865.359375 848.28125 846.8359375 765.578125Q828.3125 682.875 809.4765625 603.140625Q790.640625 523.40625 770.796875 456.328125L639.84375 0Z"/>
+<path id="ConstructionView1-FigureSans600-glyph-215" data-font-source="Inter" data-font-weight="600" d="M1035.796875 83.203125L183.71875 933.84375L346.515625 1098.640625L1197.875 245.28125ZM346.515625 83.203125L183.71875 245.28125L1035.796875 1098.640625L1197.875 933.84375Z"/>
+</defs>
+<defs>
+<path id="ConstructionView1-FigureMono400-glyph-97" data-font-source="DejaVuMono" data-font-weight="400" d="M702 563L641 563Q480 563 398.5 506.5Q317 450 317 338Q317 237 378 181Q439 125 547 125Q699 125 786 230.5Q873 336 874 522L874 563ZM1059 639L1059 0L874 0L874 166Q815 66 725.5 18.5Q636 -29 508 -29Q337 -29 235 67.5Q133 164 133 326Q133 513 258.5 610Q384 707 627 707L874 707L874 736Q873 870 806 930.5Q739 991 592 991Q498 991 402 964Q306 937 215 885L215 1069Q317 1108 410.5 1127.5Q504 1147 592 1147Q731 1147 829.5 1106Q928 1065 989 983Q1027 933 1043 859.5Q1059 786 1059 639Z"/>
+<path id="ConstructionView1-FigureMono400-glyph-98" data-font-source="DejaVuMono" data-font-weight="400" d="M918 559Q918 773 850 882Q782 991 649 991Q515 991 446 881.5Q377 772 377 559Q377 347 446 237Q515 127 649 127Q782 127 850 236Q918 345 918 559ZM377 977Q421 1059 498.5 1103Q576 1147 678 1147Q880 1147 996 991.5Q1112 836 1112 563Q1112 286 995.5 128.5Q879 -29 676 -29Q576 -29 499.5 14.5Q423 58 377 141L377 0L193 0L193 1556L377 1556Z"/>
+<path id="ConstructionView1-FigureMono400-glyph-99" data-font-source="DejaVuMono" data-font-weight="400" d="M1061 57Q987 14 908.5 -7.5Q830 -29 748 -29Q488 -29 341.5 127Q195 283 195 559Q195 835 341.5 991Q488 1147 748 1147Q829 1147 906 1126Q983 1105 1061 1061L1061 868Q988 933 914.5 962Q841 991 748 991Q575 991 482 879Q389 767 389 559Q389 352 482.5 239.5Q576 127 748 127Q844 127 920 156.5Q996 186 1061 248Z"/>
+<path id="ConstructionView1-FigureMono400-glyph-100" data-font-source="DejaVuMono" data-font-weight="400" d="M858 977L858 1556L1042 1556L1042 0L858 0L858 141Q812 58 735.5 14.5Q659 -29 559 -29Q356 -29 239.5 128.5Q123 286 123 563Q123 836 240 991.5Q357 1147 559 1147Q660 1147 737 1103.5Q814 1060 858 977ZM317 559Q317 345 385 236Q453 127 586 127Q719 127 788.5 237Q858 347 858 559Q858 772 788.5 881.5Q719 991 586 991Q453 991 385 882Q317 773 317 559Z"/>
+<path id="ConstructionView1-FigureMono400-glyph-101" data-font-source="DejaVuMono" data-font-weight="400" d="M1112 606L1112 516L315 516L315 510Q315 327 410.5 227Q506 127 680 127Q768 127 864 155Q960 183 1069 240L1069 57Q964 14 866.5 -7.5Q769 -29 678 -29Q417 -29 270 127.5Q123 284 123 559Q123 827 267 987Q411 1147 651 1147Q865 1147 988.5 1002Q1112 857 1112 606ZM928 660Q924 822 851.5 906.5Q779 991 643 991Q510 991 424 903Q338 815 322 659Z"/>
+<path id="ConstructionView1-FigureMono400-glyph-104" data-font-source="DejaVuMono" data-font-weight="400" d="M1051 694L1051 0L866 0L866 694Q866 845 813 916Q760 987 647 987Q518 987 448.5 895.5Q379 804 379 633L379 0L195 0L195 1556L379 1556L379 952Q428 1048 512 1097.5Q596 1147 711 1147Q882 1147 966.5 1034.5Q1051 922 1051 694Z"/>
+<path id="ConstructionView1-FigureMono400-glyph-109" data-font-source="DejaVuMono" data-font-weight="400" d="M676 1006Q710 1078 762.5 1112.5Q815 1147 889 1147Q1024 1147 1079.5 1042.5Q1135 938 1135 649L1135 0L967 0L967 641Q967 878 940.5 935.5Q914 993 844 993Q764 993 734.5 931.5Q705 870 705 641L705 0L537 0L537 641Q537 881 508.5 937Q480 993 406 993Q333 993 304.5 931.5Q276 870 276 641L276 0L109 0L109 1120L276 1120L276 1024Q309 1084 358.5 1115.5Q408 1147 471 1147Q547 1147 597.5 1112Q648 1077 676 1006Z"/>
+<path id="ConstructionView1-FigureMono400-glyph-110" data-font-source="DejaVuMono" data-font-weight="400" d="M1051 694L1051 0L866 0L866 694Q866 845 813 916Q760 987 647 987Q518 987 448.5 895.5Q379 804 379 633L379 0L195 0L195 1120L379 1120L379 952Q428 1048 512 1097.5Q596 1147 711 1147Q882 1147 966.5 1034.5Q1051 922 1051 694Z"/>
+<path id="ConstructionView1-FigureMono400-glyph-111" data-font-source="DejaVuMono" data-font-weight="400" d="M616 991Q476 991 404 882Q332 773 332 559Q332 346 404 236.5Q476 127 616 127Q757 127 829 236.5Q901 346 901 559Q901 773 829 882Q757 991 616 991ZM616 1147Q849 1147 972.5 996Q1096 845 1096 559Q1096 272 973 121.5Q850 -29 616 -29Q383 -29 260 121.5Q137 272 137 559Q137 845 260 996Q383 1147 616 1147Z"/>
+<path id="ConstructionView1-FigureMono400-glyph-112" data-font-source="DejaVuMono" data-font-weight="400" d="M375 141L375 -426L190 -426L190 1120L375 1120L375 977Q421 1060 497.5 1103.5Q574 1147 674 1147Q877 1147 992.5 990Q1108 833 1108 555Q1108 282 992 126.5Q876 -29 674 -29Q572 -29 495.5 14.5Q419 58 375 141ZM915 559Q915 773 847.5 882Q780 991 647 991Q513 991 444 881.5Q375 772 375 559Q375 347 444 237Q513 127 647 127Q780 127 847.5 236Q915 345 915 559Z"/>
+<path id="ConstructionView1-FigureMono400-glyph-114" data-font-source="DejaVuMono" data-font-weight="400" d="M1155 889Q1096 935 1035 956Q974 977 901 977Q729 977 638 869Q547 761 547 557L547 0L362 0L362 1120L547 1120L547 901Q593 1020 688.5 1083.5Q784 1147 915 1147Q983 1147 1042 1130Q1101 1113 1155 1077Z"/>
+<path id="ConstructionView1-FigureMono400-glyph-115" data-font-source="DejaVuMono" data-font-weight="400" d="M973 1081L973 901Q894 947 814 970Q734 993 651 993Q526 993 464.5 952.5Q403 912 403 829Q403 754 449 717Q495 680 678 645L752 631Q889 605 959.5 527Q1030 449 1030 324Q1030 158 912 64.5Q794 -29 584 -29Q501 -29 410 -11.5Q319 6 213 41L213 231Q316 178 410 151.5Q504 125 588 125Q710 125 777 174.5Q844 224 844 313Q844 441 599 490L591 492L522 506Q363 537 290 610.5Q217 684 217 811Q217 972 326 1059.5Q435 1147 637 1147Q727 1147 810 1130.5Q893 1114 973 1081Z"/>
+<path id="ConstructionView1-FigureMono400-glyph-119" data-font-source="DejaVuMono" data-font-weight="400" d="M0 1120L182 1120L377 215L537 793L694 793L856 215L1051 1120L1233 1120L971 0L795 0L616 614L438 0L262 0Z"/>
+<path id="ConstructionView1-FigureMono400-glyph-120" data-font-source="DejaVuMono" data-font-weight="400" d="M1118 1120L717 584L1157 0L944 0L616 449L289 0L76 0L516 584L115 1120L319 1120L616 715L911 1120Z"/>
+<path id="ConstructionView1-FigureMono400-glyph-8709" data-font-source="DejaVuMono" data-font-weight="400" d="M1062 1186L1161 1087L1043 969Q1088 913 1114 849Q1153 754 1153 642Q1153 533 1114 438Q1075 343 996 264Q917 186 822 146Q727 106 616.5 106Q506 106 411 146Q347 172 291 217L173 99L74 198L191 315Q146 373 119 438Q80 533 80 642Q80 754 119 849Q158 944 237 1023Q316 1102 411 1142Q506 1182 616.5 1182Q727 1182 822 1142Q887 1114 945 1069ZM768 1011Q698 1041 616.5 1041Q535 1041 464 1011Q395 981 337 924Q278 865 249.5 795Q221 725 221 642Q221 562 249 492Q266 452 292 416L844 968Q808 994 768 1011ZM943 869L391 317Q426 292 464 276Q535 246 616.5 246Q698 246 768 276Q838 306 896 363Q955 422 983.5 492Q1012 562 1012 642Q1012 725 984 795Q968 834 943 869Z"/>
+</defs>
+<defs><marker id="ConstructionView1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#878788" style="fill:#878788;fill:color(xyz-d65 0.232 0.244 0.266);"/></marker></defs>
+<rect x="0" y="0" width="518.4" height="144" rx="0" fill="#1C191A" stroke="none" stroke-width="0" stroke-dasharray="none" style="fill:#1C191A;fill:color(xyz-d65 0.01 0.01 0.011);"/>
+<path d="M172.8 33.12L172.8 128.16" fill="none" stroke="#878788" stroke-width="0.72" stroke-dasharray="none" marker-end="none" style="stroke:#878788;stroke:color(xyz-d65 0.232 0.244 0.266);"/>
+<path d="M345.6 33.12L345.6 128.16" fill="none" stroke="#878788" stroke-width="0.72" stroke-dasharray="none" marker-end="none" style="stroke:#878788;stroke:color(xyz-d65 0.232 0.244 0.266);"/>
+<g role="img" aria-label="SEED" data-vi-text="SEED" data-font-face="FigureSans600" data-declaration="ConstructionPart2&lt;FigureDark&gt;" data-background="color(xyz-d65 0.01 0.01 0.011)" data-legibility="Muted_Paper_dim" fill="#878788" transform="translate(86.4 23.04) scale(0.00537109375 -0.00537109375)" style="fill:#878788;fill:color(xyz-d65 0.232 0.244 0.266);">
+<use href="#ConstructionView1-FigureSans600-glyph-83" data-codepoint="83" transform="translate(-2890.7592675781248 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-69" data-codepoint="69" transform="translate(-1394.9199999999998 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-69" data-codepoint="69" transform="translate(8.559648437500073 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-68" data-codepoint="68" transform="translate(1412.0392968749998 0)"/>
+</g>
+<g role="img" aria-label="MOVE" data-vi-text="MOVE" data-font-face="FigureSans600" data-declaration="ConstructionPart3&lt;FigureDark&gt;" data-background="color(xyz-d65 0.01 0.01 0.011)" data-legibility="Muted_Paper_dim" fill="#878788" transform="translate(259.2 23.04) scale(0.00537109375 -0.00537109375)" style="fill:#878788;fill:color(xyz-d65 0.232 0.244 0.266);">
+<use href="#ConstructionView1-FigureSans600-glyph-77" data-codepoint="77" transform="translate(-3342.1772973632815 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-79" data-codepoint="79" transform="translate(-1289.4588793945313 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-86" data-codepoint="86" transform="translate(448.3007983398438 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-69" data-codepoint="69" transform="translate(2102.5376489257815 0)"/>
+</g>
+<g role="img" aria-label="FLOOR" data-vi-text="FLOOR" data-font-face="FigureSans600" data-declaration="ConstructionPart4&lt;FigureDark&gt;" data-background="color(xyz-d65 0.01 0.01 0.011)" data-legibility="Muted_Paper_dim" fill="#878788" transform="translate(432 23.04) scale(0.00537109375 -0.00537109375)" style="fill:#878788;fill:color(xyz-d65 0.232 0.244 0.266);">
+<use href="#ConstructionView1-FigureSans600-glyph-70" data-codepoint="70" transform="translate(-3750.759406738281 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-76" data-codepoint="76" transform="translate(-2382.599216308594 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-79" data-codepoint="79" transform="translate(-1060.7592163085938 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-79" data-codepoint="79" transform="translate(677.0004614257809 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-82" data-codepoint="82" transform="translate(2414.760139160156 0)"/>
+</g>
+<rect x="59.04" y="45.36" width="54.72" height="33.12" rx="6.48" fill="none" stroke="#403F3F" stroke-width="1.08" stroke-dasharray="none" style="stroke:#403F3F;stroke:color(xyz-d65 0.048 0.05 0.054);"/>
+<path d="M86.4 45.36L86.4 78.48" fill="none" stroke="#878788" stroke-width="1.44" stroke-dasharray="none" marker-end="none" style="stroke:#878788;stroke:color(xyz-d65 0.232 0.244 0.266);"/>
+<g role="img" aria-label="a" data-vi-text="a" data-font-face="FigureMono400" data-declaration="ConstructionPart7&lt;FigureDark&gt;" data-background="color(xyz-d65 0.01 0.01 0.011)" data-legibility="Ink_Paper_dim" fill="#CECFCF" transform="translate(72.72 65.52) scale(0.006103515625 -0.006103515625)" style="fill:#CECFCF;fill:color(xyz-d65 0.59 0.621 0.676);">
+<use href="#ConstructionView1-FigureMono400-glyph-97" data-codepoint="97" transform="translate(-616.5 0)"/>
+</g>
+<g role="img" aria-label="b" data-vi-text="b" data-font-face="FigureMono400" data-declaration="ConstructionPart8&lt;FigureDark&gt;" data-background="color(xyz-d65 0.01 0.01 0.011)" data-legibility="Ink_Paper_dim" fill="#CECFCF" transform="translate(100.08 65.52) scale(0.006103515625 -0.006103515625)" style="fill:#CECFCF;fill:color(xyz-d65 0.59 0.621 0.676);">
+<use href="#ConstructionView1-FigureMono400-glyph-98" data-codepoint="98" transform="translate(-616.5 0)"/>
+</g>
+<g role="img" aria-label="Pair" data-vi-text="Pair" data-font-face="FigureSans600" data-declaration="ConstructionPart9&lt;FigureDark&gt;" data-background="color(xyz-d65 0.01 0.01 0.011)" data-legibility="LocalType_Paper_dim" fill="#2BBECF" transform="translate(86.4 108) scale(0.00634765625 -0.00634765625)" style="fill:#2BBECF;fill:color(xyz-d65 0.307 0.419 0.656);">
+<use href="#ConstructionView1-FigureSans600-glyph-80" data-codepoint="80" transform="translate(-1922.7975463867188 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-97" data-codepoint="97" transform="translate(-601.8380737304688 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-105" data-codepoint="105" transform="translate(574.0808715820312 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-114" data-codepoint="114" transform="translate(1109.6792602539062 0)"/>
+</g>
+<g role="img" aria-label="two sides · one boundary" data-vi-text="two sides · one boundary" data-font-face="FigureSans400" data-declaration="ConstructionPart10&lt;FigureDark&gt;" data-background="color(xyz-d65 0.01 0.01 0.011)" data-legibility="Muted_Paper_dim" fill="#878788" transform="translate(86.4 122.4) scale(0.00537109375 -0.00537109375)" style="fill:#878788;fill:color(xyz-d65 0.232 0.244 0.266);">
+<use href="#ConstructionView1-FigureSans400-glyph-116" data-codepoint="116" transform="translate(-12217.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-119" data-codepoint="119" transform="translate(-11547.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-111" data-codepoint="111" transform="translate(-9871.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-32" data-codepoint="32" transform="translate(-8643.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-115" data-codepoint="115" transform="translate(-8067.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-105" data-codepoint="105" transform="translate(-6986.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-100" data-codepoint="100" transform="translate(-6490.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-101" data-codepoint="101" transform="translate(-5236.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-115" data-codepoint="115" transform="translate(-4042.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-32" data-codepoint="32" transform="translate(-2961.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-183" data-codepoint="183" transform="translate(-2385.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-32" data-codepoint="32" transform="translate(-1795.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-111" data-codepoint="111" transform="translate(-1219.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-110" data-codepoint="110" transform="translate(8.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-101" data-codepoint="101" transform="translate(1218.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-32" data-codepoint="32" transform="translate(2412.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-98" data-codepoint="98" transform="translate(2988.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-111" data-codepoint="111" transform="translate(4242.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-117" data-codepoint="117" transform="translate(5470.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-110" data-codepoint="110" transform="translate(6681.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-100" data-codepoint="100" transform="translate(7891.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-97" data-codepoint="97" transform="translate(9145.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-114" data-codepoint="114" transform="translate(10295.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-121" data-codepoint="121" transform="translate(11066.5 0)"/>
+</g>
+<g role="img" aria-label="expand" data-vi-text="expand" data-font-face="FigureMono400" data-declaration="ConstructionPart11&lt;FigureDark&gt;" data-background="color(xyz-d65 0.01 0.01 0.011)" data-legibility="Ink_Paper_dim" fill="#CECFCF" transform="translate(249.12 59.04) scale(0.006103515625 -0.006103515625)" style="fill:#CECFCF;fill:color(xyz-d65 0.59 0.621 0.676);">
+<use href="#ConstructionView1-FigureMono400-glyph-101" data-codepoint="101" transform="translate(-7398.0 0)"/>
+<use href="#ConstructionView1-FigureMono400-glyph-120" data-codepoint="120" transform="translate(-6165.0 0)"/>
+<use href="#ConstructionView1-FigureMono400-glyph-112" data-codepoint="112" transform="translate(-4932.0 0)"/>
+<use href="#ConstructionView1-FigureMono400-glyph-97" data-codepoint="97" transform="translate(-3699.0 0)"/>
+<use href="#ConstructionView1-FigureMono400-glyph-110" data-codepoint="110" transform="translate(-2466.0 0)"/>
+<use href="#ConstructionView1-FigureMono400-glyph-100" data-codepoint="100" transform="translate(-1233.0 0)"/>
+</g>
+<path d="M253.44 56.16L276.48 56.16" fill="none" stroke="#878788" stroke-width="1.08" stroke-dasharray="none" marker-end="url(#ConstructionView1-arrow)" style="stroke:#878788;stroke:color(xyz-d65 0.232 0.244 0.266);"/>
+<g role="img" aria-label="+ axis" data-vi-text="+ axis" data-font-face="FigureSans400" data-declaration="ConstructionPart13&lt;FigureDark&gt;" data-background="color(xyz-d65 0.01 0.01 0.011)" data-legibility="Muted_Paper_dim" fill="#878788" transform="translate(283.68 59.04) scale(0.00537109375 -0.00537109375)" style="fill:#878788;fill:color(xyz-d65 0.232 0.244 0.266);">
+<use href="#ConstructionView1-FigureSans400-glyph-43" data-codepoint="43" transform="translate(0.0 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-32" data-codepoint="32" transform="translate(1355.0 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-97" data-codepoint="97" transform="translate(1931.0 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-120" data-codepoint="120" transform="translate(3081.0 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-105" data-codepoint="105" transform="translate(4199.0 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-115" data-codepoint="115" transform="translate(4695.0 0)"/>
+</g>
+<g role="img" aria-label="compress" data-vi-text="compress" data-font-face="FigureMono400" data-declaration="ConstructionPart14&lt;FigureDark&gt;" data-background="color(xyz-d65 0.01 0.01 0.011)" data-legibility="Ink_Paper_dim" fill="#CECFCF" transform="translate(249.12 74.88) scale(0.006103515625 -0.006103515625)" style="fill:#CECFCF;fill:color(xyz-d65 0.59 0.621 0.676);">
+<use href="#ConstructionView1-FigureMono400-glyph-99" data-codepoint="99" transform="translate(-9864.0 0)"/>
+<use href="#ConstructionView1-FigureMono400-glyph-111" data-codepoint="111" transform="translate(-8631.0 0)"/>
+<use href="#ConstructionView1-FigureMono400-glyph-109" data-codepoint="109" transform="translate(-7398.0 0)"/>
+<use href="#ConstructionView1-FigureMono400-glyph-112" data-codepoint="112" transform="translate(-6165.0 0)"/>
+<use href="#ConstructionView1-FigureMono400-glyph-114" data-codepoint="114" transform="translate(-4932.0 0)"/>
+<use href="#ConstructionView1-FigureMono400-glyph-101" data-codepoint="101" transform="translate(-3699.0 0)"/>
+<use href="#ConstructionView1-FigureMono400-glyph-115" data-codepoint="115" transform="translate(-2466.0 0)"/>
+<use href="#ConstructionView1-FigureMono400-glyph-115" data-codepoint="115" transform="translate(-1233.0 0)"/>
+</g>
+<path d="M276.48 72L253.44 72" fill="none" stroke="#878788" stroke-width="1.08" stroke-dasharray="none" marker-end="url(#ConstructionView1-arrow)" style="stroke:#878788;stroke:color(xyz-d65 0.232 0.244 0.266);"/>
+<g role="img" aria-label="where" data-vi-text="where" data-font-face="FigureMono400" data-declaration="ConstructionPart16&lt;FigureDark&gt;" data-background="color(xyz-d65 0.01 0.01 0.011)" data-legibility="LocalType_Paper_dim" fill="#2BBECF" transform="translate(283.68 74.88) scale(0.006103515625 -0.006103515625)" style="fill:#2BBECF;fill:color(xyz-d65 0.307 0.419 0.656);">
+<use href="#ConstructionView1-FigureMono400-glyph-119" data-codepoint="119" transform="translate(0.0 0)"/>
+<use href="#ConstructionView1-FigureMono400-glyph-104" data-codepoint="104" transform="translate(1233.0 0)"/>
+<use href="#ConstructionView1-FigureMono400-glyph-101" data-codepoint="101" transform="translate(2466.0 0)"/>
+<use href="#ConstructionView1-FigureMono400-glyph-114" data-codepoint="114" transform="translate(3699.0 0)"/>
+<use href="#ConstructionView1-FigureMono400-glyph-101" data-codepoint="101" transform="translate(4932.0 0)"/>
+</g>
+<g role="img" aria-label="two moves" data-vi-text="two moves" data-font-face="FigureSans600" data-declaration="ConstructionPart17&lt;FigureDark&gt;" data-background="color(xyz-d65 0.01 0.01 0.011)" data-legibility="Ink_Paper_dim" fill="#CECFCF" transform="translate(259.2 108) scale(0.00634765625 -0.00634765625)" style="fill:#CECFCF;fill:color(xyz-d65 0.59 0.621 0.676);">
+<use href="#ConstructionView1-FigureSans600-glyph-116" data-codepoint="116" transform="translate(-5417.0751953125 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-119" data-codepoint="119" transform="translate(-4693.79736328125 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-111" data-codepoint="111" transform="translate(-2974.59912109375 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-32" data-codepoint="32" transform="translate(-1727.8798828125 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-109" data-codepoint="109" transform="translate(-1212.357421875 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-111" data-codepoint="111" transform="translate(631.320556640625 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-118" data-codepoint="118" transform="translate(1878.039794921875 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-101" data-codepoint="101" transform="translate(3080.5177001953125 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-115" data-codepoint="115" transform="translate(4291.7969970703125 0)"/>
+</g>
+<g role="img" aria-label="no third" data-vi-text="no third" data-font-face="FigureSans400" data-declaration="ConstructionPart18&lt;FigureDark&gt;" data-background="color(xyz-d65 0.01 0.01 0.011)" data-legibility="Muted_Paper_dim" fill="#878788" transform="translate(259.2 122.4) scale(0.00537109375 -0.00537109375)" style="fill:#878788;fill:color(xyz-d65 0.232 0.244 0.266);">
+<use href="#ConstructionView1-FigureSans400-glyph-110" data-codepoint="110" transform="translate(-3708.0 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-111" data-codepoint="111" transform="translate(-2498.0 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-32" data-codepoint="32" transform="translate(-1270.0 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-116" data-codepoint="116" transform="translate(-694.0 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-104" data-codepoint="104" transform="translate(-24.0 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-105" data-codepoint="105" transform="translate(1187.0 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-114" data-codepoint="114" transform="translate(1683.0 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-100" data-codepoint="100" transform="translate(2454.0 0)"/>
+</g>
+<circle cx="432" cy="47.52" r="3.6" fill="#1C191A" stroke="none" stroke-width="0.72" style="fill:#1C191A;fill:color(xyz-d65 0.01 0.01 0.011);"/>
+<path d="M431.28 51.12L420.48 66.24" fill="none" stroke="#878788" stroke-width="1.08" stroke-dasharray="none" marker-end="none" style="stroke:#878788;stroke:color(xyz-d65 0.232 0.244 0.266);"/>
+<path d="M432.72 51.12L443.52 66.24" fill="none" stroke="#878788" stroke-width="1.08" stroke-dasharray="none" marker-end="none" style="stroke:#878788;stroke:color(xyz-d65 0.232 0.244 0.266);"/>
+<g role="img" aria-label="∅" data-vi-text="∅" data-font-face="FigureMono400" data-declaration="ConstructionPart22&lt;FigureDark&gt;" data-background="color(xyz-d65 0.01 0.01 0.011)" data-legibility="Muted_Paper_dim" fill="#878788" transform="translate(420.48 74.88) scale(0.006103515625 -0.006103515625)" style="fill:#878788;fill:color(xyz-d65 0.232 0.244 0.266);">
+<use href="#ConstructionView1-FigureMono400-glyph-8709" data-codepoint="8709" transform="translate(-616.5 0)"/>
+</g>
+<g role="img" aria-label="∅" data-vi-text="∅" data-font-face="FigureMono400" data-declaration="ConstructionPart23&lt;FigureDark&gt;" data-background="color(xyz-d65 0.01 0.01 0.011)" data-legibility="Muted_Paper_dim" fill="#878788" transform="translate(443.52 74.88) scale(0.006103515625 -0.006103515625)" style="fill:#878788;fill:color(xyz-d65 0.232 0.244 0.266);">
+<use href="#ConstructionView1-FigureMono400-glyph-8709" data-codepoint="8709" transform="translate(-616.5 0)"/>
+</g>
+<g role="img" aria-label="width × depth" data-vi-text="width × depth" data-font-face="FigureSans600" data-declaration="ConstructionPart24&lt;FigureDark&gt;" data-background="color(xyz-d65 0.01 0.01 0.011)" data-legibility="Ink_Paper_dim" fill="#CECFCF" transform="translate(432 108) scale(0.00634765625 -0.00634765625)" style="fill:#CECFCF;fill:color(xyz-d65 0.59 0.621 0.676);">
+<use href="#ConstructionView1-FigureSans600-glyph-119" data-codepoint="119" transform="translate(-6832.594543457031 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-105" data-codepoint="105" transform="translate(-5113.396301269531 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-100" data-codepoint="100" transform="translate(-4577.797912597656 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-116" data-codepoint="116" transform="translate(-3299.3189086914062 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-104" data-codepoint="104" transform="translate(-2576.0410766601562 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-32" data-codepoint="32" transform="translate(-1322.2028198242188 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-215" data-codepoint="215" transform="translate(-806.6803588867188 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-32" data-codepoint="32" transform="translate(571.7186889648438 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-100" data-codepoint="100" transform="translate(1087.2411499023438 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-101" data-codepoint="101" transform="translate(2365.7201538085938 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-112" data-codepoint="112" transform="translate(3576.9994506835938 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-116" data-codepoint="116" transform="translate(4855.478454589844 0)"/>
+<use href="#ConstructionView1-FigureSans600-glyph-104" data-codepoint="104" transform="translate(5578.756286621094 0)"/>
+</g>
+<g role="img" aria-label="finite — every chain ends at ∅" data-vi-text="finite — every chain ends at ∅" data-font-face="FigureSans400" data-declaration="ConstructionPart25&lt;FigureDark&gt;" data-background="color(xyz-d65 0.01 0.01 0.011)" data-legibility="Muted_Paper_dim" fill="#878788" transform="translate(432 122.4) scale(0.00537109375 -0.00537109375)" style="fill:#878788;fill:color(xyz-d65 0.232 0.244 0.266);">
+<use href="#ConstructionView1-FigureSans400-glyph-102" data-codepoint="102" transform="translate(-14493.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-105" data-codepoint="105" transform="translate(-13735.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-110" data-codepoint="110" transform="translate(-13239.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-105" data-codepoint="105" transform="translate(-12029.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-116" data-codepoint="116" transform="translate(-11533.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-101" data-codepoint="101" transform="translate(-10863.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-32" data-codepoint="32" transform="translate(-9669.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-8212" data-codepoint="8212" transform="translate(-9093.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-32" data-codepoint="32" transform="translate(-7045.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-101" data-codepoint="101" transform="translate(-6469.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-118" data-codepoint="118" transform="translate(-5275.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-101" data-codepoint="101" transform="translate(-4124.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-114" data-codepoint="114" transform="translate(-2930.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-121" data-codepoint="121" transform="translate(-2159.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-32" data-codepoint="32" transform="translate(-1008.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-99" data-codepoint="99" transform="translate(-432.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-104" data-codepoint="104" transform="translate(737.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-97" data-codepoint="97" transform="translate(1948.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-105" data-codepoint="105" transform="translate(3098.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-110" data-codepoint="110" transform="translate(3594.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-32" data-codepoint="32" transform="translate(4804.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-101" data-codepoint="101" transform="translate(5380.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-110" data-codepoint="110" transform="translate(6574.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-100" data-codepoint="100" transform="translate(7784.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-115" data-codepoint="115" transform="translate(9038.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-32" data-codepoint="32" transform="translate(10119.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-97" data-codepoint="97" transform="translate(10695.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-116" data-codepoint="116" transform="translate(11845.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-32" data-codepoint="32" transform="translate(12515.5 0)"/>
+<use href="#ConstructionView1-FigureSans400-glyph-8709" data-codepoint="8709" transform="translate(13091.5 0)"/>
+</g>
 </svg>

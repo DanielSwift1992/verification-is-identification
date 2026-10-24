@@ -1,0 +1,186 @@
+<!-- Shared inline-SVG and table hooks; the world supplies their style projection. -->
+<script>
+(function () {
+  if (window.__viInlineHook) { return; }
+  window.__viInlineHook = true;
+  var ROLE_CSS = /* WORLD_ROLE_CSS */ null;
+  if (ROLE_CSS === null) { throw new Error("footer#binding: world drawing binding is missing"); }
+  var roleStyle = document.createElement("style");
+  roleStyle.textContent = ROLE_CSS;
+  (document.head || document.documentElement).appendChild(roleStyle);
+
+  var notOurs = Object.create(null);
+
+  function baseName(src) {
+    return (src || "").split("/").pop().replace(/\.svg$/i, "").replace(/~dark$/, "");
+  }
+
+  function isSameOriginSvg(src) {
+    if (!/\.svg(?:[?#]|$)/i.test(src || "")) { return false; }
+    try {
+      return new URL(src, window.location.href).origin === window.location.origin;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function resolvedSrc(img) {
+    var picture = img.closest("picture");
+    var sources = picture ? picture.querySelectorAll("source[media][srcset]") : [];
+    for (var i = 0; i < sources.length; i++) {
+      if (window.matchMedia && window.matchMedia(sources[i].getAttribute("media")).matches) {
+        return sources[i].getAttribute("srcset").split(",")[0].trim().split(/\s+/)[0];
+      }
+    }
+    return img.currentSrc || img.getAttribute("src") || "";
+  }
+
+  function inline(img) {
+    if (img.dataset.vectorInlined) { return; }
+    var src = resolvedSrc(img);
+    if (notOurs[src]) { return; }
+    img.dataset.vectorInlined = "pending";
+    img.style.visibility = "hidden";
+    fetch(src)
+      .then(function (response) { return response.text(); })
+      .then(function (text) {
+        var parsed = new DOMParser().parseFromString(text, "image/svg+xml");
+        var svg = parsed.documentElement;
+        if (!svg || svg.nodeName.toLowerCase() !== "svg" || svg.getAttribute("data-vi-canvas") !== "1") {
+          notOurs[src] = true;
+          img.dataset.vectorInlined = "";
+          img.style.visibility = "visible";
+          return;
+        }
+        var docsBase = window.location.pathname.split("/documentation/")[0] || "";
+        if (docsBase) {
+          var anchors = svg.querySelectorAll("a[href]");
+          for (var k = 0; k < anchors.length; k++) {
+            var stated = anchors[k].getAttribute("href") || "";
+            if (stated.indexOf("/documentation/") === 0) {
+              anchors[k].setAttribute("href", docsBase + stated);
+            }
+          }
+        }
+        svg.setAttribute("style", "width:100%;height:auto;display:block;");
+        svg.setAttribute("data-vector-inlined", "true");
+        var host = img.closest("picture") || img;
+        host.replaceWith(svg);
+      })
+      .catch(function () {
+        img.dataset.vectorInlined = "";
+        img.style.visibility = "visible";
+      });
+  }
+
+  function scan(root) {
+    var images = root.querySelectorAll ? root.querySelectorAll("img[src]") : [];
+    for (var i = 0; i < images.length; i++) {
+      var img = images[i];
+      if (isSameOriginSvg(img.getAttribute("src"))) { inline(img); }
+    }
+  }
+
+  scan(document);
+
+  var prefetched = {};
+  function prefetchDoors(root) {
+    var docsBase = window.location.pathname.split("/documentation/")[0] || "";
+    var anchors = root.querySelectorAll ? root.querySelectorAll("a[href]") : [];
+    var budget = 12;
+    for (var i = 0; i < anchors.length && budget > 0; i++) {
+      var href = anchors[i].getAttribute("href") || "";
+      if (href.indexOf(docsBase + "/documentation/") !== 0) { continue; }
+      var page = href.split("#")[0].replace(/\/$/, "");
+      var data = page.replace(docsBase + "/documentation/", docsBase + "/data/documentation/") + ".json";
+      if (prefetched[data]) { continue; }
+      prefetched[data] = true;
+      budget -= 1;
+      var link = document.createElement("link");
+      link.rel = "prefetch";
+      link.href = data;
+      document.head.appendChild(link);
+    }
+  }
+  prefetchDoors(document);
+
+  document.addEventListener("click", function (event) {
+    var anchor = event.target && event.target.closest ? event.target.closest("a") : null;
+    if (!anchor) { return; }
+    var href = anchor.getAttribute("href") || "";
+    if (href.charAt(0) !== "#") { return; }
+    if (!anchor.closest("svg[data-vi-canvas]")) { return; }
+    var y = window.scrollY;
+    var x = window.scrollX;
+    var hold = function () { window.scrollTo(x, y); };
+    requestAnimationFrame(hold);
+    setTimeout(hold, 0);
+    setTimeout(hold, 60);
+    setTimeout(hold, 160);
+  }, true);
+
+  document.addEventListener("click", function (event) {
+    var key = event.target && event.target.closest ? event.target.closest(".vi-variant-key") : null;
+    if (!key) { return; }
+    var canvas = key.closest("svg[data-vi-canvas]");
+    if (!canvas) { return; }
+    event.preventDefault();
+    var owner = key.getAttribute("data-vi-owner");
+    var to = key.getAttribute("data-vi-to");
+    var variants = canvas.querySelectorAll('.vi-variant[data-vi-owner="' + owner + '"]');
+    for (var i = 0; i < variants.length; i++) {
+      variants[i].style.display = variants[i].getAttribute("data-vi-at") === to ? "inline" : "none";
+    }
+  }, true);
+
+  new MutationObserver(function (mutations) {
+    for (var i = 0; i < mutations.length; i++) {
+      var added = mutations[i].addedNodes;
+      for (var j = 0; j < added.length; j++) {
+        var node = added[j];
+        if (node.nodeType !== 1) { continue; }
+        if (node.matches && node.matches("img[src]") && isSameOriginSvg(node.getAttribute("src"))) {
+          inline(node);
+        }
+        if (node.querySelectorAll) { scan(node); prefetchDoors(node); }
+      }
+    }
+  }).observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+<script>
+(function () {
+  if (window.__viTableHook) { return; }
+  window.__viTableHook = true;
+  var css = document.createElement("style");
+  css.textContent = /* WORLD_TABLE_CSS */ null;
+  if (css.textContent === "null") { throw new Error("footer#layout: table style is missing"); }
+  document.head.appendChild(css);
+  function keyOf(row, index) {
+    var cell = row.cells[index];
+    var text = cell ? cell.textContent.trim() : "";
+    var number = parseFloat(text.replace(/[^0-9.\-]/g, ""));
+    return { number: isNaN(number) ? null : number, text: text.toLowerCase() };
+  }
+  document.addEventListener("click", function (event) {
+    var head = event.target && event.target.closest && event.target.closest("th");
+    if (!head) { return; }
+    var table = head.closest("table");
+    var body = table && table.tBodies[0];
+    if (!body || body.rows.length < 2) { return; }
+    var index = Array.prototype.indexOf.call(head.parentNode.cells, head);
+    var descending = head.getAttribute("data-vi-sort") !== "down";
+    head.setAttribute("data-vi-sort", descending ? "down" : "up");
+    var rows = Array.prototype.slice.call(body.rows);
+    rows.sort(function (a, b) {
+      var left = keyOf(a, index), right = keyOf(b, index);
+      var order = 0;
+      if (left.number !== null && right.number !== null) { order = left.number - right.number; }
+      else if (left.text < right.text) { order = -1; }
+      else if (left.text > right.text) { order = 1; }
+      return descending ? -order : order;
+    });
+    for (var i = 0; i < rows.length; i++) { body.appendChild(rows[i]); }
+  });
+})();
+</script>

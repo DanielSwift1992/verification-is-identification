@@ -1,3 +1,5 @@
+import Notation
+
 // ═══════════════════════════════════════════════════════════════
 // Permanence Is Resistance (Matter).
 //

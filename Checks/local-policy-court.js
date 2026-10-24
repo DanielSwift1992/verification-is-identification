@@ -28,7 +28,7 @@ function flatDeclaration(file, name) {
 }
 
 const definitions = [
-    flatDeclaration("Sources/VerificationIsIdentification/Primitive.swift", "Paired"),
+    flatDeclaration("Sources/Notation/Primitive.swift", "Paired"),
     flatDeclaration("Sources/Examples/LocalContactPolicy.swift", "LocalPolicyAtZero"),
     flatDeclaration("Sources/Examples/LocalContactPolicy.swift", "LocalPolicyAtOne"),
     flatDeclaration("Sources/Examples/Acquisition.swift", "FirstEvidenceImage"),

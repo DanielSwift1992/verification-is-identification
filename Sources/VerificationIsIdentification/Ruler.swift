@@ -1,3 +1,5 @@
+import Notation
+
 import Swift
 
 /// Names a tick in a presented-law interface. A shared declaration checks

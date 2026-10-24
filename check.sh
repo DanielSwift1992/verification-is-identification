@@ -42,9 +42,8 @@ while [ $# -gt 0 ]; do
 done
 
 # A law that reads only a committed tree is named here; a run with work in
-# progress names it as not asked and holds the rest. The two that did, the
-# differential judge and the artifacts law, moved with the company to the
-# showcase package (T-0015).
+# progress names it as not asked and holds the rest. The current SDK artifact
+# law reproduces its declared source inputs; it can also inspect a working tree.
 NEEDS_CLEAN=""
 
 # Bind the roster projection and execution to the same source snapshot.

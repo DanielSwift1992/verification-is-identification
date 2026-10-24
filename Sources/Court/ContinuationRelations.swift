@@ -77,6 +77,14 @@ extension ContinuationCourt {
         case constructed([Selection], Program)
         case obstructed(Obstruction)
     }
+    struct RelatedRetention: Codable {
+        // One same-source leaf per required class; construction uses Question order.
+        var leaves: [Path]
+        var view: Program
+        // U5 on the joint view: Left is Observation, Right is the retained view.
+        var selections: [Selection]
+        var program: Program
+    }
     struct RelatedCertificate: Codable {
         var request: String
         var constructor: String
@@ -85,6 +93,7 @@ extension ContinuationCourt {
         var question: RouteProof
         var equalities: RouteProof?
         var conclusion: RelatedConclusion
+        var retention: RelatedRetention? = nil
     }
     struct RelatedArchive: Codable {
         let format: Int
@@ -310,46 +319,57 @@ extension ContinuationCourt {
             throw Failure("certificate.residue.needed: required classes or Question addresses differ")
         }
     }
+    static func verifyRelatedProgram(_ selections: [Selection], program: Program,
+                                     reading r: RelatedReading, address: String) throws {
+        let edges = Dictionary(uniqueKeysWithValues: r.edges.map { ($0.address, $0) })
+        let required = r.question.leaves
+        var remainingSteps = 100_000
+        guard selections.count == required.count else { throw Failure(address + ".selections: incomplete output coverage") }
+        for (index, pair) in zip(selections, required).enumerated() {
+            let (selection, target) = pair
+            let at = address + ".selections[\(index)]"
+            let input: Places
+            do { input = try r.observation.at(selection.input) }
+            catch { throw Failure(at + ".input: " + String(describing: error)) }
+            guard selection.output == target.output,
+                case let .leaf(from) = input
+            else { throw Failure(at + ": output or input is not the required leaf address") }
+            guard try r.sort(from) == r.sort(target.source) else { throw Failure(at + ": selected sort differs") }
+            switch selection.basis {
+            case .address:
+                guard from == target.source else { throw Failure(at + ".basis: different source addresses are not identical") }
+            case let .sourceRelation(steps):
+                guard !steps.isEmpty, steps.count <= 100_000 else { throw Failure(at + ".basis: expected a finite E-path") }
+                var current = from
+                for (stepIndex, step) in steps.enumerated() {
+                    let here = at + ".basis.path[\(stepIndex)]"
+                    guard remainingSteps > 0 else { throw Failure(here + ": replay work limit") }
+                    remainingSteps -= 1
+                    guard let edge = edges[step.edge] else { throw Failure(here + ": no declared E-edge at this address") }
+                    let a = step.reversed ? edge.right : edge.left
+                    let b = step.reversed ? edge.left : edge.right
+                    guard current == a else { throw Failure(here + ": discontinuous E-path") }
+                    current = b
+                }
+                guard current == target.source else { throw Failure(at + ".basis: E-path ends at another source leaf") }
+            case .observedValues:
+                throw Failure(at + ".basis: observed value coincidence is not source equality")
+            }
+        }
+        guard program == (try assembledProgram(r.question, inputs: selections.map(\.input))) else {
+            throw Failure(address + ".program: assembled term differs from the selected addresses")
+        }
+    }
     static func verifyRelated(_ request: String, certificate: RelatedCertificate,
                               source: StructuralSource, constructor: String = "Paired") throws -> Bool {
         let r = try relatedReading(request, certificate: certificate, source: source, constructor: constructor)
         let edges = Dictionary(uniqueKeysWithValues: r.edges.map { ($0.address, $0) })
         switch certificate.conclusion {
         case let .constructed(selections, program):
-            let required = r.question.leaves
-            var remainingSteps = 100_000
-            guard selections.count == required.count else { throw Failure("certificate.selections: incomplete output coverage") }
-            for (index, pair) in zip(selections, required).enumerated() {
-                let (selection, target) = pair
-                let at = "certificate.selections[\(index)]"
-                guard selection.output == target.output,
-                    case let .leaf(from) = try r.observation.at(selection.input)
-                else { throw Failure(at + ": output or input is not the required leaf address") }
-                guard try r.sort(from) == r.sort(target.source) else { throw Failure(at + ": selected sort differs") }
-                switch selection.basis {
-                case .address:
-                    guard from == target.source else { throw Failure(at + ".basis: different source addresses are not identical") }
-                case let .sourceRelation(steps):
-                    guard !steps.isEmpty, steps.count <= 100_000 else { throw Failure(at + ".basis: expected a finite E-path") }
-                    var current = from
-                    for (stepIndex, step) in steps.enumerated() {
-                        let here = at + ".basis.path[\(stepIndex)]"
-                        guard remainingSteps > 0 else { throw Failure(here + ": replay work limit") }
-                        remainingSteps -= 1
-                        guard let edge = edges[step.edge] else { throw Failure(here + ": no declared E-edge at this address") }
-                        let a = step.reversed ? edge.right : edge.left
-                        let b = step.reversed ? edge.left : edge.right
-                        guard current == a else { throw Failure(here + ": discontinuous E-path") }
-                        current = b
-                    }
-                    guard current == target.source else { throw Failure(at + ".basis: E-path ends at another source leaf") }
-                case .observedValues:
-                    throw Failure(at + ".basis: observed value coincidence is not source equality")
-                }
+            guard certificate.retention == nil else {
+                throw Failure("certificate.retention: no residual is needed by a constructed continuation")
             }
-            guard program == (try assembledProgram(r.question, inputs: selections.map(\.input))) else {
-                throw Failure("certificate.program: assembled term differs from the selected addresses")
-            }
+            try verifyRelatedProgram(selections, program: program, reading: r, address: "certificate")
             return true
         case let .obstructed(obstruction):
             let all = r.source.leaves
@@ -384,11 +404,63 @@ extension ContinuationCourt {
             if let residue = obstruction.residue {
                 try verifyResidue(residue, classes: obstruction.classes, blocks: blocks, reading: r, edges: edges)
             }
+            if let retention = certificate.retention {
+                try verifyRelatedRetentionPlan(retention, obstruction: obstruction, blocks: blocks, reading: r)
+            }
             return false
         }
     }
+    // A balanced product gives a declared shape without a unit or opaque constant.
+    // Nil denotes no additional carrier; it is not a leaf of any sort.
+    static func retainedPlaces(_ leaves: [Path]) -> Places? {
+        guard !leaves.isEmpty else { return nil }
+        func build(_ lower: Int, _ upper: Int) -> Places {
+            if upper - lower == 1 { return .leaf(leaves[lower]) }
+            let middle = lower + (upper - lower) / 2
+            return .pair(build(lower, middle), build(middle, upper))
+        }
+        return build(0, leaves.count)
+    }
+    // Called only after the original obstruction and its exact class proof hold.
+    static func verifyRelatedRetentionPlan(_ retention: RelatedRetention, obstruction: Obstruction,
+                                          blocks: [Path: Int], reading r: RelatedReading) throws {
+        guard let residue = obstruction.residue else {
+            throw Failure("certificate.retention: exact residue proof is required for minimality")
+        }
+        guard retention.leaves.count == residue.needed.count else {
+            throw Failure("certificate.retention.leaves: expected exactly one leaf per missing class")
+        }
+        let required = Set(residue.needed.map(\.block))
+        var supplied: Set<Int> = []
+        for (index, path) in retention.leaves.enumerated() {
+            do {
+                _ = try r.sort(path)
+                guard let block = blocks[path], required.contains(block), supplied.insert(block).inserted else {
+                    throw Failure("not a distinct required missing E-class")
+                }
+            } catch { throw Failure("certificate.retention.leaves[\(index)]: " + String(describing: error)) }
+        }
+        guard let m = retainedPlaces(retention.leaves) else {
+            throw Failure("certificate.retention: an empty residual has no additional carrier")
+        }
+        guard retention.view == (try assembledProgram(m, inputs: retention.leaves)) else {
+            throw Failure("certificate.retention.view: assembled source view differs from its addresses")
+        }
+        let joint = RelatedReading(source: r.source, observation: .pair(r.observation, m),
+                                   question: r.question, edges: r.edges)
+        try verifyRelatedProgram(retention.selections, program: retention.program,
+                                 reading: joint, address: "certificate.retention")
+    }
+    static func verifyRelatedRetention(_ request: String, certificate: RelatedCertificate,
+                                      source: StructuralSource, constructor: String = "Paired") throws -> Int {
+        if try verifyRelated(request, certificate: certificate, source: source, constructor: constructor) { return 0 }
+        guard let retention = certificate.retention else {
+            throw Failure("certificate.retention: no retained view and decoder were presented")
+        }
+        return retention.leaves.count
+    }
     static func deriveRelated(_ request: String, source: StructuralSource,
-                              constructor: String = "Paired") throws -> RelatedCertificate {
+                              constructor: String = "Paired", retain: Bool = false) throws -> RelatedCertificate {
         let c = try Context(request, source: source, constructor: constructor)
         func route(_ field: String) throws -> RouteProof {
             do { return try deriveRoute(.field(c.root, field), context: c) }
@@ -406,6 +478,23 @@ extension ContinuationCourt {
                 : route("Equalities"),
             conclusion: .constructed([], .pick([])))
         let r = try relatedReading(request, certificate: certificate, source: source, constructor: constructor)
+        certificate.conclusion = try constructRelated(r)
+        if retain, case let .obstructed(obstruction) = certificate.conclusion,
+            let residue = obstruction.residue {
+            let leaves = residue.needed.map { obstruction.classes[$0.block].leaves[0] }
+            guard let m = retainedPlaces(leaves) else { throw Failure("certificate.retention: missing source classes") }
+            let joint = RelatedReading(source: r.source, observation: .pair(r.observation, m),
+                                       question: r.question, edges: r.edges)
+            guard case let .constructed(selections, program) = try constructRelated(joint) else {
+                throw Failure("certificate.retention: joint view does not cover Question")
+            }
+            certificate.retention = try RelatedRetention(leaves: leaves,
+                view: assembledProgram(m, inputs: leaves), selections: selections, program: program)
+        }
+        _ = try verifyRelated(request, certificate: certificate, source: source, constructor: constructor)
+        return certificate
+    }
+    static func constructRelated(_ r: RelatedReading) throws -> RelatedConclusion {
         var adjacent: [Path: [(Path, EqualityStep)]] = [:]
         for edge in r.edges {
             adjacent[edge.left, default: []].append((edge.right, EqualityStep(edge: edge.address, reversed: false)))
@@ -458,9 +547,7 @@ extension ContinuationCourt {
                     connections.append(forest)
                 }
                 let residue = try QuestionResidue(connections: connections, needed: requiredClasses(r, blocks: blocks))
-                certificate.conclusion = .obstructed(Obstruction(question: target.output, classes: classes, residue: residue))
-                _ = try verifyRelated(request, certificate: certificate, source: source, constructor: constructor)
-                return certificate
+                return .obstructed(Obstruction(question: target.output, classes: classes, residue: residue))
             }
             var steps: [EqualityStep] = []
             var endpoint = target.source
@@ -473,26 +560,29 @@ extension ContinuationCourt {
             selections.append(Selection(output: target.output, input: route.input,
                                         basis: steps.isEmpty ? .address : .sourceRelation(Array(steps.reversed()))))
         }
-        certificate.conclusion = try .constructed(selections, assembledProgram(r.question, inputs: selections.map(\.input)))
-        _ = try verifyRelated(request, certificate: certificate, source: source, constructor: constructor)
-        return certificate
+        return try .constructed(selections, assembledProgram(r.question, inputs: selections.map(\.input)))
     }
     static func encodeRelated(_ certificate: RelatedCertificate) throws -> Data {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        let data = try encoder.encode(RelatedArchive(format: 2, certificate: certificate))
+        let data = try encoder.encode(RelatedArchive(format: certificate.retention == nil ? 2 : 3, certificate: certificate))
         guard data.count <= 8_000_000 else { throw Failure("certificate: output limit") }
         return data
     }
     static func decodeRelated(_ data: Data) throws -> RelatedCertificate {
         guard data.count <= 8_000_000 else { throw Failure("certificate: input limit") }
         let archive = try JSONDecoder().decode(RelatedArchive.self, from: data)
-        guard archive.format == 2 else { throw Failure("certificate: expected related continuation format 2") }
+        guard (archive.format == 2 && archive.certificate.retention == nil)
+                || (archive.format == 3 && archive.certificate.retention != nil) else {
+            throw Failure("certificate: expected format 2 without retention or format 3 with retention")
+        }
         return archive.certificate
     }
     static func runRelations(_ arguments: [String], replay: Bool) {
         do {
             var args = arguments
+            let retain = args.first == "--retain"
+            if retain { args.removeFirst() }
             var output: String?
             var saved: RelatedCertificate?
             if replay {
@@ -504,12 +594,18 @@ extension ContinuationCourt {
                 output = args.removeFirst()
             }
             guard args.count >= 2 else {
-                throw Failure("usage: judge continue --relations [--certificate output.json] Request source.swift ...; replay-continuation --relations certificate.json Request source.swift ...")
+                throw Failure("usage: judge continue --relations [--retain] [--certificate output.json] Request source.swift ...; replay-continuation --relations [--retain] certificate.json Request source.swift ...")
             }
             let request = args.removeFirst()
             let source = try StructuralSource(files: args.map { ($0, try String(contentsOfFile: $0, encoding: .utf8)) })
-            let certificate = try saved ?? deriveRelated(request, source: source)
-            let holds = try verifyRelated(request, certificate: certificate, source: source)
+            let certificate = try saved ?? deriveRelated(request, source: source, retain: retain)
+            let holds: Bool
+            if retain {
+                _ = try verifyRelatedRetention(request, certificate: certificate, source: source)
+                holds = true
+            } else {
+                holds = try verifyRelated(request, certificate: certificate, source: source)
+            }
             let bytes = try encodeRelated(certificate)
             if let output { try bytes.write(to: URL(fileURLWithPath: output), options: .atomic) }
             FileHandle.standardOutput.write(bytes + Data("\n".utf8))

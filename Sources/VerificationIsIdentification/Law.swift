@@ -396,8 +396,9 @@ import Notation
 /// §T translates theorems. This table translates the constructs an ordinary
 /// programmer reaches for. Each row is exhibited in this package, not proposed. The test
 /// before writing any runtime: does the construct *decide* something? Then its
-/// home is types. Does it only *carry* bytes across the world's edge? Then its
-/// home is a named door.
+/// home is types. Does it read bytes the medium has not described? Then it
+/// must emit a derivation for a checker, as the paragraph after the table
+/// sets out.
 ///
 /// | Ordinary construct | Becomes | Exhibited by |
 /// | --- | --- | --- |
@@ -413,23 +414,34 @@ import Notation
 /// | a string identity | `typeName`, read off the type | every rendered page |
 /// | a pure function's call | a generic type applied to its argument | `Succ<N>`, `PageSlug<X>` |
 ///
-/// What never translates: contact with the world. The medium is the type
-/// system (§0′), so a compiler run, bytes and a physical act lie outside its
-/// carrier, and each needs one named door. The first is the given judge: §0′
-/// assigns every reading to the type checker, so the medium presupposes it.
-/// Inspecting that checker from inside is relative to a stated transition
-/// and reference (Play Is Proof PP21). A judge moved outside the medium meets
-/// the same bound on its own codes: no total evaluator represents the
-/// complement of its own diagonal (PP15). The second is a program that
-/// carries an external byte grammar into atoms and classifies nothing, a
-/// transcriber. The third is the physical act. Each door must record its
-/// relation, carrier and grounds. A reader that decides which bytes matter
-/// carries domain logic. Its relation must then be declared as types. A
-/// court, a checker with a declared calculus, must check the derivation the
-/// reader emits over every input byte. Any other code outside the medium
-/// needs a proof, in the form of Verdict VC23a, that the type grammar cannot
-/// express its relation. Code without that proof needs a recorded task that
-/// removes it. Such code is debt.
+/// The medium can leave content unidentified and still use it: content
+/// participates through a described relation, as a permutation of the whole
+/// source returns its field a without reading it (VI §1a, §1b). A distinction
+/// that no described relation uses may go undescribed for a question exactly
+/// when the compatible set is nonempty and any two compatible states with
+/// equal retained readings give the same answer, later requests included
+/// (U2c on each class of indistinguishable states, U4 for the continuation).
+/// An action on unknown content needs one admissible program with the
+/// required effect on every compatible case (VI §1a). Three claims are
+/// distinct: a relation is not yet written in the medium, it cannot be
+/// expressed in it, or it does not affect the answer. Each verdict must name
+/// as premises the parts of its grounds that the medium has not judged. The
+/// type checker reads every declaration (§0′), so its correctness is a
+/// premise of each verdict. Inspecting that checker from inside is relative
+/// to a stated transition, reference and readout window (Play Is Proof
+/// PP21). PP15 bounds the expressive completeness of every total evaluator
+/// on its own codes, inside the medium or outside, and forbids no such
+/// inspection. A reader of external bytes must emit a derivation that binds
+/// each reference to a place and accounts for every input byte. A reader
+/// that decides which bytes matter carries domain logic, so its relation
+/// must be declared as types. A court, a checker with a declared calculus,
+/// must check the derivation, and the correctness of its replay is a named
+/// premise. A relation can describe an act together with its acting
+/// content. Whether the act occurred needs grounds about its source, as a
+/// record of a measurement needs grounds for the measured fact. Any other
+/// code outside the medium needs a proof, in the form of Verdict VC23a, that
+/// the type grammar cannot express its relation. Code without that proof
+/// needs a recorded task that removes it. Such code is debt.
 /// The census counts nine declaration kinds per target, with runtime functions
 /// in their own column.
 ///

@@ -22,8 +22,14 @@ enum DefinitionReduction {
         }
         func hash(into hasher: inout Hasher) {
             switch self {
-            case let .application(n, args): hasher.combine(0); hasher.combine(ScalarName(n)); hasher.combine(args)
-            case let .field(e, n): hasher.combine(1); hasher.combine(e); hasher.combine(ScalarName(n))
+            case let .application(n, args):
+                hasher.combine(0)
+                hasher.combine(ScalarName(n))
+                hasher.combine(args)
+            case let .field(e, n):
+                hasher.combine(1)
+                hasher.combine(e)
+                hasher.combine(ScalarName(n))
             }
         }
 

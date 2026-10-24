@@ -10,14 +10,17 @@ struct ScalarName: Hashable {
     }
 }
 
-extension Sequence where Element == String {
+extension Sequence
+where Element == String {
     func containsName(_ name: String) -> Bool { contains { WhereJudge.sameName($0, name) } }
 }
 
 struct NameSet: Sequence, ExpressibleByArrayLiteral, Equatable {
-    private var storage: Set<ScalarName>
+    private
+    var storage: Set<ScalarName>
     init() { storage = [] }
-    init<S: Sequence>(_ words: S) where S.Element == String { storage = Set(words.map(ScalarName.init)) }
+    init<S: Sequence>(_ words: S)
+    where S.Element == String { storage = Set(words.map(ScalarName.init)) }
     init(arrayLiteral elements: String...) { self.init(elements) }
     var count: Int { storage.count }
     var isEmpty: Bool { storage.isEmpty }
@@ -31,19 +34,31 @@ struct NameSet: Sequence, ExpressibleByArrayLiteral, Equatable {
         return (result.inserted, result.memberAfterInsert.text)
     }
     @discardableResult mutating func remove(_ name: String) -> String? { storage.remove(ScalarName(name))?.text }
-    mutating func formUnion<S: Sequence>(_ names: S) where S.Element == String { storage.formUnion(names.map(ScalarName.init)) }
-    func union<S: Sequence>(_ names: S) -> Self where S.Element == String { var result = self; result.formUnion(names); return result }
-    func intersection<S: Sequence>(_ names: S) -> Self where S.Element == String { Self(storage.intersection(names.map(ScalarName.init)).map(\.text)) }
-    func subtracting<S: Sequence>(_ names: S) -> Self where S.Element == String { Self(storage.subtracting(names.map(ScalarName.init)).map(\.text)) }
-    func isSubset<S: Sequence>(of names: S) -> Bool where S.Element == String { storage.isSubset(of: names.map(ScalarName.init)) }
-    func isDisjoint<S: Sequence>(with names: S) -> Bool where S.Element == String { storage.isDisjoint(with: names.map(ScalarName.init)) }
+    mutating func formUnion<S: Sequence>(_ names: S)
+    where S.Element == String { storage.formUnion(names.map(ScalarName.init)) }
+    func union<S: Sequence>(_ names: S) -> Self
+    where S.Element == String {
+        var result = self
+        result.formUnion(names)
+        return result
+    }
+    func intersection<S: Sequence>(_ names: S) -> Self
+    where S.Element == String { Self(storage.intersection(names.map(ScalarName.init)).map(\.text)) }
+    func subtracting<S: Sequence>(_ names: S) -> Self
+    where S.Element == String { Self(storage.subtracting(names.map(ScalarName.init)).map(\.text)) }
+    func isSubset<S: Sequence>(of names: S) -> Bool
+    where S.Element == String { storage.isSubset(of: names.map(ScalarName.init)) }
+    func isDisjoint<S: Sequence>(with names: S) -> Bool
+    where S.Element == String { storage.isDisjoint(with: names.map(ScalarName.init)) }
 }
 
 struct NameMap<Value>: Sequence, ExpressibleByDictionaryLiteral {
     typealias Element = (key: String, value: Value)
-    private var storage: [ScalarName: Value]
+    private
+    var storage: [ScalarName: Value]
     init() { storage = [:] }
-    init<S: Sequence>(uniqueKeysWithValues values: S) where S.Element == (String, Value) {
+    init<S: Sequence>(uniqueKeysWithValues values: S)
+    where S.Element == (String, Value) {
         storage = Dictionary(uniqueKeysWithValues: values.map { (ScalarName($0.0), $0.1) })
     }
     init(dictionaryLiteral elements: (String, Value)...) { self.init(uniqueKeysWithValues: elements) }
@@ -72,7 +87,8 @@ struct NameMap<Value>: Sequence, ExpressibleByDictionaryLiteral {
         try Self(uniqueKeysWithValues: storage.filter { try include(($0.key.text, $0.value)) }.map { ($0.key.text, $0.value) })
     }
 }
-extension NameMap: Equatable where Value: Equatable {
+extension NameMap: Equatable
+where Value: Equatable {
     static func == (lhs: Self, rhs: Self) -> Bool {
         guard lhs.count == rhs.count else { return false }
         return lhs.allSatisfy { key, value in
@@ -92,7 +108,8 @@ private struct NameCodingKey: CodingKey {
     init?(stringValue: String) { self.stringValue = stringValue }
     init?(intValue: Int) { return nil }
 }
-extension NameMap: Encodable where Value: Encodable {
+extension NameMap: Encodable
+where Value: Encodable {
     func encode(to encoder: Encoder) throws {
         // Foundation's encoder also keys an object by canonical String. The
         // source guard excludes such pairs; an independently supplied map must
@@ -106,7 +123,8 @@ extension NameMap: Encodable where Value: Encodable {
         for (name, value) in self { try container.encode(value, forKey: NameCodingKey(stringValue: name)!) }
     }
 }
-extension NameMap: Decodable where Value: Decodable {
+extension NameMap: Decodable
+where Value: Decodable {
     init(from decoder: Decoder) throws {
         self.init()
         guard decoder.userInfo[CourtJSON.scalarKeys] as? Bool == true else {

@@ -43,6 +43,31 @@ if __name__ == '__main__' and len(sys.argv) > 1 and sys.argv[1] == '--roster':
         print('roster observation:',case['id'],answer['outcome'])
     print('Court roster observations: %d/%d'%(len(contract['cases']),len(contract['cases'])))
 
+    reading=contract['reading_cases']
+    reading_path=manifest.parent/reading['file']
+    assert hashlib.sha256(reading_path.read_bytes()).hexdigest()==reading['sha256']
+    reading_cases=json.loads(reading_path.read_text())['cases']
+    for case in reading_cases:
+        with tempfile.TemporaryDirectory(prefix='vi-reading-address-') as tmp:
+            paths=[]
+            for name,text in case['files']:
+                source=Path(tmp)/name
+                source.write_bytes(text.encode('utf-8'))
+                paths.append(str(source))
+            result=subprocess.run([args.tools,'judge','roster',*paths,'--protocol',case['protocol']],capture_output=True,text=True)
+            answer=json.loads(result.stdout)
+            assert answer['outcome']==case['outcome'],(case['id'],answer)
+            assert [row['name'] for row in answer['records']]==case['records'],case['id']
+            assert result.returncode==({'holds':0,'not-established':1}.get(case['outcome'],2)),case['id']
+            assert not result.stderr,case['id']
+            if 'diagnostic' in case:
+                expected=str(Path(tmp)/case['diagnostic'])
+                assert len(answer['diagnostics'])==1 and answer['diagnostics'][0].startswith(expected),(case['id'],answer['diagnostics'])
+            else:
+                assert not answer['diagnostics'],case['id']
+            print('reading address observation:',case['id'],answer['outcome'],*answer['diagnostics'])
+    print('Reading address observations: %d/%d'%(len(reading_cases),len(reading_cases)))
+
     # These transformations reference the owner record once, never a copied roster.
     variants=json.loads((ROOT/'Contracts/Checks/law-record-controls.json').read_text())
     original=(ROOT/variants['source']).read_text()

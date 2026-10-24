@@ -35,9 +35,9 @@ extension CountCourt {
             let output = builder.ends[reduction].output
             let rule: SharedRule
             switch try arena.get(output) {
-            case .application("Never", []): rule = .zero
-            case .application("Unit", []): rule = .unit
-            case let .application("Plus", args):
+            case let .application(name, []) where WhereJudge.sameName(name, "Never"): rule = .zero
+            case let .application(name, []) where WhereJudge.sameName(name, "Unit"): rule = .unit
+            case let .application(name, args) where WhereJudge.sameName(name, "Plus"):
                 guard args.count == 2 else { throw Failure("Plus must have exactly two count operands") }
                 rule = .plus(try derive(args[0], depth: depth + 1), try derive(args[1], depth: depth + 1))
             default:
@@ -77,15 +77,15 @@ extension CountCourt {
             let depth: Int
             let edges: Int
             switch (node.rule, try replay.arena.get(output)) {
-            case (.zero, .application("Never", [])):
+            case let (.zero, .application(name, [])) where WhereJudge.sameName(name, "Never"):
                 value = 0
                 depth = 1
                 edges = 1
-            case (.unit, .application("Unit", [])):
+            case let (.unit, .application(name, [])) where WhereJudge.sameName(name, "Unit"):
                 value = 1
                 depth = 1
                 edges = 1
-            case let (.plus(a, b), .application("Plus", args)):
+            case let (.plus(a, b), .application(name, args)) where WhereJudge.sameName(name, "Plus"):
                 guard args.count == 2 else { throw Failure("Plus proof must have exactly two operands") }
                 guard values.indices.contains(a), values.indices.contains(b) else {
                     throw Failure("count proof reference is not earlier than its node")

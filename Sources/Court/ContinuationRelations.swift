@@ -187,7 +187,7 @@ extension ContinuationCourt {
             throw Failure(address + ": expected paired endpoint trees")
         }
         return try pairedPlaces(left, right, address: address) { a, b, path in
-            guard case let .leaf(sa) = try source.at(a), case let .leaf(sb) = try source.at(b), sa == sb else {
+            guard case let .leaf(sa) = try source.at(a), case let .leaf(sb) = try source.at(b), WhereJudge.sameName(sa, sb) else {
                 throw Failure(pathText(address, path) + ": endpoints have different sorts")
             }
         }
@@ -202,25 +202,25 @@ extension ContinuationCourt {
             }
             remaining -= 1
             if mode == .family, case let .field(owner, axis) = e,
-                owner == c.root, axis != "Coverage" {
+                owner == c.root, !WhereJudge.sameName(axis, "Coverage") {
                 return try .domain(build(e, .cut, depth + 1))
             }
             if mode == .cut, e == .field(c.root, anchor) {
-                if anchor == "Source" { return .source }
-                if anchor == "Image" { return .image }
-                if anchor == "Output" { return .output }
+                if WhereJudge.sameName(anchor, "Source") { return .source }
+                if WhereJudge.sameName(anchor, "Image") { return .image }
+                if WhereJudge.sameName(anchor, "Output") { return .output }
                 throw Failure("unsupported route anchor")
             }
             switch e {
             case let .application(name, args)
-            where name == c.constructor && args.count == 2:
+            where WhereJudge.sameName(name, c.constructor) && args.count == 2:
                 return try .pair(build(args[0], mode, depth + 1), build(args[1], mode, depth + 1))
             case let .field(owner, axis)
             where owner != c.root:
                 guard mode == .cut else {
                     throw Failure("family leaves must name cut fields")
                 }
-                guard let side = Side(rawValue: axis) else {
+                guard let side = Side(name: axis) else {
                     throw Failure("route uses an unsupported axis: " + axis)
                 }
                 return try .projection(side, build(owner, .cut, depth + 1))
@@ -250,13 +250,13 @@ extension ContinuationCourt {
             switch p {
             case .source:
                 guard mode == .cut else { throw Failure("family leaf needs its cut-field boundary") }
-                guard field == "Source" else { throw Failure("Source anchor outside its declared domain") }
+                guard WhereJudge.sameName(field, "Source") else { throw Failure("Source anchor outside its declared domain") }
                 return (.field(c.root, "Source"), .cut(anchor))
             case .image:
-                guard mode == .cut, field == "Image" else { throw Failure("Image anchor outside its declared output") }
+                guard mode == .cut, WhereJudge.sameName(field, "Image") else { throw Failure("Image anchor outside its declared output") }
                 return (.field(c.root, "Image"), .cut(anchor))
             case .output:
-                guard mode == .cut, field == "Output" else { throw Failure("Output anchor outside its declared shape") }
+                guard mode == .cut, WhereJudge.sameName(field, "Output") else { throw Failure("Output anchor outside its declared shape") }
                 return (.field(c.root, "Output"), .cut(anchor))
             case let .pair(l, r):
                 let a = try walk(l, mode, depth + 1)
@@ -277,7 +277,7 @@ extension ContinuationCourt {
             case let .domain(child):
                 guard mode == .family else { throw Failure("domain boundary outside a family") }
                 let end = try walk(child, .cut, depth + 1)
-                guard case let .field(owner, axis) = end.0, owner == c.root, axis != "Coverage",
+                guard case let .field(owner, axis) = end.0, owner == c.root, !WhereJudge.sameName(axis, "Coverage"),
                     case let .cut(places) = end.1
                 else { throw Failure("domain must be a cut field of this same whole") }
                 return (end.0, .family(.leaf(places)))
@@ -304,7 +304,7 @@ extension ContinuationCourt {
     }
     static func checkWholeAxes(_ sourceProof: ReadProof, routes: [RouteProof], context c: Context,
                                shapes: [ReadProof] = []) throws {
-        var read: Set<String> = []
+        var read: NameSet = []
         func mark(_ expression: E) {
             if case let .field(owner, axis) = expression, owner == c.root { read.insert(axis) }
         }
@@ -363,7 +363,7 @@ extension ContinuationCourt {
     }
     static func relatedReading(_ request: String, certificate: RelatedCertificate,
                                source: StructuralSource, constructor: String = "Paired") throws -> RelatedReading {
-        guard certificate.request == request, certificate.constructor == constructor else {
+        guard WhereJudge.sameName(certificate.request, request), WhereJudge.sameName(certificate.constructor, constructor) else {
             throw Failure("certificate: request or constructor substituted")
         }
         let c = try Context(request, source: source, constructor: constructor)
@@ -426,7 +426,7 @@ extension ContinuationCourt {
             guard !block.leaves.isEmpty else { throw Failure("\(at)[\(index)]: empty class") }
             for path in block.leaves {
                 do {
-                    guard try whole.sort(path) == block.sort, blocks.updateValue(index, forKey: path) == nil else {
+                    guard try WhereJudge.sameName(whole.sort(path), block.sort), blocks.updateValue(index, forKey: path) == nil else {
                         throw Failure("repeated leaf or different sort")
                     }
                 } catch { throw Failure("\(at)[\(index)]: " + String(describing: error)) }
@@ -510,7 +510,7 @@ extension ContinuationCourt {
             guard selection.output == target.output,
                 case let .leaf(from) = input
             else { throw Failure(at + ": output or input is not the required leaf address") }
-            guard try r.sort(from) == r.sort(target.source) else { throw Failure(at + ": selected sort differs") }
+            guard try WhereJudge.sameName(r.sort(from), r.sort(target.source)) else { throw Failure(at + ": selected sort differs") }
             try verifyEqualityBasis(selection.basis, from: from, to: target.source,
                 edges: edges, at: at + ".basis", stepField: basisStepField, remainingSteps: &remainingSteps)
         }
@@ -547,7 +547,7 @@ extension ContinuationCourt {
             }
             let sort = try r.sort(missing)
             for leaf in r.observation.leaves
-            where try r.sort(leaf.source) == sort {
+            where try WhereJudge.sameName(r.sort(leaf.source), sort) {
                 guard blocks[leaf.source] != block else {
                     throw Failure("certificate.partition.question: partition does not separate the required class from Observation")
                 }
@@ -707,7 +707,7 @@ extension ContinuationCourt {
     }
     static func decodeRelated(_ data: Data) throws -> RelatedCertificate {
         guard data.count <= relatedArchiveLimit else { throw Failure("certificate: input limit") }
-        let archive = try JSONDecoder().decode(RelatedArchive.self, from: data)
+        let archive = try CourtJSON.decoder().decode(RelatedArchive.self, from: data)
         let c = archive.certificate
         let old = c.repetition == nil && c.dynamics == nil && c.actions == nil && c.hiddenActions == nil
         guard (old && archive.format == 2 && c.retention == nil)
@@ -754,7 +754,7 @@ extension ContinuationCourt {
                 throw Failure("usage: judge continue --relations [--retain|--actions|--repeat|--image|--agreement] [--certificate output.json] Request source.swift ...; replay-continuation --relations [--retain|--actions|--repeat|--image|--agreement] certificate.json Request source.swift ...")
             }
             let request = args.removeFirst()
-            let source = try StructuralSource(files: args.map { ($0, try String(contentsOfFile: $0, encoding: .utf8)) })
+            let source = try StructuralSource(files: args.map { ($0, try String(contentsOfFile: $0, encoding: .utf8)) }, arguments: [("request", request)])
             let holds: Bool
             let bytes: Data
             if agreement {

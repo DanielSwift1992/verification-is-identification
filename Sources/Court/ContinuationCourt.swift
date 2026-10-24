@@ -8,11 +8,25 @@ enum ContinuationCourt {
     typealias E = R.Expression
     typealias Failure = R.Failure
 
-    enum Side: String, Codable, Hashable { case left = "Left", right = "Right" }
+    enum Side: String, Codable, Hashable {
+        case left = "Left", right = "Right"
+        init?(name: String) {
+            if WhereJudge.sameName(name, "Left") { self = .left }
+            else if WhereJudge.sameName(name, "Right") { self = .right }
+            else { return nil }
+        }
+    }
     typealias Path = [Side]
 
     indirect enum Shape: Equatable {
         case leaf(String), pair(Shape, Shape)
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            switch (lhs, rhs) {
+            case let (.leaf(a), .leaf(b)): return WhereJudge.sameName(a, b)
+            case let (.pair(a, b), .pair(c, d)): return a == c && b == d
+            default: return false
+            }
+        }
 
         func at(_ path: Path) throws -> Shape {
             var node = self
@@ -110,7 +124,7 @@ enum ContinuationCourt {
         let request: String
         let constructor: String
         let parameters: [String]
-        let rigid: Set<String>
+        let rigid: NameSet
         let root: E
         var raw: R.Source { R.Source(world: source.syntax, rigid: rigid) }
 
@@ -124,12 +138,12 @@ enum ContinuationCourt {
             else { throw Failure("unknown request declaration") }
             self.parameters = d.parameters
             let variables = d.parameters.indices.map { "$continuation\($0)" }
-            self.rigid = Set(variables)
+            self.rigid = NameSet(variables)
             self.root = .application(request, variables.map { .application($0, []) })
             try checkFoundation()
             _ = try declaration(request)
             guard ["enum", "struct"].contains(d.kind), d.parents.isEmpty, !d.parameters.isEmpty,
-                Set(d.parameters).isDisjoint(with: Set(["Self"] + requiredFields)),
+                NameSet(d.parameters).isDisjoint(with: NameSet(["Self"] + requiredFields)),
                 requiredFields.allSatisfy({ d.fields[$0] != nil }),
                 structureParameters(d)
             else {
@@ -158,13 +172,13 @@ enum ContinuationCourt {
 
         func structureParameters(_ d: StructuralSource.Declaration) -> Bool {
             let required = d.requirements.compactMap { r -> String? in
-                guard r.kind == .member, r.right == "Structure",
+                guard r.kind == .member, WhereJudge.sameName(r.right, "Structure"),
                     let term = try? R.parse(r.left), case let .application(name, args) = term,
-                    args.isEmpty, d.parameters.contains(name)
+                    args.isEmpty, d.parameters.containsName(name)
                 else { return nil }
                 return name
             }
-            return required.count == d.requirements.count && Set(required) == Set(d.parameters)
+            return required.count == d.requirements.count && NameSet(required) == NameSet(d.parameters)
         }
 
         func checkFoundation() throws {
@@ -175,15 +189,15 @@ enum ContinuationCourt {
                     $0.kind == "protocol" && $0.parameters.isEmpty && $0.fields.isEmpty
                 }),
                 structure.parents.isEmpty, structure.requirements.isEmpty, structure.axes.isEmpty,
-                open.parents == ["Structure"], open.requirements.isEmpty, open.axes.count == 1,
-                open.axes[0].name == "Body", open.axes[0].fallback == "Never",
+                WhereJudge.sameNames(open.parents, ["Structure"]), open.requirements.isEmpty, open.axes.count == 1,
+                WhereJudge.sameName(open.axes[0].name, "Body"), WhereJudge.sameName(open.axes[0].fallback, "Never"),
                 open.axes[0].constraints.count == 1,
                 open.axes[0].constraints[0]
                     == .init(kind: .member, left: "Body", right: "Structure"),
-                pair.parents == ["Open"], pair.requirements.isEmpty,
-                Set(pair.axes.map(\.name)) == ["Left", "Right"], pair.axes.count == 2,
+                WhereJudge.sameNames(pair.parents, ["Open"]), pair.requirements.isEmpty,
+                NameSet(pair.axes.map(\.name)) == ["Left", "Right"], pair.axes.count == 2,
                 pair.axes.allSatisfy({ $0.constraints.isEmpty && $0.fallback == nil }),
-                null.parents == ["Pair"], null.axes.isEmpty,
+                WhereJudge.sameNames(null.parents, ["Pair"]), null.axes.isEmpty,
                 null.requirements == [.init(kind: .equal, left: "Left", right: "Right")]
             else {
                 throw Failure(
@@ -191,7 +205,7 @@ enum ContinuationCourt {
             }
             let c = try declaration(constructor)
             guard ["enum", "struct"].contains(c.kind), c.parameters.count == 2,
-                c.parents == ["Pair"], structureParameters(c),
+                WhereJudge.sameNames(c.parents, ["Pair"]), structureParameters(c),
                 ["Left", "Right"].allSatisfy({
                     !["private", "fileprivate"].contains(c.fieldAccess[$0] ?? "internal")
                 }),
@@ -204,7 +218,7 @@ enum ContinuationCourt {
 
         /// A guard may only address an argument or its exposed pair fields.
         /// Opaque Structure does not imply Pair; no implicit extra axis is read.
-        func bound(_ expression: E, _ values: [String: Shape]) throws -> Shape {
+        func bound(_ expression: E, _ values: NameMap<Shape>) throws -> Shape {
             switch expression {
             case let .application(name, args):
                 guard args.isEmpty, let value = values[name] else {
@@ -212,7 +226,7 @@ enum ContinuationCourt {
                 }
                 return value
             case let .field(owner, axis):
-                guard let side = Side(rawValue: axis) else {
+                guard let side = Side(name: axis) else {
                     throw Failure("guard uses an unsupported axis")
                 }
                 return try bound(owner, values).at([side])
@@ -226,13 +240,13 @@ enum ContinuationCourt {
             guard d.parameters.count == args.count, args == arguments.map({ $0.0 }) else {
                 throw Failure("definition argument proof belongs to another application")
             }
-            let values = Dictionary(uniqueKeysWithValues: zip(d.parameters, arguments.map { $0.1 }))
+            let values = NameMap(uniqueKeysWithValues: zip(d.parameters, arguments.map { $0.1 }))
             for requirement in d.requirements {
                 let l = try bound(R.parse(requirement.left), values)
                 switch requirement.kind {
                 case .member:
-                    if requirement.right == "Structure" { continue }
-                    if requirement.right == "Pair", case .pair = l { continue }
+                    if WhereJudge.sameName(requirement.right, "Structure") { continue }
+                    if WhereJudge.sameName(requirement.right, "Pair"), case .pair = l { continue }
                     throw Failure(
                         "unproved or unsupported application guard: \(requirement.left) : \(requirement.right)"
                     )
@@ -264,8 +278,8 @@ enum ContinuationCourt {
         }
 
         // Inspect an already replayed shape proof, including definition arguments.
-        func fieldsRead(_ proof: ReadProof) -> Set<String> {
-            var fields: Set<String> = []
+        func fieldsRead(_ proof: ReadProof) -> NameSet {
+            var fields: NameSet = []
             func walk(_ p: ReadProof) {
                 switch p {
                 case .leaf: break
@@ -292,12 +306,12 @@ enum ContinuationCourt {
                 switch e {
                 case let .application(name, args):
                     if rigid.contains(name), args.isEmpty { return .leaf(name) }
-                    if name == constructor, args.count == 2 {
+                    if WhereJudge.sameName(name, constructor), args.count == 2 {
                         return try .pair(build(args[0], depth + 1), build(args[1], depth + 1))
                     }
                 case let .field(owner, axis):
                     if owner != root {
-                        guard let side = Side(rawValue: axis) else {
+                        guard let side = Side(name: axis) else {
                             throw Failure("unknown projection \(axis)")
                         }
                         return try .projection(side, build(owner, depth + 1))
@@ -365,12 +379,12 @@ enum ContinuationCourt {
         let q = try c.derive(.field(c.root, "Question"))
         let ss = try c.replay(s).1, ps = try c.replay(p).1, qs = try c.replay(q).1
         try checkCoverage(source: ss, observation: ps, question: qs)
-        let observed = Set(ps.leaves.map { $0.1 })
-        var missing: [Missing] = [], included: Set<String> = []
+        let observed = NameSet(ps.leaves.map { $0.1 })
+        var missing: [Missing] = [], included: NameSet = []
         for (path, name) in qs.leaves
         where !observed.contains(name) && included.insert(name).inserted {
             guard let sourcePath = ss.leaves.first(
-                where: { $0.1 == name }
+                where: { WhereJudge.sameName($0.1, name) }
             )?.0 else {
                 throw Failure("question outside source")
             }
@@ -378,7 +392,7 @@ enum ContinuationCourt {
         }
         let residual = bundle(try missing.map { try ss.at($0.source) })
         let input = residual.map { Shape.pair(ps, $0) } ?? ps
-        var available: [String: Path] = [:]
+        var available: NameMap<Path> = [:]
         for (path, name) in input.leaves
         where available[name] == nil { available[name] = path }
         func program(_ shape: Shape) throws -> Program {
@@ -399,8 +413,8 @@ enum ContinuationCourt {
     }
 
     static func checkCoverage(source: Shape, observation: Shape, question: Shape) throws {
-        let names = Set(source.leaves.map { $0.1 })
-        guard Set((observation.leaves + question.leaves).map { $0.1 }).isSubset(of: names) else {
+        let names = NameSet(source.leaves.map { $0.1 })
+        guard NameSet((observation.leaves + question.leaves).map { $0.1 }).isSubset(of: names) else {
             throw Failure("observation or question introduces a leaf absent from Source")
         }
     }
@@ -409,7 +423,7 @@ enum ContinuationCourt {
         _ request: String, certificate: Certificate, source: StructuralSource,
         constructor: String = "Paired"
     ) throws -> Checked {
-        guard certificate.request == request, certificate.constructor == constructor else {
+        guard WhereJudge.sameName(certificate.request, request), WhereJudge.sameName(certificate.constructor, constructor) else {
             throw Failure("certificate belongs to another request")
         }
         let c = try Context(request, source: source, constructor: constructor)
@@ -421,8 +435,8 @@ enum ContinuationCourt {
             throw Failure("source, observation or question endpoint substituted")
         }
         try checkCoverage(source: s.1, observation: p.1, question: q.1)
-        let observed = Set(p.1.leaves.map { $0.1 })
-        var seen: Set<String> = [], residualLeaves: [Shape] = []
+        let observed = NameSet(p.1.leaves.map { $0.1 })
+        var seen: NameSet = [], residualLeaves: [Shape] = []
         for missing in certificate.missing {
             let a = try s.1.at(missing.source), b = try q.1.at(missing.question)
             guard case let .leaf(name) = a, a == b, !observed.contains(name),
@@ -502,7 +516,7 @@ enum ContinuationCourt {
     }
     static func decode(_ data: Data) throws -> Certificate {
         guard data.count <= 8_000_000 else { throw Failure("certificate exceeds input limit") }
-        let archive = try JSONDecoder().decode(Archive.self, from: data)
+        let archive = try CourtJSON.decoder().decode(Archive.self, from: data)
         guard archive.format == 1 else { throw Failure("unsupported certificate format") }
         return archive.certificate
     }
@@ -536,7 +550,7 @@ enum ContinuationCourt {
             }
             let request = args.removeFirst()
             let source = try StructuralSource(
-                files: args.map { ($0, try String(contentsOfFile: $0, encoding: .utf8)) })
+                files: args.map { ($0, try String(contentsOfFile: $0, encoding: .utf8)) }, arguments: [("request", request)])
             let proof = try saved ?? derive(request, source: source)
             _ = try verify(request, certificate: proof, source: source)
             if let archivePath {

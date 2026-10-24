@@ -5,14 +5,22 @@ import Foundation
 struct StructuralSource {
     typealias Failure = DefinitionReduction.Failure
     struct AddressedFailure: Error, CustomStringConvertible {
+        enum Issue { case duplicateDeclaration(String) }
         let description: String
-        init(_ description: String) { self.description = description }
+        let issue: Issue?
+        init(_ description: String, issue: Issue? = nil) {
+            self.description = description
+            self.issue = issue
+        }
     }
     struct Requirement: Equatable {
         enum Kind { case equal, member }
         let kind: Kind
         let left: String
         let right: String
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            lhs.kind == rhs.kind && WhereJudge.sameName(lhs.left, rhs.left) && WhereJudge.sameName(lhs.right, rhs.right)
+        }
     }
     struct Axis {
         let name: String
@@ -25,23 +33,23 @@ struct StructuralSource {
         let parameters: [String]
         let parents: [String]
         let requirements: [Requirement]
-        var fields: [String: String]
-        var fieldAccess: [String: String] = [:]
+        var fields: NameMap<String>
+        var fieldAccess: NameMap<String> = [:]
         let axes: [Axis]
         let alias: String?
         var unsupported: [String]
         let bodyWitness: Bool
         let origin: String
     }
-    var declarations: [String: Declaration] = [:]
+    var declarations: NameMap<Declaration> = [:]
     // Preserved for clients which emit declarations into a separate Swift file.
     // This does not change the existing relation/application judgements.
-    var access: [String: String] = [:]
-    var extensions: [String: [Declaration]] = [:]
-    var defaultProviders: [String: [String: String]] = [:]
+    var access: NameMap<String> = [:]
+    var extensions: NameMap<[Declaration]> = [:]
+    var defaultProviders: NameMap<NameMap<String>> = [:]
     var syntax = WhereJudge.World()
     var excludedConditionals = 0
-    var conditionalSubjects: Set<String> = []
+    var conditionalSubjects: NameSet = []
 
     struct Address: Codable, Equatable {
         let path: String
@@ -49,206 +57,39 @@ struct StructuralSource {
         let start: Int
         let end: Int
         func matches(_ other: Address) -> Bool {
-            Data(path.utf8) == Data(other.path.utf8) && line == other.line && start == other.start && end == other.end
+            WhereJudge.sameName(path, other.path) && line == other.line && start == other.start && end == other.end
         }
+        static func == (lhs: Self, rhs: Self) -> Bool { lhs.matches(rhs) }
     }
     struct Literal: Codable, Equatable {
         let at: Address
         let bytes: String
         let judged: Bool
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            lhs.at == rhs.at && WhereJudge.sameName(lhs.bytes, rhs.bytes) && lhs.judged == rhs.judged
+        }
     }
-    struct Lexed {
-        var words: [String] = []
-        var starts: [Int] = []
-        var ends: [Int] = []
-        var lines: [Int] = []
-        var literals: [Int: Range<Int>] = [:]
-        var interpolated: Set<Int> = []
-    }
-    var addresses: [String: Address] = [:]
-    var extensionAddresses: [String: Address] = [:]
-    var literals: [String: Literal] = [:]
+    typealias Lexed = WhereJudge.Lexed
+    var addresses: NameMap<Address> = [:]
+    var extensionAddresses: NameMap<Address> = [:]
+    var literals: NameMap<Literal> = [:]
 
+    struct Token: Codable, Equatable {
+        let word: String
+        let bytes: Range<Int>
+        static func == (lhs: Token, rhs: Token) -> Bool {
+            lhs.bytes == rhs.bytes && WhereJudge.sameName(lhs.word, rhs.word)
+        }
+    }
     static func tokens(_ source: String) throws -> [String] {
         try scan(source).words
     }
 
-    /// The roster uses the same scanner, retaining original byte coordinates.
-    /// Literal contents are carried without evaluating Swift escapes or values.
-    static func scan(_ source: String, carrying: Bool = false) throws -> Lexed {
-        let chars = Array(carrying ? source : WhereJudge.sourceLines(source))
-        var offsets = [0], lines = [1]
-        if carrying {
-            for c in chars {
-                offsets.append(offsets.last! + String(c).utf8.count)
-                lines.append(lines.last! + ((c == "\n" || c == "\r\n" || c == "\r") ? 1 : 0))
-            }
-        }
-        func newline(_ c: Character) -> Bool { c == "\n" || (carrying && (c == "\r\n" || c == "\r")) }
-        var result = Lexed(), i = 0, interpolationCount = 0
-        func emit(_ word: String, from start: Int, to end: Int) {
-            result.words.append(word)
-            if carrying {
-                result.starts.append(offsets[start])
-                result.ends.append(offsets[end])
-                result.lines.append(lines[start])
-            }
-        }
-        func rawStringBegins() -> Bool {
-            guard i < chars.count, chars[i] == "#" else { return false }
-            var j = i
-            while j < chars.count, chars[j] == "#" { j += 1 }
-            return j < chars.count && chars[j] == "\""
-        }
-        func skipString() throws {
-            let triple = i + 2 < chars.count && chars[i + 1] == "\"" && chars[i + 2] == "\""
-            i += triple ? 3 : 1
-            while i < chars.count {
-                if chars[i] == "\\" {
-                    if i + 1 < chars.count, chars[i + 1] == "(" {
-                        interpolationCount += 1
-                        i += 2
-                        try skipInterpolation()
-                    } else {
-                        i += min(2, chars.count - i)
-                    }
-                    continue
-                }
-                if chars[i] == "\"",
-                    !triple || (i + 2 < chars.count && chars[i + 1] == "\"" && chars[i + 2] == "\"")
-                {
-                    i += triple ? 3 : 1
-                    return
-                }
-                i += 1
-            }
-            throw Failure("unterminated string")
-        }
-        func skipInterpolation() throws {
-            var depth = 1
-            while i < chars.count {
-                if rawStringBegins() {
-                    throw Failure("raw string literals are outside structural reader scope")
-                }
-                if chars[i] == "\"" {
-                    try skipString()
-                    continue
-                }
-                if i + 1 < chars.count, chars[i] == "/", chars[i + 1] == "/" {
-                    i += 2
-                    while i < chars.count, !newline(chars[i]) { i += 1 }
-                    continue
-                }
-                if i + 1 < chars.count, chars[i] == "/", chars[i + 1] == "*" {
-                    i += 2
-                    var comments = 1
-                    while i < chars.count, comments > 0 {
-                        if i + 1 < chars.count, chars[i] == "/", chars[i + 1] == "*" {
-                            comments += 1
-                            i += 2
-                        } else if i + 1 < chars.count, chars[i] == "*", chars[i + 1] == "/" {
-                            comments -= 1
-                            i += 2
-                        } else {
-                            i += 1
-                        }
-                    }
-                    if comments != 0 { throw Failure("unterminated interpolation comment") }
-                    continue
-                }
-                if chars[i] == "(" { depth += 1 }
-                if chars[i] == ")" {
-                    depth -= 1
-                    if depth == 0 {
-                        i += 1
-                        return
-                    }
-                }
-                i += 1
-            }
-            throw Failure("unterminated string interpolation")
-        }
-        while i < chars.count {
-            let c = chars[i]
-            if c == "\n" || (carrying && (c == "\r\n" || c == "\r")) {
-                emit("\n", from: i, to: i + 1)
-                i += 1
-                continue
-            }
-            if c.isWhitespace {
-                i += 1
-                continue
-            }
-            if c == "/", i + 1 < chars.count, chars[i + 1] == "/" {
-                i += 2
-                while i < chars.count, !newline(chars[i]) { i += 1 }
-                continue
-            }
-            if c == "/", i + 1 < chars.count, chars[i + 1] == "*" {
-                i += 2
-                var depth = 1
-                while i < chars.count, depth > 0 {
-                    if i + 1 < chars.count, chars[i] == "/", chars[i + 1] == "*" {
-                        depth += 1
-                        i += 2
-                    } else if i + 1 < chars.count, chars[i] == "*", chars[i + 1] == "/" {
-                        depth -= 1
-                        i += 2
-                    } else {
-                        if newline(chars[i]) { emit("\n", from: i, to: i + 1) }
-                        i += 1
-                    }
-                }
-                if depth != 0 { throw Failure("unterminated block comment") }
-                continue
-            }
-            if rawStringBegins() {
-                guard carrying else { throw Failure("raw string literals are outside structural reader scope") }
-                let start = i
-                while chars[i] == "#" { i += 1 }
-                let hashes = i - start
-                let quotes = i + 2 < chars.count && chars[i + 1] == "\"" && chars[i + 2] == "\"" ? 3 : 1
-                i += quotes
-                let content = i
-                let closer = Array(String(repeating: "\"", count: quotes) + String(repeating: "#", count: hashes))
-                while i + closer.count <= chars.count && Array(chars[i..<(i + closer.count)]) != closer { i += 1 }
-                guard i + closer.count <= chars.count else { throw Failure("unterminated raw string literal") }
-                result.literals[result.words.count] = offsets[content]..<offsets[i]
-                if String(chars[content..<i]).contains("\\" + String(repeating: "#", count: hashes) + "(") {
-                    result.interpolated.insert(result.words.count)
-                }
-                i += closer.count
-                emit("@literal", from: start, to: i)
-                continue
-            }
-            if c == "\"" {
-                let start = i
-                let quotes = i + 2 < chars.count && chars[i + 1] == "\"" && chars[i + 2] == "\"" ? 3 : 1
-                let before = interpolationCount
-                try skipString()
-                if carrying && interpolationCount != before { result.interpolated.insert(result.words.count) }
-                if carrying { result.literals[result.words.count] = offsets[start + quotes]..<offsets[i - quotes] }
-                emit("@literal", from: start, to: i)
-                continue
-            }
-            if c.isLetter || c == "_" {
-                let start = i
-                i += 1
-                while i < chars.count, chars[i].isLetter || chars[i].isNumber || chars[i] == "_" {
-                    i += 1
-                }
-                emit(String(chars[start..<i]), from: start, to: i)
-                continue
-            }
-            if c == "=", i + 1 < chars.count, chars[i + 1] == "=" {
-                emit("==", from: i, to: i + 2)
-                i += 2
-                continue
-            }
-            emit(String(c), from: i, to: i + 1)
-            i += 1
-        }
-        return result
+    typealias ScanFailure = WhereJudge.LexicalFailure
+    /// Addressed projection of WhereJudge's lexer, not another lexical reader.
+    static func scan(_ source: String, carrying: Bool = false, scope: WhereJudge.LexicalScope = .projection) throws -> Lexed {
+        try WhereJudge.lexicalReading(source, scope: scope,
+                                      carrying: carrying).tape
     }
 
     static func plain(_ tokens: [String]) -> [String] { tokens.filter { $0 != "\n" } }
@@ -329,7 +170,7 @@ struct StructuralSource {
             }
             h.removeFirst(end + 1)
         }
-        if Set(params).count != params.count { errors.append("duplicate generic parameter") }
+        if NameSet(params).count != params.count { errors.append("duplicate generic parameter") }
         var parents: [String] = [], alias: String?
         let whereAt = h.firstIndex(of: "where")
         let prefix = whereAt.map { Array(h[..<$0]) } ?? h
@@ -351,7 +192,7 @@ struct StructuralSource {
         } else if !prefix.isEmpty {
             errors.append("unread header: " + text(prefix))
         }
-        var fields: [String: String] = [:], fieldAccess: [String: String] = [:], axes: [Axis] = [],
+        var fields: NameMap<String> = [:], fieldAccess: NameMap<String> = [:], axes: [Axis] = [],
             bodyWitness = false
         var memberAccess = "internal"
         var i = 0
@@ -373,7 +214,7 @@ struct StructuralSource {
                 i += 1
                 continue
             }
-            if body[i] == "var", i + 1 < body.count, body[i + 1] == "body" { bodyWitness = true }
+            if body[i] == "var", i + 1 < body.count, WhereJudge.sameName(body[i + 1], "body") { bodyWitness = true }
             if body[i] == "enum" || body[i] == "struct" || body[i] == "class" {
                 errors.append("nested type declaration")
             }
@@ -467,109 +308,215 @@ struct StructuralSource {
         return result
     }
 
-    init(files: [(String, String)], notationFiles: [CourtNotation.File] = [], roster: Bool = false) throws {
-        for (origin, source) in files {
-            let lexed: Lexed
-            do { lexed = try Self.scan(source, carrying: roster) }
-            catch {
-                if roster { throw AddressedFailure("\(origin):1: \(error)") }
-                throw error
-            }
-            let ts = lexed.words
-            var i = 0
-            var pendingAccess = "internal"
-            while i < ts.count {
-                if ["public", "internal", "private", "fileprivate", "package", "open"].contains(
-                    ts[i])
-                {
-                    pendingAccess = ts[i]
+    struct Region {
+        let declaration: Declaration
+        let body: [String]
+        let tokenRange: Range<Int>
+        let headerRange: Range<Int>
+    }
+    static func readDeclaration(_ ts: [String], index: inout Int, origin: String) throws -> Region {
+        let start = index, kind = ts[index]
+        index += 1
+        let begin = index
+        let header: [String], body: [String], headerEnd: Int
+        if kind == "typealias" {
+            header = statement(ts, index: &index)
+            headerEnd = begin + header.count
+            body = []
+        } else {
+            while index < ts.count, ts[index] != "{" { index += 1 }
+            headerEnd = index
+            header = Array(ts[begin..<index])
+            body = try balanced(ts, index: &index, open: "{", close: "}")
+        }
+        let d = try declaration(kind: kind, header: header, body: body, origin: origin)
+        return Region(declaration: d, body: body, tokenRange: start..<index, headerRange: begin..<headerEnd)
+    }
+
+    struct ReadingCertificate: Codable {
+        struct Unit: Codable, Equatable {
+            let kind: String
+            let lower: Int
+            let upper: Int
+        }
+        let tokens: [Token]
+        let units: [Unit]
+    }
+    struct FileReading {
+        let origin: String
+        let source: String
+        let lexed: Lexed
+        let scope: ReadingScope
+        let regions: [Region]
+        let certificate: ReadingCertificate
+        let excludedConditionals: Int
+        let conditionalSubjects: NameSet
+        var tokens: [Token] { certificate.tokens }
+    }
+    enum ReadingScope {
+        // Complete flat-declaration grammar, used by both Press and roster.
+        case declarations
+        // Historical structural projection carries executable/conditional
+        // regions without deriving relations from their contents.
+        case projection
+    }
+    /// One complete reading, with an explicit scope for carried productions.
+    /// The scanner starts at byte zero. A comment cannot reset at a submitted
+    /// token boundary, including the base case before the first token.
+    static func regions(_ source: String, origin: String, scope: ReadingScope = .declarations, lexical: WhereJudge.LexicalReading? = nil) throws -> FileReading {
+        if let lexical { return try regions(source, origin: origin, scope: scope, lexed: lexical.tape) }
+        let lexed: Lexed
+        do { lexed = try scan(source, carrying: true, scope: scope == .declarations ? .declarations : .projection) }
+        catch let error as ScanFailure {
+            throw AddressedFailure(error.addressed(origin))
+        }
+        return try regions(source, origin: origin, scope: scope, lexed: lexed)
+    }
+    private static func regions(_ source: String, origin: String, scope: ReadingScope, lexed: Lexed) throws -> FileReading {
+        let ts = lexed.words
+        let located = ts.indices.map { Token(word: ts[$0], bytes: lexed.starts[$0]..<lexed.ends[$0]) }
+        var units: [ReadingCertificate.Unit] = [], regions: [Region] = [], i = 0
+        var excluded = 0, conditionalSubjects: NameSet = [], declared: NameSet = []
+        let qualifiers = ["public", "internal", "private", "fileprivate", "package", "open"]
+        let declarations = ["enum", "struct", "protocol", "extension", "typealias"]
+        func nextAfterQualifiers(_ start: Int) -> Int {
+            var next = start
+            while next < ts.count, ts[next] == "\n" || qualifiers.contains(ts[next]) { next += 1 }
+            return next
+        }
+        while i < ts.count {
+            let start = i, kind = ts[i]
+            do {
+                if ["\n", ";"].contains(kind) {
                     i += 1
-                    continue
-                }
-                if ["import", "let", "var", "func"].contains(ts[i]) { pendingAccess = "internal" }
-                if ts[i] == "#", i + 1 < ts.count, ts[i + 1] == "if" {
-                    if roster { throw AddressedFailure("\(origin):\(lexed.lines[i]): conditional declarations are outside roster scope") }
-                    excludedConditionals += 1
+                } else if qualifiers.contains(kind) {
+                    i += 1
+                    if scope == .declarations {
+                        let next = nextAfterQualifiers(i)
+                        guard next < ts.count, declarations.contains(ts[next]) || ts[next] == "import" else {
+                            throw Failure("unattached qualifier")
+                        }
+                    }
+                } else if kind == "@", i + 1 < ts.count, WhereJudge.sameName(ts[i + 1], "resultBuilder") {
+                    i += 2
+                    let next = nextAfterQualifiers(i)
+                    guard next < ts.count, ["enum", "struct"].contains(ts[next]) else { throw Failure("unattached resultBuilder attribute") }
+                } else if kind == "import" {
+                    i += 1
+                    let path = plain(statement(ts, index: &i))
+                    if scope == .declarations {
+                        guard path.count % 2 == 1, path.enumerated().allSatisfy({ $0.offset % 2 == 0 ? identifier($0.element) : $0.element == "." }) else { throw Failure("unsupported import") }
+                    }
+                } else if declarations.contains(kind) {
+                    let region = try readDeclaration(ts, index: &i, origin: origin)
+                    if kind != "extension", !declared.insert(region.declaration.name).inserted {
+                        throw AddressedFailure("\(origin):\(lexed.lines[start]): duplicate declaration \(region.declaration.name)", issue: .duplicateDeclaration(region.declaration.name))
+                    }
+                    regions.append(region)
+                } else if scope == .projection, kind == "#", i + 1 < ts.count, ts[i + 1] == "if" {
+                    excluded += 1
                     var depth = 1
                     i += 2
                     while i < ts.count, depth > 0 {
-                        // A skipped branch may alter a declaration used outside
-                        // it. Do not silently choose the branch's absence.
-                        if ["enum", "struct", "class", "protocol", "extension", "typealias"]
-                            .contains(ts[i]),
-                            i + 1 < ts.count, Self.identifier(ts[i + 1])
-                        {
-                            conditionalSubjects.insert(ts[i + 1])
-                        }
+                        if (declarations + ["class"]).contains(ts[i]), i + 1 < ts.count, identifier(ts[i + 1]) { conditionalSubjects.insert(ts[i + 1]) }
                         if ts[i] == "#", i + 1 < ts.count {
                             if ts[i + 1] == "if" { depth += 1 }
                             if ts[i + 1] == "endif" { depth -= 1 }
                         }
                         i += 1
                     }
-                    if depth != 0 { throw Failure("unclosed #if in \(origin)") }
-                    pendingAccess = "internal"
+                    guard depth == 0 else { throw Failure("unclosed #if") }
+                } else if scope == .projection {
+                    if kind == "{" { _ = try balanced(ts, index: &i, open: "{", close: "}") }
+                    else { i += 1 }
+                } else {
+                    if kind == "@" { throw Failure("unsupported attribute") }
+                    throw Failure("unread token '\(kind)' is outside structural reader scope")
+                }
+            } catch let error as AddressedFailure { throw error }
+            catch { throw AddressedFailure("\(origin):\(lexed.lines[start]): \(error)") }
+            units.append(.init(kind: kind, lower: start, upper: i))
+        }
+        return FileReading(origin: origin, source: source, lexed: lexed, scope: scope, regions: regions,
+            certificate: ReadingCertificate(tokens: located, units: units),
+            excludedConditionals: excluded, conditionalSubjects: conditionalSubjects)
+    }
+    /// Reading replay is a judgement against the same full-input reader as the
+    /// roster. Correctness of that reader/replayer is an explicit premise.
+    /// Equal tape and production spans preserve coverage, including byte zero;
+    /// a certificate supplies neither an AST nor a second lexical interpretation.
+    static func replayReading(_ proof: ReadingCertificate, source: String, origin: String, lexical: WhereJudge.LexicalReading? = nil) throws -> FileReading {
+        let read = try regions(source, origin: origin, lexical: lexical)
+        guard proof.tokens == read.tokens else {
+            let at = zip(proof.tokens, read.tokens).first { $0 != $1 }?.0.bytes.lowerBound
+                ?? proof.tokens.last?.bytes.upperBound ?? 0
+            let line = (read.lexed.starts.firstIndex { $0 >= at }).map { read.lexed.lines[$0] } ?? 1
+            throw AddressedFailure("\(origin):\(line): lexical certificate disagrees with whole-source reading (byte \(at))")
+        }
+        guard proof.units == read.certificate.units else {
+            throw AddressedFailure("\(origin):1: grammar certificate disagrees with whole-source reading")
+        }
+        return read
+    }
+
+    init(files: [(String, String)], notationFiles: [CourtNotation.File] = [], roster: Bool = false, readings: [FileReading] = [], arguments: [(String, String)] = []) throws {
+        // A FileReading is built by the common grammar judgement, never decoded
+        // from an untrusted AST. Roster applies its stricter member relation below.
+        if !readings.isEmpty || !notationFiles.isEmpty {
+            try WhereJudge.checkWordSpellings(files + readings.map { ($0.origin, $0.source) }
+                + notationFiles.map { ($0.context.source, $0.text) }, arguments: arguments)
+        }
+        let lent = NameSet(try notationFiles.flatMap { try WhereJudge.declaredBuilders($0.world.clean) })
+        let scanned = try WhereJudge.lexicalReadings(files, scope: roster ? .declarations : .projection, lent: lent, arguments: arguments)
+        let presented = try readings + zip(files, scanned).map { file, read in
+            try Self.regions(file.1, origin: file.0, scope: roster ? .declarations : .projection, lexed: read.tape)
+        }
+        for reading in presented {
+            guard !roster || reading.scope == .declarations else {
+                throw AddressedFailure("\(reading.origin):1: roster requires a strict declaration reading")
+            }
+            let origin = reading.origin, lexed = reading.lexed
+            excludedConditionals += reading.excludedConditionals
+            conditionalSubjects.formUnion(reading.conditionalSubjects)
+            var pendingAccess = "internal"
+            var byStart: [Int: Region] = [:]
+            for region in reading.regions { byStart[region.tokenRange.lowerBound] = region }
+            for unit in reading.certificate.units {
+                if ["public", "internal", "private", "fileprivate", "package", "open"].contains(unit.kind) {
+                    pendingAccess = unit.kind
                     continue
                 }
-                let kind = ts[i]
-                if ["enum", "struct", "protocol", "extension", "typealias"].contains(kind) {
-                    let start = i
-                    i += 1
-                    var header: [String] = [], body: [String] = [], bodyStart = i, bodyEnd = i
-                    if kind == "typealias" {
-                        header = Self.statement(ts, index: &i)
-                    } else {
-                        let begin = i
-                        while i < ts.count, ts[i] != "{" { i += 1 }
-                        header = Array(ts[begin..<i])
-                        bodyStart = i + 1
-                        body = try Self.balanced(ts, index: &i, open: "{", close: "}")
-                    }
-                    bodyEnd = max(bodyStart, i - 1)
-                    let d = try Self.declaration(
-                        kind: kind, header: header, body: body, origin: origin)
-                    if roster {
-                        let at = Address(path: origin, line: lexed.lines[start], start: lexed.starts[start], end: lexed.ends[max(start, i - 1)])
-                        guard d.unsupported.isEmpty else { throw AddressedFailure("\(origin):\(at.line): \(d.name): \(d.unsupported.joined(separator: "; "))") }
-                        if kind != "extension" { addresses[d.name] = at }
-                        else if extensionAddresses[d.name] == nil { extensionAddresses[d.name] = at }
-                        let literal = try Self.rosterLiteral(lexed, body: kind == "typealias" ? bodyStart..<bodyStart : bodyStart..<bodyEnd, source: source, origin: origin)
-                        if let literal {
-                            guard literals[d.name] == nil else { throw AddressedFailure("\(origin):\(literal.at.line): duplicate typeName on \(d.name)") }
-                            literals[d.name] = literal
-                        }
-                    }
-                    if kind == "extension" {
-                        extensions[d.name, default: []].append(d)
-                    } else {
-                        guard declarations[d.name] == nil else {
-                            if roster { throw AddressedFailure("\(origin):\(lexed.lines[start]): duplicate declaration \(d.name)") }
-                            throw Failure("duplicate declaration \(d.name)")
-                        }
-                        declarations[d.name] = d
-                        access[d.name] = pendingAccess
-                    }
-                    pendingAccess = "internal"
-                } else if roster && ts[i] == "import" {
-                    i += 1
-                    guard i < ts.count, Self.identifier(ts[i]) else { throw AddressedFailure("\(origin):1: unsupported import") }
-                    i += 1
-                    guard i == ts.count || ["\n", ";"].contains(ts[i]) else { throw AddressedFailure("\(origin):\(lexed.lines[i]): unsupported import suffix") }
-                } else if roster && !["\n", ";"].contains(ts[i]) {
-                    throw AddressedFailure("\(origin):\(lexed.lines[i]): '\(ts[i])' is outside roster declaration scope")
-                } else if ts[i] == "{" {
-                    _ = try Self.balanced(ts, index: &i, open: "{", close: "}")
-                    pendingAccess = "internal"
-                } else {
-                    i += 1
+                guard let region = byStart[unit.lower] else {
+                    if unit.kind != "\n" && unit.kind != ";" && unit.kind != "@" { pendingAccess = "internal" }
+                    continue
                 }
+                let d = region.declaration, start = region.tokenRange.lowerBound, end = region.tokenRange.upperBound
+                let at = Address(path: origin, line: lexed.lines[start], start: lexed.starts[start], end: lexed.ends[end - 1])
+                if roster {
+                    guard d.unsupported.isEmpty else { throw AddressedFailure("\(origin):\(at.line): \(d.name): \(d.unsupported.joined(separator: "; "))") }
+                    let bodyStart = region.headerRange.upperBound + 1
+                    let body = d.kind == "typealias" ? end..<end : bodyStart..<(end - 1)
+                    if let literal = try Self.rosterLiteral(lexed, body: body, source: reading.source, origin: origin) {
+                        guard literals[d.name] == nil else { throw AddressedFailure("\(origin):\(literal.at.line): duplicate typeName on \(d.name)") }
+                        literals[d.name] = literal
+                    }
+                }
+                if d.kind == "extension" {
+                    extensions[d.name, default: []].append(d)
+                    if extensionAddresses[d.name] == nil { extensionAddresses[d.name] = at }
+                } else {
+                    guard declarations[d.name] == nil else { throw AddressedFailure("\(origin):\(at.line): duplicate declaration \(d.name)", issue: .duplicateDeclaration(d.name)) }
+                    declarations[d.name] = d
+                    addresses[d.name] = at
+                    access[d.name] = pendingAccess
+                }
+                pendingAccess = "internal"
             }
         }
         for file in notationFiles {
-            let lent = Set(notationFiles.flatMap { WhereJudge.declaredBuilders($0.world.clean) })
             let clean = try WhereJudge.stripComments(file.text, lent: lent)
             let notation = try NotationScope(clean)
-            for declaration in try notation.structural(clean, origin: file.context.input) {
+            for declaration in try notation.structural(clean, origin: file.context.input, lent: lent) {
                 guard declaration.kind == "enum" || declaration.kind == "struct" || declaration.kind == "protocol" else { continue }
                 declarations[declaration.name] = declaration
             }
@@ -611,7 +558,7 @@ struct StructuralSource {
             }
             guard ["let", "var"].contains(words[n]) else { continue }
             guard n > 0, words[n - 1] == "static", n + 5 < words.count,
-                words[n + 1] == "typeName", words[n + 2] == ":", words[n + 3] == "String"
+                WhereJudge.sameName(words[n + 1], "typeName"), words[n + 2] == ":", WhereJudge.sameName(words[n + 3], "String")
             else { throw AddressedFailure("\(origin):\(lexed.lines[indices[n]]): only a static typeName byte carrier is supported") }
             if words[n + 4] == "{", words[n + 5] == "get", n + 6 < words.count, words[n + 6] == "}" { continue }
             let value = n + 5
@@ -626,8 +573,8 @@ struct StructuralSource {
         return result
     }
 
-    func protocolClosure(_ names: [String]) -> Set<String> {
-        var seen: Set<String> = [], work = names
+    func protocolClosure(_ names: [String]) -> NameSet {
+        var seen: NameSet = [], work = names
         while let p = work.popLast() {
             if seen.insert(p).inserted { work += declarations[p]?.parents ?? [] }
         }
@@ -646,7 +593,7 @@ struct StructuralSource {
             var d = declarations[name]!
             if d.kind == "protocol" {
                 syntax.protocolParents[name] = d.parents
-                syntax.protocolAxes[name] = Set(d.axes.map(\.name))
+                syntax.protocolAxes[name] = NameSet(d.axes.map(\.name))
                 continue
             }
             if d.kind == "typealias" {
@@ -658,7 +605,7 @@ struct StructuralSource {
             }
             var fields = d.fields
             var bodyWitness = d.bodyWitness
-            var conditionalAxes: Set<String> = []
+            var conditionalAxes: NameSet = []
             for e in extensions[name] ?? []
             where !e.requirements.isEmpty && !e.fields.isEmpty {
                 conditionalAxes.formUnion(e.fields.keys)
@@ -674,14 +621,14 @@ struct StructuralSource {
             }
             let parents = conformanceChoices(name).map { $0.0 }
             for axis in conditionalAxes { fields.removeValue(forKey: axis) }
-            var defaults: [String: (String, String)] = [:]
+            var defaults: NameMap<(String, String)> = [:]
             for p in protocolClosure(parents).sorted() {
                 for axis in declarations[p]?.axes ?? [] {
                     guard let value = axis.fallback, fields[axis.name] == nil,
                         !conditionalAxes.contains(axis.name)
                     else { continue }
-                    if axis.name == "Body", bodyWitness { continue }
-                    if let old = defaults[axis.name], old.1 != value {
+                    if WhereJudge.sameName(axis.name, "Body"), bodyWitness { continue }
+                    if let old = defaults[axis.name], !WhereJudge.sameName(old.1, value) {
                         d.unsupported.append("ambiguous default \(axis.name)")
                     }
                     defaults[axis.name] = (p, value)

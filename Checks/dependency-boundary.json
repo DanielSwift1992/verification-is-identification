@@ -2923,16 +2923,6 @@
       "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
     },
     {
-      "path": "Sources/Court/Press.swift",
-      "channel": "text",
-      "line": 9,
-      "name": "showcase",
-      "text": "// stands here or ever will: a system's behaviour is its triples (the showcase's",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
-    },
-    {
       "path": "Sources/Examples/Examples.docc/Examples.md",
       "channel": "text",
       "line": 104,

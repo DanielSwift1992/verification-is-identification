@@ -8,10 +8,29 @@ enum ApplicationCourt {
     typealias E = R.Expression
     typealias Failure = R.Failure
 
-    enum Goal: Hashable {
-        case root(E), form(E), member(E, String), contract(E, String)
+    enum Goal: Hashable, Codable {
+        case root(E), form(E), member(E, String), contract(E, String), equal(E, E)
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            switch (lhs, rhs) {
+            case let (.root(x), .root(y)), let (.form(x), .form(y)): return x == y
+            case let (.member(x, a), .member(y, b)), let (.contract(x, a), .contract(y, b)):
+                return x == y && WhereJudge.sameName(a, b)
+            case let (.equal(a, b), .equal(c, d)): return a == c && b == d
+            default: return false
+            }
+        }
+        func hash(into hasher: inout Hasher) {
+            switch self {
+            case let .root(e): hasher.combine(0); hasher.combine(e)
+            case let .form(e): hasher.combine(1); hasher.combine(e)
+            case let .member(e, n): hasher.combine(2); hasher.combine(e); hasher.combine(ScalarName(n))
+            case let .contract(e, n): hasher.combine(3); hasher.combine(e); hasher.combine(ScalarName(n))
+            case let .equal(a, b): hasher.combine(4); hasher.combine(a); hasher.combine(b)
+            }
+        }
         var text: String {
             switch self {
+            case let .equal(a, b): return a.text + " == " + b.text
             case let .root(e): return "root " + e.text
             case let .form(e): return "form " + e.text
             case let .member(e, p): return e.text + " : " + p
@@ -19,14 +38,16 @@ enum ApplicationCourt {
             }
         }
     }
-    struct Node {
+    struct Node: Codable {
         let reductions: [R.Derivation]
         let dependencies: Set<Goal>
         let prerequisites: Set<Goal>
     }
-    struct Derivation {
-        let root: E
-        var nodes: [Goal: Node]
+    /// One closed graph for every finite set of questions, including roster
+    /// membership and Press bounds. The caller cannot replace its root set.
+    struct Derivation: Codable {
+        let roots: Set<Goal>
+        let nodes: [Goal: Node]
     }
 
     /// A local rule interpreter. During replay, every requested reduction must
@@ -106,7 +127,7 @@ enum ApplicationCourt {
             return ends.output
         }
 
-        func bindings(_ owner: E, protocolName: String? = nil) throws -> [String: E] {
+        func bindings(_ owner: E, protocolName: String? = nil) throws -> NameMap<E> {
             guard case let .application(name, args) = owner else {
                 throw Failure("owner is not exposed: \(owner.text)")
             }
@@ -114,9 +135,9 @@ enum ApplicationCourt {
             guard d.parameters.count == args.count else {
                 throw Failure("wrong argument count for \(owner.text)")
             }
-            var values = Dictionary(uniqueKeysWithValues: zip(d.parameters, args))
+            var values = NameMap(uniqueKeysWithValues: zip(d.parameters, args))
             values["Self"] = owner
-            var axes = Set(source.syntax.conformers[name]?.table.keys.map { $0 } ?? [])
+            var axes = NameSet(source.syntax.conformers[name]?.table.keys.map { $0 } ?? [])
             let protos = protocolName.map { [$0] } ?? source.conformanceChoices(name).map { $0.0 }
             for p in source.protocolClosure(protos) {
                 axes.formUnion(source.declarations[p]?.axes.map(\.name) ?? [])
@@ -149,6 +170,10 @@ enum ApplicationCourt {
 
         func plan() throws -> Node {
             switch goal {
+            case let .equal(a, b):
+                guard try read(a, headOnly: false) == read(b, headOnly: false) else {
+                    throw Failure("unproved equality at \(goal.text)")
+                }
             case let .root(expression):
                 add(.form(expression), strict: true)
                 let head = try read(expression)
@@ -234,10 +259,11 @@ enum ApplicationCourt {
         }
     }
 
-    static func derive(_ root: E, source: StructuralSource, nodeLimit: Int = 20_000, predicate: String? = nil) throws
-        -> Derivation
-    {
-        var nodes: [Goal: Node] = [:], work: [Goal] = [predicate.map { .member(root, $0) } ?? .root(root)]
+    static func derive(_ root: E, source: StructuralSource, nodeLimit: Int = 20_000) throws -> Derivation {
+        try derive([.root(root)], source: source, nodeLimit: nodeLimit)
+    }
+    static func derive(_ roots: Set<Goal>, source: StructuralSource, nodeLimit: Int = 20_000) throws -> Derivation {
+        var nodes: [Goal: Node] = [:], work = roots.sorted { $0.text > $1.text }
         while let goal = work.popLast() {
             if nodes[goal] != nil { continue }
             guard nodes.count < nodeLimit else { throw Failure("application graph limit reached") }
@@ -245,16 +271,17 @@ enum ApplicationCourt {
             nodes[goal] = node
             work += node.dependencies.sorted { $0.text > $1.text }
         }
-        let result = Derivation(root: root, nodes: nodes)
-        try verify(root, derivation: result, source: source, predicate: predicate)
+        let result = Derivation(roots: roots, nodes: nodes)
+        try verify(roots, derivation: result, source: source)
         return result
     }
 
-    static func verify(_ root: E, derivation: Derivation, source: StructuralSource, predicate: String? = nil) throws {
-        guard root == derivation.root else {
-            throw Failure("application proof belongs to a different root")
-        }
-        var seen: Set<Goal> = [], work: [Goal] = [predicate.map { .member(root, $0) } ?? .root(root)]
+    static func verify(_ root: E, derivation: Derivation, source: StructuralSource) throws {
+        try verify([.root(root)], derivation: derivation, source: source)
+    }
+    static func verify(_ roots: Set<Goal>, derivation: Derivation, source: StructuralSource) throws {
+        guard roots == derivation.roots else { throw Failure("application proof changes its obligations") }
+        var seen: Set<Goal> = [], work = Array(roots)
         while let goal = work.popLast() {
             if !seen.insert(goal).inserted { continue }
             guard let proposed = derivation.nodes[goal] else {
@@ -300,7 +327,7 @@ enum ApplicationCourt {
             let files = try arguments.dropFirst().map {
                 ($0, try String(contentsOfFile: $0, encoding: .utf8))
             }
-            let source = try StructuralSource(files: files)
+            let source = try StructuralSource(files: files, arguments: [("arguments[0]", arguments[0])])
             let proof = try derive(root, source: source)
             let reads = proof.nodes.values.reduce(0) { $0 + $1.reductions.count }
             print(

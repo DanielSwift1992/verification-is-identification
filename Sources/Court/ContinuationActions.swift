@@ -170,7 +170,7 @@ extension ContinuationCourt {
         let count: Int
         if case let .sourceRelation(path) = basis { count = path.count } else { count = 1 }
         try budget.spend(count, at: at)
-        guard try r.sort(from) == r.sort(to) else { throw Failure(at + ": selected sort differs") }
+        guard try WhereJudge.sameName(r.sort(from), r.sort(to)) else { throw Failure(at + ": selected sort differs") }
         var remainingSteps = 100_000
         try verifyEqualityBasis(basis, from: from, to: to, edges: edges, at: at,
                                 stepField: "sourceRelation._0", remainingSteps: &remainingSteps)
@@ -502,7 +502,7 @@ extension ContinuationCourt {
             let origin = try observation(path)
             guard let g = actions[left], let h = actions[right],
                   try g.imageOf(origin) == a, try h.imageOf(origin) == b,
-                  blocks[a] != blocks[b], try r.sort(a) == r.sort(b) else {
+                  blocks[a] != blocks[b], try WhereJudge.sameName(r.sort(a), r.sort(b)) else {
                 throw Failure(at + ".disagreement: images are not different same-sort classes")
             }
         }

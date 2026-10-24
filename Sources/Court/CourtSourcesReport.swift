@@ -48,8 +48,8 @@ enum CourtSourcesReport {
         var diagnostics: [String] = []
         var outcome = "unsupported"
         do {
-            var paths: [String] = [], contextPath: String?, documents = Set<String>()
-            var options: [String: String] = [:], reports = 0, i = 0
+            var paths: [String] = [], contextPath: String?, documents = NameSet()
+            var options: NameMap<String> = [:], reports = 0, i = 0
             while i < arguments.count {
                 let word = arguments[i]
                 if word == "--report" {
@@ -76,7 +76,7 @@ enum CourtSourcesReport {
             guard reports == 1, let contextPath else {
                 throw WhereJudge.Failure.input(["source reading requires one --report and --context"])
             }
-            var texts: [String: String] = [:]
+            var texts: NameMap<String> = [:]
             for path in (paths + [contextPath]).sorted() {
                 let raw = try load(path)
                 texts[path] = raw
@@ -90,14 +90,14 @@ enum CourtSourcesReport {
             guard question != "where" || !own.isEmpty else {
                 throw WhereJudge.Failure.input(["where context has no own source"])
             }
-            guard documents.isSubset(of: Set(own.map(\.input))) else {
+            guard documents.isSubset(of: NameSet(own.map(\.input))) else {
                 throw WhereJudge.Failure.input(["--document must name a distinct own source"])
             }
             if question == "where" {
                 for source in own.sorted(by: { $0.input < $1.input }) {
                     var row = Row(path: source.input, source: source.source)
                     do {
-                        let ordered = [source.input] + paths.filter { $0 != source.input }
+                        let ordered = [source.input] + paths.filter { !WhereJudge.sameName($0, source.input) }
                         let prepared = try WhereContext.prepare(ordered, contextPath: contextPath,
                             load: { texts[$0]! }, documents: documents, batch: true)
                         row.unchecked = prepared.world.excludedDefinitions

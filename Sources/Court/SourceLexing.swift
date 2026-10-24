@@ -66,6 +66,40 @@ extension WhereJudge {
         }
         return scanned
     }
+    // Swift swift-6.2.3-RELEASE/lib/Parse/Lexer.cpp:
+    // isValidIdentifierContinuationCodePoint / isValidIdentifierStartCodePoint.
+    // The candidate alphabet below remains a conservative additional bound.
+    private static func swiftIdentifierContinuation(_ scalar: Unicode.Scalar) -> Bool {
+        switch scalar.value {
+        case 0x24, 0x30...0x39, 0x41...0x5A, 0x5F, 0x61...0x7A,
+             0xA8, 0xAA, 0xAD, 0xAF, 0xB2...0xB5, 0xB7...0xBA, 0xBC...0xBE,
+             0xC0...0xD6, 0xD8...0xF6, 0xF8...0xFF, 0x100...0x167F,
+             0x1681...0x180D, 0x180F...0x1FFF, 0x200B...0x200D, 0x202A...0x202E,
+             0x203F...0x2040, 0x2054, 0x2060...0x206F, 0x2070...0x218F,
+             0x2460...0x24FF, 0x2776...0x2793, 0x2C00...0x2DFF, 0x2E80...0x2FFF,
+             0x3004...0x3007, 0x3021...0x302F, 0x3031...0x303F, 0x3040...0xD7FF,
+             0xF900...0xFD3D, 0xFD40...0xFDCF, 0xFDF0...0xFE44, 0xFE47...0xFFF8,
+             0x10000...0x1FFFD, 0x20000...0x2FFFD, 0x30000...0x3FFFD,
+             0x40000...0x4FFFD, 0x50000...0x5FFFD, 0x60000...0x6FFFD,
+             0x70000...0x7FFFD, 0x80000...0x8FFFD, 0x90000...0x9FFFD,
+             0xA0000...0xAFFFD, 0xB0000...0xBFFFD, 0xC0000...0xCFFFD,
+             0xD0000...0xDFFFD, 0xE0000...0xEFFFD: return true
+        default: return false
+        }
+    }
+    private static func swiftIdentifierStart(_ scalar: Unicode.Scalar) -> Bool {
+        guard swiftIdentifierContinuation(scalar) else { return false }
+        switch scalar.value {
+        case 0x24, 0x30...0x39, 0x300...0x36F, 0x1DC0...0x1DFF,
+             0x20D0...0x20FF, 0xFE20...0xFE2F: return false
+        default: return true
+        }
+    }
+    private static func wordCandidate(_ scalar: Unicode.Scalar) -> Bool {
+        scalar.properties.isAlphabetic || scalar.properties.numericType != nil
+            || scalar.properties.generalCategory == .nonspacingMark
+            || scalar.properties.generalCategory == .spacingMark || scalar == "_"
+    }
     private static func lexicalScan(_ source: String, scope: LexicalScope,
                                     carrying: Bool) throws -> LexicalReading {
         enum Context {
@@ -237,11 +271,20 @@ extension WhereJudge {
                     }
                     keep(1)
                 }
-                else if current.properties.isAlphabetic || current == "_" {
+                else if current.properties.isAlphabetic || current == "_"
+                    || (current.value >= 0x80 && Self.wordCandidate(current)) {
+                    guard Self.swiftIdentifierStart(current) else {
+                        try refuse("identifier start " + String(format: "U+%04X", current.value) + " is outside the declared Swift table", at: index)
+                    }
                     keep(1)
-                    while let next = scalar(0), next.properties.isAlphabetic || next.properties.numericType != nil
-                        || next.properties.generalCategory == .nonspacingMark || next.properties.generalCategory == .spacingMark || next == "_" {
+                    while let next = scalar(0), Self.wordCandidate(next) {
+                        guard Self.swiftIdentifierContinuation(next) else {
+                            try refuse("identifier continuation " + String(format: "U+%04X", next.value) + " is outside the declared Swift table", at: index)
+                        }
                         keep(1)
+                    }
+                    if let next = scalar(0), next.value >= 0x80, !next.properties.isWhitespace {
+                        try refuse("identifier continuation " + String(format: "U+%04X", next.value) + " is outside the conservative word alphabet", at: index)
                     }
                     if top { emit(spelling(at, index), at, index) }
                 } else {

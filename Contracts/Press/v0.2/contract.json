@@ -7,8 +7,8 @@
     "transport": "vi.press.json/2"
   },
   "files": {
-    "fixtures/cases.json": "86ebca3259068c35b1f7f2d023e42b6942339d7781da523144d900944d5752b9",
-    "calculus.md": "e111f8c4c8d80e51d44771a84e3a00cb10fd38c3276f48041afc2779183f36f9"
+    "fixtures/cases.json": "1270185ea3913af9719b2c04a2be0dfadb3ae7886544d8fad3b9e12d5e30c3c6",
+    "calculus.md": "590a72b2d47fa9a973783ca0a850149995ff917ae0b36485c8933f43e0851361"
   },
   "cases_file": "fixtures/cases.json",
   "cases": [
@@ -200,7 +200,20 @@
     "Z4-N2",
     "Z4-N3",
     "Z4-deep2",
-    "Z4-deep1"
+    "Z4-deep1",
+    "Z5-identifier-1",
+    "Z5-identifier-2",
+    "Z5-identifier-3",
+    "Z5-identifier-4",
+    "Z5-identifier-5",
+    "Z5-identifier-6",
+    "Z5-identifier-7",
+    "Z5-identifier-8",
+    "Z5-identifier-9",
+    "Z5-identifier-10",
+    "Z5-identifier-11",
+    "Z5-identifier-12",
+    "Z5-identifier-13"
   ],
   "native_controls": [
     "N3a-dictionary-lexical-refusal",
@@ -296,6 +309,19 @@
     "Z4-N2",
     "Z4-N3",
     "Z4-deep2",
-    "Z4-deep1"
+    "Z4-deep1",
+    "Z5-identifier-1",
+    "Z5-identifier-2",
+    "Z5-identifier-3",
+    "Z5-identifier-4",
+    "Z5-identifier-5",
+    "Z5-identifier-6",
+    "Z5-identifier-7",
+    "Z5-identifier-8",
+    "Z5-identifier-9",
+    "Z5-identifier-10",
+    "Z5-identifier-11",
+    "Z5-identifier-12",
+    "Z5-identifier-13"
   ]
 }

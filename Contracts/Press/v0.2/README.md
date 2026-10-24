@@ -63,3 +63,5 @@ Z3 removes the unintended cross-file builder refusal: each supplied structural f
 ## Revision 6: nearest literal and identifier admission
 
 Z4 takes newline permission from the nearest open literal, matching the stack rule in Swift 6.2.3 `Lexer::skipToEndOfInterpolatedExpression` (`AllowNewline.back()`). N2 and deep2 read; deep1 refuses. The redundant single-line flag on interpolation code frames is removed. The conditional correctness premise of the shared reader and replay is unchanged.
+
+Z5 intersects the existing conservative word alphabet with the declared Swift 6.2.3 start/continuation table (source and exact scope in calculus.md). A1/U+0345 initially and A3/U+2E2F inside a word refuse at the offending scalar in all modes; U+093E remains readable. This narrows notation word admission too; it does not expand the structural reader to every Swift identifier or operator. Separators, comments and literals retain their separately declared policies.

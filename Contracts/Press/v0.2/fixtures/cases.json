@@ -28801,5 +28801,251 @@
         "reason_contains": "newline in single-line"
       }
     }
+  },
+  {
+    "id": "Z5-identifier-1",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum K { static var \u0345x: Int { 0 } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "identifier start"
+      }
+    }
+  },
+  {
+    "id": "Z5-identifier-2",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum K { static var a\u2e2f: Int { 0 } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "identifier continuation"
+      }
+    }
+  },
+  {
+    "id": "Z5-identifier-3",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum \u093eQ {}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z5-identifier-4",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Q\u0345 {}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z5-identifier-5",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum \u1dc0Q {}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "identifier start"
+      }
+    }
+  },
+  {
+    "id": "Z5-identifier-6",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Q\u1dc0 {}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z5-identifier-7",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum \u20d0Q {}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "identifier start"
+      }
+    }
+  },
+  {
+    "id": "Z5-identifier-8",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Q\u20d0 {}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z5-identifier-9",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum \ufe20Q {}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "identifier start"
+      }
+    }
+  },
+  {
+    "id": "Z5-identifier-10",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Q\ufe20 {}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z5-identifier-11",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum K { static var a\u2295: Int { 0 } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "identifier continuation"
+      }
+    }
+  },
+  {
+    "id": "Z5-identifier-12",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n// \u0345x a\u2e2f\nenum K {}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z5-identifier-13",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum K { static var s: String { \"\u0345x a\u2e2f\" } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
   }
 ]

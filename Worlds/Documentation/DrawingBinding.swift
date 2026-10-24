@@ -2,7 +2,7 @@ import Notation
 import DocumentKit
 
 // GENERATED from the world drawing-binding/1 record.
-// drawing-binding-value-sha256: bf47cd84389202d75f631a8c0a0f32e93114b4f71bf620fdb1ab559c77adc778
+// drawing-binding-value-sha256: 28ca1b37b75d57a38d07464a1def1a697e4390dc67e410eb289dd9e548b041cc
 // Owner requirement source: "Worlds/Documentation/StyleContract.swift"@sha256:188ebc5307ec5bd50aea5bd7123c033d75b1d34697c78731095312ae38a4288a
 public enum DocumentationBindingInk: Paint, Close {}
 extension DocumentationBindingInk {
@@ -480,34 +480,6 @@ public enum DocumentationBindingTableSortCursor: Close {}
 extension DocumentationBindingTableSortCursor {
     public static var typeName: String { "pointer" }
 }
-public enum DocumentationBindingCover06: Close {}
-extension DocumentationBindingCover06 {
-    public static var typeName: String { "0.06" }
-}
-public enum DocumentationBindingCover15: Close {}
-extension DocumentationBindingCover15 {
-    public static var typeName: String { "0.15" }
-}
-public enum DocumentationBindingCover16: Close {}
-extension DocumentationBindingCover16 {
-    public static var typeName: String { "0.16" }
-}
-public enum DocumentationBindingCover54: Close {}
-extension DocumentationBindingCover54 {
-    public static var typeName: String { "0.54" }
-}
-public enum DocumentationBindingCover70: Close {}
-extension DocumentationBindingCover70 {
-    public static var typeName: String { "0.70" }
-}
-public enum DocumentationBindingCover80: Close {}
-extension DocumentationBindingCover80 {
-    public static var typeName: String { "0.80" }
-}
-public enum DocumentationBindingCover90: Close {}
-extension DocumentationBindingCover90 {
-    public static var typeName: String { "0.90" }
-}
 public enum DocumentationBindingMarkerOrient: Close {}
 extension DocumentationBindingMarkerOrient {
     public static var typeName: String { "auto" }
@@ -658,13 +630,6 @@ public enum DocumentationBinding: DocumentationStyle, Close {
     public typealias TableSortActiveOpacity = DocumentationBindingTableSortActiveOpacity
     public typealias TableSortHintSize = DocumentationBindingTableSortHintSize
     public typealias TableSortCursor = DocumentationBindingTableSortCursor
-    public typealias Cover06 = DocumentationBindingCover06
-    public typealias Cover15 = DocumentationBindingCover15
-    public typealias Cover16 = DocumentationBindingCover16
-    public typealias Cover54 = DocumentationBindingCover54
-    public typealias Cover70 = DocumentationBindingCover70
-    public typealias Cover80 = DocumentationBindingCover80
-    public typealias Cover90 = DocumentationBindingCover90
     public typealias MarkerOrient = DocumentationBindingMarkerOrient
     public typealias FigureArrowOrient = DocumentationBindingFigureArrowOrient
     public typealias SourceLinkWidth = DocumentationBindingSourceLinkWidth
@@ -839,13 +804,6 @@ public enum FigureLight: DrawingPalette, DocumentationStyle, Close {
     public typealias TableSortActiveOpacity = DocumentationBindingTableSortActiveOpacity
     public typealias TableSortHintSize = DocumentationBindingTableSortHintSize
     public typealias TableSortCursor = DocumentationBindingTableSortCursor
-    public typealias Cover06 = DocumentationBindingCover06
-    public typealias Cover15 = DocumentationBindingCover15
-    public typealias Cover16 = DocumentationBindingCover16
-    public typealias Cover54 = DocumentationBindingCover54
-    public typealias Cover70 = DocumentationBindingCover70
-    public typealias Cover80 = DocumentationBindingCover80
-    public typealias Cover90 = DocumentationBindingCover90
     public typealias MarkerOrient = DocumentationBindingMarkerOrient
     public typealias FigureArrowOrient = DocumentationBindingFigureArrowOrient
     public typealias SourceLinkWidth = DocumentationBindingSourceLinkWidth
@@ -1008,13 +966,6 @@ public enum FigureDark: DrawingPalette, DocumentationStyle, Close {
     public typealias TableSortActiveOpacity = DocumentationBindingTableSortActiveOpacity
     public typealias TableSortHintSize = DocumentationBindingTableSortHintSize
     public typealias TableSortCursor = DocumentationBindingTableSortCursor
-    public typealias Cover06 = DocumentationBindingCover06
-    public typealias Cover15 = DocumentationBindingCover15
-    public typealias Cover16 = DocumentationBindingCover16
-    public typealias Cover54 = DocumentationBindingCover54
-    public typealias Cover70 = DocumentationBindingCover70
-    public typealias Cover80 = DocumentationBindingCover80
-    public typealias Cover90 = DocumentationBindingCover90
     public typealias MarkerOrient = DocumentationBindingMarkerOrient
     public typealias FigureArrowOrient = DocumentationBindingFigureArrowOrient
     public typealias SourceLinkWidth = DocumentationBindingSourceLinkWidth

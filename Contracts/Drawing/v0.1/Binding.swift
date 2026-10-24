@@ -2,7 +2,7 @@ import Notation
 import DocumentKit
 
 // GENERATED from the world drawing-binding/1 record.
-// drawing-binding-value-sha256: f9095c39029e9351d575d61b767b34b90d668d196d8d2c78056246a31dd6c481
+// drawing-binding-value-sha256: 5861dd8ef6aeee7a5de5b57d0c600852532d1dbd9b29cb7abb85ba4dece3d4b4
 // Owner requirement source: "Worlds/Documentation/StyleContract.swift"@sha256:188ebc5307ec5bd50aea5bd7123c033d75b1d34697c78731095312ae38a4288a
 public enum FixtureBindingInk: Paint, Close {}
 extension FixtureBindingInk {
@@ -480,34 +480,6 @@ public enum FixtureBindingTableSortCursor: Close {}
 extension FixtureBindingTableSortCursor {
     public static var typeName: String { "pointer" }
 }
-public enum FixtureBindingCover06: Close {}
-extension FixtureBindingCover06 {
-    public static var typeName: String { "0.06" }
-}
-public enum FixtureBindingCover15: Close {}
-extension FixtureBindingCover15 {
-    public static var typeName: String { "0.15" }
-}
-public enum FixtureBindingCover16: Close {}
-extension FixtureBindingCover16 {
-    public static var typeName: String { "0.16" }
-}
-public enum FixtureBindingCover54: Close {}
-extension FixtureBindingCover54 {
-    public static var typeName: String { "0.54" }
-}
-public enum FixtureBindingCover70: Close {}
-extension FixtureBindingCover70 {
-    public static var typeName: String { "0.70" }
-}
-public enum FixtureBindingCover80: Close {}
-extension FixtureBindingCover80 {
-    public static var typeName: String { "0.80" }
-}
-public enum FixtureBindingCover90: Close {}
-extension FixtureBindingCover90 {
-    public static var typeName: String { "0.90" }
-}
 public enum FixtureBindingMarkerOrient: Close {}
 extension FixtureBindingMarkerOrient {
     public static var typeName: String { "auto" }
@@ -658,13 +630,6 @@ public enum FixtureBinding: DocumentationStyle, Close {
     public typealias TableSortActiveOpacity = FixtureBindingTableSortActiveOpacity
     public typealias TableSortHintSize = FixtureBindingTableSortHintSize
     public typealias TableSortCursor = FixtureBindingTableSortCursor
-    public typealias Cover06 = FixtureBindingCover06
-    public typealias Cover15 = FixtureBindingCover15
-    public typealias Cover16 = FixtureBindingCover16
-    public typealias Cover54 = FixtureBindingCover54
-    public typealias Cover70 = FixtureBindingCover70
-    public typealias Cover80 = FixtureBindingCover80
-    public typealias Cover90 = FixtureBindingCover90
     public typealias MarkerOrient = FixtureBindingMarkerOrient
     public typealias FigureArrowOrient = FixtureBindingFigureArrowOrient
     public typealias SourceLinkWidth = FixtureBindingSourceLinkWidth
@@ -756,13 +721,6 @@ public typealias TableSortHintOpacity = FixtureBindingTableSortHintOpacity
 public typealias TableSortActiveOpacity = FixtureBindingTableSortActiveOpacity
 public typealias TableSortHintSize = FixtureBindingTableSortHintSize
 public typealias TableSortCursor = FixtureBindingTableSortCursor
-public typealias Cover06 = FixtureBindingCover06
-public typealias Cover15 = FixtureBindingCover15
-public typealias Cover16 = FixtureBindingCover16
-public typealias Cover54 = FixtureBindingCover54
-public typealias Cover70 = FixtureBindingCover70
-public typealias Cover80 = FixtureBindingCover80
-public typealias Cover90 = FixtureBindingCover90
 public typealias MarkerOrient = FixtureBindingMarkerOrient
 public typealias FigureArrowOrient = FixtureBindingFigureArrowOrient
 public typealias SourceLinkWidth = FixtureBindingSourceLinkWidth

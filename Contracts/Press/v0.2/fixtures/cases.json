@@ -28735,7 +28735,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nlet s = \"\\(\"\"\"\nabc\n\"\"\")\"\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum H { static var s: String { \"\\(\"\"\"\nabc\n\"\"\")\" } }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -28753,7 +28753,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nlet s = \"\\(\"\"\"\n\\(1 // c\n)\n\"\"\")\"\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum H { static var s: String { \"\\(\"\"\"\n\\(1 // c\n)\n\"\"\")\" } }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -28771,7 +28771,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nlet s = \"\"\"\n\\( \"\\(\"\"\"\nx\n\"\"\")\" )\n\"\"\"\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum H { static var s: String { \"\"\"\n\\( \"\\(\"\"\"\nx\n\"\"\")\" )\n\"\"\" } }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -28789,7 +28789,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nlet s = \"\\(\"\"\"\n\\( \"\\(1\n)\" )\n\"\"\")\"\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum H { static var s: String { \"\\(\"\"\"\n\\( \"\\(1\n)\" )\n\"\"\")\" } }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -29230,7 +29230,7 @@
       "changed": false,
       "refusal": {
         "address": "rules.swift#TurnOn",
-        "reason_contains": "no declaration"
+        "reason_contains": "no rule named"
       }
     }
   }

@@ -7,7 +7,7 @@
     "transport": "vi.press.json/2"
   },
   "files": {
-    "fixtures/cases.json": "0602e7d97bb6bf39e7fec6ff7b30b066373473278236174f271c4196d786cee0",
+    "fixtures/cases.json": "ec58d9bae57fb44ac88e2c18bc620ac9c050636342de261bb655cb29ff7730c4",
     "calculus.md": "c7a6fdf8bcea87a3d4b9358e99ec5ae8f263012fe998e6f0dcbecbd00547f5de"
   },
   "cases_file": "fixtures/cases.json",

@@ -7,8 +7,8 @@
     "transport": "vi.press.json/2"
   },
   "files": {
-    "fixtures/cases.json": "1270185ea3913af9719b2c04a2be0dfadb3ae7886544d8fad3b9e12d5e30c3c6",
-    "calculus.md": "590a72b2d47fa9a973783ca0a850149995ff917ae0b36485c8933f43e0851361"
+    "fixtures/cases.json": "0602e7d97bb6bf39e7fec6ff7b30b066373473278236174f271c4196d786cee0",
+    "calculus.md": "c7a6fdf8bcea87a3d4b9358e99ec5ae8f263012fe998e6f0dcbecbd00547f5de"
   },
   "cases_file": "fixtures/cases.json",
   "cases": [
@@ -213,7 +213,14 @@
     "Z5-identifier-10",
     "Z5-identifier-11",
     "Z5-identifier-12",
-    "Z5-identifier-13"
+    "Z5-identifier-13",
+    "Z3-Press-P1",
+    "Z3-Press-P2",
+    "Z3-Press-P3",
+    "Z3-Press-P4",
+    "Z3-Press-P5-provider-last",
+    "Z3-Press-P6-comment-is-not-provider",
+    "Z3-Press-P7-leading-comment-hides-rule"
   ],
   "native_controls": [
     "N3a-dictionary-lexical-refusal",
@@ -322,6 +329,13 @@
     "Z5-identifier-10",
     "Z5-identifier-11",
     "Z5-identifier-12",
-    "Z5-identifier-13"
+    "Z5-identifier-13",
+    "Z3-Press-P1",
+    "Z3-Press-P2",
+    "Z3-Press-P3",
+    "Z3-Press-P4",
+    "Z3-Press-P5-provider-last",
+    "Z3-Press-P6-comment-is-not-provider",
+    "Z3-Press-P7-leading-comment-hides-rule"
   ]
 }

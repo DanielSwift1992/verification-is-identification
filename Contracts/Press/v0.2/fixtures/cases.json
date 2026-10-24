@@ -29047,5 +29047,191 @@
       "refusal": null,
       "replayed": true
     }
+  },
+  {
+    "id": "Z3-Press-P1",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "lib.swift",
+          "text": "@resultBuilder enum SB { static func buildBlock() -> Int { 0 } }\n"
+        },
+        {
+          "path": "use.swift",
+          "text": "enum Page { @SB static var body: Int { 0 } }\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z3-Press-P2",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Page { @SB static var body: Int { 0 } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "lib.swift",
+          "text": "@resultBuilder enum SB { static func buildBlock() -> Int { 0 } }\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z3-Press-P3",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "both.swift",
+          "text": "@resultBuilder enum SB { static func buildBlock() -> Int { 0 } }\nenum Page { @SB static var body: Int { 0 } }\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z3-Press-P4",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "use.swift",
+          "text": "enum Page { @SB static var body: Int { 0 } }\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "use.swift",
+        "reason_contains": "attribute '@SB'"
+      }
+    }
+  },
+  {
+    "id": "Z3-Press-P5-provider-last",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "use.swift",
+          "text": "enum Page { @SB static var body: Int { 0 } }\n"
+        },
+        {
+          "path": "lib.swift",
+          "text": "@resultBuilder enum SB { static func buildBlock() -> Int { 0 } }\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z3-Press-P6-comment-is-not-provider",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "lib.swift",
+          "text": "// @resultBuilder enum SB { static func buildBlock() -> Int { 0 } }\n"
+        },
+        {
+          "path": "use.swift",
+          "text": "enum Page { @SB static var body: Int { 0 } }\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "use.swift",
+        "reason_contains": "attribute '@SB'"
+      }
+    }
+  },
+  {
+    "id": "Z3-Press-P7-leading-comment-hides-rule",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "// enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Page { @SB static var body: Int { 0 } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "lib.swift",
+          "text": "@resultBuilder enum SB { static func buildBlock() -> Int { 0 } }\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "no declaration"
+      }
+    }
   }
 ]

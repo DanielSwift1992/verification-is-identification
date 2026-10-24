@@ -138,12 +138,14 @@ public enum Press {
         guard arguments.count == 1, let invocation = arguments.first else { try fail("usage: Tools press <Rule>[,<Rule>…] --file <state file> --rules <rule file>") }
         let inputs = [Input(path: statePath, text: state), Input(path: dictionaryPath, text: dictionary)] + definitions
         if let certificates, certificates.count != inputs.count { try fail("reading certificate changes input coverage", at: "certificate") }
+        let lexical = WhereJudge.lexicalReadingsResults(inputs.map { ($0.path, $0.text) }, scope: .declarations)
         // Dictionary first so an absent rule still names the dictionary. The slot
         // address is established below before judging the state production.
         func readInput(_ index: Int) throws -> StructuralSource.FileReading {
             let input = inputs[index]
-            if let certificates { return try StructuralSource.replayReading(certificates[index], source: input.text, origin: input.path) }
-            return try StructuralSource.regions(input.text, origin: input.path)
+            let validated = try lexical[index].get()
+            if let certificates { return try StructuralSource.replayReading(certificates[index], source: input.text, origin: input.path, lexical: validated) }
+            return try StructuralSource.regions(input.text, origin: input.path, lexical: validated)
         }
         let dictionaryRead = try addressed("\(dictionaryPath)#\(invocation)") { try readInput(1) }
         let members: [(Rule, [E])] = try addressed("arguments") {

@@ -51,20 +51,29 @@ extension WhereJudge {
     /// No caller can submit an unchecked scan as a structural certificate.
     static func lexicalReadings(_ files: [(String, String)], scope: LexicalScope,
                                 lent: Set<String> = [], carrying: Bool = true) throws -> [LexicalReading] {
+        try lexicalReadingsResults(files, scope: scope, lent: lent, carrying: carrying).map { try $0.get() }
+    }
+    /// All original inputs are scanned, then uses are checked against that set.
+    /// Results only defer failure reporting; they never admit an unchecked tape.
+    static func lexicalReadingsResults(_ files: [(String, String)], scope: LexicalScope,
+                                       lent: Set<String> = [], carrying: Bool = true) -> [Result<LexicalReading, Error>] {
         func addressed<T>(_ origin: String, _ read: () throws -> T) throws -> T {
             do { return try read() }
             catch let error as LexicalFailure {
                 throw StructuralSource.AddressedFailure("\(origin):\(error.line): \(error.description) (byte \(error.byte))")
             }
         }
-        let scanned = try files.map { origin, text in
-            try addressed(origin) { try lexicalScan(text, scope: scope, carrying: carrying) }
+        let scanned = files.map { origin, text in
+            Result { try addressed(origin) { try lexicalScan(text, scope: scope, carrying: carrying) } }
         }
-        let builders = lent.union(scanned.flatMap { $0.declared })
-        for (file, read) in zip(files, scanned) {
-            try addressed(file.0) { try read.validateAttributes(lent: builders, scope: scope) }
+        let builders = lent.union(scanned.flatMap { (try? $0.get().declared) ?? [] })
+        return zip(files, scanned).map { file, result in
+            Result {
+                let read = try result.get()
+                try addressed(file.0) { try read.validateAttributes(lent: builders, scope: scope) }
+                return read
+            }
         }
-        return scanned
     }
     // Swift swift-6.2.3-RELEASE/lib/Parse/Lexer.cpp:
     // isValidIdentifierContinuationCodePoint / isValidIdentifierStartCodePoint.

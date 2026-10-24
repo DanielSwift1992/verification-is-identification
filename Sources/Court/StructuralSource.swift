@@ -356,7 +356,8 @@ struct StructuralSource {
     /// One complete reading, with an explicit scope for carried productions.
     /// The scanner starts at byte zero. A comment cannot reset at a submitted
     /// token boundary, including the base case before the first token.
-    static func regions(_ source: String, origin: String, scope: ReadingScope = .declarations) throws -> FileReading {
+    static func regions(_ source: String, origin: String, scope: ReadingScope = .declarations, lexical: WhereJudge.LexicalReading? = nil) throws -> FileReading {
+        if let lexical { return try regions(source, origin: origin, scope: scope, lexed: lexical.tape) }
         let lexed: Lexed
         do { lexed = try scan(source, carrying: true, scope: scope == .declarations ? .declarations : .projection) }
         catch let error as ScanFailure {
@@ -437,8 +438,8 @@ struct StructuralSource {
     /// roster. Correctness of that reader/replayer is an explicit premise.
     /// Equal tape and production spans preserve coverage, including byte zero;
     /// a certificate supplies neither an AST nor a second lexical interpretation.
-    static func replayReading(_ proof: ReadingCertificate, source: String, origin: String) throws -> FileReading {
-        let read = try regions(source, origin: origin)
+    static func replayReading(_ proof: ReadingCertificate, source: String, origin: String, lexical: WhereJudge.LexicalReading? = nil) throws -> FileReading {
+        let read = try regions(source, origin: origin, lexical: lexical)
         guard proof.tokens == read.tokens else {
             let at = zip(proof.tokens, read.tokens).first { $0 != $1 }?.0.bytes.lowerBound
                 ?? proof.tokens.last?.bytes.upperBound ?? 0

@@ -84,8 +84,7 @@ where Body == Never {
 
 /// This is a CLOSE: a terminal seal, written ONLY as an empty `enum`: no cases, no `init`, the branch
 /// ends and Swift is handed a concrete empty type. `protocol X: Close` is the contradiction: a Close must be
-/// concrete. A foreign value joins the world here too: a layer writes `extension String: Close` to make
-/// a string one of the sealed leaves, the one place for a value (a `String`), at the edge.
+/// concrete. Notation declares `extension String: Close`, so a string is one of the sealed leaves: the one place for a value, at the edge.
 public protocol Close: Structure {}   // law:allow: the seal half of Open/Close, not a rename of Structure
 
 // ── Pair / Null ──
@@ -99,9 +98,7 @@ public protocol Close: Structure {}   // law:allow: the seal half of Open/Close,
 /// - term Left: one side of the distinction.
 /// - term Right: the other side.
 ///
-/// > Note: ``Pair`` is the one thing the lattice rests on, and the one thing no
-/// > protocol derives. Trace any type up its parents (§5 of [Law](https://danielswift1992.github.io/verification-is-identification/documentation/verificationisidentification/law)) and it ends
-/// > here: an entry in no library, certified by no game.
+/// > Note: ``Null`` refines ``Pair``, and ``Paired`` is its one concrete realizer.
 public protocol Pair: Open {
     associatedtype Left
     associatedtype Right
@@ -273,11 +270,8 @@ public enum StructureBuilder {
         B
     > { fatalError() }
 }
-// ── MAGNITUDES — space as structure, and the counting reader. A magnitude is a chain of
-// these atoms. The house fold counts it, and nothing else measures anything. They are in
-// this engine room because `Plus` composes through the one builder and the readers below
-// speak digits: the same §0′ exemption are already on. The design system
-// (DocumentKit) names the rungs, and canvases speak in its names, never in chains of these. ──
+// ── MAGNITUDES ──
+// Unit, Plus, Times, Rest, Half and Tally compose magnitudes through StructureBuilder and are read through count and typeName.
 
 /// Unit counts one: the atom of magnitude. `Close` keeps the default count, which is also
 /// the definition.
@@ -300,7 +294,7 @@ public enum Plus<
 public typealias Twice<S: Structure> = Plus<S, S>
 
 /// Times composes two counts into their product, the way `Paired` composes them into their
-/// sum: one witness, no other member. With it a fraction needs no further arithmetic.
+/// sum: one witness, no other member. ``Plus``, ``Twice`` and ``Times`` compose sums and products without another arithmetic member.
 public enum Times<
     A: Structure,
     B: Structure
@@ -309,9 +303,7 @@ extension Times {
     public static var count: Int { A.count * B.count }
 }
 
-/// The numerals: the powers of two, spelled once as the doubling ladder. Every target
-/// reads these names from here, so a magnitude's meaning is its one written definition,
-/// and a judge unfolds it from this source.
+/// U1 through U512 are ``Twice`` chains over ``Unit``. Each name's count is read from this definition.
 public typealias U1 = Unit
 public typealias U2 = Twice<U1>
 public typealias U4 = Twice<U2>

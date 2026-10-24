@@ -29661,7 +29661,7 @@
       "changed": false,
       "refusal": {
         "address": "rules.swift#TurnOn",
-        "reason_contains": "identifier continuation U+0024"
+        "reason_contains": "identifier start U+0024"
       }
     }
   },
@@ -29781,6 +29781,956 @@
       "refusal": {
         "address": "rules.swift#TurnOn",
         "reason_contains": "single-word attribute name"
+      }
+    }
+  },
+  {
+    "id": "R8-R0-replay",
+    "request": {
+      "arguments": [
+        "Turn\u00d3n"
+      ],
+      "state": "typealias Mod\u00e9 = Off\n",
+      "dictionary": "enum Turn\u00d3n { typealias Slot = Mod\u00e9Slot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "Turn\u00d3n"
+        ],
+        "candidates": [
+          {
+            "rule": "Turn\u00d3n",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "da07b25f1eda01709b0a4be4fa03a8899b0055c0e8d8cdc52d0ca66dfadc5552",
+          "e68a99b311def58912f2b0cca775f151de4f46bddddd1291b08bfe0c384323dc"
+        ],
+        "lowerByte": 18,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  15
+                ],
+                "word": "Mod\u00e9"
+              },
+              {
+                "bytes": [
+                  16,
+                  17
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  18,
+                  21
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  21,
+                  22
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  12
+                ],
+                "word": "Turn\u00d3n"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  15,
+                  24
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  25,
+                  29
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  30,
+                  31
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  32,
+                  41
+                ],
+                "word": "Mod\u00e9Slot"
+              },
+              {
+                "bytes": [
+                  41,
+                  42
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  43,
+                  52
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  53,
+                  57
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  58,
+                  59
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  60,
+                  63
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  65,
+                  74
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  75,
+                  79
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  80,
+                  81
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  82,
+                  84
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  85,
+                  86
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  86,
+                  87
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 18
+              },
+              {
+                "kind": "\n",
+                "lower": 18,
+                "upper": 19
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mod\u00e9",
+        "upperByte": 21,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mod\u00e9 = On\n"
+    },
+    "expected": {
+      "state": "typealias Mod\u00e9 = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "R8-R1-slot",
+    "request": {
+      "arguments": [
+        "Turn\u00d3n"
+      ],
+      "state": "typealias Mod\u00e9 = Off\n",
+      "dictionary": "enum Turn\u00d3n { typealias Slot = Mod\u00e9Slot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "Turn\u00d3n"
+        ],
+        "candidates": [
+          {
+            "rule": "Turn\u00d3n",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "da07b25f1eda01709b0a4be4fa03a8899b0055c0e8d8cdc52d0ca66dfadc5552",
+          "e68a99b311def58912f2b0cca775f151de4f46bddddd1291b08bfe0c384323dc"
+        ],
+        "lowerByte": 18,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  15
+                ],
+                "word": "Mod\u00e9"
+              },
+              {
+                "bytes": [
+                  16,
+                  17
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  18,
+                  21
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  21,
+                  22
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  12
+                ],
+                "word": "Turn\u00d3n"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  15,
+                  24
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  25,
+                  29
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  30,
+                  31
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  32,
+                  41
+                ],
+                "word": "Mod\u00e9Slot"
+              },
+              {
+                "bytes": [
+                  41,
+                  42
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  43,
+                  52
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  53,
+                  57
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  58,
+                  59
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  60,
+                  63
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  65,
+                  74
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  75,
+                  79
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  80,
+                  81
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  82,
+                  84
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  85,
+                  86
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  86,
+                  87
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 18
+              },
+              {
+                "kind": "\n",
+                "lower": 18,
+                "upper": 19
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode\u0301",
+        "upperByte": 21,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mod\u00e9 = On\n"
+    },
+    "expected": {
+      "state": "typealias Mod\u00e9 = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "certificate",
+        "reason_contains": "certificate changes the slot"
+      }
+    }
+  },
+  {
+    "id": "R8-R4-rule",
+    "request": {
+      "arguments": [
+        "Turn\u00d3n"
+      ],
+      "state": "typealias Mod\u00e9 = Off\n",
+      "dictionary": "enum Turn\u00d3n { typealias Slot = Mod\u00e9Slot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "Turn\u00d3n"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnO\u0301n",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "da07b25f1eda01709b0a4be4fa03a8899b0055c0e8d8cdc52d0ca66dfadc5552",
+          "e68a99b311def58912f2b0cca775f151de4f46bddddd1291b08bfe0c384323dc"
+        ],
+        "lowerByte": 18,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  15
+                ],
+                "word": "Mod\u00e9"
+              },
+              {
+                "bytes": [
+                  16,
+                  17
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  18,
+                  21
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  21,
+                  22
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  12
+                ],
+                "word": "Turn\u00d3n"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  15,
+                  24
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  25,
+                  29
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  30,
+                  31
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  32,
+                  41
+                ],
+                "word": "Mod\u00e9Slot"
+              },
+              {
+                "bytes": [
+                  41,
+                  42
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  43,
+                  52
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  53,
+                  57
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  58,
+                  59
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  60,
+                  63
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  65,
+                  74
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  75,
+                  79
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  80,
+                  81
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  82,
+                  84
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  85,
+                  86
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  86,
+                  87
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 18
+              },
+              {
+                "kind": "\n",
+                "lower": 18,
+                "upper": 19
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mod\u00e9",
+        "upperByte": 21,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mod\u00e9 = On\n"
+    },
+    "expected": {
+      "state": "typealias Mod\u00e9 = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "certificate",
+        "reason_contains": "certificate changes the rule"
+      }
+    }
+  },
+  {
+    "id": "R8-R5-argument",
+    "request": {
+      "arguments": [
+        "Turn\u00d3n"
+      ],
+      "state": "typealias Mod\u00e9 = Off\n",
+      "dictionary": "enum Turn\u00d3n { typealias Slot = Mod\u00e9Slot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnO\u0301n"
+        ],
+        "candidates": [
+          {
+            "rule": "Turn\u00d3n",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "da07b25f1eda01709b0a4be4fa03a8899b0055c0e8d8cdc52d0ca66dfadc5552",
+          "e68a99b311def58912f2b0cca775f151de4f46bddddd1291b08bfe0c384323dc"
+        ],
+        "lowerByte": 18,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  15
+                ],
+                "word": "Mod\u00e9"
+              },
+              {
+                "bytes": [
+                  16,
+                  17
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  18,
+                  21
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  21,
+                  22
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  12
+                ],
+                "word": "Turn\u00d3n"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  15,
+                  24
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  25,
+                  29
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  30,
+                  31
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  32,
+                  41
+                ],
+                "word": "Mod\u00e9Slot"
+              },
+              {
+                "bytes": [
+                  41,
+                  42
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  43,
+                  52
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  53,
+                  57
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  58,
+                  59
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  60,
+                  63
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  65,
+                  74
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  75,
+                  79
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  80,
+                  81
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  82,
+                  84
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  85,
+                  86
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  86,
+                  87
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 18
+              },
+              {
+                "kind": "\n",
+                "lower": 18,
+                "upper": 19
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mod\u00e9",
+        "upperByte": 21,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mod\u00e9 = On\n"
+    },
+    "expected": {
+      "state": "typealias Mod\u00e9 = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "certificate",
+        "reason_contains": "certificate belongs to different input"
       }
     }
   }

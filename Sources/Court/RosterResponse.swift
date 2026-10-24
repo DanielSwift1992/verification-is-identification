@@ -50,6 +50,13 @@ public enum RosterResponse {
         let relation: String
         let subject: String
         let predicate: String
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            WhereJudge.sameName(lhs.relation, rhs.relation) && WhereJudge.sameName(lhs.subject, rhs.subject)
+                && WhereJudge.sameName(lhs.predicate, rhs.predicate)
+        }
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(ScalarName(relation)); hasher.combine(ScalarName(subject)); hasher.combine(ScalarName(predicate))
+        }
         init(_ g: ApplicationCourt.Goal) {
             switch g {
             case let .root(e):
@@ -130,15 +137,16 @@ public enum RosterResponse {
         let name: String
         let at: StructuralSource.Address
         let admission: Admission
-        let axes: [String: Axis]
+        let axes: NameMap<Axis>
         let literal: StructuralSource.Literal?
     }
     struct Input: Codable, Equatable {
         let path: String
         let sha256: String
         func matches(_ other: Input) -> Bool {
-            Data(path.utf8) == Data(other.path.utf8) && sha256 == other.sha256
+            WhereJudge.sameName(path, other.path) && sha256 == other.sha256
         }
+        static func == (lhs: Self, rhs: Self) -> Bool { lhs.matches(rhs) }
     }
     struct Report: Codable {
         let schema: String
@@ -157,7 +165,7 @@ public enum RosterResponse {
         let axes: [String]
         var inputs: [Input] { files.map { Input(path: $0.0, sha256: courtSHA256(Data($0.1.utf8))) }.sorted { $0.path < $1.path } }
         init(_ files: [(String, String)], predicate: String) throws {
-            guard !files.isEmpty, Set(files.map { $0.0 }).count == files.count,
+            guard !files.isEmpty, NameSet(files.map { $0.0 }).count == files.count,
                   files.allSatisfy({ !$0.0.isEmpty }) else {
                 throw StructuralSource.AddressedFailure("roster:1: source paths must be nonempty and distinct")
             }
@@ -186,7 +194,7 @@ public enum RosterResponse {
                     throw StructuralSource.AddressedFailure("\(at.path):\(at.line): extension through alias '\(d.name)' is outside roster scope")
                 }
             }
-            var names = Set<String>()
+            var names = NameSet()
             for proto in closure {
                 for axis in source.declarations[proto]!.axes {
                     guard names.insert(axis.name).inserted else {
@@ -236,7 +244,7 @@ public enum RosterResponse {
             // This graph includes required associated types and declared bounds;
             // an absent field is never a successful empty projection.
             let admission = Admission(try ApplicationCourt.derive([.member(root, predicate)], source: source))
-            var fields: [String: Axis] = [:]
+            var fields: NameMap<Axis> = [:]
             let raw = DefinitionReduction.Source(world: source.syntax, rigid: [])
             for a in axes {
                 let expression = DefinitionReduction.Expression.field(root, a)
@@ -251,30 +259,30 @@ public enum RosterResponse {
         func sameLiteral(_ a: StructuralSource.Literal?, _ b: StructuralSource.Literal?) -> Bool {
             guard let a else { return b == nil }
             guard let b else { return false }
-            return a.at.matches(b.at) && a.bytes == b.bytes && a.judged == b.judged
+            return a.at.matches(b.at) && WhereJudge.sameName(a.bytes, b.bytes) && a.judged == b.judged
         }
         /// No search for a replacement proof: replay the supplied finite graph
         /// and reductions, and compare coverage with the original read domain.
         func replay(_ report: Report) throws {
-            guard report.schema == RosterResponse.schema, Data(report.question.utf8) == Data(predicate.utf8),
+            guard report.schema == RosterResponse.schema, WhereJudge.sameName(report.question, predicate),
                 report.reader == "vi.roster.flat-declarations/1", report.inputs.count == inputs.count,
                 zip(report.inputs, inputs).allSatisfy({ $0.0.matches($0.1) }),
                 report.records.count == candidates.count,
-                zip(report.records, candidates).allSatisfy({ Data($0.0.name.utf8) == Data($0.1.utf8) }),
+                zip(report.records, candidates).allSatisfy({ WhereJudge.sameName($0.0.name, $0.1) }),
                 report.outcome == (candidates.isEmpty ? "empty" : "holds"), report.diagnostics.isEmpty else {
                 throw DefinitionReduction.Failure("roster certificate changes input, outcome or complete coverage")
             }
             let raw = DefinitionReduction.Source(world: source.syntax, rigid: [])
             for row in report.records {
                 let root = DefinitionReduction.Expression.application(row.name, [])
-                guard row.at.matches(address(row.name)), Set(row.axes.keys.map { Data($0.utf8) }) == Set(axes.map { Data($0.utf8) }), sameLiteral(row.literal, source.literals[row.name]) else {
+                guard row.at.matches(address(row.name)), NameSet(row.axes.keys) == NameSet(axes), sameLiteral(row.literal, source.literals[row.name]) else {
                     throw DefinitionReduction.Failure("changed address, axis roster or carried bytes at '\(row.name)'")
                 }
                 try row.admission.replay(root, source: source, predicate: predicate)
                 for a in axes {
                     let field = row.axes[a]!
                     let end = try DefinitionReduction.replay(field.derivation.proof(), source: raw)
-                    guard end.input == .field(root, a), end.output.text == field.normal,
+                    guard end.input == .field(root, a), WhereJudge.sameName(end.output.text, field.normal),
                         sameLiteral(field.literal, literal(end.output)) else { throw DefinitionReduction.Failure("changed axis projection '\(row.name).\(a)'") }
                     try normal(end.output)
                 }
@@ -327,7 +335,7 @@ public enum RosterResponse {
             let files = try args.map { ($0, try WhereJudge.fileText($0)) }
             let report: Report
             if let certificate {
-                report = try JSONDecoder().decode(Report.self, from: Data(contentsOf: URL(fileURLWithPath: certificate)))
+                report = try CourtJSON.decoder().decode(Report.self, from: Data(contentsOf: URL(fileURLWithPath: certificate)))
                 try World(files, predicate: predicate).replay(report)
             } else { report = answer(files, predicate: predicate) }
             let encoder = JSONEncoder()

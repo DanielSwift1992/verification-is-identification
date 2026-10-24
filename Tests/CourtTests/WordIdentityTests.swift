@@ -46,7 +46,7 @@ final class WordIdentityTests: XCTestCase {
     func testContextNamePremisesParticipateWithTheirDeclaredAddresses() throws {
         for imported in ["Módulo", "Mo\u{301}dulo"] {
             let files = [("world.swift", "import \(imported)\nprotocol X {}"), ("lib.swift", "enum Library {}")]
-            let texts = Dictionary(uniqueKeysWithValues: files)
+            let texts = NameMap(uniqueKeysWithValues: files)
             let entries: [[String: Any]] = files.enumerated().map { i, file in
                 let imports = i == 0 ? [imported] : []
                 return ["input": file.0, "source": file.0, "sha256": courtSHA256(Data(file.1.utf8)),

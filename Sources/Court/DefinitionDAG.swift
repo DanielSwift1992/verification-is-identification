@@ -33,6 +33,19 @@ extension DefinitionReduction {
     enum Term: Hashable {
         case application(String, [Int])
         case field(Int, String)
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            switch (lhs, rhs) {
+            case let (.application(a, xs), .application(b, ys)): return WhereJudge.sameName(a, b) && xs == ys
+            case let (.field(x, a), .field(y, b)): return x == y && WhereJudge.sameName(a, b)
+            default: return false
+            }
+        }
+        func hash(into hasher: inout Hasher) {
+            switch self {
+            case let .application(n, args): hasher.combine(0); hasher.combine(ScalarName(n)); hasher.combine(args)
+            case let .field(e, n): hasher.combine(1); hasher.combine(e); hasher.combine(ScalarName(n))
+            }
+        }
         var references: [Int] {
             switch self {
             case let .application(_, a): return a
@@ -49,7 +62,7 @@ extension DefinitionReduction {
         private
         var interned: [Term: Int] = [:]
         private
-        var parsed: [String: Expression] = [:]
+        var parsed: NameMap<Expression> = [:]
         init(source: Source, work: Work) {
             self.source = source
             self.work = work
@@ -87,7 +100,7 @@ extension DefinitionReduction {
             interned[term] = id
             return id
         }
-        func read(_ expression: Expression, bindings: [String: Int] = [:]) throws -> Int {
+        func read(_ expression: Expression, bindings: NameMap<Int> = [:]) throws -> Int {
             try work.visit()
             if source.world.nestedNames.contains(expression.text) {
                 return try add(.application(expression.text, []))
@@ -104,7 +117,7 @@ extension DefinitionReduction {
             case let .field(owner, axis): return try add(.field(read(owner, bindings: bindings), axis))
             }
         }
-        func body(_ text: String, bindings: [String: Int]) throws -> Int {
+        func body(_ text: String, bindings: NameMap<Int>) throws -> Int {
             let expression: Expression
             if let old = parsed[text] {
                 expression = old
@@ -123,11 +136,11 @@ extension DefinitionReduction {
             case let .application(name, args):
                 try source.checkApplication(name, args.count)
                 guard !source.rigid.contains(name), let d = source.world.aliases[name] else { return nil }
-                return try body(d.body, bindings: Dictionary(uniqueKeysWithValues: zip(d.parameters, args)))
+                return try body(d.body, bindings: NameMap(uniqueKeysWithValues: zip(d.parameters, args)))
             case let .field(owner, axis):
                 guard case let .application(name, args) = try get(owner) else { return nil }
-                if source.world.intrinsicSwift, name == "Swift", args.isEmpty {
-                    if axis == "Never" || (source.world.contextVersion == 2 && axis == "String") {
+                if source.world.intrinsicSwift, WhereJudge.sameName(name, "Swift"), args.isEmpty {
+                    if WhereJudge.sameName(axis, "Never") || (source.world.contextVersion == 2 && WhereJudge.sameName(axis, "String")) {
                         return try add(.application(axis, []))
                     }
                 }
@@ -144,7 +157,7 @@ extension DefinitionReduction {
                     throw Failure(
                         "cannot read projection '\(self.text(id))': no definition of '\(axis)' on '\(name)'")
                 }
-                var bindings = Dictionary(uniqueKeysWithValues: zip(d.parameters, args))
+                var bindings = NameMap(uniqueKeysWithValues: zip(d.parameters, args))
                 bindings["Self"] = owner
                 for sibling in d.table.keys.sorted()
                 where bindings[sibling] == nil {

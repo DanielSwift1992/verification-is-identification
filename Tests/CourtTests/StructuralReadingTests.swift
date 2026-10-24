@@ -41,7 +41,7 @@ final class StructuralReadingTests: XCTestCase {
             .deletingLastPathComponent().deletingLastPathComponent()
             .appendingPathComponent("Contracts/Court/v0.5")
         let paths = ["fixtures/C-document.swift", "fixtures/Primitive.swift"]
-        var texts: [String: String] = [:]
+        var texts: NameMap<String> = [:]
         for path in paths { texts[path] = try String(contentsOf: root.appendingPathComponent(path), encoding: .utf8) }
         texts[paths[0]] = texts[paths[0]]!.replacingOccurrences(of: "public static var body", with: "@StructureBuilder public static var body")
         let original = try Data(contentsOf: root.appendingPathComponent("fixtures/C-document.json"))

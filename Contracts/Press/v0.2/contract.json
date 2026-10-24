@@ -7,8 +7,8 @@
     "transport": "vi.press.json/2"
   },
   "files": {
-    "fixtures/cases.json": "9b38eff38ca0fb5e46ec920a7dba24866f55445895c3364eea2e57fc8b12f307",
-    "calculus.md": "b55380c7af2ddc0bb439612cd9a5be7b70e5c1a06ca8644f39651a63f6505569"
+    "fixtures/cases.json": "42a1185834521a4e42e300d788001f157c737d4b66bf6df85d5020d15ff44fd6",
+    "calculus.md": "571d169eb4b0b2e9c8045abb2ba24ebf2d844b7b1259bac88ece14d9f644a3d4"
   },
   "cases_file": "fixtures/cases.json",
   "cases": [
@@ -245,7 +245,11 @@
     "R7-attribute-qualified",
     "R7-attribute-qualified-through-comment",
     "R7-attribute-generic",
-    "R7-attribute-builtin-qualified"
+    "R7-attribute-builtin-qualified",
+    "R8-R0-replay",
+    "R8-R1-slot",
+    "R8-R4-rule",
+    "R8-R5-argument"
   ],
   "native_controls": [
     "N3a-dictionary-lexical-refusal",

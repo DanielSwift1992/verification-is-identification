@@ -18,6 +18,9 @@ struct StructuralSource {
         let kind: Kind
         let left: String
         let right: String
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            lhs.kind == rhs.kind && WhereJudge.sameName(lhs.left, rhs.left) && WhereJudge.sameName(lhs.right, rhs.right)
+        }
     }
     struct Axis {
         let name: String
@@ -30,23 +33,23 @@ struct StructuralSource {
         let parameters: [String]
         let parents: [String]
         let requirements: [Requirement]
-        var fields: [String: String]
-        var fieldAccess: [String: String] = [:]
+        var fields: NameMap<String>
+        var fieldAccess: NameMap<String> = [:]
         let axes: [Axis]
         let alias: String?
         var unsupported: [String]
         let bodyWitness: Bool
         let origin: String
     }
-    var declarations: [String: Declaration] = [:]
+    var declarations: NameMap<Declaration> = [:]
     // Preserved for clients which emit declarations into a separate Swift file.
     // This does not change the existing relation/application judgements.
-    var access: [String: String] = [:]
-    var extensions: [String: [Declaration]] = [:]
-    var defaultProviders: [String: [String: String]] = [:]
+    var access: NameMap<String> = [:]
+    var extensions: NameMap<[Declaration]> = [:]
+    var defaultProviders: NameMap<NameMap<String>> = [:]
     var syntax = WhereJudge.World()
     var excludedConditionals = 0
-    var conditionalSubjects: Set<String> = []
+    var conditionalSubjects: NameSet = []
 
     struct Address: Codable, Equatable {
         let path: String
@@ -54,24 +57,28 @@ struct StructuralSource {
         let start: Int
         let end: Int
         func matches(_ other: Address) -> Bool {
-            Data(path.utf8) == Data(other.path.utf8) && line == other.line && start == other.start && end == other.end
+            WhereJudge.sameName(path, other.path) && line == other.line && start == other.start && end == other.end
         }
+        static func == (lhs: Self, rhs: Self) -> Bool { lhs.matches(rhs) }
     }
     struct Literal: Codable, Equatable {
         let at: Address
         let bytes: String
         let judged: Bool
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            lhs.at == rhs.at && WhereJudge.sameName(lhs.bytes, rhs.bytes) && lhs.judged == rhs.judged
+        }
     }
     typealias Lexed = WhereJudge.Lexed
-    var addresses: [String: Address] = [:]
-    var extensionAddresses: [String: Address] = [:]
-    var literals: [String: Literal] = [:]
+    var addresses: NameMap<Address> = [:]
+    var extensionAddresses: NameMap<Address> = [:]
+    var literals: NameMap<Literal> = [:]
 
     struct Token: Codable, Equatable {
         let word: String
         let bytes: Range<Int>
         static func == (lhs: Token, rhs: Token) -> Bool {
-            lhs.bytes == rhs.bytes && Data(lhs.word.utf8) == Data(rhs.word.utf8)
+            lhs.bytes == rhs.bytes && WhereJudge.sameName(lhs.word, rhs.word)
         }
     }
     static func tokens(_ source: String) throws -> [String] {
@@ -163,7 +170,7 @@ struct StructuralSource {
             }
             h.removeFirst(end + 1)
         }
-        if Set(params).count != params.count { errors.append("duplicate generic parameter") }
+        if NameSet(params).count != params.count { errors.append("duplicate generic parameter") }
         var parents: [String] = [], alias: String?
         let whereAt = h.firstIndex(of: "where")
         let prefix = whereAt.map { Array(h[..<$0]) } ?? h
@@ -185,7 +192,7 @@ struct StructuralSource {
         } else if !prefix.isEmpty {
             errors.append("unread header: " + text(prefix))
         }
-        var fields: [String: String] = [:], fieldAccess: [String: String] = [:], axes: [Axis] = [],
+        var fields: NameMap<String> = [:], fieldAccess: NameMap<String> = [:], axes: [Axis] = [],
             bodyWitness = false
         var memberAccess = "internal"
         var i = 0
@@ -207,7 +214,7 @@ struct StructuralSource {
                 i += 1
                 continue
             }
-            if body[i] == "var", i + 1 < body.count, body[i + 1] == "body" { bodyWitness = true }
+            if body[i] == "var", i + 1 < body.count, WhereJudge.sameName(body[i + 1], "body") { bodyWitness = true }
             if body[i] == "enum" || body[i] == "struct" || body[i] == "class" {
                 errors.append("nested type declaration")
             }
@@ -343,7 +350,7 @@ struct StructuralSource {
         let regions: [Region]
         let certificate: ReadingCertificate
         let excludedConditionals: Int
-        let conditionalSubjects: Set<String>
+        let conditionalSubjects: NameSet
         var tokens: [Token] { certificate.tokens }
     }
     enum ReadingScope {
@@ -361,7 +368,7 @@ struct StructuralSource {
         let lexed: Lexed
         do { lexed = try scan(source, carrying: true, scope: scope == .declarations ? .declarations : .projection) }
         catch let error as ScanFailure {
-            throw AddressedFailure("\(origin):\(error.line): \(error.description) (byte \(error.byte))")
+            throw AddressedFailure(error.addressed(origin))
         }
         return try regions(source, origin: origin, scope: scope, lexed: lexed)
     }
@@ -369,7 +376,7 @@ struct StructuralSource {
         let ts = lexed.words
         let located = ts.indices.map { Token(word: ts[$0], bytes: lexed.starts[$0]..<lexed.ends[$0]) }
         var units: [ReadingCertificate.Unit] = [], regions: [Region] = [], i = 0
-        var excluded = 0, conditionalSubjects: Set<String> = [], declared: Set<String> = []
+        var excluded = 0, conditionalSubjects: NameSet = [], declared: NameSet = []
         let qualifiers = ["public", "internal", "private", "fileprivate", "package", "open"]
         let declarations = ["enum", "struct", "protocol", "extension", "typealias"]
         func nextAfterQualifiers(_ start: Int) -> Int {
@@ -390,7 +397,7 @@ struct StructuralSource {
                             throw Failure("unattached qualifier")
                         }
                     }
-                } else if kind == "@", i + 1 < ts.count, ts[i + 1] == "resultBuilder" {
+                } else if kind == "@", i + 1 < ts.count, WhereJudge.sameName(ts[i + 1], "resultBuilder") {
                     i += 2
                     let next = nextAfterQualifiers(i)
                     guard next < ts.count, ["enum", "struct"].contains(ts[next]) else { throw Failure("unattached resultBuilder attribute") }
@@ -459,7 +466,7 @@ struct StructuralSource {
             try WhereJudge.checkWordSpellings(files + readings.map { ($0.origin, $0.source) }
                 + notationFiles.map { ($0.context.source, $0.text) }, arguments: arguments)
         }
-        let lent = Set(try notationFiles.flatMap { try WhereJudge.declaredBuilders($0.world.clean) })
+        let lent = NameSet(try notationFiles.flatMap { try WhereJudge.declaredBuilders($0.world.clean) })
         let scanned = try WhereJudge.lexicalReadings(files, scope: roster ? .declarations : .projection, lent: lent, arguments: arguments)
         let presented = try readings + zip(files, scanned).map { file, read in
             try Self.regions(file.1, origin: file.0, scope: roster ? .declarations : .projection, lexed: read.tape)
@@ -551,7 +558,7 @@ struct StructuralSource {
             }
             guard ["let", "var"].contains(words[n]) else { continue }
             guard n > 0, words[n - 1] == "static", n + 5 < words.count,
-                words[n + 1] == "typeName", words[n + 2] == ":", words[n + 3] == "String"
+                WhereJudge.sameName(words[n + 1], "typeName"), words[n + 2] == ":", WhereJudge.sameName(words[n + 3], "String")
             else { throw AddressedFailure("\(origin):\(lexed.lines[indices[n]]): only a static typeName byte carrier is supported") }
             if words[n + 4] == "{", words[n + 5] == "get", n + 6 < words.count, words[n + 6] == "}" { continue }
             let value = n + 5
@@ -566,8 +573,8 @@ struct StructuralSource {
         return result
     }
 
-    func protocolClosure(_ names: [String]) -> Set<String> {
-        var seen: Set<String> = [], work = names
+    func protocolClosure(_ names: [String]) -> NameSet {
+        var seen: NameSet = [], work = names
         while let p = work.popLast() {
             if seen.insert(p).inserted { work += declarations[p]?.parents ?? [] }
         }
@@ -586,7 +593,7 @@ struct StructuralSource {
             var d = declarations[name]!
             if d.kind == "protocol" {
                 syntax.protocolParents[name] = d.parents
-                syntax.protocolAxes[name] = Set(d.axes.map(\.name))
+                syntax.protocolAxes[name] = NameSet(d.axes.map(\.name))
                 continue
             }
             if d.kind == "typealias" {
@@ -598,7 +605,7 @@ struct StructuralSource {
             }
             var fields = d.fields
             var bodyWitness = d.bodyWitness
-            var conditionalAxes: Set<String> = []
+            var conditionalAxes: NameSet = []
             for e in extensions[name] ?? []
             where !e.requirements.isEmpty && !e.fields.isEmpty {
                 conditionalAxes.formUnion(e.fields.keys)
@@ -614,14 +621,14 @@ struct StructuralSource {
             }
             let parents = conformanceChoices(name).map { $0.0 }
             for axis in conditionalAxes { fields.removeValue(forKey: axis) }
-            var defaults: [String: (String, String)] = [:]
+            var defaults: NameMap<(String, String)> = [:]
             for p in protocolClosure(parents).sorted() {
                 for axis in declarations[p]?.axes ?? [] {
                     guard let value = axis.fallback, fields[axis.name] == nil,
                         !conditionalAxes.contains(axis.name)
                     else { continue }
-                    if axis.name == "Body", bodyWitness { continue }
-                    if let old = defaults[axis.name], old.1 != value {
+                    if WhereJudge.sameName(axis.name, "Body"), bodyWitness { continue }
+                    if let old = defaults[axis.name], !WhereJudge.sameName(old.1, value) {
                         d.unsupported.append("ambiguous default \(axis.name)")
                     }
                     defaults[axis.name] = (p, value)

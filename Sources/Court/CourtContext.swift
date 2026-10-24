@@ -22,7 +22,7 @@ struct CourtContext {
         try WhereJudge.fail("context \(at): \(why)")
     }
 
-    init(text: String, paths: [String], texts: [String: String]) throws {
+    init(text: String, paths: [String], texts: NameMap<String>) throws {
         let raw: Any
         do { raw = try JSONSerialization.jsonObject(with: Data(text.utf8)) }
         catch { try Self.refuse("document", "invalid JSON") }
@@ -38,7 +38,7 @@ struct CourtContext {
               let intrinsic = object["intrinsics"] as? [[String: Any]] else {
             try Self.refuse("document", "expected exactly schema, sources and intrinsics")
         }
-        var parsed: [Source] = [], seen: Set<String> = []
+        var parsed: [Source] = [], seen = NameSet()
         for (i, item) in entries.enumerated() {
             let whereAt = "sources[\(i)]"
             let scalars: Set<String> = second
@@ -64,14 +64,14 @@ struct CourtContext {
                   let importAddresses = provenance["imports"] as? [String],
                   imports.count == importAddresses.count,
                   imports.allSatisfy({ !$0.isEmpty }), importAddresses.allSatisfy({ !$0.isEmpty }),
-                  Set(imports).count == imports.count else {
+                  NameSet(imports).count == imports.count else {
                 try Self.refuse(whereAt + ".imports", "imports need distinct names and provenance addresses")
             }
             let input = values["input"]!
             guard seen.insert(input).inserted else {
                 try Self.refuse(addresses["input"]!, "duplicate input '\(input)'")
             }
-            guard paths.contains(input), let content = texts[input] else {
+            guard paths.containsName(input), let content = texts[input] else {
                 try Self.refuse(addresses["input"]!, "undeclared CLI input '\(input)'")
             }
             guard values["sha256"]!.range(of: #"^[0-9a-f]{64}$"#, options: .regularExpression) != nil,
@@ -80,10 +80,10 @@ struct CourtContext {
             }
             parsed.append(Source(input: input, source: values["source"]!, sha256: values["sha256"]!,
                 namespace: values["namespace"]!, module: values["module"] ?? values["namespace"]!,
-                role: values["role"] ?? (input == paths.first ? "own" : "borrowed"),
+                role: values["role"] ?? (WhereJudge.sameName(input, paths.first) ? "own" : "borrowed"),
                 imports: imports, at: addresses, importAddresses: importAddresses))
         }
-        guard Set(paths).count == paths.count else { try Self.refuse("sources", "duplicate CLI source") }
+        guard NameSet(paths).count == paths.count else { try Self.refuse("sources", "duplicate CLI source") }
         for path in paths {
             guard !seen.contains(path) else { continue }
             try Self.refuse("sources", "supplied input '\(path)' is not declared")
@@ -94,9 +94,9 @@ struct CourtContext {
         for (i, item) in intrinsic.enumerated() {
             let at = "intrinsics[\(i)]"
             guard Set(item.keys) == ["namespace", "version", "exports", "at"],
-                  item["namespace"] as? String == "Swift",
+                  WhereJudge.sameName(item["namespace"] as? String, "Swift"),
                   item["version"] as? String == intrinsicVersion,
-                  item["exports"] as? [String] == exports, !swift,
+                  WhereJudge.sameNames(item["exports"] as? [String], exports), !swift,
                   let provenance = item["at"] as? [String: Any],
                   Set(provenance.keys) == ["namespace", "version", "exports"],
                   let nsAt = provenance["namespace"] as? String, !nsAt.isEmpty,
@@ -108,17 +108,17 @@ struct CourtContext {
             }
             swift = true
         }
-        let namespaces = Set(parsed.map { second ? $0.module : $0.namespace })
+        let namespaces = NameSet(parsed.map { second ? $0.module : $0.namespace })
         for source in parsed {
             if second {
                 guard ["own", "borrowed"].contains(source.role) else {
                     try Self.refuse(source.at["role"]!, "expected own or borrowed source role")
                 }
-                guard source.module != "Swift" else {
+                guard !WhereJudge.sameName(source.module, "Swift") else {
                     try Self.refuse(source.at["module"]!, "source cannot declare intrinsic module Swift")
                 }
             }
-            guard source.namespace != "Swift" else {
+            guard !WhereJudge.sameName(source.namespace, "Swift") else {
                 try Self.refuse(source.at["namespace"]!, "source cannot declare intrinsic namespace Swift")
             }
         }
@@ -126,7 +126,7 @@ struct CourtContext {
         // A forged intrinsic module is named at its own declaration address.
         for source in parsed {
             for (index, imported) in source.imports.enumerated() {
-                guard namespaces.contains(imported) || (swift && imported == "Swift") else {
+                guard namespaces.contains(imported) || (swift && WhereJudge.sameName(imported, "Swift")) else {
                     let subject = second ? "module" : "namespace"
                     try Self.refuse(source.importAddresses[index], "\(subject) '\(imported)' has no supplied source or intrinsic")
                 }

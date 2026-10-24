@@ -23,7 +23,7 @@ if CommandLine.arguments.dropFirst().first == "--native" {
     Press.run(Array(CommandLine.arguments.dropFirst(2)))
 } else {
     do {
-        let input = try JSONDecoder().decode(Request.self, from: FileHandle.standardInput.readDataToEndOfFile())
+        let input = try CourtJSON.decoder().decode(Request.self, from: FileHandle.standardInput.readDataToEndOfFile())
         let response: Response
         do {
             if let certificate = input.certificate {

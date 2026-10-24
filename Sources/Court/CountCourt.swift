@@ -56,11 +56,11 @@ enum CountCourt {
         return result
     }
 
-    static func shape(_ text: String, lent: Set<String> = []) throws -> [String] {
+    static func shape(_ text: String, lent: NameSet = []) throws -> [String] {
         shape(try WhereJudge.lexicalReading(text, scope: .projection, lent: lent, carrying: false).tape.words)
     }
     static func shape(_ words: [String]) -> [String] {
-        let modifiers: Set<String> = ["public", "internal", "private", "fileprivate", "package"]
+        let modifiers: NameSet = ["public", "internal", "private", "fileprivate", "package"]
         return StructuralSource.plain(words).filter { !modifiers.contains($0) }
     }
 
@@ -68,7 +68,7 @@ enum CountCourt {
         let ts = StructuralSource.plain(block.body)
         var result: [[String]] = [], i = 0
         while i < ts.count {
-            if ["var", "let", "func"].contains(ts[i]), i + 1 < ts.count, ts[i + 1] == "count" {
+            if ["var", "let", "func"].contains(ts[i]), i + 1 < ts.count, WhereJudge.sameName(ts[i + 1], "count") {
                 guard ts[i] == "var", i > 0, ts[i - 1] == "static",
                     i + 4 < ts.count, Array(ts[(i + 2)...(i + 4)]) == [":", "Int", "{"]
                 else { throw Failure("unsupported count member on \(block.name) in \(block.origin)") }
@@ -86,8 +86,8 @@ enum CountCourt {
     /// Other getters, result builders, overrides and modules are not inferred.
     static func checkPrimitiveRules(_ files: [(String, String)], source: StructuralSource) throws {
         let read = try blocks(files)
-        let builders = Set(read.filter { $0.resultBuilder }.map { $0.name })
-        let protected: Set<String> = ["Structure", "Open", "Close", "Pair", "Null",
+        let builders = NameSet(read.filter { $0.resultBuilder }.map { $0.name })
+        let protected: NameSet = ["Structure", "Open", "Close", "Pair", "Null",
                                       "Never", "Unit", "Plus", "Paired", "StructureBuilder"]
         for name in protected {
             if source.conditionalSubjects.contains(name) {
@@ -95,14 +95,14 @@ enum CountCourt {
             }
         }
         func declaration(_ name: String, kind: String, header: String, body: String? = nil) throws {
-            let found = read.filter { $0.name == name && $0.kind != "extension" }
+            let found = read.filter { WhereJudge.sameName($0.name, name) && $0.kind != "extension" }
             guard found.count == 1, found[0].kind == kind,
-                found[0].header == StructuralSource.plain(try StructuralSource.tokens(header))
+                WhereJudge.sameNames(found[0].header, StructuralSource.plain(try StructuralSource.tokens(header)))
             else { throw Failure("missing or changed count primitive declaration '\(name)'") }
-            if name == "StructureBuilder", !found[0].resultBuilder {
+            if WhereJudge.sameName(name, "StructureBuilder"), !found[0].resultBuilder {
                 throw Failure("StructureBuilder is not declared @resultBuilder in \(found[0].origin)")
             }
-            if let body, try shape(found[0].body) != shape(body, lent: builders) {
+            if let body, try !WhereJudge.sameNames(shape(found[0].body), shape(body, lent: builders)) {
                 throw Failure("changed count primitive body '\(name)' in \(found[0].origin)")
             }
         }
@@ -128,27 +128,27 @@ enum CountCourt {
         try declaration("Close", kind: "protocol", header: "Close: Structure", body: "")
         // These parent/Body relations determine the count dispatch used above.
         guard source.declarations["Structure"]?.kind == "protocol",
-            source.declarations["Open"]?.parents == ["Structure"],
-            (source.declarations["Open"]?.axes.contains { $0.name == "Body" && $0.fallback == "Never" }) == true,
-            source.declarations["Pair"]?.parents == ["Open"],
-            source.declarations["Null"]?.parents == ["Pair"],
-            (source.conformanceChoices("Never").contains { $0.0 == "Null" && $0.1.isEmpty }),
-            (source.conformanceChoices("Never").contains { $0.0 == "Close" && $0.1.isEmpty })
+            WhereJudge.sameNames(source.declarations["Open"]?.parents, ["Structure"]),
+            (source.declarations["Open"]?.axes.contains { WhereJudge.sameName($0.name, "Body") && WhereJudge.sameName($0.fallback, "Never") }) == true,
+            WhereJudge.sameNames(source.declarations["Pair"]?.parents, ["Open"]),
+            WhereJudge.sameNames(source.declarations["Null"]?.parents, ["Pair"]),
+            (source.conformanceChoices("Never").contains { WhereJudge.sameName($0.0, "Null") && $0.1.isEmpty }),
+            (source.conformanceChoices("Never").contains { WhereJudge.sameName($0.0, "Close") && $0.1.isEmpty })
         else { throw Failure("missing count-dispatch foundation (Structure/Open/Pair/Null/Never)") }
 
-        var rules: [String: [[String]]] = [:]
+        var rules: NameMap<[[String]]> = [:]
         for block in read {
             guard protected.contains(block.name) else { continue }
             // Even an empty added conformance can introduce a more specific
             // getter through its protocol. Do not infer that it is harmless.
-            if block.kind == "extension", ["Unit", "Plus", "StructureBuilder"].contains(block.name)
+            if block.kind == "extension", ["Unit", "Plus", "StructureBuilder"].containsName(block.name)
             { throw Failure("extension changes the count primitive '\(block.name)' in \(block.origin)") }
             for getter in try countGetters(block) {
                 let key = block.kind + " " + block.header.joined(separator: " ")
                 rules[key, default: []].append(getter)
             }
         }
-        let expected: [String: [[String]]] = [
+        let expected: NameMap<[[String]]> = [
             "protocol Structure": [["get"]],
             "extension Structure": [["1"]],
             "extension Open where Body == Never": [["1"]],
@@ -188,12 +188,12 @@ enum CountCourt {
     struct Evaluation {
         let checked: Int
         let refusals: [String]
-        let byPath: [String: Int]
-        let pathRefusals: [String: [String]]
+        let byPath: NameMap<Int>
+        let pathRefusals: NameMap<[String]>
         let scope: String
     }
     static func evaluate(_ files: [(String, String)], source: StructuralSource,
-                         options: [String: String]) throws -> Evaluation {
+                         options: NameMap<String>) throws -> Evaluation {
             try WhereJudge.checkWordSpellings(files, arguments: options.keys.sorted().map { ($0, options[$0]!) })
             let reader = Reader(source: R.Source(world: source.syntax, rigid: []))
             let predicate = try reader.normal(R.parse(options["--predicate"]!))
@@ -213,8 +213,8 @@ enum CountCourt {
             where d.parameters.isEmpty {
                 queue.append((d.name, d.name, .application(d.name, []), false, d.origin))
             }
-            var seen: [String: Set<E>] = [:], discovered = 0, checked = 0, refusals: [String] = []
-            var byPath: [String: Int] = [:], pathRefusals: [String: [String]] = [:]
+            var seen: NameMap<Set<E>> = [:], discovered = 0, checked = 0, refusals: [String] = []
+            var byPath: NameMap<Int> = [:], pathRefusals: NameMap<[String]> = [:]
             while let job = queue.popLast() {
                 guard discovered < 20_000 else { throw Failure("count application discovery exceeds its budget") }
                 let reader = Reader(source: R.Source(world: source.syntax, rigid: []))
@@ -228,7 +228,7 @@ enum CountCourt {
                     throw Failure("unbound reading application '\(root.text)'")
                 }
                 let parents = source.protocolClosure(source.conformanceChoices(name).map { $0.0 })
-                if !parents.contains("PredicateReading") {
+                if !parents.containsName("PredicateReading") {
                     // Certificate fields can carry applied generic readings.
                     for axis in source.syntax.conformers[name]?.table.keys.sorted() ?? [] {
                         queue.append((job.anchor, job.site + "." + axis, .field(root, axis), job.nested, job.path))
@@ -262,9 +262,9 @@ enum CountCourt {
                 scope: "\(sigma.text) / \(encoding.text) / \(predicate.text)")
     }
 
-    static func contextRead(_ context: CourtContext, texts: [String: String], documents: Set<String>,
-                            options: [String: String]) throws -> [CourtSourcesReport.Row] {
-        guard Set(options.keys) == ["--predicate", "--encoding", "--sigma"] else {
+    static func contextRead(_ context: CourtContext, texts: NameMap<String>, documents: NameSet,
+                            options: NameMap<String>) throws -> [CourtSourcesReport.Row] {
+        guard NameSet(options.keys) == ["--predicate", "--encoding", "--sigma"] else {
             throw Failure("count context needs predicate, encoding and sigma")
         }
         let paths = context.sources.map(\.input)
@@ -273,7 +273,7 @@ enum CountCourt {
         }
         let selected = context.sources.filter { $0.role == "own" }.map(\.input)
         for first in selected.isEmpty ? [paths[0]] : selected {
-            let prepared = try WhereContext.prepare([first] + paths.filter { $0 != first }, contextPath: contextPath,
+            let prepared = try WhereContext.prepare([first] + paths.filter { !WhereJudge.sameName($0, first) }, contextPath: contextPath,
                 load: { texts[$0]! }, documents: documents, batch: true, notationOnly: true)
             if !prepared.world.contextUnresolved.isEmpty { try WhereJudge.failAll(prepared.world.contextUnresolved) }
         }
@@ -298,7 +298,7 @@ enum CountCourt {
 
     static func run(_ arguments: [String]) {
         do {
-            var paths: [String] = [], options: [String: String] = [:], i = 0
+            var paths: [String] = [], options: NameMap<String> = [:], i = 0
             while i < arguments.count {
                 let word = arguments[i]
                 if word.hasPrefix("--") {

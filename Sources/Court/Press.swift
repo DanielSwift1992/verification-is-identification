@@ -13,6 +13,7 @@ public enum Press {
     struct Rule {
         let declaration: StructuralSource.Declaration
         let slot: String
+        let slotAt: WhereJudge.WordOccurrence
         let from: E
         let into: E
         var name: String { declaration.name }
@@ -43,7 +44,7 @@ public enum Press {
     }
     struct Candidate: Codable {
         let rule: String
-        let substitution: [String: String]
+        let substitution: NameMap<String>
         // A path to a constructor disagreement; nil denotes a complete match.
         let mismatch: [Int]?
         let bounds: ApplicationCourt.Derivation?
@@ -81,7 +82,7 @@ public enum Press {
     /// exactly three ordinary aliases; it does not search line substrings.
     static func readRule(named name: String, read: StructuralSource.FileReading, path: String) throws -> Rule {
         try addressed("\(path)#\(name)") {
-            let found = read.regions.filter { $0.declaration.name == name && $0.declaration.kind != "extension" }
+            let found = read.regions.filter { WhereJudge.sameName($0.declaration.name, name) && $0.declaration.kind != "extension" }
             guard let region = found.first else { try fail("no rule named \(name) in \(path)", at: "\(path)#\(name)") }
             guard found.count == 1 else { throw R.Failure("duplicate rule \(name)") }
             let d = region.declaration
@@ -95,30 +96,39 @@ public enum Press {
                 guard region.body[i] == "typealias" else { throw R.Failure("\(name) is not a triple: \(region.body[i])") }
                 aliases.append(try StructuralSource.readDeclaration(region.body, index: &i, origin: path).declaration)
             }
-            guard aliases.count == 3, Set(aliases.map(\.name)) == Set(["Slot", "From", "Into"]),
+            guard aliases.count == 3, NameSet(aliases.map(\.name)) == NameSet(["Slot", "From", "Into"]),
                 aliases.allSatisfy({ $0.parameters.isEmpty && $0.requirements.isEmpty && $0.unsupported.isEmpty }) else {
                 throw R.Failure("\(name) states no full Slot/From/Into triple")
             }
             let slot = try R.parse(d.fields["Slot"]!)
-            guard case let .application(slotName, args) = slot, args.isEmpty, !d.parameters.contains(slotName) else {
+            guard case let .application(slotName, args) = slot, args.isEmpty, !d.parameters.containsName(slotName) else {
                 throw R.Failure("Slot must be a constant name")
             }
             let from = try R.parse(d.fields["From"]!), into = try R.parse(d.fields["Into"]!)
-            var counts: [String: Int] = [:]
+            var counts: NameMap<Int> = [:]
             try variables(from, d.parameters, counts: &counts)
             for variable in d.parameters
             where counts[variable, default: 0] > 1 {
                 throw R.Failure("\(name) repeats \(variable) in its pattern: linearity is the premise of the unique match")
             }
-            var outputCounts: [String: Int] = [:]
+            var outputCounts: NameMap<Int> = [:]
             try variables(into, d.parameters, counts: &outputCounts)
-            return Rule(declaration: d, slot: slotName, from: from, into: into)
+            let indices = region.tokenRange.filter { read.tokens[$0].word != "\n" }
+            guard let position = indices.indices.first(where: { j in
+                j >= 3 && WhereJudge.sameName(read.tokens[indices[j]].word, slotName)
+                    && read.tokens[indices[j - 1]].word == "="
+                    && WhereJudge.sameName(read.tokens[indices[j - 2]].word, "Slot")
+                    && read.tokens[indices[j - 3]].word == "typealias"
+            }) else { throw R.Failure("Slot has no source token") }
+            let at = indices[position]
+            return Rule(declaration: d, slot: slotName,
+                slotAt: .init(spelling: slotName, line: read.lexed.lines[at], byte: read.tokens[at].bytes.lowerBound), from: from, into: into)
         }
     }
-    static func variables(_ e: E, _ parameters: [String], counts: inout [String: Int]) throws {
+    static func variables(_ e: E, _ parameters: [String], counts: inout NameMap<Int>) throws {
         switch e {
         case let .application(name, args):
-            if parameters.contains(name) {
+            if parameters.containsName(name) {
                 guard args.isEmpty else { throw R.Failure("variable used as a constructor: \(name)") }
                 counts[name, default: 0] += 1
             } else { for a in args { try variables(a, parameters, counts: &counts) } }
@@ -156,20 +166,23 @@ public enum Press {
                 return (try readRule(named: name, read: dictionaryRead, path: dictionaryPath), args)
             }
         }
-        guard let slot = members.first?.0.slot, members.allSatisfy({ $0.0.slot == slot }) else {
-            try fail("a chord holds one slot: \(invocation) mixes \(Set(members.map { $0.0.slot }).sorted().joined(separator: ", "))", at: "\(dictionaryPath)#\(invocation)")
+        guard let slot = members.first?.0.slot, members.allSatisfy({ WhereJudge.sameName($0.0.slot, slot) }) else {
+            try fail("a chord holds one slot: \(invocation) mixes \(NameSet(members.map { $0.0.slot }).sorted().joined(separator: ", "))", at: "\(dictionaryPath)#\(invocation)")
         }
         let alias = slot.hasSuffix("Slot") ? String(slot.dropLast(4)) : slot
         return try addressed("\(statePath)#\(alias)") {
             let read = try readInput(0)
             // Slot's declared suffix denotes a state name. Guard that derived name
-            // too before the String-key lookup; stripping Slot must not erase a
+            // too for the collision diagnostic; stripping Slot must not erase a
             // distinct scalar spelling of the actual state declaration (U4).
             try addressed("\(dictionaryPath)#\(invocation)") {
                 try WhereJudge.checkWordSpellings(inputs.map { ($0.path, $0.text) },
-                    arguments: [("\(dictionaryPath)#\(invocation).Slot (state name)", alias), ("arguments", invocation)])
+                    arguments: [("arguments", invocation)],
+                    locatedNames: members.map { member in
+                        (dictionaryPath, .init(spelling: alias, line: member.0.slotAt.line, byte: member.0.slotAt.byte))
+                    })
             }
-            let found = read.regions.filter { $0.declaration.kind == "typealias" && $0.declaration.name == alias }
+            let found = read.regions.filter { $0.declaration.kind == "typealias" && WhereJudge.sameName($0.declaration.name, alias) }
             guard let region = found.first else { try fail("no slot \(alias) in \(statePath)", at: "\(statePath)#\(alias)") }
             guard found.count == 1 else { try fail("slot \(alias) appears twice in \(statePath)", at: "\(statePath)#\(alias)") }
             let d = region.declaration
@@ -186,7 +199,7 @@ public enum Press {
             // A place is established by its declaration across the complete
             // input, independently of whether this rule needs bound proofs.
             for other in [dictionaryRead] + extraReads {
-                if let duplicate = (other.regions.first { $0.declaration.name == alias && $0.declaration.kind != "extension" }) {
+                if let duplicate = (other.regions.first { WhereJudge.sameName($0.declaration.name, alias) && $0.declaration.kind != "extension" }) {
                     let line = other.lexed.lines[duplicate.tokenRange.lowerBound]
                     try fail("slot \(alias) has another declaration", at: "\(other.origin):\(line)")
                 }
@@ -199,54 +212,54 @@ public enum Press {
                 current: current, source: source, readings: all.map(\.certificate))
         }
     }
-    static func prebindings(_ rule: Rule, _ instance: [E], dictionaryPath: String) throws -> [String: E] {
+    static func prebindings(_ rule: Rule, _ instance: [E], dictionaryPath: String) throws -> NameMap<E> {
         try addressed("\(dictionaryPath)#\(rule.name)") {
-            var counts: [String: Int] = [:]
+            var counts: NameMap<Int> = [:]
             try variables(rule.from, rule.variables, counts: &counts)
             let names = rule.variables.filter { counts[$0] == nil }
             guard instance.count <= names.count else { throw R.Failure("\(rule.name) takes \(names.count) instance argument(s), \(instance.count) given") }
             guard instance.count == names.count else { throw R.Failure("\(rule.name) needs its instance argument(s) \(names.joined(separator: ", ")): press \(rule.name)<…>") }
-            return Dictionary(uniqueKeysWithValues: zip(names, instance))
+            return NameMap(uniqueKeysWithValues: zip(names, instance))
         }
     }
     /// Search returns either a complete substitution or one constructor
     /// disagreement. Replay below follows the supplied path, without matching.
-    static func match(_ pattern: E, _ term: E, variables: [String], bindings: inout [String: E], path: [Int] = []) -> [Int]? {
-        if case let .application(name, args) = pattern, args.isEmpty, variables.contains(name) {
+    static func match(_ pattern: E, _ term: E, variables: [String], bindings: inout NameMap<E>, path: [Int] = []) -> [Int]? {
+        if case let .application(name, args) = pattern, args.isEmpty, variables.containsName(name) {
             bindings[name] = term
             return nil
         }
         switch (pattern, term) {
         case let (.application(a, xs), .application(b, ys))
-        where a == b && xs.count == ys.count:
+        where WhereJudge.sameName(a, b) && xs.count == ys.count:
             for i in xs.indices { if let no = match(xs[i], ys[i], variables: variables, bindings: &bindings, path: path + [i]) { return no } }
             return nil
         case let (.field(a, x), .field(b, y))
-        where x == y:
+        where WhereJudge.sameName(x, y):
             return match(a, b, variables: variables, bindings: &bindings, path: path + [-1])
         default: return path
         }
     }
     static func disagreement(_ path: [Int], _ pattern: E, _ term: E, variables: [String]) -> Bool {
-        if case let .application(name, args) = pattern, args.isEmpty, variables.contains(name) { return false }
+        if case let .application(name, args) = pattern, args.isEmpty, variables.containsName(name) { return false }
         if let first = path.first {
             switch (pattern, term) {
             case let (.application(a, xs), .application(b, ys))
-            where a == b && xs.count == ys.count && xs.indices.contains(first):
+            where WhereJudge.sameName(a, b) && xs.count == ys.count && xs.indices.contains(first):
                 return disagreement(Array(path.dropFirst()), xs[first], ys[first], variables: variables)
             case let (.field(a, x), .field(b, y))
-            where x == y && first == -1:
+            where WhereJudge.sameName(x, y) && first == -1:
                 return disagreement(Array(path.dropFirst()), a, b, variables: variables)
             default: return false
             }
         }
         switch (pattern, term) {
-        case let (.application(a, xs), .application(b, ys)): return a != b || xs.count != ys.count
-        case let (.field(_, x), .field(_, y)): return x != y
+        case let (.application(a, xs), .application(b, ys)): return !WhereJudge.sameName(a, b) || xs.count != ys.count
+        case let (.field(_, x), .field(_, y)): return !WhereJudge.sameName(x, y)
         default: return true
         }
     }
-    static func obligations(_ rule: Rule, _ bindings: [String: E]) throws -> Set<ApplicationCourt.Goal> {
+    static func obligations(_ rule: Rule, _ bindings: NameMap<E>) throws -> Set<ApplicationCourt.Goal> {
         var environment = bindings
         environment["Self"] = .application(rule.name, try rule.variables.map {
             guard let value = bindings[$0] else { throw R.Failure("missing binding \($0)") }
@@ -309,7 +322,12 @@ public enum Press {
         var insideExtension = false
         for (number, line) in lines.enumerated() {
             let trimmed = line.trimmingCharacters(in: .whitespaces)
-            if trimmed.hasPrefix("extension \(slotName) ") || trimmed.hasPrefix("extension \(slotName){") {
+            // This historical line reader remains the step-B debt. Its name
+            // lookup nevertheless uses the court's one scalar identity.
+            let prefixes = ["extension \(slotName) ", "extension \(slotName){"]
+            if prefixes.contains(where: {
+                WhereJudge.sameName(String(trimmed.unicodeScalars.prefix($0.unicodeScalars.count)), $0)
+            }) {
                 insideExtension = true
                 continue
             }
@@ -340,19 +358,19 @@ public enum Press {
     public static func replay(_ certificate: Certificate, arguments: [String], state: String, dictionary: String,
         definitions: [Input] = [], output: String, statePath: String = "state.swift", dictionaryPath: String = "rules.swift") throws {
         try addressed("certificate") {
-            guard certificate.version == "vi.press.linear-certificate/1", certificate.arguments == arguments,
+            guard certificate.version == "vi.press.linear-certificate/1", WhereJudge.sameNames(certificate.arguments, arguments),
                 certificate.inputs == inputDigests(state, dictionary, definitions, statePath, dictionaryPath) else {
                 throw R.Failure("certificate belongs to different input")
             }
             let read = try reading(arguments, state: state, dictionary: dictionary, definitions: definitions, statePath: statePath, dictionaryPath: dictionaryPath, certificates: certificate.readings)
-            guard certificate.slot == read.slot, certificate.lowerByte == read.bytes.lowerBound,
+            guard WhereJudge.sameName(certificate.slot, read.slot), certificate.lowerByte == read.bytes.lowerBound,
                 certificate.upperByte == read.bytes.upperBound, certificate.candidates.count == read.members.count else {
                 throw R.Failure("certificate changes the slot or chord coverage")
             }
             var matches: [Int] = []
             for (i, member) in read.members.enumerated() {
                 let (rule, instance) = member, proposed = certificate.candidates[i]
-                guard proposed.rule == rule.name else { throw R.Failure("certificate changes the rule") }
+                guard WhereJudge.sameName(proposed.rule, rule.name) else { throw R.Failure("certificate changes the rule") }
                 let prebound = try prebindings(rule, instance, dictionaryPath: dictionaryPath)
                 let bindings = try proposed.substitution.mapValues { try R.parse($0) }
                 if let path = proposed.mismatch {
@@ -362,7 +380,7 @@ public enum Press {
                     }
                     continue
                 }
-                guard Set(bindings.keys) == Set(rule.variables), prebound.allSatisfy({ bindings[$0.key] == $0.value }),
+                guard NameSet(bindings.keys) == NameSet(rule.variables), prebound.allSatisfy({ bindings[$0.key] == $0.value }),
                     try rule.from.substituting(bindings) == read.current else { throw R.Failure("old slot is not From[sigma]") }
                 let goals = try obligations(rule, bindings)
                 if goals.isEmpty {

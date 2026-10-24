@@ -27,7 +27,7 @@ final class SourceLexingTests: XCTestCase {
             let input: Input
             if let source = try? JSONDecoder().decode(String.self, from: data) { input = Input(source: source, lent: []) }
             else { input = try JSONDecoder().decode(Input.self, from: data) }
-            let source = input.source ?? "", lent = Set(input.lent ?? [])
+            let source = input.source ?? "", lent = NameSet(input.lent ?? [])
             let scopes: [WhereJudge.LexicalScope] = [.notation, .projection, .declarations]
             for column in 0..<4 {
                 let expected = cells[column + 3]
@@ -56,7 +56,7 @@ final class SourceLexingTests: XCTestCase {
                 decisions += 1
             }
         }
-        XCTAssertEqual(seen.count, 116, "the complete declared lexical table must run")
-        XCTAssertEqual(decisions, 464)
+        XCTAssertEqual(seen.count, 117, "the complete declared lexical table must run")
+        XCTAssertEqual(decisions, 468)
     }
 }

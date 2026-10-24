@@ -31,7 +31,7 @@ enum WhereJudge {
         let name: String
         let parameters: [String]
         var protocols: [String]
-        var table: [String: String]
+        var table: NameMap<String>
     }
 
     struct AliasRule {
@@ -107,13 +107,13 @@ enum WhereJudge {
     // can add a conformance this court never sees, and is refused at its first
     // use. Each is a reader failure that names its line, as is an unterminated
     // comment, string or interpolation.
-    static let directives: Set<String> = [
+    static let directives: NameSet = [
         "if", "elseif", "else", "endif", "sourceLocation", "warning", "error",
         "available", "unavailable", "selector", "keyPath", "file", "fileID",
         "filePath", "line", "column", "function", "dsohandle", "isolation",
         "colorLiteral", "imageLiteral", "fileLiteral",
     ]
-    static let attributes: Set<String> = [
+    static let attributes: NameSet = [
         "available", "frozen", "inlinable", "usableFromInline", "discardableResult",
         "inline", "retroactive", "preconcurrency", "unchecked", "escaping",
         "autoclosure", "Sendable", "MainActor", "objc", "nonobjc", "testable", "main",
@@ -132,7 +132,7 @@ enum WhereJudge {
             .replacingOccurrences(of: "\r", with: "\n")
     }
 
-    static func blankCommentsAndStrings(_ text: String, lent: Set<String> = []) throws -> String {
+    static func blankCommentsAndStrings(_ text: String, lent: NameSet = []) throws -> String {
         do { return try lexicalReading(text, lent: lent, carrying: false).blanked }
         catch let error as LexicalFailure {
             try fail("cannot read line \(error.line): \(error.description)")
@@ -144,7 +144,7 @@ enum WhereJudge {
     // declaring attribute and the type. An attribute of such a name adds no
     // conformance, so it is a form this court reads, in the text that
     // declares it and in a world that text is lent to.
-    static func stripComments(_ text: String, lent: Set<String> = []) throws -> String {
+    static func stripComments(_ text: String, lent: NameSet = []) throws -> String {
         // Conditional compilation is outside this court's scope. Omit the
         // complete block, including nested alternatives; never expose a tail
         // merely because an inner #endif was encountered. An omitted line
@@ -215,7 +215,7 @@ enum WhereJudge {
         var depth: [Int] = [0]
         var line: [Int] = [1]
         var qualified: [Int: String] = [:]
-        var namespaces: Set<String> = []
+        var namespaces: NameSet = []
 
         init(_ text: String) {
             for unit in text.utf16 {
@@ -260,7 +260,7 @@ enum WhereJudge {
                 + #"private|fileprivate|internal|package|open|final|override|required|convenience|dynamic"#
                 + #"|nonisolated))*\s+(?:func|var|let|subscript|init)\b)"#
         )
-        let typeKeywords: Set<String> = ["extension", "enum", "struct", "class", "actor", "protocol"]
+        let typeKeywords: NameSet = ["extension", "enum", "struct", "class", "actor", "protocol"]
         let units = Array(text.utf16)
         var depth: [Int] = [0]
         var opened: [Bool] = []
@@ -396,9 +396,9 @@ enum WhereJudge {
     // `file` holds the names this reader reads at file scope: an enum, a
     // protocol or a typealias outside every body.
     static func declaredNames(_ text: String, _ scope: Scope) throws
-        -> (lines: [String: [Int]], file: Set<String>) {
-        var lines: [String: [Int]] = [:]
-        var file = Set<String>()
+        -> (lines: NameMap<[Int]>, file: NameSet) {
+        var lines: NameMap<[Int]> = [:]
+        var file = NameSet()
         let range = NSRange(text.startIndex..., in: text)
         let nominal = try! NSRegularExpression(
             pattern: #"\b(enum|struct|class|actor|protocol|typealias|associatedtype)\s+(\w+)"#
@@ -425,7 +425,7 @@ enum WhereJudge {
         let declaring = try! NSRegularExpression(
             pattern: #"(?<!\.)\b(func|enum|struct|class|actor|typealias|init|subscript)\b"#
         )
-        let modifying: Set<String> = [
+        let modifying: NameSet = [
             "func", "var", "let", "subscript", "init", "deinit", "static", "final", "override", "required",
             "convenience", "dynamic", "nonisolated", "public", "private", "fileprivate", "internal", "package", "open",
         ]
@@ -656,37 +656,37 @@ enum WhereJudge {
         var contextSource = ""
         var contextUnresolved: [String] = []
         var excludedDefinitions: [String] = []
-        var addresses: [String: String] = [:]
-        var contextConformers: Set<String> = []
-        var namespaces: Set<String> = []
-        var nestedNames: Set<String> = []
+        var addresses: NameMap<String> = [:]
+        var contextConformers: NameSet = []
+        var namespaces: NameSet = []
+        var nestedNames: NameSet = []
         var intrinsicSwift = false
-        var conformers: [String: Conformer] = [:]
-        var aliases: [String: AliasRule] = [:]
+        var conformers: NameMap<Conformer> = [:]
+        var aliases: NameMap<AliasRule> = [:]
         var gates: [GatedExtension] = []
-        var gatedProtocols: [String: GatedProtocol] = [:]
-        var protocolParents: [String: [String]] = [:]
-        var protocolAxes: [String: Set<String>] = [:]
-        var parameters: [String: [String]] = [:]
-        var genericRequirements: [String: [StructuralSource.Requirement]] = [:]
-        var genericUnsupported: [String: [String]] = [:]
-        var conditionalDeclarations: Set<String> = []
-        var presentedBodies: Set<String> = []
+        var gatedProtocols: NameMap<GatedProtocol> = [:]
+        var protocolParents: NameMap<[String]> = [:]
+        var protocolAxes: NameMap<NameSet> = [:]
+        var parameters: NameMap<[String]> = [:]
+        var genericRequirements: NameMap<[StructuralSource.Requirement]> = [:]
+        var genericUnsupported: NameMap<[String]> = [:]
+        var conditionalDeclarations: NameSet = []
+        var presentedBodies: NameSet = []
         var uses: [String] = []
         var useLines: [Int] = []
-        var certificateLines: [String: Int] = [:]
+        var certificateLines: NameMap<Int> = [:]
         /// Uses and parameterless certificates are judged at their root.
         /// A parsed range does not discharge a gate nested inside that root.
         var rootApplicationSpans: [NSRange] = []
         /// the lines each name of this file is declared at, in any scope
-        var declared: [String: [Int]] = [:]
+        var declared: NameMap<[Int]> = [:]
         /// the lines at which this file extends each name, in any form
-        var extensions: [String: [Int]] = [:]
+        var extensions: NameMap<[Int]> = [:]
         /// the names this file declares at file scope as a type, a protocol
         /// or a typealias: the names another file's extension can reach
-        var fileTypes: Set<String> = []
+        var fileTypes: NameSet = []
         /// every name this file's code spells
-        var names: Set<String> = []
+        var names: NameSet = []
         /// the read text, the line before each of its UTF-16 offsets, the
         /// ranges this court reads as uses, certificates and gate clauses,
         /// and the right sides of the typealiases at file scope
@@ -696,7 +696,7 @@ enum WhereJudge {
         var aliasSpans: [NSRange] = []
     }
 
-    static func read(_ text: String, lent: Set<String> = [], notationV2: Bool = true,
+    static func read(_ text: String, lent: NameSet = [], notationV2: Bool = true,
                      contextV2: Bool = false) throws -> World {
         let clean = try stripComments(text, lent: lent)
         var scope = Scope(clean)
@@ -705,12 +705,12 @@ enum WhereJudge {
         scope.namespaces = notation.namespaces
         var world = World()
         world.namespaces = notation.namespaces
-        world.nestedNames = Set(notation.nested.values)
+        world.nestedNames = NameSet(notation.nested.values)
         world.intrinsicSwift = notationV2 ? try NotationScope.intrinsic(clean, version: contextV2 ? 2 : 1) : false
 
         // Use the same Unicode word class as the declaration reader. A name
         // it reads cannot disappear when checking which gates reach the file.
-        world.names = Set(captures(#"\b(\w+)\b"#, clean).map { $0[0] })
+        world.names = NameSet(captures(#"\b(\w+)\b"#, clean).map { $0[0] })
         let names = try declaredNames(clean, scope)
         world.declared = names.lines
         if world.intrinsicSwift {
@@ -748,12 +748,12 @@ enum WhereJudge {
             let protocols = hit[2]
                 .split(separator: ",")
                 .map { $0.trimmingCharacters(in: .whitespaces) }
-            var table: [String: String] = [:]
+            var table: NameMap<String> = [:]
             for aliasHit in try readAliases(hit[3]) where aliasHit[1].isEmpty {
                 guard table[aliasHit[0]] == nil else {
                     try fail("duplicate definition of '\(name).\(aliasHit[0])'")
                 }
-                table[aliasHit[0]] = notation.resolve(aliasHit[2], in: name, excluding: Set(parameters + ["Self"] + (try readAliases(hit[3])).map { $0[0] }))
+                table[aliasHit[0]] = notation.resolve(aliasHit[2], in: name, excluding: NameSet(parameters + ["Self"] + (try readAliases(hit[3])).map { $0[0] }))
             }
             world.conformers[name] = Conformer(
                 name: name, parameters: parameters, protocols: protocols, table: table
@@ -940,7 +940,7 @@ enum WhereJudge {
         }
 
         for hit in try declarations(#"protocol\s+(\w+)[^{}]*\{([^{}]*)\}"#, clean, scope) {
-            world.protocolAxes[hit[0]] = Set(captures(#"associatedtype\s+(\w+)"#, hit[1]).map { $0[0] })
+            world.protocolAxes[hit[0]] = NameSet(captures(#"associatedtype\s+(\w+)"#, hit[1]).map { $0[0] })
         }
 
         // A use is an application written as a metatype: the chain of names,
@@ -1048,7 +1048,7 @@ enum WhereJudge {
         catch { try fail("cannot read term: \(error)") }
     }
 
-    static func substitute(_ term: Term, _ bindings: [String: Term]) throws -> Term {
+    static func substitute(_ term: Term, _ bindings: NameMap<Term>) throws -> Term {
         do {
             let expression = try DefinitionReduction.parse(Press.serialize(term), allowRigidNames: true)
             let values = try bindings.mapValues {
@@ -1058,7 +1058,7 @@ enum WhereJudge {
         } catch { try fail("cannot substitute term: \(error)") }
     }
 
-    static func normalize(_ term: Term, _ world: World, rigid: Set<String> = []) throws -> Term {
+    static func normalize(_ term: Term, _ world: World, rigid: NameSet = []) throws -> Term {
         do {
             let expression = try DefinitionReduction.parse(Press.serialize(term), allowRigidNames: true)
             let source = DefinitionReduction.Source(world: world, rigid: rigid)
@@ -1073,11 +1073,11 @@ enum WhereJudge {
     /// Same nominal equations, with the count reader's shared derivations.
     /// Neither a count nor identical input spelling is an equality proof.
     static func compared(_ left: Term, _ right: Term, _ world: World,
-                         rigid: Set<String> = []) throws -> (equal: Bool, left: String, right: String) {
+                         rigid: NameSet = []) throws -> (equal: Bool, left: String, right: String) {
         if world.contextVersion != 2 {
             let l = Press.serialize(try normalize(left, world, rigid: rigid))
             let r = Press.serialize(try normalize(right, world, rigid: rigid))
-            return (l == r, l, r)
+            return (sameName(l, r), l, r)
         }
         do {
             let source = DefinitionReduction.Source(world: world, rigid: rigid)
@@ -1103,7 +1103,7 @@ enum WhereJudge {
     // intermediate name cannot carry a claim past its gate. A nominal head is
     // already the name a gate is looked up by, and a world that presents no
     // gate has no lookup to prepare. The gate itself reads the arguments.
-    static func gatedForm(_ term: Term, _ world: World, rigid: Set<String> = []) throws -> Term {
+    static func gatedForm(_ term: Term, _ world: World, rigid: NameSet = []) throws -> Term {
         guard !world.gates.isEmpty,
               world.aliases[term.head] != nil || term.head.contains(".") else { return term }
         do {
@@ -1119,8 +1119,8 @@ enum WhereJudge {
         inheritedProtocols(conformer.protocols, world).contains(proto)
     }
 
-    static func inheritedProtocols(_ protocols: [String], _ world: World) -> Set<String> {
-        var seen = Set<String>()
+    static func inheritedProtocols(_ protocols: [String], _ world: World) -> NameSet {
+        var seen = NameSet()
         var pile = protocols
         while let name = pile.popLast() {
             if seen.insert(name).inserted {
@@ -1131,8 +1131,8 @@ enum WhereJudge {
     }
 
     static func conformerContext(_ conformer: Conformer, _ world: World) throws
-        -> (bindings: [String: Term], rigid: Set<String>) {
-        guard Set(conformer.parameters).count == conformer.parameters.count else {
+        -> (bindings: NameMap<Term>, rigid: NameSet) {
+        guard NameSet(conformer.parameters).count == conformer.parameters.count else {
             try fail("cannot bind conformer '\(conformer.name)': duplicate generic parameters")
         }
         // Alpha-rename bound parameters outside the source identifier grammar.
@@ -1142,14 +1142,14 @@ enum WhereJudge {
             Term(head: "$free_\(conformer.name)_\($0)", args: [])
         }
         let owner = Term(head: conformer.name, args: variables)
-        let rigid = Set(variables.map { $0.head })
-        var bindings = Dictionary(uniqueKeysWithValues: zip(conformer.parameters, variables))
+        let rigid = NameSet(variables.map { $0.head })
+        var bindings = NameMap(uniqueKeysWithValues: zip(conformer.parameters, variables))
         bindings["Self"] = owner
-        var axes = Set(conformer.table.keys)
+        var axes = NameSet(conformer.table.keys)
         for proto in inheritedProtocols(conformer.protocols, world) {
             axes.formUnion(world.protocolAxes[proto] ?? [])
         }
-        for axis in axes where !conformer.parameters.contains(axis) {
+        for axis in axes where !conformer.parameters.containsName(axis) {
             bindings[axis] = Term(head: Press.serialize(owner) + "." + axis, args: [])
         }
         return (bindings, rigid)
@@ -1158,17 +1158,17 @@ enum WhereJudge {
     // A question's formal parameters must be bound by this actual application.
     // zip alone would leave missing parameters free to resolve as global names.
     // A declaration with zero parameters still has obligations to discharge.
-    static func gateBindings(_ term: Term, _ world: World) throws -> [String: Term] {
+    static func gateBindings(_ term: Term, _ world: World) throws -> NameMap<Term> {
         guard let parameters = world.parameters[term.head] ?? world.conformers[term.head]?.parameters else {
             try fail("cannot bind gate '\(term.head)': no declaration parameters were read")
         }
-        guard parameters.count == term.args.count, Set(parameters).count == parameters.count else {
+        guard parameters.count == term.args.count, NameSet(parameters).count == parameters.count else {
             try fail("cannot bind gate '\(term.head)': expected \(parameters.count) distinct arguments, received \(term.args.count)")
         }
-        var bindings = Dictionary(uniqueKeysWithValues: zip(parameters, term.args))
+        var bindings = NameMap(uniqueKeysWithValues: zip(parameters, term.args))
         bindings["Self"] = term
         if let owner = world.conformers[term.head] {
-            var axes = Set(owner.table.keys)
+            var axes = NameSet(owner.table.keys)
             for proto in inheritedProtocols(owner.protocols, world) {
                 axes.formUnion(world.protocolAxes[proto] ?? [])
             }
@@ -1196,8 +1196,8 @@ enum WhereJudge {
     // the head's protocol list does not establish its argument constraints.
     static func judgeMemberships(
         _ memberships: [(String, String)], site: String, tag: String?,
-        bindings: [String: Term], world: World,
-        counted: inout Int, refusals: inout [String], rigid: Set<String> = [],
+        bindings: NameMap<Term>, world: World,
+        counted: inout Int, refusals: inout [String], rigid: NameSet = [],
         requireGrounds: Bool = false
     ) throws {
         let mark = tag.map { " [\($0)]" } ?? ""
@@ -1296,7 +1296,7 @@ enum WhereJudge {
     struct Prepared {
         let path: String
         let world: World
-        let ownAliases: [String: AliasRule]
+        let ownAliases: NameMap<AliasRule>
         let excludesConditional: Bool
     }
 
@@ -1304,6 +1304,13 @@ enum WhereJudge {
         case certificate(String)
         case use(Int)
         case conformer(String)
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            switch (lhs, rhs) {
+            case let (.certificate(a), .certificate(b)), let (.conformer(a), .conformer(b)): return sameName(a, b)
+            case let (.use(a), .use(b)): return a == b
+            default: return false
+            }
+        }
     }
 
     static func fileText(_ path: String) throws -> String {
@@ -1345,7 +1352,7 @@ enum WhereJudge {
         // typealiases: the declaration supplies the premise that the
         // attribute adds no conformance. A definitions file this scan cannot
         // read lends nothing here; it is refused below, in its turn.
-        let lentBuilders = Set(original.dropFirst().flatMap { _, more -> Set<String> in
+        let lentBuilders = NameSet(original.dropFirst().flatMap { _, more -> NameSet in
             guard let clean = try? stripComments(more) else { return [] }
             return (try? declaredBuilders(clean)) ?? []
         })
@@ -1355,7 +1362,7 @@ enum WhereJudge {
         // Extra files supply alias definitions, not a second version of the
         // same source. This flat reader has no module-resolution rule with
         // which to choose between duplicates, so a collision is unresolved.
-        var aliasOrigins = Dictionary(uniqueKeysWithValues: world.aliases.keys.map { ($0, path) })
+        var aliasOrigins = NameMap(uniqueKeysWithValues: world.aliases.keys.map { ($0, path) })
         let extras: [(path: String, text: String, world: World)] = try original.dropFirst().map { extra, more in
             return (extra, more, try read(more, notationV2: notationV2))
         }
@@ -1371,7 +1378,7 @@ enum WhereJudge {
         }
         // A typealias of any file may be extended from another, and such an
         // extension extends the alias's type, through the alias, as well.
-        var anyAlias = Set(world.aliases.keys)
+        var anyAlias = NameSet(world.aliases.keys)
         for extra in extras { anyAlias.formUnion(extra.world.aliases.keys) }
         let worldThroughAlias = world.extensions
             .filter { anyAlias.contains($0.key) }
@@ -1394,10 +1401,10 @@ enum WhereJudge {
                 try fail("cannot read the gate '\(gate.head): \(gate.proto)' in '\(extra.path)': this court judges "
                     + "the gates of the world it reads, and '\(path)' names '\(gate.head)'")
             }
-            let gated = Set(extra.world.gatedProtocols.keys)
+            let gated = NameSet(extra.world.gatedProtocols.keys)
             guard !gated.isEmpty else { continue }
             for name in world.names.sorted() {
-                var reached: Set<String> = []
+                var reached: NameSet = []
                 var walk = [name]
                 while let next = walk.popLast() {
                     guard reached.insert(next).inserted else { continue }
@@ -1458,7 +1465,7 @@ enum WhereJudge {
                           excludesConditional: excludesConditional, extras: extras)
     }
 
-    static func finish(path: String, world: World, ownAliases: [String: AliasRule],
+    static func finish(path: String, world: World, ownAliases: NameMap<AliasRule>,
                        excludesConditional: Bool, extras: [(path: String, text: String, world: World)]) throws -> Prepared {
         // A gated head is judged where it is applied, so every application of
         // one is read, or refused at its line, never passed over. A typealias
@@ -1473,12 +1480,12 @@ enum WhereJudge {
         // typealiases alone: there an application is read only as the right
         // side of a generic one, and a parameterless one that applies a gated
         // head is a certificate this court does not judge outside the world.
-        var gatedNames = Set(world.gates.map(\.head))
+        var gatedNames = NameSet(world.gates.map(\.head))
         var grown = true
         while grown {
             grown = false
             for (name, rule) in world.aliases.sorted(by: { $0.key < $1.key }) where !gatedNames.contains(name) {
-                let spelled = Set(captures(#"\b(\w+)\b"#, rule.body).map { $0[0] })
+                let spelled = NameSet(captures(#"\b(\w+)\b"#, rule.body).map { $0[0] })
                 if !spelled.isDisjoint(with: gatedNames) {
                     gatedNames.insert(name)
                     grown = true
@@ -1493,7 +1500,7 @@ enum WhereJudge {
                 }
             }
         }
-        let declaring: Set<String> = ["enum", "struct", "class", "actor", "typealias", "protocol"]
+        let declaring: NameSet = ["enum", "struct", "class", "actor", "typealias", "protocol"]
         var unreadPlaces: [(line: Int, message: String)] = []
         // A use or a certificate is judged only at the head its definition
         // exposes. Reading Optional<Use<Bad>> as a term does not judge Use,
@@ -1504,13 +1511,13 @@ enum WhereJudge {
         for span in world.rootApplicationSpans {
             guard let bounds = Range(span, in: world.clean) else { continue }
             let spelled = String(world.clean[bounds]).trimmingCharacters(in: .whitespacesAndNewlines)
-            let names = Set(captures(#"\b(\w+)\b"#, spelled).map { $0[0] })
+            let names = NameSet(captures(#"\b(\w+)\b"#, spelled).map { $0[0] })
             guard !names.isDisjoint(with: gatedNames) else { continue }
             let term = try parseTerm(Substring(spelled))
             let claim = try gatedForm(term, world)
             let arguments = (term.args + claim.args).map(Press.serialize).joined(separator: ",")
-            let nested = Set(captures(#"\b(\w+)\b"#, arguments).map { $0[0] }).intersection(gatedNames)
-            if !nested.isEmpty || !world.gates.contains(where: { $0.head == claim.head }) {
+            let nested = NameSet(captures(#"\b(\w+)\b"#, arguments).map { $0[0] }).intersection(gatedNames)
+            if !nested.isEmpty || !world.gates.contains(where: { sameName($0.head, claim.head) }) {
                 let line = world.lineAt[span.location]
                 unreadPlaces.append((line, "cannot read line \(line) of '\(path)': '\(spelled)' contains "
                     + "a gated application outside the root this court judges"))
@@ -1599,7 +1606,7 @@ enum WhereJudge {
         // A typealias certificate is a judged point: a parameterless alias in the
         // world whose right side names a gated head states the gate's equalities
         // for those arguments, and the refusal names the certificate.
-        var certificates: [(name: String, term: Term, rigid: Set<String>)] = try ownAliases
+        var certificates: [(name: String, term: Term, rigid: NameSet)] = try ownAliases
             .filter { $0.value.parameters.isEmpty }
             .map { ($0.key, try parseTerm(Substring($0.value.body)), []) }
         // A local certificate is still checked, but in its actual owner.
@@ -1618,7 +1625,7 @@ enum WhereJudge {
             let term = certificate.term
             let body = Press.serialize(term)
             let claim = try gatedForm(term, world, rigid: certificate.rigid)
-            let matching = world.gates.filter { $0.head == claim.head }
+            let matching = world.gates.filter { sameName($0.head, claim.head) }
             guard !matching.isEmpty else { continue }
             let bindings = try gateBindings(claim, world)
             for gate in matching {
@@ -1647,7 +1654,7 @@ enum WhereJudge {
         for (index, use) in world.uses.enumerated() {
             guard selection == nil || selection == .use(index) else { continue }
             let claim = try gatedForm(try parseTerm(Substring(use)), world)
-            let matching = world.gates.filter { $0.head == claim.head }
+            let matching = world.gates.filter { sameName($0.head, claim.head) }
             guard !matching.isEmpty else { continue }
             let bindings = try gateBindings(claim, world)
             for gate in matching {

@@ -13,6 +13,20 @@ enum DefinitionReduction {
         case application(String, [Expression])
         case field(Expression, String)
 
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            switch (lhs, rhs) {
+            case let (.application(a, xs), .application(b, ys)): return WhereJudge.sameName(a, b) && xs == ys
+            case let (.field(x, a), .field(y, b)): return x == y && WhereJudge.sameName(a, b)
+            default: return false
+            }
+        }
+        func hash(into hasher: inout Hasher) {
+            switch self {
+            case let .application(n, args): hasher.combine(0); hasher.combine(ScalarName(n)); hasher.combine(args)
+            case let .field(e, n): hasher.combine(1); hasher.combine(e); hasher.combine(ScalarName(n))
+            }
+        }
+
         var text: String {
             switch self {
             case let .application(name, args):
@@ -31,7 +45,7 @@ enum DefinitionReduction {
         }
 
         /// Simultaneous substitution: an inserted expression is not visited again.
-        func substituting(_ bindings: [String: Expression]) throws -> Expression {
+        func substituting(_ bindings: NameMap<Expression>) throws -> Expression {
             switch self {
             case let .application(name, args):
                 if let replacement = bindings[name] {
@@ -115,7 +129,7 @@ enum DefinitionReduction {
 
     struct Source {
         let world: WhereJudge.World
-        let rigid: Set<String>
+        let rigid: NameSet
 
         func validate(_ expression: Expression, depth: Int = 0) throws {
             guard depth < 128 else { throw Failure("expression exceeds validation depth limit") }
@@ -151,7 +165,7 @@ enum DefinitionReduction {
             if let parameters = world.aliases[name]?.parameters ?? world.parameters[name]
                 ?? world.conformers[name]?.parameters
             {
-                guard Set(parameters).count == parameters.count else {
+                guard NameSet(parameters).count == parameters.count else {
                     throw Failure("duplicate parameters on '\(name)'")
                 }
                 guard parameters.count == count else {
@@ -170,12 +184,12 @@ enum DefinitionReduction {
                 guard !rigid.contains(name), let definition = world.aliases[name] else {
                     return nil
                 }
-                let bindings = Dictionary(
+                let bindings = NameMap(
                     uniqueKeysWithValues: zip(definition.parameters, arguments))
                 return try parse(definition.body).substituting(bindings)
             case let .field(owner, axis):
-                if world.intrinsicSwift, expression.text == "Swift.Never" { return .application("Never", []) }
-                if world.intrinsicSwift, world.contextVersion == 2, expression.text == "Swift.String" {
+                if world.intrinsicSwift, WhereJudge.sameName(expression.text, "Swift.Never") { return .application("Never", []) }
+                if world.intrinsicSwift, world.contextVersion == 2, WhereJudge.sameName(expression.text, "Swift.String") {
                     return .application("String", [])
                 }
                 if world.nestedNames.contains(expression.text) { return nil }
@@ -200,7 +214,7 @@ enum DefinitionReduction {
                 }
                 // Generic parameters and sibling names are bound at this owner,
                 // before any global alias with the same spelling can be consulted.
-                var bindings = Dictionary(
+                var bindings = NameMap(
                     uniqueKeysWithValues: zip(declaration.parameters, arguments))
                 bindings["Self"] = owner
                 for sibling in declaration.table.keys

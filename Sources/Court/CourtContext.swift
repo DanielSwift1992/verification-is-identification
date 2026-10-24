@@ -122,14 +122,6 @@ struct CourtContext {
                 try Self.refuse(source.at["namespace"]!, "source cannot declare intrinsic namespace Swift")
             }
         }
-        // Diagnose distinct spellings in the complete question before an
-        // unavailable scalar import can hide the other declaration address.
-        let names = parsed.flatMap { source in
-            [(source.at["namespace"]!, source.namespace),
-             (source.at["module"] ?? source.at["namespace"]!, source.module)]
-                + Array(zip(source.importAddresses, source.imports))
-        }
-        try WhereJudge.checkWordSpellings(parsed.map { ($0.source, texts[$0.input]!) }, names: names)
         // Validate the supplied declarations before following their imports.
         // A forged intrinsic module is named at its own declaration address.
         for source in parsed {

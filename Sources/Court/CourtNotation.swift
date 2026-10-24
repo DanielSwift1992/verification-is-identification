@@ -40,6 +40,12 @@ enum CourtNotation {
 
     static func read(_ context: CourtContext, texts: NameMap<String>,
                      selected: String?, documents: NameSet) throws -> [File] {
+        let names = context.sources.flatMap { source in
+            [(source.at["namespace"]!, source.namespace),
+             (source.at["module"] ?? source.at["namespace"]!, source.module)]
+                + Array(zip(source.importAddresses, source.imports))
+        }
+        try WhereJudge.checkWordSpellings(context.sources.map { ($0.source, texts[$0.input]!) }, names: names)
         let lent = NameSet(texts.values.flatMap { text -> NameSet in
             guard let clean = try? WhereJudge.stripComments(text) else { return [] }
             return (try? WhereJudge.declaredBuilders(clean)) ?? []

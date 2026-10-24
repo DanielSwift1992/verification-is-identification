@@ -52,7 +52,7 @@ extension WhereJudge {
     }
     /// Canonical String equivalence is used ONLY for a collision diagnostic.
     /// It does not establish identity or supply keys to the courts' name maps.
-    /// No normalization library or normalization-version premise is involved.
+    /// Semantic identity is independent of this normalization-based diagnostic.
     struct WordGuard {
         var first: [String: (WordOccurrence, String)] = [:]
         mutating func insert(_ word: WordOccurrence, origin: String) throws {

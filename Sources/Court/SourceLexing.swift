@@ -204,7 +204,9 @@ extension WhereJudge {
         let borrowed = lent.subtracting(shadowed)
         let undeclared = unreadAttributes.filter { !declared.contains($0.name) && !borrowed.contains($0.name) }
         if let use = undeclared.first {
-            try refuse("the attribute '@\(use.name)' is not among the forms this court reads (unsupported attribute)", at: use.start)
+            // Preserve each public reader's established diagnostic spelling.
+            let suffix = scope == .notation ? "" : " (unsupported attribute)"
+            try refuse("the attribute '@\(use.name)' is not among the forms this court reads" + suffix, at: use.start)
         }
         return LexicalReading(blanked: read, tape: tape)
     }

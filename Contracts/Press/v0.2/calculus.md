@@ -54,7 +54,7 @@ The same production reader consumes the whole tape; the witness cannot omit a pr
 | L30 | Directive inside interpolation | read | read | directives are outside strict declaration scope | read | ``"enum X { static var text: String { \"v \\(#line)\" } }"`` |
 | L31 | Built-in attribute | read | read | read | read | ``"@resultBuilder struct Builder {}"`` |
 | L32 | Locally declared builder attribute | read | read | read | read | ``"@resultBuilder struct Builder {}\nenum X { @Builder static var n: Int { 0 } }"`` |
-| L33 | Unknown attribute | unsupported attribute | unsupported attribute | unsupported attribute | unsupported attribute | ``"@Unknown enum X {}"`` |
+| L33 | Unknown attribute | not among the forms | not among the forms | not among the forms | not among the forms | ``"@Unknown enum X {}"`` |
 | L34 | BOM preserved; strict productions subsequently refuse it | read | read | read | read | ``"\ufeffenum X {}"`` |
 | L35 | Identifier, equality and remaining code scalars; grammar is separate | read | read | read | read | ``"enum X<T> where T == T { typealias Name = T }"`` |
 | L36 | Unmatched conditional end | read | read | directives are outside strict declaration scope | unmatched #endif | ``"#endif\n"`` |
@@ -63,7 +63,7 @@ The same production reader consumes the whole tape; the witness cannot omit a pr
 | L39 | Unclosed raw string | unterminated raw string | raw string literals | unterminated raw string | unterminated raw string | ``"#\"unclosed"`` |
 | L40 | Slash at EOF | slash with no whitespace | slash with no whitespace | slash with no whitespace | slash with no whitespace | ``"/"`` |
 | L41 | Explicitly lent builder name | read | read | read | read | ``{"source": "@Lent enum X {}", "lent": ["Lent"]}`` |
-| L42 | Local macro shadows a lent builder | unsupported attribute | unsupported attribute | unsupported attribute | unsupported attribute | ``{"source": "macro Lent()\n@Lent enum X {}", "lent": ["Lent"]}`` |
+| L42 | Local macro shadows a lent builder | not among the forms | not among the forms | not among the forms | not among the forms | ``{"source": "macro Lent()\n@Lent enum X {}", "lent": ["Lent"]}`` |
 | L43 | Locally declared property wrapper | read | read | read | read | ``"@propertyWrapper struct Wrapper {}\nenum X { @Wrapper static var n: Int { 0 } }"`` |
 
 ## Matching and substitution

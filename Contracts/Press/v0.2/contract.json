@@ -7,8 +7,8 @@
     "transport": "vi.press.json/2"
   },
   "files": {
-    "fixtures/cases.json": "18e9928f9463146aa41a2f957b9be74b9b71308cbbe51dee6b1a910b4a352d70",
-    "calculus.md": "0c0e0dd3f821b4d8178df592fe3fcdf4c4ca9ff707dcd621e2229eea745f7262"
+    "fixtures/cases.json": "86ebca3259068c35b1f7f2d023e42b6942339d7781da523144d900944d5752b9",
+    "calculus.md": "e111f8c4c8d80e51d44771a84e3a00cb10fd38c3276f48041afc2779183f36f9"
   },
   "cases_file": "fixtures/cases.json",
   "cases": [
@@ -196,7 +196,11 @@
     "Z2-whitespace-8",
     "Z2-whitespace-9",
     "Z2-whitespace-10",
-    "Z2-whitespace-11"
+    "Z2-whitespace-11",
+    "Z4-N2",
+    "Z4-N3",
+    "Z4-deep2",
+    "Z4-deep1"
   ],
   "native_controls": [
     "N3a-dictionary-lexical-refusal",
@@ -288,6 +292,10 @@
     "Z2-whitespace-8",
     "Z2-whitespace-9",
     "Z2-whitespace-10",
-    "Z2-whitespace-11"
+    "Z2-whitespace-11",
+    "Z4-N2",
+    "Z4-N3",
+    "Z4-deep2",
+    "Z4-deep1"
   ]
 }

@@ -28727,5 +28727,79 @@
       "refusal": null,
       "replayed": true
     }
+  },
+  {
+    "id": "Z4-N2",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nlet s = \"\\(\"\"\"\nabc\n\"\"\")\"\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z4-N3",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nlet s = \"\\(\"\"\"\n\\(1 // c\n)\n\"\"\")\"\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z4-deep2",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nlet s = \"\"\"\n\\( \"\\(\"\"\"\nx\n\"\"\")\" )\n\"\"\"\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z4-deep1",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nlet s = \"\\(\"\"\"\n\\( \"\\(1\n)\" )\n\"\"\")\"\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "newline in single-line"
+      }
+    }
   }
 ]

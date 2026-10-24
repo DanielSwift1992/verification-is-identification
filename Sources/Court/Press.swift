@@ -114,7 +114,8 @@ public enum Press {
             var outputCounts: NameMap<Int> = [:]
             try variables(into, d.parameters, counts: &outputCounts)
             let indices = region.tokenRange.filter { read.tokens[$0].word != "\n" }
-            guard let position = indices.indices.first(where: { j in
+            guard let position = indices.indices.first(
+                where: { j in
                 j >= 3 && WhereJudge.sameName(read.tokens[indices[j]].word, slotName)
                     && read.tokens[indices[j - 1]].word == "="
                     && WhereJudge.sameName(read.tokens[indices[j - 2]].word, "Slot")
@@ -325,7 +326,8 @@ public enum Press {
             // This historical line reader remains the step-B debt. Its name
             // lookup nevertheless uses the court's one scalar identity.
             let prefixes = ["extension \(slotName) ", "extension \(slotName){"]
-            if prefixes.contains(where: {
+            if prefixes.contains(
+                where: {
                 WhereJudge.sameName(String(trimmed.unicodeScalars.prefix($0.unicodeScalars.count)), $0)
             }) {
                 insideExtension = true

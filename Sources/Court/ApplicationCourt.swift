@@ -21,11 +21,24 @@ enum ApplicationCourt {
         }
         func hash(into hasher: inout Hasher) {
             switch self {
-            case let .root(e): hasher.combine(0); hasher.combine(e)
-            case let .form(e): hasher.combine(1); hasher.combine(e)
-            case let .member(e, n): hasher.combine(2); hasher.combine(e); hasher.combine(ScalarName(n))
-            case let .contract(e, n): hasher.combine(3); hasher.combine(e); hasher.combine(ScalarName(n))
-            case let .equal(a, b): hasher.combine(4); hasher.combine(a); hasher.combine(b)
+            case let .root(e):
+                hasher.combine(0)
+                hasher.combine(e)
+            case let .form(e):
+                hasher.combine(1)
+                hasher.combine(e)
+            case let .member(e, n):
+                hasher.combine(2)
+                hasher.combine(e)
+                hasher.combine(ScalarName(n))
+            case let .contract(e, n):
+                hasher.combine(3)
+                hasher.combine(e)
+                hasher.combine(ScalarName(n))
+            case let .equal(a, b):
+                hasher.combine(4)
+                hasher.combine(a)
+                hasher.combine(b)
             }
         }
         var text: String {

@@ -170,9 +170,10 @@ extension ContinuationCourt {
         let count: Int
         if case let .sourceRelation(path) = basis { count = path.count } else { count = 1 }
         try budget.spend(count, at: at)
-        let leafReading = RelatedReading(whole: r.whole, observation: .leaf(from), question: .leaf(to))
-        try verifyRelatedProgram([.init(output: [], input: [], basis: basis)], program: .pick([]),
-                                 reading: leafReading, address: at, edgeIndex: edges)
+        guard try r.sort(from) == r.sort(to) else { throw Failure(at + ": selected sort differs") }
+        var remainingSteps = 100_000
+        try verifyEqualityBasis(basis, from: from, to: to, edges: edges, at: at,
+                                stepField: "sourceRelation._0", remainingSteps: &remainingSteps)
     }
     static func distinctClasses(_ places: Places, blocks: [Path: Int]) -> [Int] {
         var seen: Set<Int> = []

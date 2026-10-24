@@ -84,12 +84,13 @@ final class ContinuationAgreementTests: XCTestCase {
         XCTAssertEqual(section["sha256"] as? String,
                        courtSHA256(try Data(contentsOf: root.appendingPathComponent(directory + "agreement-cases.swift"))))
         let cases = try XCTUnwrap(section["cases"] as? [[String: Any]])
-        XCTAssertEqual(cases.count, 37)
+        XCTAssertEqual(cases.count, 39)
         let source = try world()
         for entry in cases {
             let name = try XCTUnwrap(entry["request"] as? String)
             if let at = entry["address"] as? String {
-                refuses(name, at: at) { _ = try C.deriveAgreement(name, source: source) }
+                let expected = (entry["reason"] as? String).map { at + ": " + $0 } ?? at
+                refuses(name, at: expected) { _ = try C.deriveAgreement(name, source: source) }
                 continue
             }
             let p = try C.deriveAgreement(name, source: source)
@@ -110,7 +111,7 @@ final class ContinuationAgreementTests: XCTestCase {
         XCTAssertEqual(three.step, .pair(.pick([.left]), .pick([.left])))
         XCTAssertEqual(three.residualLeaves, [[.right, .left], [.right, .right]])
         XCTAssertEqual(three.residual, .pair(.pick([.right, .left]), .pick([.right, .right])))
-        XCTAssertEqual(three.capacities[0].minimum, 2)
+        XCTAssertEqual(three.capacities[0].minimumResidualLeaves, 2)
         let bound = try plan(proof("BindOriginal"))
         XCTAssertEqual(bound.step, .pair(.pick([.left]), .pick([.left])))
         XCTAssertEqual(bound.residualLeaves, [[.right]])
@@ -121,21 +122,102 @@ final class ContinuationAgreementTests: XCTestCase {
             try replan(&$0, assignments: [[.left], [.left]], leaves: [[.right, .left], [.right, .right]])
         }
     }
+    func testOutputUsesSortsWithoutRootFieldsDuringConstructionAndReplay() throws {
+        let reason = ".Output: the target shape is written with sorts; source places are prescribed by BoundOutputs/BoundSources"
+        let declarations = """
+
+        typealias AgreementFirst<A: Structure, B: Structure> = A
+        enum SortTarget<S: Structure> {
+            typealias Source = Paired<S, S>
+            typealias Output = Paired<S, S>
+            typealias Question = Source
+        }
+        """
+        let original = try world(edit: { $0 + declarations })
+        let saved = try C.deriveAgreement("SortTarget", source: original)
+        for expression in ["Source", "Question", "Paired<S, Source>.Left", "AgreementFirst<S, Source>"] {
+            let changed = try world(edit: { $0 + declarations.replacingOccurrences(
+                of: "typealias Output = Paired<S, S>", with: "typealias Output = " + expression) })
+            refuses("sort-shape-rejects-" + expression, at: "SortTarget" + reason) {
+                _ = try C.deriveAgreement("SortTarget", source: changed)
+            }
+            var p = saved
+            let c = try C.Context("SortTarget", source: changed, requiredFields: ["Source", "Output", "Question"])
+            p.output = try c.derive(.field(c.root, "Output"))
+            refuses("live-root-field-proof-" + expression, at: "SortTarget" + reason) {
+                _ = try C.verifyAgreement("SortTarget", certificate: C.decodeAgreement(C.encodeAgreement(p)), source: changed)
+            }
+        }
+        let aliases = """
+
+        enum LocalShapeTarget<S: Structure> {
+            typealias Source = Paired<S, S>
+            typealias Target = Paired<S, S>
+            typealias Output = Target
+            typealias Question = Source
+        }
+        enum BindingTarget<S: Structure> {
+            typealias Source = Paired<S, S>
+            typealias Output = BoundSources
+            typealias Question = Source
+            typealias BoundOutputs = Output
+            typealias BoundSources = Source.Left
+        }
+        """
+        let rootAliases = try world(edit: { $0 + aliases })
+        for name in ["LocalShapeTarget", "BindingTarget"] {
+            refuses(name, at: name + reason) { _ = try C.deriveAgreement(name, source: rootAliases) }
+        }
+        for expression in ["AgreementTwin<S>", "Paired<S, S>.Left", "AgreementFirst<S, Paired<S, S>>"] {
+            let pure = try world(edit: { $0 + declarations.replacingOccurrences(
+                of: "typealias Output = Paired<S, S>", with: "typealias Output = " + expression) })
+            let p = try C.deriveAgreement("SortTarget", source: pure)
+            XCTAssertTrue(try C.verifyAgreement(p.request, certificate: C.decodeAgreement(C.encodeAgreement(p)), source: pure))
+        }
+    }
+    func testArchiveFieldNamesAndBindingIssueMessages() throws {
+        let valid = try proof("AgreeThree")
+        let raw = try XCTUnwrap(JSONSerialization.jsonObject(with: C.encodeAgreement(valid)) as? [String: Any])
+        let certificate = try XCTUnwrap(raw["certificate"] as? [String: Any])
+        let conclusion = try XCTUnwrap(certificate["conclusion"] as? [String: Any])
+        let constructed = try XCTUnwrap(conclusion["constructed"] as? [String: Any])
+        let result = try XCTUnwrap(constructed["_0"] as? [String: Any])
+        let capacities = try XCTUnwrap(result["capacities"] as? [[String: Any]])
+        XCTAssertEqual(Set(try XCTUnwrap(capacities.first).keys),
+                       Set(["sort", "requiredClasses", "outputClasses", "fixedRequiredClasses", "freeOutputClasses", "minimumResidualLeaves"]))
+        for (name, kind, field) in [("WrongBindingSort", "wrongSort", ".BoundSources"),
+                                    ("IncompatibleBindings", "incompatible", ".BoundSources.Left")] {
+            var p = try proof(name)
+            p.conclusion = .constructed(try plan(valid))
+            refuses("constructed-over-" + kind, at: "certificate.conclusion.constructed._0: " + kind + ": " + name + field) {
+                _ = try C.verifyAgreement(name, certificate: C.decodeAgreement(C.encodeAgreement(p)), source: world())
+            }
+        }
+        try tamper("EquivalentBindings", "binding-address-is-an-archive-field", at: "certificate.conclusion.constructed._0.bindingBases[1]:") {
+            try changePlan(&$0) { $0.bindingBases[1] = .address }
+        }
+        try tamper("ChainedBindings", "binding-step-is-an-archive-field", at: "certificate.conclusion.constructed._0.bindingBases[1].sourceRelation._0[0]:") {
+            try changePlan(&$0) { $0.bindingBases[1] = .sourceRelation([.init(edge: [.left], reversed: true)]) }
+        }
+        try tamper("EqualSource", "decoder-step-is-an-archive-field", at: "certificate.conclusion.constructed._0.selections[0].basis.sourceRelation._0[0]:") {
+            try changePlan(&$0) { $0.selections[0].basis = .sourceRelation([.init(edge: [.left], reversed: false)]) }
+        }
+    }
     func testCapacityCountsAndZeroResidual() throws {
         let duplicate = try plan(proof("DuplicateFixed")).capacities[0]
-        XCTAssertEqual([duplicate.required, duplicate.output, duplicate.fixedRequired, duplicate.free, duplicate.minimum], [3,2,1,0,2])
+        XCTAssertEqual([duplicate.requiredClasses, duplicate.outputClasses, duplicate.fixedRequiredClasses, duplicate.freeOutputClasses, duplicate.minimumResidualLeaves], [3,2,1,0,2])
         let outside = try plan(proof("BoundOutsideQuestion")).capacities[0]
-        XCTAssertEqual([outside.required, outside.fixedRequired, outside.free, outside.minimum], [1,0,0,1])
+        XCTAssertEqual([outside.requiredClasses, outside.fixedRequiredClasses, outside.freeOutputClasses, outside.minimumResidualLeaves], [1,0,0,1])
         let earlier = try plan(proof("FreeBeforeFixed"))
         XCTAssertEqual(earlier.assignments, [[.right, .left], [.left]])
-        XCTAssertEqual(earlier.capacities[0].minimum, 1)
+        XCTAssertEqual(earlier.capacities[0].minimumResidualLeaves, 1)
         let zero = try plan(proof("ZeroResidual"))
         XCTAssertTrue(zero.residualLeaves.isEmpty); XCTAssertNil(zero.residual)
         XCTAssertEqual(try plan(proof("FixedAndFreeCover")).residualLeaves.count, 0)
         let two = try plan(proof("TwoSortCapacity")).capacities
-        XCTAssertEqual(two.map(\.minimum), [1,0])
+        XCTAssertEqual(two.map(\.minimumResidualLeaves), [1,0])
         XCTAssertEqual(try plan(proof("QuestionSortNotInOutput")).residualLeaves, [[.right]])
-        XCTAssertEqual(try plan(proof("RepeatedQuestion")).capacities[0].required, 1)
+        XCTAssertEqual(try plan(proof("RepeatedQuestion")).capacities[0].requiredClasses, 1)
     }
     func testBindingsUseSourceClassesAndNotLiteralAddressIdentity() throws {
         let p = try proof("EquivalentBindings")
@@ -146,15 +228,15 @@ final class ContinuationAgreementTests: XCTestCase {
         guard case let .sourceRelation(path) = chain.bindingBases[1] else { return XCTFail("expected the two-edge path") }
         XCTAssertEqual(path.count, 2)
         XCTAssertEqual(try plan(proof("BoundRepeatSameLeaf")).bindingBases.count, 2)
-        XCTAssertEqual(try plan(proof("BoundDistinctSlots")).capacities[0].fixedRequired, 2)
+        XCTAssertEqual(try plan(proof("BoundDistinctSlots")).capacities[0].fixedRequiredClasses, 2)
     }
     func testPartitionAndStepForgeries() throws {
-        try tamper("EqualSource", "split-source-E-class", at: ".sourceClasses.E:") {
+        try tamper("EqualSource", "split-source-E-class", at: "certificate.classes.E:") {
             let sort = $0.classes[0].sort
             $0.classes = [.init(sort: sort, leaves: [[.left]]), .init(sort: sort, leaves: [[.right]])]
             $0.connections = [[],[]]
         }
-        try tamper("EqualSource", "missing-source-forest", at: ".sourceConnections[0]") { $0.connections[0] = [] }
+        try tamper("EqualSource", "missing-source-forest", at: "certificate.connections[0]") { $0.connections[0] = [] }
         try tamper("AgreeThree", "split-output-C-class", at: ".outputClasses.E:") {
             let sort = $0.outputClasses[0].sort
             $0.outputClasses = [.init(sort: sort, leaves: [[.left]]), .init(sort: sort, leaves: [[.right]])]
@@ -196,16 +278,16 @@ final class ContinuationAgreementTests: XCTestCase {
             try changePlan(&$0) { $0.residualLeaves[0] = [.left] }
         }
         try tamper("AgreeThree", "invented-lower-bound", at: ".capacities:") {
-            try changePlan(&$0) { $0.capacities[0].minimum = 0 }
+            try changePlan(&$0) { $0.capacities[0].minimumResidualLeaves = 0 }
         }
         try tamper("DuplicateFixed", "fixed-classes-counted-with-multiplicity", at: ".capacities:") {
-            try changePlan(&$0) { $0.capacities[0].fixedRequired = 2; $0.capacities[0].minimum = 1 }
+            try changePlan(&$0) { $0.capacities[0].fixedRequiredClasses = 2; $0.capacities[0].minimumResidualLeaves = 1 }
         }
         try tamper("BoundOutsideQuestion", "outside-Q-counted-as-required", at: ".capacities:") {
-            try changePlan(&$0) { $0.capacities[0].fixedRequired = 1; $0.capacities[0].minimum = 0 }
+            try changePlan(&$0) { $0.capacities[0].fixedRequiredClasses = 1; $0.capacities[0].minimumResidualLeaves = 0 }
         }
         try tamper("AgreeThree", "arithmetic-overflow-claim", at: ".capacities:") {
-            try changePlan(&$0) { $0.capacities[0].required = Int.max }
+            try changePlan(&$0) { $0.capacities[0].requiredClasses = Int.max }
         }
         try tamper("AgreeThree", "missing-question-address", at: ".needed:") {
             try changePlan(&$0) { $0.needed[0].questions = [] }
@@ -218,13 +300,13 @@ final class ContinuationAgreementTests: XCTestCase {
         }
     }
     func testDecoderAndBindingForgeries() throws {
-        try tamper("BindOriginal", "decoder-selects-same-sort-other-unknown", at: ".decoder.selections[0].basis") {
+        try tamper("BindOriginal", "decoder-selects-same-sort-other-unknown", at: "certificate.conclusion.constructed._0.selections[0].basis") {
             try changePlan(&$0) {
                 $0.selections[0].input = [.right]
                 $0.decoder = .pair(.pick([.right]), .pick([.right]))
             }
         }
-        try tamper("BindOriginal", "substituted-decoder-term", at: ".decoder.program:") {
+        try tamper("BindOriginal", "substituted-decoder-term", at: "certificate.conclusion.constructed._0.decoder:") {
             try changePlan(&$0) { $0.decoder = .pick([]) }
         }
         try tamper("EquivalentBindings", "binding-path-replaced-by-address", at: ".bindingBases[1]") {
@@ -246,17 +328,17 @@ final class ContinuationAgreementTests: XCTestCase {
         try tamper("AgreeThree", "output-proof-belongs-to-source", at: "AgreeThree.Output") { $0.output = $0.source }
     }
     func testObstructionWitnessForgeries() throws {
-        try tamper("AgreeThree", "unavailable-sort-is-available", at: ".unavailable:") { $0.conclusion = .unavailable(output: [.left]) }
-        try tamper("AgreeThree", "unavailable-witness-is-not-a-leaf", at: ".unavailable.output:") { $0.conclusion = .unavailable(output: []) }
-        try tamper("BindOriginal", "wrong-sort-witness-has-equal-sorts", at: ".wrongSort:") { $0.conclusion = .wrongSort(binding: []) }
-        try tamper("BindOriginal", "foreign-binding-witness", at: ".wrongSort.binding:") { $0.conclusion = .wrongSort(binding: [.left]) }
-        try tamper("EquivalentBindings", "equivalent-bindings-claimed-incompatible", at: ".incompatible:") {
+        try tamper("AgreeThree", "unavailable-sort-is-available", at: "certificate.conclusion.unavailable.output:") { $0.conclusion = .unavailable(output: [.left]) }
+        try tamper("AgreeThree", "unavailable-witness-is-not-a-leaf", at: "certificate.conclusion.unavailable.output:") { $0.conclusion = .unavailable(output: []) }
+        try tamper("BindOriginal", "wrong-sort-witness-has-equal-sorts", at: "certificate.conclusion.wrongSort.binding:") { $0.conclusion = .wrongSort(binding: []) }
+        try tamper("BindOriginal", "foreign-binding-witness", at: "certificate.conclusion.wrongSort.binding:") { $0.conclusion = .wrongSort(binding: [.left]) }
+        try tamper("EquivalentBindings", "equivalent-bindings-claimed-incompatible", at: "certificate.conclusion.incompatible:") {
             $0.conclusion = .incompatible(left: [.left], right: [.right])
         }
-        try tamper("BoundDistinctSlots", "different-C-classes-claimed-incompatible", at: ".incompatible:") {
+        try tamper("BoundDistinctSlots", "different-C-classes-claimed-incompatible", at: "certificate.conclusion.incompatible:") {
             $0.conclusion = .incompatible(left: [.left], right: [.right])
         }
-        try tamper("IncompatibleBindings", "foreign-incompatible-binding", at: ".incompatible:") {
+        try tamper("IncompatibleBindings", "foreign-incompatible-binding", at: "certificate.conclusion.incompatible:") {
             $0.conclusion = .incompatible(left: [.left], right: [.right, .right])
         }
     }

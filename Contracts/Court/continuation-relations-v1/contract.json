@@ -414,7 +414,7 @@
   },
   "agreement": {
     "fixture": "agreement-cases.swift",
-    "sha256": "7efab480cd35d36edfbfa2267797d3a21cef9b9bda26e57c1ce093dd79c97767",
+    "sha256": "106d84339dc6cd5495745b5e7d641239b7e700905015e1c89d3041ac5b7b97b5",
     "cases": [
       {
         "request": "AgreeThree",
@@ -502,7 +502,8 @@
       },
       {
         "request": "SourceAliasOutput",
-        "residualLeaves": 0
+        "address": "SourceAliasOutput.Output",
+        "reason": "the target shape is written with sorts; source places are prescribed by BoundOutputs/BoundSources"
       },
       {
         "request": "MissingSort",
@@ -563,6 +564,16 @@
       {
         "request": "BoundDistinctSlots",
         "residualLeaves": 0
+      },
+      {
+        "request": "SwappedOutput",
+        "address": "SwappedOutput.Output",
+        "reason": "the target shape is written with sorts; source places are prescribed by BoundOutputs/BoundSources"
+      },
+      {
+        "request": "OutputThroughSourceCut",
+        "address": "OutputThroughSourceCut.Output",
+        "reason": "the target shape is written with sorts; source places are prescribed by BoundOutputs/BoundSources"
       }
     ]
   }

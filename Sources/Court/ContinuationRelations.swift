@@ -309,17 +309,7 @@ extension ContinuationCourt {
             if case let .field(owner, axis) = expression, owner == c.root { read.insert(axis) }
         }
         func shape(_ proof: ReadProof) {
-            switch proof {
-            case .leaf: break
-            case let .pair(l, r):
-                shape(l)
-                shape(r)
-            case let .projection(_, child): shape(child)
-            case let .definition(input, arguments, child):
-                mark(input)
-                for argument in arguments { shape(argument) }
-                shape(child)
-            }
+            read.formUnion(c.fieldsRead(proof))
         }
         func route(_ proof: RouteProof) {
             switch proof {
@@ -478,9 +468,35 @@ extension ContinuationCourt {
             throw Failure("certificate.residue.needed: required classes or Question addresses differ")
         }
     }
+    static func verifyEqualityBasis(_ basis: EqualityBasis, from: Path, to: Path,
+                                     edges: [Path: SourceEdge], at: String, stepField: String = "path",
+                                     remainingSteps: inout Int) throws {
+        switch basis {
+        case .address:
+            guard from == to else { throw Failure(at + ": different source addresses are not identical") }
+        case let .sourceRelation(steps):
+            guard !steps.isEmpty, steps.count <= 100_000 else { throw Failure(at + ": expected a finite E-path") }
+            var current = from
+            for (stepIndex, step) in steps.enumerated() {
+                let here = at + "." + stepField + "[\(stepIndex)]"
+                guard remainingSteps > 0 else { throw Failure(here + ": replay work limit") }
+                remainingSteps -= 1
+                guard let edge = edges[step.edge] else { throw Failure(here + ": no declared E-edge at this address") }
+                let a = step.reversed ? edge.right : edge.left
+                let b = step.reversed ? edge.left : edge.right
+                guard current == a else { throw Failure(here + ": discontinuous E-path") }
+                current = b
+            }
+            guard current == to else { throw Failure(at + ": E-path ends at another source leaf") }
+        case .observedValues:
+            throw Failure(at + ": observed value coincidence is not source equality")
+        }
+    }
     static func verifyRelatedProgram(_ selections: [Selection], program: Program,
                                      reading r: RelatedReading, address: String,
-                                     edgeIndex: [Path: SourceEdge]? = nil) throws {
+                                     edgeIndex: [Path: SourceEdge]? = nil,
+                                     programField: String = "program",
+                                     basisStepField: String = "path") throws {
         let edges = edgeIndex ?? Dictionary(uniqueKeysWithValues: r.edges.map { ($0.address, $0) })
         let required = r.question.leaves
         var remainingSteps = 100_000
@@ -495,29 +511,11 @@ extension ContinuationCourt {
                 case let .leaf(from) = input
             else { throw Failure(at + ": output or input is not the required leaf address") }
             guard try r.sort(from) == r.sort(target.source) else { throw Failure(at + ": selected sort differs") }
-            switch selection.basis {
-            case .address:
-                guard from == target.source else { throw Failure(at + ".basis: different source addresses are not identical") }
-            case let .sourceRelation(steps):
-                guard !steps.isEmpty, steps.count <= 100_000 else { throw Failure(at + ".basis: expected a finite E-path") }
-                var current = from
-                for (stepIndex, step) in steps.enumerated() {
-                    let here = at + ".basis.path[\(stepIndex)]"
-                    guard remainingSteps > 0 else { throw Failure(here + ": replay work limit") }
-                    remainingSteps -= 1
-                    guard let edge = edges[step.edge] else { throw Failure(here + ": no declared E-edge at this address") }
-                    let a = step.reversed ? edge.right : edge.left
-                    let b = step.reversed ? edge.left : edge.right
-                    guard current == a else { throw Failure(here + ": discontinuous E-path") }
-                    current = b
-                }
-                guard current == target.source else { throw Failure(at + ".basis: E-path ends at another source leaf") }
-            case .observedValues:
-                throw Failure(at + ".basis: observed value coincidence is not source equality")
-            }
+            try verifyEqualityBasis(selection.basis, from: from, to: target.source,
+                edges: edges, at: at + ".basis", stepField: basisStepField, remainingSteps: &remainingSteps)
         }
         guard program == (try assembledProgram(r.question, inputs: selections.map(\.input))) else {
-            throw Failure(address + ".program: assembled term differs from the selected addresses")
+            throw Failure(address + "." + programField + ": assembled term differs from the selected addresses")
         }
     }
     static func verifyRelated(_ request: String, certificate: RelatedCertificate,

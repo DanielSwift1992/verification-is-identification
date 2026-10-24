@@ -11,11 +11,11 @@ extension ContinuationCourt {
     }
     struct AgreementCapacity: Codable, Equatable {
         var sort: String
-        var required: Int
-        var output: Int
-        var fixedRequired: Int
-        var free: Int
-        var minimum: Int
+        var requiredClasses: Int
+        var outputClasses: Int
+        var fixedRequiredClasses: Int
+        var freeOutputClasses: Int
+        var minimumResidualLeaves: Int
     }
     struct AgreementPlan: Codable {
         // One Source leaf for each exact output C-class.
@@ -76,6 +76,11 @@ extension ContinuationCourt {
         do { out = try c.replay(p.output) }
         catch { throw Failure(request + ".Output: " + String(describing: error)) }
         guard out.0 == .field(c.root, "Output") else { throw Failure(request + ".Output: endpoint substituted") }
+        guard case let .definition(_, arguments, body) = p.output,
+              c.fieldsRead(body).isEmpty,
+              arguments.allSatisfy({ c.fieldsRead($0).isEmpty }) else {
+            throw Failure(request + ".Output: the target shape is written with sorts; source places are prescribed by BoundOutputs/BoundSources")
+        }
         let target = WholeReading(source: out.1, edges: [])
         let question = try readCut(p.question, field: "Question", whole: whole, context: c)
         let fields = source.declarations[request]?.fields ?? [:]
@@ -117,13 +122,13 @@ extension ContinuationCourt {
             guard try r.output.sort(binding.output) == r.whole.sort(binding.source) else {
                 return (fixed, .wrongSort(binding: binding.address))
             }
-            guard let target = outputBlocks[binding.output], let origin = sourceBlocks[binding.source] else {
+            guard let target = outputBlocks[binding.output], let sourceClass = sourceBlocks[binding.source] else {
                 throw Failure("binding: missing exact class")
             }
-            if let previous = fixed[target], previous != origin {
+            if let previous = fixed[target], previous != sourceClass {
                 return (fixed, .incompatible(left: first[target]!, right: binding.address))
             }
-            fixed[target] = origin
+            fixed[target] = sourceClass
             if first[target] == nil { first[target] = binding.address }
         }
         return (fixed, nil)
@@ -139,8 +144,8 @@ extension ContinuationCourt {
             let m = outputClasses.filter { $0.sort == sort }.count
             let bound = required.intersection(supplied).filter { sourceClasses[$0].sort == sort }.count
             let free = outputClasses.indices.filter { outputClasses[$0].sort == sort && fixed[$0] == nil }.count
-            return AgreementCapacity(sort: sort, required: n, output: m, fixedRequired: bound,
-                                     free: free, minimum: max(n - bound - free, 0))
+            return AgreementCapacity(sort: sort, requiredClasses: n, outputClasses: m, fixedRequiredClasses: bound,
+                                     freeOutputClasses: free, minimumResidualLeaves: max(n - bound - free, 0))
         }
     }
     static func agreementPlaces(_ r: AgreementReading, assignments: [Path],
@@ -183,13 +188,13 @@ extension ContinuationCourt {
         // Count all fixed classes before free classes choose new requested ones.
         var covered = Set(bindings.fixed.values), assignments: [Path] = []
         for (index, target) in outputClasses.enumerated() {
-            let origin: Int
-            if let fixed = bindings.fixed[index] { origin = fixed }
-            else if let next = (required.first { classes[$0].sort == target.sort && !covered.contains($0) }) { origin = next }
-            else if let fallback = (classes.firstIndex { $0.sort == target.sort }) { origin = fallback }
+            let sourceClassIndex: Int
+            if let fixed = bindings.fixed[index] { sourceClassIndex = fixed }
+            else if let next = (required.first { classes[$0].sort == target.sort && !covered.contains($0) }) { sourceClassIndex = next }
+            else if let fallback = (classes.firstIndex { $0.sort == target.sort }) { sourceClassIndex = fallback }
             else { throw Failure("construction.agreement: unavailable output sort") }
-            assignments.append(classes[origin].leaves[0])
-            covered.insert(origin)
+            assignments.append(classes[sourceClassIndex].leaves[0])
+            covered.insert(sourceClassIndex)
         }
         let p = try agreementPlaces(r, assignments: assignments, outputBlocks: outputBlocks, at: "construction.agreement")
         let reading = RelatedReading(whole: r.whole, observation: p, question: r.question)
@@ -245,13 +250,22 @@ extension ContinuationCourt {
         _ = try verifyAgreement(request, certificate: p, source: source, constructor: constructor)
         return p
     }
-    static func verifyAgreementPlan(_ plan: AgreementPlan, reading r: AgreementReading,
+    static func verifyAgreementPlan(_ plan: AgreementPlan, request: String, reading r: AgreementReading,
                                      classes: [PartitionClass], blocks: [Path: Int],
                                      outputClasses: [PartitionClass], outputBlocks: [Path: Int],
                                      edges: [Path: SourceEdge], budget: inout ActionBudget) throws {
-        let at = "certificate.agreement.plan"
+        let at = "certificate.conclusion.constructed._0"
         let binding = try agreementBindings(r, sourceBlocks: blocks, outputBlocks: outputBlocks)
-        guard binding.issue == nil else { throw Failure(at + ": incompatible declared bindings") }
+        if let issue = binding.issue {
+            switch issue {
+            case let .wrongSort(address):
+                throw Failure(at + ": wrongSort: " + pathText(request + ".BoundSources", address) + ": prescribed source has a different sort")
+            case let .incompatible(left, right):
+                throw Failure(at + ": incompatible: " + pathText(request + ".BoundSources", left)
+                    + " and " + pathText(request + ".BoundSources", right) + ": different source classes in one output C-class")
+            default: throw Failure(at + ": unsupported binding issue")
+            }
+        }
         let capacities = agreementCapacities(r, sourceClasses: classes, sourceBlocks: blocks,
                                              outputClasses: outputClasses, fixed: binding.fixed)
         guard plan.capacities == capacities else { throw Failure(at + ".capacities: counts differ from exact classes and fixed bindings") }
@@ -262,14 +276,14 @@ extension ContinuationCourt {
         }
         guard plan.bindingBases.count == r.bindings.count else { throw Failure(at + ".bindingBases: incomplete binding coverage") }
         for (index, pair) in zip(plan.bindingBases, r.bindings).enumerated() {
-            guard case let .leaf(origin) = try p.at(pair.1.output) else { throw Failure(at + ".binding: nonleaf output") }
+            guard case let .leaf(origin) = try p.at(pair.1.output) else { throw Failure(at + ".bindingBases[\(index)]: nonleaf output") }
             try checkActionBasis(pair.0, from: origin, to: pair.1.source, reading: r.sourceReading,
                 edges: edges, at: at + ".bindingBases[\(index)]", budget: &budget)
         }
         let reading = RelatedReading(whole: r.whole, observation: p, question: r.question)
         let needed = try requiredClasses(reading, blocks: blocks)
         guard plan.needed == needed else { throw Failure(at + ".needed: required classes or Question addresses differ") }
-        let lower = capacities.reduce(0) { $0 + $1.minimum }
+        let lower = capacities.reduce(0) { $0 + $1.minimumResidualLeaves }
         guard plan.residualLeaves.count == needed.count, needed.count == lower else {
             throw Failure(at + ".residualLeaves: leaf count does not attain the global lower bound")
         }
@@ -285,11 +299,11 @@ extension ContinuationCourt {
         guard plan.residual == residual else { throw Failure(at + ".residual: source term differs from retained addresses") }
         let joint = RelatedReading(whole: r.whole, observation: m.map { .pair(p, $0) } ?? p, question: r.question)
         for selection in plan.selections {
-            if case let .sourceRelation(path) = selection.basis { try budget.spend(path.count, at: at + ".decoder") }
-            else { try budget.spend(at: at + ".decoder") }
+            if case let .sourceRelation(path) = selection.basis { try budget.spend(path.count, at: at + ".selections") }
+            else { try budget.spend(at: at + ".selections") }
         }
         try verifyRelatedProgram(plan.selections, program: plan.decoder, reading: joint,
-                                 address: at + ".decoder", edgeIndex: edges)
+                                 address: at, edgeIndex: edges, programField: "decoder", basisStepField: "sourceRelation._0")
     }
     // No equivalence closure, assignment search or plan construction in replay.
     static func verifyAgreement(_ request: String, certificate p: AgreementCertificate,
@@ -298,41 +312,41 @@ extension ContinuationCourt {
         var budget = ActionBudget()
         try budget.spend(r.whole.source.leaves.count + r.whole.edges.count
             + r.output.source.leaves.count + r.output.edges.count + r.bindings.count,
-            at: "certificate.agreement")
-        let blocks = try verifyPartition(p.classes, whole: r.whole, at: "certificate.agreement.sourceClasses")
+            at: "certificate")
+        let blocks = try verifyPartition(p.classes, whole: r.whole, at: "certificate.classes")
         let edges = Dictionary(uniqueKeysWithValues: r.whole.edges.map { ($0.address, $0) })
-        try verifyEForests(p.connections, classes: p.classes, edges: edges, at: "certificate.agreement.sourceConnections")
-        let outputs = try verifyPartition(p.outputClasses, whole: r.output, at: "certificate.agreement.outputClasses")
+        try verifyEForests(p.connections, classes: p.classes, edges: edges, at: "certificate.connections")
+        let outputs = try verifyPartition(p.outputClasses, whole: r.output, at: "certificate.outputClasses")
         let cEdges = Dictionary(uniqueKeysWithValues: r.output.edges.map { ($0.address, $0) })
-        try verifyEForests(p.outputConnections, classes: p.outputClasses, edges: cEdges, at: "certificate.agreement.outputConnections")
+        try verifyEForests(p.outputConnections, classes: p.outputClasses, edges: cEdges, at: "certificate.outputConnections")
         switch p.conclusion {
         case let .constructed(plan):
-            try verifyAgreementPlan(plan, reading: r, classes: p.classes, blocks: blocks,
+            try verifyAgreementPlan(plan, request: request, reading: r, classes: p.classes, blocks: blocks,
                 outputClasses: p.outputClasses, outputBlocks: outputs, edges: edges, budget: &budget)
             return true
         case let .unavailable(path):
             let sort: String
             do { sort = try r.output.sort(path) }
-            catch { throw Failure("certificate.agreement.unavailable.output: " + String(describing: error)) }
+            catch { throw Failure("certificate.conclusion.unavailable.output: " + String(describing: error)) }
             guard !(p.classes.contains { $0.sort == sort }) else {
-                throw Failure("certificate.agreement.unavailable: the sort is available at Source")
+                throw Failure("certificate.conclusion.unavailable.output: the sort is available at Source")
             }
         case let .wrongSort(address):
             guard let binding = (r.bindings.first { $0.address == address }) else {
-                throw Failure("certificate.agreement.wrongSort.binding: no declared binding at this address")
+                throw Failure("certificate.conclusion.wrongSort.binding: no declared binding at this address")
             }
             guard try r.output.sort(binding.output) != r.whole.sort(binding.source) else {
-                throw Failure("certificate.agreement.wrongSort: binding sorts agree")
+                throw Failure("certificate.conclusion.wrongSort.binding: binding sorts agree")
             }
         case let .incompatible(left, right):
             let bindings = Dictionary(uniqueKeysWithValues: r.bindings.map { ($0.address, $0) })
             guard let a = bindings[left], let b = bindings[right] else {
-                throw Failure("certificate.agreement.incompatible: no declared bindings at these addresses")
+                throw Failure("certificate.conclusion.incompatible: no declared bindings at these addresses")
             }
             guard try r.output.sort(a.output) == r.whole.sort(a.source),
                   try r.output.sort(b.output) == r.whole.sort(b.source),
                   outputs[a.output] == outputs[b.output], blocks[a.source] != blocks[b.source] else {
-                throw Failure("certificate.agreement.incompatible: bindings do not separate source classes in one output C-class")
+                throw Failure("certificate.conclusion.incompatible: bindings do not separate source classes in one output C-class")
             }
         }
         return false

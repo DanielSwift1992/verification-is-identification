@@ -263,6 +263,25 @@ enum ContinuationCourt {
             }
         }
 
+        // Inspect an already replayed shape proof, including definition arguments.
+        func fieldsRead(_ proof: ReadProof) -> Set<String> {
+            var fields: Set<String> = []
+            func walk(_ p: ReadProof) {
+                switch p {
+                case .leaf: break
+                case let .pair(l, r):
+                    walk(l)
+                    walk(r)
+                case let .projection(_, child): walk(child)
+                case let .definition(input, arguments, child):
+                    if case let .field(owner, axis) = input, owner == root { fields.insert(axis) }
+                    for argument in arguments { walk(argument) }
+                    walk(child)
+                }
+            }
+            walk(proof)
+            return fields
+        }
         func derive(_ expression: E) throws -> ReadProof {
             var remaining = 50_000
             func build(_ e: E, _ depth: Int) throws -> ReadProof {

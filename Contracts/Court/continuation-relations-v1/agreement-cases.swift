@@ -146,6 +146,17 @@ enum SourceAliasOutput<S: Structure> {
     typealias Output = Source
     typealias Question = Source
 }
+enum SwappedOutput<S: Structure> {
+    typealias Source = Paired<S, S>
+    typealias Output = Paired<Source.Right, Source.Left>
+    typealias Question = Source.Left
+}
+enum OutputThroughSourceCut<S: Structure> {
+    typealias Source = Paired<S, Paired<S, S>>
+    typealias Output = Source.Right
+    typealias Promise = Paired<Output.Left, Output.Right>
+    typealias Question = Source
+}
 enum MissingSort<A: Structure, B: Structure> {
     typealias Source = A
     typealias Output = B
@@ -202,7 +213,7 @@ enum MismatchedBindingTrees<S: Structure> {
 }
 enum SourceIsNotOutputPromise<S: Structure> {
     typealias Source = Paired<S, S>
-    typealias Output = Source
+    typealias Output = Paired<S, S>
     typealias Promise = Paired<Source.Left, Source.Right>
     typealias Question = Source
 }

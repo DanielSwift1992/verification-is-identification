@@ -41,7 +41,7 @@ final class SourceLexingTests: XCTestCase {
                 decisions += 1
             }
         }
-        XCTAssertEqual(seen.count, 43, "the complete declared lexical table must run")
-        XCTAssertEqual(decisions, 172)
+        XCTAssertEqual(seen.count, 52, "the complete declared lexical table must run")
+        XCTAssertEqual(decisions, 208)
     }
 }

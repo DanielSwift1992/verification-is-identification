@@ -3,6 +3,44 @@ import XCTest
 @testable import Court
 
 final class StructuralReadingTests: XCTestCase {
+    func testProjectionAccountsForEveryCodeScalarWithoutFilteringCarriers() throws {
+        let inputs: [(String, Int, Int)] = [
+            ("\u{FEFF}enum X {}\n", 1, 0),
+            ("enum X {}\r\n\u{FEFF}enum Y {}\n", 2, 11),
+            ("enum X {}\n\u{200B}enum Y {}\n", 2, 10),
+            ("enum X {}\n\u{0001}enum Y {}\n", 2, 10),
+            ("enum X {}\n⊕\n", 2, 10)
+        ]
+        for (text, line, byte) in inputs {
+            for roster in [false, true] {
+                XCTAssertThrowsError(try StructuralSource(files: [("first.swift", "enum First {}"), ("second.swift", text)], roster: roster)) { error in
+                    let diagnostic = String(describing: error)
+                    XCTAssertTrue(diagnostic.contains("second.swift:\(line):"), diagnostic)
+                    XCTAssertTrue(diagnostic.contains("outside structural lexical grammar"), diagnostic)
+                    XCTAssertTrue(diagnostic.contains("byte \(byte)"), diagnostic)
+                    print("structural alphabet \(roster ? "strict" : "projection"): \(diagnostic)")
+                }
+            }
+        }
+        let neighbors = [
+            "// \u{FEFF} ⊕\nenum X {}\n",
+            "/* \u{FEFF} /* ⊕ */ */ enum X {}\n",
+            "enum X { static var text: String { \"\u{FEFF}⊕\" } }\n"
+        ]
+        for text in neighbors {
+            let projected = try StructuralSource.regions(text, origin: "neighbor.swift", scope: .projection)
+            XCTAssertEqual(projected.regions.map { $0.declaration.name }, ["X"])
+            XCTAssertEqual(projected.certificate.units.last?.upper, projected.tokens.count)
+            XCTAssertNoThrow(try StructuralSource(files: [("neighbor.swift", text)]))
+            let strict = try StructuralSource.regions(text, origin: "neighbor.swift")
+            XCTAssertNoThrow(try StructuralSource.replayReading(strict.certificate, source: text, origin: "neighbor.swift"))
+            print("structural alphabet carrier neighbor: read and strict replayed")
+        }
+        let unused = try StructuralSource(files: [("unused.swift", "enum Unused { enum Nested {} }\nenum X {}")])
+        XCTAssertTrue(try XCTUnwrap(unused.declarations["Unused"]).unsupported.contains("nested type declaration"))
+        XCTAssertNotNil(unused.declarations["X"])
+    }
+
     func testUnreadLiteralBoundariesReachBothStructuralConsumers() throws {
         let hazardous = ["#/\"/#", "/\"/", "##/\"/##", "\"v \\(/\"/)\"", "#\"\\#(1)\"#"]
         for literal in hazardous {

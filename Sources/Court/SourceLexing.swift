@@ -183,8 +183,16 @@ extension WhereJudge {
                     }
                     if top { emit(spelling(at, index), at, index) }
                 } else {
-                    // No delimiter recognition lives in this final projection:
-                    // == is one structural word; other code scalars are carried.
+                    // The structural modes have a closed code-scalar alphabet.
+                    // Literal/comment contents were classified above; an unknown
+                    // code scalar cannot become trivia in the production reader.
+                    let punctuation = "(){}[],:;.=<>+-*%&|^~!?$\\".unicodeScalars
+                    if scope != .notation, !("0"..."9").contains(current), !punctuation.contains(current) {
+                        let code = String(format: "U+%04X", current.value)
+                        try refuse("unread token '\(current)' (\(code)) is outside structural lexical grammar", at: at)
+                    }
+                    // The legacy notation projection retains its existing
+                    // residual-scalar policy; the table names that difference.
                     let width = current == "=" && scalar(1) == "=" ? 2 : 1
                     keep(width)
                     if top { emit(spelling(at, index), at, index) }

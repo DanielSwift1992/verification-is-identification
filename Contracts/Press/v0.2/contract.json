@@ -7,8 +7,8 @@
     "transport": "vi.press.json/2"
   },
   "files": {
-    "fixtures/cases.json": "ac65bd9a42b0f7502de9c796d06f8545c7780e69674803034984bbf82eab9fd9",
-    "calculus.md": "e44e5b178540d71281a1d38ea7a04efa4d2d3cdc2475c741a88ecae099fa2dae"
+    "fixtures/cases.json": "c6d5031282ab8f0001ee3bf49e70e49d2e112886a428b6c9b17f48149a1054fd",
+    "calculus.md": "a6806739299b7334bb864e69a9fc534b19798971e17a62318912a1e323dbbfd0"
   },
   "cases_file": "fixtures/cases.json",
   "cases": [
@@ -167,7 +167,16 @@
     "H3f-comment-neighbor",
     "H8-whole-input-refusal",
     "H8-old-honest-certificate-refusal",
-    "H8-comment-neighbor"
+    "H8-comment-neighbor",
+    "FEFF-dictionary-between",
+    "FEFF-dictionary-comment",
+    "FEFF-dictionary-string",
+    "FEFF-state-between",
+    "FEFF-state-comment",
+    "FEFF-state-string",
+    "FEFF-definitions-between",
+    "FEFF-definitions-comment",
+    "FEFF-definitions-string"
   ],
   "native_controls": [
     "N3a-dictionary-lexical-refusal",
@@ -230,6 +239,15 @@
     "H3f-whole-input-refusal",
     "H3f-comment-neighbor",
     "H8-whole-input-refusal",
-    "H8-comment-neighbor"
+    "H8-comment-neighbor",
+    "FEFF-dictionary-between",
+    "FEFF-dictionary-comment",
+    "FEFF-dictionary-string",
+    "FEFF-state-between",
+    "FEFF-state-comment",
+    "FEFF-state-string",
+    "FEFF-definitions-between",
+    "FEFF-definitions-comment",
+    "FEFF-definitions-string"
   ]
 }

@@ -1,3 +1,5 @@
+import Notation
+
 import Swift
 
 /// An exact fiber is represented by its common encoded image, as in CiQ1.

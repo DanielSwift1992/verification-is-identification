@@ -37,9 +37,9 @@ A named refusal concerns that attempt. Continued use requires the actual result 
 
 **The notation.**
 
-- term **The seed:** the seed is a pair of addressed roles, ``Pair``. Equality of their types is the ``Null`` constraint.
+- term **The seed:** the seed is a pair of addressed roles, ``/Notation/Pair``. Equality of their types is the ``/Notation/Null`` constraint.
 - term **The moves:** *expand* opens an axis. *compress* constrains axes with a stated relation (``Law`` §1).
-- term **The floor:** each term in the finite constructor interpretation reaches a declared leaf. Recursive Swift conformances need not terminate, and a family of finite terms can be infinite. Equality of ``Pair``'s sides, expressed by ``Null``, does not identify every such form with the leaf.
+- term **The floor:** each term in the finite constructor interpretation reaches a declared leaf. Recursive Swift conformances need not terminate, and a family of finite terms can be infinite. Equality of ``/Notation/Pair``'s sides, expressed by ``/Notation/Null``, does not identify every such form with the leaf.
 
 **The Swift reading.** The compiler checks a generic construction that requires the premises and derives the conclusion from its actual fields (``Law`` §T). An interface requirement states the claim. Its derivation needs the construction. The full-candidate interface is ``PassIsIdentification``.
 
@@ -49,7 +49,7 @@ A named refusal concerns that attempt. Continued use requires the actual result 
 - term **See it at scale:** [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) is a whole company in the notation: browse its generated dashboard and catalogs, walk a login keypad, read the access verdicts. [The curve](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/curve) measures the build as the company grows, to 12800 employees.
 - term **See the grounds:** <doc:verification_is_identification> states the verification contracts, <doc:existence_is_finite> proves representation under explicit constructor and generation premises, and <doc:learning_is_liquid> studies which internal relations determine contacts, roles and permitted changes. <doc:Neighbors> sets the notation beside partial evaluation, Datalog, and total languages.
 - term **Check it:** <doc:AtlasOrder> orders every claim after its premises. <doc:Atlas> counts each claim's dependents, <doc:AtlasAblation> records which premises the core build enforces (58 of 349 explicit premises), <doc:AtlasRepeats> counts premises declared twice, and <doc:AtlasArgued> counts the edges whose argument carries a record.
-- term **Build your own:** <doc:Purpose> states what the notation buys and where it stops, <doc:Encoding> maps your part of a system onto it, and ``Law`` is the grammar you write in. These pages are themselves rendered by [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit): the site is written in the notation it documents.
+- term **Build your own:** <doc:Purpose> states what the notation buys and where it stops, <doc:Encoding> maps your part of a system onto it, and ``Law`` is the grammar you write in. These pages are themselves rendered by [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit): the site is written in the notation it documents.
 
 Two longer threads run through the papers: learning machines, <doc:intelligence_is_inevitable> → <doc:play_is_proof> → <doc:architecture_of_learning_machines>, and the emitted path (token by token, gated or not), <doc:program_is_path>. The type pages under Topics are reference.
 
@@ -88,26 +88,26 @@ The page's order follows each type's move. The papers' writing order gives a dif
 - ``PlayIsProof``
 ### The seed: one act and its fixpoint
 
-- ``Null``
-- ``Pair``
+- ``/Notation/Null``
+- ``/Notation/Pair``
 ### The medium: markers, the functions on Pair
 
-- ``Structure``
+- ``/Notation/Structure``
 - ``Permanent``
 - ``Monotone``
 - ``Decidable``
 - ``MetricProperty``
-- ``IntegerValued``
 - ``Measurable``
 - ``ComparedReadings``
 - ``ObservationTrace``
+- ``/Notation/IntegerValued``
 - ``Unique``
 - ``RetainedReadingRecord``
 ### The kernel: the V=I core (Pair / Σ-rooted)
 
-- ``Open``
-- ``Close``
-- ``Digit``
+- ``/Notation/Open``
+- ``/Notation/Close``
+- ``/Notation/Digit``
 - ``SharedBoundaryContinuation``
 - ``StructuresFinite``
 - ``OperationsClosed``

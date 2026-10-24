@@ -1,3 +1,5 @@
+import Notation
+
 import Swift
 
 /// An operation connects two applications of one observation in a fixed model.

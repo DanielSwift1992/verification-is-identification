@@ -10,7 +10,7 @@ final class ContinuationActionsTests: XCTestCase {
             .deletingLastPathComponent().deletingLastPathComponent()
     }
     private func world(_ edit: ((String) -> String)? = nil) throws -> StructuralSource {
-        let primitive = "Sources/VerificationIsIdentification/Primitive.swift"
+        let primitive = "Sources/Notation/Primitive.swift"
         let text = try String(contentsOf: root.appendingPathComponent(fixture), encoding: .utf8)
         return try StructuralSource(files: [
             (primitive, String(contentsOf: root.appendingPathComponent(primitive), encoding: .utf8)),
@@ -206,7 +206,7 @@ final class ContinuationActionsTests: XCTestCase {
             typealias HiddenActions = Actions
         }
         """
-        let primitive = "Sources/VerificationIsIdentification/Primitive.swift"
+        let primitive = "Sources/Notation/Primitive.swift"
         let source = try StructuralSource(files: [
             (primitive, String(contentsOf: root.appendingPathComponent(primitive), encoding: .utf8)),
             ("long-chain.swift", text)
@@ -306,7 +306,7 @@ final class ContinuationActionsTests: XCTestCase {
         let manifest = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
         let cases = try XCTUnwrap(manifest["cases"] as? [[String: Any]])
         XCTAssertEqual(cases.count, 21)
-        let primitive = "Sources/VerificationIsIdentification/Primitive.swift"
+        let primitive = "Sources/Notation/Primitive.swift"
         for entry in cases {
             let request = try XCTUnwrap(entry["request"] as? String)
             let fixture = directory + (try XCTUnwrap(entry["fixture"] as? String))

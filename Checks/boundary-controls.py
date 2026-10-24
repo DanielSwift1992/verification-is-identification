@@ -99,22 +99,39 @@ def controls(law):
         print('CONTROL approved-reference-set: holds (' + str(len(data['declarations'])) + ' exact occurrences)')
         counts = Counter(((entry['path'], entry['line'], entry['channel']) for entry in actual))
         identities = Counter((entry['path'], entry['channel'], entry['name'], law.text_identity(entry['text'])) for entry in actual)
-        row = next(entry for entry in data['exceptions'] if entry['channel'] == 'text' and counts[entry['path'], entry['line'], entry['channel']] == 1 and identities[entry['path'], entry['channel'], entry['name'], law.text_identity(entry['text'])] == 1)
-        legacy = next((entry for entry in data['exceptions'] if law.identity(entry) == law.identity(row)))
+        def isolated(entry):
+            return entry['channel'] == 'text' and counts[entry['path'], entry['line'], entry['channel']] == 1 and identities[entry['path'], entry['channel'], entry['name'], law.text_identity(entry['text'])] == 1
+        row = next((entry for entry in data['exceptions'] if isolated(entry)), None)
+        debt = data
+        debt_history = history
+        debt_ceiling = ceiling
+        if row is None:
+            # A debt-free consumer must not keep real debt just to feed controls.
+            # Move one isolated occurrence to a synthetic ledger; the live policy
+            # and its historical limits remain untouched.
+            row = next(entry for entry in data['declarations'] if isolated(entry))
+            debt = copy.deepcopy(data)
+            debt['declarations'] = [entry for entry in debt['declarations'] if law.identity(entry) != law.identity(row)]
+            debt['exceptions'] = [dict(row, task=next(iter(data['removal_tasks'])), reason='Synthetic retirement control')]
+            debt_history = []
+            debt_ceiling = ceiling | {law.identity(row)}
+            assert not law.assess(debt, actual, debt_ceiling, debt_history)
+            print('CONTROL empty-live-debt: holds; retirement uses an isolated fixture')
+        legacy = next(entry for entry in debt['exceptions'] if law.identity(entry) == law.identity(row))
         content = (root / row['path']).read_bytes().splitlines(keepends=True)
         content[row['line'] - 1] = b'\n'
         removed = view(row['path'], b''.join(content))
-        refuses('removed-source-kept-ledger', removed, 'stale boundary ledger')
-        reduced = copy.deepcopy(data)
+        refuses('removed-source-kept-ledger', removed, 'stale boundary ledger', ledger=debt, limits=debt_history, bound=debt_ceiling)
+        reduced = copy.deepcopy(debt)
         reduced['exceptions'] = [entry for entry in reduced['exceptions'] if law.identity(entry) != law.identity(row)]
-        assert not law.assess(reduced, removed, ceiling, history)
+        assert not law.assess(reduced, removed, debt_ceiling, debt_history)
         print('CONTROL removed-source-and-entry: holds')
-        refuses('removed-entry-kept-source', actual, 'new boundary occurrence', ledger=reduced)
+        refuses('removed-entry-kept-source', actual, 'new boundary occurrence', ledger=reduced, limits=debt_history, bound=debt_ceiling)
         path = next((scope for scope in data['scope'] if not Path(scope).suffix)) + '/BoundaryGrowth.swift'
         rows = view(path, ('// ' + data['probe_names'][0] + '\n').encode())
-        grown = copy.deepcopy(data)
+        grown = copy.deepcopy(debt)
         grown['exceptions'] += [dict(entry, task=legacy['task'], reason='negative control') for entry in rows if entry['path'] == path]
-        refuses('new-source-added-to-ledger', rows, 'cannot grow beyond its frozen source', ledger=grown)
+        refuses('new-source-added-to-ledger', rows, 'cannot grow beyond its frozen source', ledger=grown, limits=debt_history, bound=debt_ceiling)
         receipt = next((entry for entry in actual if entry['channel'] == 'text' and re.search('\\b[0-9a-f]{64}\\b', entry['text'])), None)
         if receipt:
             source = (root / receipt['path']).read_text()

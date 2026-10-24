@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 96" role="img" data-vi-canvas="1" font-family="Inter" aria-label="A plate reading Self-showing, with a chip that links to its own source.">
+<rect width="240" height="96" rx="16" fill="#F9F9F9" style="fill:#F9F9F9;fill:var(--vi-surface-card, color(xyz-d65 0.898 0.945 1.029));"/>
+<g transform="translate(24, 0)">
+<text x="0" y="56" text-anchor="start" fill="#1C191A" font-weight="400" font-size="15" style="fill:#1C191A;fill:var(--vi-text-primary, color(xyz-d65 0.01 0.01 0.011));">Self-showing</text>
+</g>
+<g transform="translate(0, 68)">
+<g transform="translate(202, 0)">
+<a href="https://danielswift1992.github.io/verification-is-identification/documentation/documentkitdemo/selfshowingexamplesource">
+<rect x="0" width="30" height="20" rx="6" fill="#F9F9F9" style="fill:#F9F9F9;fill:var(--vi-surface-track, color(xyz-d65 0.898 0.945 1.029));"/>
+<g transform="translate(8, 0)">
+<text x="0" y="14" text-anchor="start" fill="#868686" font-weight="400" font-size="13" style="fill:#868686;fill:var(--vi-text-secondary, color(xyz-d65 0.228 0.24 0.261));">{ }</text>
+</g>
+</a>
+</g>
+</g>
+
+</svg>

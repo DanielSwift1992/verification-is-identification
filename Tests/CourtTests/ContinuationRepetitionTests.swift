@@ -10,7 +10,7 @@ final class ContinuationRepetitionTests: XCTestCase {
             .deletingLastPathComponent().deletingLastPathComponent()
     }
     private func world(_ fixture: String = "repeat-cases.swift", edit: ((String) -> String)? = nil) throws -> StructuralSource {
-        let primitive = "Sources/VerificationIsIdentification/Primitive.swift"
+        let primitive = "Sources/Notation/Primitive.swift"
         let path = directory + fixture
         let text = try String(contentsOf: root.appendingPathComponent(path), encoding: .utf8)
         return try StructuralSource(files: [
@@ -247,7 +247,7 @@ final class ContinuationRepetitionTests: XCTestCase {
             typealias HiddenActions = \(product(images[...]))
         }
         """
-        let primitive = "Sources/VerificationIsIdentification/Primitive.swift"
+        let primitive = "Sources/Notation/Primitive.swift"
         let source = try StructuralSource(files: [
             (primitive, String(contentsOf: root.appendingPathComponent(primitive), encoding: .utf8)),
             ("large-return.swift", text)

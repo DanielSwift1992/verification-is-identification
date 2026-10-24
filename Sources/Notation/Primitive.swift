@@ -1,3 +1,5 @@
+// Surface-history citations are historical scope, not current SDK contracts.
+// Source: vi@f95b6c69d5ad49ede6cf953b8be42e725bde6ba6 Sources/DocumentKit/SurfaceLaw.swift; SHA-256 d51b07d4195eddee64d0a3e7daf91dc6667bc4c79665c53249222b8350dc4881.
 // ═══════════════════════════════════════════════════════
 // THE FOUNDATION names Structure, Open, Close, Pair, Null.
 //
@@ -48,18 +50,13 @@ public protocol Structure {
     /// called through generic contexts (Paired chains, associated types).
     static var typeName: String { get }
 
-    /// This gives the size of this type: how many leaves it is built from. An atom is one. The floor
-    /// (`Never`) is none. A composed ``Open`` folds the count of everything its `body` lists. Any
-    /// structure has a length, the same way any structure has a name, the second reading the
-    /// builder's ``Paired`` chain gives for free, replacing the hand-rolled `Length` a cons-list
-    /// (`Chain`/`Roster`) used to carry.
+    /// Reads this type's count. The default readings give one to an atom and zero to `Never`.
+    /// A composed ``Open`` delegates to its ``Open/Body``. The ``Paired`` reading adds its two sides.
     static var count: Int { get }
 
-    /// This gives the names of this type's leaves, in body order. An atom is its own one-element list. A
-    /// composed ``Open`` folds its `body`'s leaves in the order they were written. The third
-    /// reading the builder's ``Paired`` chain gives for free: where `typeName` collapses a body
-    /// to one string and `count` to one number, `labels` keeps each leaf's name, so a leaf that
-    /// carries its identity (an employee in a batch) can be read back individually.
+    /// Reads this type's leaf names in body order. The default atom contributes its ``typeName``
+    /// as one element. A composed ``Open`` delegates to its ``Open/Body``, and ``Paired`` concatenates
+    /// its two lists. Each supplied leaf name remains a separate element.
     static var labels: [String] { get }
 }
 
@@ -87,8 +84,7 @@ where Body == Never {
 
 /// This is a CLOSE: a terminal seal, written ONLY as an empty `enum`: no cases, no `init`, the branch
 /// ends and Swift is handed a concrete empty type. `protocol X: Close` is the contradiction: a Close must be
-/// concrete. A foreign value joins the world here too: a layer writes `extension String: Close` to make
-/// a string one of the sealed leaves, the one place for a value (a `String`), at the edge.
+/// concrete. Notation declares `extension String: Close`, so a string is one of the sealed leaves: the one place for a value, at the edge.
 public protocol Close: Structure {}   // law:allow: the seal half of Open/Close, not a rename of Structure
 
 // ── Pair / Null ──
@@ -102,9 +98,7 @@ public protocol Close: Structure {}   // law:allow: the seal half of Open/Close,
 /// - term Left: one side of the distinction.
 /// - term Right: the other side.
 ///
-/// > Note: ``Pair`` is the one thing the lattice rests on, and the one thing no
-/// > protocol derives. Trace any type up its parents (§5 of ``Law``) and it ends
-/// > here: an entry in no library, certified by no game.
+/// > Note: ``Null`` refines ``Pair``, and ``Paired`` is its one concrete realizer.
 public protocol Pair: Open {
     associatedtype Left
     associatedtype Right
@@ -141,7 +135,7 @@ extension Never: Null {
 extension Never: Close {}
 
 // String IS Close: the sealed leaf where a value is. The one foreign value that enters our world,
-// at the edge (§S6). Above it, the structure carries only types. Here, the String carries text.
+// at the edge ([Surface history S6](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L98)). Above it, the structure carries only types. Here, the String carries text.
 extension String: Close {}
 
 // ── typeName: the one rendering mechanism ──
@@ -151,10 +145,8 @@ extension Structure {
     public static var typeName: String { String(describing: Self.self) }
 }
 
-/// This is an `Open` type that has not customized `body`: it is `Pair`-shaped, not list-shaped
-/// (``Employee``, a verdict gate), a LEAF, so it renders its Swift name, the same as a ``Close`` atom.
-/// Without this, the rule below would read `Body.typeName` and silently render every such leaf
-/// as the empty string.
+/// Reads the Swift name when ``Body`` is `Never`. This specializes the general ``Open`` reading,
+/// which delegates to ``Body`` and reads an empty string for `Never`.
 extension Open
 where Body == Never {
     public static var typeName: String { String(describing: Self.self) }
@@ -179,11 +171,8 @@ extension Structure {
     public static var count: Int { 1 }
 }
 
-/// This is an `Open` type that has not customized `body`: it is `Pair`-shaped, not list-shaped,
-/// `Employee` (`Pair` for its `Rank`/`Home` coordinate), a verdict gate, an axis marker. It is a LEAF,
-/// the same as a ``Close`` atom, so it counts as one. Without this, the general rule below would read
-/// `Body.count` and silently count every such leaf as zero, exactly the case a roster's members
-/// are made of, so this is the override that keeps `count` correct for a roster's members.
+/// Counts one when ``Body`` is `Never`. This specializes the general ``Open`` reading,
+/// whose count would be zero for `Never`.
 extension Open
 where Body == Never {
     public static var count: Int { 1 }
@@ -226,8 +215,8 @@ extension Paired {
 
 // ── The builder: the ONE @resultBuilder ──
 //
-// The one allowed callable (§S4): folds a `{ }` body into a Pair-chain of Structures, floored at
-// `Never`. ``Paired`` is the ONE concrete `<>` (§S3 plumbing): it keeps two Structures as a value
+// The one allowed callable ([Surface history S4](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L65)): folds a `{ }` body into a Pair-chain of Structures, floored at
+// `Never`. ``Paired`` is the ONE concrete `<>` ([Surface history S3](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L43) plumbing): it keeps two Structures as a value
 // so the builder can return them. Everything else is a protocol.
 
 /// This is the concrete Pair realizer: the ONE `<>` in the system, the framework's plumbing that the
@@ -243,7 +232,7 @@ public enum Paired<
 }
 
 /// This is the one result builder: it folds a `{ }` body into a ``Pair``-chain of Structures, floored at `Never`.
-/// This is the single `@resultBuilder` the system allows (§S4). The builder is the boundary between the
+/// This is the single `@resultBuilder` the system allows ([Surface history S4](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L65)). The builder is the boundary between the
 /// brace-syntax and the type tree: inside the braces, each statement is a ``Structure``. Outside, the
 /// whole body is a single ``Paired`` chain.
 @resultBuilder
@@ -281,11 +270,8 @@ public enum StructureBuilder {
         B
     > { fatalError() }
 }
-// ── MAGNITUDES — space as structure, and the counting reader. A magnitude is a chain of
-// these atoms. The house fold counts it, and nothing else measures anything. They are in
-// this engine room because `Plus` composes through the one builder and the readers below
-// speak digits: the same §0′ exemption are already on. The design system
-// (DocumentKit) names the rungs, and canvases speak in its names, never in chains of these. ──
+// ── MAGNITUDES ──
+// Unit, Plus, Times, Rest, Half and Tally compose magnitudes through StructureBuilder and are read through count and typeName.
 
 /// Unit counts one: the atom of magnitude. `Close` keeps the default count, which is also
 /// the definition.
@@ -308,7 +294,7 @@ public enum Plus<
 public typealias Twice<S: Structure> = Plus<S, S>
 
 /// Times composes two counts into their product, the way `Paired` composes them into their
-/// sum: one witness, no other member. With it a fraction needs no further arithmetic.
+/// sum: one witness, no other member. ``Plus``, ``Twice`` and ``Times`` compose sums and products without another arithmetic member.
 public enum Times<
     A: Structure,
     B: Structure
@@ -317,9 +303,7 @@ extension Times {
     public static var count: Int { A.count * B.count }
 }
 
-/// The numerals: the powers of two, spelled once as the doubling ladder. Every target
-/// reads these names from here, so a magnitude's meaning is its one written definition,
-/// and a judge unfolds it from this source.
+/// U1 through U512 are ``Twice`` chains over ``Unit``. Each name's count is read from this definition.
 public typealias U1 = Unit
 public typealias U2 = Twice<U1>
 public typealias U4 = Twice<U2>
@@ -331,11 +315,8 @@ public typealias U128 = Twice<U64>
 public typealias U256 = Twice<U128>
 public typealias U512 = Twice<U256>
 
-/// Rest is what remains: the whole minus what was taken, the subtractive witness beside
-/// `Times`' product. Layout divides space (known pieces come off a given whole, and the
-/// rest is handed on), so subtraction enters the lattice the same way multiplication did:
-/// one witness, counted only at the reading edge. Taking more than the whole has is
-/// refused right there, at the read, the fit made a checked fact.
+/// Reads `Whole.count` minus `Taken.count`. The reading requires `Taken.count <= Whole.count`
+/// and refuses underflow before subtraction.
 public enum Rest<
     Whole: Structure,
     Taken: Structure
@@ -352,9 +333,7 @@ extension Rest {
     }
 }
 
-/// Half is the even split of a magnitude: a box's centre line, a shelf's midpoint. The
-/// count must divide cleanly, and an odd magnitude refuses at generation, loudly, since a
-/// half-pixel would be a number no rung owns.
+/// Divides `Of.count` by two when the count is even. The reading refuses an odd count.
 public enum Half<Of: Structure>: Close {}
 extension Half {
     public static var count: Int {
@@ -363,9 +342,7 @@ extension Half {
     }
 }
 
-/// Tally is the counting read: a structure in, its count out as digits, through `typeName`
-/// like every other reading. The one door a canvas may take to a number, and a bare `count`
-/// call outside the readers is the smell this door exists to remove.
+/// Reads `Of.count` as decimal text through ``typeName``.
 public enum Tally<Of: Structure>: Close {}
 extension Tally {
     public static var typeName: String { String(Of.count) }

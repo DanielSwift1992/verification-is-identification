@@ -45,10 +45,17 @@ enum VoiceTool {
     // continuation lines had begun with |z| and |C|, and the table-row filter
     // skipped them. Their sentences now count: one semicolon, one "holds".
     // The same prose measures 1395.
+    // T0059 carries the kit pin (18) and its measured catalog share (51 of showcase's pinned 304) back from showcase.
+    // The lattice scope now includes Notation; each carried source is scanned once.
+    // On 2026-10-24 R0068R6rOpus reviews the residue after the SDK catalog removal
+    // and the Encoding sentence repair: kit measures 0 and pages measures 5.
+    // These pins now bound the remaining comments and pages. Other pins stay unchanged.
     static let pins: [(scope: String, count: Int)] = [
         ("papers", 1395),
         ("lattice", 6),
-        ("pages", 4),
+        ("kit", 0),
+        ("drivers", 0),
+        ("pages", 5),
         ("readme", 2),
     ]
 
@@ -102,7 +109,9 @@ enum VoiceTool {
         if chosen.isEmpty == false { return (counts, chosen, rest) }
         return ([
             ("papers", scanMarkdown(under: "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers")),
-            ("lattice", scanDocComments(under: "Sources/VerificationIsIdentification")),
+            ("lattice", scanDocComments(under: "Sources/VerificationIsIdentification") + scanDocComments(under: "Sources/Notation")),
+            ("kit", scanDocComments(under: "Sources/DocumentKit") + scanDocComments(under: "Sources/DocumentKitCertificates")),
+            ("drivers", scanDocComments(under: "Sources/DocumentKitDemo") + scanDocComments(under: "Sources/FontMetrics")),
             ("pages", scanMarkdown(under: "Sources", excluding: "Papers")),
             ("readme", scanMarkdownFile(root + "/README.md")),
         ], pins, rest)

@@ -10,7 +10,7 @@ To make correctness the cheapest thing to build: a notation where writing a stru
 
 **What it costs.** Only the exact, finite, determinate part of a system fits. Turning a claim into that typed structure is the work that remains human. And whether you stated the right rule remains yours to judge: the build checks consistency with what you stated.
 
-**One game under all of them.** Whatever you build, a company or a schedule or a learner, its determinate part is a finite structure, and finite structures play one game: draw a distinction, or close one (``Pair`` and ``Null``). Those are the only two moves. The rules of that game are the framework, your system is a position in it, and the rules are what every position already obeys. Nothing is above the board.
+**One game under all of them.** Whatever you build, a company or a schedule or a learner, its determinate part is a finite structure, and finite structures play one game: draw a distinction, or close one (``/Notation/Pair`` and ``/Notation/Null``). Those are the only two moves. The rules of that game are the framework, your system is a position in it, and the rules are what every position already obeys. Nothing is above the board.
 
 **Trust grows one part at a time.** You need not convert the whole system. Write the one part you must be sure of, and it is proved while the rest remains craft: the line between them is exactly where the types stop.
 

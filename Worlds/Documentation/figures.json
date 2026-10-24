@@ -1,0 +1,429 @@
+{
+  "outputs": [
+    {
+      "root": "MethodView0",
+      "output": "Documentation/Figures/vi-method.svg",
+      "theme": "Lit"
+    },
+    {
+      "root": "MethodView1",
+      "output": "Documentation/Figures/answer-determination.svg",
+      "theme": "Lit"
+    },
+    {
+      "root": "MethodView2",
+      "output": "Documentation/Figures/adequate-continuation.svg",
+      "theme": "Lit"
+    },
+    {
+      "root": "ArchitectureView0",
+      "output": "Documentation/Figures/framework-architecture.svg",
+      "theme": "Lit"
+    },
+    {
+      "root": "ThreeSourcesView0",
+      "output": "Documentation/Figures/beam-study.svg",
+      "theme": "Lit"
+    },
+    {
+      "root": "ThreeSourcesView1",
+      "output": "Documentation/Figures/beam-questions.svg",
+      "theme": "Lit"
+    },
+    {
+      "root": "ThreeSourcesView2",
+      "output": "Documentation/Figures/beam-continuation.svg",
+      "theme": "Lit"
+    },
+    {
+      "root": "ConstructionView0",
+      "output": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law.svg",
+      "theme": "Lit"
+    },
+    {
+      "root": "ConstructionView1",
+      "output": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law~dark.svg",
+      "theme": "Dim"
+    }
+  ],
+  "font": {
+    "input": "Assets/InterVariable.ttf",
+    "license": "Assets/InterLicense.txt",
+    "corpus": "Worlds/Documentation/Characters.txt",
+    "projection": "Worlds/Documentation/Font.swift",
+    "required_codepoints": [
+      8709,
+      8712,
+      8800,
+      8838,
+      8898,
+      945,
+      946,
+      8728
+    ],
+    "assignments": "Worlds/Documentation/CharacterSources.json",
+    "sources": [
+      {
+        "name": "Inter",
+        "input": "Assets/InterVariable.ttf",
+        "sha256": "4989b125924991b90d05b2d16e0e388c48f7d5bb8b30539bbf9c755278d0ccaf",
+        "license": "Assets/InterLicense.txt",
+        "licenseSHA256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+      },
+      {
+        "name": "DejaVu",
+        "input": "Assets/DejaVuSans.ttf",
+        "sha256": "7da195a74c55bef988d0d48f9508bd5d849425c1770dba5d7bfc6ce9ed848954",
+        "license": "Assets/DejaVuSansLicense.txt",
+        "licenseSHA256": "f88d5294af5a772f9114eb385009e3478d62b21f3e5bbc34d159d328047c8867"
+      },
+      {
+        "name": "DejaVuMono",
+        "input": "Assets/DejaVuSansMono.ttf",
+        "sha256": "b4a6c3e4faab8773f4ff761d56451646409f29abedd68f05d38c2df667d3c582",
+        "license": "Assets/DejaVuSansLicense.txt",
+        "licenseSHA256": "f88d5294af5a772f9114eb385009e3478d62b21f3e5bbc34d159d328047c8867"
+      }
+    ],
+    "weights": [
+      400,
+      600
+    ],
+    "stressWeights": {
+      "Plain": 400,
+      "Firm": 600
+    }
+  },
+  "grounds": [
+    "Documentation/Figures/beam-study-sources.md",
+    "Sources/Examples/Light.swift",
+    "Sources/Examples/Verdict.swift",
+    "Sources/Examples/Transition.swift",
+    "Checks/Coverage.swift",
+    "Checks/Transition.swift",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/seeing_is_encoding.md",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verification_is_identification.md",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verdict_is_invariant__finite_records.md",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/acquisition_keeps_its_question.md"
+  ],
+  "style": {
+    "repository": "https://github.com/DanielSwift1992/gate",
+    "revision": "bbd807bc504ef2146c2265d43521108c4e37c115",
+    "projection": "Worlds/Documentation/Registers.swift",
+    "coordinateScale": 1000,
+    "palette": {
+      "path": "stdlib/bench-palette.swift",
+      "sha256": "6a815d104d17837cab25e342432380cd3898074305e8c6bdd298fee6fb8402cd"
+    },
+    "registers": {
+      "path": "stdlib/bench-registers.swift",
+      "sha256": "c3278902fd8251598334508423efffcde11a73c0c34e3f1e653f238814b588de"
+    },
+    "rule": {
+      "path": "web/ui.html",
+      "sha256": "2175db31f50e979e8e146a032c8726af11e0af42933af7a314bc6d0721079eec"
+    },
+    "fonts": {
+      "path": "bin/drawing-fonts.json",
+      "sha256": "1aa7c531898300766377f0f7a6daf56453386382f02c0b8e6d3db8269dcb5098"
+    },
+    "colours": [
+      {
+        "role": "ink",
+        "theme": "Lit",
+        "declaration": "GateInkLit",
+        "coordinates": {
+          "X": "InkLitX",
+          "Y": "InkLitY",
+          "Z": "InkLitZ"
+        },
+        "contrast": "Paper_Ink_lit"
+      },
+      {
+        "role": "paper",
+        "theme": "Lit",
+        "declaration": "GatePaperLit",
+        "coordinates": {
+          "X": "PaperLitX",
+          "Y": "PaperLitY",
+          "Z": "PaperLitZ"
+        },
+        "contrast": null
+      },
+      {
+        "role": "mist",
+        "theme": "Lit",
+        "declaration": "GateMistLit",
+        "coordinates": {
+          "X": "MistLitX",
+          "Y": "MistLitY",
+          "Z": "MistLitZ"
+        },
+        "contrast": null
+      },
+      {
+        "role": "line",
+        "theme": "Lit",
+        "declaration": "GateLineLit",
+        "coordinates": {
+          "X": "LineLitX",
+          "Y": "LineLitY",
+          "Z": "LineLitZ"
+        },
+        "contrast": null
+      },
+      {
+        "role": "muted",
+        "theme": "Lit",
+        "declaration": "GateMutedLit",
+        "coordinates": {
+          "X": "MutedLitX",
+          "Y": "MutedLitY",
+          "Z": "MutedLitZ"
+        },
+        "contrast": "Paper_Muted_lit"
+      },
+      {
+        "role": "ok",
+        "theme": "Lit",
+        "declaration": "GateOkLit",
+        "coordinates": {
+          "X": "OkLitX",
+          "Y": "OkLitY",
+          "Z": "OkLitZ"
+        },
+        "contrast": "Paper_Ok_lit"
+      },
+      {
+        "role": "bad",
+        "theme": "Lit",
+        "declaration": "GateBadLit",
+        "coordinates": {
+          "X": "BadLitX",
+          "Y": "BadLitY",
+          "Z": "BadLitZ"
+        },
+        "contrast": "Paper_Bad_lit"
+      },
+      {
+        "role": "action",
+        "theme": "Lit",
+        "declaration": "GateActionLit",
+        "coordinates": {
+          "X": "ActionLitX",
+          "Y": "ActionLitY",
+          "Z": "ActionLitZ"
+        },
+        "contrast": "Paper_Action_lit"
+      },
+      {
+        "role": "law",
+        "theme": "Lit",
+        "declaration": "GateLawLit",
+        "coordinates": {
+          "X": "LawLitX",
+          "Y": "LawLitY",
+          "Z": "LawLitZ"
+        },
+        "contrast": "Paper_Law_lit"
+      },
+      {
+        "role": "localType",
+        "theme": "Lit",
+        "declaration": "GateLocalTypeLit",
+        "coordinates": {
+          "X": "LocalTypeLitX",
+          "Y": "LocalTypeLitY",
+          "Z": "LocalTypeLitZ"
+        },
+        "contrast": "Paper_LocalType_lit"
+      },
+      {
+        "role": "knownName",
+        "theme": "Lit",
+        "declaration": "GateKnownNameLit",
+        "coordinates": {
+          "X": "KnownNameLitX",
+          "Y": "KnownNameLitY",
+          "Z": "KnownNameLitZ"
+        },
+        "contrast": "Paper_KnownName_lit"
+      },
+      {
+        "role": "seam",
+        "theme": "Lit",
+        "declaration": "GateSeamLit",
+        "coordinates": {
+          "X": "SeamLitX",
+          "Y": "SeamLitY",
+          "Z": "SeamLitZ"
+        },
+        "contrast": "Paper_Seam_lit"
+      },
+      {
+        "role": "select",
+        "theme": "Lit",
+        "declaration": "GateSelectLit",
+        "coordinates": {
+          "X": "SelectLitX",
+          "Y": "SelectLitY",
+          "Z": "SelectLitZ"
+        },
+        "contrast": null
+      },
+      {
+        "role": "ink",
+        "theme": "Dim",
+        "declaration": "GateInkDim",
+        "coordinates": {
+          "X": "InkDimX",
+          "Y": "InkDimY",
+          "Z": "InkDimZ"
+        },
+        "contrast": "Ink_Paper_dim"
+      },
+      {
+        "role": "paper",
+        "theme": "Dim",
+        "declaration": "GatePaperDim",
+        "coordinates": {
+          "X": "PaperDimX",
+          "Y": "PaperDimY",
+          "Z": "PaperDimZ"
+        },
+        "contrast": null
+      },
+      {
+        "role": "mist",
+        "theme": "Dim",
+        "declaration": "GateMistDim",
+        "coordinates": {
+          "X": "MistDimX",
+          "Y": "MistDimY",
+          "Z": "MistDimZ"
+        },
+        "contrast": null
+      },
+      {
+        "role": "line",
+        "theme": "Dim",
+        "declaration": "GateLineDim",
+        "coordinates": {
+          "X": "LineDimX",
+          "Y": "LineDimY",
+          "Z": "LineDimZ"
+        },
+        "contrast": null
+      },
+      {
+        "role": "muted",
+        "theme": "Dim",
+        "declaration": "GateMutedDim",
+        "coordinates": {
+          "X": "MutedDimX",
+          "Y": "MutedDimY",
+          "Z": "MutedDimZ"
+        },
+        "contrast": "Muted_Paper_dim"
+      },
+      {
+        "role": "ok",
+        "theme": "Dim",
+        "declaration": "GateOkDim",
+        "coordinates": {
+          "X": "OkDimX",
+          "Y": "OkDimY",
+          "Z": "OkDimZ"
+        },
+        "contrast": "Ok_Paper_dim"
+      },
+      {
+        "role": "bad",
+        "theme": "Dim",
+        "declaration": "GateBadDim",
+        "coordinates": {
+          "X": "BadDimX",
+          "Y": "BadDimY",
+          "Z": "BadDimZ"
+        },
+        "contrast": "Bad_Paper_dim"
+      },
+      {
+        "role": "action",
+        "theme": "Dim",
+        "declaration": "GateActionDim",
+        "coordinates": {
+          "X": "ActionDimX",
+          "Y": "ActionDimY",
+          "Z": "ActionDimZ"
+        },
+        "contrast": "Action_Paper_dim"
+      },
+      {
+        "role": "law",
+        "theme": "Dim",
+        "declaration": "GateLawDim",
+        "coordinates": {
+          "X": "LawDimX",
+          "Y": "LawDimY",
+          "Z": "LawDimZ"
+        },
+        "contrast": "Law_Paper_dim"
+      },
+      {
+        "role": "localType",
+        "theme": "Dim",
+        "declaration": "GateLocalTypeDim",
+        "coordinates": {
+          "X": "LocalTypeDimX",
+          "Y": "LocalTypeDimY",
+          "Z": "LocalTypeDimZ"
+        },
+        "contrast": "LocalType_Paper_dim"
+      },
+      {
+        "role": "knownName",
+        "theme": "Dim",
+        "declaration": "GateKnownNameDim",
+        "coordinates": {
+          "X": "KnownNameDimX",
+          "Y": "KnownNameDimY",
+          "Z": "KnownNameDimZ"
+        },
+        "contrast": "KnownName_Paper_dim"
+      },
+      {
+        "role": "seam",
+        "theme": "Dim",
+        "declaration": "GateSeamDim",
+        "coordinates": {
+          "X": "SeamDimX",
+          "Y": "SeamDimY",
+          "Z": "SeamDimZ"
+        },
+        "contrast": "Seam_Paper_dim"
+      },
+      {
+        "role": "select",
+        "theme": "Dim",
+        "declaration": "GateSelectDim",
+        "coordinates": {
+          "X": "SelectDimX",
+          "Y": "SelectDimY",
+          "Z": "SelectDimZ"
+        },
+        "contrast": null
+      }
+    ],
+    "weightRule": {
+      "path": "bin/gate-cli.swift",
+      "sha256": "839115bf543878c11c8afbdba3b4c35284d04e5fe2348add0f3976d8d5f45aa1"
+    }
+  },
+  "layout": {
+    "input": "Worlds/Documentation/layout.json",
+    "canvasScale": 0.72,
+    "readmeWidth": 830,
+    "policy": "content, routes and panel ordering; registers read at native size"
+  }
+}

@@ -213,7 +213,7 @@ enum Ablate {
         let p = Process()
         p.executableURL = URL(fileURLWithPath: "/usr/bin/env")
         p.arguments = ["git", "log", "-1", "--format=%h", "--",
-                       "Sources/VerificationIsIdentification/*.swift"]
+                       "Sources/VerificationIsIdentification/*.swift", "Sources/Notation/*.swift"]
         let pipe = Pipe()
         p.standardOutput = pipe
         p.standardError = Pipe()
@@ -225,7 +225,7 @@ enum Ablate {
         let status = Process()
         status.executableURL = URL(fileURLWithPath: "/usr/bin/env")
         status.arguments = ["git", "status", "--porcelain", "--",
-                            "Sources/VerificationIsIdentification/*.swift"]
+                            "Sources/VerificationIsIdentification/*.swift", "Sources/Notation/*.swift"]
         let changes = Pipe()
         status.standardOutput = changes
         status.standardError = Pipe()

@@ -21,11 +21,11 @@ import shutil
 import sys
 from time import perf_counter
 
-from build import HERE, ROOT, compilation_sources, run_bounded
+from build import HERE, ROOT, compilation_sources, notation_sources, run_bounded
 from runtime import require, load_json, write_json
 
 EXPORTS = ('sources.json', 'continuations.json', 'requests.json')
-STEPS = ('versions', 'fresh-core-library', 'compile-proposal', 'derive-and-export',
+STEPS = ('versions', 'fresh-notation-library', 'fresh-core-library', 'compile-proposal', 'derive-and-export',
          'compile-row-applications', 'export-checked-continuation')
 
 
@@ -35,7 +35,7 @@ def digest(path):
 
 def snapshot():
     core, common, exporter = compilation_sources('acquisition')
-    paths = core + common + [exporter, HERE/'build.py', HERE/'prepare.py', HERE/'runtime.py', _runs.owned(_runs.__file__)]
+    paths = notation_sources() + core + common + [exporter, HERE/'build.py', HERE/'prepare.py', HERE/'runtime.py', _runs.owned(_runs.__file__)]
     compiler = shutil.which('swiftc')
     require(compiler is not None, 'swiftc is unavailable')
     version = run_bounded([compiler, '--version'], 15)
@@ -70,7 +70,7 @@ def validate_entry(directory, inputs):
             and all(s['returncode'] == 0 for s in manifest['steps']), 'missing checked build step')
     core, common, exporter = compilation_sources('acquisition')
     expected = {_runs.address(p, ROOT): inputs['sources'][_runs.address(p, ROOT)]
-                for p in core + common + [exporter, HERE/'build.py', _runs.owned(_runs.__file__)]}
+                for p in notation_sources() + core + common + [exporter, HERE/'build.py', _runs.owned(_runs.__file__)]}
     require(manifest['source_sha256'] == expected, 'build did not use these exact sources')
     return {name: load_json(directory/name) for name in EXPORTS}
 

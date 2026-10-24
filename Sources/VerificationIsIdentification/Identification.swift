@@ -1,3 +1,5 @@
+import Notation
+
 // ═══════════════════════════════════════════════════════
 // V=I Proof Chain — §5.15 Structural Recurrence.
 //
@@ -26,7 +28,7 @@
 /// a chain terminates or that a candidate domain has a uniform bound. [EiF EF6]
 public protocol StructuresFinite: Pair, HasSigma {}
 
-/// Requires ``Pair`` on both addressed components, `Left` and `Right`.
+/// Requires ``/Notation/Pair`` on both addressed components, `Left` and `Right`.
 /// The full finite-tree grammar is closed under its total pairing constructor.
 /// Its constructor, admission and finite generation are further premises.
 /// These component constraints alone do not establish them.

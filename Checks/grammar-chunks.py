@@ -107,8 +107,9 @@ let host = URL(fileURLWithPath: CommandLine.arguments[1]).deletingLastPathCompon
 let owner = [
  ("manifest", "Package.swift"),
  ("lexicon", "Sources/MirrorSource/Mirror.swift"),
- ("lattice", "Sources/VerificationIsIdentification/Primitive.swift"),
- ("alphabet", "Sources/Alphabet/Alphabet.swift")
+ ("lattice", "Sources/VerificationIsIdentification/Core.swift"),
+ ("alphabet", "Sources/Alphabet/Alphabet.swift"),
+ ("notation", "Sources/Notation/Primitive.swift")
 ].map { Linter.CarrierFile(source: $0.0, path: $0.1, bytes: Data($0.0.utf8), carrier: false) }
 let source = "Sources/Examples/Ordinary.swift"
 let row = Linter.CarrierFile(source: source, path: "Sources/MirrorSource/" + Linter.carrierName(source) + ".swift", bytes: Data("formation".utf8), carrier: true)
@@ -179,7 +180,7 @@ let repeated = try Linter.inputRoster([source, source])
 precondition(repeated == [source])
 let reserved = Linter.CarrierFile(source: source, path: "Sources/MirrorSource/Mirror.swift", bytes: Data(), carrier: true)
 refuse([source + ":1", "lexicon:1", "collision"]) { _ = try Linter.CarrierPlan(roster: [source], files: owner + [reserved]) }
-print("grammar-carriers: installed/read-back count; exact/folded collisions, canonical source aliases, all five write failures, missing/corrupt bytes, overwrite and recursive inputs controlled")
+print("grammar-carriers: installed/read-back count; exact/folded collisions, canonical source aliases, all six write failures, missing/corrupt bytes, overwrite and recursive inputs controlled")
 let jobs = try JSONSerialization.jsonObject(with: Data(contentsOf: URL(fileURLWithPath: CommandLine.arguments[1]))) as! [[String: String]]
 for job in jobs {
  let source = try String(contentsOfFile: job["source"]!, encoding: .utf8)
@@ -187,7 +188,7 @@ for job in jobs {
 }
 ''')
         flags = ['-module-cache-path', str(temp/'modules'), '-I', str(bin_dir/'Modules')]
-        objects = [str(path) for module in ('VerificationIsIdentification', 'Alphabet', 'GrammarLexicon')
+        objects = [str(path) for module in ('Notation', 'VerificationIsIdentification', 'Alphabet', 'GrammarLexicon')
                    for path in sorted((bin_dir/(module+'.build')).glob('*.swift.o'))]
         assert objects
         subprocess.run(['swiftc', *flags, *objects, *map(str, sorted((ROOT/'Sources/Tools/Grammar').glob('*.swift'))), str(main), '-o', str(temp/'probe')], check=True, capture_output=True)

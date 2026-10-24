@@ -65,6 +65,39 @@ enum LawVerdict: LawRecord {
     static var typeName: String { #"bash Checks/verdict.sh"# }
 }
 
+enum LawDrawingName: LawText { static var typeName: String { #"drawing"# } }
+enum LawDrawingDescription: LawText { static var typeName: String { #"generic native Drawing preserves seven SVGs and four refusals"# } }
+enum LawDrawing: LawRecord {
+    typealias Command = Self
+    typealias Name = LawDrawingName
+    typealias Description = LawDrawingDescription
+    typealias Profile = Integration
+    typealias Group = Serial
+    static var typeName: String { #"python3 Checks/drawing.py"# }
+}
+
+enum LawTargetGraphName: LawText { static var typeName: String { #"target-graph"# } }
+enum LawTargetGraphDescription: LawText { static var typeName: String { #"notation and drawing keep their declared dependencies"# } }
+enum LawTargetGraph: LawRecord {
+    typealias Command = Self
+    typealias Name = LawTargetGraphName
+    typealias Description = LawTargetGraphDescription
+    typealias Profile = Integration
+    typealias Group = Serial
+    static var typeName: String { #"python3 Checks/target-graph.py"# }
+}
+
+enum LawArtifactsName: LawText { static var typeName: String { #"artifacts"# } }
+enum LawArtifactsDescription: LawText { static var typeName: String { #"DocumentKit and vi figure projections reproduce their source-stamped bytes"# } }
+enum LawArtifacts: LawRecord {
+    typealias Command = Self
+    typealias Name = LawArtifactsName
+    typealias Description = LawArtifactsDescription
+    typealias Profile = Integration
+    typealias Group = Serial
+    static var typeName: String { #"python3 Checks/drawing-binding.py && python3 Checks/documentation-binding.py && python3 Checks/documentkit-artifacts.py && python3 Checks/vi-figures.py"# }
+}
+
 enum LawCensusName: LawText { static var typeName: String { #"census"# } }
 enum LawCensusDescription: LawText { static var typeName: String { #"the declaration count per target"# } }
 enum LawCensus: LawRecord {
@@ -106,7 +139,7 @@ enum LawRenames: LawRecord {
     typealias Description = LawRenamesDescription
     typealias Profile = VI
     typealias Group = Parallel
-    static var typeName: String { #"bash Checks/tools.sh lint Sources/VerificationIsIdentification --docc Sources/VerificationIsIdentification/VerificationIsIdentification.docc --strict && python3 Checks/lint_duplicates.py --tools .build/debug/Tools"# }
+    static var typeName: String { #"bash Checks/tools.sh lint Sources/Notation Sources/VerificationIsIdentification --docc Sources/VerificationIsIdentification/VerificationIsIdentification.docc --strict && python3 Checks/lint_duplicates.py --tools .build/debug/Tools"# }
 }
 
 enum LawTopicsName: LawText { static var typeName: String { #"topics"# } }

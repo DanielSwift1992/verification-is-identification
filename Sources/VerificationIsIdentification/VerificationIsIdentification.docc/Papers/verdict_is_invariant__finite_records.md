@@ -16,13 +16,13 @@ Write a reading as `(Σ, E, q, x, a)`: the space, encoding, question, candidate,
 
 **VC1 (Same question).** Two readings are comparable here only when Σ, E and q coincide. Their candidates and answers may differ. `ComparedReadings` checks the three equalities. Same answer types under different questions do not suffice.
 
-> Argues: ``ComparedReadings`` needs ``Pair``. The two reading addresses are
+> Argues: ``ComparedReadings`` needs ``/Notation/Pair``. The two reading addresses are
 > the sides whose contexts the equalities compare.
 
 > Argues: ``PredicateReading`` needs ``HasVerdict``. An application carries
 > the question and answer axes that its output equation relates.
 
-> Argues: ``PredicateReading`` needs ``Pair``. The candidate and the recorded
+> Argues: ``PredicateReading`` needs ``/Notation/Pair``. The candidate and the recorded
 > output occupy the two sides of the application.
 
 ### VC2
@@ -44,17 +44,17 @@ Write a reading as `(Σ, E, q, x, a)`: the space, encoding, question, candidate,
 
 **VC5 (Selection).** Retaining either child of a certified pair preserves its question and answer. `VerdictRetainsLeft` and `VerdictRetainsRight` equate the retained reading to that actual child. The answer equation then follows through the child, without another answer premise. A different candidate with the same answer is not a selection witness. Repeating selection and finite composition certifies a presented nonempty subtree selection. Arbitrary set inclusion is not implemented by this fragment.
 
-> Argues: ``VerdictRetainsLeft`` needs ``Pair``. The original certificate and
+> Argues: ``VerdictRetainsLeft`` needs ``/Notation/Pair``. The original certificate and
 > its retained child are the two sides of the selection relation.
 
-> Argues: ``VerdictRetainsRight`` needs ``Pair``. The second selection carries
+> Argues: ``VerdictRetainsRight`` needs ``/Notation/Pair``. The second selection carries
 > the original certificate and the member at its other address.
 
 ### VC6
 
 **VC6 (Reordering).** Swapping the two branches preserves the certificate. `ReversedVerdict<C>` takes C alone, exchanges its readings, and satisfies `VerdictIsInvariant`. `VerdictReorders` records the relation between the original and the constructed certificate. Their answer equality follows through the exchanged branches rather than being assumed separately.
 
-> Argues: ``VerdictReorders`` needs ``Pair``. Reordering relates an original
+> Argues: ``VerdictReorders`` needs ``/Notation/Pair``. Reordering relates an original
 > certificate to its reversal, with the branch addresses exchanged.
 
 The instance is the metameric pair from Seeing Is Encoding: `RedBeam` and `RedBeamWithIR` have one visible answer and different infrared answers. The visible certificate compiles while joining their infrared readings is refused. Within this two-beam class the infrared answer identifies the source, while the visible answer leaves it ambiguous. A third beam with more infrared joins the visible certificate. A dark visible branch does not. No physical measurement is performed: these are the existing finite spectral declarations read by a fixed type-level projection.
@@ -96,7 +96,7 @@ The repeatable check is `bash Checks/verdict.sh`, also `./check.sh --only verdic
 
 **VC8 (Coverage of a declared tree).** Supply a tree D independently of the certificate C. `CoverageMatchesDeclaration` requires `C.Candidates == D`. Together with VC7, this certifies every occurrence declared in D. It rejects an omitted leaf, a replacement by a foreign leaf, and a repeated leaf in place of another source, even when all their answers coincide.
 
-> Argues: ``CoverageMatchesDeclaration`` needs ``Pair``. The computed
+> Argues: ``CoverageMatchesDeclaration`` needs ``/Notation/Pair``. The computed
 > certificate and the independent declaration occupy the comparison's two sides.
 
 The witness `ThreeBeamsCovered` checks the three-beam declaration against the constructed certificate. `Checks/Coverage.swift` separately attempts a missing third beam, a repeated second beam, a false leaf source, an inflated group support and a union that repeats its left support. Each attempt is refused.
@@ -132,7 +132,7 @@ A concrete square is one witness, not a proof for every source. A generic constr
 
 **VC10 (Shared decoder).** If two factorizations share their actual decoder reading, their direct answers agree. `SharedDecoder` equates that intermediate reading. `AnswersThroughSharedDecoder` then constructs `VerdictIsInvariant` without an additional answer-equality premise. `SharedVisibleImage` supplies the shared reading from equal images through the single constructor `ImageAlphaReading`. Two arbitrary records with the same input and predicate labels are not enough: the lattice has no unrestricted functionality axiom for independently declared records.
 
-> Argues: ``SharedDecoder`` needs ``Pair``. The two factorizations have an
+> Argues: ``SharedDecoder`` needs ``/Notation/Pair``. The two factorizations have an
 > intermediate reading whose equality relates their direct answers.
 
 ### VC11
@@ -267,7 +267,7 @@ Even a finite question and operation vocabulary can require infinitely many beha
 
 **VC13 (One commuting step).** An `ObservedTransition` declares an operation between two applications of the same observation in one space and encoding. Write those applications as `x → E(x)` and `y → E(y)`. A `CommutingTransition` additionally supplies two applications of its operation: `x → y` on sources and `E(x) → E(y)` on images. Four endpoint equations bind these applications to the observation records. The operation labels and ambient contexts must agree too. Thus the observed result can be calculated along either side of the square.
 
-> Argues: ``ObservedTransition`` needs ``Pair``. Its sides are the before and
+> Argues: ``ObservedTransition`` needs ``/Notation/Pair``. Its sides are the before and
 > after observation records whose contexts must agree.
 
 > Argues: ``ObservedTransition`` needs ``HasEncoding``. Both observations and

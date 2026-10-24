@@ -1,3 +1,5 @@
+import Notation
+
 // The Solvability Criterion. Historical interface intersections are retained.
 // E2 states their semantic obligations for one anchored-search architecture.
 // A conformance alone supplies neither a solver nor model adequacy.

@@ -1,0 +1,45 @@
+{
+  "registers": [
+    {
+      "file": "register-valid.swift",
+      "admitted": true
+    },
+    {
+      "file": "register-font-refused.swift",
+      "admitted": false
+    },
+    {
+      "file": "register-size-refused.swift",
+      "admitted": false
+    }
+  ],
+  "incompleteStyles": [
+    {
+      "section": "roles",
+      "key": "LineRole"
+    },
+    {
+      "section": "layout",
+      "key": "MarkerWidth"
+    },
+    {
+      "section": "layout",
+      "key": "R20",
+      "purpose": "Owner requirement unused by the drawing"
+    }
+  ],
+  "forbiddenImport": "forbidden-import.swift",
+  "ownerStyles": [
+    {
+      "file": "owner-requirements.swift",
+      "protocol": "FirstRequirements",
+      "key": "ReservedExtent"
+    },
+    {
+      "file": "owner-requirements.swift",
+      "protocol": "RenamedRequirements",
+      "key": "RenamedExtent",
+      "deliveredInput": "Binding.swift"
+    }
+  ]
+}

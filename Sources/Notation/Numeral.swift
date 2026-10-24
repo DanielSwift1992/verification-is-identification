@@ -6,17 +6,15 @@
 // fundamental as Pair and Null. A NUMBER is an Open type whose body chains digits
 // through the StructureBuilder: `{ Numeral._1.self; Numeral._0.self }` is ten.
 //
-// This is the decimal system expressed in the lattice. The digits are domain-agnostic:
-// a password, a band count, a year, all are chains of the same ten atoms. The unary
+// Positional notation uses the same ten atoms at every place. The unary
 // Peano successor supplies a unary constructor grammar, while these digits
 // name positional notation. Neither IntegerValued alone nor the default
 // Structure.count reader establishes the natural-number interpretation.
 // ═══════════════════════════════════════════════════════════════
 
 /// This names a digit: one of ten distinguishable atoms, the base of positional notation.
-/// `Open`, not `Close` (Law §0″: `Close` must be a concrete enum, not a protocol), the same
-/// shape as `Employee`: each `Numeral._N` is a leaf that does not customize `body`, so it
-/// counts as one.
+/// Each of ``Numeral``'s digit types inherits ``Open``'s default `Never` body
+/// and reads a count of one.
 public protocol Digit: Open {}
 
 /// The ten digits, namespaced. Write `Numeral._3` for the digit three.

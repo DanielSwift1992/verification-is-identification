@@ -83,278 +83,7 @@
     "T0073": "Replace temporary hardware input paths with explicit evidence roots and manifest hashes.",
     "T0095": "Open reader debt: source-bound classification and full byte coverage, declared as types; R/C/K, carrier-roster bijection and removal criteria: Contracts/Checks/grammar-reader-v1.md#open-debt."
   },
-  "exceptions": [
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 55,
-      "name": "--vi-surface-card:#FFFFFF;",
-      "text": "\"--vi-surface-card:#FFFFFF;\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 56,
-      "name": "--vi-surface-page:#FFFFFF;",
-      "text": "\"--vi-surface-page:#FFFFFF;\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 57,
-      "name": "--vi-surface-track:#F6F7F8;",
-      "text": "\"--vi-surface-track:#F6F7F8;\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 58,
-      "name": "--vi-text-primary:rgba(0,0,0,0.80);",
-      "text": "\"--vi-text-primary:rgba(0,0,0,0.80);\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 59,
-      "name": "--vi-text-secondary:rgba(0,0,0,0.54);",
-      "text": "\"--vi-text-secondary:rgba(0,0,0,0.54);\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 60,
-      "name": "#FFDD2D",
-      "text": "\"--vi-accent:#FFDD2D;\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 60,
-      "name": "--vi-accent:#FFDD2D;",
-      "text": "\"--vi-accent:#FFDD2D;\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 61,
-      "name": "#336FEE",
-      "text": "\"--vi-action:#336FEE;\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 61,
-      "name": "--vi-action:#336FEE;",
-      "text": "\"--vi-action:#336FEE;\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 62,
-      "name": "--vi-line:#EAECEE;",
-      "text": "\"--vi-line:#EAECEE;\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 63,
-      "name": "--vi-on-accent:#1C1C1E;",
-      "text": "\"--vi-on-accent:#1C1C1E;\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 64,
-      "name": "--vi-action-tint:rgba(66,139,249,0.16);",
-      "text": "\"--vi-action-tint:rgba(66,139,249,0.16);\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 65,
-      "name": "--vi-on-action:#FFFFFF;",
-      "text": "\"--vi-on-action:#FFFFFF;\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 66,
-      "name": "--vi-surface-card-shadow-opacity:0.10;",
-      "text": "\"--vi-surface-card-shadow-opacity:0.10;\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 70,
-      "name": "--vi-surface-card:#1C1C1E;",
-      "text": "\"--vi-surface-card:#1C1C1E;\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 71,
-      "name": "--vi-surface-page:#000000;",
-      "text": "\"--vi-surface-page:#000000;\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 72,
-      "name": "--vi-surface-track:rgba(255,255,255,0.15);",
-      "text": "\"--vi-surface-track:rgba(255,255,255,0.15);\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 73,
-      "name": "--vi-text-primary:rgba(255,255,255,0.90);",
-      "text": "\"--vi-text-primary:rgba(255,255,255,0.90);\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 74,
-      "name": "--vi-text-secondary:rgba(255,255,255,0.70);",
-      "text": "\"--vi-text-secondary:rgba(255,255,255,0.70);\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 75,
-      "name": "#FFDD2D",
-      "text": "\"--vi-accent:#FFDD2D;\" +",
-      "occurrence": 2,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 75,
-      "name": "--vi-accent:#FFDD2D;",
-      "text": "\"--vi-accent:#FFDD2D;\" +",
-      "occurrence": 2,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 76,
-      "name": "--vi-action:#4972CF;",
-      "text": "\"--vi-action:#4972CF;\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 77,
-      "name": "--vi-line:rgba(255,255,255,0.15);",
-      "text": "\"--vi-line:rgba(255,255,255,0.15);\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 78,
-      "name": "--vi-on-accent:#1C1C1E;",
-      "text": "\"--vi-on-accent:#1C1C1E;\" +",
-      "occurrence": 2,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 79,
-      "name": "--vi-action-tint:rgba(73,114,207,0.16);",
-      "text": "\"--vi-action-tint:rgba(73,114,207,0.16);\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 80,
-      "name": "--vi-on-action:#FFFFFF;",
-      "text": "\"--vi-on-action:#FFFFFF;\" +",
-      "occurrence": 2,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
-      "channel": "text",
-      "line": 81,
-      "name": "--vi-surface-card-shadow-opacity:0;",
-      "text": "\"--vi-surface-card-shadow-opacity:0;\" +",
-      "occurrence": 1,
-      "task": "T0068",
-      "reason": "Owner style values replace company palette and typography in documentation mechanism."
-    }
-  ],
+  "exceptions": [],
   "declaration_classes": {
     "reference": "Reviewed navigation, explanatory prose or a diagnostic destination; it neither selects behavior by the name nor reads the named repository.",
     "frozen-input": "Exact versioned contract, copied origin or negative test input. It is data, not a live dependency on the consumer.",
@@ -404,7 +133,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 217,
+      "line": 253,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 1,
@@ -414,7 +143,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 224,
+      "line": 260,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 2,
@@ -424,7 +153,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 231,
+      "line": 267,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 3,
@@ -434,7 +163,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 238,
+      "line": 274,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 4,
@@ -444,7 +173,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 245,
+      "line": 281,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 5,
@@ -454,7 +183,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 252,
+      "line": 288,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 6,
@@ -464,7 +193,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 259,
+      "line": 295,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 7,
@@ -474,7 +203,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 266,
+      "line": 302,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 8,
@@ -484,7 +213,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 273,
+      "line": 309,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 9,
@@ -494,7 +223,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 280,
+      "line": 316,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 10,
@@ -504,7 +233,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 287,
+      "line": 323,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 11,
@@ -514,7 +243,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 294,
+      "line": 330,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 12,
@@ -524,7 +253,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 301,
+      "line": 337,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 13,
@@ -534,7 +263,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 308,
+      "line": 344,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 14,
@@ -544,7 +273,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 315,
+      "line": 351,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 15,
@@ -554,7 +283,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 322,
+      "line": 358,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 16,
@@ -564,7 +293,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 329,
+      "line": 365,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 17,
@@ -574,7 +303,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 336,
+      "line": 372,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 18,
@@ -584,7 +313,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 343,
+      "line": 379,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 19,
@@ -594,7 +323,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 350,
+      "line": 386,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 20,
@@ -604,7 +333,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 357,
+      "line": 393,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 21,
@@ -614,7 +343,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 364,
+      "line": 400,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 22,
@@ -624,7 +353,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 371,
+      "line": 407,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 23,
@@ -634,7 +363,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 378,
+      "line": 414,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 24,
@@ -644,7 +373,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 385,
+      "line": 421,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 25,
@@ -654,7 +383,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 392,
+      "line": 428,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 26,
@@ -664,7 +393,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 399,
+      "line": 435,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 27,
@@ -674,7 +403,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 406,
+      "line": 442,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 28,
@@ -684,7 +413,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 413,
+      "line": 449,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 29,
@@ -694,7 +423,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 420,
+      "line": 456,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 30,
@@ -704,7 +433,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 427,
+      "line": 463,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 31,
@@ -714,7 +443,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 434,
+      "line": 470,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 32,
@@ -724,7 +453,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 441,
+      "line": 477,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 33,
@@ -734,7 +463,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 448,
+      "line": 484,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 34,
@@ -744,7 +473,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 455,
+      "line": 491,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 35,
@@ -754,7 +483,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 462,
+      "line": 498,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 36,
@@ -764,7 +493,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 469,
+      "line": 505,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 37,
@@ -774,7 +503,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 476,
+      "line": 512,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 38,
@@ -784,7 +513,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 483,
+      "line": 519,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 39,
@@ -794,7 +523,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 490,
+      "line": 526,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 40,
@@ -804,7 +533,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 497,
+      "line": 533,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 41,
@@ -814,7 +543,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 504,
+      "line": 540,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 42,
@@ -824,7 +553,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 511,
+      "line": 547,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 43,
@@ -834,7 +563,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 518,
+      "line": 554,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 44,
@@ -844,7 +573,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 525,
+      "line": 561,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 45,
@@ -854,7 +583,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 532,
+      "line": 568,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 46,
@@ -864,7 +593,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 539,
+      "line": 575,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 47,
@@ -874,7 +603,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 546,
+      "line": 582,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 48,
@@ -884,7 +613,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 553,
+      "line": 589,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 49,
@@ -894,7 +623,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 560,
+      "line": 596,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 50,
@@ -904,7 +633,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 567,
+      "line": 603,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 51,
@@ -914,7 +643,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 574,
+      "line": 610,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 52,
@@ -924,7 +653,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 581,
+      "line": 617,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 53,
@@ -934,7 +663,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 588,
+      "line": 624,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 54,
@@ -944,7 +673,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 595,
+      "line": 631,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 55,
@@ -954,7 +683,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 602,
+      "line": 638,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 56,
@@ -964,7 +693,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 609,
+      "line": 645,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 57,
@@ -974,7 +703,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 616,
+      "line": 652,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 58,
@@ -984,7 +713,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 623,
+      "line": 659,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 59,
@@ -994,7 +723,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 630,
+      "line": 666,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 60,
@@ -1004,7 +733,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 637,
+      "line": 673,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 61,
@@ -1014,7 +743,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 644,
+      "line": 680,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 62,
@@ -1024,7 +753,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 651,
+      "line": 687,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 63,
@@ -1034,7 +763,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 658,
+      "line": 694,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 64,
@@ -1044,7 +773,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 665,
+      "line": 701,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 65,
@@ -1054,7 +783,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 672,
+      "line": 708,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 66,
@@ -1064,7 +793,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 679,
+      "line": 715,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 67,
@@ -1074,7 +803,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 686,
+      "line": 722,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 68,
@@ -1084,7 +813,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 693,
+      "line": 729,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 69,
@@ -1094,7 +823,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 700,
+      "line": 736,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 70,
@@ -1104,7 +833,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 707,
+      "line": 743,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 71,
@@ -1114,7 +843,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 714,
+      "line": 750,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 72,
@@ -1124,7 +853,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 721,
+      "line": 757,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 73,
@@ -1134,7 +863,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 728,
+      "line": 764,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 74,
@@ -1144,7 +873,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 735,
+      "line": 771,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 75,
@@ -1154,7 +883,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 742,
+      "line": 778,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 76,
@@ -1164,7 +893,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 749,
+      "line": 785,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 77,
@@ -1174,7 +903,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 756,
+      "line": 792,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 78,
@@ -1184,7 +913,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 763,
+      "line": 799,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 79,
@@ -1194,7 +923,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 770,
+      "line": 806,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 80,
@@ -1204,7 +933,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 777,
+      "line": 813,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 81,
@@ -1214,7 +943,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 784,
+      "line": 820,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 82,
@@ -1224,7 +953,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 791,
+      "line": 827,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 83,
@@ -1234,7 +963,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 798,
+      "line": 834,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 84,
@@ -1244,7 +973,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 805,
+      "line": 841,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 85,
@@ -1254,7 +983,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 812,
+      "line": 848,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 86,
@@ -1264,7 +993,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 819,
+      "line": 855,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 87,
@@ -1274,7 +1003,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 826,
+      "line": 862,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 88,
@@ -1284,7 +1013,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 833,
+      "line": 869,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 89,
@@ -1294,7 +1023,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 840,
+      "line": 876,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 90,
@@ -1304,7 +1033,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 847,
+      "line": 883,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 91,
@@ -1314,7 +1043,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 854,
+      "line": 890,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 92,
@@ -1324,7 +1053,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 861,
+      "line": 897,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 93,
@@ -1334,7 +1063,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 868,
+      "line": 904,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 94,
@@ -1344,7 +1073,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 875,
+      "line": 911,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 95,
@@ -1354,7 +1083,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 882,
+      "line": 918,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 96,
@@ -1364,7 +1093,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 889,
+      "line": 925,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 97,
@@ -1374,7 +1103,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 896,
+      "line": 932,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 98,
@@ -1384,7 +1113,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 903,
+      "line": 939,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 99,
@@ -1394,7 +1123,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 910,
+      "line": 946,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 100,
@@ -1404,7 +1133,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 917,
+      "line": 953,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 101,
@@ -1414,7 +1143,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 924,
+      "line": 960,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 102,
@@ -1424,7 +1153,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 931,
+      "line": 967,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 103,
@@ -1434,7 +1163,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 938,
+      "line": 974,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 104,
@@ -1444,7 +1173,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 945,
+      "line": 981,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 105,
@@ -1454,7 +1183,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 952,
+      "line": 988,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 106,
@@ -1464,7 +1193,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 959,
+      "line": 995,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 107,
@@ -1474,7 +1203,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 966,
+      "line": 1002,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 108,
@@ -1484,7 +1213,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 973,
+      "line": 1009,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 109,
@@ -1494,7 +1223,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 980,
+      "line": 1016,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 110,
@@ -1504,7 +1233,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 987,
+      "line": 1023,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 111,
@@ -1514,7 +1243,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 994,
+      "line": 1030,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 112,
@@ -1524,7 +1253,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1001,
+      "line": 1037,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 113,
@@ -1534,7 +1263,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1008,
+      "line": 1044,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 114,
@@ -1544,7 +1273,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1015,
+      "line": 1051,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 115,
@@ -1554,7 +1283,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1022,
+      "line": 1058,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 116,
@@ -1564,7 +1293,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1029,
+      "line": 1065,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 117,
@@ -1574,7 +1303,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1036,
+      "line": 1072,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 118,
@@ -1584,7 +1313,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1043,
+      "line": 1079,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 119,
@@ -1594,7 +1323,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1050,
+      "line": 1086,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 120,
@@ -1604,7 +1333,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1057,
+      "line": 1093,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 121,
@@ -1614,7 +1343,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1064,
+      "line": 1100,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 122,
@@ -1624,7 +1353,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1071,
+      "line": 1107,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 123,
@@ -1634,7 +1363,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1078,
+      "line": 1114,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 124,
@@ -1644,7 +1373,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1085,
+      "line": 1121,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 125,
@@ -1654,7 +1383,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1092,
+      "line": 1128,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 126,
@@ -1664,7 +1393,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1099,
+      "line": 1135,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 127,
@@ -1674,7 +1403,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1106,
+      "line": 1142,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 128,
@@ -1684,7 +1413,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1113,
+      "line": 1149,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 129,
@@ -1694,7 +1423,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1120,
+      "line": 1156,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 130,
@@ -1704,7 +1433,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1127,
+      "line": 1163,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 131,
@@ -1714,7 +1443,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1134,
+      "line": 1170,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 132,
@@ -1724,7 +1453,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1141,
+      "line": 1177,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 133,
@@ -1734,7 +1463,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1148,
+      "line": 1184,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 134,
@@ -1744,7 +1473,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1155,
+      "line": 1191,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 135,
@@ -1754,7 +1483,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1162,
+      "line": 1198,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 136,
@@ -1764,7 +1493,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1169,
+      "line": 1205,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 137,
@@ -1774,7 +1503,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1176,
+      "line": 1212,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 138,
@@ -1784,7 +1513,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1183,
+      "line": 1219,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 139,
@@ -1794,7 +1523,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1190,
+      "line": 1226,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 140,
@@ -1804,7 +1533,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1197,
+      "line": 1233,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 141,
@@ -1814,7 +1543,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1204,
+      "line": 1240,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 142,
@@ -1824,7 +1553,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1211,
+      "line": 1247,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 143,
@@ -1834,7 +1563,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1218,
+      "line": 1254,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 144,
@@ -1844,7 +1573,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1225,
+      "line": 1261,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 145,
@@ -1854,7 +1583,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1232,
+      "line": 1268,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 146,
@@ -1864,7 +1593,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1239,
+      "line": 1275,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 147,
@@ -1874,7 +1603,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1246,
+      "line": 1282,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 148,
@@ -1884,7 +1613,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1253,
+      "line": 1289,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 149,
@@ -1894,7 +1623,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1260,
+      "line": 1296,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 150,
@@ -1904,7 +1633,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1274,
+      "line": 1310,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 151,
@@ -1914,7 +1643,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1281,
+      "line": 1317,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 152,
@@ -1924,7 +1653,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1288,
+      "line": 1324,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 153,
@@ -1934,7 +1663,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1295,
+      "line": 1331,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 154,
@@ -1944,7 +1673,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1302,
+      "line": 1338,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 155,
@@ -1954,7 +1683,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1309,
+      "line": 1345,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 156,
@@ -1964,7 +1693,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1316,
+      "line": 1352,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 157,
@@ -1974,7 +1703,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1323,
+      "line": 1359,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 158,
@@ -1984,7 +1713,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1337,
+      "line": 1373,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 159,
@@ -1994,7 +1723,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1344,
+      "line": 1380,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 160,
@@ -2004,7 +1733,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1351,
+      "line": 1387,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 161,
@@ -2014,7 +1743,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1358,
+      "line": 1394,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 162,
@@ -2024,7 +1753,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1365,
+      "line": 1401,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 163,
@@ -2034,7 +1763,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1372,
+      "line": 1408,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 164,
@@ -2044,7 +1773,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1379,
+      "line": 1415,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 165,
@@ -2054,7 +1783,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1386,
+      "line": 1422,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 166,
@@ -2064,7 +1793,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1400,
+      "line": 1436,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 167,
@@ -2074,7 +1803,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1407,
+      "line": 1443,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 168,
@@ -2084,7 +1813,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1414,
+      "line": 1450,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 169,
@@ -2094,7 +1823,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1421,
+      "line": 1457,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 170,
@@ -2104,7 +1833,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1428,
+      "line": 1464,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 171,
@@ -2114,7 +1843,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1435,
+      "line": 1471,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 172,
@@ -2124,7 +1853,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1442,
+      "line": 1478,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 173,
@@ -2134,7 +1863,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1456,
+      "line": 1492,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 174,
@@ -2144,7 +1873,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1463,
+      "line": 1499,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 175,
@@ -2154,7 +1883,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1470,
+      "line": 1506,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 176,
@@ -2164,7 +1893,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1477,
+      "line": 1513,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 177,
@@ -2174,7 +1903,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1484,
+      "line": 1520,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 178,
@@ -2184,7 +1913,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1491,
+      "line": 1527,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 179,
@@ -2194,7 +1923,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1498,
+      "line": 1534,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 180,
@@ -2204,7 +1933,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1505,
+      "line": 1541,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 181,
@@ -2214,7 +1943,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1512,
+      "line": 1548,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 182,
@@ -2224,7 +1953,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1519,
+      "line": 1555,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 183,
@@ -2234,7 +1963,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1526,
+      "line": 1562,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 184,
@@ -2244,7 +1973,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1533,
+      "line": 1569,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 185,
@@ -2254,7 +1983,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1540,
+      "line": 1576,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 186,
@@ -2264,7 +1993,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1547,
+      "line": 1583,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 187,
@@ -2274,7 +2003,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1554,
+      "line": 1590,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 188,
@@ -2284,7 +2013,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1561,
+      "line": 1597,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 189,
@@ -2294,7 +2023,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1568,
+      "line": 1604,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 190,
@@ -2304,7 +2033,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1575,
+      "line": 1611,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 191,
@@ -2314,7 +2043,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1582,
+      "line": 1618,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 192,
@@ -2324,7 +2053,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1589,
+      "line": 1625,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 193,
@@ -2334,7 +2063,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1596,
+      "line": 1632,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 194,
@@ -2344,7 +2073,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1603,
+      "line": 1639,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 195,
@@ -2354,7 +2083,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1610,
+      "line": 1646,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 196,
@@ -2364,7 +2093,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1617,
+      "line": 1653,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 197,
@@ -2374,7 +2103,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1624,
+      "line": 1660,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 198,
@@ -2384,7 +2113,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1631,
+      "line": 1667,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 199,
@@ -2394,7 +2123,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1638,
+      "line": 1674,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 200,
@@ -2404,7 +2133,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1645,
+      "line": 1681,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 201,
@@ -2414,7 +2143,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1652,
+      "line": 1688,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 202,
@@ -2424,7 +2153,7 @@
     {
       "path": "Checks/Archive/WhereV2/manifest.json",
       "channel": "text",
-      "line": 1659,
+      "line": 1695,
       "name": "gate/bin/judge-where.js",
       "text": "\"key_suffix\": \"gate/bin/judge-where.js\"",
       "occurrence": 203,
@@ -2642,79 +2371,9 @@
       "reason": "Versioned copied input/provenance or exact negative fixture; no consumer checkout is read."
     },
     {
-      "path": "Documentation/Figures/framework-architecture.svg",
-      "channel": "text",
-      "line": 2,
-      "name": "showcase",
-      "text": "<title id=\"title\">vi, showcase and gate</title><desc id=\"desc\">vi owns the research, the constructions and the where and count semantics. showcase is a separate repository with the worked company, its rendering and its policy, and it pins a revision of vi. gate brings records from other projects to a judge built from a pinned revision of vi. A versioned contract with conformance fixtures states what an implementation of a check must pass.</desc>",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
-    },
-    {
-      "path": "Documentation/Figures/framework-architecture.svg",
-      "channel": "text",
-      "line": 6,
-      "name": "Organization",
-      "text": "<text x=\"40\" y=\"42\" class=\"eyebrow blue\" >THREE PACKAGES</text><text x=\"40\" y=\"83\" class=\"heading\" >Each check has one owner of its meaning.</text><rect x=\"40\" y=\"149\" width=\"1040\" height=\"83\" rx=\"12\" fill=\"#f6f8fb\" stroke=\"#dde3eb\" stroke-width=\"1.5\"/><text x=\"62\" y=\"180\" class=\"label\" >People and agents</text><text x=\"62\" y=\"209\" class=\"body muted\" >Bring a question, a record and access to work.</text><path d=\"M905 232V290\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"919\" y=\"266\" class=\"small muted\" >submit a record</text><rect x=\"40\" y=\"302\" width=\"300\" height=\"326\" rx=\"12\" fill=\"#edf3fb\" stroke=\"#7c9fc9\" stroke-width=\"1.5\"/><text x=\"62\" y=\"339\" class=\"heading blue\" >vi</text><text x=\"62\" y=\"376\" class=\"body\" >Research and constructions</text><text x=\"62\" y=\"405\" class=\"body\" >Papers · relations · examples</text><text x=\"62\" y=\"434\" class=\"body\" >Checks of stated consequences</text><rect x=\"60\" y=\"478\" width=\"260\" height=\"125\" rx=\"12\" fill=\"#ffffff\" stroke=\"#bdcfe7\" stroke-width=\"1.5\"/><text x=\"78\" y=\"509\" class=\"label blue\" >Semantic owner</text><text x=\"78\" y=\"540\" class=\"small\" >where: declared type relations</text><text x=\"78\" y=\"565\" class=\"small\" >count: selected count question</text><text x=\"78\" y=\"590\" class=\"small\" >Canon + conformance fixtures</text><rect x=\"410\" y=\"302\" width=\"300\" height=\"326\" rx=\"12\" fill=\"#f7f8fa\" stroke=\"#98a5b7\" stroke-width=\"1.5\"/><text x=\"432\" y=\"339\" class=\"heading\" >showcase</text><text x=\"432\" y=\"376\" class=\"body\" >A constructed world</text><text x=\"432\" y=\"405\" class=\"body\" >Organization · DocumentKit</text><text x=\"432\" y=\"434\" class=\"body\" >Pages · SVG · site generation</text><rect x=\"430\" y=\"478\" width=\"260\" height=\"125\" rx=\"12\" fill=\"#ffffff\" stroke=\"#dde3eb\" stroke-width=\"1.5\"/><text x=\"448\" y=\"509\" class=\"label\" >Its own checks</text><text x=\"448\" y=\"540\" class=\"small\" >Policy + differential judge</text><text x=\"448\" y=\"565\" class=\"small\" >Artifacts match constructions</text><text x=\"448\" y=\"590\" class=\"small\" >Seven publication refusals</text><rect x=\"780\" y=\"302\" width=\"300\" height=\"326\" rx=\"12\" fill=\"#edf7f1\" stroke=\"#7aa68f\" stroke-width=\"1.5\"/><text x=\"802\" y=\"339\" class=\"heading green\" >gate</text><text x=\"802\" y=\"376\" class=\"body\" >Entry and delivery</text><text x=\"802\" y=\"405\" class=\"body\" >Records from other projects</text><text x=\"802\" y=\"434\" class=\"body\" >Calls checks · returns results</text><rect x=\"800\" y=\"478\" width=\"260\" height=\"125\" rx=\"12\" fill=\"#ffffff\" stroke=\"#bad9c8\" stroke-width=\"1.5\"/><text x=\"818\" y=\"509\" class=\"label green\" >Supplied implementation</text><text x=\"818\" y=\"540\" class=\"small\" >Passes the selected contract</text><text x=\"818\" y=\"565\" class=\"small\" >Carries question + coverage</text><text x=\"818\" y=\"590\" class=\"small\" >Pinned revision of vi</text><path d=\"M410 442H340\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"375\" y=\"424\" class=\"small muted\" text-anchor=\"middle\">uses vi</text><path d=\"M190 628V684\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"205\" y=\"663\" class=\"small muted\" >defines where / count</text><path d=\"M560 628V684\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"575\" y=\"663\" class=\"small muted\" >defines organization</text><rect x=\"40\" y=\"698\" width=\"1040\" height=\"99\" rx=\"12\" fill=\"#ffffff\" stroke=\"#8ba2be\" stroke-width=\"1.5\"/><text x=\"62\" y=\"730\" class=\"label blue\" >Contract of each check</text><text x=\"62\" y=\"758\" class=\"body\" >Question / semantics     ·     accepted input     ·     response form     ·     conformance suite</text><text x=\"62\" y=\"783\" class=\"small muted\" >Each check has its own version. Passing the finite fixtures shows conformance on that suite.</text><path d=\"M930 628V684\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"945\" y=\"663\" class=\"small muted\" >conforms to</text><text x=\"40\" y=\"829\" class=\"body\" >NOW  vi and showcase are separate repositories, and showcase pins vi. Gate pins an older revision.</text><text x=\"40\" y=\"856\" class=\"small muted\" >A Rust sample of the judge passes the finite suite of the contract. NEXT  Gate re-pins through the contract.</text></svg>",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
-    },
-    {
-      "path": "Documentation/Figures/framework-architecture.svg",
-      "channel": "text",
-      "line": 6,
-      "name": "showcase",
-      "text": "<text x=\"40\" y=\"42\" class=\"eyebrow blue\" >THREE PACKAGES</text><text x=\"40\" y=\"83\" class=\"heading\" >Each check has one owner of its meaning.</text><rect x=\"40\" y=\"149\" width=\"1040\" height=\"83\" rx=\"12\" fill=\"#f6f8fb\" stroke=\"#dde3eb\" stroke-width=\"1.5\"/><text x=\"62\" y=\"180\" class=\"label\" >People and agents</text><text x=\"62\" y=\"209\" class=\"body muted\" >Bring a question, a record and access to work.</text><path d=\"M905 232V290\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"919\" y=\"266\" class=\"small muted\" >submit a record</text><rect x=\"40\" y=\"302\" width=\"300\" height=\"326\" rx=\"12\" fill=\"#edf3fb\" stroke=\"#7c9fc9\" stroke-width=\"1.5\"/><text x=\"62\" y=\"339\" class=\"heading blue\" >vi</text><text x=\"62\" y=\"376\" class=\"body\" >Research and constructions</text><text x=\"62\" y=\"405\" class=\"body\" >Papers · relations · examples</text><text x=\"62\" y=\"434\" class=\"body\" >Checks of stated consequences</text><rect x=\"60\" y=\"478\" width=\"260\" height=\"125\" rx=\"12\" fill=\"#ffffff\" stroke=\"#bdcfe7\" stroke-width=\"1.5\"/><text x=\"78\" y=\"509\" class=\"label blue\" >Semantic owner</text><text x=\"78\" y=\"540\" class=\"small\" >where: declared type relations</text><text x=\"78\" y=\"565\" class=\"small\" >count: selected count question</text><text x=\"78\" y=\"590\" class=\"small\" >Canon + conformance fixtures</text><rect x=\"410\" y=\"302\" width=\"300\" height=\"326\" rx=\"12\" fill=\"#f7f8fa\" stroke=\"#98a5b7\" stroke-width=\"1.5\"/><text x=\"432\" y=\"339\" class=\"heading\" >showcase</text><text x=\"432\" y=\"376\" class=\"body\" >A constructed world</text><text x=\"432\" y=\"405\" class=\"body\" >Organization · DocumentKit</text><text x=\"432\" y=\"434\" class=\"body\" >Pages · SVG · site generation</text><rect x=\"430\" y=\"478\" width=\"260\" height=\"125\" rx=\"12\" fill=\"#ffffff\" stroke=\"#dde3eb\" stroke-width=\"1.5\"/><text x=\"448\" y=\"509\" class=\"label\" >Its own checks</text><text x=\"448\" y=\"540\" class=\"small\" >Policy + differential judge</text><text x=\"448\" y=\"565\" class=\"small\" >Artifacts match constructions</text><text x=\"448\" y=\"590\" class=\"small\" >Seven publication refusals</text><rect x=\"780\" y=\"302\" width=\"300\" height=\"326\" rx=\"12\" fill=\"#edf7f1\" stroke=\"#7aa68f\" stroke-width=\"1.5\"/><text x=\"802\" y=\"339\" class=\"heading green\" >gate</text><text x=\"802\" y=\"376\" class=\"body\" >Entry and delivery</text><text x=\"802\" y=\"405\" class=\"body\" >Records from other projects</text><text x=\"802\" y=\"434\" class=\"body\" >Calls checks · returns results</text><rect x=\"800\" y=\"478\" width=\"260\" height=\"125\" rx=\"12\" fill=\"#ffffff\" stroke=\"#bad9c8\" stroke-width=\"1.5\"/><text x=\"818\" y=\"509\" class=\"label green\" >Supplied implementation</text><text x=\"818\" y=\"540\" class=\"small\" >Passes the selected contract</text><text x=\"818\" y=\"565\" class=\"small\" >Carries question + coverage</text><text x=\"818\" y=\"590\" class=\"small\" >Pinned revision of vi</text><path d=\"M410 442H340\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"375\" y=\"424\" class=\"small muted\" text-anchor=\"middle\">uses vi</text><path d=\"M190 628V684\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"205\" y=\"663\" class=\"small muted\" >defines where / count</text><path d=\"M560 628V684\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"575\" y=\"663\" class=\"small muted\" >defines organization</text><rect x=\"40\" y=\"698\" width=\"1040\" height=\"99\" rx=\"12\" fill=\"#ffffff\" stroke=\"#8ba2be\" stroke-width=\"1.5\"/><text x=\"62\" y=\"730\" class=\"label blue\" >Contract of each check</text><text x=\"62\" y=\"758\" class=\"body\" >Question / semantics     ·     accepted input     ·     response form     ·     conformance suite</text><text x=\"62\" y=\"783\" class=\"small muted\" >Each check has its own version. Passing the finite fixtures shows conformance on that suite.</text><path d=\"M930 628V684\" fill=\"none\" stroke=\"#64748b\" stroke-width=\"1.8\" marker-end=\"url(#arrow)\"/><text x=\"945\" y=\"663\" class=\"small muted\" >conforms to</text><text x=\"40\" y=\"829\" class=\"body\" >NOW  vi and showcase are separate repositories, and showcase pins vi. Gate pins an older revision.</text><text x=\"40\" y=\"856\" class=\"small muted\" >A Rust sample of the judge passes the finite suite of the contract. NEXT  Gate re-pins through the contract.</text></svg>",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
-    },
-    {
-      "path": "Documentation/Figures/render.py",
-      "channel": "text",
-      "line": 105,
-      "name": "showcase",
-      "text": "f=Figure('vi, showcase and gate', 'vi owns the research, the constructions and the where and count semantics. showcase is a separate repository with the worked company, its rendering and its policy, and it pins a revision of vi. gate brings records from other projects to a judge built from a pinned revision of vi. A versioned contract with conformance fixtures states what an implementation of a check must pass.', 890)",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
-    },
-    {
-      "path": "Documentation/Figures/render.py",
-      "channel": "text",
-      "line": 122,
-      "name": "showcase",
-      "text": "f.text(432,339,'showcase','heading')",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
-    },
-    {
-      "path": "Documentation/Figures/render.py",
-      "channel": "text",
-      "line": 123,
-      "name": "Organization",
-      "text": "f.lines(432,376,['A constructed world','Organization · DocumentKit','Pages · SVG · site generation'],'body',29)",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
-    },
-    {
-      "path": "Documentation/Figures/render.py",
-      "channel": "text",
-      "line": 147,
-      "name": "showcase",
-      "text": "f.text(40,829,'NOW  vi and showcase are separate repositories, and showcase pins vi. Gate pins an older revision.','body')",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
-    },
-    {
       "path": "Package.swift",
       "channel": "text",
-      "line": 23,
+      "line": 29,
       "name": "showcase",
       "text": "// vocabulary the showcase's DocumentKit prose and GrammarLexicon's stream both need,",
       "occurrence": 1,
@@ -2724,7 +2383,7 @@
     {
       "path": "Package.swift",
       "channel": "text",
-      "line": 33,
+      "line": 39,
       "name": "showcase",
       "text": "// Tools and LawCheck as products: the showcase package, which depends on this one,",
       "occurrence": 1,
@@ -2734,7 +2393,7 @@
     {
       "path": "Package.swift",
       "channel": "text",
-      "line": 58,
+      "line": 76,
       "name": "showcase",
       "text": "// (Press); the differential seat moved with the company to the showcase package. Foundation only, so a consumer links the judge without",
       "occurrence": 1,
@@ -2744,7 +2403,7 @@
     {
       "path": "Package.swift",
       "channel": "text",
-      "line": 71,
+      "line": 89,
       "name": "showcase",
       "text": "// The character vocabulary the showcase's DocumentKit and GrammarLexicon's stream both read —",
       "occurrence": 1,
@@ -2784,72 +2443,12 @@
     {
       "path": "README.md",
       "channel": "text",
-      "line": 95,
-      "name": "Organization",
-      "text": "The [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) declares a company, its access policy and its intranet website as types, and the compiler checks the declared access requests against the policy. Its [company site](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/) presents the result, and [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) renders the pages from types. The company is a declared world: the checked access assertions are about its declarations. The showcase runs this package's `Tools` and `LawCheck`, and its [package diagram](https://github.com/DanielSwift1992/verification-is-identification-showcase/blob/main/Sources/Organization/Organization.docc/Resources/architecture.svg) shows the application and its generated representations.",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
-    },
-    {
-      "path": "README.md",
-      "channel": "text",
-      "line": 95,
-      "name": "showcase",
-      "text": "The [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) declares a company, its access policy and its intranet website as types, and the compiler checks the declared access requests against the policy. Its [company site](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/) presents the result, and [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) renders the pages from types. The company is a declared world: the checked access assertions are about its declarations. The showcase runs this package's `Tools` and `LawCheck`, and its [package diagram](https://github.com/DanielSwift1992/verification-is-identification-showcase/blob/main/Sources/Organization/Organization.docc/Resources/architecture.svg) shows the application and its generated representations.",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
-    },
-    {
-      "path": "README.md",
-      "channel": "text",
-      "line": 95,
-      "name": "verification-is-identification-showcase",
-      "text": "The [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) declares a company, its access policy and its intranet website as types, and the compiler checks the declared access requests against the policy. Its [company site](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/) presents the result, and [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) renders the pages from types. The company is a declared world: the checked access assertions are about its declarations. The showcase runs this package's `Tools` and `LawCheck`, and its [package diagram](https://github.com/DanielSwift1992/verification-is-identification-showcase/blob/main/Sources/Organization/Organization.docc/Resources/architecture.svg) shows the application and its generated representations.",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
-    },
-    {
-      "path": "README.md",
-      "channel": "text",
-      "line": 105,
+      "line": 111,
       "name": "github.com/DanielSwift1992/gate",
       "text": "| Readers | Contracts stated by each reader | [`Sources/Court`](Sources/Court), [gate](https://github.com/DanielSwift1992/gate) |",
       "occurrence": 1,
       "class": "reference",
       "reason": "Reviewed explanation of provenance, compatibility or the boundary; no subject-based dispatch."
-    },
-    {
-      "path": "README.md",
-      "channel": "text",
-      "line": 106,
-      "name": "Organization",
-      "text": "| Company and rendering | [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/), [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) | [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) |",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
-    },
-    {
-      "path": "README.md",
-      "channel": "text",
-      "line": 106,
-      "name": "showcase",
-      "text": "| Company and rendering | [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/), [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) | [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) |",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
-    },
-    {
-      "path": "README.md",
-      "channel": "text",
-      "line": 106,
-      "name": "verification-is-identification-showcase",
-      "text": "| Company and rendering | [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/), [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) | [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) |",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
     },
     {
       "path": "Sources/Court/Judge.swift",
@@ -2922,16 +2521,6 @@
       "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
     },
     {
-      "path": "Sources/Examples/Examples.docc/Examples.md",
-      "channel": "text",
-      "line": 104,
-      "name": "verification-is-identification-showcase",
-      "text": "The [published visible claim](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/coveredvisibleclaim) reads its support,",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
-    },
-    {
       "path": "Sources/Examples/Grants.swift",
       "channel": "text",
       "line": 13,
@@ -2954,7 +2543,7 @@
     {
       "path": "Sources/GrammarLexicon/Mirror.swift",
       "channel": "text",
-      "line": 10,
+      "line": 12,
       "name": "Organization",
       "text": "// an allowed form compiles, a refused one names its own reason, the same shape Organization's",
       "occurrence": 1,
@@ -2964,7 +2553,7 @@
     {
       "path": "Sources/Tools/Census.swift",
       "channel": "text",
-      "line": 15,
+      "line": 17,
       "name": "showcase",
       "text": "// refused: a dependent package (the showcase, T-0015) counts its own targets and the",
       "occurrence": 1,
@@ -3044,7 +2633,7 @@
     {
       "path": "Sources/Tools/Voice.swift",
       "channel": "text",
-      "line": 56,
+      "line": 63,
       "name": "showcase",
       "text": "// a dependent package (the showcase, T-0015) scans its own prose against its own pins.",
       "occurrence": 1,
@@ -3054,7 +2643,7 @@
     {
       "path": "Sources/Tools/main.swift",
       "channel": "text",
-      "line": 5,
+      "line": 7,
       "name": "showcase",
       "text": "// so the docs build has a single support module instead of one per tool. The showcase",
       "occurrence": 1,
@@ -3064,7 +2653,7 @@
     {
       "path": "Sources/Tools/main.swift",
       "channel": "text",
-      "line": 8,
+      "line": 10,
       "name": "ShowcaseTools",
       "text": "// ShowcaseTools.",
       "occurrence": 1,
@@ -3074,7 +2663,7 @@
     {
       "path": "Sources/Tools/main.swift",
       "channel": "text",
-      "line": 10,
+      "line": 12,
       "name": "showcase",
       "text": "//              LawCheck build plugin on the showcase's library targets, checked by hand here.",
       "occurrence": 1,
@@ -3084,29 +2673,9 @@
     {
       "path": "Sources/VerificationIsIdentification/Law.swift",
       "channel": "text",
-      "line": 8,
+      "line": 12,
       "name": "Organization",
       "text": "// the LawCheck plugin on Organization and by hand elsewhere. What neither",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Encoding.md",
-      "channel": "text",
-      "line": 82,
-      "name": "Organization",
-      "text": "The surface is the same discipline: a page is a type, and its markdown is the type's name. [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit) builds a page in five steps, and [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) is that surface run at scale: the encoded company and its site, one build.",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
-    },
-    {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Encoding.md",
-      "channel": "text",
-      "line": 82,
-      "name": "verification-is-identification-showcase",
-      "text": "The surface is the same discipline: a page is a type, and its markdown is the type's name. [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit) builds a page in five steps, and [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) is that surface run at scale: the encoded company and its site, one build.",
       "occurrence": 1,
       "class": "reference",
       "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
@@ -3262,14 +2831,294 @@
       "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
     },
     {
-      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/VerificationIsIdentification.md",
+      "path": "Checks/target-graph.py",
       "channel": "text",
-      "line": 52,
+      "line": 43,
       "name": "verification-is-identification-showcase",
-      "text": "- term **Build your own:** <doc:Purpose> states what the notation buys and where it stops, <doc:Encoding> maps your part of a system onto it, and ``Law`` is the grammar you write in. These pages are themselves rendered by [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit): the site is written in the notation it documents.",
+      "text": "validate(targets, manifest['dependencies'] + [{'sourceControl': [{'location': 'https://github.com/DanielSwift1992/verification-is-identification-showcase'}]}])",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Existing independent reverse-package negative input and its diagnostic; no consumer-specific branch or live repository read."
+    },
+    {
+      "path": "Checks/target-graph.py",
+      "channel": "text",
+      "line": 47,
+      "name": "showcase",
+      "text": "raise AssertionError('admitted reverse package dependency on showcase')",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Existing independent reverse-package negative input and its diagnostic; no consumer-specific branch or live repository read."
+    },
+    {
+      "path": "Contracts/Drawing/v0.1/README.md",
+      "channel": "text",
+      "line": 5,
+      "name": "showcase",
+      "text": "The case shapes originate in showcase 354c505. Their current binding and expected bytes are projections of the pinned gate style in Worlds/Documentation; they are regenerated and checked against this SDK. World receipts, the palette projection and the published Drawing contract remain with showcase until their migration slices. This suite does not replace that pinned contract.",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Drawing owner record and native source/answer evidence; source provenance is declared in the contract and Git pin. No live consumer checkout is selected."
+    },
+    {
+      "path": "Contracts/Drawing/v0.1/binding.json",
+      "channel": "text",
+      "line": 529,
+      "name": "github.com/DanielSwift1992/gate",
+      "text": "\"repository\": \"https://github.com/DanielSwift1992/gate\",",
+      "occurrence": 1,
+      "class": "frozen-input",
+      "reason": "Drawing owner record and native source/answer evidence; source provenance is declared in the contract and Git pin. No live consumer checkout is selected."
+    },
+    {
+      "path": "Documentation/Figures/framework-architecture.svg",
+      "channel": "text",
+      "line": 284,
+      "name": "showcase",
+      "text": "<title id=\"ArchitectureView0-title\">vi, showcase and gate</title>",
       "occurrence": 1,
       "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
+      "reason": "Rendered explanatory architecture world labels the participating repositories; the mechanism does not select behavior or read a repository by this text."
+    },
+    {
+      "path": "Documentation/Figures/framework-architecture.svg",
+      "channel": "text",
+      "line": 285,
+      "name": "showcase",
+      "text": "<desc id=\"ArchitectureView0-desc\">vi owns the research, the constructions and the where and count semantics. showcase is a separate repository with the worked company, its rendering and its policy, and it pins a revision of vi. gate brings records from other projects to a judge built from a pinned revision of vi. A versioned contract with conformance fixtures states what an implementation of a check must pass.</desc>",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Rendered explanatory architecture world labels the participating repositories; the mechanism does not select behavior or read a repository by this text."
+    },
+    {
+      "path": "Documentation/Figures/framework-architecture.svg",
+      "channel": "text",
+      "line": 743,
+      "name": "showcase",
+      "text": "<g role=\"img\" aria-label=\"showcase\" data-vi-text=\"showcase\" data-font-face=\"FigureSans600\" data-declaration=\"ArchitecturePart19&lt;FigureLight&gt;\" data-background=\"color(xyz-d65 0.898 0.945 1.029)\" data-legibility=\"Paper_KnownName_lit\" fill=\"#8D48D3\" transform=\"translate(305.2 244.08) scale(0.00732421875 -0.00732421875)\" style=\"fill:#8D48D3;fill:color(xyz-d65 0.25 0.15 0.63);\">",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Rendered explanatory architecture world labels the participating repositories; the mechanism does not select behavior or read a repository by this text."
+    },
+    {
+      "path": "Documentation/Figures/framework-architecture.svg",
+      "channel": "text",
+      "line": 774,
+      "name": "Organization",
+      "text": "<g role=\"img\" aria-label=\"Organization · its worlds\" data-vi-text=\"Organization · its worlds\" data-font-face=\"FigureSans400\" data-declaration=\"ArchitecturePart21&lt;FigureLight&gt;\" data-background=\"color(xyz-d65 0.898 0.945 1.029)\" data-legibility=\"Paper_Ink_lit\" fill=\"#1C191A\" transform=\"translate(305.2 291.6) scale(0.00634765625 -0.00634765625)\" style=\"fill:#1C191A;fill:color(xyz-d65 0.01 0.01 0.011);\">",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Rendered explanatory architecture world labels the participating repositories; the mechanism does not select behavior or read a repository by this text."
+    },
+    {
+      "path": "Documentation/Figures/framework-architecture.svg",
+      "channel": "text",
+      "line": 1422,
+      "name": "showcase",
+      "text": "<g role=\"img\" aria-label=\"NOW  vi and showcase are separate repositories, and showcase pins vi. Gate pins an older revision.\" data-vi-text=\"NOW  vi and showcase are separate repositories, and showcase pins vi. Gate pins an older revision.\" data-font-face=\"FigureSans400\" data-declaration=\"ArchitecturePart50&lt;FigureLight&gt;\" data-background=\"color(xyz-d65 0.898 0.945 1.029)\" data-legibility=\"Paper_Ink_lit\" fill=\"#1C191A\" transform=\"translate(28.8 596.88) scale(0.00634765625 -0.00634765625)\" style=\"fill:#1C191A;fill:color(xyz-d65 0.01 0.01 0.011);\">",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Rendered explanatory architecture world labels the participating repositories; the mechanism does not select behavior or read a repository by this text."
+    },
+    {
+      "path": "README.md",
+      "channel": "text",
+      "line": 101,
+      "name": "Organization",
+      "text": "The [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) declares a company, its access policy and its intranet website as types, and the compiler checks the declared access requests against the policy. Its [company site](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/) presents the result, and [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit/) renders the pages from types. The company is a declared world: the checked access assertions are about its declarations. The showcase runs this package's `Tools` and `LawCheck`, and its [package diagram](https://github.com/DanielSwift1992/verification-is-identification-showcase/blob/main/Sources/Organization/Organization.docc/Resources/architecture.svg) shows the application and its generated representations.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Updated public navigation to the owner of worked examples and explanatory prose; no subject dispatch or live reverse dependency."
+    },
+    {
+      "path": "README.md",
+      "channel": "text",
+      "line": 101,
+      "name": "showcase",
+      "text": "The [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) declares a company, its access policy and its intranet website as types, and the compiler checks the declared access requests against the policy. Its [company site](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/) presents the result, and [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit/) renders the pages from types. The company is a declared world: the checked access assertions are about its declarations. The showcase runs this package's `Tools` and `LawCheck`, and its [package diagram](https://github.com/DanielSwift1992/verification-is-identification-showcase/blob/main/Sources/Organization/Organization.docc/Resources/architecture.svg) shows the application and its generated representations.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Updated public navigation to the owner of worked examples and explanatory prose; no subject dispatch or live reverse dependency."
+    },
+    {
+      "path": "README.md",
+      "channel": "text",
+      "line": 101,
+      "name": "verification-is-identification-showcase",
+      "text": "The [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) declares a company, its access policy and its intranet website as types, and the compiler checks the declared access requests against the policy. Its [company site](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/) presents the result, and [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit/) renders the pages from types. The company is a declared world: the checked access assertions are about its declarations. The showcase runs this package's `Tools` and `LawCheck`, and its [package diagram](https://github.com/DanielSwift1992/verification-is-identification-showcase/blob/main/Sources/Organization/Organization.docc/Resources/architecture.svg) shows the application and its generated representations.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Updated public navigation to the owner of worked examples and explanatory prose; no subject dispatch or live reverse dependency."
+    },
+    {
+      "path": "README.md",
+      "channel": "text",
+      "line": 113,
+      "name": "Organization",
+      "text": "| Company | [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/), [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit/) | [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) |",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Updated public navigation to the owner of worked examples and explanatory prose; no subject dispatch or live reverse dependency."
+    },
+    {
+      "path": "README.md",
+      "channel": "text",
+      "line": 113,
+      "name": "showcase",
+      "text": "| Company | [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/), [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit/) | [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) |",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Updated public navigation to the owner of worked examples and explanatory prose; no subject dispatch or live reverse dependency."
+    },
+    {
+      "path": "README.md",
+      "channel": "text",
+      "line": 113,
+      "name": "verification-is-identification-showcase",
+      "text": "| Company | [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/), [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit/) | [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) |",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Updated public navigation to the owner of worked examples and explanatory prose; no subject dispatch or live reverse dependency."
+    },
+    {
+      "path": "Sources/Tools/Voice.swift",
+      "channel": "text",
+      "line": 48,
+      "name": "showcase",
+      "text": "// T0059 carries the kit pin (18) and its measured catalog share (51 of showcase's pinned 304) back from showcase.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Provenance comment about the carried documentation corpus and voice census; no live consumer source is read by this occurrence."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Encoding.md",
+      "channel": "text",
+      "line": 82,
+      "name": "Organization",
+      "text": "The surface is the same discipline: a page is a type, and its markdown is the type's name. [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit) documents the SDK declarations. [DocumentKitDemo](https://danielswift1992.github.io/verification-is-identification/documentation/documentkitdemo/) shows their declared compositions and compiled readings, and [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) is that surface run at scale: the encoded company and its site, one build.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Updated public navigation to the owner of worked examples and explanatory prose; no subject dispatch or live reverse dependency."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Encoding.md",
+      "channel": "text",
+      "line": 82,
+      "name": "verification-is-identification-showcase",
+      "text": "The surface is the same discipline: a page is a type, and its markdown is the type's name. [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit) documents the SDK declarations. [DocumentKitDemo](https://danielswift1992.github.io/verification-is-identification/documentation/documentkitdemo/) shows their declared compositions and compiled readings, and [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) is that surface run at scale: the encoded company and its site, one build.",
+      "occurrence": 1,
+      "class": "reference",
+      "reason": "Updated public navigation to the owner of worked examples and explanatory prose; no subject dispatch or live reverse dependency."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 7,
+      "name": "--vi-accent:var(--vi-role-AccentRole);",
+      "text": "var ROLE_CSS = \":root {--vi-role-Ink:#1C191A;--vi-role-Ink:color(xyz-d65 0.01 0.01 0.011);--vi-role-Paper:#F9F9F9;--vi-role-Paper:color(xyz-d65 0.898 0.945 1.029);--vi-role-Mist:#F9F9F9;--vi-role-Mist:color(xyz-d65 0.898 0.945 1.029);--vi-role-Accent:#F9F9F9;--vi-role-Accent:color(xyz-d65 0.898 0.945 1.029);--vi-role-Muted:#868686;--vi-role-Muted:color(xyz-d65 0.228 0.24 0.261);--vi-role-Line:#D2D2D2;--vi-role-Line:color(xyz-d65 0.613 0.645 0.702);--vi-role-InkPrimary:#1C191A;--vi-role-InkPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-role-InkSecondary:#868686;--vi-role-InkSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-role-Action:#2269CF;--vi-role-Action:color(xyz-d65 0.17 0.15 0.61);--vi-role-ActionTint:#F9F9F9;--vi-role-ActionTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-NavyTint:#F9F9F9;--vi-role-NavyTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-SurfaceCard:#F9F9F9;--vi-role-SurfaceCard:color(xyz-d65 0.898 0.945 1.029);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#F9F9F9;--vi-role-SurfaceTrack:color(xyz-d65 0.898 0.945 1.029);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#F9F9F9;--vi-role-SurfacePage:color(xyz-d65 0.898 0.945 1.029);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#1C191A;--vi-role-TextPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#868686;--vi-role-TextSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#2269CF;--vi-role-AccentRole:color(xyz-d65 0.17 0.15 0.61);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#2269CF;--vi-role-ActionRole:color(xyz-d65 0.17 0.15 0.61);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#D2D2D2;--vi-role-LineRole:color(xyz-d65 0.613 0.645 0.702);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#1C191A;--vi-role-OnAccent:color(xyz-d65 0.01 0.01 0.011);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#F9F9F9;--vi-role-ActionTintRole:color(xyz-d65 0.898 0.945 1.029);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#1C191A;--vi-role-OnActionRole:color(xyz-d65 0.01 0.01 0.011);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#007D36;--vi-role-StatusMark:color(xyz-d65 0.08 0.15 0.06);--vi-role-Ok:#007D36;--vi-role-Ok:color(xyz-d65 0.08 0.15 0.06);--vi-role-Bad:#BF4035;--vi-role-Bad:color(xyz-d65 0.24 0.15 0.05);--vi-role-KnownName:#8D48D3;--vi-role-KnownName:color(xyz-d65 0.25 0.15 0.63);--vi-role-LocalType:#00749E;--vi-role-LocalType:color(xyz-d65 0.124 0.15 0.346);}\\n@media (prefers-color-scheme: dark) {:root {--vi-role-Ink:#CECFCF;--vi-role-Ink:color(xyz-d65 0.59 0.621 0.676);--vi-role-Paper:#1C191A;--vi-role-Paper:color(xyz-d65 0.01 0.01 0.011);--vi-role-Mist:#1C191A;--vi-role-Mist:color(xyz-d65 0.01 0.01 0.011);--vi-role-Accent:#1C191A;--vi-role-Accent:color(xyz-d65 0.01 0.01 0.011);--vi-role-Muted:#878788;--vi-role-Muted:color(xyz-d65 0.232 0.244 0.266);--vi-role-Line:#403F3F;--vi-role-Line:color(xyz-d65 0.048 0.05 0.054);--vi-role-InkPrimary:#CECFCF;--vi-role-InkPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-role-InkSecondary:#878788;--vi-role-InkSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-role-Action:#9DADD7;--vi-role-Action:color(xyz-d65 0.412 0.419 0.705);--vi-role-ActionTint:#1C191A;--vi-role-ActionTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-NavyTint:#1C191A;--vi-role-NavyTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-SurfaceCard:#1C191A;--vi-role-SurfaceCard:color(xyz-d65 0.01 0.01 0.011);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#1C191A;--vi-role-SurfaceTrack:color(xyz-d65 0.01 0.01 0.011);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#1C191A;--vi-role-SurfacePage:color(xyz-d65 0.01 0.01 0.011);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#CECFCF;--vi-role-TextPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#878788;--vi-role-TextSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#9DADD7;--vi-role-AccentRole:color(xyz-d65 0.412 0.419 0.705);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#9DADD7;--vi-role-ActionRole:color(xyz-d65 0.412 0.419 0.705);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#403F3F;--vi-role-LineRole:color(xyz-d65 0.048 0.05 0.054);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#CECFCF;--vi-role-OnAccent:color(xyz-d65 0.59 0.621 0.676);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#1C191A;--vi-role-ActionTintRole:color(xyz-d65 0.01 0.01 0.011);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#CECFCF;--vi-role-OnActionRole:color(xyz-d65 0.59 0.621 0.676);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#24C75B;--vi-role-StatusMark:color(xyz-d65 0.23 0.419 0.168);--vi-role-Ok:#24C75B;--vi-role-Ok:color(xyz-d65 0.23 0.419 0.168);--vi-role-Bad:#E39F60;--vi-role-Bad:color(xyz-d65 0.461 0.419 0.168);--vi-role-KnownName:#B9A5D6;--vi-role-KnownName:color(xyz-d65 0.454 0.419 0.691);--vi-role-LocalType:#2BBECF;--vi-role-LocalType:color(xyz-d65 0.307 0.419 0.656);}}\";",
+      "occurrence": 1,
+      "class": "declared-input",
+      "reason": "Generated CSS aliases read Worlds/Documentation/binding.json from its declared gate style pin; these are SDK slot names, not company palette values or behavior."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 7,
+      "name": "--vi-action-tint:var(--vi-role-ActionTintRole);",
+      "text": "var ROLE_CSS = \":root {--vi-role-Ink:#1C191A;--vi-role-Ink:color(xyz-d65 0.01 0.01 0.011);--vi-role-Paper:#F9F9F9;--vi-role-Paper:color(xyz-d65 0.898 0.945 1.029);--vi-role-Mist:#F9F9F9;--vi-role-Mist:color(xyz-d65 0.898 0.945 1.029);--vi-role-Accent:#F9F9F9;--vi-role-Accent:color(xyz-d65 0.898 0.945 1.029);--vi-role-Muted:#868686;--vi-role-Muted:color(xyz-d65 0.228 0.24 0.261);--vi-role-Line:#D2D2D2;--vi-role-Line:color(xyz-d65 0.613 0.645 0.702);--vi-role-InkPrimary:#1C191A;--vi-role-InkPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-role-InkSecondary:#868686;--vi-role-InkSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-role-Action:#2269CF;--vi-role-Action:color(xyz-d65 0.17 0.15 0.61);--vi-role-ActionTint:#F9F9F9;--vi-role-ActionTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-NavyTint:#F9F9F9;--vi-role-NavyTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-SurfaceCard:#F9F9F9;--vi-role-SurfaceCard:color(xyz-d65 0.898 0.945 1.029);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#F9F9F9;--vi-role-SurfaceTrack:color(xyz-d65 0.898 0.945 1.029);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#F9F9F9;--vi-role-SurfacePage:color(xyz-d65 0.898 0.945 1.029);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#1C191A;--vi-role-TextPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#868686;--vi-role-TextSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#2269CF;--vi-role-AccentRole:color(xyz-d65 0.17 0.15 0.61);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#2269CF;--vi-role-ActionRole:color(xyz-d65 0.17 0.15 0.61);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#D2D2D2;--vi-role-LineRole:color(xyz-d65 0.613 0.645 0.702);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#1C191A;--vi-role-OnAccent:color(xyz-d65 0.01 0.01 0.011);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#F9F9F9;--vi-role-ActionTintRole:color(xyz-d65 0.898 0.945 1.029);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#1C191A;--vi-role-OnActionRole:color(xyz-d65 0.01 0.01 0.011);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#007D36;--vi-role-StatusMark:color(xyz-d65 0.08 0.15 0.06);--vi-role-Ok:#007D36;--vi-role-Ok:color(xyz-d65 0.08 0.15 0.06);--vi-role-Bad:#BF4035;--vi-role-Bad:color(xyz-d65 0.24 0.15 0.05);--vi-role-KnownName:#8D48D3;--vi-role-KnownName:color(xyz-d65 0.25 0.15 0.63);--vi-role-LocalType:#00749E;--vi-role-LocalType:color(xyz-d65 0.124 0.15 0.346);}\\n@media (prefers-color-scheme: dark) {:root {--vi-role-Ink:#CECFCF;--vi-role-Ink:color(xyz-d65 0.59 0.621 0.676);--vi-role-Paper:#1C191A;--vi-role-Paper:color(xyz-d65 0.01 0.01 0.011);--vi-role-Mist:#1C191A;--vi-role-Mist:color(xyz-d65 0.01 0.01 0.011);--vi-role-Accent:#1C191A;--vi-role-Accent:color(xyz-d65 0.01 0.01 0.011);--vi-role-Muted:#878788;--vi-role-Muted:color(xyz-d65 0.232 0.244 0.266);--vi-role-Line:#403F3F;--vi-role-Line:color(xyz-d65 0.048 0.05 0.054);--vi-role-InkPrimary:#CECFCF;--vi-role-InkPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-role-InkSecondary:#878788;--vi-role-InkSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-role-Action:#9DADD7;--vi-role-Action:color(xyz-d65 0.412 0.419 0.705);--vi-role-ActionTint:#1C191A;--vi-role-ActionTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-NavyTint:#1C191A;--vi-role-NavyTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-SurfaceCard:#1C191A;--vi-role-SurfaceCard:color(xyz-d65 0.01 0.01 0.011);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#1C191A;--vi-role-SurfaceTrack:color(xyz-d65 0.01 0.01 0.011);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#1C191A;--vi-role-SurfacePage:color(xyz-d65 0.01 0.01 0.011);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#CECFCF;--vi-role-TextPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#878788;--vi-role-TextSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#9DADD7;--vi-role-AccentRole:color(xyz-d65 0.412 0.419 0.705);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#9DADD7;--vi-role-ActionRole:color(xyz-d65 0.412 0.419 0.705);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#403F3F;--vi-role-LineRole:color(xyz-d65 0.048 0.05 0.054);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#CECFCF;--vi-role-OnAccent:color(xyz-d65 0.59 0.621 0.676);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#1C191A;--vi-role-ActionTintRole:color(xyz-d65 0.01 0.01 0.011);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#CECFCF;--vi-role-OnActionRole:color(xyz-d65 0.59 0.621 0.676);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#24C75B;--vi-role-StatusMark:color(xyz-d65 0.23 0.419 0.168);--vi-role-Ok:#24C75B;--vi-role-Ok:color(xyz-d65 0.23 0.419 0.168);--vi-role-Bad:#E39F60;--vi-role-Bad:color(xyz-d65 0.461 0.419 0.168);--vi-role-KnownName:#B9A5D6;--vi-role-KnownName:color(xyz-d65 0.454 0.419 0.691);--vi-role-LocalType:#2BBECF;--vi-role-LocalType:color(xyz-d65 0.307 0.419 0.656);}}\";",
+      "occurrence": 1,
+      "class": "declared-input",
+      "reason": "Generated CSS aliases read Worlds/Documentation/binding.json from its declared gate style pin; these are SDK slot names, not company palette values or behavior."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 7,
+      "name": "--vi-action:var(--vi-role-ActionRole);",
+      "text": "var ROLE_CSS = \":root {--vi-role-Ink:#1C191A;--vi-role-Ink:color(xyz-d65 0.01 0.01 0.011);--vi-role-Paper:#F9F9F9;--vi-role-Paper:color(xyz-d65 0.898 0.945 1.029);--vi-role-Mist:#F9F9F9;--vi-role-Mist:color(xyz-d65 0.898 0.945 1.029);--vi-role-Accent:#F9F9F9;--vi-role-Accent:color(xyz-d65 0.898 0.945 1.029);--vi-role-Muted:#868686;--vi-role-Muted:color(xyz-d65 0.228 0.24 0.261);--vi-role-Line:#D2D2D2;--vi-role-Line:color(xyz-d65 0.613 0.645 0.702);--vi-role-InkPrimary:#1C191A;--vi-role-InkPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-role-InkSecondary:#868686;--vi-role-InkSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-role-Action:#2269CF;--vi-role-Action:color(xyz-d65 0.17 0.15 0.61);--vi-role-ActionTint:#F9F9F9;--vi-role-ActionTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-NavyTint:#F9F9F9;--vi-role-NavyTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-SurfaceCard:#F9F9F9;--vi-role-SurfaceCard:color(xyz-d65 0.898 0.945 1.029);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#F9F9F9;--vi-role-SurfaceTrack:color(xyz-d65 0.898 0.945 1.029);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#F9F9F9;--vi-role-SurfacePage:color(xyz-d65 0.898 0.945 1.029);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#1C191A;--vi-role-TextPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#868686;--vi-role-TextSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#2269CF;--vi-role-AccentRole:color(xyz-d65 0.17 0.15 0.61);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#2269CF;--vi-role-ActionRole:color(xyz-d65 0.17 0.15 0.61);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#D2D2D2;--vi-role-LineRole:color(xyz-d65 0.613 0.645 0.702);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#1C191A;--vi-role-OnAccent:color(xyz-d65 0.01 0.01 0.011);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#F9F9F9;--vi-role-ActionTintRole:color(xyz-d65 0.898 0.945 1.029);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#1C191A;--vi-role-OnActionRole:color(xyz-d65 0.01 0.01 0.011);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#007D36;--vi-role-StatusMark:color(xyz-d65 0.08 0.15 0.06);--vi-role-Ok:#007D36;--vi-role-Ok:color(xyz-d65 0.08 0.15 0.06);--vi-role-Bad:#BF4035;--vi-role-Bad:color(xyz-d65 0.24 0.15 0.05);--vi-role-KnownName:#8D48D3;--vi-role-KnownName:color(xyz-d65 0.25 0.15 0.63);--vi-role-LocalType:#00749E;--vi-role-LocalType:color(xyz-d65 0.124 0.15 0.346);}\\n@media (prefers-color-scheme: dark) {:root {--vi-role-Ink:#CECFCF;--vi-role-Ink:color(xyz-d65 0.59 0.621 0.676);--vi-role-Paper:#1C191A;--vi-role-Paper:color(xyz-d65 0.01 0.01 0.011);--vi-role-Mist:#1C191A;--vi-role-Mist:color(xyz-d65 0.01 0.01 0.011);--vi-role-Accent:#1C191A;--vi-role-Accent:color(xyz-d65 0.01 0.01 0.011);--vi-role-Muted:#878788;--vi-role-Muted:color(xyz-d65 0.232 0.244 0.266);--vi-role-Line:#403F3F;--vi-role-Line:color(xyz-d65 0.048 0.05 0.054);--vi-role-InkPrimary:#CECFCF;--vi-role-InkPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-role-InkSecondary:#878788;--vi-role-InkSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-role-Action:#9DADD7;--vi-role-Action:color(xyz-d65 0.412 0.419 0.705);--vi-role-ActionTint:#1C191A;--vi-role-ActionTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-NavyTint:#1C191A;--vi-role-NavyTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-SurfaceCard:#1C191A;--vi-role-SurfaceCard:color(xyz-d65 0.01 0.01 0.011);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#1C191A;--vi-role-SurfaceTrack:color(xyz-d65 0.01 0.01 0.011);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#1C191A;--vi-role-SurfacePage:color(xyz-d65 0.01 0.01 0.011);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#CECFCF;--vi-role-TextPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#878788;--vi-role-TextSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#9DADD7;--vi-role-AccentRole:color(xyz-d65 0.412 0.419 0.705);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#9DADD7;--vi-role-ActionRole:color(xyz-d65 0.412 0.419 0.705);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#403F3F;--vi-role-LineRole:color(xyz-d65 0.048 0.05 0.054);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#CECFCF;--vi-role-OnAccent:color(xyz-d65 0.59 0.621 0.676);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#1C191A;--vi-role-ActionTintRole:color(xyz-d65 0.01 0.01 0.011);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#CECFCF;--vi-role-OnActionRole:color(xyz-d65 0.59 0.621 0.676);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#24C75B;--vi-role-StatusMark:color(xyz-d65 0.23 0.419 0.168);--vi-role-Ok:#24C75B;--vi-role-Ok:color(xyz-d65 0.23 0.419 0.168);--vi-role-Bad:#E39F60;--vi-role-Bad:color(xyz-d65 0.461 0.419 0.168);--vi-role-KnownName:#B9A5D6;--vi-role-KnownName:color(xyz-d65 0.454 0.419 0.691);--vi-role-LocalType:#2BBECF;--vi-role-LocalType:color(xyz-d65 0.307 0.419 0.656);}}\";",
+      "occurrence": 1,
+      "class": "declared-input",
+      "reason": "Generated CSS aliases read Worlds/Documentation/binding.json from its declared gate style pin; these are SDK slot names, not company palette values or behavior."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 7,
+      "name": "--vi-line:var(--vi-role-LineRole);",
+      "text": "var ROLE_CSS = \":root {--vi-role-Ink:#1C191A;--vi-role-Ink:color(xyz-d65 0.01 0.01 0.011);--vi-role-Paper:#F9F9F9;--vi-role-Paper:color(xyz-d65 0.898 0.945 1.029);--vi-role-Mist:#F9F9F9;--vi-role-Mist:color(xyz-d65 0.898 0.945 1.029);--vi-role-Accent:#F9F9F9;--vi-role-Accent:color(xyz-d65 0.898 0.945 1.029);--vi-role-Muted:#868686;--vi-role-Muted:color(xyz-d65 0.228 0.24 0.261);--vi-role-Line:#D2D2D2;--vi-role-Line:color(xyz-d65 0.613 0.645 0.702);--vi-role-InkPrimary:#1C191A;--vi-role-InkPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-role-InkSecondary:#868686;--vi-role-InkSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-role-Action:#2269CF;--vi-role-Action:color(xyz-d65 0.17 0.15 0.61);--vi-role-ActionTint:#F9F9F9;--vi-role-ActionTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-NavyTint:#F9F9F9;--vi-role-NavyTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-SurfaceCard:#F9F9F9;--vi-role-SurfaceCard:color(xyz-d65 0.898 0.945 1.029);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#F9F9F9;--vi-role-SurfaceTrack:color(xyz-d65 0.898 0.945 1.029);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#F9F9F9;--vi-role-SurfacePage:color(xyz-d65 0.898 0.945 1.029);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#1C191A;--vi-role-TextPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#868686;--vi-role-TextSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#2269CF;--vi-role-AccentRole:color(xyz-d65 0.17 0.15 0.61);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#2269CF;--vi-role-ActionRole:color(xyz-d65 0.17 0.15 0.61);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#D2D2D2;--vi-role-LineRole:color(xyz-d65 0.613 0.645 0.702);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#1C191A;--vi-role-OnAccent:color(xyz-d65 0.01 0.01 0.011);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#F9F9F9;--vi-role-ActionTintRole:color(xyz-d65 0.898 0.945 1.029);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#1C191A;--vi-role-OnActionRole:color(xyz-d65 0.01 0.01 0.011);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#007D36;--vi-role-StatusMark:color(xyz-d65 0.08 0.15 0.06);--vi-role-Ok:#007D36;--vi-role-Ok:color(xyz-d65 0.08 0.15 0.06);--vi-role-Bad:#BF4035;--vi-role-Bad:color(xyz-d65 0.24 0.15 0.05);--vi-role-KnownName:#8D48D3;--vi-role-KnownName:color(xyz-d65 0.25 0.15 0.63);--vi-role-LocalType:#00749E;--vi-role-LocalType:color(xyz-d65 0.124 0.15 0.346);}\\n@media (prefers-color-scheme: dark) {:root {--vi-role-Ink:#CECFCF;--vi-role-Ink:color(xyz-d65 0.59 0.621 0.676);--vi-role-Paper:#1C191A;--vi-role-Paper:color(xyz-d65 0.01 0.01 0.011);--vi-role-Mist:#1C191A;--vi-role-Mist:color(xyz-d65 0.01 0.01 0.011);--vi-role-Accent:#1C191A;--vi-role-Accent:color(xyz-d65 0.01 0.01 0.011);--vi-role-Muted:#878788;--vi-role-Muted:color(xyz-d65 0.232 0.244 0.266);--vi-role-Line:#403F3F;--vi-role-Line:color(xyz-d65 0.048 0.05 0.054);--vi-role-InkPrimary:#CECFCF;--vi-role-InkPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-role-InkSecondary:#878788;--vi-role-InkSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-role-Action:#9DADD7;--vi-role-Action:color(xyz-d65 0.412 0.419 0.705);--vi-role-ActionTint:#1C191A;--vi-role-ActionTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-NavyTint:#1C191A;--vi-role-NavyTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-SurfaceCard:#1C191A;--vi-role-SurfaceCard:color(xyz-d65 0.01 0.01 0.011);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#1C191A;--vi-role-SurfaceTrack:color(xyz-d65 0.01 0.01 0.011);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#1C191A;--vi-role-SurfacePage:color(xyz-d65 0.01 0.01 0.011);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#CECFCF;--vi-role-TextPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#878788;--vi-role-TextSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#9DADD7;--vi-role-AccentRole:color(xyz-d65 0.412 0.419 0.705);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#9DADD7;--vi-role-ActionRole:color(xyz-d65 0.412 0.419 0.705);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#403F3F;--vi-role-LineRole:color(xyz-d65 0.048 0.05 0.054);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#CECFCF;--vi-role-OnAccent:color(xyz-d65 0.59 0.621 0.676);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#1C191A;--vi-role-ActionTintRole:color(xyz-d65 0.01 0.01 0.011);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#CECFCF;--vi-role-OnActionRole:color(xyz-d65 0.59 0.621 0.676);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#24C75B;--vi-role-StatusMark:color(xyz-d65 0.23 0.419 0.168);--vi-role-Ok:#24C75B;--vi-role-Ok:color(xyz-d65 0.23 0.419 0.168);--vi-role-Bad:#E39F60;--vi-role-Bad:color(xyz-d65 0.461 0.419 0.168);--vi-role-KnownName:#B9A5D6;--vi-role-KnownName:color(xyz-d65 0.454 0.419 0.691);--vi-role-LocalType:#2BBECF;--vi-role-LocalType:color(xyz-d65 0.307 0.419 0.656);}}\";",
+      "occurrence": 1,
+      "class": "declared-input",
+      "reason": "Generated CSS aliases read Worlds/Documentation/binding.json from its declared gate style pin; these are SDK slot names, not company palette values or behavior."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 7,
+      "name": "--vi-on-accent:var(--vi-role-OnAccent);",
+      "text": "var ROLE_CSS = \":root {--vi-role-Ink:#1C191A;--vi-role-Ink:color(xyz-d65 0.01 0.01 0.011);--vi-role-Paper:#F9F9F9;--vi-role-Paper:color(xyz-d65 0.898 0.945 1.029);--vi-role-Mist:#F9F9F9;--vi-role-Mist:color(xyz-d65 0.898 0.945 1.029);--vi-role-Accent:#F9F9F9;--vi-role-Accent:color(xyz-d65 0.898 0.945 1.029);--vi-role-Muted:#868686;--vi-role-Muted:color(xyz-d65 0.228 0.24 0.261);--vi-role-Line:#D2D2D2;--vi-role-Line:color(xyz-d65 0.613 0.645 0.702);--vi-role-InkPrimary:#1C191A;--vi-role-InkPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-role-InkSecondary:#868686;--vi-role-InkSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-role-Action:#2269CF;--vi-role-Action:color(xyz-d65 0.17 0.15 0.61);--vi-role-ActionTint:#F9F9F9;--vi-role-ActionTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-NavyTint:#F9F9F9;--vi-role-NavyTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-SurfaceCard:#F9F9F9;--vi-role-SurfaceCard:color(xyz-d65 0.898 0.945 1.029);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#F9F9F9;--vi-role-SurfaceTrack:color(xyz-d65 0.898 0.945 1.029);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#F9F9F9;--vi-role-SurfacePage:color(xyz-d65 0.898 0.945 1.029);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#1C191A;--vi-role-TextPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#868686;--vi-role-TextSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#2269CF;--vi-role-AccentRole:color(xyz-d65 0.17 0.15 0.61);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#2269CF;--vi-role-ActionRole:color(xyz-d65 0.17 0.15 0.61);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#D2D2D2;--vi-role-LineRole:color(xyz-d65 0.613 0.645 0.702);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#1C191A;--vi-role-OnAccent:color(xyz-d65 0.01 0.01 0.011);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#F9F9F9;--vi-role-ActionTintRole:color(xyz-d65 0.898 0.945 1.029);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#1C191A;--vi-role-OnActionRole:color(xyz-d65 0.01 0.01 0.011);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#007D36;--vi-role-StatusMark:color(xyz-d65 0.08 0.15 0.06);--vi-role-Ok:#007D36;--vi-role-Ok:color(xyz-d65 0.08 0.15 0.06);--vi-role-Bad:#BF4035;--vi-role-Bad:color(xyz-d65 0.24 0.15 0.05);--vi-role-KnownName:#8D48D3;--vi-role-KnownName:color(xyz-d65 0.25 0.15 0.63);--vi-role-LocalType:#00749E;--vi-role-LocalType:color(xyz-d65 0.124 0.15 0.346);}\\n@media (prefers-color-scheme: dark) {:root {--vi-role-Ink:#CECFCF;--vi-role-Ink:color(xyz-d65 0.59 0.621 0.676);--vi-role-Paper:#1C191A;--vi-role-Paper:color(xyz-d65 0.01 0.01 0.011);--vi-role-Mist:#1C191A;--vi-role-Mist:color(xyz-d65 0.01 0.01 0.011);--vi-role-Accent:#1C191A;--vi-role-Accent:color(xyz-d65 0.01 0.01 0.011);--vi-role-Muted:#878788;--vi-role-Muted:color(xyz-d65 0.232 0.244 0.266);--vi-role-Line:#403F3F;--vi-role-Line:color(xyz-d65 0.048 0.05 0.054);--vi-role-InkPrimary:#CECFCF;--vi-role-InkPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-role-InkSecondary:#878788;--vi-role-InkSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-role-Action:#9DADD7;--vi-role-Action:color(xyz-d65 0.412 0.419 0.705);--vi-role-ActionTint:#1C191A;--vi-role-ActionTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-NavyTint:#1C191A;--vi-role-NavyTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-SurfaceCard:#1C191A;--vi-role-SurfaceCard:color(xyz-d65 0.01 0.01 0.011);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#1C191A;--vi-role-SurfaceTrack:color(xyz-d65 0.01 0.01 0.011);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#1C191A;--vi-role-SurfacePage:color(xyz-d65 0.01 0.01 0.011);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#CECFCF;--vi-role-TextPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#878788;--vi-role-TextSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#9DADD7;--vi-role-AccentRole:color(xyz-d65 0.412 0.419 0.705);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#9DADD7;--vi-role-ActionRole:color(xyz-d65 0.412 0.419 0.705);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#403F3F;--vi-role-LineRole:color(xyz-d65 0.048 0.05 0.054);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#CECFCF;--vi-role-OnAccent:color(xyz-d65 0.59 0.621 0.676);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#1C191A;--vi-role-ActionTintRole:color(xyz-d65 0.01 0.01 0.011);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#CECFCF;--vi-role-OnActionRole:color(xyz-d65 0.59 0.621 0.676);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#24C75B;--vi-role-StatusMark:color(xyz-d65 0.23 0.419 0.168);--vi-role-Ok:#24C75B;--vi-role-Ok:color(xyz-d65 0.23 0.419 0.168);--vi-role-Bad:#E39F60;--vi-role-Bad:color(xyz-d65 0.461 0.419 0.168);--vi-role-KnownName:#B9A5D6;--vi-role-KnownName:color(xyz-d65 0.454 0.419 0.691);--vi-role-LocalType:#2BBECF;--vi-role-LocalType:color(xyz-d65 0.307 0.419 0.656);}}\";",
+      "occurrence": 1,
+      "class": "declared-input",
+      "reason": "Generated CSS aliases read Worlds/Documentation/binding.json from its declared gate style pin; these are SDK slot names, not company palette values or behavior."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 7,
+      "name": "--vi-on-action:var(--vi-role-OnActionRole);",
+      "text": "var ROLE_CSS = \":root {--vi-role-Ink:#1C191A;--vi-role-Ink:color(xyz-d65 0.01 0.01 0.011);--vi-role-Paper:#F9F9F9;--vi-role-Paper:color(xyz-d65 0.898 0.945 1.029);--vi-role-Mist:#F9F9F9;--vi-role-Mist:color(xyz-d65 0.898 0.945 1.029);--vi-role-Accent:#F9F9F9;--vi-role-Accent:color(xyz-d65 0.898 0.945 1.029);--vi-role-Muted:#868686;--vi-role-Muted:color(xyz-d65 0.228 0.24 0.261);--vi-role-Line:#D2D2D2;--vi-role-Line:color(xyz-d65 0.613 0.645 0.702);--vi-role-InkPrimary:#1C191A;--vi-role-InkPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-role-InkSecondary:#868686;--vi-role-InkSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-role-Action:#2269CF;--vi-role-Action:color(xyz-d65 0.17 0.15 0.61);--vi-role-ActionTint:#F9F9F9;--vi-role-ActionTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-NavyTint:#F9F9F9;--vi-role-NavyTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-SurfaceCard:#F9F9F9;--vi-role-SurfaceCard:color(xyz-d65 0.898 0.945 1.029);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#F9F9F9;--vi-role-SurfaceTrack:color(xyz-d65 0.898 0.945 1.029);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#F9F9F9;--vi-role-SurfacePage:color(xyz-d65 0.898 0.945 1.029);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#1C191A;--vi-role-TextPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#868686;--vi-role-TextSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#2269CF;--vi-role-AccentRole:color(xyz-d65 0.17 0.15 0.61);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#2269CF;--vi-role-ActionRole:color(xyz-d65 0.17 0.15 0.61);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#D2D2D2;--vi-role-LineRole:color(xyz-d65 0.613 0.645 0.702);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#1C191A;--vi-role-OnAccent:color(xyz-d65 0.01 0.01 0.011);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#F9F9F9;--vi-role-ActionTintRole:color(xyz-d65 0.898 0.945 1.029);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#1C191A;--vi-role-OnActionRole:color(xyz-d65 0.01 0.01 0.011);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#007D36;--vi-role-StatusMark:color(xyz-d65 0.08 0.15 0.06);--vi-role-Ok:#007D36;--vi-role-Ok:color(xyz-d65 0.08 0.15 0.06);--vi-role-Bad:#BF4035;--vi-role-Bad:color(xyz-d65 0.24 0.15 0.05);--vi-role-KnownName:#8D48D3;--vi-role-KnownName:color(xyz-d65 0.25 0.15 0.63);--vi-role-LocalType:#00749E;--vi-role-LocalType:color(xyz-d65 0.124 0.15 0.346);}\\n@media (prefers-color-scheme: dark) {:root {--vi-role-Ink:#CECFCF;--vi-role-Ink:color(xyz-d65 0.59 0.621 0.676);--vi-role-Paper:#1C191A;--vi-role-Paper:color(xyz-d65 0.01 0.01 0.011);--vi-role-Mist:#1C191A;--vi-role-Mist:color(xyz-d65 0.01 0.01 0.011);--vi-role-Accent:#1C191A;--vi-role-Accent:color(xyz-d65 0.01 0.01 0.011);--vi-role-Muted:#878788;--vi-role-Muted:color(xyz-d65 0.232 0.244 0.266);--vi-role-Line:#403F3F;--vi-role-Line:color(xyz-d65 0.048 0.05 0.054);--vi-role-InkPrimary:#CECFCF;--vi-role-InkPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-role-InkSecondary:#878788;--vi-role-InkSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-role-Action:#9DADD7;--vi-role-Action:color(xyz-d65 0.412 0.419 0.705);--vi-role-ActionTint:#1C191A;--vi-role-ActionTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-NavyTint:#1C191A;--vi-role-NavyTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-SurfaceCard:#1C191A;--vi-role-SurfaceCard:color(xyz-d65 0.01 0.01 0.011);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#1C191A;--vi-role-SurfaceTrack:color(xyz-d65 0.01 0.01 0.011);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#1C191A;--vi-role-SurfacePage:color(xyz-d65 0.01 0.01 0.011);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#CECFCF;--vi-role-TextPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#878788;--vi-role-TextSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#9DADD7;--vi-role-AccentRole:color(xyz-d65 0.412 0.419 0.705);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#9DADD7;--vi-role-ActionRole:color(xyz-d65 0.412 0.419 0.705);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#403F3F;--vi-role-LineRole:color(xyz-d65 0.048 0.05 0.054);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#CECFCF;--vi-role-OnAccent:color(xyz-d65 0.59 0.621 0.676);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#1C191A;--vi-role-ActionTintRole:color(xyz-d65 0.01 0.01 0.011);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#CECFCF;--vi-role-OnActionRole:color(xyz-d65 0.59 0.621 0.676);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#24C75B;--vi-role-StatusMark:color(xyz-d65 0.23 0.419 0.168);--vi-role-Ok:#24C75B;--vi-role-Ok:color(xyz-d65 0.23 0.419 0.168);--vi-role-Bad:#E39F60;--vi-role-Bad:color(xyz-d65 0.461 0.419 0.168);--vi-role-KnownName:#B9A5D6;--vi-role-KnownName:color(xyz-d65 0.454 0.419 0.691);--vi-role-LocalType:#2BBECF;--vi-role-LocalType:color(xyz-d65 0.307 0.419 0.656);}}\";",
+      "occurrence": 1,
+      "class": "declared-input",
+      "reason": "Generated CSS aliases read Worlds/Documentation/binding.json from its declared gate style pin; these are SDK slot names, not company palette values or behavior."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 7,
+      "name": "--vi-surface-card:var(--vi-role-SurfaceCard);",
+      "text": "var ROLE_CSS = \":root {--vi-role-Ink:#1C191A;--vi-role-Ink:color(xyz-d65 0.01 0.01 0.011);--vi-role-Paper:#F9F9F9;--vi-role-Paper:color(xyz-d65 0.898 0.945 1.029);--vi-role-Mist:#F9F9F9;--vi-role-Mist:color(xyz-d65 0.898 0.945 1.029);--vi-role-Accent:#F9F9F9;--vi-role-Accent:color(xyz-d65 0.898 0.945 1.029);--vi-role-Muted:#868686;--vi-role-Muted:color(xyz-d65 0.228 0.24 0.261);--vi-role-Line:#D2D2D2;--vi-role-Line:color(xyz-d65 0.613 0.645 0.702);--vi-role-InkPrimary:#1C191A;--vi-role-InkPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-role-InkSecondary:#868686;--vi-role-InkSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-role-Action:#2269CF;--vi-role-Action:color(xyz-d65 0.17 0.15 0.61);--vi-role-ActionTint:#F9F9F9;--vi-role-ActionTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-NavyTint:#F9F9F9;--vi-role-NavyTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-SurfaceCard:#F9F9F9;--vi-role-SurfaceCard:color(xyz-d65 0.898 0.945 1.029);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#F9F9F9;--vi-role-SurfaceTrack:color(xyz-d65 0.898 0.945 1.029);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#F9F9F9;--vi-role-SurfacePage:color(xyz-d65 0.898 0.945 1.029);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#1C191A;--vi-role-TextPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#868686;--vi-role-TextSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#2269CF;--vi-role-AccentRole:color(xyz-d65 0.17 0.15 0.61);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#2269CF;--vi-role-ActionRole:color(xyz-d65 0.17 0.15 0.61);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#D2D2D2;--vi-role-LineRole:color(xyz-d65 0.613 0.645 0.702);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#1C191A;--vi-role-OnAccent:color(xyz-d65 0.01 0.01 0.011);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#F9F9F9;--vi-role-ActionTintRole:color(xyz-d65 0.898 0.945 1.029);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#1C191A;--vi-role-OnActionRole:color(xyz-d65 0.01 0.01 0.011);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#007D36;--vi-role-StatusMark:color(xyz-d65 0.08 0.15 0.06);--vi-role-Ok:#007D36;--vi-role-Ok:color(xyz-d65 0.08 0.15 0.06);--vi-role-Bad:#BF4035;--vi-role-Bad:color(xyz-d65 0.24 0.15 0.05);--vi-role-KnownName:#8D48D3;--vi-role-KnownName:color(xyz-d65 0.25 0.15 0.63);--vi-role-LocalType:#00749E;--vi-role-LocalType:color(xyz-d65 0.124 0.15 0.346);}\\n@media (prefers-color-scheme: dark) {:root {--vi-role-Ink:#CECFCF;--vi-role-Ink:color(xyz-d65 0.59 0.621 0.676);--vi-role-Paper:#1C191A;--vi-role-Paper:color(xyz-d65 0.01 0.01 0.011);--vi-role-Mist:#1C191A;--vi-role-Mist:color(xyz-d65 0.01 0.01 0.011);--vi-role-Accent:#1C191A;--vi-role-Accent:color(xyz-d65 0.01 0.01 0.011);--vi-role-Muted:#878788;--vi-role-Muted:color(xyz-d65 0.232 0.244 0.266);--vi-role-Line:#403F3F;--vi-role-Line:color(xyz-d65 0.048 0.05 0.054);--vi-role-InkPrimary:#CECFCF;--vi-role-InkPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-role-InkSecondary:#878788;--vi-role-InkSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-role-Action:#9DADD7;--vi-role-Action:color(xyz-d65 0.412 0.419 0.705);--vi-role-ActionTint:#1C191A;--vi-role-ActionTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-NavyTint:#1C191A;--vi-role-NavyTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-SurfaceCard:#1C191A;--vi-role-SurfaceCard:color(xyz-d65 0.01 0.01 0.011);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#1C191A;--vi-role-SurfaceTrack:color(xyz-d65 0.01 0.01 0.011);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#1C191A;--vi-role-SurfacePage:color(xyz-d65 0.01 0.01 0.011);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#CECFCF;--vi-role-TextPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#878788;--vi-role-TextSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#9DADD7;--vi-role-AccentRole:color(xyz-d65 0.412 0.419 0.705);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#9DADD7;--vi-role-ActionRole:color(xyz-d65 0.412 0.419 0.705);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#403F3F;--vi-role-LineRole:color(xyz-d65 0.048 0.05 0.054);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#CECFCF;--vi-role-OnAccent:color(xyz-d65 0.59 0.621 0.676);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#1C191A;--vi-role-ActionTintRole:color(xyz-d65 0.01 0.01 0.011);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#CECFCF;--vi-role-OnActionRole:color(xyz-d65 0.59 0.621 0.676);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#24C75B;--vi-role-StatusMark:color(xyz-d65 0.23 0.419 0.168);--vi-role-Ok:#24C75B;--vi-role-Ok:color(xyz-d65 0.23 0.419 0.168);--vi-role-Bad:#E39F60;--vi-role-Bad:color(xyz-d65 0.461 0.419 0.168);--vi-role-KnownName:#B9A5D6;--vi-role-KnownName:color(xyz-d65 0.454 0.419 0.691);--vi-role-LocalType:#2BBECF;--vi-role-LocalType:color(xyz-d65 0.307 0.419 0.656);}}\";",
+      "occurrence": 1,
+      "class": "declared-input",
+      "reason": "Generated CSS aliases read Worlds/Documentation/binding.json from its declared gate style pin; these are SDK slot names, not company palette values or behavior."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 7,
+      "name": "--vi-surface-page:var(--vi-role-SurfacePage);",
+      "text": "var ROLE_CSS = \":root {--vi-role-Ink:#1C191A;--vi-role-Ink:color(xyz-d65 0.01 0.01 0.011);--vi-role-Paper:#F9F9F9;--vi-role-Paper:color(xyz-d65 0.898 0.945 1.029);--vi-role-Mist:#F9F9F9;--vi-role-Mist:color(xyz-d65 0.898 0.945 1.029);--vi-role-Accent:#F9F9F9;--vi-role-Accent:color(xyz-d65 0.898 0.945 1.029);--vi-role-Muted:#868686;--vi-role-Muted:color(xyz-d65 0.228 0.24 0.261);--vi-role-Line:#D2D2D2;--vi-role-Line:color(xyz-d65 0.613 0.645 0.702);--vi-role-InkPrimary:#1C191A;--vi-role-InkPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-role-InkSecondary:#868686;--vi-role-InkSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-role-Action:#2269CF;--vi-role-Action:color(xyz-d65 0.17 0.15 0.61);--vi-role-ActionTint:#F9F9F9;--vi-role-ActionTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-NavyTint:#F9F9F9;--vi-role-NavyTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-SurfaceCard:#F9F9F9;--vi-role-SurfaceCard:color(xyz-d65 0.898 0.945 1.029);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#F9F9F9;--vi-role-SurfaceTrack:color(xyz-d65 0.898 0.945 1.029);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#F9F9F9;--vi-role-SurfacePage:color(xyz-d65 0.898 0.945 1.029);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#1C191A;--vi-role-TextPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#868686;--vi-role-TextSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#2269CF;--vi-role-AccentRole:color(xyz-d65 0.17 0.15 0.61);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#2269CF;--vi-role-ActionRole:color(xyz-d65 0.17 0.15 0.61);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#D2D2D2;--vi-role-LineRole:color(xyz-d65 0.613 0.645 0.702);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#1C191A;--vi-role-OnAccent:color(xyz-d65 0.01 0.01 0.011);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#F9F9F9;--vi-role-ActionTintRole:color(xyz-d65 0.898 0.945 1.029);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#1C191A;--vi-role-OnActionRole:color(xyz-d65 0.01 0.01 0.011);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#007D36;--vi-role-StatusMark:color(xyz-d65 0.08 0.15 0.06);--vi-role-Ok:#007D36;--vi-role-Ok:color(xyz-d65 0.08 0.15 0.06);--vi-role-Bad:#BF4035;--vi-role-Bad:color(xyz-d65 0.24 0.15 0.05);--vi-role-KnownName:#8D48D3;--vi-role-KnownName:color(xyz-d65 0.25 0.15 0.63);--vi-role-LocalType:#00749E;--vi-role-LocalType:color(xyz-d65 0.124 0.15 0.346);}\\n@media (prefers-color-scheme: dark) {:root {--vi-role-Ink:#CECFCF;--vi-role-Ink:color(xyz-d65 0.59 0.621 0.676);--vi-role-Paper:#1C191A;--vi-role-Paper:color(xyz-d65 0.01 0.01 0.011);--vi-role-Mist:#1C191A;--vi-role-Mist:color(xyz-d65 0.01 0.01 0.011);--vi-role-Accent:#1C191A;--vi-role-Accent:color(xyz-d65 0.01 0.01 0.011);--vi-role-Muted:#878788;--vi-role-Muted:color(xyz-d65 0.232 0.244 0.266);--vi-role-Line:#403F3F;--vi-role-Line:color(xyz-d65 0.048 0.05 0.054);--vi-role-InkPrimary:#CECFCF;--vi-role-InkPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-role-InkSecondary:#878788;--vi-role-InkSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-role-Action:#9DADD7;--vi-role-Action:color(xyz-d65 0.412 0.419 0.705);--vi-role-ActionTint:#1C191A;--vi-role-ActionTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-NavyTint:#1C191A;--vi-role-NavyTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-SurfaceCard:#1C191A;--vi-role-SurfaceCard:color(xyz-d65 0.01 0.01 0.011);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#1C191A;--vi-role-SurfaceTrack:color(xyz-d65 0.01 0.01 0.011);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#1C191A;--vi-role-SurfacePage:color(xyz-d65 0.01 0.01 0.011);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#CECFCF;--vi-role-TextPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#878788;--vi-role-TextSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#9DADD7;--vi-role-AccentRole:color(xyz-d65 0.412 0.419 0.705);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#9DADD7;--vi-role-ActionRole:color(xyz-d65 0.412 0.419 0.705);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#403F3F;--vi-role-LineRole:color(xyz-d65 0.048 0.05 0.054);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#CECFCF;--vi-role-OnAccent:color(xyz-d65 0.59 0.621 0.676);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#1C191A;--vi-role-ActionTintRole:color(xyz-d65 0.01 0.01 0.011);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#CECFCF;--vi-role-OnActionRole:color(xyz-d65 0.59 0.621 0.676);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#24C75B;--vi-role-StatusMark:color(xyz-d65 0.23 0.419 0.168);--vi-role-Ok:#24C75B;--vi-role-Ok:color(xyz-d65 0.23 0.419 0.168);--vi-role-Bad:#E39F60;--vi-role-Bad:color(xyz-d65 0.461 0.419 0.168);--vi-role-KnownName:#B9A5D6;--vi-role-KnownName:color(xyz-d65 0.454 0.419 0.691);--vi-role-LocalType:#2BBECF;--vi-role-LocalType:color(xyz-d65 0.307 0.419 0.656);}}\";",
+      "occurrence": 1,
+      "class": "declared-input",
+      "reason": "Generated CSS aliases read Worlds/Documentation/binding.json from its declared gate style pin; these are SDK slot names, not company palette values or behavior."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 7,
+      "name": "--vi-surface-track:var(--vi-role-SurfaceTrack);",
+      "text": "var ROLE_CSS = \":root {--vi-role-Ink:#1C191A;--vi-role-Ink:color(xyz-d65 0.01 0.01 0.011);--vi-role-Paper:#F9F9F9;--vi-role-Paper:color(xyz-d65 0.898 0.945 1.029);--vi-role-Mist:#F9F9F9;--vi-role-Mist:color(xyz-d65 0.898 0.945 1.029);--vi-role-Accent:#F9F9F9;--vi-role-Accent:color(xyz-d65 0.898 0.945 1.029);--vi-role-Muted:#868686;--vi-role-Muted:color(xyz-d65 0.228 0.24 0.261);--vi-role-Line:#D2D2D2;--vi-role-Line:color(xyz-d65 0.613 0.645 0.702);--vi-role-InkPrimary:#1C191A;--vi-role-InkPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-role-InkSecondary:#868686;--vi-role-InkSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-role-Action:#2269CF;--vi-role-Action:color(xyz-d65 0.17 0.15 0.61);--vi-role-ActionTint:#F9F9F9;--vi-role-ActionTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-NavyTint:#F9F9F9;--vi-role-NavyTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-SurfaceCard:#F9F9F9;--vi-role-SurfaceCard:color(xyz-d65 0.898 0.945 1.029);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#F9F9F9;--vi-role-SurfaceTrack:color(xyz-d65 0.898 0.945 1.029);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#F9F9F9;--vi-role-SurfacePage:color(xyz-d65 0.898 0.945 1.029);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#1C191A;--vi-role-TextPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#868686;--vi-role-TextSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#2269CF;--vi-role-AccentRole:color(xyz-d65 0.17 0.15 0.61);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#2269CF;--vi-role-ActionRole:color(xyz-d65 0.17 0.15 0.61);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#D2D2D2;--vi-role-LineRole:color(xyz-d65 0.613 0.645 0.702);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#1C191A;--vi-role-OnAccent:color(xyz-d65 0.01 0.01 0.011);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#F9F9F9;--vi-role-ActionTintRole:color(xyz-d65 0.898 0.945 1.029);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#1C191A;--vi-role-OnActionRole:color(xyz-d65 0.01 0.01 0.011);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#007D36;--vi-role-StatusMark:color(xyz-d65 0.08 0.15 0.06);--vi-role-Ok:#007D36;--vi-role-Ok:color(xyz-d65 0.08 0.15 0.06);--vi-role-Bad:#BF4035;--vi-role-Bad:color(xyz-d65 0.24 0.15 0.05);--vi-role-KnownName:#8D48D3;--vi-role-KnownName:color(xyz-d65 0.25 0.15 0.63);--vi-role-LocalType:#00749E;--vi-role-LocalType:color(xyz-d65 0.124 0.15 0.346);}\\n@media (prefers-color-scheme: dark) {:root {--vi-role-Ink:#CECFCF;--vi-role-Ink:color(xyz-d65 0.59 0.621 0.676);--vi-role-Paper:#1C191A;--vi-role-Paper:color(xyz-d65 0.01 0.01 0.011);--vi-role-Mist:#1C191A;--vi-role-Mist:color(xyz-d65 0.01 0.01 0.011);--vi-role-Accent:#1C191A;--vi-role-Accent:color(xyz-d65 0.01 0.01 0.011);--vi-role-Muted:#878788;--vi-role-Muted:color(xyz-d65 0.232 0.244 0.266);--vi-role-Line:#403F3F;--vi-role-Line:color(xyz-d65 0.048 0.05 0.054);--vi-role-InkPrimary:#CECFCF;--vi-role-InkPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-role-InkSecondary:#878788;--vi-role-InkSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-role-Action:#9DADD7;--vi-role-Action:color(xyz-d65 0.412 0.419 0.705);--vi-role-ActionTint:#1C191A;--vi-role-ActionTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-NavyTint:#1C191A;--vi-role-NavyTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-SurfaceCard:#1C191A;--vi-role-SurfaceCard:color(xyz-d65 0.01 0.01 0.011);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#1C191A;--vi-role-SurfaceTrack:color(xyz-d65 0.01 0.01 0.011);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#1C191A;--vi-role-SurfacePage:color(xyz-d65 0.01 0.01 0.011);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#CECFCF;--vi-role-TextPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#878788;--vi-role-TextSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#9DADD7;--vi-role-AccentRole:color(xyz-d65 0.412 0.419 0.705);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#9DADD7;--vi-role-ActionRole:color(xyz-d65 0.412 0.419 0.705);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#403F3F;--vi-role-LineRole:color(xyz-d65 0.048 0.05 0.054);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#CECFCF;--vi-role-OnAccent:color(xyz-d65 0.59 0.621 0.676);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#1C191A;--vi-role-ActionTintRole:color(xyz-d65 0.01 0.01 0.011);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#CECFCF;--vi-role-OnActionRole:color(xyz-d65 0.59 0.621 0.676);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#24C75B;--vi-role-StatusMark:color(xyz-d65 0.23 0.419 0.168);--vi-role-Ok:#24C75B;--vi-role-Ok:color(xyz-d65 0.23 0.419 0.168);--vi-role-Bad:#E39F60;--vi-role-Bad:color(xyz-d65 0.461 0.419 0.168);--vi-role-KnownName:#B9A5D6;--vi-role-KnownName:color(xyz-d65 0.454 0.419 0.691);--vi-role-LocalType:#2BBECF;--vi-role-LocalType:color(xyz-d65 0.307 0.419 0.656);}}\";",
+      "occurrence": 1,
+      "class": "declared-input",
+      "reason": "Generated CSS aliases read Worlds/Documentation/binding.json from its declared gate style pin; these are SDK slot names, not company palette values or behavior."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 7,
+      "name": "--vi-text-primary:var(--vi-role-TextPrimary);",
+      "text": "var ROLE_CSS = \":root {--vi-role-Ink:#1C191A;--vi-role-Ink:color(xyz-d65 0.01 0.01 0.011);--vi-role-Paper:#F9F9F9;--vi-role-Paper:color(xyz-d65 0.898 0.945 1.029);--vi-role-Mist:#F9F9F9;--vi-role-Mist:color(xyz-d65 0.898 0.945 1.029);--vi-role-Accent:#F9F9F9;--vi-role-Accent:color(xyz-d65 0.898 0.945 1.029);--vi-role-Muted:#868686;--vi-role-Muted:color(xyz-d65 0.228 0.24 0.261);--vi-role-Line:#D2D2D2;--vi-role-Line:color(xyz-d65 0.613 0.645 0.702);--vi-role-InkPrimary:#1C191A;--vi-role-InkPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-role-InkSecondary:#868686;--vi-role-InkSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-role-Action:#2269CF;--vi-role-Action:color(xyz-d65 0.17 0.15 0.61);--vi-role-ActionTint:#F9F9F9;--vi-role-ActionTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-NavyTint:#F9F9F9;--vi-role-NavyTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-SurfaceCard:#F9F9F9;--vi-role-SurfaceCard:color(xyz-d65 0.898 0.945 1.029);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#F9F9F9;--vi-role-SurfaceTrack:color(xyz-d65 0.898 0.945 1.029);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#F9F9F9;--vi-role-SurfacePage:color(xyz-d65 0.898 0.945 1.029);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#1C191A;--vi-role-TextPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#868686;--vi-role-TextSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#2269CF;--vi-role-AccentRole:color(xyz-d65 0.17 0.15 0.61);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#2269CF;--vi-role-ActionRole:color(xyz-d65 0.17 0.15 0.61);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#D2D2D2;--vi-role-LineRole:color(xyz-d65 0.613 0.645 0.702);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#1C191A;--vi-role-OnAccent:color(xyz-d65 0.01 0.01 0.011);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#F9F9F9;--vi-role-ActionTintRole:color(xyz-d65 0.898 0.945 1.029);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#1C191A;--vi-role-OnActionRole:color(xyz-d65 0.01 0.01 0.011);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#007D36;--vi-role-StatusMark:color(xyz-d65 0.08 0.15 0.06);--vi-role-Ok:#007D36;--vi-role-Ok:color(xyz-d65 0.08 0.15 0.06);--vi-role-Bad:#BF4035;--vi-role-Bad:color(xyz-d65 0.24 0.15 0.05);--vi-role-KnownName:#8D48D3;--vi-role-KnownName:color(xyz-d65 0.25 0.15 0.63);--vi-role-LocalType:#00749E;--vi-role-LocalType:color(xyz-d65 0.124 0.15 0.346);}\\n@media (prefers-color-scheme: dark) {:root {--vi-role-Ink:#CECFCF;--vi-role-Ink:color(xyz-d65 0.59 0.621 0.676);--vi-role-Paper:#1C191A;--vi-role-Paper:color(xyz-d65 0.01 0.01 0.011);--vi-role-Mist:#1C191A;--vi-role-Mist:color(xyz-d65 0.01 0.01 0.011);--vi-role-Accent:#1C191A;--vi-role-Accent:color(xyz-d65 0.01 0.01 0.011);--vi-role-Muted:#878788;--vi-role-Muted:color(xyz-d65 0.232 0.244 0.266);--vi-role-Line:#403F3F;--vi-role-Line:color(xyz-d65 0.048 0.05 0.054);--vi-role-InkPrimary:#CECFCF;--vi-role-InkPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-role-InkSecondary:#878788;--vi-role-InkSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-role-Action:#9DADD7;--vi-role-Action:color(xyz-d65 0.412 0.419 0.705);--vi-role-ActionTint:#1C191A;--vi-role-ActionTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-NavyTint:#1C191A;--vi-role-NavyTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-SurfaceCard:#1C191A;--vi-role-SurfaceCard:color(xyz-d65 0.01 0.01 0.011);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#1C191A;--vi-role-SurfaceTrack:color(xyz-d65 0.01 0.01 0.011);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#1C191A;--vi-role-SurfacePage:color(xyz-d65 0.01 0.01 0.011);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#CECFCF;--vi-role-TextPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#878788;--vi-role-TextSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#9DADD7;--vi-role-AccentRole:color(xyz-d65 0.412 0.419 0.705);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#9DADD7;--vi-role-ActionRole:color(xyz-d65 0.412 0.419 0.705);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#403F3F;--vi-role-LineRole:color(xyz-d65 0.048 0.05 0.054);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#CECFCF;--vi-role-OnAccent:color(xyz-d65 0.59 0.621 0.676);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#1C191A;--vi-role-ActionTintRole:color(xyz-d65 0.01 0.01 0.011);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#CECFCF;--vi-role-OnActionRole:color(xyz-d65 0.59 0.621 0.676);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#24C75B;--vi-role-StatusMark:color(xyz-d65 0.23 0.419 0.168);--vi-role-Ok:#24C75B;--vi-role-Ok:color(xyz-d65 0.23 0.419 0.168);--vi-role-Bad:#E39F60;--vi-role-Bad:color(xyz-d65 0.461 0.419 0.168);--vi-role-KnownName:#B9A5D6;--vi-role-KnownName:color(xyz-d65 0.454 0.419 0.691);--vi-role-LocalType:#2BBECF;--vi-role-LocalType:color(xyz-d65 0.307 0.419 0.656);}}\";",
+      "occurrence": 1,
+      "class": "declared-input",
+      "reason": "Generated CSS aliases read Worlds/Documentation/binding.json from its declared gate style pin; these are SDK slot names, not company palette values or behavior."
+    },
+    {
+      "path": "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/footer.html",
+      "channel": "text",
+      "line": 7,
+      "name": "--vi-text-secondary:var(--vi-role-TextSecondary);",
+      "text": "var ROLE_CSS = \":root {--vi-role-Ink:#1C191A;--vi-role-Ink:color(xyz-d65 0.01 0.01 0.011);--vi-role-Paper:#F9F9F9;--vi-role-Paper:color(xyz-d65 0.898 0.945 1.029);--vi-role-Mist:#F9F9F9;--vi-role-Mist:color(xyz-d65 0.898 0.945 1.029);--vi-role-Accent:#F9F9F9;--vi-role-Accent:color(xyz-d65 0.898 0.945 1.029);--vi-role-Muted:#868686;--vi-role-Muted:color(xyz-d65 0.228 0.24 0.261);--vi-role-Line:#D2D2D2;--vi-role-Line:color(xyz-d65 0.613 0.645 0.702);--vi-role-InkPrimary:#1C191A;--vi-role-InkPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-role-InkSecondary:#868686;--vi-role-InkSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-role-Action:#2269CF;--vi-role-Action:color(xyz-d65 0.17 0.15 0.61);--vi-role-ActionTint:#F9F9F9;--vi-role-ActionTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-NavyTint:#F9F9F9;--vi-role-NavyTint:color(xyz-d65 0.898 0.945 1.029);--vi-role-SurfaceCard:#F9F9F9;--vi-role-SurfaceCard:color(xyz-d65 0.898 0.945 1.029);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#F9F9F9;--vi-role-SurfaceTrack:color(xyz-d65 0.898 0.945 1.029);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#F9F9F9;--vi-role-SurfacePage:color(xyz-d65 0.898 0.945 1.029);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#1C191A;--vi-role-TextPrimary:color(xyz-d65 0.01 0.01 0.011);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#868686;--vi-role-TextSecondary:color(xyz-d65 0.228 0.24 0.261);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#2269CF;--vi-role-AccentRole:color(xyz-d65 0.17 0.15 0.61);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#2269CF;--vi-role-ActionRole:color(xyz-d65 0.17 0.15 0.61);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#D2D2D2;--vi-role-LineRole:color(xyz-d65 0.613 0.645 0.702);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#1C191A;--vi-role-OnAccent:color(xyz-d65 0.01 0.01 0.011);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#F9F9F9;--vi-role-ActionTintRole:color(xyz-d65 0.898 0.945 1.029);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#1C191A;--vi-role-OnActionRole:color(xyz-d65 0.01 0.01 0.011);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#007D36;--vi-role-StatusMark:color(xyz-d65 0.08 0.15 0.06);--vi-role-Ok:#007D36;--vi-role-Ok:color(xyz-d65 0.08 0.15 0.06);--vi-role-Bad:#BF4035;--vi-role-Bad:color(xyz-d65 0.24 0.15 0.05);--vi-role-KnownName:#8D48D3;--vi-role-KnownName:color(xyz-d65 0.25 0.15 0.63);--vi-role-LocalType:#00749E;--vi-role-LocalType:color(xyz-d65 0.124 0.15 0.346);}\\n@media (prefers-color-scheme: dark) {:root {--vi-role-Ink:#CECFCF;--vi-role-Ink:color(xyz-d65 0.59 0.621 0.676);--vi-role-Paper:#1C191A;--vi-role-Paper:color(xyz-d65 0.01 0.01 0.011);--vi-role-Mist:#1C191A;--vi-role-Mist:color(xyz-d65 0.01 0.01 0.011);--vi-role-Accent:#1C191A;--vi-role-Accent:color(xyz-d65 0.01 0.01 0.011);--vi-role-Muted:#878788;--vi-role-Muted:color(xyz-d65 0.232 0.244 0.266);--vi-role-Line:#403F3F;--vi-role-Line:color(xyz-d65 0.048 0.05 0.054);--vi-role-InkPrimary:#CECFCF;--vi-role-InkPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-role-InkSecondary:#878788;--vi-role-InkSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-role-Action:#9DADD7;--vi-role-Action:color(xyz-d65 0.412 0.419 0.705);--vi-role-ActionTint:#1C191A;--vi-role-ActionTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-NavyTint:#1C191A;--vi-role-NavyTint:color(xyz-d65 0.01 0.01 0.011);--vi-role-SurfaceCard:#1C191A;--vi-role-SurfaceCard:color(xyz-d65 0.01 0.01 0.011);--vi-surface-card:var(--vi-role-SurfaceCard);--vi-role-SurfaceTrack:#1C191A;--vi-role-SurfaceTrack:color(xyz-d65 0.01 0.01 0.011);--vi-surface-track:var(--vi-role-SurfaceTrack);--vi-role-SurfacePage:#1C191A;--vi-role-SurfacePage:color(xyz-d65 0.01 0.01 0.011);--vi-surface-page:var(--vi-role-SurfacePage);--vi-role-TextPrimary:#CECFCF;--vi-role-TextPrimary:color(xyz-d65 0.59 0.621 0.676);--vi-text-primary:var(--vi-role-TextPrimary);--vi-role-TextSecondary:#878788;--vi-role-TextSecondary:color(xyz-d65 0.232 0.244 0.266);--vi-text-secondary:var(--vi-role-TextSecondary);--vi-role-AccentRole:#9DADD7;--vi-role-AccentRole:color(xyz-d65 0.412 0.419 0.705);--vi-accent:var(--vi-role-AccentRole);--vi-role-ActionRole:#9DADD7;--vi-role-ActionRole:color(xyz-d65 0.412 0.419 0.705);--vi-action:var(--vi-role-ActionRole);--vi-role-LineRole:#403F3F;--vi-role-LineRole:color(xyz-d65 0.048 0.05 0.054);--vi-line:var(--vi-role-LineRole);--vi-role-OnAccent:#CECFCF;--vi-role-OnAccent:color(xyz-d65 0.59 0.621 0.676);--vi-on-accent:var(--vi-role-OnAccent);--vi-role-ActionTintRole:#1C191A;--vi-role-ActionTintRole:color(xyz-d65 0.01 0.01 0.011);--vi-action-tint:var(--vi-role-ActionTintRole);--vi-role-OnActionRole:#CECFCF;--vi-role-OnActionRole:color(xyz-d65 0.59 0.621 0.676);--vi-on-action:var(--vi-role-OnActionRole);--vi-role-StatusMark:#24C75B;--vi-role-StatusMark:color(xyz-d65 0.23 0.419 0.168);--vi-role-Ok:#24C75B;--vi-role-Ok:color(xyz-d65 0.23 0.419 0.168);--vi-role-Bad:#E39F60;--vi-role-Bad:color(xyz-d65 0.461 0.419 0.168);--vi-role-KnownName:#B9A5D6;--vi-role-KnownName:color(xyz-d65 0.454 0.419 0.691);--vi-role-LocalType:#2BBECF;--vi-role-LocalType:color(xyz-d65 0.307 0.419 0.656);}}\";",
+      "occurrence": 1,
+      "class": "declared-input",
+      "reason": "Generated CSS aliases read Worlds/Documentation/binding.json from its declared gate style pin; these are SDK slot names, not company palette values or behavior."
     }
   ],
   "behavior_probes": [

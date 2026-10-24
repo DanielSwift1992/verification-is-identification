@@ -1,3 +1,5 @@
+// Surface-history citations are historical scope, not current SDK contracts.
+// Source: vi@f95b6c69d5ad49ede6cf953b8be42e725bde6ba6 Sources/DocumentKit/SurfaceLaw.swift; SHA-256 d51b07d4195eddee64d0a3e7daf91dc6667bc4c79665c53249222b8350dc4881.
 import Foundation
 import Court
 
@@ -12,8 +14,8 @@ import Court
 //              tree-sort command plugin.
 //   grammar    the grammar mirror: carries a file's source as typed atoms and lets the
 //              child build's conformances judge it, per file, per scope. Supersedes the
-//              old regex-based `surface`/`angles`/`layout` checks (retired: their §0′/§S4/
-//              §S22 rules are now this checker's schema, more precisely, per file).
+//              old regex-based `surface`/`angles`/`layout` checks (retired: their §0′/[Surface history S4](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L65)/
+//              [Surface history S22](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L322) rules are now this checker's schema, more precisely, per file).
 //   census     count declarations per target: the "almost no functions" claim, as a number.
 //   voice      the lexical baseline gate: candidate counts per scope do not exceed authored pins.
 //   site       build the combined DocC archive and serve it locally (`site fast` skips checks).

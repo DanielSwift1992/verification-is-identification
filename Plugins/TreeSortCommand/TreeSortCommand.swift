@@ -18,6 +18,13 @@ struct TreeSortCommand: CommandPlugin {
             Diagnostics.error("VerificationIsIdentification target not found")
             return
         }
+        guard let notation = context.package.targets.first(where: { $0.name == "Notation" }) else {
+            Diagnostics.error("Notation target not found")
+            return
+        }
+        _ = try packageManager.getSymbolGraph(
+            for: notation,
+            options: .init(minimumAccessLevel: .public, includeSynthesized: false, includeSPI: false))
         let result = try packageManager.getSymbolGraph(
             for: theory,
             options: .init(minimumAccessLevel: .public, includeSynthesized: false, includeSPI: false))

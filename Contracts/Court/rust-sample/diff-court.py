@@ -16,7 +16,7 @@ import os
 import subprocess
 import sys
 
-PRIMITIVE = "Sources/VerificationIsIdentification/Primitive.swift"
+PRIMITIVE = "Sources/Notation/Primitive.swift"
 LADDER = "Sources/Examples/RydbergLadder.swift"
 COUNT_ARGS = ["--predicate", "TickCountQuestion", "--encoding", "UnaryArithmeticEncoding", "--sigma", "RydbergLevels"]
 

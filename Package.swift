@@ -5,6 +5,12 @@ let package = Package(
     name: "VerificationIsIdentification",
     platforms: [.macOS(.v13)],
     products: [
+        .library(name: "Notation", targets: ["Notation"]),
+        .library(name: "DocumentKit", targets: ["DocumentKit"]),
+        .library(name: "DocumentKitCertificates", targets: ["DocumentKitCertificates"]),
+        .executable(name: "DocumentKitDemo", targets: ["DocumentKitDemo"]),
+        .executable(name: "FontMetrics", targets: ["FontMetrics"]),
+
         // VerificationIsIdentification: all papers as type-level protocols + operations.
         .library(name: "VerificationIsIdentification", targets: ["VerificationIsIdentification"]),
 
@@ -43,12 +49,24 @@ let package = Package(
         .package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.0.0"),
     ],
     targets: [
-        // VerificationIsIdentification — all papers, primitives, axes, markers, builder, operations.
+        // Notation carries the shared constructors without dependencies. The theory adds laws.
+        // Notation and the theory are strict-checked by the renames law: attaching LawCheck
+        // would cycle through Tools, which reads both modules.
+        // VerificationIsIdentification — papers, axes, markers and operations.
         // §0′ (pure types, no renames) is now enforced by THE GRAMMAR's scope axis — the six
         // words carry no LatticeToken, Primitive.swift alone is the engine room — so the old
         // LawCheck plugin is off this target (it also closed a dependency cycle once
         // GrammarLexicon started depending on the lattice for real: Close atoms, Never floor).
-        .target(name: "VerificationIsIdentification"),
+        .target(name: "Notation"),
+        .target(name: "VerificationIsIdentification", dependencies: ["Notation"]),
+        .target(name: "DocumentKit", dependencies: ["Notation", "Alphabet"],
+                exclude: ["Resources"],
+                plugins: ["LawCheck"]),
+        .target(name: "DocumentKitCertificates", dependencies: ["DocumentKit", "VerificationIsIdentification"],
+                exclude: ["LawCheck.strict"],
+                plugins: ["LawCheck"]),
+        .executableTarget(name: "DocumentKitDemo", dependencies: ["VerificationIsIdentification", "DocumentKit", "DocumentKitCertificates", "Examples"]),
+        .executableTarget(name: "FontMetrics"),
 
         // `lint` (the construction-law check) and `tree-sort` (the Topics inducer). Depends on
         // GrammarLexicon and Alphabet: Linter.swift (DESIGN15) reads the `Alphabet` registry at
@@ -69,9 +87,9 @@ let package = Package(
         .target(name: "GrammarLexicon", dependencies: ["Alphabet", "VerificationIsIdentification"]),
 
         // The character vocabulary the showcase's DocumentKit and GrammarLexicon's stream both read —
-        // depends on VerificationIsIdentification only (Open/Close/LintAtom's floor), never on
+        // depends on Notation only (Open/Close/LintAtom's floor), never on
         // either of its two consumers, so neither can cycle importing it.
-        .target(name: "Alphabet", dependencies: ["VerificationIsIdentification"]),
+        .target(name: "Alphabet", dependencies: ["Notation"]),
 
         // Structural enforcement of THE LAW, wired into the build itself.
         .plugin(name: "LawCheck", capability: .buildTool(), dependencies: ["Tools"]),
@@ -87,6 +105,8 @@ let package = Package(
 
         // The law applied: physical instances, concrete witnesses, type-level demos.
         .target(name: "Examples", dependencies: ["VerificationIsIdentification"]),
+
+        .testTarget(name: "NotationTests", dependencies: ["VerificationIsIdentification"]),
 
         .testTarget(name: "CourtTests", dependencies: ["Court"]),
 

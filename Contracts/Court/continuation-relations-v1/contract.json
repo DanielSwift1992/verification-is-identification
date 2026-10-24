@@ -292,7 +292,7 @@
   },
   "image": {
     "fixture": "image-cases.swift",
-    "sha256": "d72bc5e203376ae5a0d5e5feabdfedcfc8844455682ace8260006a25fad21a2e",
+    "sha256": "601a68109fd52736a6e7e0be8cdced460aad5ad658bc4fd6efe47cd7e86c907e",
     "cases": [
       {
         "request": "PermutedPromise",
@@ -376,7 +376,7 @@
       },
       {
         "request": "ImageTemplateIsNotAChoice",
-        "holds": true
+        "address": "ImageTemplateIsNotAChoice.Image"
       },
       {
         "request": "HiddenDifferentOutputShape",
@@ -401,6 +401,14 @@
       {
         "request": "OmittedSortImage",
         "holds": true
+      },
+      {
+        "request": "JointLeft",
+        "holds": true
+      },
+      {
+        "request": "JointRight",
+        "holds": false
       }
     ]
   },

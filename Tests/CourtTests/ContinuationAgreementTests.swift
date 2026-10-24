@@ -281,12 +281,12 @@ final class ContinuationAgreementTests: XCTestCase {
         let image = try C.deriveImage("PermutedPromise", source: world("image-cases.swift"))
         XCTAssertThrowsError(try C.decodeAgreement(C.encodeImage(image)))
     }
-    func testAcceptedFormat6KeepsCanonicalBytes() throws {
+    func testReviewedFormat6KeepsCanonicalBytes() throws {
         let data = try Data(contentsOf: root.appendingPathComponent(directory + "compatibility.json"))
         let manifest = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
         let section = try XCTUnwrap(manifest["imageArchives"] as? [String: Any])
         let cases = try XCTUnwrap(section["cases"] as? [[String: Any]])
-        XCTAssertEqual(cases.count, 21)
+        XCTAssertEqual(cases.count, 22)
         let source = try world("image-cases.swift")
         for entry in cases {
             let request = try XCTUnwrap(entry["request"] as? String)
@@ -294,7 +294,7 @@ final class ContinuationAgreementTests: XCTestCase {
             let raw = try C.encodeImage(p)
             XCTAssertEqual(courtSHA256(raw), entry["sha256"] as? String, request)
             XCTAssertEqual(try C.verifyImage(request, certificate: C.decodeImage(raw), source: source), entry["holds"] as? Bool)
-            print("T0102 compatibility \(request): canonical format-6 archive unchanged")
+            print("T0102 compatibility \(request): reviewed canonical format-6 archive unchanged")
         }
     }
 }

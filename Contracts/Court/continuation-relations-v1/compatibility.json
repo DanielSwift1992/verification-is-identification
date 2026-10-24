@@ -296,134 +296,140 @@
     ]
   },
   "imageArchives": {
-    "origin": "Accepted T0100 1fd8e211e72fc8332cf99a6042d265599093a291 canonical archives, without CLI trailing newline",
-    "source_index_sha256": "1a9cc00d8349b94b00d092cb36f0f6632bfa11d04ae1d883f4babc119e1d2662",
+    "origin": "R0100Opus pre-publication repair after cab052ce5ba693bf92c0c2f6ca4837d1f3a9c5cb; canonical format-6 archives without CLI trailing newline",
+    "source_index_sha256": "4af944649d61e79a723e0124d876f3765a9a15c7685de58a06f5a1f574ffa71e",
     "cases": [
       {
         "request": "PermutedPromise",
         "fixture": "image-cases.swift",
         "holds": true,
-        "sha256": "b369ca84077cc557737eb65759b8e4073da4977e33bd287f32391c23d26d2a7e"
+        "sha256": "e6d5b741e486ae0ea0e183e0c4a6dc2bee1ef182467e6108d53604ca105be7fc"
       },
       {
         "request": "PermutedOldRelation",
         "fixture": "image-cases.swift",
         "holds": false,
-        "sha256": "ead557748668d0933e6e875a90d16528d926af3e171de34399cbca55aebc867f"
+        "sha256": "0032038111d5502a12359499dc64dd6003e6f051f10730c0b829a3988264308e"
       },
       {
         "request": "IndependentPromise",
         "fixture": "image-cases.swift",
         "holds": false,
-        "sha256": "53649f1049c773f400f6c5b308cd0b36c17077502fa6bef34fd40baf4345d7a7"
+        "sha256": "d261f1b244948bcb9008cb56dfbf4124d4d7720c0b400a498d08c0673a88cdec"
       },
       {
         "request": "UnrestrictedImage",
         "fixture": "image-cases.swift",
         "holds": true,
-        "sha256": "7d12f8593c8a323fed82dab929c1f30ac2465546f0e372c6f6c840432fb03093"
+        "sha256": "30844eb399a5f3e395ccbfbca12b5bf99b4f405a1068dcccd5435148cb770075"
       },
       {
         "request": "DuplicateImage",
         "fixture": "image-cases.swift",
         "holds": true,
-        "sha256": "356cec01cd9275f66c5abc3aaeb27b4ffa9b3962bff52f475a792534fd71a69d"
+        "sha256": "05802e645f2cbc893096e18a41c4851d4faf29c98e47de134712986f0104b474"
       },
       {
         "request": "DuplicateOutputPlaces",
         "fixture": "image-cases.swift",
         "holds": true,
-        "sha256": "947c13019730731f80131ef66d46fd01865878a7095d6603dabeae32f158468e"
+        "sha256": "de19a8f41b3577c37cd4e63705459b104fbd2789b9e8419bcaf6d6fd9191f5ca"
       },
       {
         "request": "LeftMarginal",
         "fixture": "image-cases.swift",
         "holds": true,
-        "sha256": "e63d2ca5b9d9eee173b11d15744920ac5a4501550d9eca7bbef3c86c51197bc5"
+        "sha256": "362826ec6b3cb5948d266f7686dcd630e000e8316228e95fe985041bdd070c8d"
       },
       {
         "request": "RightMarginal",
         "fixture": "image-cases.swift",
         "holds": true,
-        "sha256": "84e6095d6a99d52754dd7ef6d3d57b0e9b027e1ae71d666dc8aec517d35f104e"
+        "sha256": "9d03f0cdf091e1c3f1254aebb35785574725001045192883fc9b8404aef9f4f3"
       },
       {
         "request": "AliasedImage",
         "fixture": "image-cases.swift",
         "holds": true,
-        "sha256": "5c355faf8837e9e9ae1dc984de32effefd4798e66a999df57d50104cc8af8caa"
+        "sha256": "5a569ba9e4a636d978468c770374c87f336f7aaedafc5c6f2b24c0d2328d83e5"
       },
       {
         "request": "TwoSortImage",
         "fixture": "image-cases.swift",
         "holds": true,
-        "sha256": "5549f42a3daa13b5867aeea9bc33480885b8edce9dcfe39884c56dca911ce7be"
+        "sha256": "f8f848cc30b78571ffb399a055684ee690b51e707f9cf419be514c230dcbf542"
       },
       {
         "request": "ScalarImage",
         "fixture": "image-cases.swift",
         "holds": true,
-        "sha256": "d5d399843bf99937197843ec928cc9d68ba9ece023e587448bd16da58a6b636c"
+        "sha256": "db25974bd928f8225ced7228d8fc3f20a3360147e4b72691df4138d5ea6d8ca3"
       },
       {
         "request": "ChainedImage",
         "fixture": "image-cases.swift",
         "holds": true,
-        "sha256": "123c2307e3afa6a56d0ed6147ef9aebdf23c03f5470a5d3adde8803f8a590640"
+        "sha256": "e509c4a2e10d7b9c5b3823a225aea4099ecc42884e1bb952b7eeff353c84ace2"
       },
       {
         "request": "OmittedIndependentPlaces",
         "fixture": "image-cases.swift",
         "holds": true,
-        "sha256": "358fe6dd23415fdece8d6f6e9ad3f5b5fc3461411f6156673e86380ae13dda11"
+        "sha256": "6ce1b6f085d09f5f17dd10049225570fc5877df6e688ba4f4932c5edc273ca50"
       },
       {
         "request": "HiddenPairPromise",
         "fixture": "image-cases.swift",
         "holds": true,
-        "sha256": "0293ed560af20c3a90f917cac183a7259e98e96e888fc9ebd5100717ddd67ca2"
+        "sha256": "610c76fa6a4bb31fc20f4424ee230add44344e89c9ddbb120c197efd3b201036"
       },
       {
         "request": "HiddenMixedPromise",
         "fixture": "image-cases.swift",
         "holds": false,
-        "sha256": "baadab1750b8373be7077caacd42905850cc951079891896987a39edaaa40e3f"
-      },
-      {
-        "request": "ImageTemplateIsNotAChoice",
-        "fixture": "image-cases.swift",
-        "holds": true,
-        "sha256": "b342c5afe8694919f5cb5859c9a2fab3f33ca3f2991f7fed05b19e1651a68b6a"
+        "sha256": "0075e3bd858aae2e4ebf647d8a7d0bf4f4bd76c0771ce49dc166e9ba8c0c4906"
       },
       {
         "request": "HiddenDifferentOutputShape",
         "fixture": "image-cases.swift",
         "holds": true,
-        "sha256": "2cce0f6d939dfd5a34ccf6fb0067e826c8fd045446d9945332e8c30105913c67"
+        "sha256": "14d7577c04fc4d3de7336739981240aff72f318c4426d0bd5deb15056cb25d98"
       },
       {
         "request": "HiddenScalarOutput",
         "fixture": "image-cases.swift",
         "holds": true,
-        "sha256": "888dad770151b99ecdb962ab28c05c3e73d7456b79789452b9486339c18c6806"
+        "sha256": "583858086960337ae614c35a6a31027b185f8175684cee933ad2b1ce3447dfba"
       },
       {
         "request": "MultiImagePromise",
         "fixture": "image-cases.swift",
         "holds": true,
-        "sha256": "f075ec098101a61f300f04ce974025e4df427778ba54c8627b148b174d2e19ba"
+        "sha256": "ed47ded89ab3c5fb747d7afb157b126dc29410e78889eca579455835a7c271cd"
       },
       {
         "request": "MixedImagePromises",
         "fixture": "image-cases.swift",
         "holds": false,
-        "sha256": "9d68f3d0f2b9baedbf7e749a17ecda54b91bc8f3f64031ffb18a85ee0cd6f076"
+        "sha256": "070c53d31ef3aab5ee262104e5db4fbccbbd9bd24615428eface0e6071d45e67"
       },
       {
         "request": "OmittedSortImage",
         "fixture": "image-cases.swift",
         "holds": true,
-        "sha256": "f0d270cb9988af7c72831cd9aa6b8a8e02e630a9adec5b1f6f33cfcc726f52b4"
+        "sha256": "db5314203aa5e99db0e0dbea22e95679b20079efbfa1d0d4756a85f9f01d114c"
+      },
+      {
+        "request": "JointLeft",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "a017acfd54cf5c695e21d349946fca72a3d92b0c939d30b3d4b8767767f137c3"
+      },
+      {
+        "request": "JointRight",
+        "fixture": "image-cases.swift",
+        "holds": false,
+        "sha256": "5348fb8e2c84bd6c55f4f294b1ceac2c3ff40512f437559104e69338b4e45d92"
       }
     ]
   }

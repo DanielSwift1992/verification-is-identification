@@ -1,7 +1,8 @@
 import Foundation
 
-// U9 derives a marginal image relation. A source completion is existential;
-// this does not acquire an omitted field or construct a source/output graph.
+// U9 derives the relation of the declared Image; a source completion is existential.
+// Paired<Source, P> gives the joint graph. A marginal cut neither adds identity
+// nor passes its relation to a continuation, and acquires no omitted field.
 extension ContinuationCourt {
     enum ImagePromise: Codable {
         case holds([EqualityBasis])
@@ -11,7 +12,7 @@ extension ContinuationCourt {
         var member: Path
         var classes: [PartitionClass]
         // An injective list of exact Source E-class indices, one per output block.
-        var origins: [Int]
+        var sourceClassIndices: [Int]
         // Source paths from each block's first output origin to its other origins.
         var connections: [[EqualityBasis]]
         var promise: ImagePromise
@@ -70,6 +71,9 @@ extension ContinuationCourt {
             let family = try readCut(proof, field: "HiddenActions", whole: whole, context: c)
             members = try actionMembers(family, source: whole.source,
                                         address: request + ".HiddenActions", output: output)
+            guard (members.contains { $0.image == image }) else {
+                throw Failure(request + ".Image: expected the same source places as a HiddenActions member")
+            }
         }
         try checkWholeAxes(certificate.source,
             routes: [certificate.image] + (certificate.equalities.map { [$0] } ?? [])
@@ -80,7 +84,7 @@ extension ContinuationCourt {
     }
     static func constructInducedImage(_ member: ActionMember, reading r: ImageReading,
                                        blocks: [Path: Int], budget: inout ActionBudget) throws -> InducedImage {
-        var classes: [PartitionClass] = [], origins: [Int] = [], indices: [Int: Int] = [:]
+        var classes: [PartitionClass] = [], sourceClassIndices: [Int] = [], indices: [Int: Int] = [:]
         for leaf in member.image.leaves {
             try budget.spend(at: "construction.image.partition")
             guard let sourceClass = blocks[leaf.source] else { throw Failure("construction.image: missing source class") }
@@ -88,7 +92,7 @@ extension ContinuationCourt {
                 classes[block].leaves.append(leaf.output)
             } else {
                 indices[sourceClass] = classes.count
-                origins.append(sourceClass)
+                sourceClassIndices.append(sourceClass)
                 classes.append(.init(sort: try r.whole.sort(leaf.source), leaves: [leaf.output]))
             }
         }
@@ -104,12 +108,12 @@ extension ContinuationCourt {
             try budget.spend(at: "construction.image.promise")
             let a = try member.imageOf(edge.left), b = try member.imageOf(edge.right)
             if blocks[a] != blocks[b] {
-                return .init(member: member.address, classes: classes, origins: origins,
+                return .init(member: member.address, classes: classes, sourceClassIndices: sourceClassIndices,
                              connections: connections, promise: .violated(edge: edge.address))
             }
             bases.append(try constructionBasis(a, b, reading: r.relation, budget: &budget))
         }
-        return .init(member: member.address, classes: classes, origins: origins,
+        return .init(member: member.address, classes: classes, sourceClassIndices: sourceClassIndices,
                      connections: connections, promise: .holds(bases))
     }
     static func deriveImage(_ request: String, source: StructuralSource,
@@ -149,9 +153,9 @@ extension ContinuationCourt {
         guard proof.member == member.address else { throw Failure(at + ".member: different declared member") }
         let output = WholeReading(source: r.output, edges: [])
         _ = try verifyPartition(proof.classes, whole: output, at: at + ".classes")
-        guard proof.origins.count == proof.classes.count,
-              Set(proof.origins).count == proof.origins.count else {
-            throw Failure(at + ".origins: expected distinct source classes for different output blocks")
+        guard proof.sourceClassIndices.count == proof.classes.count,
+              Set(proof.sourceClassIndices).count == proof.sourceClassIndices.count else {
+            throw Failure(at + ".sourceClassIndices: expected distinct source classes for different output blocks")
         }
         guard proof.connections.count == proof.classes.count else {
             throw Failure(at + ".connections: incomplete output class coverage")
@@ -166,7 +170,7 @@ extension ContinuationCourt {
             for (offset, leaf) in block.leaves.enumerated() {
                 try budget.spend(at: here)
                 let origin = try member.imageOf(leaf)
-                guard sourceBlocks[origin] == proof.origins[index] else {
+                guard sourceBlocks[origin] == proof.sourceClassIndices[index] else {
                     throw Failure(here + ": block is not the induced source class")
                 }
                 if offset > 0 {
@@ -201,18 +205,18 @@ extension ContinuationCourt {
                              constructor: String = "Paired") throws -> Bool {
         let r = try imageReading(request, certificate: certificate, source: source, constructor: constructor)
         var budget = ActionBudget()
-        try budget.spend(r.whole.source.leaves.count + r.whole.edges.count, at: "certificate.image")
-        let blocks = try verifyPartition(certificate.classes, whole: r.whole, at: "certificate.image.sourceClasses")
+        try budget.spend(r.whole.source.leaves.count + r.whole.edges.count, at: "certificate")
+        let blocks = try verifyPartition(certificate.classes, whole: r.whole, at: "certificate.classes")
         let edges = Dictionary(uniqueKeysWithValues: r.whole.edges.map { ($0.address, $0) })
         try verifyEForests(certificate.connections, classes: certificate.classes,
-                          edges: edges, at: "certificate.image.sourceConnections")
+                          edges: edges, at: "certificate.connections")
         guard certificate.images.count == r.members.count else {
-            throw Failure("certificate.image.images: incomplete member coverage")
+            throw Failure("certificate.images: incomplete member coverage")
         }
         var holds = true
         for (index, pair) in zip(certificate.images, r.members).enumerated() {
             let result = try verifyInducedImage(pair.0, member: pair.1, reading: r,
-                sourceBlocks: blocks, edges: edges, at: "certificate.image.images[\(index)]", budget: &budget)
+                sourceBlocks: blocks, edges: edges, at: "certificate.images[\(index)]", budget: &budget)
             holds = result && holds
         }
         return holds

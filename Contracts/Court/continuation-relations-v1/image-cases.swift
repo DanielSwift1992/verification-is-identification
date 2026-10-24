@@ -38,6 +38,16 @@ enum RightMarginal<S: Structure> {
     typealias Source = Paired<S, S>
     typealias Image = Source.Right
 }
+enum JointLeft<S: Structure> {
+    typealias Source = Paired<S, S>
+    typealias Image = Paired<Source, Source.Left>
+    typealias Promise = Paired<Image.Left.Left, Image.Right>
+}
+enum JointRight<S: Structure> {
+    typealias Source = Paired<S, S>
+    typealias Image = Paired<Source, Source.Right>
+    typealias Promise = Paired<Image.Left.Left, Image.Right>
+}
 enum AliasedImage<S: Structure> {
     typealias Source = Paired<S, S>
     typealias Swapped = Paired<Source.Right, Source.Left>
@@ -108,7 +118,7 @@ enum ImageTemplateIsNotAChoice<S: Structure> {
 }
 enum HiddenDifferentOutputShape<S: Structure> {
     typealias Source = Paired<S, Paired<S, S>>
-    typealias Image = Paired<Source.Left, Source.Right.Left>
+    typealias Image = Paired<Source.Left, Source.Left>
     typealias HiddenActions = Paired<Paired<Source.Left, Source.Left>, Paired<Source.Right.Left, Source.Right.Left>>
     typealias Promise = Paired<Image.Left, Image.Right>
 }

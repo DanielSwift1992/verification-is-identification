@@ -47,7 +47,7 @@ final class ContinuationImageTests: XCTestCase {
         XCTAssertEqual(section["sha256"] as? String,
                        courtSHA256(try Data(contentsOf: root.appendingPathComponent(directory + "image-cases.swift"))))
         let cases = try XCTUnwrap(section["cases"] as? [[String: Any]])
-        XCTAssertEqual(cases.count, 27)
+        XCTAssertEqual(cases.count, 29)
         let source = try world()
         for entry in cases {
             let request = try XCTUnwrap(entry["request"] as? String)
@@ -66,7 +66,7 @@ final class ContinuationImageTests: XCTestCase {
     }
     func testDerivedImageReplacesTheUnchangedSourceLaw() throws {
         let p = try proof("PermutedPromise")
-        XCTAssertEqual(p.images[0].origins, [0, 1])
+        XCTAssertEqual(p.images[0].sourceClassIndices, [0, 1])
         XCTAssertEqual(p.images[0].classes[0].leaves, [[.left], [.right, .right]])
         XCTAssertEqual(p.images[0].classes[1].leaves, [[.right, .left]])
         let r = try C.imageReading(p.request, certificate: p, source: world())
@@ -82,14 +82,16 @@ final class ContinuationImageTests: XCTestCase {
         XCTAssertEqual(try proof("DuplicateOutputPlaces").images[0].classes[0].leaves,
                        [[.left], [.right, .left]])
         XCTAssertEqual(try proof("ChainedImage").images[0].classes.count, 1)
-        XCTAssertEqual(try proof("TwoSortImage").images[0].origins, [1, 0])
+        XCTAssertEqual(try proof("TwoSortImage").images[0].sourceClassIndices, [1, 0])
     }
-    func testMarginalImagesKeepOriginsWithoutConstructingTheJointGraph() throws {
+    func testMarginalImagesKeepSelectorOriginsWithoutAddingIdentity() throws {
         let left = try proof("LeftMarginal"), right = try proof("RightMarginal")
         XCTAssertEqual(left.images[0].classes[0].leaves, right.images[0].classes[0].leaves)
         XCTAssertEqual(left.images[0].classes[0].sort, right.images[0].classes[0].sort)
-        XCTAssertEqual(left.images[0].origins, [0])
-        XCTAssertEqual(right.images[0].origins, [1])
+        XCTAssertEqual(left.images[0].sourceClassIndices, [0])
+        XCTAssertEqual(right.images[0].sourceClassIndices, [1])
+        XCTAssertEqual(try C.imageReading(left.request, certificate: left, source: world()).image, .leaf([.left]))
+        XCTAssertEqual(try C.imageReading(right.request, certificate: right, source: world()).image, .leaf([.right]))
         let omitted = try proof("OmittedIndependentPlaces")
         XCTAssertEqual(omitted.classes.count, 3)
         XCTAssertEqual(omitted.images[0].classes.count, 1)
@@ -100,24 +102,71 @@ final class ContinuationImageTests: XCTestCase {
         XCTAssertNotEqual(omittedSort.classes[0].sort, omittedSort.classes[1].sort)
         XCTAssertEqual(omittedSort.images[0].classes.count, 1)
     }
+    func testExplicitJointImagesJudgeTheSourceOutputRelation() throws {
+        let left = try proof("JointLeft"), right = try proof("JointRight")
+        XCTAssertEqual(left.images[0].classes.map(\.leaves),
+                       [[[.left, .left], [.right]], [[.left, .right]]])
+        XCTAssertEqual(right.images[0].classes.map(\.leaves),
+                       [[[.left, .left]], [[.left, .right], [.right]]])
+        XCTAssertEqual(left.images[0].sourceClassIndices, [0, 1])
+        XCTAssertEqual(right.images[0].sourceClassIndices, [0, 1])
+        XCTAssertTrue(try C.verifyImage(left.request, certificate: C.decodeImage(C.encodeImage(left)), source: world()))
+        XCTAssertFalse(try C.verifyImage(right.request, certificate: C.decodeImage(C.encodeImage(right)), source: world()))
+        if case let .violated(edge) = right.images[0].promise { XCTAssertEqual(edge, []) }
+        else { XCTFail("expected the source/output promise to separate") }
+    }
+    func testHiddenImageMustBeAnExactMemberDuringConstructionAndReplay() throws {
+        refuses("template-is-not-a-member", at: "ImageTemplateIsNotAChoice.Image") {
+            _ = try proof("ImageTemplateIsNotAChoice")
+        }
+        let withoutFamily = try world(edit: {
+            $0.replacingOccurrences(of: "    typealias HiddenActions = Paired<Paired<Source.Left, Source.Left>, Paired<Source.Right, Source.Right>>\n", with: "")
+        })
+        let ordinary = try C.deriveImage("ImageTemplateIsNotAChoice", source: withoutFamily)
+        XCTAssertFalse(try C.verifyImage(ordinary.request, certificate: ordinary, source: withoutFamily))
+        let declaration = """
+
+        enum ExactChoice<S: Structure> {
+            typealias Source = Paired<S, S>
+            typealias Equalities = Paired<Source.Left, Source.Right>
+            typealias Image = Source.Left
+            typealias HiddenActions = Paired<Source.Left, Source.Left>
+        }
+        enum AliasChoice<S: Structure> {
+            typealias Source = Paired<S, S>
+            typealias Selected = Source.Right
+            typealias Image = Selected
+            typealias HiddenActions = Paired<Source.Left, Selected>
+        }
+        """
+        let valid = try world(edit: { $0 + declaration })
+        var p = try C.deriveImage("ExactChoice", source: valid)
+        let changed = try world(edit: { $0 + declaration.replacingOccurrences(
+            of: "typealias Image = Source.Left", with: "typealias Image = Source.Right") })
+        let context = try C.Context(p.request, source: changed, constructor: "Paired", requiredFields: ["Source", "Image"])
+        p.image = try C.deriveRoute(.field(context.root, "Image"), context: context)
+        // The new route is live and E-equivalent, but names another Source place.
+        refuses("E-equivalence-is-not-family-membership", at: "ExactChoice.Image") {
+            _ = try C.verifyImage(p.request, certificate: C.decodeImage(C.encodeImage(p)), source: changed)
+        }
+        refuses("nonmember-during-construction", at: "ExactChoice.Image") {
+            _ = try C.deriveImage(p.request, source: changed)
+        }
+        let alias = try C.deriveImage("AliasChoice", source: valid)
+        XCTAssertEqual(alias.images.map(\.member), [[.left], [.right]])
+        XCTAssertTrue(try C.verifyImage(alias.request, certificate: C.decodeImage(C.encodeImage(alias)), source: valid))
+    }
     func testHiddenPromisesDoNotRequireEqualValuesOrAnUnchangedImage() throws {
         let p = try proof("HiddenPairPromise")
         let r = try C.imageReading(p.request, certificate: p, source: world())
         XCTAssertEqual(p.images.map(\.member), [[.left], [.right]])
-        XCTAssertNotEqual(p.images[0].origins, p.images[1].origins)
+        XCTAssertNotEqual(p.images[0].sourceClassIndices, p.images[1].sourceClassIndices)
         let full = C.sourcePlaces(r.whole.source)
         let retained = C.RelatedReading(whole: r.whole, observation: full, question: full, hiddenActions: r.members)
         let oneStep = try C.constructDynamics(retained)
         try C.verifyDynamics(oneStep, reading: retained)
         guard case .disagreement? = oneStep.hidden?.conclusion else { return XCTFail("expected U8 disagreement") }
         XCTAssertTrue(try C.verifyImage(p.request, certificate: p, source: world()))
-        let template = try proof("ImageTemplateIsNotAChoice")
-        XCTAssertTrue(try C.verifyImage(template.request, certificate: template, source: world()))
-        let withoutFamily = try world(edit: {
-            $0.replacingOccurrences(of: "    typealias HiddenActions = Paired<Paired<Source.Left, Source.Left>, Paired<Source.Right, Source.Right>>\n", with: "")
-        })
-        let ordinary = try C.deriveImage(template.request, source: withoutFamily)
-        XCTAssertFalse(try C.verifyImage(ordinary.request, certificate: ordinary, source: withoutFamily))
         let general = try proof("HiddenDifferentOutputShape")
         let generalReading = try C.imageReading(general.request, certificate: general, source: world())
         XCTAssertNotEqual(generalReading.output, generalReading.whole.source)
@@ -157,28 +206,28 @@ final class ContinuationImageTests: XCTestCase {
         try tamper("PermutedPromise", "merged-distinct-source-classes", at: "not the induced source class") {
             $0.images[0].classes[0].leaves.append([.right, .left])
             $0.images[0].classes.removeLast()
-            $0.images[0].origins.removeLast()
+            $0.images[0].sourceClassIndices.removeLast()
             $0.images[0].connections = [[.sourceRelation([.init(edge: [], reversed: false)]), .address]]
         }
-        try tamper("DuplicateImage", "split-one-induced-class", at: ".origins:") {
+        try tamper("DuplicateImage", "split-one-induced-class", at: ".sourceClassIndices:") {
             let sort = $0.images[0].classes[0].sort
             $0.images[0].classes = [.init(sort: sort, leaves: [[.left]]), .init(sort: sort, leaves: [[.right]])]
-            $0.images[0].origins = [0, 0]
+            $0.images[0].sourceClassIndices = [0, 0]
             $0.images[0].connections = [[], []]
         }
         try tamper("DuplicateImage", "split-with-forged-distinct-origins", at: "not the induced source class") {
             let sort = $0.images[0].classes[0].sort
             $0.images[0].classes = [.init(sort: sort, leaves: [[.left]]), .init(sort: sort, leaves: [[.right]])]
-            $0.images[0].origins = [0, 1]
+            $0.images[0].sourceClassIndices = [0, 1]
             $0.images[0].connections = [[], []]
         }
         try tamper("PermutedPromise", "wrong-source-class-index", at: ".classes[0]") {
-            $0.images[0].origins[0] = -1
+            $0.images[0].sourceClassIndices[0] = -1
         }
-        try tamper("PermutedPromise", "missing-source-forest", at: ".sourceConnections[0]") {
+        try tamper("PermutedPromise", "missing-source-forest", at: "certificate.connections[0]") {
             $0.connections[0] = []
         }
-        try tamper("PermutedPromise", "source-partition-breaks-E", at: ".sourceClasses.E:") {
+        try tamper("PermutedPromise", "source-partition-breaks-E", at: "certificate.classes.E:") {
             let sort = $0.classes[0].sort
             $0.classes = [.init(sort: sort, leaves: [[.left]]), .init(sort: sort, leaves: [[.right, .left]]),
                           .init(sort: sort, leaves: [[.right, .right]])]

@@ -55,7 +55,8 @@ enum WhereContextNames {
             result.insert(key(file.context.module))
             var pending = Array(result)
             while let next = pending.popLast() {
-                for imported in exports[next] ?? [] where result.insert(imported).inserted {
+                for imported in exports[next] ?? []
+                where result.insert(imported).inserted {
                     pending.append(imported)
                 }
             }
@@ -80,7 +81,8 @@ enum WhereContextNames {
             return tape
         }
         var qualified: Set<Key> = []
-        for tape in tapes where tape.words.count >= 3 {
+        for tape in tapes
+        where tape.words.count >= 3 {
             for i in 0..<(tape.words.count - 2)
             where modules.contains(key(tape.words[i])) && key(tape.words[i + 1]) == key(".") {
                 qualified.insert(key(tape.words[i + 2]))
@@ -92,7 +94,8 @@ enum WhereContextNames {
         // the old context/1 fragment merely by being supplied beside it.
         for (name, found) in origins.sorted(by: { less($0.key, $1.key) })
         where found.count > 1 && !qualified.contains(name) {
-            guard !files.contains(where: { file in found.filter { visible(file).contains($0.module) }.count > 1 }) else { continue }
+            guard !files.contains(
+                where: { file in found.filter { visible(file).contains($0.module) }.count > 1 }) else { continue }
             let ordered = found.sorted {
                 (files[$0.file].context.source, $0.line) < (files[$1.file].context.source, $1.line)
             }
@@ -103,7 +106,8 @@ enum WhereContextNames {
         // identifiers of the read view, never new declarations in the input.
         let ownModule = key(files.first { key($0.context.input) == key(selected) }!.context.module)
         var prefix = "__courtContext"
-        while files.contains(where: { $0.world.clean.contains(prefix) }) { prefix += "_" }
+        while files.contains(
+            where: { $0.world.clean.contains(prefix) }) { prefix += "_" }
         var symbols: [Key: [Key: String]] = [:], serial = 0
         for name in origins.keys.sorted(by: { less($0, $1) }) {
             let found = origins[name]!
@@ -144,7 +148,8 @@ enum WhereContextNames {
             func address(_ index: Int) -> String { file.context.source + ":\(tokens.lines[index])" }
             func choose(_ name: String, at index: Int) throws -> Origin? {
                 let found = origins[key(name)] ?? []
-                if let own = found.first(where: { $0.module == local }) { return own }
+                if let own = found.first(
+                    where: { $0.module == local }) { return own }
                 let imported = found.filter { accessible.contains($0.module) }
                 if imported.count > 1 {
                     let addresses = imported.map { files[$0.file].context.source + ":\($0.line)" }.sorted().joined(separator: "', '")
@@ -163,14 +168,16 @@ enum WhereContextNames {
                     guard tokens.lines[i] == tokens.lines[i + 2] else {
                         try WhereJudge.fail("\(address(i)): a module qualifier across lines is outside this context fragment")
                     }
-                    guard !bound.contains(name), !(origins[name] ?? []).contains(where: { $0.module == local }) else {
+                    guard !bound.contains(name), !(origins[name] ?? []).contains(
+                        where: { $0.module == local }) else {
                         try WhereJudge.fail("\(address(i)): module qualifier '\(word)' is shadowed by a local declaration; this binding is outside the nominal context fragment")
                     }
                     guard accessible.contains(name) else {
                         try WhereJudge.fail("\(address(i)): module '\(word)' is not imported")
                     }
                     let member = tokens.words[i + 2]
-                    guard let origin = (origins[key(member)] ?? []).first(where: { $0.module == name }),
+                    guard let origin = (origins[key(member)] ?? []).first(
+                        where: { $0.module == name }),
                           let symbol = symbols[key(member)]?[name] else {
                         try WhereJudge.fail("\(address(i)): module '\(word)' has no declaration '\(member)'")
                     }
@@ -218,7 +225,8 @@ enum WhereContextNames {
             }
             for (start, end, at) in genericRanges {
                 var fragment = Array(bytes[start..<end])
-                for (lower, upper, replacement) in replacements.reversed() where lower >= start && upper <= end {
+                for (lower, upper, replacement) in replacements.reversed()
+                where lower >= start && upper <= end {
                     fragment.replaceSubrange((lower - start)..<(upper - start),
                         with: replacementBytes(lower, upper, replacement))
                 }
@@ -226,8 +234,8 @@ enum WhereContextNames {
                     bound: NameSet(bound.map(\.text)).union(["Self"])))
             }
             for (start, end, replacement) in replacements.reversed() {
-                // Qualification may span lines. Preserve all line breaks so
-                // refusal addresses still refer to the source-bound input.
+                // Preserve source line breaks in the rewritten view so refusal
+                // addresses still refer to the source-bound input.
                 bytes.replaceSubrange(start..<end, with: replacementBytes(start, end, replacement))
             }
             let view = String(decoding: bytes, as: UTF8.self)
@@ -258,7 +266,8 @@ enum WhereContextNames {
                         try WhereJudge.fail("\(application.address): generic application '\(expression.text)' carries unread conditions")
                     }
                     guard !(world.genericRequirements[name] ?? []).isEmpty else { return }
-                    guard let conformer = world.conformers[name], let proto = conformer.protocols.sorted().first(where: {
+                    guard let conformer = world.conformers[name], let proto = conformer.protocols.sorted().first(
+                        where: {
                         world.protocolParents[$0] != nil && WhereJudge.inheritedProtocols([$0], world)
                             .allSatisfy { world.gatedProtocols[$0] == nil }
                     }) else {

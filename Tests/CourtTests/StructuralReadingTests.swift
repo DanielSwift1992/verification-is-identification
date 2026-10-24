@@ -3,6 +3,62 @@ import XCTest
 @testable import Court
 
 final class StructuralReadingTests: XCTestCase {
+    func testBuildersAreLentByTheOtherSuppliedReadings() throws {
+        let library = "@resultBuilder enum SB { static func buildBlock() -> Int { 0 } }\n"
+        let page = "enum Page { @SB static var body: Int { 0 } }\n"
+        for files in [[("lib.swift", library), ("page.swift", page)], [("page.swift", page), ("lib.swift", library)]] {
+            let source = try StructuralSource(files: files)
+            XCTAssertEqual(Set(source.declarations.keys), ["SB", "Page"])
+            XCTAssertEqual(try CountCourt.blocks(files).map(\.name).sorted(), ["Page", "SB"])
+            let read = try WhereJudge.lexicalReadings(files, scope: .declarations)
+            XCTAssertEqual(read.count, 2)
+            XCTAssertEqual(read.flatMap { $0.declared }, ["SB"])
+        }
+    }
+
+    func testBuilderLendingNeedsReadDeclarationsAndRespectsShadowing() throws {
+        let page = "enum Page { @SB static var body: Int { 0 } }\n"
+        let declaration = "@resultBuilder enum SB {}"
+        for library in ["enum Other {}", "// " + declaration, "enum Text { static var text: String { \"" + declaration + "\" } }"] {
+            let files = [("lib.swift", library), ("page.swift", page)]
+            for read in [{ _ = try StructuralSource(files: files) }, { _ = try CountCourt.blocks(files) }] {
+                XCTAssertThrowsError(try read()) { error in
+                    XCTAssertTrue(String(describing: error).contains("page.swift:1: the attribute '@SB'"), "\(error)")
+                }
+            }
+        }
+        let shadowed = [("lib.swift", declaration), ("page.swift", "macro SB() = X\n" + page)]
+        XCTAssertThrowsError(try StructuralSource(files: shadowed)) { error in
+            XCTAssertTrue(String(describing: error).contains("page.swift:2: the attribute '@SB'"), "\(error)")
+        }
+        XCTAssertThrowsError(try StructuralSource(files: [("lib.swift", declaration + "\n\u{FEFF}"), ("page.swift", page)])) { error in
+            XCTAssertTrue(String(describing: error).contains("lib.swift:2:"), "\(error)")
+        }
+    }
+
+    func testContextCountBorrowsTheSuppliedPrimitiveBuilder() throws {
+        let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent()
+            .deletingLastPathComponent().deletingLastPathComponent()
+            .appendingPathComponent("Contracts/Court/v0.5")
+        let paths = ["fixtures/C-document.swift", "fixtures/Primitive.swift"]
+        var texts: [String: String] = [:]
+        for path in paths { texts[path] = try String(contentsOf: root.appendingPathComponent(path), encoding: .utf8) }
+        texts[paths[0]] = texts[paths[0]]!.replacingOccurrences(of: "public static var body", with: "@StructureBuilder public static var body")
+        let original = try Data(contentsOf: root.appendingPathComponent("fixtures/C-document.json"))
+        var object = try XCTUnwrap(JSONSerialization.jsonObject(with: original) as? [String: Any])
+        var sources = try XCTUnwrap(object["sources"] as? [[String: Any]])
+        sources[0]["sha256"] = courtSHA256(Data(texts[paths[0]]!.utf8))
+        object["sources"] = sources
+        let json = String(decoding: try JSONSerialization.data(withJSONObject: object), as: UTF8.self)
+        texts["context.json"] = json
+        let context = try CourtContext(text: json, paths: paths, texts: texts)
+        let rows = try CountCourt.contextRead(context, texts: texts, documents: [paths[0]], options:
+            ["--predicate": "UnitsQuestion", "--encoding": "UnaryArithmeticEncoding", "--sigma": "Measure"])
+        XCTAssertEqual(rows.first?.outcome, "holds")
+        XCTAssertEqual(rows.first?.readings, 1)
+        XCTAssertTrue(rows.allSatisfy { $0.diagnostics.isEmpty })
+    }
+
     func testProjectionAccountsForEveryCodeScalarWithoutFilteringCarriers() throws {
         let inputs: [(String, Int, Int)] = [
             ("\u{FEFF}enum X {}\n", 1, 0),

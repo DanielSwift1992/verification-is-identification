@@ -362,6 +362,9 @@ struct StructuralSource {
         catch let error as ScanFailure {
             throw AddressedFailure("\(origin):\(error.line): \(error.description) (byte \(error.byte))")
         }
+        return try regions(source, origin: origin, scope: scope, lexed: lexed)
+    }
+    private static func regions(_ source: String, origin: String, scope: ReadingScope, lexed: Lexed) throws -> FileReading {
         let ts = lexed.words
         let located = ts.indices.map { Token(word: ts[$0], bytes: lexed.starts[$0]..<lexed.ends[$0]) }
         var units: [ReadingCertificate.Unit] = [], regions: [Region] = [], i = 0
@@ -451,7 +454,11 @@ struct StructuralSource {
     init(files: [(String, String)], notationFiles: [CourtNotation.File] = [], roster: Bool = false, readings: [FileReading] = []) throws {
         // A FileReading is built by the common grammar judgement, never decoded
         // from an untrusted AST. Roster applies its stricter member relation below.
-        let presented = try readings + files.map { try Self.regions($0.1, origin: $0.0, scope: roster ? .declarations : .projection) }
+        let lent = Set(notationFiles.flatMap { WhereJudge.declaredBuilders($0.world.clean) })
+        let scanned = try WhereJudge.lexicalReadings(files, scope: roster ? .declarations : .projection, lent: lent)
+        let presented = try readings + zip(files, scanned).map { file, read in
+            try Self.regions(file.1, origin: file.0, scope: roster ? .declarations : .projection, lexed: read.tape)
+        }
         for reading in presented {
             guard !roster || reading.scope == .declarations else {
                 throw AddressedFailure("\(reading.origin):1: roster requires a strict declaration reading")
@@ -495,7 +502,6 @@ struct StructuralSource {
             }
         }
         for file in notationFiles {
-            let lent = Set(notationFiles.flatMap { WhereJudge.declaredBuilders($0.world.clean) })
             let clean = try WhereJudge.stripComments(file.text, lent: lent)
             let notation = try NotationScope(clean)
             for declaration in try notation.structural(clean, origin: file.context.input, lent: lent) {

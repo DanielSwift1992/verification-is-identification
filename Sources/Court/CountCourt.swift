@@ -22,8 +22,9 @@ enum CountCourt {
     /// Read balanced top-level regions; a comment/string cannot plant a rule.
     static func blocks(_ files: [(String, String)]) throws -> [Block] {
         var result: [Block] = []
-        for (origin, text) in files {
-            let tokens = try StructuralSource.tokens(text)
+        let scanned = try WhereJudge.lexicalReadings(files, scope: .projection, carrying: false)
+        for (file, read) in zip(files, scanned) {
+            let origin = file.0, tokens = read.tape.words
             var i = 0
             while i < tokens.count {
                 let kind = tokens[i]

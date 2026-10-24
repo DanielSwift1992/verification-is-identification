@@ -19,11 +19,50 @@ extension WhereJudge {
         let description: String
     }
     struct LexicalReading {
+        struct AttributeUse { let name: String; let line: Int; let byte: Int }
         let blanked: String
         let tape: Lexed
+        let declared: Set<String>
+        let shadowed: Set<String>
+        let attributes: [AttributeUse]
+
+        func validateAttributes(lent: Set<String>, scope: LexicalScope) throws {
+            let borrowed = lent.subtracting(shadowed)
+            if let use = attributes.first(where: { !declared.contains($0.name) && !borrowed.contains($0.name) }) {
+                let suffix = scope == .notation ? "" : " (unsupported attribute)"
+                throw LexicalFailure(line: use.line, byte: use.byte,
+                    description: "the attribute '@\(use.name)' is not among the forms this court reads" + suffix)
+            }
+        }
     }
     static func lexicalReading(_ source: String, scope: LexicalScope = .notation,
                                lent: Set<String> = [], carrying: Bool = true) throws -> LexicalReading {
+        let read = try lexicalScan(source, scope: scope, carrying: carrying)
+        try read.validateAttributes(lent: lent, scope: scope)
+        return read
+    }
+    /// Scan each supplied byte string once before discharging attribute uses.
+    /// Only declarations from those same readings can lend a builder name.
+    /// No caller can submit an unchecked scan as a structural certificate.
+    static func lexicalReadings(_ files: [(String, String)], scope: LexicalScope,
+                                lent: Set<String> = [], carrying: Bool = true) throws -> [LexicalReading] {
+        func addressed<T>(_ origin: String, _ read: () throws -> T) throws -> T {
+            do { return try read() }
+            catch let error as LexicalFailure {
+                throw StructuralSource.AddressedFailure("\(origin):\(error.line): \(error.description) (byte \(error.byte))")
+            }
+        }
+        let scanned = try files.map { origin, text in
+            try addressed(origin) { try lexicalScan(text, scope: scope, carrying: carrying) }
+        }
+        let builders = lent.union(scanned.flatMap { $0.declared })
+        for (file, read) in zip(files, scanned) {
+            try addressed(file.0) { try read.validateAttributes(lent: builders, scope: scope) }
+        }
+        return scanned
+    }
+    private static func lexicalScan(_ source: String, scope: LexicalScope,
+                                    carrying: Bool) throws -> LexicalReading {
         enum Context {
             case code(start: Int, interpolated: Bool, parentheses: Int, singleLine: Bool)
             case comment(start: Int, depth: Int)
@@ -227,13 +266,7 @@ extension WhereJudge {
         let read = String(kept)
         let declared = declaredBuilders(read)
         let shadowed = Set(captures(#"(?<!\.)\bmacro\s+(\w+)"#, read).map { $0[0] })
-        let borrowed = lent.subtracting(shadowed)
-        let undeclared = unreadAttributes.filter { !declared.contains($0.name) && !borrowed.contains($0.name) }
-        if let use = undeclared.first {
-            // Preserve each public reader's established diagnostic spelling.
-            let suffix = scope == .notation ? "" : " (unsupported attribute)"
-            try refuse("the attribute '@\(use.name)' is not among the forms this court reads" + suffix, at: use.start)
-        }
-        return LexicalReading(blanked: read, tape: tape)
+        return LexicalReading(blanked: read, tape: tape, declared: declared, shadowed: shadowed,
+            attributes: unreadAttributes.map { .init(name: $0.name, line: lines[$0.start], byte: offsets[$0.start]) })
     }
 }

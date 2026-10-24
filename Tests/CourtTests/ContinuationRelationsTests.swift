@@ -159,6 +159,31 @@ final class ContinuationRelationsTests: XCTestCase {
         let (whole, _, _) = try constructed("WholeAsObservation")
         let w = try C.relatedReading(whole.request, certificate: whole, source: world())
         XCTAssertEqual(w.question.leaves.map(\.source), [[.right], [.left]])
+
+        let borrowedDeclaration = """
+
+        enum OtherWorld<S: Structure> {
+            typealias Source = Paired<S, S>
+        }
+        enum BorrowedWhole<S: Structure> {
+            typealias Source = OtherWorld<S>.Source
+            typealias Observation = Source.Left
+            typealias Question = Source.Left
+        }
+        """
+        let borrowed = try world { $0 + borrowedDeclaration }
+        refuses("borrowed-whole-construction", address: "BorrowedWhole.Source:") {
+            _ = try C.deriveRelated("BorrowedWhole", source: borrowed)
+        }
+        let original = try world {
+            $0 + borrowedDeclaration.replacingOccurrences(
+                of: "typealias Source = OtherWorld<S>.Source", with: "typealias Source = Paired<S, S>")
+        }
+        let proof = try C.deriveRelated("BorrowedWhole", source: original)
+        XCTAssertTrue(try C.verifyRelated(proof.request, certificate: proof, source: original))
+        refuses("borrowed-whole-replay", address: "BorrowedWhole.Source:") {
+            _ = try C.verifyRelated(proof.request, certificate: proof, source: borrowed)
+        }
     }
     func testQuestionResidueNamesAllMissingClassesAndAddresses() throws {
         let (_, partition) = try obstructed("MultiClassResidue")

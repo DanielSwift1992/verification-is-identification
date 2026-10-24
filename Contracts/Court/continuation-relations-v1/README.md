@@ -14,6 +14,8 @@ Every type axis of the request record must occur in a replayed source or cut der
 
 Observation and Question declare cuts of this whole: U3 operations using Source, its Left/Right projections, paired views, and supported structural aliases of such expressions. Their leaf maps go from visible addresses to Source addresses. Each visible leaf has exactly one origin by construction; two visible leaves can refer to the same origin. Pairing creates two visible branches and cannot merge two source occurrences into one visible leaf. Only a declared E-path licenses equality between distinct source occurrences. A bare sort parameter, a detached shape alias or another whole's field does not supply an origin in this Source and refuses at Request.Observation or Request.Question. The required Question is read before any candidate program is constructed.
 
+The whole-origin admission requirement in T0088 item 6 is a task premise (the user's words on 23 October at 10:3x, “все начинается из его разреза”), not a consequence of U5. The desk summary Materials/T0089/result.md corrects the earlier derivation in claude.md: U3 itself can start from a declared form without a parent. This court admits cuts of the explicitly declared whole under that task premise; rejection of an unrooted form is not a U5 impossibility judgment.
+
 Equalities is a pair of endpoint trees of the same product shape. Corresponding leaves form the edges of E; each endpoint must be a leaf of Source of the same sort as its partner. The path in the first endpoint tree is the stable address of that edge. An absent Equalities field means empty E; an existing field cannot be omitted from the certificate.
 
 For example, this source relation allows either observed leaf to answer the other without identifying its contents:
@@ -41,6 +43,8 @@ If a required leaf is absent, construction returns an obstruction certificate: t
 
 Newly constructed obstructions additionally name the residue needed by this Question. The residue extension supplies an ordered E-forest inside every partition block and a list of the unobserved blocks addressed by Question, with all their Question leaf paths. Each forest edge must connect an already justified member to the next member at the declared E-address. Together with the closed partition this certifies the exact E-classes, without repeating graph search during replay. The needed list must cover exactly the Question addresses in classes absent from Observation; repeated appearances of one class share its entry. The block supplies the source addresses and opaque sort. A coarser counterexample partition alone never licenses identification of its distinct places as one E-class.
 
+The needed list has canonical Question order: depth-first, left before right, with a class inserted at its first Question occurrence and its Question paths retained in encounter order. Replay intentionally rejects a permuted list even if it names the same classes and paths.
+
 The residue extension is optional for compatibility with the original format-2 obstruction judgment. A saved obstruction without it proves only that continuation fails, and makes no claim to name the full question residue. All current constructor obstructions include the checked extension. Omitting or changing a class or Question address inside a presented extension refuses. This step names required classes; it constructs no retained view M or decoder from an augmented observation and claims no U6 minimality.
 
 ## Conditional justification
@@ -63,6 +67,8 @@ Tools judge replay-continuation --relations proof.json Request sources.swift ...
 ```
 
 Both commands print the canonical archive. Exit 0 means a constructed universal continuation; exit 1 means a verified obstruction, also with an archive; exit 2 means unresolved input, malformed proof or a resource boundary and is not an impossibility judgment. Construction and replay disclose their existing depth/node boundaries, a 100,000-step total E-path budget and an 8 MB archive boundary as unresolved rather than as obstruction. There is no related --retain mode. The old command without --relations remains the format-1 question.
+
+Input-policy debt shared with T0083 finding 2: ContinuationCourt.runRelations (in ContinuationRelations.swift) and ContinuationCourt.run read source files through String(contentsOfFile:encoding:), which consumes a leading UTF-8 BOM. This differs from the byte-preserving WhereJudge.fileText input policy. Format 2 has no byte coordinates, but these entry points still need a common input-policy repair with T0083; this revision does not make that repair.
 
 ## Named observations
 

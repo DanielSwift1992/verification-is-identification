@@ -50,7 +50,7 @@ public protocol Structure {
     /// called through generic contexts (Paired chains, associated types).
     static var typeName: String { get }
 
-    /// Reads this type's count. The default readings give one to an atom and zero to ``Never``.
+    /// Reads this type's count. The default readings give one to an atom and zero to `Never`.
     /// A composed ``Open`` delegates to its ``Open/Body``. The ``Paired`` reading adds its two sides.
     static var count: Int { get }
 
@@ -148,8 +148,8 @@ extension Structure {
     public static var typeName: String { String(describing: Self.self) }
 }
 
-/// Reads the Swift name when ``Body`` is ``Never``. This specializes the general ``Open`` reading,
-/// which delegates to ``Body`` and reads an empty string for ``Never``.
+/// Reads the Swift name when ``Body`` is `Never`. This specializes the general ``Open`` reading,
+/// which delegates to ``Body`` and reads an empty string for `Never`.
 extension Open
 where Body == Never {
     public static var typeName: String { String(describing: Self.self) }
@@ -174,8 +174,8 @@ extension Structure {
     public static var count: Int { 1 }
 }
 
-/// Counts one when ``Body`` is ``Never``. This specializes the general ``Open`` reading,
-/// whose count would be zero for ``Never``.
+/// Counts one when ``Body`` is `Never`. This specializes the general ``Open`` reading,
+/// whose count would be zero for `Never`.
 extension Open
 where Body == Never {
     public static var count: Int { 1 }

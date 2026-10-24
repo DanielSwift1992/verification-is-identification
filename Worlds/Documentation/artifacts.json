@@ -1,5 +1,5 @@
 {
-  "inputSHA256": "8f2a0185d5c49050711ac03ebc5bd5d51c69b856db7e4160d8da132e339e41c2",
+  "inputSHA256": "15c0d331d56193027fa0b345e6e7c72f607d1619b54904ac2176b01166d7f8f3",
   "inputs": {
     "Assets/DejaVuSans.json": "ff0d1fed0c0aeba3eb22a207691f49191df5beb0a6cf31cf550932395ab2def3",
     "Assets/DejaVuSans.ttf": "7da195a74c55bef988d0d48f9508bd5d849425c1770dba5d7bfc6ce9ed848954",
@@ -31,8 +31,8 @@
     "Sources/FontMetrics/GenerateFont.swift": "f19f4e9873cac59f38925160510efa23d1ce5e73caf206578c0f77d9394bdf8a",
     "Sources/FontMetrics/main.swift": "8dd932c7c675081b1fa9f5e47029942d04173eb5e4d0dca302bff828b9a26de1",
     "Sources/Notation/IntegerValued.swift": "13d948fdc5cb6bdf168b5d07ad59afb6a721dfea02e9d78045076c4eda989f92",
-    "Sources/Notation/Numeral.swift": "f9cce6600c102caf033d61fb0405c0981da675e479395f637e5ac100078df3fc",
-    "Sources/Notation/Primitive.swift": "fea817df66ecbfabcf99ed6ccaa49f1ecdb957066d93b21aa3d98623f3d60a39",
+    "Sources/Notation/Numeral.swift": "dd2a1b0d82044567fd34872905924b3694e9316b3ad7b6b4f6f4d5613e7596dc",
+    "Sources/Notation/Primitive.swift": "52bb8cc55d7e82a13d882d6bce54ef4151cf06f8f84d659859ada9442b6f0aa1",
     "Sources/VerificationIsIdentification/Acquisition.swift": "cef27c1a1bd4ca8e8d4e6ec6dfe47370a8b63483b3114f69c84f38725f6fce0a",
     "Sources/VerificationIsIdentification/Basis.swift": "e880e4968747c884bc99c441445750cc20d3c486d07034a5b8857950b76fd9bf",
     "Sources/VerificationIsIdentification/Colour.swift": "5435fc0c494b26eeea5b5785ece21f0f41a19b46acb44f259affc540f8a75baf",
@@ -95,15 +95,15 @@
     "https://github.com/DanielSwift1992/gate@bbd807bc504ef2146c2265d43521108c4e37c115:web/ui.html": "2175db31f50e979e8e146a032c8726af11e0af42933af7a314bc6d0721079eec"
   },
   "outputs": {
-    "Documentation/Figures/vi-method.svg": "cc7f078383a97dcffbec2d3d124d67e918ce49add7c3ecbb71962a98adf0dbd9",
-    "Documentation/Figures/answer-determination.svg": "feacb4fbf2b9c8db959609f23c3edfa01f29857f367f60edfdaf8c0b8ed1364d",
-    "Documentation/Figures/adequate-continuation.svg": "f00d198d8a5a0c6bd244f53813613b7d8c51a4dd8792f53b098c5410650ed145",
-    "Documentation/Figures/framework-architecture.svg": "d5167e37f25235647700a1b8ba7876b48b8b61fda25b279f86bca7af7bb92232",
-    "Documentation/Figures/beam-study.svg": "d8071c8fd918a6a6ba84ea4addfad7b12c99b7f618860c85132cd81ecc458c41",
-    "Documentation/Figures/beam-questions.svg": "6ad6c6404f2c37f49e1a09f228d6816e6880487546c3e848bf9a1c3875c66aeb",
-    "Documentation/Figures/beam-continuation.svg": "0e144d1d45a93714dac7e63d4c2614635fbbdd54c623e58cc8b60f4b998a8515",
-    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law.svg": "40e821c8e99d5e0e03d1e7de4d81dc723c658c5fba6189e5082bf85b35f71c29",
-    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law~dark.svg": "b62c7551d014f16999d6c7bebd4bd2d4575a830a573484dc582e2896ddcefd4e"
+    "Documentation/Figures/vi-method.svg": "0d34cf383550e692309665c35feae4f24e33595f3bd663cdb4d69c6d8ed37d82",
+    "Documentation/Figures/answer-determination.svg": "f449f278565a7853467dbf3f3779f1967c701f6b042e94a64ca6a8b43512ae15",
+    "Documentation/Figures/adequate-continuation.svg": "0613cc0f6483c26b2dbdb7a3cf5858a7633a4edb1f086369c031675c4a8aa163",
+    "Documentation/Figures/framework-architecture.svg": "4bd446887cf2155c585025d0d80673ff522dd872f436963479ce250c94864c8c",
+    "Documentation/Figures/beam-study.svg": "bcc039fb43e42e04e81bedbdfc2d5e9def57f3ae4f97adce522684efdd34f30e",
+    "Documentation/Figures/beam-questions.svg": "000c6c2d0d4126c61a82a46bf819baa9819b531cf58072eb24cbc9ecbc62131f",
+    "Documentation/Figures/beam-continuation.svg": "b1889a69ac6bfbdaa4fc4c414c838e4d54a9d9ad975402710f38b84276e57e07",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law.svg": "ce1e7f3fe7fcec2aaf39cd538935860b4f1ae01794e0f07a8f6e0478eded9a64",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law~dark.svg": "3b1caabed80208daa5681324b71a1c21653f81a533d48987f3a6ee861c04cdbe"
   },
   "contrast": [
     "Paper_Ink_lit",

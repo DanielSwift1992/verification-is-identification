@@ -13,7 +13,7 @@
 // ═══════════════════════════════════════════════════════════════
 
 /// This names a digit: one of ten distinguishable atoms, the base of positional notation.
-/// Each of ``Numeral``'s digit types inherits ``Open``'s default ``Never`` body
+/// Each of ``Numeral``'s digit types inherits ``Open``'s default `Never` body
 /// and reads a count of one.
 public protocol Digit: Open {}
 

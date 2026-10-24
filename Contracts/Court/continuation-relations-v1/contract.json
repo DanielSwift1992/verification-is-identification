@@ -403,5 +403,159 @@
         "holds": true
       }
     ]
+  },
+  "agreement": {
+    "fixture": "agreement-cases.swift",
+    "sha256": "7efab480cd35d36edfbfa2267797d3a21cef9b9bda26e57c1ce093dd79c97767",
+    "cases": [
+      {
+        "request": "AgreeThree",
+        "residualLeaves": 2
+      },
+      {
+        "request": "BindOriginal",
+        "residualLeaves": 1
+      },
+      {
+        "request": "ZeroResidual",
+        "residualLeaves": 0
+      },
+      {
+        "request": "ScalarAgreement",
+        "residualLeaves": 1
+      },
+      {
+        "request": "RepeatedQuestion",
+        "residualLeaves": 0
+      },
+      {
+        "request": "EqualSource",
+        "residualLeaves": 0
+      },
+      {
+        "request": "ExtraOutputPlaces",
+        "residualLeaves": 0
+      },
+      {
+        "request": "TwoSortCapacity",
+        "residualLeaves": 1
+      },
+      {
+        "request": "QuestionSortNotInOutput",
+        "residualLeaves": 1
+      },
+      {
+        "request": "BoundOutsideQuestion",
+        "residualLeaves": 1
+      },
+      {
+        "request": "DuplicateFixed",
+        "residualLeaves": 2
+      },
+      {
+        "request": "FreeBeforeFixed",
+        "residualLeaves": 1
+      },
+      {
+        "request": "FixedAndFreeCover",
+        "residualLeaves": 0
+      },
+      {
+        "request": "EquivalentBindings",
+        "residualLeaves": 0
+      },
+      {
+        "request": "ChainedBindings",
+        "residualLeaves": 0
+      },
+      {
+        "request": "IndependentOutputClasses",
+        "residualLeaves": 1
+      },
+      {
+        "request": "SeparateSortBindings",
+        "residualLeaves": 1
+      },
+      {
+        "request": "ScalarSource",
+        "residualLeaves": 0
+      },
+      {
+        "request": "EmptySourceRelations",
+        "residualLeaves": 1
+      },
+      {
+        "request": "BoundRepeatSameLeaf",
+        "residualLeaves": 1
+      },
+      {
+        "request": "AliasedObligations",
+        "residualLeaves": 2
+      },
+      {
+        "request": "SourceAliasOutput",
+        "residualLeaves": 0
+      },
+      {
+        "request": "MissingSort",
+        "refusal": "unavailable"
+      },
+      {
+        "request": "IncompatibleBindings",
+        "refusal": "incompatible"
+      },
+      {
+        "request": "IncompatibleSameOutput",
+        "refusal": "incompatible"
+      },
+      {
+        "request": "WrongBindingSort",
+        "refusal": "wrongSort"
+      },
+      {
+        "request": "WrongSortSecond",
+        "refusal": "wrongSort"
+      },
+      {
+        "request": "MissingBoundSources",
+        "address": "MissingBoundSources.BoundSources"
+      },
+      {
+        "request": "MissingBoundOutputs",
+        "address": "MissingBoundOutputs.BoundOutputs"
+      },
+      {
+        "request": "MismatchedBindingTrees",
+        "address": "MismatchedBindingTrees.BoundSources"
+      },
+      {
+        "request": "SourceIsNotOutputPromise",
+        "address": "SourceIsNotOutputPromise.Promise"
+      },
+      {
+        "request": "DifferentAgreementSorts",
+        "address": "DifferentAgreementSorts.Promise"
+      },
+      {
+        "request": "UnreadBindingAxis",
+        "address": "UnreadBindingAxis.BoundSource"
+      },
+      {
+        "request": "BorrowedOutput",
+        "address": "BorrowedOutput.Output"
+      },
+      {
+        "request": "UnrootedAgreementQuestion",
+        "address": "UnrootedAgreementQuestion.Question"
+      },
+      {
+        "request": "UnavailableBoundSort",
+        "refusal": "unavailable"
+      },
+      {
+        "request": "BoundDistinctSlots",
+        "residualLeaves": 0
+      }
+    ]
   }
 }

@@ -294,5 +294,137 @@
         "sha256": "d5adf266575459747a810e6d8b189045e647578eb61dc358641d0674b52f9b97"
       }
     ]
+  },
+  "imageArchives": {
+    "origin": "Accepted T0100 1fd8e211e72fc8332cf99a6042d265599093a291 canonical archives, without CLI trailing newline",
+    "source_index_sha256": "1a9cc00d8349b94b00d092cb36f0f6632bfa11d04ae1d883f4babc119e1d2662",
+    "cases": [
+      {
+        "request": "PermutedPromise",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "b369ca84077cc557737eb65759b8e4073da4977e33bd287f32391c23d26d2a7e"
+      },
+      {
+        "request": "PermutedOldRelation",
+        "fixture": "image-cases.swift",
+        "holds": false,
+        "sha256": "ead557748668d0933e6e875a90d16528d926af3e171de34399cbca55aebc867f"
+      },
+      {
+        "request": "IndependentPromise",
+        "fixture": "image-cases.swift",
+        "holds": false,
+        "sha256": "53649f1049c773f400f6c5b308cd0b36c17077502fa6bef34fd40baf4345d7a7"
+      },
+      {
+        "request": "UnrestrictedImage",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "7d12f8593c8a323fed82dab929c1f30ac2465546f0e372c6f6c840432fb03093"
+      },
+      {
+        "request": "DuplicateImage",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "356cec01cd9275f66c5abc3aaeb27b4ffa9b3962bff52f475a792534fd71a69d"
+      },
+      {
+        "request": "DuplicateOutputPlaces",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "947c13019730731f80131ef66d46fd01865878a7095d6603dabeae32f158468e"
+      },
+      {
+        "request": "LeftMarginal",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "e63d2ca5b9d9eee173b11d15744920ac5a4501550d9eca7bbef3c86c51197bc5"
+      },
+      {
+        "request": "RightMarginal",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "84e6095d6a99d52754dd7ef6d3d57b0e9b027e1ae71d666dc8aec517d35f104e"
+      },
+      {
+        "request": "AliasedImage",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "5c355faf8837e9e9ae1dc984de32effefd4798e66a999df57d50104cc8af8caa"
+      },
+      {
+        "request": "TwoSortImage",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "5549f42a3daa13b5867aeea9bc33480885b8edce9dcfe39884c56dca911ce7be"
+      },
+      {
+        "request": "ScalarImage",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "d5d399843bf99937197843ec928cc9d68ba9ece023e587448bd16da58a6b636c"
+      },
+      {
+        "request": "ChainedImage",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "123c2307e3afa6a56d0ed6147ef9aebdf23c03f5470a5d3adde8803f8a590640"
+      },
+      {
+        "request": "OmittedIndependentPlaces",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "358fe6dd23415fdece8d6f6e9ad3f5b5fc3461411f6156673e86380ae13dda11"
+      },
+      {
+        "request": "HiddenPairPromise",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "0293ed560af20c3a90f917cac183a7259e98e96e888fc9ebd5100717ddd67ca2"
+      },
+      {
+        "request": "HiddenMixedPromise",
+        "fixture": "image-cases.swift",
+        "holds": false,
+        "sha256": "baadab1750b8373be7077caacd42905850cc951079891896987a39edaaa40e3f"
+      },
+      {
+        "request": "ImageTemplateIsNotAChoice",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "b342c5afe8694919f5cb5859c9a2fab3f33ca3f2991f7fed05b19e1651a68b6a"
+      },
+      {
+        "request": "HiddenDifferentOutputShape",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "2cce0f6d939dfd5a34ccf6fb0067e826c8fd045446d9945332e8c30105913c67"
+      },
+      {
+        "request": "HiddenScalarOutput",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "888dad770151b99ecdb962ab28c05c3e73d7456b79789452b9486339c18c6806"
+      },
+      {
+        "request": "MultiImagePromise",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "f075ec098101a61f300f04ce974025e4df427778ba54c8627b148b174d2e19ba"
+      },
+      {
+        "request": "MixedImagePromises",
+        "fixture": "image-cases.swift",
+        "holds": false,
+        "sha256": "9d68f3d0f2b9baedbf7e749a17ecda54b91bc8f3f64031ffb18a85ee0cd6f076"
+      },
+      {
+        "request": "OmittedSortImage",
+        "fixture": "image-cases.swift",
+        "holds": true,
+        "sha256": "f0d270cb9988af7c72831cd9aa6b8a8e02e630a9adec5b1f6f33cfcc726f52b4"
+      }
+    ]
   }
 }

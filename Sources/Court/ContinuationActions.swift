@@ -98,8 +98,11 @@ extension ContinuationCourt {
         return members
     }
     static func equalityGraph(_ r: RelatedReading) -> [Path: [(Path, EqualityStep)]] {
+        equalityGraph(r.whole)
+    }
+    static func equalityGraph(_ whole: WholeReading) -> [Path: [(Path, EqualityStep)]] {
         var graph: [Path: [(Path, EqualityStep)]] = [:]
-        for edge in r.edges {
+        for edge in whole.edges {
             graph[edge.left, default: []].append((edge.right, .init(edge: edge.address, reversed: false)))
             graph[edge.right, default: []].append((edge.left, .init(edge: edge.address, reversed: true)))
         }
@@ -108,10 +111,14 @@ extension ContinuationCourt {
     // Construction only. Replay checks the closed partition and these forests.
     static func constructPartition(_ r: RelatedReading) ->
         (classes: [PartitionClass], connections: [[EqualityStep]], blocks: [Path: Int]) {
-        let adjacent = equalityGraph(r)
+        constructPartition(r.whole)
+    }
+    static func constructPartition(_ whole: WholeReading) ->
+        (classes: [PartitionClass], connections: [[EqualityStep]], blocks: [Path: Int]) {
+        let adjacent = equalityGraph(whole)
         var seen: Set<Path> = [], classes: [PartitionClass] = [], connections: [[EqualityStep]] = []
         var blocks: [Path: Int] = [:]
-        for (path, sort) in r.source.leaves
+        for (path, sort) in whole.source.leaves
         where seen.insert(path).inserted {
             var component = [path], forest: [EqualityStep] = []
             var cursor = 0

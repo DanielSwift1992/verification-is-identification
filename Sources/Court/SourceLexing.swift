@@ -52,7 +52,9 @@ extension WhereJudge {
         func emit(_ word: String, _ from: Int, _ to: Int) {
             tape.words.append(word)
             if carrying {
-                tape.starts.append(offsets[from]); tape.ends.append(offsets[to]); tape.lines.append(lines[from])
+                tape.starts.append(offsets[from])
+                tape.ends.append(offsets[to])
+                tape.lines.append(lines[from])
             }
         }
         func keep(_ width: Int) {
@@ -126,7 +128,8 @@ extension WhereJudge {
                     while index < scalars.count, !isNewline(scalar(0)) { index += 1 }
                 } else if current == "/", scalar(1) == "*" {
                     kept.append(" ")
-                    stack.append(.comment(start: index, depth: 1)); index += 2
+                    stack.append(.comment(start: index, depth: 1))
+                    index += 2
                 } else if current == "/" {
                     guard let next = scalar(1), next == " " || next == "\t" || isNewline(next) else {
                         try refuse("a slash with no whitespace after it may open a regular expression literal, which this court does not read", at: index)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Formation groups preserve each builder's ordered statements and refusals."""
+"""Formation groups and distinct, read-back carriers preserve emitted inputs."""
 import json, re, subprocess, tempfile
 from pathlib import Path
 
@@ -95,6 +95,92 @@ def main():
         main = temp/'main.swift'
         main.write_text('''import Foundation
 import GrammarLexicon
+func refuse(_ needles: [String], _ body: () throws -> Void) {
+ do { try body(); fatalError("unexpected carrier delivery acceptance") }
+ catch {
+  let said = String(describing: error)
+  precondition(needles.allSatisfy { Data(said.utf8).range(of: Data($0.utf8)) != nil }, said)
+  print("grammar-carriers refused: " + said)
+ }
+}
+let host = URL(fileURLWithPath: CommandLine.arguments[1]).deletingLastPathComponent().appendingPathComponent("delivery")
+let owner = [
+ ("manifest", "Package.swift"),
+ ("lexicon", "Sources/MirrorSource/Mirror.swift"),
+ ("lattice", "Sources/VerificationIsIdentification/Core.swift"),
+ ("alphabet", "Sources/Alphabet/Alphabet.swift"),
+ ("notation", "Sources/Notation/Primitive.swift")
+].map { Linter.CarrierFile(source: $0.0, path: $0.1, bytes: Data($0.0.utf8), carrier: false) }
+let source = "Sources/Examples/Ordinary.swift"
+let row = Linter.CarrierFile(source: source, path: "Sources/MirrorSource/" + Linter.carrierName(source) + ".swift", bytes: Data("formation".utf8), carrier: true)
+let plan = try Linter.CarrierPlan(roster: [source], files: owner + [row])
+let normal = host.appendingPathComponent("normal")
+let installed = try plan.install(at: normal)
+let verified = try plan.verify(at: normal)
+precondition(installed == 1 && verified == 1)
+for (index, target) in plan.files.enumerated() {
+ let root = host.appendingPathComponent("failure-" + String(index))
+ refuse([target.source + ":1", target.path, "cannot write"]) {
+  _ = try plan.install(at: root, write: { bytes, url in
+   if url == root.appendingPathComponent(target.path) { throw CocoaError(.fileWriteOutOfSpace) }
+   try bytes.write(to: url, options: .withoutOverwriting)
+  })
+ }
+}
+let missing = host.appendingPathComponent("missing")
+refuse([source + ":1", "cannot read back"]) {
+ _ = try plan.install(at: missing, write: { bytes, url in
+  if url != missing.appendingPathComponent(row.path) { try bytes.write(to: url) }
+ })
+}
+let corrupt = host.appendingPathComponent("corrupt")
+refuse([source + ":1", "written bytes differ"]) {
+ _ = try plan.install(at: corrupt, write: { bytes, url in
+  try (url == corrupt.appendingPathComponent(row.path) ? Data("wrong".utf8) : bytes).write(to: url)
+ })
+}
+refuse(["cannot write"]) { _ = try plan.install(at: normal) }
+let extra = normal.appendingPathComponent("Sources/MirrorSource/Undeclared.swift")
+try Data("extra".utf8).write(to: extra)
+refuse(["Sources/MirrorSource:1", "written Swift inputs differ"]) { _ = try plan.verify(at: normal) }
+try FileManager.default.removeItem(at: extra)
+let nested = normal.appendingPathComponent("Sources/MirrorSource/Sub/Undeclared.swift")
+try FileManager.default.createDirectory(at: nested.deletingLastPathComponent(), withIntermediateDirectories: true)
+try Data("extra".utf8).write(to: nested)
+refuse(["Sources/MirrorSource:1", "written Swift inputs differ"]) { _ = try plan.verify(at: normal) }
+try FileManager.default.removeItem(at: nested)
+let nestedRow = Linter.CarrierFile(source: source, path: "Sources/MirrorSource/Sub/Expected.swift", bytes: row.bytes, carrier: true)
+let nestedPlan = try Linter.CarrierPlan(roster: [source], files: owner + [nestedRow])
+let nestedRoot = host.appendingPathComponent("nested")
+let nestedCount = try nestedPlan.install(at: nestedRoot)
+precondition(nestedCount == 1)
+let copied = try Linter.swiftInputs(in: nestedRoot.appendingPathComponent("Sources/MirrorSource"))
+precondition(copied == ["Mirror.swift", "Sub/Expected.swift"])
+try FileManager.default.removeItem(at: normal.appendingPathComponent(row.path))
+refuse([source + ":1", "cannot read back"]) { _ = try plan.verify(at: normal) }
+refuse(["not one-to-one"]) { _ = try Linter.CarrierPlan(roster: [source], files: owner) }
+refuse(["not one-to-one"]) { _ = try Linter.CarrierPlan(roster: [source, source], files: owner + [row]) }
+let a = "Sources/Examples/T0095-A.swift"
+let b = "Sources/Examples/T0095_A.swift"
+let colliding = [a, b].map {
+ Linter.CarrierFile(source: $0, path: "Sources/MirrorSource/" + Linter.carrierName($0) + ".swift", bytes: Data(), carrier: true)
+}
+refuse([a + ":1", b + ":1", "collision"]) { _ = try Linter.CarrierPlan(roster: [a, b], files: owner + colliding) }
+let upper = "Sources/Examples/T-A.swift"
+let lower = "Sources/Examples/T_a.swift"
+let folded = [upper, lower].map {
+ Linter.CarrierFile(source: $0, path: "Sources/MirrorSource/" + Linter.carrierName($0) + ".swift", bytes: Data(), carrier: true)
+}
+refuse([upper + ":1", lower + ":1", "collision"]) { _ = try Linter.CarrierPlan(roster: [upper, lower], files: owner + folded) }
+let nfc = "Sources/Examples/Café.swift"
+let nfd = "Sources/Examples/Café.swift"
+precondition(nfc == nfd && !nfc.utf8.elementsEqual(nfd.utf8))
+refuse([nfc + ":1", nfd + ":1", "different UTF-8 bytes"]) { _ = try Linter.inputRoster([nfc, nfd]) }
+let repeated = try Linter.inputRoster([source, source])
+precondition(repeated == [source])
+let reserved = Linter.CarrierFile(source: source, path: "Sources/MirrorSource/Mirror.swift", bytes: Data(), carrier: true)
+refuse([source + ":1", "lexicon:1", "collision"]) { _ = try Linter.CarrierPlan(roster: [source], files: owner + [reserved]) }
+print("grammar-carriers: installed/read-back count; exact/folded collisions, canonical source aliases, all six write failures, missing/corrupt bytes, overwrite and recursive inputs controlled")
 let jobs = try JSONSerialization.jsonObject(with: Data(contentsOf: URL(fileURLWithPath: CommandLine.arguments[1]))) as! [[String: String]]
 for job in jobs {
  let source = try String(contentsOfFile: job["source"]!, encoding: .utf8)
@@ -137,6 +223,46 @@ for job in jobs {
         assert len(expanded(wide)['Probe_swift']['lines']) == 128*128+1
         p = subprocess.run(['swiftc', '-typecheck', *flags, str(temp/'wide-mirror.swift')], capture_output=True, text=True, timeout=120)
         assert p.returncode == 0, p.stderr
+        # Exercise the production CLI, not just the host delivery helper.
+        import os, shutil
+        world = temp/'world'; examples = world/'Sources/Examples'
+        examples.mkdir(parents=True)
+        actor = examples/'T0095-A.swift'; kept = examples/'T0095_A.swift'
+        actor.write_text('actor T0095Hidden {}\n')
+        kept.write_text('enum T0095Kept {}\n')
+        env = dict(os.environ, VI_THEORY_PATH=str(ROOT))
+        def grammar():
+            p = subprocess.run([str(bin_dir/'Tools'), 'grammar'], cwd=world, env=env,
+                               capture_output=True, text=True, timeout=240)
+            for line in p.stdout.splitlines():
+                if line.startswith('scratch kept at '):
+                    shutil.rmtree(line.removeprefix('scratch kept at '), ignore_errors=True)
+            return p
+        p = grammar()
+        assert p.returncode == 2 and 'collision' in p.stdout and all('Sources/Examples/'+name+':1' in p.stdout for name in (actor.name, kept.name)), (p.returncode, p.stdout)
+        kept.unlink()
+        p = grammar()
+        assert p.returncode == 1 and 'ActorWord' in p.stdout, (p.returncode, p.stdout)
+        actor.unlink(); kept.write_text('enum T0095Kept {}\n')
+        p = grammar()
+        assert p.returncode == 0 and '1 carrier file(s) written and read back' in p.stdout, (p.returncode, p.stdout)
+        kept.unlink()
+        upper, lower = examples/'T-A.swift', examples/'T_a.swift'
+        upper.write_text('enum Upper {}\n'); lower.write_text('enum Lower {}\n')
+        p = grammar()
+        assert p.returncode == 2 and 'collision' in p.stdout and all('Sources/Examples/'+name+':1' in p.stdout for name in (upper.name, lower.name)), (p.returncode, p.stdout)
+        upper.unlink(); lower.unlink()
+        if hasattr(os, 'geteuid') and os.geteuid() != 0:
+            closed = examples/'Unreadable'; closed.mkdir()
+            (closed/'Hidden.swift').write_text('enum Hidden {}\n')
+            try:
+                closed.chmod(0)
+                p = grammar()
+                assert p.returncode == 2 and 'cannot enumerate source path' in p.stdout and 'Unreadable:1' in p.stdout, (p.returncode, p.stdout)
+            finally:
+                closed.chmod(0o700)
+            print('grammar-carriers CLI: unreadable subdirectory refuses with its address')
+        print('grammar-carriers CLI: exact/folded collisions name both inputs; actor alone refuses; ordinary neighbour holds with one read-back carrier')
         print('grammar-chunks: 48 compiler pairs keep verdicts, leaf addresses, columns and scope/context; all groups bounded at 128')
 
 if __name__ == '__main__':

@@ -66,7 +66,8 @@ extension ContinuationCourt {
         var hidden: HiddenJudgment?
     }
     struct ActionBudget {
-        var remaining = 100_000
+        static let limit = 100_000
+        var remaining = ActionBudget.limit
         mutating func spend(_ count: Int = 1, at: String) throws {
             guard count >= 0, count <= remaining else {
                 throw Failure(at + ": action proof work limit; no impossibility inferred")

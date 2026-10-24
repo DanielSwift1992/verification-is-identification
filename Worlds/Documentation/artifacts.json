@@ -1,5 +1,5 @@
 {
-  "inputSHA256": "e4f01e07107d7aa911f7f85d46649ec1ae1c7c19f7ef45ede5797754d92870d5",
+  "inputSHA256": "8f2a0185d5c49050711ac03ebc5bd5d51c69b856db7e4160d8da132e339e41c2",
   "inputs": {
     "Assets/DejaVuSans.json": "ff0d1fed0c0aeba3eb22a207691f49191df5beb0a6cf31cf550932395ab2def3",
     "Assets/DejaVuSans.ttf": "7da195a74c55bef988d0d48f9508bd5d849425c1770dba5d7bfc6ce9ed848954",
@@ -70,7 +70,7 @@
     "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/acquisition_keeps_its_question.md": "5c5bf06f40a72d44fdf359047696a71f2c79e3bd249419fe5a328af95117c46d",
     "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/seeing_is_encoding.md": "f7395268ebee331564a13a8a71b6434cf12351247f9e35dcef6f369ae552ab1f",
     "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verdict_is_invariant__finite_records.md": "8d1d52db51171c0319b610dfe0063e9cff9e6246bad6c7e8d1d7c9ebf02a9b80",
-    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verification_is_identification.md": "df6517e660641345ba0a92792d0901fa27c0a82ed790655fcd0f1db8586f2903",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verification_is_identification.md": "bfd65265ac154493b058b4523380d51043fba554a82a366f21e1c291e70dc133",
     "Sources/VerificationIsIdentification/Voice.swift": "ffe3fa74ce3aa5dd42433e4508a03fa28895921e4cc42bcd4d220b2be93a4f13",
     "Sources/VerificationIsIdentification/Wave.swift": "8f7d1377b794185785a206b43aa59137935b7e98802ff93ab92d05f38d637c35",
     "Worlds/Documentation/Architecture.swift": "4d6b9ef7a815ced1c00a4d17250d7d663b00f7d8123b621ad3876bb0b2089cbb",
@@ -95,15 +95,15 @@
     "https://github.com/DanielSwift1992/gate@bbd807bc504ef2146c2265d43521108c4e37c115:web/ui.html": "2175db31f50e979e8e146a032c8726af11e0af42933af7a314bc6d0721079eec"
   },
   "outputs": {
-    "Documentation/Figures/vi-method.svg": "f024937d64ff8fbd8d2fdc55778dbb280bea0b43e5430cdf9727a84c7f2a74df",
-    "Documentation/Figures/answer-determination.svg": "eeed06f7237421609bee9350faa68b3f430599389c33c36f1a8c5a8d5ed34789",
-    "Documentation/Figures/adequate-continuation.svg": "2bf5194ae63850a7a57fc64b6ec508598216128c6d240efce126009ec2eac6e3",
-    "Documentation/Figures/framework-architecture.svg": "ba22f9aafe49f19383cf70a665b03de776f3a40410eae72979cab950d5737e7d",
-    "Documentation/Figures/beam-study.svg": "7a83319e6f393a1b6e04487ec561bebe26e8833b8fc3f19e6f02d3f3edf37631",
-    "Documentation/Figures/beam-questions.svg": "13f411f45f04537cb8b78098aef32b283e3e51843e4e002d44530abf5ef88f4b",
-    "Documentation/Figures/beam-continuation.svg": "d48278c2eb936dc37c17314a8a0f68f8fe2955cebd9a6d7de4f149d61a45ea49",
-    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law.svg": "f3b0e201c4069c4034d32928c6d1040eac2eb79bbb40203e17ebe1f13dba0bad",
-    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law~dark.svg": "1d45f17a71f6d03e51fc68f707b240693b56832882ab73ee69e265f5358e2f26"
+    "Documentation/Figures/vi-method.svg": "cc7f078383a97dcffbec2d3d124d67e918ce49add7c3ecbb71962a98adf0dbd9",
+    "Documentation/Figures/answer-determination.svg": "feacb4fbf2b9c8db959609f23c3edfa01f29857f367f60edfdaf8c0b8ed1364d",
+    "Documentation/Figures/adequate-continuation.svg": "f00d198d8a5a0c6bd244f53813613b7d8c51a4dd8792f53b098c5410650ed145",
+    "Documentation/Figures/framework-architecture.svg": "d5167e37f25235647700a1b8ba7876b48b8b61fda25b279f86bca7af7bb92232",
+    "Documentation/Figures/beam-study.svg": "d8071c8fd918a6a6ba84ea4addfad7b12c99b7f618860c85132cd81ecc458c41",
+    "Documentation/Figures/beam-questions.svg": "6ad6c6404f2c37f49e1a09f228d6816e6880487546c3e848bf9a1c3875c66aeb",
+    "Documentation/Figures/beam-continuation.svg": "0e144d1d45a93714dac7e63d4c2614635fbbdd54c623e58cc8b60f4b998a8515",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law.svg": "40e821c8e99d5e0e03d1e7de4d81dc723c658c5fba6189e5082bf85b35f71c29",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law~dark.svg": "b62c7551d014f16999d6c7bebd4bd2d4575a830a573484dc582e2896ddcefd4e"
   },
   "contrast": [
     "Paper_Ink_lit",

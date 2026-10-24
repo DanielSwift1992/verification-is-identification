@@ -45,7 +45,7 @@ boundary_world() {
 }
 
 boundary_world "Sources/Court" 0 \
-    "✓ THE GRAMMAR holds: 1 file(s) carried, and every verdict object builds."
+    "✓ THE GRAMMAR holds: 1 carrier file(s) written and read back; emitted formations build (source reading remains debt)."
 boundary_world "Sources/CourtRoom" 1 \
     "THE GRAMMAR: the mirror does not build"
 if ! grep -q "Sources_CourtRoom_Neighbour_swift" "$boundary_tmp/world-Sources_CourtRoom.out"; then

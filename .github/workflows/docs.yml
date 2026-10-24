@@ -74,10 +74,10 @@ jobs:
         with:
           path: _site
 
-  # THE LAW, JUDGED BESIDE THE SITE RATHER THAN AHEAD OF IT. Every source file
-  # is re-spelled in the typed vocabulary and handed to the compiler: a
-  # semicolon or a mid-line `where` has no grant and fails to build (Permission
-  # Is Existence §1). It is the slowest step here and it stays on every push,
+  # THE LAW, JUDGED BESIDE THE SITE RATHER THAN AHEAD OF IT. Every discovered
+  # source path gets one read-back carrier; emitted formations build. Source
+  # byte coverage and reference bindings remain reader debt
+  # (Contracts/Checks/grammar-reader-v1.md). It stays on every push,
   # because the one push it caught is the one that took the site down. What it
   # stops doing is holding the other steps up: nothing below it read its
   # result, so it never belonged in the same line of work. Run it locally
@@ -93,7 +93,7 @@ jobs:
         with:
           xcode-version: latest-stable
 
-      - name: The grammar carries every source file
+      - name: Distinct source carriers are read back and their emitted formations build
         run: python3 Checks/ci-check.py --only law
 
   deploy:

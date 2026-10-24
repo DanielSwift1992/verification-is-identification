@@ -19,7 +19,8 @@ import VerificationIsIdentification
 // Reflective names still need source bindings checked against the input.
 // Portable findings run no child type check and share the open reader debt.
 // The child build judges the presented formations; it does not establish
-// that the source roster and its bytes were carried as declared.
+// that the source bytes and references were read as declared. Carrier delivery
+// checks distinct destinations and exact read-back bytes, not that read derivation.
 // ═══════════════════════════════════════════════════════
 
 /// This is either a real, registered atom (read reflectively, not named here) or a character the
@@ -357,7 +358,7 @@ enum Linter {
             frames[frames.count - 1].text += frame.text
         }
 
-        let fileName = String(path.map { isIdentifierChar($0) ? $0 : "_" })
+        let fileName = carrierName(path)
         return "// carried: \(path) [\(scopeName)]\n"
             + "import Alphabet\n"
             + "enum \(fileName): Formation {\n"
@@ -365,6 +366,115 @@ enum Linter {
             + declarations.joined()
             + writtenBody(frames[0].text, "\(scopeName)PlainTokens", "    ")
             + "}\n"
+    }
+
+    // Host delivery relation, not a derivation of the source reader's choices.
+    // One plan owns destinations for both copied inputs and source carriers.
+    struct CarrierFile {
+        let source: String
+        let path: String
+        let bytes: Data
+        let carrier: Bool
+    }
+    struct CarrierFailure: Error, CustomStringConvertible {
+        let description: String
+        init(_ text: String) { description = text }
+    }
+    struct CarrierPlan {
+        let files: [CarrierFile]
+        init(roster: [String], files: [CarrierFile]) throws {
+            var origins: [String: String] = [:]
+            for file in files {
+                let destination = file.path.folding(options: .caseInsensitive, locale: nil)
+                if let first = origins[destination] {
+                    throw CarrierFailure(file.source + ":1: carrier destination collision at "
+                        + file.path + "; also " + first + ":1")
+                }
+                origins[destination] = file.source
+            }
+            let carriers = files.filter { $0.carrier }.map { $0.source }
+            guard Set(roster).count == roster.count, carriers.count == roster.count,
+                  Set(carriers) == Set(roster) else {
+                throw CarrierFailure("carrier roster: source paths and carrier files are not one-to-one")
+            }
+            self.files = files
+        }
+        func install(at root: URL,
+                     write: (Data, URL) throws -> Void = { try $0.write(to: $1, options: .withoutOverwriting) }) throws -> Int {
+            for file in files {
+                let destination = root.appendingPathComponent(file.path)
+                do {
+                    try FileManager.default.createDirectory(at: destination.deletingLastPathComponent(),
+                                                            withIntermediateDirectories: true)
+                    try write(file.bytes, destination)
+                } catch {
+                    throw CarrierFailure(file.source + ":1: cannot write " + file.path + ": " + String(describing: error))
+                }
+            }
+            return try verify(at: root)
+        }
+        func verify(at root: URL) throws -> Int {
+            var readBack = 0
+            for file in files {
+                do {
+                    let actual = try Data(contentsOf: root.appendingPathComponent(file.path))
+                    guard actual == file.bytes else { throw CarrierFailure("written bytes differ") }
+                } catch {
+                    throw CarrierFailure(file.source + ":1: cannot read back " + file.path + ": " + String(describing: error))
+                }
+                if file.carrier { readBack += 1 }
+            }
+            // No extra Swift input may reach the compiler beside the planned files.
+            let parents = Set(files.compactMap { file -> String? in
+                let parts = file.path.split(separator: "/")
+                return parts.count > 2 && parts[0] == "Sources" ? parts.prefix(2).joined(separator: "/") : nil
+            })
+            for parent in parents.sorted() {
+                let names = try Linter.swiftInputs(in: root.appendingPathComponent(parent))
+                let expected = Set(files.filter { $0.path.hasPrefix(parent + "/") }
+                    .map { String($0.path.dropFirst(parent.count + 1)) })
+                guard Set(names) == expected else {
+                    throw CarrierFailure(parent + ":1: written Swift inputs differ from the carrier plan")
+                }
+            }
+            return readBack
+        }
+    }
+    static func carrierName(_ path: String) -> String {
+        String(path.map { isIdentifierChar($0) ? $0 : "_" })
+    }
+
+    static func inputRoster(_ paths: [String]) throws -> [String] {
+        var origins: [String: String] = [:]
+        for path in paths {
+            if let first = origins[path], !first.utf8.elementsEqual(path.utf8) {
+                throw CarrierFailure(path + ":1: canonically equal source paths have different UTF-8 bytes; also " + first + ":1")
+            }
+            origins[path] = path
+        }
+        return origins.keys.sorted()
+    }
+
+    static func swiftInputs(in directory: URL) throws -> [String] {
+        let root = directory.standardizedFileURL
+        var failure: String?
+        guard let enumerator = FileManager.default.enumerator(at: root, includingPropertiesForKeys: nil,
+            errorHandler: { url, error in
+                failure = url.path + ":1: cannot list Swift inputs: " + String(describing: error)
+                return false
+            }) else { throw CarrierFailure(root.path + ":1: cannot enumerate Swift inputs") }
+        let urls = enumerator.compactMap { $0 as? URL }
+        if let failure { throw CarrierFailure(failure) }
+        var paths: [String] = []
+        for url in urls
+        where url.path.hasSuffix(".swift") {
+            let path = url.standardizedFileURL.path
+            guard path.hasPrefix(root.path + "/") else {
+                throw CarrierFailure(path + ":1: enumerated Swift input is outside its root")
+            }
+            paths.append(String(path.dropFirst(root.path.count + 1)))
+        }
+        return paths.sorted()
     }
 
     // ── THE CHECK — present the carried formations to the child type checker ──
@@ -420,22 +530,45 @@ enum Linter {
                 exit(2)
             }
             if isDirectory.boolValue {
-                let nested = (FileManager.default.enumerator(atPath: path)?.compactMap { $0 as? String } ?? [])
-                    .filter { $0.hasSuffix(".swift") }
-                    .sorted()
-                files.append(contentsOf: nested.map { NSString(string: path).appendingPathComponent($0) })
+                var discoveryFailure: String?
+                guard let enumerator = FileManager.default.enumerator(
+                    at: URL(fileURLWithPath: path), includingPropertiesForKeys: nil,
+                    errorHandler: { url, error in
+                        discoveryFailure = url.path + ":1: " + String(describing: error)
+                        return false
+                    }) else {
+                    print("THE GRAMMAR: cannot enumerate source path " + path)
+                    exit(2)
+                }
+                let nested = enumerator.compactMap { $0 as? URL }
+                    .filter { $0.path.hasSuffix(".swift") }.map { $0.path }.sorted()
+                if let failure = discoveryFailure {
+                    print("THE GRAMMAR: cannot enumerate source path " + failure)
+                    exit(2)
+                }
+                for absolute in nested {
+                    guard absolute.hasPrefix(repoPath + "/") else {
+                        print("THE GRAMMAR: enumerated path is outside source root: " + absolute)
+                        exit(2)
+                    }
+                    files.append(String(absolute.dropFirst(repoPath.count + 1)))
+                }
             } else {
                 files.append(path)
             }
         }
 
-        files = Array(Set(files)).sorted()
+        do { files = try inputRoster(files) }
+        catch {
+            print("THE GRAMMAR: " + String(describing: error))
+            exit(2)
+        }
         var assigned: [String: String] = [:]
         for path in files {
             do { assigned[path] = try map.scope(for: path) }
             catch {
                 print("THE GRAMMAR: the mirror does not build: \(path):1: \(error)")
-                print(String(path.map { isIdentifierChar($0) ? $0 : "_" }))
+                print(carrierName(path))
                 exit(1)
             }
         }
@@ -479,9 +612,6 @@ enum Linter {
             }
         }
         let scratch = NSString(string: NSTemporaryDirectory()).appendingPathComponent("grammar-mirror-\(UUID().uuidString)")
-        let sourcesDir = NSString(string: scratch).appendingPathComponent("Sources/MirrorSource")
-        try? FileManager.default.removeItem(atPath: scratch)
-        try? FileManager.default.createDirectory(atPath: sourcesDir, withIntermediateDirectories: true)
 
         // No package dependency at all: GrammarLexicon itself declares none (pure types), so
         // the vocabulary and schema the mirror is judged by are copied in verbatim as sibling
@@ -505,58 +635,45 @@ enum Linter {
             ]
         )
         """
-        try? packageManifest.write(toFile: NSString(string: scratch).appendingPathComponent("Package.swift"),
-                                   atomically: true, encoding: .utf8)
-
-        let lexiconFiles = (try? FileManager.default.contentsOfDirectory(atPath: lexiconDir)) ?? []
-        for file in lexiconFiles
-        where file.hasSuffix(".swift") {
-            try? FileManager.default.copyItem(atPath: NSString(string: lexiconDir).appendingPathComponent(file),
-                                              toPath: NSString(string: sourcesDir).appendingPathComponent(file))
-        }
-
-        // The lattice rides along as the real module it is: the vocabulary's atoms are
-        // `Close`, its fold floor is `Never`, and the certificate beside them
-        // (GrammarLexicon/Certificate.swift) conforms the lattice's instance protocols,
-        // so every run of the check compiles their relations in the same build that carries
-        // the verdict. Copied verbatim (the theory imports its copied Notation target), not re-declared.
-        let seedSource = NSString(string: theoryPath).appendingPathComponent("Sources/VerificationIsIdentification")
-        let seedDir = NSString(string: scratch).appendingPathComponent("Sources/VerificationIsIdentification")
-        try? FileManager.default.createDirectory(atPath: seedDir, withIntermediateDirectories: true)
-        let seedFiles = (try? FileManager.default.contentsOfDirectory(atPath: seedSource)) ?? []
-        for file in seedFiles
-        where file.hasSuffix(".swift") {
-            try? FileManager.default.copyItem(atPath: NSString(string: seedSource).appendingPathComponent(file),
-                                              toPath: NSString(string: seedDir).appendingPathComponent(file))
-        }
-
-        let notationScratchDir = NSString(string: scratch).appendingPathComponent("Sources/Notation")
-        try? FileManager.default.createDirectory(atPath: notationScratchDir, withIntermediateDirectories: true)
-        for file in (try? FileManager.default.contentsOfDirectory(atPath: notationDir)) ?? []
-        where file.hasSuffix(".swift") {
-            try? FileManager.default.copyItem(atPath: NSString(string: notationDir).appendingPathComponent(file),
-                                              toPath: NSString(string: notationScratchDir).appendingPathComponent(file))
-        }
-
-        let alphabetScratchDir = NSString(string: scratch).appendingPathComponent("Sources/Alphabet")
-        try? FileManager.default.createDirectory(atPath: alphabetScratchDir, withIntermediateDirectories: true)
-        let alphabetFiles = (try? FileManager.default.contentsOfDirectory(atPath: alphabetDir)) ?? []
-        for file in alphabetFiles
-        where file.hasSuffix(".swift") {
-            try? FileManager.default.copyItem(atPath: NSString(string: alphabetDir).appendingPathComponent(file),
-                                              toPath: NSString(string: alphabetScratchDir).appendingPathComponent(file))
-        }
-
-        for path in files {
-            guard let content = try? String(contentsOfFile: path, encoding: .utf8) else {
-                FileHandle.standardError.write(Data("cannot read \(path)\n".utf8))
-                exit(2)
+        let plan: CarrierPlan
+        let scratchURL = URL(fileURLWithPath: scratch)
+        do {
+            var planned = [CarrierFile(source: "mirror manifest", path: "Package.swift",
+                                       bytes: Data(packageManifest.utf8), carrier: false)]
+            for (source, target) in [
+                (lexiconDir, "Sources/MirrorSource"),
+                (NSString(string: theoryPath).appendingPathComponent("Sources/VerificationIsIdentification"), "Sources/VerificationIsIdentification"),
+                (alphabetDir, "Sources/Alphabet"),
+                (notationDir, "Sources/Notation")
+            ] {
+                let names: [String]
+                do { names = try swiftInputs(in: URL(fileURLWithPath: source)) }
+                catch { throw CarrierFailure(source + ":1: cannot list copy inputs: " + String(describing: error)) }
+                for name in names
+                where name.hasSuffix(".swift") {
+                    let origin = NSString(string: source).appendingPathComponent(name)
+                    do {
+                        planned.append(CarrierFile(source: origin, path: target + "/" + name,
+                                                   bytes: try Data(contentsOf: URL(fileURLWithPath: origin)), carrier: false))
+                    } catch { throw CarrierFailure(origin + ":1: cannot read copy input: " + String(describing: error)) }
+                }
             }
-            let scopeName = assigned[path]!
-            let fileName = String(path.map { isIdentifierChar($0) ? $0 : "_" })
-            try? carried(content, path: path, scopeName: scopeName)
-                .write(toFile: NSString(string: sourcesDir).appendingPathComponent(fileName + ".swift"),
-                       atomically: true, encoding: .utf8)
+            for path in files {
+                let content: String
+                do { content = try String(contentsOfFile: path, encoding: .utf8) }
+                catch { throw CarrierFailure(path + ":1: cannot read source: " + String(describing: error)) }
+                planned.append(CarrierFile(source: path, path: "Sources/MirrorSource/" + carrierName(path) + ".swift",
+                                           bytes: Data(carried(content, path: path, scopeName: assigned[path]!).utf8), carrier: true))
+            }
+            plan = try CarrierPlan(roster: files, files: planned)
+            guard !FileManager.default.fileExists(atPath: scratch) else {
+                throw CarrierFailure("scratch destination already exists: " + scratch)
+            }
+            _ = try plan.install(at: scratchURL)
+        } catch {
+            print("THE GRAMMAR: carrier delivery refused: \(error)")
+            print("scratch kept at \(scratch)")
+            exit(2)
         }
 
         // The child build gets a hard deadline and an off-thread pipe reader: a wedged build
@@ -577,7 +694,12 @@ enum Linter {
             drained.signal()
         }
 
-        try? process.run()
+        do { try process.run() }
+        catch {
+            print("THE GRAMMAR: cannot start child build: \(error)")
+            print("scratch kept at \(scratch)")
+            exit(2)
+        }
         // 900s: a wedge-catcher, not a pace-setter. A cold CI runner builds the mirror
         // several times slower than a warm laptop (~40s here, past 240s there), and the
         // deadline exists to catch a hung build, so it stays far above any honest one.
@@ -596,7 +718,14 @@ enum Linter {
         let output = String(data: box.data, encoding: .utf8) ?? ""
 
         if process.terminationStatus == 0 {
-            print("✓ THE GRAMMAR holds: \(files.count) file(s) carried, and every verdict object builds.")
+            let verified: Int
+            do { verified = try plan.verify(at: scratchURL) }
+            catch {
+                print("THE GRAMMAR: carrier delivery refused after build: \(error)")
+                print("scratch kept at \(scratch)")
+                exit(2)
+            }
+            print("✓ THE GRAMMAR holds: \(verified) carrier file(s) written and read back; emitted formations build (source reading remains debt).")
             try? FileManager.default.removeItem(atPath: scratch)
         } else {
             print("THE GRAMMAR: the mirror does not build:\n")

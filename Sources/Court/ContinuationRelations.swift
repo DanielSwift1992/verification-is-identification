@@ -115,6 +115,7 @@ extension ContinuationCourt {
         var actions: RouteProof? = nil
         var hiddenActions: RouteProof? = nil
         var dynamics: Dynamics? = nil
+        var repetition: Repetition? = nil
     }
     struct RelatedArchive: Codable {
         let format: Int
@@ -475,7 +476,12 @@ extension ContinuationCourt {
     static func verifyRelated(_ request: String, certificate: RelatedCertificate,
                               source: StructuralSource, constructor: String = "Paired") throws -> Bool {
         let r = try relatedReading(request, certificate: certificate, source: source, constructor: constructor)
-        if let dynamics = certificate.dynamics {
+        if let repetition = certificate.repetition {
+            guard certificate.retention == nil, certificate.dynamics == nil else {
+                throw Failure("certificate.repetition: retention and dynamics are separate questions")
+            }
+            _ = try verifyRepetition(repetition, reading: r, request: request)
+        } else if let dynamics = certificate.dynamics {
             guard certificate.retention == nil else { throw Failure("certificate.dynamics: retention is a separate question") }
             try verifyDynamics(dynamics, reading: r)
         } else if certificate.actions != nil || certificate.hiddenActions != nil {
@@ -561,8 +567,9 @@ extension ContinuationCourt {
     }
     static func deriveRelated(_ request: String, source: StructuralSource,
                               constructor: String = "Paired", retain: Bool = false,
-                              actions: Bool = false) throws -> RelatedCertificate {
+                              actions: Bool = false, repeats: Bool = false) throws -> RelatedCertificate {
         guard !(retain && actions) else { throw Failure("--actions and --retain ask separate questions") }
+        guard !(repeats && (retain || actions)) else { throw Failure("--repeat asks a separate U11 question") }
         let c = try Context(request, source: source, constructor: constructor)
         func route(_ field: String) throws -> RouteProof {
             do { return try deriveRoute(.field(c.root, field), context: c) }
@@ -579,13 +586,14 @@ extension ContinuationCourt {
             equalities: source.declarations[request]?.fields["Equalities"] == nil ? nil
                 : route("Equalities"),
             conclusion: .constructed([], .pick([])))
-        if actions {
+        if actions || repeats {
             if source.declarations[request]?.fields["Actions"] != nil { certificate.actions = try route("Actions") }
             if source.declarations[request]?.fields["HiddenActions"] != nil { certificate.hiddenActions = try route("HiddenActions") }
         }
         let r = try relatedReading(request, certificate: certificate, source: source, constructor: constructor)
         certificate.conclusion = try constructRelated(r)
         if actions { certificate.dynamics = try constructDynamics(r) }
+        if repeats { certificate.repetition = try constructRepetition(r, request: request) }
         if retain, case let .obstructed(obstruction) = certificate.conclusion,
             let residue = obstruction.residue {
             let leaves = residue.needed.map { obstruction.classes[$0.block].leaves[0] }
@@ -647,7 +655,7 @@ extension ContinuationCourt {
     static func encodeRelated(_ certificate: RelatedCertificate) throws -> Data {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        let format = certificate.dynamics != nil ? 4 : (certificate.retention == nil ? 2 : 3)
+        let format = certificate.repetition != nil ? 5 : (certificate.dynamics != nil ? 4 : (certificate.retention == nil ? 2 : 3))
         let data = try encoder.encode(RelatedArchive(format: format, certificate: certificate))
         guard data.count <= 8_000_000 else { throw Failure("certificate: output limit") }
         return data
@@ -656,11 +664,12 @@ extension ContinuationCourt {
         guard data.count <= 8_000_000 else { throw Failure("certificate: input limit") }
         let archive = try JSONDecoder().decode(RelatedArchive.self, from: data)
         let c = archive.certificate
-        let old = c.dynamics == nil && c.actions == nil && c.hiddenActions == nil
+        let old = c.repetition == nil && c.dynamics == nil && c.actions == nil && c.hiddenActions == nil
         guard (old && archive.format == 2 && c.retention == nil)
                 || (old && archive.format == 3 && c.retention != nil)
-                || (archive.format == 4 && c.dynamics != nil && c.retention == nil) else {
-            throw Failure("certificate: expected format 2 without retention, format 3 with retention, or format 4 with dynamics")
+                || (archive.format == 4 && c.dynamics != nil && c.retention == nil && c.repetition == nil)
+                || (archive.format == 5 && c.repetition != nil && c.retention == nil && c.dynamics == nil) else {
+            throw Failure("certificate: expected format 2 without retention, format 3 with retention, format 4 with dynamics, or format 5 with repetition")
         }
         return archive.certificate
     }
@@ -671,7 +680,10 @@ extension ContinuationCourt {
             if retain { args.removeFirst() }
             let actions = args.first == "--actions"
             if actions { args.removeFirst() }
+            let repeats = args.first == "--repeat"
+            if repeats { args.removeFirst() }
             guard !(retain && actions) else { throw Failure("--actions and --retain ask separate questions") }
+            guard !(repeats && (retain || actions)) else { throw Failure("--repeat asks a separate U11 question") }
             var output: String?
             var saved: RelatedCertificate?
             if replay {
@@ -683,13 +695,17 @@ extension ContinuationCourt {
                 output = args.removeFirst()
             }
             guard args.count >= 2 else {
-                throw Failure("usage: judge continue --relations [--retain|--actions] [--certificate output.json] Request source.swift ...; replay-continuation --relations [--retain|--actions] certificate.json Request source.swift ...")
+                throw Failure("usage: judge continue --relations [--retain|--actions|--repeat] [--certificate output.json] Request source.swift ...; replay-continuation --relations [--retain|--actions|--repeat] certificate.json Request source.swift ...")
             }
             let request = args.removeFirst()
             let source = try StructuralSource(files: args.map { ($0, try String(contentsOfFile: $0, encoding: .utf8)) })
-            let certificate = try saved ?? deriveRelated(request, source: source, retain: retain, actions: actions)
+            let certificate = try saved ?? deriveRelated(request, source: source, retain: retain, actions: actions, repeats: repeats)
             let holds: Bool
-            if actions {
+            if repeats {
+                holds = try verifyRelatedRepetition(request, certificate: certificate, source: source)
+            } else if certificate.repetition != nil {
+                throw Failure("certificate.repetition: replay format 5 with --repeat")
+            } else if actions {
                 holds = try verifyRelatedActions(request, certificate: certificate, source: source)
             } else if certificate.dynamics != nil {
                 throw Failure("certificate.dynamics: replay format 4 with --actions")

@@ -208,8 +208,8 @@ func scan(file path: String, checkProvenance: Bool) {
     // `rendered`) is still one pure function of the type, and its internal bindings are that
     // function's spelling, not shipped runtime. Tracked by brace balance from the head line.
     var witnessDepth = 0
-    // SlotRule (Sources/DocumentKit/Dynamics.swift): its mechanical edge: a SlotRule conformer is one substitution, so its body may hold
-    // nothing but the three aliases. Anything else is an engine trying to enter through a
+    // SlotRule (Sources/DocumentKit/Dynamics.swift) declares one substitution; this reader admits
+    // the three aliases in its body. Anything else is an engine trying to enter through a
     // rule's door, refused by name.
     var insideSlotRule = false
     // A `rendered<…>` head opens its `{` lines later, after the generic signature closes; the

@@ -1,5 +1,3 @@
-// Surface-history citations are historical scope, not current SDK contracts.
-// Source: vi@f95b6c69d5ad49ede6cf953b8be42e725bde6ba6 Sources/DocumentKit/SurfaceLaw.swift; SHA-256 d51b07d4195eddee64d0a3e7daf91dc6667bc4c79665c53249222b8350dc4881.
 import Foundation
 
 // ═══════════════════════════════════════════════════════
@@ -78,7 +76,7 @@ public enum Press {
                 }
                 carried = true
             }
-            // SlotRule (Sources/DocumentKit/Dynamics.swift): its edge at the point of use: a rule is one substitution, so a body
+            // SlotRule (Sources/DocumentKit/Dynamics.swift) declares one substitution, so a body
             // line that is not one of the three aliases refuses the whole press.
             guard carried else {
                 try fail("\(name) is not a triple: \(line)", at: "\(path)#\(name)")

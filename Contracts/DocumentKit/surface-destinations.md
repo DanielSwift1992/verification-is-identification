@@ -1,6 +1,6 @@
 # Surface history and current declaration destinations
 
-Source: vi@f95b6c69d5ad49ede6cf953b8be42e725bde6ba6, `Sources/DocumentKit/SurfaceLaw.swift`, SHA-256 `d51b07d4195eddee64d0a3e7daf91dc6667bc4c79665c53249222b8350dc4881`. Each link below points to that immutable source. The retained narrative also lives with its original consumer in showcase `Sources/Organization/Organization.docc/DocumentKitHistory.md`. This map records provenance, not a proof of the historical assertions.
+Source: vi@f95b6c69d5ad49ede6cf953b8be42e725bde6ba6, `Sources/DocumentKit/SurfaceLaw.swift`, SHA-256 `d51b07d4195eddee64d0a3e7daf91dc6667bc4c79665c53249222b8350dc4881`. Each link below points to that immutable source. This map records provenance, not a proof of the historical assertions.
 
 The SDK is read from its declarations. A related declaration is not evidence that an old essay rule is attached to it. In particular S3, S4, S6, S7, S8, S13, S20 and S21 are history only.
 
@@ -44,3 +44,5 @@ The SDK is read from its declarations. A related declaration is not evidence tha
 ## Live readers
 
 The live source citations now link directly to the historical pin and carry this source SHA. SlotRule/Chord readers instead name their declarations in `Sources/DocumentKit/Dynamics.swift`; their associated fields do not assert universal safety or halting.
+
+The Primitive/Vector copies under `Contracts/Court/v0.1` through `v0.5` are frozen input fixtures, including line-ending variants and deliberate mutations. Their old section labels remain part of the tested input bytes; they are not current SDK documentation. Their source declarations and byte identities stay with those contracts. This repair changes live readers and the destination map without rewriting historical test inputs.

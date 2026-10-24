@@ -2522,7 +2522,7 @@
     {
       "path": "Sources/Court/Press.swift",
       "channel": "text",
-      "line": 9,
+      "line": 11,
       "name": "showcase",
       "text": "// stands here or ever will: a system's behaviour is its triples (the showcase's",
       "occurrence": 1,
@@ -2552,7 +2552,7 @@
     {
       "path": "Sources/GrammarLexicon/Mirror.swift",
       "channel": "text",
-      "line": 10,
+      "line": 12,
       "name": "Organization",
       "text": "// an allowed form compiles, a refused one names its own reason, the same shape Organization's",
       "occurrence": 1,
@@ -2562,7 +2562,7 @@
     {
       "path": "Sources/Tools/Census.swift",
       "channel": "text",
-      "line": 15,
+      "line": 17,
       "name": "showcase",
       "text": "// refused: a dependent package (the showcase, T-0015) counts its own targets and the",
       "occurrence": 1,
@@ -2652,7 +2652,7 @@
     {
       "path": "Sources/Tools/main.swift",
       "channel": "text",
-      "line": 5,
+      "line": 7,
       "name": "showcase",
       "text": "// so the docs build has a single support module instead of one per tool. The showcase",
       "occurrence": 1,
@@ -2662,7 +2662,7 @@
     {
       "path": "Sources/Tools/main.swift",
       "channel": "text",
-      "line": 8,
+      "line": 10,
       "name": "ShowcaseTools",
       "text": "// ShowcaseTools.",
       "occurrence": 1,
@@ -2672,7 +2672,7 @@
     {
       "path": "Sources/Tools/main.swift",
       "channel": "text",
-      "line": 10,
+      "line": 12,
       "name": "showcase",
       "text": "//              LawCheck build plugin on the showcase's library targets, checked by hand here.",
       "occurrence": 1,
@@ -2682,7 +2682,7 @@
     {
       "path": "Sources/VerificationIsIdentification/Law.swift",
       "channel": "text",
-      "line": 10,
+      "line": 12,
       "name": "Organization",
       "text": "// the LawCheck plugin on Organization and by hand elsewhere. What neither",
       "occurrence": 1,
@@ -3004,7 +3004,7 @@
       "channel": "text",
       "line": 82,
       "name": "Organization",
-      "text": "The surface is the same discipline: a page is a type, and its markdown is the type's name. [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit) builds a page in five steps, and [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) is that surface run at scale: the encoded company and its site, one build.",
+      "text": "The surface is the same discipline: a page is a type, and its markdown is the type's name. [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit) documents the SDK declarations; [DocumentKitDemo](https://danielswift1992.github.io/verification-is-identification/documentation/documentkitdemo/) shows their declared compositions and compiled readings, and [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) is that surface run at scale: the encoded company and its site, one build.",
       "occurrence": 1,
       "class": "reference",
       "reason": "Updated public navigation to the owner of worked examples and explanatory prose; no subject dispatch or live reverse dependency."
@@ -3014,7 +3014,7 @@
       "channel": "text",
       "line": 82,
       "name": "verification-is-identification-showcase",
-      "text": "The surface is the same discipline: a page is a type, and its markdown is the type's name. [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit) builds a page in five steps, and [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) is that surface run at scale: the encoded company and its site, one build.",
+      "text": "The surface is the same discipline: a page is a type, and its markdown is the type's name. [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit) documents the SDK declarations; [DocumentKitDemo](https://danielswift1992.github.io/verification-is-identification/documentation/documentkitdemo/) shows their declared compositions and compiled readings, and [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) is that surface run at scale: the encoded company and its site, one build.",
       "occurrence": 1,
       "class": "reference",
       "reason": "Updated public navigation to the owner of worked examples and explanatory prose; no subject dispatch or live reverse dependency."

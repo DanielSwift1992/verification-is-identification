@@ -1443,7 +1443,7 @@ extension SpanHosted: Spanning {
         Content.typeName
     }
 }
-/// Refuses text above Budget when its reading is an integer. A noninteger Budget uses Int.max.
+/// Refuses text above the limit read by Int(Budget.typeName), using Int.max when that conversion fails.
 public protocol SpanLabelBudgeted: Spanning {
     associatedtype Y: Structure
     associatedtype FillColor: Structure

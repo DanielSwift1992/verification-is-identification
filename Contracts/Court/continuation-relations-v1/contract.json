@@ -107,5 +107,33 @@
       "request": "ReadWholeHelperAxes",
       "outcome": "constructed"
     }
-  ]
+  ],
+  "retention": {
+    "fixture": "retention-cases.swift",
+    "sha256": "2df2f4b5b9ac88dc39193953f40d9cf14f3aa4d190aa8e18673f56480480f6cf",
+    "nonempty_format": 3,
+    "empty_format": 2,
+    "cases": [
+      {
+        "request": "RetainOneClass",
+        "minimum_leaves": 1
+      },
+      {
+        "request": "RetainTwoSorts",
+        "minimum_leaves": 2
+      },
+      {
+        "request": "RetainRepeatedClass",
+        "minimum_leaves": 1
+      },
+      {
+        "request": "RetainFromClassOutsideViews",
+        "minimum_leaves": 1
+      },
+      {
+        "request": "RetainNothing",
+        "minimum_leaves": 0
+      }
+    ]
+  }
 }

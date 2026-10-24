@@ -19,7 +19,11 @@ extension WhereJudge {
         let description: String
     }
     struct LexicalReading {
-        struct AttributeUse { let name: String; let line: Int; let byte: Int }
+        struct AttributeUse {
+            let name: String
+            let line: Int
+            let byte: Int
+        }
         let blanked: String
         let tape: Lexed
         let declared: Set<String>

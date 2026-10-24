@@ -7,8 +7,8 @@
     "transport": "vi.press.json/2"
   },
   "files": {
-    "fixtures/cases.json": "c6d5031282ab8f0001ee3bf49e70e49d2e112886a428b6c9b17f48149a1054fd",
-    "calculus.md": "a6806739299b7334bb864e69a9fc534b19798971e17a62318912a1e323dbbfd0"
+    "fixtures/cases.json": "e1bde839a43c96f09b99c034ab0a1842225c6ad35937944ec0f4c777382632eb",
+    "calculus.md": "8bfc16ec7aec4abfaff859e8c4d9d5e661426e737dc14c6c169de05f9c035bb7"
   },
   "cases_file": "fixtures/cases.json",
   "cases": [
@@ -176,7 +176,16 @@
     "FEFF-state-string",
     "FEFF-definitions-between",
     "FEFF-definitions-comment",
-    "FEFF-definitions-string"
+    "FEFF-definitions-string",
+    "Z1-interpolation-1",
+    "Z1-interpolation-2",
+    "Z1-interpolation-3",
+    "Z1-interpolation-4",
+    "Z1-interpolation-5",
+    "Z1-interpolation-6",
+    "Z1-interpolation-7",
+    "Z1-interpolation-8",
+    "Z1-interpolation-9"
   ],
   "native_controls": [
     "N3a-dictionary-lexical-refusal",
@@ -248,6 +257,15 @@
     "FEFF-state-string",
     "FEFF-definitions-between",
     "FEFF-definitions-comment",
-    "FEFF-definitions-string"
+    "FEFF-definitions-string",
+    "Z1-interpolation-1",
+    "Z1-interpolation-2",
+    "Z1-interpolation-3",
+    "Z1-interpolation-4",
+    "Z1-interpolation-5",
+    "Z1-interpolation-6",
+    "Z1-interpolation-7",
+    "Z1-interpolation-8",
+    "Z1-interpolation-9"
   ]
 }

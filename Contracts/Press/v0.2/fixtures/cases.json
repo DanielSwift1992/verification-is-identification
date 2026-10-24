@@ -28349,5 +28349,177 @@
       "refusal": null,
       "replayed": true
     }
+  },
+  {
+    "id": "Z1-interpolation-1",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Text { static var text: String { \"\\(1\n)\" } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "newline in single-line"
+      }
+    }
+  },
+  {
+    "id": "Z1-interpolation-2",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Text { static var text: String { \"\\(1\r)\" } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "newline in single-line"
+      }
+    }
+  },
+  {
+    "id": "Z1-interpolation-3",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Text { static var text: String { \"\\(1\r\n)\" } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "newline in single-line"
+      }
+    }
+  },
+  {
+    "id": "Z1-interpolation-4",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Text { static var text: String { \"\\(1 // comment\n)\" } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "line comment in single-line"
+      }
+    }
+  },
+  {
+    "id": "Z1-interpolation-5",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Text { static var text: String { \"\\(1 /* comment\n */)\" } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "newline in single-line"
+      }
+    }
+  },
+  {
+    "id": "Z1-interpolation-6",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Text { static var text: String { \"\"\"\n\\(1\n)\n\"\"\" } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z1-interpolation-7",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Text { static var text: String { \"\"\"\n\\(1 // comment\n)\n\"\"\" } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z1-interpolation-8",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Text { static var text: String { \"\"\"\n\\(1 /* comment\n */)\n\"\"\" } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z1-interpolation-9",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Text { static var text: String { \"\\(1 /* comment */)\" } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
   }
 ]

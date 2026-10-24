@@ -25,7 +25,7 @@ extension WhereJudge {
     static func lexicalReading(_ source: String, scope: LexicalScope = .notation,
                                lent: Set<String> = [], carrying: Bool = true) throws -> LexicalReading {
         enum Context {
-            case code(start: Int, interpolated: Bool, parentheses: Int)
+            case code(start: Int, interpolated: Bool, parentheses: Int, singleLine: Bool)
             case comment(start: Int, depth: Int)
             case string(start: Int, hashes: Int, quotes: Int, interpolations: Int)
         }
@@ -37,7 +37,7 @@ extension WhereJudge {
             lines.append(lines.last! + (breakLine ? 1 : 0))
         }
         var kept = String.UnicodeScalarView(), tape = Lexed()
-        var stack: [Context] = [.code(start: 0, interpolated: false, parentheses: 0)]
+        var stack: [Context] = [.code(start: 0, interpolated: false, parentheses: 0, singleLine: false)]
         var index = 0, interpolationCount = 0
         var unreadAttributes: [(name: String, start: Int)] = []
         func scalar(_ offset: Int) -> Unicode.Scalar? {
@@ -62,7 +62,16 @@ extension WhereJudge {
             index += width
         }
         func isNewline(_ c: Unicode.Scalar?) -> Bool { c == "\r" || c == "\n" }
-        func newline(top: Bool) {
+        func inSingleLineInterpolation() -> Bool {
+            stack.contains { context in
+                if case let .code(_, interpolated, _, singleLine) = context { return interpolated && singleLine }
+                return false
+            }
+        }
+        func newline(top: Bool) throws {
+            if inSingleLineInterpolation() {
+                try refuse("newline in single-line string interpolation is not a Swift literal", at: index)
+            }
             let width = scalar(0) == "\r" && scalar(1) == "\n" ? 2 : 1
             kept.append("\n")
             if top { emit("\n", index, index + width) }
@@ -91,7 +100,7 @@ extension WhereJudge {
                     if depth == 1 { stack.removeLast() }
                     else { stack[stack.count - 1] = .comment(start: start, depth: depth - 1) }
                     index += 2
-                } else if isNewline(current) { newline(top: stack.count == 2) }
+                } else if isNewline(current) { try newline(top: stack.count == 2) }
                 else { index += 1 }
             case let .string(start, hashes, quotes, before):
                 if current == "\\", repeats("#", from: 1, hashes) {
@@ -102,12 +111,12 @@ extension WhereJudge {
                         }
                         interpolationCount += 1
                         kept.append("(")
-                        stack.append(.code(start: index, interpolated: true, parentheses: 0))
+                        stack.append(.code(start: index, interpolated: true, parentheses: 0, singleLine: quotes == 1))
                         index += escaped + 1
                     } else if isNewline(scalar(escaped)) {
                         if quotes == 1 { try refuse("escaped newline in a single-line string is not a Swift literal", at: index) }
                         index += escaped
-                        newline(top: false)
+                        try newline(top: false)
                     } else { index = min(index + escaped + 1, scalars.count) }
                 } else if repeats("\"", from: 0, quotes), repeats("#", from: quotes, hashes) {
                     stack.removeLast()
@@ -123,10 +132,13 @@ extension WhereJudge {
                     if quotes == 1 {
                         try refuse(hashes > 0 ? "unterminated raw string literal" : "unterminated string literal", at: start)
                     }
-                    newline(top: false)
+                    try newline(top: false)
                 } else { index += 1 }
-            case let .code(start, interpolated, parentheses):
+            case let .code(start, interpolated, parentheses, singleLine):
                 if current == "/", scalar(1) == "/" {
+                    if inSingleLineInterpolation() {
+                        try refuse("line comment in single-line string interpolation is not a Swift literal", at: index)
+                    }
                     while index < scalars.count, !isNewline(scalar(0)) { index += 1 }
                 } else if current == "/", scalar(1) == "*" {
                     kept.append(" ")
@@ -166,13 +178,13 @@ extension WhereJudge {
                     if !attributes.contains(spelled) { unreadAttributes.append((spelled, index)) }
                     keep(1)
                     if top { emit("@", at, index) }
-                } else if isNewline(current) { newline(top: top) }
+                } else if isNewline(current) { try newline(top: top) }
                 else if interpolated, current == "(" {
-                    stack[stack.count - 1] = .code(start: start, interpolated: true, parentheses: parentheses + 1)
+                    stack[stack.count - 1] = .code(start: start, interpolated: true, parentheses: parentheses + 1, singleLine: singleLine)
                     keep(1)
                 } else if interpolated, current == ")" {
                     if parentheses == 0 { stack.removeLast() }
-                    else { stack[stack.count - 1] = .code(start: start, interpolated: true, parentheses: parentheses - 1) }
+                    else { stack[stack.count - 1] = .code(start: start, interpolated: true, parentheses: parentheses - 1, singleLine: singleLine) }
                     keep(1)
                 } else if current.properties.isWhitespace { keep(1) }
                 else if current.properties.isAlphabetic || current == "_" {
@@ -203,7 +215,7 @@ extension WhereJudge {
         case let .comment(start, _): try refuse("unterminated block comment", at: start)
         case let .string(start, hashes, _, _):
             try refuse(hashes > 0 ? "unterminated raw string literal" : "unterminated string literal", at: start)
-        case let .code(start, interpolated, _):
+        case let .code(start, interpolated, _, _):
             if interpolated { try refuse("unterminated string interpolation", at: start) }
         }
         let read = String(kept)

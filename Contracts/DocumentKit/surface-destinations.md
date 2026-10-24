@@ -37,9 +37,9 @@ The SDK is read from its declarations. A related declaration is not evidence tha
 | S29 | `Sources/DocumentKit/Dynamics.swift:9` (SlotRule) | [Pinned source S29](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L437) | The current declaration supplies its documented fields/composition only; the broader historical narrative is not an SDK contract. |
 | S30 | `Sources/DocumentKit/Dynamics.swift:20` (Chord) | [Pinned source S30](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L449) | The current declaration supplies its documented fields/composition only; the broader historical narrative is not an SDK contract. |
 
-## Frozen paper citations
+## Paper citations
 
-`Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/record_is_system.md` is a retained paper projection. Its S11, S12, S15, S16 and S17 citations (including the source table) refer to the pinned historical text above. The old phrase "each checked directly in the medium" records that paper's historical claim; it is not a present SDK contract or a new proof of a universal host/compiler limit. The paper bytes remain unchanged.
+`Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/record_is_system.md` cites S11, S12, S15, S16 and S17, including its source table. Those citations now link directly to the pinned historical text above and declare its full source SHA. The phrase "each checked directly in the medium" records the paper's historical claim; it is not a present SDK contract or a new proof of a universal host/compiler limit. This repair changes citation destinations and adds provenance, without re-deriving or strengthening the paper's arguments.
 
 ## Live readers
 

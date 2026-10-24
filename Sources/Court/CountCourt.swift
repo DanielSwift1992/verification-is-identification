@@ -56,8 +56,11 @@ enum CountCourt {
     }
 
     static func shape(_ text: String) throws -> [String] {
+        shape(try StructuralSource.tokens(text))
+    }
+    static func shape(_ words: [String]) -> [String] {
         let modifiers: Set<String> = ["public", "internal", "private", "fileprivate", "package"]
-        return StructuralSource.plain(try StructuralSource.tokens(text)).filter { !modifiers.contains($0) }
+        return StructuralSource.plain(words).filter { !modifiers.contains($0) }
     }
 
     static func countGetters(_ block: Block) throws -> [[String]] {
@@ -97,7 +100,7 @@ enum CountCourt {
             if name == "StructureBuilder", !found[0].resultBuilder {
                 throw Failure("StructureBuilder is not declared @resultBuilder in \(found[0].origin)")
             }
-            if let body, try shape(StructuralSource.text(found[0].body)) != shape(body) {
+            if let body, try shape(found[0].body) != shape(body) {
                 throw Failure("changed count primitive body '\(name)' in \(found[0].origin)")
             }
         }

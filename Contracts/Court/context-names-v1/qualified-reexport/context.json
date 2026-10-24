@@ -1,0 +1,56 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "qualified-reexport/World.swift",
+      "source": "qualified-reexport/World.swift",
+      "sha256": "fccf7a0f6f79a9a8bb68e9e81e8bc28352a14f06c41364c9e33ae94050912773",
+      "namespace": "World",
+      "imports": [
+        "API"
+      ],
+      "at": {
+        "input": "qualified-reexport/context#World.swift/input",
+        "source": "qualified-reexport/context#World.swift/source",
+        "sha256": "qualified-reexport/context#World.swift/sha256",
+        "namespace": "qualified-reexport/context#World.swift/namespace",
+        "imports": [
+          "qualified-reexport/context#World.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "qualified-reexport/Kit.swift",
+      "source": "qualified-reexport/Kit.swift",
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "namespace": "Kit",
+      "imports": [],
+      "at": {
+        "input": "qualified-reexport/context#Kit.swift/input",
+        "source": "qualified-reexport/context#Kit.swift/source",
+        "sha256": "qualified-reexport/context#Kit.swift/sha256",
+        "namespace": "qualified-reexport/context#Kit.swift/namespace",
+        "imports": []
+      }
+    },
+    {
+      "input": "qualified-reexport/API.swift",
+      "source": "qualified-reexport/API.swift",
+      "sha256": "80174362507f7167c4c5b6acd9c7f5004a2bf41068f60b039b062cc2f9b93089",
+      "namespace": "API",
+      "imports": [
+        "Kit"
+      ],
+      "at": {
+        "input": "qualified-reexport/context#API.swift/input",
+        "source": "qualified-reexport/context#API.swift/source",
+        "sha256": "qualified-reexport/context#API.swift/sha256",
+        "namespace": "qualified-reexport/context#API.swift/namespace",
+        "imports": [
+          "qualified-reexport/context#API.swift/imports/0"
+        ]
+      }
+    }
+  ],
+  "intrinsics": []
+}

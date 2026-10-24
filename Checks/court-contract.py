@@ -109,6 +109,7 @@ if __name__ == '__main__' and len(sys.argv) > 1 and sys.argv[1] == '--roster':
 # An immutable suite name binds the exact manifest bytes, including its case set.
 # New normative expectations require a new release and a deliberate registry entry.
 SUITE_HASHES = {
+    "vi.court.context-names/1": "775a7afe429e3e21b0d96d6f3573b6c0940fe618d88150cc5405e1a855a46230",
     "vi.court.questions/0.5": "505cfa1aa409ae98f8666437330084d85c105e963b6f705490565a78603e3808",
     "vi.court.questions/0.4": "25c7b65d5dc27f1a669139061f3b166c47897a460f3967b65d99d1c30ee8b47d",
     "vi.court.questions/0.3": "85386b2809b8d36a8f74c59df6c8a6768ee10747b3850b1e2c4bf123cdf746ef",
@@ -159,6 +160,30 @@ def load_contract(path):
             raise ValueError(f"invalid pass or empty inputs: {case['id']}")
         if not set(case['files']) <= set(contract['files']) | absent:
             raise ValueError(f"unbound input: {case['id']}")
+        compiler = case.get('compiler', {})
+        native_files = list(compiler.get('files', case['files']))
+        module_names = []
+        for module in compiler.get('modules', []):
+            if set(module) != {'name', 'files'} or not re.fullmatch(r'[A-Za-z_][A-Za-z_0-9]*', module['name']):
+                raise ValueError(f"invalid compiler module: {case['id']}")
+            module_names.append(module['name'])
+            native_files.extend(module['files'])
+        if len(module_names) != len(set(module_names)) or set(native_files) != set(case['files']):
+            raise ValueError(f"compiler inputs differ from judged sources: {case['id']}")
+        if 'module' in compiler:
+            if len(native_files) != len(set(native_files)) or not compiler.get('files'):
+                raise ValueError(f"compiler source owners overlap or have no primary: {case['id']}")
+            if '--context' not in case['args']:
+                raise ValueError(f"compiler module plan has no judged context: {case['id']}")
+            context_name = case['args'][case['args'].index('--context') + 1]
+            context = json.loads(within(root, context_name).read_bytes())
+            owners = {source['input']: source.get('module', source['namespace']) for source in context['sources']}
+            plans = compiler.get('modules', []) + [{'name': compiler['module'], 'files': compiler['files']}]
+            for module in plans:
+                if not re.fullmatch(r'[A-Za-z_][A-Za-z_0-9]*', module['name']):
+                    raise ValueError(f"invalid compiler module: {case['id']}")
+                if not module['files'] or any(owners.get(name) != module['name'] for name in module['files']):
+                    raise ValueError(f"compiler module differs from context owner: {case['id']}")
         if 'response' in case['expected']:
             if contract['schema'] != 'vi.court.conformance/2' or '--report' not in case['args']:
                 raise ValueError(f"undeclared structured response: {case['id']}")
@@ -286,10 +311,18 @@ def compiler_failures(actual, expected):
     if expected['diagnostic'] == 'none':
         if actual['stderr']:
             errors.append('compiler diagnostic')
-    else:
+    elif expected['diagnostic'] == 'equivalence':
         lines = re.findall(r'^.*:\d+:\d+: error:.*$', actual['stderr'], re.M)
         if len(lines) != 1 or 'requires the types' not in lines[0] or 'be equivalent' not in lines[0]:
             errors.append('compiler equivalence diagnostic')
+    elif expected['diagnostic'] == 'addressed':
+        if not re.search(r'^.*:\d+:\d+: error:', actual['stderr'], re.M):
+            errors.append('compiler addressed diagnostic')
+        for fragment in expected.get('diagnostics_contain', []):
+            if fragment not in actual['stderr']:
+                errors.append('compiler diagnostic: ' + fragment)
+    else:
+        errors.append('unknown compiler diagnostic expectation')
     return errors
 
 
@@ -325,7 +358,22 @@ def main():
                 row = {'id': case['id'], 'expected_outcome_for_this_case': case['expected']['outcome_for_this_case'],
                        'actual': actual, 'mismatches': failures}
                 if args.compiler and 'compiler' in case:
-                    compiled = run([args.compiler, '-typecheck', '-module-cache-path', tmp + '/cache'] + case['files'], root, args.timeout)
+                    native = Path(tmp) / case['id']
+                    native.mkdir()
+                    stages = []
+                    for module in case['compiler'].get('modules', []):
+                        stage = run([args.compiler, '-emit-module', '-module-name', module['name'],
+                                     '-I', str(native), '-module-cache-path', tmp + '/cache',
+                                     '-emit-module-path', str(native / (module['name'] + '.swiftmodule'))]
+                                    + module['files'], root, args.timeout)
+                        stages.append(stage)
+                        if stage.get('exit') != 0:
+                            failures.append('compiler prerequisite module: ' + module['name'])
+                            break
+                    row['compiler_modules'] = stages
+                    module_args = ['-module-name', case['compiler']['module']] if 'module' in case['compiler'] else []
+                    compiled = run([args.compiler, '-typecheck', *module_args, '-I', str(native), '-module-cache-path', tmp + '/cache']
+                                   + case['compiler'].get('files', case['files']), root, args.timeout)
                     row['compiler'] = compiled
                     failures.extend(compiler_failures(compiled, case['compiler']))
                 row['matched'] = not failures

@@ -1,0 +1,46 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "qualified-arity/World.swift",
+      "source": "qualified-arity/World.swift",
+      "sha256": "1e1fa7aadec5f480e554d22a330df9f39d83f30e86011368d885b4895f416a1e",
+      "namespace": "World",
+      "imports": [
+        "Kit"
+      ],
+      "at": {
+        "input": "qualified-arity/context#World.swift/input",
+        "source": "qualified-arity/context#World.swift/source",
+        "sha256": "qualified-arity/context#World.swift/sha256",
+        "namespace": "qualified-arity/context#World.swift/namespace",
+        "imports": [
+          "qualified-arity/context#World.swift/imports/0"
+        ],
+        "module": "qualified-arity/context.json#module",
+        "role": "qualified-arity/context.json#role"
+      },
+      "module": "World",
+      "role": "own"
+    },
+    {
+      "input": "qualified-arity/Kit.swift",
+      "source": "qualified-arity/Kit.swift",
+      "sha256": "a44ff1ce3bf615ea37a83074e74ac47337f8c1350cceca3a41cbf0ed26dae663",
+      "namespace": "Kit",
+      "imports": [],
+      "at": {
+        "input": "qualified-arity/context#Kit.swift/input",
+        "source": "qualified-arity/context#Kit.swift/source",
+        "sha256": "qualified-arity/context#Kit.swift/sha256",
+        "namespace": "qualified-arity/context#Kit.swift/namespace",
+        "imports": [],
+        "module": "qualified-arity/context.json#module",
+        "role": "qualified-arity/context.json#role"
+      },
+      "module": "Kit",
+      "role": "borrowed"
+    }
+  ],
+  "intrinsics": []
+}

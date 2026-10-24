@@ -1,0 +1,46 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "qualified-generic-false/World.swift",
+      "source": "qualified-generic-false/World.swift",
+      "sha256": "53d85666356d9f64bcd210fb8fa3b8be458fc7895aa6e2c4472a13c9ba3a1c25",
+      "namespace": "World",
+      "imports": [
+        "Kit"
+      ],
+      "at": {
+        "input": "qualified-generic-false/context#World.swift/input",
+        "source": "qualified-generic-false/context#World.swift/source",
+        "sha256": "qualified-generic-false/context#World.swift/sha256",
+        "namespace": "qualified-generic-false/context#World.swift/namespace",
+        "imports": [
+          "qualified-generic-false/context#World.swift/imports/0"
+        ],
+        "module": "qualified-generic-false/context.json#module",
+        "role": "qualified-generic-false/context.json#role"
+      },
+      "module": "World",
+      "role": "own"
+    },
+    {
+      "input": "qualified-generic-false/Kit.swift",
+      "source": "qualified-generic-false/Kit.swift",
+      "sha256": "4dc46525bfa110b1d8ac9bc381b65930721e07e35d6755d3ec98f6dd289bbbfc",
+      "namespace": "Kit",
+      "imports": [],
+      "at": {
+        "input": "qualified-generic-false/context#Kit.swift/input",
+        "source": "qualified-generic-false/context#Kit.swift/source",
+        "sha256": "qualified-generic-false/context#Kit.swift/sha256",
+        "namespace": "qualified-generic-false/context#Kit.swift/namespace",
+        "imports": [],
+        "module": "qualified-generic-false/context.json#module",
+        "role": "qualified-generic-false/context.json#role"
+      },
+      "module": "Kit",
+      "role": "borrowed"
+    }
+  ],
+  "intrinsics": []
+}

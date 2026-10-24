@@ -1,0 +1,54 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "ambiguous/World.swift",
+      "source": "ambiguous/World.swift",
+      "sha256": "98bf13ee0576571b43456040a583b17ff04fd4f23d06ea2333b9511a960e1861",
+      "namespace": "World",
+      "imports": [
+        "Kit",
+        "Other"
+      ],
+      "at": {
+        "input": "ambiguous/context#World.swift/input",
+        "source": "ambiguous/context#World.swift/source",
+        "sha256": "ambiguous/context#World.swift/sha256",
+        "namespace": "ambiguous/context#World.swift/namespace",
+        "imports": [
+          "ambiguous/context#World.swift/imports/0",
+          "ambiguous/context#World.swift/imports/1"
+        ]
+      }
+    },
+    {
+      "input": "ambiguous/Kit.swift",
+      "source": "ambiguous/Kit.swift",
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "namespace": "Kit",
+      "imports": [],
+      "at": {
+        "input": "ambiguous/context#Kit.swift/input",
+        "source": "ambiguous/context#Kit.swift/source",
+        "sha256": "ambiguous/context#Kit.swift/sha256",
+        "namespace": "ambiguous/context#Kit.swift/namespace",
+        "imports": []
+      }
+    },
+    {
+      "input": "ambiguous/Other.swift",
+      "source": "ambiguous/Other.swift",
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "namespace": "Other",
+      "imports": [],
+      "at": {
+        "input": "ambiguous/context#Other.swift/input",
+        "source": "ambiguous/context#Other.swift/source",
+        "sha256": "ambiguous/context#Other.swift/sha256",
+        "namespace": "ambiguous/context#Other.swift/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

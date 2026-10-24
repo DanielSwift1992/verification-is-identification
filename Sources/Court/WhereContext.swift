@@ -15,7 +15,9 @@ enum WhereContext {
         if context.version == 2 && !batch {
             throw WhereJudge.Failure.input(["context/2 requires --report for complete source coverage"])
         }
-        let units = try CourtNotation.read(context, texts: texts, selected: notationOnly ? nil : first, documents: documents)
+        let readUnits = try CourtNotation.read(context, texts: texts, selected: notationOnly ? nil : first, documents: documents)
+        let resolved = try WhereContextNames.resolve(readUnits, selected: first, version: context.version)
+        let units = resolved.files
         let intrinsicNames = ["Never"] + (context.version == 2 ? ["String"] : [])
         if !units.filter({ $0.world.intrinsicSwift }).isEmpty {
             for unit in units.sorted(by: { $0.context.source < $1.context.source }) {
@@ -94,13 +96,14 @@ enum WhereContext {
                 }
             }
         }
+        try WhereContextNames.applications(resolved.applications, in: world)
         // Availability is checked from source declarations and explicit import
         // edges. A context does not turn an opaque spelling into a supplied type.
         for unit in units {
             for name in (try references(unit.world, in: world)).sorted() {
                 guard let origin = origins[name]?.first,
-                      !WhereJudge.sameName(origin.unit.context.namespace, unit.context.namespace) else { continue }
-                guard unit.context.imports.containsName(origin.unit.context.module) else {
+                      WhereContextNames.key(origin.unit.context.module) != WhereContextNames.key(unit.context.module) else { continue }
+                guard unit.context.imports.map(WhereContextNames.key).contains(WhereContextNames.key(origin.unit.context.module)) else {
                     try WhereJudge.fail("\(unit.context.source):1: '\(name)' belongs to unimported namespace '\(origin.unit.context.namespace)'")
                 }
             }
@@ -154,7 +157,8 @@ enum WhereContext {
                 if world.aliases[name] != nil { try WhereJudge.fail("\(at): extension through typealias '\(name)' is unsupported") }
                 if !intrinsicNames.containsName(name) {
                     guard let origin = origins[name]?.first else { try WhereJudge.fail("\(at): extension target '\(name)' has no declared owner") }
-                    guard WhereJudge.sameName(origin.unit.context.namespace, unit.context.namespace) || unit.context.imports.containsName(origin.unit.context.module) else {
+                    guard WhereContextNames.key(origin.unit.context.module) == WhereContextNames.key(unit.context.module)
+                        || unit.context.imports.map(WhereContextNames.key).contains(WhereContextNames.key(origin.unit.context.module)) else {
                         try WhereJudge.fail("\(at): extension target '\(name)' is not imported")
                     }
                     if !WhereJudge.sameName(origin.unit.context.input, unit.context.input),
@@ -189,6 +193,25 @@ enum WhereContext {
             guard reached.contains(name) else { continue }
             try visit(name)
         }
+        // A bare alias edge selects a declaration before reduction. Give a
+        // cycle its declaration address rather than exhausting the reducer's
+        // work allowance without an owner. Other reduction failures retain
+        // their existing boundary.
+        var aliasDone: NameSet = [], aliasActive: NameSet = []
+        func visitAlias(_ name: String) throws {
+            guard let alias = world.aliases[name], alias.parameters.isEmpty else { return }
+            if aliasActive.contains(name) {
+                try WhereJudge.fail("\(world.addresses[name] ?? own.context.source + ":1"): cyclic alias resolution at '\(name)' has no declared nominal ground")
+            }
+            if aliasDone.contains(name) { return }
+            aliasActive.insert(name)
+            if case let .application(next, arguments) = try DefinitionReduction.parse(alias.body), arguments.isEmpty {
+                try visitAlias(next)
+            }
+            aliasActive.remove(name)
+            aliasDone.insert(name)
+        }
+        for name in world.aliases.keys.sorted() where reached.contains(name) { try visitAlias(name) }
         for name in world.gatedProtocols.keys.sorted() {
             let gate = world.gatedProtocols[name]!
             for part in gate.unjudged {

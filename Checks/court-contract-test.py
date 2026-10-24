@@ -156,3 +156,66 @@ for mutation in ('zero', 'missing', 'digest', 'extra', 'duplicate', 'outcome'):
     if mutation == 'outcome': value['results'][0]['outcome'] = 'empty'
     check(bool(contract.mismatches(structured(value), expected)), 'source response rejects ' + mutation)
 print(f'court-contract reader: {checks} checks passed across five releases')
+
+# These controls reach module-plan validation after digest admission; they do
+# not claim anything about Swift semantics. The temporary suite identity is
+# local to this process and never accepted by the production command.
+names_root, names_suite = contract.load_contract(HERE.parent / 'Contracts/Court/context-names-v1/contract.json')
+with tempfile.TemporaryDirectory(prefix='vi-module-contract-tests-') as tmp:
+    target = Path(tmp) / 'contract'
+    shutil.copytree(names_root, target)
+    manifest = target / 'contract.json'
+    for mutation in ('omitted-module-file', 'changed-module-owner', 'overlapping-source', 'escaping-module', 'no-context'):
+        value = copy.deepcopy(names_suite)
+        value['suite'] = 'local-test.module-plan/1'
+        case = value['cases'][0]
+        if mutation == 'omitted-module-file': case['compiler']['modules'][0]['files'] = []
+        if mutation == 'changed-module-owner': case['compiler']['modules'][0]['name'] = 'Other'
+        if mutation == 'overlapping-source': case['compiler']['files'] += case['compiler']['modules'][0]['files']
+        if mutation == 'escaping-module': case['compiler']['modules'][0]['name'] = '../Other'
+        if mutation == 'no-context': case['args'] = []
+        manifest.write_text(json.dumps(value))
+        contract.SUITE_HASHES[value['suite']] = contract.digest(manifest)
+        try:
+            contract.load_contract(manifest)
+        except ValueError:
+            check(True, 'module plan refuses ' + mutation)
+        else:
+            check(False, 'module plan refuses ' + mutation)
+    del contract.SUITE_HASHES['local-test.module-plan/1']
+
+    # Even a positive Court reply and successful primary compilation cannot
+    # hide a prerequisite compiler failure. Only the physical executor is
+    # replaced here; the ordinary command, manifest reader and reporter run.
+    import contextlib
+    import io
+    import sys
+    value = copy.deepcopy(names_suite)
+    value['suite'] = 'local-test.module-failure/1'
+    value['cases'] = [value['cases'][0]]
+    manifest.write_text(json.dumps(value))
+    contract.SUITE_HASHES[value['suite']] = contract.digest(manifest)
+    original_run, original_argv = contract.run, sys.argv
+    def module_failure(argv, root, timeout):
+        result = dict(argv=argv, exit=0, stdout='', stderr='', seconds=0)
+        if '-emit-module' in argv:
+            result.update(exit=1, stderr='Kit.swift:1:1: error: failed prerequisite\n')
+        elif '-typecheck' not in argv:
+            result['stdout'] = '✓ THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4).\n'
+        return result
+    report = target / 'observed.json'
+    try:
+        contract.run = module_failure
+        sys.argv = ['court-contract.py', '--manifest', str(manifest), '--command-json', json.dumps([sys.executable]),
+                    '--implementation-id', 'physical failure control', '--compiler', 'injected-swiftc', '--report', str(report)]
+        with contextlib.redirect_stdout(io.StringIO()):
+            status = contract.main()
+    finally:
+        contract.run, sys.argv = original_run, original_argv
+        del contract.SUITE_HASHES['local-test.module-failure/1']
+    observed = json.loads(report.read_text())
+    check(status == 1 and not observed['passed'], 'failed prerequisite cannot become a successful suite')
+    row = observed['results'][0]
+    check(row['actual']['exit'] == 0 and row['compiler']['exit'] == 0 and row['compiler_modules'][0]['exit'] == 1
+          and any('prerequisite module' in text for text in row['mismatches']), 'prerequisite failure survives successful neighbors')
+print(f'court-contract reader: {checks} checks including source-bound module delivery')

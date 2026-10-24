@@ -1,0 +1,54 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "qualified-distinct-false/World.swift",
+      "source": "qualified-distinct-false/World.swift",
+      "sha256": "5fcba5b5cc812b6923463ca6b35fbf2deb3f7fd2d35b4f43f556f1a96b9b1a3c",
+      "namespace": "World",
+      "imports": [
+        "Kit",
+        "Other"
+      ],
+      "at": {
+        "input": "qualified-distinct-false/context#World.swift/input",
+        "source": "qualified-distinct-false/context#World.swift/source",
+        "sha256": "qualified-distinct-false/context#World.swift/sha256",
+        "namespace": "qualified-distinct-false/context#World.swift/namespace",
+        "imports": [
+          "qualified-distinct-false/context#World.swift/imports/0",
+          "qualified-distinct-false/context#World.swift/imports/1"
+        ]
+      }
+    },
+    {
+      "input": "qualified-distinct-false/Kit.swift",
+      "source": "qualified-distinct-false/Kit.swift",
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "namespace": "Kit",
+      "imports": [],
+      "at": {
+        "input": "qualified-distinct-false/context#Kit.swift/input",
+        "source": "qualified-distinct-false/context#Kit.swift/source",
+        "sha256": "qualified-distinct-false/context#Kit.swift/sha256",
+        "namespace": "qualified-distinct-false/context#Kit.swift/namespace",
+        "imports": []
+      }
+    },
+    {
+      "input": "qualified-distinct-false/Other.swift",
+      "source": "qualified-distinct-false/Other.swift",
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "namespace": "Other",
+      "imports": [],
+      "at": {
+        "input": "qualified-distinct-false/context#Other.swift/input",
+        "source": "qualified-distinct-false/context#Other.swift/source",
+        "sha256": "qualified-distinct-false/context#Other.swift/sha256",
+        "namespace": "qualified-distinct-false/context#Other.swift/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

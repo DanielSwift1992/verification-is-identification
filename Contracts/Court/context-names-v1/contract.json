@@ -1,0 +1,1328 @@
+{
+  "schema": "vi.court.conformance/2",
+  "suite": "vi.court.context-names/1",
+  "reference_revision": "35c7edd6f453f952d7b063d99601080e3e29f8d3",
+  "scope": "Finite module re-export and qualified nominal context cases; no complete Swift name resolver.",
+  "versions": {
+    "context": "vi.court.context/1",
+    "normalization_canon": 4
+  },
+  "files": {
+    "qualified/World.swift": {
+      "sha256": "6835e08ee3e83a49992358f2543a3498b3da6055d47275a0523143859212e5c9",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified/Kit.swift": {
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified/context.json": {
+      "sha256": "ff10ffa5de59948b59273a77309f3110a1e5799fba4abdf88f4d79427b50addc",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "reexport-minimal/World.swift": {
+      "sha256": "ac65ed7fdecf2ff63530c74389c37ae3450f66a3fada9e34c83c5f842f672913",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "reexport-minimal/Notation.swift": {
+      "sha256": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "reexport-minimal/API.swift": {
+      "sha256": "1d1d0bb422a9445cb44fbfdda36bc257cb83446b9277436bb40208fce7454db1",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "reexport-minimal/context.json": {
+      "sha256": "6688794e4753de8f389b9233c517e10fd449305ab0c0f92f34111500d5054b36",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "reexport/World.swift": {
+      "sha256": "152f4976652a0872595f850459d4af93424aee22d76c03dc65ed67b5f7f067ff",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "reexport/Notation.swift": {
+      "sha256": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "reexport/API.swift": {
+      "sha256": "1d1d0bb422a9445cb44fbfdda36bc257cb83446b9277436bb40208fce7454db1",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "reexport/context.json": {
+      "sha256": "176fb8e8e852f4a2b369c80eae4344bb4715d280424da11c6da9db7710881680",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "two-hop/World.swift": {
+      "sha256": "979ac323995c6ae02360b74b1ae8b972f9df1de9d6a93629018ae04f4dd8d610",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "two-hop/Notation.swift": {
+      "sha256": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "two-hop/API.swift": {
+      "sha256": "1d1d0bb422a9445cb44fbfdda36bc257cb83446b9277436bb40208fce7454db1",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "two-hop/Facade.swift": {
+      "sha256": "0a5167b227b8e14c2d1133e90052c7bf1b2af9f7adf9eccf3e73c663176c998e",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "two-hop/context.json": {
+      "sha256": "83c71eb54a30d4a3d24bc51b8d64137865fc86c5220c673606ff851211f51f23",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "ambiguous/World.swift": {
+      "sha256": "98bf13ee0576571b43456040a583b17ff04fd4f23d06ea2333b9511a960e1861",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "ambiguous/Kit.swift": {
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "ambiguous/Other.swift": {
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "ambiguous/context.json": {
+      "sha256": "95085db44d76bec53d0a8dacf87e8e0be6f984f0e348acb84200f309cd4b24a4",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "unimported/World.swift": {
+      "sha256": "fccf7a0f6f79a9a8bb68e9e81e8bc28352a14f06c41364c9e33ae94050912773",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "unimported/Kit.swift": {
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "unimported/API.swift": {
+      "sha256": "ae7ffcfb761dd33fb06a65fe57c00a8799683f626e18edf2dc83b0a614708bc6",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "unimported/context.json": {
+      "sha256": "772454e023c7d03da1559a249282b1c53cc10953ce94d345b748d8c5702357d7",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "missing/World.swift": {
+      "sha256": "10e4cf555b24dd2173c0fec6c0fd22a619890265743babf615d87fedbdf8eb0e",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "missing/Kit.swift": {
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "missing/context.json": {
+      "sha256": "1672541aad87e965e0d8da2514817bdf8952e53bd2525d4691dde957ca3e798a",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "local-duplicate/World.swift": {
+      "sha256": "b32c31d9eb26cc39c9cd8122e168424b920684cc172f6d3ec3d0097023a535de",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "local-duplicate/Other.swift": {
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "local-duplicate/context.json": {
+      "sha256": "591f2be7b9573e50731ae3eed8d4719f693531d067f2e8c87143e649c468db17",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "alias-cycle/World.swift": {
+      "sha256": "ef8142817ce1f3f0da856a7f496a3fdae40873e47ed91559f918d3aa31a29b1c",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "alias-cycle/context.json": {
+      "sha256": "1b66af9b50bcde6955b1f4a36c4908c3128890d725eb88e05710be95762ec66a",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "unexported/World.swift": {
+      "sha256": "152f4976652a0872595f850459d4af93424aee22d76c03dc65ed67b5f7f067ff",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "unexported/Notation.swift": {
+      "sha256": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "unexported/API.swift": {
+      "sha256": "feeed1ab07c4c8e632929b98226452cd072fc1e67670836e1415751b98e57024",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "unexported/context.json": {
+      "sha256": "de23bb8850debeb8d3ba105cbacbd20fc9207df69989361f236380ae82a23eb0",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-reexport/World.swift": {
+      "sha256": "fccf7a0f6f79a9a8bb68e9e81e8bc28352a14f06c41364c9e33ae94050912773",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-reexport/Kit.swift": {
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-reexport/API.swift": {
+      "sha256": "80174362507f7167c4c5b6acd9c7f5004a2bf41068f60b039b062cc2f9b93089",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-reexport/context.json": {
+      "sha256": "106a7acffc7dd75ec5f485483fea5ca58858515e541b0d6f78d499788de23a8f",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-distinct/World.swift": {
+      "sha256": "d1b5419c79e3115e85cfb1fcff4715667c2c80c1cb2aff6c66ed3dd2c5ecadbc",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-distinct/Kit.swift": {
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-distinct/Other.swift": {
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-distinct/context.json": {
+      "sha256": "fe01dbc4cbdae2a1ccf883b2ca3703e380097c933f567632cea390db08b557b8",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-distinct-false/World.swift": {
+      "sha256": "5fcba5b5cc812b6923463ca6b35fbf2deb3f7fd2d35b4f43f556f1a96b9b1a3c",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-distinct-false/Kit.swift": {
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-distinct-false/Other.swift": {
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-distinct-false/context.json": {
+      "sha256": "8880cd4576a64728351aefa150637ffcaa8f5619768954e2dbcdaa3666da0fa2",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-generic/World.swift": {
+      "sha256": "309d1a957ce613f2d144c2c271f95e60da25d79836f61f6efef86f4fb3728743",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-generic/Kit.swift": {
+      "sha256": "a44ff1ce3bf615ea37a83074e74ac47337f8c1350cceca3a41cbf0ed26dae663",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-generic/context.json": {
+      "sha256": "b6a18e10a2297c02338353a34dd4a03cc147145ce4e14a188d87175c3c6e49da",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-report/context.json": {
+      "sha256": "5ba34420d38ed96a69193c79ed3af4a2c10006e30408abcff0a4d9f56c3980af",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "reexport-minimal-report/context.json": {
+      "sha256": "6f68776811dfa29cf38cd7deeb53a117349922e01433c61fba9ee0d16f823b7f",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "two-hop-report/context.json": {
+      "sha256": "4978ad53086a808581e389b67af8d8ec795e9041ea122b546f9e603c718f8515",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-generic-report/context.json": {
+      "sha256": "bac44bd3e864018fb67a1a7afb56c755c6392c0630c6eadf6a55ccb628b6000c",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-generic-false/World.swift": {
+      "sha256": "53d85666356d9f64bcd210fb8fa3b8be458fc7895aa6e2c4472a13c9ba3a1c25",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-generic-false/Kit.swift": {
+      "sha256": "4dc46525bfa110b1d8ac9bc381b65930721e07e35d6755d3ec98f6dd289bbbfc",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-generic-false/context.json": {
+      "sha256": "ac8717f7d6b97de46f739a4353824dfdc97d97bbb335de0e409117ddab407f2c",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-multiline/World.swift": {
+      "sha256": "ae60758159c08370af1389ef6cf7f777f727f3748adbf41f8b8504729d7a1461",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-multiline/Kit.swift": {
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-multiline/context.json": {
+      "sha256": "b356db88a7c43c200ac6dbd64651b0d6b74264a873b37423f7274608144335d4",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-arity/World.swift": {
+      "sha256": "1e1fa7aadec5f480e554d22a330df9f39d83f30e86011368d885b4895f416a1e",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-arity/Kit.swift": {
+      "sha256": "a44ff1ce3bf615ea37a83074e74ac47337f8c1350cceca3a41cbf0ed26dae663",
+      "origin": "Context-names v1: declared finite question"
+    },
+    "qualified-arity/context.json": {
+      "sha256": "3af65c093067017768a34e0ceeac75d7e6598836d887eb7cad2c865af29cf8e0",
+      "origin": "Context-names v1: declared finite question"
+    }
+  },
+  "missing_files": [],
+  "cases": [
+    {
+      "id": "qualified",
+      "pass": "where",
+      "files": [
+        "qualified/World.swift",
+        "qualified/Kit.swift"
+      ],
+      "args": [
+        "--context",
+        "qualified/context.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "line_patterns": [
+            "✓ THE WHERE holds: [1-9][0-9]* equalities and [0-9]+ memberships judged across [0-9]+ uses, the certificates, and the gated conformers, source-replayed definition reductions \\(canon v4\\)."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "qualified/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "qualified/Kit.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "reexport-minimal",
+      "pass": "where",
+      "files": [
+        "reexport-minimal/World.swift",
+        "reexport-minimal/Notation.swift",
+        "reexport-minimal/API.swift"
+      ],
+      "args": [
+        "--context",
+        "reexport-minimal/context.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "line_patterns": [
+            "✗ THE WHERE: .*no equalities or memberships were judged.*"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "reexport-minimal/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Notation",
+            "files": [
+              "reexport-minimal/Notation.swift"
+            ]
+          },
+          {
+            "name": "API",
+            "files": [
+              "reexport-minimal/API.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "reexport",
+      "pass": "where",
+      "files": [
+        "reexport/World.swift",
+        "reexport/Notation.swift",
+        "reexport/API.swift"
+      ],
+      "args": [
+        "--context",
+        "reexport/context.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "line_patterns": [
+            "✓ THE WHERE holds: [1-9][0-9]* equalities and [0-9]+ memberships judged across [0-9]+ uses, the certificates, and the gated conformers, source-replayed definition reductions \\(canon v4\\)."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "reexport/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Notation",
+            "files": [
+              "reexport/Notation.swift"
+            ]
+          },
+          {
+            "name": "API",
+            "files": [
+              "reexport/API.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "two-hop",
+      "pass": "where",
+      "files": [
+        "two-hop/World.swift",
+        "two-hop/Notation.swift",
+        "two-hop/API.swift",
+        "two-hop/Facade.swift"
+      ],
+      "args": [
+        "--context",
+        "two-hop/context.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "line_patterns": [
+            "✓ THE WHERE holds: [1-9][0-9]* equalities and [0-9]+ memberships judged across [0-9]+ uses, the certificates, and the gated conformers, source-replayed definition reductions \\(canon v4\\)."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "two-hop/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Notation",
+            "files": [
+              "two-hop/Notation.swift"
+            ]
+          },
+          {
+            "name": "API",
+            "files": [
+              "two-hop/API.swift"
+            ]
+          },
+          {
+            "name": "Facade",
+            "files": [
+              "two-hop/Facade.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ambiguous",
+      "pass": "where",
+      "files": [
+        "ambiguous/World.swift",
+        "ambiguous/Kit.swift",
+        "ambiguous/Other.swift"
+      ],
+      "args": [
+        "--context",
+        "ambiguous/context.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "line_patterns": [
+            "✗ THE WHERE: .*ambiguous between.*"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 1,
+        "diagnostic": "addressed",
+        "files": [
+          "ambiguous/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "ambiguous/Kit.swift"
+            ]
+          },
+          {
+            "name": "Other",
+            "files": [
+              "ambiguous/Other.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "unimported",
+      "pass": "where",
+      "files": [
+        "unimported/World.swift",
+        "unimported/Kit.swift",
+        "unimported/API.swift"
+      ],
+      "args": [
+        "--context",
+        "unimported/context.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "line_patterns": [
+            "✗ THE WHERE: .*module 'Kit' is not imported.*"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 1,
+        "diagnostic": "addressed",
+        "files": [
+          "unimported/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "unimported/Kit.swift"
+            ]
+          },
+          {
+            "name": "API",
+            "files": [
+              "unimported/API.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "missing",
+      "pass": "where",
+      "files": [
+        "missing/World.swift",
+        "missing/Kit.swift"
+      ],
+      "args": [
+        "--context",
+        "missing/context.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "line_patterns": [
+            "✗ THE WHERE: .*module 'Kit' has no declaration 'Absent'.*"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 1,
+        "diagnostic": "addressed",
+        "files": [
+          "missing/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "missing/Kit.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "local-duplicate",
+      "pass": "where",
+      "files": [
+        "local-duplicate/World.swift",
+        "local-duplicate/Other.swift"
+      ],
+      "args": [
+        "--context",
+        "local-duplicate/context.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "line_patterns": [
+            "✗ THE WHERE: .*declaration 'Shape' conflicts.*"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 1,
+        "diagnostic": "addressed",
+        "files": [
+          "local-duplicate/World.swift",
+          "local-duplicate/Other.swift"
+        ],
+        "modules": []
+      }
+    },
+    {
+      "id": "alias-cycle",
+      "pass": "where",
+      "files": [
+        "alias-cycle/World.swift"
+      ],
+      "args": [
+        "--context",
+        "alias-cycle/context.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "line_patterns": [
+            "✗ THE WHERE: .*alias-cycle/World.swift:[12]: cyclic alias.*"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 1,
+        "diagnostic": "addressed",
+        "files": [
+          "alias-cycle/World.swift"
+        ],
+        "modules": []
+      }
+    },
+    {
+      "id": "unexported",
+      "pass": "where",
+      "files": [
+        "unexported/World.swift",
+        "unexported/Notation.swift",
+        "unexported/API.swift"
+      ],
+      "args": [
+        "--context",
+        "unexported/context.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "line_patterns": [
+            "✗ THE WHERE: .*belongs to unimported namespace 'Notation'.*"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 1,
+        "diagnostic": "addressed",
+        "files": [
+          "unexported/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Notation",
+            "files": [
+              "unexported/Notation.swift"
+            ]
+          },
+          {
+            "name": "API",
+            "files": [
+              "unexported/API.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "qualified-reexport",
+      "pass": "where",
+      "files": [
+        "qualified-reexport/World.swift",
+        "qualified-reexport/Kit.swift",
+        "qualified-reexport/API.swift"
+      ],
+      "args": [
+        "--context",
+        "qualified-reexport/context.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "line_patterns": [
+            "✓ THE WHERE holds: [1-9][0-9]* equalities and [0-9]+ memberships judged across [0-9]+ uses, the certificates, and the gated conformers, source-replayed definition reductions \\(canon v4\\)."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "qualified-reexport/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "qualified-reexport/Kit.swift"
+            ]
+          },
+          {
+            "name": "API",
+            "files": [
+              "qualified-reexport/API.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "qualified-distinct",
+      "pass": "where",
+      "files": [
+        "qualified-distinct/World.swift",
+        "qualified-distinct/Kit.swift",
+        "qualified-distinct/Other.swift"
+      ],
+      "args": [
+        "--context",
+        "qualified-distinct/context.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "line_patterns": [
+            "✓ THE WHERE holds: [1-9][0-9]* equalities and [0-9]+ memberships judged across [0-9]+ uses, the certificates, and the gated conformers, source-replayed definition reductions \\(canon v4\\)."
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "qualified-distinct/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "qualified-distinct/Kit.swift"
+            ]
+          },
+          {
+            "name": "Other",
+            "files": [
+              "qualified-distinct/Other.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "qualified-distinct-false",
+      "pass": "where",
+      "files": [
+        "qualified-distinct-false/World.swift",
+        "qualified-distinct-false/Kit.swift",
+        "qualified-distinct-false/Other.swift"
+      ],
+      "args": [
+        "--context",
+        "qualified-distinct-false/context.json"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "refused",
+        "stdout": {
+          "line_patterns": [
+            "✗ .*requires the types.*be equivalent.*"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 1,
+        "diagnostic": "addressed",
+        "files": [
+          "qualified-distinct-false/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "qualified-distinct-false/Kit.swift"
+            ]
+          },
+          {
+            "name": "Other",
+            "files": [
+              "qualified-distinct-false/Other.swift"
+            ]
+          }
+        ],
+        "diagnostics_contain": [
+          "does not conform",
+          "requires the types"
+        ]
+      }
+    },
+    {
+      "id": "qualified-generic",
+      "pass": "where",
+      "files": [
+        "qualified-generic/World.swift",
+        "qualified-generic/Kit.swift"
+      ],
+      "args": [
+        "--context",
+        "qualified-generic/context.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "line_patterns": [
+            "✗ THE WHERE: .*qualified generic application requires context/2 applicability grounds.*"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "qualified-generic/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "qualified-generic/Kit.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "qualified-report",
+      "pass": "where",
+      "files": [
+        "qualified/World.swift",
+        "qualified/Kit.swift"
+      ],
+      "args": [
+        "--context",
+        "qualified-report/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "qualified-report/context.json",
+              "sha256": "5ba34420d38ed96a69193c79ed3af4a2c10006e30408abcff0a4d9f56c3980af"
+            },
+            {
+              "path": "qualified/Kit.swift",
+              "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13"
+            },
+            {
+              "path": "qualified/World.swift",
+              "sha256": "6835e08ee3e83a49992358f2543a3498b3da6055d47275a0523143859212e5c9"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "qualified/World.swift": {
+              "source": "qualified/World.swift",
+              "outcome": "holds",
+              "minimum": {
+                "equalities": 1
+              }
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "qualified/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "qualified/Kit.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "reexport-minimal-report",
+      "pass": "where",
+      "files": [
+        "reexport-minimal/World.swift",
+        "reexport-minimal/Notation.swift",
+        "reexport-minimal/API.swift"
+      ],
+      "args": [
+        "--context",
+        "reexport-minimal-report/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "empty",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "reexport-minimal-report/context.json",
+              "sha256": "6f68776811dfa29cf38cd7deeb53a117349922e01433c61fba9ee0d16f823b7f"
+            },
+            {
+              "path": "reexport-minimal/API.swift",
+              "sha256": "1d1d0bb422a9445cb44fbfdda36bc257cb83446b9277436bb40208fce7454db1"
+            },
+            {
+              "path": "reexport-minimal/Notation.swift",
+              "sha256": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072"
+            },
+            {
+              "path": "reexport-minimal/World.swift",
+              "sha256": "ac65ed7fdecf2ff63530c74389c37ae3450f66a3fada9e34c83c5f842f672913"
+            }
+          ],
+          "outcome": "empty",
+          "results": {
+            "reexport-minimal/World.swift": {
+              "source": "reexport-minimal/World.swift",
+              "outcome": "empty",
+              "minimum": {}
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "reexport-minimal/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Notation",
+            "files": [
+              "reexport-minimal/Notation.swift"
+            ]
+          },
+          {
+            "name": "API",
+            "files": [
+              "reexport-minimal/API.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "two-hop-report",
+      "pass": "where",
+      "files": [
+        "two-hop/World.swift",
+        "two-hop/Notation.swift",
+        "two-hop/API.swift",
+        "two-hop/Facade.swift"
+      ],
+      "args": [
+        "--context",
+        "two-hop-report/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "two-hop-report/context.json",
+              "sha256": "4978ad53086a808581e389b67af8d8ec795e9041ea122b546f9e603c718f8515"
+            },
+            {
+              "path": "two-hop/API.swift",
+              "sha256": "1d1d0bb422a9445cb44fbfdda36bc257cb83446b9277436bb40208fce7454db1"
+            },
+            {
+              "path": "two-hop/Facade.swift",
+              "sha256": "0a5167b227b8e14c2d1133e90052c7bf1b2af9f7adf9eccf3e73c663176c998e"
+            },
+            {
+              "path": "two-hop/Notation.swift",
+              "sha256": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072"
+            },
+            {
+              "path": "two-hop/World.swift",
+              "sha256": "979ac323995c6ae02360b74b1ae8b972f9df1de9d6a93629018ae04f4dd8d610"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "two-hop/World.swift": {
+              "source": "two-hop/World.swift",
+              "outcome": "holds",
+              "minimum": {
+                "equalities": 1
+              }
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "two-hop/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Notation",
+            "files": [
+              "two-hop/Notation.swift"
+            ]
+          },
+          {
+            "name": "API",
+            "files": [
+              "two-hop/API.swift"
+            ]
+          },
+          {
+            "name": "Facade",
+            "files": [
+              "two-hop/Facade.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "qualified-generic-report",
+      "pass": "where",
+      "files": [
+        "qualified-generic/World.swift",
+        "qualified-generic/Kit.swift"
+      ],
+      "args": [
+        "--context",
+        "qualified-generic-report/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "qualified-generic-report/context.json",
+              "sha256": "bac44bd3e864018fb67a1a7afb56c755c6392c0630c6eadf6a55ccb628b6000c"
+            },
+            {
+              "path": "qualified-generic/Kit.swift",
+              "sha256": "a44ff1ce3bf615ea37a83074e74ac47337f8c1350cceca3a41cbf0ed26dae663"
+            },
+            {
+              "path": "qualified-generic/World.swift",
+              "sha256": "309d1a957ce613f2d144c2c271f95e60da25d79836f61f6efef86f4fb3728743"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "qualified-generic/World.swift": {
+              "source": "qualified-generic/World.swift",
+              "outcome": "holds",
+              "minimum": {
+                "equalities": 1
+              }
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "qualified-generic/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "qualified-generic/Kit.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "qualified-generic-false",
+      "pass": "where",
+      "files": [
+        "qualified-generic-false/World.swift",
+        "qualified-generic-false/Kit.swift"
+      ],
+      "args": [
+        "--context",
+        "qualified-generic-false/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "refused",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "qualified-generic-false/Kit.swift",
+              "sha256": "4dc46525bfa110b1d8ac9bc381b65930721e07e35d6755d3ec98f6dd289bbbfc"
+            },
+            {
+              "path": "qualified-generic-false/World.swift",
+              "sha256": "53d85666356d9f64bcd210fb8fa3b8be458fc7895aa6e2c4472a13c9ba3a1c25"
+            },
+            {
+              "path": "qualified-generic-false/context.json",
+              "sha256": "ac8717f7d6b97de46f739a4353824dfdc97d97bbb335de0e409117ddab407f2c"
+            }
+          ],
+          "outcome": "refused",
+          "results": {
+            "qualified-generic-false/World.swift": {
+              "source": "qualified-generic-false/World.swift",
+              "outcome": "refused"
+            }
+          },
+          "diagnostics_contain": [
+            "qualified-generic-false/World.swift:2",
+            "requires bound"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 1,
+        "diagnostic": "addressed",
+        "files": [
+          "qualified-generic-false/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "qualified-generic-false/Kit.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "qualified-multiline",
+      "pass": "where",
+      "files": [
+        "qualified-multiline/World.swift",
+        "qualified-multiline/Kit.swift"
+      ],
+      "args": [
+        "--context",
+        "qualified-multiline/context.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "line_patterns": [
+            "✗ THE WHERE: .*module qualifier across lines is outside this context fragment.*"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "qualified-multiline/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "qualified-multiline/Kit.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "qualified-arity",
+      "pass": "where",
+      "files": [
+        "qualified-arity/World.swift",
+        "qualified-arity/Kit.swift"
+      ],
+      "args": [
+        "--context",
+        "qualified-arity/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "qualified-arity/Kit.swift",
+              "sha256": "a44ff1ce3bf615ea37a83074e74ac47337f8c1350cceca3a41cbf0ed26dae663"
+            },
+            {
+              "path": "qualified-arity/World.swift",
+              "sha256": "1e1fa7aadec5f480e554d22a330df9f39d83f30e86011368d885b4895f416a1e"
+            },
+            {
+              "path": "qualified-arity/context.json",
+              "sha256": "3af65c093067017768a34e0ceeac75d7e6598836d887eb7cad2c865af29cf8e0"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {
+            "qualified-arity/World.swift": {
+              "source": "qualified-arity/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "qualified-arity/World.swift:2",
+            "matching declaration parameters"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 1,
+        "diagnostic": "addressed",
+        "files": [
+          "qualified-arity/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "qualified-arity/Kit.swift"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

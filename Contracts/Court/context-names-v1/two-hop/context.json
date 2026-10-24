@@ -1,0 +1,74 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "two-hop/World.swift",
+      "source": "two-hop/World.swift",
+      "sha256": "979ac323995c6ae02360b74b1ae8b972f9df1de9d6a93629018ae04f4dd8d610",
+      "namespace": "World",
+      "imports": [
+        "Facade"
+      ],
+      "at": {
+        "input": "two-hop/context#World.swift/input",
+        "source": "two-hop/context#World.swift/source",
+        "sha256": "two-hop/context#World.swift/sha256",
+        "namespace": "two-hop/context#World.swift/namespace",
+        "imports": [
+          "two-hop/context#World.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "two-hop/Notation.swift",
+      "source": "two-hop/Notation.swift",
+      "sha256": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072",
+      "namespace": "Notation",
+      "imports": [],
+      "at": {
+        "input": "two-hop/context#Notation.swift/input",
+        "source": "two-hop/context#Notation.swift/source",
+        "sha256": "two-hop/context#Notation.swift/sha256",
+        "namespace": "two-hop/context#Notation.swift/namespace",
+        "imports": []
+      }
+    },
+    {
+      "input": "two-hop/API.swift",
+      "source": "two-hop/API.swift",
+      "sha256": "1d1d0bb422a9445cb44fbfdda36bc257cb83446b9277436bb40208fce7454db1",
+      "namespace": "API",
+      "imports": [
+        "Notation"
+      ],
+      "at": {
+        "input": "two-hop/context#API.swift/input",
+        "source": "two-hop/context#API.swift/source",
+        "sha256": "two-hop/context#API.swift/sha256",
+        "namespace": "two-hop/context#API.swift/namespace",
+        "imports": [
+          "two-hop/context#API.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "two-hop/Facade.swift",
+      "source": "two-hop/Facade.swift",
+      "sha256": "0a5167b227b8e14c2d1133e90052c7bf1b2af9f7adf9eccf3e73c663176c998e",
+      "namespace": "Facade",
+      "imports": [
+        "API"
+      ],
+      "at": {
+        "input": "two-hop/context#Facade.swift/input",
+        "source": "two-hop/context#Facade.swift/source",
+        "sha256": "two-hop/context#Facade.swift/sha256",
+        "namespace": "two-hop/context#Facade.swift/namespace",
+        "imports": [
+          "two-hop/context#Facade.swift/imports/0"
+        ]
+      }
+    }
+  ],
+  "intrinsics": []
+}

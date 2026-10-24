@@ -1,0 +1,56 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "reexport-minimal/World.swift",
+      "source": "reexport-minimal/World.swift",
+      "sha256": "ac65ed7fdecf2ff63530c74389c37ae3450f66a3fada9e34c83c5f842f672913",
+      "namespace": "World",
+      "imports": [
+        "API"
+      ],
+      "at": {
+        "input": "reexport-minimal/context#World.swift/input",
+        "source": "reexport-minimal/context#World.swift/source",
+        "sha256": "reexport-minimal/context#World.swift/sha256",
+        "namespace": "reexport-minimal/context#World.swift/namespace",
+        "imports": [
+          "reexport-minimal/context#World.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "reexport-minimal/Notation.swift",
+      "source": "reexport-minimal/Notation.swift",
+      "sha256": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072",
+      "namespace": "Notation",
+      "imports": [],
+      "at": {
+        "input": "reexport-minimal/context#Notation.swift/input",
+        "source": "reexport-minimal/context#Notation.swift/source",
+        "sha256": "reexport-minimal/context#Notation.swift/sha256",
+        "namespace": "reexport-minimal/context#Notation.swift/namespace",
+        "imports": []
+      }
+    },
+    {
+      "input": "reexport-minimal/API.swift",
+      "source": "reexport-minimal/API.swift",
+      "sha256": "1d1d0bb422a9445cb44fbfdda36bc257cb83446b9277436bb40208fce7454db1",
+      "namespace": "API",
+      "imports": [
+        "Notation"
+      ],
+      "at": {
+        "input": "reexport-minimal/context#API.swift/input",
+        "source": "reexport-minimal/context#API.swift/source",
+        "sha256": "reexport-minimal/context#API.swift/sha256",
+        "namespace": "reexport-minimal/context#API.swift/namespace",
+        "imports": [
+          "reexport-minimal/context#API.swift/imports/0"
+        ]
+      }
+    }
+  ],
+  "intrinsics": []
+}

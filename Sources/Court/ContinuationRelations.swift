@@ -28,6 +28,10 @@ extension ContinuationCourt {
     }
     indirect enum RouteProof: Codable {
         case source
+        // Output-relative cuts use the same route interpreter, rooted at the
+        // already checked Image shape instead of the original Source places.
+        case image
+        case output
         case pair(RouteProof, RouteProof)
         case projection(Side, RouteProof)
         case definition(E, [ReadProof], RouteProof)
@@ -121,6 +125,7 @@ extension ContinuationCourt {
         let format: Int
         var certificate: RelatedCertificate
     }
+    static let relatedArchiveLimit = 8_000_000
     struct WholeReading {
         let source: Shape
         let edges: [SourceEdge]
@@ -148,9 +153,48 @@ extension ContinuationCourt {
             return .pair(sourcePlaces(l, path: path + [.left]), sourcePlaces(r, path: path + [.right]))
         }
     }
+    static func shapeOfPlaces(_ places: Places, source: Shape, address: String) throws -> Shape {
+        switch places {
+        case let .leaf(path):
+            guard case let .leaf(sort) = try source.at(path) else { throw Failure(address + ": nonleaf origin") }
+            return .leaf(sort)
+        case let .pair(l, r):
+            return try .pair(shapeOfPlaces(l, source: source, address: address),
+                             shapeOfPlaces(r, source: source, address: address))
+        }
+    }
+    // Endpoint trees have already been interpreted by RouteProof. This only
+    // addresses their paired leaves; it does not parse another record syntax.
+    static func pairedPlaces(_ left: Places, _ right: Places, address: String,
+                              accept: ((Path, Path, Path) throws -> Void)? = nil) throws -> [SourceEdge] {
+        var edges: [SourceEdge] = []
+        func walk(_ l: Places, _ r: Places, _ path: Path) throws {
+            switch (l, r) {
+            case let (.leaf(a), .leaf(b)):
+                try accept?(a, b, path)
+                edges.append(SourceEdge(address: path, left: a, right: b))
+            case let (.pair(a, b), .pair(x, y)):
+                try walk(a, x, path + [.left])
+                try walk(b, y, path + [.right])
+            default: throw Failure(pathText(address, path) + ": endpoint shapes differ")
+            }
+        }
+        try walk(left, right, [])
+        return edges
+    }
+    static func equalityEdges(_ endpoints: Places, source: Shape, address: String) throws -> [SourceEdge] {
+        guard case let .pair(left, right) = endpoints else {
+            throw Failure(address + ": expected paired endpoint trees")
+        }
+        return try pairedPlaces(left, right, address: address) { a, b, path in
+            guard case let .leaf(sa) = try source.at(a), case let .leaf(sb) = try source.at(b), sa == sb else {
+                throw Failure(pathText(address, path) + ": endpoints have different sorts")
+            }
+        }
+    }
 
     static func deriveRoute(_ expression: E, context c: Context,
-                            form: RouteForm = .cut) throws -> RouteProof {
+                            form: RouteForm = .cut, anchor: String = "Source") throws -> RouteProof {
         var remaining = 50_000
         func build(_ e: E, _ mode: RouteForm, _ depth: Int) throws -> RouteProof {
             guard remaining > 0, depth < 128 else {
@@ -161,7 +205,12 @@ extension ContinuationCourt {
                 owner == c.root, axis != "Coverage" {
                 return try .domain(build(e, .cut, depth + 1))
             }
-            if mode == .cut, e == .field(c.root, "Source") { return .source }
+            if mode == .cut, e == .field(c.root, anchor) {
+                if anchor == "Source" { return .source }
+                if anchor == "Image" { return .image }
+                if anchor == "Output" { return .output }
+                throw Failure("unsupported route anchor")
+            }
             switch e {
             case let .application(name, args)
             where name == c.constructor && args.count == 2:
@@ -185,13 +234,14 @@ extension ContinuationCourt {
         }
         return try build(expression, form, 0)
     }
-    static func replayRoute(_ proof: RouteProof, context c: Context, source: Shape) throws -> (E, Places) {
-        let result = try replayRouting(proof, context: c, source: source, form: .cut)
+    static func replayRoute(_ proof: RouteProof, context c: Context, source: Shape,
+                            anchor: String = "Source") throws -> (E, Places) {
+        let result = try replayRouting(proof, context: c, source: source, form: .cut, anchor: anchor)
         guard case let .cut(places) = result.1 else { throw Failure("expected a source cut") }
         return (result.0, places)
     }
     static func replayRouting(_ proof: RouteProof, context c: Context, source: Shape,
-                              form: RouteForm) throws -> (E, Routed) {
+                              form: RouteForm, anchor field: String = "Source") throws -> (E, Routed) {
         var remaining = 100_000
         let anchor = sourcePlaces(source)
         func walk(_ p: RouteProof, _ mode: RouteForm, _ depth: Int) throws -> (E, Routed) {
@@ -200,7 +250,14 @@ extension ContinuationCourt {
             switch p {
             case .source:
                 guard mode == .cut else { throw Failure("family leaf needs its cut-field boundary") }
+                guard field == "Source" else { throw Failure("Source anchor outside its declared domain") }
                 return (.field(c.root, "Source"), .cut(anchor))
+            case .image:
+                guard mode == .cut, field == "Image" else { throw Failure("Image anchor outside its declared output") }
+                return (.field(c.root, "Image"), .cut(anchor))
+            case .output:
+                guard mode == .cut, field == "Output" else { throw Failure("Output anchor outside its declared shape") }
+                return (.field(c.root, "Output"), .cut(anchor))
             case let .pair(l, r):
                 let a = try walk(l, mode, depth + 1)
                 let b = try walk(r, mode, depth + 1)
@@ -245,27 +302,20 @@ extension ContinuationCourt {
                                + (certificate.hiddenActions.map { [$0] } ?? []),
                            context: c)
     }
-    static func checkWholeAxes(_ sourceProof: ReadProof, routes: [RouteProof], context c: Context) throws {
+    static func checkWholeAxes(_ sourceProof: ReadProof, routes: [RouteProof], context c: Context,
+                               shapes: [ReadProof] = []) throws {
         var read: Set<String> = []
         func mark(_ expression: E) {
             if case let .field(owner, axis) = expression, owner == c.root { read.insert(axis) }
         }
         func shape(_ proof: ReadProof) {
-            switch proof {
-            case .leaf: break
-            case let .pair(l, r):
-                shape(l)
-                shape(r)
-            case let .projection(_, child): shape(child)
-            case let .definition(input, arguments, child):
-                mark(input)
-                for argument in arguments { shape(argument) }
-                shape(child)
-            }
+            read.formUnion(c.fieldsRead(proof))
         }
         func route(_ proof: RouteProof) {
             switch proof {
             case .source: read.insert("Source")
+            case .image: read.insert("Image")
+            case .output: read.insert("Output")
             case let .pair(l, r):
                 route(l)
                 route(r)
@@ -277,15 +327,17 @@ extension ContinuationCourt {
             }
         }
         shape(sourceProof)
+        for proof in shapes { shape(proof) }
         for proof in routes { route(proof) }
         for axis in (c.source.declarations[c.request]?.fields.keys.sorted() ?? [])
         where !read.contains(axis) {
             throw Failure(c.request + "." + axis + ": unread axis in the declared whole")
         }
     }
-    static func readCut(_ proof: RouteProof, field: String, whole: WholeReading, context c: Context) throws -> Places {
+    static func readCut(_ proof: RouteProof, field: String, whole: WholeReading, context c: Context,
+                        anchor: String = "Source") throws -> Places {
         do {
-            let result = try replayRoute(proof, context: c, source: whole.source)
+            let result = try replayRoute(proof, context: c, source: whole.source, anchor: anchor)
             guard result.0 == .field(c.root, field) else { throw Failure("endpoint substituted") }
             return result.1
         } catch { throw Failure(c.request + "." + field + ": " + String(describing: error)) }
@@ -304,23 +356,8 @@ extension ContinuationCourt {
         var edges: [SourceEdge] = []
         if let proof = equalities {
             let unconnected = WholeReading(source: s.1, edges: [])
-            guard case let .pair(left, right) = try readCut(proof, field: "Equalities", whole: unconnected, context: c) else {
-                throw Failure(c.request + ".Equalities: expected paired endpoint trees")
-            }
-            func zipEdges(_ l: Places, _ r: Places, _ address: Path) throws {
-                switch (l, r) {
-                case let (.leaf(a), .leaf(b)):
-                    guard case let .leaf(sa) = try s.1.at(a), case let .leaf(sb) = try s.1.at(b), sa == sb else {
-                        throw Failure(pathText(c.request + ".Equalities", address) + ": endpoints have different sorts")
-                    }
-                    edges.append(SourceEdge(address: address, left: a, right: b))
-                case let (.pair(a, b), .pair(x, y)):
-                    try zipEdges(a, x, address + [.left])
-                    try zipEdges(b, y, address + [.right])
-                default: throw Failure(pathText(c.request + ".Equalities", address) + ": endpoint shapes differ")
-                }
-            }
-            try zipEdges(left, right, [])
+            edges = try equalityEdges(readCut(proof, field: "Equalities", whole: unconnected, context: c),
+                                      source: s.1, address: c.request + ".Equalities")
         }
         return WholeReading(source: s.1, edges: edges)
     }
@@ -431,9 +468,35 @@ extension ContinuationCourt {
             throw Failure("certificate.residue.needed: required classes or Question addresses differ")
         }
     }
+    static func verifyEqualityBasis(_ basis: EqualityBasis, from: Path, to: Path,
+                                     edges: [Path: SourceEdge], at: String, stepField: String = "path",
+                                     remainingSteps: inout Int) throws {
+        switch basis {
+        case .address:
+            guard from == to else { throw Failure(at + ": different source addresses are not identical") }
+        case let .sourceRelation(steps):
+            guard !steps.isEmpty, steps.count <= 100_000 else { throw Failure(at + ": expected a finite E-path") }
+            var current = from
+            for (stepIndex, step) in steps.enumerated() {
+                let here = at + "." + stepField + "[\(stepIndex)]"
+                guard remainingSteps > 0 else { throw Failure(here + ": replay work limit") }
+                remainingSteps -= 1
+                guard let edge = edges[step.edge] else { throw Failure(here + ": no declared E-edge at this address") }
+                let a = step.reversed ? edge.right : edge.left
+                let b = step.reversed ? edge.left : edge.right
+                guard current == a else { throw Failure(here + ": discontinuous E-path") }
+                current = b
+            }
+            guard current == to else { throw Failure(at + ": E-path ends at another source leaf") }
+        case .observedValues:
+            throw Failure(at + ": observed value coincidence is not source equality")
+        }
+    }
     static func verifyRelatedProgram(_ selections: [Selection], program: Program,
                                      reading r: RelatedReading, address: String,
-                                     edgeIndex: [Path: SourceEdge]? = nil) throws {
+                                     edgeIndex: [Path: SourceEdge]? = nil,
+                                     programField: String = "program",
+                                     basisStepField: String = "path") throws {
         let edges = edgeIndex ?? Dictionary(uniqueKeysWithValues: r.edges.map { ($0.address, $0) })
         let required = r.question.leaves
         var remainingSteps = 100_000
@@ -448,29 +511,11 @@ extension ContinuationCourt {
                 case let .leaf(from) = input
             else { throw Failure(at + ": output or input is not the required leaf address") }
             guard try r.sort(from) == r.sort(target.source) else { throw Failure(at + ": selected sort differs") }
-            switch selection.basis {
-            case .address:
-                guard from == target.source else { throw Failure(at + ".basis: different source addresses are not identical") }
-            case let .sourceRelation(steps):
-                guard !steps.isEmpty, steps.count <= 100_000 else { throw Failure(at + ".basis: expected a finite E-path") }
-                var current = from
-                for (stepIndex, step) in steps.enumerated() {
-                    let here = at + ".basis.path[\(stepIndex)]"
-                    guard remainingSteps > 0 else { throw Failure(here + ": replay work limit") }
-                    remainingSteps -= 1
-                    guard let edge = edges[step.edge] else { throw Failure(here + ": no declared E-edge at this address") }
-                    let a = step.reversed ? edge.right : edge.left
-                    let b = step.reversed ? edge.left : edge.right
-                    guard current == a else { throw Failure(here + ": discontinuous E-path") }
-                    current = b
-                }
-                guard current == target.source else { throw Failure(at + ".basis: E-path ends at another source leaf") }
-            case .observedValues:
-                throw Failure(at + ".basis: observed value coincidence is not source equality")
-            }
+            try verifyEqualityBasis(selection.basis, from: from, to: target.source,
+                edges: edges, at: at + ".basis", stepField: basisStepField, remainingSteps: &remainingSteps)
         }
         guard program == (try assembledProgram(r.question, inputs: selections.map(\.input))) else {
-            throw Failure(address + ".program: assembled term differs from the selected addresses")
+            throw Failure(address + "." + programField + ": assembled term differs from the selected addresses")
         }
     }
     static func verifyRelated(_ request: String, certificate: RelatedCertificate,
@@ -657,11 +702,11 @@ extension ContinuationCourt {
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         let format = certificate.repetition != nil ? 5 : (certificate.dynamics != nil ? 4 : (certificate.retention == nil ? 2 : 3))
         let data = try encoder.encode(RelatedArchive(format: format, certificate: certificate))
-        guard data.count <= 8_000_000 else { throw Failure("certificate: output limit") }
+        guard data.count <= relatedArchiveLimit else { throw Failure("certificate: output limit") }
         return data
     }
     static func decodeRelated(_ data: Data) throws -> RelatedCertificate {
-        guard data.count <= 8_000_000 else { throw Failure("certificate: input limit") }
+        guard data.count <= relatedArchiveLimit else { throw Failure("certificate: input limit") }
         let archive = try JSONDecoder().decode(RelatedArchive.self, from: data)
         let c = archive.certificate
         let old = c.repetition == nil && c.dynamics == nil && c.actions == nil && c.hiddenActions == nil
@@ -682,40 +727,62 @@ extension ContinuationCourt {
             if actions { args.removeFirst() }
             let repeats = args.first == "--repeat"
             if repeats { args.removeFirst() }
+            let images = args.first == "--image"
+            if images { args.removeFirst() }
+            let agreement = args.first == "--agreement"
+            if agreement { args.removeFirst() }
             guard !(retain && actions) else { throw Failure("--actions and --retain ask separate questions") }
             guard !(repeats && (retain || actions)) else { throw Failure("--repeat asks a separate U11 question") }
+            guard !(images && (retain || actions || repeats)) else { throw Failure("--image asks a separate U9 question") }
+            guard !(agreement && (retain || actions || repeats || images)) else { throw Failure("--agreement asks a separate U10/U10a question") }
             var output: String?
             var saved: RelatedCertificate?
+            var savedImage: ImageCertificate?
+            var savedAgreement: AgreementCertificate?
             if replay {
                 guard !args.isEmpty else { throw Failure("certificate: missing file") }
-                saved = try decodeRelated(Data(contentsOf: URL(fileURLWithPath: args.removeFirst())))
+                let data = try Data(contentsOf: URL(fileURLWithPath: args.removeFirst()))
+                if agreement { savedAgreement = try decodeAgreement(data) }
+                else if images { savedImage = try decodeImage(data) }
+                else { saved = try decodeRelated(data) }
             } else if args.first == "--certificate" {
                 args.removeFirst()
                 guard !args.isEmpty else { throw Failure("certificate: missing output path") }
                 output = args.removeFirst()
             }
             guard args.count >= 2 else {
-                throw Failure("usage: judge continue --relations [--retain|--actions|--repeat] [--certificate output.json] Request source.swift ...; replay-continuation --relations [--retain|--actions|--repeat] certificate.json Request source.swift ...")
+                throw Failure("usage: judge continue --relations [--retain|--actions|--repeat|--image|--agreement] [--certificate output.json] Request source.swift ...; replay-continuation --relations [--retain|--actions|--repeat|--image|--agreement] certificate.json Request source.swift ...")
             }
             let request = args.removeFirst()
             let source = try StructuralSource(files: args.map { ($0, try String(contentsOfFile: $0, encoding: .utf8)) }, arguments: [("request", request)])
-            let certificate = try saved ?? deriveRelated(request, source: source, retain: retain, actions: actions, repeats: repeats)
             let holds: Bool
-            if repeats {
-                holds = try verifyRelatedRepetition(request, certificate: certificate, source: source)
-            } else if certificate.repetition != nil {
-                throw Failure("certificate.repetition: replay format 5 with --repeat")
-            } else if actions {
-                holds = try verifyRelatedActions(request, certificate: certificate, source: source)
-            } else if certificate.dynamics != nil {
-                throw Failure("certificate.dynamics: replay format 4 with --actions")
-            } else if retain {
-                _ = try verifyRelatedRetention(request, certificate: certificate, source: source)
-                holds = true
+            let bytes: Data
+            if agreement {
+                let certificate = try savedAgreement ?? deriveAgreement(request, source: source)
+                holds = try verifyAgreement(request, certificate: certificate, source: source)
+                bytes = try encodeAgreement(certificate)
+            } else if images {
+                let certificate = try savedImage ?? deriveImage(request, source: source)
+                holds = try verifyImage(request, certificate: certificate, source: source)
+                bytes = try encodeImage(certificate)
             } else {
-                holds = try verifyRelated(request, certificate: certificate, source: source)
+                let certificate = try saved ?? deriveRelated(request, source: source, retain: retain, actions: actions, repeats: repeats)
+                if repeats {
+                    holds = try verifyRelatedRepetition(request, certificate: certificate, source: source)
+                } else if certificate.repetition != nil {
+                    throw Failure("certificate.repetition: replay format 5 with --repeat")
+                } else if actions {
+                    holds = try verifyRelatedActions(request, certificate: certificate, source: source)
+                } else if certificate.dynamics != nil {
+                    throw Failure("certificate.dynamics: replay format 4 with --actions")
+                } else if retain {
+                    _ = try verifyRelatedRetention(request, certificate: certificate, source: source)
+                    holds = true
+                } else {
+                    holds = try verifyRelated(request, certificate: certificate, source: source)
+                }
+                bytes = try encodeRelated(certificate)
             }
-            let bytes = try encodeRelated(certificate)
             if let output { try bytes.write(to: URL(fileURLWithPath: output), options: .atomic) }
             FileHandle.standardOutput.write(bytes + Data("\n".utf8))
             if !holds { exit(1) }

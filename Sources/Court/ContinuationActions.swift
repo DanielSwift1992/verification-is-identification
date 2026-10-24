@@ -77,35 +77,32 @@ extension ContinuationCourt {
     }
 
     // Split an already interpreted product, never source text.
-    static func actionMembers(_ places: Places, source: Shape, address: String) throws -> [ActionMember] {
-        func shape(_ p: Places) throws -> Shape {
-            switch p {
-            case let .leaf(path):
-                guard case let .leaf(sort) = try source.at(path) else { throw Failure(address + ": nonleaf origin") }
-                return .leaf(sort)
-            case let .pair(l, r): return try .pair(shape(l), shape(r))
-            }
-        }
+    static func actionMembers(_ places: Places, source: Shape, address: String,
+                              output: Shape? = nil) throws -> [ActionMember] {
         var members: [ActionMember] = []
         var budget = ActionBudget()
         func split(_ p: Places, _ s: Shape, _ path: Path) throws {
             try budget.spend(at: address)
-            if s == source {
+            if s == (output ?? source) {
                 members.append(ActionMember(address: path, image: p))
                 return
             }
             guard case let .pair(l, r) = p, case let .pair(a, b) = s else {
-                throw Failure(pathText(address, path) + ": expected a complete Source-shaped action")
+                let expected = output == nil ? "Source-shaped action" : "Image-shaped step"
+                throw Failure(pathText(address, path) + ": expected a complete " + expected)
             }
             try split(l, a, path + [.left])
             try split(r, b, path + [.right])
         }
-        try split(places, shape(places), [])
+        try split(places, shapeOfPlaces(places, source: source, address: address), [])
         return members
     }
     static func equalityGraph(_ r: RelatedReading) -> [Path: [(Path, EqualityStep)]] {
+        equalityGraph(r.whole)
+    }
+    static func equalityGraph(_ whole: WholeReading) -> [Path: [(Path, EqualityStep)]] {
         var graph: [Path: [(Path, EqualityStep)]] = [:]
-        for edge in r.edges {
+        for edge in whole.edges {
             graph[edge.left, default: []].append((edge.right, .init(edge: edge.address, reversed: false)))
             graph[edge.right, default: []].append((edge.left, .init(edge: edge.address, reversed: true)))
         }
@@ -114,10 +111,14 @@ extension ContinuationCourt {
     // Construction only. Replay checks the closed partition and these forests.
     static func constructPartition(_ r: RelatedReading) ->
         (classes: [PartitionClass], connections: [[EqualityStep]], blocks: [Path: Int]) {
-        let adjacent = equalityGraph(r)
+        constructPartition(r.whole)
+    }
+    static func constructPartition(_ whole: WholeReading) ->
+        (classes: [PartitionClass], connections: [[EqualityStep]], blocks: [Path: Int]) {
+        let adjacent = equalityGraph(whole)
         var seen: Set<Path> = [], classes: [PartitionClass] = [], connections: [[EqualityStep]] = []
         var blocks: [Path: Int] = [:]
-        for (path, sort) in r.source.leaves
+        for (path, sort) in whole.source.leaves
         where seen.insert(path).inserted {
             var component = [path], forest: [EqualityStep] = []
             var cursor = 0
@@ -169,9 +170,10 @@ extension ContinuationCourt {
         let count: Int
         if case let .sourceRelation(path) = basis { count = path.count } else { count = 1 }
         try budget.spend(count, at: at)
-        let leafReading = RelatedReading(whole: r.whole, observation: .leaf(from), question: .leaf(to))
-        try verifyRelatedProgram([.init(output: [], input: [], basis: basis)], program: .pick([]),
-                                 reading: leafReading, address: at, edgeIndex: edges)
+        guard try r.sort(from) == r.sort(to) else { throw Failure(at + ": selected sort differs") }
+        var remainingSteps = 100_000
+        try verifyEqualityBasis(basis, from: from, to: to, edges: edges, at: at,
+                                stepField: "sourceRelation._0", remainingSteps: &remainingSteps)
     }
     static func distinctClasses(_ places: Places, blocks: [Path: Int]) -> [Int] {
         var seen: Set<Int> = []

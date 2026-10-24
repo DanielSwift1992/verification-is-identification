@@ -289,5 +289,292 @@
         "address": "MalformedRepeatMember.HiddenActions"
       }
     ]
+  },
+  "image": {
+    "fixture": "image-cases.swift",
+    "sha256": "601a68109fd52736a6e7e0be8cdced460aad5ad658bc4fd6efe47cd7e86c907e",
+    "cases": [
+      {
+        "request": "PermutedPromise",
+        "holds": true
+      },
+      {
+        "request": "PermutedOldRelation",
+        "holds": false
+      },
+      {
+        "request": "IndependentPromise",
+        "holds": false
+      },
+      {
+        "request": "UnrestrictedImage",
+        "holds": true
+      },
+      {
+        "request": "DuplicateImage",
+        "holds": true
+      },
+      {
+        "request": "DuplicateOutputPlaces",
+        "holds": true
+      },
+      {
+        "request": "LeftMarginal",
+        "holds": true
+      },
+      {
+        "request": "RightMarginal",
+        "holds": true
+      },
+      {
+        "request": "AliasedImage",
+        "holds": true
+      },
+      {
+        "request": "TwoSortImage",
+        "holds": true
+      },
+      {
+        "request": "ScalarImage",
+        "holds": true
+      },
+      {
+        "request": "ChainedImage",
+        "holds": true
+      },
+      {
+        "request": "OmittedIndependentPlaces",
+        "holds": true
+      },
+      {
+        "request": "SourceIsNotOutput",
+        "address": "SourceIsNotOutput.Promise"
+      },
+      {
+        "request": "UnreadPromiseAxis",
+        "address": "UnreadPromiseAxis.Promises"
+      },
+      {
+        "request": "DifferentPromiseSorts",
+        "address": "DifferentPromiseSorts.Promise"
+      },
+      {
+        "request": "MalformedImagePromise",
+        "address": "MalformedImagePromise.Promise"
+      },
+      {
+        "request": "UnrootedImage",
+        "address": "UnrootedImage.Image"
+      },
+      {
+        "request": "HiddenPairPromise",
+        "holds": true
+      },
+      {
+        "request": "HiddenMixedPromise",
+        "holds": false
+      },
+      {
+        "request": "ImageTemplateIsNotAChoice",
+        "address": "ImageTemplateIsNotAChoice.Image"
+      },
+      {
+        "request": "HiddenDifferentOutputShape",
+        "holds": true
+      },
+      {
+        "request": "HiddenScalarOutput",
+        "holds": true
+      },
+      {
+        "request": "MultiImagePromise",
+        "holds": true
+      },
+      {
+        "request": "MixedImagePromises",
+        "holds": false
+      },
+      {
+        "request": "MalformedImageFamily",
+        "address": "MalformedImageFamily.HiddenActions"
+      },
+      {
+        "request": "OmittedSortImage",
+        "holds": true
+      },
+      {
+        "request": "JointLeft",
+        "holds": true
+      },
+      {
+        "request": "JointRight",
+        "holds": false
+      }
+    ]
+  },
+  "agreement": {
+    "fixture": "agreement-cases.swift",
+    "sha256": "106d84339dc6cd5495745b5e7d641239b7e700905015e1c89d3041ac5b7b97b5",
+    "cases": [
+      {
+        "request": "AgreeThree",
+        "residualLeaves": 2
+      },
+      {
+        "request": "BindOriginal",
+        "residualLeaves": 1
+      },
+      {
+        "request": "ZeroResidual",
+        "residualLeaves": 0
+      },
+      {
+        "request": "ScalarAgreement",
+        "residualLeaves": 1
+      },
+      {
+        "request": "RepeatedQuestion",
+        "residualLeaves": 0
+      },
+      {
+        "request": "EqualSource",
+        "residualLeaves": 0
+      },
+      {
+        "request": "ExtraOutputPlaces",
+        "residualLeaves": 0
+      },
+      {
+        "request": "TwoSortCapacity",
+        "residualLeaves": 1
+      },
+      {
+        "request": "QuestionSortNotInOutput",
+        "residualLeaves": 1
+      },
+      {
+        "request": "BoundOutsideQuestion",
+        "residualLeaves": 1
+      },
+      {
+        "request": "DuplicateFixed",
+        "residualLeaves": 2
+      },
+      {
+        "request": "FreeBeforeFixed",
+        "residualLeaves": 1
+      },
+      {
+        "request": "FixedAndFreeCover",
+        "residualLeaves": 0
+      },
+      {
+        "request": "EquivalentBindings",
+        "residualLeaves": 0
+      },
+      {
+        "request": "ChainedBindings",
+        "residualLeaves": 0
+      },
+      {
+        "request": "IndependentOutputClasses",
+        "residualLeaves": 1
+      },
+      {
+        "request": "SeparateSortBindings",
+        "residualLeaves": 1
+      },
+      {
+        "request": "ScalarSource",
+        "residualLeaves": 0
+      },
+      {
+        "request": "EmptySourceRelations",
+        "residualLeaves": 1
+      },
+      {
+        "request": "BoundRepeatSameLeaf",
+        "residualLeaves": 1
+      },
+      {
+        "request": "AliasedObligations",
+        "residualLeaves": 2
+      },
+      {
+        "request": "SourceAliasOutput",
+        "address": "SourceAliasOutput.Output",
+        "reason": "the target shape is written with sorts; source places are prescribed by BoundOutputs/BoundSources"
+      },
+      {
+        "request": "MissingSort",
+        "refusal": "unavailable"
+      },
+      {
+        "request": "IncompatibleBindings",
+        "refusal": "incompatible"
+      },
+      {
+        "request": "IncompatibleSameOutput",
+        "refusal": "incompatible"
+      },
+      {
+        "request": "WrongBindingSort",
+        "refusal": "wrongSort"
+      },
+      {
+        "request": "WrongSortSecond",
+        "refusal": "wrongSort"
+      },
+      {
+        "request": "MissingBoundSources",
+        "address": "MissingBoundSources.BoundSources"
+      },
+      {
+        "request": "MissingBoundOutputs",
+        "address": "MissingBoundOutputs.BoundOutputs"
+      },
+      {
+        "request": "MismatchedBindingTrees",
+        "address": "MismatchedBindingTrees.BoundSources"
+      },
+      {
+        "request": "SourceIsNotOutputPromise",
+        "address": "SourceIsNotOutputPromise.Promise"
+      },
+      {
+        "request": "DifferentAgreementSorts",
+        "address": "DifferentAgreementSorts.Promise"
+      },
+      {
+        "request": "UnreadBindingAxis",
+        "address": "UnreadBindingAxis.BoundSource"
+      },
+      {
+        "request": "BorrowedOutput",
+        "address": "BorrowedOutput.Output"
+      },
+      {
+        "request": "UnrootedAgreementQuestion",
+        "address": "UnrootedAgreementQuestion.Question"
+      },
+      {
+        "request": "UnavailableBoundSort",
+        "refusal": "unavailable"
+      },
+      {
+        "request": "BoundDistinctSlots",
+        "residualLeaves": 0
+      },
+      {
+        "request": "SwappedOutput",
+        "address": "SwappedOutput.Output",
+        "reason": "the target shape is written with sorts; source places are prescribed by BoundOutputs/BoundSources"
+      },
+      {
+        "request": "OutputThroughSourceCut",
+        "address": "OutputThroughSourceCut.Output",
+        "reason": "the target shape is written with sorts; source places are prescribed by BoundOutputs/BoundSources"
+      }
+    ]
   }
 }

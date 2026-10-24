@@ -55,8 +55,8 @@ enum CountCourt {
         return result
     }
 
-    static func shape(_ text: String) throws -> [String] {
-        shape(try StructuralSource.tokens(text))
+    static func shape(_ text: String, lent: Set<String> = []) throws -> [String] {
+        shape(try WhereJudge.lexicalReading(text, scope: .projection, lent: lent, carrying: false).tape.words)
     }
     static func shape(_ words: [String]) -> [String] {
         let modifiers: Set<String> = ["public", "internal", "private", "fileprivate", "package"]
@@ -85,6 +85,7 @@ enum CountCourt {
     /// Other getters, result builders, overrides and modules are not inferred.
     static func checkPrimitiveRules(_ files: [(String, String)], source: StructuralSource) throws {
         let read = try blocks(files)
+        let builders = Set(read.filter { $0.resultBuilder }.map { $0.name })
         let protected: Set<String> = ["Structure", "Open", "Close", "Pair", "Null",
                                       "Never", "Unit", "Plus", "Paired", "StructureBuilder"]
         for name in protected {
@@ -100,7 +101,7 @@ enum CountCourt {
             if name == "StructureBuilder", !found[0].resultBuilder {
                 throw Failure("StructureBuilder is not declared @resultBuilder in \(found[0].origin)")
             }
-            if let body, try shape(found[0].body) != shape(body) {
+            if let body, try shape(found[0].body) != shape(body, lent: builders) {
                 throw Failure("changed count primitive body '\(name)' in \(found[0].origin)")
             }
         }

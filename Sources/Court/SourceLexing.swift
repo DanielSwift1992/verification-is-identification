@@ -1,6 +1,29 @@
 import Foundation
 
 extension WhereJudge {
+    /// Identity of a written name component, without canonical equivalence.
+    /// Ownership/context binds that spelling to a declaration's place.
+    /// Every name key and reconstructed name comparison uses this relation.
+    static func sameName(_ lhs: String, _ rhs: String) -> Bool {
+        lhs.unicodeScalars.elementsEqual(rhs.unicodeScalars)
+    }
+    static func sameNames(_ lhs: [String], _ rhs: [String]) -> Bool {
+        lhs.count == rhs.count && zip(lhs, rhs).allSatisfy { sameName($0, $1) }
+    }
+    static func sameName(_ lhs: String?, _ rhs: String?) -> Bool {
+        switch (lhs, rhs) {
+        case let (.some(a), .some(b)): return sameName(a, b)
+        case (.none, .none): return true
+        default: return false
+        }
+    }
+    static func sameNames(_ lhs: [String]?, _ rhs: [String]?) -> Bool {
+        switch (lhs, rhs) {
+        case let (.some(a), .some(b)): return sameNames(a, b)
+        case (.none, .none): return true
+        default: return false
+        }
+    }
     /// One lexical judgement, with two projections: the notation's blanked
     /// text and the structural reader's addressed tape. Neither projection
     /// scans delimiters again. Admission modes are named in Press's calculus.

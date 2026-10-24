@@ -6,10 +6,10 @@ enum WhereContext {
     typealias Unit = CourtNotation.File
 
     static func prepare(_ paths: [String], contextPath: String,
-                        load: (String) throws -> String, documents: Set<String> = [],
+                        load: (String) throws -> String, documents: NameSet = [],
                         batch: Bool = false, notationOnly: Bool = false) throws -> WhereJudge.Prepared {
         guard let first = paths.first else { throw WhereJudge.Failure.input(["context needs a world source"]) }
-        var texts: [String: String] = [:]
+        var texts: NameMap<String> = [:]
         for path in paths { texts[path] = try load(path) }
         let context = try CourtContext(text: load(contextPath), paths: paths, texts: texts)
         if context.version == 2 && !batch {
@@ -26,7 +26,7 @@ enum WhereContext {
                 }
             }
         }
-        guard let own = units.filter({ $0.context.input == first }).first else {
+        guard let own = units.filter({ WhereJudge.sameName($0.context.input, first) }).first else {
             throw WhereJudge.Failure.input(["context has no world source"])
         }
         struct Origin {
@@ -34,7 +34,7 @@ enum WhereContext {
             let line: Int
             var address: String { unit.context.source + ":\(line)" }
         }
-        var origins: [String: [Origin]] = [:]
+        var origins: NameMap<[Origin]> = [:]
         for unit in units {
             for name in unit.world.fileTypes {
                 origins[name, default: []].append(Origin(unit: unit, line: unit.world.declared[name]?.first ?? 1))
@@ -56,7 +56,7 @@ enum WhereContext {
         for unit in units {
             for name in unit.world.fileTypes { world.addresses[name] = origins[name]!.first!.address }
             for (name, line) in unit.world.certificateLines { world.addresses[name] = unit.context.source + ":\(line)" }
-            guard unit.context.input != first else { continue }
+            guard !WhereJudge.sameName(unit.context.input, first) else { continue }
             world.aliases.merge(unit.world.aliases) { old, _ in old }
             world.conformers.merge(unit.world.conformers) { old, _ in old }
             world.parameters.merge(unit.world.parameters) { old, _ in old }
@@ -77,7 +77,7 @@ enum WhereContext {
                 let name = hit[0]
                 guard unit.world.conformers[name] == nil else { continue }
                 let parents = hit[1].split(separator: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
-                if intrinsicNames.contains(name), world.conformers[name] == nil {
+                if intrinsicNames.containsName(name), world.conformers[name] == nil {
                     world.conformers[name] = WhereJudge.Conformer(name: name, parameters: [], protocols: [], table: [:])
                 }
                 if world.conformers[name] != nil { world.conformers[name]!.protocols += parents }
@@ -99,14 +99,14 @@ enum WhereContext {
         for unit in units {
             for name in (try references(unit.world, in: world)).sorted() {
                 guard let origin = origins[name]?.first,
-                      origin.unit.context.namespace != unit.context.namespace else { continue }
-                guard unit.context.imports.contains(origin.unit.context.module) else {
+                      !WhereJudge.sameName(origin.unit.context.namespace, unit.context.namespace) else { continue }
+                guard unit.context.imports.containsName(origin.unit.context.module) else {
                     try WhereJudge.fail("\(unit.context.source):1: '\(name)' belongs to unimported namespace '\(origin.unit.context.namespace)'")
                 }
             }
         }
-        func named(_ text: String) -> Set<String> {
-            Set(WhereJudge.captures(#"\b(\w+(?:\s*\.\s*\w+)*)\b"#, text).map {
+        func named(_ text: String) -> NameSet {
+            NameSet(WhereJudge.captures(#"\b(\w+(?:\s*\.\s*\w+)*)\b"#, text).map {
                 $0[0].replacingOccurrences(of: #"\s*\.\s*"#, with: ".", options: .regularExpression)
             }).union(WhereJudge.captures(#"\b(\w+)\b"#, text).map { $0[0] })
         }
@@ -121,7 +121,7 @@ enum WhereContext {
                 }
                 if let a = world.aliases[name] { words.append(a.body) }
                 for gate in world.gates {
-                    guard gate.head == name else { continue }
+                    guard WhereJudge.sameName(gate.head, name) else { continue }
                     words.append(gate.proto)
                     words += gate.equalities.flatMap { [$0.0, $0.1] } + gate.memberships.flatMap { [$0.0, $0.1] }
                 }
@@ -138,26 +138,26 @@ enum WhereContext {
         // an incomplete context into a positive certificate.
         for unit in units {
             for name in (try references(unit.world, in: world)).sorted() {
-                guard reached.contains(name) && origins[name] == nil && !intrinsicNames.contains(name)
-                    && !(name == "Swift" && world.intrinsicSwift) else { continue }
+                guard reached.contains(name) && origins[name] == nil && !intrinsicNames.containsName(name)
+                    && !(WhereJudge.sameName(name, "Swift") && world.intrinsicSwift) else { continue }
                 world.contextUnresolved.append("\(unit.context.source): no declared definition for '\(name)' in the supplied context")
             }
         }
         world.contextUnresolved.sort()
         world.gates = world.gates.filter { reached.contains($0.head) }
         world.gatedProtocols = world.gatedProtocols.filter { reached.contains($0.key) }
-        world.contextConformers = Set(own.world.conformers.keys)
+        world.contextConformers = NameSet(own.world.conformers.keys)
         for unit in units {
             for (name, lines) in unit.world.extensions {
                 guard reached.contains(name) else { continue }
                 let at = unit.context.source + ":\(lines[0])"
                 if world.aliases[name] != nil { try WhereJudge.fail("\(at): extension through typealias '\(name)' is unsupported") }
-                if !intrinsicNames.contains(name) {
+                if !intrinsicNames.containsName(name) {
                     guard let origin = origins[name]?.first else { try WhereJudge.fail("\(at): extension target '\(name)' has no declared owner") }
-                    guard origin.unit.context.namespace == unit.context.namespace || unit.context.imports.contains(origin.unit.context.module) else {
+                    guard WhereJudge.sameName(origin.unit.context.namespace, unit.context.namespace) || unit.context.imports.containsName(origin.unit.context.module) else {
                         try WhereJudge.fail("\(at): extension target '\(name)' is not imported")
                     }
-                    if origin.unit.context.input != unit.context.input,
+                    if !WhereJudge.sameName(origin.unit.context.input, unit.context.input),
                        unit.world.clean.range(of: #"\b(?:private|fileprivate)\b"#, options: .regularExpression) != nil {
                         try WhereJudge.fail("\(at): private extension members have no established cross-source reachability")
                     }
@@ -174,7 +174,7 @@ enum WhereContext {
         }
         // A cycle supplies no independent conformance premise. Sorting fixes the
         // named obstruction independently of the order of definitions arguments.
-        var done: Set<String> = [], active: Set<String> = []
+        var done: NameSet = [], active: NameSet = []
         func visit(_ name: String) throws {
             if active.contains(name) {
                 try WhereJudge.fail("\(world.addresses[name] ?? own.context.source + ":1"): protocol refinement cycle at '\(name)' has no independent ground")
@@ -212,21 +212,21 @@ enum WhereContext {
         world.gates = gates
         try selectConformers(&world, aliases: ownAliases)
         try groundedMemberships(world)
-        let extras = units.filter { $0.context.input != first }.map { (path: $0.context.source, text: $0.text, world: $0.world) }
+        let extras = units.filter { !WhereJudge.sameName($0.context.input, first) }.map { (path: $0.context.source, text: $0.text, world: $0.world) }
         return try WhereJudge.finish(path: own.context.source, world: world, ownAliases: ownAliases,
             excludesConditional: units.contains { WhereJudge.sourceLines($0.text).range(of: #"(?m)^\s*#if\b"#, options: .regularExpression) != nil }, extras: extras)
     }
     // Only free type references use imports. A field/parameter named Reading or
     // A in a borrowed declaration is not a reference to a world's type of that name.
-    static func references(_ source: WhereJudge.World, in world: WhereJudge.World) throws -> Set<String> {
-        var result: Set<String> = []
-        func axes(_ name: String, _ seen: Set<String> = []) -> Set<String> {
+    static func references(_ source: WhereJudge.World, in world: WhereJudge.World) throws -> NameSet {
+        var result: NameSet = []
+        func axes(_ name: String, _ seen: NameSet = []) -> NameSet {
             guard !seen.contains(name) else { return [] }
-            return (world.protocolAxes[name] ?? []).union((world.protocolParents[name] ?? []).reduce(into: Set<String>()) {
+            return (world.protocolAxes[name] ?? []).union((world.protocolParents[name] ?? []).reduce(into: NameSet()) {
                 $0.formUnion(axes($1, seen.union([name])))
             })
         }
-        func walk(_ expression: DefinitionReduction.Expression, _ bound: Set<String>) {
+        func walk(_ expression: DefinitionReduction.Expression, _ bound: NameSet) {
             switch expression {
             case let .application(name, args):
                 if !bound.contains(name) { result.insert(name) }
@@ -236,17 +236,17 @@ enum WhereContext {
                 else { walk(owner, bound) }
             }
         }
-        func term(_ text: String, _ bound: Set<String> = []) throws {
+        func term(_ text: String, _ bound: NameSet = []) throws {
             do { walk(try DefinitionReduction.parse(text), bound) }
             catch { try WhereJudge.fail("context type reference '\(text)' is unsupported: \(error)") }
         }
         for name in source.aliases.keys.sorted() {
             let rule = source.aliases[name]!
-            try term(rule.body, Set(rule.parameters))
+            try term(rule.body, NameSet(rule.parameters))
         }
         for name in source.conformers.keys.sorted() {
             let c = source.conformers[name]!
-            let bound = Set(c.parameters + Array(c.table.keys) + ["Self"])
+            let bound = NameSet(c.parameters + Array(c.table.keys) + ["Self"])
             for proto in c.protocols { try term(proto) }
             for field in c.table.keys.sorted() { try term(c.table[field]!, bound) }
             for requirement in source.genericRequirements[name] ?? [] {
@@ -265,8 +265,8 @@ enum WhereContext {
             }
         }
         for gate in source.gates {
-            let bound = Set(world.parameters[gate.head] ?? []).union(axes(gate.head))
-                .union(world.conformers[gate.head].map { Set($0.table.keys) } ?? []).union(["Self"])
+            let bound = NameSet(world.parameters[gate.head] ?? []).union(axes(gate.head))
+                .union(world.conformers[gate.head].map { NameSet($0.table.keys) } ?? []).union(["Self"])
             try term(gate.head)
             try term(gate.proto)
             for (left, right) in gate.equalities + gate.memberships {
@@ -281,11 +281,11 @@ enum WhereContext {
     // A borrowed nominal used as an equality leaf does not assert every one of
     // its conformances. Its conformance obligations enter when membership uses it.
     // Local declarations and every conditional-head certificate retain the old question.
-    static func selectConformers(_ world: inout WhereJudge.World, aliases: [String: WhereJudge.AliasRule]) throws {
+    static func selectConformers(_ world: inout WhereJudge.World, aliases: NameMap<WhereJudge.AliasRule>) throws {
         var changed = true
         while changed {
             var selected = world.contextConformers
-            func members(_ clauses: [(String, String)], _ bindings: [String: WhereJudge.Term], _ rigid: Set<String> = []) throws {
+            func members(_ clauses: [(String, String)], _ bindings: NameMap<WhereJudge.Term>, _ rigid: NameSet = []) throws {
                 for (lhs, _) in clauses {
                     let term = try WhereJudge.substitute(WhereJudge.parseTerm(Substring(lhs)), bindings)
                     let target = world.contextVersion == 2
@@ -294,9 +294,9 @@ enum WhereContext {
                     if target.args.isEmpty, world.conformers[target.head] != nil { selected.insert(target.head) }
                 }
             }
-            func certificate(_ term: WhereJudge.Term, _ rigid: Set<String> = []) throws {
+            func certificate(_ term: WhereJudge.Term, _ rigid: NameSet = []) throws {
                 let claim = try WhereJudge.gatedForm(term, world, rigid: rigid)
-                let matching = world.gates.filter { $0.head == claim.head }
+                let matching = world.gates.filter { WhereJudge.sameName($0.head, claim.head) }
                 guard !matching.isEmpty else { return }
                 let bindings = try WhereJudge.gateBindings(claim, world)
                 for gate in matching { try members(gate.memberships, bindings, rigid) }
@@ -329,14 +329,14 @@ enum WhereContext {
                 }
             }
         }
-        func independentlyWears(_ names: [String], _ required: String, _ seen: Set<String> = []) -> Bool {
+        func independentlyWears(_ names: [String], _ required: String, _ seen: NameSet = []) -> Bool {
             for name in names {
                 guard !seen.contains(name) && world.gatedProtocols[name] == nil else { continue }
-                if name == required || independentlyWears(world.protocolParents[name] ?? [], required, seen.union([name])) { return true }
+                if WhereJudge.sameName(name, required) || independentlyWears(world.protocolParents[name] ?? [], required, seen.union([name])) { return true }
             }
             return false
         }
-        var edges: [String: Set<String>] = [:], locations: [String: String] = [:]
+        var edges: NameMap<NameSet> = [:], locations: NameMap<String> = [:]
         for name in world.contextConformers.sorted() {
             guard let conformer = world.conformers[name] else { continue }
             try protocols(conformer.protocols, at: address(name))
@@ -366,7 +366,7 @@ enum WhereContext {
             let at = address(gate.head + ": " + gate.proto)
             try protocols([gate.proto] + gate.memberships.map { $0.1 }, at: at)
         }
-        var done: Set<String> = [], active: Set<String> = []
+        var done: NameSet = [], active: NameSet = []
         func visit(_ node: String) throws {
             if active.contains(node) {
                 try WhereJudge.fail("\(locations[node] ?? world.contextSource + ":1"): gated membership cycle at '\(node)' has no independent ground")

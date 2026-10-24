@@ -120,7 +120,9 @@ extension WhereJudge {
                         emit("@literal", start, index)
                     }
                 } else if isNewline(current) {
-                    if quotes == 1 { try refuse("unterminated string literal", at: start) }
+                    if quotes == 1 {
+                        try refuse(hashes > 0 ? "unterminated raw string literal" : "unterminated string literal", at: start)
+                    }
                     newline(top: false)
                 } else { index += 1 }
             case let .code(start, interpolated, parentheses):
@@ -191,7 +193,8 @@ extension WhereJudge {
         }
         switch stack[stack.count - 1] {
         case let .comment(start, _): try refuse("unterminated block comment", at: start)
-        case let .string(start, _, _, _): try refuse("unterminated string literal", at: start)
+        case let .string(start, hashes, _, _):
+            try refuse(hashes > 0 ? "unterminated raw string literal" : "unterminated string literal", at: start)
         case let .code(start, interpolated, _):
             if interpolated { try refuse("unterminated string interpolation", at: start) }
         }

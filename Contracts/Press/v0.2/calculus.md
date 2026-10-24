@@ -60,7 +60,7 @@ The same production reader consumes the whole tape; the witness cannot omit a pr
 | L36 | Unmatched conditional end | read | read | directives are outside strict declaration scope | unmatched #endif | ``"#endif\n"`` |
 | L37 | Conditional alternative without opener | read | read | directives are outside strict declaration scope | conditional branch outside #if | ``"#else\n"`` |
 | L38 | Unclosed conditional block | read | read | directives are outside strict declaration scope | unterminated #if block | ``"#if FLAG\nenum X {}\n"`` |
-| L39 | Unclosed raw string | unterminated string | raw string literals | unterminated string | unterminated string | ``"#\"unclosed"`` |
+| L39 | Unclosed raw string | unterminated raw string | raw string literals | unterminated raw string | unterminated raw string | ``"#\"unclosed"`` |
 | L40 | Slash at EOF | slash with no whitespace | slash with no whitespace | slash with no whitespace | slash with no whitespace | ``"/"`` |
 | L41 | Explicitly lent builder name | read | read | read | read | ``{"source": "@Lent enum X {}", "lent": ["Lent"]}`` |
 | L42 | Local macro shadows a lent builder | unsupported attribute | unsupported attribute | unsupported attribute | unsupported attribute | ``{"source": "macro Lent()\n@Lent enum X {}", "lent": ["Lent"]}`` |

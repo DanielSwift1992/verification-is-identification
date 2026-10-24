@@ -32,7 +32,8 @@ extension WhereJudge {
 
         func validateAttributes(lent: Set<String>, scope: LexicalScope) throws {
             let borrowed = lent.subtracting(shadowed)
-            if let use = attributes.first(where: { !declared.contains($0.name) && !borrowed.contains($0.name) }) {
+            let undeclared = attributes.filter { !declared.contains($0.name) && !borrowed.contains($0.name) }
+            if let use = undeclared.first {
                 let suffix = scope == .notation ? "" : " (unsupported attribute)"
                 throw LexicalFailure(line: use.line, byte: use.byte,
                     description: "the attribute '@\(use.name)' is not among the forms this court reads" + suffix)

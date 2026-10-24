@@ -40,9 +40,15 @@ enum CourtNotation {
 
     static func read(_ context: CourtContext, texts: [String: String],
                      selected: String?, documents: Set<String>) throws -> [File] {
+        let names = context.sources.flatMap { source in
+            [(source.at["namespace"]!, source.namespace),
+             (source.at["module"] ?? source.at["namespace"]!, source.module)]
+                + Array(zip(source.importAddresses, source.imports))
+        }
+        try WhereJudge.checkWordSpellings(context.sources.map { ($0.source, texts[$0.input]!) }, names: names)
         let lent = Set(texts.values.flatMap { text -> Set<String> in
             guard let clean = try? WhereJudge.stripComments(text) else { return [] }
-            return WhereJudge.declaredBuilders(clean)
+            return (try? WhereJudge.declaredBuilders(clean)) ?? []
         })
         var files: [File] = []
         for source in context.sources {

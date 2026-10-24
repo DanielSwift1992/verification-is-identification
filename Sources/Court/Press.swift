@@ -138,7 +138,7 @@ public enum Press {
         guard arguments.count == 1, let invocation = arguments.first else { try fail("usage: Tools press <Rule>[,<Rule>…] --file <state file> --rules <rule file>") }
         let inputs = [Input(path: statePath, text: state), Input(path: dictionaryPath, text: dictionary)] + definitions
         if let certificates, certificates.count != inputs.count { try fail("reading certificate changes input coverage", at: "certificate") }
-        let lexical = WhereJudge.lexicalReadingsResults(inputs.map { ($0.path, $0.text) }, scope: .declarations)
+        let lexical = WhereJudge.lexicalReadingsResults(inputs.map { ($0.path, $0.text) }, scope: .declarations, arguments: [("arguments", invocation)])
         // Dictionary first so an absent rule still names the dictionary. The slot
         // address is established below before judging the state production.
         func readInput(_ index: Int) throws -> StructuralSource.FileReading {
@@ -162,6 +162,13 @@ public enum Press {
         let alias = slot.hasSuffix("Slot") ? String(slot.dropLast(4)) : slot
         return try addressed("\(statePath)#\(alias)") {
             let read = try readInput(0)
+            // Slot's declared suffix denotes a state name. Guard that derived name
+            // too before the String-key lookup; stripping Slot must not erase a
+            // distinct scalar spelling of the actual state declaration (U4).
+            try addressed("\(dictionaryPath)#\(invocation)") {
+                try WhereJudge.checkWordSpellings(inputs.map { ($0.path, $0.text) },
+                    arguments: [("\(dictionaryPath)#\(invocation).Slot (state name)", alias), ("arguments", invocation)])
+            }
             let found = read.regions.filter { $0.declaration.kind == "typealias" && $0.declaration.name == alias }
             guard let region = found.first else { try fail("no slot \(alias) in \(statePath)", at: "\(statePath)#\(alias)") }
             guard found.count == 1 else { try fail("slot \(alias) appears twice in \(statePath)", at: "\(statePath)#\(alias)") }

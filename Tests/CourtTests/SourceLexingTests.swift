@@ -3,7 +3,13 @@ import XCTest
 @testable import Court
 
 final class SourceLexingTests: XCTestCase {
-    struct Input: Decodable { let source: String; let lent: [String] }
+    struct File: Decodable { let path: String; let text: String }
+    struct Input: Decodable {
+        let source: String?
+        let lent: [String]?
+        var files: [File]? = nil
+        var arguments: [File]? = nil
+    }
     func testLexicalFormTable() throws {
         let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent()
             .deletingLastPathComponent().deletingLastPathComponent()
@@ -21,12 +27,21 @@ final class SourceLexingTests: XCTestCase {
             let input: Input
             if let source = try? JSONDecoder().decode(String.self, from: data) { input = Input(source: source, lent: []) }
             else { input = try JSONDecoder().decode(Input.self, from: data) }
-            let source = input.source, lent = Set(input.lent)
+            let source = input.source ?? "", lent = Set(input.lent ?? [])
             let scopes: [WhereJudge.LexicalScope] = [.notation, .projection, .declarations]
             for column in 0..<4 {
                 let expected = cells[column + 3]
                 do {
-                    if column == 3 { _ = try WhereJudge.stripComments(source, lent: lent) }
+                    if let files = input.files {
+                        let scope: WhereJudge.LexicalScope = column == 3 ? .notation : scopes[column]
+                        let read = try WhereJudge.lexicalReadings(files.map { ($0.path, $0.text) }, scope: scope,
+                            lent: lent, arguments: (input.arguments ?? []).map { ($0.path, $0.text) })
+                        if column == 3 {
+                            let builders = lent.union(read.flatMap { $0.declared })
+                            for file in files { _ = try WhereJudge.stripComments(file.text, lent: builders) }
+                        }
+                    }
+                    else if column == 3 { _ = try WhereJudge.stripComments(source, lent: lent) }
                     else { _ = try WhereJudge.lexicalReading(source, scope: scopes[column], lent: lent) }
                     XCTAssertEqual(expected, "read", "\(id) mode \(column) admitted instead of \(expected)")
                     print("lexical form \(id)/\(column): read")
@@ -41,7 +56,7 @@ final class SourceLexingTests: XCTestCase {
                 decisions += 1
             }
         }
-        XCTAssertEqual(seen.count, 90, "the complete declared lexical table must run")
-        XCTAssertEqual(decisions, 360)
+        XCTAssertEqual(seen.count, 116, "the complete declared lexical table must run")
+        XCTAssertEqual(decisions, 464)
     }
 }

@@ -144,13 +144,6 @@ enum WhereJudge {
     // declaring attribute and the type. An attribute of such a name adds no
     // conformance, so it is a form this court reads, in the text that
     // declares it and in a world that text is lent to.
-    static func declaredBuilders(_ read: String) -> Set<String> {
-        Set(captures(
-            #"@(?:resultBuilder|propertyWrapper)\s+(?:(?:@\w+(?:\([^()]*\))?|public|internal|fileprivate"#
-                + #"|private|package|open|final|indirect)\s+)*(?:struct|enum|class|actor)\s+(\w+)"#, read
-        ).map { $0[0] })
-    }
-
     static func stripComments(_ text: String, lent: Set<String> = []) throws -> String {
         // Conditional compilation is outside this court's scope. Omit the
         // complete block, including nested alternatives; never expose a tail
@@ -1344,15 +1337,17 @@ enum WhereJudge {
         guard let path = arguments.first else {
             throw Failure.input(["usage: judge where <world.swift> [definitions.swift ...]"])
         }
-        let text = try load(path)
+        let original = try arguments.map { ($0, try load($0)) }
+        try checkWordSpellings(original)
+        let text = original[0].1
         // A definitions file that declares a result builder or a property
         // wrapper lends that attribute to the world the way it lends its
         // typealiases: the declaration supplies the premise that the
         // attribute adds no conformance. A definitions file this scan cannot
         // read lends nothing here; it is refused below, in its turn.
-        let lentBuilders = Set(arguments.dropFirst().flatMap { extra -> Set<String> in
-            guard let more = try? load(extra), let clean = try? stripComments(more) else { return [] }
-            return declaredBuilders(clean)
+        let lentBuilders = Set(original.dropFirst().flatMap { _, more -> Set<String> in
+            guard let clean = try? stripComments(more) else { return [] }
+            return (try? declaredBuilders(clean)) ?? []
         })
         var world = try read(text, lent: lentBuilders, notationV2: notationV2)
         var excludesConditional = sourceLines(text).range(of: #"(?m)^\s*#if\b"#, options: .regularExpression) != nil
@@ -1361,8 +1356,7 @@ enum WhereJudge {
         // same source. This flat reader has no module-resolution rule with
         // which to choose between duplicates, so a collision is unresolved.
         var aliasOrigins = Dictionary(uniqueKeysWithValues: world.aliases.keys.map { ($0, path) })
-        let extras: [(path: String, text: String, world: World)] = try arguments.dropFirst().map { extra in
-            let more = try load(extra)
+        let extras: [(path: String, text: String, world: World)] = try original.dropFirst().map { extra, more in
             return (extra, more, try read(more, notationV2: notationV2))
         }
         if notationV2, world.intrinsicSwift || extras.contains(where: { $0.world.intrinsicSwift }) {

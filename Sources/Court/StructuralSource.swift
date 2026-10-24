@@ -452,11 +452,15 @@ struct StructuralSource {
         return read
     }
 
-    init(files: [(String, String)], notationFiles: [CourtNotation.File] = [], roster: Bool = false, readings: [FileReading] = []) throws {
+    init(files: [(String, String)], notationFiles: [CourtNotation.File] = [], roster: Bool = false, readings: [FileReading] = [], arguments: [(String, String)] = []) throws {
         // A FileReading is built by the common grammar judgement, never decoded
         // from an untrusted AST. Roster applies its stricter member relation below.
-        let lent = Set(notationFiles.flatMap { WhereJudge.declaredBuilders($0.world.clean) })
-        let scanned = try WhereJudge.lexicalReadings(files, scope: roster ? .declarations : .projection, lent: lent)
+        if !readings.isEmpty || !notationFiles.isEmpty {
+            try WhereJudge.checkWordSpellings(files + readings.map { ($0.origin, $0.source) }
+                + notationFiles.map { ($0.context.source, $0.text) }, arguments: arguments)
+        }
+        let lent = Set(try notationFiles.flatMap { try WhereJudge.declaredBuilders($0.world.clean) })
+        let scanned = try WhereJudge.lexicalReadings(files, scope: roster ? .declarations : .projection, lent: lent, arguments: arguments)
         let presented = try readings + zip(files, scanned).map { file, read in
             try Self.regions(file.1, origin: file.0, scope: roster ? .declarations : .projection, lexed: read.tape)
         }

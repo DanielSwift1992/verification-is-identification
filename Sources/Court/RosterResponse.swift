@@ -163,7 +163,7 @@ public enum RosterResponse {
             }
             self.files = files
             self.predicate = predicate
-            let source = try StructuralSource(files: files, roster: true)
+            let source = try StructuralSource(files: files, roster: true, arguments: [("--protocol", predicate)])
             self.source = source
             guard let p = source.declarations[predicate], p.kind == "protocol" else {
                 throw StructuralSource.AddressedFailure("\(files[0].0):1: no declared protocol '\(predicate)'")

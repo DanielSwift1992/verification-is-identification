@@ -698,7 +698,7 @@ extension ContinuationCourt {
                 throw Failure("usage: judge continue --relations [--retain|--actions|--repeat] [--certificate output.json] Request source.swift ...; replay-continuation --relations [--retain|--actions|--repeat] certificate.json Request source.swift ...")
             }
             let request = args.removeFirst()
-            let source = try StructuralSource(files: args.map { ($0, try String(contentsOfFile: $0, encoding: .utf8)) })
+            let source = try StructuralSource(files: args.map { ($0, try String(contentsOfFile: $0, encoding: .utf8)) }, arguments: [("request", request)])
             let certificate = try saved ?? deriveRelated(request, source: source, retain: retain, actions: actions, repeats: repeats)
             let holds: Bool
             if repeats {

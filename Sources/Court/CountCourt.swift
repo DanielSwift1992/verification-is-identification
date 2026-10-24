@@ -194,6 +194,7 @@ enum CountCourt {
     }
     static func evaluate(_ files: [(String, String)], source: StructuralSource,
                          options: [String: String]) throws -> Evaluation {
+            try WhereJudge.checkWordSpellings(files, arguments: options.keys.sorted().map { ($0, options[$0]!) })
             let reader = Reader(source: R.Source(world: source.syntax, rigid: []))
             let predicate = try reader.normal(R.parse(options["--predicate"]!))
             let encoding = try reader.normal(R.parse(options["--encoding"]!))
@@ -278,7 +279,7 @@ enum CountCourt {
         }
         let notation = try CourtNotation.read(context, texts: texts, selected: nil, documents: documents)
         let original = context.sources.map { ($0.input, texts[$0.input]!) }
-        let source = try StructuralSource(files: original, notationFiles: notation)
+        let source = try StructuralSource(files: original, notationFiles: notation, arguments: options.keys.sorted().map { ($0, options[$0]!) })
         try checkPrimitiveRules(original, source: source)
         // Count's all-input question still discovers closed negative readings
         // carried among definitions. Only explicitly selected Document views
@@ -324,7 +325,7 @@ enum CountCourt {
                     throw Failure("cannot read line \(line) of '\(path)': nested declaration '\(entry.value)' is outside the count notation fragment")
                 }
             }
-            let source = try StructuralSource(files: files)
+            let source = try StructuralSource(files: files, arguments: options.keys.sorted().map { ($0, options[$0]!) })
             try checkPrimitiveRules(files, source: source)
             let evaluation = try evaluate(files, source: source, options: options)
             let checked = evaluation.checked, refusals = evaluation.refusals

@@ -70,7 +70,7 @@ struct NotationScope {
     /// as a new top-level source declaration.
     func structural(_ clean: String, origin: String, lent: Set<String>) throws -> [StructuralSource.Declaration] {
         let units = Array(clean.utf16)
-        let builders = lent.union(WhereJudge.declaredBuilders(clean))
+        let builders = try lent.union(WhereJudge.declaredBuilders(clean))
         var result: [StructuralSource.Declaration] = []
         for declaration in declarations {
             guard ["enum", "struct", "protocol"].contains(declaration.kind) else { continue }

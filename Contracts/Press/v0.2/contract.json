@@ -7,8 +7,8 @@
     "transport": "vi.press.json/2"
   },
   "files": {
-    "fixtures/cases.json": "ec58d9bae57fb44ac88e2c18bc620ac9c050636342de261bb655cb29ff7730c4",
-    "calculus.md": "c7a6fdf8bcea87a3d4b9358e99ec5ae8f263012fe998e6f0dcbecbd00547f5de"
+    "fixtures/cases.json": "9b38eff38ca0fb5e46ec920a7dba24866f55445895c3364eea2e57fc8b12f307",
+    "calculus.md": "b55380c7af2ddc0bb439612cd9a5be7b70e5c1a06ca8644f39651a63f6505569"
   },
   "cases_file": "fixtures/cases.json",
   "cases": [
@@ -220,7 +220,32 @@
     "Z3-Press-P4",
     "Z3-Press-P5-provider-last",
     "Z3-Press-P6-comment-is-not-provider",
-    "Z3-Press-P7-leading-comment-hides-rule"
+    "Z3-Press-P7-leading-comment-hides-rule",
+    "R7-U1",
+    "R7-U6",
+    "R7-omega",
+    "R7-U2",
+    "R7-NFD-neighbor",
+    "R7-U5",
+    "R7-argument",
+    "R7-definition",
+    "R7-Q6",
+    "R7-Q7",
+    "R7-Q8",
+    "R7-Q10",
+    "R7-Q11",
+    "R7-Q1",
+    "R7-Q2",
+    "R7-unicode-builder",
+    "R7-A5",
+    "R7-dollar-body",
+    "R7-dollar-prefix",
+    "R7-carrier-neighbor",
+    "R7-U4-derived-slot",
+    "R7-attribute-qualified",
+    "R7-attribute-qualified-through-comment",
+    "R7-attribute-generic",
+    "R7-attribute-builtin-qualified"
   ],
   "native_controls": [
     "N3a-dictionary-lexical-refusal",
@@ -336,6 +361,31 @@
     "Z3-Press-P4",
     "Z3-Press-P5-provider-last",
     "Z3-Press-P6-comment-is-not-provider",
-    "Z3-Press-P7-leading-comment-hides-rule"
+    "Z3-Press-P7-leading-comment-hides-rule",
+    "R7-U1",
+    "R7-U6",
+    "R7-omega",
+    "R7-U2",
+    "R7-NFD-neighbor",
+    "R7-U5",
+    "R7-argument",
+    "R7-definition",
+    "R7-Q6",
+    "R7-Q7",
+    "R7-Q8",
+    "R7-Q10",
+    "R7-Q11",
+    "R7-Q1",
+    "R7-Q2",
+    "R7-unicode-builder",
+    "R7-A5",
+    "R7-dollar-body",
+    "R7-dollar-prefix",
+    "R7-carrier-neighbor",
+    "R7-U4-derived-slot",
+    "R7-attribute-qualified",
+    "R7-attribute-qualified-through-comment",
+    "R7-attribute-generic",
+    "R7-attribute-builtin-qualified"
   ]
 }

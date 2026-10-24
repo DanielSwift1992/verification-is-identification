@@ -29233,5 +29233,555 @@
         "reason_contains": "no rule named"
       }
     }
+  },
+  {
+    "id": "R7-U1",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\u00e9\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Offe\u0301; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": []
+    },
+    "expected": {
+      "state": "typealias Mode = Off\u00e9\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "distinct scalar spellings"
+      }
+    }
+  },
+  {
+    "id": "R7-U6",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = OffK\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off\u212a; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": []
+    },
+    "expected": {
+      "state": "typealias Mode = OffK\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "distinct scalar spellings"
+      }
+    }
+  },
+  {
+    "id": "R7-omega",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = \u03a9\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = \u2126; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": []
+    },
+    "expected": {
+      "state": "typealias Mode = \u03a9\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "distinct scalar spellings"
+      }
+    }
+  },
+  {
+    "id": "R7-U2",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\u00e9\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off\u00e9; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": []
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "R7-NFD-neighbor",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Offe\u0301\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Offe\u0301; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": []
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "R7-U5",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mod\u00e9 = Off\ntypealias Mode\u0301 = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = Mod\u00e9Slot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": []
+    },
+    "expected": {
+      "state": "typealias Mod\u00e9 = Off\ntypealias Mode\u0301 = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mod\u00e9",
+        "reason_contains": "distinct scalar spellings"
+      }
+    }
+  },
+  {
+    "id": "R7-argument",
+    "request": {
+      "arguments": [
+        "TurnOne\u0301"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn\u00e9 { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": []
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOne\u0301",
+        "reason_contains": "distinct scalar spellings"
+      }
+    }
+  },
+  {
+    "id": "R7-definition",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off\u00e9; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "defs.swift",
+          "text": "enum Offe\u0301 {}"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "distinct scalar spellings"
+      }
+    }
+  },
+  {
+    "id": "R7-Q6",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Page { @SB\u00e9 static var body: Int { } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "lib.swift",
+          "text": "@resultBuilder enum SB { static func buildBlock() -> Int { 0 } }\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "attribute '@SB\u00e9'"
+      }
+    }
+  },
+  {
+    "id": "R7-Q7",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Page { @SB$ static var body: Int { } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "lib.swift",
+          "text": "@resultBuilder enum SB { static func buildBlock() -> Int { 0 } }\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "identifier continuation U+0024"
+      }
+    }
+  },
+  {
+    "id": "R7-Q8",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Page { @SB\u0301 static var body: Int { } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "lib.swift",
+          "text": "@resultBuilder enum SB { static func buildBlock() -> Int { 0 } }\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "attribute '@SB\u0301'"
+      }
+    }
+  },
+  {
+    "id": "R7-Q10",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Page { @inlinable\u00e9 static var body: Int { } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": []
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "attribute '@inlinable\u00e9'"
+      }
+    }
+  },
+  {
+    "id": "R7-Q11",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Page { @SB static var body: Int { } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "lib.swift",
+          "text": "@resultBuilder enum SB$ { static func buildBlock() -> Int { 0 } }\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "attribute '@SB'"
+      }
+    }
+  },
+  {
+    "id": "R7-Q1",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Page { @SB static var body: Int { } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "lib.swift",
+          "text": "@resultBuilder enum SB { static func buildBlock() -> Int { 0 } }\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "R7-Q2",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "lib.swift",
+          "text": "@resultBuilder enum SB { static func buildBlock() -> Int { 0 } }\n"
+        },
+        {
+          "path": "use.swift",
+          "text": "enum Page { @SB static var body: Int { } }\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "R7-unicode-builder",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Page { @SB\u00e9 static var body: Int { } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "lib.swift",
+          "text": "@resultBuilder enum SB\u00e9 { static func buildBlock() -> Int { 0 } }\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "R7-A5",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum \u093eQ {}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": []
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "R7-dollar-body",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum H { static var a$: Int { 0 } }",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": []
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "identifier continuation U+0024"
+      }
+    }
+  },
+  {
+    "id": "R7-dollar-prefix",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum H { static var $a: Int { 0 } }",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": []
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "identifier continuation U+0024"
+      }
+    }
+  },
+  {
+    "id": "R7-carrier-neighbor",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n// Off\u00e9 Offe\u0301 SB$\nenum H { static var s: String { \"Off\u00e9 Offe\u0301 SB$\" } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": []
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "R7-U4-derived-slot",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mod\u00e9 = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = Mode\u0301Slot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mod\u00e9 = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "distinct scalar spellings"
+      }
+    }
+  },
+  {
+    "id": "R7-attribute-qualified",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n@resultBuilder enum SB {}\nenum H { @SB.Inner static var body: Int { 0 } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "single-word attribute name"
+      }
+    }
+  },
+  {
+    "id": "R7-attribute-qualified-through-comment",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n@resultBuilder enum SB {}\nenum H { @SB /* address stays in one scanner */ .Inner static var body: Int { 0 } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "single-word attribute name"
+      }
+    }
+  },
+  {
+    "id": "R7-attribute-generic",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n@resultBuilder enum SB {}\nenum H { @SB<Int> static var body: Int { 0 } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "single-word attribute name"
+      }
+    }
+  },
+  {
+    "id": "R7-attribute-builtin-qualified",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum H { @inlinable.Other static var body: Int { 0 } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "single-word attribute name"
+      }
+    }
   }
 ]

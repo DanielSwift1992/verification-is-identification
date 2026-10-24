@@ -18,12 +18,39 @@ extension WhereJudge {
         let byte: Int
         let description: String
     }
+    struct WordOccurrence {
+        let spelling: String
+        let line: Int
+        let byte: Int
+    }
+    /// String equality is the downstream key relation, not Swift declaration
+    /// identity. Refuse two scalar spellings of one key before building maps.
+    /// No normalization library or normalization-version premise is involved.
+    struct WordGuard {
+        var first: [String: (WordOccurrence, String)] = [:]
+        mutating func insert(_ word: WordOccurrence, origin: String) throws {
+            if let (prior, path) = first[word.spelling] {
+                guard prior.spelling.unicodeScalars.elementsEqual(word.spelling.unicodeScalars) else {
+                    func shown(_ text: String) -> String {
+                        "'" + text + "' [" + text.unicodeScalars.map {
+                            "U+" + String($0.value, radix: 16, uppercase: true)
+                        }.joined(separator: " ") + "]"
+                    }
+                    throw LexicalFailure(line: word.line, byte: word.byte,
+                        description: "distinct scalar spellings under one String key: " + shown(word.spelling)
+                            + " at \(origin):\(word.line) (byte \(word.byte)); first " + shown(prior.spelling)
+                            + " at \(path):\(prior.line) (byte \(prior.byte))")
+                }
+            } else { first[word.spelling] = (word, origin) }
+        }
+    }
     struct LexicalReading {
         struct AttributeUse {
             let name: String
             let line: Int
             let byte: Int
         }
+        let words: [WordOccurrence]
         let blanked: String
         let tape: Lexed
         let declared: Set<String>
@@ -50,13 +77,13 @@ extension WhereJudge {
     /// Only declarations from those same readings can lend a builder name.
     /// No caller can submit an unchecked scan as a structural certificate.
     static func lexicalReadings(_ files: [(String, String)], scope: LexicalScope,
-                                lent: Set<String> = [], carrying: Bool = true) throws -> [LexicalReading] {
-        try lexicalReadingsResults(files, scope: scope, lent: lent, carrying: carrying).map { try $0.get() }
+                                lent: Set<String> = [], carrying: Bool = true, arguments: [(String, String)] = []) throws -> [LexicalReading] {
+        try lexicalReadingsResults(files, scope: scope, lent: lent, carrying: carrying, arguments: arguments).map { try $0.get() }
     }
     /// All original inputs are scanned, then uses are checked against that set.
     /// Results only defer failure reporting; they never admit an unchecked tape.
     static func lexicalReadingsResults(_ files: [(String, String)], scope: LexicalScope,
-                                       lent: Set<String> = [], carrying: Bool = true) -> [Result<LexicalReading, Error>] {
+                                       lent: Set<String> = [], carrying: Bool = true, arguments: [(String, String)] = []) -> [Result<LexicalReading, Error>] {
         func addressed<T>(_ origin: String, _ read: () throws -> T) throws -> T {
             do { return try read() }
             catch let error as LexicalFailure {
@@ -64,8 +91,24 @@ extension WhereJudge {
             }
         }
         let scanned = files.map { origin, text in
-            Result { try addressed(origin) { try lexicalScan(text, scope: scope, carrying: carrying) } }
+            Result { try addressed(origin) { try lexicalScan(text, scope: scope, carrying: carrying, origin: origin) } }
         }
+        do {
+            var guardWords = WordGuard()
+            for (file, result) in zip(files, scanned) {
+                if let read = try? result.get() {
+                    try addressed(file.0) {
+                        for word in read.words { try guardWords.insert(word, origin: file.0) }
+                    }
+                }
+            }
+            for (origin, text) in arguments {
+                try addressed(origin) {
+                    let read = try lexicalScan(text, scope: .declarations, carrying: false, origin: origin)
+                    for word in read.words { try guardWords.insert(word, origin: origin) }
+                }
+            }
+        } catch { return files.map { _ in .failure(error) } }
         let builders = lent.union(scanned.flatMap { (try? $0.get().declared) ?? [] })
         return zip(files, scanned).map { file, result in
             Result {
@@ -74,6 +117,64 @@ extension WhereJudge {
                 return read
             }
         }
+    }
+    static func checkWordSpellings(_ files: [(String, String)], arguments: [(String, String)] = [], names: [(String, String)] = []) throws {
+        var guardWords = WordGuard()
+        for (origin, text) in files + arguments {
+            let reading: LexicalReading
+            do { reading = try lexicalScan(text, scope: .notation, carrying: false, origin: origin) }
+            catch let error as LexicalFailure {
+                if error.description.hasPrefix("distinct scalar spellings") {
+                    throw StructuralSource.AddressedFailure("\(origin):\(error.line): \(error.description) (byte \(error.byte))")
+                }
+                continue // The caller still has to judge this input in its own scope.
+            }
+            do { for word in reading.words { try guardWords.insert(word, origin: origin) } }
+            catch let error as LexicalFailure {
+                throw StructuralSource.AddressedFailure("\(origin):\(error.line): \(error.description) (byte \(error.byte))")
+            }
+        }
+        // These are already declared name values of the notation-independent
+        // context, not Swift text to reinterpret. Preserve their provenance.
+        for (address, name) in names {
+            let origin = "context " + address + " (name value)"
+            do { try guardWords.insert(WordOccurrence(spelling: name, line: 1, byte: 0), origin: origin) }
+            catch let error as LexicalFailure { throw StructuralSource.AddressedFailure(error.description) }
+        }
+    }
+    static func declaredBuilders(_ text: String) throws -> Set<String> {
+        try lexicalScan(text, scope: .notation, carrying: false).declared
+    }
+    private static func builderNames(_ words: [String]) -> Set<String> {
+        let ts = words.filter { $0 != "\n" }
+        let modifiers: Set<String> = ["public", "internal", "fileprivate", "private", "package", "open", "final", "indirect"]
+        var names: Set<String> = []
+        for start in ts.indices {
+            guard ts[start] == "@" else { continue }
+            guard start + 1 < ts.count, ["resultBuilder", "propertyWrapper"].contains(ts[start + 1]) else { continue }
+            var i = start + 2
+            while i < ts.count {
+                if modifiers.contains(ts[i]) { i += 1; continue }
+                if ts[i] == "@", i + 1 < ts.count {
+                    i += 2
+                    if i < ts.count, ts[i] == "(" {
+                        var depth = 0
+                        repeat {
+                            if ts[i] == "(" { depth += 1 }
+                            if ts[i] == ")" { depth -= 1 }
+                            i += 1
+                        } while i < ts.count && depth > 0
+                    }
+                    continue
+                }
+                break
+            }
+            if i + 1 < ts.count, ["struct", "enum", "class", "actor"].contains(ts[i]),
+               let first = ts[i + 1].unicodeScalars.first, first.properties.isAlphabetic || first == "_" {
+                names.insert(ts[i + 1])
+            }
+        }
+        return names
     }
     // Swift swift-6.2.3-RELEASE/lib/Parse/Lexer.cpp:
     // isValidIdentifierContinuationCodePoint / isValidIdentifierStartCodePoint.
@@ -110,7 +211,7 @@ extension WhereJudge {
             || scalar.properties.generalCategory == .spacingMark || scalar == "_"
     }
     private static func lexicalScan(_ source: String, scope: LexicalScope,
-                                    carrying: Bool) throws -> LexicalReading {
+                                    carrying: Bool, origin: String = "input") throws -> LexicalReading {
         enum Context {
             case code(start: Int, interpolated: Bool, parentheses: Int)
             case comment(start: Int, depth: Int)
@@ -126,6 +227,8 @@ extension WhereJudge {
         var kept = String.UnicodeScalarView(), tape = Lexed()
         var stack: [Context] = [.code(start: 0, interpolated: false, parentheses: 0)]
         var index = 0, interpolationCount = 0
+        var words: [WordOccurrence] = [], guardWords = WordGuard()
+        var attributeWordEnd: Int?, pendingAttribute: Int?
         var unreadAttributes: [(name: String, start: Int)] = []
         func scalar(_ offset: Int) -> Unicode.Scalar? {
             index + offset < scalars.count ? scalars[index + offset] : nil
@@ -164,14 +267,28 @@ extension WhereJudge {
             if top { emit("\n", index, index + width) }
             index += width
         }
-        func name(after offset: Int) -> String {
-            var spelled = String.UnicodeScalarView()
-            while let next = scalar(offset + spelled.count),
-                  next == "_" || ("a"..."z").contains(next) || ("A"..."Z").contains(next)
-                      || (!spelled.isEmpty && ("0"..."9").contains(next)) {
-                spelled.append(next)
+        // Attributes, directives, declarations and all other words use this
+        // same scalar reader. Never borrow a prefix of an unread identifier.
+        func wordEnd(from start: Int) throws -> Int {
+            guard start < scalars.count else { try refuse("missing identifier", at: index) }
+            let first = scalars[start]
+            guard Self.swiftIdentifierStart(first) else {
+                try refuse("identifier start " + String(format: "U+%04X", first.value) + " is outside the declared Swift table", at: start)
             }
-            return String(spelled)
+            guard first.properties.isAlphabetic || first == "_" else {
+                try refuse("identifier start " + String(format: "U+%04X", first.value) + " is outside the conservative word alphabet", at: start)
+            }
+            var end = start + 1
+            while end < scalars.count, Self.wordCandidate(scalars[end]) {
+                guard Self.swiftIdentifierContinuation(scalars[end]) else {
+                    try refuse("identifier continuation " + String(format: "U+%04X", scalars[end].value) + " is outside the declared Swift table", at: end)
+                }
+                end += 1
+            }
+            if end < scalars.count, scalars[end] == "$" || (scalars[end].value >= 0x80 && !scalars[end].properties.isWhitespace) {
+                try refuse("identifier continuation " + String(format: "U+%04X", scalars[end].value) + " is outside the conservative word alphabet", at: end)
+            }
+            return end
         }
         func refuse(_ reason: String, at start: Int) throws -> Never {
             throw LexicalFailure(line: lines[start], byte: offsets[start], description: reason)
@@ -222,6 +339,13 @@ extension WhereJudge {
                     try newline(top: false)
                 } else { index += 1 }
             case let .code(start, interpolated, parentheses):
+                if let attribute = pendingAttribute, !current.properties.isWhitespace,
+                   !(current == "/" && (scalar(1) == "/" || scalar(1) == "*")) {
+                    if current == "." || current == "<" {
+                        try refuse("only a single-word attribute name is read; qualified or generic attribute names are unsupported (attribute byte \(offsets[attribute]))", at: index)
+                    }
+                    pendingAttribute = nil
+                }
                 if current == "/", scalar(1) == "/" {
                     if inSingleLineInterpolation() {
                         try refuse("line comment in single-line string interpolation is not a Swift literal", at: index)
@@ -251,7 +375,7 @@ extension WhereJudge {
                         try refuse("a regular expression literal is not among the forms this court reads", at: index)
                     } else {
                         if scope == .declarations { try refuse("directives are outside strict declaration scope", at: index) }
-                        let spelled = name(after: 1)
+                        let spelled = try spelling(index + 1, wordEnd(from: index + 1))
                         if !directives.contains(spelled) {
                             try refuse("the macro '#\(spelled)' is not among the forms this court reads", at: index)
                         }
@@ -261,7 +385,9 @@ extension WhereJudge {
                 } else if current == "`" {
                     try refuse("a backquoted identifier is not among the forms this court reads", at: index)
                 } else if current == "@" {
-                    let spelled = name(after: 1)
+                    let end = try wordEnd(from: index + 1)
+                    attributeWordEnd = end
+                    let spelled = spelling(index + 1, end)
                     if !attributes.contains(spelled) { unreadAttributes.append((spelled, index)) }
                     keep(1)
                     if top { emit("@", at, index) }
@@ -281,21 +407,20 @@ extension WhereJudge {
                     keep(1)
                 }
                 else if current.properties.isAlphabetic || current == "_" {
-                    guard Self.swiftIdentifierStart(current) else {
-                        try refuse("identifier start " + String(format: "U+%04X", current.value) + " is outside the declared Swift table", at: index)
+                    let end = try wordEnd(from: index)
+                    let word = WordOccurrence(spelling: spelling(at, end), line: lines[at], byte: offsets[at])
+                    try guardWords.insert(word, origin: origin)
+                    words.append(word)
+                    if attributeWordEnd == end {
+                        pendingAttribute = at
+                        attributeWordEnd = nil
                     }
-                    keep(1)
-                    while let next = scalar(0), Self.wordCandidate(next) {
-                        guard Self.swiftIdentifierContinuation(next) else {
-                            try refuse("identifier continuation " + String(format: "U+%04X", next.value) + " is outside the declared Swift table", at: index)
-                        }
-                        keep(1)
-                    }
-                    if let next = scalar(0), next.value >= 0x80, !next.properties.isWhitespace {
-                        try refuse("identifier continuation " + String(format: "U+%04X", next.value) + " is outside the conservative word alphabet", at: index)
-                    }
-                    if top { emit(spelling(at, index), at, index) }
+                    keep(end - index)
+                    if top { emit(word.spelling, at, index) }
                 } else {
+                    if current == "$", let next = scalar(1), next.properties.isAlphabetic || next == "_" {
+                        try refuse("identifier continuation U+0024 is outside the conservative word alphabet", at: index)
+                    }
                     if current.value >= 0x80, Self.wordCandidate(current), !Self.swiftIdentifierStart(current) {
                         try refuse("identifier start " + String(format: "U+%04X", current.value) + " is outside the declared Swift table", at: index)
                     }
@@ -323,9 +448,9 @@ extension WhereJudge {
             if interpolated { try refuse("unterminated string interpolation", at: start) }
         }
         let read = String(kept)
-        let declared = declaredBuilders(read)
+        let declared = builderNames(tape.words)
         let shadowed = Set(captures(#"(?<!\.)\bmacro\s+(\w+)"#, read).map { $0[0] })
-        return LexicalReading(blanked: read, tape: tape, declared: declared, shadowed: shadowed,
+        return LexicalReading(words: words, blanked: read, tape: tape, declared: declared, shadowed: shadowed,
             attributes: unreadAttributes.map { .init(name: $0.name, line: lines[$0.start], byte: offsets[$0.start]) })
     }
 }

@@ -254,7 +254,7 @@ extension ContinuationCourt {
                 throw Failure("usage: judge cover-law [--certificate proof.json] Request sources.swift ...; replay-cover-law proof.json Request sources.swift ...")
             }
             let request = args.removeFirst()
-            let source = try StructuralSource(files: args.map { ($0, try String(contentsOfFile: $0, encoding: .utf8)) })
+            let source = try StructuralSource(files: args.map { ($0, try String(contentsOfFile: $0, encoding: .utf8)) }, arguments: [("request", request)])
             let proof = try saved ?? deriveLawCover(request, source: source)
             let holds = try verifyLawCover(request, certificate: proof, source: source)
             let bytes = try encodeLawCover(proof)

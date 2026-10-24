@@ -23940,5 +23940,4228 @@
         "reason_contains": "raw string interpolation is outside structural reader scope"
       }
     }
+  },
+  {
+    "id": "H1a-whole-input-refusal",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum Helper { static var `q\"`: Int { 0 } } // \" } enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On } //\"\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "backquoted identifier"
+      }
+    }
+  },
+  {
+    "id": "H1a-old-honest-certificate-refusal",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum Helper { static var `q\"`: Int { 0 } } // \" } enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On } //\"\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "4a78c10641dd9c735f985000c77aa91daba33ad237d91392c45d6127e937368d",
+          "35075475e6ce7f5783c274bf6eb739d1c3dd92ea9c995c097691cf206637f9be"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "Helper"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  14,
+                  20
+                ],
+                "word": "static"
+              },
+              {
+                "bytes": [
+                  21,
+                  24
+                ],
+                "word": "var"
+              },
+              {
+                "bytes": [
+                  25,
+                  26
+                ],
+                "word": "`"
+              },
+              {
+                "bytes": [
+                  26,
+                  27
+                ],
+                "word": "q"
+              },
+              {
+                "bytes": [
+                  27,
+                  47
+                ],
+                "word": "@literal"
+              },
+              {
+                "bytes": [
+                  48,
+                  49
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  50,
+                  54
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  55,
+                  61
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  62,
+                  63
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  64,
+                  73
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  74,
+                  78
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  79,
+                  80
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  81,
+                  89
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  89,
+                  90
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  91,
+                  100
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  101,
+                  105
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  106,
+                  107
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  108,
+                  111
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  111,
+                  112
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  113,
+                  122
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  123,
+                  127
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  128,
+                  129
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  130,
+                  132
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  133,
+                  134
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  138,
+                  139
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 9
+              },
+              {
+                "kind": "enum",
+                "lower": 9,
+                "upper": 27
+              },
+              {
+                "kind": "\n",
+                "lower": 27,
+                "upper": 28
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "backquoted identifier"
+      }
+    }
+  },
+  {
+    "id": "H1a-comment-neighbor",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n// enum Helper { static var `q\"`: Int { 0 } } // \" } enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On } //\"\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "H1b-whole-input-refusal",
+    "request": {
+      "arguments": [
+        "BumpUp"
+      ],
+      "state": "typealias Count = LampOff\n",
+      "dictionary": "protocol Counting {}\nextension Never: Counting {}\nenum Tick<Previous: Counting>: Counting {}\nenum CountSlot {}\nenum BumpUp<T: Counting> {\n    typealias Slot = CountSlot\n    typealias From = T\n    typealias Into = Tick<T>\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "defs.swift",
+          "text": "enum LampOff {}\nenum Helper { static var `q\"`: Int { 0 } } // \" } extension LampOff: Counting {} //\"\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Count = LampOff\n",
+      "changed": false,
+      "refusal": {
+        "address": "defs.swift",
+        "reason_contains": "backquoted identifier"
+      }
+    }
+  },
+  {
+    "id": "H1b-old-honest-certificate-refusal",
+    "request": {
+      "arguments": [
+        "BumpUp"
+      ],
+      "state": "typealias Count = LampOff\n",
+      "dictionary": "protocol Counting {}\nextension Never: Counting {}\nenum Tick<Previous: Counting>: Counting {}\nenum CountSlot {}\nenum BumpUp<T: Counting> {\n    typealias Slot = CountSlot\n    typealias From = T\n    typealias Into = Tick<T>\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "defs.swift",
+          "text": "enum LampOff {}\nenum Helper { static var `q\"`: Int { 0 } } // \" } extension LampOff: Counting {} //\"\n"
+        }
+      ],
+      "certificate": {
+        "arguments": [
+          "BumpUp"
+        ],
+        "candidates": [
+          {
+            "bounds": {
+              "nodes": [
+                {
+                  "form": {
+                    "_0": "LampOff"
+                  }
+                },
+                {
+                  "dependencies": [],
+                  "prerequisites": [],
+                  "reductions": []
+                },
+                {
+                  "contract": {
+                    "_0": "LampOff",
+                    "_1": "Counting"
+                  }
+                },
+                {
+                  "dependencies": [],
+                  "prerequisites": [],
+                  "reductions": []
+                },
+                {
+                  "member": {
+                    "_0": "LampOff",
+                    "_1": "Counting"
+                  }
+                },
+                {
+                  "dependencies": [
+                    {
+                      "contract": {
+                        "_0": "LampOff",
+                        "_1": "Counting"
+                      }
+                    },
+                    {
+                      "form": {
+                        "_0": "LampOff"
+                      }
+                    }
+                  ],
+                  "prerequisites": [
+                    {
+                      "form": {
+                        "_0": "LampOff"
+                      }
+                    }
+                  ],
+                  "reductions": [
+                    {
+                      "name": {
+                        "_0": "LampOff"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "roots": [
+                {
+                  "member": {
+                    "_0": "LampOff",
+                    "_1": "Counting"
+                  }
+                }
+              ]
+            },
+            "rule": "BumpUp",
+            "substitution": {
+              "T": "LampOff"
+            }
+          }
+        ],
+        "inputs": [
+          "ead662359b5b345bf5e2a7c6914794155443cd3632de31c7b63b2c57efc31f33",
+          "545a8f9fbf321c03e62f2aba9f5b692a394051f6b14646ef762ef8f742967d2b",
+          "869c23136fb7fe5d6c923daa7003dc10a5acf5a37e0e2476c1fe437e0d0009cb"
+        ],
+        "lowerByte": 18,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  15
+                ],
+                "word": "Count"
+              },
+              {
+                "bytes": [
+                  16,
+                  17
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  18,
+                  25
+                ],
+                "word": "LampOff"
+              },
+              {
+                "bytes": [
+                  25,
+                  26
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  8
+                ],
+                "word": "protocol"
+              },
+              {
+                "bytes": [
+                  9,
+                  17
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  18,
+                  19
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  19,
+                  20
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  21,
+                  30
+                ],
+                "word": "extension"
+              },
+              {
+                "bytes": [
+                  31,
+                  36
+                ],
+                "word": "Never"
+              },
+              {
+                "bytes": [
+                  36,
+                  37
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  38,
+                  46
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  47,
+                  48
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  48,
+                  49
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  49,
+                  50
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  50,
+                  54
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  55,
+                  59
+                ],
+                "word": "Tick"
+              },
+              {
+                "bytes": [
+                  59,
+                  60
+                ],
+                "word": "<"
+              },
+              {
+                "bytes": [
+                  60,
+                  68
+                ],
+                "word": "Previous"
+              },
+              {
+                "bytes": [
+                  68,
+                  69
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  70,
+                  78
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  78,
+                  79
+                ],
+                "word": ">"
+              },
+              {
+                "bytes": [
+                  79,
+                  80
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  81,
+                  89
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  90,
+                  91
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  91,
+                  92
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  92,
+                  93
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  93,
+                  97
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  98,
+                  107
+                ],
+                "word": "CountSlot"
+              },
+              {
+                "bytes": [
+                  108,
+                  109
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  109,
+                  110
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  110,
+                  111
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  111,
+                  115
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  116,
+                  122
+                ],
+                "word": "BumpUp"
+              },
+              {
+                "bytes": [
+                  122,
+                  123
+                ],
+                "word": "<"
+              },
+              {
+                "bytes": [
+                  123,
+                  124
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  124,
+                  125
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  126,
+                  134
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  134,
+                  135
+                ],
+                "word": ">"
+              },
+              {
+                "bytes": [
+                  136,
+                  137
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  137,
+                  138
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  142,
+                  151
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  152,
+                  156
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  157,
+                  158
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  159,
+                  168
+                ],
+                "word": "CountSlot"
+              },
+              {
+                "bytes": [
+                  168,
+                  169
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  173,
+                  182
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  183,
+                  187
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  188,
+                  189
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  190,
+                  191
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  191,
+                  192
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  196,
+                  205
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  206,
+                  210
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  211,
+                  212
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  213,
+                  217
+                ],
+                "word": "Tick"
+              },
+              {
+                "bytes": [
+                  217,
+                  218
+                ],
+                "word": "<"
+              },
+              {
+                "bytes": [
+                  218,
+                  219
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  219,
+                  220
+                ],
+                "word": ">"
+              },
+              {
+                "bytes": [
+                  220,
+                  221
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  221,
+                  222
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  222,
+                  223
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "protocol",
+                "lower": 0,
+                "upper": 4
+              },
+              {
+                "kind": "\n",
+                "lower": 4,
+                "upper": 5
+              },
+              {
+                "kind": "extension",
+                "lower": 5,
+                "upper": 11
+              },
+              {
+                "kind": "\n",
+                "lower": 11,
+                "upper": 12
+              },
+              {
+                "kind": "enum",
+                "lower": 12,
+                "upper": 23
+              },
+              {
+                "kind": "\n",
+                "lower": 23,
+                "upper": 24
+              },
+              {
+                "kind": "enum",
+                "lower": 24,
+                "upper": 28
+              },
+              {
+                "kind": "\n",
+                "lower": 28,
+                "upper": 29
+              },
+              {
+                "kind": "enum",
+                "lower": 29,
+                "upper": 57
+              },
+              {
+                "kind": "\n",
+                "lower": 57,
+                "upper": 58
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  12
+                ],
+                "word": "LampOff"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  14,
+                  15
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  16,
+                  20
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  21,
+                  27
+                ],
+                "word": "Helper"
+              },
+              {
+                "bytes": [
+                  28,
+                  29
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  30,
+                  36
+                ],
+                "word": "static"
+              },
+              {
+                "bytes": [
+                  37,
+                  40
+                ],
+                "word": "var"
+              },
+              {
+                "bytes": [
+                  41,
+                  42
+                ],
+                "word": "`"
+              },
+              {
+                "bytes": [
+                  42,
+                  43
+                ],
+                "word": "q"
+              },
+              {
+                "bytes": [
+                  43,
+                  63
+                ],
+                "word": "@literal"
+              },
+              {
+                "bytes": [
+                  64,
+                  65
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  66,
+                  75
+                ],
+                "word": "extension"
+              },
+              {
+                "bytes": [
+                  76,
+                  83
+                ],
+                "word": "LampOff"
+              },
+              {
+                "bytes": [
+                  83,
+                  84
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  85,
+                  93
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  94,
+                  95
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  95,
+                  96
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  100,
+                  101
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 4
+              },
+              {
+                "kind": "\n",
+                "lower": 4,
+                "upper": 5
+              },
+              {
+                "kind": "enum",
+                "lower": 5,
+                "upper": 14
+              },
+              {
+                "kind": "extension",
+                "lower": 14,
+                "upper": 20
+              },
+              {
+                "kind": "\n",
+                "lower": 20,
+                "upper": 21
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Count",
+        "upperByte": 25,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Count = Tick<LampOff>\n"
+    },
+    "expected": {
+      "state": "typealias Count = LampOff\n",
+      "changed": false,
+      "refusal": {
+        "address": "defs.swift",
+        "reason_contains": "backquoted identifier"
+      }
+    }
+  },
+  {
+    "id": "H1b-comment-neighbor",
+    "request": {
+      "arguments": [
+        "BumpUp"
+      ],
+      "state": "typealias Count = LampOff\n",
+      "dictionary": "protocol Counting {}\nextension Never: Counting {}\nenum Tick<Previous: Counting>: Counting {}\nenum CountSlot {}\nenum BumpUp<T: Counting> {\n    typealias Slot = CountSlot\n    typealias From = T\n    typealias Into = Tick<T>\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "defs.swift",
+          "text": "// enum LampOff {}\n// enum Helper { static var `q\"`: Int { 0 } } // \" } extension LampOff: Counting {} //\"\nenum LampOff {}\nextension LampOff: Counting {}\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Count = Tick<LampOff>\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "H2a-whole-input-refusal",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Helper { static var `x/*`: Int { 0 } }\ntypealias Mode = On\nenum Helper2 { static var `y*/`: Int { 1 } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "backquoted identifier"
+      }
+    }
+  },
+  {
+    "id": "H2a-old-honest-certificate-refusal",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Helper { static var `x/*`: Int { 0 } }\ntypealias Mode = On\nenum Helper2 { static var `y*/`: Int { 1 } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "4a78c10641dd9c735f985000c77aa91daba33ad237d91392c45d6127e937368d",
+          "e5cd15b09d9b047beec358f3b9132b591b7ad994b509ea2ed86c6b3c621e91af"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  14,
+                  23
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  24,
+                  28
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  29,
+                  30
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  31,
+                  39
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  39,
+                  40
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  41,
+                  50
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  51,
+                  55
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  56,
+                  57
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  58,
+                  61
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  61,
+                  62
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  63,
+                  72
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  73,
+                  77
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  78,
+                  79
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  80,
+                  82
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  83,
+                  84
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  84,
+                  85
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  85,
+                  89
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  90,
+                  96
+                ],
+                "word": "Helper"
+              },
+              {
+                "bytes": [
+                  97,
+                  98
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  99,
+                  105
+                ],
+                "word": "static"
+              },
+              {
+                "bytes": [
+                  106,
+                  109
+                ],
+                "word": "var"
+              },
+              {
+                "bytes": [
+                  110,
+                  111
+                ],
+                "word": "`"
+              },
+              {
+                "bytes": [
+                  111,
+                  112
+                ],
+                "word": "x"
+              },
+              {
+                "bytes": [
+                  128,
+                  129
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  148,
+                  149
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  179,
+                  180
+                ],
+                "word": "`"
+              },
+              {
+                "bytes": [
+                  180,
+                  181
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  182,
+                  185
+                ],
+                "word": "Int"
+              },
+              {
+                "bytes": [
+                  186,
+                  187
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  188,
+                  189
+                ],
+                "word": "1"
+              },
+              {
+                "bytes": [
+                  190,
+                  191
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  192,
+                  193
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  193,
+                  194
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 18
+              },
+              {
+                "kind": "\n",
+                "lower": 18,
+                "upper": 19
+              },
+              {
+                "kind": "enum",
+                "lower": 19,
+                "upper": 35
+              },
+              {
+                "kind": "\n",
+                "lower": 35,
+                "upper": 36
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "backquoted identifier"
+      }
+    }
+  },
+  {
+    "id": "H2a-comment-neighbor",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n// enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n// enum Helper { static var `x/*`: Int { 0 } }\n// typealias Mode = On\n// enum Helper2 { static var `y*/`: Int { 1 } }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "H2b-whole-input-refusal",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "defs.swift",
+          "text": "enum Helper { static var `x/*`: Int { 0 } }\ntypealias Mode = On\nenum Helper2 { static var `y*/`: Int { 1 } }\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "defs.swift",
+        "reason_contains": "backquoted identifier"
+      }
+    }
+  },
+  {
+    "id": "H2b-old-honest-certificate-refusal",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "defs.swift",
+          "text": "enum Helper { static var `x/*`: Int { 0 } }\ntypealias Mode = On\nenum Helper2 { static var `y*/`: Int { 1 } }\n"
+        }
+      ],
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "4a78c10641dd9c735f985000c77aa91daba33ad237d91392c45d6127e937368d",
+          "246c7be6f31ce222c068b2759ec9567715ac2cd4753c2474f7fe92f893a815c1",
+          "3c9de44307aca9b59894d1b0ec34bb3733c002cdaad0acc967d35d748d07fb55"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  14,
+                  23
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  24,
+                  28
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  29,
+                  30
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  31,
+                  39
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  39,
+                  40
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  41,
+                  50
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  51,
+                  55
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  56,
+                  57
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  58,
+                  61
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  61,
+                  62
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  63,
+                  72
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  73,
+                  77
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  78,
+                  79
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  80,
+                  82
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  83,
+                  84
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  84,
+                  85
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 18
+              },
+              {
+                "kind": "\n",
+                "lower": 18,
+                "upper": 19
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "Helper"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  14,
+                  20
+                ],
+                "word": "static"
+              },
+              {
+                "bytes": [
+                  21,
+                  24
+                ],
+                "word": "var"
+              },
+              {
+                "bytes": [
+                  25,
+                  26
+                ],
+                "word": "`"
+              },
+              {
+                "bytes": [
+                  26,
+                  27
+                ],
+                "word": "x"
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  94,
+                  95
+                ],
+                "word": "`"
+              },
+              {
+                "bytes": [
+                  95,
+                  96
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  97,
+                  100
+                ],
+                "word": "Int"
+              },
+              {
+                "bytes": [
+                  101,
+                  102
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  103,
+                  104
+                ],
+                "word": "1"
+              },
+              {
+                "bytes": [
+                  105,
+                  106
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  107,
+                  108
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  108,
+                  109
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 16
+              },
+              {
+                "kind": "\n",
+                "lower": 16,
+                "upper": 17
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "defs.swift",
+        "reason_contains": "backquoted identifier"
+      }
+    }
+  },
+  {
+    "id": "H2b-comment-neighbor",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "defs.swift",
+          "text": "// enum Helper { static var `x/*`: Int { 0 } }\n// typealias Mode = On\n// enum Helper2 { static var `y*/`: Int { 1 } }\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "H2c-whole-input-refusal",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\nenum Helper { static var `x/*`: Int { 0 } }\ntypealias Mode = On\nenum Helper2 { static var `y*/`: Int { 1 } }\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\nenum Helper { static var `x/*`: Int { 0 } }\ntypealias Mode = On\nenum Helper2 { static var `y*/`: Int { 1 } }\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mode",
+        "reason_contains": "backquoted identifier"
+      }
+    }
+  },
+  {
+    "id": "H2c-old-honest-certificate-refusal",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\nenum Helper { static var `x/*`: Int { 0 } }\ntypealias Mode = On\nenum Helper2 { static var `y*/`: Int { 1 } }\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "d14e7a0c098b420e2565e14c435366b5b7c25c48b47c8405d14d59890d2c6beb",
+          "246c7be6f31ce222c068b2759ec9567715ac2cd4753c2474f7fe92f893a815c1"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  21,
+                  25
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  26,
+                  32
+                ],
+                "word": "Helper"
+              },
+              {
+                "bytes": [
+                  33,
+                  34
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  35,
+                  41
+                ],
+                "word": "static"
+              },
+              {
+                "bytes": [
+                  42,
+                  45
+                ],
+                "word": "var"
+              },
+              {
+                "bytes": [
+                  46,
+                  47
+                ],
+                "word": "`"
+              },
+              {
+                "bytes": [
+                  47,
+                  48
+                ],
+                "word": "x"
+              },
+              {
+                "bytes": [
+                  64,
+                  65
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  84,
+                  85
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  115,
+                  116
+                ],
+                "word": "`"
+              },
+              {
+                "bytes": [
+                  116,
+                  117
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  118,
+                  121
+                ],
+                "word": "Int"
+              },
+              {
+                "bytes": [
+                  122,
+                  123
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  124,
+                  125
+                ],
+                "word": "1"
+              },
+              {
+                "bytes": [
+                  126,
+                  127
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  128,
+                  129
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  129,
+                  130
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              },
+              {
+                "kind": "enum",
+                "lower": 5,
+                "upper": 21
+              },
+              {
+                "kind": "\n",
+                "lower": 21,
+                "upper": 22
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  14,
+                  23
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  24,
+                  28
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  29,
+                  30
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  31,
+                  39
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  39,
+                  40
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  41,
+                  50
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  51,
+                  55
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  56,
+                  57
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  58,
+                  61
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  61,
+                  62
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  63,
+                  72
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  73,
+                  77
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  78,
+                  79
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  80,
+                  82
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  83,
+                  84
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  84,
+                  85
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 18
+              },
+              {
+                "kind": "\n",
+                "lower": 18,
+                "upper": 19
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On\nenum Helper { static var `x/*`: Int { 0 } }\ntypealias Mode = On\nenum Helper2 { static var `y*/`: Int { 1 } }\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\nenum Helper { static var `x/*`: Int { 0 } }\ntypealias Mode = On\nenum Helper2 { static var `y*/`: Int { 1 } }\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mode",
+        "reason_contains": "backquoted identifier"
+      }
+    }
+  },
+  {
+    "id": "H2c-comment-neighbor",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n// typealias Mode = Off\n// enum Helper { static var `x/*`: Int { 0 } }\n// typealias Mode = On\n// enum Helper2 { static var `y*/`: Int { 1 } }\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n// typealias Mode = Off\n// enum Helper { static var `x/*`: Int { 0 } }\n// typealias Mode = On\n// enum Helper2 { static var `y*/`: Int { 1 } }\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "H3e-whole-input-refusal",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum Helper {\n#if compiler(>=99)\n  }  enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On } enum Tail {\n#endif\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "directives are outside strict declaration scope"
+      }
+    }
+  },
+  {
+    "id": "H3e-old-honest-certificate-refusal",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum Helper {\n#if compiler(>=99)\n  }  enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On } enum Tail {\n#endif\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "4a78c10641dd9c735f985000c77aa91daba33ad237d91392c45d6127e937368d",
+          "58ee26f11744a7dbc1093a8b56ccb954bf4482cfd8653d27a7b706e28cc785a9"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "Helper"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  14,
+                  15
+                ],
+                "word": "#"
+              },
+              {
+                "bytes": [
+                  15,
+                  17
+                ],
+                "word": "if"
+              },
+              {
+                "bytes": [
+                  18,
+                  26
+                ],
+                "word": "compiler"
+              },
+              {
+                "bytes": [
+                  26,
+                  27
+                ],
+                "word": "("
+              },
+              {
+                "bytes": [
+                  27,
+                  28
+                ],
+                "word": ">"
+              },
+              {
+                "bytes": [
+                  28,
+                  29
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  29,
+                  30
+                ],
+                "word": "9"
+              },
+              {
+                "bytes": [
+                  30,
+                  31
+                ],
+                "word": "9"
+              },
+              {
+                "bytes": [
+                  31,
+                  32
+                ],
+                "word": ")"
+              },
+              {
+                "bytes": [
+                  32,
+                  33
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  35,
+                  36
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  38,
+                  42
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  43,
+                  49
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  50,
+                  51
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  52,
+                  61
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  62,
+                  66
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  67,
+                  68
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  69,
+                  77
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  77,
+                  78
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  79,
+                  88
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  89,
+                  93
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  94,
+                  95
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  96,
+                  99
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  99,
+                  100
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  101,
+                  110
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  111,
+                  115
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  116,
+                  117
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  118,
+                  120
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  121,
+                  122
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  123,
+                  127
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  128,
+                  132
+                ],
+                "word": "Tail"
+              },
+              {
+                "bytes": [
+                  133,
+                  134
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  134,
+                  135
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  135,
+                  136
+                ],
+                "word": "#"
+              },
+              {
+                "bytes": [
+                  136,
+                  141
+                ],
+                "word": "endif"
+              },
+              {
+                "bytes": [
+                  141,
+                  142
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  142,
+                  143
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  143,
+                  144
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 15
+              },
+              {
+                "kind": "enum",
+                "lower": 15,
+                "upper": 33
+              },
+              {
+                "kind": "enum",
+                "lower": 33,
+                "upper": 41
+              },
+              {
+                "kind": "\n",
+                "lower": 41,
+                "upper": 42
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "directives are outside strict declaration scope"
+      }
+    }
+  },
+  {
+    "id": "H3e-comment-neighbor",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n// enum Helper {\n// #if compiler(>=99)\n//   }  enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On } enum Tail {\n// #endif\n// }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "H3f-whole-input-refusal",
+    "request": {
+      "arguments": [
+        "BumpUp"
+      ],
+      "state": "typealias Count = LampOff\n",
+      "dictionary": "protocol Counting {}\nextension Never: Counting {}\nenum Tick<Previous: Counting>: Counting {}\nenum CountSlot {}\nenum BumpUp<T: Counting> {\n    typealias Slot = CountSlot\n    typealias From = T\n    typealias Into = Tick<T>\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "defs.swift",
+          "text": "enum LampOff {}\nenum Helper {\n#if compiler(>=99)\n  }  extension LampOff: Counting {} enum Tail {\n#endif\n}\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Count = LampOff\n",
+      "changed": false,
+      "refusal": {
+        "address": "defs.swift",
+        "reason_contains": "directives are outside strict declaration scope"
+      }
+    }
+  },
+  {
+    "id": "H3f-old-honest-certificate-refusal",
+    "request": {
+      "arguments": [
+        "BumpUp"
+      ],
+      "state": "typealias Count = LampOff\n",
+      "dictionary": "protocol Counting {}\nextension Never: Counting {}\nenum Tick<Previous: Counting>: Counting {}\nenum CountSlot {}\nenum BumpUp<T: Counting> {\n    typealias Slot = CountSlot\n    typealias From = T\n    typealias Into = Tick<T>\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "defs.swift",
+          "text": "enum LampOff {}\nenum Helper {\n#if compiler(>=99)\n  }  extension LampOff: Counting {} enum Tail {\n#endif\n}\n"
+        }
+      ],
+      "certificate": {
+        "arguments": [
+          "BumpUp"
+        ],
+        "candidates": [
+          {
+            "bounds": {
+              "nodes": [
+                {
+                  "contract": {
+                    "_0": "LampOff",
+                    "_1": "Counting"
+                  }
+                },
+                {
+                  "dependencies": [],
+                  "prerequisites": [],
+                  "reductions": []
+                },
+                {
+                  "member": {
+                    "_0": "LampOff",
+                    "_1": "Counting"
+                  }
+                },
+                {
+                  "dependencies": [
+                    {
+                      "form": {
+                        "_0": "LampOff"
+                      }
+                    },
+                    {
+                      "contract": {
+                        "_0": "LampOff",
+                        "_1": "Counting"
+                      }
+                    }
+                  ],
+                  "prerequisites": [
+                    {
+                      "form": {
+                        "_0": "LampOff"
+                      }
+                    }
+                  ],
+                  "reductions": [
+                    {
+                      "name": {
+                        "_0": "LampOff"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "form": {
+                    "_0": "LampOff"
+                  }
+                },
+                {
+                  "dependencies": [],
+                  "prerequisites": [],
+                  "reductions": []
+                }
+              ],
+              "roots": [
+                {
+                  "member": {
+                    "_0": "LampOff",
+                    "_1": "Counting"
+                  }
+                }
+              ]
+            },
+            "rule": "BumpUp",
+            "substitution": {
+              "T": "LampOff"
+            }
+          }
+        ],
+        "inputs": [
+          "ead662359b5b345bf5e2a7c6914794155443cd3632de31c7b63b2c57efc31f33",
+          "545a8f9fbf321c03e62f2aba9f5b692a394051f6b14646ef762ef8f742967d2b",
+          "03e28a03c59f8ca6a3388b5228fef87046a74dfba13aea8ce12afd16f67edaac"
+        ],
+        "lowerByte": 18,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  15
+                ],
+                "word": "Count"
+              },
+              {
+                "bytes": [
+                  16,
+                  17
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  18,
+                  25
+                ],
+                "word": "LampOff"
+              },
+              {
+                "bytes": [
+                  25,
+                  26
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  8
+                ],
+                "word": "protocol"
+              },
+              {
+                "bytes": [
+                  9,
+                  17
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  18,
+                  19
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  19,
+                  20
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  21,
+                  30
+                ],
+                "word": "extension"
+              },
+              {
+                "bytes": [
+                  31,
+                  36
+                ],
+                "word": "Never"
+              },
+              {
+                "bytes": [
+                  36,
+                  37
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  38,
+                  46
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  47,
+                  48
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  48,
+                  49
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  49,
+                  50
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  50,
+                  54
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  55,
+                  59
+                ],
+                "word": "Tick"
+              },
+              {
+                "bytes": [
+                  59,
+                  60
+                ],
+                "word": "<"
+              },
+              {
+                "bytes": [
+                  60,
+                  68
+                ],
+                "word": "Previous"
+              },
+              {
+                "bytes": [
+                  68,
+                  69
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  70,
+                  78
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  78,
+                  79
+                ],
+                "word": ">"
+              },
+              {
+                "bytes": [
+                  79,
+                  80
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  81,
+                  89
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  90,
+                  91
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  91,
+                  92
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  92,
+                  93
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  93,
+                  97
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  98,
+                  107
+                ],
+                "word": "CountSlot"
+              },
+              {
+                "bytes": [
+                  108,
+                  109
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  109,
+                  110
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  110,
+                  111
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  111,
+                  115
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  116,
+                  122
+                ],
+                "word": "BumpUp"
+              },
+              {
+                "bytes": [
+                  122,
+                  123
+                ],
+                "word": "<"
+              },
+              {
+                "bytes": [
+                  123,
+                  124
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  124,
+                  125
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  126,
+                  134
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  134,
+                  135
+                ],
+                "word": ">"
+              },
+              {
+                "bytes": [
+                  136,
+                  137
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  137,
+                  138
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  142,
+                  151
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  152,
+                  156
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  157,
+                  158
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  159,
+                  168
+                ],
+                "word": "CountSlot"
+              },
+              {
+                "bytes": [
+                  168,
+                  169
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  173,
+                  182
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  183,
+                  187
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  188,
+                  189
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  190,
+                  191
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  191,
+                  192
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  196,
+                  205
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  206,
+                  210
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  211,
+                  212
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  213,
+                  217
+                ],
+                "word": "Tick"
+              },
+              {
+                "bytes": [
+                  217,
+                  218
+                ],
+                "word": "<"
+              },
+              {
+                "bytes": [
+                  218,
+                  219
+                ],
+                "word": "T"
+              },
+              {
+                "bytes": [
+                  219,
+                  220
+                ],
+                "word": ">"
+              },
+              {
+                "bytes": [
+                  220,
+                  221
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  221,
+                  222
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  222,
+                  223
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "protocol",
+                "lower": 0,
+                "upper": 4
+              },
+              {
+                "kind": "\n",
+                "lower": 4,
+                "upper": 5
+              },
+              {
+                "kind": "extension",
+                "lower": 5,
+                "upper": 11
+              },
+              {
+                "kind": "\n",
+                "lower": 11,
+                "upper": 12
+              },
+              {
+                "kind": "enum",
+                "lower": 12,
+                "upper": 23
+              },
+              {
+                "kind": "\n",
+                "lower": 23,
+                "upper": 24
+              },
+              {
+                "kind": "enum",
+                "lower": 24,
+                "upper": 28
+              },
+              {
+                "kind": "\n",
+                "lower": 28,
+                "upper": 29
+              },
+              {
+                "kind": "enum",
+                "lower": 29,
+                "upper": 57
+              },
+              {
+                "kind": "\n",
+                "lower": 57,
+                "upper": 58
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  12
+                ],
+                "word": "LampOff"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  14,
+                  15
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  16,
+                  20
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  21,
+                  27
+                ],
+                "word": "Helper"
+              },
+              {
+                "bytes": [
+                  28,
+                  29
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  29,
+                  30
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  30,
+                  31
+                ],
+                "word": "#"
+              },
+              {
+                "bytes": [
+                  31,
+                  33
+                ],
+                "word": "if"
+              },
+              {
+                "bytes": [
+                  34,
+                  42
+                ],
+                "word": "compiler"
+              },
+              {
+                "bytes": [
+                  42,
+                  43
+                ],
+                "word": "("
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": ">"
+              },
+              {
+                "bytes": [
+                  44,
+                  45
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  45,
+                  46
+                ],
+                "word": "9"
+              },
+              {
+                "bytes": [
+                  46,
+                  47
+                ],
+                "word": "9"
+              },
+              {
+                "bytes": [
+                  47,
+                  48
+                ],
+                "word": ")"
+              },
+              {
+                "bytes": [
+                  48,
+                  49
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  51,
+                  52
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  54,
+                  63
+                ],
+                "word": "extension"
+              },
+              {
+                "bytes": [
+                  64,
+                  71
+                ],
+                "word": "LampOff"
+              },
+              {
+                "bytes": [
+                  71,
+                  72
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  73,
+                  81
+                ],
+                "word": "Counting"
+              },
+              {
+                "bytes": [
+                  82,
+                  83
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  83,
+                  84
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  85,
+                  89
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  90,
+                  94
+                ],
+                "word": "Tail"
+              },
+              {
+                "bytes": [
+                  95,
+                  96
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  96,
+                  97
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  97,
+                  98
+                ],
+                "word": "#"
+              },
+              {
+                "bytes": [
+                  98,
+                  103
+                ],
+                "word": "endif"
+              },
+              {
+                "bytes": [
+                  103,
+                  104
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  104,
+                  105
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  105,
+                  106
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 4
+              },
+              {
+                "kind": "\n",
+                "lower": 4,
+                "upper": 5
+              },
+              {
+                "kind": "enum",
+                "lower": 5,
+                "upper": 20
+              },
+              {
+                "kind": "extension",
+                "lower": 20,
+                "upper": 26
+              },
+              {
+                "kind": "enum",
+                "lower": 26,
+                "upper": 34
+              },
+              {
+                "kind": "\n",
+                "lower": 34,
+                "upper": 35
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Count",
+        "upperByte": 25,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Count = Tick<LampOff>\n"
+    },
+    "expected": {
+      "state": "typealias Count = LampOff\n",
+      "changed": false,
+      "refusal": {
+        "address": "defs.swift",
+        "reason_contains": "directives are outside strict declaration scope"
+      }
+    }
+  },
+  {
+    "id": "H3f-comment-neighbor",
+    "request": {
+      "arguments": [
+        "BumpUp"
+      ],
+      "state": "typealias Count = LampOff\n",
+      "dictionary": "protocol Counting {}\nextension Never: Counting {}\nenum Tick<Previous: Counting>: Counting {}\nenum CountSlot {}\nenum BumpUp<T: Counting> {\n    typealias Slot = CountSlot\n    typealias From = T\n    typealias Into = Tick<T>\n}\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "definitions": [
+        {
+          "path": "defs.swift",
+          "text": "// enum LampOff {}\n// enum Helper {\n// #if compiler(>=99)\n//   }  extension LampOff: Counting {} enum Tail {\n// #endif\n// }\nenum LampOff {}\nextension LampOff: Counting {}\n"
+        }
+      ]
+    },
+    "expected": {
+      "state": "typealias Count = Tick<LampOff>\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "H8-whole-input-refusal",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum Helper { static var s: String { \"a\\\n\" } } // \" }\nenum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "escaped newline in a single-line string"
+      }
+    }
+  },
+  {
+    "id": "H8-old-honest-certificate-refusal",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum Helper { static var s: String { \"a\\\n\" } } // \" }\nenum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnOn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnOn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "4a78c10641dd9c735f985000c77aa91daba33ad237d91392c45d6127e937368d",
+          "e4a4e99fcc4a51d97cc540c3248ab51831a84e0b86683f78aab32ca64871950e"
+        ],
+        "lowerByte": 17,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  14
+                ],
+                "word": "Mode"
+              },
+              {
+                "bytes": [
+                  15,
+                  16
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  17,
+                  20
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  20,
+                  21
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  11
+                ],
+                "word": "Helper"
+              },
+              {
+                "bytes": [
+                  12,
+                  13
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  14,
+                  20
+                ],
+                "word": "static"
+              },
+              {
+                "bytes": [
+                  21,
+                  24
+                ],
+                "word": "var"
+              },
+              {
+                "bytes": [
+                  25,
+                  26
+                ],
+                "word": "s"
+              },
+              {
+                "bytes": [
+                  26,
+                  27
+                ],
+                "word": ":"
+              },
+              {
+                "bytes": [
+                  28,
+                  34
+                ],
+                "word": "String"
+              },
+              {
+                "bytes": [
+                  35,
+                  36
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  37,
+                  42
+                ],
+                "word": "@literal"
+              },
+              {
+                "bytes": [
+                  43,
+                  44
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  45,
+                  46
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  53,
+                  54
+                ],
+                "word": "\n"
+              },
+              {
+                "bytes": [
+                  54,
+                  58
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  59,
+                  65
+                ],
+                "word": "TurnOn"
+              },
+              {
+                "bytes": [
+                  66,
+                  67
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  68,
+                  77
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  78,
+                  82
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  83,
+                  84
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  85,
+                  93
+                ],
+                "word": "ModeSlot"
+              },
+              {
+                "bytes": [
+                  93,
+                  94
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  95,
+                  104
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  105,
+                  109
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  110,
+                  111
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  112,
+                  115
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  115,
+                  116
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  117,
+                  126
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  127,
+                  131
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  132,
+                  133
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  134,
+                  136
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  137,
+                  138
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  138,
+                  139
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 12
+              },
+              {
+                "kind": "\n",
+                "lower": 12,
+                "upper": 13
+              },
+              {
+                "kind": "enum",
+                "lower": 13,
+                "upper": 31
+              },
+              {
+                "kind": "\n",
+                "lower": 31,
+                "upper": 32
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Mode",
+        "upperByte": 20,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Mode = On\n"
+    },
+    "expected": {
+      "state": "typealias Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "rules.swift#TurnOn",
+        "reason_contains": "escaped newline in a single-line string"
+      }
+    }
+  },
+  {
+    "id": "H8-comment-neighbor",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n// enum Helper { static var s: String { \"a\\\n// \" } } // \" }\n// enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
   }
 ]

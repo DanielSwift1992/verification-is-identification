@@ -7,7 +7,7 @@
     "transport": "vi.press.json/2"
   },
   "files": {
-    "fixtures/cases.json": "dbf64644b4820a370e356d87ad525be7e6f54afb3b11db84b19f41a2a8b34324"
+    "fixtures/cases.json": "ac65bd9a42b0f7502de9c796d06f8545c7780e69674803034984bbf82eab9fd9"
   },
   "cases_file": "fixtures/cases.json",
   "cases": [
@@ -142,7 +142,31 @@
     "division-spaced-carrier-neighbor",
     "nested-bare-regex",
     "nested-extended-regex",
-    "raw-interpolation-multihash"
+    "raw-interpolation-multihash",
+    "H1a-whole-input-refusal",
+    "H1a-old-honest-certificate-refusal",
+    "H1a-comment-neighbor",
+    "H1b-whole-input-refusal",
+    "H1b-old-honest-certificate-refusal",
+    "H1b-comment-neighbor",
+    "H2a-whole-input-refusal",
+    "H2a-old-honest-certificate-refusal",
+    "H2a-comment-neighbor",
+    "H2b-whole-input-refusal",
+    "H2b-old-honest-certificate-refusal",
+    "H2b-comment-neighbor",
+    "H2c-whole-input-refusal",
+    "H2c-old-honest-certificate-refusal",
+    "H2c-comment-neighbor",
+    "H3e-whole-input-refusal",
+    "H3e-old-honest-certificate-refusal",
+    "H3e-comment-neighbor",
+    "H3f-whole-input-refusal",
+    "H3f-old-honest-certificate-refusal",
+    "H3f-comment-neighbor",
+    "H8-whole-input-refusal",
+    "H8-old-honest-certificate-refusal",
+    "H8-comment-neighbor"
   ],
   "native_controls": [
     "N3a-dictionary-lexical-refusal",
@@ -189,6 +213,22 @@
     "division-spaced-carrier-neighbor",
     "nested-bare-regex",
     "nested-extended-regex",
-    "raw-interpolation-multihash"
+    "raw-interpolation-multihash",
+    "H1a-whole-input-refusal",
+    "H1a-comment-neighbor",
+    "H1b-whole-input-refusal",
+    "H1b-comment-neighbor",
+    "H2a-whole-input-refusal",
+    "H2a-comment-neighbor",
+    "H2b-whole-input-refusal",
+    "H2b-comment-neighbor",
+    "H2c-whole-input-refusal",
+    "H2c-comment-neighbor",
+    "H3e-whole-input-refusal",
+    "H3e-comment-neighbor",
+    "H3f-whole-input-refusal",
+    "H3f-comment-neighbor",
+    "H8-whole-input-refusal",
+    "H8-comment-neighbor"
   ]
 }

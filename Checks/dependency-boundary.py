@@ -5,7 +5,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = 'Checks/dependency-boundary.json'
-POLICY_SHA256 = 'a11f80235bb249b19120ef5fd30e73d8d4a8af86d853ae0539353bd703362e58'
+POLICY_SHA256 = '7ab4ac6caf18950bee221fc3e58bc98a6e799a126ba3dac8476185274e4d32e7'
 LAW = ROOT / 'Checks/boundary-law.py'
 exec(compile(LAW.read_bytes(), str(LAW), 'exec'), globals())
 

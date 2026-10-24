@@ -5,9 +5,9 @@ import Foundation
 // declares strict mode with a UTF-8 LawCheck.strict file containing "strict"
 // in its own target directory, excluded from SwiftPM sources. Absence retains
 // report mode. Target names have no role in selecting behavior.
-// Demo drivers legitimately use the §0′ value edge; strict lint would refuse
-// those runtime drivers. Report mode keeps their diagnostics without refusing
-// the build. A library consumer declares strictness at its own boundary.
+// Report mode retains diagnostics while allowing the build.
+// It admits no code under §0′ and records or discharges no debt.
+// Consumers declare strictness at their own boundary.
 // Grammar is a separate gate: its disposable compiler does not run on each build.
 // Targets on which Tools depends must be linted directly to avoid a plugin cycle.
 @main

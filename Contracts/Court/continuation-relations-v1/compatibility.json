@@ -296,8 +296,8 @@
     ]
   },
   "imageArchives": {
-    "origin": "R0100Opus pre-publication repair after cab052ce5ba693bf92c0c2f6ca4837d1f3a9c5cb; canonical format-6 archives without CLI trailing newline",
-    "source_index_sha256": "4af944649d61e79a723e0124d876f3765a9a15c7685de58a06f5a1f574ffa71e",
+    "origin": "T0100 after review repairs 8c16f7340738f37e02901b3711343af9927693c3; canonical archives without CLI trailing newline",
+    "source_index_sha256": "4fc297b706ddb021eae44b07b50a68a96a22b049f1bff6b12566ff3077f2d073",
     "cases": [
       {
         "request": "PermutedPromise",
@@ -431,6 +431,7 @@
         "holds": false,
         "sha256": "5348fb8e2c84bd6c55f4f294b1ceac2c3ff40512f437559104e69338b4e45d92"
       }
-    ]
+    ],
+    "source_commit": "8c16f7340738f37e02901b3711343af9927693c3"
   }
 }

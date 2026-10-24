@@ -281,12 +281,20 @@ final class ContinuationAgreementTests: XCTestCase {
         let image = try C.deriveImage("PermutedPromise", source: world("image-cases.swift"))
         XCTAssertThrowsError(try C.decodeAgreement(C.encodeImage(image)))
     }
-    func testReviewedFormat6KeepsCanonicalBytes() throws {
+    func testT0100RepairedFormat6KeepsCanonicalBytes() throws {
         let data = try Data(contentsOf: root.appendingPathComponent(directory + "compatibility.json"))
         let manifest = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
         let section = try XCTUnwrap(manifest["imageArchives"] as? [String: Any])
         let cases = try XCTUnwrap(section["cases"] as? [[String: Any]])
-        XCTAssertEqual(cases.count, 22)
+        let contractData = try Data(contentsOf: root.appendingPathComponent(directory + "contract.json"))
+        let contract = try XCTUnwrap(JSONSerialization.jsonObject(with: contractData) as? [String: Any])
+        let image = try XCTUnwrap(contract["image"] as? [String: Any])
+        let declared = try XCTUnwrap(image["cases"] as? [[String: Any]])
+        let expected = Set(declared.filter { $0["holds"] != nil }.compactMap { $0["request"] as? String })
+        XCTAssertEqual(cases.count, expected.count)
+        XCTAssertEqual(Set(cases.compactMap { $0["request"] as? String }), expected)
+        let sourceCommit = try XCTUnwrap(section["source_commit"] as? String)
+        XCTAssertTrue((section["origin"] as? String ?? "").hasPrefix("T0100 after review repairs " + sourceCommit))
         let source = try world("image-cases.swift")
         for entry in cases {
             let request = try XCTUnwrap(entry["request"] as? String)

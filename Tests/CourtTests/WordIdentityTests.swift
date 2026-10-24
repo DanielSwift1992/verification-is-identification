@@ -44,11 +44,14 @@ final class WordIdentityTests: XCTestCase {
     }
 
     func testContextNamePremisesParticipateWithTheirDeclaredAddresses() throws {
-        for imported in ["Módulo", "Mo\u{301}dulo"] {
+        // Context imports must first name a scalar-identical supplied module.
+        // When that premise holds, the independent spelling diagnostic still
+        // relates source words to the context's declared addresses.
+        for (imported, declaredImport) in [("Módulo", "Módulo"), ("Mo\u{301}dulo", "Mo\u{301}dulo"), ("Mo\u{301}dulo", "Módulo")] {
             let files = [("world.swift", "import \(imported)\nprotocol X {}"), ("lib.swift", "enum Library {}")]
             let texts = NameMap(uniqueKeysWithValues: files)
             let entries: [[String: Any]] = files.enumerated().map { i, file in
-                let imports = i == 0 ? [imported] : []
+                let imports = i == 0 ? [declaredImport] : []
                 return ["input": file.0, "source": file.0, "sha256": courtSHA256(Data(file.1.utf8)),
                     "namespace": i == 0 ? "World" : "Lib", "module": i == 0 ? "World" : "Módulo",
                     "role": i == 0 ? "own" : "borrowed", "imports": imports,
@@ -58,15 +61,23 @@ final class WordIdentityTests: XCTestCase {
                         "imports": imports.map { _ in "manifest:\(i).imports" }]]
             }
             let json = try JSONSerialization.data(withJSONObject: ["schema": "vi.court.context/2", "sources": entries, "intrinsics": []])
+            if !WhereJudge.sameName(declaredImport, "Módulo") {
+                XCTAssertThrowsError(try CourtContext(text: String(decoding: json, as: UTF8.self), paths: files.map { $0.0 }, texts: texts)) { error in
+                    let message = String(describing: error)
+                    XCTAssertTrue(message.contains("manifest:0.imports"), message)
+                    XCTAssertTrue(message.contains("has no supplied source or intrinsic"), message)
+                }
+                continue
+            }
             let context = try CourtContext(text: String(decoding: json, as: UTF8.self), paths: files.map { $0.0 }, texts: texts)
-            if imported.unicodeScalars.elementsEqual("Módulo".unicodeScalars) {
+            if WhereJudge.sameName(imported, "Módulo") {
                 XCTAssertNoThrow(try CourtNotation.read(context, texts: texts, selected: "world.swift", documents: []))
             } else {
                 XCTAssertThrowsError(try CourtNotation.read(context, texts: texts, selected: "world.swift", documents: [])) { error in
                     let text = String(describing: error)
                     XCTAssertTrue(text.contains("distinct scalar spellings"), text)
                     XCTAssertTrue(text.contains("world.swift:1"), text)
-                    XCTAssertTrue(text.contains("manifest:1.module"), text)
+                    XCTAssertTrue(text.contains("manifest:0.imports"), text)
                 }
             }
         }

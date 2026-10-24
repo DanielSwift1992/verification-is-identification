@@ -11,9 +11,10 @@
 #   ./check.sh --research-only  historical finite experiments, not type proofs
 #   ./check.sh --only ablation  optional audit of the saved deletion experiment
 #
-# The mirror carries every source file through a second compiler and takes
-# minutes, so CI runs it in a job of its own and this file is how both jobs
-# name what they run. A record added to Checks/Laws.swift is asked by everybody.
+# The mirror checks one distinct, read-back carrier per discovered input path
+# and compiles its emitted formations. Source byte coverage and reference
+# bindings remain reader debt (Contracts/Checks/grammar-reader-v1.md). CI runs
+# this child build in its own job. Checks/Laws.swift names what both jobs run.
 set -uo pipefail
 cd "$(dirname "$0")"
 # the verdict law may keep a receipt for inputs that did not change

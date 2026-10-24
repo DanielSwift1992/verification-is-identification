@@ -319,7 +319,7 @@ enum LawQuotes: LawRecord {
 }
 
 enum LawLawName: LawText { static var typeName: String { #"law"# } }
-enum LawLawDescription: LawText { static var typeName: String { #"the grammar carries every source file"# } }
+enum LawLawDescription: LawText { static var typeName: String { #"distinct source carriers are read back and their emitted formations build"# } }
 enum LawLaw: LawRecord {
     typealias Command = Self
     typealias Name = LawLawName
@@ -330,7 +330,7 @@ enum LawLaw: LawRecord {
 }
 
 enum LawBoundaryName: LawText { static var typeName: String { #"boundary"# } }
-enum LawBoundaryDescription: LawText { static var typeName: String { #"registered and external scope maps keep component boundaries, coverage and compiler grants"# } }
+enum LawBoundaryDescription: LawText { static var typeName: String { #"scope maps and distinct read-back carriers keep scope coverage, component boundaries and emitted grants"# } }
 enum LawBoundary: LawRecord {
     typealias Command = Self
     typealias Name = LawBoundaryName

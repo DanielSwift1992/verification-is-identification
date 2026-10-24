@@ -280,8 +280,7 @@ extension WhereJudge {
                     }
                     keep(1)
                 }
-                else if current.properties.isAlphabetic || current == "_"
-                    || (current.value >= 0x80 && Self.wordCandidate(current)) {
+                else if current.properties.isAlphabetic || current == "_" {
                     guard Self.swiftIdentifierStart(current) else {
                         try refuse("identifier start " + String(format: "U+%04X", current.value) + " is outside the declared Swift table", at: index)
                     }
@@ -297,6 +296,9 @@ extension WhereJudge {
                     }
                     if top { emit(spelling(at, index), at, index) }
                 } else {
+                    if current.value >= 0x80, Self.wordCandidate(current), !Self.swiftIdentifierStart(current) {
+                        try refuse("identifier start " + String(format: "U+%04X", current.value) + " is outside the declared Swift table", at: index)
+                    }
                     // The structural modes have a closed code-scalar alphabet.
                     // Literal/comment contents were classified above; an unknown
                     // code scalar cannot become trivia in the production reader.

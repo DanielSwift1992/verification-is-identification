@@ -108,7 +108,7 @@ extension MarkupGalleryTitle {
 }
 
 /// Shows an owner-supplied source excerpt beside its compiled composition reading.
-/// Excerpt correspondence is reviewed at this consumer site; Reading supplies the native result.
+/// Excerpt correspondence is reviewed at this consumer site. Reading supplies the native result.
 public protocol MarkupReadout: Open {
     associatedtype Heading: Structure
     associatedtype Declaration: Structure

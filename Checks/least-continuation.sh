@@ -8,7 +8,12 @@ continuation_tmp="$(mktemp -d "${TMPDIR:-/tmp}/vi-least-continuation.XXXXXX")"
 trap 'rm -rf "$continuation_tmp"' EXIT
 mkdir -p "$continuation_tmp/Modules"
 
+swiftc -emit-module -parse-as-library -module-name Notation \
+    Sources/Notation/*.swift \
+    -module-cache-path "$continuation_tmp/cache" \
+    -emit-module-path "$continuation_tmp/Modules/Notation.swiftmodule"
 swiftc -emit-module -parse-as-library -module-name VerificationIsIdentification \
+    -I "$continuation_tmp/Modules" \
     Sources/VerificationIsIdentification/*.swift \
     -emit-module-path "$continuation_tmp/Modules/VerificationIsIdentification.swiftmodule"
 continuation_sources=()

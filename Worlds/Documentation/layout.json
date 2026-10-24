@@ -1,0 +1,506 @@
+{
+  "origin": "Documentation owner composition; text sizes and weights project pinned gate registers; metrics project the measured owner source",
+  "values": {
+    "HairBreath": {
+      "expression": "U8"
+    },
+    "S24Breath": {
+      "expression": "Plus<U16, U8>"
+    },
+    "HairlineWidth": {
+      "text": "1"
+    },
+    "ArrowWidth": {
+      "text": "2"
+    },
+    "DependencyDash": {
+      "text": "4 3"
+    },
+    "R4": {
+      "text": "4"
+    },
+    "R6": {
+      "text": "6"
+    },
+    "R10": {
+      "text": "10"
+    },
+    "R16": {
+      "text": "16"
+    },
+    "R20": {
+      "text": "20"
+    },
+    "TextXXS": {
+      "text": "10"
+    },
+    "TextS": {
+      "text": "13"
+    },
+    "TextL": {
+      "text": "17"
+    },
+    "TitleT": {
+      "text": "21"
+    },
+    "WeightRegular": {
+      "text": "400"
+    },
+    "ShapeRadius": {
+      "text": "12"
+    },
+    "ThickGlyphWidth": {
+      "text": "6"
+    },
+    "GlyphStrokeWidth": {
+      "text": "9"
+    },
+    "BoldWeight": {
+      "text": "700"
+    },
+    "HoverTransition": {
+      "text": "150ms"
+    },
+    "HoverLift": {
+      "text": "2px"
+    },
+    "HoverFadeDelay": {
+      "text": "250ms"
+    },
+    "HoverGrace": {
+      "text": "400ms"
+    },
+    "HoverStrokeWidth": {
+      "text": "3"
+    },
+    "MarkerWidth": {
+      "text": "9"
+    },
+    "MarkerHeight": {
+      "text": "9"
+    },
+    "MarkerX": {
+      "text": "5"
+    },
+    "MarkerY": {
+      "text": "3"
+    },
+    "MarkerPath": {
+      "text": "M0,0 L6,3 L0,6 Z"
+    },
+    "FigureArrowBox": {
+      "text": "0 0 10 10"
+    },
+    "FigureArrowX": {
+      "text": "9"
+    },
+    "FigureArrowY": {
+      "text": "5"
+    },
+    "FigureArrowWidth": {
+      "text": "7"
+    },
+    "FigureArrowHeight": {
+      "text": "7"
+    },
+    "FigureArrowPath": {
+      "text": "M0 0L10 5L0 10Z"
+    },
+    "ShadowX": {
+      "text": "-20%"
+    },
+    "ShadowY": {
+      "text": "-20%"
+    },
+    "ShadowWidth": {
+      "text": "140%"
+    },
+    "ShadowHeight": {
+      "text": "140%"
+    },
+    "ShadowDx": {
+      "text": "0"
+    },
+    "ShadowDy": {
+      "text": "5"
+    },
+    "ShadowDeviation": {
+      "text": "10"
+    },
+    "BreatheValues": {
+      "text": "1;0.55;1"
+    },
+    "BreatheDuration": {
+      "text": "4s"
+    },
+    "CaptionSlant": {
+      "text": "italic"
+    },
+    "GlyphLineCap": {
+      "text": "round"
+    },
+    "GlyphLineJoin": {
+      "text": "round"
+    },
+    "HoverCursor": {
+      "text": "pointer"
+    },
+    "HoverEase": {
+      "text": "ease"
+    },
+    "HoverVisibilityEase": {
+      "text": "linear"
+    },
+    "NoPaint": {
+      "text": "none"
+    },
+    "SquareRadius": {
+      "text": "0"
+    },
+    "HiddenOpacity": {
+      "text": "0"
+    },
+    "VisibleOpacity": {
+      "text": "1"
+    },
+    "ImmediateDuration": {
+      "text": "0s"
+    },
+    "TableSortHintOpacity": {
+      "text": "0.35"
+    },
+    "TableSortActiveOpacity": {
+      "text": "0.9"
+    },
+    "TableSortHintSize": {
+      "text": "0.85em"
+    },
+    "TableSortCursor": {
+      "text": "pointer"
+    },
+    "MarkerOrient": {
+      "text": "auto"
+    },
+    "FigureArrowOrient": {
+      "text": "auto-start-reverse"
+    },
+    "SourceLinkWidth": {
+      "expression": "Plus<U16, Plus<U8, Plus<U4, U2>>>"
+    },
+    "SDKDocumentationRoot": {
+      "text": "https://danielswift1992.github.io/verification-is-identification/documentation/documentkit/"
+    },
+    "DemoDocumentationRoot": {
+      "text": "https://danielswift1992.github.io/verification-is-identification/documentation/documentkitdemo/"
+    }
+  },
+  "missingAdvanceCharacter": "m",
+  "tableStyle": [
+    {
+      "selector": ".content table, article table",
+      "declarations": {
+        "display": "block",
+        "overflow-x": "auto",
+        "max-width": "100%"
+      }
+    },
+    {
+      "selector": ".content th, article th",
+      "declarations": {
+        "cursor": {
+          "layout": "TableSortCursor"
+        },
+        "white-space": "nowrap"
+      }
+    },
+    {
+      "selector": ".content th::after, article th::after",
+      "declarations": {
+        "content": "' \\2195'",
+        "opacity": {
+          "layout": "TableSortHintOpacity"
+        },
+        "font-size": {
+          "layout": "TableSortHintSize"
+        }
+      }
+    },
+    {
+      "selector": ".content th:hover, article th:hover",
+      "declarations": {
+        "background": {
+          "role": "SurfaceTrack"
+        }
+      }
+    },
+    {
+      "selector": ".content th[data-vi-sort=down]::after, article th[data-vi-sort=down]::after",
+      "declarations": {
+        "content": "' \\2193'",
+        "opacity": {
+          "layout": "TableSortActiveOpacity"
+        }
+      }
+    },
+    {
+      "selector": ".content th[data-vi-sort=up]::after, article th[data-vi-sort=up]::after",
+      "declarations": {
+        "content": "' \\2191'",
+        "opacity": {
+          "layout": "TableSortActiveOpacity"
+        }
+      }
+    }
+  ],
+  "portableColour": {
+    "source": {
+      "repository": "https://github.com/DanielSwift1992/gate",
+      "revision": "bbd807bc504ef2146c2265d43521108c4e37c115",
+      "path": "bin/gate-cli.swift",
+      "sha256": "839115bf543878c11c8afbdba3b4c35284d04e5fe2348add0f3976d8d5f45aa1"
+    },
+    "span": {
+      "start": 657578,
+      "end": 658225,
+      "sha256": "394ec68faaac808a883f77aa3aa07b1c5267fe9aac5b4549da0f9930b76605a1"
+    },
+    "symbol": "srgbHex",
+    "rounding": "nearest-even"
+  },
+  "documentationProjection": {
+    "links": {
+      "Ink": "ink",
+      "Paper": "paper",
+      "Mist": "paper",
+      "Accent": "paper",
+      "Muted": "muted",
+      "Line": "line",
+      "InkPrimary": "ink",
+      "InkSecondary": "muted",
+      "Action": "action",
+      "ActionTint": "paper",
+      "NavyTint": "paper",
+      "SurfaceCard": "paper",
+      "SurfaceTrack": "paper",
+      "SurfacePage": "paper",
+      "TextPrimary": "ink",
+      "TextSecondary": "muted",
+      "AccentRole": "action",
+      "ActionRole": "action",
+      "LineRole": "line",
+      "OnAccent": "ink",
+      "ActionTintRole": "paper",
+      "OnActionRole": "ink",
+      "StatusMark": "ok",
+      "Ok": "ok",
+      "Bad": "bad",
+      "KnownName": "knownName",
+      "LocalType": "localType"
+    },
+    "variables": {
+      "SurfaceCard": "surface-card",
+      "SurfaceTrack": "surface-track",
+      "SurfacePage": "surface-page",
+      "TextPrimary": "text-primary",
+      "TextSecondary": "text-secondary",
+      "AccentRole": "accent",
+      "ActionRole": "action",
+      "LineRole": "line",
+      "OnAccent": "on-accent",
+      "ActionTintRole": "action-tint",
+      "OnActionRole": "on-action"
+    },
+    "faces": {
+      "BodyFace": "Speech",
+      "CaptionFace": "Caption"
+    },
+    "weights": {
+      "WeightRegular": "Speech",
+      "WeightBold": "Headline"
+    },
+    "sizeRegisters": {
+      "TextXXS": "Caption",
+      "TextXS": "Caption",
+      "TextS": "Speech",
+      "TextM": "Speech",
+      "TextL": "Headline",
+      "TitleT": "Headline",
+      "DisplayS": "Headline",
+      "Display": "Headline"
+    },
+    "legible": [
+      {
+        "foreground": "TextPrimary",
+        "background": "SurfaceCard"
+      },
+      {
+        "foreground": "TextSecondary",
+        "background": "SurfaceCard",
+        "standard": "Readable"
+      },
+      {
+        "foreground": "ActionRole",
+        "background": "SurfaceCard"
+      },
+      {
+        "foreground": "TextPrimary",
+        "background": "SurfaceTrack"
+      },
+      {
+        "foreground": "TextSecondary",
+        "background": "SurfaceTrack",
+        "standard": "Readable"
+      },
+      {
+        "foreground": "ActionRole",
+        "background": "SurfaceTrack"
+      },
+      {
+        "foreground": "Ink",
+        "background": "NavyTint"
+      },
+      {
+        "foreground": "InkPrimary",
+        "background": "NavyTint"
+      },
+      {
+        "foreground": "InkSecondary",
+        "background": "NavyTint",
+        "standard": "Readable"
+      }
+    ],
+    "figurePairs": [
+      {
+        "role": "Ink",
+        "standard": "LegiblePaintPair",
+        "name": "InkOnPaper",
+        "background": "Paper"
+      },
+      {
+        "role": "Muted",
+        "standard": "ReadablePaintPair",
+        "name": "MutedOnPaper",
+        "background": "Paper"
+      },
+      {
+        "role": "Ok",
+        "standard": "LegiblePaintPair",
+        "name": "OkOnPaper",
+        "background": "Paper"
+      },
+      {
+        "role": "Bad",
+        "standard": "LegiblePaintPair",
+        "name": "BadOnPaper",
+        "background": "Paper"
+      },
+      {
+        "role": "KnownName",
+        "standard": "LegiblePaintPair",
+        "name": "KnownNameOnPaper",
+        "background": "Paper"
+      },
+      {
+        "role": "LocalType",
+        "standard": "LegiblePaintPair",
+        "name": "LocalTypeOnPaper",
+        "background": "Paper"
+      }
+    ],
+    "example": {
+      "viewBox": "0 0 120 120",
+      "background": {
+        "width": "120",
+        "height": "120",
+        "rx": "12",
+        "role": "Paper"
+      },
+      "mark": {
+        "d": "M30 60 L55 85 L92 40",
+        "stroke-width": "10",
+        "fill": "none",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
+        "role": "StatusMark"
+      }
+    },
+    "primaryFace": "Inter",
+    "readRegisters": [
+      "Speech",
+      "Caption",
+      "Fact",
+      "Headline"
+    ],
+    "shadow": {
+      "role": "ink",
+      "theme": "Lit",
+      "opacity": "0"
+    },
+    "leafCountBases": [
+      "Structure",
+      "Close",
+      "Open",
+      "Pair"
+    ],
+    "weightAliases": {
+      "WeightRegular": "WeightRegular",
+      "WeightBold": "WeightBold",
+      "BoldWeight": "WeightBold"
+    },
+    "themeModes": {
+      "light": "Lit",
+      "dark": "Dim"
+    },
+    "legibleTheme": "Lit",
+    "figureThemes": [
+      {
+        "name": "FigureLight",
+        "theme": "Lit",
+        "suffix": ""
+      },
+      {
+        "name": "FigureDark",
+        "theme": "Dim",
+        "suffix": "Dark"
+      }
+    ]
+  },
+  "styleContract": {
+    "name": "DocumentationStyle",
+    "input": "Worlds/Documentation/StyleContract.swift",
+    "sha256": "188ebc5307ec5bd50aea5bd7123c033d75b1d34697c78731095312ae38a4288a",
+    "projections": [
+      "Sources/DocumentKitDemo/StyleContract.swift",
+      "Contracts/Drawing/v0.1/StyleContract.swift"
+    ]
+  },
+  "cardPalettes": [
+    {
+      "name": "LightCardPalette",
+      "surface": {
+        "role": "Mist",
+        "suffix": ""
+      },
+      "glyph": {
+        "role": "Ink",
+        "suffix": ""
+      }
+    },
+    {
+      "name": "DarkCardPalette",
+      "surface": {
+        "role": "SurfaceTrack",
+        "suffix": "Dark"
+      },
+      "glyph": {
+        "role": "TextPrimary",
+        "suffix": "Dark"
+      }
+    }
+  ],
+  "publication": {
+    "input": "Worlds/Documentation/Publications/VisibleClaim.swift",
+    "sha256": "6c0d2cca45b0e886170696edd9297b138aee9eeb2cd7254dea75ecd9359d7458",
+    "projection": "Sources/DocumentKitDemo/ClaimInput.swift"
+  }
+}

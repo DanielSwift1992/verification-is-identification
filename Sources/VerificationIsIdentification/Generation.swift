@@ -1,3 +1,5 @@
+import Notation
+
 // Proposal Is Order. Selection and checking can share inputs and records.
 // The equations below name interfaces, not an information-free generator
 // or an automatically optimal discriminator. See GD1–GD9 for scope.

@@ -8,7 +8,7 @@ trap 'rm -rf "$continuation_tmp"' EXIT
 swiftc Sources/Court/*.swift Checks/StructuralContinuation.swift -o "$continuation_tmp/check"
 "$continuation_tmp/check" "$continuation_tmp"
 
-continuation_input=(Sources/VerificationIsIdentification/Primitive.swift
+continuation_input=(Sources/Notation/Primitive.swift
     Sources/Examples/TargetFrameTransport.swift Sources/Examples/ContinuationRequests.swift)
 "$continuation_tmp/check" --judge continue --certificate "$continuation_tmp/frame.json" \
     ContinuationFrameRequest "${continuation_input[@]}" > "$continuation_tmp/CLI.swift"
@@ -37,7 +37,12 @@ rg -q 'certificate body differs from the live source' "$continuation_tmp/changed
 printf '%s\n' 'CLI export/replay, exact obstruction, pre-loss retention and changed-source refusal passed'
 
 mkdir -p "$continuation_tmp/Modules"
+swiftc -emit-module -parse-as-library -module-name Notation \
+    Sources/Notation/*.swift \
+    -module-cache-path "$continuation_tmp/cache" \
+    -emit-module-path "$continuation_tmp/Modules/Notation.swiftmodule"
 swiftc -emit-module -parse-as-library -module-name VerificationIsIdentification \
+    -I "$continuation_tmp/Modules" \
     Sources/VerificationIsIdentification/*.swift \
     -emit-module-path "$continuation_tmp/Modules/VerificationIsIdentification.swiftmodule"
 continuation_sources=()

@@ -1,3 +1,5 @@
+import Notation
+
 // ═══════════════════════════════════════════════════════════════
 // Interference Is Intelligence (Mechanism).
 //

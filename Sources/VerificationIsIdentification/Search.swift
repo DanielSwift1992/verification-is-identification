@@ -1,3 +1,5 @@
+import Notation
+
 // Gradient Is Alignment. A correlation statistic and a supplied descending
 // transition are different relations. GA6–GA7 state the relevant boundaries.
 

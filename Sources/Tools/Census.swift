@@ -1,3 +1,5 @@
+// Surface-history citations are historical scope, not current SDK contracts.
+// Source: vi@f95b6c69d5ad49ede6cf953b8be42e725bde6ba6 Sources/DocumentKit/SurfaceLaw.swift; SHA-256 d51b07d4195eddee64d0a3e7daf91dc6667bc4c79665c53249222b8350dc4881.
 import Foundation
 
 // ═══════════════════════════════════════════════════════
@@ -23,6 +25,12 @@ enum Census {
     }
 
     private static let targets: [Target] = [
+        Target(name: "Notation", paths: ["Sources/Notation"]),
+        Target(name: "Alphabet", paths: ["Sources/Alphabet"]),
+        Target(name: "DocumentKit", paths: ["Sources/DocumentKit"]),
+        Target(name: "DocumentKitCertificates", paths: ["Sources/DocumentKitCertificates"]),
+        Target(name: "DocumentKitDemo", paths: ["Sources/DocumentKitDemo"]),
+        Target(name: "FontMetrics", paths: ["Sources/FontMetrics"]),
         Target(name: "VerificationIsIdentification", paths: ["Sources/VerificationIsIdentification"]),
         Target(name: "Examples", paths: ["Sources/Examples"]),
         Target(name: "Court", paths: ["Sources/Court"]),
@@ -49,9 +57,9 @@ enum Census {
 
     // ── runtime vs non-runtime `func`. A `func` line does not execute when: (a) it
     // is a `build*` method inside a `@resultBuilder` type or an extension of one (the builder's
-    // primitives, not called on a `body` that is only ever read as a type, §S7); (b) its
-    // body is exactly `fatalError()` (a call-syntax door, §S7); or (c) its signature carries
-    // `.Type` and its return is a metatype/`some Content` (a type-door, §S4's `Tally` exception).
+    // primitives, not called on a `body` that is only ever read as a type, [Surface history S7](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L113)); (b) its
+    // body is exactly `fatalError()` (a call-syntax door, [Surface history S7](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L113)); or (c) its signature carries
+    // `.Type` and its return is a metatype/`some Content` (a type-door, [Surface history S4](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L65)'s `Tally` exception).
     // Everything else counts as runtime: this is the one column that would flag a real leak.
     private static let typeDeclRegex = try! NSRegularExpression(
         pattern: #"^\s*(?:public\s+|private\s+|internal\s+|fileprivate\s+)?(?:final\s+)?(?:enum|struct|class|protocol|extension)\s+([A-Za-z_]\w*)"#)
@@ -245,11 +253,11 @@ enum Census {
         lines.append("")
         lines.append("Zero RUNTIME functions in the law's rows is the point: every `func` they carry")
         lines.append("is builder machinery or a call-syntax door, and none of it ever executes — a")
-        lines.append("body exists to be read as a type, never run (§S7). What executes lives in the")
-        lines.append("tooling row, and the census keeps it beside the system for scale. The one in")
+        lines.append("body exists to be read as a type, never run ([Surface history S7](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L113)). What executes lives in the")
+        lines.append("Court, tooling and driver rows, beside the system for scale. The one in")
         lines.append("Examples is `machineName`, the scheduler demo's own reader — the value the Encoding")
         lines.append("page prints — beside its ordinary-Swift witnesses. Zero structs and zero classes")
-        lines.append("are the law itself (Law §0′, SurfaceLaw §S2).")
+        lines.append("are the law itself (Law §0′, SurfaceLaw [Surface history S2](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L37)).")
 
         let output = lines.joined(separator: "\n")
         print(output)

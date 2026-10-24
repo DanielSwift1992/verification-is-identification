@@ -32,9 +32,9 @@ The lattice declares 329 direct edges, and 64 of them carry an argument record i
 | ``CandidateReading`` | ``HasCandidates`` | <doc:verdict_is_invariant__finite_records> |
 | ``CandidateReading`` | ``PredicateReading`` | <doc:verdict_is_invariant__finite_records> |
 | ``CommutingTransition`` | ``ObservedTransition`` | <doc:verdict_is_invariant__finite_records> |
-| ``ComparedReadings`` | ``Pair`` | <doc:verdict_is_invariant__finite_records> |
+| ``ComparedReadings`` | ``/Notation/Pair`` | <doc:verdict_is_invariant__finite_records> |
 | ``CompressionCriterion`` | ``Tower`` | <doc:distance_is_cost> |
-| ``CoverageMatchesDeclaration`` | ``Pair`` | <doc:verdict_is_invariant__finite_records> |
+| ``CoverageMatchesDeclaration`` | ``/Notation/Pair`` | <doc:verdict_is_invariant__finite_records> |
 | ``DiscoveryIsRevelation`` | ``ExactlyOneSurvives`` | <doc:intelligence_is_inevitable> |
 | ``DiscoveryIsRevelation`` | ``LibrarySaturates`` | <doc:intelligence_is_inevitable> |
 | ``DistanceIsCost`` | ``DistanceOnStructures`` | <doc:distance_is_cost> |
@@ -42,7 +42,7 @@ The lattice declares 329 direct edges, and 64 of them carry an argument record i
 | ``EdgesCarryTheJudgement`` | ``LawLivesInSigma`` | <doc:dynamics_is_substitution> |
 | ``EmptyObservationTrace`` | ``ObservationTrace`` | <doc:verdict_is_invariant__discovery_acquisition> |
 | ``EqualityDecidable`` | ``StructuresFinite`` | <doc:verification_is_identification> |
-| ``EvidenceRefinesQuestion`` | ``Pair`` | <doc:verdict_is_invariant__discovery_acquisition> |
+| ``EvidenceRefinesQuestion`` | ``/Notation/Pair`` | <doc:verdict_is_invariant__discovery_acquisition> |
 | ``ExactlyOneSurvives`` | ``EqualityDecidable`` | <doc:verification_is_identification> |
 | ``ExactlyOneSurvives`` | ``HasSolutions`` | <doc:verification_is_identification> |
 | ``ExtendedObservationTrace`` | ``ObservationTrace`` | <doc:verdict_is_invariant__discovery_acquisition> |
@@ -55,10 +55,10 @@ The lattice declares 329 direct edges, and 64 of them carry an argument record i
 | ``LibraryCrystallizes`` | ``LibrarySaturates`` | <doc:intelligence_is_inevitable> |
 | ``LibrarySaturates`` | ``CachePermanent`` | <doc:intelligence_is_inevitable> |
 | ``Matter`` | ``KnowledgeAccumulates`` | <doc:permanence_is_resistance> |
-| ``ObservationTrace`` | ``Pair`` | <doc:verdict_is_invariant__discovery_acquisition> |
+| ``ObservationTrace`` | ``/Notation/Pair`` | <doc:verdict_is_invariant__discovery_acquisition> |
 | ``ObservedTransition`` | ``HasEncoding`` | <doc:verdict_is_invariant__finite_records> |
-| ``ObservedTransition`` | ``Pair`` | <doc:verdict_is_invariant__finite_records> |
-| ``OperationsClosed`` | ``Pair`` | <doc:verification_is_identification> |
+| ``ObservedTransition`` | ``/Notation/Pair`` | <doc:verdict_is_invariant__finite_records> |
+| ``OperationsClosed`` | ``/Notation/Pair`` | <doc:verification_is_identification> |
 | ``PassImpliesMembership`` | ``PipelineTotal`` | <doc:verification_is_identification> |
 | ``PassImpliesMembership`` | ``ResultDeterministic`` | <doc:verification_is_identification> |
 | ``PassIsIdentification`` | ``ExactlyOneSurvives`` | <doc:verification_is_identification> |
@@ -66,7 +66,7 @@ The lattice declares 329 direct edges, and 64 of them carry an argument record i
 | ``PipelineCrystallizes`` | ``PassIsIdentification`` | <doc:intelligence_is_inevitable> |
 | ``PipelineTotal`` | ``StepsTerminate`` | <doc:verification_is_identification> |
 | ``PredicateReading`` | ``HasVerdict`` | <doc:verdict_is_invariant__finite_records> |
-| ``PredicateReading`` | ``Pair`` | <doc:verdict_is_invariant__finite_records> |
+| ``PredicateReading`` | ``/Notation/Pair`` | <doc:verdict_is_invariant__finite_records> |
 | ``ReadingFactors`` | ``VerdictIsInvariant`` | <doc:verdict_is_invariant__finite_records> |
 | ``RecordedAnswerReading`` | ``PredicateReading`` | <doc:verdict_is_invariant__discovery_acquisition> |
 | ``RefinementPreservesAnswer`` | ``EvidenceRefinesQuestion`` | <doc:verdict_is_invariant__discovery_acquisition> |
@@ -74,11 +74,11 @@ The lattice declares 329 direct edges, and 64 of them carry an argument record i
 | ``Resistant`` | ``HasDistance`` | <doc:permanence_is_resistance> |
 | ``ResultDeterministic`` | ``OperationsClosed`` | <doc:verification_is_identification> |
 | ``RetainedReadingRecord`` | ``Permanent`` | <doc:verdict_is_invariant__discovery_acquisition> |
-| ``SharedDecoder`` | ``Pair`` | <doc:verdict_is_invariant__finite_records> |
+| ``SharedDecoder`` | ``/Notation/Pair`` | <doc:verdict_is_invariant__finite_records> |
 | ``StepsTerminate`` | ``StructuresFinite`` | <doc:verification_is_identification> |
 | ``StrategyLivesInSigma`` | ``OrderIsOnlyFreedom`` | <doc:distance_is_cost> |
 | ``StructuresFinite`` | ``HasSigma`` | <doc:verification_is_identification> |
-| ``StructuresFinite`` | ``Pair`` | <doc:verification_is_identification> |
+| ``StructuresFinite`` | ``/Notation/Pair`` | <doc:verification_is_identification> |
 | ``Tower`` | ``HasCost`` | <doc:permanence_is_resistance> |
 | ``Tower`` | ``HasTime`` | <doc:permanence_is_resistance> |
 | ``Tower`` | ``Ignites`` | <doc:halt_is_ignition> |
@@ -86,6 +86,6 @@ The lattice declares 329 direct edges, and 64 of them carry an argument record i
 | ``VerdictCoversBranches`` | ``VerdictIsInvariant`` | <doc:verdict_is_invariant__finite_records> |
 | ``VerdictIsInvariant`` | ``ComparedReadings`` | <doc:verdict_is_invariant> |
 | ``VerdictIsInvariant`` | ``HasVerdict`` | <doc:verdict_is_invariant__finite_records> |
-| ``VerdictReorders`` | ``Pair`` | <doc:verdict_is_invariant__finite_records> |
-| ``VerdictRetainsLeft`` | ``Pair`` | <doc:verdict_is_invariant__finite_records> |
-| ``VerdictRetainsRight`` | ``Pair`` | <doc:verdict_is_invariant__finite_records> |
+| ``VerdictReorders`` | ``/Notation/Pair`` | <doc:verdict_is_invariant__finite_records> |
+| ``VerdictRetainsLeft`` | ``/Notation/Pair`` | <doc:verdict_is_invariant__finite_records> |
+| ``VerdictRetainsRight`` | ``/Notation/Pair`` | <doc:verdict_is_invariant__finite_records> |

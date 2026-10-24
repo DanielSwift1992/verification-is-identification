@@ -1,3 +1,5 @@
+import Notation
+
 // Navigation Is Geometry. The metric, a radius graph, actual access
 // and the routing policy have distinct obligations. N18 rejects their
 // identification with a single clustering number.

@@ -26,7 +26,7 @@ for ladder_test in testDeclaredEnergyStitchesThroughTheirOwnCountReading testEqu
 done
 
 if "$ladder_bin/Tools" judge where Sources/Examples/RydbergLadder.swift \
-    Sources/VerificationIsIdentification/Primitive.swift >"$ladder_tmp/where.log" 2>&1; then
+    Sources/Notation/Primitive.swift >"$ladder_tmp/where.log" 2>&1; then
     echo "Rydberg: the where court accepted distinct count constructions as one type" >&2
     exit 1
 else
@@ -120,7 +120,7 @@ fi
 # is derived, and each forged control is refused with both numbers named.
 count_args=(--predicate TickCountQuestion --encoding UnaryArithmeticEncoding --sigma RydbergLevels)
 if ! "$ladder_bin/Tools" judge count Sources/Examples/RydbergLadder.swift \
-    Sources/VerificationIsIdentification/Primitive.swift "${count_args[@]}" \
+    Sources/Notation/Primitive.swift "${count_args[@]}" \
     >"$ladder_tmp/count-world.log" 2>&1; then
     cat "$ladder_tmp/count-world.log"
     echo "Rydberg: the count court refused a level binding" >&2
@@ -134,7 +134,7 @@ fi
 count_refusal() {
     local control="$1" expected="$2"
     if "$ladder_bin/Tools" judge count "Checks/rydberg-count/$control.swift" \
-        Sources/Examples/RydbergLadder.swift Sources/VerificationIsIdentification/Primitive.swift \
+        Sources/Examples/RydbergLadder.swift Sources/Notation/Primitive.swift \
         "${count_args[@]}" >"$ladder_tmp/count-$control.log" 2>&1; then
         cat "$ladder_tmp/count-$control.log"
         echo "Rydberg: the count court accepted the forged control $control" >&2

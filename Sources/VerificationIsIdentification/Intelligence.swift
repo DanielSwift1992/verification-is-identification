@@ -1,3 +1,5 @@
+import Notation
+
 // ═══════════════════════════════════════════════════════
 // Intelligence Is Inevitable (IiI)
 //
@@ -100,7 +102,7 @@ public protocol DiscoveryIsRevelation: LibrarySaturates, ExactlyOneSurvives {}
 /// ratio is defined only when `0 < T_min ≤ T_actual`, with both costs in the
 /// same unit and the same available information, memory and query
 /// capabilities. The inline ``Measurable`` bound dimensions the axis
-/// (``Law`` §2): `Efficiency` has a ``Null`` output, whose two sides agree.
+/// (``Law`` §2): `Efficiency` has a ``/Notation/Null`` output, whose two sides agree.
 /// The application constructs the reading that relates it to a protocol, a
 /// task and both costs. [IiI §3] [EiF EF10]
 public protocol HasEfficiency: HasSigma {

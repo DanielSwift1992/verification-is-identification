@@ -1,0 +1,157 @@
+{
+  "registers": {
+    "Brand": {
+      "face": "Sans",
+      "leadingHundredths": 120,
+      "sizeTenths": 150,
+      "stress": "Firm"
+    },
+    "Caption": {
+      "face": "Sans",
+      "leadingHundredths": 140,
+      "sizeTenths": 110,
+      "stress": "Plain"
+    },
+    "Captionbare": {
+      "face": "Sans",
+      "leadingHundredths": null,
+      "sizeTenths": 110,
+      "stress": "Plain"
+    },
+    "Captionline": {
+      "face": "Sans",
+      "leadingHundredths": 145,
+      "sizeTenths": 110,
+      "stress": "Plain"
+    },
+    "Captionloose": {
+      "face": "Sans",
+      "leadingHundredths": 150,
+      "sizeTenths": 110,
+      "stress": "Plain"
+    },
+    "Codeinline": {
+      "face": "Mono",
+      "leadingHundredths": 140,
+      "sizeTenths": 120,
+      "stress": "Plain"
+    },
+    "Control": {
+      "face": "Sans",
+      "leadingHundredths": null,
+      "sizeTenths": 130,
+      "stress": "Plain"
+    },
+    "Controlsmall": {
+      "face": "Sans",
+      "leadingHundredths": null,
+      "sizeTenths": 125,
+      "stress": "Plain"
+    },
+    "Fact": {
+      "face": "Mono",
+      "leadingHundredths": 145,
+      "sizeTenths": 125,
+      "stress": "Plain"
+    },
+    "Factbare": {
+      "face": "Mono",
+      "leadingHundredths": null,
+      "sizeTenths": 125,
+      "stress": "Plain"
+    },
+    "Factfirm": {
+      "face": "Mono",
+      "leadingHundredths": 145,
+      "sizeTenths": 125,
+      "stress": "Firm"
+    },
+    "Headline": {
+      "face": "Sans",
+      "leadingHundredths": 130,
+      "sizeTenths": 150,
+      "stress": "Firm"
+    },
+    "Headsmall": {
+      "face": "Sans",
+      "leadingHundredths": 100,
+      "sizeTenths": 130,
+      "stress": "Firm"
+    },
+    "Keycap": {
+      "face": "Mono",
+      "leadingHundredths": null,
+      "sizeTenths": 110,
+      "stress": "Plain"
+    },
+    "Monoline": {
+      "face": "Mono",
+      "leadingHundredths": 145,
+      "sizeTenths": 110,
+      "stress": "Plain"
+    },
+    "Prose": {
+      "face": "Sans",
+      "leadingHundredths": 150,
+      "sizeTenths": 130,
+      "stress": "Plain"
+    },
+    "Proseloose": {
+      "face": "Sans",
+      "leadingHundredths": 160,
+      "sizeTenths": 130,
+      "stress": "Plain"
+    },
+    "Rubric": {
+      "face": "Sans",
+      "leadingHundredths": 140,
+      "sizeTenths": 110,
+      "stress": "Firm"
+    },
+    "Source": {
+      "face": "Mono",
+      "leadingHundredths": 152,
+      "sizeTenths": 125,
+      "stress": "Plain"
+    },
+    "Speech": {
+      "face": "Sans",
+      "leadingHundredths": 145,
+      "sizeTenths": 130,
+      "stress": "Plain"
+    }
+  },
+  "used": [
+    "Brand",
+    "Caption",
+    "Fact",
+    "Headline",
+    "Headsmall",
+    "Rubric",
+    "Speech"
+  ],
+  "equalities": [
+    "CodeinlineOverCaption",
+    "FactOverCodeinline",
+    "SpeechOverFact",
+    "BrandOverSpeech",
+    "BrandLeadClearsItsLetters",
+    "CaptionLeadClearsItsLetters",
+    "CaptionlineLeadClearsItsLetters",
+    "CaptionlooseLeadClearsItsLetters",
+    "CodeinlineLeadClearsItsLetters",
+    "FactLeadClearsItsLetters",
+    "HeadlineLeadClearsItsLetters",
+    "HeadsmallLeadClearsItsLetters",
+    "MonolineLeadClearsItsLetters",
+    "ProseLeadClearsItsLetters",
+    "ProselooseLeadClearsItsLetters",
+    "SourceLeadClearsItsLetters",
+    "RubricLeadClearsItsLetters",
+    "FactfirmIsFactSized",
+    "FactfirmLeadsLikeFact",
+    "FactfirmLeadClearsItsLetters",
+    "RubricIsCaptionSized",
+    "SpeechLeadClearsItsLetters"
+  ]
+}

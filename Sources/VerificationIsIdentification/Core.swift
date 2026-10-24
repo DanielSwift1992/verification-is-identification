@@ -1,3 +1,5 @@
+import Notation
+
 
 // ═══════════════════════════════════════════════════════
 // Markers names functions on spaces, rooted in primitives.
@@ -65,13 +67,6 @@ where Right: Pair {}
 public protocol MetricProperty: Pair
 where Left: Pair, Right: Pair, Left.Right == Right.Left {}
 
-/// A recursive Right axis. A finite expression in the specified Never/Succ
-/// grammar can interpret it as a unary count. This open protocol itself
-/// supplies no terminal, unit-step constraint on Left, or finite depth.
-/// CyclicNumeral in Checks/FiniteBoundary.swift is an admitted cycle. [EiF EF10]
-public protocol IntegerValued: Pair
-where Right: IntegerValued {}
-
 /// The output carries equality of its two addressed sides: Right is Null.
 /// This constrains one represented result. It supplies neither a reading
 /// law from Left nor agreement between separate results with the same input.
@@ -89,7 +84,7 @@ where Right: Null {}
 // - IntegerValued:   Right=Never: IntegerValued ✓ (Never is zero)
 // - Measurable:      Right=Never: Null ✓
 extension Never: Unique, Permanent, Decidable,
-    MetricProperty, IntegerValued, Measurable {}
+    MetricProperty, Measurable {}
 
 // ═══════════════════════════════════════════════════════
 // Axes are degrees of freedom that theorems constrain.
@@ -144,7 +139,7 @@ public protocol HasCache: HasSigma {
 
 /// This names the coordinate used for a structural distance count.
 ///
-/// ``IntegerValued`` gives `Distance` a recursive Right axis. Finite
+/// ``/Notation/IntegerValued`` gives `Distance` a recursive Right axis. Finite
 /// `Never`/`Succ` constructions give a unary count under their stated
 /// interpretation. The application's reading relates that count to edit
 /// distance, with physical cost assumptions stated separately. [DiC G2c] [EiF EF10]
@@ -167,7 +162,7 @@ public protocol HasEncoding: HasSigma {
 
 /// This names the alignment result alongside the distance coordinate.
 ///
-/// ``Measurable`` requires `Alpha` to have a ``Null`` output, whose two sides
+/// ``Measurable`` requires `Alpha` to have a ``/Notation/Null`` output, whose two sides
 /// agree. The application constructs the reading that relates this result
 /// to distance, loss and the sampled region. [GA] [EiF EF10]
 public protocol HasAlpha: HasDistance {

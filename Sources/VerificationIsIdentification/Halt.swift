@@ -1,3 +1,5 @@
+import Notation
+
 import Swift
 
 /// A supplied source step leaves the observed answer fixed.

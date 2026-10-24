@@ -42,9 +42,9 @@ Replay checks live-source read derivations, every finite forest/link and the clo
 ## Commands and boundaries
 
     Tools judge cover-law --certificate proof.json Cover \
-      Sources/VerificationIsIdentification/Primitive.swift cover.swift
+      Sources/Notation/Primitive.swift cover.swift
     Tools judge replay-cover-law proof.json Cover \
-      Sources/VerificationIsIdentification/Primitive.swift cover.swift
+      Sources/Notation/Primitive.swift cover.swift
 
 Both print the canonical archive with question whole-law-cover, format 1. This distinct archive contains the family and local trees/countermodel, which continuation's program and missing-question certificate do not express. It does not reinterpret the existing formats or judge coverage (FiniteCoverageCourt's candidate-tree question).
 

@@ -1,3 +1,5 @@
+import Notation
+
 import Swift
 
 /// Two supplied readings use the same source, question and encoding labels.

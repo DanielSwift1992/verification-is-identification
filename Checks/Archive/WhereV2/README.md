@@ -23,3 +23,7 @@ For an explicit diagnostic run: `node Checks/four-contact-court.js`, `node Check
 `returning_night_audit.py`, absent from the original N4 list, formerly selected a sibling native executable. It is separately frozen in `related_native_consumers`: it now requires an explicit `VI_ARCHIVED_NATIVE_TOOLS` and still checks that binary against its historical receipt hash before execution. The binary is neither supplied nor rebuilt here.
 
 The §1 connection is explicit ownership and provenance: vi no longer silently reads a neighboring checkout, and the next reader can distinguish the public archive from the reader actually named in the receipts. This engineering change does not advance §12 or alter a mathematical result.
+
+## Notation path relocation, 22 October 2026
+
+The Notation split relocates one Primitive.swift input path in six declared consumers. Their manifest rows preserve the previous frozen digest and name both paths. Replacing that one literal reconstructs each previous consumer exactly, and the Paired declaration read from the relocated file is byte-identical. The archived reader, its origin, the other consumers and the recorded receipts are unchanged. This declares a source-address migration; it establishes no replay or new canon-v2 conclusion.

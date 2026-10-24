@@ -10,7 +10,7 @@ final class WholeLawCoverTests: XCTestCase {
             .deletingLastPathComponent().deletingLastPathComponent()
     }
     private func world(_ edit: ((String) -> String)? = nil) throws -> StructuralSource {
-        let primitive = "Sources/VerificationIsIdentification/Primitive.swift"
+        let primitive = "Sources/Notation/Primitive.swift"
         let text = try String(contentsOf: root.appendingPathComponent(fixture), encoding: .utf8)
         return try StructuralSource(files: [
             (primitive, String(contentsOf: root.appendingPathComponent(primitive), encoding: .utf8)),
@@ -73,7 +73,7 @@ final class WholeLawCoverTests: XCTestCase {
             + tree(Array(names.dropFirst())) + ">\n"
             + "typealias First = Paired<Source.Left, Source.Right>\n"
             + "typealias Coverage = Paired<First, Source>\n}\n"
-        let primitive = "Sources/VerificationIsIdentification/Primitive.swift"
+        let primitive = "Sources/Notation/Primitive.swift"
         let source = try StructuralSource(files: [
             (primitive, String(contentsOf: root.appendingPathComponent(primitive), encoding: .utf8)),
             ("big.swift", text)

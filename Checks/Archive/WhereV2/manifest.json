@@ -21,11 +21,23 @@
     },
     "Checks/FiniteContinuation/coordinated_moving_boundary.js": {
       "before_sha256": "8b07ce06e80d7419a3a4bb72d46911b2f2b333645e31c7a45fd21252cd47412c",
-      "frozen_sha256": "6859d191e4cc480c5dda718a1759f03d59aa903df96b41fb2036bc5dcd98a394"
+      "frozen_sha256": "56c491964595ae5e85ee1fb1198a4b0066a00564e15c957a6639b595d4546edb",
+      "notation_relocation": {
+        "from_path": "Sources/VerificationIsIdentification/Primitive.swift",
+        "to_path": "Sources/Notation/Primitive.swift",
+        "previous_frozen_sha256": "6859d191e4cc480c5dda718a1759f03d59aa903df96b41fb2036bc5dcd98a394",
+        "scope": "one path literal; all other consumer bytes unchanged"
+      }
     },
     "Checks/FiniteContinuation/court_bridge.js": {
       "before_sha256": "a619060f5c12016879ccbee087120649b4cb7db4e14e853fa8d8ce7e30300fc9",
-      "frozen_sha256": "f25175971f7d29133bdf38d41a51f2d88da3a917fa7f2184986dae88fb60a20b"
+      "frozen_sha256": "0bc50f8a80c3793d9d7aceba53c7ff9dda272f00ae8d67ab7eb74fb4278af9f1",
+      "notation_relocation": {
+        "from_path": "Sources/VerificationIsIdentification/Primitive.swift",
+        "to_path": "Sources/Notation/Primitive.swift",
+        "previous_frozen_sha256": "f25175971f7d29133bdf38d41a51f2d88da3a917fa7f2184986dae88fb60a20b",
+        "scope": "one path literal; all other consumer bytes unchanged"
+      }
     },
     "Checks/FiniteContinuation/court_bridge_checks.js": {
       "before_sha256": "dc5cdeede55971abc155b354faee532f3cdf1198e82c6e7b04b1b927e149f33f",
@@ -33,7 +45,13 @@
     },
     "Checks/FiniteContinuation/derived_contact_boundary_checks.js": {
       "before_sha256": "03c545c621c88c63eca9e239b100c009fc1d4424637b2720ad6c031d91681a8b",
-      "frozen_sha256": "f222db63c57fdb3d192a0f787666d93c332fe58208d4e576df39d1dcfa51fbe0"
+      "frozen_sha256": "c7306cb0c122ee55bdeba2e4fcb972c409acadf6f06a4dde5f9cd9f96256047c",
+      "notation_relocation": {
+        "from_path": "Sources/VerificationIsIdentification/Primitive.swift",
+        "to_path": "Sources/Notation/Primitive.swift",
+        "previous_frozen_sha256": "f222db63c57fdb3d192a0f787666d93c332fe58208d4e576df39d1dcfa51fbe0",
+        "scope": "one path literal; all other consumer bytes unchanged"
+      }
     },
     "Checks/FiniteContinuation/environment_court.js": {
       "before_sha256": "e8f806c76ef69de1dba5c4658d3430740863bf3e3ede5a095245739bec05f2d7",
@@ -170,15 +188,33 @@
     },
     "Checks/contact-boundary-court.js": {
       "before_sha256": "7a8b88a733376d8fcf55bc73b3e94455f8ccb31eb9d32fd1cac28968e3c385ab",
-      "frozen_sha256": "60a83ed777704a6e456bbdb4c441ba340acc851f89b3bf84cc27d8d65a530857"
+      "frozen_sha256": "ea0d77bec7155d62d8ecbd6d0bb1d67f37ff57bf975be987d0b7720e8acbebe1",
+      "notation_relocation": {
+        "from_path": "Sources/VerificationIsIdentification/Primitive.swift",
+        "to_path": "Sources/Notation/Primitive.swift",
+        "previous_frozen_sha256": "60a83ed777704a6e456bbdb4c441ba340acc851f89b3bf84cc27d8d65a530857",
+        "scope": "one path literal; all other consumer bytes unchanged"
+      }
     },
     "Checks/four-contact-court.js": {
       "before_sha256": "a94bac19981e2d277d340c6cc4a697408ee4c6ea2abc00646687e43b92109ec2",
-      "frozen_sha256": "111c294cc18aa5bde395aef79de3782140277f78433fd301d0112ef1c4b9bcec"
+      "frozen_sha256": "8362481a055057de4e0440e50951eb49556a718f4e6d5b7114fe12f6bcc585e0",
+      "notation_relocation": {
+        "from_path": "Sources/VerificationIsIdentification/Primitive.swift",
+        "to_path": "Sources/Notation/Primitive.swift",
+        "previous_frozen_sha256": "111c294cc18aa5bde395aef79de3782140277f78433fd301d0112ef1c4b9bcec",
+        "scope": "one path literal; all other consumer bytes unchanged"
+      }
     },
     "Checks/local-policy-court.js": {
       "before_sha256": "352b0edbcd673a3e399886156f211411e12a945ee75b9ef2691704045902e881",
-      "frozen_sha256": "9f07d76ae4060fadf418462db0a2c6e99947baf999aa1b8ef32e13d95e86590a"
+      "frozen_sha256": "b42aa5bf80973fa667f237a1ec10cc040b15f8ffedfea83a10c0b5776151afd1",
+      "notation_relocation": {
+        "from_path": "Sources/VerificationIsIdentification/Primitive.swift",
+        "to_path": "Sources/Notation/Primitive.swift",
+        "previous_frozen_sha256": "9f07d76ae4060fadf418462db0a2c6e99947baf999aa1b8ef32e13d95e86590a",
+        "scope": "one path literal; all other consumer bytes unchanged"
+      }
     }
   },
   "related_native_consumers": {

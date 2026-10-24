@@ -38,7 +38,7 @@ const gateStart = policy.indexOf("public protocol LocalCourtHolds");
 const gateEnd = policy.indexOf("public typealias CourtPolicy");
 assert.ok(gateStart >= 0 && gateEnd > gateStart);
 const definitions = [
-    declaration("Sources/VerificationIsIdentification/Primitive.swift", "Paired"),
+    declaration("Sources/Notation/Primitive.swift", "Paired"),
     declaration("Sources/Examples/Acquisition.swift", "FirstEvidenceImage"),
     declaration("Sources/Examples/BoundaryEvolution.swift", "SecondEvidenceImage"),
     declaration("Sources/Examples/ContactBoundary.swift", "ProductBoundary"),

@@ -1,0 +1,28 @@
+{
+  "repository": "https://github.com/dejavu-fonts/dejavu-fonts",
+  "release": "version_2_37",
+  "archive": "https://github.com/dejavu-fonts/dejavu-fonts/releases/download/version_2_37/dejavu-fonts-ttf-2.37.tar.bz2",
+  "archiveSHA256": "fa9ca4d13871dd122f61258a80d01751d603b4d3ee14095d65453b4e846e17d7",
+  "files": [
+    {
+      "path": "Assets/DejaVuSans.ttf",
+      "source": "dejavu-fonts-ttf-2.37/ttf/DejaVuSans.ttf",
+      "sha256": "7da195a74c55bef988d0d48f9508bd5d849425c1770dba5d7bfc6ce9ed848954",
+      "bytes": 757076
+    },
+    {
+      "path": "Assets/DejaVuSansLicense.txt",
+      "source": "dejavu-fonts-ttf-2.37/LICENSE",
+      "sha256": "f88d5294af5a772f9114eb385009e3478d62b21f3e5bbc34d159d328047c8867",
+      "bytes": 8815,
+      "sourceSHA256": "7a083b136e64d064794c3419751e5c7dd10d2f64c108fe5ba161eae5e5958a93",
+      "normalization": "strip trailing whitespace from license lines"
+    },
+    {
+      "path": "Assets/DejaVuSansMono.ttf",
+      "source": "dejavu-fonts-ttf-2.37/ttf/DejaVuSansMono.ttf",
+      "sha256": "b4a6c3e4faab8773f4ff761d56451646409f29abedd68f05d38c2df667d3c582",
+      "bytes": 340712
+    }
+  ]
+}

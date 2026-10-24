@@ -206,7 +206,8 @@ def main() -> int:
               "library": str(library), "work_directory": str(work), "source_sha256": {}, "checks": []}
     tracked = runtime_sources + [Path(__file__).resolve(), bridge / "static_checks.py",
                                 library / "VerificationIsIdentification.swiftmodule",
-                                library / "libVerificationIsIdentification.dylib"]
+                                library / "libVerificationIsIdentification.dylib",
+                                library / "Notation.swiftmodule", library / "libNotation.dylib"]
     exit_code = 1
     try:
         compiler = shutil.which("swiftc")
@@ -230,7 +231,7 @@ def main() -> int:
         registry = work / "RegistryChecks.swift"
         registry.write_text(REGISTRY_FIXTURE, encoding="utf-8")
         executable = work / "registry-checks"
-        command = [compiler, "-I", str(library), "-L", str(library), "-lVerificationIsIdentification"]
+        command = [compiler, "-I", str(library), "-L", str(library), "-lVerificationIsIdentification", "-lNotation"]
         command += [str(p) for p in runtime_sources + [registry]]
         command += ["-Xlinker", "-rpath", "-Xlinker", str(library), "-o", str(executable)]
         check("registry_compile", runtime_sources + [registry], command_override=command)

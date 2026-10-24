@@ -148,5 +148,75 @@
       "format": 2,
       "sha256": "29d61cea7c3cdb3b2ce06138b0e0a705229367393e23bf7c94584a0450443750"
     }
-  ]
+  ],
+  "actions": {
+    "origin": "Accepted T0096 41c6c0b6469686da67948988d93c6e017cd1cb8e canonical format-4 archives; original artifact index SHA-256 ae672b25c16cda4d3a40605be1b933cd9f03b473e37957497d83c924a1cfe8d3",
+    "cases": [
+      {
+        "request": "PreservesEqualities",
+        "fixture": "action-cases.swift",
+        "sha256": "f39e7a58bce2b93931f1f3378f4e2accf23965133edffa5d1647271d883f7516"
+      },
+      {
+        "request": "BreaksEqualities",
+        "fixture": "action-cases.swift",
+        "sha256": "241c137843af1e48eda43effa12e2282bee6aebe8cea7c7ac026a36bdc92955f"
+      },
+      {
+        "request": "CyclicQuestion",
+        "fixture": "action-cases.swift",
+        "sha256": "e095e022b025de697dcc9727704e61f386421fa1d7fdcfd2fc68faa6c21b561f"
+      },
+      {
+        "request": "EmptyActions",
+        "fixture": "action-cases.swift",
+        "sha256": "08544e8eff9eb46ff80da87926dd84e052ce7d8fb6d48443450ba9f5ac5211e7"
+      },
+      {
+        "request": "HiddenDisagreement",
+        "fixture": "action-cases.swift",
+        "sha256": "2d9d57718e743c29be6315afd0166aaef190b186e903bf3dfe4f4d7743091e0b"
+      },
+      {
+        "request": "HiddenCommon",
+        "fixture": "action-cases.swift",
+        "sha256": "d7b2b6f2f1b605044bcdf7a603eb5a4ae5ef60d49b4681ced685ea48ff16d25c"
+      },
+      {
+        "request": "HiddenOutside",
+        "fixture": "action-cases.swift",
+        "sha256": "c11a4df5d61cb13b09578c7b258fe99815d6744adc82269e17b79490af6aa30b"
+      },
+      {
+        "request": "HiddenInvalidEqualities",
+        "fixture": "action-cases.swift",
+        "sha256": "d450275edd8cc40244128615a0ef9f38ecd5edfae6f38780ca093fa241579a95"
+      },
+      {
+        "request": "HiddenEquivalentProjections",
+        "fixture": "action-cases.swift",
+        "sha256": "05470f44c2813faa3478f743b32b2db3c228e4397795363a7606b11e509a250e"
+      },
+      {
+        "request": "AliasedActions",
+        "fixture": "action-cases.swift",
+        "sha256": "f238acae5271045c15b3df5a52fa3e42c9ebc82a6ca9269ee53de1af117dab68"
+      },
+      {
+        "request": "HiddenOnly",
+        "fixture": "action-cases.swift",
+        "sha256": "dc95900c395bbc3db57884668ae1a6be0b5df9c9c92f6900f394f24c69432389"
+      },
+      {
+        "request": "NoncommutingWords",
+        "fixture": "action-cases.swift",
+        "sha256": "f633e5c9f9a0a70022e6ccb646a716e0699ce5142851dc08ae513d7407075462"
+      },
+      {
+        "request": "ScalarActions",
+        "fixture": "action-cases.swift",
+        "sha256": "58763ea963b0397757cecbac3629ff67a97151a49d15a558b5084f5fa520fafb"
+      }
+    ]
+  }
 }

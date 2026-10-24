@@ -214,5 +214,80 @@
         "holds": true
       }
     ]
+  },
+  "repetition": {
+    "fixture": "repeat-cases.swift",
+    "sha256": "8181c60debcf4f42c14dd2a492cc5f23c7b2babc8a810b7b12be7565692546e6",
+    "format": 5,
+    "cases": [
+      {
+        "request": "ReturnFirst",
+        "calls": "3"
+      },
+      {
+        "request": "ReturnWhole",
+        "calls": "6"
+      },
+      {
+        "request": "FixedQuestion",
+        "calls": "1"
+      },
+      {
+        "request": "FourCycle",
+        "calls": "4"
+      },
+      {
+        "request": "IdentityReturn",
+        "calls": "1"
+      },
+      {
+        "request": "EqualClassReturn",
+        "calls": "1"
+      },
+      {
+        "request": "DuplicateReturnQuestion",
+        "calls": "3"
+      },
+      {
+        "request": "AliasedRepeats",
+        "calls": "2"
+      },
+      {
+        "request": "OtherClassesMayHaveTails",
+        "calls": "1"
+      },
+      {
+        "request": "RepeatedHiddenCopies",
+        "calls": "2"
+      },
+      {
+        "request": "ScalarRepeats",
+        "calls": "1"
+      },
+      {
+        "request": "TailQuestion",
+        "refusal": "tail"
+      },
+      {
+        "request": "LongReturnTail",
+        "refusal": "tail"
+      },
+      {
+        "request": "ReturnBadPreservation",
+        "refusal": "preservation"
+      },
+      {
+        "request": "MissingHidden",
+        "address": "MissingHidden.HiddenActions"
+      },
+      {
+        "request": "UnreadRepeatAxis",
+        "address": "UnreadRepeatAxis.HiddenAction"
+      },
+      {
+        "request": "MalformedRepeatMember",
+        "address": "MalformedRepeatMember.HiddenActions"
+      }
+    ]
   }
 }

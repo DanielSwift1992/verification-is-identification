@@ -14,7 +14,7 @@ extension DemoSummary {
 
 public enum SDKDocumentationLink: Close {}
 extension SDKDocumentationLink {
-    public static var typeName: String { "## SDK relations\n\nThe SDK relations are documented at [DocumentKit](" + SDKDocumentationRoot.typeName + ")." }
+    public static var typeName: String { "## Documentation and demo pages\n\nThe SDK relations are documented at [DocumentKit](" + SDKDocumentationRoot.typeName + ")." }
 }
 
 public enum DemoPages: Close {}
@@ -52,5 +52,7 @@ public enum Landing: GallerySection {
         DemoPages.self
         Break.self
         DemoGallery.self
+        Break.self
+        MarkupGallery.self
     }
 }

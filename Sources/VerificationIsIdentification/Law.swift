@@ -1,3 +1,5 @@
+// Surface-history citations are historical scope, not current SDK contracts.
+// Source: vi@f95b6c69d5ad49ede6cf953b8be42e725bde6ba6 Sources/DocumentKit/SurfaceLaw.swift; SHA-256 d51b07d4195eddee64d0a3e7daf91dc6667bc4c79665c53249222b8350dc4881.
 import Notation
 
 // THE LAW names how every protocol in Σ must be written.
@@ -5,7 +7,7 @@ import Notation
 // The canonical statement is the doc-comment below: it renders as the ``Law``
 // page and is the single source of truth. Primitive, Core, VI, IiI: every
 // Theory file enacts it. The compiler enforces the checkable subset. `Tools
-// grammar` carries §0′/§S4/§S22 per file, per scope. `Tools lint` checks the
+// grammar` carries §0′/[Surface history S4](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L65)/[Surface history S22](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L322) per file, per scope. `Tools lint` checks the
 // cross-file rest (§1 RENAME, §2 OPEN AXIS, PROVENANCE), run automatically by
 // the LawCheck plugin on Organization and by hand elsewhere. What neither
 // reaches is checked by review. The law is written in the thing it governs,
@@ -170,7 +172,7 @@ import Notation
 ///   by the reader. One home ends the hunt, and the eye lands where it expects.
 ///   Modifiers (`public`, `static`) are transparent: they are before the word, and
 ///   the line is still the word's. A `body`'s statements are free: nobody hunts
-///   inside a body, §S7 reads it whole, and packed leaves are why a long spell is
+///   inside a body, [Surface history S7](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L113) reads it whole, and packed leaves are why a long spell is
 ///   not one-story sprawl. The grammar enforces the home as a name: an atom out of
 ///   place is carried as `Midline` and `Midline` is granted nothing.
 ///
@@ -402,8 +404,8 @@ import Notation
 /// | `class` / instance | an empty `enum`: the type is the value | every atom |
 /// | a stored field | an `associatedtype`, pinned by conformance | `Person`'s axes |
 /// | `if` on data | a conditional conformance: the branch is a `where` | `Login`, `SecretPage` |
-/// | `switch` over cases | one marker protocol per case (SurfaceLaw §S25) | the scope tokens |
-/// | an `\|\|` of rules | two overloads: resolution is the disjunction (§S27) | `buildExpression` pairs |
+/// | `switch` over cases | one marker protocol per case (SurfaceLaw [Surface history S25](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L365)) | the scope tokens |
+/// | an `\|\|` of rules | two overloads: resolution is the disjunction ([Surface history S27](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L393)) | `buildExpression` pairs |
 /// | a runtime validation | a constraint at a builder door | the grammar's schema |
 /// | a mutable flag | a recorded fact carried as a name | `Midline`, `Declares` |
 /// | a lookup table / array | a census body the reader walks | `Alphabet.lexemes` |

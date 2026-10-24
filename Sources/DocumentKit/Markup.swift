@@ -129,7 +129,7 @@ extension Reference {
     }
     public init(@StructureBuilder _ target: () -> Target) { fatalError() }
 }
-/// Writes the supplied target identifier as a symbol reference.
+/// Writes the supplied target reading between double backticks.
 public enum Symbol<
     Target: Structure
 >: Reference {}
@@ -392,7 +392,7 @@ public enum ListItem<
     Content: Structure
 >: Item {}
 
-/// Composes its content within a tab navigator and terminates the directive on its own line.
+/// Composes its content within a tab navigator. The content supplies the line break before the closing brace.
 public protocol Tabs: Open {
     associatedtype Content: Structure
 }
@@ -429,7 +429,7 @@ public enum LinkGrid<
     Content: Structure
 >: Links {}
 
-/// Composes its content within a row and terminates the directive on its own line.
+/// Composes its panels within a row. The panels supply the line break before the closing brace.
 public protocol Columns: Open {
     associatedtype Panels: Structure
 }

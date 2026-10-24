@@ -478,13 +478,6 @@ public protocol StyleKeys {
     associatedtype TableSortActiveOpacity: Structure
     associatedtype TableSortHintSize: Structure
     associatedtype TableSortCursor: Structure
-    associatedtype Cover06: Structure
-    associatedtype Cover15: Structure
-    associatedtype Cover16: Structure
-    associatedtype Cover54: Structure
-    associatedtype Cover70: Structure
-    associatedtype Cover80: Structure
-    associatedtype Cover90: Structure
     associatedtype FontFallbackAdvance: Structure
     associatedtype CaptionSlant: Structure
     associatedtype GlyphLineCap: Structure

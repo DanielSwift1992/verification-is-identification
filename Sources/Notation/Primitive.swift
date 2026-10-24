@@ -1,3 +1,5 @@
+// Surface-history citations are historical scope, not current SDK contracts.
+// Source: vi@f95b6c69d5ad49ede6cf953b8be42e725bde6ba6 Sources/DocumentKit/SurfaceLaw.swift; SHA-256 d51b07d4195eddee64d0a3e7daf91dc6667bc4c79665c53249222b8350dc4881.
 // ═══════════════════════════════════════════════════════
 // THE FOUNDATION names Structure, Open, Close, Pair, Null.
 //
@@ -141,7 +143,7 @@ extension Never: Null {
 extension Never: Close {}
 
 // String IS Close: the sealed leaf where a value is. The one foreign value that enters our world,
-// at the edge (§S6). Above it, the structure carries only types. Here, the String carries text.
+// at the edge ([Surface history S6](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L98)). Above it, the structure carries only types. Here, the String carries text.
 extension String: Close {}
 
 // ── typeName: the one rendering mechanism ──
@@ -226,8 +228,8 @@ extension Paired {
 
 // ── The builder: the ONE @resultBuilder ──
 //
-// The one allowed callable (§S4): folds a `{ }` body into a Pair-chain of Structures, floored at
-// `Never`. ``Paired`` is the ONE concrete `<>` (§S3 plumbing): it keeps two Structures as a value
+// The one allowed callable ([Surface history S4](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L65)): folds a `{ }` body into a Pair-chain of Structures, floored at
+// `Never`. ``Paired`` is the ONE concrete `<>` ([Surface history S3](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L43) plumbing): it keeps two Structures as a value
 // so the builder can return them. Everything else is a protocol.
 
 /// This is the concrete Pair realizer: the ONE `<>` in the system, the framework's plumbing that the
@@ -243,7 +245,7 @@ public enum Paired<
 }
 
 /// This is the one result builder: it folds a `{ }` body into a ``Pair``-chain of Structures, floored at `Never`.
-/// This is the single `@resultBuilder` the system allows (§S4). The builder is the boundary between the
+/// This is the single `@resultBuilder` the system allows ([Surface history S4](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L65)). The builder is the boundary between the
 /// brace-syntax and the type tree: inside the braces, each statement is a ``Structure``. Outside, the
 /// whole body is a single ``Paired`` chain.
 @resultBuilder

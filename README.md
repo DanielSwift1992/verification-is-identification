@@ -92,7 +92,7 @@ The nine SVG figures are projections of four [DocumentKit worlds](Worlds/Documen
 
 ## Notation and drawing
 
-`Notation` supplies the shared structure and numeral constructors without dependencies. `VerificationIsIdentification` reexports them. `Alphabet` depends on Notation; `DocumentKit` depends on Notation and Alphabet. `DocumentKitCertificates` optionally connects the drawing declarations to the theory. `DocumentKitDemo` renders the kit’s pages and examples, while `FontMetrics` reads the licensed Inter source.
+`Notation` supplies the shared structure and numeral constructors without dependencies. `VerificationIsIdentification` reexports them. `Alphabet` depends on Notation; `DocumentKit` depends on Notation and Alphabet. `DocumentKitCertificates` optionally connects the drawing declarations to the theory. Swift-DocC documents the SDK declarations. `DocumentKitDemo` renders its owner's demo pages and examples; `FontMetrics` reads the licensed Inter source. The [surface destination map](Contracts/DocumentKit/surface-destinations.md) separates the former essay's historical claims from current declaration contracts, including the citations in the retained paper projection.
 
 ## The worked application
 

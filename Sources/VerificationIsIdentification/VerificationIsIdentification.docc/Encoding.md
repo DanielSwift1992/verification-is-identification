@@ -79,4 +79,4 @@ Two worked encodings of one physical sense are in the papers: the sensor is deri
 
 ## Showing the part you encoded
 
-The surface is the same discipline: a page is a type, and its markdown is the type's name. [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit) builds a page in five steps, and [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) is that surface run at scale: the encoded company and its site, one build.
+The surface is the same discipline: a page is a type, and its markdown is the type's name. [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit) documents the SDK declarations; [DocumentKitDemo](https://danielswift1992.github.io/verification-is-identification/documentation/documentkitdemo/) shows their declared compositions and compiled readings, and [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization) is that surface run at scale: the encoded company and its site, one build.

@@ -1443,7 +1443,7 @@ extension SpanHosted: Spanning {
         Content.typeName
     }
 }
-/// Refuses text above its stated character limit at rendering.
+/// Refuses text above Budget when its reading is an integer. A noninteger Budget uses Int.max.
 public protocol SpanLabelBudgeted: Spanning {
     associatedtype Y: Structure
     associatedtype FillColor: Structure

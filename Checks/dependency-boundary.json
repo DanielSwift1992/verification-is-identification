@@ -2764,7 +2764,7 @@
     {
       "path": "README.md",
       "channel": "text",
-      "line": 87,
+      "line": 89,
       "name": "github.com/DanielSwift1992/gate",
       "text": "[gate](https://github.com/DanielSwift1992/gate) is another kind of application. It uses a judge built from a pinned revision of this corpus to check declarations imported from records such as ownership files. Other commands inspect API contracts and their clients under separate contracts. The contract of each command defines what its result means.",
       "occurrence": 1,
@@ -2774,7 +2774,7 @@
     {
       "path": "README.md",
       "channel": "text",
-      "line": 89,
+      "line": 91,
       "name": "showcase",
       "text": "![vi owns the research and the where and count semantics. showcase contains the constructed company and its policy. gate supplies an implementation that passes a versioned contract.](Documentation/Figures/framework-architecture.svg)",
       "occurrence": 1,
@@ -2784,7 +2784,7 @@
     {
       "path": "README.md",
       "channel": "text",
-      "line": 93,
+      "line": 95,
       "name": "Organization",
       "text": "The [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) declares a company, its access policy and its intranet website as types, and the compiler checks the declared access requests against the policy. Its [company site](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/) presents the result, and [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) renders the pages from types. The company is a declared world: the checked access assertions are about its declarations. The showcase runs this package's `Tools` and `LawCheck`, and its [package diagram](https://github.com/DanielSwift1992/verification-is-identification-showcase/blob/main/Sources/Organization/Organization.docc/Resources/architecture.svg) shows the application and its generated representations.",
       "occurrence": 1,
@@ -2794,7 +2794,7 @@
     {
       "path": "README.md",
       "channel": "text",
-      "line": 93,
+      "line": 95,
       "name": "showcase",
       "text": "The [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) declares a company, its access policy and its intranet website as types, and the compiler checks the declared access requests against the policy. Its [company site](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/) presents the result, and [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) renders the pages from types. The company is a declared world: the checked access assertions are about its declarations. The showcase runs this package's `Tools` and `LawCheck`, and its [package diagram](https://github.com/DanielSwift1992/verification-is-identification-showcase/blob/main/Sources/Organization/Organization.docc/Resources/architecture.svg) shows the application and its generated representations.",
       "occurrence": 1,
@@ -2804,7 +2804,7 @@
     {
       "path": "README.md",
       "channel": "text",
-      "line": 93,
+      "line": 95,
       "name": "verification-is-identification-showcase",
       "text": "The [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) declares a company, its access policy and its intranet website as types, and the compiler checks the declared access requests against the policy. Its [company site](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/) presents the result, and [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) renders the pages from types. The company is a declared world: the checked access assertions are about its declarations. The showcase runs this package's `Tools` and `LawCheck`, and its [package diagram](https://github.com/DanielSwift1992/verification-is-identification-showcase/blob/main/Sources/Organization/Organization.docc/Resources/architecture.svg) shows the application and its generated representations.",
       "occurrence": 1,
@@ -2814,7 +2814,7 @@
     {
       "path": "README.md",
       "channel": "text",
-      "line": 103,
+      "line": 105,
       "name": "github.com/DanielSwift1992/gate",
       "text": "| Readers | Contracts stated by each reader | [`Sources/Court`](Sources/Court), [gate](https://github.com/DanielSwift1992/gate) |",
       "occurrence": 1,
@@ -2824,7 +2824,7 @@
     {
       "path": "README.md",
       "channel": "text",
-      "line": 104,
+      "line": 106,
       "name": "Organization",
       "text": "| Company and rendering | [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/), [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) | [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) |",
       "occurrence": 1,
@@ -2834,7 +2834,7 @@
     {
       "path": "README.md",
       "channel": "text",
-      "line": 104,
+      "line": 106,
       "name": "showcase",
       "text": "| Company and rendering | [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/), [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) | [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) |",
       "occurrence": 1,
@@ -2844,7 +2844,7 @@
     {
       "path": "README.md",
       "channel": "text",
-      "line": 104,
+      "line": 106,
       "name": "verification-is-identification-showcase",
       "text": "| Company and rendering | [Organization](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/organization/), [DocumentKit](https://danielswift1992.github.io/verification-is-identification-showcase/documentation/documentkit/) | [showcase package](https://github.com/DanielSwift1992/verification-is-identification-showcase) |",
       "occurrence": 1,
@@ -2874,7 +2874,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 49,
+      "line": 53,
       "name": "ShowcaseTools",
       "text": "\"✗ judge \\(arguments[0]) moved with the company: run `swift run ShowcaseTools judge \\(arguments[0])` in the showcase package\\n\".utf8))",
       "occurrence": 1,
@@ -2884,7 +2884,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 49,
+      "line": 53,
       "name": "showcase",
       "text": "\"✗ judge \\(arguments[0]) moved with the company: run `swift run ShowcaseTools judge \\(arguments[0])` in the showcase package\\n\".utf8))",
       "occurrence": 1,
@@ -2894,7 +2894,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 57,
+      "line": 61,
       "name": "showcase",
       "text": "// live in the showcase now (T-0028).",
       "occurrence": 1,
@@ -2904,7 +2904,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 59,
+      "line": 63,
       "name": "ShowcaseTools",
       "text": "\"✗ the plain court moved with the company: run `swift run ShowcaseTools judge <paths>` in the showcase package\\n\".utf8))",
       "occurrence": 1,
@@ -2914,7 +2914,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 59,
+      "line": 63,
       "name": "showcase",
       "text": "\"✗ the plain court moved with the company: run `swift run ShowcaseTools judge <paths>` in the showcase package\\n\".utf8))",
       "occurrence": 1,

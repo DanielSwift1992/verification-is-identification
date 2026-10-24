@@ -1,0 +1,81 @@
+{
+  "format": 1,
+  "question": "whole-law-cover",
+  "fixtures": "cases.swift",
+  "sha256": "047594e25d9e220b08bd8f1a64a4b2f986df9d61e55aa7f8e86b95d6440085af",
+  "cases": [
+    {
+      "request": "SharedLeaf",
+      "outcome": "holds"
+    },
+    {
+      "request": "SeparatedClass",
+      "outcome": "refused"
+    },
+    {
+      "request": "WiderClass",
+      "outcome": "refused"
+    },
+    {
+      "request": "ProjectedClosure",
+      "outcome": "holds"
+    },
+    {
+      "request": "FalseBridge",
+      "outcome": "refused"
+    },
+    {
+      "request": "RepeatedOrigin",
+      "outcome": "holds"
+    },
+    {
+      "request": "DisjointBlocks",
+      "outcome": "holds"
+    },
+    {
+      "request": "NoEqualities",
+      "outcome": "holds"
+    },
+    {
+      "request": "WholeCut",
+      "outcome": "holds"
+    },
+    {
+      "request": "ThreeDomains",
+      "outcome": "holds"
+    },
+    {
+      "request": "Uncovered",
+      "outcome": "unsupported",
+      "address": "Uncovered.Source.Right"
+    },
+    {
+      "request": "CrossSort",
+      "outcome": "unsupported",
+      "address": "CrossSort.Equalities"
+    },
+    {
+      "request": "DetachedCut",
+      "outcome": "unsupported",
+      "address": "DetachedCut.Coverage"
+    },
+    {
+      "request": "UnreadAxis",
+      "outcome": "unsupported",
+      "address": "UnreadAxis.Equality"
+    },
+    {
+      "request": "MissingBoundary",
+      "outcome": "unsupported",
+      "address": "MissingBoundary.Coverage"
+    },
+    {
+      "request": "UnionAlias",
+      "outcome": "holds"
+    },
+    {
+      "request": "NestedFamily",
+      "outcome": "refused"
+    }
+  ]
+}

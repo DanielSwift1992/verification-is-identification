@@ -11,6 +11,10 @@ import Foundation
 
 public enum Judge {
     public static func run(_ arguments: [String]) {
+        if arguments.first == "cover-law" || arguments.first == "replay-cover-law" {
+            ContinuationCourt.runLawCover(Array(arguments.dropFirst()), replay: arguments.first == "replay-cover-law")
+            return
+        }
         if arguments.first == "roster" || arguments.first == "roster-replay" {
             RosterResponse.run(Array(arguments.dropFirst()), replay: arguments.first == "roster-replay")
             return

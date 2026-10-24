@@ -186,7 +186,13 @@ extension WhereJudge {
                     if parentheses == 0 { stack.removeLast() }
                     else { stack[stack.count - 1] = .code(start: start, interpolated: true, parentheses: parentheses - 1, singleLine: singleLine) }
                     keep(1)
-                } else if current.properties.isWhitespace { keep(1) }
+                } else if current.properties.isWhitespace {
+                    if scope != .notation, ![" ", "\t", "\u{000B}", "\u{000C}", "\u{00A0}"].contains(current) {
+                        let code = String(format: "U+%04X", current.value)
+                        try refuse("whitespace \(code) is outside structural lexical grammar", at: index)
+                    }
+                    keep(1)
+                }
                 else if current.properties.isAlphabetic || current == "_" {
                     keep(1)
                     while let next = scalar(0), next.properties.isAlphabetic || next.properties.numericType != nil

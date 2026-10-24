@@ -28521,5 +28521,211 @@
       "refusal": null,
       "replayed": true
     }
+  },
+  {
+    "id": "Z2-whitespace-1",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z2-whitespace-2",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias\tMode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias\tMode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z2-whitespace-3",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias\u000bMode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias\u000bMode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z2-whitespace-4",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias\fMode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias\fMode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z2-whitespace-5",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias\u00a0Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias\u00a0Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z2-whitespace-6",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias\u0085Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias\u0085Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mode",
+        "reason_contains": "whitespace U+0085"
+      }
+    }
+  },
+  {
+    "id": "Z2-whitespace-7",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias\u2028Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias\u2028Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mode",
+        "reason_contains": "whitespace U+2028"
+      }
+    }
+  },
+  {
+    "id": "Z2-whitespace-8",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias\u2029Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias\u2029Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mode",
+        "reason_contains": "whitespace U+2029"
+      }
+    }
+  },
+  {
+    "id": "Z2-whitespace-9",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias\u3000Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias\u3000Mode = Off\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift#Mode",
+        "reason_contains": "whitespace U+3000"
+      }
+    }
+  },
+  {
+    "id": "Z2-whitespace-10",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "// \u0085\u2028\u2029\u3000\ntypealias Mode = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "// \u0085\u2028\u2029\u3000\ntypealias Mode = On\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "Z2-whitespace-11",
+    "request": {
+      "arguments": [
+        "TurnOn"
+      ],
+      "state": "typealias Mode = Off\nenum Text { static var text: String { \"\u0085\u2028\u2029\u3000\" } }\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift"
+    },
+    "expected": {
+      "state": "typealias Mode = On\nenum Text { static var text: String { \"\u0085\u2028\u2029\u3000\" } }\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
   }
 ]

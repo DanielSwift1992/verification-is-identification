@@ -159,7 +159,7 @@ typealias SelfShowingExampleSourceTitle = VectorSelfShowingExampleText
 enum SelfShowingExampleSourceCaption: Close {}
 extension SelfShowingExampleSourceCaption {
     static var typeName: String {
-        "The source page and the gallery's code block read the same declared source atom."
+        "The canvas's chip links to this page, which reads the declared source atom."
     }
 }
 public enum SelfShowingExampleSourcePage: GallerySection {

@@ -1,5 +1,5 @@
 {
-  "inputSHA256": "dfd8a9bc55e3c1e220f45eff074439449ca6d909bc239ee3758f7dbc50ae077e",
+  "inputSHA256": "e4f01e07107d7aa911f7f85d46649ec1ae1c7c19f7ef45ede5797754d92870d5",
   "inputs": {
     "Assets/DejaVuSans.json": "ff0d1fed0c0aeba3eb22a207691f49191df5beb0a6cf31cf550932395ab2def3",
     "Assets/DejaVuSans.ttf": "7da195a74c55bef988d0d48f9508bd5d849425c1770dba5d7bfc6ce9ed848954",
@@ -30,9 +30,9 @@
     "Sources/Examples/Verdict.swift": "83c2ea73322e52a7895cc624858e20f3675b4e862258dbbe85ff12c0dc1046d0",
     "Sources/FontMetrics/GenerateFont.swift": "f19f4e9873cac59f38925160510efa23d1ce5e73caf206578c0f77d9394bdf8a",
     "Sources/FontMetrics/main.swift": "8dd932c7c675081b1fa9f5e47029942d04173eb5e4d0dca302bff828b9a26de1",
-    "Sources/Notation/IntegerValued.swift": "6a9f9b39d3654c21c64ff4b813b30738bcc4b5f8be07aaf80a46982fe01ce9b7",
-    "Sources/Notation/Numeral.swift": "d8ac23e0fce85f0dce4b873d312d8c9be0820b1c747d7ac6f702e269691488c7",
-    "Sources/Notation/Primitive.swift": "b9715bb7b40c038ea279b26b4e0ddc3d72b9da7170b1ddd8e13b7f0d03594017",
+    "Sources/Notation/IntegerValued.swift": "13d948fdc5cb6bdf168b5d07ad59afb6a721dfea02e9d78045076c4eda989f92",
+    "Sources/Notation/Numeral.swift": "f9cce6600c102caf033d61fb0405c0981da675e479395f637e5ac100078df3fc",
+    "Sources/Notation/Primitive.swift": "fea817df66ecbfabcf99ed6ccaa49f1ecdb957066d93b21aa3d98623f3d60a39",
     "Sources/VerificationIsIdentification/Acquisition.swift": "cef27c1a1bd4ca8e8d4e6ec6dfe47370a8b63483b3114f69c84f38725f6fce0a",
     "Sources/VerificationIsIdentification/Basis.swift": "e880e4968747c884bc99c441445750cc20d3c486d07034a5b8857950b76fd9bf",
     "Sources/VerificationIsIdentification/Colour.swift": "5435fc0c494b26eeea5b5785ece21f0f41a19b46acb44f259affc540f8a75baf",
@@ -70,7 +70,7 @@
     "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/acquisition_keeps_its_question.md": "5c5bf06f40a72d44fdf359047696a71f2c79e3bd249419fe5a328af95117c46d",
     "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/seeing_is_encoding.md": "f7395268ebee331564a13a8a71b6434cf12351247f9e35dcef6f369ae552ab1f",
     "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verdict_is_invariant__finite_records.md": "8d1d52db51171c0319b610dfe0063e9cff9e6246bad6c7e8d1d7c9ebf02a9b80",
-    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verification_is_identification.md": "7ee6858625eebf63629bf37f0570a43f43bdbe92341f9d3e7002441198536dcd",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Papers/verification_is_identification.md": "df6517e660641345ba0a92792d0901fa27c0a82ed790655fcd0f1db8586f2903",
     "Sources/VerificationIsIdentification/Voice.swift": "ffe3fa74ce3aa5dd42433e4508a03fa28895921e4cc42bcd4d220b2be93a4f13",
     "Sources/VerificationIsIdentification/Wave.swift": "8f7d1377b794185785a206b43aa59137935b7e98802ff93ab92d05f38d637c35",
     "Worlds/Documentation/Architecture.swift": "4d6b9ef7a815ced1c00a4d17250d7d663b00f7d8123b621ad3876bb0b2089cbb",
@@ -95,15 +95,15 @@
     "https://github.com/DanielSwift1992/gate@bbd807bc504ef2146c2265d43521108c4e37c115:web/ui.html": "2175db31f50e979e8e146a032c8726af11e0af42933af7a314bc6d0721079eec"
   },
   "outputs": {
-    "Documentation/Figures/vi-method.svg": "07d8510e20b2f1acee10e2d851f2338259a18a42fcdc5da3bf72ddccae80aeea",
-    "Documentation/Figures/answer-determination.svg": "181229203fe6fe076dcc273c3e72dab0b7b1ad4129e206c3f09a0eff26124e60",
-    "Documentation/Figures/adequate-continuation.svg": "0fa79fe37b7f68c10ecafdf8ad3162c590a333e1381f37bfd3e7de836ad6264f",
-    "Documentation/Figures/framework-architecture.svg": "f5c049302b188eee57e873f7d876f0efd48ed6b5b1ffdeb2e6badb72ec5c4766",
-    "Documentation/Figures/beam-study.svg": "cf0c81bfff41d912680e6e97ae80f280fa326cc17ae903f3b51c6a3b0befcc86",
-    "Documentation/Figures/beam-questions.svg": "6bf88ce1e3ff9f59fad176f567471bfe9e2ab966d4ff89d0fe956fae9b376316",
-    "Documentation/Figures/beam-continuation.svg": "9990b6ee6f32209ff1b0acf501f24e13ee2d4ccf319a7c05202c8af6974ea850",
-    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law.svg": "7fb54702e392cbdd45175afdc065bfb78554e1d7854328e262979e4fd8adb2ac",
-    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law~dark.svg": "4057536a397f8f2df1f1752ab46dd601e436590d41de75c0df0788ea0b684472"
+    "Documentation/Figures/vi-method.svg": "f024937d64ff8fbd8d2fdc55778dbb280bea0b43e5430cdf9727a84c7f2a74df",
+    "Documentation/Figures/answer-determination.svg": "eeed06f7237421609bee9350faa68b3f430599389c33c36f1a8c5a8d5ed34789",
+    "Documentation/Figures/adequate-continuation.svg": "2bf5194ae63850a7a57fc64b6ec508598216128c6d240efce126009ec2eac6e3",
+    "Documentation/Figures/framework-architecture.svg": "ba22f9aafe49f19383cf70a665b03de776f3a40410eae72979cab950d5737e7d",
+    "Documentation/Figures/beam-study.svg": "7a83319e6f393a1b6e04487ec561bebe26e8833b8fc3f19e6f02d3f3edf37631",
+    "Documentation/Figures/beam-questions.svg": "13f411f45f04537cb8b78098aef32b283e3e51843e4e002d44530abf5ef88f4b",
+    "Documentation/Figures/beam-continuation.svg": "d48278c2eb936dc37c17314a8a0f68f8fe2955cebd9a6d7de4f149d61a45ea49",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law.svg": "f3b0e201c4069c4034d32928c6d1040eac2eb79bbb40203e17ebe1f13dba0bad",
+    "Sources/VerificationIsIdentification/VerificationIsIdentification.docc/Resources/law~dark.svg": "1d45f17a71f6d03e51fc68f707b240693b56832882ab73ee69e265f5358e2f26"
   },
   "contrast": [
     "Paper_Ink_lit",

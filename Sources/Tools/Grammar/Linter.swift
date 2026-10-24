@@ -4,22 +4,22 @@ import GrammarLexicon
 import VerificationIsIdentification
 
 // ═══════════════════════════════════════════════════════
-// LINTER names the world door, and the only runtime the grammar has. Two contacts, nothing else:
-// reading strings in (files → the carried representation, one object per file, written the way
-// this project writes every generated .swift) and the final check (one `swift build` over the
-// disposable package). The source is not treated as code, it is a token stream, carried IN
-// STREAM ORDER: an opener becomes `SomeBlock {`, an atom becomes `SomeAtom.self`, a closer
-// becomes `}`. Nothing is assembled, reordered, or judged here; every question below is a
-// protocol question or a registry lookup, and every atom name written became text through
-// `typeName` of the metatype the registry handed over. What the carried object MEANS is
-// decided entirely by the schema (GrammarLexicon/Mirror.swift) inside the child build:
-// a compiler error there is REJECT(where, why); the build fact is PASS. [V=I §1]
-//
-// MEASURABLE (not disciplinary): grep this file, no character/string literal spells a lexeme,
-// no identifier names a single concrete atom the lexicon declares, no line:column address is
-// ever computed or embedded as a name (the v4 lesson: `lineHeaded` tracks only a BOUNDARY fact,
-// "did a newline (or a foreign span closing on one) just pass", not a number). Add a brand-new
-// atom or spelling to a registry: this file carries it with no edit here.
+// LINTER carries source text into typed formations in a child Swift build.
+// The build resolves emitted Swift names and checks scope/context grants;
+// the exempt column requires only LintAtom.
+// Law §T′ requires a derivation binding each source reference to a place and
+// accounting for every input byte. Medium atoms and opaque contents are
+// omitted here; no byte-covering read derivation reaches the child build.
+// Reader debt: Contracts/Checks/grammar-reader-v1.md#open-debt.
+// Rules for which bytes matter must be declared as types; the court checks
+// the derivation against that declaration, including coverage and bindings.
+// Correctness of replay and of the type checker are premises of the verdict.
+// Lexemes come from registries, with no literal in the reading path spelling a lexeme;
+// a new registered atom is carried without edits to this file.
+// Reflective names still need source bindings checked against the input.
+// Portable findings run no child type check and share the open reader debt.
+// The child build judges the presented formations; it does not establish
+// that the source roster and its bytes were carried as declared.
 // ═══════════════════════════════════════════════════════
 
 /// This is either a real, registered atom (read reflectively, not named here) or a character the
@@ -105,7 +105,7 @@ enum Linter {
         var lastType: (any LintAtom.Type)? = Alphabet.defaultWord   // the file's start
         var headSeen = true   // the file's start heads a plain sentence
         var lineHeaded = true   // and heads its line
-        var exemptSeen = false   // this sentence named the exempt door (DESIGN17 §2)
+        var exemptSeen = false   // the reader selected Exempt; its column requires only LintAtom
 
         /// This is one open block being carried: its pairing opener, the name its parent will
         /// reference it by, the builder attribute its scope×context names, and its body
@@ -352,7 +352,7 @@ enum Linter {
             lastType = atom
         }
 
-        while frames.count > 1 {   // cannot happen for source that itself compiles
+        while frames.count > 1 {   // reached by a raw string the reader misreads (grammar-reader-v1)
             let frame = frames.removeLast()
             frames[frames.count - 1].text += frame.text
         }
@@ -367,7 +367,7 @@ enum Linter {
             + "}\n"
     }
 
-    // ── THE CHECK — the second and last world contact ──
+    // ── THE CHECK — present the carried formations to the child type checker ──
 
     static func run(_ args: [String]) {
         // No arguments names the whole gate: every .swift under Sources, the pre-commit run

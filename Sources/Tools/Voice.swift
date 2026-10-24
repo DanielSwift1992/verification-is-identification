@@ -47,12 +47,15 @@ enum VoiceTool {
     // The same prose measures 1395.
     // T0059 carries the kit pin (18) and its measured catalog share (51 of showcase's pinned 304) back from showcase.
     // The lattice scope now includes Notation; each carried source is scanned once.
+    // On 2026-10-24 R0068R6rOpus reviews the residue after the SDK catalog removal
+    // and the Encoding sentence repair: kit measures 0 and pages measures 5.
+    // These pins now bound the remaining comments and pages. Other pins stay unchanged.
     static let pins: [(scope: String, count: Int)] = [
         ("papers", 1395),
         ("lattice", 6),
-        ("kit", 18),
+        ("kit", 0),
         ("drivers", 0),
-        ("pages", 55),
+        ("pages", 5),
         ("readme", 2),
     ]
 

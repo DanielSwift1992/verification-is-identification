@@ -1,0 +1,152 @@
+{
+  "origin": "Accepted T0094 ec43e6921ed38962463bef9bfa79eb04b53a0262 CLI archives, excluding the CLI trailing newline",
+  "cases": [
+    {
+      "request": "AddressIdentity",
+      "fixture": "cases.swift",
+      "retain": false,
+      "format": 2,
+      "sha256": "7cad264b8b5a2a5be19c64922595fe8361f3bee36f877fa3eadb2642085274a7"
+    },
+    {
+      "request": "AliasedView",
+      "fixture": "cases.swift",
+      "retain": false,
+      "format": 2,
+      "sha256": "d3ef532737ec94149b427c2dea3384583e82fe0147e415c104c122d6ac3af777"
+    },
+    {
+      "request": "DisconnectedClass",
+      "fixture": "cases.swift",
+      "retain": false,
+      "format": 2,
+      "sha256": "e16b34bcc570f0c1680bf98494f3510671777cc6fce37a9699bff148f74fa8ec"
+    },
+    {
+      "request": "DisplayCoincidence",
+      "fixture": "cases.swift",
+      "retain": false,
+      "format": 2,
+      "sha256": "9a5de54d643d075ee0df62505ca6fbceca2017cdb543aecc5900d056e12a793c"
+    },
+    {
+      "request": "DuplicatedOrigin",
+      "fixture": "cases.swift",
+      "retain": false,
+      "format": 2,
+      "sha256": "20df205f63ab3f8560a00c8cf0b5fa9ac380c6782aea4ad6b6953f4cbf1715ee"
+    },
+    {
+      "request": "EqualityChain",
+      "fixture": "cases.swift",
+      "retain": false,
+      "format": 2,
+      "sha256": "c6d1d5a2446593c77a86d8bfc114af523b4de09b96c4a17d5c757e50f9ab877f"
+    },
+    {
+      "request": "JointQuestion",
+      "fixture": "cases.swift",
+      "retain": false,
+      "format": 2,
+      "sha256": "4f926517dd68ccb7e3f2bd09121ac6f4186fa70ce8e96877009a82b5695b29ac"
+    },
+    {
+      "request": "MultiClassResidue",
+      "fixture": "cases.swift",
+      "retain": false,
+      "format": 2,
+      "sha256": "38abfa4ca4c67cda85ddb3718496d495ba687cc1c41006637fbbd49f0cdb09b1"
+    },
+    {
+      "request": "OneEquality",
+      "fixture": "cases.swift",
+      "retain": false,
+      "format": 2,
+      "sha256": "d42258da9999842eda20ef5a3cb756d63447b24aa4e507ae90c6ae411e1ec6a6"
+    },
+    {
+      "request": "ReadWholeHelperAxes",
+      "fixture": "cases.swift",
+      "retain": false,
+      "format": 2,
+      "sha256": "10b94878e9e9e6c849da147898138d316c151c35ed3f5cfbeb4f8dc112cab4f4"
+    },
+    {
+      "request": "ResidueEqualityClass",
+      "fixture": "cases.swift",
+      "retain": false,
+      "format": 2,
+      "sha256": "0198bb11788fd0f33d1ba9dde7420c9bf8fba3e51b15aa24e0fb4dc37bca3bab"
+    },
+    {
+      "request": "ResiduePartialQuestion",
+      "fixture": "cases.swift",
+      "retain": false,
+      "format": 2,
+      "sha256": "cc8b6d0ff08066e4b46af684f403e3ecb21b43a5ab7f7d5e4e81742d6ae841fb"
+    },
+    {
+      "request": "RetainFromClassOutsideViews",
+      "fixture": "retention-cases.swift",
+      "retain": true,
+      "format": 3,
+      "sha256": "7791bf93e71d25d9af1664b72357659fd509eb22e1b5f74e7ec7208596cb700f"
+    },
+    {
+      "request": "RetainNothing",
+      "fixture": "retention-cases.swift",
+      "retain": true,
+      "format": 2,
+      "sha256": "25969158f7ed54e835610ec44432977b973e2beac60b1aee027e1aba785c1388"
+    },
+    {
+      "request": "RetainOneClass",
+      "fixture": "retention-cases.swift",
+      "retain": true,
+      "format": 3,
+      "sha256": "a35dbb1054b6529d7de7164d25d8efe65f80de6e9b27735c8907f4d7f984a107"
+    },
+    {
+      "request": "RetainRepeatedClass",
+      "fixture": "retention-cases.swift",
+      "retain": true,
+      "format": 3,
+      "sha256": "abf7fb3ed9c83e3eefe75070a287ed42678996ffc673ebbf2ecd8f5bd53db8c4"
+    },
+    {
+      "request": "RetainTwoSorts",
+      "fixture": "retention-cases.swift",
+      "retain": true,
+      "format": 3,
+      "sha256": "35baf85edbfbf660d2b31a51df6d1e7292295fe2853477cd246207de23e61f12"
+    },
+    {
+      "request": "ReversedChain",
+      "fixture": "cases.swift",
+      "retain": false,
+      "format": 2,
+      "sha256": "ea564aca892c823cb442a26b8059240c288c54cb2f03c5592e64b5d69e8922c8"
+    },
+    {
+      "request": "SameSortDifferentPlaces",
+      "fixture": "cases.swift",
+      "retain": false,
+      "format": 2,
+      "sha256": "56641fec3a34e2c08a8847a70f645eb7ba8d685804a6e54cef4f0646d8b3a368"
+    },
+    {
+      "request": "TwoSorts",
+      "fixture": "cases.swift",
+      "retain": false,
+      "format": 2,
+      "sha256": "698e2dc269b1bf33bfa0f2058532908c411878a8cee55ccedcec5e47f1680f0b"
+    },
+    {
+      "request": "WholeAsObservation",
+      "fixture": "cases.swift",
+      "retain": false,
+      "format": 2,
+      "sha256": "29d61cea7c3cdb3b2ce06138b0e0a705229367393e23bf7c94584a0450443750"
+    }
+  ]
+}

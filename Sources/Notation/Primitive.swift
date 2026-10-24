@@ -50,18 +50,13 @@ public protocol Structure {
     /// called through generic contexts (Paired chains, associated types).
     static var typeName: String { get }
 
-    /// This gives the size of this type: how many leaves it is built from. An atom is one. The floor
-    /// (`Never`) is none. A composed ``Open`` folds the count of everything its `body` lists. Any
-    /// structure has a length, the same way any structure has a name, the second reading the
-    /// builder's ``Paired`` chain gives for free, replacing the hand-rolled `Length` a cons-list
-    /// (`Chain`/`Roster`) used to carry.
+    /// Reads this type's count. The default readings give one to an atom and zero to ``Never``.
+    /// A composed ``Open`` delegates to its ``Open/Body``. The ``Paired`` reading adds its two sides.
     static var count: Int { get }
 
-    /// This gives the names of this type's leaves, in body order. An atom is its own one-element list. A
-    /// composed ``Open`` folds its `body`'s leaves in the order they were written. The third
-    /// reading the builder's ``Paired`` chain gives for free: where `typeName` collapses a body
-    /// to one string and `count` to one number, `labels` keeps each leaf's name, so a leaf that
-    /// carries its identity (an employee in a batch) can be read back individually.
+    /// Reads this type's leaf names in body order. The default atom contributes its ``typeName``
+    /// as one element. A composed ``Open`` delegates to its ``Open/Body``, and ``Paired`` concatenates
+    /// its two lists. Each supplied leaf name remains a separate element.
     static var labels: [String] { get }
 }
 
@@ -153,10 +148,8 @@ extension Structure {
     public static var typeName: String { String(describing: Self.self) }
 }
 
-/// This is an `Open` type that has not customized `body`: it is `Pair`-shaped, not list-shaped
-/// (``Employee``, a verdict gate), a LEAF, so it renders its Swift name, the same as a ``Close`` atom.
-/// Without this, the rule below would read `Body.typeName` and silently render every such leaf
-/// as the empty string.
+/// Reads the Swift name when ``Body`` is ``Never``. This specializes the general ``Open`` reading,
+/// which delegates to ``Body`` and reads an empty string for ``Never``.
 extension Open
 where Body == Never {
     public static var typeName: String { String(describing: Self.self) }
@@ -181,11 +174,8 @@ extension Structure {
     public static var count: Int { 1 }
 }
 
-/// This is an `Open` type that has not customized `body`: it is `Pair`-shaped, not list-shaped,
-/// `Employee` (`Pair` for its `Rank`/`Home` coordinate), a verdict gate, an axis marker. It is a LEAF,
-/// the same as a ``Close`` atom, so it counts as one. Without this, the general rule below would read
-/// `Body.count` and silently count every such leaf as zero, exactly the case a roster's members
-/// are made of, so this is the override that keeps `count` correct for a roster's members.
+/// Counts one when ``Body`` is ``Never``. This specializes the general ``Open`` reading,
+/// whose count would be zero for ``Never``.
 extension Open
 where Body == Never {
     public static var count: Int { 1 }
@@ -333,11 +323,8 @@ public typealias U128 = Twice<U64>
 public typealias U256 = Twice<U128>
 public typealias U512 = Twice<U256>
 
-/// Rest is what remains: the whole minus what was taken, the subtractive witness beside
-/// `Times`' product. Layout divides space (known pieces come off a given whole, and the
-/// rest is handed on), so subtraction enters the lattice the same way multiplication did:
-/// one witness, counted only at the reading edge. Taking more than the whole has is
-/// refused right there, at the read, the fit made a checked fact.
+/// Reads `Whole.count` minus `Taken.count`. The reading requires `Taken.count <= Whole.count`
+/// and refuses underflow before subtraction.
 public enum Rest<
     Whole: Structure,
     Taken: Structure
@@ -354,9 +341,7 @@ extension Rest {
     }
 }
 
-/// Half is the even split of a magnitude: a box's centre line, a shelf's midpoint. The
-/// count must divide cleanly, and an odd magnitude refuses at generation, loudly, since a
-/// half-pixel would be a number no rung owns.
+/// Divides `Of.count` by two when the count is even. The reading refuses an odd count.
 public enum Half<Of: Structure>: Close {}
 extension Half {
     public static var count: Int {
@@ -365,9 +350,7 @@ extension Half {
     }
 }
 
-/// Tally is the counting read: a structure in, its count out as digits, through `typeName`
-/// like every other reading. The one door a canvas may take to a number, and a bare `count`
-/// call outside the readers is the smell this door exists to remove.
+/// Reads `Of.count` as decimal text through ``typeName``.
 public enum Tally<Of: Structure>: Close {}
 extension Tally {
     public static var typeName: String { String(Of.count) }

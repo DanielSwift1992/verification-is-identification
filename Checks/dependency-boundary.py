@@ -5,7 +5,10 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = 'Checks/dependency-boundary.json'
-POLICY_SHA256 = '4500d066b025e4441d298f3a881cfe239047f0a68841bb530256c88e0c76d7a9'
+# 2026-10-24 merge review retains 304 declaration records and zero exceptions.
+# T0095 adds its local open-debt destination; two Encoding sentence contexts change.
+# Scope, vocabulary, probe classes and retirement limits remain unchanged.
+POLICY_SHA256 = 'acff0e5a792c3279d68ec827dffd761806dcb5c0d035d82cff5112b87ac52011'
 LAW = ROOT / 'Checks/boundary-law.py'
 exec(compile(LAW.read_bytes(), str(LAW), 'exec'), globals())
 

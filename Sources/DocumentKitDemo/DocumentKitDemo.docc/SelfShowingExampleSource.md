@@ -1,6 +1,6 @@
 # Self-showing
 
-The source page and the gallery's code block read the same declared source atom.
+The canvas's chip links to this page, which reads the declared source atom.
 
 ```swift
 public enum VectorSelfShowingExampleDiagram: Diagram, SelfShowing {

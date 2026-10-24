@@ -135,5 +135,84 @@
         "minimum_leaves": 0
       }
     ]
+  },
+  "actions": {
+    "fixture": "action-cases.swift",
+    "sha256": "1496e0eede7e3dc1586f4b8a06405d072860707b412aa3c44a3508db52ae26e5",
+    "format": 4,
+    "cases": [
+      {
+        "request": "PreservesEqualities",
+        "holds": true
+      },
+      {
+        "request": "BreaksEqualities",
+        "holds": false,
+        "refusal": "preservation"
+      },
+      {
+        "request": "CyclicQuestion",
+        "holds": true
+      },
+      {
+        "request": "EmptyActions",
+        "holds": true
+      },
+      {
+        "request": "HiddenDisagreement",
+        "holds": false,
+        "refusal": "disagreement"
+      },
+      {
+        "request": "HiddenCommon",
+        "holds": true
+      },
+      {
+        "request": "HiddenOutside",
+        "holds": false,
+        "refusal": "outside"
+      },
+      {
+        "request": "HiddenInvalidEqualities",
+        "holds": false,
+        "refusal": "preservation"
+      },
+      {
+        "request": "HiddenEquivalentProjections",
+        "holds": true
+      },
+      {
+        "request": "AliasedActions",
+        "holds": true
+      },
+      {
+        "request": "MalformedActionShape",
+        "address": "MalformedActionShape.Actions"
+      },
+      {
+        "request": "UnrootedAction",
+        "address": "UnrootedAction.Actions"
+      },
+      {
+        "request": "UnreadActionAxis",
+        "address": "UnreadActionAxis.Action"
+      },
+      {
+        "request": "HiddenOnly",
+        "holds": true
+      },
+      {
+        "request": "NoncommutingWords",
+        "holds": true
+      },
+      {
+        "request": "SortChangingAction",
+        "address": "SortChangingAction.Actions"
+      },
+      {
+        "request": "ScalarActions",
+        "holds": true
+      }
+    ]
   }
 }

@@ -16,4 +16,4 @@ The portable SVG attribute precedes the owner's exact CSS paint in the style dec
 
 `Scripts/footer-check.py` parses every generated footer as HTML, then checks each script with the JavaScript parser. Both hooks and their owner substitutions are required. The broken-comment control exercises the HTML boundary before JavaScript parsing.
 
-Historical names such as R10, R12 and Cover06 identify roles; their spelling does not constrain the owner's numeric choice. The accompanying Swift input supplies their values and the original generic composition names. No world source or import needs to be edited to select that input.
+Historical names such as R10, R16 and TableSortHintOpacity identify roles. Their spelling does not constrain the owner's numeric choice. The accompanying Swift input supplies their values and the original generic composition names. No world source or import needs to be edited to select that input.

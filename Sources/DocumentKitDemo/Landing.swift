@@ -272,8 +272,8 @@ extension TableHeading {
 }
 public enum TableDeclaration: Close {}
 extension TableDeclaration {
-    public static var typeName: String { "Table {\n    TableRow { TableCell { SampleLeft.self }; TableCell { SampleRight.self }
-}\n    TableRow { TableCell { RuleMark.self }; TableCell { RuleMark.self } }\n    TableRow { TableCell { SampleText.self }; TableCell { SampleText.self } }\n}" } }
+    public static var typeName: String { "Table {\n    TableRow { TableCell { SampleLeft.self }; TableCell { SampleRight.self } }\n    TableRow { TableCell { RuleMark.self }; TableCell { RuleMark.self } }\n    TableRow { TableCell { SampleText.self }; TableCell { SampleText.self } }\n}" }
+}
 public enum TableReading: Open {
     @StructureBuilder
     public static var body: some Structure {
@@ -365,8 +365,8 @@ extension ColumnsHeading {
 }
 public enum ColumnsDeclaration: Close {}
 extension ColumnsDeclaration {
-    public static var typeName: String { "SideBySide { PanelOf { SampleLeft.self }; PanelOf { SampleRight.self }
-}" } }
+    public static var typeName: String { "SideBySide { PanelOf { SampleLeft.self }; PanelOf { SampleRight.self } }" }
+}
 public enum ColumnsReading: Open {
     @StructureBuilder
     public static var body: some Structure {

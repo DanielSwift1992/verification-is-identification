@@ -289,5 +289,119 @@
         "address": "MalformedRepeatMember.HiddenActions"
       }
     ]
+  },
+  "image": {
+    "fixture": "image-cases.swift",
+    "sha256": "d72bc5e203376ae5a0d5e5feabdfedcfc8844455682ace8260006a25fad21a2e",
+    "cases": [
+      {
+        "request": "PermutedPromise",
+        "holds": true
+      },
+      {
+        "request": "PermutedOldRelation",
+        "holds": false
+      },
+      {
+        "request": "IndependentPromise",
+        "holds": false
+      },
+      {
+        "request": "UnrestrictedImage",
+        "holds": true
+      },
+      {
+        "request": "DuplicateImage",
+        "holds": true
+      },
+      {
+        "request": "DuplicateOutputPlaces",
+        "holds": true
+      },
+      {
+        "request": "LeftMarginal",
+        "holds": true
+      },
+      {
+        "request": "RightMarginal",
+        "holds": true
+      },
+      {
+        "request": "AliasedImage",
+        "holds": true
+      },
+      {
+        "request": "TwoSortImage",
+        "holds": true
+      },
+      {
+        "request": "ScalarImage",
+        "holds": true
+      },
+      {
+        "request": "ChainedImage",
+        "holds": true
+      },
+      {
+        "request": "OmittedIndependentPlaces",
+        "holds": true
+      },
+      {
+        "request": "SourceIsNotOutput",
+        "address": "SourceIsNotOutput.Promise"
+      },
+      {
+        "request": "UnreadPromiseAxis",
+        "address": "UnreadPromiseAxis.Promises"
+      },
+      {
+        "request": "DifferentPromiseSorts",
+        "address": "DifferentPromiseSorts.Promise"
+      },
+      {
+        "request": "MalformedImagePromise",
+        "address": "MalformedImagePromise.Promise"
+      },
+      {
+        "request": "UnrootedImage",
+        "address": "UnrootedImage.Image"
+      },
+      {
+        "request": "HiddenPairPromise",
+        "holds": true
+      },
+      {
+        "request": "HiddenMixedPromise",
+        "holds": false
+      },
+      {
+        "request": "ImageTemplateIsNotAChoice",
+        "holds": true
+      },
+      {
+        "request": "HiddenDifferentOutputShape",
+        "holds": true
+      },
+      {
+        "request": "HiddenScalarOutput",
+        "holds": true
+      },
+      {
+        "request": "MultiImagePromise",
+        "holds": true
+      },
+      {
+        "request": "MixedImagePromises",
+        "holds": false
+      },
+      {
+        "request": "MalformedImageFamily",
+        "address": "MalformedImageFamily.HiddenActions"
+      },
+      {
+        "request": "OmittedSortImage",
+        "holds": true
+      }
+    ]
   }
 }

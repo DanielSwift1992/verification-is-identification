@@ -218,5 +218,81 @@
         "sha256": "58763ea963b0397757cecbac3629ff67a97151a49d15a558b5084f5fa520fafb"
       }
     ]
+  },
+  "repeatArchives": {
+    "source_commit": "fc700cc2d042bb62ebf10e844c77bbb7df3e9fb4",
+    "source_index_sha256": "1f7f3c62e075a380cf0d4289f465e7184b12c5f3a74a0f6adaed25fa18a27cf4",
+    "cases": [
+      {
+        "request": "AliasedRepeats",
+        "fixture": "repeat-cases.swift",
+        "sha256": "3c30d3a4489e6588dd9186f222d61d300b22911c34c3711a677af90aeb90659c"
+      },
+      {
+        "request": "DuplicateReturnQuestion",
+        "fixture": "repeat-cases.swift",
+        "sha256": "34689630b27cf52f0b3dda4df5b658219fc2d353b68a6f020d7fcc9b497a421e"
+      },
+      {
+        "request": "EqualClassReturn",
+        "fixture": "repeat-cases.swift",
+        "sha256": "60eaecb402a42fb8ebb3b7793d19c6873b244d187faeae546b5f8879a156303a"
+      },
+      {
+        "request": "FixedQuestion",
+        "fixture": "repeat-cases.swift",
+        "sha256": "5665887a7a449019b40f72f0eaa1f59bd541cfe9eb571340235dc002ae26dcfc"
+      },
+      {
+        "request": "FourCycle",
+        "fixture": "repeat-cases.swift",
+        "sha256": "723a6de981e6c1c163833d8d99def650a1453433fac4280028bcbf93890ccc78"
+      },
+      {
+        "request": "IdentityReturn",
+        "fixture": "repeat-cases.swift",
+        "sha256": "17ded2c51f0497bbf08bf57229d90f8a1903091f1c1f826c499e81bbca30305e"
+      },
+      {
+        "request": "LongReturnTail",
+        "fixture": "repeat-cases.swift",
+        "sha256": "d35b2790573736fcf30e7309eec9279f6237e0d40652daa7eb0a7a9ed06591e5"
+      },
+      {
+        "request": "OtherClassesMayHaveTails",
+        "fixture": "repeat-cases.swift",
+        "sha256": "f643c8ae631d9524126eec3545e17f99d74f8cb6a82e212c21bf403a31527507"
+      },
+      {
+        "request": "RepeatedHiddenCopies",
+        "fixture": "repeat-cases.swift",
+        "sha256": "4c076b502f39668666e7e046373420525ed87e9a378dfcac80232a1871fff87c"
+      },
+      {
+        "request": "ReturnBadPreservation",
+        "fixture": "repeat-cases.swift",
+        "sha256": "0785d277030bceaf039b6811cf9a5709eeb304ec86a9a5710f46cb187c1c16e3"
+      },
+      {
+        "request": "ReturnFirst",
+        "fixture": "repeat-cases.swift",
+        "sha256": "56fe601b2c5486a363388973bae1e2264de8f13aa0ffd00d8968d42b749b9790"
+      },
+      {
+        "request": "ReturnWhole",
+        "fixture": "repeat-cases.swift",
+        "sha256": "7dc71ef8f939db1d153d7e221a00752cef37a7492a1abe417b5301e254e24d7c"
+      },
+      {
+        "request": "ScalarRepeats",
+        "fixture": "repeat-cases.swift",
+        "sha256": "c2eab313bdc3bb5824057ecdb747cbeb4296e4069102b90e8ade6548a2ccd755"
+      },
+      {
+        "request": "TailQuestion",
+        "fixture": "repeat-cases.swift",
+        "sha256": "d5adf266575459747a810e6d8b189045e647578eb61dc358641d0674b52f9b97"
+      }
+    ]
   }
 }

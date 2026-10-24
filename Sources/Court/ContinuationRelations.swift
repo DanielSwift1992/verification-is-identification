@@ -112,6 +112,9 @@ extension ContinuationCourt {
         var equalities: RouteProof?
         var conclusion: RelatedConclusion
         var retention: RelatedRetention? = nil
+        var actions: RouteProof? = nil
+        var hiddenActions: RouteProof? = nil
+        var dynamics: Dynamics? = nil
     }
     struct RelatedArchive: Codable {
         let format: Int
@@ -131,6 +134,8 @@ extension ContinuationCourt {
         let whole: WholeReading
         let observation: Places
         let question: Places
+        var actions: [ActionMember] = []
+        var hiddenActions: [ActionMember]? = nil
         var source: Shape { whole.source }
         var edges: [SourceEdge] { whole.edges }
         func sort(_ path: Path) throws -> String { try whole.sort(path) }
@@ -234,7 +239,9 @@ extension ContinuationCourt {
                                source: StructuralSource) throws {
         try checkWholeAxes(certificate.source,
                            routes: [certificate.observation, certificate.question]
-                               + (certificate.equalities.map { [$0] } ?? []),
+                               + (certificate.equalities.map { [$0] } ?? [])
+                               + (certificate.actions.map { [$0] } ?? [])
+                               + (certificate.hiddenActions.map { [$0] } ?? []),
                            context: c)
     }
     static func checkWholeAxes(_ sourceProof: ReadProof, routes: [RouteProof], context c: Context) throws {
@@ -325,8 +332,18 @@ extension ContinuationCourt {
         let whole = try readWhole(certificate.source, equalities: certificate.equalities, context: c)
         let p = try readCut(certificate.observation, field: "Observation", whole: whole, context: c)
         let q = try readCut(certificate.question, field: "Question", whole: whole, context: c)
+        func family(_ field: String, _ proof: RouteProof?) throws -> [ActionMember]? {
+            guard (source.declarations[request]?.fields[field] != nil) == (proof != nil) else {
+                throw Failure(request + "." + field + ": changed family coverage")
+            }
+            guard let proof else { return nil }
+            return try actionMembers(readCut(proof, field: field, whole: whole, context: c),
+                                     source: whole.source, address: request + "." + field)
+        }
+        let actions = try family("Actions", certificate.actions) ?? []
+        let hidden = try family("HiddenActions", certificate.hiddenActions)
         try checkWholeAxes(certificate, context: c, source: source)
-        return RelatedReading(whole: whole, observation: p, question: q)
+        return RelatedReading(whole: whole, observation: p, question: q, actions: actions, hiddenActions: hidden)
     }
     static func assembledProgram(_ shape: Places, inputs: [Path]) throws -> Program {
         var index = 0
@@ -414,8 +431,9 @@ extension ContinuationCourt {
         }
     }
     static func verifyRelatedProgram(_ selections: [Selection], program: Program,
-                                     reading r: RelatedReading, address: String) throws {
-        let edges = Dictionary(uniqueKeysWithValues: r.edges.map { ($0.address, $0) })
+                                     reading r: RelatedReading, address: String,
+                                     edgeIndex: [Path: SourceEdge]? = nil) throws {
+        let edges = edgeIndex ?? Dictionary(uniqueKeysWithValues: r.edges.map { ($0.address, $0) })
         let required = r.question.leaves
         var remainingSteps = 100_000
         guard selections.count == required.count else { throw Failure(address + ".selections: incomplete output coverage") }
@@ -457,6 +475,12 @@ extension ContinuationCourt {
     static func verifyRelated(_ request: String, certificate: RelatedCertificate,
                               source: StructuralSource, constructor: String = "Paired") throws -> Bool {
         let r = try relatedReading(request, certificate: certificate, source: source, constructor: constructor)
+        if let dynamics = certificate.dynamics {
+            guard certificate.retention == nil else { throw Failure("certificate.dynamics: retention is a separate question") }
+            try verifyDynamics(dynamics, reading: r)
+        } else if certificate.actions != nil || certificate.hiddenActions != nil {
+            throw Failure("certificate.dynamics: declared families require an action judgment")
+        }
         let edges = Dictionary(uniqueKeysWithValues: r.edges.map { ($0.address, $0) })
         switch certificate.conclusion {
         case let .constructed(selections, program):
@@ -536,7 +560,9 @@ extension ContinuationCourt {
         return retention.leaves.count
     }
     static func deriveRelated(_ request: String, source: StructuralSource,
-                              constructor: String = "Paired", retain: Bool = false) throws -> RelatedCertificate {
+                              constructor: String = "Paired", retain: Bool = false,
+                              actions: Bool = false) throws -> RelatedCertificate {
+        guard !(retain && actions) else { throw Failure("--actions and --retain ask separate questions") }
         let c = try Context(request, source: source, constructor: constructor)
         func route(_ field: String) throws -> RouteProof {
             do { return try deriveRoute(.field(c.root, field), context: c) }
@@ -553,8 +579,13 @@ extension ContinuationCourt {
             equalities: source.declarations[request]?.fields["Equalities"] == nil ? nil
                 : route("Equalities"),
             conclusion: .constructed([], .pick([])))
+        if actions {
+            if source.declarations[request]?.fields["Actions"] != nil { certificate.actions = try route("Actions") }
+            if source.declarations[request]?.fields["HiddenActions"] != nil { certificate.hiddenActions = try route("HiddenActions") }
+        }
         let r = try relatedReading(request, certificate: certificate, source: source, constructor: constructor)
         certificate.conclusion = try constructRelated(r)
+        if actions { certificate.dynamics = try constructDynamics(r) }
         if retain, case let .obstructed(obstruction) = certificate.conclusion,
             let residue = obstruction.residue {
             let leaves = residue.needed.map { obstruction.classes[$0.block].leaves[0] }
@@ -571,11 +602,7 @@ extension ContinuationCourt {
         return certificate
     }
     static func constructRelated(_ r: RelatedReading) throws -> RelatedConclusion {
-        var adjacent: [Path: [(Path, EqualityStep)]] = [:]
-        for edge in r.edges {
-            adjacent[edge.left, default: []].append((edge.right, EqualityStep(edge: edge.address, reversed: false)))
-            adjacent[edge.right, default: []].append((edge.left, EqualityStep(edge: edge.address, reversed: true)))
-        }
+        let adjacent = equalityGraph(r)
         // Equivalence closure retains a path from an observed occurrence.
         // No payloads or candidate programs are inspected.
         var reached: [Path: (input: Path, previous: Path?, step: EqualityStep?)] = [:]
@@ -600,28 +627,7 @@ extension ContinuationCourt {
         var remainingSteps = 100_000
         for target in r.question.leaves {
             guard let route = reached[target.source] else {
-                var seen: Set<Path> = []
-                var classes: [PartitionClass] = []
-                var connections: [[EqualityStep]] = []
-                var blocks: [Path: Int] = [:]
-                for (path, sort) in r.source.leaves
-                where !seen.contains(path) {
-                    var component = [path]
-                    var forest: [EqualityStep] = []
-                    seen.insert(path)
-                    var i = 0
-                    while i < component.count {
-                        for (next, step) in adjacent[component[i]] ?? []
-                        where seen.insert(next).inserted {
-                            component.append(next)
-                            forest.append(step)
-                        }
-                        i += 1
-                    }
-                    for member in component { blocks[member] = classes.count }
-                    classes.append(PartitionClass(sort: sort, leaves: component))
-                    connections.append(forest)
-                }
+                let (classes, connections, blocks) = constructPartition(r)
                 let residue = try QuestionResidue(connections: connections, needed: requiredClasses(r, blocks: blocks))
                 return .obstructed(Obstruction(question: target.output, classes: classes, residue: residue))
             }
@@ -641,16 +647,20 @@ extension ContinuationCourt {
     static func encodeRelated(_ certificate: RelatedCertificate) throws -> Data {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        let data = try encoder.encode(RelatedArchive(format: certificate.retention == nil ? 2 : 3, certificate: certificate))
+        let format = certificate.dynamics != nil ? 4 : (certificate.retention == nil ? 2 : 3)
+        let data = try encoder.encode(RelatedArchive(format: format, certificate: certificate))
         guard data.count <= 8_000_000 else { throw Failure("certificate: output limit") }
         return data
     }
     static func decodeRelated(_ data: Data) throws -> RelatedCertificate {
         guard data.count <= 8_000_000 else { throw Failure("certificate: input limit") }
         let archive = try JSONDecoder().decode(RelatedArchive.self, from: data)
-        guard (archive.format == 2 && archive.certificate.retention == nil)
-                || (archive.format == 3 && archive.certificate.retention != nil) else {
-            throw Failure("certificate: expected format 2 without retention or format 3 with retention")
+        let c = archive.certificate
+        let old = c.dynamics == nil && c.actions == nil && c.hiddenActions == nil
+        guard (old && archive.format == 2 && c.retention == nil)
+                || (old && archive.format == 3 && c.retention != nil)
+                || (archive.format == 4 && c.dynamics != nil && c.retention == nil) else {
+            throw Failure("certificate: expected format 2 without retention, format 3 with retention, or format 4 with dynamics")
         }
         return archive.certificate
     }
@@ -659,6 +669,9 @@ extension ContinuationCourt {
             var args = arguments
             let retain = args.first == "--retain"
             if retain { args.removeFirst() }
+            let actions = args.first == "--actions"
+            if actions { args.removeFirst() }
+            guard !(retain && actions) else { throw Failure("--actions and --retain ask separate questions") }
             var output: String?
             var saved: RelatedCertificate?
             if replay {
@@ -670,13 +683,17 @@ extension ContinuationCourt {
                 output = args.removeFirst()
             }
             guard args.count >= 2 else {
-                throw Failure("usage: judge continue --relations [--retain] [--certificate output.json] Request source.swift ...; replay-continuation --relations [--retain] certificate.json Request source.swift ...")
+                throw Failure("usage: judge continue --relations [--retain|--actions] [--certificate output.json] Request source.swift ...; replay-continuation --relations [--retain|--actions] certificate.json Request source.swift ...")
             }
             let request = args.removeFirst()
             let source = try StructuralSource(files: args.map { ($0, try String(contentsOfFile: $0, encoding: .utf8)) })
-            let certificate = try saved ?? deriveRelated(request, source: source, retain: retain)
+            let certificate = try saved ?? deriveRelated(request, source: source, retain: retain, actions: actions)
             let holds: Bool
-            if retain {
+            if actions {
+                holds = try verifyRelatedActions(request, certificate: certificate, source: source)
+            } else if certificate.dynamics != nil {
+                throw Failure("certificate.dynamics: replay format 4 with --actions")
+            } else if retain {
                 _ = try verifyRelatedRetention(request, certificate: certificate, source: source)
                 holds = true
             } else {

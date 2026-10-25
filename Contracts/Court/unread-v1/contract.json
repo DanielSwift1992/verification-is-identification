@@ -790,6 +790,40 @@
         "stdout": "",
         "stderr": "✗ THE WHERE: cannot read line 9 of 'world.swift': 'Use' applies a gated head in a place where this court reads no use and no certificate\n"
       }
+    },
+    {
+      "id": "metatype-combining-suffix",
+      "files": {
+        "world.swift": "public protocol Setting {}\npublic protocol Required: Setting {}\npublic enum Good: Required {}\npublic enum Bad: Setting {}\npublic protocol Admitted {}\npublic enum Use<T: Setting> {}\nextension Use: Admitted where T: Required {}\npublic typealias GoodClaim = Use<Good>\nfunc f() { _ = Use<\nBad\n>.self́ }\n"
+      },
+      "arguments": [
+        "world.swift"
+      ],
+      "sha256": {
+        "world.swift": "ea11307c04447d3e0e07cf707f75ede0a58ad4ef0feb32750713770a7f818ac5"
+      },
+      "expected": {
+        "exit": 2,
+        "stdout": "",
+        "stderr": "✗ THE WHERE: cannot read line 9 of 'world.swift': 'Use' applies a gated head in a use written across lines, which this court reads on one line\n"
+      }
+    },
+    {
+      "id": "metatype-combining-iota-suffix",
+      "files": {
+        "world.swift": "public protocol Setting {}\npublic protocol Required: Setting {}\npublic enum Good: Required {}\npublic enum Bad: Setting {}\npublic protocol Admitted {}\npublic enum Use<T: Setting> {}\nextension Use: Admitted where T: Required {}\npublic typealias GoodClaim = Use<Good>\nfunc f() { _ = Use<\nBad\n>.selfͅ }\n"
+      },
+      "arguments": [
+        "world.swift"
+      ],
+      "sha256": {
+        "world.swift": "058c2addd49cd4affaac7467b16f3356ba819b7697d55134cedd974115afddf3"
+      },
+      "expected": {
+        "exit": 2,
+        "stdout": "",
+        "stderr": "✗ THE WHERE: cannot read line 9 of 'world.swift': 'Use' applies a gated head in a use written across lines, which this court reads on one line\n"
+      }
     }
   ]
 }

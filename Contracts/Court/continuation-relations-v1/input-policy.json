@@ -1,0 +1,105 @@
+{
+  "schema": "vi.continuation.input-policy/1",
+  "policy": "WhereJudge.fileText then the common structural projection lexer",
+  "request": "InputCase",
+  "source": "enum InputCase<S: Structure> {\n    typealias Source = Paired<S, S>\n    typealias Observation = Source.Left\n    typealias Question = Source.Left\n}\n",
+  "entry_points": [
+    {
+      "name": "type-field",
+      "flags": [],
+      "format": 1
+    },
+    {
+      "name": "relations",
+      "flags": [
+        "--relations"
+      ],
+      "format": 2
+    }
+  ],
+  "cases": [
+    {
+      "name": "plain-lf",
+      "change": "identity",
+      "outcome": "holds"
+    },
+    {
+      "name": "plain-crlf",
+      "change": "crlf",
+      "outcome": "holds"
+    },
+    {
+      "name": "plain-cr",
+      "change": "cr",
+      "outcome": "holds"
+    },
+    {
+      "name": "leading-bom",
+      "outcome": "unread-scalar",
+      "roles": [
+        "request",
+        "foundation"
+      ],
+      "prefix_bytes": [
+        239,
+        187,
+        191
+      ]
+    },
+    {
+      "name": "internal-code-feff",
+      "prefix": "enum Before {}\n\ufeff",
+      "outcome": "unread-scalar",
+      "roles": [
+        "request",
+        "foundation"
+      ]
+    },
+    {
+      "name": "projection-code-feff",
+      "replace": [
+        "Source.Left",
+        "Source.\ufeffLeft"
+      ],
+      "outcome": "unread-scalar"
+    },
+    {
+      "name": "interpolation-code-feff",
+      "suffix": "\nenum Extra { static var value: String { \"v \\(\ufeff1)\" } }\n",
+      "outcome": "unread-scalar"
+    },
+    {
+      "name": "line-comment-feff",
+      "prefix": "// \ufeff\n",
+      "outcome": "holds"
+    },
+    {
+      "name": "block-comment-feff",
+      "prefix": "/* \ufeff */\n",
+      "outcome": "holds"
+    },
+    {
+      "name": "literal-feff",
+      "suffix": "\nenum Extra { static var value: String { \"\ufeff\" } }\n",
+      "outcome": "holds"
+    },
+    {
+      "name": "invalid-utf8",
+      "prefix_hex": "ff",
+      "outcome": "cannot-read",
+      "roles": [
+        "request",
+        "foundation"
+      ]
+    },
+    {
+      "name": "missing-input",
+      "change": "missing",
+      "outcome": "cannot-read",
+      "roles": [
+        "request",
+        "foundation"
+      ]
+    }
+  ]
+}

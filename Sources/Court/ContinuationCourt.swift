@@ -551,7 +551,7 @@ enum ContinuationCourt {
             }
             let request = args.removeFirst()
             let source = try StructuralSource(
-                files: args.map { ($0, try String(contentsOfFile: $0, encoding: .utf8)) }, arguments: [("request", request)])
+                files: args.map { ($0, try WhereJudge.fileText($0)) }, arguments: [("request", request)])
             let proof = try saved ?? derive(request, source: source)
             _ = try verify(request, certificate: proof, source: source)
             if let archivePath {

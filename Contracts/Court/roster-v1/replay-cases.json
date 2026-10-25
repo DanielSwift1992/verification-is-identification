@@ -1,0 +1,67 @@
+{
+  "schema": "vi.court.roster-replay-observations/1",
+  "input": "fixtures/scalar-names.swift",
+  "sha256": "88286d3e19bdb99f4b533025faa8d4ca2e64f4d6f78403b0a5000f94d0d6a1e1",
+  "protocol": "Lamp",
+  "cases": [
+    {
+      "id": "R0-original",
+      "edits": [],
+      "outcome": "holds",
+      "records": [
+        "A"
+      ]
+    },
+    {
+      "id": "N-normal-nfd",
+      "edits": [
+        {
+          "path": [
+            "records",
+            0,
+            "axes",
+            "Státé",
+            "normal"
+          ],
+          "value": "Offé"
+        }
+      ],
+      "outcome": "unsupported",
+      "records": [],
+      "diagnostic_contains": "changed normal"
+    },
+    {
+      "id": "N-proof-nfd",
+      "replace_text": [
+        "Offé",
+        "Offé"
+      ],
+      "outcome": "unsupported",
+      "records": []
+    },
+    {
+      "id": "N-axis-nfd",
+      "replace_text": [
+        "Státé",
+        "Státé"
+      ],
+      "outcome": "unsupported",
+      "records": []
+    },
+    {
+      "id": "N-record-substituted",
+      "edits": [
+        {
+          "path": [
+            "records",
+            0,
+            "name"
+          ],
+          "value": "K"
+        }
+      ],
+      "outcome": "unsupported",
+      "records": []
+    }
+  ]
+}

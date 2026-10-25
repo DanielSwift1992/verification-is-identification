@@ -429,13 +429,13 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "// \u03bb\ud83e\udd89\r\npublic typealias Mode = Off // start\r\n",
+      "state": "// λ🦉\r\npublic typealias Mode = Off // start\r\n",
       "dictionary": "enum TurnOn {\r\n    typealias Slot = ModeSlot\r\n    typealias From = Off\r\n    typealias Into = On\r\n}\r\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
     "expected": {
-      "state": "// \u03bb\ud83e\udd89\r\npublic typealias Mode = On // start\r\n",
+      "state": "// λ🦉\r\npublic typealias Mode = On // start\r\n",
       "changed": true,
       "refusal": null,
       "replayed": true
@@ -5682,23 +5682,23 @@
       "arguments": [
         "BumpUp"
       ],
-      "state": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// THE WORLD: one file, four slots, and that is the whole state of the system.\n// Three slots are terms moved by the dictionary's triples; the fourth is a\n// LITERAL slot: free text in a typeName, the medium's prose genre. Its three\n// movements \u2014 append, rubout, clear \u2014 are the applier's own\n// (`swift run Tools press append Note \u2026`), the judge vets the FORM of the\n// file, and a label draws the literal with no reader in between.\n\ntypealias LampMode = LampOff\ntypealias Count = Never\ntypealias PinProgress = PinStage0\n\nenum Note: Close {}\nextension Note {\n    static var typeName: String { \"\" }\n}\n",
-      "dictionary": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n// THE RULES: the world's whole dynamics as triples on the dynamics medium\n// (DocumentKit/Dynamics.swift), over the terms of Examples/Dynamics.swift.\n// Pressing is `swift run Tools press <Rule>`: compare, substitute, or stand.\n// A rule with a variable is a generic declaration, so the judge admits every\n// application at once, before the first press.\n// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\n// \u2500\u2500 the lamp: one slot, two level-0 rules, a two-state automaton written as data \u2500\u2500\n\n/// Off becomes on: a whole transition as one triple, no code anywhere.\npublic enum PowerOn: SlotRule {\n    public typealias Slot = LampModeSlot\n    public typealias From = LampOff\n    public typealias Into = LampOn\n}\n/// On becomes off: the reverse triple, which is why undo is a button, not a mechanism.\npublic enum PowerOff: SlotRule {\n    public typealias Slot = LampModeSlot\n    public typealias From = LampOn\n    public typealias Into = LampOff\n}\n\n// \u2500\u2500 the counter: one slot, one level-1 rule, an infinite space from one triple \u2500\u2500\n\n/// Whatever the count is, wrap it once: a rule with a variable. The generic\n/// declaration IS the theorem that every application is well-typed: the compiler\n/// admits `Tick<T>` for every `T: Counting`, so no reachable state can go wrong.\npublic enum BumpUp<T: Counting>: SlotRule {\n    public typealias Slot = CountSlot\n    public typealias From = T\n    public typealias Into = Tick<T>\n}\n\n// \u2500\u2500 the keypad: a walk of four right digits, its whole table written as\n// thirty-one triples. The pin is 4-2-4-2. A right digit advances, a wrong digit\n// mid-walk resets, and a wrong digit at the start needs NO rule at all: its\n// press finds no matching pattern and the file stands, a no-op by absence. One\n// physical key is a chord over its rules (Chord, one slot by the bound), and at\n// any stage exactly one leaf can match: the table is data, end to end. \u2500\u2500\n\n/// The right digits of the walk: 4 starts, 2 advances, 4 advances again, 2 unlocks.\npublic enum Key4StartsWalk: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage0\n    public typealias Into = PinStage1\n}\npublic enum Key2AdvancesStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage2\n}\npublic enum Key4AdvancesStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage3\n}\npublic enum Key2Unlocks: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinUnlocked\n}\n/// The right digits pressed at the wrong stage reset like any other wrong digit.\npublic enum Key4ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key4ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key2ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\n/// Every other digit resets at every mid-walk stage: the off-path rows of the\n/// table spelled out rather than computed, three triples per key.\npublic enum Key0ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key0ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key0ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\n\n",
+      "state": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// THE WORLD: one file, four slots, and that is the whole state of the system.\n// Three slots are terms moved by the dictionary's triples; the fourth is a\n// LITERAL slot: free text in a typeName, the medium's prose genre. Its three\n// movements — append, rubout, clear — are the applier's own\n// (`swift run Tools press append Note …`), the judge vets the FORM of the\n// file, and a label draws the literal with no reader in between.\n\ntypealias LampMode = LampOff\ntypealias Count = Never\ntypealias PinProgress = PinStage0\n\nenum Note: Close {}\nextension Note {\n    static var typeName: String { \"\" }\n}\n",
+      "dictionary": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// ═══════════════════════════════════════════════════════════════\n// THE RULES: the world's whole dynamics as triples on the dynamics medium\n// (DocumentKit/Dynamics.swift), over the terms of Examples/Dynamics.swift.\n// Pressing is `swift run Tools press <Rule>`: compare, substitute, or stand.\n// A rule with a variable is a generic declaration, so the judge admits every\n// application at once, before the first press.\n// ═══════════════════════════════════════════════════════════════\n\n// ── the lamp: one slot, two level-0 rules, a two-state automaton written as data ──\n\n/// Off becomes on: a whole transition as one triple, no code anywhere.\npublic enum PowerOn: SlotRule {\n    public typealias Slot = LampModeSlot\n    public typealias From = LampOff\n    public typealias Into = LampOn\n}\n/// On becomes off: the reverse triple, which is why undo is a button, not a mechanism.\npublic enum PowerOff: SlotRule {\n    public typealias Slot = LampModeSlot\n    public typealias From = LampOn\n    public typealias Into = LampOff\n}\n\n// ── the counter: one slot, one level-1 rule, an infinite space from one triple ──\n\n/// Whatever the count is, wrap it once: a rule with a variable. The generic\n/// declaration IS the theorem that every application is well-typed: the compiler\n/// admits `Tick<T>` for every `T: Counting`, so no reachable state can go wrong.\npublic enum BumpUp<T: Counting>: SlotRule {\n    public typealias Slot = CountSlot\n    public typealias From = T\n    public typealias Into = Tick<T>\n}\n\n// ── the keypad: a walk of four right digits, its whole table written as\n// thirty-one triples. The pin is 4-2-4-2. A right digit advances, a wrong digit\n// mid-walk resets, and a wrong digit at the start needs NO rule at all: its\n// press finds no matching pattern and the file stands, a no-op by absence. One\n// physical key is a chord over its rules (Chord, one slot by the bound), and at\n// any stage exactly one leaf can match: the table is data, end to end. ──\n\n/// The right digits of the walk: 4 starts, 2 advances, 4 advances again, 2 unlocks.\npublic enum Key4StartsWalk: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage0\n    public typealias Into = PinStage1\n}\npublic enum Key2AdvancesStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage2\n}\npublic enum Key4AdvancesStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage3\n}\npublic enum Key2Unlocks: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinUnlocked\n}\n/// The right digits pressed at the wrong stage reset like any other wrong digit.\npublic enum Key4ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key4ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key2ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\n/// Every other digit resets at every mid-walk stage: the off-path rows of the\n/// table spelled out rather than computed, three triples per key.\npublic enum Key0ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key0ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key0ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\n\n",
       "statePath": "WorldState.swift",
       "dictionaryPath": "Rules.swift",
       "definitions": [
         {
           "path": "Sources/Examples/Dynamics.swift",
-          "text": "import VerificationIsIdentification\n\n// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n// THE DYNAMICS TERMS: the worlds a state file can carry, as pure types. The lamp's\n// two faces, the counter's floor and wrap, the keypad's three stages. The rules\n// that move a world between these terms are triples beside the world itself\n// (DynamicsDemo/Rules.swift) on the dynamics medium (DocumentKit/Dynamics.swift):\n// this file is the alphabet alone. A slot marker names its alias by dropping the\n// `Slot` suffix, so a marker and a live alias never share a name in any module.\n// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\n/// The lamp's one slot: the marker drops its `Slot` suffix to name the alias a\n/// state file carries, `typealias LampMode = <term>`.\npublic enum LampModeSlot {}\npublic enum LampOff {}\npublic enum LampOn {}\n\n/// This marks the terms the counter's slot may hold: the floor and every wrap of\n/// it. The constraint is what the judge checks a press against, for all bindings\n/// at once. A counting term is a structure, so its chain folds to a number the\n/// way every chain in this package does, and `Tally` reads it with no reader\n/// written anywhere.\n///\n/// > Important: `Counting` deliberately stands apart from `IntegerValued`, and\n/// > ``Tick`` is no alias of `Succ`, though both wrap by one. The axis is the\n/// > grammar of moves: a number can be added and halved, a count of events can\n/// > only grow. Merged, every numeric rule would match the counter's slot and\n/// > the counter's rule would match every numeric slot \u2014 the axis split is what\n/// > keeps a button on its own slot.\npublic protocol Counting: Structure {}\nextension Never: Counting {}\n/// One step more than its content: the counter's only constructor. Its count is\n/// the structural fold: one more than what it wraps.\npublic enum Tick<Previous: Counting>: Counting {}\nextension Tick {\n    public static var count: Int { Previous.count + 1 }\n}\n\n/// The counter's one slot: the state file's alias is `Count`.\npublic enum CountSlot {}\n\n/// The keypad's one slot: the state file's alias is `PinProgress`.\npublic enum PinProgressSlot {}\npublic enum PinStage0 {}\npublic enum PinStage1 {}\npublic enum PinStage2 {}\npublic enum PinStage3 {}\npublic enum PinUnlocked {}\n"
+          "text": "import VerificationIsIdentification\n\n// ═══════════════════════════════════════════════════════════════\n// THE DYNAMICS TERMS: the worlds a state file can carry, as pure types. The lamp's\n// two faces, the counter's floor and wrap, the keypad's three stages. The rules\n// that move a world between these terms are triples beside the world itself\n// (DynamicsDemo/Rules.swift) on the dynamics medium (DocumentKit/Dynamics.swift):\n// this file is the alphabet alone. A slot marker names its alias by dropping the\n// `Slot` suffix, so a marker and a live alias never share a name in any module.\n// ═══════════════════════════════════════════════════════════════\n\n/// The lamp's one slot: the marker drops its `Slot` suffix to name the alias a\n/// state file carries, `typealias LampMode = <term>`.\npublic enum LampModeSlot {}\npublic enum LampOff {}\npublic enum LampOn {}\n\n/// This marks the terms the counter's slot may hold: the floor and every wrap of\n/// it. The constraint is what the judge checks a press against, for all bindings\n/// at once. A counting term is a structure, so its chain folds to a number the\n/// way every chain in this package does, and `Tally` reads it with no reader\n/// written anywhere.\n///\n/// > Important: `Counting` deliberately stands apart from `IntegerValued`, and\n/// > ``Tick`` is no alias of `Succ`, though both wrap by one. The axis is the\n/// > grammar of moves: a number can be added and halved, a count of events can\n/// > only grow. Merged, every numeric rule would match the counter's slot and\n/// > the counter's rule would match every numeric slot — the axis split is what\n/// > keeps a button on its own slot.\npublic protocol Counting: Structure {}\nextension Never: Counting {}\n/// One step more than its content: the counter's only constructor. Its count is\n/// the structural fold: one more than what it wraps.\npublic enum Tick<Previous: Counting>: Counting {}\nextension Tick {\n    public static var count: Int { Previous.count + 1 }\n}\n\n/// The counter's one slot: the state file's alias is `Count`.\npublic enum CountSlot {}\n\n/// The keypad's one slot: the state file's alias is `PinProgress`.\npublic enum PinProgressSlot {}\npublic enum PinStage0 {}\npublic enum PinStage1 {}\npublic enum PinStage2 {}\npublic enum PinStage3 {}\npublic enum PinUnlocked {}\n"
         },
         {
           "path": "Sources/VerificationIsIdentification/Primitive.swift",
-          "text": "// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n// THE FOUNDATION names Structure, Open, Close, Pair, Null.\n//\n// To be one of our things is to be a STRUCTURE. A structure is OPEN (a protocol\n// that opens a tunnel) or CLOSE (an empty enum that seals). The sole structural\n// primitive is PAIR: two named sides. NULL equates their types. A finite-tree\n// interpretation requires separate constructor and termination premises,\n// including a syntax leaf distinct from constructed pairs. [EiF EF2, EF4]\n//\n// For a supplied Null conformance, the compiler checks `Left == Right`\n// at the declared addresses. An answer to a declared question is determined\n// when the compatible set is nonempty and every compatible candidate gives\n// that answer. A proof can derive this agreement from the actual constraint\n// relations without enumerating candidates. Applying the answer to an\n// intended target needs a justified source relation. [V=I U2c, \u00a71b]\n//\n// \u2500\u2500 PROTOCOL CREATION RULES (summary, canonical form: Law.swift) \u2500\u2500\n//\n// Only two operations exist:\n//\n//   EXPAND:   associatedtype adds an axis (degree of freedom)\n//   COMPRESS: where clause removes a degree of freedom\n//\n// A valid protocol does at least one of:\n//\n//   associatedtype:  EXPAND   (open an axis)\n//   where:           COMPRESS (constrain an axis)\n//   inherit from 2+: COMPRESS (intersect: A \u2229 B, smaller than either)\n//\n// `protocol X: Y {}` (single parent, no where, no axis)\n// is a rename, not a claim. Zero information added.\n//\n// At the meta-level, these rules ARE Pair/Null:\n//   associatedtype = Pair  (two sides: type and protocol)\n//   where X == Y   = Null  (sides collapse)\n//   where X: M     = partial Null (axis constrained)\n// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\n// \u2500\u2500 Structure / Open / Close \u2500\u2500\n\n/// This names the root ability: what it is to participate in the world. A new name is not written\n/// `: Structure` directly: it is ``Open`` (a `protocol` tunnel, still extensible) or ``Close`` (an\n/// empty `enum` seal, concrete). These are the repository's construction rules. Swift permits\n/// recursive associated types, so conformance does not guarantee that following components\n/// reaches a terminal. The finite-tree interpretation requires that additional premise (EiF EF4).\npublic protocol Structure {\n    /// This gives the name of this type: the edge reading. Dynamic dispatch ensures overrides are\n    /// called through generic contexts (Paired chains, associated types).\n    static var typeName: String { get }\n\n    /// This gives the size of this type: how many leaves it is built from. An atom is one. The floor\n    /// (`Never`) is none. A composed ``Open`` folds the count of everything its `body` lists. Any\n    /// structure has a length, the same way any structure has a name, the second reading the\n    /// builder's ``Paired`` chain gives for free, replacing the hand-rolled `Length` a cons-list\n    /// (`Chain`/`Roster`) used to carry.\n    static var count: Int { get }\n\n    /// This gives the names of this type's leaves, in body order. An atom is its own one-element list. A\n    /// composed ``Open`` folds its `body`'s leaves in the order they were written. The third\n    /// reading the builder's ``Paired`` chain gives for free: where `typeName` collapses a body\n    /// to one string and `count` to one number, `labels` keeps each leaf's name, so a leaf that\n    /// carries its identity (an employee in a batch) can be read back individually.\n    static var labels: [String] { get }\n}\n\n/// This is an OPEN tunnel, written ONLY as a `protocol`. A new name is Open by default: it opens an\n/// axis with `associatedtype` (a hole) and narrows it with `where`. It is extensible, dot-readable,\n/// a criterion. `enum X: Open` is the contradiction the check rejects: an `enum` has already sealed what\n/// Open must keep open.\n///\n/// Every Open type carries a ``Body``: the tunnel for composition. A type that has nothing to compose\n/// defaults to `Never` (the floor). A type that composes children defines its `body` with the one\n/// ``StructureBuilder``, and the builder folds the braces into a ``Paired`` chain.\npublic protocol Open: Structure {\n    associatedtype Body: Structure = Never\n    @StructureBuilder\n    static var body: Body { get }\n}\n\n/// This is the default body: `Never`. Lattice protocols, markers, axes, none compose children, so their body is\n/// the floor. The extension gives it for free: conform to ``Open`` and you get `Never` unless you say\n/// otherwise.\nextension Open\nwhere Body == Never {\n    public static var body: Never { fatalError(\"a type with Body == Never has no body\") }\n}\n\n/// This is a CLOSE: a terminal seal, written ONLY as an empty `enum`: no cases, no `init`, the branch\n/// ends and Swift is handed a concrete empty type. `protocol X: Close` is the contradiction: a Close must be\n/// concrete. A foreign value joins the world here too: a layer writes `extension String: Close` to make\n/// a string one of the sealed leaves, the one place for a value (a `String`), at the edge.\npublic protocol Close: Structure {}   // law:allow: the seal half of Open/Close, not a rename of Structure\n\n// \u2500\u2500 Pair / Null \u2500\u2500\n\n/// This provides two named roles for representing a distinction. It is the chosen structural primitive.\n/// Their contents can agree: every ``Null`` is also a ``Pair``. A realized contrast\n/// needs an actual separating relation, not just these two names. [Matter M71]\n/// Its unconstrained axes alone guarantee neither recursive structure nor finite depth.\n/// ``Pair`` is ``Open``: it opens two tunnels (`Left`, `Right`). [EiF EF2, EF4]\n///\n/// - term Left: one side of the distinction.\n/// - term Right: the other side.\n///\n/// > Note: ``Pair`` is the one thing the lattice rests on, and the one thing no\n/// > protocol derives. Trace any type up its parents (\u00a75 of ``Law``) and it ends\n/// > here: an entry in no library, certified by no game.\npublic protocol Pair: Open {\n    associatedtype Left\n    associatedtype Right\n}\n\n/// This requires equality of ``Pair``'s two associated types at the declared addresses.\n/// It does not identify the conforming type with either side or with the syntax leaf.\n/// `Never` is one conformer. Other nominal equality witnesses remain distinct. [EiF EF4]\n///\n/// > Note: For a supplied ``Null`` conformance, the compiler checks\n/// > `Left == Right` at these addresses. An answer to a declared question is\n/// > determined when the compatible set is nonempty and every compatible\n/// > candidate gives that answer. The proof can derive this agreement from the\n/// > actual constraint relations without enumerating candidates. Applying the\n/// > answer to an intended target needs a justified source relation. [V=I U2c, \u00a71b]\npublic protocol Null: Pair\nwhere Left == Right {}\n\n// Never conforms to Null by choosing equal associated types.\n// Equality of these sides is not a claim that every Null conformer is Never.\n// typeName = \"\" / count = 0 / labels = [] break recursion (Never: Open, Open.typeName =\n// Body.typeName, Open.count = Body.count, Open.labels = Body.labels, Never.Body = Never).\nextension Never: Null {\n    public typealias Left = Never\n    public typealias Right = Never\n    public static var typeName: String { \"\" }\n    public static var count: Int { 0 }\n    public static var labels: [String] { [] }\n}\n\n// Never IS Close: the empty type is the seal, the floor every chain reaches. This is the point\n// where ``Open`` and ``Close`` coincide (``Null``'s `Left == Right`): the one type that is both the\n// empty tunnel and the empty seal, so identification is where opening meets closing.\nextension Never: Close {}\n\n// String IS Close: the sealed leaf where a value is. The one foreign value that enters our world,\n// at the edge (\u00a7S6). Above it, the structure carries only types. Here, the String carries text.\nextension String: Close {}\n\n// \u2500\u2500 typeName: the one rendering mechanism \u2500\u2500\n\n/// This defaults to the Swift type name. Atoms override for their character.\nextension Structure {\n    public static var typeName: String { String(describing: Self.self) }\n}\n\n/// This is an `Open` type that has not customized `body`: it is `Pair`-shaped, not list-shaped\n/// (``Employee``, a verdict gate), a LEAF, so it renders its Swift name, the same as a ``Close`` atom.\n/// Without this, the rule below would read `Body.typeName` and silently render every such leaf\n/// as the empty string.\nextension Open\nwhere Body == Never {\n    public static var typeName: String { String(describing: Self.self) }\n}\n\n/// This is an `Open` type that DOES compose children: it renders its body, `Body.typeName` recurses\n/// through the Paired chain.\nextension Open {\n    public static var typeName: String { Body.typeName }\n}\n\n/// Paired concatenates Left and Right type names.\nextension Paired {\n    public static var typeName: String { L.typeName + R.typeName }\n}\n\n// \u2500\u2500 count: the second rendering: how many leaves a body lists \u2500\u2500\n\n/// This is the default, one: a structure counts itself. Atoms (``Close``) keep this: it is also the\n/// floor a leaf ``Open`` type (no custom `body`) falls back to, below.\nextension Structure {\n    public static var count: Int { 1 }\n}\n\n/// This is an `Open` type that has not customized `body`: it is `Pair`-shaped, not list-shaped,\n/// `Employee` (`Pair` for its `Rank`/`Home` coordinate), a verdict gate, an axis marker. It is a LEAF,\n/// the same as a ``Close`` atom, so it counts as one. Without this, the general rule below would read\n/// `Body.count` and silently count every such leaf as zero, exactly the case a roster's members\n/// are made of, so this is the override that keeps `count` correct for a roster's members.\nextension Open\nwhere Body == Never {\n    public static var count: Int { 1 }\n}\n\n/// This is an `Open` type that DOES compose children: it counts through its body, the builder folds a `{ }`\n/// block into a ``Paired`` chain, and that chain's count is the number of statements written.\nextension Open {\n    public static var count: Int { Body.count }\n}\n\n/// Paired sums its two sides: composing is exactly what makes a count more than one.\nextension Paired {\n    public static var count: Int { L.count + R.count }\n}\n\n// \u2500\u2500 labels: the third reading: each leaf's name, in body order \u2500\u2500\n\n/// This is the default, one label: a structure's `typeName`. Atoms (``Close``) keep this: it is also\n/// the floor a leaf ``Open`` type (no custom `body`) falls back to, below, the same `Body ==\n/// Never` exception `count` needs, for the same reason.\nextension Structure {\n    public static var labels: [String] { [typeName] }\n}\n\nextension Open\nwhere Body == Never {\n    public static var labels: [String] { [typeName] }\n}\n\n/// An `Open` type that DOES compose children reads its labels through its body.\nextension Open {\n    public static var labels: [String] { Body.labels }\n}\n\n/// This is Paired: it concatenates its two sides' labels, in body order.\nextension Paired {\n    public static var labels: [String] { L.labels + R.labels }\n}\n\n// \u2500\u2500 The builder: the ONE @resultBuilder \u2500\u2500\n//\n// The one allowed callable (\u00a7S4): folds a `{ }` body into a Pair-chain of Structures, floored at\n// `Never`. ``Paired`` is the ONE concrete `<>` (\u00a7S3 plumbing): it keeps two Structures as a value\n// so the builder can return them. Everything else is a protocol.\n\n/// This is the concrete Pair realizer: the ONE `<>` in the system, the framework's plumbing that the\n/// builder folds into. It keeps a left and a right as a value and conforms to ``Pair``. Not written in domain code.\n/// The builder produces it behind the `{ }` curtain.\npublic enum Paired<\n    L: Structure,\n    R: Structure\n>: Pair {\n    case paired(L, R)\n    public typealias Left = L\n    public typealias Right = R\n}\n\n/// This is the one result builder: it folds a `{ }` body into a ``Pair``-chain of Structures, floored at `Never`.\n/// This is the single `@resultBuilder` the system allows (\u00a7S4). The builder is the boundary between the\n/// brace-syntax and the type tree: inside the braces, each statement is a ``Structure``. Outside, the\n/// whole body is a single ``Paired`` chain.\n@resultBuilder\npublic enum StructureBuilder {\n    public static func buildExpression<\n        T: Structure\n    >(_ type: T.Type) -> T { fatalError() }\n    public static func buildExpression(_ string: String) -> String { string }\n    @_disfavoredOverload public static func buildExpression<\n        V: Structure\n    >(_ value: V) -> V { value }\n    public static func buildPartialBlock<\n        V: Structure\n    >(first: V) -> V { first }\n    public static func buildPartialBlock<\n        A: Structure,\n        B: Structure\n    >(accumulated: A, next: B) -> Paired<\n        A,\n        B\n    > { .paired(accumulated, next) }\n    public static func buildBlock() -> Never { fatalError() }\n    public static func buildEither<\n        A: Structure,\n        B: Structure\n    >(first: A) -> Paired<\n        A,\n        B\n    > { fatalError() }\n    public static func buildEither<\n        A: Structure,\n        B: Structure\n    >(second: B) -> Paired<\n        A,\n        B\n    > { fatalError() }\n}\n// \u2500\u2500 MAGNITUDES \u2014 space as structure, and the counting reader. A magnitude is a chain of\n// these atoms. The house fold counts it, and nothing else measures anything. They are in\n// this engine room because `Plus` composes through the one builder and the readers below\n// speak digits: the same \u00a70\u2032 exemption are already on. The design system\n// (DocumentKit) names the rungs, and canvases speak in its names, never in chains of these. \u2500\u2500\n\n/// Unit counts one: the atom of magnitude. `Close` keeps the default count, which is also\n/// the definition.\npublic enum Unit: Close {}\n\n/// Plus sums by composition: the pair of two magnitudes counts as both. The house fold does\n/// the arithmetic, and no member states it.\npublic enum Plus<\n    A: Structure,\n    B: Structure\n>: Open {\n    @StructureBuilder\n    public static var body: some Structure {\n        A.self\n        B.self\n    }\n}\n\n/// Twice is no separate object: doubling IS the pair of a thing with itself.\npublic typealias Twice<S: Structure> = Plus<S, S>\n\n/// Times composes two counts into their product, the way `Paired` composes them into their\n/// sum: one witness, no other member. With it a fraction needs no further arithmetic.\npublic enum Times<\n    A: Structure,\n    B: Structure\n>: Close {}\nextension Times {\n    public static var count: Int { A.count * B.count }\n}\n\n/// The numerals: the powers of two, spelled once as the doubling ladder. Every target\n/// reads these names from here, so a magnitude's meaning is its one written definition,\n/// and a judge unfolds it from this source.\npublic typealias U1 = Unit\npublic typealias U2 = Twice<U1>\npublic typealias U4 = Twice<U2>\npublic typealias U8 = Twice<U4>\npublic typealias U16 = Twice<U8>\npublic typealias U32 = Twice<U16>\npublic typealias U64 = Twice<U32>\npublic typealias U128 = Twice<U64>\npublic typealias U256 = Twice<U128>\npublic typealias U512 = Twice<U256>\n\n/// Rest is what remains: the whole minus what was taken, the subtractive witness beside\n/// `Times`' product. Layout divides space (known pieces come off a given whole, and the\n/// rest is handed on), so subtraction enters the lattice the same way multiplication did:\n/// one witness, counted only at the reading edge. Taking more than the whole has is\n/// refused right there, at the read, the fit made a checked fact.\npublic enum Rest<\n    Whole: Structure,\n    Taken: Structure\n>: Close {}\nextension Rest {\n    public static var count: Int {\n        let whole = Whole.count\n        let taken = Taken.count\n        precondition(\n            taken <= whole,\n            \"Rest underflow: \\(Taken.self) takes \\(taken) from \\(Whole.self) holding \\(whole)\"\n        )\n        return whole - taken\n    }\n}\n\n/// Half is the even split of a magnitude: a box's centre line, a shelf's midpoint. The\n/// count must divide cleanly, and an odd magnitude refuses at generation, loudly, since a\n/// half-pixel would be a number no rung owns.\npublic enum Half<Of: Structure>: Close {}\nextension Half {\n    public static var count: Int {\n        precondition(Of.count % 2 == 0, \"Half of an odd magnitude: \\(Of.count) does not split\")\n        return Of.count / 2\n    }\n}\n\n/// Tally is the counting read: a structure in, its count out as digits, through `typeName`\n/// like every other reading. The one door a canvas may take to a number, and a bare `count`\n/// call outside the readers is the smell this door exists to remove.\npublic enum Tally<Of: Structure>: Close {}\nextension Tally {\n    public static var typeName: String { String(Of.count) }\n}\n"
+          "text": "// ═══════════════════════════════════════════════════════\n// THE FOUNDATION names Structure, Open, Close, Pair, Null.\n//\n// To be one of our things is to be a STRUCTURE. A structure is OPEN (a protocol\n// that opens a tunnel) or CLOSE (an empty enum that seals). The sole structural\n// primitive is PAIR: two named sides. NULL equates their types. A finite-tree\n// interpretation requires separate constructor and termination premises,\n// including a syntax leaf distinct from constructed pairs. [EiF EF2, EF4]\n//\n// For a supplied Null conformance, the compiler checks `Left == Right`\n// at the declared addresses. An answer to a declared question is determined\n// when the compatible set is nonempty and every compatible candidate gives\n// that answer. A proof can derive this agreement from the actual constraint\n// relations without enumerating candidates. Applying the answer to an\n// intended target needs a justified source relation. [V=I U2c, §1b]\n//\n// ── PROTOCOL CREATION RULES (summary, canonical form: Law.swift) ──\n//\n// Only two operations exist:\n//\n//   EXPAND:   associatedtype adds an axis (degree of freedom)\n//   COMPRESS: where clause removes a degree of freedom\n//\n// A valid protocol does at least one of:\n//\n//   associatedtype:  EXPAND   (open an axis)\n//   where:           COMPRESS (constrain an axis)\n//   inherit from 2+: COMPRESS (intersect: A ∩ B, smaller than either)\n//\n// `protocol X: Y {}` (single parent, no where, no axis)\n// is a rename, not a claim. Zero information added.\n//\n// At the meta-level, these rules ARE Pair/Null:\n//   associatedtype = Pair  (two sides: type and protocol)\n//   where X == Y   = Null  (sides collapse)\n//   where X: M     = partial Null (axis constrained)\n// ═══════════════════════════════════════════════════════\n\n// ── Structure / Open / Close ──\n\n/// This names the root ability: what it is to participate in the world. A new name is not written\n/// `: Structure` directly: it is ``Open`` (a `protocol` tunnel, still extensible) or ``Close`` (an\n/// empty `enum` seal, concrete). These are the repository's construction rules. Swift permits\n/// recursive associated types, so conformance does not guarantee that following components\n/// reaches a terminal. The finite-tree interpretation requires that additional premise (EiF EF4).\npublic protocol Structure {\n    /// This gives the name of this type: the edge reading. Dynamic dispatch ensures overrides are\n    /// called through generic contexts (Paired chains, associated types).\n    static var typeName: String { get }\n\n    /// This gives the size of this type: how many leaves it is built from. An atom is one. The floor\n    /// (`Never`) is none. A composed ``Open`` folds the count of everything its `body` lists. Any\n    /// structure has a length, the same way any structure has a name, the second reading the\n    /// builder's ``Paired`` chain gives for free, replacing the hand-rolled `Length` a cons-list\n    /// (`Chain`/`Roster`) used to carry.\n    static var count: Int { get }\n\n    /// This gives the names of this type's leaves, in body order. An atom is its own one-element list. A\n    /// composed ``Open`` folds its `body`'s leaves in the order they were written. The third\n    /// reading the builder's ``Paired`` chain gives for free: where `typeName` collapses a body\n    /// to one string and `count` to one number, `labels` keeps each leaf's name, so a leaf that\n    /// carries its identity (an employee in a batch) can be read back individually.\n    static var labels: [String] { get }\n}\n\n/// This is an OPEN tunnel, written ONLY as a `protocol`. A new name is Open by default: it opens an\n/// axis with `associatedtype` (a hole) and narrows it with `where`. It is extensible, dot-readable,\n/// a criterion. `enum X: Open` is the contradiction the check rejects: an `enum` has already sealed what\n/// Open must keep open.\n///\n/// Every Open type carries a ``Body``: the tunnel for composition. A type that has nothing to compose\n/// defaults to `Never` (the floor). A type that composes children defines its `body` with the one\n/// ``StructureBuilder``, and the builder folds the braces into a ``Paired`` chain.\npublic protocol Open: Structure {\n    associatedtype Body: Structure = Never\n    @StructureBuilder\n    static var body: Body { get }\n}\n\n/// This is the default body: `Never`. Lattice protocols, markers, axes, none compose children, so their body is\n/// the floor. The extension gives it for free: conform to ``Open`` and you get `Never` unless you say\n/// otherwise.\nextension Open\nwhere Body == Never {\n    public static var body: Never { fatalError(\"a type with Body == Never has no body\") }\n}\n\n/// This is a CLOSE: a terminal seal, written ONLY as an empty `enum`: no cases, no `init`, the branch\n/// ends and Swift is handed a concrete empty type. `protocol X: Close` is the contradiction: a Close must be\n/// concrete. A foreign value joins the world here too: a layer writes `extension String: Close` to make\n/// a string one of the sealed leaves, the one place for a value (a `String`), at the edge.\npublic protocol Close: Structure {}   // law:allow: the seal half of Open/Close, not a rename of Structure\n\n// ── Pair / Null ──\n\n/// This provides two named roles for representing a distinction. It is the chosen structural primitive.\n/// Their contents can agree: every ``Null`` is also a ``Pair``. A realized contrast\n/// needs an actual separating relation, not just these two names. [Matter M71]\n/// Its unconstrained axes alone guarantee neither recursive structure nor finite depth.\n/// ``Pair`` is ``Open``: it opens two tunnels (`Left`, `Right`). [EiF EF2, EF4]\n///\n/// - term Left: one side of the distinction.\n/// - term Right: the other side.\n///\n/// > Note: ``Pair`` is the one thing the lattice rests on, and the one thing no\n/// > protocol derives. Trace any type up its parents (§5 of ``Law``) and it ends\n/// > here: an entry in no library, certified by no game.\npublic protocol Pair: Open {\n    associatedtype Left\n    associatedtype Right\n}\n\n/// This requires equality of ``Pair``'s two associated types at the declared addresses.\n/// It does not identify the conforming type with either side or with the syntax leaf.\n/// `Never` is one conformer. Other nominal equality witnesses remain distinct. [EiF EF4]\n///\n/// > Note: For a supplied ``Null`` conformance, the compiler checks\n/// > `Left == Right` at these addresses. An answer to a declared question is\n/// > determined when the compatible set is nonempty and every compatible\n/// > candidate gives that answer. The proof can derive this agreement from the\n/// > actual constraint relations without enumerating candidates. Applying the\n/// > answer to an intended target needs a justified source relation. [V=I U2c, §1b]\npublic protocol Null: Pair\nwhere Left == Right {}\n\n// Never conforms to Null by choosing equal associated types.\n// Equality of these sides is not a claim that every Null conformer is Never.\n// typeName = \"\" / count = 0 / labels = [] break recursion (Never: Open, Open.typeName =\n// Body.typeName, Open.count = Body.count, Open.labels = Body.labels, Never.Body = Never).\nextension Never: Null {\n    public typealias Left = Never\n    public typealias Right = Never\n    public static var typeName: String { \"\" }\n    public static var count: Int { 0 }\n    public static var labels: [String] { [] }\n}\n\n// Never IS Close: the empty type is the seal, the floor every chain reaches. This is the point\n// where ``Open`` and ``Close`` coincide (``Null``'s `Left == Right`): the one type that is both the\n// empty tunnel and the empty seal, so identification is where opening meets closing.\nextension Never: Close {}\n\n// String IS Close: the sealed leaf where a value is. The one foreign value that enters our world,\n// at the edge (§S6). Above it, the structure carries only types. Here, the String carries text.\nextension String: Close {}\n\n// ── typeName: the one rendering mechanism ──\n\n/// This defaults to the Swift type name. Atoms override for their character.\nextension Structure {\n    public static var typeName: String { String(describing: Self.self) }\n}\n\n/// This is an `Open` type that has not customized `body`: it is `Pair`-shaped, not list-shaped\n/// (``Employee``, a verdict gate), a LEAF, so it renders its Swift name, the same as a ``Close`` atom.\n/// Without this, the rule below would read `Body.typeName` and silently render every such leaf\n/// as the empty string.\nextension Open\nwhere Body == Never {\n    public static var typeName: String { String(describing: Self.self) }\n}\n\n/// This is an `Open` type that DOES compose children: it renders its body, `Body.typeName` recurses\n/// through the Paired chain.\nextension Open {\n    public static var typeName: String { Body.typeName }\n}\n\n/// Paired concatenates Left and Right type names.\nextension Paired {\n    public static var typeName: String { L.typeName + R.typeName }\n}\n\n// ── count: the second rendering: how many leaves a body lists ──\n\n/// This is the default, one: a structure counts itself. Atoms (``Close``) keep this: it is also the\n/// floor a leaf ``Open`` type (no custom `body`) falls back to, below.\nextension Structure {\n    public static var count: Int { 1 }\n}\n\n/// This is an `Open` type that has not customized `body`: it is `Pair`-shaped, not list-shaped,\n/// `Employee` (`Pair` for its `Rank`/`Home` coordinate), a verdict gate, an axis marker. It is a LEAF,\n/// the same as a ``Close`` atom, so it counts as one. Without this, the general rule below would read\n/// `Body.count` and silently count every such leaf as zero, exactly the case a roster's members\n/// are made of, so this is the override that keeps `count` correct for a roster's members.\nextension Open\nwhere Body == Never {\n    public static var count: Int { 1 }\n}\n\n/// This is an `Open` type that DOES compose children: it counts through its body, the builder folds a `{ }`\n/// block into a ``Paired`` chain, and that chain's count is the number of statements written.\nextension Open {\n    public static var count: Int { Body.count }\n}\n\n/// Paired sums its two sides: composing is exactly what makes a count more than one.\nextension Paired {\n    public static var count: Int { L.count + R.count }\n}\n\n// ── labels: the third reading: each leaf's name, in body order ──\n\n/// This is the default, one label: a structure's `typeName`. Atoms (``Close``) keep this: it is also\n/// the floor a leaf ``Open`` type (no custom `body`) falls back to, below, the same `Body ==\n/// Never` exception `count` needs, for the same reason.\nextension Structure {\n    public static var labels: [String] { [typeName] }\n}\n\nextension Open\nwhere Body == Never {\n    public static var labels: [String] { [typeName] }\n}\n\n/// An `Open` type that DOES compose children reads its labels through its body.\nextension Open {\n    public static var labels: [String] { Body.labels }\n}\n\n/// This is Paired: it concatenates its two sides' labels, in body order.\nextension Paired {\n    public static var labels: [String] { L.labels + R.labels }\n}\n\n// ── The builder: the ONE @resultBuilder ──\n//\n// The one allowed callable (§S4): folds a `{ }` body into a Pair-chain of Structures, floored at\n// `Never`. ``Paired`` is the ONE concrete `<>` (§S3 plumbing): it keeps two Structures as a value\n// so the builder can return them. Everything else is a protocol.\n\n/// This is the concrete Pair realizer: the ONE `<>` in the system, the framework's plumbing that the\n/// builder folds into. It keeps a left and a right as a value and conforms to ``Pair``. Not written in domain code.\n/// The builder produces it behind the `{ }` curtain.\npublic enum Paired<\n    L: Structure,\n    R: Structure\n>: Pair {\n    case paired(L, R)\n    public typealias Left = L\n    public typealias Right = R\n}\n\n/// This is the one result builder: it folds a `{ }` body into a ``Pair``-chain of Structures, floored at `Never`.\n/// This is the single `@resultBuilder` the system allows (§S4). The builder is the boundary between the\n/// brace-syntax and the type tree: inside the braces, each statement is a ``Structure``. Outside, the\n/// whole body is a single ``Paired`` chain.\n@resultBuilder\npublic enum StructureBuilder {\n    public static func buildExpression<\n        T: Structure\n    >(_ type: T.Type) -> T { fatalError() }\n    public static func buildExpression(_ string: String) -> String { string }\n    @_disfavoredOverload public static func buildExpression<\n        V: Structure\n    >(_ value: V) -> V { value }\n    public static func buildPartialBlock<\n        V: Structure\n    >(first: V) -> V { first }\n    public static func buildPartialBlock<\n        A: Structure,\n        B: Structure\n    >(accumulated: A, next: B) -> Paired<\n        A,\n        B\n    > { .paired(accumulated, next) }\n    public static func buildBlock() -> Never { fatalError() }\n    public static func buildEither<\n        A: Structure,\n        B: Structure\n    >(first: A) -> Paired<\n        A,\n        B\n    > { fatalError() }\n    public static func buildEither<\n        A: Structure,\n        B: Structure\n    >(second: B) -> Paired<\n        A,\n        B\n    > { fatalError() }\n}\n// ── MAGNITUDES — space as structure, and the counting reader. A magnitude is a chain of\n// these atoms. The house fold counts it, and nothing else measures anything. They are in\n// this engine room because `Plus` composes through the one builder and the readers below\n// speak digits: the same §0′ exemption are already on. The design system\n// (DocumentKit) names the rungs, and canvases speak in its names, never in chains of these. ──\n\n/// Unit counts one: the atom of magnitude. `Close` keeps the default count, which is also\n/// the definition.\npublic enum Unit: Close {}\n\n/// Plus sums by composition: the pair of two magnitudes counts as both. The house fold does\n/// the arithmetic, and no member states it.\npublic enum Plus<\n    A: Structure,\n    B: Structure\n>: Open {\n    @StructureBuilder\n    public static var body: some Structure {\n        A.self\n        B.self\n    }\n}\n\n/// Twice is no separate object: doubling IS the pair of a thing with itself.\npublic typealias Twice<S: Structure> = Plus<S, S>\n\n/// Times composes two counts into their product, the way `Paired` composes them into their\n/// sum: one witness, no other member. With it a fraction needs no further arithmetic.\npublic enum Times<\n    A: Structure,\n    B: Structure\n>: Close {}\nextension Times {\n    public static var count: Int { A.count * B.count }\n}\n\n/// The numerals: the powers of two, spelled once as the doubling ladder. Every target\n/// reads these names from here, so a magnitude's meaning is its one written definition,\n/// and a judge unfolds it from this source.\npublic typealias U1 = Unit\npublic typealias U2 = Twice<U1>\npublic typealias U4 = Twice<U2>\npublic typealias U8 = Twice<U4>\npublic typealias U16 = Twice<U8>\npublic typealias U32 = Twice<U16>\npublic typealias U64 = Twice<U32>\npublic typealias U128 = Twice<U64>\npublic typealias U256 = Twice<U128>\npublic typealias U512 = Twice<U256>\n\n/// Rest is what remains: the whole minus what was taken, the subtractive witness beside\n/// `Times`' product. Layout divides space (known pieces come off a given whole, and the\n/// rest is handed on), so subtraction enters the lattice the same way multiplication did:\n/// one witness, counted only at the reading edge. Taking more than the whole has is\n/// refused right there, at the read, the fit made a checked fact.\npublic enum Rest<\n    Whole: Structure,\n    Taken: Structure\n>: Close {}\nextension Rest {\n    public static var count: Int {\n        let whole = Whole.count\n        let taken = Taken.count\n        precondition(\n            taken <= whole,\n            \"Rest underflow: \\(Taken.self) takes \\(taken) from \\(Whole.self) holding \\(whole)\"\n        )\n        return whole - taken\n    }\n}\n\n/// Half is the even split of a magnitude: a box's centre line, a shelf's midpoint. The\n/// count must divide cleanly, and an odd magnitude refuses at generation, loudly, since a\n/// half-pixel would be a number no rung owns.\npublic enum Half<Of: Structure>: Close {}\nextension Half {\n    public static var count: Int {\n        precondition(Of.count % 2 == 0, \"Half of an odd magnitude: \\(Of.count) does not split\")\n        return Of.count / 2\n    }\n}\n\n/// Tally is the counting read: a structure in, its count out as digits, through `typeName`\n/// like every other reading. The one door a canvas may take to a number, and a bare `count`\n/// call outside the readers is the smell this door exists to remove.\npublic enum Tally<Of: Structure>: Close {}\nextension Tally {\n    public static var typeName: String { String(Of.count) }\n}\n"
         }
       ]
     },
     "expected": {
-      "state": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// THE WORLD: one file, four slots, and that is the whole state of the system.\n// Three slots are terms moved by the dictionary's triples; the fourth is a\n// LITERAL slot: free text in a typeName, the medium's prose genre. Its three\n// movements \u2014 append, rubout, clear \u2014 are the applier's own\n// (`swift run Tools press append Note \u2026`), the judge vets the FORM of the\n// file, and a label draws the literal with no reader in between.\n\ntypealias LampMode = LampOff\ntypealias Count = Tick<Never>\ntypealias PinProgress = PinStage0\n\nenum Note: Close {}\nextension Note {\n    static var typeName: String { \"\" }\n}\n",
+      "state": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// THE WORLD: one file, four slots, and that is the whole state of the system.\n// Three slots are terms moved by the dictionary's triples; the fourth is a\n// LITERAL slot: free text in a typeName, the medium's prose genre. Its three\n// movements — append, rubout, clear — are the applier's own\n// (`swift run Tools press append Note …`), the judge vets the FORM of the\n// file, and a label draws the literal with no reader in between.\n\ntypealias LampMode = LampOff\ntypealias Count = Tick<Never>\ntypealias PinProgress = PinStage0\n\nenum Note: Close {}\nextension Note {\n    static var typeName: String { \"\" }\n}\n",
       "changed": true,
       "refusal": null,
       "replayed": true
@@ -5710,23 +5710,23 @@
       "arguments": [
         "BumpUp"
       ],
-      "state": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// THE WORLD: one file, four slots, and that is the whole state of the system.\n// Three slots are terms moved by the dictionary's triples; the fourth is a\n// LITERAL slot: free text in a typeName, the medium's prose genre. Its three\n// movements \u2014 append, rubout, clear \u2014 are the applier's own\n// (`swift run Tools press append Note \u2026`), the judge vets the FORM of the\n// file, and a label draws the literal with no reader in between.\n\ntypealias LampMode = LampOff\ntypealias Count = LampOff\ntypealias PinProgress = PinStage0\n\nenum Note: Close {}\nextension Note {\n    static var typeName: String { \"\" }\n}\n",
-      "dictionary": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n// THE RULES: the world's whole dynamics as triples on the dynamics medium\n// (DocumentKit/Dynamics.swift), over the terms of Examples/Dynamics.swift.\n// Pressing is `swift run Tools press <Rule>`: compare, substitute, or stand.\n// A rule with a variable is a generic declaration, so the judge admits every\n// application at once, before the first press.\n// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\n// \u2500\u2500 the lamp: one slot, two level-0 rules, a two-state automaton written as data \u2500\u2500\n\n/// Off becomes on: a whole transition as one triple, no code anywhere.\npublic enum PowerOn: SlotRule {\n    public typealias Slot = LampModeSlot\n    public typealias From = LampOff\n    public typealias Into = LampOn\n}\n/// On becomes off: the reverse triple, which is why undo is a button, not a mechanism.\npublic enum PowerOff: SlotRule {\n    public typealias Slot = LampModeSlot\n    public typealias From = LampOn\n    public typealias Into = LampOff\n}\n\n// \u2500\u2500 the counter: one slot, one level-1 rule, an infinite space from one triple \u2500\u2500\n\n/// Whatever the count is, wrap it once: a rule with a variable. The generic\n/// declaration IS the theorem that every application is well-typed: the compiler\n/// admits `Tick<T>` for every `T: Counting`, so no reachable state can go wrong.\npublic enum BumpUp<T: Counting>: SlotRule {\n    public typealias Slot = CountSlot\n    public typealias From = T\n    public typealias Into = Tick<T>\n}\n\n// \u2500\u2500 the keypad: a walk of four right digits, its whole table written as\n// thirty-one triples. The pin is 4-2-4-2. A right digit advances, a wrong digit\n// mid-walk resets, and a wrong digit at the start needs NO rule at all: its\n// press finds no matching pattern and the file stands, a no-op by absence. One\n// physical key is a chord over its rules (Chord, one slot by the bound), and at\n// any stage exactly one leaf can match: the table is data, end to end. \u2500\u2500\n\n/// The right digits of the walk: 4 starts, 2 advances, 4 advances again, 2 unlocks.\npublic enum Key4StartsWalk: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage0\n    public typealias Into = PinStage1\n}\npublic enum Key2AdvancesStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage2\n}\npublic enum Key4AdvancesStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage3\n}\npublic enum Key2Unlocks: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinUnlocked\n}\n/// The right digits pressed at the wrong stage reset like any other wrong digit.\npublic enum Key4ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key4ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key2ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\n/// Every other digit resets at every mid-walk stage: the off-path rows of the\n/// table spelled out rather than computed, three triples per key.\npublic enum Key0ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key0ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key0ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\n\n",
+      "state": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// THE WORLD: one file, four slots, and that is the whole state of the system.\n// Three slots are terms moved by the dictionary's triples; the fourth is a\n// LITERAL slot: free text in a typeName, the medium's prose genre. Its three\n// movements — append, rubout, clear — are the applier's own\n// (`swift run Tools press append Note …`), the judge vets the FORM of the\n// file, and a label draws the literal with no reader in between.\n\ntypealias LampMode = LampOff\ntypealias Count = LampOff\ntypealias PinProgress = PinStage0\n\nenum Note: Close {}\nextension Note {\n    static var typeName: String { \"\" }\n}\n",
+      "dictionary": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// ═══════════════════════════════════════════════════════════════\n// THE RULES: the world's whole dynamics as triples on the dynamics medium\n// (DocumentKit/Dynamics.swift), over the terms of Examples/Dynamics.swift.\n// Pressing is `swift run Tools press <Rule>`: compare, substitute, or stand.\n// A rule with a variable is a generic declaration, so the judge admits every\n// application at once, before the first press.\n// ═══════════════════════════════════════════════════════════════\n\n// ── the lamp: one slot, two level-0 rules, a two-state automaton written as data ──\n\n/// Off becomes on: a whole transition as one triple, no code anywhere.\npublic enum PowerOn: SlotRule {\n    public typealias Slot = LampModeSlot\n    public typealias From = LampOff\n    public typealias Into = LampOn\n}\n/// On becomes off: the reverse triple, which is why undo is a button, not a mechanism.\npublic enum PowerOff: SlotRule {\n    public typealias Slot = LampModeSlot\n    public typealias From = LampOn\n    public typealias Into = LampOff\n}\n\n// ── the counter: one slot, one level-1 rule, an infinite space from one triple ──\n\n/// Whatever the count is, wrap it once: a rule with a variable. The generic\n/// declaration IS the theorem that every application is well-typed: the compiler\n/// admits `Tick<T>` for every `T: Counting`, so no reachable state can go wrong.\npublic enum BumpUp<T: Counting>: SlotRule {\n    public typealias Slot = CountSlot\n    public typealias From = T\n    public typealias Into = Tick<T>\n}\n\n// ── the keypad: a walk of four right digits, its whole table written as\n// thirty-one triples. The pin is 4-2-4-2. A right digit advances, a wrong digit\n// mid-walk resets, and a wrong digit at the start needs NO rule at all: its\n// press finds no matching pattern and the file stands, a no-op by absence. One\n// physical key is a chord over its rules (Chord, one slot by the bound), and at\n// any stage exactly one leaf can match: the table is data, end to end. ──\n\n/// The right digits of the walk: 4 starts, 2 advances, 4 advances again, 2 unlocks.\npublic enum Key4StartsWalk: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage0\n    public typealias Into = PinStage1\n}\npublic enum Key2AdvancesStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage2\n}\npublic enum Key4AdvancesStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage3\n}\npublic enum Key2Unlocks: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinUnlocked\n}\n/// The right digits pressed at the wrong stage reset like any other wrong digit.\npublic enum Key4ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key4ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key2ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\n/// Every other digit resets at every mid-walk stage: the off-path rows of the\n/// table spelled out rather than computed, three triples per key.\npublic enum Key0ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key0ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key0ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key1ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key3ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key5ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key6ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key7ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key8ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage1: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage1\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage2: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage2\n    public typealias Into = PinStage0\n}\npublic enum Key9ResetsStage3: SlotRule {\n    public typealias Slot = PinProgressSlot\n    public typealias From = PinStage3\n    public typealias Into = PinStage0\n}\n\n",
       "statePath": "WorldState.swift",
       "dictionaryPath": "Rules.swift",
       "definitions": [
         {
           "path": "Sources/Examples/Dynamics.swift",
-          "text": "import VerificationIsIdentification\n\n// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n// THE DYNAMICS TERMS: the worlds a state file can carry, as pure types. The lamp's\n// two faces, the counter's floor and wrap, the keypad's three stages. The rules\n// that move a world between these terms are triples beside the world itself\n// (DynamicsDemo/Rules.swift) on the dynamics medium (DocumentKit/Dynamics.swift):\n// this file is the alphabet alone. A slot marker names its alias by dropping the\n// `Slot` suffix, so a marker and a live alias never share a name in any module.\n// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\n/// The lamp's one slot: the marker drops its `Slot` suffix to name the alias a\n/// state file carries, `typealias LampMode = <term>`.\npublic enum LampModeSlot {}\npublic enum LampOff {}\npublic enum LampOn {}\n\n/// This marks the terms the counter's slot may hold: the floor and every wrap of\n/// it. The constraint is what the judge checks a press against, for all bindings\n/// at once. A counting term is a structure, so its chain folds to a number the\n/// way every chain in this package does, and `Tally` reads it with no reader\n/// written anywhere.\n///\n/// > Important: `Counting` deliberately stands apart from `IntegerValued`, and\n/// > ``Tick`` is no alias of `Succ`, though both wrap by one. The axis is the\n/// > grammar of moves: a number can be added and halved, a count of events can\n/// > only grow. Merged, every numeric rule would match the counter's slot and\n/// > the counter's rule would match every numeric slot \u2014 the axis split is what\n/// > keeps a button on its own slot.\npublic protocol Counting: Structure {}\nextension Never: Counting {}\n/// One step more than its content: the counter's only constructor. Its count is\n/// the structural fold: one more than what it wraps.\npublic enum Tick<Previous: Counting>: Counting {}\nextension Tick {\n    public static var count: Int { Previous.count + 1 }\n}\n\n/// The counter's one slot: the state file's alias is `Count`.\npublic enum CountSlot {}\n\n/// The keypad's one slot: the state file's alias is `PinProgress`.\npublic enum PinProgressSlot {}\npublic enum PinStage0 {}\npublic enum PinStage1 {}\npublic enum PinStage2 {}\npublic enum PinStage3 {}\npublic enum PinUnlocked {}\n"
+          "text": "import VerificationIsIdentification\n\n// ═══════════════════════════════════════════════════════════════\n// THE DYNAMICS TERMS: the worlds a state file can carry, as pure types. The lamp's\n// two faces, the counter's floor and wrap, the keypad's three stages. The rules\n// that move a world between these terms are triples beside the world itself\n// (DynamicsDemo/Rules.swift) on the dynamics medium (DocumentKit/Dynamics.swift):\n// this file is the alphabet alone. A slot marker names its alias by dropping the\n// `Slot` suffix, so a marker and a live alias never share a name in any module.\n// ═══════════════════════════════════════════════════════════════\n\n/// The lamp's one slot: the marker drops its `Slot` suffix to name the alias a\n/// state file carries, `typealias LampMode = <term>`.\npublic enum LampModeSlot {}\npublic enum LampOff {}\npublic enum LampOn {}\n\n/// This marks the terms the counter's slot may hold: the floor and every wrap of\n/// it. The constraint is what the judge checks a press against, for all bindings\n/// at once. A counting term is a structure, so its chain folds to a number the\n/// way every chain in this package does, and `Tally` reads it with no reader\n/// written anywhere.\n///\n/// > Important: `Counting` deliberately stands apart from `IntegerValued`, and\n/// > ``Tick`` is no alias of `Succ`, though both wrap by one. The axis is the\n/// > grammar of moves: a number can be added and halved, a count of events can\n/// > only grow. Merged, every numeric rule would match the counter's slot and\n/// > the counter's rule would match every numeric slot — the axis split is what\n/// > keeps a button on its own slot.\npublic protocol Counting: Structure {}\nextension Never: Counting {}\n/// One step more than its content: the counter's only constructor. Its count is\n/// the structural fold: one more than what it wraps.\npublic enum Tick<Previous: Counting>: Counting {}\nextension Tick {\n    public static var count: Int { Previous.count + 1 }\n}\n\n/// The counter's one slot: the state file's alias is `Count`.\npublic enum CountSlot {}\n\n/// The keypad's one slot: the state file's alias is `PinProgress`.\npublic enum PinProgressSlot {}\npublic enum PinStage0 {}\npublic enum PinStage1 {}\npublic enum PinStage2 {}\npublic enum PinStage3 {}\npublic enum PinUnlocked {}\n"
         },
         {
           "path": "Sources/VerificationIsIdentification/Primitive.swift",
-          "text": "// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n// THE FOUNDATION names Structure, Open, Close, Pair, Null.\n//\n// To be one of our things is to be a STRUCTURE. A structure is OPEN (a protocol\n// that opens a tunnel) or CLOSE (an empty enum that seals). The sole structural\n// primitive is PAIR: two named sides. NULL equates their types. A finite-tree\n// interpretation requires separate constructor and termination premises,\n// including a syntax leaf distinct from constructed pairs. [EiF EF2, EF4]\n//\n// For a supplied Null conformance, the compiler checks `Left == Right`\n// at the declared addresses. An answer to a declared question is determined\n// when the compatible set is nonempty and every compatible candidate gives\n// that answer. A proof can derive this agreement from the actual constraint\n// relations without enumerating candidates. Applying the answer to an\n// intended target needs a justified source relation. [V=I U2c, \u00a71b]\n//\n// \u2500\u2500 PROTOCOL CREATION RULES (summary, canonical form: Law.swift) \u2500\u2500\n//\n// Only two operations exist:\n//\n//   EXPAND:   associatedtype adds an axis (degree of freedom)\n//   COMPRESS: where clause removes a degree of freedom\n//\n// A valid protocol does at least one of:\n//\n//   associatedtype:  EXPAND   (open an axis)\n//   where:           COMPRESS (constrain an axis)\n//   inherit from 2+: COMPRESS (intersect: A \u2229 B, smaller than either)\n//\n// `protocol X: Y {}` (single parent, no where, no axis)\n// is a rename, not a claim. Zero information added.\n//\n// At the meta-level, these rules ARE Pair/Null:\n//   associatedtype = Pair  (two sides: type and protocol)\n//   where X == Y   = Null  (sides collapse)\n//   where X: M     = partial Null (axis constrained)\n// \u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\n\n// \u2500\u2500 Structure / Open / Close \u2500\u2500\n\n/// This names the root ability: what it is to participate in the world. A new name is not written\n/// `: Structure` directly: it is ``Open`` (a `protocol` tunnel, still extensible) or ``Close`` (an\n/// empty `enum` seal, concrete). These are the repository's construction rules. Swift permits\n/// recursive associated types, so conformance does not guarantee that following components\n/// reaches a terminal. The finite-tree interpretation requires that additional premise (EiF EF4).\npublic protocol Structure {\n    /// This gives the name of this type: the edge reading. Dynamic dispatch ensures overrides are\n    /// called through generic contexts (Paired chains, associated types).\n    static var typeName: String { get }\n\n    /// This gives the size of this type: how many leaves it is built from. An atom is one. The floor\n    /// (`Never`) is none. A composed ``Open`` folds the count of everything its `body` lists. Any\n    /// structure has a length, the same way any structure has a name, the second reading the\n    /// builder's ``Paired`` chain gives for free, replacing the hand-rolled `Length` a cons-list\n    /// (`Chain`/`Roster`) used to carry.\n    static var count: Int { get }\n\n    /// This gives the names of this type's leaves, in body order. An atom is its own one-element list. A\n    /// composed ``Open`` folds its `body`'s leaves in the order they were written. The third\n    /// reading the builder's ``Paired`` chain gives for free: where `typeName` collapses a body\n    /// to one string and `count` to one number, `labels` keeps each leaf's name, so a leaf that\n    /// carries its identity (an employee in a batch) can be read back individually.\n    static var labels: [String] { get }\n}\n\n/// This is an OPEN tunnel, written ONLY as a `protocol`. A new name is Open by default: it opens an\n/// axis with `associatedtype` (a hole) and narrows it with `where`. It is extensible, dot-readable,\n/// a criterion. `enum X: Open` is the contradiction the check rejects: an `enum` has already sealed what\n/// Open must keep open.\n///\n/// Every Open type carries a ``Body``: the tunnel for composition. A type that has nothing to compose\n/// defaults to `Never` (the floor). A type that composes children defines its `body` with the one\n/// ``StructureBuilder``, and the builder folds the braces into a ``Paired`` chain.\npublic protocol Open: Structure {\n    associatedtype Body: Structure = Never\n    @StructureBuilder\n    static var body: Body { get }\n}\n\n/// This is the default body: `Never`. Lattice protocols, markers, axes, none compose children, so their body is\n/// the floor. The extension gives it for free: conform to ``Open`` and you get `Never` unless you say\n/// otherwise.\nextension Open\nwhere Body == Never {\n    public static var body: Never { fatalError(\"a type with Body == Never has no body\") }\n}\n\n/// This is a CLOSE: a terminal seal, written ONLY as an empty `enum`: no cases, no `init`, the branch\n/// ends and Swift is handed a concrete empty type. `protocol X: Close` is the contradiction: a Close must be\n/// concrete. A foreign value joins the world here too: a layer writes `extension String: Close` to make\n/// a string one of the sealed leaves, the one place for a value (a `String`), at the edge.\npublic protocol Close: Structure {}   // law:allow: the seal half of Open/Close, not a rename of Structure\n\n// \u2500\u2500 Pair / Null \u2500\u2500\n\n/// This provides two named roles for representing a distinction. It is the chosen structural primitive.\n/// Their contents can agree: every ``Null`` is also a ``Pair``. A realized contrast\n/// needs an actual separating relation, not just these two names. [Matter M71]\n/// Its unconstrained axes alone guarantee neither recursive structure nor finite depth.\n/// ``Pair`` is ``Open``: it opens two tunnels (`Left`, `Right`). [EiF EF2, EF4]\n///\n/// - term Left: one side of the distinction.\n/// - term Right: the other side.\n///\n/// > Note: ``Pair`` is the one thing the lattice rests on, and the one thing no\n/// > protocol derives. Trace any type up its parents (\u00a75 of ``Law``) and it ends\n/// > here: an entry in no library, certified by no game.\npublic protocol Pair: Open {\n    associatedtype Left\n    associatedtype Right\n}\n\n/// This requires equality of ``Pair``'s two associated types at the declared addresses.\n/// It does not identify the conforming type with either side or with the syntax leaf.\n/// `Never` is one conformer. Other nominal equality witnesses remain distinct. [EiF EF4]\n///\n/// > Note: For a supplied ``Null`` conformance, the compiler checks\n/// > `Left == Right` at these addresses. An answer to a declared question is\n/// > determined when the compatible set is nonempty and every compatible\n/// > candidate gives that answer. The proof can derive this agreement from the\n/// > actual constraint relations without enumerating candidates. Applying the\n/// > answer to an intended target needs a justified source relation. [V=I U2c, \u00a71b]\npublic protocol Null: Pair\nwhere Left == Right {}\n\n// Never conforms to Null by choosing equal associated types.\n// Equality of these sides is not a claim that every Null conformer is Never.\n// typeName = \"\" / count = 0 / labels = [] break recursion (Never: Open, Open.typeName =\n// Body.typeName, Open.count = Body.count, Open.labels = Body.labels, Never.Body = Never).\nextension Never: Null {\n    public typealias Left = Never\n    public typealias Right = Never\n    public static var typeName: String { \"\" }\n    public static var count: Int { 0 }\n    public static var labels: [String] { [] }\n}\n\n// Never IS Close: the empty type is the seal, the floor every chain reaches. This is the point\n// where ``Open`` and ``Close`` coincide (``Null``'s `Left == Right`): the one type that is both the\n// empty tunnel and the empty seal, so identification is where opening meets closing.\nextension Never: Close {}\n\n// String IS Close: the sealed leaf where a value is. The one foreign value that enters our world,\n// at the edge (\u00a7S6). Above it, the structure carries only types. Here, the String carries text.\nextension String: Close {}\n\n// \u2500\u2500 typeName: the one rendering mechanism \u2500\u2500\n\n/// This defaults to the Swift type name. Atoms override for their character.\nextension Structure {\n    public static var typeName: String { String(describing: Self.self) }\n}\n\n/// This is an `Open` type that has not customized `body`: it is `Pair`-shaped, not list-shaped\n/// (``Employee``, a verdict gate), a LEAF, so it renders its Swift name, the same as a ``Close`` atom.\n/// Without this, the rule below would read `Body.typeName` and silently render every such leaf\n/// as the empty string.\nextension Open\nwhere Body == Never {\n    public static var typeName: String { String(describing: Self.self) }\n}\n\n/// This is an `Open` type that DOES compose children: it renders its body, `Body.typeName` recurses\n/// through the Paired chain.\nextension Open {\n    public static var typeName: String { Body.typeName }\n}\n\n/// Paired concatenates Left and Right type names.\nextension Paired {\n    public static var typeName: String { L.typeName + R.typeName }\n}\n\n// \u2500\u2500 count: the second rendering: how many leaves a body lists \u2500\u2500\n\n/// This is the default, one: a structure counts itself. Atoms (``Close``) keep this: it is also the\n/// floor a leaf ``Open`` type (no custom `body`) falls back to, below.\nextension Structure {\n    public static var count: Int { 1 }\n}\n\n/// This is an `Open` type that has not customized `body`: it is `Pair`-shaped, not list-shaped,\n/// `Employee` (`Pair` for its `Rank`/`Home` coordinate), a verdict gate, an axis marker. It is a LEAF,\n/// the same as a ``Close`` atom, so it counts as one. Without this, the general rule below would read\n/// `Body.count` and silently count every such leaf as zero, exactly the case a roster's members\n/// are made of, so this is the override that keeps `count` correct for a roster's members.\nextension Open\nwhere Body == Never {\n    public static var count: Int { 1 }\n}\n\n/// This is an `Open` type that DOES compose children: it counts through its body, the builder folds a `{ }`\n/// block into a ``Paired`` chain, and that chain's count is the number of statements written.\nextension Open {\n    public static var count: Int { Body.count }\n}\n\n/// Paired sums its two sides: composing is exactly what makes a count more than one.\nextension Paired {\n    public static var count: Int { L.count + R.count }\n}\n\n// \u2500\u2500 labels: the third reading: each leaf's name, in body order \u2500\u2500\n\n/// This is the default, one label: a structure's `typeName`. Atoms (``Close``) keep this: it is also\n/// the floor a leaf ``Open`` type (no custom `body`) falls back to, below, the same `Body ==\n/// Never` exception `count` needs, for the same reason.\nextension Structure {\n    public static var labels: [String] { [typeName] }\n}\n\nextension Open\nwhere Body == Never {\n    public static var labels: [String] { [typeName] }\n}\n\n/// An `Open` type that DOES compose children reads its labels through its body.\nextension Open {\n    public static var labels: [String] { Body.labels }\n}\n\n/// This is Paired: it concatenates its two sides' labels, in body order.\nextension Paired {\n    public static var labels: [String] { L.labels + R.labels }\n}\n\n// \u2500\u2500 The builder: the ONE @resultBuilder \u2500\u2500\n//\n// The one allowed callable (\u00a7S4): folds a `{ }` body into a Pair-chain of Structures, floored at\n// `Never`. ``Paired`` is the ONE concrete `<>` (\u00a7S3 plumbing): it keeps two Structures as a value\n// so the builder can return them. Everything else is a protocol.\n\n/// This is the concrete Pair realizer: the ONE `<>` in the system, the framework's plumbing that the\n/// builder folds into. It keeps a left and a right as a value and conforms to ``Pair``. Not written in domain code.\n/// The builder produces it behind the `{ }` curtain.\npublic enum Paired<\n    L: Structure,\n    R: Structure\n>: Pair {\n    case paired(L, R)\n    public typealias Left = L\n    public typealias Right = R\n}\n\n/// This is the one result builder: it folds a `{ }` body into a ``Pair``-chain of Structures, floored at `Never`.\n/// This is the single `@resultBuilder` the system allows (\u00a7S4). The builder is the boundary between the\n/// brace-syntax and the type tree: inside the braces, each statement is a ``Structure``. Outside, the\n/// whole body is a single ``Paired`` chain.\n@resultBuilder\npublic enum StructureBuilder {\n    public static func buildExpression<\n        T: Structure\n    >(_ type: T.Type) -> T { fatalError() }\n    public static func buildExpression(_ string: String) -> String { string }\n    @_disfavoredOverload public static func buildExpression<\n        V: Structure\n    >(_ value: V) -> V { value }\n    public static func buildPartialBlock<\n        V: Structure\n    >(first: V) -> V { first }\n    public static func buildPartialBlock<\n        A: Structure,\n        B: Structure\n    >(accumulated: A, next: B) -> Paired<\n        A,\n        B\n    > { .paired(accumulated, next) }\n    public static func buildBlock() -> Never { fatalError() }\n    public static func buildEither<\n        A: Structure,\n        B: Structure\n    >(first: A) -> Paired<\n        A,\n        B\n    > { fatalError() }\n    public static func buildEither<\n        A: Structure,\n        B: Structure\n    >(second: B) -> Paired<\n        A,\n        B\n    > { fatalError() }\n}\n// \u2500\u2500 MAGNITUDES \u2014 space as structure, and the counting reader. A magnitude is a chain of\n// these atoms. The house fold counts it, and nothing else measures anything. They are in\n// this engine room because `Plus` composes through the one builder and the readers below\n// speak digits: the same \u00a70\u2032 exemption are already on. The design system\n// (DocumentKit) names the rungs, and canvases speak in its names, never in chains of these. \u2500\u2500\n\n/// Unit counts one: the atom of magnitude. `Close` keeps the default count, which is also\n/// the definition.\npublic enum Unit: Close {}\n\n/// Plus sums by composition: the pair of two magnitudes counts as both. The house fold does\n/// the arithmetic, and no member states it.\npublic enum Plus<\n    A: Structure,\n    B: Structure\n>: Open {\n    @StructureBuilder\n    public static var body: some Structure {\n        A.self\n        B.self\n    }\n}\n\n/// Twice is no separate object: doubling IS the pair of a thing with itself.\npublic typealias Twice<S: Structure> = Plus<S, S>\n\n/// Times composes two counts into their product, the way `Paired` composes them into their\n/// sum: one witness, no other member. With it a fraction needs no further arithmetic.\npublic enum Times<\n    A: Structure,\n    B: Structure\n>: Close {}\nextension Times {\n    public static var count: Int { A.count * B.count }\n}\n\n/// The numerals: the powers of two, spelled once as the doubling ladder. Every target\n/// reads these names from here, so a magnitude's meaning is its one written definition,\n/// and a judge unfolds it from this source.\npublic typealias U1 = Unit\npublic typealias U2 = Twice<U1>\npublic typealias U4 = Twice<U2>\npublic typealias U8 = Twice<U4>\npublic typealias U16 = Twice<U8>\npublic typealias U32 = Twice<U16>\npublic typealias U64 = Twice<U32>\npublic typealias U128 = Twice<U64>\npublic typealias U256 = Twice<U128>\npublic typealias U512 = Twice<U256>\n\n/// Rest is what remains: the whole minus what was taken, the subtractive witness beside\n/// `Times`' product. Layout divides space (known pieces come off a given whole, and the\n/// rest is handed on), so subtraction enters the lattice the same way multiplication did:\n/// one witness, counted only at the reading edge. Taking more than the whole has is\n/// refused right there, at the read, the fit made a checked fact.\npublic enum Rest<\n    Whole: Structure,\n    Taken: Structure\n>: Close {}\nextension Rest {\n    public static var count: Int {\n        let whole = Whole.count\n        let taken = Taken.count\n        precondition(\n            taken <= whole,\n            \"Rest underflow: \\(Taken.self) takes \\(taken) from \\(Whole.self) holding \\(whole)\"\n        )\n        return whole - taken\n    }\n}\n\n/// Half is the even split of a magnitude: a box's centre line, a shelf's midpoint. The\n/// count must divide cleanly, and an odd magnitude refuses at generation, loudly, since a\n/// half-pixel would be a number no rung owns.\npublic enum Half<Of: Structure>: Close {}\nextension Half {\n    public static var count: Int {\n        precondition(Of.count % 2 == 0, \"Half of an odd magnitude: \\(Of.count) does not split\")\n        return Of.count / 2\n    }\n}\n\n/// Tally is the counting read: a structure in, its count out as digits, through `typeName`\n/// like every other reading. The one door a canvas may take to a number, and a bare `count`\n/// call outside the readers is the smell this door exists to remove.\npublic enum Tally<Of: Structure>: Close {}\nextension Tally {\n    public static var typeName: String { String(Of.count) }\n}\n"
+          "text": "// ═══════════════════════════════════════════════════════\n// THE FOUNDATION names Structure, Open, Close, Pair, Null.\n//\n// To be one of our things is to be a STRUCTURE. A structure is OPEN (a protocol\n// that opens a tunnel) or CLOSE (an empty enum that seals). The sole structural\n// primitive is PAIR: two named sides. NULL equates their types. A finite-tree\n// interpretation requires separate constructor and termination premises,\n// including a syntax leaf distinct from constructed pairs. [EiF EF2, EF4]\n//\n// For a supplied Null conformance, the compiler checks `Left == Right`\n// at the declared addresses. An answer to a declared question is determined\n// when the compatible set is nonempty and every compatible candidate gives\n// that answer. A proof can derive this agreement from the actual constraint\n// relations without enumerating candidates. Applying the answer to an\n// intended target needs a justified source relation. [V=I U2c, §1b]\n//\n// ── PROTOCOL CREATION RULES (summary, canonical form: Law.swift) ──\n//\n// Only two operations exist:\n//\n//   EXPAND:   associatedtype adds an axis (degree of freedom)\n//   COMPRESS: where clause removes a degree of freedom\n//\n// A valid protocol does at least one of:\n//\n//   associatedtype:  EXPAND   (open an axis)\n//   where:           COMPRESS (constrain an axis)\n//   inherit from 2+: COMPRESS (intersect: A ∩ B, smaller than either)\n//\n// `protocol X: Y {}` (single parent, no where, no axis)\n// is a rename, not a claim. Zero information added.\n//\n// At the meta-level, these rules ARE Pair/Null:\n//   associatedtype = Pair  (two sides: type and protocol)\n//   where X == Y   = Null  (sides collapse)\n//   where X: M     = partial Null (axis constrained)\n// ═══════════════════════════════════════════════════════\n\n// ── Structure / Open / Close ──\n\n/// This names the root ability: what it is to participate in the world. A new name is not written\n/// `: Structure` directly: it is ``Open`` (a `protocol` tunnel, still extensible) or ``Close`` (an\n/// empty `enum` seal, concrete). These are the repository's construction rules. Swift permits\n/// recursive associated types, so conformance does not guarantee that following components\n/// reaches a terminal. The finite-tree interpretation requires that additional premise (EiF EF4).\npublic protocol Structure {\n    /// This gives the name of this type: the edge reading. Dynamic dispatch ensures overrides are\n    /// called through generic contexts (Paired chains, associated types).\n    static var typeName: String { get }\n\n    /// This gives the size of this type: how many leaves it is built from. An atom is one. The floor\n    /// (`Never`) is none. A composed ``Open`` folds the count of everything its `body` lists. Any\n    /// structure has a length, the same way any structure has a name, the second reading the\n    /// builder's ``Paired`` chain gives for free, replacing the hand-rolled `Length` a cons-list\n    /// (`Chain`/`Roster`) used to carry.\n    static var count: Int { get }\n\n    /// This gives the names of this type's leaves, in body order. An atom is its own one-element list. A\n    /// composed ``Open`` folds its `body`'s leaves in the order they were written. The third\n    /// reading the builder's ``Paired`` chain gives for free: where `typeName` collapses a body\n    /// to one string and `count` to one number, `labels` keeps each leaf's name, so a leaf that\n    /// carries its identity (an employee in a batch) can be read back individually.\n    static var labels: [String] { get }\n}\n\n/// This is an OPEN tunnel, written ONLY as a `protocol`. A new name is Open by default: it opens an\n/// axis with `associatedtype` (a hole) and narrows it with `where`. It is extensible, dot-readable,\n/// a criterion. `enum X: Open` is the contradiction the check rejects: an `enum` has already sealed what\n/// Open must keep open.\n///\n/// Every Open type carries a ``Body``: the tunnel for composition. A type that has nothing to compose\n/// defaults to `Never` (the floor). A type that composes children defines its `body` with the one\n/// ``StructureBuilder``, and the builder folds the braces into a ``Paired`` chain.\npublic protocol Open: Structure {\n    associatedtype Body: Structure = Never\n    @StructureBuilder\n    static var body: Body { get }\n}\n\n/// This is the default body: `Never`. Lattice protocols, markers, axes, none compose children, so their body is\n/// the floor. The extension gives it for free: conform to ``Open`` and you get `Never` unless you say\n/// otherwise.\nextension Open\nwhere Body == Never {\n    public static var body: Never { fatalError(\"a type with Body == Never has no body\") }\n}\n\n/// This is a CLOSE: a terminal seal, written ONLY as an empty `enum`: no cases, no `init`, the branch\n/// ends and Swift is handed a concrete empty type. `protocol X: Close` is the contradiction: a Close must be\n/// concrete. A foreign value joins the world here too: a layer writes `extension String: Close` to make\n/// a string one of the sealed leaves, the one place for a value (a `String`), at the edge.\npublic protocol Close: Structure {}   // law:allow: the seal half of Open/Close, not a rename of Structure\n\n// ── Pair / Null ──\n\n/// This provides two named roles for representing a distinction. It is the chosen structural primitive.\n/// Their contents can agree: every ``Null`` is also a ``Pair``. A realized contrast\n/// needs an actual separating relation, not just these two names. [Matter M71]\n/// Its unconstrained axes alone guarantee neither recursive structure nor finite depth.\n/// ``Pair`` is ``Open``: it opens two tunnels (`Left`, `Right`). [EiF EF2, EF4]\n///\n/// - term Left: one side of the distinction.\n/// - term Right: the other side.\n///\n/// > Note: ``Pair`` is the one thing the lattice rests on, and the one thing no\n/// > protocol derives. Trace any type up its parents (§5 of ``Law``) and it ends\n/// > here: an entry in no library, certified by no game.\npublic protocol Pair: Open {\n    associatedtype Left\n    associatedtype Right\n}\n\n/// This requires equality of ``Pair``'s two associated types at the declared addresses.\n/// It does not identify the conforming type with either side or with the syntax leaf.\n/// `Never` is one conformer. Other nominal equality witnesses remain distinct. [EiF EF4]\n///\n/// > Note: For a supplied ``Null`` conformance, the compiler checks\n/// > `Left == Right` at these addresses. An answer to a declared question is\n/// > determined when the compatible set is nonempty and every compatible\n/// > candidate gives that answer. The proof can derive this agreement from the\n/// > actual constraint relations without enumerating candidates. Applying the\n/// > answer to an intended target needs a justified source relation. [V=I U2c, §1b]\npublic protocol Null: Pair\nwhere Left == Right {}\n\n// Never conforms to Null by choosing equal associated types.\n// Equality of these sides is not a claim that every Null conformer is Never.\n// typeName = \"\" / count = 0 / labels = [] break recursion (Never: Open, Open.typeName =\n// Body.typeName, Open.count = Body.count, Open.labels = Body.labels, Never.Body = Never).\nextension Never: Null {\n    public typealias Left = Never\n    public typealias Right = Never\n    public static var typeName: String { \"\" }\n    public static var count: Int { 0 }\n    public static var labels: [String] { [] }\n}\n\n// Never IS Close: the empty type is the seal, the floor every chain reaches. This is the point\n// where ``Open`` and ``Close`` coincide (``Null``'s `Left == Right`): the one type that is both the\n// empty tunnel and the empty seal, so identification is where opening meets closing.\nextension Never: Close {}\n\n// String IS Close: the sealed leaf where a value is. The one foreign value that enters our world,\n// at the edge (§S6). Above it, the structure carries only types. Here, the String carries text.\nextension String: Close {}\n\n// ── typeName: the one rendering mechanism ──\n\n/// This defaults to the Swift type name. Atoms override for their character.\nextension Structure {\n    public static var typeName: String { String(describing: Self.self) }\n}\n\n/// This is an `Open` type that has not customized `body`: it is `Pair`-shaped, not list-shaped\n/// (``Employee``, a verdict gate), a LEAF, so it renders its Swift name, the same as a ``Close`` atom.\n/// Without this, the rule below would read `Body.typeName` and silently render every such leaf\n/// as the empty string.\nextension Open\nwhere Body == Never {\n    public static var typeName: String { String(describing: Self.self) }\n}\n\n/// This is an `Open` type that DOES compose children: it renders its body, `Body.typeName` recurses\n/// through the Paired chain.\nextension Open {\n    public static var typeName: String { Body.typeName }\n}\n\n/// Paired concatenates Left and Right type names.\nextension Paired {\n    public static var typeName: String { L.typeName + R.typeName }\n}\n\n// ── count: the second rendering: how many leaves a body lists ──\n\n/// This is the default, one: a structure counts itself. Atoms (``Close``) keep this: it is also the\n/// floor a leaf ``Open`` type (no custom `body`) falls back to, below.\nextension Structure {\n    public static var count: Int { 1 }\n}\n\n/// This is an `Open` type that has not customized `body`: it is `Pair`-shaped, not list-shaped,\n/// `Employee` (`Pair` for its `Rank`/`Home` coordinate), a verdict gate, an axis marker. It is a LEAF,\n/// the same as a ``Close`` atom, so it counts as one. Without this, the general rule below would read\n/// `Body.count` and silently count every such leaf as zero, exactly the case a roster's members\n/// are made of, so this is the override that keeps `count` correct for a roster's members.\nextension Open\nwhere Body == Never {\n    public static var count: Int { 1 }\n}\n\n/// This is an `Open` type that DOES compose children: it counts through its body, the builder folds a `{ }`\n/// block into a ``Paired`` chain, and that chain's count is the number of statements written.\nextension Open {\n    public static var count: Int { Body.count }\n}\n\n/// Paired sums its two sides: composing is exactly what makes a count more than one.\nextension Paired {\n    public static var count: Int { L.count + R.count }\n}\n\n// ── labels: the third reading: each leaf's name, in body order ──\n\n/// This is the default, one label: a structure's `typeName`. Atoms (``Close``) keep this: it is also\n/// the floor a leaf ``Open`` type (no custom `body`) falls back to, below, the same `Body ==\n/// Never` exception `count` needs, for the same reason.\nextension Structure {\n    public static var labels: [String] { [typeName] }\n}\n\nextension Open\nwhere Body == Never {\n    public static var labels: [String] { [typeName] }\n}\n\n/// An `Open` type that DOES compose children reads its labels through its body.\nextension Open {\n    public static var labels: [String] { Body.labels }\n}\n\n/// This is Paired: it concatenates its two sides' labels, in body order.\nextension Paired {\n    public static var labels: [String] { L.labels + R.labels }\n}\n\n// ── The builder: the ONE @resultBuilder ──\n//\n// The one allowed callable (§S4): folds a `{ }` body into a Pair-chain of Structures, floored at\n// `Never`. ``Paired`` is the ONE concrete `<>` (§S3 plumbing): it keeps two Structures as a value\n// so the builder can return them. Everything else is a protocol.\n\n/// This is the concrete Pair realizer: the ONE `<>` in the system, the framework's plumbing that the\n/// builder folds into. It keeps a left and a right as a value and conforms to ``Pair``. Not written in domain code.\n/// The builder produces it behind the `{ }` curtain.\npublic enum Paired<\n    L: Structure,\n    R: Structure\n>: Pair {\n    case paired(L, R)\n    public typealias Left = L\n    public typealias Right = R\n}\n\n/// This is the one result builder: it folds a `{ }` body into a ``Pair``-chain of Structures, floored at `Never`.\n/// This is the single `@resultBuilder` the system allows (§S4). The builder is the boundary between the\n/// brace-syntax and the type tree: inside the braces, each statement is a ``Structure``. Outside, the\n/// whole body is a single ``Paired`` chain.\n@resultBuilder\npublic enum StructureBuilder {\n    public static func buildExpression<\n        T: Structure\n    >(_ type: T.Type) -> T { fatalError() }\n    public static func buildExpression(_ string: String) -> String { string }\n    @_disfavoredOverload public static func buildExpression<\n        V: Structure\n    >(_ value: V) -> V { value }\n    public static func buildPartialBlock<\n        V: Structure\n    >(first: V) -> V { first }\n    public static func buildPartialBlock<\n        A: Structure,\n        B: Structure\n    >(accumulated: A, next: B) -> Paired<\n        A,\n        B\n    > { .paired(accumulated, next) }\n    public static func buildBlock() -> Never { fatalError() }\n    public static func buildEither<\n        A: Structure,\n        B: Structure\n    >(first: A) -> Paired<\n        A,\n        B\n    > { fatalError() }\n    public static func buildEither<\n        A: Structure,\n        B: Structure\n    >(second: B) -> Paired<\n        A,\n        B\n    > { fatalError() }\n}\n// ── MAGNITUDES — space as structure, and the counting reader. A magnitude is a chain of\n// these atoms. The house fold counts it, and nothing else measures anything. They are in\n// this engine room because `Plus` composes through the one builder and the readers below\n// speak digits: the same §0′ exemption are already on. The design system\n// (DocumentKit) names the rungs, and canvases speak in its names, never in chains of these. ──\n\n/// Unit counts one: the atom of magnitude. `Close` keeps the default count, which is also\n/// the definition.\npublic enum Unit: Close {}\n\n/// Plus sums by composition: the pair of two magnitudes counts as both. The house fold does\n/// the arithmetic, and no member states it.\npublic enum Plus<\n    A: Structure,\n    B: Structure\n>: Open {\n    @StructureBuilder\n    public static var body: some Structure {\n        A.self\n        B.self\n    }\n}\n\n/// Twice is no separate object: doubling IS the pair of a thing with itself.\npublic typealias Twice<S: Structure> = Plus<S, S>\n\n/// Times composes two counts into their product, the way `Paired` composes them into their\n/// sum: one witness, no other member. With it a fraction needs no further arithmetic.\npublic enum Times<\n    A: Structure,\n    B: Structure\n>: Close {}\nextension Times {\n    public static var count: Int { A.count * B.count }\n}\n\n/// The numerals: the powers of two, spelled once as the doubling ladder. Every target\n/// reads these names from here, so a magnitude's meaning is its one written definition,\n/// and a judge unfolds it from this source.\npublic typealias U1 = Unit\npublic typealias U2 = Twice<U1>\npublic typealias U4 = Twice<U2>\npublic typealias U8 = Twice<U4>\npublic typealias U16 = Twice<U8>\npublic typealias U32 = Twice<U16>\npublic typealias U64 = Twice<U32>\npublic typealias U128 = Twice<U64>\npublic typealias U256 = Twice<U128>\npublic typealias U512 = Twice<U256>\n\n/// Rest is what remains: the whole minus what was taken, the subtractive witness beside\n/// `Times`' product. Layout divides space (known pieces come off a given whole, and the\n/// rest is handed on), so subtraction enters the lattice the same way multiplication did:\n/// one witness, counted only at the reading edge. Taking more than the whole has is\n/// refused right there, at the read, the fit made a checked fact.\npublic enum Rest<\n    Whole: Structure,\n    Taken: Structure\n>: Close {}\nextension Rest {\n    public static var count: Int {\n        let whole = Whole.count\n        let taken = Taken.count\n        precondition(\n            taken <= whole,\n            \"Rest underflow: \\(Taken.self) takes \\(taken) from \\(Whole.self) holding \\(whole)\"\n        )\n        return whole - taken\n    }\n}\n\n/// Half is the even split of a magnitude: a box's centre line, a shelf's midpoint. The\n/// count must divide cleanly, and an odd magnitude refuses at generation, loudly, since a\n/// half-pixel would be a number no rung owns.\npublic enum Half<Of: Structure>: Close {}\nextension Half {\n    public static var count: Int {\n        precondition(Of.count % 2 == 0, \"Half of an odd magnitude: \\(Of.count) does not split\")\n        return Of.count / 2\n    }\n}\n\n/// Tally is the counting read: a structure in, its count out as digits, through `typeName`\n/// like every other reading. The one door a canvas may take to a number, and a bare `count`\n/// call outside the readers is the smell this door exists to remove.\npublic enum Tally<Of: Structure>: Close {}\nextension Tally {\n    public static var typeName: String { String(Of.count) }\n}\n"
         }
       ]
     },
     "expected": {
-      "state": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// THE WORLD: one file, four slots, and that is the whole state of the system.\n// Three slots are terms moved by the dictionary's triples; the fourth is a\n// LITERAL slot: free text in a typeName, the medium's prose genre. Its three\n// movements \u2014 append, rubout, clear \u2014 are the applier's own\n// (`swift run Tools press append Note \u2026`), the judge vets the FORM of the\n// file, and a label draws the literal with no reader in between.\n\ntypealias LampMode = LampOff\ntypealias Count = LampOff\ntypealias PinProgress = PinStage0\n\nenum Note: Close {}\nextension Note {\n    static var typeName: String { \"\" }\n}\n",
+      "state": "import VerificationIsIdentification\nimport DocumentKit\nimport Examples\n\n// THE WORLD: one file, four slots, and that is the whole state of the system.\n// Three slots are terms moved by the dictionary's triples; the fourth is a\n// LITERAL slot: free text in a typeName, the medium's prose genre. Its three\n// movements — append, rubout, clear — are the applier's own\n// (`swift run Tools press append Note …`), the judge vets the FORM of the\n// file, and a label draws the literal with no reader in between.\n\ntypealias LampMode = LampOff\ntypealias Count = LampOff\ntypealias PinProgress = PinStage0\n\nenum Note: Close {}\nextension Note {\n    static var typeName: String { \"\" }\n}\n",
       "changed": false,
       "refusal": {
         "address": "Rules.swift#BumpUp",
@@ -23502,7 +23502,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "\ufeffenum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
+      "dictionary": "﻿enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -23511,7 +23511,7 @@
       "changed": false,
       "refusal": {
         "address": "rules.swift#TurnOn",
-        "reason_contains": "unread token '\ufeff'"
+        "reason_contains": "unread token '﻿'"
       }
     }
   },
@@ -23539,17 +23539,17 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "\ufefftypealias Mode = Off\n",
+      "state": "﻿typealias Mode = Off\n",
       "dictionary": "enum TurnOn {\n    typealias Slot = ModeSlot\n    typealias From = Off\n    typealias Into = On\n}\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
     "expected": {
-      "state": "\ufefftypealias Mode = Off\n",
+      "state": "﻿typealias Mode = Off\n",
       "changed": false,
       "refusal": {
         "address": "state.swift#Mode",
-        "reason_contains": "unread token '\ufeff'"
+        "reason_contains": "unread token '﻿'"
       }
     }
   },
@@ -23584,7 +23584,7 @@
       "definitions": [
         {
           "path": "defs.swift",
-          "text": "\ufeffenum Other {}\n"
+          "text": "﻿enum Other {}\n"
         }
       ]
     },
@@ -23593,7 +23593,7 @@
       "changed": false,
       "refusal": {
         "address": "defs.swift",
-        "reason_contains": "unread token '\ufeff'"
+        "reason_contains": "unread token '﻿'"
       }
     }
   },
@@ -28171,7 +28171,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Before {}\n\ufeffenum After {}\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Before {}\n﻿enum After {}\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -28180,7 +28180,7 @@
       "changed": false,
       "refusal": {
         "address": "rules.swift#TurnOn",
-        "reason_contains": "unread token '\ufeff'"
+        "reason_contains": "unread token '﻿'"
       }
     }
   },
@@ -28191,7 +28191,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n// \ufeff\n/* \ufeff */\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n// ﻿\n/* ﻿ */\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -28209,7 +28209,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Text { static var text: String { \"\ufeff\" } }\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Text { static var text: String { \"﻿\" } }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -28226,17 +28226,17 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "typealias Mode = Off\nenum Before {}\n\ufeffenum After {}\n",
+      "state": "typealias Mode = Off\nenum Before {}\n﻿enum After {}\n",
       "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
     "expected": {
-      "state": "typealias Mode = Off\nenum Before {}\n\ufeffenum After {}\n",
+      "state": "typealias Mode = Off\nenum Before {}\n﻿enum After {}\n",
       "changed": false,
       "refusal": {
         "address": "state.swift#Mode",
-        "reason_contains": "unread token '\ufeff'"
+        "reason_contains": "unread token '﻿'"
       }
     }
   },
@@ -28246,13 +28246,13 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "typealias Mode = Off\n// \ufeff\n/* \ufeff */\n",
+      "state": "typealias Mode = Off\n// ﻿\n/* ﻿ */\n",
       "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
     "expected": {
-      "state": "typealias Mode = On\n// \ufeff\n/* \ufeff */\n",
+      "state": "typealias Mode = On\n// ﻿\n/* ﻿ */\n",
       "changed": true,
       "refusal": null,
       "replayed": true
@@ -28264,13 +28264,13 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "typealias Mode = Off\nenum Text { static var text: String { \"\ufeff\" } }\n",
+      "state": "typealias Mode = Off\nenum Text { static var text: String { \"﻿\" } }\n",
       "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
     "expected": {
-      "state": "typealias Mode = On\nenum Text { static var text: String { \"\ufeff\" } }\n",
+      "state": "typealias Mode = On\nenum Text { static var text: String { \"﻿\" } }\n",
       "changed": true,
       "refusal": null,
       "replayed": true
@@ -28289,7 +28289,7 @@
       "definitions": [
         {
           "path": "defs.swift",
-          "text": "enum Before {}\n\ufeffenum After {}\n"
+          "text": "enum Before {}\n﻿enum After {}\n"
         }
       ]
     },
@@ -28298,7 +28298,7 @@
       "changed": false,
       "refusal": {
         "address": "defs.swift",
-        "reason_contains": "unread token '\ufeff'"
+        "reason_contains": "unread token '﻿'"
       }
     }
   },
@@ -28315,7 +28315,7 @@
       "definitions": [
         {
           "path": "defs.swift",
-          "text": "// \ufeff\n/* \ufeff */\n"
+          "text": "// ﻿\n/* ﻿ */\n"
         }
       ]
     },
@@ -28339,7 +28339,7 @@
       "definitions": [
         {
           "path": "defs.swift",
-          "text": "enum Text { static var text: String { \"\ufeff\" } }\n"
+          "text": "enum Text { static var text: String { \"﻿\" } }\n"
         }
       ]
     },
@@ -28600,13 +28600,13 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "typealias\u00a0Mode = Off\n",
+      "state": "typealias Mode = Off\n",
       "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
     "expected": {
-      "state": "typealias\u00a0Mode = On\n",
+      "state": "typealias Mode = On\n",
       "changed": true,
       "refusal": null,
       "replayed": true
@@ -28618,13 +28618,13 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "typealias\u0085Mode = Off\n",
+      "state": "typealiasMode = Off\n",
       "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
     "expected": {
-      "state": "typealias\u0085Mode = Off\n",
+      "state": "typealiasMode = Off\n",
       "changed": false,
       "refusal": {
         "address": "state.swift#Mode",
@@ -28638,13 +28638,13 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "typealias\u2028Mode = Off\n",
+      "state": "typealias Mode = Off\n",
       "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
     "expected": {
-      "state": "typealias\u2028Mode = Off\n",
+      "state": "typealias Mode = Off\n",
       "changed": false,
       "refusal": {
         "address": "state.swift#Mode",
@@ -28658,13 +28658,13 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "typealias\u2029Mode = Off\n",
+      "state": "typealias Mode = Off\n",
       "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
     "expected": {
-      "state": "typealias\u2029Mode = Off\n",
+      "state": "typealias Mode = Off\n",
       "changed": false,
       "refusal": {
         "address": "state.swift#Mode",
@@ -28678,13 +28678,13 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "typealias\u3000Mode = Off\n",
+      "state": "typealias　Mode = Off\n",
       "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
     "expected": {
-      "state": "typealias\u3000Mode = Off\n",
+      "state": "typealias　Mode = Off\n",
       "changed": false,
       "refusal": {
         "address": "state.swift#Mode",
@@ -28698,13 +28698,13 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "// \u0085\u2028\u2029\u3000\ntypealias Mode = Off\n",
+      "state": "//   　\ntypealias Mode = Off\n",
       "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
     "expected": {
-      "state": "// \u0085\u2028\u2029\u3000\ntypealias Mode = On\n",
+      "state": "//   　\ntypealias Mode = On\n",
       "changed": true,
       "refusal": null,
       "replayed": true
@@ -28716,13 +28716,13 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "typealias Mode = Off\nenum Text { static var text: String { \"\u0085\u2028\u2029\u3000\" } }\n",
+      "state": "typealias Mode = Off\nenum Text { static var text: String { \"  　\" } }\n",
       "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
     "expected": {
-      "state": "typealias Mode = On\nenum Text { static var text: String { \"\u0085\u2028\u2029\u3000\" } }\n",
+      "state": "typealias Mode = On\nenum Text { static var text: String { \"  　\" } }\n",
       "changed": true,
       "refusal": null,
       "replayed": true
@@ -28809,7 +28809,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum K { static var \u0345x: Int { 0 } }\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum K { static var ͅx: Int { 0 } }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -28829,7 +28829,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum K { static var a\u2e2f: Int { 0 } }\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum K { static var aⸯ: Int { 0 } }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -28849,7 +28849,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum \u093eQ {}\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum ाQ {}\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -28867,7 +28867,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Q\u0345 {}\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Qͅ {}\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -28885,7 +28885,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum \u1dc0Q {}\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum ᷀Q {}\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -28905,7 +28905,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Q\u1dc0 {}\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Q᷀ {}\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -28923,7 +28923,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum \u20d0Q {}\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum ⃐Q {}\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -28943,7 +28943,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Q\u20d0 {}\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Q⃐ {}\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -28961,7 +28961,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum \ufe20Q {}\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum ︠Q {}\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -28981,7 +28981,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Q\ufe20 {}\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Q︠ {}\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -28999,7 +28999,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum K { static var a\u2295: Int { 0 } }\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum K { static var a⊕: Int { 0 } }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -29019,7 +29019,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n// \u0345x a\u2e2f\nenum K {}\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n// ͅx aⸯ\nenum K {}\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -29037,7 +29037,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum K { static var s: String { \"\u0345x a\u2e2f\" } }\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum K { static var s: String { \"ͅx aⸯ\" } }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
@@ -29240,14 +29240,14 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "typealias Mode = Off\u00e9\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Offe\u0301; typealias Into = On }\n",
+      "state": "typealias Mode = Offé\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Offé; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "definitions": []
     },
     "expected": {
-      "state": "typealias Mode = Off\u00e9\n",
+      "state": "typealias Mode = Offé\n",
       "changed": false,
       "refusal": {
         "address": "rules.swift#TurnOn",
@@ -29262,7 +29262,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = OffK\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off\u212a; typealias Into = On }\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = OffK; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "definitions": []
@@ -29282,14 +29282,14 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "typealias Mode = \u03a9\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = \u2126; typealias Into = On }\n",
+      "state": "typealias Mode = Ω\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Ω; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "definitions": []
     },
     "expected": {
-      "state": "typealias Mode = \u03a9\n",
+      "state": "typealias Mode = Ω\n",
       "changed": false,
       "refusal": {
         "address": "rules.swift#TurnOn",
@@ -29303,8 +29303,8 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "typealias Mode = Off\u00e9\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off\u00e9; typealias Into = On }\n",
+      "state": "typealias Mode = Offé\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Offé; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "definitions": []
@@ -29322,8 +29322,8 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "typealias Mode = Offe\u0301\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Offe\u0301; typealias Into = On }\n",
+      "state": "typealias Mode = Offé\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Offé; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "definitions": []
@@ -29341,17 +29341,17 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "typealias Mod\u00e9 = Off\ntypealias Mode\u0301 = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = Mod\u00e9Slot; typealias From = Off; typealias Into = On }\n",
+      "state": "typealias Modé = Off\ntypealias Modé = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModéSlot; typealias From = Off; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "definitions": []
     },
     "expected": {
-      "state": "typealias Mod\u00e9 = Off\ntypealias Mode\u0301 = Off\n",
+      "state": "typealias Modé = Off\ntypealias Modé = Off\n",
       "changed": false,
       "refusal": {
-        "address": "state.swift#Mod\u00e9",
+        "address": "state.swift#Modé",
         "reason_contains": "distinct scalar spellings"
       }
     }
@@ -29360,10 +29360,10 @@
     "id": "R7-argument",
     "request": {
       "arguments": [
-        "TurnOne\u0301"
+        "TurnOné"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn\u00e9 { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
+      "dictionary": "enum TurnOné { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "definitions": []
@@ -29372,7 +29372,7 @@
       "state": "typealias Mode = Off\n",
       "changed": false,
       "refusal": {
-        "address": "rules.swift#TurnOne\u0301",
+        "address": "rules.swift#TurnOné",
         "reason_contains": "distinct scalar spellings"
       }
     }
@@ -29384,13 +29384,13 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off\u00e9; typealias Into = On }\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Offé; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "definitions": [
         {
           "path": "defs.swift",
-          "text": "enum Offe\u0301 {}"
+          "text": "enum Offé {}"
         }
       ]
     },
@@ -29410,7 +29410,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Page { @SB\u00e9 static var body: Int { } }\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Page { @SBé static var body: Int { } }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "definitions": [
@@ -29425,7 +29425,7 @@
       "changed": false,
       "refusal": {
         "address": "rules.swift#TurnOn",
-        "reason_contains": "attribute '@SB\u00e9'"
+        "reason_contains": "attribute '@SBé'"
       }
     }
   },
@@ -29462,7 +29462,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Page { @SB\u0301 static var body: Int { } }\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Page { @SB́ static var body: Int { } }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "definitions": [
@@ -29477,7 +29477,7 @@
       "changed": false,
       "refusal": {
         "address": "rules.swift#TurnOn",
-        "reason_contains": "attribute '@SB\u0301'"
+        "reason_contains": "attribute '@SB́'"
       }
     }
   },
@@ -29488,7 +29488,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Page { @inlinable\u00e9 static var body: Int { } }\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Page { @inlinableé static var body: Int { } }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "definitions": []
@@ -29498,7 +29498,7 @@
       "changed": false,
       "refusal": {
         "address": "rules.swift#TurnOn",
-        "reason_contains": "attribute '@inlinable\u00e9'"
+        "reason_contains": "attribute '@inlinableé'"
       }
     }
   },
@@ -29587,13 +29587,13 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Page { @SB\u00e9 static var body: Int { } }\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum Page { @SBé static var body: Int { } }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "definitions": [
         {
           "path": "lib.swift",
-          "text": "@resultBuilder enum SB\u00e9 { static func buildBlock() -> Int { 0 } }\n"
+          "text": "@resultBuilder enum SBé { static func buildBlock() -> Int { 0 } }\n"
         }
       ]
     },
@@ -29611,7 +29611,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum \u093eQ {}\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\nenum ाQ {}\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "definitions": []
@@ -29672,7 +29672,7 @@
         "TurnOn"
       ],
       "state": "typealias Mode = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n// Off\u00e9 Offe\u0301 SB$\nenum H { static var s: String { \"Off\u00e9 Offe\u0301 SB$\" } }\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModeSlot; typealias From = Off; typealias Into = On }\n// Offé Offé SB$\nenum H { static var s: String { \"Offé Offé SB$\" } }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "definitions": []
@@ -29690,13 +29690,13 @@
       "arguments": [
         "TurnOn"
       ],
-      "state": "typealias Mod\u00e9 = Off\n",
-      "dictionary": "enum TurnOn { typealias Slot = Mode\u0301Slot; typealias From = Off; typealias Into = On }\n",
+      "state": "typealias Modé = Off\n",
+      "dictionary": "enum TurnOn { typealias Slot = ModéSlot; typealias From = Off; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift"
     },
     "expected": {
-      "state": "typealias Mod\u00e9 = Off\n",
+      "state": "typealias Modé = Off\n",
       "changed": false,
       "refusal": {
         "address": "rules.swift#TurnOn",
@@ -29788,19 +29788,19 @@
     "id": "R8-R0-replay",
     "request": {
       "arguments": [
-        "Turn\u00d3n"
+        "TurnÓn"
       ],
-      "state": "typealias Mod\u00e9 = Off\n",
-      "dictionary": "enum Turn\u00d3n { typealias Slot = Mod\u00e9Slot; typealias From = Off; typealias Into = On }\n",
+      "state": "typealias Modé = Off\n",
+      "dictionary": "enum TurnÓn { typealias Slot = ModéSlot; typealias From = Off; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "certificate": {
         "arguments": [
-          "Turn\u00d3n"
+          "TurnÓn"
         ],
         "candidates": [
           {
-            "rule": "Turn\u00d3n",
+            "rule": "TurnÓn",
             "substitution": {}
           }
         ],
@@ -29824,7 +29824,7 @@
                   10,
                   15
                 ],
-                "word": "Mod\u00e9"
+                "word": "Modé"
               },
               {
                 "bytes": [
@@ -29870,7 +29870,7 @@
                   5,
                   12
                 ],
-                "word": "Turn\u00d3n"
+                "word": "TurnÓn"
               },
               {
                 "bytes": [
@@ -29905,7 +29905,7 @@
                   32,
                   41
                 ],
-                "word": "Mod\u00e9Slot"
+                "word": "ModéSlot"
               },
               {
                 "bytes": [
@@ -30007,14 +30007,14 @@
           }
         ],
         "selected": 0,
-        "slot": "Mod\u00e9",
+        "slot": "Modé",
         "upperByte": 21,
         "version": "vi.press.linear-certificate/1"
       },
-      "output": "typealias Mod\u00e9 = On\n"
+      "output": "typealias Modé = On\n"
     },
     "expected": {
-      "state": "typealias Mod\u00e9 = On\n",
+      "state": "typealias Modé = On\n",
       "changed": true,
       "refusal": null,
       "replayed": true
@@ -30024,19 +30024,19 @@
     "id": "R8-R1-slot",
     "request": {
       "arguments": [
-        "Turn\u00d3n"
+        "TurnÓn"
       ],
-      "state": "typealias Mod\u00e9 = Off\n",
-      "dictionary": "enum Turn\u00d3n { typealias Slot = Mod\u00e9Slot; typealias From = Off; typealias Into = On }\n",
+      "state": "typealias Modé = Off\n",
+      "dictionary": "enum TurnÓn { typealias Slot = ModéSlot; typealias From = Off; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "certificate": {
         "arguments": [
-          "Turn\u00d3n"
+          "TurnÓn"
         ],
         "candidates": [
           {
-            "rule": "Turn\u00d3n",
+            "rule": "TurnÓn",
             "substitution": {}
           }
         ],
@@ -30060,7 +30060,7 @@
                   10,
                   15
                 ],
-                "word": "Mod\u00e9"
+                "word": "Modé"
               },
               {
                 "bytes": [
@@ -30106,7 +30106,7 @@
                   5,
                   12
                 ],
-                "word": "Turn\u00d3n"
+                "word": "TurnÓn"
               },
               {
                 "bytes": [
@@ -30141,7 +30141,7 @@
                   32,
                   41
                 ],
-                "word": "Mod\u00e9Slot"
+                "word": "ModéSlot"
               },
               {
                 "bytes": [
@@ -30243,14 +30243,14 @@
           }
         ],
         "selected": 0,
-        "slot": "Mode\u0301",
+        "slot": "Modé",
         "upperByte": 21,
         "version": "vi.press.linear-certificate/1"
       },
-      "output": "typealias Mod\u00e9 = On\n"
+      "output": "typealias Modé = On\n"
     },
     "expected": {
-      "state": "typealias Mod\u00e9 = Off\n",
+      "state": "typealias Modé = Off\n",
       "changed": false,
       "refusal": {
         "address": "certificate",
@@ -30262,19 +30262,19 @@
     "id": "R8-R4-rule",
     "request": {
       "arguments": [
-        "Turn\u00d3n"
+        "TurnÓn"
       ],
-      "state": "typealias Mod\u00e9 = Off\n",
-      "dictionary": "enum Turn\u00d3n { typealias Slot = Mod\u00e9Slot; typealias From = Off; typealias Into = On }\n",
+      "state": "typealias Modé = Off\n",
+      "dictionary": "enum TurnÓn { typealias Slot = ModéSlot; typealias From = Off; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "certificate": {
         "arguments": [
-          "Turn\u00d3n"
+          "TurnÓn"
         ],
         "candidates": [
           {
-            "rule": "TurnO\u0301n",
+            "rule": "TurnÓn",
             "substitution": {}
           }
         ],
@@ -30298,7 +30298,7 @@
                   10,
                   15
                 ],
-                "word": "Mod\u00e9"
+                "word": "Modé"
               },
               {
                 "bytes": [
@@ -30344,7 +30344,7 @@
                   5,
                   12
                 ],
-                "word": "Turn\u00d3n"
+                "word": "TurnÓn"
               },
               {
                 "bytes": [
@@ -30379,7 +30379,7 @@
                   32,
                   41
                 ],
-                "word": "Mod\u00e9Slot"
+                "word": "ModéSlot"
               },
               {
                 "bytes": [
@@ -30481,14 +30481,14 @@
           }
         ],
         "selected": 0,
-        "slot": "Mod\u00e9",
+        "slot": "Modé",
         "upperByte": 21,
         "version": "vi.press.linear-certificate/1"
       },
-      "output": "typealias Mod\u00e9 = On\n"
+      "output": "typealias Modé = On\n"
     },
     "expected": {
-      "state": "typealias Mod\u00e9 = Off\n",
+      "state": "typealias Modé = Off\n",
       "changed": false,
       "refusal": {
         "address": "certificate",
@@ -30500,19 +30500,19 @@
     "id": "R8-R5-argument",
     "request": {
       "arguments": [
-        "Turn\u00d3n"
+        "TurnÓn"
       ],
-      "state": "typealias Mod\u00e9 = Off\n",
-      "dictionary": "enum Turn\u00d3n { typealias Slot = Mod\u00e9Slot; typealias From = Off; typealias Into = On }\n",
+      "state": "typealias Modé = Off\n",
+      "dictionary": "enum TurnÓn { typealias Slot = ModéSlot; typealias From = Off; typealias Into = On }\n",
       "statePath": "state.swift",
       "dictionaryPath": "rules.swift",
       "certificate": {
         "arguments": [
-          "TurnO\u0301n"
+          "TurnÓn"
         ],
         "candidates": [
           {
-            "rule": "Turn\u00d3n",
+            "rule": "TurnÓn",
             "substitution": {}
           }
         ],
@@ -30536,7 +30536,7 @@
                   10,
                   15
                 ],
-                "word": "Mod\u00e9"
+                "word": "Modé"
               },
               {
                 "bytes": [
@@ -30582,7 +30582,7 @@
                   5,
                   12
                 ],
-                "word": "Turn\u00d3n"
+                "word": "TurnÓn"
               },
               {
                 "bytes": [
@@ -30617,7 +30617,7 @@
                   32,
                   41
                 ],
-                "word": "Mod\u00e9Slot"
+                "word": "ModéSlot"
               },
               {
                 "bytes": [
@@ -30719,18 +30719,802 @@
           }
         ],
         "selected": 0,
-        "slot": "Mod\u00e9",
+        "slot": "Modé",
         "upperByte": 21,
         "version": "vi.press.linear-certificate/1"
       },
-      "output": "typealias Mod\u00e9 = On\n"
+      "output": "typealias Modé = On\n"
     },
     "expected": {
-      "state": "typealias Mod\u00e9 = Off\n",
+      "state": "typealias Modé = Off\n",
       "changed": false,
       "refusal": {
         "address": "certificate",
         "reason_contains": "certificate belongs to different input"
+      }
+    }
+  },
+  {
+    "id": "R9-R0-unit-replay",
+    "request": {
+      "arguments": [
+        "TurnÓn"
+      ],
+      "state": "typealias Modé = Off\n;\n",
+      "dictionary": "enum TurnÓn { typealias Slot = ModéSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnÓn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnÓn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "7315a36269c316b55fbbe8232c8818df22accbb04f5f8154090fb7f729ab1dc3",
+          "e68a99b311def58912f2b0cca775f151de4f46bddddd1291b08bfe0c384323dc"
+        ],
+        "lowerByte": 18,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  15
+                ],
+                "word": "Modé"
+              },
+              {
+                "bytes": [
+                  16,
+                  17
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  18,
+                  21
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  21,
+                  22
+                ],
+                "word": "\n"
+              },
+              {
+                "word": ";",
+                "bytes": [
+                  22,
+                  23
+                ]
+              },
+              {
+                "word": "\n",
+                "bytes": [
+                  23,
+                  24
+                ]
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              },
+              {
+                "kind": ";",
+                "lower": 5,
+                "upper": 6
+              },
+              {
+                "kind": "\n",
+                "lower": 6,
+                "upper": 7
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  12
+                ],
+                "word": "TurnÓn"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  15,
+                  24
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  25,
+                  29
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  30,
+                  31
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  32,
+                  41
+                ],
+                "word": "ModéSlot"
+              },
+              {
+                "bytes": [
+                  41,
+                  42
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  43,
+                  52
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  53,
+                  57
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  58,
+                  59
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  60,
+                  63
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  65,
+                  74
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  75,
+                  79
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  80,
+                  81
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  82,
+                  84
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  85,
+                  86
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  86,
+                  87
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 18
+              },
+              {
+                "kind": "\n",
+                "lower": 18,
+                "upper": 19
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Modé",
+        "upperByte": 21,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Modé = On\n;\n"
+    },
+    "expected": {
+      "state": "typealias Modé = On\n;\n",
+      "changed": true,
+      "refusal": null,
+      "replayed": true
+    }
+  },
+  {
+    "id": "R9-R6-unit-greek-question",
+    "request": {
+      "arguments": [
+        "TurnÓn"
+      ],
+      "state": "typealias Modé = Off\n;\n",
+      "dictionary": "enum TurnÓn { typealias Slot = ModéSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnÓn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnÓn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "7315a36269c316b55fbbe8232c8818df22accbb04f5f8154090fb7f729ab1dc3",
+          "e68a99b311def58912f2b0cca775f151de4f46bddddd1291b08bfe0c384323dc"
+        ],
+        "lowerByte": 18,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  15
+                ],
+                "word": "Modé"
+              },
+              {
+                "bytes": [
+                  16,
+                  17
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  18,
+                  21
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  21,
+                  22
+                ],
+                "word": "\n"
+              },
+              {
+                "word": ";",
+                "bytes": [
+                  22,
+                  23
+                ]
+              },
+              {
+                "word": "\n",
+                "bytes": [
+                  23,
+                  24
+                ]
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              },
+              {
+                "kind": ";",
+                "lower": 5,
+                "upper": 6
+              },
+              {
+                "kind": "\n",
+                "lower": 6,
+                "upper": 7
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  12
+                ],
+                "word": "TurnÓn"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  15,
+                  24
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  25,
+                  29
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  30,
+                  31
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  32,
+                  41
+                ],
+                "word": "ModéSlot"
+              },
+              {
+                "bytes": [
+                  41,
+                  42
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  43,
+                  52
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  53,
+                  57
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  58,
+                  59
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  60,
+                  63
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  65,
+                  74
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  75,
+                  79
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  80,
+                  81
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  82,
+                  84
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  85,
+                  86
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  86,
+                  87
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 18
+              },
+              {
+                "kind": "\n",
+                "lower": 18,
+                "upper": 19
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Modé",
+        "upperByte": 21,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Modé = On\n;\n"
+    },
+    "expected": {
+      "state": "typealias Modé = Off\n;\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift",
+        "reason_contains": "state.swift:1: grammar certificate disagrees with whole-source reading"
+      }
+    }
+  },
+  {
+    "id": "R9-R6-unit-colon",
+    "request": {
+      "arguments": [
+        "TurnÓn"
+      ],
+      "state": "typealias Modé = Off\n;\n",
+      "dictionary": "enum TurnÓn { typealias Slot = ModéSlot; typealias From = Off; typealias Into = On }\n",
+      "statePath": "state.swift",
+      "dictionaryPath": "rules.swift",
+      "certificate": {
+        "arguments": [
+          "TurnÓn"
+        ],
+        "candidates": [
+          {
+            "rule": "TurnÓn",
+            "substitution": {}
+          }
+        ],
+        "inputs": [
+          "7315a36269c316b55fbbe8232c8818df22accbb04f5f8154090fb7f729ab1dc3",
+          "e68a99b311def58912f2b0cca775f151de4f46bddddd1291b08bfe0c384323dc"
+        ],
+        "lowerByte": 18,
+        "readings": [
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  9
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  10,
+                  15
+                ],
+                "word": "Modé"
+              },
+              {
+                "bytes": [
+                  16,
+                  17
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  18,
+                  21
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  21,
+                  22
+                ],
+                "word": "\n"
+              },
+              {
+                "word": ";",
+                "bytes": [
+                  22,
+                  23
+                ]
+              },
+              {
+                "word": "\n",
+                "bytes": [
+                  23,
+                  24
+                ]
+              }
+            ],
+            "units": [
+              {
+                "kind": "typealias",
+                "lower": 0,
+                "upper": 5
+              },
+              {
+                "kind": ":",
+                "lower": 5,
+                "upper": 6
+              },
+              {
+                "kind": "\n",
+                "lower": 6,
+                "upper": 7
+              }
+            ]
+          },
+          {
+            "tokens": [
+              {
+                "bytes": [
+                  0,
+                  4
+                ],
+                "word": "enum"
+              },
+              {
+                "bytes": [
+                  5,
+                  12
+                ],
+                "word": "TurnÓn"
+              },
+              {
+                "bytes": [
+                  13,
+                  14
+                ],
+                "word": "{"
+              },
+              {
+                "bytes": [
+                  15,
+                  24
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  25,
+                  29
+                ],
+                "word": "Slot"
+              },
+              {
+                "bytes": [
+                  30,
+                  31
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  32,
+                  41
+                ],
+                "word": "ModéSlot"
+              },
+              {
+                "bytes": [
+                  41,
+                  42
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  43,
+                  52
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  53,
+                  57
+                ],
+                "word": "From"
+              },
+              {
+                "bytes": [
+                  58,
+                  59
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  60,
+                  63
+                ],
+                "word": "Off"
+              },
+              {
+                "bytes": [
+                  63,
+                  64
+                ],
+                "word": ";"
+              },
+              {
+                "bytes": [
+                  65,
+                  74
+                ],
+                "word": "typealias"
+              },
+              {
+                "bytes": [
+                  75,
+                  79
+                ],
+                "word": "Into"
+              },
+              {
+                "bytes": [
+                  80,
+                  81
+                ],
+                "word": "="
+              },
+              {
+                "bytes": [
+                  82,
+                  84
+                ],
+                "word": "On"
+              },
+              {
+                "bytes": [
+                  85,
+                  86
+                ],
+                "word": "}"
+              },
+              {
+                "bytes": [
+                  86,
+                  87
+                ],
+                "word": "\n"
+              }
+            ],
+            "units": [
+              {
+                "kind": "enum",
+                "lower": 0,
+                "upper": 18
+              },
+              {
+                "kind": "\n",
+                "lower": 18,
+                "upper": 19
+              }
+            ]
+          }
+        ],
+        "selected": 0,
+        "slot": "Modé",
+        "upperByte": 21,
+        "version": "vi.press.linear-certificate/1"
+      },
+      "output": "typealias Modé = On\n;\n"
+    },
+    "expected": {
+      "state": "typealias Modé = Off\n;\n",
+      "changed": false,
+      "refusal": {
+        "address": "state.swift",
+        "reason_contains": "state.swift:1: grammar certificate disagrees with whole-source reading"
       }
     }
   }

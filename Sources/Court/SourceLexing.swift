@@ -69,7 +69,7 @@ extension WhereJudge {
                 | (spaceClass.firstMatch(in: text, range: range) != nil ? 2 : 0)
         }
         private static let ascii = (UInt32(0)..<128).map { classify(Unicode.Scalar($0)!) }
-        private var classes: [UInt32: UInt8] = [:]
+        var classes: [UInt32: UInt8] = [:]
 
         mutating func flush() {
             guard !pending.isEmpty else { return }

@@ -58,7 +58,10 @@ extension WhereJudge {
         var span = 0, coverEnd = 0
         var result = UnreadReading()
         var starts = [Int?](repeating: nil, count: tape.count)
-        struct Angle { let token: Int; let candidates: [UnreadApplication] }
+        struct Angle {
+            let token: Int
+            let candidates: [UnreadApplication]
+        }
         var angles: [Angle] = []
 
         func finish(_ frame: Angle, at close: Int?) {
@@ -70,9 +73,10 @@ extension WhereJudge {
                asciiSpace(end(close), tape[close + 1].range.location) {
                 multiline = file.lineAt[end(frame.token)] < file.lineAt[end(close)]
             }
-            for var candidate in frame.candidates {
-                candidate.multilineMetatype = multiline
-                result.applications.append(candidate)
+            for candidate in frame.candidates {
+                var application = candidate
+                application.multilineMetatype = multiline
+                result.applications.append(application)
             }
             result.closedAngles += 1
         }

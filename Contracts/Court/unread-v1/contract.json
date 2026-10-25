@@ -772,6 +772,9 @@
         "exit": 0,
         "stdout": "✓ THE WHERE holds: 0 equalities and 1 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4).\n",
         "stderr": ""
+      },
+      "wordClass": {
+        "F870": true
       }
     },
     {
@@ -789,6 +792,9 @@
         "exit": 2,
         "stdout": "",
         "stderr": "✗ THE WHERE: cannot read line 9 of 'world.swift': 'Use' applies a gated head in a place where this court reads no use and no certificate\n"
+      },
+      "wordClass": {
+        "F86F": false
       }
     },
     {

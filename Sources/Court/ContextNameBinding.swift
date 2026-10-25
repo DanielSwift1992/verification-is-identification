@@ -59,6 +59,7 @@ enum ContextNameBinding {
         let end: Int
         let place: Place
         var extensionBody = false
+        var whereStart: Int? = nil
     }
     struct Index {
         let certificate: Certificate
@@ -228,7 +229,8 @@ enum ContextNameBinding {
                         if depth == 0 {
                             let full = try extendedOwner(names, file: file, token: i)
                             scopes.append(Scope(file: file, start: tape.starts[i + 1], open: tape.starts[open],
-                                end: tape.ends[end - 1], place: full, extensionBody: true))
+                                end: tape.ends[end - 1], place: full, extensionBody: true,
+                                whereStart: (cursor..<open).first { WhereJudge.sameName(tape.words[$0], "where") }.map { tape.starts[$0] }))
                         }
                     }
                 }
@@ -284,7 +286,8 @@ enum ContextNameBinding {
                     }
                     guard depth == 0 else { try WhereJudge.fail("\(files[file].context.source):\(tape.lines[i]): nominal owner body is incomplete") }
                     scopes.append(Scope(file: file, start: tape.starts[i + 1], open: tape.starts[open],
-                        end: tape.ends[end - 1], place: place))
+                        end: tape.ends[end - 1], place: place,
+                        whereStart: (head.genericEnd..<open).first { WhereJudge.sameName(tape.words[$0], "where") }.map { tape.starts[$0] }))
 
                 }
             }
@@ -397,11 +400,17 @@ enum ContextNameBinding {
                 // active lexical owner, or an intrinsic profile root.
                 let name = ScalarName(word)
                 var candidates: Set<Place> = []
-                for parent in moduleParents + active.map(\.place) {
+                for parent in moduleParents {
                     let candidate = Place(components: parent.components + [name])
                     if byPlace[candidate] != nil { candidates.insert(candidate) }
                 }
-                for parent in active.flatMap({ Array(ancestors[$0.place] ?? []) }) {
+                let memberScopes = active.filter { position > $0.open || $0.whereStart.map { position >= $0 } == true }
+                for scope in active {
+                    let candidate = Place(components: scope.place.components + [name])
+                    if let row = byPlace[candidate], row.kind == ScalarName("parameter")
+                        || memberScopes.contains(where: { $0.place == scope.place }) { candidates.insert(candidate) }
+                }
+                for parent in memberScopes.flatMap({ Array(ancestors[$0.place] ?? []) }) {
                     let candidate = Place(components: parent.components + [name])
                     if let row = byPlace[candidate], row.kind != ScalarName("parameter") { candidates.insert(candidate) }
                 }

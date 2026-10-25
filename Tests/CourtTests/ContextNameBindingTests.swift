@@ -25,6 +25,11 @@ final class ContextNameBindingTests: XCTestCase {
             XCTAssertTrue(message.contains("World.Axis at World.swift:1"))
             XCTAssertTrue(message.contains("World.P.Axis at World.swift:3"))
         }
+        let parents = try index("public protocol Base { associatedtype Target }\npublic protocol Target {}\npublic protocol Derived: Base, Target {}\n")
+        XCTAssertTrue(parents.certificate.references.contains {
+            $0.line == 3 && $0.spelling == ScalarName("Target")
+                && $0.declaration == .init(parts: ["World", "Target"])
+        })
     }
 
     func testGenericParameterIsLexicalAndNeverAnOwnerMember() throws {

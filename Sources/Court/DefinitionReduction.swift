@@ -181,6 +181,27 @@ enum DefinitionReduction {
             }
         }
 
+        /// Reads one member definition for either reduction representation.
+        /// A supplied owner with an unread body lends no opaque projection.
+        func memberDefinition(_ name: String, axis: String, spelled: String) throws
+            -> (declaration: WhereJudge.Conformer, body: String)? {
+            if rigid.contains(name) { return nil }
+            if world.conformers[name] == nil, world.presentedBodies.contains(name) {
+                throw Failure("cannot read declaration '\(name)': body outside flat-definition fragment")
+            }
+            guard let declaration = world.conformers[name] else {
+                if world.contextual, let address = world.addresses[name] {
+                    throw Failure("\(address): cannot read projection '\(spelled)': "
+                        + "no member definition on supplied owner '\(name)'")
+                }
+                return nil
+            }
+            guard let body = declaration.table[axis] else {
+                throw Failure("cannot read projection '\(spelled)': no definition of '\(axis)' on '\(name)'")
+            }
+            return (declaration, body)
+        }
+
         /// The only elementary equations: instantiate the addressed source definition.
         /// No right-hand side or equation is supplied by a proposed derivation.
         func expansion(_ expression: Expression) throws -> Expression? {
@@ -207,16 +228,8 @@ enum DefinitionReduction {
                 else if world.nestedNames.contains(owner.text) { name = owner.text; arguments = [] }
                 else { return nil }
                 try checkApplication(name, arguments.count)
-                if rigid.contains(name) { return nil }
-                if world.conformers[name] == nil, world.presentedBodies.contains(name) {
-                    throw Failure(
-                        "cannot read declaration '\(name)': body outside flat-definition fragment")
-                }
-                guard let declaration = world.conformers[name] else { return nil }
-                guard let body = declaration.table[axis] else {
-                    throw Failure(
-                        "cannot read projection '\(expression.text)': no definition of '\(axis)' on '\(name)'"
-                    )
+                guard let (declaration, body) = try memberDefinition(name, axis: axis, spelled: expression.text) else {
+                    return nil
                 }
                 // Generic parameters and sibling names are bound at this owner,
                 // before any global alias with the same spelling can be consulted.

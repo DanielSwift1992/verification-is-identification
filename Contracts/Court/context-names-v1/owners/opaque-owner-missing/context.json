@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "owners/opaque-owner-missing/World.swift",
+      "source": "owners/opaque-owner-missing/World.swift",
+      "sha256": "3ff5905690efabe503cc298cf5799cfdf49ea7a8cae8eec9248bbbaa29c9c553",
+      "module": "World",
+      "namespace": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "opaque-owner-missing#input",
+        "source": "opaque-owner-missing#source",
+        "sha256": "opaque-owner-missing#sha256",
+        "module": "opaque-owner-missing#module",
+        "namespace": "opaque-owner-missing#namespace",
+        "role": "opaque-owner-missing#role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

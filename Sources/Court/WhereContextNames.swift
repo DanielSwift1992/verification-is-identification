@@ -297,19 +297,26 @@ enum WhereContextNames {
         return Resolution(files: resolved, applications: applications)
     }
 
-    /// Reports the addressed missing member of a supplied concrete owner.
+    /// Reports the addressed missing or unread member of a supplied owner.
     /// Bound projections and declarations outside the nominal fragment retain
     /// their existing reduction/admission rules.
     static func members(_ files: [CourtNotation.File], in world: WhereJudge.World) throws {
         for file in files {
             for (name, alias) in file.world.aliases.sorted(by: { $0.key < $1.key }) {
                 let at = file.context.source + ":\(file.world.certificateLines[name] ?? 1)"
+                func boundRoot(_ expression: DefinitionReduction.Expression) -> Bool {
+                    switch expression {
+                    case let .application(name, _): return alias.parameters.containsName(name)
+                    case let .field(owner, _): return boundRoot(owner)
+                    }
+                }
                 func check(_ expression: DefinitionReduction.Expression) throws {
                     switch expression {
                     case let .application(_, arguments):
                         for argument in arguments { try check(argument) }
                     case let .field(owner, axis):
                         try check(owner)
+                        if boundRoot(owner) { return }
                         if world.nestedNames.contains(expression.text) { return }
                         if world.namespaces.contains(owner.text) {
                             try WhereJudge.fail("\(at): owner '\(owner.text)' has no declaration '\(axis)'")
@@ -318,10 +325,10 @@ enum WhereContextNames {
                         if case let .application(name, arguments) = owner, arguments.isEmpty { head = name }
                         else if world.nestedNames.contains(owner.text) { head = owner.text }
                         else { return }
-                        if let declaration = world.conformers[head], declaration.parameters.isEmpty,
-                           declaration.table[axis] == nil {
-                            try WhereJudge.fail("\(at): cannot read projection '\(expression.text)': no definition of '\(axis)' on '\(head)'")
-                        }
+                        guard world.aliases[head] == nil else { return }
+                        let source = DefinitionReduction.Source(world: world, rigid: NameSet(alias.parameters))
+                        do { _ = try source.memberDefinition(head, axis: axis, spelled: expression.text) }
+                        catch { try WhereJudge.fail("\(at): \(error)") }
                     }
                 }
                 try check(DefinitionReduction.parse(alias.body))

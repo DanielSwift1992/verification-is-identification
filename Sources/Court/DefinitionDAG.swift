@@ -154,14 +154,8 @@ extension DefinitionReduction {
                     throw Failure("no declaration of nested name '\(self.text(id))'")
                 }
                 try source.checkApplication(name, args.count)
-                if source.rigid.contains(name) { return nil }
-                if source.world.conformers[name] == nil, source.world.presentedBodies.contains(name) {
-                    throw Failure("cannot read declaration '\(name)': body outside flat-definition fragment")
-                }
-                guard let d = source.world.conformers[name] else { return nil }
-                guard let text = d.table[axis] else {
-                    throw Failure(
-                        "cannot read projection '\(self.text(id))': no definition of '\(axis)' on '\(name)'")
+                guard let (d, text) = try source.memberDefinition(name, axis: axis, spelled: self.text(id)) else {
+                    return nil
                 }
                 var bindings = NameMap(uniqueKeysWithValues: zip(d.parameters, args))
                 bindings["Self"] = owner

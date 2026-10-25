@@ -212,14 +212,14 @@ enum WhereContext {
         try WhereContextNames.aliasCycles(world, names: reached, source: own.context.source)
         for name in world.gatedProtocols.keys.sorted() {
             let gate = world.gatedProtocols[name]!
-            for part in gate.unjudged {
+            for part in gate.writtenUnjudged ?? gate.unjudged {
                 try WhereJudge.fail("\(world.addresses[name] ?? own.context.source + ":1"): the gated protocol '\(name)' carries '\(part)', a conjunct this court does not judge")
             }
         }
         var gates: [WhereJudge.GatedExtension] = []
         for gate in world.gates {
             let at = world.addresses[gate.head + ": " + gate.proto] ?? own.context.source + ":1"
-            for part in gate.unjudged { try WhereJudge.fail("\(at): the gate '\(gate.head): \(gate.proto)' carries '\(part)', a conjunct this court does not judge") }
+            for part in gate.writtenUnjudged ?? gate.unjudged { try WhereJudge.fail("\(at): the gate '\(gate.head): \(gate.proto)' carries '\(part)', a conjunct this court does not judge") }
             var equalities = gate.equalities, memberships = gate.memberships
             for proto in WhereJudge.inheritedProtocols([gate.proto], world).sorted() {
                 if let inherited = world.gatedProtocols[proto] {

@@ -46,6 +46,7 @@ enum WhereJudge {
         let memberships: [(String, String)]
         let unjudged: [String]
         var writtenEqualities: [(String, String)]? = nil
+        var writtenUnjudged: [String]? = nil
     }
 
     struct GatedProtocol {
@@ -54,6 +55,7 @@ enum WhereJudge {
         let memberships: [(String, String)]
         let unjudged: [String]
         var writtenEqualities: [(String, String)]? = nil
+        var writtenUnjudged: [String]? = nil
     }
 
     /// Internal failures are data. Only the legacy CLI boundary writes to
@@ -1570,7 +1572,7 @@ enum WhereJudge {
         // a gate that carries what no court here judges is named at once:
         // the defect is the law's own spelling, not any use of it
         for gate in world.gates {
-            for part in gate.unjudged {
+            for part in gate.writtenUnjudged ?? gate.unjudged {
                 refusals.append(
                     "the gate '\(gate.head): \(gate.proto)' carries '\(part)', "
                         + "a conjunct this court does not judge"
@@ -1578,7 +1580,7 @@ enum WhereJudge {
             }
         }
         for gated in world.gatedProtocols.values.sorted(by: { $0.name < $1.name }) {
-            for part in gated.unjudged {
+            for part in gated.writtenUnjudged ?? gated.unjudged {
                 refusals.append(
                     "the gated protocol '\(gated.name)' carries '\(part)', "
                         + "a conjunct this court does not judge"

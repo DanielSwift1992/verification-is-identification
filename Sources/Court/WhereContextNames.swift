@@ -265,6 +265,7 @@ enum WhereContextNames {
                 let boundName = symbols[key(name)]?[local] ?? name
                 if world.gatedProtocols[boundName] != nil {
                     world.gatedProtocols[boundName]!.writtenEqualities = original.equalities
+                    world.gatedProtocols[boundName]!.writtenUnjudged = original.unjudged
                 }
             }
             guard world.gates.count == file.world.gates.count else {
@@ -272,6 +273,7 @@ enum WhereContextNames {
             }
             for index in world.gates.indices {
                 world.gates[index].writtenEqualities = file.world.gates[index].equalities
+                world.gates[index].writtenUnjudged = file.world.gates[index].unjudged
             }
             for (name, values) in symbols {
                 for (module, symbol) in values where !WhereJudge.sameName(symbol, name.text) {

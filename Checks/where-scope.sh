@@ -18,7 +18,7 @@ scope_bin=$(vi_check_tools_bin)
 
 # scope_world <world> <compiler errors> <court refusal>: the compiler
 # refuses the world for the named errors, allowing the optional inference
-# cascade in three named worlds; the court exits 2 with exactly this line
+# cascade in three named worlds; the court exits 2 with exactly these ordered lines
 # on stderr and nothing on stdout.
 scope_world() {
     local world="$1" errors="$2" verdict="$3" expected="${4:-2}"
@@ -61,30 +61,34 @@ if world in {"generic", "outside", "conditional"}:
 if sorted(said) != sorted(expected):
     print(Path(swift_log).read_text())
     raise SystemExit(f"where-scope: Swift did not refuse {world}.swift for the expected reasons")
-if Path(court_log).read_text().splitlines() != [verdict]:
+if Path(court_log).read_text().splitlines() != verdict.split("\n"):
     print(Path(court_log).read_text())
     raise SystemExit(f"where-scope: the court did not name the declarations it cannot scope in {world}.swift")
 PY
 }
 
-no_scope_rule="and this court has no scope rule to choose between them"
 scope_world shadowed "error: global function 'need' requires that 'Bad' conform to 'Required'" \
-    "✗ THE WHERE: cannot read 'Bad': it is declared at lines 9 and 16, $no_scope_rule"
+    "✗ THE WHERE: cannot read line 16: the enum 'Bad' is declared inside a body, and this court reads declarations at file scope"
 # Nested enum names are read by v0.4. The file-scope Plain is still not Required;
 # reading Namespace.Plain must never make this false application hold.
 scope_world nested "error: global function 'need' requires that 'Plain' conform to 'Required'" \
     "✗ 'Use<Plain>' requires the type 'T' (aka 'Plain') conform to 'Required', and no conformer of that name is presented [Admitted]" 1
 scope_world rebound "error: global function 'need' requires that 'Good' (aka 'Bad') conform to 'Required'" \
-    "✗ THE WHERE: cannot read 'Good': it is declared at lines 10 and 17, $no_scope_rule"
+    "✗ THE WHERE: Checks/where-scope/rebound.swift:18: ambiguous name Good: rename the local declaration or provide a declared module context; visible: Good at Checks/where-scope/rebound.swift:10, demandRebound#274.Good at Checks/where-scope/rebound.swift:17"
 scope_world generic "error: type 'Good' does not conform to protocol 'Setting'
 error: generic parameter 'T' could not be inferred" \
-    "✗ THE WHERE: cannot read 'Good': it is declared at lines 9 and 15, $no_scope_rule"
+    "✗ THE WHERE: Checks/where-scope/generic.swift:15: ambiguous name Good: rename the parameter or provide a declared module context; visible: Good at Checks/where-scope/generic.swift:9, demandParameter#246.Good at Checks/where-scope/generic.swift:15
+✗ THE WHERE: Checks/where-scope/generic.swift:15: ambiguous name Good: rename the parameter or provide a declared module context; visible: Good at Checks/where-scope/generic.swift:9, demandParameter#246.Good at Checks/where-scope/generic.swift:15"
 scope_world deep "error: global function 'need' requires that 'Good' conform to 'Required'" \
-    "✗ THE WHERE: cannot read 'Good': it is declared at lines 11 and 20, $no_scope_rule"
+    "✗ THE WHERE: Checks/where-scope/deep.swift:20: ambiguous name Good: rename the parameter or provide a declared module context; visible: Good at Checks/where-scope/deep.swift:11, demand#391.Good at Checks/where-scope/deep.swift:20
+✗ THE WHERE: Checks/where-scope/deep.swift:21: ambiguous name Good: rename the parameter or provide a declared module context; visible: Good at Checks/where-scope/deep.swift:11, demand#391.Good at Checks/where-scope/deep.swift:20"
 scope_world arrow "error: global function 'need' requires that 'Good' conform to 'Required'" \
-    "✗ THE WHERE: cannot read 'Good': it is declared at lines 10 and 18, $no_scope_rule"
+    "✗ THE WHERE: Checks/where-scope/arrow.swift:18: ambiguous name Good: rename the parameter or provide a declared module context; visible: Good at Checks/where-scope/arrow.swift:10, demand#341.Good at Checks/where-scope/arrow.swift:18
+✗ THE WHERE: Checks/where-scope/arrow.swift:19: ambiguous name Good: rename the parameter or provide a declared module context; visible: Good at Checks/where-scope/arrow.swift:10, demand#341.Good at Checks/where-scope/arrow.swift:18"
 scope_world operator "error: global function 'need' requires that 'Good' conform to 'Required'" \
-    "✗ THE WHERE: cannot read 'Good': it is declared at lines 12 and 19, $no_scope_rule"
+    "✗ THE WHERE: Checks/where-scope/operator.swift:19: ambiguous name Good: rename the parameter or provide a declared module context; visible: <#315.Good at Checks/where-scope/operator.swift:19, Good at Checks/where-scope/operator.swift:12
+✗ THE WHERE: Checks/where-scope/operator.swift:19: ambiguous name Good: rename the parameter or provide a declared module context; visible: <#315.Good at Checks/where-scope/operator.swift:19, Good at Checks/where-scope/operator.swift:12
+✗ THE WHERE: Checks/where-scope/operator.swift:20: ambiguous name Good: rename the parameter or provide a declared module context; visible: <#315.Good at Checks/where-scope/operator.swift:19, Good at Checks/where-scope/operator.swift:12"
 scope_world outside "error: type 'Element' does not conform to protocol 'Setting'
 error: generic parameter 'T' could not be inferred" \
     "✗ THE WHERE: cannot read line 20: the use 'Use<Element>' sits in the body of a type or an extension, whose members this court does not read"
@@ -120,13 +124,12 @@ scope_pair() {
 }
 
 # A definitions file that extends a type of the world is one this court
-# cannot place: the extension may not be the world's type, and its member
-# may not reach the world.
-cannot_place="and this court cannot tell that the extension is this world's type, or that its members reach this file"
+# cannot place: this mode supplies no distinct module owners. A visible
+# collision now refuses before extension admission; both sources stay named.
 scope_pair lent "error: global function 'need' requires that 'Owner.Left' (aka 'Bad') conform to 'Required'" \
-    "✗ THE WHERE: cannot read 'Owner': 'Checks/where-scope/lent-definitions.swift' extends it at line 4, $cannot_place"
+    "✗ THE WHERE: Checks/where-scope/lent.swift:21: ambiguous name Left: write Owner.Left or provide a declared module context; visible: Left at Checks/where-scope/lent.swift:18, Owner.Left at Checks/where-scope/lent-definitions.swift:5"
 scope_pair private-target "error: global function 'need' requires that 'Left' conform to 'Required'" \
-    "✗ THE WHERE: cannot read 'Left': 'Checks/where-scope/private-target-definitions.swift' extends it at line 5, $cannot_place"
+    "✗ THE WHERE: Checks/where-scope/private-target-definitions.swift:4: duplicate declaration 'Left' in the same owner; first Checks/where-scope/private-target.swift:18"
 
 # An extension's owner is read in full: a qualified owner is not resolved,
 # and an alias is not followed to its type, so each is refused.

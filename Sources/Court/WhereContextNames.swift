@@ -42,7 +42,8 @@ enum WhereContextNames {
             active.remove(name)
             done.insert(name)
         }
-        for name in world.aliases.keys.sorted() where names.contains(name) { try visit(name) }
+        for name in world.aliases.keys.sorted()
+        where names.contains(name) { try visit(name) }
     }
 
     static func resolve(_ files: [CourtNotation.File], selected: String,
@@ -150,6 +151,12 @@ enum WhereContextNames {
             let aliasScopes = try WhereJudge.readAliasSpans(WhereJudge.outsideBodies(file.world.clean), lent: builders)
                 .filter { !$0.fields[1].isEmpty }
             let declarationTable = Dictionary(uniqueKeysWithValues: nameBindings!.certificate.declarations.map { ($0.place, $0) })
+            func functionLocal(_ place: ContextNameBinding.Place) -> Bool {
+                guard place.components.count > 2 else { return false }
+                return (2..<place.components.count).contains { depth in
+                    declarationTable[.init(components: Array(place.components.prefix(depth)))]?.kind == ScalarName("function")
+                }
+            }
             func spelling(_ place: ContextNameBinding.Place) -> String {
                 let parts = place.parts
                 if declarationTable[place]?.kind == ScalarName("parameter") { return parts.last! }
@@ -178,7 +185,13 @@ enum WhereContextNames {
                 let offset = tokens.starts[i]
                 if let reference = nameBindings!.reference(input: file.context.input, offset: offset) {
                     let rendered: String
-                    if let receiver = reference.receiver {
+                    if reference.primaryAssociatedType == true {
+                        rendered = reference.spelling.text
+                    } else if declarationTable[reference.declaration]?.kind != ScalarName("parameter"), functionLocal(reference.declaration) {
+                        // A function's local type has a lexical place, not a
+                        // Swift member path. Its value body retains admission.
+                        rendered = reference.spelling.text
+                    } else if let receiver = reference.receiver {
                         rendered = (reference.spelling.text.hasPrefix("Self.") ? "Self" : spelling(receiver))
                             + "." + reference.declaration.parts.last!
                     } else { rendered = spelling(reference.declaration) }
@@ -190,7 +203,8 @@ enum WhereContextNames {
                             try WhereJudge.fail("\(address(i)): a module qualifier across lines is outside this context fragment")
                         }
                         let parts = reference.declaration.parts
-                        if parts.count == 2, let origin = (origins[key(parts[1])] ?? []).first(where: { $0.module == key(parts[0]) }) {
+                        if parts.count == 2, let origin = (origins[key(parts[1])] ?? []).first(
+                            where: { $0.module == key(parts[0]) }) {
                             let declaration = files[origin.file].world
                             let parameters = declaration.parameters[parts[1]] ?? declaration.aliases[parts[1]]?.parameters ?? []
                             if !parameters.isEmpty && (endIndex + 1 == tokens.words.count || key(tokens.words[endIndex + 1]) != key("<")) {
@@ -276,7 +290,8 @@ enum WhereContextNames {
                 world.gates[index].writtenUnjudged = file.world.gates[index].unjudged
             }
             for (name, values) in symbols {
-                for (module, symbol) in values where !WhereJudge.sameName(symbol, name.text) {
+                for (module, symbol) in values
+                where !WhereJudge.sameName(symbol, name.text) {
                     world.contextSpellings[symbol] = module.text + "." + name.text
                 }
             }

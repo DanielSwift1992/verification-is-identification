@@ -43,6 +43,11 @@ final class ContextNameBindingTests: XCTestCase {
     }
 
     func testGenericParameterIsLexicalAndNeverAnOwnerMember() throws {
+        let primary = try index("public enum Axis {}\npublic protocol P<Axis> { associatedtype Axis }\n")
+        XCTAssertEqual(primary.certificate.declarations.filter { $0.place == .init(parts: ["World", "P", "Axis"]) }.count, 1)
+        XCTAssertTrue(primary.certificate.references.contains {
+            $0.primaryAssociatedType == true && $0.declaration == .init(parts: ["World", "P", "Axis"])
+        })
         XCTAssertThrowsError(try index("public enum Box<Param> {}\npublic typealias Pick = Box.Param\n")) { error in
             XCTAssertTrue(String(describing: error).contains("generic parameter, not a member"))
         }

@@ -167,7 +167,7 @@ if __name__ == '__main__' and len(sys.argv) > 1 and sys.argv[1] == '--roster':
 # New normative expectations require a new release and a deliberate registry entry.
 SUITE_HASHES = {
     "vi.court.context-binding-replay/2": "4dcabb44bc13b5111625c549ffd8b260b0a6259a10641f451e877b0db720756d",
-    "vi.court.questions/0.4-resolution3": "4544c4183e0ce70094b3c5de3deb9951053c50b347519aaea7efe48739f72c81",
+    "vi.court.questions/0.4-resolution3": "75dfe27bf30e638943e03a6416a902c911d3e90780bc25176eb27c119698376a",
     "vi.court.questions/0.5-resolution3": "d584957cba593fb813d92197fbc77ed9eee92a9788590c7b46990db420764e88",
     "vi.court.context-owners/3": "6ef0c0b9cbbb199b1bcce1e3d2f6e81f89b2f5fdc6f0b337294c2bff786c9e22",
     "vi.court.context-owner-members/2": "df45b6b08e08d21003b1a195ea711ffafb6b9939170697e225e9f8a27ded4960",

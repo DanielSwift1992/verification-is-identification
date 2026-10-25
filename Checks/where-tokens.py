@@ -94,9 +94,15 @@ func demand() { need(Owner.Claim.self) }
             "word-comment": "func /* before name */ operate<Good: CONSTRAINT>",
             "word-newline": "func\noperate<Good: CONSTRAINT>",
         }
-        shadow_refusal = (re.escape("✗ THE WHERE: cannot read 'Good': it is declared at lines 4 and ")
-                          + r"\d+" + re.escape(
-                              ", and this court has no scope rule to choose between them\n"))
+        # Three written references: lhs, rhs and the gated application. Each
+        # refusal names this question's file declaration and function parameter.
+        global_place = re.escape("Good at ") + r"(?P=source):4"
+        parameter_place = r"[^ \n]+#\d+\.Good at (?P=source):\d+"
+        shadow_line = (r"✗ THE WHERE: (?P<source>[^\n]+\.swift):\d+: "
+                       + re.escape("ambiguous name Good: rename the parameter or provide a declared module context; visible: ")
+                       + "(?:" + global_place + ", " + parameter_place
+                       + "|" + parameter_place + ", " + global_place + r")\n")
+        shadow_refusal = "(?:" + shadow_line + "){3}"
         for label, head in heads.items():
             for good in [False, True]:
                 declaration = head.replace("CONSTRAINT", "Required" if good else "Setting")

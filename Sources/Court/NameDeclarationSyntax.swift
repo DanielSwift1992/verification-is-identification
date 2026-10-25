@@ -7,6 +7,7 @@ struct NameDeclarationSyntax {
         let kind: String
         let keyword: Int
         let name: Int
+        let spelling: String
         let parameters: [Int]
         let genericEnd: Int
     }
@@ -67,8 +68,18 @@ struct NameDeclarationSyntax {
             // Operators are tokens too; an operator function's generic opener
             // is the following '<', never an ICU word-class match.
             if WhereJudge.sameName(kind, "func"), !words.contains(tape.starts[name]) {
-                while cursor < tape.words.count && !["<", "("].containsName(tape.words[cursor]) { cursor += 1 }
+                while cursor < tape.words.count {
+                    if WhereJudge.sameName(tape.words[cursor], "(") { break }
+                    if WhereJudge.sameName(tape.words[cursor], "<"), cursor + 1 < tape.words.count,
+                       words.contains(tape.starts[cursor + 1]) { break }
+                    guard !words.contains(tape.starts[cursor]), !["{", "}", ";"].containsName(tape.words[cursor]) else {
+                        try WhereJudge.fail("cannot read line \(tape.lines[i]): the function name is not followed by a parameter list this court reads")
+                    }
+                    cursor += 1
+                }
             }
+            let spelling = WhereJudge.sameName(kind, "func") && !words.contains(tape.starts[name])
+                ? tape.words[name..<cursor].joined() : tape.words[name]
             var parameters: [Int] = []
             if cursor < tape.words.count, WhereJudge.sameName(tape.words[cursor], "<") {
                 var depth = 1, expect = true
@@ -86,7 +97,7 @@ struct NameDeclarationSyntax {
                 }
                 guard depth == 0 else { try WhereJudge.fail("cannot read line \(tape.lines[i]): its generic parameter list does not close where this court can read it") }
             }
-            result.append(Head(kind: kind, keyword: i, name: name, parameters: parameters, genericEnd: cursor))
+            result.append(Head(kind: kind, keyword: i, name: name, spelling: spelling, parameters: parameters, genericEnd: cursor))
         }
         heads = result
     }
@@ -99,7 +110,8 @@ struct NameDeclarationSyntax {
             return NSRange(a..<b, in: text)
         }
         var result: [(fields: [String], body: NSRange, declaration: NSRange)] = []
-        for head in heads where WhereJudge.sameName(head.kind, "typealias") {
+        for head in heads
+        where WhereJudge.sameName(head.kind, "typealias") {
             var cursor = head.genericEnd
             guard cursor < tape.words.count, WhereJudge.sameName(tape.words[cursor], "=") else { continue }
             let start = tape.ends[cursor]

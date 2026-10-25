@@ -436,19 +436,20 @@ enum WhereJudge {
             let nominal = ["enum", "struct", "class", "actor", "protocol", "typealias", "associatedtype"].containsName(head.kind)
             if nominal {
                 let spelled = tape.words[head.name]
-                let lexical = paths.last { $0.open < head.keyword && head.keyword < $0.end }
+                let lexical = owners == nil ? nil : paths.last { $0.open < head.keyword && head.keyword < $0.end }
                 let name = scope.qualified[start] ?? lexical.map { ($0.names + [spelled]).joined(separator: ".") } ?? spelled
                 lines[name, default: []].append(tape.lines[head.keyword])
                 if scope.qualified[start] != nil || (scope.depth[start] == 0 && ["enum", "protocol", "typealias"].containsName(head.kind)) { file.insert(name) }
             }
-            for token in head.parameters {
+            for token in head.parameters
+            where !sameName(head.kind, "protocol") {
                 let bare = tape.words[token]
                 parameters[bare, default: []].append(tape.lines[token])
                 if WhereJudge.sameName(head.kind, "enum"), scope.depth[start] == 0, scope.namespaces.contains(bare) { continue }
                 // Function parameters belong to the function, not its nominal
                 // container. The binding index uses these same lexical heads.
                 let parent = paths.last { $0.open < head.keyword && head.keyword < $0.end }?.names.joined(separator: ".")
-                let owner = [parent, tape.words[head.name]].compactMap { $0 }.joined(separator: ".")
+                let owner = [parent, head.spelling].compactMap { $0 }.joined(separator: ".")
                 let name = owners == nil ? bare : owner + "." + bare
                 lines[name, default: []].append(tape.lines[token])
             }
@@ -1326,7 +1327,7 @@ enum WhereJudge {
             let inputs = [(path: path, text: text, world: world)] + extras
             let files = try inputs.map { value -> CourtNotation.File in
                 let source = CourtContext.Source(input: value.path, source: value.path,
-                    sha256: courtSHA256(Data(value.text.utf8)), namespace: "Unspecified", module: "Unspecified", role: "own",
+                    sha256: courtSHA256(Data(value.text.utf8)), namespace: "", module: "", role: "own",
                     imports: [], at: [:], importAddresses: [])
                 return CourtNotation.File(context: source, text: value.text, view: value.world.clean, world: value.world,
                     notation: try NotationScope(value.world.clean), excluded: nil, unchecked: [])

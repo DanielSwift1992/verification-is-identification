@@ -8,7 +8,7 @@ enum ContextNameBinding {
         init(parts: [String]) { components = parts.map { ScalarName($0) } }
         init(components: [ScalarName]) { self.components = components }
         var parts: [String] { components.map(\.text) }
-        var text: String { parts.joined(separator: ".") }
+        var text: String { (parts.first?.isEmpty == true ? Array(parts.dropFirst()) : parts).joined(separator: ".") }
     }
     struct Site: Codable, Hashable {
         let input: ScalarName
@@ -36,6 +36,7 @@ enum ContextNameBinding {
         let spelling: ScalarName
         let declaration: Place
         var receiver: Place? = nil
+        var primaryAssociatedType: Bool? = nil
     }
     struct Input: Codable, Equatable {
         let input: ScalarName
@@ -139,6 +140,7 @@ enum ContextNameBinding {
         var byPlace: [Place: Declaration] = [:]
         var defaults: Set<Site> = []
         var declaredTokens: [Set<Int>] = files.map { _ in [] }
+        var primarySlots: [[Int: Place]] = files.map { _ in [:] }
         let nominal: NameSet = ["enum", "struct", "class", "actor", "protocol"]
         let kinds = nominal.union(["typealias", "associatedtype"])
         let builders = try files.reduce(into: NameSet()) { $0.formUnion(try WhereJudge.declaredBuilders($1.world.clean)) }
@@ -238,11 +240,13 @@ enum ContextNameBinding {
                 let function = ["func", "init", "subscript"].containsName(head.kind)
                 guard kinds.contains(word) || function else { continue }
                 let parent = owner(file, tape.starts[i])
-                let ownName = function ? tape.words[head.name] + "#" + String(tape.starts[head.name]) : tape.words[head.name]
+                let ownName = function ? head.spelling + "#" + String(tape.starts[head.name]) : tape.words[head.name]
                 let place = Place(parts: parent.parts + [ownName])
                 try append(file, head.name, place, function ? "function" : word)
                 for parameter in head.parameters {
-                    try append(file, parameter, Place(parts: place.parts + [tape.words[parameter]]), "parameter")
+                    let slot = Place(parts: place.parts + [tape.words[parameter]])
+                    if WhereJudge.sameName(word, "protocol") { primarySlots[file][parameter] = slot }
+                    else { try append(file, parameter, slot, "parameter") }
                 }
                 if function || WhereJudge.sameName(word, "typealias") && !head.parameters.isEmpty {
                     var end = head.genericEnd, brackets: [String] = [], open: Int?
@@ -400,6 +404,13 @@ enum ContextNameBinding {
             $0.kind == intrinsic && $0.place.components.count == 2
         }, by: { $0.place.components.last! })
         var references: [Reference] = [], ambiguities: [String] = []
+        func lexicalOnly(_ place: Place) -> Bool {
+            if byPlace[place]?.kind == ScalarName("parameter") { return true }
+            guard place.components.count > 2 else { return false }
+            return (2..<place.components.count).contains { depth in
+                byPlace[.init(components: Array(place.components.prefix(depth)))]?.kind == ScalarName("function")
+            }
+        }
         for (file, tape) in tapes.enumerated() {
             let accessible = imports.visible(files[file].context)
             let moduleParents = accessible.map { Place(parts: [$0]) }
@@ -413,6 +424,15 @@ enum ContextNameBinding {
                     scopeCursor += 1
                 }
                 active.removeAll { position >= $0.end }
+                if let slot = primarySlots[file][i] {
+                    guard byPlace[slot]?.kind == ScalarName("associatedtype") else {
+                        try WhereJudge.fail("\(files[file].context.source):\(tape.lines[i]): primary associated type '\(word)' has no associatedtype declaration in its protocol")
+                    }
+                    references.append(Reference(input: ScalarName(files[file].context.input), scopes: active.map(\.place),
+                        source: ScalarName(files[file].context.source), line: tape.lines[i], offset: position, end: tape.ends[i],
+                        spelling: ScalarName(word), declaration: slot, primaryAssociatedType: true))
+                    continue
+                }
                 guard wordOffsets[file].contains(tape.starts[i]), !declaredTokens[file].contains(i),
                       i == 0 || ![".", "import"].containsName(tape.words[i - 1]) else { continue }
                 // A visible declaration's parent is an imported module, an
@@ -427,7 +447,8 @@ enum ContextNameBinding {
                 for scope in active {
                     let candidate = Place(components: scope.place.components + [name])
                     if let row = byPlace[candidate], row.kind == ScalarName("parameter")
-                        || memberScopes.contains(where: { $0.place == scope.place }) { candidates.insert(candidate) }
+                        || memberScopes.contains(
+                            where: { $0.place == scope.place }) { candidates.insert(candidate) }
                 }
                 for parent in memberScopes.flatMap({ Array(visibleParents($0)) }) {
                     let candidate = Place(components: parent.components + [name])
@@ -461,13 +482,19 @@ enum ContextNameBinding {
                         return place.text + " at " + row.source.text + ":\(row.line)"
                     }.joined(separator: ", ")
                     let parameter = candidates.contains { byPlace[$0]?.kind == ScalarName("parameter") }
+                    let local = candidates.contains { lexicalOnly($0) }
                     let qualified = Set(candidates.compactMap { place -> ScalarName? in
-                        guard let row = byPlace[place], row.kind != ScalarName("parameter") else { return nil }
+                        guard let row = byPlace[place], !lexicalOnly(place),
+                              !(place.components.count == 2 && place.parts[0].isEmpty) else { return nil }
                         return ScalarName(row.kind == ScalarName("associatedtype") ? "Self." + word : place.text)
                     }).map(\.text).sorted().joined(separator: " or ")
-                    let advice = parameter
-                        ? "rename the parameter" + (qualified.isEmpty ? "" : " or write " + qualified)
-                        : "write " + qualified
+                    let unnamedModule = candidates.contains { $0.components.count == 2 && $0.parts[0].isEmpty }
+                    let routes = (qualified.isEmpty ? "" : " or write " + qualified)
+                        + (unnamedModule ? " or provide a declared module context" : "")
+                    let advice = local
+                        ? (parameter ? "rename the parameter" : "rename the local declaration") + routes
+                        : (qualified.isEmpty ? "provide a declared module context" : "write " + qualified)
+                            + (!qualified.isEmpty && unnamedModule ? " or provide a declared module context" : "")
                     ambiguities.append("\(files[file].context.source):\(tape.lines[i]): ambiguous name \(word): \(advice); visible: \(places)")
                     continue
                 }
@@ -481,7 +508,8 @@ enum ContextNameBinding {
                         try WhereJudge.fail("\(files[file].context.source):\(tape.lines[i]): '\(spelling).\(tape.words[end + 2])' names a generic parameter, not a member type")
                     }
                     var parentPlaces = ancestors[target] ?? []
-                    for scope in memberScopes where scope.place == target { parentPlaces.formUnion(visibleParents(scope)) }
+                    for scope in memberScopes
+                    where scope.place == target { parentPlaces.formUnion(visibleParents(scope)) }
                     let inheritedMembers = parentPlaces.map {
                         Place(parts: $0.parts + [tape.words[end + 2]])
                     }.filter { byPlace[$0] != nil }

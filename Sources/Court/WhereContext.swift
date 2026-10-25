@@ -153,8 +153,10 @@ enum WhereContext {
                 guard reached.contains(name) && origins[name] == nil && !intrinsicNames.containsName(name)
                     && !(WhereJudge.sameName(name, "Swift") && world.intrinsicSwift) else { continue }
                 var at = unit.context.source
-                if context.version == 2, units.contains(where: { $0.world.protocolAxes.values.contains { $0.contains(name) } }),
-                   let alias = unit.world.aliases.keys.sorted().first(where: {
+                if context.version == 2, units.contains(
+                    where: { $0.world.protocolAxes.values.contains { $0.contains(name) } }),
+                   let alias = unit.world.aliases.keys.sorted().first(
+                       where: {
                        (try? StructuralSource.tokens(unit.world.aliases[$0]!.body))?.containsName(name) == true
                    }) {
                     at += ":\(unit.world.certificateLines[alias] ?? 1)"

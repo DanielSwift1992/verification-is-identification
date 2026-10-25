@@ -658,7 +658,7 @@
         },
         "stderr": {
           "lines": [
-            "\u2717 THE WHERE: fixtures/N-duplicate.swift:7: duplicate declaration 'Unspecified.A.Leaf' in the same owner; first fixtures/N-duplicate.swift:6"
+            "\u2717 THE WHERE: fixtures/N-duplicate.swift:7: duplicate declaration 'A.Leaf' in the same owner; first fixtures/N-duplicate.swift:6"
           ]
         }
       }

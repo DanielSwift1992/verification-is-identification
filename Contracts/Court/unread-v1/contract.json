@@ -756,6 +756,40 @@
         "stdout": "",
         "stderr": "✗ THE WHERE: cannot read line 6 of 'world.swift': 'Use' applies a gated head in a place where this court reads no use and no certificate\n"
       }
+    },
+    {
+      "id": "icu-private-word-boundary",
+      "files": {
+        "world.swift": "public protocol Setting {}\npublic protocol Required: Setting {}\npublic enum Good: Required {}\npublic enum Bad: Setting {}\npublic protocol Admitted {}\npublic enum Use<T: Setting> {}\nextension Use: Admitted where T: Required {}\npublic typealias GoodClaim = Use<Good>\nfunc f(_ value: Use<Bad>.Type) {}\n"
+      },
+      "arguments": [
+        "world.swift"
+      ],
+      "sha256": {
+        "world.swift": "dc88ba8b16199b505980895f219d2d00fbf030c5751d63765d301a176d9b285a"
+      },
+      "expected": {
+        "exit": 0,
+        "stdout": "✓ THE WHERE holds: 0 equalities and 1 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4).\n",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "icu-private-mark-neighbor",
+      "files": {
+        "world.swift": "public protocol Setting {}\npublic protocol Required: Setting {}\npublic enum Good: Required {}\npublic enum Bad: Setting {}\npublic protocol Admitted {}\npublic enum Use<T: Setting> {}\nextension Use: Admitted where T: Required {}\npublic typealias GoodClaim = Use<Good>\nfunc f(_ value: Use<Bad>.Type) {}\n"
+      },
+      "arguments": [
+        "world.swift"
+      ],
+      "sha256": {
+        "world.swift": "ea8d2dae7b31ad7018dd1e7282233afc5a6d2f79a408480e487aaab59ea9ace3"
+      },
+      "expected": {
+        "exit": 2,
+        "stdout": "",
+        "stderr": "✗ THE WHERE: cannot read line 9 of 'world.swift': 'Use' applies a gated head in a place where this court reads no use and no certificate\n"
+      }
     }
   ]
 }

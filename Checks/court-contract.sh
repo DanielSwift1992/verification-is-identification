@@ -19,5 +19,10 @@ python3 Checks/court-contract.py \
     --command-json "$court_contract_command" \
     --implementation-id "local SwiftPM Tools build" \
     --compiler "$(command -v swiftc)" "$@"
+python3 Checks/court-contract.py \
+    --manifest Contracts/Court/context-names-v1/owner-views.json \
+    --command-json "$court_contract_command" \
+    --implementation-id "local SwiftPM Tools build" \
+    --compiler "$(command -v swiftc)" "$@"
 python3 Checks/court-contract.py --roster --tools "$court_contract_bin"
 bash Checks/press-contract.sh

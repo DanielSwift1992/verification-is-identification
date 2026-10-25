@@ -61,7 +61,7 @@ enum WhereContextNames {
             $0.formUnion(try WhereJudge.declaredBuilders($1.world.clean))
         }
         let tapes = try files.map { file -> StructuralSource.Lexed in
-            let scanned = try WhereJudge.lexicalReading(file.view, scope: .notation,
+            let scanned = try WhereJudge.lexicalReading(file.world.clean, scope: .notation,
                 lent: builders, carrying: true).tape
             let lines = file.world.clean.components(separatedBy: "\n")
             let active = Set(lines.indices.filter { !lines[$0].trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }.map { $0 + 1 })
@@ -139,7 +139,9 @@ enum WhereContextNames {
                 imports: accessible.filter { $0 != local }.compactMap { moduleSpellings[$0] }.sorted(),
                 at: context.at, importAddresses: context.importAddresses)
             let collisions = Set(origins.filter { $0.value.count > 1 }.keys)
-            let clean = file.view
+            // Tokens and lexical owners share this one line-preserving view.
+            // Original bytes/hash remain in File.text and File.context.
+            let clean = file.world.clean
             func protocolBindings(_ name: String, seen: NameSet = []) -> NameSet {
                 guard !seen.contains(name) else { return [] }
                 let candidates = files.filter { candidate in

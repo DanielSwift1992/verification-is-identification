@@ -54,7 +54,7 @@ public protocol Structure {
     /// A composed ``Open`` delegates to its ``Open/Body``. The ``Paired`` reading adds its two sides.
     static var count: Int { get }
 
-    /// Reads this type's leaf names in body order. The default atom contributes its ``typeName``
+    /// Reads this type's leaf names in body order. The default atom contributes its ``Structure/typeName``
     /// as one element. A composed ``Open`` delegates to its ``Open/Body``, and ``Paired`` concatenates
     /// its two lists. Each supplied leaf name remains a separate element.
     static var labels: [String] { get }
@@ -342,7 +342,7 @@ extension Half {
     }
 }
 
-/// Reads `Of.count` as decimal text through ``typeName``.
+/// Reads `Of.count` as decimal text through ``Structure/typeName``.
 public enum Tally<Of: Structure>: Close {}
 extension Tally {
     public static var typeName: String { String(Of.count) }

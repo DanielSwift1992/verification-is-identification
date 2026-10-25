@@ -6,6 +6,7 @@ enum ContextNameBinding {
     struct Place: Codable, Hashable {
         let components: [ScalarName]
         init(parts: [String]) { components = parts.map { ScalarName($0) } }
+        init(components: [ScalarName]) { self.components = components }
         var parts: [String] { components.map(\.text) }
         var text: String { parts.joined(separator: ".") }
     }
@@ -61,23 +62,32 @@ enum ContextNameBinding {
     struct Index {
         let certificate: Certificate
         private let byInput: [ScalarName: [Int: Reference]]
+        private let bySite: [ScalarName: [Int: Place]]
         init(certificate: Certificate) {
             self.certificate = certificate
             var bound: [ScalarName: [Int: Reference]] = [:]
+            var places: [ScalarName: [Int: Place]] = [:]
+            // The first declaration row owns a site; a reference overrides it.
+            // This is the same ordered relation as the former linear lookup.
+            for declaration in certificate.declarations {
+                for site in [declaration.site] + declaration.definitions {
+                    if places[site.input]?[site.offset] == nil {
+                        places[site.input, default: [:]][site.offset] = declaration.place
+                    }
+                }
+            }
             for reference in certificate.references {
                 bound[reference.input, default: [:]][reference.offset] = reference
+                places[reference.input, default: [:]][reference.offset] = reference.declaration
             }
             byInput = bound
+            bySite = places
         }
         func reference(input: String, offset: Int) -> Reference? {
             byInput[ScalarName(input)]?[offset]
         }
         func place(input: String, offset: Int) -> Place? {
-            reference(input: input, offset: offset)?.declaration
-                ?? certificate.declarations.first {
-                    ($0.input == ScalarName(input) && $0.offset == offset)
-                        || $0.definitions.contains { $0.input == ScalarName(input) && $0.offset == offset }
-                }?.place
+            bySite[ScalarName(input)]?[offset]
         }
         /// Replays every place and occurrence against the complete source-derived
         /// relation. Omitting, adding or redirecting an edge cannot pass coverage.
@@ -320,10 +330,14 @@ enum ContextNameBinding {
                 try WhereJudge.fail("\(files[scope.file].context.source):\(line): scope owner '\(scope.place.text)' is not provided")
             }
         }
-        let byName = Dictionary(grouping: declarations, by: { ScalarName($0.place.parts.last!) })
+        let intrinsic = ScalarName("intrinsic")
+        let intrinsicRoots = Dictionary(grouping: declarations.filter {
+            $0.kind == intrinsic && $0.place.components.count == 2
+        }, by: { $0.place.components.last! })
         var references: [Reference] = [], ambiguities: [String] = []
         for (file, tape) in tapes.enumerated() {
             let accessible = imports.visible(files[file].context)
+            let moduleParents = accessible.map { Place(parts: [$0]) }
             let orderedScopes = scopes.filter { $0.file == file }.sorted { $0.start < $1.start }
             var active: [Scope] = [], scopeCursor = 0
             for i in tape.words.indices {
@@ -336,13 +350,17 @@ enum ContextNameBinding {
                 active.removeAll { position >= $0.end }
                 guard wordOffsets[file].contains(tape.starts[i]), !declaredTokens[file].contains(i),
                       i == 0 || ![".", "import"].containsName(tape.words[i - 1]) else { continue }
-                var candidates = Set((byName[ScalarName(word)] ?? []).filter { declaration in
-                    let parent = Array(declaration.place.parts.dropLast())
-                    if parent.count == 1 {
-                        return declaration.kind == ScalarName("intrinsic") || accessible.contains(parent[0])
-                    }
-                    return active.contains { WhereJudge.sameNames($0.place.parts, parent) }
-                }.map(\.place))
+                // A visible declaration's parent is an imported module, an
+                // active lexical owner, or an intrinsic profile root.
+                let name = ScalarName(word)
+                var candidates: Set<Place> = []
+                for parent in moduleParents + active.map(\.place) {
+                    let candidate = Place(components: parent.components + [name])
+                    if byPlace[candidate] != nil { candidates.insert(candidate) }
+                }
+                for declaration in intrinsicRoots[name] ?? [] {
+                    candidates.insert(declaration.place)
+                }
                 if WhereJudge.sameName(word, "Self"), let own = active.last(
                     where: {
                     byPlace[$0.place].map { nominal.contains($0.kind.text) } ?? false

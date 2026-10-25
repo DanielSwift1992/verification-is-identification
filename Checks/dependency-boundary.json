@@ -2563,7 +2563,7 @@
     {
       "path": "Sources/Tools/Grammar/Linter.swift",
       "channel": "text",
-      "line": 600,
+      "line": 523,
       "name": "showcase",
       "text": "// from the theory they sit under this root; the showcase package runs the same gate from",
       "occurrence": 1,

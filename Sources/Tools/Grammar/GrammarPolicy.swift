@@ -1,4 +1,33 @@
 import Foundation
+import Court
+
+// Character-based formation readers consume this one projection of the
+// owner's scalar lexer. A boundary inside a Character refuses, never rounds.
+struct GrammarSpans {
+    struct Refusal: Error, CustomStringConvertible { let description: String }
+    struct Span {
+        let end: Int
+        let opening: String
+        let line: Int
+    }
+    let at: [Int: Span]
+    init(_ source: String, path: String) throws {
+        let spans = try Judge.sourceSpans(source, origin: path)
+        var characters = [0: 0], byte = 0
+        for (index, character) in source.enumerated() {
+            byte += String(character).utf8.count
+            characters[byte] = index + 1
+        }
+        var result: [Int: Span] = [:]
+        for span in spans {
+            guard let start = characters[span.start], let end = characters[span.end] else {
+                throw Refusal(description: "\(path):\(span.line): lexical span splits a Character (byte \(span.start))")
+            }
+            result[start] = Span(end: end, opening: span.opening, line: span.line)
+        }
+        at = result
+    }
+}
 
 // The portable reading of the mirror consumes a census exported FROM the
 // compiler's conformances. Neither a client nor this machine supplies grants.
@@ -33,11 +62,12 @@ struct GrammarPolicy: Codable {
      let scope: String
      let context: String }
 
-    func findings(_ source: String, scope: String) throws -> [Finding] {
+    func findings(_ source: String, scope: String, path: String = "input") throws -> [Finding] {
         guard format == "vi-grammar-policy/1", scopes.contains(scope),
               let fallback = atoms.filter { $0.name == defaultAtom }.first else {
             throw GrammarScopeMap.Refusal("unsupported grammar policy or scope '\(scope)'")
         }
+        let spans = try GrammarSpans(source, path: path)
         let chars = Array(source)
         var i = 0, line = 1
         let byName = Dictionary(uniqueKeysWithValues: atoms.map { ($0.name, $0) })
@@ -74,59 +104,6 @@ struct GrammarPolicy: Codable {
             advance(1)
             return (nil, unknown, at)
         }
-        // Follow the owner's raw Character consumption at an escape, including
-        // balanced brackets and opaque foreign spans inside interpolation.
-        // The boundary battery compares these rules with the typed mirror.
-        let glyphs = Dictionary(uniqueKeysWithValues: punctuation.filter { $0.spelling.count == 1 }.map { (Character($0.spelling), $0) })
-        func foreignHere() -> Atom? {
-            for atom in punctuation
-            where atom.foreign != nil && starts(atom.spelling) {
-                advance(atom.spelling.count)
-                return atom
-            }
-            return nil
-        }
-        func balanced(_ opener: Atom) {
-            var depth = 0
-            while i < chars.count {
-                if let foreign = foreignHere() {
-                    span(foreign)
-                    continue
-                }
-                if let atom = glyphs[chars[i]] {
-                    if atom.opening && atom.name == opener.name {
-                        depth += 1
-                        advance(1)
-                        continue
-                    }
-                    if atom.closes == opener.name {
-                        depth -= 1
-                        advance(1)
-                        if depth == 0 { return }
-                        continue
-                    }
-                }
-                advance(1)
-            }
-        }
-        func span(_ atom: Atom) {
-            guard let closeName = atom.foreign, let closer = byName[closeName] else { return }
-            while i < chars.count {
-                if starts(closer.spelling) {
-                    advance(closer.spelling.count)
-                    return
-                }
-                if glyphs[chars[i]]?.escapes == true {
-                    advance(1)
-                    guard i < chars.count else { return }
-                    if let opening = glyphs[chars[i]], opening.opening {
-                        balanced(opening)
-                    } else { advance(1) }
-                    continue
-                }
-                advance(1)
-            }
-        }
         struct Pending { let atom: String
          let grants: [String]
          let line: Int }
@@ -154,6 +131,17 @@ struct GrammarPolicy: Codable {
             frames[frames.count - 1].pending.append(Pending(atom: name, grants: grants, line: at))
         }
         while i < chars.count {
+            if let span = spans.at[i] {
+                guard let atom = punctuation.first(
+                    where: { $0.spelling == span.opening && $0.foreign != nil }) else {
+                    throw GrammarSpans.Refusal(description: "\(path):\(span.line): unregistered foreign opener '\(span.opening)'")
+                }
+                let at = line
+                advance(span.end - i)
+                emit(atom.name, atom.grants, at)
+                last = atom
+                continue
+            }
             let (a, name, at) = next()
             guard let atom = a else { emit(name, [], at)
              last = nil
@@ -161,11 +149,7 @@ struct GrammarPolicy: Codable {
             if atom.declaration { head = true }
             if atom.exempt { exempt = true }
             if atom.foreign != nil {
-                span(atom)
-                 emit(name, atom.grants, at)
-                 last = atom
-                if let close = atom.foreign, byName[close]?.spelling == "\n" { lineHead = true }
-                continue
+                throw GrammarSpans.Refusal(description: "\(path):\(at): foreign opener has no shared lexical span")
             }
             if atom.medium { if atom.spelling == "\n" { lineHead = true }
              continue }

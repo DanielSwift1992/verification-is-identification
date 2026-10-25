@@ -197,7 +197,8 @@ enum Census {
                 FileHandle.standardError.write(Data("census: --target needs a name and at least one path\n".utf8))
                 exit(2)
             }
-            for path in paths where FileManager.default.fileExists(atPath: path) == false {
+            for path in paths
+            where FileManager.default.fileExists(atPath: path) == false {
                 FileHandle.standardError.write(Data("census: cannot read \(path) for target \(label[0])\n".utf8))
                 exit(2)
             }

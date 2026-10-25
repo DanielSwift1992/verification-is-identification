@@ -1,4 +1,5 @@
 import Alphabet
+import Court
 import Foundation
 import GrammarLexicon
 import VerificationIsIdentification
@@ -14,7 +15,7 @@ import VerificationIsIdentification
 // Rules for which bytes matter must be declared as types; the court checks
 // the derivation against that declaration, including coverage and bindings.
 // Correctness of replay and of the type checker are premises of the verdict.
-// Lexemes come from registries, with no literal in the reading path spelling a lexeme;
+// Lexemes come from registries; opaque bounds come from Court's shared lexer;
 // a new registered atom is carried without edits to this file.
 // Reflective names still need source bindings checked against the input.
 // Portable findings run no child type check and share the open reader debt.
@@ -76,17 +77,6 @@ enum Linter {
             .sorted { $0.spelling.count > $1.spelling.count }
     }()
 
-    /// This names the text belonging to any KNOWN atom, read off whichever of the two lexeme
-    /// protocols it conforms to. Used only to recognize a `ForeignOpener`'s `Closer` (and, during
-    /// that same opaque run, an `Escapes` atom) in the raw stream.
-    private static func text(of atom: any LintAtom.Type) -> String {
-        if let lexeme = atom as? any Lexeme.Type { return String(lexeme.glyph) }
-        if let spelled = atom as? any Spelled.Type { return spelled.spelling }
-        return ""
-    }
-
-    // The fallback census belongs to this repository. An external map REPLACES
-    // it; an uncovered path never inherits an application-specific exception.
     private static func defaultMap() -> GrammarScopeMap {
         GrammarScopeMap(entries: Schema.scopes.map {
             GrammarScopeMap.Entry(prefix: $0.prefix, scope: String(describing: $0.scope))
@@ -98,9 +88,10 @@ enum Linter {
     /// This reads in. One pass over one file, emitting as it reads. Which block type an opener
     /// becomes is two mechanical facts: the file's scope and whether the atom just before it
     /// grants `OpensBuilder`, and only an `AlwaysPairs` opener becomes a block at all.
-    /// Everything else is the cursor's machinery: word runs, foreign spans, one balanced
-    /// sub-run when an escape meets an opener inside a span.
-    static func carried(_ content: String, path: String, scopeName: String) -> String {
+    /// Word runs are classified here; opaque bounds, including nested interpolation,
+    /// come from the common scalar lexer rather than a second span scanner.
+    static func carried(_ content: String, path: String, scopeName: String) throws -> String {
+        let spans = try GrammarSpans(content, path: path)
         let chars = Array(content)
         var i = 0
         var lastType: (any LintAtom.Type)? = Alphabet.defaultWord   // the file's start
@@ -188,80 +179,18 @@ enum Linter {
             return (.unknown(c), nil)
         }
 
-        /// This names a `ForeignOpener` glyph or spelling at the current position: the question
-        /// a raw span asks about its inside when an escape suspends it.
-        func foreignOpenerHere() -> (any ForeignOpener.Type)? {
-            for spelled in punctuationSpellings {
-                guard let opener = spelled as? any ForeignOpener.Type else { continue }
-                let n = spelled.spelling.count
-                guard i + n <= chars.count else { continue }
-                if String(chars[i..<(i + n)]) == spelled.spelling {
-                    advance(n)
-                    return opener
-                }
-            }
-            if let opener = glyphTable[chars[i]] as? any ForeignOpener.Type {
-                advance(1)
-                return opener
-            }
-            return nil
-        }
-
-        /// This is one balanced bracket run consumed raw: what an escape followed by an
-        /// `OpeningAtom` means inside a foreign span (interpolation, stated atom-generically).
-        /// Foreign spans inside it fold shut recursively, so a quote in there does not end the
-        /// outer span.
-        func consumeBalanced(_ opener: any OpeningAtom.Type) {
-            var open = 0
-            while i < chars.count {
-                if let foreign = foreignOpenerHere() {
-                    consumeForeignSpan(closer: foreign.closerType)
-                    continue
-                }
-                if let lexeme = glyphTable[chars[i]] {
-                    if let opening = lexeme as? any OpeningAtom.Type, opening == opener {
-                        open += 1
-                        advance(1)
-                        continue
-                    }
-                    if let closing = lexeme as? any ClosingAtom.Type, closing.opensType == opener {
-                        open -= 1
-                        advance(1)
-                        if open == 0 { return }
-                        continue
-                    }
-                }
-                advance(1)
-            }
-        }
-
-        /// This gives raw consumption for a `ForeignOpener`'s span: no classification inside it,
-        /// only the generic questions any opener asks: "does `closerText` start here" (ends
-        /// the span, closer consumed too), "is the atom right here an `Escapes` atom" (skip it
-        /// and whatever follows, or, when what follows OPENS, one balanced run).
-        func consumeForeignSpan(closer: any LintAtom.Type) {
-            let closerText = text(of: closer)
-            while i < chars.count {
-                if !closerText.isEmpty, i + closerText.count <= chars.count,
-                   String(chars[i..<(i + closerText.count)]) == closerText {
-                    advance(closerText.count)
-                    return
-                }
-                if let lexeme = glyphTable[chars[i]], lexeme is any Escapes.Type {
-                    advance(1)
-                    guard i < chars.count else { return }
-                    if let opening = glyphTable[chars[i]] as? any OpeningAtom.Type {
-                        consumeBalanced(opening)
-                    } else {
-                        advance(1)
-                    }
-                    continue
-                }
-                advance(1)
-            }
-        }
-
         while i < chars.count {
+            if let span = spans.at[i] {
+                let atom: (any LintAtom.Type)? = punctuationSpellings.first { $0.spelling == span.opening }
+                    ?? (span.opening.count == 1 ? glyphTable[Character(span.opening)] : nil)
+                guard let atom, atom is any ForeignOpener.Type else {
+                    throw GrammarSpans.Refusal(description: "\(path):\(span.line): unregistered foreign opener '\(span.opening)'")
+                }
+                emit("\(String(describing: atom)).self")
+                lastType = atom
+                i = span.end
+                continue
+            }
             let (classified, wordText) = nextAtom()
 
             guard let atom = classified.atomType else {
@@ -276,14 +205,8 @@ enum Linter {
             if atom is any OpensExempt.Type {
                 exemptSeen = true
             }
-            if let opener = atom as? any ForeignOpener.Type {
-                consumeForeignSpan(closer: opener.closerType)
-                emit("\(classified.name).self")
-                lastType = atom
-                if (opener.closerType as? any Lexeme.Type).map({ $0.glyph.isNewline }) == true {
-                    lineHeaded = true   // the span closed AT a newline, the next atom heads its line
-                }
-                continue
+            if atom is any ForeignOpener.Type {
+                throw GrammarSpans.Refusal(description: "\(path):1: foreign opener has no shared lexical span")
             }
             if atom is any MediumAtom.Type {
                 if (atom as? any Lexeme.Type).map({ $0.glyph.isNewline }) == true {
@@ -583,11 +506,11 @@ enum Linter {
             for path in files {
                 do {
                     let source = try String(contentsOfFile: path, encoding: .utf8)
-                    for finding in try GrammarPolicyCensus.policy().findings(source, scope: assigned[path]!) {
+                    for finding in try GrammarPolicyCensus.policy().findings(source, scope: assigned[path]!, path: path) {
                         print("\(path):\(finding.line): \(finding.atom) is not granted \(finding.scope)/\(finding.context)")
                         refused = true
                     }
-                } catch { print("\(path):1: \(error)")
+                } catch { print("\(error is Judge.SourceLexicalFailure || error is GrammarSpans.Refusal ? "" : path + ":1: ")\(error)")
                  refused = true }
             }
             if refused { print("THE GRAMMAR: the portable mirror refuses")
@@ -663,7 +586,7 @@ enum Linter {
                 do { content = try String(contentsOfFile: path, encoding: .utf8) }
                 catch { throw CarrierFailure(path + ":1: cannot read source: " + String(describing: error)) }
                 planned.append(CarrierFile(source: path, path: "Sources/MirrorSource/" + carrierName(path) + ".swift",
-                                           bytes: Data(carried(content, path: path, scopeName: assigned[path]!).utf8), carrier: true))
+                                           bytes: Data(try carried(content, path: path, scopeName: assigned[path]!).utf8), carrier: true))
             }
             plan = try CarrierPlan(roster: files, files: planned)
             guard !FileManager.default.fileExists(atPath: scratch) else {
@@ -671,6 +594,11 @@ enum Linter {
             }
             _ = try plan.install(at: scratchURL)
         } catch {
+            if error is Judge.SourceLexicalFailure || error is GrammarSpans.Refusal {
+                print("THE GRAMMAR: \(error)")
+                print("scratch kept at \(scratch)")
+                exit(1)
+            }
             print("THE GRAMMAR: carrier delivery refused: \(error)")
             print("scratch kept at \(scratch)")
             exit(2)

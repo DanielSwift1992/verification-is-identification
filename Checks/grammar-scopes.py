@@ -93,4 +93,18 @@ with tempfile.TemporaryDirectory(prefix="vi-scopes-") as tmp:
         for portable in (True, False):
             p = ask(entries, body, portable)
             assert p.returncode == wanted, (scope, body, portable, p.stdout[-1800:])
-    print("scope-map: coverage, boundaries, order, conflicts, closed format, digest and 14 compiler/port controls hold")
+    # Opaque bounds come from the owner lexer in BOTH readers. These finite
+    # cases observe admission/refusal; they do not prove a full source reader.
+    raw_cases = json.loads((ROOT / "Checks/Grammar/raw-strings.json").read_text())
+    for case in raw_cases:
+        for portable in (True, False):
+            p = ask([("Prepared", "DemoScope")], case["source"], portable)
+            assert p.returncode == case["exit"], (case["name"], portable, p.returncode, p.stdout[-1800:])
+            if case["contains"]:
+                assert case["contains"] in p.stdout, (case["name"], portable, p.stdout[-1800:])
+            if case["exit"]:
+                # Lexical/portable refusals address original source; Swift's
+                # formation refusal addresses its named read-back carrier.
+                address = "Page.swift" if portable or "ActorWord" not in case["contains"] else "Prepared_Dictionary_Page_swift.swift:"
+                assert address in p.stdout, (case["name"], portable, p.stdout[-1800:])
+    print(f"scope-map: coverage, boundaries, order, conflicts, closed format, digest; 14 previous and {len(raw_cases)} opaque-span compiler/port controls hold")

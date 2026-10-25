@@ -1,0 +1,86 @@
+[
+  {
+    "name": "raw-backslash-keeps-next-declaration",
+    "source": "enum X { static let s = #\"\\\"# }\nactor Hidden {}\nenum Y { static let t = \"\" }\n",
+    "exit": 1,
+    "contains": "ActorWord"
+  },
+  {
+    "name": "raw-backslash-neighbour",
+    "source": "enum X { static let s = #\"\\\"# }\nenum Y { static let t = \"\" }\n",
+    "exit": 0,
+    "contains": null
+  },
+  {
+    "name": "two-hashes-opaque",
+    "source": "enum X { static let s = ##\"actor Hidden {} \"# /* \\ \"## }\n",
+    "exit": 0,
+    "contains": null
+  },
+  {
+    "name": "two-hashes-after-closer",
+    "source": "enum X { static let s = ##\"\\\"## }\nactor Hidden {}\n",
+    "exit": 1,
+    "contains": "ActorWord"
+  },
+  {
+    "name": "raw-multiline-opaque",
+    "source": "enum X { static let s = #\"\"\"\nactor Hidden {}\n\\ \"+not a delimiter\n\"\"\"#\n}\n",
+    "exit": 0,
+    "contains": null
+  },
+  {
+    "name": "raw-multiline-next-declaration",
+    "source": "enum X { static let s = #\"\"\"\nactor Hidden {}\n\"\"\"#\n}\nactor Hidden {}\n",
+    "exit": 1,
+    "contains": "ActorWord"
+  },
+  {
+    "name": "raw-interpolation-nested-literal",
+    "source": "enum X { static let s = ##\"text \\##(call(#\"\\\"#, \"actor Hidden {}\"))\"## }\n",
+    "exit": 0,
+    "contains": null
+  },
+  {
+    "name": "raw-interpolation-next-declaration",
+    "source": "enum X { static let s = ##\"text \\##(call(#\"\\\"#, \"actor Hidden {}\"))\"## }\nactor Hidden {}\n",
+    "exit": 1,
+    "contains": "ActorWord"
+  },
+  {
+    "name": "unterminated-raw",
+    "source": "enum X {}\nlet s = #\"unterminated\nactor Hidden {}\n",
+    "exit": 1,
+    "contains": "Page.swift:2: unterminated raw string literal"
+  },
+  {
+    "name": "mismatched-raw-hashes",
+    "source": "enum X {}\nlet s = ##\"missing second hash\"#\n",
+    "exit": 1,
+    "contains": "Page.swift:2: unterminated raw string literal"
+  },
+  {
+    "name": "unterminated-raw-interpolation",
+    "source": "enum X {}\nlet s = #\"\\#(call(1)\n",
+    "exit": 1,
+    "contains": "Page.swift:2:"
+  },
+  {
+    "name": "raw-spelling-in-comment",
+    "source": "// #\"\\\"# actor Hidden {}\nenum X {}\n",
+    "exit": 0,
+    "contains": null
+  },
+  {
+    "name": "nested-comment",
+    "source": "/* outer /* #\"\\\"# actor Hidden {} */ inner */\nenum X {}\n",
+    "exit": 0,
+    "contains": null
+  },
+  {
+    "name": "raw-boundary-inside-a-character",
+    "source": "enum X { static let s = #\"x\"#́ }\n",
+    "exit": 1,
+    "contains": "Page.swift:1: lexical span splits a Character"
+  }
+]

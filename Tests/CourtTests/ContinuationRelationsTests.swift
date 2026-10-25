@@ -42,6 +42,97 @@ final class ContinuationRelationsTests: XCTestCase {
             print("T0088 \(id): refused: \(diagnostic)")
         }
     }
+    func testNativeContinuationInputPolicy() throws {
+        let path = root.appendingPathComponent("Contracts/Court/continuation-relations-v1/input-policy.json")
+        let record = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: path)) as? [String: Any])
+        let entries = try XCTUnwrap(record["cases"] as? [[String: Any]])
+        let modes = try XCTUnwrap(record["entry_points"] as? [[String: Any]])
+        let request = try XCTUnwrap(record["request"] as? String)
+        let source = try XCTUnwrap(record["source"] as? String)
+        let primitive = try WhereJudge.fileText(root.appendingPathComponent("Sources/Notation/Primitive.swift").path)
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent("vi-continuation-input-" + UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let bin = try XCTUnwrap(ProcessInfo.processInfo.environment["VI_CHECK_BUILD_BIN"])
+        #if os(Windows)
+        let tool = "Tools.exe"
+        #else
+        let tool = "Tools"
+        #endif
+        let executable = URL(fileURLWithPath: bin, isDirectory: true).appendingPathComponent(tool)
+        var originals: [String: URL] = [:]
+        var controls = 0
+        for entry in entries {
+            let name = try XCTUnwrap(entry["name"] as? String)
+            let outcome = try XCTUnwrap(entry["outcome"] as? String)
+            for role in entry["roles"] as? [String] ?? ["request"] {
+                let place = directory.appendingPathComponent(name + "-" + role)
+                try FileManager.default.createDirectory(at: place, withIntermediateDirectories: true)
+                let files = [place.appendingPathComponent("foundation.swift"), place.appendingPathComponent("request.swift")]
+                let changed = role == "foundation" ? 0 : 1
+                var text = changed == 0 ? primitive : source
+                if let replacement = entry["replace"] as? [String] {
+                    text = text.replacingOccurrences(of: replacement[0], with: replacement[1])
+                }
+                text = (entry["prefix"] as? String ?? "") + text + (entry["suffix"] as? String ?? "")
+                if entry["change"] as? String == "crlf" { text = text.replacingOccurrences(of: "\n", with: "\r\n") }
+                if entry["change"] as? String == "cr" { text = text.replacingOccurrences(of: "\n", with: "\r") }
+                var raw = Data(text.utf8)
+                if let bytes = entry["prefix_bytes"] as? [Int] {
+                    let prefix = Data(bytes.map { UInt8($0) })
+                    raw = prefix + raw
+                    XCTAssertTrue(raw.starts(with: prefix))
+                }
+                if entry["prefix_hex"] as? String == "ff" { raw.insert(0xFF, at: 0) }
+                for index in files.indices {
+                    if index == changed && entry["change"] as? String == "missing" { continue }
+                    try (index == changed ? raw : Data((index == 0 ? primitive : source).utf8)).write(to: files[index])
+                }
+                for mode in modes {
+                    let label = try XCTUnwrap(mode["name"] as? String)
+                    let flags = try XCTUnwrap(mode["flags"] as? [String])
+                    let archive = place.appendingPathComponent(label + ".json")
+                    for replay in [false, true] {
+                        let saved: URL
+                        if outcome == "holds" { saved = archive }
+                        else { saved = try XCTUnwrap(originals[label]) }
+                        let process = Process(), output = Pipe()
+                        process.executableURL = executable
+                        var arguments: [String] = ["judge", replay ? "replay-continuation" : "continue"]
+                        arguments.append(contentsOf: flags)
+                        if replay { arguments.append(saved.path) }
+                        else { arguments.append(contentsOf: ["--certificate", archive.path]) }
+                        arguments.append(request)
+                        arguments.append(contentsOf: files.map(\.path))
+                        process.arguments = arguments
+                        process.standardOutput = output; process.standardError = output
+                        try process.run()
+                        let result = output.fileHandleForReading.readDataToEndOfFile()
+                        process.waitUntilExit()
+                        let diagnostic = String(decoding: result, as: UTF8.self)
+                        XCTAssertEqual(process.terminationStatus, outcome == "holds" ? 0 : 2, diagnostic)
+                        if outcome == "holds" {
+                            let canonical = try Data(contentsOf: archive)
+                            if name == "plain-lf" { originals[label] = archive }
+                            XCTAssertEqual(canonical, try Data(contentsOf: XCTUnwrap(originals[label])))
+                        } else {
+                            XCTAssertFalse(FileManager.default.fileExists(atPath: archive.path))
+                            XCTAssertTrue(diagnostic.contains(files[changed].path), diagnostic)
+                            if outcome == "unread-scalar" {
+                                let byte = try XCTUnwrap(raw.range(of: Data([0xEF, 0xBB, 0xBF]))).lowerBound
+                                let line = raw[..<byte].filter { $0 == 10 }.count + 1
+                                XCTAssertTrue(diagnostic.contains(files[changed].path + ":\(line):"), diagnostic)
+                                XCTAssertTrue(diagnostic.contains("byte \(byte)") && diagnostic.contains("U+FEFF"), diagnostic)
+                            } else { XCTAssertTrue(diagnostic.contains("cannot read"), diagnostic) }
+                        }
+                        controls += 1
+                        print("T0092 \(name)/\(role)/\(label)/\(replay ? "replay" : "construct"): exit \(process.terminationStatus)" + (outcome == "holds" ? "" : ": " + diagnostic))
+                    }
+                }
+            }
+        }
+        XCTAssertEqual(controls, 64)
+    }
     func testNamedContractAndSerializedReplay() throws {
         let data = try Data(contentsOf: root.appendingPathComponent("Contracts/Court/continuation-relations-v1/contract.json"))
         let document = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])

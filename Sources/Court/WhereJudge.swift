@@ -145,6 +145,16 @@ enum WhereJudge {
     // conformance, so it is a form this court reads, in the text that
     // declares it and in a world that text is lent to.
     static func stripComments(_ text: String, lent: NameSet = []) throws -> String {
+        try strippedReading(text, lent: lent).clean
+    }
+
+    static func strippedReading(_ text: String, lent: NameSet = [], notating: Bool = false)
+        throws -> (clean: String, notation: [NotationToken]) {
+        let reading: LexicalReading
+        do { reading = try lexicalReading(text, lent: lent, carrying: false, notating: notating) }
+        catch let error as LexicalFailure {
+            try fail("cannot read line \(error.line): \(error.description)")
+        }
         // Conditional compilation is outside this court's scope. Omit the
         // complete block, including nested alternatives; never expose a tail
         // merely because an inner #endif was encountered. An omitted line
@@ -159,7 +169,23 @@ enum WhereJudge {
         // line rather than omitted.
         var flaggedDepth = 0
         var kept: [String] = []
-        for (index, line) in try blankCommentsAndStrings(text, lent: lent)
+        var notation: [NotationToken] = []
+        var token = 0, oldOffset = 0, newOffset = 0
+        func keepLine(_ line: Substring, included: Bool) {
+            let length = line.utf16.count
+            kept.append(included ? String(line) : "")
+            while token < reading.notation.count, reading.notation[token].range.location < oldOffset + length {
+                if included {
+                    var value = reading.notation[token]
+                    value.range.location += newOffset - oldOffset
+                    notation.append(value)
+                }
+                token += 1
+            }
+            oldOffset += length + 1
+            newOffset += (included ? length : 0) + 1
+        }
+        for (index, line) in reading.blanked
             .split(separator: "\n", omittingEmptySubsequences: false).enumerated() {
             let bare = line.trimmingCharacters(in: .whitespaces)
             if bare.range(of: #"^#if\b"#, options: .regularExpression) != nil {
@@ -169,13 +195,13 @@ enum WhereJudge {
                         + "and this court omits only a block a compilation without its flag skips")
                 }
                 flaggedDepth += 1
-                kept.append("")
+                keepLine(line, included: false)
                 continue
             }
             if bare.range(of: #"^#endif\b"#, options: .regularExpression) != nil {
                 if flaggedDepth == 0 { try fail("unmatched #endif") }
                 flaggedDepth -= 1
-                kept.append("")
+                keepLine(line, included: false)
                 continue
             }
             if bare.range(of: #"^#(?:else|elseif)\b"#, options: .regularExpression) != nil {
@@ -184,13 +210,13 @@ enum WhereJudge {
                     try fail("cannot read line \(index + 1): '\(bare)' opens a branch a compilation without "
                         + "the flag reads, and this court omits only a block that compilation skips")
                 }
-                kept.append("")
+                keepLine(line, included: false)
                 continue
             }
-            kept.append(flaggedDepth > 0 ? "" : String(line))
+            keepLine(line, included: flaggedDepth == 0)
         }
         if flaggedDepth != 0 { try fail("unterminated #if block") }
-        return kept.joined(separator: "\n")
+        return (kept.joined(separator: "\n"), notation)
     }
 
     static func captures(_ pattern: String, _ text: String) -> [[String]] {
@@ -702,6 +728,7 @@ enum WhereJudge {
         /// ranges this court reads as uses, certificates and gate clauses,
         /// and the right sides of the typealiases at file scope
         var clean = ""
+        var notation: [NotationToken] = []
         var lineAt: [Int] = []
         var readSpans: [NSRange] = []
         var aliasSpans: [NSRange] = []
@@ -709,7 +736,8 @@ enum WhereJudge {
 
     static func read(_ text: String, lent: NameSet = [], notationV2: Bool = true,
                      contextV2: Bool = false, source: String? = nil) throws -> World {
-        let clean = try stripComments(text, lent: lent)
+        let reading = try strippedReading(text, lent: lent, notating: true)
+        let clean = reading.clean
         var scope = Scope(clean)
         let notation = try NotationScope(clean, enabled: notationV2)
         scope.qualified = notation.nested
@@ -760,7 +788,8 @@ enum WhereJudge {
                 .split(separator: ",")
                 .map { $0.trimmingCharacters(in: .whitespaces) }
             var table: NameMap<String> = [:]
-            for aliasHit in try readAliases(hit[3]) where aliasHit[1].isEmpty {
+            for aliasHit in try readAliases(hit[3])
+            where aliasHit[1].isEmpty {
                 guard table[aliasHit[0]] == nil else {
                     try fail("duplicate definition of '\(name).\(aliasHit[0])'")
                 }
@@ -815,7 +844,8 @@ enum WhereJudge {
         ) {
             let name = hit[0]
             if world.conformers[name] != nil {
-                for aliasHit in try readAliases(hit[1]) where aliasHit[1].isEmpty {
+                for aliasHit in try readAliases(hit[1])
+                where aliasHit[1].isEmpty {
                     guard world.conformers[name]!.table[aliasHit[0]] == nil else {
                         try fail("duplicate definition of '\(name).\(aliasHit[0])'")
                     }
@@ -1034,7 +1064,8 @@ enum WhereJudge {
         ) {
             let table = spans[3]
             guard let bounds = Range(table, in: clean), let owner = Range(spans[0], in: clean) else { continue }
-            for span in try readAliasSpans(String(clean[bounds])) where span.fields[1].isEmpty {
+            for span in try readAliasSpans(String(clean[bounds]))
+            where span.fields[1].isEmpty {
                 world.certificateLines[notation.name(String(clean[owner]), at: spans[0].location) + "." + span.fields[0]] = scope.line[table.location + span.declaration.location]
                 read.append(NSRange(location: table.location + span.body.location, length: span.body.length))
                 world.rootApplicationSpans.append(NSRange(location: table.location + span.body.location, length: span.body.length))
@@ -1045,7 +1076,8 @@ enum WhereJudge {
         ) {
             guard let owner = Range(spans[0], in: clean), world.conformers[String(clean[owner])] != nil,
                   let bounds = Range(spans[1], in: clean) else { continue }
-            for span in try readAliasSpans(String(clean[bounds])) where span.fields[1].isEmpty {
+            for span in try readAliasSpans(String(clean[bounds]))
+            where span.fields[1].isEmpty {
                 world.certificateLines[notation.name(String(clean[owner]), at: spans[0].location) + "." + span.fields[0]] = scope.line[spans[1].location + span.declaration.location]
                 read.append(NSRange(location: spans[1].location + span.body.location, length: span.body.length))
                 world.rootApplicationSpans.append(NSRange(location: spans[1].location + span.body.location, length: span.body.length))
@@ -1059,6 +1091,7 @@ enum WhereJudge {
         }
         world.readSpans = read
         world.clean = clean
+        world.notation = reading.notation
         world.lineAt = scope.line
         return world
     }
@@ -1173,7 +1206,8 @@ enum WhereJudge {
         for proto in inheritedProtocols(conformer.protocols, world) {
             axes.formUnion(world.protocolAxes[proto] ?? [])
         }
-        for axis in axes where !conformer.parameters.containsName(axis) {
+        for axis in axes
+        where !conformer.parameters.containsName(axis) {
             bindings[axis] = Term(head: Press.serialize(owner) + "." + axis, args: [])
         }
         return (bindings, rigid)
@@ -1196,7 +1230,8 @@ enum WhereJudge {
             for proto in inheritedProtocols(owner.protocols, world) {
                 axes.formUnion(world.protocolAxes[proto] ?? [])
             }
-            for axis in axes where bindings[axis] == nil {
+            for axis in axes
+            where bindings[axis] == nil {
                 bindings[axis] = Term(head: Press.serialize(term) + "." + axis, args: [])
             }
         }
@@ -1262,7 +1297,8 @@ enum WhereJudge {
             if requireGrounds {
                 try requireProtocolGrounds(wearer.protocols, world)
                 let inherited = inheritedProtocols(wearer.protocols, world)
-                if let gated = inherited.sorted().first(where: { world.gatedProtocols[$0] != nil }) {
+                if let gated = inherited.sorted().first(
+                where: { world.gatedProtocols[$0] != nil }) {
                     try fail("membership of '\(spelled)' depends on gated conformance '\(gated)'; "
                         + "this selected-application profile does not discharge dependent conformer obligations")
                 }
@@ -1393,7 +1429,8 @@ enum WhereJudge {
         let extras: [(path: String, text: String, world: World)] = try original.dropFirst().map { extra, more in
             return (extra, more, try read(more, notationV2: notationV2))
         }
-        if notationV2, world.intrinsicSwift || extras.contains(where: { $0.world.intrinsicSwift }) {
+        if notationV2, world.intrinsicSwift || extras.contains(
+        where: { $0.world.intrinsicSwift }) {
             for file in [(path: path, world: world)] + extras.map({ (path: $0.path, world: $0.world) }) {
                 for name in ["Swift", "Never"] {
                     if let line = file.world.declared[name]?.first {
@@ -1424,7 +1461,8 @@ enum WhereJudge {
             ancestry.merge(extra.world.protocolParents) { first, _ in first }
         }
         for extra in extras {
-            for gate in extra.world.gates where world.names.contains(gate.head) {
+            for gate in extra.world.gates
+            where world.names.contains(gate.head) {
                 try fail("cannot read the gate '\(gate.head): \(gate.proto)' in '\(extra.path)': this court judges "
                     + "the gates of the world it reads, and '\(path)' names '\(gate.head)'")
             }
@@ -1511,7 +1549,8 @@ enum WhereJudge {
         var grown = true
         while grown {
             grown = false
-            for (name, rule) in world.aliases.sorted() where !gatedNames.contains(name) {
+            for (name, rule) in world.aliases.sorted()
+            where !gatedNames.contains(name) {
                 let spelled = NameSet(captures(#"\b(\w+)\b"#, rule.body).map { $0[0] })
                 if !spelled.isDisjoint(with: gatedNames) {
                     gatedNames.insert(name)
@@ -1520,14 +1559,14 @@ enum WhereJudge {
             }
         }
         for extra in extras {
-            for (name, rule) in extra.world.aliases.sorted() where rule.parameters.isEmpty {
+            for (name, rule) in extra.world.aliases.sorted()
+            where rule.parameters.isEmpty {
                 if gatedNames.contains(name), !world.contextual {
                     try fail("cannot read '\(name)': '\(extra.path)' defines it as an application of a gated head, and "
                         + "this court judges certificates in the world it reads")
                 }
             }
         }
-        let declaring: NameSet = ["enum", "struct", "class", "actor", "typealias", "protocol"]
         var unreadPlaces: [(line: Int, message: String)] = []
         // A use or a certificate is judged only at the head its definition
         // exposes. Reading Optional<Use<Bad>> as a term does not judge Use,
@@ -1544,52 +1583,23 @@ enum WhereJudge {
             let claim = try gatedForm(term, world)
             let arguments = (term.args + claim.args).map(Press.serialize).joined(separator: ",")
             let nested = NameSet(captures(#"\b(\w+)\b"#, arguments).map { $0[0] }).intersection(gatedNames)
-            if !nested.isEmpty || !world.gates.contains(where: { sameName($0.head, claim.head) }) {
+            if !nested.isEmpty || !world.gates.contains(
+            where: { sameName($0.head, claim.head) }) {
                 let line = world.lineAt[span.location]
                 unreadPlaces.append((line, "cannot read line \(line) of '\(path)': '\(spelled)' contains "
                     + "a gated application outside the root this court judges"))
             }
         }
+        let unreadHeads = UnreadHeads(gatedNames)
         func unread(_ file: World, _ spans: [NSRange], _ spelledPath: String) {
-            let units = Array(file.clean.utf16)
-            var places: [(line: Int, message: String)] = []
-            for name in gatedNames.sorted() {
-                // Comments have become spaces; qualification can still have
-                // spaces before or after each dot, including across lines.
-                let applied = try! NSRegularExpression(pattern: #"(?<![\w.])((?:\w+\s*\.\s*)*)"#
-                    + NSRegularExpression.escapedPattern(for: name) + #"\s*<"#)
-                for match in applied.matches(in: file.clean, range: NSRange(file.clean.startIndex..., in: file.clean)) {
-                    let at = match.range.location
-                    if !spans.filter({ NSLocationInRange(at, $0) }).isEmpty { continue }
-                    var wordEnd = at
-                    while wordEnd > 0, isSpaceUnit(units[wordEnd - 1]) { wordEnd -= 1 }
-                    var wordStart = wordEnd
-                    while wordStart > 0, isWordUnit(units[wordStart - 1]) { wordStart -= 1 }
-                    let word = String(utf16CodeUnits: Array(units[wordStart..<wordEnd]), count: wordEnd - wordStart)
-                    if declaring.contains(word) { continue }
-                    // a metatype whose generic arguments run across lines is a
-                    // use this court reads only on one line
-                    var close = match.range.location + match.range.length
-                    var depth = 1
-                    var broken = false
-                    while close < units.count, depth > 0 {
-                        let unit = units[close]
-                        if unit == 0x3C { depth += 1 }
-                        if unit == 0x3E, units[close - 1] != 0x2D { depth -= 1 }
-                        if unit == 0x0A { broken = true }
-                        if unit == 0x7B || unit == 0x7D || unit == 0x3B { break }
-                        close += 1
-                    }
-                    var after = close
-                    while after < units.count, isSpaceUnit(units[after]) { after += 1 }
-                    let metatype = depth == 0 && after + 4 < units.count
-                        && String(utf16CodeUnits: Array(units[after..<(after + 5)]), count: 5) == ".self"
-                    let reason = metatype && broken
-                        ? "a use written across lines, which this court reads on one line"
-                        : "a place where this court reads no use and no certificate"
-                    places.append((file.lineAt[at], "cannot read line \(file.lineAt[at]) of '\(spelledPath)': '\(name)' "
-                        + "applies a gated head in \(reason)"))
-                }
+            let result = unreadApplications(file, spans: spans, heads: unreadHeads)
+            let places = result.applications.map { application in
+                let reason = application.multilineMetatype
+                    ? "a use written across lines, which this court reads on one line"
+                    : "a place where this court reads no use and no certificate"
+                let line = file.lineAt[application.at]
+                return (line: line, message: "cannot read line \(line) of '\(spelledPath)': '\(application.name)' "
+                    + "applies a gated head in \(reason)")
             }
             unreadPlaces += places.sorted(by: { ($0.line, $0.message) < ($1.line, $1.message) })
         }

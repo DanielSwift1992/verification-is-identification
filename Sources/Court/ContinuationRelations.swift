@@ -754,7 +754,7 @@ extension ContinuationCourt {
                 throw Failure("usage: judge continue --relations [--retain|--actions|--repeat|--image|--agreement] [--certificate output.json] Request source.swift ...; replay-continuation --relations [--retain|--actions|--repeat|--image|--agreement] certificate.json Request source.swift ...")
             }
             let request = args.removeFirst()
-            let source = try StructuralSource(files: args.map { ($0, try String(contentsOfFile: $0, encoding: .utf8)) }, arguments: [("request", request)])
+            let source = try StructuralSource(files: args.map { ($0, try WhereJudge.fileText($0)) }, arguments: [("request", request)])
             let holds: Bool
             let bytes: Data
             if agreement {

@@ -167,3 +167,7 @@ Finally, replay constructs the sole permitted output byte string from the origin
 ## Explicit limits
 
 The argument does not prove the Swift frontend accepts every supported fragment, next-state executable behavior, full Unicode segmentation, every error explanation, or publication atomicity. Resource exhaustion or an unsupported production is an addressed non-admission, not a counterexample to the transition relation. The v0.1/v0.2 cases exercise these mechanisms and their boundary errors; they do not prove this argument. Literal movement requires the separate step-B relation and an explicitly declared alphabet or segmentation table.
+
+## Structural projection: conditional bodies
+
+The lexical table above records lexical admission, not admission of the structural grammar. In particular L28 still tokenizes in projection mode, but `StructuralSource` refuses its body at the addressed `#if` before balancing branch-dependent braces. The shared lexer carries code-directive occurrences (including interpolation code) on its tape; the body traversal refuses `#if`, `#elseif`, `#else` and `#endif`. Comments and literal contents remain carriers. This narrows `judge apply`, `judge coverage`, `judge continue --relations` and other consumers of the same structural reading; it does not narrow strict Press/roster further or change the old top-level conditional exclusion. The complete decision table and CLI controls for this grammatical boundary are [structural-reading-v1](../../Court/structural-reading-v1/README.md).

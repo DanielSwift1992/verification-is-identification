@@ -1,5 +1,26 @@
 import Foundation
 
+extension Judge {
+    /// Opaque source spans, projected by the same scalar lexer as Press/Court.
+    /// These bounds do not certify source bindings or grammar admission.
+    public struct SourceSpan: Codable {
+        public let start: Int
+        public let end: Int
+        public let line: Int
+        public let opening: String
+        public let rawHashes: Int?
+    }
+    public struct SourceLexicalFailure: Error, CustomStringConvertible {
+        public let description: String
+    }
+    public static func sourceSpans(_ source: String, origin: String) throws -> [SourceSpan] {
+        do { return try WhereJudge.grammarSpans(source) }
+        catch let failure as WhereJudge.LexicalFailure {
+            throw SourceLexicalFailure(description: failure.addressed(origin))
+        }
+    }
+}
+
 extension WhereJudge {
     /// Identity of a written name component, without canonical equivalence.
     /// Ownership/context binds that spelling to a declaration's place.
@@ -28,10 +49,10 @@ extension WhereJudge {
         default: return false
         }
     }
-    /// One lexical judgement, with two projections: the notation's blanked
-    /// text and the structural reader's addressed tape. Neither projection
-    /// scans delimiters again. Admission modes are named in Press's calculus.
-    enum LexicalScope { case notation, projection, declarations }
+    /// One scalar lexer supplies notation's blanked text, the structural tape
+    /// and grammar's opaque bounds. No projection scans delimiters again.
+    /// Grammar delegates code atoms to its registry, not to structural admission.
+    enum LexicalScope { case notation, projection, declarations, grammar }
     struct Lexed {
         var words: [String] = []
         var starts: [Int] = []
@@ -39,6 +60,66 @@ extension WhereJudge {
         var lines: [Int] = []
         var literals: [Int: Range<Int>] = [:]
         var interpolated: Set<Int> = []
+        // Code directives are attached to their tape token. In interpolation
+        // that is the enclosing literal token; its contents are not rescanned.
+        var directives: [Int: [WordOccurrence]] = [:]
+    }
+    /// Tokens of the notation's blanked projection, in that projection's UTF-16
+    /// coordinates. They are emitted while the common lexer keeps code, never
+    /// by lexing the blanked string again (interpolation has lost its escape).
+    struct NotationToken {
+        let spelling: ScalarName
+        var range: NSRange
+        let word: Bool
+    }
+    private struct NotationProjection {
+        var tokens: [NotationToken] = []
+        var pending: [Unicode.Scalar] = []
+        var start = 0
+        var offset = 0
+        // The notation's existing character classes belong to its regex
+        // backend, not to the Swift standard library's Unicode version. Query
+        // that one definition on a scalar, never on a name or the input text.
+        // ASCII is tabulated once; other scalar results are cached per scan.
+        private static let wordClass = try! NSRegularExpression(pattern: #"^\w$"#)
+        private static let spaceClass = try! NSRegularExpression(pattern: #"^\s$"#)
+        private static func classify(_ scalar: Unicode.Scalar) -> UInt8 {
+            let text = String(scalar)
+            let range = NSRange(location: 0, length: scalar.value > 0xFFFF ? 2 : 1)
+            return (wordClass.firstMatch(in: text, range: range) != nil ? 1 : 0)
+                | (spaceClass.firstMatch(in: text, range: range) != nil ? 2 : 0)
+        }
+        private static let ascii = (UInt32(0)..<128).map { classify(Unicode.Scalar($0)!) }
+        var classes: [UInt32: UInt8] = [:]
+
+        mutating func flush() {
+            guard !pending.isEmpty else { return }
+            tokens.append(NotationToken(spelling: ScalarName(String(String.UnicodeScalarView(pending))),
+                range: NSRange(location: start, length: offset - start), word: true))
+            pending.removeAll(keepingCapacity: true)
+        }
+        mutating func append(_ scalar: Unicode.Scalar) {
+            let kind: UInt8
+            if scalar.value < 128 { kind = Self.ascii[Int(scalar.value)] }
+            else if let cached = classes[scalar.value] { kind = cached }
+            else {
+                kind = Self.classify(scalar)
+                classes[scalar.value] = kind
+            }
+            let word = kind & 1 != 0
+            let width = scalar.value > 0xFFFF ? 2 : 1
+            if word {
+                if pending.isEmpty { start = offset }
+                pending.append(scalar)
+            } else {
+                flush()
+                if kind & 2 == 0 {
+                    tokens.append(NotationToken(spelling: ScalarName(String(scalar)),
+                        range: NSRange(location: offset, length: width), word: false))
+                }
+            }
+            offset += width
+        }
     }
     struct LexicalFailure: Error, CustomStringConvertible {
         let line: Int
@@ -84,6 +165,8 @@ extension WhereJudge {
         let words: [WordOccurrence]
         let blanked: String
         let tape: Lexed
+        let spans: [Judge.SourceSpan]
+        let notation: [NotationToken]
         let declared: NameSet
         let shadowed: NameSet
         let attributes: [AttributeUse]
@@ -98,9 +181,15 @@ extension WhereJudge {
             }
         }
     }
+    // Grammar asks only for opaque bounds. It does not borrow attributes,
+    // interpret names or widen the structural court's admitted fragment.
+    static func grammarSpans(_ source: String) throws -> [Judge.SourceSpan] {
+        try lexicalScan(source, scope: .grammar, carrying: false).spans
+    }
     static func lexicalReading(_ source: String, scope: LexicalScope = .notation,
-                               lent: NameSet = [], carrying: Bool = true) throws -> LexicalReading {
-        let read = try lexicalScan(source, scope: scope, carrying: carrying)
+                               lent: NameSet = [], carrying: Bool = true,
+                               notating: Bool = false) throws -> LexicalReading {
+        let read = try lexicalScan(source, scope: scope, carrying: carrying, notating: notating)
         try read.validateAttributes(lent: lent, scope: scope)
         return read
     }
@@ -246,7 +335,8 @@ extension WhereJudge {
             || scalar.properties.generalCategory == .spacingMark || scalar == "_"
     }
     private static func lexicalScan(_ source: String, scope: LexicalScope,
-                                    carrying: Bool, origin: String = "input") throws -> LexicalReading {
+                                    carrying: Bool, origin: String = "input",
+                                    notating: Bool = false) throws -> LexicalReading {
         enum Context {
             case code(start: Int, interpolated: Bool, parentheses: Int)
             case comment(start: Int, depth: Int)
@@ -259,9 +349,10 @@ extension WhereJudge {
             let breakLine = c == "\r" || (c == "\n" && (at == 0 || scalars[at - 1] != "\r"))
             lines.append(lines.last! + (breakLine ? 1 : 0))
         }
-        var kept = String.UnicodeScalarView(), tape = Lexed()
+        var kept = String.UnicodeScalarView(), tape = Lexed(), notation = NotationProjection()
         var stack: [Context] = [.code(start: 0, interpolated: false, parentheses: 0)]
         var index = 0, interpolationCount = 0
+        var spans: [Judge.SourceSpan] = []
         var words: [WordOccurrence] = [], guardWords = WordGuard()
         var attributeWordEnd: Int?, pendingAttribute: Int?
         var unreadAttributes: [(name: String, start: Int)] = []
@@ -282,8 +373,12 @@ extension WhereJudge {
                 tape.lines.append(lines[from])
             }
         }
+        func append(_ scalar: Unicode.Scalar) {
+            kept.append(scalar)
+            if notating { notation.append(scalar) }
+        }
         func keep(_ width: Int) {
-            for offset in 0..<width { kept.append(scalars[index + offset]) }
+            for offset in 0..<width { append(scalars[index + offset]) }
             index += width
         }
         func isNewline(_ c: Unicode.Scalar?) -> Bool { c == "\r" || c == "\n" }
@@ -298,7 +393,7 @@ extension WhereJudge {
                 try refuse("newline in single-line string interpolation is not a Swift literal", at: index)
             }
             let width = scalar(0) == "\r" && scalar(1) == "\n" ? 2 : 1
-            kept.append("\n")
+            append("\n")
             if top { emit("\n", index, index + width) }
             index += width
         }
@@ -336,7 +431,13 @@ extension WhereJudge {
                     stack[stack.count - 1] = .comment(start: start, depth: depth + 1)
                     index += 2
                 } else if current == "*", scalar(1) == "/" {
-                    if depth == 1 { stack.removeLast() }
+                    if depth == 1 {
+                        stack.removeLast()
+                        if stack.count == 1 && scope == .grammar {
+                            spans.append(.init(start: offsets[start], end: offsets[index + 2],
+                                line: lines[start], opening: "/*", rawHashes: nil))
+                        }
+                    }
                     else { stack[stack.count - 1] = .comment(start: start, depth: depth - 1) }
                     index += 2
                 } else if isNewline(current) { try newline(top: stack.count == 2) }
@@ -345,11 +446,11 @@ extension WhereJudge {
                 if current == "\\", repeats("#", from: 1, hashes) {
                     let escaped = 1 + hashes
                     if scalar(escaped) == "(" {
-                        if hashes > 0 && scope != .notation {
+                        if hashes > 0 && scope != .notation && scope != .grammar {
                             try refuse("raw string interpolation is outside structural reader scope", at: index)
                         }
                         interpolationCount += 1
-                        kept.append("(")
+                        append("(")
                         stack.append(.code(start: index, interpolated: true, parentheses: 0))
                         index += escaped + 1
                     } else if isNewline(scalar(escaped)) {
@@ -361,6 +462,10 @@ extension WhereJudge {
                     stack.removeLast()
                     keep(quotes + hashes)
                     if stack.count == 1 {
+                        if scope == .grammar {
+                            spans.append(.init(start: offsets[start], end: offsets[index], line: lines[start],
+                                opening: String(repeating: "\"", count: quotes), rawHashes: hashes))
+                        }
                         if carrying {
                             tape.literals[tape.words.count] = offsets[start + hashes + quotes]..<offsets[at]
                             if before != interpolationCount { tape.interpolated.insert(tape.words.count) }
@@ -374,7 +479,7 @@ extension WhereJudge {
                     try newline(top: false)
                 } else { index += 1 }
             case let .code(start, interpolated, parentheses):
-                if let attribute = pendingAttribute, !current.properties.isWhitespace,
+                if scope != .grammar, let attribute = pendingAttribute, !current.properties.isWhitespace,
                    !(current == "/" && (scalar(1) == "/" || scalar(1) == "*")) {
                     if current == "." || current == "<" {
                         try refuse("only a single-word attribute name is read; qualified or generic attribute names are unsupported (attribute byte \(offsets[attribute]))", at: index)
@@ -386,12 +491,16 @@ extension WhereJudge {
                         try refuse("line comment in single-line string interpolation is not a Swift literal", at: index)
                     }
                     while index < scalars.count, !isNewline(scalar(0)) { index += 1 }
+                    if top && scope == .grammar {
+                        spans.append(.init(start: offsets[at], end: offsets[index], line: lines[at],
+                            opening: "//", rawHashes: nil))
+                    }
                 } else if current == "/", scalar(1) == "*" {
-                    kept.append(" ")
+                    append(" ")
                     stack.append(.comment(start: index, depth: 1))
                     index += 2
                 } else if current == "/" {
-                    guard let next = scalar(1), next == " " || next == "\t" || isNewline(next) else {
+                    guard scope == .grammar || scalar(1).map({ $0 == " " || $0 == "\t" || isNewline($0) }) == true else {
                         try refuse("a slash with no whitespace after it may open a regular expression literal, which this court does not read", at: index)
                     }
                     keep(1)
@@ -400,7 +509,7 @@ extension WhereJudge {
                     var hashes = 0
                     while scalar(hashes) == "#" { hashes += 1 }
                     if scalar(hashes) == "\"" {
-                        if hashes > 0 && (scope == .projection || (scope != .notation && !top)) {
+                        if hashes > 0 && (scope == .projection || (scope != .notation && scope != .grammar && !top)) {
                             try refuse("raw string literals are outside structural reader scope", at: index)
                         }
                         let quotes = repeats("\"", from: hashes, 3) ? 3 : 1
@@ -409,17 +518,23 @@ extension WhereJudge {
                     } else if scalar(hashes) == "/" {
                         try refuse("a regular expression literal is not among the forms this court reads", at: index)
                     } else {
+                        if scope == .grammar {
+                            keep(1)
+                            continue
+                        }
                         if scope == .declarations { try refuse("directives are outside strict declaration scope", at: index) }
                         let spelled = try spelling(index + 1, wordEnd(from: index + 1))
                         if !directives.contains(spelled) {
                             try refuse("the macro '#\(spelled)' is not among the forms this court reads", at: index)
                         }
+                        tape.directives[tape.words.count, default: []].append(
+                            WordOccurrence(spelling: spelled, line: lines[index], byte: offsets[index]))
                         keep(1)
                         if top { emit("#", at, index) }
                     }
-                } else if current == "`" {
+                } else if scope != .grammar, current == "`" {
                     try refuse("a backquoted identifier is not among the forms this court reads", at: index)
-                } else if current == "@" {
+                } else if scope != .grammar, current == "@" {
                     let end = try wordEnd(from: index + 1)
                     attributeWordEnd = end
                     let spelled = spelling(index + 1, end)
@@ -433,6 +548,9 @@ extension WhereJudge {
                 } else if interpolated, current == ")" {
                     if parentheses == 0 { stack.removeLast() }
                     else { stack[stack.count - 1] = .code(start: start, interpolated: true, parentheses: parentheses - 1) }
+                    keep(1)
+                } else if scope == .grammar {
+                    // Outside opaque spans, the registry owns classification.
                     keep(1)
                 } else if current.properties.isWhitespace {
                     if scope != .notation, ![" ", "\t", "\u{000B}", "\u{000C}", "\u{00A0}"].contains(current) {
@@ -493,7 +611,9 @@ extension WhereJudge {
                 shadowed.insert(plain[i + 1])
             }
         }
-        return LexicalReading(words: words, blanked: read, tape: tape, declared: declared, shadowed: shadowed,
+        notation.flush()
+        return LexicalReading(words: words, blanked: read, tape: tape, spans: spans, notation: notation.tokens,
+            declared: declared, shadowed: shadowed,
             attributes: unreadAttributes.map { .init(name: $0.name, line: lines[$0.start], byte: offsets[$0.start]) })
     }
 }

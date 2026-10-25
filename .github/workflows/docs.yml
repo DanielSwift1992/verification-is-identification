@@ -26,9 +26,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      # The documentation reader is a declared premise: DocC 26.6 refuses what
+      # 26.2 accepted, so a runner upgrade must fail loudly, not change it.
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: latest-stable
+          xcode-version: '26.6'
 
       # every law this repository holds itself to lives in ./check.sh, so a
       # person at a desk and this runner ask for the same list. The mirror
@@ -99,7 +101,7 @@ jobs:
 
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: latest-stable
+          xcode-version: '26.6'
 
       - name: Distinct source carriers are read back and their emitted formations build
         run: python3 Checks/ci-check.py --only law

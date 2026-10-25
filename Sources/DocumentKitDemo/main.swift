@@ -47,10 +47,10 @@ writeSVG(VectorTourStationBDiagram.typeName, "vector-tour-station-b")
 writeSVG(RolesPlate<LightRolesPalette>.typeName, "roles-plate")
 writeSVG(RolesPlate<DarkRolesPalette>.typeName, "roles-plate~dark")
 
-write(SelfShowingExampleSourcePage.typeName, "SelfShowingExampleSource")
+write(SelfShowingExampleSourcePage.typeName, SelfShowingExampleSource.typeName)
 
-write(VectorTourStationAPage.typeName, "VectorTourStationA")
-write(VectorTourStationBPage.typeName, "VectorTourStationB")
+write(VectorTourStationAPage.typeName, VectorTourStationA.typeName)
+write(VectorTourStationBPage.typeName, VectorTourStationB.typeName)
 
 write(Landing.typeName, "DocumentKitDemo")
 

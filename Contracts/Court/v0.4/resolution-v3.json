@@ -1,0 +1,2324 @@
+{
+  "schema": "vi.court.conformance/1",
+  "suite": "vi.court.questions/0.4-resolution3",
+  "scope": "The declared questions under revision 3 certified resolution without shadowing; original input bytes are unchanged. Historical expectations remain in the superseded release.",
+  "reference_revision": "cba4be251a67fd66cf5db175074b566306a74431",
+  "expectation_basis": "Separately committed frozen case sets; one explicit pre-release erratum preserves the old all-gates CLI question for Paired. See stages and ERRATA.md.",
+  "versions": {
+    "where_question": "vi.where.definition-equality/1",
+    "where_normalization_canon": 4,
+    "count_question": "vi.count.unit-never-plus/1",
+    "source_lines": "vi.court.source-lines/1",
+    "notation": "vi.court.swift-declarations/2",
+    "context": "vi.court.context/1",
+    "intrinsic": "vi.court.intrinsic-swift/1",
+    "response": "vi.court.cli-text/1"
+  },
+  "stages": {
+    "stages/n-s.json": "c23db3e73a8d5796336532258c5d7dfa19d4f72d460291e40133b55776607cad",
+    "stages/n-s-closure.json": "845737a38f3fc4aa7e7b0d67423743fa9d5022268919b26d11e6de493603b47e",
+    "stages/context-g.json": "cb7729e423492c265980a81a47d1932d6c7f90de3bdd7937d2fcb65df072a4e7",
+    "stages/g-grounds.json": "b5f79768dd0a291b0e11cb967d25def32ab9008d2b781b6f8693f17e76ba900e",
+    "stages/g-qualified-ground.json": "67a5a27153ab03826fbe67aff57f611e8d932f8578b366c162ca2fabb8442cde",
+    "stages/g-views.json": "0b150ebc644c4c0af1dfd73e7f7de76638dcd3e40f59a82ca30c5d7ad3f87157",
+    "stages/context-closure.json": "4b702b714305a5af304aee8e9d5fdac597baffa8901f7f5afaea30bd9c67a1d9",
+    "stages/g-verdict.json": "36b4d4dc1676657a94b26f69a181a5a7b5c0dfa53a6f2aa5af21315122a9e3d5",
+    "stages/context-availability.json": "901eb89e7508a3d23c86f94403602050e31be5b496f2ad70123546465fa093a5",
+    "stages/context-bytes.json": "5b632300be9e0a38fa481c2a911d13933ad12fa38bc7f62f63f066b857ede91e"
+  },
+  "missing_files": [],
+  "files": {
+    "fixtures/N-qualified.swift": {
+      "sha256": "3b7a991e3c2b1cfb471730a9b7be8473c5ffd22b6d34aa203e6fc4a4d0ee6fe1",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/N-qualified.swift"
+    },
+    "fixtures/N-two-containers.swift": {
+      "sha256": "e8d5c58a7e9d5acfe55ae33f1f74c6e562260d66b85b1d197122d96f2b477a77",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/N-two-containers.swift"
+    },
+    "fixtures/N-no-flatten.swift": {
+      "sha256": "1e136f9721f47218e3feaa87430597f3ca958ec5af48562a3f8c1e0139192240",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/N-no-flatten.swift"
+    },
+    "fixtures/N-false-membership.swift": {
+      "sha256": "2bf4567483e1ccaecf4ccf206d6e6bf3c76be18759877a4801fae4c134ca6b27",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/N-false-membership.swift"
+    },
+    "fixtures/N-duplicate.swift": {
+      "sha256": "70a1addaba10bc068141ebd9230eb51805fa76d3c11f314d4591eb2c8a3452f5",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/N-duplicate.swift"
+    },
+    "fixtures/N-local-type.swift": {
+      "sha256": "bd959388fdcb2b2aad34c02a9be48f164af98c0006bdc7b6eed007a2bdeee441",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/N-local-type.swift"
+    },
+    "fixtures/N-generic-container.swift": {
+      "sha256": "d2a7472978db65021ce208690272f65f9656742aad5175a3fea22d34463b85fc",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/N-generic-container.swift"
+    },
+    "fixtures/N-unread-nested-kind.swift": {
+      "sha256": "35cc1322620b77d2cf27464ce6c08eb7d9a2597f8e5f80b7052eaedea34f1515",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/N-unread-nested-kind.swift"
+    },
+    "fixtures/N-lost-child.swift": {
+      "sha256": "58872f01642725e8e5dc45ff4262a80e3c89c097b60b52e86880626b9b51b147",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/N-lost-child.swift"
+    },
+    "fixtures/Numeral.swift": {
+      "sha256": "d8ac23e0fce85f0dce4b873d312d8c9be0820b1c747d7ac6f702e269691488c7",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/Numeral.swift"
+    },
+    "fixtures/N-real-numeral.swift": {
+      "sha256": "4d36e8b90f136d2fceac5a43d075ef53eade4352395b8eb2ac1f4a7085c21118",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/N-real-numeral.swift"
+    },
+    "fixtures/N-extension.swift": {
+      "sha256": "91ec3cc4218aba21009a9ea1f1f42c8ddf3ee9a59556cbdba7d44b438eeb0002",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/N-extension.swift"
+    },
+    "fixtures/N-cross-file-extension.swift": {
+      "sha256": "bc9c914fdadd10665783330ae3b8e3a6cb10e8680b6bc709e7eb4d4476e02429",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/N-cross-file-extension.swift"
+    },
+    "fixtures/N-projection.swift": {
+      "sha256": "100db10ea84fc558933e901b13e1b717ad979f10958a3d9d667e9f2aed20a220",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/N-projection.swift"
+    },
+    "fixtures/N-sibling.swift": {
+      "sha256": "5d76e93a0a1ba0bb22a76a0f453e9f5ad878193b6acd54d9af847acc2b4ba2f9",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/N-sibling.swift"
+    },
+    "fixtures/N-distinct-containers.swift": {
+      "sha256": "0462ccc723eaa47408f1343de7fa85ffb77e3289472f377ea942a65f383ea10e",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/N-distinct-containers.swift"
+    },
+    "fixtures/S-never.swift": {
+      "sha256": "bc0df06f1c6576993172845aff92c03e5dfbae8bd50674be20f0222f129fabf3",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/S-never.swift"
+    },
+    "fixtures/S-no-import.swift": {
+      "sha256": "58f222500c4806953b67378efabba1b0d5e8b99b6b4bbe1283f4c79febe688df",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/S-no-import.swift"
+    },
+    "fixtures/S-unknown-export.swift": {
+      "sha256": "5d8663ddb36b20988aab5e13538c0337c9618ce446a9c7eb18bb0f46664b2b2f",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/S-unknown-export.swift"
+    },
+    "fixtures/S-shadow.swift": {
+      "sha256": "90ef4fee19f308675b63d238e4c098176ec9aa91667506892847e0ccee0268ac",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/S-shadow.swift"
+    },
+    "fixtures/S-module-forgery.swift": {
+      "sha256": "c958f36a2d90d41c1f7b8195bd6c5d086a9059cf4d3fbe7b55ee8371e72a4bd5",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/S-module-forgery.swift"
+    },
+    "fixtures/S-selective-import.swift": {
+      "sha256": "00a6de91c39bb372388dc4569db4c2f013ffe5d607618de8f8ca433dc40861f7",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/S-selective-import.swift"
+    },
+    "fixtures/S-empty.swift": {
+      "sha256": "4fc5ae8a014b4c99c12f5788c1ddf1f2ed3dbd9b3cd885b6aace0f7f5b28f3b3",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/S-empty.swift"
+    },
+    "fixtures/N-count-boundary.swift": {
+      "sha256": "cb17cad7a168d6d60beb85244b50585b1929270ad06fc07a6b70a237c78bb38c",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/N-count-boundary.swift"
+    },
+    "fixtures/S-borrowed-alias.swift": {
+      "sha256": "801c0aefd9131b4bb9af263641fc3fb8de2a53a1da134e749db0fcebc3d0becf",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/S-borrowed-alias.swift"
+    },
+    "fixtures/S-borrowed-import.swift": {
+      "sha256": "b22c7bc8ee50789e747abb2fc6aa17e61ddeccd2f6fa5b6db0c6d17ff36afccd",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/S-borrowed-import.swift"
+    },
+    "fixtures/S-borrowed-never.swift": {
+      "sha256": "2d215acd6eb0b89cdeec677e44f77630861406a40486f5598b61c40963f445a1",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/S-borrowed-never.swift"
+    },
+    "fixtures/S-borrowed-shadow.swift": {
+      "sha256": "cbb9534a1c84dd6b87c90a2aed41807180c6a20d6ddbc9143a3975cdd29417ae",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/S-borrowed-shadow.swift"
+    },
+    "fixtures/S-parameter-shadow.swift": {
+      "sha256": "80a83eb019f04e885d3cdb1171dba60147f9b7a97ae046462e4d16d217162544",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/S-parameter-shadow.swift"
+    },
+    "fixtures/G-library.swift": {
+      "sha256": "89e75d7320fb2b208dc7d772596219eb2137875b581e01dabed1605619690c7a",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-library.swift"
+    },
+    "fixtures/G-world.swift": {
+      "sha256": "7109bd6b578c1e09ea490d4e7abeca34d64d05e80e384b327ed5b869d6a6fc01",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-world.swift"
+    },
+    "fixtures/G-context.json": {
+      "sha256": "1fa0fcb087a3ae5384fd18cf9415a875cd6c7c1009274bccf5e677ac5d85f710",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-context.json"
+    },
+    "fixtures/G-false.swift": {
+      "sha256": "56de251f3efbd063c968d76a3a8e44b83b7fa47a63c63a593c4192becc8f84a3",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-false.swift"
+    },
+    "fixtures/G-false-context.json": {
+      "sha256": "e35b5765d6361a3107d735886b94a906e8e661ce1f623a50dd391bd333cb1e56",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-false-context.json"
+    },
+    "fixtures/G-local.swift": {
+      "sha256": "e7c43799c212633d4ba27c5c172568bda03cb6bfa9cda77e47e53ca18d10fcdd",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-local.swift"
+    },
+    "fixtures/G-local-context.json": {
+      "sha256": "6bafcb0b8a9dc5fa88691ca9532bee242f514161ef5f43abfd29113aae2a77c5",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-local-context.json"
+    },
+    "fixtures/G-child.swift": {
+      "sha256": "7cd0337f71ef79f4d8184f57a2e3f6579ef0c3a85f472af457c4a5913995faca",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-child.swift"
+    },
+    "fixtures/G-child-world.swift": {
+      "sha256": "ca3c700ba676f557ec7b65ab424a9f0ff03220dc8e9c4f500c5ee5c8345cf886",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-child-world.swift"
+    },
+    "fixtures/G-child-context.json": {
+      "sha256": "31c4b54c76175be2e417fd6ea2ba151b36d9578c5fced0a32ccdba41f5ac1f79",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-child-context.json"
+    },
+    "fixtures/C-digest.json": {
+      "sha256": "0957e6f73d3e6dec85e1c207bedf6d71b13f7cc8331b88650eb5d5b1e77d6142",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-digest.json"
+    },
+    "fixtures/C-missing-source.json": {
+      "sha256": "d90976400a1ae528bef9cfc06d23af440ae32d61ba6ed1159a5918f2ce2d2253",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-missing-source.json"
+    },
+    "fixtures/C-extra-source.json": {
+      "sha256": "34f54bb7d0bbc52c3ca11183e0d970d4fa9d35871da7a14cf8925c86969b8349",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-extra-source.json"
+    },
+    "fixtures/C-no-address.json": {
+      "sha256": "22f1849a900f7140af5bb82344c3afa811825b969e846771aa2a8497bcdd5400",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-no-address.json"
+    },
+    "fixtures/C-no-import.json": {
+      "sha256": "0e7754dc3d92d271c621d8f1f1ddf2e0b29a0b9e3c77602de3e5fe699759c206",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-no-import.json"
+    },
+    "fixtures/C-version.json": {
+      "sha256": "3c0837e51f89ec85d0a42e0d81750721fbcebc75b944b73cfb3c54225c4bfd94",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-version.json"
+    },
+    "fixtures/C-duplicate-name.swift": {
+      "sha256": "70f8d4073cfc0c06d9becbba86e47b8c11c55f8e5ee25d4c7e7d83b9bb1ed093",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-duplicate-name.swift"
+    },
+    "fixtures/C-conflict.json": {
+      "sha256": "40783b6642599383f6a288403d0375a2fb29c4b5d0c201848bae957a49ba2fac",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-conflict.json"
+    },
+    "fixtures/G-membership-library.swift": {
+      "sha256": "f795160ee451c34cc07d104afb285e3b0893436b26f68918f8e19a2ee4197354",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-membership-library.swift"
+    },
+    "fixtures/G-membership.swift": {
+      "sha256": "2d0e91e50fa21acb2f3cd61258078f640691bea3cd73a5ad2c3340508abd9f59",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-membership.swift"
+    },
+    "fixtures/G-membership-context.json": {
+      "sha256": "038c16276579d74cc7dbc750cb7b48d5cf6d496c33d1ce8d92e249ec05d23418",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-membership-context.json"
+    },
+    "fixtures/G-missing-ground.swift": {
+      "sha256": "1287d331fd3331968661cc67b391518d5ffa10611dab66e4751484bf62572caa",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-missing-ground.swift"
+    },
+    "fixtures/G-missing-ground-context.json": {
+      "sha256": "aecaccce71fffef0216757096042b106775b487f60878af841054131edb2f20e",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-missing-ground-context.json"
+    },
+    "fixtures/G-paired.swift": {
+      "sha256": "c23bd7fb1fef0571c9b0a7669bdb743df6d4c1bd546c5e42501194db61a58949",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-paired.swift"
+    },
+    "fixtures/G-frac.swift": {
+      "sha256": "96ac0b73ba5707da67b1a22505697dc2bd135aab39c9913e52bc36da3bfd08cc",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-frac.swift"
+    },
+    "fixtures/G-paired-world.swift": {
+      "sha256": "8f828e3ebef30f8e08f2cb3d7c8d2cd5204a39773da0f83414f3560a021ee8ce",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-paired-world.swift"
+    },
+    "fixtures/G-paired-context.json": {
+      "sha256": "c92a27a3a62fa529585dffbe96dcc2bfd98dc0c1ce0a2d2468f025342f171a1c",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-paired-context.json"
+    },
+    "fixtures/G-unread.swift": {
+      "sha256": "84beb5a270328f00164bae979d858dcf1bafeca88e15dc6a1ac92872f29d0562",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-unread.swift"
+    },
+    "fixtures/G-unread-context.json": {
+      "sha256": "d96eb8f5c8666666cacf2b36258cc1637a520bf5694dc0ebabc632137462ac82",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-unread-context.json"
+    },
+    "fixtures/G-cycle.swift": {
+      "sha256": "cf0418663d597a7f7b04b9d7f8ee3b42517586f3aad09af2b94d347ad77e161a",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-cycle.swift"
+    },
+    "fixtures/G-cycle-context.json": {
+      "sha256": "37a9fffabb7fb8d613590346e6a32ef9ff7814581e292f1b646f2af6d4fad986",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-cycle-context.json"
+    },
+    "fixtures/G-missing-protocol.swift": {
+      "sha256": "a1bf8d22ef2712d152437e974131a19b237e9d686adbae6b34314128ae64db2e",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-missing-protocol.swift"
+    },
+    "fixtures/G-missing-protocol-definitions.swift": {
+      "sha256": "442ac30e9e044c6860fe937ca53517ffa96c2af179a561ccc2e86d4d89b0eb91",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-missing-protocol-definitions.swift"
+    },
+    "fixtures/G-missing-protocol.json": {
+      "sha256": "7bd80a6056344294571471a5eb192d172f1484313fca59ded088005957d2c257",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-missing-protocol.json"
+    },
+    "fixtures/G-self-ground.swift": {
+      "sha256": "fcc4b3e884648f46c9380d915412e8305a4bf3acab1a5dd8e65ca65038885e23",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-self-ground.swift"
+    },
+    "fixtures/G-self-ground-definitions.swift": {
+      "sha256": "f37ff555e7b9bcc7e700c0d079bf9b5c9ad1404bae4d062b922a450db89e0c5a",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-self-ground-definitions.swift"
+    },
+    "fixtures/G-self-ground.json": {
+      "sha256": "1674d1bf4e3296381705c99beb46dd726eb1e5dfb84e907cef855fce4baa0eea",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-self-ground.json"
+    },
+    "fixtures/G-mutual-ground.swift": {
+      "sha256": "b69640a0eafbc361a35a6b217572a2f4e4fabffbf03a3982fb642c1e3e71be07",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-mutual-ground.swift"
+    },
+    "fixtures/G-mutual-ground-definitions.swift": {
+      "sha256": "d1ff37f3411c22a3263958bd7904e4ac074ec8fe1435a4a5f5c21b00ef7457d4",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-mutual-ground-definitions.swift"
+    },
+    "fixtures/G-mutual-ground.json": {
+      "sha256": "18703561d59b80f0bc202a2cc668561525f48891810598e00e4be05fa6e6234b",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-mutual-ground.json"
+    },
+    "fixtures/G-dependent-false.swift": {
+      "sha256": "c30aefcdfe472546d62408a7ca3b5c6854124f137a5bfe3a6210dd27144a776c",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-dependent-false.swift"
+    },
+    "fixtures/G-dependent-definitions.swift": {
+      "sha256": "775acb6496bc04af437e96ebd4d3689fc9864c8fe906760c80e34ec5a10d9588",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-dependent-definitions.swift"
+    },
+    "fixtures/G-dependent.json": {
+      "sha256": "56ca19d5ef2b5495065def27c3ba838577dd156f48a646dd6c47517006057b4a",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-dependent.json"
+    },
+    "fixtures/G-nested-dependent.swift": {
+      "sha256": "9c6c7a09cf44d055b1e06733ba2a686b7742b3e07eb42195629c94f1f0df5795",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-nested-dependent.swift"
+    },
+    "fixtures/G-nested-dependent-definitions.swift": {
+      "sha256": "4ff944e4ad678999f0561d116850a783f5c1ccf7095a1353c4477152bdc708be",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-nested-dependent-definitions.swift"
+    },
+    "fixtures/G-nested-dependent.json": {
+      "sha256": "7193373f065782edec1b15dbdff4ea7447bcccb33d63a7880d916b0ae65ca9a7",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-nested-dependent.json"
+    },
+    "fixtures/G-extended-world.swift": {
+      "sha256": "8a81d78e78c755c5475d1fad17886fe13e68d6c8025cdee60266c1b958f0f021",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-extended-world.swift"
+    },
+    "fixtures/G-extended-definitions.swift": {
+      "sha256": "203df4775dbfc851100891add3661bae86b27fe8f6ab105870784aa7c2b68757",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-extended-definitions.swift"
+    },
+    "fixtures/G-extended-false.json": {
+      "sha256": "728949417856d6d336fccf59f81fcd3ba09db9a66e119d77617962f71e8d518b",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-extended-false.json"
+    },
+    "fixtures/V-world.swift": {
+      "sha256": "311b019c5d832dd2550043cb6e0b61b17439db9343876cf3a1a2d8cc0ae206b4",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/V-world.swift"
+    },
+    "fixtures/V-definitions.swift": {
+      "sha256": "69ba0154c821eaff0192643844ce3f98cf969e92ad7f74bf90e95b983111805f",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/V-definitions.swift"
+    },
+    "fixtures/V-values-outside.json": {
+      "sha256": "50af2d23512c82bdff0058c707e1eca6e1960bfea4b269f20ed024028aa787cd",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/V-values-outside.json"
+    },
+    "fixtures/V-local-type.swift": {
+      "sha256": "0815dbf1331329d4851970fb70198b066f4e050553408bec5d74cb90c5d432de",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/V-local-type.swift"
+    },
+    "fixtures/V-local-type.json": {
+      "sha256": "69cbb045d2118ce86c89356cd0360b0803a4df81cbb34144412c8fb2ec99ded0",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/V-local-type.json"
+    },
+    "fixtures/V-hidden-alias.swift": {
+      "sha256": "823b657277fd3342f3f0cde3aba7b1229dd210b417ffb631ac7dc9ede81c51d7",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/V-hidden-alias.swift"
+    },
+    "fixtures/V-hidden-alias.json": {
+      "sha256": "9465385481e4e275f7e6b2c5fa6b16249ead4d860dc53b4ac8ee2ab570a13ed5",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/V-hidden-alias.json"
+    },
+    "fixtures/OwnerPrimitive.swift": {
+      "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/OwnerPrimitive.swift"
+    },
+    "fixtures/OwnerVector.swift": {
+      "sha256": "b61eea9c279db510d66cca5119a2b11b1069be5dce9a2b1981d1ba4b075dfcf3",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/OwnerVector.swift"
+    },
+    "fixtures/G-owner-frac.swift": {
+      "sha256": "d364362c0ef7f36f27484b6896a5e9b870ade2a156f33cc7acdd383c67cd7179",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-owner-frac.swift"
+    },
+    "fixtures/G-owner-frac.json": {
+      "sha256": "4cff96069cb0af510ca5377fed3dfe23c973397f60c358f7a6a329c41afb4e32",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-owner-frac.json"
+    },
+    "fixtures/G-owner-paired.swift": {
+      "sha256": "2d7d9651c89b6c0410c5943d1be9387aac6cd7d9a7564529469830f54548e64b",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-owner-paired.swift"
+    },
+    "fixtures/G-owner-paired.json": {
+      "sha256": "e3667225798aac7ce9e5903335d28397c13d30af0de389e5b37fe36cd4ac443e",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-owner-paired.json"
+    },
+    "fixtures/C-S-never.json": {
+      "sha256": "8b6972fa1e39f410a6d9c53ac16f3bcefc65298508f0ef844f1b81974f245299",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-S-never.json"
+    },
+    "fixtures/C-S-missing.json": {
+      "sha256": "0f2703d9cc0bc43126dc0600dc3a724cda99e4a81c74280bbcb229f38584219f",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-S-missing.json"
+    },
+    "fixtures/C-S-version.json": {
+      "sha256": "9901254eb43c1372ef0b1ac5d5b3907dec11bec72f286bf814eb6ee8c7971ec7",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-S-version.json"
+    },
+    "fixtures/C-S-exports.json": {
+      "sha256": "424960582cc1cd84cf72a3ffb806dbd11c3dc86aa6cb5e7dbeffcfeba9b530ad",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-S-exports.json"
+    },
+    "fixtures/C-S-source.json": {
+      "sha256": "06256fddd2f098a0ef4fb04d3a2ef6b708f0fbe215ccd7e3c4cd2148c128901d",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-S-source.json"
+    },
+    "fixtures/C-S-shadow.json": {
+      "sha256": "1f2dc7a07e0200a28862ecec8fc7711529587bed9d401e1c64b8b52b10da2350",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-S-shadow.json"
+    },
+    "fixtures/C-S-parameter.swift": {
+      "sha256": "6889bb712c6b7d31a39632601da4b9dbff3efff358af49fcbdb44eff777e517f",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-S-parameter.swift"
+    },
+    "fixtures/C-S-parameter.json": {
+      "sha256": "248678a17989222cb1a437e385479a89a143fa662c56200d1252f052c3a7f607",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-S-parameter.json"
+    },
+    "fixtures/G-owner-all-gates.swift": {
+      "sha256": "dc083d587db18921fd634cd310cba9353f493e6f0977263d7e9c319eccd2df39",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-owner-all-gates.swift"
+    },
+    "fixtures/G-owner-all-gates.json": {
+      "sha256": "0f8f93246792e19c79a74049e14c23235237a4db56cc352041f886dc6b823cf6",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-owner-all-gates.json"
+    },
+    "fixtures/OwnerCore.swift": {
+      "sha256": "02c210b2ad60179484cdca994a71cc9155afd9d2d513fb13fae3742c34306911",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/OwnerCore.swift"
+    },
+    "fixtures/OwnerVerdict.swift": {
+      "sha256": "e61b545adea928694a81079518ab1d6785a49d2dd7fcf6672056ce04946cc4f0",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/OwnerVerdict.swift"
+    },
+    "fixtures/OwnerSeeing.swift": {
+      "sha256": "44c53110938ea65097afd9410adab6c8aab508c4f3470b74be7627415e028ad3",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/OwnerSeeing.swift"
+    },
+    "fixtures/G-owner-reading.swift": {
+      "sha256": "3a40514be70afc0a432e56b184e4302d273db80cc8bcdaa25d461358e4bf33b3",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-owner-reading.swift"
+    },
+    "fixtures/G-owner-reading.json": {
+      "sha256": "039444672c364dc4f23837832e80620e922915fd1986936dbb5892f23b7deb4f",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-owner-reading.json"
+    },
+    "fixtures/G-owner-reading-false.swift": {
+      "sha256": "e05c9be6bb9b933e1c403dbcea65cde416eda8ca8684a8760fca4e16b2501c2c",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-owner-reading-false.swift"
+    },
+    "fixtures/G-owner-reading-false.json": {
+      "sha256": "65d92824c41852b5317ea402280c3584befc8616d94f2f9860328754e9b3b0fa",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-owner-reading-false.json"
+    },
+    "fixtures/G-owner-reading-lost.swift": {
+      "sha256": "3a40514be70afc0a432e56b184e4302d273db80cc8bcdaa25d461358e4bf33b3",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-owner-reading-lost.swift"
+    },
+    "fixtures/G-owner-reading-lost.json": {
+      "sha256": "988f9ae9c50651ecba1377098f71a82f8391faf46515fa8ba014943fa2d88ada",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-owner-reading-lost.json"
+    },
+    "fixtures/G-owner-forgets.swift": {
+      "sha256": "1af04b2c2135d6b6288052b81527124c8f8b09a9a219e8695754066d26b0df82",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-owner-forgets.swift"
+    },
+    "fixtures/G-owner-forgets.json": {
+      "sha256": "262dca2b3b21ca32dea39ebf0d9d052824155568e1cf93d9526669e9fbee6a63",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-owner-forgets.json"
+    },
+    "fixtures/G-owner-forgets-false.swift": {
+      "sha256": "20dc3195f20c63fd8910c13c3f3e0501d6ffda8c0682dc2c351650e4d02e6e1e",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-owner-forgets-false.swift"
+    },
+    "fixtures/G-owner-forgets-false.json": {
+      "sha256": "6fdda69bdd36ac7aa55c6188a7a5fa5408a65793aa0dcb1324de7e59b1a6e3c9",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/G-owner-forgets-false.json"
+    },
+    "fixtures/C-missing-leaf.swift": {
+      "sha256": "1d16701144dde6b3a7b05cd46d3df6480ec105d75a2293ea6192e370bae59122",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-missing-leaf.swift"
+    },
+    "fixtures/C-missing-leaf-definitions.swift": {
+      "sha256": "cae4a741f504829451ed478d88b817228559f38c8564835650a8c7c630931d68",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-missing-leaf-definitions.swift"
+    },
+    "fixtures/C-missing-leaf.json": {
+      "sha256": "4ad3463a716ce337c9465919163519fbd2983566dab67230b420dc13626b3198",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-missing-leaf.json"
+    },
+    "fixtures/C-opaque-leaf.swift": {
+      "sha256": "1d16701144dde6b3a7b05cd46d3df6480ec105d75a2293ea6192e370bae59122",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-opaque-leaf.swift"
+    },
+    "fixtures/C-opaque-leaf-definitions.swift": {
+      "sha256": "9892add0ad51420c736a8bbfcf394b88d38c7c558b1f946d60c5f3a683525a59",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-opaque-leaf-definitions.swift"
+    },
+    "fixtures/C-opaque-leaf.json": {
+      "sha256": "851dc4d5a5c6bbc5a4a2793a1c54d3a9092a954ea3e292cfdfb3ce654244fd21",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-opaque-leaf.json"
+    },
+    "fixtures/C-missing-borrowed-leaf.swift": {
+      "sha256": "2e32c7b366a63d5033caaba8d32e3e617942b3208effd482decdcfc0e92cf148",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-missing-borrowed-leaf.swift"
+    },
+    "fixtures/C-missing-borrowed-leaf-definitions.swift": {
+      "sha256": "0a5293ec1b97931980739917dd52484a8763e3aa6815ab3f43f0877dcdbf3936",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-missing-borrowed-leaf-definitions.swift"
+    },
+    "fixtures/C-missing-borrowed-leaf.json": {
+      "sha256": "24bce45ad4e0370f5f5016588adab6ceb869f6604f973f28e06abe56e16b0062",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-missing-borrowed-leaf.json"
+    },
+    "fixtures/C-byte-bom-world.swift": {
+      "sha256": "28bc807166258b7309d6571560592e20f9d4105dd466cdcfbe5b09bef17cd2da",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-byte-bom-world.swift"
+    },
+    "fixtures/C-byte-bom-world-definitions.swift": {
+      "sha256": "9892add0ad51420c736a8bbfcf394b88d38c7c558b1f946d60c5f3a683525a59",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-byte-bom-world-definitions.swift"
+    },
+    "fixtures/C-byte-bom-world.json": {
+      "sha256": "a18da65d07e14668627b9530b394f2290b02b3b267ad801ec7a06448f3bdff71",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-byte-bom-world.json"
+    },
+    "fixtures/C-byte-bom-definitions.swift": {
+      "sha256": "1d16701144dde6b3a7b05cd46d3df6480ec105d75a2293ea6192e370bae59122",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-byte-bom-definitions.swift"
+    },
+    "fixtures/C-byte-bom-definitions-definitions.swift": {
+      "sha256": "da95fe3f6313d99ad532f868856635ea9c9f534415d3e4ceb179b6d128f6e8f6",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-byte-bom-definitions-definitions.swift"
+    },
+    "fixtures/C-byte-bom-definitions.json": {
+      "sha256": "a61c52f8cf7798bcc23d84072dbb13977c917e01205558e9b5e26cd55ed5ea06",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-byte-bom-definitions.json"
+    },
+    "fixtures/C-byte-bom-digest.swift": {
+      "sha256": "28bc807166258b7309d6571560592e20f9d4105dd466cdcfbe5b09bef17cd2da",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-byte-bom-digest.swift"
+    },
+    "fixtures/C-byte-bom-digest-definitions.swift": {
+      "sha256": "9892add0ad51420c736a8bbfcf394b88d38c7c558b1f946d60c5f3a683525a59",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-byte-bom-digest-definitions.swift"
+    },
+    "fixtures/C-byte-bom-digest.json": {
+      "sha256": "ec8eef797b83f5aa96c6b24b9e814543771bf6831087f97a42fb50728cf0ffbf",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.4/contract.json#files/fixtures/C-byte-bom-digest.json"
+    }
+  },
+  "cases": [
+    {
+      "id": "N-qualified",
+      "pass": "where",
+      "files": [
+        "fixtures/N-qualified.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "\u2713 THE WHERE holds: 0 equalities and 1 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "N-two-containers",
+      "pass": "where",
+      "files": [
+        "fixtures/N-two-containers.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "\u2713 THE WHERE holds: 0 equalities and 2 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "N-no-flatten",
+      "pass": "where",
+      "files": [
+        "fixtures/N-no-flatten.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "\u2717 'Claim = Use<Leaf>' requires the type 'T' (aka 'Leaf') conform to 'Digit', and no conformer of that name is presented [Admitted]"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "N-false-membership",
+      "pass": "where",
+      "files": [
+        "fixtures/N-false-membership.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "\u2717 'Claim = Use<A.Leaf>' requires the type 'T' (aka 'A.Leaf') conform to 'Digit', and 'A.Leaf: Other' does not carry it [Admitted]"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "N-duplicate",
+      "pass": "where",
+      "files": [
+        "fixtures/N-duplicate.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: fixtures/N-duplicate.swift:7: duplicate declaration 'Unspecified.A.Leaf' in the same owner; first fixtures/N-duplicate.swift:6"
+          ]
+        }
+      }
+    },
+    {
+      "id": "N-local-type",
+      "pass": "where",
+      "files": [
+        "fixtures/N-local-type.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: cannot read line 5: the enum 'Leaf' is declared inside a body, and this court reads declarations at file scope"
+          ]
+        }
+      }
+    },
+    {
+      "id": "N-generic-container",
+      "pass": "where",
+      "files": [
+        "fixtures/N-generic-container.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: cannot read line 5: nested declaration 'Leaf' has an unsupported enclosing type"
+          ]
+        }
+      }
+    },
+    {
+      "id": "N-unread-nested-kind",
+      "pass": "where",
+      "files": [
+        "fixtures/N-unread-nested-kind.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: cannot read line 5: nested struct 'A.Leaf' is outside the declared notation fragment"
+          ]
+        }
+      }
+    },
+    {
+      "id": "N-lost-child",
+      "pass": "where",
+      "files": [
+        "fixtures/N-lost-child.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: unresolved definition reduction: no declaration of nested name 'A.Leaf'"
+          ]
+        }
+      }
+    },
+    {
+      "id": "N-real-numeral",
+      "pass": "where",
+      "files": [
+        "fixtures/N-real-numeral.swift",
+        "fixtures/Numeral.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "\u2713 THE WHERE holds: 0 equalities and 1 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "N-cross-file-extension",
+      "pass": "where",
+      "files": [
+        "fixtures/N-cross-file-extension.swift",
+        "fixtures/N-extension.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: cannot read line 1: the extension of 'Numeral._0' names its type through a qualifier, which this court does not resolve"
+          ]
+        }
+      }
+    },
+    {
+      "id": "N-projection",
+      "pass": "where",
+      "files": [
+        "fixtures/N-projection.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "line_patterns": [
+            "\u2717 THE WHERE: fixtures/N-projection.swift:3: ambiguous name A: .*visible: .* at fixtures/.*"
+          ]
+        }
+      }
+    },
+    {
+      "id": "N-sibling",
+      "pass": "where",
+      "files": [
+        "fixtures/N-sibling.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "line_patterns": [
+            "\u2717 THE WHERE: fixtures/N-sibling.swift:3: ambiguous name A: .*visible: .* at fixtures/.*"
+          ]
+        }
+      }
+    },
+    {
+      "id": "N-distinct-containers",
+      "pass": "where",
+      "files": [
+        "fixtures/N-distinct-containers.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": []
+        },
+        "stderr": {
+          "line_patterns": [
+            "\u2717 THE WHERE: fixtures/N-distinct-containers.swift:3: ambiguous name A: .*visible: .* at fixtures/.*",
+            "\u2717 THE WHERE: fixtures/N-distinct-containers.swift:3: ambiguous name B: .*visible: .* at fixtures/.*"
+          ]
+        }
+      }
+    },
+    {
+      "id": "S-never",
+      "pass": "where",
+      "files": [
+        "fixtures/S-never.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "\u2713 THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "S-no-import",
+      "pass": "where",
+      "files": [
+        "fixtures/S-no-import.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: cannot read line 4: 'Swift.Never' requires the declared intrinsic import 'Swift'"
+          ]
+        }
+      }
+    },
+    {
+      "id": "S-unknown-export",
+      "pass": "where",
+      "files": [
+        "fixtures/S-unknown-export.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: cannot read line 5: 'Swift.Int' is not exported by intrinsic Swift/1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "S-shadow",
+      "pass": "where",
+      "files": [
+        "fixtures/S-shadow.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: cannot read line 2: declaration 'Never' conflicts with intrinsic Swift/1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "S-module-forgery",
+      "pass": "where",
+      "files": [
+        "fixtures/S-module-forgery.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: cannot read line 2: declaration 'Swift' conflicts with intrinsic Swift/1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "S-selective-import",
+      "pass": "where",
+      "files": [
+        "fixtures/S-selective-import.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: cannot read line 1: this court reads only the plain intrinsic import 'Swift'"
+          ]
+        }
+      }
+    },
+    {
+      "id": "S-empty",
+      "pass": "where",
+      "files": [
+        "fixtures/S-empty.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: no equalities or memberships were judged; no certificate established"
+          ]
+        }
+      }
+    },
+    {
+      "id": "N-count-boundary",
+      "pass": "count",
+      "files": [
+        "fixtures/N-count-boundary.swift"
+      ],
+      "args": [
+        "--predicate",
+        "P",
+        "--encoding",
+        "E",
+        "--sigma",
+        "S"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 COUNT unresolved: cannot read line 1 of 'fixtures/N-count-boundary.swift': nested declaration 'Container.Hidden' is outside the count notation fragment"
+          ]
+        }
+      }
+    },
+    {
+      "id": "S-borrowed-import",
+      "pass": "where",
+      "files": [
+        "fixtures/S-borrowed-import.swift",
+        "fixtures/S-borrowed-alias.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "\u2713 THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "S-borrowed-shadow",
+      "pass": "where",
+      "files": [
+        "fixtures/S-borrowed-shadow.swift",
+        "fixtures/S-borrowed-never.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: cannot read line 1 of 'fixtures/S-borrowed-never.swift': declaration 'Never' conflicts with intrinsic Swift/1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "S-parameter-shadow",
+      "pass": "where",
+      "files": [
+        "fixtures/S-parameter-shadow.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: cannot read line 2: declaration 'Never' conflicts with intrinsic Swift/1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-borrowed",
+      "pass": "where",
+      "files": [
+        "fixtures/G-world.swift",
+        "fixtures/G-library.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-context.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "\u2713 THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "G-without-context",
+      "pass": "where",
+      "files": [
+        "fixtures/G-world.swift",
+        "fixtures/G-library.swift"
+      ],
+      "args": [],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: cannot read 'Checked': it reaches 'Checked', a gated protocol of 'fixtures/G-library.swift', and this court judges the gated protocols of the world it reads"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-false",
+      "pass": "where",
+      "files": [
+        "fixtures/G-false.swift",
+        "fixtures/G-library.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-false-context.json"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "\u2717 'Record: Checked' requires the types 'Left' (aka 'Unit') and 'Right' (aka 'Other') be equivalent"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "G-local",
+      "pass": "where",
+      "files": [
+        "fixtures/G-local.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-local-context.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "\u2713 THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "G-transitive",
+      "pass": "where",
+      "files": [
+        "fixtures/G-child-world.swift",
+        "fixtures/G-child.swift",
+        "fixtures/G-library.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-child-context.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "\u2713 THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "G-reordered",
+      "pass": "where",
+      "files": [
+        "fixtures/G-child-world.swift",
+        "fixtures/G-library.swift",
+        "fixtures/G-child.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-child-context.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "\u2713 THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "C-digest",
+      "pass": "where",
+      "files": [
+        "fixtures/G-world.swift",
+        "fixtures/G-library.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-digest.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: context record#/sha256: SHA-256 differs for 'fixtures/G-world.swift'"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-missing-source",
+      "pass": "where",
+      "files": [
+        "fixtures/G-world.swift",
+        "fixtures/G-library.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-missing-source.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: context sources: supplied input 'fixtures/G-library.swift' is not declared"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-duplicate-source",
+      "pass": "where",
+      "files": [
+        "fixtures/G-world.swift",
+        "fixtures/G-library.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-extra-source.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: context manifest:1: duplicate input 'fixtures/G-library.swift'"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-no-address",
+      "pass": "where",
+      "files": [
+        "fixtures/G-world.swift",
+        "fixtures/G-library.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-no-address.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: context sources[0].namespace: missing provenance address"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-no-import",
+      "pass": "where",
+      "files": [
+        "fixtures/G-world.swift",
+        "fixtures/G-library.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-no-import.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: fixtures/G-world.swift:1: import 'Library' is not declared by the source context"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-version",
+      "pass": "where",
+      "files": [
+        "fixtures/G-world.swift",
+        "fixtures/G-library.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-version.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: context schema: expected vi.court.context/1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-conflict",
+      "pass": "where",
+      "files": [
+        "fixtures/G-world.swift",
+        "fixtures/G-library.swift",
+        "fixtures/C-duplicate-name.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-conflict.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: fixtures/C-duplicate-name.swift:1: declaration 'Unit' conflicts with 'fixtures/G-library.swift:3'; qualified foreign-name resolution is outside this fragment"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-membership",
+      "pass": "where",
+      "files": [
+        "fixtures/G-membership.swift",
+        "fixtures/G-membership-library.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-membership-context.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "\u2713 THE WHERE holds: 0 equalities and 2 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "G-missing-ground",
+      "pass": "where",
+      "files": [
+        "fixtures/G-membership.swift",
+        "fixtures/G-missing-ground.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-missing-ground-context.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: fixtures/G-membership.swift:2: no declared conformance grounds for 'Unit' required by 'Ratio: Frac'"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-paired-gate",
+      "pass": "where",
+      "files": [
+        "fixtures/G-paired-world.swift",
+        "fixtures/G-paired.swift",
+        "fixtures/G-frac.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-paired-context.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "\u2713 THE WHERE holds: 0 equalities and 4 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "G-unread-conjunct",
+      "pass": "where",
+      "files": [
+        "fixtures/G-world.swift",
+        "fixtures/G-unread.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-unread-context.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: fixtures/G-unread.swift:2: the gated protocol 'Checked' carries 'Left: Pair & Marker', a conjunct this court does not judge"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-cycle",
+      "pass": "where",
+      "files": [
+        "fixtures/G-world.swift",
+        "fixtures/G-cycle.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-cycle-context.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: fixtures/G-cycle.swift:2: protocol refinement cycle at 'Checked' has no independent ground"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-missing-protocol",
+      "pass": "where",
+      "files": [
+        "fixtures/G-missing-protocol.swift",
+        "fixtures/G-missing-protocol-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-missing-protocol.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: fixtures/G-missing-protocol.swift:2: no declared protocol grounds for 'P'"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-self-ground",
+      "pass": "where",
+      "files": [
+        "fixtures/G-self-ground.swift",
+        "fixtures/G-self-ground-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-self-ground.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: fixtures/G-self-ground.swift:2: no declared conformance grounds for 'Recursive' required by 'A: Recursive'"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-mutual-ground",
+      "pass": "where",
+      "files": [
+        "fixtures/G-mutual-ground.swift",
+        "fixtures/G-mutual-ground-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-mutual-ground.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: fixtures/G-mutual-ground.swift:2: gated membership cycle at 'A: Recursive' has no independent ground"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-dependent-false",
+      "pass": "where",
+      "files": [
+        "fixtures/G-dependent-false.swift",
+        "fixtures/G-dependent-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-dependent.json"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "\u2717 'Dependent: Checked' requires the types 'Left' (aka 'Unit') and 'Right' (aka 'Other') be equivalent"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "G-nested-dependent",
+      "pass": "where",
+      "files": [
+        "fixtures/G-nested-dependent.swift",
+        "fixtures/G-nested-dependent-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-nested-dependent.json"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "\u2717 'Namespace.Dependent: Checked' requires the types 'Left' (aka 'Unit') and 'Right' (aka 'Other') be equivalent"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "G-extended-false",
+      "pass": "where",
+      "files": [
+        "fixtures/G-extended-world.swift",
+        "fixtures/G-extended-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-extended-false.json"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "\u2717 'Dependent: Checked' requires the types 'Left' (aka 'Unit') and 'Right' (aka 'Other') be equivalent"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "V-values-outside",
+      "pass": "where",
+      "files": [
+        "fixtures/V-world.swift",
+        "fixtures/V-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/V-values-outside.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "THE WHERE scope: borrowed value declarations are outside this reading: fixtures/V-definitions.swift:5.",
+            "\u2713 THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "V-local-type",
+      "pass": "where",
+      "files": [
+        "fixtures/V-world.swift",
+        "fixtures/V-local-type.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/V-local-type.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: cannot read line 5 of 'fixtures/V-local-type.swift': a value declaration contains a type declaration outside the supported binding scope"
+          ]
+        }
+      }
+    },
+    {
+      "id": "V-hidden-alias",
+      "pass": "where",
+      "files": [
+        "fixtures/V-world.swift",
+        "fixtures/V-hidden-alias.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/V-hidden-alias.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: cannot read line 5 of 'fixtures/V-hidden-alias.swift': a value declaration contains a type declaration outside the supported binding scope"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-owner-frac",
+      "pass": "where",
+      "files": [
+        "fixtures/G-owner-frac.swift",
+        "fixtures/OwnerPrimitive.swift",
+        "fixtures/OwnerVector.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-owner-frac.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "THE WHERE scope: borrowed value declarations are outside this reading: fixtures/OwnerPrimitive.swift:49, fixtures/OwnerVector.swift:7.",
+            "\u2713 THE WHERE holds: 0 equalities and 2 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "C-S-never",
+      "pass": "where",
+      "files": [
+        "fixtures/S-never.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-S-never.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "\u2713 THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "C-S-missing",
+      "pass": "where",
+      "files": [
+        "fixtures/S-never.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-S-missing.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: context language#/imports/0: namespace 'Swift' has no supplied source or intrinsic"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-S-version",
+      "pass": "where",
+      "files": [
+        "fixtures/S-never.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-S-version.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: context intrinsics[0]: expected the closed Swift/1 export Never with provenance"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-S-exports",
+      "pass": "where",
+      "files": [
+        "fixtures/S-never.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-S-exports.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: context intrinsics[0]: expected the closed Swift/1 export Never with provenance"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-S-source",
+      "pass": "where",
+      "files": [
+        "fixtures/S-never.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-S-source.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: context language#/namespace: source cannot declare intrinsic namespace Swift"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-S-shadow",
+      "pass": "where",
+      "files": [
+        "fixtures/S-never.swift",
+        "fixtures/S-borrowed-never.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-S-shadow.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: cannot read line 1 of 'fixtures/S-borrowed-never.swift': declaration 'Never' conflicts with intrinsic Swift/1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-S-parameter",
+      "pass": "where",
+      "files": [
+        "fixtures/S-never.swift",
+        "fixtures/C-S-parameter.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-S-parameter.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: cannot read line 1 of 'fixtures/C-S-parameter.swift': declaration 'Never' conflicts with intrinsic Swift/1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-owner-paired-all-gates",
+      "pass": "where",
+      "files": [
+        "fixtures/G-owner-paired.swift",
+        "fixtures/OwnerPrimitive.swift",
+        "fixtures/OwnerVector.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-owner-paired.json"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "\u2717 'Claim = Paired<Unit, Unit>' requires the type 'L' (aka 'Unit') conform to 'Takes', and 'Unit: Close' does not carry it [Takes]",
+            "\u2717 'Claim = Paired<Unit, Unit>' requires the type 'R' (aka 'Unit') conform to 'Takes', and 'Unit: Close' does not carry it [Takes]",
+            "\u2717 'Claim = Paired<Unit, Unit>' requires the type 'L' (aka 'Unit') conform to 'Divides', and 'Unit: Close' does not carry it [Divides]",
+            "\u2717 'Claim = Paired<Unit, Unit>' requires the type 'R' (aka 'Unit') conform to 'Divides', and 'Unit: Close' does not carry it [Divides]",
+            "\u2717 'Claim = Paired<Unit, Unit>' requires the type 'L' (aka 'Unit') conform to 'DividesY', and 'Unit: Close' does not carry it [DividesY]",
+            "\u2717 'Claim = Paired<Unit, Unit>' requires the type 'R' (aka 'Unit') conform to 'DividesY', and 'Unit: Close' does not carry it [DividesY]"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "expectation_note": "See ERRATA.md: explicit correction of pre-release G-owner-paired"
+    },
+    {
+      "id": "G-owner-all-gates",
+      "pass": "where",
+      "files": [
+        "fixtures/G-owner-all-gates.swift",
+        "fixtures/OwnerPrimitive.swift",
+        "fixtures/OwnerVector.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-owner-all-gates.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "THE WHERE scope: borrowed value declarations are outside this reading: fixtures/OwnerPrimitive.swift:49, fixtures/OwnerVector.swift:7.",
+            "\u2713 THE WHERE holds: 0 equalities and 10 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "G-owner-reading",
+      "pass": "where",
+      "files": [
+        "fixtures/G-owner-reading.swift",
+        "fixtures/OwnerPrimitive.swift",
+        "fixtures/OwnerCore.swift",
+        "fixtures/OwnerVerdict.swift",
+        "fixtures/OwnerSeeing.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-owner-reading.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "THE WHERE scope: borrowed value declarations are outside this reading: fixtures/OwnerPrimitive.swift:49.",
+            "\u2713 THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "G-owner-reading-false",
+      "pass": "where",
+      "files": [
+        "fixtures/G-owner-reading-false.swift",
+        "fixtures/OwnerPrimitive.swift",
+        "fixtures/OwnerCore.swift",
+        "fixtures/OwnerVerdict.swift",
+        "fixtures/OwnerSeeing.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-owner-reading-false.json"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "\u2717 'Reading: PredicateReading' requires the types 'Right' (aka 'Unit') and 'Answer' (aka 'Never') be equivalent"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "G-owner-reading-lost",
+      "pass": "where",
+      "files": [
+        "fixtures/G-owner-reading-lost.swift",
+        "fixtures/OwnerPrimitive.swift",
+        "fixtures/OwnerVerdict.swift",
+        "fixtures/OwnerSeeing.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-owner-reading-lost.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: fixtures/G-owner-reading-lost.swift:2: no declared protocol grounds for 'HasEncoding'"
+          ]
+        }
+      }
+    },
+    {
+      "id": "G-owner-forgets",
+      "pass": "where",
+      "files": [
+        "fixtures/G-owner-forgets.swift",
+        "fixtures/OwnerPrimitive.swift",
+        "fixtures/OwnerCore.swift",
+        "fixtures/OwnerVerdict.swift",
+        "fixtures/OwnerSeeing.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-owner-forgets.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "THE WHERE scope: borrowed value declarations are outside this reading: fixtures/OwnerPrimitive.swift:49.",
+            "\u2713 THE WHERE holds: 13 equalities and 2 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "G-owner-forgets-false",
+      "pass": "where",
+      "files": [
+        "fixtures/G-owner-forgets-false.swift",
+        "fixtures/OwnerPrimitive.swift",
+        "fixtures/OwnerCore.swift",
+        "fixtures/OwnerVerdict.swift",
+        "fixtures/OwnerSeeing.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-owner-forgets-false.json"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "\u2717 'F: EncodingForgets' requires the types 'SharedImage' (aka 'Never') and 'Answer' (aka 'Unit') be equivalent"
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "C-missing-leaf",
+      "pass": "where",
+      "files": [
+        "fixtures/C-missing-leaf.swift",
+        "fixtures/C-missing-leaf-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-missing-leaf.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: fixtures/C-missing-leaf.swift: no declared definition for 'Missing' in the supplied context"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-opaque-leaf",
+      "pass": "where",
+      "files": [
+        "fixtures/C-opaque-leaf.swift",
+        "fixtures/C-opaque-leaf-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-opaque-leaf.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "\u2713 THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "C-missing-borrowed-leaf",
+      "pass": "where",
+      "files": [
+        "fixtures/C-missing-borrowed-leaf.swift",
+        "fixtures/C-missing-borrowed-leaf-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-missing-borrowed-leaf.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: fixtures/C-missing-borrowed-leaf-definitions.swift: no declared definition for 'Missing' in the supplied context"
+          ]
+        }
+      }
+    },
+    {
+      "id": "C-byte-bom-world",
+      "pass": "where",
+      "files": [
+        "fixtures/C-byte-bom-world.swift",
+        "fixtures/C-byte-bom-world-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-byte-bom-world.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "\u2713 THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "C-byte-bom-definitions",
+      "pass": "where",
+      "files": [
+        "fixtures/C-byte-bom-definitions.swift",
+        "fixtures/C-byte-bom-definitions-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-byte-bom-definitions.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "\u2713 THE WHERE holds: 1 equalities and 0 memberships judged across 0 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)."
+          ],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": []
+        }
+      }
+    },
+    {
+      "id": "C-byte-bom-digest",
+      "pass": "where",
+      "files": [
+        "fixtures/C-byte-bom-digest.swift",
+        "fixtures/C-byte-bom-digest-definitions.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-byte-bom-digest.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [],
+          "unordered": false
+        },
+        "stderr": {
+          "lines": [
+            "\u2717 THE WHERE: context record#/sha256: SHA-256 differs for 'fixtures/C-byte-bom-digest.swift'"
+          ]
+        }
+      }
+    }
+  ],
+  "supersedes": {
+    "revision": "11f8fdb01c351f5983c59530218b6873195a6449",
+    "path": "Contracts/Court/v0.4/contract.json",
+    "sha256": "25c7b65d5dc27f1a669139061f3b166c47897a460f3967b65d99d1c30ee8b47d"
+  }
+}

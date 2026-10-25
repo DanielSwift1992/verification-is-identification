@@ -1,0 +1,72 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "resolution/h2-import-cycle/World.swift",
+      "source": "resolution/h2-import-cycle/World.swift",
+      "sha256": "20d8adff2f1ba0eb8c562ea9a941895b049b766f5d6d7bee769a249936a96e64",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "B"
+      ],
+      "at": {
+        "input": "resolution/h2-import-cycle/World.swift:1/input",
+        "source": "resolution/h2-import-cycle/World.swift:1/source",
+        "sha256": "resolution/h2-import-cycle/World.swift:1/sha256",
+        "namespace": "resolution/h2-import-cycle/World.swift:1/namespace",
+        "module": "resolution/h2-import-cycle/World.swift:1/module",
+        "role": "resolution/h2-import-cycle/World.swift:1/role",
+        "imports": [
+          "resolution/h2-import-cycle/World.swift:1/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "resolution/h2-import-cycle/A.swift",
+      "source": "resolution/h2-import-cycle/A.swift",
+      "sha256": "0c7ad8ade18c2f0ff5cfaa25c5b452fd70f1433965d17258e0e1178ce9bb20b0",
+      "namespace": "A",
+      "module": "A",
+      "role": "borrowed",
+      "imports": [
+        "B"
+      ],
+      "at": {
+        "input": "resolution/h2-import-cycle/A.swift:1/input",
+        "source": "resolution/h2-import-cycle/A.swift:1/source",
+        "sha256": "resolution/h2-import-cycle/A.swift:1/sha256",
+        "namespace": "resolution/h2-import-cycle/A.swift:1/namespace",
+        "module": "resolution/h2-import-cycle/A.swift:1/module",
+        "role": "resolution/h2-import-cycle/A.swift:1/role",
+        "imports": [
+          "resolution/h2-import-cycle/A.swift:1/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "resolution/h2-import-cycle/B.swift",
+      "source": "resolution/h2-import-cycle/B.swift",
+      "sha256": "fd04769954369d8e4f95b2c814447eb4790916b66b4ac79f39f43d49012fccc3",
+      "namespace": "B",
+      "module": "B",
+      "role": "borrowed",
+      "imports": [
+        "A"
+      ],
+      "at": {
+        "input": "resolution/h2-import-cycle/B.swift:1/input",
+        "source": "resolution/h2-import-cycle/B.swift:1/source",
+        "sha256": "resolution/h2-import-cycle/B.swift:1/sha256",
+        "namespace": "resolution/h2-import-cycle/B.swift:1/namespace",
+        "module": "resolution/h2-import-cycle/B.swift:1/module",
+        "role": "resolution/h2-import-cycle/B.swift:1/role",
+        "imports": [
+          "resolution/h2-import-cycle/B.swift:1/imports/0"
+        ]
+      }
+    }
+  ],
+  "intrinsics": []
+}

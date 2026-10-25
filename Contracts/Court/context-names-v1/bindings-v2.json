@@ -1,0 +1,484 @@
+{
+  "schema": "vi.court.conformance/2",
+  "suite": "vi.court.context-binding-replay/2",
+  "reference_revision": "3bfef0f0577cf61f9550fe4ef303fa8c6e1c8f48",
+  "scope": "Typed binding receiver, inherited visibility and exact ordered replay. New proof bytes have their own release; source question bytes are unchanged.",
+  "versions": {
+    "context": "vi.court.context/2",
+    "normalization_canon": 4
+  },
+  "missing_files": [],
+  "files": {
+    "fragment/qualified-axis/World.swift": {
+      "sha256": "654439d4bb90c5a8c2bab1ae19791e617511468252d372c3df769bb144b553d0",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/bindings.json"
+    },
+    "fragment/qualified-axis/context.json": {
+      "sha256": "30471a180ac42828afd733b13f3b7d6277729c79671c05c365714a482bf04e38",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/bindings.json"
+    },
+    "resolution/proofs/valid.json": {
+      "sha256": "4d5c0488aa1c685ef33e1cb6d7e10e21f1a1124f69d57a34211ede9c4fde9425",
+      "origin": "T0105 r3: typed derivation and single-row adversarial variant"
+    },
+    "resolution/proofs/wrong-reference.json": {
+      "sha256": "f3eb15bb2b5bf2acc1ec0b5026be89965cf59ca60c14f13993df8d5fb4ab8032",
+      "origin": "T0105 r3: typed derivation and single-row adversarial variant"
+    },
+    "resolution/proofs/wrong-owner.json": {
+      "sha256": "f435c4567c027d1c6c3e679f0e2c550dbb393b3e2fb52761cab2ff9fc27fedf3",
+      "origin": "T0105 r3: typed derivation and single-row adversarial variant"
+    },
+    "resolution/proofs/lost-reference.json": {
+      "sha256": "882868098ec365bff05cc4d7d1be5ac3688ad7abae93596bd01f4cb41c358835",
+      "origin": "T0105 r3: typed derivation and single-row adversarial variant"
+    },
+    "resolution/proofs/added-reference.json": {
+      "sha256": "abb4b5dbc152c77dc36b8b84970220ddb0a1e48ff8c80cced678801683e6bbba",
+      "origin": "T0105 r3: typed derivation and single-row adversarial variant"
+    },
+    "resolution/proofs/wrong-scope.json": {
+      "sha256": "73a1a86a8c3c5d5eb7b553842064e2eab28e3530092dd7a178ab351599c6663e",
+      "origin": "T0105 r3: typed derivation and single-row adversarial variant"
+    },
+    "resolution/proofs/wrong-source.json": {
+      "sha256": "7f567fe26cc110ea4f2c321ae6b40e3922daa7a440d91729c770db1b4c1b88d8",
+      "origin": "T0105 r3: typed derivation and single-row adversarial variant"
+    },
+    "resolution/proofs/wrong-view.json": {
+      "sha256": "56cc401bfb1ad7b524d224847c24ea671ce48c19e536e395beae383e07ac8409",
+      "origin": "T0105 r3: typed derivation and single-row adversarial variant"
+    }
+  },
+  "cases": [
+    {
+      "id": "binding-valid",
+      "pass": "where",
+      "files": [
+        "fragment/qualified-axis/World.swift"
+      ],
+      "args": [
+        "--context",
+        "fragment/qualified-axis/context.json",
+        "--report",
+        "--bindings",
+        "resolution/proofs/valid.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "outcome": "holds",
+          "inputs": [
+            {
+              "path": "fragment/qualified-axis/World.swift",
+              "sha256": "654439d4bb90c5a8c2bab1ae19791e617511468252d372c3df769bb144b553d0"
+            },
+            {
+              "path": "fragment/qualified-axis/context.json",
+              "sha256": "30471a180ac42828afd733b13f3b7d6277729c79671c05c365714a482bf04e38"
+            },
+            {
+              "path": "resolution/proofs/valid.json",
+              "sha256": "4d5c0488aa1c685ef33e1cb6d7e10e21f1a1124f69d57a34211ede9c4fde9425"
+            }
+          ],
+          "results": {
+            "fragment/qualified-axis/World.swift": {
+              "source": "fragment/qualified-axis/World.swift",
+              "outcome": "holds",
+              "minimum": {
+                "equalities": 1
+              }
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "fragment/qualified-axis/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "binding-wrong-reference",
+      "pass": "where",
+      "files": [
+        "fragment/qualified-axis/World.swift"
+      ],
+      "args": [
+        "--context",
+        "fragment/qualified-axis/context.json",
+        "--report",
+        "--bindings",
+        "resolution/proofs/wrong-reference.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "fragment/qualified-axis/World.swift",
+              "sha256": "654439d4bb90c5a8c2bab1ae19791e617511468252d372c3df769bb144b553d0"
+            },
+            {
+              "path": "fragment/qualified-axis/context.json",
+              "sha256": "30471a180ac42828afd733b13f3b7d6277729c79671c05c365714a482bf04e38"
+            },
+            {
+              "path": "resolution/proofs/wrong-reference.json",
+              "sha256": "f3eb15bb2b5bf2acc1ec0b5026be89965cf59ca60c14f13993df8d5fb4ab8032"
+            }
+          ],
+          "results": {
+            "fragment/qualified-axis/World.swift": {
+              "source": "fragment/qualified-axis/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "name binding reference differs"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "fragment/qualified-axis/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "binding-wrong-owner",
+      "pass": "where",
+      "files": [
+        "fragment/qualified-axis/World.swift"
+      ],
+      "args": [
+        "--context",
+        "fragment/qualified-axis/context.json",
+        "--report",
+        "--bindings",
+        "resolution/proofs/wrong-owner.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "fragment/qualified-axis/World.swift",
+              "sha256": "654439d4bb90c5a8c2bab1ae19791e617511468252d372c3df769bb144b553d0"
+            },
+            {
+              "path": "fragment/qualified-axis/context.json",
+              "sha256": "30471a180ac42828afd733b13f3b7d6277729c79671c05c365714a482bf04e38"
+            },
+            {
+              "path": "resolution/proofs/wrong-owner.json",
+              "sha256": "f435c4567c027d1c6c3e679f0e2c550dbb393b3e2fb52761cab2ff9fc27fedf3"
+            }
+          ],
+          "results": {
+            "fragment/qualified-axis/World.swift": {
+              "source": "fragment/qualified-axis/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "name binding declaration differs"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "fragment/qualified-axis/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "binding-lost-reference",
+      "pass": "where",
+      "files": [
+        "fragment/qualified-axis/World.swift"
+      ],
+      "args": [
+        "--context",
+        "fragment/qualified-axis/context.json",
+        "--report",
+        "--bindings",
+        "resolution/proofs/lost-reference.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "fragment/qualified-axis/World.swift",
+              "sha256": "654439d4bb90c5a8c2bab1ae19791e617511468252d372c3df769bb144b553d0"
+            },
+            {
+              "path": "fragment/qualified-axis/context.json",
+              "sha256": "30471a180ac42828afd733b13f3b7d6277729c79671c05c365714a482bf04e38"
+            },
+            {
+              "path": "resolution/proofs/lost-reference.json",
+              "sha256": "882868098ec365bff05cc4d7d1be5ac3688ad7abae93596bd01f4cb41c358835"
+            }
+          ],
+          "results": {
+            "fragment/qualified-axis/World.swift": {
+              "source": "fragment/qualified-axis/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "reference coverage differs"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "fragment/qualified-axis/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "binding-added-reference",
+      "pass": "where",
+      "files": [
+        "fragment/qualified-axis/World.swift"
+      ],
+      "args": [
+        "--context",
+        "fragment/qualified-axis/context.json",
+        "--report",
+        "--bindings",
+        "resolution/proofs/added-reference.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "fragment/qualified-axis/World.swift",
+              "sha256": "654439d4bb90c5a8c2bab1ae19791e617511468252d372c3df769bb144b553d0"
+            },
+            {
+              "path": "fragment/qualified-axis/context.json",
+              "sha256": "30471a180ac42828afd733b13f3b7d6277729c79671c05c365714a482bf04e38"
+            },
+            {
+              "path": "resolution/proofs/added-reference.json",
+              "sha256": "abb4b5dbc152c77dc36b8b84970220ddb0a1e48ff8c80cced678801683e6bbba"
+            }
+          ],
+          "results": {
+            "fragment/qualified-axis/World.swift": {
+              "source": "fragment/qualified-axis/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "reference coverage differs"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "fragment/qualified-axis/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "binding-wrong-scope",
+      "pass": "where",
+      "files": [
+        "fragment/qualified-axis/World.swift"
+      ],
+      "args": [
+        "--context",
+        "fragment/qualified-axis/context.json",
+        "--report",
+        "--bindings",
+        "resolution/proofs/wrong-scope.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "fragment/qualified-axis/World.swift",
+              "sha256": "654439d4bb90c5a8c2bab1ae19791e617511468252d372c3df769bb144b553d0"
+            },
+            {
+              "path": "fragment/qualified-axis/context.json",
+              "sha256": "30471a180ac42828afd733b13f3b7d6277729c79671c05c365714a482bf04e38"
+            },
+            {
+              "path": "resolution/proofs/wrong-scope.json",
+              "sha256": "73a1a86a8c3c5d5eb7b553842064e2eab28e3530092dd7a178ab351599c6663e"
+            }
+          ],
+          "results": {
+            "fragment/qualified-axis/World.swift": {
+              "source": "fragment/qualified-axis/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "name binding reference differs"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "fragment/qualified-axis/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "binding-wrong-source",
+      "pass": "where",
+      "files": [
+        "fragment/qualified-axis/World.swift"
+      ],
+      "args": [
+        "--context",
+        "fragment/qualified-axis/context.json",
+        "--report",
+        "--bindings",
+        "resolution/proofs/wrong-source.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "fragment/qualified-axis/World.swift",
+              "sha256": "654439d4bb90c5a8c2bab1ae19791e617511468252d372c3df769bb144b553d0"
+            },
+            {
+              "path": "fragment/qualified-axis/context.json",
+              "sha256": "30471a180ac42828afd733b13f3b7d6277729c79671c05c365714a482bf04e38"
+            },
+            {
+              "path": "resolution/proofs/wrong-source.json",
+              "sha256": "7f567fe26cc110ea4f2c321ae6b40e3922daa7a440d91729c770db1b4c1b88d8"
+            }
+          ],
+          "results": {
+            "fragment/qualified-axis/World.swift": {
+              "source": "fragment/qualified-axis/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "name binding input differs"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "fragment/qualified-axis/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "binding-wrong-view",
+      "pass": "where",
+      "files": [
+        "fragment/qualified-axis/World.swift"
+      ],
+      "args": [
+        "--context",
+        "fragment/qualified-axis/context.json",
+        "--report",
+        "--bindings",
+        "resolution/proofs/wrong-view.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "fragment/qualified-axis/World.swift",
+              "sha256": "654439d4bb90c5a8c2bab1ae19791e617511468252d372c3df769bb144b553d0"
+            },
+            {
+              "path": "fragment/qualified-axis/context.json",
+              "sha256": "30471a180ac42828afd733b13f3b7d6277729c79671c05c365714a482bf04e38"
+            },
+            {
+              "path": "resolution/proofs/wrong-view.json",
+              "sha256": "56cc401bfb1ad7b524d224847c24ea671ce48c19e536e395beae383e07ac8409"
+            }
+          ],
+          "results": {
+            "fragment/qualified-axis/World.swift": {
+              "source": "fragment/qualified-axis/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "name binding input differs"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "fragment/qualified-axis/World.swift"
+        ]
+      }
+    }
+  ],
+  "supersedes": {
+    "revision": "11f8fdb01c351f5983c59530218b6873195a6449",
+    "path": "Contracts/Court/context-names-v1/bindings.json"
+  }
+}

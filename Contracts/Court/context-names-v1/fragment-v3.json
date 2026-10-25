@@ -1,0 +1,1124 @@
+{
+  "missing_files": [],
+  "schema": "vi.court.conformance/2",
+  "suite": "vi.court.context-owners/3",
+  "reference_revision": "3bfef0f0577cf61f9550fe4ef303fa8c6e1c8f48",
+  "scope": "The declared questions under revision 3 certified resolution without shadowing; original input bytes are unchanged. Historical expectations remain in the superseded release.",
+  "versions": {
+    "context": "vi.court.context/2",
+    "normalization_canon": 4
+  },
+  "files": {
+    "owners/axis-file/World.swift": {
+      "sha256": "b05a33b2dd4b762daa9a5588aba354c87573542ea129a4177755a4301378e7e3",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/axis-file/World.swift"
+    },
+    "owners/axis-file/context.json": {
+      "sha256": "1af336995a89a4eb994174aff8b7fb51e9f83ade9c9a72091124103bc8c3429d",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/axis-file/context.json"
+    },
+    "owners/axis-file-false/World.swift": {
+      "sha256": "770e6299b7306a7d8e468ca6d56079c0b67417ac86fd078c1ae2346a7e59f3c8",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/axis-file-false/World.swift"
+    },
+    "owners/axis-file-false/context.json": {
+      "sha256": "e0e0cf0a1b7d268dab8da4179e2715d3f2ef9daea84e5bc65a87811ae47d403c",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/axis-file-false/context.json"
+    },
+    "owners/nested-file/World.swift": {
+      "sha256": "26d42b5cfe33f7a5797d4436a00f9963aff8f04a6a4d772fe84fca937163c6f5",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/nested-file/World.swift"
+    },
+    "owners/nested-file/context.json": {
+      "sha256": "0f3b8a8bb7c140c8e756dfee2b677514d583674487080c879c9a59be714e016c",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/nested-file/context.json"
+    },
+    "owners/nested-inner/World.swift": {
+      "sha256": "79c4944d440dcd6139c5fc2f35b8597b8d8834e7475231aba14ac5362775d470",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/nested-inner/World.swift"
+    },
+    "owners/nested-inner/context.json": {
+      "sha256": "62d0a903caae4c2f8ebf76fe0f7ca449a37260d872f49cc0a1fe3a5bd0b2df4a",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/nested-inner/context.json"
+    },
+    "owners/owner-member/World.swift": {
+      "sha256": "7a97cca1a49ad780c5d996324f22f6d30150397b54f8a4fc5b9f58d53db2cf14",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/owner-member/World.swift"
+    },
+    "owners/owner-member/context.json": {
+      "sha256": "69b8201f45c4b345449daa30bd004f7ae278334d09da5331268ac9bbc0520992",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/owner-member/context.json"
+    },
+    "owners/axis-outside/World.swift": {
+      "sha256": "74d8642c0a8b941feb79d67affb1e9f56eea3f67a5cfb9d080b368ebd0b9fe4e",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/axis-outside/World.swift"
+    },
+    "owners/axis-outside/context.json": {
+      "sha256": "41994f39caf05256f62f69d1c23cbe64d1e054002e2f43d94018b285e46ec27b",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/axis-outside/context.json"
+    },
+    "owners/axis-duplicate/World.swift": {
+      "sha256": "e8533055dbba0e3ecb7c2f9f7668b7be458593e591106171f45b4cdfc391d7b0",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/axis-duplicate/World.swift"
+    },
+    "owners/axis-duplicate/context.json": {
+      "sha256": "dee08c817e27d74e0cf3ca2202d9eddcfc56917668e8b96934a10fadd034209d",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/axis-duplicate/context.json"
+    },
+    "owners/nested-duplicate/World.swift": {
+      "sha256": "01673f4c9a3478036884383a647ce05a35aa1b217f22cc5faa7da7e48c315685",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/nested-duplicate/World.swift"
+    },
+    "owners/nested-duplicate/context.json": {
+      "sha256": "fbbeed9b46413c0f402e29c3406c07a9496435145ba951bbfab787da3d9bdf65",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/nested-duplicate/context.json"
+    },
+    "owners/owner-missing/World.swift": {
+      "sha256": "90c94e4f44233b97d26dac4f0495fed302d64eb189ec023042a70a157bb9a960",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/owner-missing/World.swift"
+    },
+    "owners/owner-missing/context.json": {
+      "sha256": "c148b4fc9ff26d48de4afa3722f6ded3aa27c3200f19cc43b98ce5009d000e71",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/owner-missing/context.json"
+    },
+    "owners/axes-separate/World.swift": {
+      "sha256": "972ed4f64e584c6e272d9d6bd4c1cc84abef8b4ae8373cd14a530dc72c7ad707",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/axes-separate/World.swift"
+    },
+    "owners/axes-separate/context.json": {
+      "sha256": "a6c00059331be564c119e94de69157de92e1b882c37ca658b6be3ada5727d99d",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/axes-separate/context.json"
+    },
+    "owners/nested-extension/World.swift": {
+      "sha256": "82fe54b7aa58bab45e4b9dfd9ac7644b072d8d8a375a6f5f47642909909c0662",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/nested-extension/World.swift"
+    },
+    "owners/nested-extension/context.json": {
+      "sha256": "ce1fc235e93e840ec73a32bdff965ce6fc6ab71bae444543da35fc1322705fac",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/nested-extension/context.json"
+    },
+    "owners/nested-extension-unread/World.swift": {
+      "sha256": "bfad9efb8f78e86fe184fd0cbca8bd1f90048d48f41336cfc3a952544a1ba7f4",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/nested-extension-unread/World.swift"
+    },
+    "owners/nested-extension-unread/context.json": {
+      "sha256": "77d2330291c0dfd4613abd9d8c83d994c0e937229174e3032fffe2bc5ba76717",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/nested-extension-unread/context.json"
+    },
+    "owners/generic-unapplied/World.swift": {
+      "sha256": "b9bbd0f674d37f95582a32304323dd47057df8f8e2cf082c7a12e44ab34e7bc8",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/generic-unapplied/World.swift"
+    },
+    "owners/generic-unapplied/Kit.swift": {
+      "sha256": "0dcd723bca6e813c865f36895d97d7daa5f2526233783263dcf5d57c0db4b617",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/generic-unapplied/Kit.swift"
+    },
+    "owners/generic-unapplied/API.swift": {
+      "sha256": "a6e1a0b590dbe13d8f0941af9693d4b1be865bd5f514164a6760aad7bcbe0de7",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/generic-unapplied/API.swift"
+    },
+    "owners/generic-unapplied/context.json": {
+      "sha256": "dbffacc6c1e9dbfd0567b53efd4a114a0d57d262e416944a4c1577886f89fcca",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/generic-unapplied/context.json"
+    },
+    "owners/generic-applied/World.swift": {
+      "sha256": "5c44de58becb037ebbb29ac258f491536631a3657f5659f82b01ff304ab6232c",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/generic-applied/World.swift"
+    },
+    "owners/generic-applied/Kit.swift": {
+      "sha256": "0dcd723bca6e813c865f36895d97d7daa5f2526233783263dcf5d57c0db4b617",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/generic-applied/Kit.swift"
+    },
+    "owners/generic-applied/API.swift": {
+      "sha256": "a6e1a0b590dbe13d8f0941af9693d4b1be865bd5f514164a6760aad7bcbe0de7",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/generic-applied/API.swift"
+    },
+    "owners/generic-applied/context.json": {
+      "sha256": "070eb431dd312b16e05aa620db8f97accade9d2b128f66ddc320e82abbbb22ba",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/generic-applied/context.json"
+    },
+    "owners/generic-wrong/World.swift": {
+      "sha256": "43efdd9c7078e5b201f303a2a18ade6139e8cb3ec4c8b3ca9d6eb179bf01cfc8",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/generic-wrong/World.swift"
+    },
+    "owners/generic-wrong/Kit.swift": {
+      "sha256": "0dcd723bca6e813c865f36895d97d7daa5f2526233783263dcf5d57c0db4b617",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/generic-wrong/Kit.swift"
+    },
+    "owners/generic-wrong/API.swift": {
+      "sha256": "a6e1a0b590dbe13d8f0941af9693d4b1be865bd5f514164a6760aad7bcbe0de7",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/generic-wrong/API.swift"
+    },
+    "owners/generic-wrong/context.json": {
+      "sha256": "c7c3cb07236b417707279e78ad073c7e9c158bcacb598b5cabcf9784e92d5c52",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/owners/generic-wrong/context.json"
+    },
+    "fragment/qualified-axis/World.swift": {
+      "sha256": "654439d4bb90c5a8c2bab1ae19791e617511468252d372c3df769bb144b553d0",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/fragment/qualified-axis/World.swift"
+    },
+    "fragment/qualified-axis/context.json": {
+      "sha256": "30471a180ac42828afd733b13f3b7d6277729c79671c05c365714a482bf04e38",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/fragment/qualified-axis/context.json"
+    },
+    "fragment/qualified-axis-false/World.swift": {
+      "sha256": "f84dd3f85ae456743d8dc0e0b5312ae536f02a85073d75b1f8c76e83e827a604",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/fragment/qualified-axis-false/World.swift"
+    },
+    "fragment/qualified-axis-false/context.json": {
+      "sha256": "6a126fa98cceaa2db0794e284e0f02284372df68185d5755b3b57c91d5fd5163",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/fragment/qualified-axis-false/context.json"
+    },
+    "fragment/qualified-nested/World.swift": {
+      "sha256": "647560d4eb503ba920ff337cae9cfeb9d14b97d80ea078e13293a3d84bf3283c",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/fragment/qualified-nested/World.swift"
+    },
+    "fragment/qualified-nested/context.json": {
+      "sha256": "e15576e39079a79c92e8c182c080046e14c1edfce1a893ccf83f023b9a2a4860",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/fragment.json#files/fragment/qualified-nested/context.json"
+    }
+  },
+  "cases": [
+    {
+      "id": "owner-axis-file",
+      "pass": "where",
+      "files": [
+        "owners/axis-file/World.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/axis-file/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "owners/axis-file/World.swift",
+              "sha256": "b05a33b2dd4b762daa9a5588aba354c87573542ea129a4177755a4301378e7e3"
+            },
+            {
+              "path": "owners/axis-file/context.json",
+              "sha256": "1af336995a89a4eb994174aff8b7fb51e9f83ade9c9a72091124103bc8c3429d"
+            }
+          ],
+          "results": {
+            "owners/axis-file/World.swift": {
+              "source": "owners/axis-file/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "ambiguous name Axis"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "owners/axis-file/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "owner-axis-file-false",
+      "pass": "where",
+      "files": [
+        "owners/axis-file-false/World.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/axis-file-false/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "owners/axis-file-false/World.swift",
+              "sha256": "770e6299b7306a7d8e468ca6d56079c0b67417ac86fd078c1ae2346a7e59f3c8"
+            },
+            {
+              "path": "owners/axis-file-false/context.json",
+              "sha256": "e0e0cf0a1b7d268dab8da4179e2715d3f2ef9daea84e5bc65a87811ae47d403c"
+            }
+          ],
+          "results": {
+            "owners/axis-file-false/World.swift": {
+              "source": "owners/axis-file-false/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "ambiguous name Axis"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 1,
+        "diagnostic": "addressed",
+        "files": [
+          "owners/axis-file-false/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "owner-nested-file",
+      "pass": "where",
+      "files": [
+        "owners/nested-file/World.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/nested-file/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "outcome": "holds",
+          "inputs": [
+            {
+              "path": "owners/nested-file/World.swift",
+              "sha256": "26d42b5cfe33f7a5797d4436a00f9963aff8f04a6a4d772fe84fca937163c6f5"
+            },
+            {
+              "path": "owners/nested-file/context.json",
+              "sha256": "0f3b8a8bb7c140c8e756dfee2b677514d583674487080c879c9a59be714e016c"
+            }
+          ],
+          "results": {
+            "owners/nested-file/World.swift": {
+              "source": "owners/nested-file/World.swift",
+              "outcome": "holds",
+              "minimum": {
+                "equalities": 1
+              }
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "owners/nested-file/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "owner-nested-inner",
+      "pass": "where",
+      "files": [
+        "owners/nested-inner/World.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/nested-inner/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "owners/nested-inner/World.swift",
+              "sha256": "79c4944d440dcd6139c5fc2f35b8597b8d8834e7475231aba14ac5362775d470"
+            },
+            {
+              "path": "owners/nested-inner/context.json",
+              "sha256": "62d0a903caae4c2f8ebf76fe0f7ca449a37260d872f49cc0a1fe3a5bd0b2df4a"
+            }
+          ],
+          "results": {
+            "owners/nested-inner/World.swift": {
+              "source": "owners/nested-inner/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "ambiguous name Slot"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "owners/nested-inner/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "owner-owner-member",
+      "pass": "where",
+      "files": [
+        "owners/owner-member/World.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/owner-member/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "outcome": "holds",
+          "inputs": [
+            {
+              "path": "owners/owner-member/World.swift",
+              "sha256": "7a97cca1a49ad780c5d996324f22f6d30150397b54f8a4fc5b9f58d53db2cf14"
+            },
+            {
+              "path": "owners/owner-member/context.json",
+              "sha256": "69b8201f45c4b345449daa30bd004f7ae278334d09da5331268ac9bbc0520992"
+            }
+          ],
+          "results": {
+            "owners/owner-member/World.swift": {
+              "source": "owners/owner-member/World.swift",
+              "outcome": "holds",
+              "minimum": {
+                "equalities": 1
+              }
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "owners/owner-member/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "owner-axis-outside",
+      "pass": "where",
+      "files": [
+        "owners/axis-outside/World.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/axis-outside/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "owners/axis-outside/World.swift",
+              "sha256": "74d8642c0a8b941feb79d67affb1e9f56eea3f67a5cfb9d080b368ebd0b9fe4e"
+            },
+            {
+              "path": "owners/axis-outside/context.json",
+              "sha256": "41994f39caf05256f62f69d1c23cbe64d1e054002e2f43d94018b285e46ec27b"
+            }
+          ],
+          "results": {
+            "owners/axis-outside/World.swift": {
+              "source": "owners/axis-outside/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "owners/axis-outside/World.swift:4",
+            "no declared definition for 'Axis'"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 1,
+        "diagnostic": "addressed",
+        "files": [
+          "owners/axis-outside/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "owner-axis-duplicate",
+      "pass": "where",
+      "files": [
+        "owners/axis-duplicate/World.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/axis-duplicate/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "owners/axis-duplicate/World.swift",
+              "sha256": "e8533055dbba0e3ecb7c2f9f7668b7be458593e591106171f45b4cdfc391d7b0"
+            },
+            {
+              "path": "owners/axis-duplicate/context.json",
+              "sha256": "dee08c817e27d74e0cf3ca2202d9eddcfc56917668e8b96934a10fadd034209d"
+            }
+          ],
+          "results": {
+            "owners/axis-duplicate/World.swift": {
+              "source": "owners/axis-duplicate/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "owners/axis-duplicate/World.swift:4",
+            "duplicate declaration 'World.P.Axis'",
+            "same owner"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 1,
+        "diagnostic": "addressed",
+        "files": [
+          "owners/axis-duplicate/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "owner-nested-duplicate",
+      "pass": "where",
+      "files": [
+        "owners/nested-duplicate/World.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/nested-duplicate/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "owners/nested-duplicate/World.swift",
+              "sha256": "01673f4c9a3478036884383a647ce05a35aa1b217f22cc5faa7da7e48c315685"
+            },
+            {
+              "path": "owners/nested-duplicate/context.json",
+              "sha256": "fbbeed9b46413c0f402e29c3406c07a9496435145ba951bbfab787da3d9bdf65"
+            }
+          ],
+          "results": {
+            "owners/nested-duplicate/World.swift": {
+              "source": "owners/nested-duplicate/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "owners/nested-duplicate/World.swift:4",
+            "duplicate declaration 'World.Container.Slot'",
+            "same owner"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 1,
+        "diagnostic": "addressed",
+        "files": [
+          "owners/nested-duplicate/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "owner-owner-missing",
+      "pass": "where",
+      "files": [
+        "owners/owner-missing/World.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/owner-missing/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "owners/owner-missing/World.swift",
+              "sha256": "90c94e4f44233b97d26dac4f0495fed302d64eb189ec023042a70a157bb9a960"
+            },
+            {
+              "path": "owners/owner-missing/context.json",
+              "sha256": "c148b4fc9ff26d48de4afa3722f6ded3aa27c3200f19cc43b98ce5009d000e71"
+            }
+          ],
+          "results": {
+            "owners/owner-missing/World.swift": {
+              "source": "owners/owner-missing/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "owners/owner-missing/World.swift:4",
+            "cannot read projection 'Binding.Missing'",
+            "no definition of 'Missing' on 'Binding'"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 1,
+        "diagnostic": "addressed",
+        "files": [
+          "owners/owner-missing/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "owner-axes-separate",
+      "pass": "where",
+      "files": [
+        "owners/axes-separate/World.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/axes-separate/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "outcome": "holds",
+          "inputs": [
+            {
+              "path": "owners/axes-separate/World.swift",
+              "sha256": "972ed4f64e584c6e272d9d6bd4c1cc84abef8b4ae8373cd14a530dc72c7ad707"
+            },
+            {
+              "path": "owners/axes-separate/context.json",
+              "sha256": "a6c00059331be564c119e94de69157de92e1b882c37ca658b6be3ada5727d99d"
+            }
+          ],
+          "results": {
+            "owners/axes-separate/World.swift": {
+              "source": "owners/axes-separate/World.swift",
+              "outcome": "holds",
+              "minimum": {
+                "equalities": 1
+              }
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "owners/axes-separate/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "owner-nested-extension",
+      "pass": "where",
+      "files": [
+        "owners/nested-extension/World.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/nested-extension/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "outcome": "holds",
+          "inputs": [
+            {
+              "path": "owners/nested-extension/World.swift",
+              "sha256": "82fe54b7aa58bab45e4b9dfd9ac7644b072d8d8a375a6f5f47642909909c0662"
+            },
+            {
+              "path": "owners/nested-extension/context.json",
+              "sha256": "ce1fc235e93e840ec73a32bdff965ce6fc6ab71bae444543da35fc1322705fac"
+            }
+          ],
+          "results": {
+            "owners/nested-extension/World.swift": {
+              "source": "owners/nested-extension/World.swift",
+              "outcome": "holds",
+              "minimum": {
+                "equalities": 1
+              }
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "owners/nested-extension/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "owner-nested-extension-unread",
+      "pass": "where",
+      "files": [
+        "owners/nested-extension-unread/World.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/nested-extension-unread/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "owners/nested-extension-unread/World.swift",
+              "sha256": "bfad9efb8f78e86fe184fd0cbca8bd1f90048d48f41336cfc3a952544a1ba7f4"
+            },
+            {
+              "path": "owners/nested-extension-unread/context.json",
+              "sha256": "77d2330291c0dfd4613abd9d8c83d994c0e937229174e3032fffe2bc5ba76717"
+            }
+          ],
+          "results": {
+            "owners/nested-extension-unread/World.swift": {
+              "source": "owners/nested-extension-unread/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "line 4",
+            "extension of 'Container.Slot'"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "owners/nested-extension-unread/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "owner-generic-unapplied",
+      "pass": "where",
+      "files": [
+        "owners/generic-unapplied/World.swift",
+        "owners/generic-unapplied/Kit.swift",
+        "owners/generic-unapplied/API.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/generic-unapplied/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "outcome": "holds",
+          "inputs": [
+            {
+              "path": "owners/generic-unapplied/API.swift",
+              "sha256": "a6e1a0b590dbe13d8f0941af9693d4b1be865bd5f514164a6760aad7bcbe0de7"
+            },
+            {
+              "path": "owners/generic-unapplied/Kit.swift",
+              "sha256": "0dcd723bca6e813c865f36895d97d7daa5f2526233783263dcf5d57c0db4b617"
+            },
+            {
+              "path": "owners/generic-unapplied/World.swift",
+              "sha256": "b9bbd0f674d37f95582a32304323dd47057df8f8e2cf082c7a12e44ab34e7bc8"
+            },
+            {
+              "path": "owners/generic-unapplied/context.json",
+              "sha256": "dbffacc6c1e9dbfd0567b53efd4a114a0d57d262e416944a4c1577886f89fcca"
+            }
+          ],
+          "results": {
+            "owners/generic-unapplied/World.swift": {
+              "source": "owners/generic-unapplied/World.swift",
+              "outcome": "holds",
+              "minimum": {
+                "equalities": 1
+              },
+              "unchecked_contain": [
+                "owners/generic-unapplied/API.swift:2 (unapplied generic alias: bound application context)"
+              ]
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "owners/generic-unapplied/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "owners/generic-unapplied/Kit.swift"
+            ]
+          },
+          {
+            "name": "API",
+            "files": [
+              "owners/generic-unapplied/API.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "owner-generic-applied",
+      "pass": "where",
+      "files": [
+        "owners/generic-applied/World.swift",
+        "owners/generic-applied/Kit.swift",
+        "owners/generic-applied/API.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/generic-applied/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "owners/generic-applied/API.swift",
+              "sha256": "a6e1a0b590dbe13d8f0941af9693d4b1be865bd5f514164a6760aad7bcbe0de7"
+            },
+            {
+              "path": "owners/generic-applied/Kit.swift",
+              "sha256": "0dcd723bca6e813c865f36895d97d7daa5f2526233783263dcf5d57c0db4b617"
+            },
+            {
+              "path": "owners/generic-applied/World.swift",
+              "sha256": "5c44de58becb037ebbb29ac258f491536631a3657f5659f82b01ff304ab6232c"
+            },
+            {
+              "path": "owners/generic-applied/context.json",
+              "sha256": "070eb431dd312b16e05aa620db8f97accade9d2b128f66ddc320e82abbbb22ba"
+            }
+          ],
+          "results": {
+            "owners/generic-applied/World.swift": {
+              "source": "owners/generic-applied/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "cannot read conditional declaration 'Wrap'"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "owners/generic-applied/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "owners/generic-applied/Kit.swift"
+            ]
+          },
+          {
+            "name": "API",
+            "files": [
+              "owners/generic-applied/API.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "owner-generic-wrong",
+      "pass": "where",
+      "files": [
+        "owners/generic-wrong/World.swift",
+        "owners/generic-wrong/Kit.swift",
+        "owners/generic-wrong/API.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/generic-wrong/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "owners/generic-wrong/API.swift",
+              "sha256": "a6e1a0b590dbe13d8f0941af9693d4b1be865bd5f514164a6760aad7bcbe0de7"
+            },
+            {
+              "path": "owners/generic-wrong/Kit.swift",
+              "sha256": "0dcd723bca6e813c865f36895d97d7daa5f2526233783263dcf5d57c0db4b617"
+            },
+            {
+              "path": "owners/generic-wrong/World.swift",
+              "sha256": "43efdd9c7078e5b201f303a2a18ade6139e8cb3ec4c8b3ca9d6eb179bf01cfc8"
+            },
+            {
+              "path": "owners/generic-wrong/context.json",
+              "sha256": "c7c3cb07236b417707279e78ad073c7e9c158bcacb598b5cabcf9784e92d5c52"
+            }
+          ],
+          "results": {
+            "owners/generic-wrong/World.swift": {
+              "source": "owners/generic-wrong/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "cannot read conditional declaration 'Wrap'"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 1,
+        "diagnostic": "addressed",
+        "files": [
+          "owners/generic-wrong/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "owners/generic-wrong/Kit.swift"
+            ]
+          },
+          {
+            "name": "API",
+            "files": [
+              "owners/generic-wrong/API.swift"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "fragment-qualified-axis",
+      "pass": "where",
+      "files": [
+        "fragment/qualified-axis/World.swift"
+      ],
+      "args": [
+        "--context",
+        "fragment/qualified-axis/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "outcome": "holds",
+          "inputs": [
+            {
+              "path": "fragment/qualified-axis/World.swift",
+              "sha256": "654439d4bb90c5a8c2bab1ae19791e617511468252d372c3df769bb144b553d0"
+            },
+            {
+              "path": "fragment/qualified-axis/context.json",
+              "sha256": "30471a180ac42828afd733b13f3b7d6277729c79671c05c365714a482bf04e38"
+            }
+          ],
+          "results": {
+            "fragment/qualified-axis/World.swift": {
+              "source": "fragment/qualified-axis/World.swift",
+              "outcome": "holds",
+              "minimum": {
+                "equalities": 1
+              }
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "fragment/qualified-axis/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "fragment-qualified-axis-false",
+      "pass": "where",
+      "files": [
+        "fragment/qualified-axis-false/World.swift"
+      ],
+      "args": [
+        "--context",
+        "fragment/qualified-axis-false/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "response": {
+          "question": "where",
+          "outcome": "not-established",
+          "inputs": [
+            {
+              "path": "fragment/qualified-axis-false/World.swift",
+              "sha256": "f84dd3f85ae456743d8dc0e0b5312ae536f02a85073d75b1f8c76e83e827a604"
+            },
+            {
+              "path": "fragment/qualified-axis-false/context.json",
+              "sha256": "6a126fa98cceaa2db0794e284e0f02284372df68185d5755b3b57c91d5fd5163"
+            }
+          ],
+          "results": {
+            "fragment/qualified-axis-false/World.swift": {
+              "source": "fragment/qualified-axis-false/World.swift",
+              "outcome": "not-established"
+            }
+          },
+          "diagnostics_contain": [
+            "requires the types"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 1,
+        "diagnostic": "addressed",
+        "files": [
+          "fragment/qualified-axis-false/World.swift"
+        ]
+      }
+    },
+    {
+      "id": "fragment-qualified-nested",
+      "pass": "where",
+      "files": [
+        "fragment/qualified-nested/World.swift"
+      ],
+      "args": [
+        "--context",
+        "fragment/qualified-nested/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "outcome": "holds",
+          "inputs": [
+            {
+              "path": "fragment/qualified-nested/World.swift",
+              "sha256": "647560d4eb503ba920ff337cae9cfeb9d14b97d80ea078e13293a3d84bf3283c"
+            },
+            {
+              "path": "fragment/qualified-nested/context.json",
+              "sha256": "e15576e39079a79c92e8c182c080046e14c1edfce1a893ccf83f023b9a2a4860"
+            }
+          ],
+          "results": {
+            "fragment/qualified-nested/World.swift": {
+              "source": "fragment/qualified-nested/World.swift",
+              "outcome": "holds",
+              "minimum": {
+                "equalities": 1
+              }
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "exit": 0,
+        "diagnostic": "none",
+        "files": [
+          "fragment/qualified-nested/World.swift"
+        ]
+      }
+    }
+  ],
+  "supersedes": {
+    "revision": "11f8fdb01c351f5983c59530218b6873195a6449",
+    "path": "Contracts/Court/context-names-v1/fragment.json",
+    "sha256": "f53b4d488bbdbcad35bcb863627c76aeb16301eb193a9d7c5853b10521130bbb"
+  }
+}

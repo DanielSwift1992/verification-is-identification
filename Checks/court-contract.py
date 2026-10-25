@@ -166,7 +166,14 @@ if __name__ == '__main__' and len(sys.argv) > 1 and sys.argv[1] == '--roster':
 # An immutable suite name binds the exact manifest bytes, including its case set.
 # New normative expectations require a new release and a deliberate registry entry.
 SUITE_HASHES = {
+    "vi.court.context-binding-replay/2": "4dcabb44bc13b5111625c549ffd8b260b0a6259a10641f451e877b0db720756d",
+    "vi.court.questions/0.4-resolution3": "4544c4183e0ce70094b3c5de3deb9951053c50b347519aaea7efe48739f72c81",
+    "vi.court.questions/0.5-resolution3": "d584957cba593fb813d92197fbc77ed9eee92a9788590c7b46990db420764e88",
+    "vi.court.context-owners/3": "6ef0c0b9cbbb199b1bcce1e3d2f6e81f89b2f5fdc6f0b337294c2bff786c9e22",
+    "vi.court.context-owner-members/2": "df45b6b08e08d21003b1a195ea711ffafb6b9939170697e225e9f8a27ded4960",
+    "vi.court.context-names/3": "576e004f53b94d5a69f1dcead7a5a5f7634b829c18740a2322563bfc00a8dce2",
     "vi.court.context-owner-views/2": "1c6c0485f43269a98ca0a6009ba04a8b0d206a239d7affe56ea9605939ac92ed",
+    "vi.court.context-resolution/3": "fb9b66517c481617f992870e877d7f4892a02498ec7998996595cd663e51855a",
     "vi.court.context-extension-owners/1": "c36394bfea20c0e1dfd1cbc3d8757d905bf3f041e9131980e0fb0d015530d82a",
     "vi.court.context-names/2": "ec65323d307ec205e11443383fd72786e54d22d0b0ffbbe318541f82d8e7a10c",
     "vi.court.context-binding-replay/1": "570b4cd1ee89e2c5532442a3edeec1f49b2b0d6e989bde70c2cc98c1d1ce4e1c",

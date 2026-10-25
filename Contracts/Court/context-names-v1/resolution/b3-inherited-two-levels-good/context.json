@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "resolution/b3-inherited-two-levels-good/World.swift",
+      "source": "resolution/b3-inherited-two-levels-good/World.swift",
+      "sha256": "137d0ac9b87d923847b23503574f77ecb29ec78d18c51765a92ff3fb5ec9174d",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "resolution/b3-inherited-two-levels-good/World.swift:1/context/input",
+        "source": "resolution/b3-inherited-two-levels-good/World.swift:1/context/source",
+        "sha256": "resolution/b3-inherited-two-levels-good/World.swift:1/context/sha256",
+        "namespace": "resolution/b3-inherited-two-levels-good/World.swift:1/context/namespace",
+        "module": "resolution/b3-inherited-two-levels-good/World.swift:1/context/module",
+        "role": "resolution/b3-inherited-two-levels-good/World.swift:1/context/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

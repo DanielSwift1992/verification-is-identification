@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "resolution/a8-inherited-bad/World.swift",
+      "source": "resolution/a8-inherited-bad/World.swift",
+      "sha256": "5a094a98748ee08ea0940e37050ed6e8b7c156fbe548b8d83c448653e9a81a27",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "resolution/a8-inherited-bad/World.swift:1/context/input",
+        "source": "resolution/a8-inherited-bad/World.swift:1/context/source",
+        "sha256": "resolution/a8-inherited-bad/World.swift:1/context/sha256",
+        "namespace": "resolution/a8-inherited-bad/World.swift:1/context/namespace",
+        "module": "resolution/a8-inherited-bad/World.swift:1/context/module",
+        "role": "resolution/a8-inherited-bad/World.swift:1/context/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

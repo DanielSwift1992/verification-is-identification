@@ -1,0 +1,2753 @@
+{
+  "schema": "vi.court.conformance/2",
+  "suite": "vi.court.questions/0.5-resolution3",
+  "reference_revision": "fcfb7d359dc66ea43dbf01a3a0e50d981adf428b",
+  "scope": "The declared questions under revision 3 certified resolution without shadowing; original input bytes are unchanged. Historical expectations remain in the superseded release.",
+  "versions": {
+    "context": "vi.court.context/2",
+    "intrinsic": "vi.court.intrinsic-swift/2",
+    "response": "vi.court.sources/1",
+    "normalization_canon": 4
+  },
+  "files": {
+    "fixtures/D-page.swift": {
+      "sha256": "69ad2eee806afec16c6a94de4cd974ebc326b4aa67dd5469f70eeca56a70a73a",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-page.swift"
+    },
+    "fixtures/D-empty.json": {
+      "sha256": "4d77bafd4fff12065907116e3ec984c122d01161c5db088b1c5965b2ac736ea9",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-empty.json"
+    },
+    "fixtures/D-page-holds.swift": {
+      "sha256": "25a724129f92553261eb6ad8cf16c2a01cb960c1a74b922757c74832b2d964a8",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-page-holds.swift"
+    },
+    "fixtures/D-holds.json": {
+      "sha256": "11d52a9e013a1e4303990c319662d9a9c75f9da05e4abd98efb4e379676c944a",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-holds.json"
+    },
+    "fixtures/D-page-false.swift": {
+      "sha256": "e9d27905759fbba9ec90d7705fa89bd8477c102800d5e6329409b682ff57aed9",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-page-false.swift"
+    },
+    "fixtures/D-false.json": {
+      "sha256": "a2dbc5eab9a7bc26821abb10f01dcd0f2a1951bee2fd8bfecc0a1da9201484cc",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-false.json"
+    },
+    "fixtures/D-local.swift": {
+      "sha256": "da549de0f716b1714e50e7363a6dabd78201e88cf64ea2014cb9a92844fae368",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-local.swift"
+    },
+    "fixtures/D-local.json": {
+      "sha256": "aafc4b8491cffce9c0eca99d5e98dea058bfe12a98b575bb8101a5ba40d5c7d8",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-local.json"
+    },
+    "fixtures/D-hash.json": {
+      "sha256": "149a0b41bca9272261ca9c56052f30eeda46af6c645e6e90ebc0c8986b0876b5",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-hash.json"
+    },
+    "fixtures/D-bom.swift": {
+      "sha256": "4fe73c8e9211876803870f2fddc8167b84b95bdc3dec23967f1546ce0ec4e1d8",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-bom.swift"
+    },
+    "fixtures/D-bom.json": {
+      "sha256": "b523c7993a93d73e6f40df1ab90e5812e511571aa584b552de3e450fcc43b65a",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-bom.json"
+    },
+    "fixtures/D-bom-stripped-hash.json": {
+      "sha256": "9533718a0fb18ba45ff4252396c0440890cbc9fd8afc84fe85187ecb3cd95300",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-bom-stripped-hash.json"
+    },
+    "fixtures/M-law.swift": {
+      "sha256": "f187639d1869e17f49ae8aec5a57ef5c8325b435f2ed634f31a5fa2d043a7365",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/M-law.swift"
+    },
+    "fixtures/M-use.swift": {
+      "sha256": "40de66cba11cdd1adbf19b0cc4d04a03eddadd249f569bd658bfc6c9d216a257",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/M-use.swift"
+    },
+    "fixtures/M-false.swift": {
+      "sha256": "0b0f9ecb1fb637bc71f2130d2c650a5134efbebb7e1d25535f829b0680411635",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/M-false.swift"
+    },
+    "fixtures/M-two-own.json": {
+      "sha256": "777b874956aebbfdaf9b8f8d5042f9eeec69879dd1f22a8b0a2b68db3bcf20ea",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/M-two-own.json"
+    },
+    "fixtures/M-two-own-false.json": {
+      "sha256": "8f624613dc9d90b3ac35c94b9add091d7888d13e97e7a9636f9528dfdbf80207",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/M-two-own-false.json"
+    },
+    "fixtures/M-reordered.json": {
+      "sha256": "a10c43e20c6686e5d67cc74a046fe26708d496fbd4794840e6aa7e4bc3539f9f",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/M-reordered.json"
+    },
+    "fixtures/M-no-own.json": {
+      "sha256": "0d37ceeb77ecb2a6ab0f8aee64f4c65e08856402da9f3ae901845d558d9c0d7b",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/M-no-own.json"
+    },
+    "fixtures/M-own-role-address.json": {
+      "sha256": "03f7ace1f6a317e58a5065dd792cbfa43638dc93e1c20316fa18b2909ba51aa5",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/M-own-role-address.json"
+    },
+    "fixtures/M-lost-input.json": {
+      "sha256": "6bd36dc96c4cf982777c29fd4f4a163fd2ea93591accdf53c8b07db2e36a4321",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/M-lost-input.json"
+    },
+    "fixtures/I-shapes.swift": {
+      "sha256": "f911ca00afde71e310fa05d67540ea38fd269ccc8a8618dd69c2d6a02bd0808f",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/I-shapes.swift"
+    },
+    "fixtures/I-world.swift": {
+      "sha256": "f8ee5b1920e9a5a4a0e389310c70f0fa3dd4f3bef329faa1505d48e04c368fe9",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/I-world.swift"
+    },
+    "fixtures/I-module-namespace.json": {
+      "sha256": "8f0a3ee766bb6b14c5f7821b1df69093c7ff535da93c1c721876a0ab2df28b15",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/I-module-namespace.json"
+    },
+    "fixtures/I-missing-module.json": {
+      "sha256": "df93121cbc4d1e7e3f376ef3a4d7e14b2a4f92c763057086546866aebb86ee14",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/I-missing-module.json"
+    },
+    "fixtures/I-module-address.json": {
+      "sha256": "65f1ab714699e517383de0be0317e8b49a39152d663c691a40f967396c05f920",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/I-module-address.json"
+    },
+    "fixtures/I-missing-import.json": {
+      "sha256": "3fe6d812c9521e6f98ab054b2204a28f1545d8dd9dfe1c8525e9dde879dbac87",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/I-missing-import.json"
+    },
+    "fixtures/I-fake-swift-module.json": {
+      "sha256": "29e9e945720bcd14dcf4f94585091c835875a9fd768fa4cf45eeadc895f72616",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/I-fake-swift-module.json"
+    },
+    "fixtures/S-string.swift": {
+      "sha256": "3146e1a5dfd56d2c77c5111522619ea89ff5dad025e088d3e409a6f5196aacd8",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/S-string.swift"
+    },
+    "fixtures/S-string.json": {
+      "sha256": "4fb1c5d3f959d7f23f192803d76b481ae042bfca3aea2ffd9b5f2f3b3a037437",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/S-string.json"
+    },
+    "fixtures/S-never.swift": {
+      "sha256": "29eff0afd4e6cb1ae599394f5d3d1dff9cda9142e1db002386e1d09b7cc5d0da",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/S-never.swift"
+    },
+    "fixtures/S-never.json": {
+      "sha256": "01d416b0f959c93c28d56a504ac738927b8b8b8a9eccfed737a9b273ecf7b77c",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/S-never.json"
+    },
+    "fixtures/S-int.swift": {
+      "sha256": "c64d64b189a125a1bce7adc420bf7a971f05e617e762dbe6e8aa3333cf85fdf3",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/S-int.swift"
+    },
+    "fixtures/S-int.json": {
+      "sha256": "e50832fb48e6e8857a06f6951cb3abd767869dca5c240dbec5fc9b55e4a9a5e6",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/S-int.json"
+    },
+    "fixtures/S-shadow.swift": {
+      "sha256": "a0d78e94a74c6ba552875de54427f6b07f23a6e79a26f254f8dc890519a7f7e6",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/S-shadow.swift"
+    },
+    "fixtures/S-shadow.json": {
+      "sha256": "15ef187f97dcf1ee05a8e6cac7a3735c531214c178dc6a100b6f7893a36e2924",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/S-shadow.json"
+    },
+    "fixtures/S-open-exports.json": {
+      "sha256": "e109367c736104603900d57eed741310c084632da33c33793f1996b73d872d6c",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/S-open-exports.json"
+    },
+    "fixtures/G-bound.swift": {
+      "sha256": "f86ca2fc18cca7c2679153460f532e3b64933c7de3bb0364e69932af1e091f5a",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-bound.swift"
+    },
+    "fixtures/G-bound.json": {
+      "sha256": "cea2333c7759fc40414ea0cb584a9409a9a2740394b9b19057728eaac2370dfa",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-bound.json"
+    },
+    "fixtures/G-bound-false.swift": {
+      "sha256": "64f9838f1ab5c716ba083a1c759da70255b28cfe7f3e51e6481b3675b5954c32",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-bound-false.swift"
+    },
+    "fixtures/G-bound-false.json": {
+      "sha256": "8ef6f24faca19f17aae50dff43365a58c680a20aee2eea9989496caa426be5bb",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-bound-false.json"
+    },
+    "fixtures/G-bound-open.swift": {
+      "sha256": "3f546f4ae0c16b461e1a878c03136580dec21ad60443f1be3d0975d819efc727",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-bound-open.swift"
+    },
+    "fixtures/G-bound-open.json": {
+      "sha256": "281f252a7ceb69f2d7aa2cfdcd631034a7292d4d2d961ac68ace2a4e45fb0ca5",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-bound-open.json"
+    },
+    "fixtures/G-bound-rigid.swift": {
+      "sha256": "7b8091f49ee643bd0ce0f78881ca7e339466e7477804d5fe89e2d714a13f89eb",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-bound-rigid.swift"
+    },
+    "fixtures/G-bound-rigid.json": {
+      "sha256": "172a1a1b4f2ae7a00f2ff5106a5cf7e7e09be9004e5a1f9e47c90cba30270a87",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-bound-rigid.json"
+    },
+    "fixtures/G-where.swift": {
+      "sha256": "5f7ba171a25d28066629b147d12da5f183066a37897e9db8e63c612d054fa935",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-where.swift"
+    },
+    "fixtures/G-where.json": {
+      "sha256": "79e5e3a1128ad8dcca7734ad91806316c4c6337a08d5653ea47eac808ae039db",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-where.json"
+    },
+    "fixtures/G-where-false.swift": {
+      "sha256": "3363180fa101e5b600718962f8b0e4c41ae897c179962d4ca292e53e750bbaef",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-where-false.swift"
+    },
+    "fixtures/G-where-false.json": {
+      "sha256": "1c896009e7cfb70b53339f56e87faa23ec1cfc7d7c3227bfcfed1caa6c8abdf2",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-where-false.json"
+    },
+    "fixtures/G-cycle.swift": {
+      "sha256": "9a3eb1f92205de939740734be13c10effb325c1071e58c7c7cc81b51423637e5",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-cycle.swift"
+    },
+    "fixtures/G-cycle.json": {
+      "sha256": "91f0f321db6198cff22854fcc4fcee34fd2aa31173c679c4cc82ac2ba5c39d15",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-cycle.json"
+    },
+    "fixtures/G-missing.swift": {
+      "sha256": "26bc69ab1c87b1a10b572d81d782406244103cb264fc95cb9d3666df99f436a1",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-missing.swift"
+    },
+    "fixtures/G-missing.json": {
+      "sha256": "016860efc213c20394432efdd0e312d3597cd99d527405f698886610ccff1069",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-missing.json"
+    },
+    "fixtures/B3-large.swift": {
+      "sha256": "5880b48a324ecc60780b4bcde17834c75f56308960f75d7ce975bd6fc8c2c1b3",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/B3-large.swift"
+    },
+    "fixtures/B3-large.json": {
+      "sha256": "0cc6baaec87f96fcb09e846a3e32db72f87677d4fc4467dbe230b32df8d99499",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/B3-large.json"
+    },
+    "fixtures/B3-large-false.swift": {
+      "sha256": "a49195778516c234710f464d3f8141a5e1103995db220a31a62fb8c105aeafa3",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/B3-large-false.swift"
+    },
+    "fixtures/B3-large-false.json": {
+      "sha256": "05d301f322b0dc79e77a80eb889748eb3383cb9aa0a2ff0a007427c7fb91293e",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/B3-large-false.json"
+    },
+    "fixtures/B3-same-count.swift": {
+      "sha256": "35e06bda9e80148104f1051cb0a130ae874f2531c7790be1933455e85183d6dc",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/B3-same-count.swift"
+    },
+    "fixtures/B3-same-count.json": {
+      "sha256": "110d49f69f5c9909eb8730854906476d79f11d99d258730f2b1cf55671618ee1",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/B3-same-count.json"
+    },
+    "fixtures/B3-missing.swift": {
+      "sha256": "cc6fd8bb4145b2981f33b7524fd24ec2b20145c2d29d634d06edd24446e17b3f",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/B3-missing.swift"
+    },
+    "fixtures/B3-missing.json": {
+      "sha256": "f94864ff7463fc988929933104e3b5ae9b59bc31a78584ce8ecdf2a7ff86a965",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/B3-missing.json"
+    },
+    "fixtures/B3-cycle.swift": {
+      "sha256": "782dcb74437e0f4063c3cf062d0ef2bec978e1ca10753915dcd217cef675426a",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/B3-cycle.swift"
+    },
+    "fixtures/B3-cycle.json": {
+      "sha256": "abf9e1ca87aba7f7a5e020df657a8439765155d33c0f6a4d6f2dc525fc2bc4a4",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/B3-cycle.json"
+    },
+    "fixtures/B3-growing.swift": {
+      "sha256": "934cfb9cc4ffbedb8511cc25c987751435f0ddff97457950c4fb2c0b18994d10",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/B3-growing.swift"
+    },
+    "fixtures/B3-growing.json": {
+      "sha256": "29a7cc206657cf1068581f5b317c3b2dbc76f8b34ff074070536ba7494b4c519",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/B3-growing.json"
+    },
+    "fixtures/Primitive.swift": {
+      "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/Primitive.swift"
+    },
+    "fixtures/C-nested.swift": {
+      "sha256": "143aa6aa32b04942c185e289ad3fd6111c3d286095feaf80937853391401ff63",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/C-nested.swift"
+    },
+    "fixtures/C-nested.json": {
+      "sha256": "0b25de298f45da0b33135ecd0332c0e9989e17a361ff7d091004905c4e359616",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/C-nested.json"
+    },
+    "fixtures/C-false.swift": {
+      "sha256": "e5dbe74022d6835629833b1c0c78abb90a8d4b3c60dc957740225a5135397ea6",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/C-false.swift"
+    },
+    "fixtures/C-false.json": {
+      "sha256": "bda92379d462cb28f3cdfa89ef4b9584875cb660c700637554a9287135e48a5b",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/C-false.json"
+    },
+    "fixtures/C-qualified.swift": {
+      "sha256": "0ae24a90446caf2f85a90acc82278d647922949f5f00cab6af4d17edcb83bc38",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/C-qualified.swift"
+    },
+    "fixtures/C-qualified.json": {
+      "sha256": "8d70c4f8f19af00e2198ff21ac27e92a83599e365f06f545dc5f9a58ec0c33fb",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/C-qualified.json"
+    },
+    "fixtures/C-no-flatten.swift": {
+      "sha256": "7d316ae7f7d09e6aae5d1a9415b35d34af37b099b08ca4de2c426564ae94e9d0",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/C-no-flatten.swift"
+    },
+    "fixtures/C-no-flatten.json": {
+      "sha256": "a80a6d201c02f0c6f265dd359b36aa67a8320478d855f2063b5d4579f326d358",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/C-no-flatten.json"
+    },
+    "fixtures/Primitive-changed.swift": {
+      "sha256": "d0e73c581f39be797f75ed19932f184b1129865974c8566351867519d6a2422a",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/Primitive-changed.swift"
+    },
+    "fixtures/C-rule-false.json": {
+      "sha256": "1455d1d7de521443d6cd28c34fcbb55b987a2ba04c701e14a419364c6bbd8b6a",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/C-rule-false.json"
+    },
+    "fixtures/C-document.swift": {
+      "sha256": "46edb793f8ded4ab7bdb7e3b6927fcac9cd9b8693fe0eda6332f245224366017",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/C-document.swift"
+    },
+    "fixtures/C-document.json": {
+      "sha256": "6f8ee37a3e30ae879983b094963c173e8cad92b2a8d8e8ee4aa16875123d8dd3",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/C-document.json"
+    },
+    "fixtures/C-context-hash.json": {
+      "sha256": "ffc4370543b93f0e72c30660b21a20e28d2d9f3c570ae6431ea9c12c5aef4658",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/C-context-hash.json"
+    },
+    "fixtures/G-argument-use.swift": {
+      "sha256": "03b5d7dba7ae8f13adf1f66947fe9ad12f7252cd2fb8a174bfa7ffe872ff0be8",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-argument-use.swift"
+    },
+    "fixtures/G-argument-ground.swift": {
+      "sha256": "f5c03e5eac8fb3cff186a1e0dd34c32cb2ffb4a12034e5b9528029e63929131a",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-argument-ground.swift"
+    },
+    "fixtures/G-argument-ground.json": {
+      "sha256": "9438e67fbd443d69a956c803e143431512ec9dccf91668297b4815ea93a10980",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-argument-ground.json"
+    },
+    "fixtures/G-argument-cycle.swift": {
+      "sha256": "f43d9ce68870f5b91237ca10c0c5652d3a14a588319b20e8a20e5a084a25730a",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-argument-cycle.swift"
+    },
+    "fixtures/G-argument-cycle.json": {
+      "sha256": "e47ce05fa8143f406b2031730635680ac0c490cef2eef7d35b7c9779cdbdb1e6",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-argument-cycle.json"
+    },
+    "fixtures/G-argument-growing.swift": {
+      "sha256": "5d4c737f18d918a0f33ae1d7a0248656b4bdfbef56d8306ceda39fdca657aed4",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-argument-growing.swift"
+    },
+    "fixtures/G-argument-growing.json": {
+      "sha256": "e2214ff2f3a32254f2c29450923991b0d4009d30b9071b62c6116b49b38664ca",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-argument-growing.json"
+    },
+    "fixtures/G-argument-projection.swift": {
+      "sha256": "8d7dc57fbee10b1aefc4cbeebcadd7616f7fdfc01b35cc2141212d7ff34a9670",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-argument-projection.swift"
+    },
+    "fixtures/G-argument-projection.json": {
+      "sha256": "7a68719ed568d42e8c8cc165ed3b3c3f4fed4508326b153a801849ac92f05e75",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/G-argument-projection.json"
+    },
+    "fixtures/D-conditional-own.swift": {
+      "sha256": "22216b218a02719fdbfbe823ad2a919c0e1319c436b959395ee8ab8c722e91c3",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-conditional-own.swift"
+    },
+    "fixtures/D-conditional-own.json": {
+      "sha256": "bf4ae1cbbe9d58e2c81b80622515af1a56655c648e863fdb334fd672703677ef",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-conditional-own.json"
+    },
+    "fixtures/D-conditional-only.swift": {
+      "sha256": "73168bb42d39e2b5d79c05c7a8c36f42c70a97a36260551dffa59b31bd9a8d67",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-conditional-only.swift"
+    },
+    "fixtures/D-conditional-only.json": {
+      "sha256": "494efb79fc7f9323fc5f1590f44166808037745d7e9da6d25e059e0432341ac1",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-conditional-only.json"
+    },
+    "fixtures/D-conditional-borrowed.swift": {
+      "sha256": "d7889bad484f28dc7301f690024d09104e4d5af822c0010c2c3f9a627f3d343c",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-conditional-borrowed.swift"
+    },
+    "fixtures/D-conditional-borrowed.json": {
+      "sha256": "f77c5c81b39f7518278f16db3c0bbd4218a69044d4bba05cacbb9d2df6a0c5cb",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-conditional-borrowed.json"
+    },
+    "fixtures/D-conditional-branch.swift": {
+      "sha256": "c5ea2c1ace92820bb7314da0bc29b643722db11612f8adec9def53d70140631b",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-conditional-branch.swift"
+    },
+    "fixtures/D-conditional-branch.json": {
+      "sha256": "519b6397a603030b9ffde11c1def5659b81eefe37339827f8da5025d4f886a64",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/D-conditional-branch.json"
+    },
+    "fixtures/C-borrowed-holds.json": {
+      "sha256": "092909aca89eeaf9eb34382f29934e0cb0219546a45bc6197452fc7193ab1499",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/C-borrowed-holds.json"
+    },
+    "fixtures/C-borrowed-false.json": {
+      "sha256": "3b3a880820e48a593b4a9efd89932cab1cc8c12a84c844bfa0425b7db1d7fdf9",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/C-borrowed-false.json"
+    },
+    "fixtures/C-empty-own.swift": {
+      "sha256": "f59fdda51146960630a62da231c882095a70f066b15b003d4152a5cf6f9f189e",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/C-empty-own.swift"
+    },
+    "fixtures/C-borrowed-counterexample.json": {
+      "sha256": "d097dcf474fe8b8edb85868728885cd47138d4eb14597e0f8a7924b742c1d9ac",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/v0.5/contract.json#files/fixtures/C-borrowed-counterexample.json"
+    }
+  },
+  "missing_files": [],
+  "cases": [
+    {
+      "id": "D-empty",
+      "files": [
+        "fixtures/D-page.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/D-empty.json",
+        "--report",
+        "--document",
+        "fixtures/D-page.swift"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "empty",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/D-empty.json",
+              "sha256": "4d77bafd4fff12065907116e3ec984c122d01161c5db088b1c5965b2ac736ea9"
+            },
+            {
+              "path": "fixtures/D-page.swift",
+              "sha256": "69ad2eee806afec16c6a94de4cd974ebc326b4aa67dd5469f70eeca56a70a73a"
+            }
+          ],
+          "outcome": "empty",
+          "results": {
+            "fixtures/D-page.swift": {
+              "outcome": "empty",
+              "source": "fixtures/D-page.swift",
+              "unchecked_contain": [
+                "fixtures/D-page.swift:7"
+              ]
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "D-holds",
+      "files": [
+        "fixtures/D-page-holds.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/D-holds.json",
+        "--report",
+        "--document",
+        "fixtures/D-page-holds.swift"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/D-holds.json",
+              "sha256": "11d52a9e013a1e4303990c319662d9a9c75f9da05e4abd98efb4e379676c944a"
+            },
+            {
+              "path": "fixtures/D-page-holds.swift",
+              "sha256": "25a724129f92553261eb6ad8cf16c2a01cb960c1a74b922757c74832b2d964a8"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/D-page-holds.swift": {
+              "outcome": "holds",
+              "source": "fixtures/D-page-holds.swift",
+              "minimum": {
+                "equalities": 1
+              }
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "D-false",
+      "files": [
+        "fixtures/D-page-false.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/D-false.json",
+        "--report",
+        "--document",
+        "fixtures/D-page-false.swift"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/D-false.json",
+              "sha256": "a2dbc5eab9a7bc26821abb10f01dcd0f2a1951bee2fd8bfecc0a1da9201484cc"
+            },
+            {
+              "path": "fixtures/D-page-false.swift",
+              "sha256": "e9d27905759fbba9ec90d7705fa89bd8477c102800d5e6329409b682ff57aed9"
+            }
+          ],
+          "outcome": "not-established",
+          "results": {
+            "fixtures/D-page-false.swift": {
+              "outcome": "not-established",
+              "source": "fixtures/D-page-false.swift"
+            }
+          },
+          "diagnostics_contain": [
+            "Use: Same"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "D-local",
+      "files": [
+        "fixtures/D-local.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/D-local.json",
+        "--report",
+        "--document",
+        "fixtures/D-local.swift"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/D-local.json",
+              "sha256": "aafc4b8491cffce9c0eca99d5e98dea058bfe12a98b575bb8101a5ba40d5c7d8"
+            },
+            {
+              "path": "fixtures/D-local.swift",
+              "sha256": "da549de0f716b1714e50e7363a6dabd78201e88cf64ea2014cb9a92844fae368"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {
+            "fixtures/D-local.swift": {
+              "outcome": "unsupported",
+              "source": "fixtures/D-local.swift"
+            }
+          },
+          "diagnostics_contain": [
+            "local"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "D-hash",
+      "files": [
+        "fixtures/D-page-holds.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/D-hash.json",
+        "--report",
+        "--document",
+        "fixtures/D-page-holds.swift"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/D-hash.json",
+              "sha256": "149a0b41bca9272261ca9c56052f30eeda46af6c645e6e90ebc0c8986b0876b5"
+            },
+            {
+              "path": "fixtures/D-page-holds.swift",
+              "sha256": "25a724129f92553261eb6ad8cf16c2a01cb960c1a74b922757c74832b2d964a8"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {},
+          "diagnostics_contain": [
+            "SHA-256"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "D-bom",
+      "files": [
+        "fixtures/D-bom.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/D-bom.json",
+        "--report",
+        "--document",
+        "fixtures/D-bom.swift"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/D-bom.json",
+              "sha256": "b523c7993a93d73e6f40df1ab90e5812e511571aa584b552de3e450fcc43b65a"
+            },
+            {
+              "path": "fixtures/D-bom.swift",
+              "sha256": "4fe73c8e9211876803870f2fddc8167b84b95bdc3dec23967f1546ce0ec4e1d8"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/D-bom.swift": {
+              "outcome": "holds",
+              "source": "fixtures/D-bom.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "D-bom-stripped-hash",
+      "files": [
+        "fixtures/D-bom.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/D-bom-stripped-hash.json",
+        "--report",
+        "--document",
+        "fixtures/D-bom.swift"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/D-bom-stripped-hash.json",
+              "sha256": "9533718a0fb18ba45ff4252396c0440890cbc9fd8afc84fe85187ecb3cd95300"
+            },
+            {
+              "path": "fixtures/D-bom.swift",
+              "sha256": "4fe73c8e9211876803870f2fddc8167b84b95bdc3dec23967f1546ce0ec4e1d8"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {},
+          "diagnostics_contain": [
+            "SHA-256"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "M-two-own",
+      "files": [
+        "fixtures/M-law.swift",
+        "fixtures/M-use.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/M-two-own.json",
+        "--report",
+        "--document",
+        "fixtures/M-law.swift",
+        "--document",
+        "fixtures/M-use.swift"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/M-law.swift",
+              "sha256": "f187639d1869e17f49ae8aec5a57ef5c8325b435f2ed634f31a5fa2d043a7365"
+            },
+            {
+              "path": "fixtures/M-two-own.json",
+              "sha256": "777b874956aebbfdaf9b8f8d5042f9eeec69879dd1f22a8b0a2b68db3bcf20ea"
+            },
+            {
+              "path": "fixtures/M-use.swift",
+              "sha256": "40de66cba11cdd1adbf19b0cc4d04a03eddadd249f569bd658bfc6c9d216a257"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/M-law.swift": {
+              "outcome": "empty",
+              "source": "fixtures/M-law.swift"
+            },
+            "fixtures/M-use.swift": {
+              "outcome": "holds",
+              "source": "fixtures/M-use.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "M-two-own-false",
+      "files": [
+        "fixtures/M-law.swift",
+        "fixtures/M-false.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/M-two-own-false.json",
+        "--report",
+        "--document",
+        "fixtures/M-law.swift",
+        "--document",
+        "fixtures/M-false.swift"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/M-false.swift",
+              "sha256": "0b0f9ecb1fb637bc71f2130d2c650a5134efbebb7e1d25535f829b0680411635"
+            },
+            {
+              "path": "fixtures/M-law.swift",
+              "sha256": "f187639d1869e17f49ae8aec5a57ef5c8325b435f2ed634f31a5fa2d043a7365"
+            },
+            {
+              "path": "fixtures/M-two-own-false.json",
+              "sha256": "8f624613dc9d90b3ac35c94b9add091d7888d13e97e7a9636f9528dfdbf80207"
+            }
+          ],
+          "outcome": "not-established",
+          "results": {
+            "fixtures/M-law.swift": {
+              "outcome": "empty",
+              "source": "fixtures/M-law.swift"
+            },
+            "fixtures/M-false.swift": {
+              "outcome": "not-established",
+              "source": "fixtures/M-false.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "M-reordered",
+      "files": [
+        "fixtures/M-use.swift",
+        "fixtures/M-law.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/M-reordered.json",
+        "--report",
+        "--document",
+        "fixtures/M-law.swift",
+        "--document",
+        "fixtures/M-use.swift"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/M-law.swift",
+              "sha256": "f187639d1869e17f49ae8aec5a57ef5c8325b435f2ed634f31a5fa2d043a7365"
+            },
+            {
+              "path": "fixtures/M-reordered.json",
+              "sha256": "a10c43e20c6686e5d67cc74a046fe26708d496fbd4794840e6aa7e4bc3539f9f"
+            },
+            {
+              "path": "fixtures/M-use.swift",
+              "sha256": "40de66cba11cdd1adbf19b0cc4d04a03eddadd249f569bd658bfc6c9d216a257"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/M-use.swift": {
+              "outcome": "holds",
+              "source": "fixtures/M-use.swift"
+            },
+            "fixtures/M-law.swift": {
+              "outcome": "empty",
+              "source": "fixtures/M-law.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "M-no-own",
+      "files": [
+        "fixtures/M-law.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/M-no-own.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/M-law.swift",
+              "sha256": "f187639d1869e17f49ae8aec5a57ef5c8325b435f2ed634f31a5fa2d043a7365"
+            },
+            {
+              "path": "fixtures/M-no-own.json",
+              "sha256": "0d37ceeb77ecb2a6ab0f8aee64f4c65e08856402da9f3ae901845d558d9c0d7b"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {},
+          "diagnostics_contain": [
+            "own"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "M-own-role-address",
+      "files": [
+        "fixtures/M-law.swift",
+        "fixtures/M-use.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/M-own-role-address.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/M-law.swift",
+              "sha256": "f187639d1869e17f49ae8aec5a57ef5c8325b435f2ed634f31a5fa2d043a7365"
+            },
+            {
+              "path": "fixtures/M-own-role-address.json",
+              "sha256": "03f7ace1f6a317e58a5065dd792cbfa43638dc93e1c20316fa18b2909ba51aa5"
+            },
+            {
+              "path": "fixtures/M-use.swift",
+              "sha256": "40de66cba11cdd1adbf19b0cc4d04a03eddadd249f569bd658bfc6c9d216a257"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {},
+          "diagnostics_contain": [
+            "source fields"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "M-lost-input",
+      "files": [
+        "fixtures/M-law.swift",
+        "fixtures/M-use.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/M-lost-input.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/M-law.swift",
+              "sha256": "f187639d1869e17f49ae8aec5a57ef5c8325b435f2ed634f31a5fa2d043a7365"
+            },
+            {
+              "path": "fixtures/M-lost-input.json",
+              "sha256": "6bd36dc96c4cf982777c29fd4f4a163fd2ea93591accdf53c8b07db2e36a4321"
+            },
+            {
+              "path": "fixtures/M-use.swift",
+              "sha256": "40de66cba11cdd1adbf19b0cc4d04a03eddadd249f569bd658bfc6c9d216a257"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {},
+          "diagnostics_contain": [
+            "not declared"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "I-module-namespace",
+      "files": [
+        "fixtures/I-world.swift",
+        "fixtures/I-shapes.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/I-module-namespace.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/I-module-namespace.json",
+              "sha256": "8f0a3ee766bb6b14c5f7821b1df69093c7ff535da93c1c721876a0ab2df28b15"
+            },
+            {
+              "path": "fixtures/I-shapes.swift",
+              "sha256": "f911ca00afde71e310fa05d67540ea38fd269ccc8a8618dd69c2d6a02bd0808f"
+            },
+            {
+              "path": "fixtures/I-world.swift",
+              "sha256": "f8ee5b1920e9a5a4a0e389310c70f0fa3dd4f3bef329faa1505d48e04c368fe9"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/I-world.swift": {
+              "outcome": "holds",
+              "source": "fixtures/I-world.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "I-missing-module",
+      "files": [
+        "fixtures/I-world.swift",
+        "fixtures/I-shapes.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/I-missing-module.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/I-missing-module.json",
+              "sha256": "df93121cbc4d1e7e3f376ef3a4d7e14b2a4f92c763057086546866aebb86ee14"
+            },
+            {
+              "path": "fixtures/I-shapes.swift",
+              "sha256": "f911ca00afde71e310fa05d67540ea38fd269ccc8a8618dd69c2d6a02bd0808f"
+            },
+            {
+              "path": "fixtures/I-world.swift",
+              "sha256": "f8ee5b1920e9a5a4a0e389310c70f0fa3dd4f3bef329faa1505d48e04c368fe9"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {},
+          "diagnostics_contain": [
+            "HarborShapes"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "I-module-address",
+      "files": [
+        "fixtures/I-world.swift",
+        "fixtures/I-shapes.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/I-module-address.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/I-module-address.json",
+              "sha256": "65f1ab714699e517383de0be0317e8b49a39152d663c691a40f967396c05f920"
+            },
+            {
+              "path": "fixtures/I-shapes.swift",
+              "sha256": "f911ca00afde71e310fa05d67540ea38fd269ccc8a8618dd69c2d6a02bd0808f"
+            },
+            {
+              "path": "fixtures/I-world.swift",
+              "sha256": "f8ee5b1920e9a5a4a0e389310c70f0fa3dd4f3bef329faa1505d48e04c368fe9"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {},
+          "diagnostics_contain": [
+            "source fields"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "I-missing-import",
+      "files": [
+        "fixtures/I-world.swift",
+        "fixtures/I-shapes.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/I-missing-import.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/I-missing-import.json",
+              "sha256": "3fe6d812c9521e6f98ab054b2204a28f1545d8dd9dfe1c8525e9dde879dbac87"
+            },
+            {
+              "path": "fixtures/I-shapes.swift",
+              "sha256": "f911ca00afde71e310fa05d67540ea38fd269ccc8a8618dd69c2d6a02bd0808f"
+            },
+            {
+              "path": "fixtures/I-world.swift",
+              "sha256": "f8ee5b1920e9a5a4a0e389310c70f0fa3dd4f3bef329faa1505d48e04c368fe9"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {
+            "fixtures/I-world.swift": {
+              "outcome": "unsupported",
+              "source": "fixtures/I-world.swift"
+            }
+          },
+          "diagnostics_contain": [
+            "not declared"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "I-fake-swift-module",
+      "files": [
+        "fixtures/I-world.swift",
+        "fixtures/I-shapes.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/I-fake-swift-module.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/I-fake-swift-module.json",
+              "sha256": "29e9e945720bcd14dcf4f94585091c835875a9fd768fa4cf45eeadc895f72616"
+            },
+            {
+              "path": "fixtures/I-shapes.swift",
+              "sha256": "f911ca00afde71e310fa05d67540ea38fd269ccc8a8618dd69c2d6a02bd0808f"
+            },
+            {
+              "path": "fixtures/I-world.swift",
+              "sha256": "f8ee5b1920e9a5a4a0e389310c70f0fa3dd4f3bef329faa1505d48e04c368fe9"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {},
+          "diagnostics_contain": [
+            "Swift"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "S-string",
+      "files": [
+        "fixtures/S-string.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/S-string.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/S-string.json",
+              "sha256": "4fb1c5d3f959d7f23f192803d76b481ae042bfca3aea2ffd9b5f2f3b3a037437"
+            },
+            {
+              "path": "fixtures/S-string.swift",
+              "sha256": "3146e1a5dfd56d2c77c5111522619ea89ff5dad025e088d3e409a6f5196aacd8"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/S-string.swift": {
+              "outcome": "holds",
+              "source": "fixtures/S-string.swift",
+              "minimum": {
+                "memberships": 1
+              }
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "S-never",
+      "files": [
+        "fixtures/S-never.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/S-never.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/S-never.json",
+              "sha256": "01d416b0f959c93c28d56a504ac738927b8b8b8a9eccfed737a9b273ecf7b77c"
+            },
+            {
+              "path": "fixtures/S-never.swift",
+              "sha256": "29eff0afd4e6cb1ae599394f5d3d1dff9cda9142e1db002386e1d09b7cc5d0da"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/S-never.swift": {
+              "outcome": "holds",
+              "source": "fixtures/S-never.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "S-int",
+      "files": [
+        "fixtures/S-int.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/S-int.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/S-int.json",
+              "sha256": "e50832fb48e6e8857a06f6951cb3abd767869dca5c240dbec5fc9b55e4a9a5e6"
+            },
+            {
+              "path": "fixtures/S-int.swift",
+              "sha256": "c64d64b189a125a1bce7adc420bf7a971f05e617e762dbe6e8aa3333cf85fdf3"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {
+            "fixtures/S-int.swift": {
+              "outcome": "unsupported",
+              "source": "fixtures/S-int.swift"
+            }
+          },
+          "diagnostics_contain": [
+            "not exported"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "S-shadow",
+      "files": [
+        "fixtures/S-shadow.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/S-shadow.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/S-shadow.json",
+              "sha256": "15ef187f97dcf1ee05a8e6cac7a3735c531214c178dc6a100b6f7893a36e2924"
+            },
+            {
+              "path": "fixtures/S-shadow.swift",
+              "sha256": "a0d78e94a74c6ba552875de54427f6b07f23a6e79a26f254f8dc890519a7f7e6"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {
+            "fixtures/S-shadow.swift": {
+              "outcome": "unsupported",
+              "source": "fixtures/S-shadow.swift"
+            }
+          },
+          "diagnostics_contain": [
+            "conflicts"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "S-open-exports",
+      "files": [
+        "fixtures/S-string.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/S-open-exports.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/S-open-exports.json",
+              "sha256": "e109367c736104603900d57eed741310c084632da33c33793f1996b73d872d6c"
+            },
+            {
+              "path": "fixtures/S-string.swift",
+              "sha256": "3146e1a5dfd56d2c77c5111522619ea89ff5dad025e088d3e409a6f5196aacd8"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {},
+          "diagnostics_contain": [
+            "closed Swift/2"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "G-bound",
+      "files": [
+        "fixtures/G-bound.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-bound.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/G-bound.json",
+              "sha256": "cea2333c7759fc40414ea0cb584a9409a9a2740394b9b19057728eaac2370dfa"
+            },
+            {
+              "path": "fixtures/G-bound.swift",
+              "sha256": "f86ca2fc18cca7c2679153460f532e3b64933c7de3bb0364e69932af1e091f5a"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/G-bound.swift": {
+              "outcome": "holds",
+              "source": "fixtures/G-bound.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "G-bound-false",
+      "files": [
+        "fixtures/G-bound-false.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-bound-false.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "refused",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/G-bound-false.json",
+              "sha256": "8ef6f24faca19f17aae50dff43365a58c680a20aee2eea9989496caa426be5bb"
+            },
+            {
+              "path": "fixtures/G-bound-false.swift",
+              "sha256": "64f9838f1ab5c716ba083a1c759da70255b28cfe7f3e51e6481b3675b5954c32"
+            }
+          ],
+          "outcome": "refused",
+          "results": {
+            "fixtures/G-bound-false.swift": {
+              "outcome": "refused",
+              "source": "fixtures/G-bound-false.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "G-bound-open",
+      "files": [
+        "fixtures/G-bound-open.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-bound-open.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/G-bound-open.json",
+              "sha256": "281f252a7ceb69f2d7aa2cfdcd631034a7292d4d2d961ac68ace2a4e45fb0ca5"
+            },
+            {
+              "path": "fixtures/G-bound-open.swift",
+              "sha256": "3f546f4ae0c16b461e1a878c03136580dec21ad60443f1be3d0975d819efc727"
+            }
+          ],
+          "outcome": "not-established",
+          "results": {
+            "fixtures/G-bound-open.swift": {
+              "outcome": "not-established",
+              "source": "fixtures/G-bound-open.swift"
+            }
+          },
+          "diagnostics_contain": [
+            "Shape"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "G-bound-rigid",
+      "files": [
+        "fixtures/G-bound-rigid.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-bound-rigid.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/G-bound-rigid.json",
+              "sha256": "172a1a1b4f2ae7a00f2ff5106a5cf7e7e09be9004e5a1f9e47c90cba30270a87"
+            },
+            {
+              "path": "fixtures/G-bound-rigid.swift",
+              "sha256": "7b8091f49ee643bd0ce0f78881ca7e339466e7477804d5fe89e2d714a13f89eb"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/G-bound-rigid.swift": {
+              "outcome": "holds",
+              "source": "fixtures/G-bound-rigid.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "G-where",
+      "files": [
+        "fixtures/G-where.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-where.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/G-where.json",
+              "sha256": "79e5e3a1128ad8dcca7734ad91806316c4c6337a08d5653ea47eac808ae039db"
+            },
+            {
+              "path": "fixtures/G-where.swift",
+              "sha256": "5f7ba171a25d28066629b147d12da5f183066a37897e9db8e63c612d054fa935"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/G-where.swift": {
+              "outcome": "holds",
+              "source": "fixtures/G-where.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "G-where-false",
+      "files": [
+        "fixtures/G-where-false.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-where-false.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "refused",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/G-where-false.json",
+              "sha256": "1c896009e7cfb70b53339f56e87faa23ec1cfc7d7c3227bfcfed1caa6c8abdf2"
+            },
+            {
+              "path": "fixtures/G-where-false.swift",
+              "sha256": "3363180fa101e5b600718962f8b0e4c41ae897c179962d4ca292e53e750bbaef"
+            }
+          ],
+          "outcome": "refused",
+          "results": {
+            "fixtures/G-where-false.swift": {
+              "outcome": "refused",
+              "source": "fixtures/G-where-false.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "G-cycle",
+      "files": [
+        "fixtures/G-cycle.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-cycle.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/G-cycle.json",
+              "sha256": "91f0f321db6198cff22854fcc4fcee34fd2aa31173c679c4cc82ac2ba5c39d15"
+            },
+            {
+              "path": "fixtures/G-cycle.swift",
+              "sha256": "9a3eb1f92205de939740734be13c10effb325c1071e58c7c7cc81b51423637e5"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {
+            "fixtures/G-cycle.swift": {
+              "outcome": "unsupported",
+              "source": "fixtures/G-cycle.swift"
+            }
+          },
+          "diagnostics_contain": [
+            "ground"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "G-missing",
+      "files": [
+        "fixtures/G-missing.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-missing.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/G-missing.json",
+              "sha256": "016860efc213c20394432efdd0e312d3597cd99d527405f698886610ccff1069"
+            },
+            {
+              "path": "fixtures/G-missing.swift",
+              "sha256": "26bc69ab1c87b1a10b572d81d782406244103cb264fc95cb9d3666df99f436a1"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {
+            "fixtures/G-missing.swift": {
+              "outcome": "unsupported",
+              "source": "fixtures/G-missing.swift"
+            }
+          },
+          "diagnostics_contain": [
+            "Missing"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "B3-large",
+      "files": [
+        "fixtures/B3-large.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/B3-large.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/B3-large.json",
+              "sha256": "0cc6baaec87f96fcb09e846a3e32db72f87677d4fc4467dbe230b32df8d99499"
+            },
+            {
+              "path": "fixtures/B3-large.swift",
+              "sha256": "5880b48a324ecc60780b4bcde17834c75f56308960f75d7ce975bd6fc8c2c1b3"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/B3-large.swift": {
+              "outcome": "holds",
+              "source": "fixtures/B3-large.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "B3-large-false",
+      "files": [
+        "fixtures/B3-large-false.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/B3-large-false.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/B3-large-false.json",
+              "sha256": "05d301f322b0dc79e77a80eb889748eb3383cb9aa0a2ff0a007427c7fb91293e"
+            },
+            {
+              "path": "fixtures/B3-large-false.swift",
+              "sha256": "a49195778516c234710f464d3f8141a5e1103995db220a31a62fb8c105aeafa3"
+            }
+          ],
+          "outcome": "not-established",
+          "results": {
+            "fixtures/B3-large-false.swift": {
+              "outcome": "not-established",
+              "source": "fixtures/B3-large-false.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "B3-same-count",
+      "files": [
+        "fixtures/B3-same-count.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/B3-same-count.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/B3-same-count.json",
+              "sha256": "110d49f69f5c9909eb8730854906476d79f11d99d258730f2b1cf55671618ee1"
+            },
+            {
+              "path": "fixtures/B3-same-count.swift",
+              "sha256": "35e06bda9e80148104f1051cb0a130ae874f2531c7790be1933455e85183d6dc"
+            }
+          ],
+          "outcome": "not-established",
+          "results": {
+            "fixtures/B3-same-count.swift": {
+              "outcome": "not-established",
+              "source": "fixtures/B3-same-count.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "B3-missing",
+      "files": [
+        "fixtures/B3-missing.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/B3-missing.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/B3-missing.json",
+              "sha256": "f94864ff7463fc988929933104e3b5ae9b59bc31a78584ce8ecdf2a7ff86a965"
+            },
+            {
+              "path": "fixtures/B3-missing.swift",
+              "sha256": "cc6fd8bb4145b2981f33b7524fd24ec2b20145c2d29d634d06edd24446e17b3f"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {
+            "fixtures/B3-missing.swift": {
+              "outcome": "unsupported",
+              "source": "fixtures/B3-missing.swift"
+            }
+          },
+          "diagnostics_contain": [
+            "no declared definition"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "B3-cycle",
+      "files": [
+        "fixtures/B3-cycle.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/B3-cycle.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/B3-cycle.json",
+              "sha256": "abf9e1ca87aba7f7a5e020df657a8439765155d33c0f6a4d6f2dc525fc2bc4a4"
+            },
+            {
+              "path": "fixtures/B3-cycle.swift",
+              "sha256": "782dcb74437e0f4063c3cf062d0ef2bec978e1ca10753915dcd217cef675426a"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {
+            "fixtures/B3-cycle.swift": {
+              "outcome": "unsupported",
+              "source": "fixtures/B3-cycle.swift"
+            }
+          },
+          "diagnostics_contain": [
+            "cyclic"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "B3-growing",
+      "files": [
+        "fixtures/B3-growing.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/B3-growing.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/B3-growing.json",
+              "sha256": "29a7cc206657cf1068581f5b317c3b2dbc76f8b34ff074070536ba7494b4c519"
+            },
+            {
+              "path": "fixtures/B3-growing.swift",
+              "sha256": "934cfb9cc4ffbedb8511cc25c987751435f0ddff97457950c4fb2c0b18994d10"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {
+            "fixtures/B3-growing.swift": {
+              "outcome": "unsupported",
+              "source": "fixtures/B3-growing.swift"
+            }
+          },
+          "diagnostics_contain": [
+            "cyclic alias resolution"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "C-nested",
+      "files": [
+        "fixtures/C-nested.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-nested.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "count",
+          "inputs": [
+            {
+              "path": "fixtures/C-nested.json",
+              "sha256": "0b25de298f45da0b33135ecd0332c0e9989e17a361ff7d091004905c4e359616"
+            },
+            {
+              "path": "fixtures/C-nested.swift",
+              "sha256": "143aa6aa32b04942c185e289ad3fd6111c3d286095feaf80937853391401ff63"
+            },
+            {
+              "path": "fixtures/Primitive.swift",
+              "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/C-nested.swift": {
+              "outcome": "holds",
+              "source": "fixtures/C-nested.swift"
+            },
+            "fixtures/Primitive.swift": {
+              "outcome": "empty",
+              "source": "fixtures/Primitive.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "count"
+    },
+    {
+      "id": "C-false",
+      "files": [
+        "fixtures/C-false.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-false.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "response": {
+          "question": "count",
+          "inputs": [
+            {
+              "path": "fixtures/C-false.json",
+              "sha256": "bda92379d462cb28f3cdfa89ef4b9584875cb660c700637554a9287135e48a5b"
+            },
+            {
+              "path": "fixtures/C-false.swift",
+              "sha256": "e5dbe74022d6835629833b1c0c78abb90a8d4b3c60dc957740225a5135397ea6"
+            },
+            {
+              "path": "fixtures/Primitive.swift",
+              "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a"
+            }
+          ],
+          "outcome": "not-established",
+          "results": {
+            "fixtures/C-false.swift": {
+              "outcome": "not-established",
+              "source": "fixtures/C-false.swift"
+            },
+            "fixtures/Primitive.swift": {
+              "outcome": "empty",
+              "source": "fixtures/Primitive.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "count"
+    },
+    {
+      "id": "C-qualified",
+      "files": [
+        "fixtures/C-qualified.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-qualified.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "count",
+          "inputs": [
+            {
+              "path": "fixtures/C-qualified.json",
+              "sha256": "8d70c4f8f19af00e2198ff21ac27e92a83599e365f06f545dc5f9a58ec0c33fb"
+            },
+            {
+              "path": "fixtures/C-qualified.swift",
+              "sha256": "0ae24a90446caf2f85a90acc82278d647922949f5f00cab6af4d17edcb83bc38"
+            },
+            {
+              "path": "fixtures/Primitive.swift",
+              "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/C-qualified.swift": {
+              "outcome": "holds",
+              "source": "fixtures/C-qualified.swift"
+            },
+            "fixtures/Primitive.swift": {
+              "outcome": "empty",
+              "source": "fixtures/Primitive.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "count"
+    },
+    {
+      "id": "C-no-flatten",
+      "files": [
+        "fixtures/C-no-flatten.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-no-flatten.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "response": {
+          "question": "count",
+          "inputs": [
+            {
+              "path": "fixtures/C-no-flatten.json",
+              "sha256": "a80a6d201c02f0c6f265dd359b36aa67a8320478d855f2063b5d4579f326d358"
+            },
+            {
+              "path": "fixtures/C-no-flatten.swift",
+              "sha256": "7d316ae7f7d09e6aae5d1a9415b35d34af37b099b08ca4de2c426564ae94e9d0"
+            },
+            {
+              "path": "fixtures/Primitive.swift",
+              "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a"
+            }
+          ],
+          "outcome": "not-established",
+          "results": {
+            "fixtures/C-no-flatten.swift": {
+              "outcome": "not-established",
+              "source": "fixtures/C-no-flatten.swift"
+            },
+            "fixtures/Primitive.swift": {
+              "outcome": "empty",
+              "source": "fixtures/Primitive.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "count"
+    },
+    {
+      "id": "C-rule-false",
+      "files": [
+        "fixtures/C-nested.swift",
+        "fixtures/Primitive-changed.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-rule-false.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "count",
+          "inputs": [
+            {
+              "path": "fixtures/C-nested.swift",
+              "sha256": "143aa6aa32b04942c185e289ad3fd6111c3d286095feaf80937853391401ff63"
+            },
+            {
+              "path": "fixtures/C-rule-false.json",
+              "sha256": "1455d1d7de521443d6cd28c34fcbb55b987a2ba04c701e14a419364c6bbd8b6a"
+            },
+            {
+              "path": "fixtures/Primitive-changed.swift",
+              "sha256": "d0e73c581f39be797f75ed19932f184b1129865974c8566351867519d6a2422a"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {},
+          "diagnostics_contain": [
+            "count"
+          ]
+        }
+      },
+      "pass": "count"
+    },
+    {
+      "id": "C-document",
+      "files": [
+        "fixtures/C-document.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-document.json",
+        "--report",
+        "--document",
+        "fixtures/C-document.swift",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "count",
+          "inputs": [
+            {
+              "path": "fixtures/C-document.json",
+              "sha256": "6f8ee37a3e30ae879983b094963c173e8cad92b2a8d8e8ee4aa16875123d8dd3"
+            },
+            {
+              "path": "fixtures/C-document.swift",
+              "sha256": "46edb793f8ded4ab7bdb7e3b6927fcac9cd9b8693fe0eda6332f245224366017"
+            },
+            {
+              "path": "fixtures/Primitive.swift",
+              "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/C-document.swift": {
+              "outcome": "holds",
+              "source": "fixtures/C-document.swift"
+            },
+            "fixtures/Primitive.swift": {
+              "outcome": "empty",
+              "source": "fixtures/Primitive.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "count"
+    },
+    {
+      "id": "C-context-hash",
+      "files": [
+        "fixtures/C-document.swift",
+        "fixtures/Primitive.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-context-hash.json",
+        "--report",
+        "--document",
+        "fixtures/C-document.swift",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "count",
+          "inputs": [
+            {
+              "path": "fixtures/C-context-hash.json",
+              "sha256": "ffc4370543b93f0e72c30660b21a20e28d2d9f3c570ae6431ea9c12c5aef4658"
+            },
+            {
+              "path": "fixtures/C-document.swift",
+              "sha256": "46edb793f8ded4ab7bdb7e3b6927fcac9cd9b8693fe0eda6332f245224366017"
+            },
+            {
+              "path": "fixtures/Primitive.swift",
+              "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {},
+          "diagnostics_contain": [
+            "SHA-256"
+          ]
+        }
+      },
+      "pass": "count"
+    },
+    {
+      "id": "G-argument-ground",
+      "files": [
+        "fixtures/G-argument-use.swift",
+        "fixtures/G-argument-ground.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-argument-ground.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/G-argument-ground.json",
+              "sha256": "9438e67fbd443d69a956c803e143431512ec9dccf91668297b4815ea93a10980"
+            },
+            {
+              "path": "fixtures/G-argument-ground.swift",
+              "sha256": "f5c03e5eac8fb3cff186a1e0dd34c32cb2ffb4a12034e5b9528029e63929131a"
+            },
+            {
+              "path": "fixtures/G-argument-use.swift",
+              "sha256": "03b5d7dba7ae8f13adf1f66947fe9ad12f7252cd2fb8a174bfa7ffe872ff0be8"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/G-argument-use.swift": {
+              "outcome": "holds",
+              "source": "fixtures/G-argument-use.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "G-argument-cycle",
+      "files": [
+        "fixtures/G-argument-use.swift",
+        "fixtures/G-argument-cycle.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-argument-cycle.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/G-argument-cycle.json",
+              "sha256": "e47ce05fa8143f406b2031730635680ac0c490cef2eef7d35b7c9779cdbdb1e6"
+            },
+            {
+              "path": "fixtures/G-argument-cycle.swift",
+              "sha256": "f43d9ce68870f5b91237ca10c0c5652d3a14a588319b20e8a20e5a084a25730a"
+            },
+            {
+              "path": "fixtures/G-argument-use.swift",
+              "sha256": "03b5d7dba7ae8f13adf1f66947fe9ad12f7252cd2fb8a174bfa7ffe872ff0be8"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {
+            "fixtures/G-argument-use.swift": {
+              "outcome": "unsupported",
+              "source": "fixtures/G-argument-use.swift"
+            }
+          },
+          "diagnostics_contain": [
+            "cyclic"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "G-argument-growing",
+      "files": [
+        "fixtures/G-argument-use.swift",
+        "fixtures/G-argument-growing.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-argument-growing.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/G-argument-growing.json",
+              "sha256": "e2214ff2f3a32254f2c29450923991b0d4009d30b9071b62c6116b49b38664ca"
+            },
+            {
+              "path": "fixtures/G-argument-growing.swift",
+              "sha256": "5d4c737f18d918a0f33ae1d7a0248656b4bdfbef56d8306ceda39fdca657aed4"
+            },
+            {
+              "path": "fixtures/G-argument-use.swift",
+              "sha256": "03b5d7dba7ae8f13adf1f66947fe9ad12f7252cd2fb8a174bfa7ffe872ff0be8"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {
+            "fixtures/G-argument-use.swift": {
+              "outcome": "unsupported",
+              "source": "fixtures/G-argument-use.swift"
+            }
+          },
+          "diagnostics_contain": [
+            "cyclic alias resolution"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "G-argument-projection",
+      "files": [
+        "fixtures/G-argument-use.swift",
+        "fixtures/G-argument-projection.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/G-argument-projection.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/G-argument-projection.json",
+              "sha256": "7a68719ed568d42e8c8cc165ed3b3c3f4fed4508326b153a801849ac92f05e75"
+            },
+            {
+              "path": "fixtures/G-argument-projection.swift",
+              "sha256": "8d7dc57fbee10b1aefc4cbeebcadd7616f7fdfc01b35cc2141212d7ff34a9670"
+            },
+            {
+              "path": "fixtures/G-argument-use.swift",
+              "sha256": "03b5d7dba7ae8f13adf1f66947fe9ad12f7252cd2fb8a174bfa7ffe872ff0be8"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {
+            "fixtures/G-argument-use.swift": {
+              "outcome": "unsupported",
+              "source": "fixtures/G-argument-use.swift"
+            }
+          },
+          "diagnostics_contain": [
+            "no definition"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "D-conditional-own",
+      "files": [
+        "fixtures/D-conditional-own.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/D-conditional-own.json",
+        "--report",
+        "--document",
+        "fixtures/D-conditional-own.swift"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/D-conditional-own.json",
+              "sha256": "bf4ae1cbbe9d58e2c81b80622515af1a56655c648e863fdb334fd672703677ef"
+            },
+            {
+              "path": "fixtures/D-conditional-own.swift",
+              "sha256": "22216b218a02719fdbfbe823ad2a919c0e1319c436b959395ee8ab8c722e91c3"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/D-conditional-own.swift": {
+              "outcome": "holds",
+              "source": "fixtures/D-conditional-own.swift",
+              "unchecked_contain": [
+                "fixtures/D-conditional-own.swift:10 (conditional compilation)"
+              ]
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "D-conditional-only",
+      "files": [
+        "fixtures/D-conditional-only.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/D-conditional-only.json",
+        "--report",
+        "--document",
+        "fixtures/D-conditional-only.swift"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "empty",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/D-conditional-only.json",
+              "sha256": "494efb79fc7f9323fc5f1590f44166808037745d7e9da6d25e059e0432341ac1"
+            },
+            {
+              "path": "fixtures/D-conditional-only.swift",
+              "sha256": "73168bb42d39e2b5d79c05c7a8c36f42c70a97a36260551dffa59b31bd9a8d67"
+            }
+          ],
+          "outcome": "empty",
+          "results": {
+            "fixtures/D-conditional-only.swift": {
+              "outcome": "empty",
+              "source": "fixtures/D-conditional-only.swift",
+              "unchecked_contain": [
+                "fixtures/D-conditional-only.swift:9 (conditional compilation)"
+              ]
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "D-conditional-borrowed",
+      "files": [
+        "fixtures/D-page-holds.swift",
+        "fixtures/D-conditional-borrowed.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/D-conditional-borrowed.json",
+        "--report",
+        "--document",
+        "fixtures/D-page-holds.swift"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/D-conditional-borrowed.json",
+              "sha256": "f77c5c81b39f7518278f16db3c0bbd4218a69044d4bba05cacbb9d2df6a0c5cb"
+            },
+            {
+              "path": "fixtures/D-conditional-borrowed.swift",
+              "sha256": "d7889bad484f28dc7301f690024d09104e4d5af822c0010c2c3f9a627f3d343c"
+            },
+            {
+              "path": "fixtures/D-page-holds.swift",
+              "sha256": "25a724129f92553261eb6ad8cf16c2a01cb960c1a74b922757c74832b2d964a8"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/D-page-holds.swift": {
+              "outcome": "holds",
+              "source": "fixtures/D-page-holds.swift",
+              "unchecked_contain": [
+                "fixtures/D-conditional-borrowed.swift:1 (conditional compilation)"
+              ]
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "D-conditional-branch",
+      "files": [
+        "fixtures/D-conditional-branch.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/D-conditional-branch.json",
+        "--report",
+        "--document",
+        "fixtures/D-conditional-branch.swift"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "inputs": [
+            {
+              "path": "fixtures/D-conditional-branch.json",
+              "sha256": "519b6397a603030b9ffde11c1def5659b81eefe37339827f8da5025d4f886a64"
+            },
+            {
+              "path": "fixtures/D-conditional-branch.swift",
+              "sha256": "c5ea2c1ace92820bb7314da0bc29b643722db11612f8adec9def53d70140631b"
+            }
+          ],
+          "outcome": "unsupported",
+          "results": {
+            "fixtures/D-conditional-branch.swift": {
+              "outcome": "unsupported",
+              "source": "fixtures/D-conditional-branch.swift"
+            }
+          },
+          "diagnostics_contain": [
+            "opens a branch"
+          ]
+        }
+      },
+      "pass": "where"
+    },
+    {
+      "id": "C-borrowed-holds",
+      "files": [
+        "fixtures/Primitive.swift",
+        "fixtures/C-nested.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-borrowed-holds.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "count",
+          "inputs": [
+            {
+              "path": "fixtures/C-borrowed-holds.json",
+              "sha256": "092909aca89eeaf9eb34382f29934e0cb0219546a45bc6197452fc7193ab1499"
+            },
+            {
+              "path": "fixtures/C-nested.swift",
+              "sha256": "143aa6aa32b04942c185e289ad3fd6111c3d286095feaf80937853391401ff63"
+            },
+            {
+              "path": "fixtures/Primitive.swift",
+              "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a"
+            }
+          ],
+          "outcome": "holds",
+          "results": {
+            "fixtures/Primitive.swift": {
+              "outcome": "empty",
+              "source": "fixtures/Primitive.swift"
+            },
+            "fixtures/C-nested.swift": {
+              "outcome": "holds",
+              "source": "fixtures/C-nested.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "count"
+    },
+    {
+      "id": "C-borrowed-false",
+      "files": [
+        "fixtures/Primitive.swift",
+        "fixtures/C-false.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-borrowed-false.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "response": {
+          "question": "count",
+          "inputs": [
+            {
+              "path": "fixtures/C-borrowed-false.json",
+              "sha256": "3b3a880820e48a593b4a9efd89932cab1cc8c12a84c844bfa0425b7db1d7fdf9"
+            },
+            {
+              "path": "fixtures/C-false.swift",
+              "sha256": "e5dbe74022d6835629833b1c0c78abb90a8d4b3c60dc957740225a5135397ea6"
+            },
+            {
+              "path": "fixtures/Primitive.swift",
+              "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a"
+            }
+          ],
+          "outcome": "not-established",
+          "results": {
+            "fixtures/Primitive.swift": {
+              "outcome": "empty",
+              "source": "fixtures/Primitive.swift"
+            },
+            "fixtures/C-false.swift": {
+              "outcome": "not-established",
+              "source": "fixtures/C-false.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "count"
+    },
+    {
+      "id": "C-borrowed-counterexample",
+      "files": [
+        "fixtures/C-empty-own.swift",
+        "fixtures/Primitive.swift",
+        "fixtures/C-false.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/C-borrowed-counterexample.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "response": {
+          "question": "count",
+          "inputs": [
+            {
+              "path": "fixtures/C-borrowed-counterexample.json",
+              "sha256": "d097dcf474fe8b8edb85868728885cd47138d4eb14597e0f8a7924b742c1d9ac"
+            },
+            {
+              "path": "fixtures/C-empty-own.swift",
+              "sha256": "f59fdda51146960630a62da231c882095a70f066b15b003d4152a5cf6f9f189e"
+            },
+            {
+              "path": "fixtures/C-false.swift",
+              "sha256": "e5dbe74022d6835629833b1c0c78abb90a8d4b3c60dc957740225a5135397ea6"
+            },
+            {
+              "path": "fixtures/Primitive.swift",
+              "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a"
+            }
+          ],
+          "outcome": "not-established",
+          "results": {
+            "fixtures/C-empty-own.swift": {
+              "outcome": "empty",
+              "source": "fixtures/C-empty-own.swift"
+            },
+            "fixtures/Primitive.swift": {
+              "outcome": "empty",
+              "source": "fixtures/Primitive.swift"
+            },
+            "fixtures/C-false.swift": {
+              "outcome": "not-established",
+              "source": "fixtures/C-false.swift"
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "pass": "count"
+    }
+  ],
+  "stages": {
+    "stages/claude-1-4-b1-b3.json": "1687c07a4a7e15ba52869d1f8819e9eec951986c7761de16871ee0dd150d4b3a",
+    "stages/argument-ground-and-conditional-scope.json": "16fe6b6d3e0332409e6f00933e57ac2e3fe910a84573b5344e893e7f6b0e78fd",
+    "stages/count-borrowed-coverage.json": "36738ba51443115092be5626de2d4059b8bf1909ea382af406a522584b7aa52f"
+  },
+  "supersedes": {
+    "revision": "11f8fdb01c351f5983c59530218b6873195a6449",
+    "path": "Contracts/Court/v0.5/contract.json",
+    "sha256": "505cfa1aa409ae98f8666437330084d85c105e963b6f705490565a78603e3808"
+  }
+}

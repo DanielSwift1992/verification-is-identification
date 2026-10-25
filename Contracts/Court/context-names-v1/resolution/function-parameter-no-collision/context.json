@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "intrinsics": [],
+  "sources": [
+    {
+      "input": "resolution/function-parameter-no-collision/World.swift",
+      "source": "resolution/function-parameter-no-collision/World.swift",
+      "sha256": "ad77114ffb06cd521aaaacc8c835785a080b0cd18eb7cba499238807a77ef2b0",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "resolution/function-parameter-no-collision/World.swift:1/input",
+        "source": "resolution/function-parameter-no-collision/World.swift:1/source",
+        "sha256": "resolution/function-parameter-no-collision/World.swift:1/sha256",
+        "namespace": "resolution/function-parameter-no-collision/World.swift:1/namespace",
+        "module": "resolution/function-parameter-no-collision/World.swift:1/module",
+        "role": "resolution/function-parameter-no-collision/World.swift:1/role",
+        "imports": []
+      }
+    }
+  ]
+}

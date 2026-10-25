@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "resolution/a6-cycle-generic/World.swift",
+      "source": "resolution/a6-cycle-generic/World.swift",
+      "sha256": "92133810d2b52cd5b75c65e3844af94ac6f90f48a10975af95bed79dc3388ee0",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "resolution/a6-cycle-generic/World.swift:1/context/input",
+        "source": "resolution/a6-cycle-generic/World.swift:1/context/source",
+        "sha256": "resolution/a6-cycle-generic/World.swift:1/context/sha256",
+        "namespace": "resolution/a6-cycle-generic/World.swift:1/context/namespace",
+        "module": "resolution/a6-cycle-generic/World.swift:1/context/module",
+        "role": "resolution/a6-cycle-generic/World.swift:1/context/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

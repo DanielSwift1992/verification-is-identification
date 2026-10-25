@@ -8,19 +8,21 @@ court_contract_command=$(python3 -c 'import json,sys; print(json.dumps([sys.argv
 python3 Checks/court-contract-test.py
 python3 Checks/count-dag-arithmetic.py
 for suite in v0.1 v0.2 v0.3 v0.4 v0.5; do
+    court_contract_manifest="Contracts/Court/$suite/contract.json"
+    case "$suite" in v0.4|v0.5) court_contract_manifest="Contracts/Court/$suite/resolution-v3.json" ;; esac
     python3 Checks/court-contract.py \
-        --manifest "Contracts/Court/$suite/contract.json" \
+        --manifest "$court_contract_manifest" \
         --command-json "$court_contract_command" \
         --implementation-id "local SwiftPM Tools build" \
         --compiler "$(command -v swiftc)" "$@"
 done
 python3 Checks/court-contract.py \
-    --manifest Contracts/Court/context-names-v1/module-fragment.json \
+    --manifest Contracts/Court/context-names-v1/module-fragment-v3.json \
     --command-json "$court_contract_command" \
     --implementation-id "local SwiftPM Tools build" \
     --compiler "$(command -v swiftc)" "$@"
 python3 Checks/court-contract.py \
-    --manifest Contracts/Court/context-names-v1/fragment.json \
+    --manifest Contracts/Court/context-names-v1/fragment-v3.json \
     --command-json "$court_contract_command" \
     --implementation-id "local SwiftPM Tools build" \
     --compiler "$(command -v swiftc)" "$@"
@@ -30,17 +32,22 @@ python3 Checks/court-contract.py \
     --implementation-id "local SwiftPM Tools build" \
     --compiler "$(command -v swiftc)" "$@"
 python3 Checks/court-contract.py \
-    --manifest Contracts/Court/context-names-v1/owner-members.json \
+    --manifest Contracts/Court/context-names-v1/owner-members-v2.json \
     --command-json "$court_contract_command" \
     --implementation-id "local SwiftPM Tools build" \
     --compiler "$(command -v swiftc)" "$@"
 python3 Checks/court-contract.py \
-    --manifest Contracts/Court/context-names-v1/bindings.json \
+    --manifest Contracts/Court/context-names-v1/bindings-v2.json \
     --command-json "$court_contract_command" \
     --implementation-id "local SwiftPM Tools build" \
     --compiler "$(command -v swiftc)" "$@"
 python3 Checks/court-contract.py \
     --manifest Contracts/Court/context-names-v1/extension-owners.json \
+    --command-json "$court_contract_command" \
+    --implementation-id "local SwiftPM Tools build" \
+    --compiler "$(command -v swiftc)" "$@"
+python3 Checks/court-contract.py \
+    --manifest Contracts/Court/context-names-v1/resolution.json \
     --command-json "$court_contract_command" \
     --implementation-id "local SwiftPM Tools build" \
     --compiler "$(command -v swiftc)" "$@"

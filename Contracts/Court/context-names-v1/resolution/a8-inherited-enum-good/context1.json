@@ -1,0 +1,20 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "resolution/a8-inherited-enum-good/World.swift",
+      "source": "resolution/a8-inherited-enum-good/World.swift",
+      "sha256": "5553282ef1860bfec27321e1abc2e1a5ccd15d30f7cdc29e21ae7beddfd56c09",
+      "namespace": "World",
+      "imports": [],
+      "at": {
+        "input": "resolution/a8-inherited-enum-good/World.swift:1/context/input",
+        "source": "resolution/a8-inherited-enum-good/World.swift:1/context/source",
+        "sha256": "resolution/a8-inherited-enum-good/World.swift:1/context/sha256",
+        "namespace": "resolution/a8-inherited-enum-good/World.swift:1/context/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

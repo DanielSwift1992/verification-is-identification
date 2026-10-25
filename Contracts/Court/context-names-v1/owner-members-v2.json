@@ -1,0 +1,244 @@
+{
+  "schema": "vi.court.conformance/2",
+  "suite": "vi.court.context-owner-members/2",
+  "reference_revision": "ddd233a59960f911bc0f5590d8532b39e3498f34",
+  "scope": "The declared questions under revision 3 certified resolution without shadowing; original input bytes are unchanged. Historical expectations remain in the superseded release.",
+  "versions": {
+    "context": "vi.court.context/2",
+    "normalization_canon": 4
+  },
+  "missing_files": [],
+  "files": {
+    "owners/protocol-missing/World.swift": {
+      "sha256": "03406406fa2092219ac093e90d44776c0a86a18c5750ded448cdb4627a0e5ffc",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/owner-members.json#files/owners/protocol-missing/World.swift"
+    },
+    "owners/protocol-missing/context.json": {
+      "sha256": "311668b2c99305f9467f7792ed0ffaaf772f9912951590cabc31d1d9a693deee",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/owner-members.json#files/owners/protocol-missing/context.json"
+    },
+    "owners/protocol-alias-missing/World.swift": {
+      "sha256": "4404933bb5ce8f48a36ac870078b73f4e6a5308332bbef72a5cdbf7ef6b9995e",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/owner-members.json#files/owners/protocol-alias-missing/World.swift"
+    },
+    "owners/protocol-alias-missing/context.json": {
+      "sha256": "3d550b1f2b0e7acc2702bfd4758f36d5d3272d1832fc9e8053f7fff992146779",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/owner-members.json#files/owners/protocol-alias-missing/context.json"
+    },
+    "owners/opaque-owner-missing/World.swift": {
+      "sha256": "3ff5905690efabe503cc298cf5799cfdf49ea7a8cae8eec9248bbbaa29c9c553",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/owner-members.json#files/owners/opaque-owner-missing/World.swift"
+    },
+    "owners/opaque-owner-missing/context.json": {
+      "sha256": "4b82dbe55f4c440d465059e749434913cf6bfe7b6f96970ed270d56b2f1086e1",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/owner-members.json#files/owners/opaque-owner-missing/context.json"
+    },
+    "owners/protocol-unbound-member/World.swift": {
+      "sha256": "2b7ebb93ecfb0be6c083221727c724a8592315ddd7015add1c3532e3e483835f",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/owner-members.json#files/owners/protocol-unbound-member/World.swift"
+    },
+    "owners/protocol-unbound-member/context.json": {
+      "sha256": "08342b37d1e90e889c234c358ea6c533be18e309478ea3d392166f60297a87b8",
+      "origin": "vi@11f8fdb01c351f5983c59530218b6873195a6449:Contracts/Court/context-names-v1/owner-members.json#files/owners/protocol-unbound-member/context.json"
+    }
+  },
+  "cases": [
+    {
+      "id": "protocol-missing",
+      "pass": "where",
+      "files": [
+        "owners/protocol-missing/World.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/protocol-missing/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "owners/protocol-missing/World.swift",
+              "sha256": "03406406fa2092219ac093e90d44776c0a86a18c5750ded448cdb4627a0e5ffc"
+            },
+            {
+              "path": "owners/protocol-missing/context.json",
+              "sha256": "311668b2c99305f9467f7792ed0ffaaf772f9912951590cabc31d1d9a693deee"
+            }
+          ],
+          "results": {
+            "owners/protocol-missing/World.swift": {
+              "source": "owners/protocol-missing/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "owners/protocol-missing/World.swift:1",
+            "no member definition on supplied owner"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "owners/protocol-missing/World.swift"
+        ],
+        "exit": 1,
+        "diagnostic": "addressed"
+      }
+    },
+    {
+      "id": "protocol-alias-missing",
+      "pass": "where",
+      "files": [
+        "owners/protocol-alias-missing/World.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/protocol-alias-missing/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "owners/protocol-alias-missing/World.swift",
+              "sha256": "4404933bb5ce8f48a36ac870078b73f4e6a5308332bbef72a5cdbf7ef6b9995e"
+            },
+            {
+              "path": "owners/protocol-alias-missing/context.json",
+              "sha256": "3d550b1f2b0e7acc2702bfd4758f36d5d3272d1832fc9e8053f7fff992146779"
+            }
+          ],
+          "results": {
+            "owners/protocol-alias-missing/World.swift": {
+              "source": "owners/protocol-alias-missing/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "owners/protocol-alias-missing/World.swift:1",
+            "no member definition on supplied owner"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "owners/protocol-alias-missing/World.swift"
+        ],
+        "exit": 1,
+        "diagnostic": "addressed"
+      }
+    },
+    {
+      "id": "opaque-owner-missing",
+      "pass": "where",
+      "files": [
+        "owners/opaque-owner-missing/World.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/opaque-owner-missing/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "owners/opaque-owner-missing/World.swift",
+              "sha256": "3ff5905690efabe503cc298cf5799cfdf49ea7a8cae8eec9248bbbaa29c9c553"
+            },
+            {
+              "path": "owners/opaque-owner-missing/context.json",
+              "sha256": "4b82dbe55f4c440d465059e749434913cf6bfe7b6f96970ed270d56b2f1086e1"
+            }
+          ],
+          "results": {
+            "owners/opaque-owner-missing/World.swift": {
+              "source": "owners/opaque-owner-missing/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "owners/opaque-owner-missing/World.swift:1",
+            "no member definition on supplied owner"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "owners/opaque-owner-missing/World.swift"
+        ],
+        "exit": 1,
+        "diagnostic": "addressed"
+      }
+    },
+    {
+      "id": "protocol-unbound-member",
+      "pass": "where",
+      "files": [
+        "owners/protocol-unbound-member/World.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/protocol-unbound-member/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "owners/protocol-unbound-member/World.swift",
+              "sha256": "2b7ebb93ecfb0be6c083221727c724a8592315ddd7015add1c3532e3e483835f"
+            },
+            {
+              "path": "owners/protocol-unbound-member/context.json",
+              "sha256": "08342b37d1e90e889c234c358ea6c533be18e309478ea3d392166f60297a87b8"
+            }
+          ],
+          "results": {
+            "owners/protocol-unbound-member/World.swift": {
+              "source": "owners/protocol-unbound-member/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "owners/protocol-unbound-member/World.swift:2",
+            "needs Self or a concrete conformer"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "owners/protocol-unbound-member/World.swift"
+        ],
+        "exit": 1,
+        "diagnostic": "addressed"
+      }
+    }
+  ],
+  "supersedes": {
+    "revision": "11f8fdb01c351f5983c59530218b6873195a6449",
+    "path": "Contracts/Court/context-names-v1/owner-members.json",
+    "sha256": "01015a4443c5c2f139f7fd5536e10ec84cd96fb678ace3cf731f3699b42ff606"
+  }
+}

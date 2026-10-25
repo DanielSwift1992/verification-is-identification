@@ -252,7 +252,8 @@ struct StructuralSource {
             unsupported: errors, bodyWitness: bodyWitness, origin: origin)
     }
 
-    static func balanced(_ tokens: [String], index: inout Int, open: String, close: String) throws
+    static func balanced(_ tokens: [String], index: inout Int, open: String, close: String,
+                         inspect: (Int) throws -> Void = { _ in }) throws
         -> [String]
     {
         guard index < tokens.count, tokens[index] == open else { throw Failure("expected \(open)") }
@@ -260,6 +261,7 @@ struct StructuralSource {
         let begin = index
         var depth = 1
         while index < tokens.count {
+            try inspect(index)
             if tokens[index] == open { depth += 1 }
             if tokens[index] == close {
                 depth -= 1
@@ -305,7 +307,8 @@ struct StructuralSource {
         let tokenRange: Range<Int>
         let headerRange: Range<Int>
     }
-    static func readDeclaration(_ ts: [String], index: inout Int, origin: String) throws -> Region {
+    static func readDeclaration(_ ts: [String], index: inout Int, origin: String,
+                                inspectBody: (Int) throws -> Void = { _ in }) throws -> Region {
         let start = index, kind = ts[index]
         index += 1
         let begin = index
@@ -318,7 +321,7 @@ struct StructuralSource {
             while index < ts.count, ts[index] != "{" { index += 1 }
             headerEnd = index
             header = Array(ts[begin..<index])
-            body = try balanced(ts, index: &index, open: "{", close: "}")
+            body = try balanced(ts, index: &index, open: "{", close: "}", inspect: inspectBody)
         }
         let d = try declaration(kind: kind, header: header, body: body, origin: origin)
         return Region(declaration: d, body: body, tokenRange: start..<index, headerRange: begin..<headerEnd)
@@ -347,8 +350,8 @@ struct StructuralSource {
     enum ReadingScope {
         // Complete flat-declaration grammar, used by both Press and roster.
         case declarations
-        // Historical structural projection carries executable/conditional
-        // regions without deriving relations from their contents.
+        // Executable regions are carried, top-level conditionals excluded.
+        // Conditional directives inside a carried body refuse the reading.
         case projection
     }
     /// One complete reading, with an explicit scope for carried productions.
@@ -370,6 +373,16 @@ struct StructuralSource {
         var excluded = 0, conditionalSubjects: NameSet = [], declared: NameSet = []
         let qualifiers = ["public", "internal", "private", "fileprivate", "package", "open"]
         let declarations = ["enum", "struct", "protocol", "extension", "typealias"]
+        let conditionals: NameSet = ["if", "elseif", "else", "endif"]
+        func inspectBody(_ token: Int) throws {
+            // The common lexer has already separated code, comments and
+            // literals, including code nested in an interpolation. Refuse
+            // before balancing any branch-dependent brace, not after a
+            // projected declaration has escaped from an inactive branch.
+            for directive in lexed.directives[token] ?? [] where conditionals.contains(directive.spelling) {
+                throw AddressedFailure("\(origin):\(directive.line): conditional directive '#\(directive.spelling)' inside a body is outside structural projection scope (byte \(directive.byte))")
+            }
+        }
         func nextAfterQualifiers(_ start: Int) -> Int {
             var next = start
             while next < ts.count, ts[next] == "\n" || qualifiers.contains(ts[next]) { next += 1 }
@@ -399,7 +412,7 @@ struct StructuralSource {
                         guard path.count % 2 == 1, path.enumerated().allSatisfy({ $0.offset % 2 == 0 ? identifier($0.element) : $0.element == "." }) else { throw Failure("unsupported import") }
                     }
                 } else if declarations.contains(kind) {
-                    let region = try readDeclaration(ts, index: &i, origin: origin)
+                    let region = try readDeclaration(ts, index: &i, origin: origin, inspectBody: inspectBody)
                     if kind != "extension", !declared.insert(region.declaration.name).inserted {
                         throw AddressedFailure("\(origin):\(lexed.lines[start]): duplicate declaration \(region.declaration.name)", issue: .duplicateDeclaration(region.declaration.name))
                     }
@@ -418,7 +431,7 @@ struct StructuralSource {
                     }
                     guard depth == 0 else { throw Failure("unclosed #if") }
                 } else if scope == .projection {
-                    if kind == "{" { _ = try balanced(ts, index: &i, open: "{", close: "}") }
+                    if kind == "{" { _ = try balanced(ts, index: &i, open: "{", close: "}", inspect: inspectBody) }
                     else { i += 1 }
                 } else {
                     if kind == "@" { throw Failure("unsupported attribute") }

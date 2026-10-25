@@ -179,7 +179,8 @@ enum WhereContextNames {
                 if let nameBindings {
                     guard let place = nameBindings.place(input: file.context.input, offset: tokens.starts[index]),
                           let module = place.parts.first,
-                          let selected = found.first(where: { $0.module == key(module) }) else {
+                          let selected = found.first(
+                            where: { $0.module == key(module) }) else {
                         try WhereJudge.fail("\(address(index)): no replayed binding for '\(name)'")
                     }
                     return selected

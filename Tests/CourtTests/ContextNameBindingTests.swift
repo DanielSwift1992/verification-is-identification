@@ -30,6 +30,16 @@ final class ContextNameBindingTests: XCTestCase {
             $0.line == 3 && $0.spelling == ScalarName("Target")
                 && $0.declaration == .init(parts: ["World", "Target"])
         })
+        let conditional = try index("public enum Leaf {}\npublic protocol Base {}\npublic protocol P { associatedtype Axis }\npublic protocol Q: Base where Self: P, Axis == Leaf {}\n")
+        XCTAssertTrue(conditional.certificate.references.contains {
+            $0.line == 4 && $0.spelling == ScalarName("Axis")
+                && $0.declaration == .init(parts: ["World", "P", "Axis"])
+        })
+        let regional = try index("public enum Axis {}\npublic protocol P { associatedtype Axis }\npublic protocol Q {}\nextension Q where Self: P { typealias Pick = Self.Axis }\nextension Q { typealias Other = Axis }\n")
+        XCTAssertTrue(regional.certificate.references.contains {
+            $0.line == 5 && $0.spelling == ScalarName("Axis")
+                && $0.declaration == .init(parts: ["World", "Axis"])
+        })
     }
 
     func testGenericParameterIsLexicalAndNeverAnOwnerMember() throws {

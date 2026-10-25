@@ -52,7 +52,7 @@ enum ContextNameBinding {
         let declarations: [Declaration]
         let references: [Reference]
     }
-    struct Scope {
+    struct Scope: Hashable {
         let file: Int
         let start: Int
         let open: Int
@@ -329,6 +329,7 @@ enum ContextNameBinding {
         // Header edges name declaration places too. Only nominal owners can
         // supply inherited members; a parameter is never a member namespace.
         var inherited: [Place: Set<Place>] = [:]
+        var regional: [Scope: Set<Place>] = [:]
         let tokenAt = tapes.map { Dictionary(uniqueKeysWithValues: $0.starts.enumerated().map { ($0.element, $0.offset) }) }
         func direct(_ names: [String], file: Int) -> Set<Place> {
             if names.count > 1, modules.contains(names[0]) {
@@ -345,13 +346,21 @@ enum ContextNameBinding {
             let tape = tapes[scope.file]
             guard let start = tokenAt[scope.file][scope.start],
                   let end = tokenAt[scope.file][scope.open] else { continue }
-            var cursor = start + 1, genericDepth = 0, inParents = false, expectsParent = false
+            var cursor = start + 1, genericDepth = 0, inParents = false, expectsParent = false, inWhere = false
+            var parents: Set<Place> = []
             while cursor < end {
                 let word = tape.words[cursor]
-                if WhereJudge.sameName(word, "where") { break }
+                if WhereJudge.sameName(word, "where") {
+                    inWhere = true; inParents = false; expectsParent = false; cursor += 1; continue
+                }
+                if inWhere, WhereJudge.sameName(word, "Self"), cursor + 1 < end,
+                   WhereJudge.sameName(tape.words[cursor + 1], ":") {
+                    expectsParent = true; cursor += 2; continue
+                }
                 if WhereJudge.sameName(word, "<") { genericDepth += 1 }
-                if WhereJudge.sameName(word, ">") { genericDepth -= 1 }
-                if genericDepth == 0 && WhereJudge.sameName(word, ":") { inParents = true; expectsParent = true; cursor += 1; continue }
+                if WhereJudge.sameName(word, ">"), genericDepth > 0,
+                   cursor == 0 || !WhereJudge.sameName(tape.words[cursor - 1], "-") { genericDepth -= 1 }
+                if !inWhere && genericDepth == 0 && WhereJudge.sameName(word, ":") { inParents = true; expectsParent = true; cursor += 1; continue }
                 if inParents && genericDepth == 0 && WhereJudge.sameName(word, ",") { expectsParent = true; cursor += 1; continue }
                 if expectsParent && genericDepth == 0 {
                     var names = [word]
@@ -360,12 +369,14 @@ enum ContextNameBinding {
                     }
                     let found = direct(names, file: scope.file)
                     if found.count == 1, let target = found.first {
-                        inherited[scope.place, default: []].insert(target)
+                        parents.insert(target)
                     }
                     expectsParent = false
                 }
                 cursor += 1
             }
+            if scope.extensionBody && scope.whereStart != nil { regional[scope] = parents }
+            else { inherited[scope.place, default: []].formUnion(parents) }
         }
         var ancestors: [Place: Set<Place>] = [:]
         func lineage(_ place: Place, seen: Set<Place> = []) -> Set<Place> {
@@ -376,6 +387,14 @@ enum ContextNameBinding {
             return result
         }
         for place in inherited.keys { ancestors[place] = lineage(place) }
+        func visibleParents(_ scope: Scope) -> Set<Place> {
+            var parents = ancestors[scope.place] ?? []
+            for place in regional[scope] ?? [] {
+                parents.insert(place)
+                parents.formUnion(ancestors[place] ?? [])
+            }
+            return parents
+        }
         let intrinsic = ScalarName("intrinsic")
         let intrinsicRoots = Dictionary(grouping: declarations.filter {
             $0.kind == intrinsic && $0.place.components.count == 2
@@ -410,7 +429,7 @@ enum ContextNameBinding {
                     if let row = byPlace[candidate], row.kind == ScalarName("parameter")
                         || memberScopes.contains(where: { $0.place == scope.place }) { candidates.insert(candidate) }
                 }
-                for parent in memberScopes.flatMap({ Array(ancestors[$0.place] ?? []) }) {
+                for parent in memberScopes.flatMap({ Array(visibleParents($0)) }) {
                     let candidate = Place(components: parent.components + [name])
                     if let row = byPlace[candidate], row.kind != ScalarName("parameter") { candidates.insert(candidate) }
                 }
@@ -461,7 +480,9 @@ enum ContextNameBinding {
                     if byPlace[member]?.kind == ScalarName("parameter") {
                         try WhereJudge.fail("\(files[file].context.source):\(tape.lines[i]): '\(spelling).\(tape.words[end + 2])' names a generic parameter, not a member type")
                     }
-                    let inheritedMembers = (ancestors[target] ?? []).map {
+                    var parentPlaces = ancestors[target] ?? []
+                    for scope in memberScopes where scope.place == target { parentPlaces.formUnion(visibleParents(scope)) }
+                    let inheritedMembers = parentPlaces.map {
                         Place(parts: $0.parts + [tape.words[end + 2]])
                     }.filter { byPlace[$0] != nil }
                     let members: Set<Place> = byPlace[member] != nil ? [member] : Set(inheritedMembers)

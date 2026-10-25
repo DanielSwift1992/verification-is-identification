@@ -75,7 +75,7 @@ final class WhereFailureTests: XCTestCase {
             _ = try WhereJudge.judge([bad])
             XCTFail("duplicate parameters must return an unsupported failure")
         } catch WhereJudge.Failure.unsupported(let messages) {
-            XCTAssertEqual(messages, ["cannot bind conformer 'Duplicate': duplicate generic parameters"])
+            XCTAssertEqual(messages, ["\(bad):2: duplicate declaration 'Unspecified.Duplicate.T' in the same owner; first \(bad):2"])
         }
         let good = try write(equality("A"), name: "good.swift")
         let result = try WhereJudge.judge([good])

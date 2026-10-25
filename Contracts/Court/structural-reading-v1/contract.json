@@ -1,0 +1,224 @@
+{
+  "schema": "vi.court.structural-reading/1",
+  "scope": "projection",
+  "cases": [
+    {
+      "id": "O1",
+      "source": "enum Helper {\n#if compiler(>=99)\n  }  extension LampOff: Counting {} enum Tail {\n#endif\n}\n",
+      "sha256": "d86185f9e9c0b18741bef0e27e120a4963f714d24f39f2c00ddbc95ec028b992",
+      "outcome": "unsupported",
+      "directive": "if",
+      "line": 2,
+      "byte": 14
+    },
+    {
+      "id": "balanced-members",
+      "source": "enum Helper {\n#if FLAG\n typealias Value = Never\n#endif\n}\n",
+      "sha256": "4d7c4604274ed075e2c80a8b210250e938ff2701633f047492c878f81c1d8118",
+      "outcome": "unsupported",
+      "directive": "if",
+      "line": 2,
+      "byte": 14
+    },
+    {
+      "id": "nested-function",
+      "source": "enum Helper { static func f() {\n#if FLAG\n print(1)\n#endif\n} }\n",
+      "sha256": "e8adf83dae1b583d945271d7feb34efb454440529511a579e7d830527465e7e2",
+      "outcome": "unsupported",
+      "directive": "if",
+      "line": 2,
+      "byte": 32
+    },
+    {
+      "id": "struct-body",
+      "source": "struct Helper {\n#if FLAG\n#endif\n}\n",
+      "sha256": "fd969aadccf1319646e8fe7e0dff68f78ae6c743b30789acc54aaa95f5989d9c",
+      "outcome": "unsupported",
+      "directive": "if",
+      "line": 2,
+      "byte": 16
+    },
+    {
+      "id": "protocol-body",
+      "source": "protocol Helper {\n#if FLAG\n#endif\n}\n",
+      "sha256": "650a5cf1eb2ecf1cb74e503412fbfc3b5bdfffe55c37b95a687ab1f628fd8ccf",
+      "outcome": "unsupported",
+      "directive": "if",
+      "line": 2,
+      "byte": 18
+    },
+    {
+      "id": "extension-body",
+      "source": "extension Helper {\n#if FLAG\n#endif\n}\n",
+      "sha256": "fb6c734689a4f8f9e8b9cc38fcaf4ef3a155691f760ebfa5769795ae2e0b3397",
+      "outcome": "unsupported",
+      "directive": "if",
+      "line": 2,
+      "byte": 19
+    },
+    {
+      "id": "class-body",
+      "source": "class Helper {\n#if FLAG\n#endif\n}\n",
+      "sha256": "c2d00a25c02ea97dba22e7c13d352a0348924359f766b7e0c3470b0d82efa0bd",
+      "outcome": "unsupported",
+      "directive": "if",
+      "line": 2,
+      "byte": 15
+    },
+    {
+      "id": "function-body",
+      "source": "func f() {\n#if FLAG\n#endif\n}\n",
+      "sha256": "0463a8af1b16d45245bfc4a864593571e9557bd7c95712c63f6bd590f8ac6578",
+      "outcome": "unsupported",
+      "directive": "if",
+      "line": 2,
+      "byte": 11
+    },
+    {
+      "id": "closure-body",
+      "source": "let f = {\n#if FLAG\n#endif\n}\n",
+      "sha256": "03ba9eece8fdba3b02af688f277240920de6ac9579656262280d2176b1d4c228",
+      "outcome": "unsupported",
+      "directive": "if",
+      "line": 2,
+      "byte": 10
+    },
+    {
+      "id": "unclosed-body",
+      "source": "enum Helper {\n#if FLAG\n",
+      "sha256": "cc65980c5923a3efc5057ceca791c207ca0f847158642167235fa0dff259bd5e",
+      "outcome": "unsupported",
+      "directive": "if",
+      "line": 2,
+      "byte": 14
+    },
+    {
+      "id": "CRLF-address",
+      "source": "// Ω\r\nenum Helper {\r\n#if FLAG\r\n#endif\r\n}\r\n",
+      "sha256": "e691a19a07655eede7f0b3e2caaddba7e3a71d4ef8cad56f3394d74bbe55328c",
+      "outcome": "unsupported",
+      "directive": "if",
+      "line": 3,
+      "byte": 22
+    },
+    {
+      "id": "orphan-elseif",
+      "source": "enum Helper {\n#elseif\n}\n",
+      "sha256": "91d223e76f1e9f4d01b31ef1aea1e53b045532b07f7a88f1da15723102bb78bb",
+      "outcome": "unsupported",
+      "directive": "elseif",
+      "line": 2,
+      "byte": 14
+    },
+    {
+      "id": "orphan-else",
+      "source": "enum Helper {\n#else\n}\n",
+      "sha256": "3aec365456e4ea238f1897594e73e19b6d39f2766279c9abda66bf0a2487e9f1",
+      "outcome": "unsupported",
+      "directive": "else",
+      "line": 2,
+      "byte": 14
+    },
+    {
+      "id": "orphan-endif",
+      "source": "enum Helper {\n#endif\n}\n",
+      "sha256": "efe4099704d80b325c2b548c67d9bf982c8adc7a0dcb811ef0368d0b86908c46",
+      "outcome": "unsupported",
+      "directive": "endif",
+      "line": 2,
+      "byte": 14
+    },
+    {
+      "id": "interpolation-code",
+      "source": "enum Helper { static var text: String { \"\"\"\n\\({\n#if FLAG\n#endif\n}())\n\"\"\" } }\n",
+      "sha256": "00ea6fa03aa47a2ec48147f9744d8844442c4554212dbe63f4727fc1e7d2b04b",
+      "outcome": "unsupported",
+      "directive": "if",
+      "line": 3,
+      "byte": 48
+    },
+    {
+      "id": "line-comment",
+      "source": "enum Helper {\n// #if FLAG } extension LampOff: Counting {}\n}\n",
+      "sha256": "d4100f3c07c095b7a8a6a512e310d94f6d86080805c19bd8201aa27a4f5e543f",
+      "outcome": "read",
+      "excluded": 0
+    },
+    {
+      "id": "block-comment",
+      "source": "enum Helper { /* #if FLAG } /* #else */ #endif */ }\n",
+      "sha256": "2739ae7e929b19ef701a3a09294c6621d8e16e03869e60502a40dc0dbe1e8bdc",
+      "outcome": "read",
+      "excluded": 0
+    },
+    {
+      "id": "literal",
+      "source": "enum Helper { static var text: String { \"#if FLAG } extension LampOff: Counting {}\" } }\n",
+      "sha256": "0a64af2b879a68e1e45aa46e37473554ee896d7a354a6c3c85a8c37cf2c5921b",
+      "outcome": "read",
+      "excluded": 0
+    },
+    {
+      "id": "multiline-literal",
+      "source": "enum Helper { static var text: String { \"\"\"\n#if FLAG\n} extension LampOff: Counting {}\n#endif\n\"\"\" } }\n",
+      "sha256": "19bcb3c6b27156a8a2f7f64406f20be5b2ce834009514bc0dfbf239c50241190",
+      "outcome": "read",
+      "excluded": 0
+    },
+    {
+      "id": "balanced-body",
+      "source": "enum Helper { static func f() { if true { print(1) } } }\n",
+      "sha256": "f3f2120afb98ea1bc75c595f37d38db87826cf09cbbc7a75827f5bc20c4a37e1",
+      "outcome": "read",
+      "excluded": 0
+    },
+    {
+      "id": "builtin-line",
+      "source": "enum Helper { static var line: Int { #line } }\n",
+      "sha256": "85d32aeedc061c342c451cfc42319421fea9130689a96bed822b5c7f9a69c842",
+      "outcome": "read",
+      "excluded": 0
+    },
+    {
+      "id": "builtin-available",
+      "source": "enum Helper { static func f() { if #available(macOS 14, *) {} } }\n",
+      "sha256": "df6c535f30fb12eade9d3b7af00774a74e1c1e5c2e88da5807279d0edb7ae115",
+      "outcome": "read",
+      "excluded": 0
+    },
+    {
+      "id": "top-level-conditional",
+      "source": "#if FLAG\nenum Conditional {}\n#endif\nenum Helper {}\n",
+      "sha256": "e8f994a590c7a2ca64198a93f6905b6fcfdad070036fc758e0c20eae05645db3",
+      "outcome": "read",
+      "excluded": 1
+    },
+    {
+      "id": "top-level-nested-conditional",
+      "source": "#if FLAG\n#if INNER\nenum Conditional {}\n#endif\n#endif\nenum Helper {}\n",
+      "sha256": "ed0eb18f6d800d4d848f667828eb5c3fd7cf56b4f7375573b58895ad9f157a65",
+      "outcome": "read",
+      "excluded": 1
+    }
+  ],
+  "files": {
+    "lib.swift": "d11da10e3edf71c452b8e7fb04d9b9d30e9434faf01ffa2e127fedc0b23c691c",
+    "h3f.swift": "d86185f9e9c0b18741bef0e27e120a4963f714d24f39f2c00ddbc95ec028b992",
+    "queries.swift": "be8c22afd851558524c1077642d80f0b58f8250c77e90716cc6d799bc0038fb5"
+  },
+  "commands": [
+    [
+      "apply",
+      "Tick<Witness>"
+    ],
+    [
+      "coverage",
+      "Covered"
+    ],
+    [
+      "continue",
+      "--relations",
+      "Identity"
+    ]
+  ]
+}

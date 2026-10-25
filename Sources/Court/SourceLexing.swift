@@ -39,6 +39,9 @@ extension WhereJudge {
         var lines: [Int] = []
         var literals: [Int: Range<Int>] = [:]
         var interpolated: Set<Int> = []
+        // Code directives are attached to their tape token. In interpolation
+        // that is the enclosing literal token; its contents are not rescanned.
+        var directives: [Int: [WordOccurrence]] = [:]
     }
     struct LexicalFailure: Error, CustomStringConvertible {
         let line: Int
@@ -414,6 +417,8 @@ extension WhereJudge {
                         if !directives.contains(spelled) {
                             try refuse("the macro '#\(spelled)' is not among the forms this court reads", at: index)
                         }
+                        tape.directives[tape.words.count, default: []].append(
+                            WordOccurrence(spelling: spelled, line: lines[index], byte: offsets[index]))
                         keep(1)
                         if top { emit("#", at, index) }
                     }

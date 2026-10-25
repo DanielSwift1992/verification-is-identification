@@ -47,7 +47,7 @@ class VerdictReceiptControls(unittest.TestCase):
 
     def test_declared_target_closure_and_actual_module_inputs_bind_the_key(self):
         with tempfile.TemporaryDirectory(prefix='vi-verdict-key-') as directory:
-            outer=Path(directory); root=outer/'package'; root.mkdir()
+            outer=Path(directory).resolve(); root=outer/'package'; root.mkdir()
             sdk=outer/'compiler sdk';sdk.mkdir()
             compiler=outer/'compiler';compiler.mkdir()
             for name in ('swiftc','swift-frontend','swift-frontend.exe'):(compiler/name).write_bytes(name.encode())
@@ -104,7 +104,7 @@ class VerdictReceiptControls(unittest.TestCase):
 
     def test_native_positive_and_refusal_record_an_omitted_actual_input(self):
         with tempfile.TemporaryDirectory(prefix='vi-verdict-actual-') as directory:
-            root=Path(directory); audit=root/'audit';audit.mkdir()
+            root=Path(directory).resolve(); audit=root/'audit';audit.mkdir()
             first=root/'First.swift';first.write_text('struct Carried {}\nstruct Other {}\nprotocol HasValue { associatedtype Value }\nstruct Carrier: HasValue { typealias Value = Carried }\nstruct RequiresOther<T: HasValue> where T.Value == Other {}\n')
             second=root/'Second.swift'
             second.write_text('func use(_ value: Carried) -> Int { 1 }\n#if BROKEN\ntypealias InvalidRequirement = RequiresOther<Carrier>\n#endif\n')

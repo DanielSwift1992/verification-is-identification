@@ -454,17 +454,17 @@ public protocol LegiblePaintPair: ReadablePaintPair {} // law:allow: named contr
 /// Names the palette channels shared by the drawing readers.
 public protocol DrawingPalette: DrawingStyle {
     associatedtype InkOnPaper: LegiblePaintPair
-    where InkOnPaper.Foreground == Ink, InkOnPaper.Background == Paper
+    where InkOnPaper.Foreground == Self.Ink, InkOnPaper.Background == Self.Paper
     associatedtype MutedOnPaper: ReadablePaintPair
-    where MutedOnPaper.Foreground == Muted, MutedOnPaper.Background == Paper
+    where MutedOnPaper.Foreground == Self.Muted, MutedOnPaper.Background == Self.Paper
     associatedtype OkOnPaper: LegiblePaintPair
-    where OkOnPaper.Foreground == Ok, OkOnPaper.Background == Paper
+    where OkOnPaper.Foreground == Self.Ok, OkOnPaper.Background == Self.Paper
     associatedtype BadOnPaper: LegiblePaintPair
-    where BadOnPaper.Foreground == Bad, BadOnPaper.Background == Paper
+    where BadOnPaper.Foreground == Self.Bad, BadOnPaper.Background == Self.Paper
     associatedtype KnownNameOnPaper: LegiblePaintPair
-    where KnownNameOnPaper.Foreground == KnownName, KnownNameOnPaper.Background == Paper
+    where KnownNameOnPaper.Foreground == Self.KnownName, KnownNameOnPaper.Background == Self.Paper
     associatedtype LocalTypeOnPaper: LegiblePaintPair
-    where LocalTypeOnPaper.Foreground == LocalType, LocalTypeOnPaper.Background == Paper
+    where LocalTypeOnPaper.Foreground == Self.LocalType, LocalTypeOnPaper.Background == Self.Paper
 }
 
 /// Requires every named style field before a world can supply a binding.

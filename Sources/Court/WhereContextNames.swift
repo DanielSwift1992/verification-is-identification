@@ -271,7 +271,8 @@ enum WhereContextNames {
                 }
                 let position = clean.utf8.index(clean.utf8.startIndex, offsetBy: start).utf16Offset(in: clean)
                 if version == 2, file.context.role == "borrowed",
-                   let alias = aliasScopes.first(where: { NSLocationInRange(position, $0.body) }) {
+                   let alias = aliasScopes.first(
+                    where: { NSLocationInRange(position, $0.body) }) {
                     let symbol = symbols[key(alias.fields[0])]?[local] ?? alias.fields[0]
                     unread[symbol] = at + " (unapplied generic alias: bound application context)"
                 } else {

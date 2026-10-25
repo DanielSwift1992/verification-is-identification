@@ -28,9 +28,7 @@ enum WhereContextNames {
 
     static func resolve(_ files: [CourtNotation.File], selected: String,
                         version: Int) throws -> Resolution {
-        let nameBindings = version == 2 ? try ContextNameBinding.read(files, selected: selected) : nil
-        if let proof = nameBindings { try proof.replay(proof.certificate) }
-        var origins: [Key: [Origin]] = [:], exports: [Key: Set<Key>] = [:]
+        var origins: [Key: [Origin]] = [:]
         let modules = Set(files.map { key($0.context.module) })
         for (index, file) in files.enumerated() {
             let module = key(file.context.module)
@@ -39,33 +37,13 @@ enum WhereContextNames {
                     module: module, line: file.world.declared[name]?.first ?? 1))
             }
         }
-        for found in origins.values {
-            var seen: [Key: Origin] = [:]
-            for origin in found.sorted(by: { (files[$0.file].context.source, $0.line) < (files[$1.file].context.source, $1.line) }) {
-                if let previous = seen[origin.module] {
-                    try WhereJudge.fail("\(files[origin.file].context.source):\(origin.line): declaration '\(origin.name)' conflicts with '\(files[previous.file].context.source):\(previous.line)' in module '\(files[origin.file].context.module)'")
-                }
-                seen[origin.module] = origin
-            }
-        }
-        func visible(_ file: CourtNotation.File) -> Set<Key> {
-            var result = Set(file.context.imports.map(key))
-            result.insert(key(file.context.module))
-            var pending = Array(result)
-            while let next = pending.popLast() {
-                for imported in exports[next] ?? []
-                where result.insert(imported).inserted {
-                    pending.append(imported)
-                }
-            }
-            return result
-        }
         let builders = try files.reduce(into: NameSet()) {
             $0.formUnion(try WhereJudge.declaredBuilders($1.world.clean))
         }
-        let tapes = try files.map { file -> StructuralSource.Lexed in
-            let scanned = try WhereJudge.lexicalReading(file.world.clean, scope: .notation,
-                lent: builders, carrying: true).tape
+        let readings = try WhereJudge.lexicalReadings(files.map { ($0.context.source, $0.world.clean) },
+            scope: .notation, lent: builders, carrying: true)
+        let tapes = zip(files, readings).map { file, reading -> StructuralSource.Lexed in
+            let scanned = reading.tape
             let lines = file.world.clean.components(separatedBy: "\n")
             let active = Set(lines.indices.filter { !lines[$0].trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }.map { $0 + 1 })
             let indices = scanned.words.indices.filter {
@@ -78,14 +56,21 @@ enum WhereContextNames {
             tape.lines = indices.map { scanned.lines[$0] }
             return tape
         }
-        // An export edge must be written on the shared, active lexical tape.
-        // An imports row alone supplies no re-export and comments supply none.
-        for (file, tape) in zip(files, tapes)
-        where tape.words.count >= 4 {
-            for i in 0..<(tape.words.count - 3)
-            where WhereJudge.sameNames(Array(tape.words[i..<(i + 3)]), ["@", "_exported", "import"]) {
-                exports[key(file.context.module), default: []].insert(key(tape.words[i + 3]))
+        let imports = ContextImports(files, words: tapes.map(\.words))
+        let nameBindings = version == 2
+            ? try ContextNameBinding.read(files, selected: selected, reading: readings, imports: imports) : nil
+        if let proof = nameBindings { try proof.replay(proof.certificate) }
+        for found in origins.values {
+            var seen: [Key: Origin] = [:]
+            for origin in found.sorted(by: { (files[$0.file].context.source, $0.line) < (files[$1.file].context.source, $1.line) }) {
+                if let previous = seen[origin.module] {
+                    try WhereJudge.fail("\(files[origin.file].context.source):\(origin.line): declaration '\(origin.name)' conflicts with '\(files[previous.file].context.source):\(previous.line)' in module '\(files[origin.file].context.module)'")
+                }
+                seen[origin.module] = origin
             }
+        }
+        func visible(_ file: CourtNotation.File) -> Set<Key> {
+            Set(imports.visible(file.context).map(key))
         }
         var qualified: Set<Key> = []
         for tape in tapes

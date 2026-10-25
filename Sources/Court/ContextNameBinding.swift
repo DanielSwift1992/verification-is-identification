@@ -108,8 +108,9 @@ enum ContextNameBinding {
 
     private static func fileEnd(_ tape: WhereJudge.Lexed) -> Int { tape.ends.last ?? 0 }
 
-    static func read(_ files: [CourtNotation.File], selected: String) throws -> Index {
-        let readings = try WhereJudge.lexicalReadings(files.map { ($0.context.source, $0.world.clean) },
+    static func read(_ files: [CourtNotation.File], selected: String,
+                     reading supplied: [WhereJudge.LexicalReading]? = nil, imports given: ContextImports? = nil) throws -> Index {
+        let readings = try supplied ?? WhereJudge.lexicalReadings(files.map { ($0.context.source, $0.world.clean) },
             scope: .notation, carrying: true)
         let wordOffsets = readings.map { Set($0.words.map(\.byte)) }
         let tapes = readings.map { reading -> WhereJudge.Lexed in
@@ -237,26 +238,12 @@ enum ContextNameBinding {
                 }
             }
         }
-        var exports = NameMap<NameSet>()
-        for (file, tape) in tapes.enumerated() where tape.words.count >= 4 {
-            for i in 0..<(tape.words.count - 3)
-            where WhereJudge.sameNames(Array(tape.words[i..<(i + 3)]), ["@", "_exported", "import"]) {
-                exports[files[file].context.module, default: []].insert(tape.words[i + 3])
-            }
-        }
-        func visible(_ file: Int) -> NameSet {
-            var result = NameSet(files[file].context.imports + [files[file].context.module])
-            var pending = Array(result)
-            while let module = pending.popLast() {
-                for next in exports[module] ?? [] where result.insert(next).inserted { pending.append(next) }
-            }
-            return result
-        }
+        let imports = given ?? ContextImports(files, words: tapes.map(\.words))
         let byName = Dictionary(grouping: declarations, by: { ScalarName($0.place.parts.last!) })
         var references: [Reference] = [], ambiguities: [String] = []
         let modules = NameSet(files.map(\.context.module))
         for (file, tape) in tapes.enumerated() {
-            let accessible = visible(file)
+            let accessible = imports.visible(files[file].context)
             let orderedScopes = scopes.filter { $0.file == file }.sorted { $0.start < $1.start }
             var active: [Scope] = [], scopeCursor = 0
             for i in tape.words.indices {

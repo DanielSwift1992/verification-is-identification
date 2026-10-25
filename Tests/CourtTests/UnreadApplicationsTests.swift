@@ -28,7 +28,7 @@ final class UnreadApplicationsTests: XCTestCase {
         let contract = try JSONDecoder().decode(Contract.self,
             from: Data(contentsOf: root.appendingPathComponent("Contracts/Court/unread-v1/contract.json")))
         XCTAssertEqual(contract.schema, "vi.where.unread/1")
-        XCTAssertEqual(contract.cases.count, 44)
+        XCTAssertEqual(contract.cases.count, 46)
         let declared = try XCTUnwrap(ProcessInfo.processInfo.environment["VI_CHECK_BUILD_BIN"],
             "VI_CHECK_BUILD_BIN: declare the built Tools directory")
         #if os(Windows)

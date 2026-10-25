@@ -56,6 +56,20 @@ extension WhereJudge {
         var pending: [Unicode.Scalar] = []
         var start = 0
         var offset = 0
+        // The notation's existing character classes belong to its regex
+        // backend, not to the Swift standard library's Unicode version. Query
+        // that one definition on a scalar, never on a name or the input text.
+        // ASCII is tabulated once; other scalar results are cached per scan.
+        private static let wordClass = try! NSRegularExpression(pattern: #"^\w$"#)
+        private static let spaceClass = try! NSRegularExpression(pattern: #"^\s$"#)
+        private static func classify(_ scalar: Unicode.Scalar) -> UInt8 {
+            let text = String(scalar)
+            let range = NSRange(location: 0, length: scalar.value > 0xFFFF ? 2 : 1)
+            return (wordClass.firstMatch(in: text, range: range) != nil ? 1 : 0)
+                | (spaceClass.firstMatch(in: text, range: range) != nil ? 2 : 0)
+        }
+        private static let ascii = (UInt32(0)..<128).map { classify(Unicode.Scalar($0)!) }
+        private var classes: [UInt32: UInt8] = [:]
 
         mutating func flush() {
             guard !pending.isEmpty else { return }
@@ -64,21 +78,21 @@ extension WhereJudge {
             pending.removeAll(keepingCapacity: true)
         }
         mutating func append(_ scalar: Unicode.Scalar) {
-            // The existing notation's word class: Alphabetic, Mark, Nd, Pc,
-            // Join_Control. This is a projection class, not a new admission
-            // rule: the common lexical judgement has already classified code.
-            let category = scalar.properties.generalCategory
-            let word = scalar.properties.isAlphabetic || category == .nonspacingMark
-                || category == .spacingMark || category == .enclosingMark
-                || category == .decimalNumber || category == .connectorPunctuation
-                || scalar.value == 0x200C || scalar.value == 0x200D
+            let kind: UInt8
+            if scalar.value < 128 { kind = Self.ascii[Int(scalar.value)] }
+            else if let cached = classes[scalar.value] { kind = cached }
+            else {
+                kind = Self.classify(scalar)
+                classes[scalar.value] = kind
+            }
+            let word = kind & 1 != 0
             let width = scalar.value > 0xFFFF ? 2 : 1
             if word {
                 if pending.isEmpty { start = offset }
                 pending.append(scalar)
             } else {
                 flush()
-                if !scalar.properties.isWhitespace {
+                if kind & 2 == 0 {
                     tokens.append(NotationToken(spelling: ScalarName(String(scalar)),
                         range: NSRange(location: offset, length: width), word: false))
                 }

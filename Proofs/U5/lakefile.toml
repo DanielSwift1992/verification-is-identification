@@ -1,0 +1,6 @@
+name = "u5"
+version = "0.1.0"
+defaultTargets = ["U5"]
+
+[[lean_lib]]
+name = "U5"

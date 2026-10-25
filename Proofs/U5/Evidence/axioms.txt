@@ -1,0 +1,14 @@
+'U5.closure_minimal' does not depend on any axioms
+'U5.construction_sound' depends on axioms: [propext, Quot.sound]
+'U5.construction_full_input' depends on axioms: [propext]
+'U5.obstruction_witnesses' depends on axioms: [propext, Classical.choice, Quot.sound]
+'U5.obstruction_no_decoder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'U5.obstruction_not_universal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'U5.conclusions_disjoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'U5.check_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'U5.compatible_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'U5.accepted_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'U5.Codec.decode_encode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'U5.Codec.decode_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'U5.Codec.encode_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'U5.Codec.decoding_unique' does not depend on any axioms

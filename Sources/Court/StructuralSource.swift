@@ -379,7 +379,8 @@ struct StructuralSource {
             // literals, including code nested in an interpolation. Refuse
             // before balancing any branch-dependent brace, not after a
             // projected declaration has escaped from an inactive branch.
-            for directive in lexed.directives[token] ?? [] where conditionals.contains(directive.spelling) {
+            for directive in lexed.directives[token] ?? [] {
+                guard conditionals.contains(directive.spelling) else { continue }
                 throw AddressedFailure("\(origin):\(directive.line): conditional directive '#\(directive.spelling)' inside a body is outside structural projection scope (byte \(directive.byte))")
             }
         }

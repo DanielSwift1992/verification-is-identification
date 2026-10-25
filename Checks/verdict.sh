@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Check the generic implications, then reject one independent broken premise
 # per compiler run. No diagnostic from a different fixture counts as a refusal.
-# VERDICT_JOBS bounds independent fixture workers (default 3; 1 is serial).
+# VERDICT_JOBS bounds independent fixture workers (default 6; 1 is serial).
 set -euo pipefail
 cd "$(dirname "$0")/.."
 verdict_scope="${1:-all}"
@@ -9,41 +9,12 @@ case "$verdict_scope" in
     all|core|halt|sourcecontinuation|residuecontinuation|recordreadings|admission|localphase|localpolicy|contact|whole|ice|seeing|markers|uniqueness|distance|return|scopedlaw|knowledgeclosure|acquisition|interactions|knowledge|observer|resident|construction|boundary|common|evidence|evolution|closure|probe|routing|reuse|probepair|lawtransport|demand|frame|discovery) ;;
     *) echo "usage: bash Checks/verdict.sh [all|core|halt|sourcecontinuation|residuecontinuation|recordreadings|admission|localphase|localpolicy|contact|whole|ice|seeing|markers|uniqueness|distance|return|scopedlaw|knowledgeclosure|acquisition|interactions|knowledge|observer|resident|construction|boundary|common|evidence|evolution|closure|probe|routing|reuse|probepair|lawtransport|demand|frame|discovery]" >&2; exit 2 ;;
 esac
-# ── A RECEIPT FOR INPUTS THAT DID NOT CHANGE, ON THIS MACHINE ONLY. Each refusal
-# is its own compiler run, even when fixture workers overlap. A
-# change that touches no file the law compiles (a page, a README, a note)
-# would re-prove the same answer. The answer is fixed by what it compiles: the
-# Swift under Sources and Plugins (Examples builds through the LawCheck plugin,
-# which builds the tools), every file under Checks, the package manifest and
-# its resolution, and the compiler. Those bytes are hashed into a key; a full
-# green run of every scope writes a receipt under that key in .build, and a
-# later run with the same key says so and does not run again. Only check.sh
-# asks for this (VERDICT_RECEIPT=1): a direct run, as the profile tests make
-# with stand-in compilers, reads and writes none. CI keeps no receipt and runs
-# in full, and VERDICT_FULL=1 runs in full here. The key is
-# taken again before the receipt is written, and a run whose inputs moved
-# while it ran writes none. What the law reads outside the compiler (the rg
-# on PATH, the temporary directory) is not in the key: the receipt speaks for
-# what was compiled.
-if command -v sha256sum >/dev/null 2>&1; then verdict_sum="sha256sum"; else verdict_sum="shasum -a 256"; fi
-verdict_key() {
-    {
-        find Sources Plugins -type f -name '*.swift' | LC_ALL=C sort
-        find Checks -type f ! -path '*/__pycache__/*' ! -name '*.pyc' | LC_ALL=C sort
-        printf '%s\n' Package.swift Package.resolved
-    } | while IFS= read -r f; do
-        [ -f "$f" ] && $verdict_sum "$f"
-    done
-    swiftc --version 2>&1
-}
-verdict_receipt=""
-if [ "$verdict_scope" = all ] && [ -n "${VERDICT_RECEIPT:-}" ] && [ -z "${CI:-}" ]; then
-    verdict_receipt=".build/receipts/verdict-$(verdict_key | $verdict_sum | cut -c1-64)"
-    if [ -z "${VERDICT_FULL:-}" ] && [ -f "$verdict_receipt" ]; then
-        echo "verdict: every file this law compiles is unchanged since the full green run in $verdict_receipt ($(head -1 "$verdict_receipt")); not run again here. CI runs it in full, and VERDICT_FULL=1 runs it here."
-        exit 0
-    fi
-fi
+# The local receipt binds the declared target closure and the compiler's actual
+# dependency records, not unrelated source trees. Checks/verdict-inputs.json
+# owns the roots, fixtures and law inputs. SwiftPM supplies the target graph.
+# Direct scopes and CI neither read nor write receipts; VERDICT_FULL rechecks.
+# Input/compilation transport remains physical collection debt T0106.
+unset VERDICT_AUDIT_DIR
 verdict_tmp="$(mktemp -d "${TMPDIR:-/tmp}/vi-verdict.XXXXXX")"
 trap 'rm -rf "$verdict_tmp"' EXIT
 
@@ -103,6 +74,17 @@ else
         swift build --target GrammarLexicon
     fi
     verdict_bin="$(swift build --show-bin-path)"
+fi
+
+verdict_receipt=""
+if [ "$verdict_scope" = all ] && [ -n "${VERDICT_RECEIPT:-}" ] && [ -z "${CI:-}" ]; then
+    verdict_key=$(python3 Checks/verdict_inputs.py snapshot --modules "$verdict_bin/Modules" --output "$verdict_tmp/inputs.json")
+    verdict_receipt=".build/receipts/verdict-v2-$verdict_key.json"
+    if [ -z "${VERDICT_FULL:-}" ] && python3 Checks/verdict_inputs.py hit --snapshot "$verdict_tmp/inputs.json" --receipt "$verdict_receipt"; then
+        exit 0
+    fi
+    mkdir "$verdict_tmp/audit"
+    export VERDICT_AUDIT_DIR="$verdict_tmp/audit"
 fi
 
 typecheck() {
@@ -286,147 +268,18 @@ typecheck() {
             -module-cache-path "$verdict_tmp/cache" Checks/Interactions.swift "$@"
         return
     fi
-    verdict_positive_sources=(
-        Checks/Halt.swift
-        Checks/SourceContinuation.swift
-        Checks/ResidueContinuation.swift
-        Checks/RecordReadings.swift
-        Checks/Admission.swift
-        Checks/Verdict.swift
-        Checks/FiniteBoundary.swift
-        Checks/Coverage.swift
-        Checks/Transition.swift
-        Checks/ClosedInformation.swift
-        Checks/Discovery.swift
-        Checks/Cache.swift
-        Checks/Entropy.swift
-        Checks/Transcript.swift
-        Checks/Learning.swift
-        Checks/SelfPlay.swift
-        Checks/SelfInspection.swift
-        Checks/Sampling.swift
-        Checks/Stationarity.swift
-        Checks/Basis.swift
-        Checks/Context.swift
-        Checks/Transport.swift
-        Checks/Saturation.swift
-        Checks/Acquisition.swift
-        Checks/Continuation.swift
-        Checks/Interactions.swift
-        Checks/InteractionKnowledge.swift
-        Checks/InternalObserver.swift
-        Checks/ResidentExperiment.swift
-        Checks/Construction.swift
-        Checks/CommonBoundary.swift
-        Checks/CommonAcquisition.swift
-        Checks/AcquiredBoundary.swift
-        Checks/BoundaryEvolution.swift
-        Checks/BoundaryClosure.swift
-        Checks/MechanismProbe.swift
-        Checks/RoutingProbe.swift
-        Checks/RoutingReuse.swift
-        Checks/ResidentProbePair.swift
-        Checks/RoutingTransport.swift
-        Checks/RoutingDemand.swift
-        Checks/RoutingFrame.swift
-        Checks/KnowledgeClosure.swift
-        Checks/QuestionScopedLaw.swift
-        Checks/ContactCalibration.swift
-        Checks/ContactInquiry.swift
-        Checks/LocalContactPolicy.swift
-        Checks/LocalPhase.swift
-        Checks/LocalStar.swift
-        Checks/LocalStarObservation.swift
-        Checks/LocalContactLift.swift
-        Checks/LocalFourLeaf.swift
-        Checks/PhaseLawInquiry.swift
-        Checks/PhaseWordCatalogue.swift
-        Checks/FourLeafResident.swift
-        Checks/FourLeafPointProbe.swift
-        Checks/FourLeafAcquiredLaw.swift
-        Checks/FourLeafRecoveredUse.swift
-        Checks/FaithfulContactLift.swift
-        Checks/FourLeafControl.swift
-        Checks/FourReadingAcquisition.swift
-        Checks/FourLeafEcho.swift
-        Checks/AlternatingLine.swift
-        Checks/QuarterClockCalibration.swift
-        Checks/FourLeafRecordedReturn.swift
-        Checks/StarRecoveryFibers.swift
-        Checks/FourLeafProfileScope.swift
-        Checks/FourLeafValueQuestion.swift
-        Checks/FourLeafQuestionRefinement.swift
-        Checks/SevenQuestionPrefix.swift
-        Checks/PhaseLawKnownTransport.swift
-        Checks/JointPhaseQuestions.swift
-        Checks/PhaseAlignmentObstruction.swift
-        Checks/UnobservedPhaseBridge.swift
-        Checks/PhaseCyclingBridge.swift
-        Checks/PhaseClockPolicy.swift
-        Checks/PhaseProbeClockPolicy.swift
-        Checks/ReusablePhaseInterface.swift
-        Checks/PhaseInterfaceResidue.swift
-        Checks/PrimitivePhaseReturn.swift
-        Checks/PhaseBasisProfile.swift
-        Checks/PhaseBasisReduction.swift
-        Checks/PhaseFrameDrift.swift
-        Checks/JointReplyAcquisition.swift
-        Checks/JointReplyExecution.swift
-        Checks/OneReplyApplicability.swift
-        Checks/PartnerProbeApplicability.swift
-        Checks/PhaseProbeExcursion.swift
-        Checks/PairedProbeApplicability.swift
-        Checks/LocalProbeEcho.swift
-        Checks/EchoOrbit.swift
-        Checks/ReturnCoverage.swift
-        Checks/SeparationGraph.swift
-        Checks/AcquiredFrameAction.swift
-        Checks/ContactCycle.swift
-        Checks/JointContactRigidity.swift
-        Checks/ContactContrastSupport.swift
-        Checks/ContactProfile.swift
-        Checks/ProfileSupportHandover.swift
-        Checks/ProfileRelease.swift
-        Checks/BorrowedPhase.swift
-        Checks/ProfileRenewal.swift
-        Checks/SharedProfileRenewal.swift
-        Checks/CyclicProfileRenewal.swift
-        Checks/SharedFrameCoupling.swift
-        Checks/FrameInterference.swift
-        Checks/MarkedFrameRequest.swift
-        Checks/SharedChannelLaw.swift
-        Checks/RecombinationAutonomy.swift
-        Checks/JoinedContinuation.swift
-        Checks/RelativeAnswerCorrection.swift
-        Checks/OccurrenceChange.swift
-        Checks/OverlappingReadings.swift
-        Checks/CycleAdmission.swift
-        Checks/JointReactionBalance.swift
-        Checks/DirectedRepair.swift
-        Checks/RepairWithoutAnchor.swift
-        Checks/ClockClassMass.swift
-        Checks/BalancedContactRows.swift
-        Checks/SelfRecordUse.swift
-        Checks/TargetFrameTransport.swift
-        Checks/RelativeChannelAcquisition.swift
-        Checks/CoarseContactComparison.swift
-        Checks/UncalibratedComparison.swift
-        Checks/JointReadoutSymmetry.swift
-        Checks/TripleOrientationContact.swift
-        Checks/PhaseSelectiveContrast.swift
-        Checks/DetectorContrast.swift
-        Checks/FreshPartner.swift
-        Checks/ContactDiagram.swift
-        Checks/ContactBoundary.swift
-        Checks/RelationalReturn.swift
-        Checks/Distance.swift
-        Checks/IceIncidence.swift
-        Checks/IceCoverage.swift
-        Checks/Seeing.swift
-        Checks/ProjectionDefectCertificate.swift
-    )
-    swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules" \
-        -module-cache-path "$verdict_tmp/cache" "${verdict_positive_sources[@]}" "$@"
+    verdict_positive_sources=()
+    python3 Checks/verdict_inputs.py fixtures > "$verdict_tmp/positive-sources"
+    while IFS= read -r verdict_source; do
+        verdict_positive_sources+=("$verdict_source")
+    done < "$verdict_tmp/positive-sources"
+    verdict_positive_command=(swiftc -typecheck -whole-module-optimization -I "$verdict_bin/Modules"
+        -module-cache-path "$verdict_tmp/cache" "${verdict_positive_sources[@]}" "$@")
+    if [ -n "${VERDICT_AUDIT_DIR:-}" ]; then
+        python3 Checks/verdict_inputs.py compile --audit "$VERDICT_AUDIT_DIR" --snapshot "$verdict_tmp/inputs.json" --label global-positive -- "${verdict_positive_command[@]}"
+    else
+        "${verdict_positive_command[@]}"
+    fi
 }
 
 
@@ -1554,16 +1407,9 @@ do
     printf '%s:%s\n' "$verdict_flag" "$verdict_name" >> "$verdict_tmp/cases"
 done
 python3 Checks/verdict-cases.py --modules "$verdict_bin/Modules" \
-    --cache "$verdict_tmp/cache" --jobs "${VERDICT_JOBS:-3}" < "$verdict_tmp/cases"
+    --cache "$verdict_tmp/cache" --jobs "${VERDICT_JOBS:-6}" < "$verdict_tmp/cases"
 
-# every scope held: the receipt for these exact inputs, read by the next run,
-# and only if they are still the inputs the run began with
+# Only a complete green run with covered, unchanged inputs receives a receipt.
 if [ -n "$verdict_receipt" ]; then
-    if [ ".build/receipts/verdict-$(verdict_key | $verdict_sum | cut -c1-64)" = "$verdict_receipt" ]; then
-        mkdir -p "$(dirname "$verdict_receipt")"
-        { date -u '+%Y-%m-%dT%H:%M:%SZ'; git rev-parse HEAD 2>/dev/null || true; } > "$verdict_receipt"
-    else
-        echo "verdict: a file this law compiles changed while it ran; no receipt is written"
-    fi
+    python3 Checks/verdict_inputs.py seal --snapshot "$verdict_tmp/inputs.json" --audit "$VERDICT_AUDIT_DIR" --receipt "$verdict_receipt"
 fi
-

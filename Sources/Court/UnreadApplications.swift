@@ -13,8 +13,8 @@ extension WhereJudge {
         init(_ names: NameSet) {
             for name in names {
                 var at = 0
-                for part in name.split(separator: ".", omittingEmptySubsequences: false).reversed() {
-                    let key = ScalarName(String(part))
+                for part in name.unicodeScalars.split(separator: ".", omittingEmptySubsequences: false).reversed() {
+                    let key = ScalarName(String(String.UnicodeScalarView(part)))
                     if let next = nodes[at].next[key] { at = next }
                     else {
                         let next = nodes.count
@@ -66,7 +66,7 @@ extension WhereJudge {
             if let close, close + 2 < tape.count,
                tape[close + 1].spelling == ".", tape[close + 2].word,
                end(close + 1) == tape[close + 2].range.location,
-               tape[close + 2].spelling.text.hasPrefix("self"),
+               tape[close + 2].spelling.text.utf8.starts(with: "self".utf8),
                asciiSpace(end(close), tape[close + 1].range.location) {
                 multiline = file.lineAt[end(frame.token)] < file.lineAt[end(close)]
             }

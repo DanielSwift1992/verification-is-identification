@@ -28,7 +28,7 @@ final class UnreadApplicationsTests: XCTestCase {
         let contract = try JSONDecoder().decode(Contract.self,
             from: Data(contentsOf: root.appendingPathComponent("Contracts/Court/unread-v1/contract.json")))
         XCTAssertEqual(contract.schema, "vi.where.unread/1")
-        XCTAssertEqual(contract.cases.count, 46)
+        XCTAssertEqual(contract.cases.count, 48)
         let declared = try XCTUnwrap(ProcessInfo.processInfo.environment["VI_CHECK_BUILD_BIN"],
             "VI_CHECK_BUILD_BIN: declare the built Tools directory")
         #if os(Windows)
@@ -87,16 +87,17 @@ final class UnreadApplicationsTests: XCTestCase {
         #endif
         let interpolated = "\u{5C}(A.B.Use<Bad>.self)"
         func f(_ x: A . B.Use<Bad>, _ y: A.B . Use<Bad>) {}
+        func g(_ z: X.ा.Use<Bad>) {}
         """
         let world = try file(text)
         let result = WhereJudge.unreadApplications(world, spans: [],
-            heads: WhereJudge.UnreadHeads(["Use", "B.Use", "A.B.Use"]))
+            heads: WhereJudge.UnreadHeads(["Use", "B.Use", "A.B.Use", "X.ा.Use"]))
         let places = result.applications.map { "\(world.lineAt[$0.at]):\($0.name)" }.sorted()
-        XCTAssertEqual(places, ["6:A.B.Use", "6:B.Use", "6:Use", "7:B.Use", "7:Use", "7:Use"])
+        XCTAssertEqual(places, ["6:A.B.Use", "6:B.Use", "6:Use", "7:B.Use", "7:Use", "7:Use", "8:Use", "8:X.ा.Use"])
         XCTAssertEqual(result.tokens, world.notation.count)
         let all = WhereJudge.unreadApplications(world,
             spans: [NSRange(location: 0, length: world.clean.utf16.count)],
-            heads: WhereJudge.UnreadHeads(["Use", "B.Use", "A.B.Use"]))
+            heads: WhereJudge.UnreadHeads(["Use", "B.Use", "A.B.Use", "X.ा.Use"]))
         XCTAssertTrue(all.applications.isEmpty)
     }
     func testDiscoveryWorkDoesNotMultiplyNamesByInputOrNesting() throws {

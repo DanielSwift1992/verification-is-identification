@@ -26,8 +26,8 @@ extension ContinuationCourt {
         case refused(CoverCountermodel)
     }
     struct LawCoverCertificate: Codable {
-        var request: String
-        var constructor: String
+        var request: ScalarName
+        var constructor: ScalarName
         var source: ReadProof
         var equalities: RouteProof?
         var coverage: RouteProof

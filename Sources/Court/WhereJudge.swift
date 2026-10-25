@@ -878,7 +878,7 @@ enum WhereJudge {
         // this court does not follow an extension through an alias.
         let throughAlias = world.extensions
             .filter { world.aliases[$0.key] != nil }
-            .sorted(by: { $0.key < $1.key })
+            .sorted()
         if let first = throughAlias.first {
             try fail("cannot read '\(first.key)': it is a typealias, extended at \(spelledLines(first.value)), and this "
                 + "court does not follow an extension through an alias to its type")
@@ -1285,6 +1285,9 @@ enum WhereJudge {
                 FileHandle.standardError.write(Data("✗ THE WHERE: \(message)\n".utf8))
             }
             exit(2)
+        } catch let failure as StructuralSource.AddressedFailure {
+            FileHandle.standardError.write(Data("✗ THE WHERE: \(failure.description)\n".utf8))
+            exit(2)
         } catch {
             FileHandle.standardError.write(Data("✗ THE WHERE: internal error: \(error)\n".utf8))
             exit(2)
@@ -1382,7 +1385,7 @@ enum WhereJudge {
         for extra in extras { anyAlias.formUnion(extra.world.aliases.keys) }
         let worldThroughAlias = world.extensions
             .filter { anyAlias.contains($0.key) }
-            .sorted(by: { $0.key < $1.key })
+            .sorted()
         if let first = worldThroughAlias.first {
             try fail("cannot read '\(first.key)': it is a typealias, extended at \(spelledLines(first.value)), and this "
                 + "court does not follow an extension through an alias to its type")
@@ -1431,12 +1434,12 @@ enum WhereJudge {
             // extends the alias's type, whichever file declares it.
             let extendsWorld = lent.extensions
                 .filter { world.fileTypes.contains($0.key) || anyAlias.contains($0.key) }
-                .sorted(by: { $0.key < $1.key })
+                .sorted()
             if let first = extendsWorld.first {
                 try fail("cannot read '\(first.key)': '\(extra)' extends it at \(spelledLines(first.value)), and this court "
                     + "cannot tell that the extension is this world's type, or that its members reach this file")
             }
-            for (name, rule) in lent.aliases.sorted(by: { $0.key < $1.key }) {
+            for (name, rule) in lent.aliases.sorted() {
                 guard aliasOrigins[name] == nil else {
                     try fail("ambiguous definition of '\(name)' in '\(aliasOrigins[name]!)' and '\(extra)'")
                 }
@@ -1484,7 +1487,7 @@ enum WhereJudge {
         var grown = true
         while grown {
             grown = false
-            for (name, rule) in world.aliases.sorted(by: { $0.key < $1.key }) where !gatedNames.contains(name) {
+            for (name, rule) in world.aliases.sorted() where !gatedNames.contains(name) {
                 let spelled = NameSet(captures(#"\b(\w+)\b"#, rule.body).map { $0[0] })
                 if !spelled.isDisjoint(with: gatedNames) {
                     gatedNames.insert(name)
@@ -1493,7 +1496,7 @@ enum WhereJudge {
             }
         }
         for extra in extras {
-            for (name, rule) in extra.world.aliases.sorted(by: { $0.key < $1.key }) where rule.parameters.isEmpty {
+            for (name, rule) in extra.world.aliases.sorted() where rule.parameters.isEmpty {
                 if gatedNames.contains(name), !world.contextual {
                     try fail("cannot read '\(name)': '\(extra.path)' defines it as an application of a gated head, and "
                         + "this court judges certificates in the world it reads")

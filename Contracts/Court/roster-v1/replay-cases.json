@@ -28,7 +28,7 @@
       ],
       "outcome": "unsupported",
       "records": [],
-      "diagnostic_contains": "changed normal"
+      "diagnostic_contains": "changed axis projection"
     },
     {
       "id": "N-proof-nfd",

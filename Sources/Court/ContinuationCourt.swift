@@ -51,7 +51,7 @@ enum ContinuationCourt {
     /// Input expressions are reconstructed by replay. A definition step's
     /// body is obtained from the live source, not asserted by this certificate.
     indirect enum ReadProof: Codable {
-        case leaf(String)
+        case leaf(ScalarName)
         case pair(ReadProof, ReadProof)
         case projection(Side, ReadProof)
         case definition(E, [ReadProof], ReadProof)
@@ -88,8 +88,8 @@ enum ContinuationCourt {
         let question: Path
     }
     struct Certificate: Codable {
-        let request: String
-        let constructor: String
+        let request: ScalarName
+        let constructor: ScalarName
         var source: ReadProof
         var observation: ReadProof
         var question: ReadProof
@@ -154,6 +154,7 @@ enum ContinuationCourt {
             }
         }
 
+        func declaration(_ name: ScalarName) throws -> StructuralSource.Declaration { try declaration(name.text) }
         func declaration(_ name: String) throws -> StructuralSource.Declaration {
             guard let d = source.declarations[name], d.unsupported.isEmpty,
                 !source.conditionalSubjects.contains(name),
@@ -176,7 +177,7 @@ enum ContinuationCourt {
                     let term = try? R.parse(r.left), case let .application(name, args) = term,
                     args.isEmpty, d.parameters.containsName(name)
                 else { return nil }
-                return name
+                return name.text
             }
             return required.count == d.requirements.count && NameSet(required) == NameSet(d.parameters)
         }
@@ -226,7 +227,7 @@ enum ContinuationCourt {
                 }
                 return value
             case let .field(owner, axis):
-                guard let side = Side(name: axis) else {
+                guard let side = Side(name: axis.text) else {
                     throw Failure("guard uses an unsupported axis")
                 }
                 return try bound(owner, values).at([side])
@@ -311,7 +312,7 @@ enum ContinuationCourt {
                     }
                 case let .field(owner, axis):
                     if owner != root {
-                        guard let side = Side(name: axis) else {
+                        guard let side = Side(name: axis.text) else {
                             throw Failure("unknown projection \(axis)")
                         }
                         return try .projection(side, build(owner, depth + 1))
@@ -343,7 +344,7 @@ enum ContinuationCourt {
                     guard rigid.contains(name) else {
                         throw Failure("foreign leaf in read certificate")
                     }
-                    return (.application(name, []), .leaf(name))
+                    return (.application(name, []), .leaf(name.text))
                 case let .pair(l, r):
                     let a = try walk(l, depth + 1), b = try walk(r, depth + 1)
                     let input = E.application(constructor, [a.0, b.0])
@@ -458,8 +459,8 @@ enum ContinuationCourt {
         -> String
     {
         let checked = try verify(
-            request, certificate: certificate, source: source, constructor: certificate.constructor)
-        let c = try Context(request, source: source, constructor: certificate.constructor)
+            request, certificate: certificate, source: source, constructor: certificate.constructor.text)
+        let c = try Context(request, source: source, constructor: certificate.constructor.text)
         let generic = c.parameters.map { $0 + ": Structure" }.joined(separator: ", ")
         let applied = request + "<" + c.parameters.joined(separator: ", ") + ">"
         let prefix = request + "Continuation"
@@ -497,7 +498,7 @@ enum ContinuationCourt {
             // Reusing a type does not assert equality of two runtime payload values.
             \(extra)enum \(prefix)<M: \(bound)>: Pair\(clause) {
                 typealias Left = M
-                typealias Right = \(certificate.program.swift("M",constructor:certificate.constructor))
+                typealias Right = \(certificate.program.swift("M",constructor:certificate.constructor.text))
                 typealias Answer = Right
             }
 

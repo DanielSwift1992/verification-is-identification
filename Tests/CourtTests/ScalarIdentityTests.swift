@@ -8,6 +8,49 @@ final class ScalarIdentityTests: XCTestCase {
         URL(fileURLWithPath: #filePath).deletingLastPathComponent()
             .deletingLastPathComponent().deletingLastPathComponent()
     }
+    private func toolsURL() throws -> URL {
+        let declared = try XCTUnwrap(ProcessInfo.processInfo.environment["VI_CHECK_BUILD_BIN"],
+            "VI_CHECK_BUILD_BIN: declare the built Tools directory (swift build --show-bin-path)")
+        #if os(Windows)
+        let name = "Tools.exe"
+        #else
+        let name = "Tools"
+        #endif
+        return URL(fileURLWithPath: declared, isDirectory: true).appendingPathComponent(name)
+    }
+    func testTypedCertificateTextAndNameMapOrder() throws {
+        let plain = StructuralSource.ReadingCertificate.Unit(kind: ";", lower: 0, upper: 1)
+        let forged = StructuralSource.ReadingCertificate.Unit(kind: "\u{37E}", lower: 0, upper: 1)
+        XCTAssertNotEqual(plain, forged)
+        let values = ["é", "e\u{301}", "\u{212A}", "K"]
+        let expected = ["K", "e\u{301}", "é", "\u{212A}"]
+        for words in [values, Array(values.reversed())] {
+            let map = NameMap(uniqueKeysWithValues: words.map { ($0, 1) })
+            XCTAssertTrue(WhereJudge.sameNames(map.keys.sorted(), expected))
+            XCTAssertTrue(WhereJudge.sameNames(map.sorted().map(\.key), expected))
+        }
+    }
+    func testWhereCollisionIsAnAddressedInputRefusal() throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent("court-where-guard-" + UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let file = directory.appendingPathComponent("collision.swift")
+        try "enum Offé {}\nenum Offe\u{301} {}\n".write(to: file, atomically: true, encoding: .utf8)
+        let process = Process(), output = Pipe()
+        process.executableURL = try toolsURL()
+        process.arguments = ["judge", "where", file.path]
+        process.standardOutput = output
+        process.standardError = output
+        try process.run()
+        let data = output.fileHandleForReading.readDataToEndOfFile()
+        process.waitUntilExit()
+        let text = String(decoding: data, as: UTF8.self)
+        XCTAssertEqual(process.terminationStatus, 2, text)
+        XCTAssertTrue(text.contains("distinct scalar spellings"), text)
+        XCTAssertTrue(text.contains("collision.swift:1") && text.contains("collision.swift:2"), text)
+        XCTAssertFalse(text.contains("internal error"), text)
+        print("R9 where input refusal: " + text)
+    }
     func testScalarIdentityDoesNotDependOnTheCollisionDiagnostic() throws {
         for (a, b) in [("Offé", "Offe\u{301}"), ("K", "\u{212A}"), ("Ω", "\u{2126}")] {
             XCTAssertTrue(a == b, "the diagnostic's canonical key is a different relation")
@@ -190,7 +233,7 @@ final class ScalarIdentityTests: XCTestCase {
             FileManager.default.createFile(atPath: output.path, contents: nil)
             let stream = try FileHandle(forWritingTo: output)
             let process = Process()
-            process.executableURL = root.appendingPathComponent(".build/debug/Tools")
+            process.executableURL = try toolsURL()
             process.arguments = ["judge"] + arguments
             process.standardOutput = stream; process.standardError = stream
             try process.run()

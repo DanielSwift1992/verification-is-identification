@@ -7,6 +7,10 @@ extension WhereJudge {
     static func sameName(_ lhs: String, _ rhs: String) -> Bool {
         lhs.unicodeScalars.elementsEqual(rhs.unicodeScalars)
     }
+    static func sameName(_ lhs: ScalarName, _ rhs: ScalarName) -> Bool { lhs == rhs }
+    static func sameName(_ lhs: ScalarName, _ rhs: String) -> Bool { lhs == ScalarName(rhs) }
+    static func sameName(_ lhs: String, _ rhs: ScalarName) -> Bool { ScalarName(lhs) == rhs }
+    static func sameNames(_ lhs: [ScalarName], _ rhs: [String]) -> Bool { lhs == rhs.map { ScalarName($0) } }
     static func sameNames(_ lhs: [String], _ rhs: [String]) -> Bool {
         lhs.count == rhs.count && zip(lhs, rhs).allSatisfy { sameName($0, $1) }
     }

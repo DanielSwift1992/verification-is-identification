@@ -227,7 +227,7 @@ enum CountCourt {
                 guard declaration.parameters.count == args.count else {
                     throw Failure("unbound reading application '\(root.text)'")
                 }
-                let parents = source.protocolClosure(source.conformanceChoices(name).map { $0.0 })
+                let parents = source.protocolClosure(source.conformanceChoices(name.text).map { $0.0 })
                 if !parents.containsName("PredicateReading") {
                     // Certificate fields can carry applied generic readings.
                     for axis in source.syntax.conformers[name]?.table.keys.sorted() ?? [] {
@@ -268,7 +268,7 @@ enum CountCourt {
             throw Failure("count context needs predicate, encoding and sigma")
         }
         let paths = context.sources.map(\.input)
-        guard let contextPath = texts.keys.filter({ !paths.contains($0) }).first, !paths.isEmpty else {
+        guard let contextPath = texts.keys.filter({ !paths.containsName($0) }).first, !paths.isEmpty else {
             throw Failure("count context needs its explicit file and sources")
         }
         let selected = context.sources.filter { $0.role == "own" }.map(\.input)

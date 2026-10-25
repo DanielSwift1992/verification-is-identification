@@ -33,18 +33,18 @@ public enum Press {
     }
     public struct Certificate: Codable {
         let version: String
-        let arguments: [String]
+        let arguments: [ScalarName]
         let inputs: [String]
         let readings: [StructuralSource.ReadingCertificate]
-        let slot: String
+        let slot: ScalarName
         let lowerByte: Int
         let upperByte: Int
         let candidates: [Candidate]
         let selected: Int?
     }
     struct Candidate: Codable {
-        let rule: String
-        let substitution: NameMap<String>
+        let rule: ScalarName
+        let substitution: NameMap<ScalarName>
         // A path to a constructor disagreement; nil denotes a complete match.
         let mismatch: [Int]?
         let bounds: ApplicationCourt.Derivation?
@@ -122,8 +122,8 @@ public enum Press {
                     && read.tokens[indices[j - 3]].word == "typealias"
             }) else { throw R.Failure("Slot has no source token") }
             let at = indices[position]
-            return Rule(declaration: d, slot: slotName,
-                slotAt: .init(spelling: slotName, line: read.lexed.lines[at], byte: read.tokens[at].bytes.lowerBound), from: from, into: into)
+            return Rule(declaration: d, slot: slotName.text,
+                slotAt: .init(spelling: slotName.text, line: read.lexed.lines[at], byte: read.tokens[at].bytes.lowerBound), from: from, into: into)
         }
     }
     static func variables(_ e: E, _ parameters: [String], counts: inout NameMap<Int>) throws {
@@ -164,7 +164,7 @@ public enum Press {
             return try StructuralSource.split(tokens, at: ",").map { part in
                 let e = try R.parse(StructuralSource.text(part))
                 guard case let .application(name, args) = e else { throw R.Failure("rule invocation must name a declaration") }
-                return (try readRule(named: name, read: dictionaryRead, path: dictionaryPath), args)
+                return (try readRule(named: name.text, read: dictionaryRead, path: dictionaryPath), args)
             }
         }
         guard let slot = members.first?.0.slot, members.allSatisfy({ WhereJudge.sameName($0.0.slot, slot) }) else {

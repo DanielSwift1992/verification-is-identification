@@ -10,17 +10,12 @@ extension ContinuationCourt {
         let source: Path
     }
     struct AgreementCapacity: Codable, Equatable {
-        var sort: String
+        var sort: ScalarName
         var requiredClasses: Int
         var outputClasses: Int
         var fixedRequiredClasses: Int
         var freeOutputClasses: Int
         var minimumResidualLeaves: Int
-        static func == (lhs: Self, rhs: Self) -> Bool {
-            WhereJudge.sameName(lhs.sort, rhs.sort) && lhs.requiredClasses == rhs.requiredClasses
-                && lhs.outputClasses == rhs.outputClasses && lhs.fixedRequiredClasses == rhs.fixedRequiredClasses
-                && lhs.freeOutputClasses == rhs.freeOutputClasses && lhs.minimumResidualLeaves == rhs.minimumResidualLeaves
-        }
     }
     struct AgreementPlan: Codable {
         // One Source leaf for each exact output C-class.
@@ -41,8 +36,8 @@ extension ContinuationCourt {
         case incompatible(left: Path, right: Path)
     }
     struct AgreementCertificate: Codable {
-        var request: String
-        var constructor: String
+        var request: ScalarName
+        var constructor: ScalarName
         var source: ReadProof
         var equalities: RouteProof?
         var output: ReadProof

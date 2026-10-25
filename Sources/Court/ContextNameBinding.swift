@@ -426,9 +426,8 @@ enum ContextNameBinding {
                 var end = i, spelling = word
                 if modules.contains(word), i + 2 < tape.words.count,
                    WhereJudge.sameName(tape.words[i + 1], ".") {
-                    guard candidates.isEmpty, accessible.contains(word) else {
-                        try WhereJudge.fail("\(files[file].context.source):\(tape.lines[i]): module qualifier '\(word)' is ambiguous or not imported")
-                    }
+                    guard accessible.contains(word) else { try WhereJudge.fail("\(files[file].context.source):\(tape.lines[i]): module '\(word)' is not imported") }
+                    guard candidates.isEmpty else { try WhereJudge.fail("\(files[file].context.source):\(tape.lines[i]): module qualifier '\(word)' is ambiguous") }
                     let full = Place(parts: [word, tape.words[i + 2]])
                     candidates = byPlace[full] == nil ? [] : [full]
                     guard !candidates.isEmpty else {

@@ -71,7 +71,7 @@ def diagnostics(output, mirror):
 # context. DeclarationHead, Exempt and neighbour state live in the reader.
 VECTORS = [
     ('ToolsScope', 'actor Uninvited {}\n', 1),
-    ('ToolsScope', '/* \\/*/ actor Uninvited {} */\n', 1),
+    ('ToolsScope', '/* outer /* nested */ end */\nactor Uninvited {}\n', 1),
     ('ToolsScope', 'public enum A {\npublic typealias Marker = GrammarExempt\n}\npublic enum B {\nactor Uninvited {}\n}\n', 1),
     ('ToolsScope', 'func f() { let x = 1 }\nCall { A; B }\n', 0),
     ('ToolsScope', 'public enum A {\npublic typealias Marker = Ordinary\n}\npublic enum B {\nactor Uninvited {}\n}\n', 1),
@@ -188,10 +188,11 @@ for job in jobs {
 }
 ''')
         flags = ['-module-cache-path', str(temp/'modules'), '-I', str(bin_dir/'Modules')]
-        objects = [str(path) for module in ('Notation', 'VerificationIsIdentification', 'Alphabet', 'GrammarLexicon')
+        objects = [str(path) for module in ('Notation', 'VerificationIsIdentification', 'Alphabet', 'GrammarLexicon', 'Court')
                    for path in sorted((bin_dir/(module+'.build')).glob('*.swift.o'))]
         assert objects
-        subprocess.run(['swiftc', *flags, *objects, *map(str, sorted((ROOT/'Sources/Tools/Grammar').glob('*.swift'))), str(main), '-o', str(temp/'probe')], check=True, capture_output=True)
+        compile_probe = subprocess.run(['swiftc', *flags, *objects, *map(str, sorted((ROOT/'Sources/Tools/Grammar').glob('*.swift'))), str(main), '-o', str(temp/'probe')], capture_output=True, text=True)
+        assert compile_probe.returncode == 0, compile_probe.stderr
         jobs, cases = [], []
         for index, (scope, source, wanted) in enumerate(VECTORS):
             for pad in (0, 127, 128):

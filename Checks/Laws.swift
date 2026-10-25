@@ -363,7 +363,7 @@ enum LawLaw: LawRecord {
 }
 
 enum LawBoundaryName: LawText { static var typeName: String { #"boundary"# } }
-enum LawBoundaryDescription: LawText { static var typeName: String { #"scope maps and distinct read-back carriers keep scope coverage, component boundaries and emitted grants"# } }
+enum LawBoundaryDescription: LawText { static var typeName: String { #"scope maps, shared opaque spans and distinct read-back carriers keep scope coverage, component boundaries and emitted grants"# } }
 enum LawBoundary: LawRecord {
     typealias Command = Self
     typealias Name = LawBoundaryName

@@ -749,7 +749,8 @@ enum WhereJudge {
                 .split(separator: ",")
                 .map { $0.trimmingCharacters(in: .whitespaces) }
             var table: NameMap<String> = [:]
-            for aliasHit in try readAliases(hit[3]) where aliasHit[1].isEmpty {
+            for aliasHit in try readAliases(hit[3])
+            where aliasHit[1].isEmpty {
                 guard table[aliasHit[0]] == nil else {
                     try fail("duplicate definition of '\(name).\(aliasHit[0])'")
                 }
@@ -804,7 +805,8 @@ enum WhereJudge {
         ) {
             let name = hit[0]
             if world.conformers[name] != nil {
-                for aliasHit in try readAliases(hit[1]) where aliasHit[1].isEmpty {
+                for aliasHit in try readAliases(hit[1])
+                where aliasHit[1].isEmpty {
                     guard world.conformers[name]!.table[aliasHit[0]] == nil else {
                         try fail("duplicate definition of '\(name).\(aliasHit[0])'")
                     }
@@ -1010,7 +1012,8 @@ enum WhereJudge {
         ) {
             let table = spans[3]
             guard let bounds = Range(table, in: clean), let owner = Range(spans[0], in: clean) else { continue }
-            for span in try readAliasSpans(String(clean[bounds])) where span.fields[1].isEmpty {
+            for span in try readAliasSpans(String(clean[bounds]))
+            where span.fields[1].isEmpty {
                 world.certificateLines[notation.name(String(clean[owner]), at: spans[0].location) + "." + span.fields[0]] = scope.line[table.location + span.declaration.location]
                 read.append(NSRange(location: table.location + span.body.location, length: span.body.length))
                 world.rootApplicationSpans.append(NSRange(location: table.location + span.body.location, length: span.body.length))
@@ -1021,7 +1024,8 @@ enum WhereJudge {
         ) {
             guard let owner = Range(spans[0], in: clean), world.conformers[String(clean[owner])] != nil,
                   let bounds = Range(spans[1], in: clean) else { continue }
-            for span in try readAliasSpans(String(clean[bounds])) where span.fields[1].isEmpty {
+            for span in try readAliasSpans(String(clean[bounds]))
+            where span.fields[1].isEmpty {
                 world.certificateLines[notation.name(String(clean[owner]), at: spans[0].location) + "." + span.fields[0]] = scope.line[spans[1].location + span.declaration.location]
                 read.append(NSRange(location: spans[1].location + span.body.location, length: span.body.length))
                 world.rootApplicationSpans.append(NSRange(location: spans[1].location + span.body.location, length: span.body.length))
@@ -1149,7 +1153,8 @@ enum WhereJudge {
         for proto in inheritedProtocols(conformer.protocols, world) {
             axes.formUnion(world.protocolAxes[proto] ?? [])
         }
-        for axis in axes where !conformer.parameters.containsName(axis) {
+        for axis in axes
+        where !conformer.parameters.containsName(axis) {
             bindings[axis] = Term(head: Press.serialize(owner) + "." + axis, args: [])
         }
         return (bindings, rigid)
@@ -1172,7 +1177,8 @@ enum WhereJudge {
             for proto in inheritedProtocols(owner.protocols, world) {
                 axes.formUnion(world.protocolAxes[proto] ?? [])
             }
-            for axis in axes where bindings[axis] == nil {
+            for axis in axes
+            where bindings[axis] == nil {
                 bindings[axis] = Term(head: Press.serialize(term) + "." + axis, args: [])
             }
         }
@@ -1238,7 +1244,8 @@ enum WhereJudge {
             if requireGrounds {
                 try requireProtocolGrounds(wearer.protocols, world)
                 let inherited = inheritedProtocols(wearer.protocols, world)
-                if let gated = inherited.sorted().first(where: { world.gatedProtocols[$0] != nil }) {
+                if let gated = inherited.sorted().first(
+                where: { world.gatedProtocols[$0] != nil }) {
                     try fail("membership of '\(spelled)' depends on gated conformance '\(gated)'; "
                         + "this selected-application profile does not discharge dependent conformer obligations")
                 }
@@ -1369,7 +1376,8 @@ enum WhereJudge {
         let extras: [(path: String, text: String, world: World)] = try original.dropFirst().map { extra, more in
             return (extra, more, try read(more, notationV2: notationV2))
         }
-        if notationV2, world.intrinsicSwift || extras.contains(where: { $0.world.intrinsicSwift }) {
+        if notationV2, world.intrinsicSwift || extras.contains(
+        where: { $0.world.intrinsicSwift }) {
             for file in [(path: path, world: world)] + extras.map({ (path: $0.path, world: $0.world) }) {
                 for name in ["Swift", "Never"] {
                     if let line = file.world.declared[name]?.first {
@@ -1400,7 +1408,8 @@ enum WhereJudge {
             ancestry.merge(extra.world.protocolParents) { first, _ in first }
         }
         for extra in extras {
-            for gate in extra.world.gates where world.names.contains(gate.head) {
+            for gate in extra.world.gates
+            where world.names.contains(gate.head) {
                 try fail("cannot read the gate '\(gate.head): \(gate.proto)' in '\(extra.path)': this court judges "
                     + "the gates of the world it reads, and '\(path)' names '\(gate.head)'")
             }
@@ -1487,7 +1496,8 @@ enum WhereJudge {
         var grown = true
         while grown {
             grown = false
-            for (name, rule) in world.aliases.sorted() where !gatedNames.contains(name) {
+            for (name, rule) in world.aliases.sorted()
+            where !gatedNames.contains(name) {
                 let spelled = NameSet(captures(#"\b(\w+)\b"#, rule.body).map { $0[0] })
                 if !spelled.isDisjoint(with: gatedNames) {
                     gatedNames.insert(name)
@@ -1496,7 +1506,8 @@ enum WhereJudge {
             }
         }
         for extra in extras {
-            for (name, rule) in extra.world.aliases.sorted() where rule.parameters.isEmpty {
+            for (name, rule) in extra.world.aliases.sorted()
+            where rule.parameters.isEmpty {
                 if gatedNames.contains(name), !world.contextual {
                     try fail("cannot read '\(name)': '\(extra.path)' defines it as an application of a gated head, and "
                         + "this court judges certificates in the world it reads")
@@ -1520,7 +1531,8 @@ enum WhereJudge {
             let claim = try gatedForm(term, world)
             let arguments = (term.args + claim.args).map(Press.serialize).joined(separator: ",")
             let nested = NameSet(captures(#"\b(\w+)\b"#, arguments).map { $0[0] }).intersection(gatedNames)
-            if !nested.isEmpty || !world.gates.contains(where: { sameName($0.head, claim.head) }) {
+            if !nested.isEmpty || !world.gates.contains(
+            where: { sameName($0.head, claim.head) }) {
                 let line = world.lineAt[span.location]
                 unreadPlaces.append((line, "cannot read line \(line) of '\(path)': '\(spelled)' contains "
                     + "a gated application outside the root this court judges"))

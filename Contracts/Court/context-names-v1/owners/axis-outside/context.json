@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "owners/axis-outside/World.swift",
+      "source": "owners/axis-outside/World.swift",
+      "sha256": "74d8642c0a8b941feb79d67affb1e9f56eea3f67a5cfb9d080b368ebd0b9fe4e",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "owners/axis-outside#World.swift/input",
+        "source": "owners/axis-outside#World.swift/source",
+        "sha256": "owners/axis-outside#World.swift/sha256",
+        "namespace": "owners/axis-outside#World.swift/namespace",
+        "module": "owners/axis-outside#World.swift/module",
+        "role": "owners/axis-outside#World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

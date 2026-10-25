@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "owners/nested-file/World.swift",
+      "source": "owners/nested-file/World.swift",
+      "sha256": "26d42b5cfe33f7a5797d4436a00f9963aff8f04a6a4d772fe84fca937163c6f5",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "owners/nested-file#World.swift/input",
+        "source": "owners/nested-file#World.swift/source",
+        "sha256": "owners/nested-file#World.swift/sha256",
+        "namespace": "owners/nested-file#World.swift/namespace",
+        "module": "owners/nested-file#World.swift/module",
+        "role": "owners/nested-file#World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

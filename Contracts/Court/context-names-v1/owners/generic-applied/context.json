@@ -1,0 +1,70 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "owners/generic-applied/World.swift",
+      "source": "owners/generic-applied/World.swift",
+      "sha256": "5c44de58becb037ebbb29ac258f491536631a3657f5659f82b01ff304ab6232c",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Kit",
+        "API"
+      ],
+      "at": {
+        "input": "owners/generic-applied#World.swift/input",
+        "source": "owners/generic-applied#World.swift/source",
+        "sha256": "owners/generic-applied#World.swift/sha256",
+        "namespace": "owners/generic-applied#World.swift/namespace",
+        "module": "owners/generic-applied#World.swift/module",
+        "role": "owners/generic-applied#World.swift/role",
+        "imports": [
+          "owners/generic-applied#imports/0",
+          "owners/generic-applied#imports/1"
+        ]
+      }
+    },
+    {
+      "input": "owners/generic-applied/Kit.swift",
+      "source": "owners/generic-applied/Kit.swift",
+      "sha256": "0dcd723bca6e813c865f36895d97d7daa5f2526233783263dcf5d57c0db4b617",
+      "namespace": "Kit",
+      "module": "Kit",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "owners/generic-applied#Kit.swift/input",
+        "source": "owners/generic-applied#Kit.swift/source",
+        "sha256": "owners/generic-applied#Kit.swift/sha256",
+        "namespace": "owners/generic-applied#Kit.swift/namespace",
+        "module": "owners/generic-applied#Kit.swift/module",
+        "role": "owners/generic-applied#Kit.swift/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "owners/generic-applied/API.swift",
+      "source": "owners/generic-applied/API.swift",
+      "sha256": "a6e1a0b590dbe13d8f0941af9693d4b1be865bd5f514164a6760aad7bcbe0de7",
+      "namespace": "API",
+      "module": "API",
+      "role": "borrowed",
+      "imports": [
+        "Kit"
+      ],
+      "at": {
+        "input": "owners/generic-applied#API.swift/input",
+        "source": "owners/generic-applied#API.swift/source",
+        "sha256": "owners/generic-applied#API.swift/sha256",
+        "namespace": "owners/generic-applied#API.swift/namespace",
+        "module": "owners/generic-applied#API.swift/module",
+        "role": "owners/generic-applied#API.swift/role",
+        "imports": [
+          "owners/generic-applied#imports/0"
+        ]
+      }
+    }
+  ],
+  "intrinsics": []
+}

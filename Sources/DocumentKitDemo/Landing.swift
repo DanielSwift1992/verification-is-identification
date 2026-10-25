@@ -20,9 +20,9 @@ extension SDKDocumentationLink {
 public enum DemoPages: Close {}
 extension DemoPages {
     public static var typeName: String {
-        "- [Source of the declared canvas](" + DemoDocumentationRoot.typeName + "selfshowingexamplesource)\n"
-            + "- [Station A](" + DemoDocumentationRoot.typeName + "vectortourstationa)\n"
-            + "- [Station B](" + DemoDocumentationRoot.typeName + "vectortourstationb)\n"
+        "- [Source of the declared canvas](" + VectorExampleSitePath<SelfShowingExampleSource>.typeName + ")\n"
+            + "- [Station A](" + VectorExampleSitePath<VectorTourStationA>.typeName + ")\n"
+            + "- [Station B](" + VectorExampleSitePath<VectorTourStationB>.typeName + ")\n"
             + "- [Covered visible claim](" + DemoDocumentationRoot.typeName + "coveredvisibleclaim)\n"
     }
 }

@@ -59,9 +59,9 @@ public enum VectorCanvasExampleDiagram: Diagram {
     public typealias Content = VectorCanvasExampleContent
 }
 
-enum VectorExampleSitePath<X>: Close {}
+enum VectorExampleSitePath<X: Structure>: Close {}
 extension VectorExampleSitePath {
-    static var typeName: String { DemoDocumentationRoot.typeName + PageSlug<X>.typeName }
+    static var typeName: String { DemoDocumentationRoot.typeName + X.typeName }
 }
 
 public enum VectorHoverExampleAlt: Close {}
@@ -140,7 +140,12 @@ public enum VectorHoverExampleDiagram: Diagram {
     public typealias Content = VectorHoverExampleContent
 }
 
-enum SelfShowingExampleSource {}   // a bare name-token — PageSlug only reads String(describing:)
+/// The self-showing page's address. Its slug is the article's file name, and the hyphen keeps
+/// it distinct from every declared name, so the article never shares a name with a symbol.
+enum SelfShowingExampleSource: Close {}
+extension SelfShowingExampleSource {
+    static var typeName: String { "self-showing-example-source" }
+}
 
 enum SelfShowingExampleSourceCode: Close {}
 extension SelfShowingExampleSourceCode {
@@ -276,8 +281,15 @@ public enum VectorSelfShowingExampleDiagram: Diagram, SelfShowing {
     public typealias Content = VectorSelfShowingExampleContent
 }
 
-enum VectorTourStationA {}   // bare name-tokens — PageSlug only reads String(describing:)
-enum VectorTourStationB {}
+/// The two tour pages' addresses, hyphenated like their figures.
+enum VectorTourStationA: Close {}
+extension VectorTourStationA {
+    static var typeName: String { "vector-tour-station-a" }
+}
+enum VectorTourStationB: Close {}
+extension VectorTourStationB {
+    static var typeName: String { "vector-tour-station-b" }
+}
 
 enum VectorTourDotCY: Close {}
 extension VectorTourDotCY {

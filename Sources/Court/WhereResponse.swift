@@ -67,7 +67,7 @@ public enum WhereResponse {
 
     static func decode(_ data: Data) throws -> Batch {
         let batch: Batch
-        do { batch = try JSONDecoder().decode(Batch.self, from: data) }
+        do { batch = try CourtJSON.decoder().decode(Batch.self, from: data) }
         catch { throw InputFailure(description: "cannot decode the request: \(error)") }
         guard batch.schema == inputSchema, batch.question == question else {
             throw InputFailure(description: "unsupported request schema or question version")
@@ -76,11 +76,11 @@ public enum WhereResponse {
             throw InputFailure(description: "the request list is empty")
         }
         let ids = batch.requests.map(\.id)
-        guard ids.allSatisfy({ !$0.isEmpty }), Set(ids).count == ids.count else {
+        guard ids.allSatisfy({ !$0.isEmpty }), NameSet(ids).count == ids.count else {
             throw InputFailure(description: "request IDs must be nonempty and distinct")
         }
         let names = ([batch.world] + batch.definitions).map(\.name)
-        guard names.allSatisfy({ !$0.isEmpty }), Set(names).count == names.count else {
+        guard names.allSatisfy({ !$0.isEmpty }), NameSet(names).count == names.count else {
             throw InputFailure(description: "source names must be nonempty and distinct")
         }
         return batch
@@ -118,7 +118,7 @@ public enum WhereResponse {
                 throw WhereJudge.Failure.input(["a use selector needs a positive source line"])
             }
             let matches = world.uses.indices.filter {
-                world.useLines[$0] == line && Data(world.uses[$0].utf8) == Data(name.utf8)
+                world.useLines[$0] == line && WhereJudge.sameName(world.uses[$0], name)
             }
             guard matches.count <= 1 else {
                 throw WhereJudge.Failure.unsupported(["the use selector names more than one application on line \(line)"])
@@ -169,7 +169,7 @@ public enum WhereResponse {
     public static func judge(_ data: Data) throws -> Report {
         let batch = try decode(data)
         let sources = [batch.world] + batch.definitions
-        let byName = Dictionary(uniqueKeysWithValues: sources.map { ($0.name, $0.text) })
+        let byName = NameMap(uniqueKeysWithValues: sources.map { ($0.name, $0.text) })
         let prepared: WhereJudge.Prepared
         do {
             prepared = try WhereJudge.prepare(sources.map(\.name), notationV2: false) { name in
@@ -220,18 +220,18 @@ public enum WhereResponse {
     public static func admits(expected: Data, response: Data) throws -> Bool {
         let batch = try decode(expected)
         let report: Report
-        do { report = try JSONDecoder().decode(Report.self, from: response) }
+        do { report = try CourtJSON.decoder().decode(Report.self, from: response) }
         catch { throw InputFailure(description: "cannot decode the response: \(error)") }
         guard report.schema == responseSchema, report.versions == versions,
               Data(base64Encoded: report.requestBytes) == expected,
               report.results.count == batch.requests.count else { return false }
-        let ids = report.results.map { Data($0.id.utf8) }
-        guard Set(ids).count == ids.count else { return false }
-        let byID = Dictionary(uniqueKeysWithValues: zip(ids, report.results))
+        let ids = report.results.map(\.id)
+        guard NameSet(ids).count == ids.count else { return false }
+        let byID = NameMap(uniqueKeysWithValues: zip(ids, report.results))
         for request in batch.requests {
-            guard let result = byID[Data(request.id.utf8)],
+            guard let result = byID[request.id],
                   try encoded(result.application) == encoded(request.application),
-                  Data(result.source.utf8) == Data(batch.world.name.utf8),
+                  WhereJudge.sameName(result.source, batch.world.name),
                   result.outcome == .holds,
                   result.equalities >= 0, result.memberships >= 0,
                   result.equalities > 0 || result.memberships > 0,

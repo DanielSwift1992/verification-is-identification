@@ -57,7 +57,7 @@ final class ContinuationAgreementTests: XCTestCase {
     // Build an alternative valid U5 decoder before the global/binding refusal.
     private func replan(_ p: inout C.AgreementCertificate, assignments: [C.Path], leaves: [C.Path]) throws {
         let source = try world()
-        let r = try C.agreementReading(p.request, certificate: p, source: source)
+        let r = try C.agreementReading(p.request.text, certificate: p, source: source)
         let blocks = try C.verifyPartition(p.classes, whole: r.whole)
         let outputs = try C.verifyPartition(p.outputClasses, whole: r.output)
         let places = try C.agreementPlaces(r, assignments: assignments, outputBlocks: outputs, at: "test.plan")
@@ -172,7 +172,7 @@ final class ContinuationAgreementTests: XCTestCase {
             let pure = try world(edit: { $0 + declarations.replacingOccurrences(
                 of: "typealias Output = Paired<S, S>", with: "typealias Output = " + expression) })
             let p = try C.deriveAgreement("SortTarget", source: pure)
-            XCTAssertTrue(try C.verifyAgreement(p.request, certificate: C.decodeAgreement(C.encodeAgreement(p)), source: pure))
+            XCTAssertTrue(try C.verifyAgreement(p.request.text, certificate: C.decodeAgreement(C.encodeAgreement(p)), source: pure))
         }
     }
     func testArchiveFieldNamesAndBindingIssueMessages() throws {
@@ -223,7 +223,7 @@ final class ContinuationAgreementTests: XCTestCase {
         let p = try proof("EquivalentBindings")
         let result = try plan(p)
         guard case .sourceRelation = result.bindingBases[1] else { return XCTFail("expected an E-path for the prescribed other address") }
-        XCTAssertTrue(try C.verifyAgreement(p.request, certificate: p, source: world()))
+        XCTAssertTrue(try C.verifyAgreement(p.request.text, certificate: p, source: world()))
         let chain = try plan(proof("ChainedBindings"))
         guard case let .sourceRelation(path) = chain.bindingBases[1] else { return XCTFail("expected the two-edge path") }
         XCTAssertEqual(path.count, 2)
@@ -351,7 +351,7 @@ final class ContinuationAgreementTests: XCTestCase {
             ("changed-promise", "Paired<Output.Left, Output.Right>", "Paired<Output.Left, Output.Left>", "BindOriginal.Promise")
         ] {
             let changed = try world(edit: { $0.replacingOccurrences(of: old, with: new) })
-            refuses(label, at: address) { _ = try C.verifyAgreement(p.request, certificate: p, source: changed) }
+            refuses(label, at: address) { _ = try C.verifyAgreement(p.request.text, certificate: p, source: changed) }
         }
         var archive = try XCTUnwrap(JSONSerialization.jsonObject(with: C.encodeAgreement(p)) as? [String: Any])
         archive["format"] = 6

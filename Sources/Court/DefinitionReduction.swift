@@ -10,28 +10,31 @@ enum DefinitionReduction {
     }
 
     indirect enum Expression: Hashable {
-        case application(String, [Expression])
-        case field(Expression, String)
+        case application(ScalarName, [Expression])
+        case field(Expression, ScalarName)
+
+        static func application(_ name: String, _ arguments: [Expression]) -> Self { .application(ScalarName(name), arguments) }
+        static func field(_ owner: Expression, _ name: String) -> Self { .field(owner, ScalarName(name)) }
 
         var text: String {
             switch self {
             case let .application(name, args):
                 return args.isEmpty
-                    ? name : name + "<" + args.map(\.text).joined(separator: ", ") + ">"
-            case let .field(owner, axis): return owner.text + "." + axis
+                    ? name.text : name.text + "<" + args.map(\.text).joined(separator: ", ") + ">"
+            case let .field(owner, axis): return owner.text + "." + axis.text
             }
         }
 
         var legacy: Press.Term {
             switch self {
             case let .application(name, args):
-                return Press.Term(head: name, args: args.map(\.legacy))
+                return Press.Term(head: name.text, args: args.map(\.legacy))
             case .field: return Press.Term(head: text, args: [])
             }
         }
 
         /// Simultaneous substitution: an inserted expression is not visited again.
-        func substituting(_ bindings: [String: Expression]) throws -> Expression {
+        func substituting(_ bindings: NameMap<Expression>) throws -> Expression {
             switch self {
             case let .application(name, args):
                 if let replacement = bindings[name] {
@@ -103,6 +106,9 @@ enum DefinitionReduction {
         }
     }
 
+    static func parse(_ text: ScalarName, allowRigidNames: Bool = false) throws -> Expression {
+        try parse(text.text, allowRigidNames: allowRigidNames)
+    }
     static func parse(_ text: String, allowRigidNames: Bool = false) throws -> Expression {
         var parser = Parser(characters: Array(text), allowRigidNames: allowRigidNames)
         let result = try parser.expression()
@@ -115,7 +121,7 @@ enum DefinitionReduction {
 
     struct Source {
         let world: WhereJudge.World
-        let rigid: Set<String>
+        let rigid: NameSet
 
         func validate(_ expression: Expression, depth: Int = 0) throws {
             guard depth < 128 else { throw Failure("expression exceeds validation depth limit") }
@@ -134,6 +140,9 @@ enum DefinitionReduction {
             }
         }
 
+        func checkApplication(_ name: ScalarName, _ count: Int) throws {
+            try checkApplication(name.text, count)
+        }
         func checkApplication(_ name: String, _ count: Int) throws {
             if rigid.contains(name) {
                 guard count == 0 else {
@@ -151,7 +160,7 @@ enum DefinitionReduction {
             if let parameters = world.aliases[name]?.parameters ?? world.parameters[name]
                 ?? world.conformers[name]?.parameters
             {
-                guard Set(parameters).count == parameters.count else {
+                guard NameSet(parameters).count == parameters.count else {
                     throw Failure("duplicate parameters on '\(name)'")
                 }
                 guard parameters.count == count else {
@@ -170,12 +179,12 @@ enum DefinitionReduction {
                 guard !rigid.contains(name), let definition = world.aliases[name] else {
                     return nil
                 }
-                let bindings = Dictionary(
+                let bindings = NameMap(
                     uniqueKeysWithValues: zip(definition.parameters, arguments))
                 return try parse(definition.body).substituting(bindings)
             case let .field(owner, axis):
-                if world.intrinsicSwift, expression.text == "Swift.Never" { return .application("Never", []) }
-                if world.intrinsicSwift, world.contextVersion == 2, expression.text == "Swift.String" {
+                if world.intrinsicSwift, WhereJudge.sameName(expression.text, "Swift.Never") { return .application("Never", []) }
+                if world.intrinsicSwift, world.contextVersion == 2, WhereJudge.sameName(expression.text, "Swift.String") {
                     return .application("String", [])
                 }
                 if world.nestedNames.contains(expression.text) { return nil }
@@ -183,7 +192,7 @@ enum DefinitionReduction {
                     throw Failure("no declaration of nested name '\(expression.text)'")
                 }
                 let name: String, arguments: [Expression]
-                if case let .application(n, a) = owner { name = n; arguments = a }
+                if case let .application(n, a) = owner { name = n.text; arguments = a }
                 else if world.nestedNames.contains(owner.text) { name = owner.text; arguments = [] }
                 else { return nil }
                 try checkApplication(name, arguments.count)
@@ -200,7 +209,7 @@ enum DefinitionReduction {
                 }
                 // Generic parameters and sibling names are bound at this owner,
                 // before any global alias with the same spelling can be consulted.
-                var bindings = Dictionary(
+                var bindings = NameMap(
                     uniqueKeysWithValues: zip(declaration.parameters, arguments))
                 bindings["Self"] = owner
                 for sibling in declaration.table.keys
@@ -214,10 +223,10 @@ enum DefinitionReduction {
 
     /// A finite proposed derivation, not a trusted verdict. Its endpoints are
     /// reconstructed by replay; the caller cannot append an asserted result.
-    indirect enum Derivation {
-        case name(String)
-        case arguments(String, [Derivation])
-        case field(Derivation, String)
+    indirect enum Derivation: Codable {
+        case name(ScalarName)
+        case arguments(ScalarName, [Derivation])
+        case field(Derivation, ScalarName)
         case unfold(Expression, Derivation)
         case join(Derivation, Derivation)
     }

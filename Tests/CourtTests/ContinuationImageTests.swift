@@ -69,14 +69,14 @@ final class ContinuationImageTests: XCTestCase {
         XCTAssertEqual(p.images[0].sourceClassIndices, [0, 1])
         XCTAssertEqual(p.images[0].classes[0].leaves, [[.left], [.right, .right]])
         XCTAssertEqual(p.images[0].classes[1].leaves, [[.right, .left]])
-        let r = try C.imageReading(p.request, certificate: p, source: world())
+        let r = try C.imageReading(p.request.text, certificate: p, source: world())
         let blocks = try C.verifyPartition(p.classes, whole: r.whole)
         var budget = C.ActionBudget()
         let unchanged = try C.constructEvidence(r.members, reading: r.relation, blocks: blocks, budget: &budget)
         XCTAssertFalse(C.evidenceHolds(unchanged))
-        XCTAssertTrue(try C.verifyImage(p.request, certificate: p, source: world()))
+        XCTAssertTrue(try C.verifyImage(p.request.text, certificate: p, source: world()))
         let old = try proof("PermutedOldRelation")
-        XCTAssertFalse(try C.verifyImage(old.request, certificate: old, source: world()))
+        XCTAssertFalse(try C.verifyImage(old.request.text, certificate: old, source: world()))
         if case let .violated(edge) = old.images[0].promise { XCTAssertEqual(edge, []) }
         else { XCTFail("expected the old output relation to be separated") }
         XCTAssertEqual(try proof("DuplicateOutputPlaces").images[0].classes[0].leaves,
@@ -90,8 +90,8 @@ final class ContinuationImageTests: XCTestCase {
         XCTAssertEqual(left.images[0].classes[0].sort, right.images[0].classes[0].sort)
         XCTAssertEqual(left.images[0].sourceClassIndices, [0])
         XCTAssertEqual(right.images[0].sourceClassIndices, [1])
-        XCTAssertEqual(try C.imageReading(left.request, certificate: left, source: world()).image, .leaf([.left]))
-        XCTAssertEqual(try C.imageReading(right.request, certificate: right, source: world()).image, .leaf([.right]))
+        XCTAssertEqual(try C.imageReading(left.request.text, certificate: left, source: world()).image, .leaf([.left]))
+        XCTAssertEqual(try C.imageReading(right.request.text, certificate: right, source: world()).image, .leaf([.right]))
         let omitted = try proof("OmittedIndependentPlaces")
         XCTAssertEqual(omitted.classes.count, 3)
         XCTAssertEqual(omitted.images[0].classes.count, 1)
@@ -110,8 +110,8 @@ final class ContinuationImageTests: XCTestCase {
                        [[[.left, .left]], [[.left, .right], [.right]]])
         XCTAssertEqual(left.images[0].sourceClassIndices, [0, 1])
         XCTAssertEqual(right.images[0].sourceClassIndices, [0, 1])
-        XCTAssertTrue(try C.verifyImage(left.request, certificate: C.decodeImage(C.encodeImage(left)), source: world()))
-        XCTAssertFalse(try C.verifyImage(right.request, certificate: C.decodeImage(C.encodeImage(right)), source: world()))
+        XCTAssertTrue(try C.verifyImage(left.request.text, certificate: C.decodeImage(C.encodeImage(left)), source: world()))
+        XCTAssertFalse(try C.verifyImage(right.request.text, certificate: C.decodeImage(C.encodeImage(right)), source: world()))
         if case let .violated(edge) = right.images[0].promise { XCTAssertEqual(edge, []) }
         else { XCTFail("expected the source/output promise to separate") }
     }
@@ -123,7 +123,7 @@ final class ContinuationImageTests: XCTestCase {
             $0.replacingOccurrences(of: "    typealias HiddenActions = Paired<Paired<Source.Left, Source.Left>, Paired<Source.Right, Source.Right>>\n", with: "")
         })
         let ordinary = try C.deriveImage("ImageTemplateIsNotAChoice", source: withoutFamily)
-        XCTAssertFalse(try C.verifyImage(ordinary.request, certificate: ordinary, source: withoutFamily))
+        XCTAssertFalse(try C.verifyImage(ordinary.request.text, certificate: ordinary, source: withoutFamily))
         let declaration = """
 
         enum ExactChoice<S: Structure> {
@@ -143,22 +143,22 @@ final class ContinuationImageTests: XCTestCase {
         var p = try C.deriveImage("ExactChoice", source: valid)
         let changed = try world(edit: { $0 + declaration.replacingOccurrences(
             of: "typealias Image = Source.Left", with: "typealias Image = Source.Right") })
-        let context = try C.Context(p.request, source: changed, constructor: "Paired", requiredFields: ["Source", "Image"])
+        let context = try C.Context(p.request.text, source: changed, constructor: "Paired", requiredFields: ["Source", "Image"])
         p.image = try C.deriveRoute(.field(context.root, "Image"), context: context)
         // The new route is live and E-equivalent, but names another Source place.
         refuses("E-equivalence-is-not-family-membership", at: "ExactChoice.Image") {
-            _ = try C.verifyImage(p.request, certificate: C.decodeImage(C.encodeImage(p)), source: changed)
+            _ = try C.verifyImage(p.request.text, certificate: C.decodeImage(C.encodeImage(p)), source: changed)
         }
         refuses("nonmember-during-construction", at: "ExactChoice.Image") {
-            _ = try C.deriveImage(p.request, source: changed)
+            _ = try C.deriveImage(p.request.text, source: changed)
         }
         let alias = try C.deriveImage("AliasChoice", source: valid)
         XCTAssertEqual(alias.images.map(\.member), [[.left], [.right]])
-        XCTAssertTrue(try C.verifyImage(alias.request, certificate: C.decodeImage(C.encodeImage(alias)), source: valid))
+        XCTAssertTrue(try C.verifyImage(alias.request.text, certificate: C.decodeImage(C.encodeImage(alias)), source: valid))
     }
     func testHiddenPromisesDoNotRequireEqualValuesOrAnUnchangedImage() throws {
         let p = try proof("HiddenPairPromise")
-        let r = try C.imageReading(p.request, certificate: p, source: world())
+        let r = try C.imageReading(p.request.text, certificate: p, source: world())
         XCTAssertEqual(p.images.map(\.member), [[.left], [.right]])
         XCTAssertNotEqual(p.images[0].sourceClassIndices, p.images[1].sourceClassIndices)
         let full = C.sourcePlaces(r.whole.source)
@@ -166,9 +166,9 @@ final class ContinuationImageTests: XCTestCase {
         let oneStep = try C.constructDynamics(retained)
         try C.verifyDynamics(oneStep, reading: retained)
         guard case .disagreement? = oneStep.hidden?.conclusion else { return XCTFail("expected U8 disagreement") }
-        XCTAssertTrue(try C.verifyImage(p.request, certificate: p, source: world()))
+        XCTAssertTrue(try C.verifyImage(p.request.text, certificate: p, source: world()))
         let general = try proof("HiddenDifferentOutputShape")
-        let generalReading = try C.imageReading(general.request, certificate: general, source: world())
+        let generalReading = try C.imageReading(general.request.text, certificate: general, source: world())
         XCTAssertNotEqual(generalReading.output, generalReading.whole.source)
         XCTAssertEqual(general.images.count, 2)
         XCTAssertEqual(try proof("HiddenScalarOutput").images.map(\.member), [[.left], [.right]])
@@ -273,13 +273,13 @@ final class ContinuationImageTests: XCTestCase {
                                     with: "Paired<Source.Left, Paired<Source.Right.Left, Source.Right.Right>>")
         })
         refuses("changed-live-image", at: "PermutedPromise.Image") {
-            _ = try C.verifyImage(p.request, certificate: p, source: changedImage)
+            _ = try C.verifyImage(p.request.text, certificate: p, source: changedImage)
         }
         let changedPromise = try world(edit: {
             $0.replacingOccurrences(of: "Paired<Image.Left, Image.Right.Right>", with: "Paired<Image.Left, Image.Right.Left>")
         })
         refuses("changed-live-promise", at: "PermutedPromise.Promise") {
-            _ = try C.verifyImage(p.request, certificate: p, source: changedPromise)
+            _ = try C.verifyImage(p.request.text, certificate: p, source: changedPromise)
         }
     }
     func testArchiveQuestionCannotMasquerade() throws {

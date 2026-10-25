@@ -18,8 +18,8 @@ extension ContinuationCourt {
         var promise: ImagePromise
     }
     struct ImageCertificate: Codable {
-        var request: String
-        var constructor: String
+        var request: ScalarName
+        var constructor: ScalarName
         var source: ReadProof
         var equalities: RouteProof?
         var image: RouteProof
@@ -45,7 +45,7 @@ extension ContinuationCourt {
     }
     static func imageReading(_ request: String, certificate: ImageCertificate,
                               source: StructuralSource, constructor: String = "Paired") throws -> ImageReading {
-        guard certificate.request == request, certificate.constructor == constructor else {
+        guard WhereJudge.sameName(certificate.request, request), WhereJudge.sameName(certificate.constructor, constructor) else {
             throw Failure("certificate: request or constructor substituted")
         }
         let c = try Context(request, source: source, constructor: constructor,
@@ -230,7 +230,7 @@ extension ContinuationCourt {
     }
     static func decodeImage(_ data: Data) throws -> ImageCertificate {
         guard data.count <= relatedArchiveLimit else { throw Failure("certificate: input limit") }
-        let archive = try JSONDecoder().decode(ImageArchive.self, from: data)
+        let archive = try CourtJSON.decoder().decode(ImageArchive.self, from: data)
         guard archive.format == 6 else { throw Failure("certificate: expected format 6 for an image judgment") }
         return archive.certificate
     }

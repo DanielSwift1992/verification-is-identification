@@ -6,26 +6,26 @@ import Foundation
 public enum RosterResponse {
     public static let schema = "vi.court.roster/1"
     struct Reduction: Codable {
-        let rule: String
-        let term: String
+        let rule: ScalarName
+        let term: ScalarName
         let children: [Reduction]
         init(_ proof: DefinitionReduction.Derivation) {
             switch proof {
             case let .name(n):
                 rule = "name"
-                term = n
+                term = ScalarName(n)
                 children = []
             case let .arguments(n, ps):
                 rule = "arguments"
-                term = n
+                term = ScalarName(n)
                 children = ps.map(Reduction.init)
             case let .field(p, a):
                 rule = "field"
-                term = a
+                term = ScalarName(a)
                 children = [Reduction(p)]
             case let .unfold(e, p):
                 rule = "unfold"
-                term = e.text
+                term = ScalarName(e.text)
                 children = [Reduction(p)]
             case let .join(a, b):
                 rule = "join"
@@ -47,27 +47,31 @@ public enum RosterResponse {
         }
     }
     struct Goal: Codable, Hashable {
-        let relation: String
-        let subject: String
-        let predicate: String
+        let relation: ScalarName
+        let subject: ScalarName
+        let predicate: ScalarName
         init(_ g: ApplicationCourt.Goal) {
             switch g {
             case let .root(e):
                 relation = "root"
-                subject = e.text
+                subject = ScalarName(e.text)
                 predicate = ""
             case let .form(e):
                 relation = "form"
-                subject = e.text
+                subject = ScalarName(e.text)
                 predicate = ""
             case let .member(e, p):
                 relation = "member"
-                subject = e.text
-                predicate = p
+                subject = ScalarName(e.text)
+                predicate = ScalarName(p)
+            case let .equal(a, b):
+                relation = "equal"
+                subject = ScalarName(a.text)
+                predicate = ScalarName(b.text)
             case let .contract(e, p):
                 relation = "contract"
-                subject = e.text
-                predicate = p
+                subject = ScalarName(e.text)
+                predicate = ScalarName(p)
             }
         }
         func goal() throws -> ApplicationCourt.Goal {
@@ -79,6 +83,7 @@ public enum RosterResponse {
             where predicate.isEmpty: return .form(e)
             case "member": return .member(e, predicate)
             case "contract": return .contract(e, predicate)
+            case "equal": return .equal(e, try DefinitionReduction.parse(predicate))
             default: throw DefinitionReduction.Failure("invalid application relation")
             }
         }
@@ -92,11 +97,11 @@ public enum RosterResponse {
     struct Admission: Codable {
         let nodes: [Node]
         init(_ proof: ApplicationCourt.Derivation) {
-            nodes = proof.nodes.keys.sorted { $0.text < $1.text }.map { g in
+            nodes = proof.nodes.keys.sorted { ScalarName($0.text) < ScalarName($1.text) }.map { g in
                 let n = proof.nodes[g]!
                 return Node(goal: Goal(g), reductions: n.reductions.map(Reduction.init),
-                    dependencies: n.dependencies.sorted { $0.text < $1.text }.map(Goal.init),
-                    prerequisites: n.prerequisites.sorted { $0.text < $1.text }.map(Goal.init))
+                    dependencies: n.dependencies.sorted { ScalarName($0.text) < ScalarName($1.text) }.map(Goal.init),
+                    prerequisites: n.prerequisites.sorted { ScalarName($0.text) < ScalarName($1.text) }.map(Goal.init))
             }
         }
         func replay(_ root: DefinitionReduction.Expression, source: StructuralSource, predicate: String) throws {
@@ -112,31 +117,33 @@ public enum RosterResponse {
                     dependencies: Set(try n.dependencies.map { try $0.goal() }),
                     prerequisites: Set(try n.prerequisites.map { try $0.goal() }))
             }
-            try ApplicationCourt.verify(root, derivation: .init(root: root, nodes: graph), source: source, predicate: predicate)
+            let roots: Set<ApplicationCourt.Goal> = [.member(root, predicate)]
+            try ApplicationCourt.verify(roots, derivation: .init(roots: roots, nodes: graph), source: source)
         }
     }
     struct Axis: Codable {
-        let normal: String
+        let normal: ScalarName
         let derivation: Reduction
         let literal: StructuralSource.Literal?
     }
     struct Row: Codable {
-        let name: String
+        let name: ScalarName
         let at: StructuralSource.Address
         let admission: Admission
-        let axes: [String: Axis]
+        let axes: NameMap<Axis>
         let literal: StructuralSource.Literal?
     }
     struct Input: Codable, Equatable {
-        let path: String
+        let path: ScalarName
         let sha256: String
         func matches(_ other: Input) -> Bool {
-            Data(path.utf8) == Data(other.path.utf8) && sha256 == other.sha256
+            path == other.path && sha256 == other.sha256
         }
+        static func == (lhs: Self, rhs: Self) -> Bool { lhs.matches(rhs) }
     }
     struct Report: Codable {
         let schema: String
-        let question: String
+        let question: ScalarName
         let reader: String
         let inputs: [Input]
         let outcome: String
@@ -151,13 +158,13 @@ public enum RosterResponse {
         let axes: [String]
         var inputs: [Input] { files.map { Input(path: $0.0, sha256: courtSHA256(Data($0.1.utf8))) }.sorted { $0.path < $1.path } }
         init(_ files: [(String, String)], predicate: String) throws {
-            guard !files.isEmpty, Set(files.map { $0.0 }).count == files.count,
+            guard !files.isEmpty, NameSet(files.map { $0.0 }).count == files.count,
                   files.allSatisfy({ !$0.0.isEmpty }) else {
                 throw StructuralSource.AddressedFailure("roster:1: source paths must be nonempty and distinct")
             }
             self.files = files
             self.predicate = predicate
-            let source = try StructuralSource(files: files, roster: true)
+            let source = try StructuralSource(files: files, roster: true, arguments: [("--protocol", predicate)])
             self.source = source
             guard let p = source.declarations[predicate], p.kind == "protocol" else {
                 throw StructuralSource.AddressedFailure("\(files[0].0):1: no declared protocol '\(predicate)'")
@@ -172,7 +179,7 @@ public enum RosterResponse {
                 for parent in source.conformanceChoices(d.name).map({ $0.0 }) {
                     guard source.declarations[parent]?.kind == "protocol" else {
                         let at = source.addresses[d.name]
-                        throw StructuralSource.AddressedFailure("\(at?.path ?? d.origin):\(at?.line ?? 1): unavailable or aliased protocol '\(parent)' on '\(d.name)'")
+                        throw StructuralSource.AddressedFailure("\(at?.path.text ?? d.origin):\(at?.line ?? 1): unavailable or aliased protocol '\(parent)' on '\(d.name)'")
                     }
                 }
                 if d.kind == "typealias", source.extensions[d.name] != nil {
@@ -180,7 +187,7 @@ public enum RosterResponse {
                     throw StructuralSource.AddressedFailure("\(at.path):\(at.line): extension through alias '\(d.name)' is outside roster scope")
                 }
             }
-            var names = Set<String>()
+            var names = NameSet()
             for proto in closure {
                 for axis in source.declarations[proto]!.axes {
                     guard names.insert(axis.name).inserted else {
@@ -190,7 +197,7 @@ public enum RosterResponse {
             }
             axes = names.sorted()
             candidates = source.declarations.values.filter { d in
-                d.kind != "protocol" && d.kind != "typealias" && source.protocolClosure(source.conformanceChoices(d.name).map { $0.0 }).contains(predicate)
+                d.kind != "protocol" && d.kind != "typealias" && source.protocolClosure(source.conformanceChoices(d.name).map { $0.0 }).containsName(predicate)
             }.map(\.name).sorted {
                 let a = source.addresses[$0], b = source.addresses[$1]
                 return (a?.path ?? "", a?.start ?? 0, $0) < (b?.path ?? "", b?.start ?? 0, $1)
@@ -199,7 +206,7 @@ public enum RosterResponse {
                 let d = source.declarations[name]!
                 guard d.parameters.isEmpty, d.kind != "external" else {
                     let at = source.addresses[name]
-                    throw StructuralSource.AddressedFailure("\(at?.path ?? d.origin):\(at?.line ?? 1): open/external conformer '\(name)' is outside finite roster scope")
+                    throw StructuralSource.AddressedFailure("\(at?.path.text ?? d.origin):\(at?.line ?? 1): open/external conformer '\(name)' is outside finite roster scope")
                 }
             }
         }
@@ -229,8 +236,8 @@ public enum RosterResponse {
             }
             // This graph includes required associated types and declared bounds;
             // an absent field is never a successful empty projection.
-            let admission = Admission(try ApplicationCourt.derive(root, source: source, predicate: predicate))
-            var fields: [String: Axis] = [:]
+            let admission = Admission(try ApplicationCourt.derive([.member(root, predicate)], source: source))
+            var fields: NameMap<Axis> = [:]
             let raw = DefinitionReduction.Source(world: source.syntax, rigid: [])
             for a in axes {
                 let expression = DefinitionReduction.Expression.field(root, a)
@@ -245,30 +252,30 @@ public enum RosterResponse {
         func sameLiteral(_ a: StructuralSource.Literal?, _ b: StructuralSource.Literal?) -> Bool {
             guard let a else { return b == nil }
             guard let b else { return false }
-            return a.at.matches(b.at) && a.bytes == b.bytes && a.judged == b.judged
+            return a.at.matches(b.at) && WhereJudge.sameName(a.bytes, b.bytes) && a.judged == b.judged
         }
         /// No search for a replacement proof: replay the supplied finite graph
         /// and reductions, and compare coverage with the original read domain.
         func replay(_ report: Report) throws {
-            guard report.schema == RosterResponse.schema, Data(report.question.utf8) == Data(predicate.utf8),
+            guard report.schema == RosterResponse.schema, WhereJudge.sameName(report.question, predicate),
                 report.reader == "vi.roster.flat-declarations/1", report.inputs.count == inputs.count,
                 zip(report.inputs, inputs).allSatisfy({ $0.0.matches($0.1) }),
                 report.records.count == candidates.count,
-                zip(report.records, candidates).allSatisfy({ Data($0.0.name.utf8) == Data($0.1.utf8) }),
+                zip(report.records, candidates).allSatisfy({ WhereJudge.sameName($0.0.name, $0.1) }),
                 report.outcome == (candidates.isEmpty ? "empty" : "holds"), report.diagnostics.isEmpty else {
                 throw DefinitionReduction.Failure("roster certificate changes input, outcome or complete coverage")
             }
             let raw = DefinitionReduction.Source(world: source.syntax, rigid: [])
             for row in report.records {
                 let root = DefinitionReduction.Expression.application(row.name, [])
-                guard row.at.matches(address(row.name)), Set(row.axes.keys.map { Data($0.utf8) }) == Set(axes.map { Data($0.utf8) }), sameLiteral(row.literal, source.literals[row.name]) else {
+                guard row.at.matches(address(row.name.text)), NameSet(row.axes.keys) == NameSet(axes), sameLiteral(row.literal, source.literals[row.name]) else {
                     throw DefinitionReduction.Failure("changed address, axis roster or carried bytes at '\(row.name)'")
                 }
                 try row.admission.replay(root, source: source, predicate: predicate)
                 for a in axes {
                     let field = row.axes[a]!
                     let end = try DefinitionReduction.replay(field.derivation.proof(), source: raw)
-                    guard end.input == .field(root, a), end.output.text == field.normal,
+                    guard end.input == .field(root, a), WhereJudge.sameName(end.output.text, field.normal),
                         sameLiteral(field.literal, literal(end.output)) else { throw DefinitionReduction.Failure("changed axis projection '\(row.name).\(a)'") }
                     try normal(end.output)
                 }
@@ -321,7 +328,7 @@ public enum RosterResponse {
             let files = try args.map { ($0, try WhereJudge.fileText($0)) }
             let report: Report
             if let certificate {
-                report = try JSONDecoder().decode(Report.self, from: Data(contentsOf: URL(fileURLWithPath: certificate)))
+                report = try CourtJSON.decoder().decode(Report.self, from: Data(contentsOf: URL(fileURLWithPath: certificate)))
                 try World(files, predicate: predicate).replay(report)
             } else { report = answer(files, predicate: predicate) }
             let encoder = JSONEncoder()

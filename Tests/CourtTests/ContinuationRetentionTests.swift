@@ -74,7 +74,7 @@ final class ContinuationRetentionTests: XCTestCase {
         reordered.retention!.selections[1].input = [.right, .right]
         reordered.retention!.selections[2].input = [.right, .left]
         reordered.retention!.program = .pair(.pick([.left]), .pair(.pick([.right, .right]), .pick([.right, .left])))
-        XCTAssertEqual(try C.verifyRelatedRetention(reordered.request, certificate: reordered, source: world()), 2)
+        XCTAssertEqual(try C.verifyRelatedRetention(reordered.request.text, certificate: reordered, source: world()), 2)
     }
     func testRepresentativeOutsideViewsAndAnotherValidRepresentative() throws {
         var proof = try plan("RetainFromClassOutsideViews")
@@ -88,32 +88,32 @@ final class ContinuationRetentionTests: XCTestCase {
         proof.retention!.leaves = [[.right, .left]]
         proof.retention!.view = .pick([.right, .left])
         proof.retention!.selections[0].basis = .address
-        XCTAssertEqual(try C.verifyRelatedRetention(proof.request, certificate: proof, source: world()), 1)
+        XCTAssertEqual(try C.verifyRelatedRetention(proof.request.text, certificate: proof, source: world()), 1)
     }
     func testOmittedExtraWrongClassAndNonleafResidualRefuse() throws {
         let good = try plan()
         var changed = good
         changed.retention!.leaves = []
         refuses("omitted-class", address: "certificate.retention.leaves:") {
-            _ = try C.verifyRelatedRetention(changed.request, certificate: changed, source: world())
+            _ = try C.verifyRelatedRetention(changed.request.text, certificate: changed, source: world())
         }
         changed = good
         changed.retention!.leaves.append([.right])
         refuses("extra-leaf-not-minimal", address: "certificate.retention.leaves:") {
-            _ = try C.verifyRelatedRetention(changed.request, certificate: changed, source: world())
+            _ = try C.verifyRelatedRetention(changed.request.text, certificate: changed, source: world())
         }
         let paths: [C.Path] = [[.left], [.right, .left], []]
         for path in paths {
             changed = good
             changed.retention!.leaves = [path]
             refuses("wrong-or-unavailable-source-place", address: "certificate.retention.leaves[0]") {
-                _ = try C.verifyRelatedRetention(changed.request, certificate: changed, source: world())
+                _ = try C.verifyRelatedRetention(changed.request.text, certificate: changed, source: world())
             }
         }
         changed = try plan("RetainTwoSorts")
         changed.retention!.leaves = [[.right, .left], [.right, .left]]
         refuses("duplicate-class-with-correct-leaf-count", address: "certificate.retention.leaves[1]") {
-            _ = try C.verifyRelatedRetention(changed.request, certificate: changed, source: world())
+            _ = try C.verifyRelatedRetention(changed.request.text, certificate: changed, source: world())
         }
     }
     func testMinimalityRequiresExactClassesAndAPresentedRetainedView() throws {
@@ -122,41 +122,41 @@ final class ContinuationRetentionTests: XCTestCase {
         obstruction.residue = nil
         proof.conclusion = .obstructed(obstruction)
         refuses("coarse-partition-does-not-prove-minimality", address: "certificate.retention: exact residue proof") {
-            _ = try C.verifyRelatedRetention(proof.request, certificate: proof, source: world())
+            _ = try C.verifyRelatedRetention(proof.request.text, certificate: proof, source: world())
         }
         proof = try plan("RetainFromClassOutsideViews")
         guard case var .obstructed(exact) = proof.conclusion else { return XCTFail("obstruction required") }
         exact.residue!.connections[0] = []
         proof.conclusion = .obstructed(exact)
         refuses("broken-class-forest", address: "certificate.residue.connections[0]") {
-            _ = try C.verifyRelatedRetention(proof.request, certificate: proof, source: world())
+            _ = try C.verifyRelatedRetention(proof.request.text, certificate: proof, source: world())
         }
         proof = try C.deriveRelated("RetainOneClass", source: world())
-        XCTAssertFalse(try C.verifyRelated(proof.request, certificate: proof, source: world()))
+        XCTAssertFalse(try C.verifyRelated(proof.request.text, certificate: proof, source: world()))
         refuses("old-obstruction-is-not-a-retention-plan", address: "certificate.retention: no retained view") {
-            _ = try C.verifyRelatedRetention(proof.request, certificate: proof, source: world())
+            _ = try C.verifyRelatedRetention(proof.request.text, certificate: proof, source: world())
         }
     }
     func testForgedEqualityPathViewAndDecoderRefuse() throws {
         var proof = try plan("RetainFromClassOutsideViews")
         proof.retention!.selections[0].basis = .sourceRelation([.init(edge: [.left], reversed: false)])
         refuses("forged-e-path", address: "certificate.retention.selections[0].basis.path[0]") {
-            _ = try C.verifyRelatedRetention(proof.request, certificate: proof, source: world())
+            _ = try C.verifyRelatedRetention(proof.request.text, certificate: proof, source: world())
         }
         proof = try plan()
         proof.retention!.selections[0].input = [.left, .left]
         refuses("forged-joint-input", address: "certificate.retention.selections[0].input:") {
-            _ = try C.verifyRelatedRetention(proof.request, certificate: proof, source: world())
+            _ = try C.verifyRelatedRetention(proof.request.text, certificate: proof, source: world())
         }
         proof = try plan()
         proof.retention!.view = .pick([])
         refuses("forged-retained-view", address: "certificate.retention.view:") {
-            _ = try C.verifyRelatedRetention(proof.request, certificate: proof, source: world())
+            _ = try C.verifyRelatedRetention(proof.request.text, certificate: proof, source: world())
         }
         proof = try plan()
         proof.retention!.program = .pick([.left])
         refuses("forged-joint-decoder", address: "certificate.retention.program:") {
-            _ = try C.verifyRelatedRetention(proof.request, certificate: proof, source: world())
+            _ = try C.verifyRelatedRetention(proof.request.text, certificate: proof, source: world())
         }
     }
     func testZeroResidualKeepsFormat2BytesAndFormatsCannotMasquerade() throws {
@@ -164,7 +164,7 @@ final class ContinuationRetentionTests: XCTestCase {
         let retained = try plan("RetainNothing")
         XCTAssertNil(retained.retention)
         XCTAssertNil(C.retainedPlaces([]))
-        XCTAssertEqual(try C.verifyRelatedRetention(retained.request, certificate: retained, source: world()), 0)
+        XCTAssertEqual(try C.verifyRelatedRetention(retained.request.text, certificate: retained, source: world()), 0)
         XCTAssertEqual(try C.encodeRelated(ordinary), try C.encodeRelated(retained))
         for (proof, wrongFormat) in [(try plan(), 2), (ordinary, 3)] {
             var archive = try XCTUnwrap(JSONSerialization.jsonObject(with: C.encodeRelated(proof)) as? [String: Any])
@@ -181,14 +181,14 @@ final class ContinuationRetentionTests: XCTestCase {
                                     with: "typealias Equalities = Paired<Source.Right.Right, Source.Right.Left>")
         }
         refuses("changed-live-e", address: "RetainFromClassOutsideViews.Equalities") {
-            _ = try C.verifyRelatedRetention(proof.request, certificate: proof, source: changedE)
+            _ = try C.verifyRelatedRetention(proof.request.text, certificate: proof, source: changedE)
         }
         let changedSource = try world {
             $0.replacingOccurrences(of: "typealias Source = Paired<S, Paired<S, S>>",
                                     with: "typealias Source = Paired<S, Paired<S, Paired<S, S>>>")
         }
         refuses("changed-live-source", address: "RetainFromClassOutsideViews.Source") {
-            _ = try C.verifyRelatedRetention(proof.request, certificate: proof, source: changedSource)
+            _ = try C.verifyRelatedRetention(proof.request.text, certificate: proof, source: changedSource)
         }
     }
 }

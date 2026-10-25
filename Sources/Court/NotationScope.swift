@@ -14,7 +14,7 @@ struct NotationScope {
     }
     var declarations: [Declaration] = []
     var nested: [Int: String] = [:]
-    var namespaces: Set<String> = []
+    var namespaces: NameSet = []
 
     init(_ clean: String, enabled: Bool = true) throws {
         guard enabled else { return }
@@ -42,7 +42,7 @@ struct NotationScope {
             if !parents.isEmpty && parents.count == scope.depth[start] {
                 // A generic or inherited container has additional lexical bindings.
                 // They are not silently resolved as file-scope names.
-                guard parents.allSatisfy({ $0.kind == "enum" && $0.header.trimmingCharacters(in: .whitespacesAndNewlines) == "enum " + $0.name }) else {
+                guard parents.allSatisfy({ $0.kind == "enum" && WhereJudge.sameName($0.header.trimmingCharacters(in: .whitespacesAndNewlines), "enum " + $0.name) }) else {
                     try WhereJudge.fail("cannot read line \(scope.line[start]): nested declaration '\(name)' has an unsupported enclosing type")
                 }
                 qualified = parents.last!.qualified + "." + name
@@ -68,16 +68,19 @@ struct NotationScope {
     /// Both questions obtain nested declaration headers and fields from these
     /// lexical owners. A child keeps its qualified identity; it is not emitted
     /// as a new top-level source declaration.
-    func structural(_ clean: String, origin: String) throws -> [StructuralSource.Declaration] {
+    func structural(_ clean: String, origin: String, lent: NameSet) throws -> [StructuralSource.Declaration] {
         let units = Array(clean.utf16)
+        let builders = try lent.union(WhereJudge.declaredBuilders(clean))
         var result: [StructuralSource.Declaration] = []
         for declaration in declarations {
             guard ["enum", "struct", "protocol"].contains(declaration.kind) else { continue }
             let header = Array(try StructuralSource.tokens(declaration.header).dropFirst())
             let body = String(decoding: units[(declaration.open + 1)..<(declaration.close - 1)], as: UTF16.self)
+            let words = try WhereJudge.lexicalReading(body, scope: .projection,
+                lent: builders, carrying: false).tape.words
             let read = try StructuralSource.declaration(kind: declaration.kind, header: header,
-                body: StructuralSource.tokens(body), origin: origin)
-            let excluded = Set(read.parameters + Array(read.fields.keys) + ["Self"])
+                body: words, origin: origin)
+            let excluded = NameSet(read.parameters + Array(read.fields.keys) + ["Self"])
             result.append(StructuralSource.Declaration(name: declaration.qualified, kind: read.kind,
                 parameters: read.parameters, parents: read.parents, requirements: read.requirements,
                 fields: read.fields.mapValues { resolve($0, in: declaration.qualified, excluding: excluded) },
@@ -87,8 +90,8 @@ struct NotationScope {
         return result
     }
 
-    func resolve(_ body: String, in owner: String, excluding: Set<String> = []) -> String {
-        let known = Set(nested.values)
+    func resolve(_ body: String, in owner: String, excluding: NameSet = []) -> String {
+        let known = NameSet(nested.values)
         let regex = try! NSRegularExpression(pattern: #"(?<![\w.])\b\w+\b"#)
         let result = NSMutableString(string: body)
         for match in regex.matches(in: body, range: NSRange(body.startIndex..., in: body)).reversed() {
@@ -113,7 +116,7 @@ struct NotationScope {
         for hit in imports.matches(in: clean, range: NSRange(clean.startIndex..., in: clean)) {
             guard let range = Range(hit.range(at: 1), in: clean) else { continue }
             let spelled = clean[range].trimmingCharacters(in: .whitespaces)
-            if spelled == "Swift", scope.depth[hit.range.location] == 0 { hasSwift = true }
+            if WhereJudge.sameName(spelled, "Swift"), scope.depth[hit.range.location] == 0 { hasSwift = true }
             else if WhereJudge.captures(#"\b(Swift)\b"#, spelled).count > 0 {
                 try WhereJudge.fail("cannot read line \(scope.line[hit.range.location]): this court reads only the plain intrinsic import 'Swift'")
             }
@@ -124,7 +127,7 @@ struct NotationScope {
             guard hasSwift else {
                 try WhereJudge.fail("cannot read line \(scope.line[hit.range.location]): 'Swift.\(export)' requires the declared intrinsic import 'Swift'")
             }
-            guard exports.contains(export) else {
+            guard exports.containsName(export) else {
                 try WhereJudge.fail("cannot read line \(scope.line[hit.range.location]): 'Swift.\(export)' is not exported by intrinsic Swift/\(version)")
             }
         }

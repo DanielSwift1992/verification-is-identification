@@ -1,0 +1,66 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "fragment/view-qualified-comments/World.swift",
+      "source": "fragment/view-qualified-comments/World.swift",
+      "sha256": "df4a12ff6178517fa98fc233a7944bcd8f5a210fc47cc30b901624ecdb787aea",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Kit",
+        "Other"
+      ],
+      "at": {
+        "input": "view-comments#World.swift/input",
+        "source": "view-comments#World.swift/source",
+        "sha256": "view-comments#World.swift/sha256",
+        "namespace": "view-comments#World.swift/namespace",
+        "module": "view-comments#World.swift/module",
+        "role": "view-comments#World.swift/role",
+        "imports": [
+          "view-comments#imports/0",
+          "view-comments#imports/1"
+        ]
+      }
+    },
+    {
+      "input": "fragment/view-qualified-comments/Kit.swift",
+      "source": "fragment/view-qualified-comments/Kit.swift",
+      "sha256": "53e1049d95a82a3dddcf5d6cf70cdf530d9d41bad131ac9f73d71e27c395279a",
+      "namespace": "Kit",
+      "module": "Kit",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "view-comments#Kit.swift/input",
+        "source": "view-comments#Kit.swift/source",
+        "sha256": "view-comments#Kit.swift/sha256",
+        "namespace": "view-comments#Kit.swift/namespace",
+        "module": "view-comments#Kit.swift/module",
+        "role": "view-comments#Kit.swift/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "fragment/view-qualified-comments/Other.swift",
+      "source": "fragment/view-qualified-comments/Other.swift",
+      "sha256": "1b2b4b8151c5748d67ccb5073cb87b2f5b9bb81aff339b972711112ab67656c0",
+      "namespace": "Other",
+      "module": "Other",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "view-comments#Other.swift/input",
+        "source": "view-comments#Other.swift/source",
+        "sha256": "view-comments#Other.swift/sha256",
+        "namespace": "view-comments#Other.swift/namespace",
+        "module": "view-comments#Other.swift/module",
+        "role": "view-comments#Other.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

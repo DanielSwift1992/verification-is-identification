@@ -1,0 +1,542 @@
+{
+  "schema": "vi.court.conformance/2",
+  "suite": "vi.court.context-owner-views/2",
+  "reference_revision": "79cda5cecb74fcf73945dda7acf44481afd84127",
+  "scope": "No-shadowing admission at the original LF/CRLF/comment coordinates, with qualified positive and false counterparts under the same owner relation. The immutable owner-views/1 release retains the former lexical-priority rule.",
+  "versions": {
+    "context": "vi.court.context/2",
+    "normalization_canon": 4
+  },
+  "missing_files": [],
+  "files": {
+    "owners/view-comments/World.swift": {
+      "sha256": "2a73c92b8d1488e34e18015349bb0d77e25985c450a2bec798abf1bab87b618d",
+      "origin": "T0105 r2: one coordinate view for lexical owners and references"
+    },
+    "owners/view-comments/Kit.swift": {
+      "sha256": "53e1049d95a82a3dddcf5d6cf70cdf530d9d41bad131ac9f73d71e27c395279a",
+      "origin": "T0105 r2: one coordinate view for lexical owners and references"
+    },
+    "owners/view-comments/Other.swift": {
+      "sha256": "1b2b4b8151c5748d67ccb5073cb87b2f5b9bb81aff339b972711112ab67656c0",
+      "origin": "T0105 r2: one coordinate view for lexical owners and references"
+    },
+    "owners/view-comments/context.json": {
+      "sha256": "4cca9843967b5659aed0b92155f6e118a3f6f1b6d16163c14eba5ec582c54989",
+      "origin": "T0105 r2: original bytes and module owners"
+    },
+    "owners/view-crlf/World.swift": {
+      "sha256": "7b9c37072635d45e4510c8f2427e31f5407ce2e533242f9632b47470d259b769",
+      "origin": "T0105 r2: one coordinate view for lexical owners and references"
+    },
+    "owners/view-crlf/Kit.swift": {
+      "sha256": "c026110127afef545357e1e235dda9eacf74a4269d031e0395d879ac63100849",
+      "origin": "T0105 r2: one coordinate view for lexical owners and references"
+    },
+    "owners/view-crlf/Other.swift": {
+      "sha256": "c02b86f44944a616cc53bbf6e426dcac9370d39ae999dad81900df84938f9121",
+      "origin": "T0105 r2: one coordinate view for lexical owners and references"
+    },
+    "owners/view-crlf/context.json": {
+      "sha256": "aaaa2675b52a064fd2618ff35707cad7f73fd362c93771c3fc9a9d9662ee71fe",
+      "origin": "T0105 r2: original bytes and module owners"
+    },
+    "owners/view-crlf-false/World.swift": {
+      "sha256": "c87ac4d1151f0662ccf7861a7530ed3bc0cd35f2246ec10b1cab6fbc2c76952a",
+      "origin": "T0105 r2: one coordinate view for lexical owners and references"
+    },
+    "owners/view-crlf-false/Kit.swift": {
+      "sha256": "c026110127afef545357e1e235dda9eacf74a4269d031e0395d879ac63100849",
+      "origin": "T0105 r2: one coordinate view for lexical owners and references"
+    },
+    "owners/view-crlf-false/Other.swift": {
+      "sha256": "c02b86f44944a616cc53bbf6e426dcac9370d39ae999dad81900df84938f9121",
+      "origin": "T0105 r2: one coordinate view for lexical owners and references"
+    },
+    "owners/view-crlf-false/context.json": {
+      "sha256": "e336d54bd6aca68844182cab5812f76364360bf776a8833f5a9b1f6a8e37f1c4",
+      "origin": "T0105 r2: original bytes and module owners"
+    },
+    "fragment/view-qualified-comments/World.swift": {
+      "sha256": "df4a12ff6178517fa98fc233a7944bcd8f5a210fc47cc30b901624ecdb787aea",
+      "origin": "T0105 lead decision 3: qualified owner preserves the LF/CRLF/comment coordinate question"
+    },
+    "fragment/view-qualified-comments/Kit.swift": {
+      "sha256": "53e1049d95a82a3dddcf5d6cf70cdf530d9d41bad131ac9f73d71e27c395279a",
+      "origin": "T0105 lead decision 3: qualified owner preserves the LF/CRLF/comment coordinate question"
+    },
+    "fragment/view-qualified-comments/Other.swift": {
+      "sha256": "1b2b4b8151c5748d67ccb5073cb87b2f5b9bb81aff339b972711112ab67656c0",
+      "origin": "T0105 lead decision 3: qualified owner preserves the LF/CRLF/comment coordinate question"
+    },
+    "fragment/view-qualified-comments/context.json": {
+      "sha256": "69a25246c3559a516bfd8f661f6c32e02082ceeef8dfb154e3e2cf4743a74104",
+      "origin": "T0105 lead decision 3: qualified owner preserves the LF/CRLF/comment coordinate question"
+    },
+    "fragment/view-qualified-crlf/World.swift": {
+      "sha256": "1838429044515481867f7043a5a4f14293e866c1127bb161e5ea73cff3717a0b",
+      "origin": "T0105 lead decision 3: qualified owner preserves the LF/CRLF/comment coordinate question"
+    },
+    "fragment/view-qualified-crlf/Kit.swift": {
+      "sha256": "c026110127afef545357e1e235dda9eacf74a4269d031e0395d879ac63100849",
+      "origin": "T0105 lead decision 3: qualified owner preserves the LF/CRLF/comment coordinate question"
+    },
+    "fragment/view-qualified-crlf/Other.swift": {
+      "sha256": "c02b86f44944a616cc53bbf6e426dcac9370d39ae999dad81900df84938f9121",
+      "origin": "T0105 lead decision 3: qualified owner preserves the LF/CRLF/comment coordinate question"
+    },
+    "fragment/view-qualified-crlf/context.json": {
+      "sha256": "64767188882167a84d541ca641f33d141386bbd82245f3451f29e3411c92be17",
+      "origin": "T0105 lead decision 3: qualified owner preserves the LF/CRLF/comment coordinate question"
+    },
+    "fragment/view-qualified-crlf-false/World.swift": {
+      "sha256": "a6441d12ce622a1e0324635422a519d357d6f28f7d560b147ea409149aabc440",
+      "origin": "T0105 lead decision 3: qualified owner preserves the LF/CRLF/comment coordinate question"
+    },
+    "fragment/view-qualified-crlf-false/Kit.swift": {
+      "sha256": "c026110127afef545357e1e235dda9eacf74a4269d031e0395d879ac63100849",
+      "origin": "T0105 lead decision 3: qualified owner preserves the LF/CRLF/comment coordinate question"
+    },
+    "fragment/view-qualified-crlf-false/Other.swift": {
+      "sha256": "c02b86f44944a616cc53bbf6e426dcac9370d39ae999dad81900df84938f9121",
+      "origin": "T0105 lead decision 3: qualified owner preserves the LF/CRLF/comment coordinate question"
+    },
+    "fragment/view-qualified-crlf-false/context.json": {
+      "sha256": "e7687c4f624c1de1e3c62b430ae014509442a2efeb23703817416f90be2643a8",
+      "origin": "T0105 lead decision 3: qualified owner preserves the LF/CRLF/comment coordinate question"
+    }
+  },
+  "cases": [
+    {
+      "id": "view-comments-ambiguous",
+      "pass": "where",
+      "files": [
+        "owners/view-comments/World.swift",
+        "owners/view-comments/Kit.swift",
+        "owners/view-comments/Other.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/view-comments/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "owners/view-comments/Kit.swift",
+              "sha256": "53e1049d95a82a3dddcf5d6cf70cdf530d9d41bad131ac9f73d71e27c395279a"
+            },
+            {
+              "path": "owners/view-comments/Other.swift",
+              "sha256": "1b2b4b8151c5748d67ccb5073cb87b2f5b9bb81aff339b972711112ab67656c0"
+            },
+            {
+              "path": "owners/view-comments/World.swift",
+              "sha256": "2a73c92b8d1488e34e18015349bb0d77e25985c450a2bec798abf1bab87b618d"
+            },
+            {
+              "path": "owners/view-comments/context.json",
+              "sha256": "4cca9843967b5659aed0b92155f6e118a3f6f1b6d16163c14eba5ec582c54989"
+            }
+          ],
+          "results": {
+            "owners/view-comments/World.swift": {
+              "source": "owners/view-comments/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "owners/view-comments/World.swift:4: ambiguous name Axis"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "owners/view-comments/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "owners/view-comments/Kit.swift"
+            ]
+          },
+          {
+            "name": "Other",
+            "files": [
+              "owners/view-comments/Other.swift"
+            ]
+          }
+        ],
+        "exit": 0,
+        "diagnostic": "none"
+      }
+    },
+    {
+      "id": "view-crlf-ambiguous",
+      "pass": "where",
+      "files": [
+        "owners/view-crlf/World.swift",
+        "owners/view-crlf/Kit.swift",
+        "owners/view-crlf/Other.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/view-crlf/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "owners/view-crlf/Kit.swift",
+              "sha256": "c026110127afef545357e1e235dda9eacf74a4269d031e0395d879ac63100849"
+            },
+            {
+              "path": "owners/view-crlf/Other.swift",
+              "sha256": "c02b86f44944a616cc53bbf6e426dcac9370d39ae999dad81900df84938f9121"
+            },
+            {
+              "path": "owners/view-crlf/World.swift",
+              "sha256": "7b9c37072635d45e4510c8f2427e31f5407ce2e533242f9632b47470d259b769"
+            },
+            {
+              "path": "owners/view-crlf/context.json",
+              "sha256": "aaaa2675b52a064fd2618ff35707cad7f73fd362c93771c3fc9a9d9662ee71fe"
+            }
+          ],
+          "results": {
+            "owners/view-crlf/World.swift": {
+              "source": "owners/view-crlf/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "owners/view-crlf/World.swift:4: ambiguous name Axis"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "owners/view-crlf/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "owners/view-crlf/Kit.swift"
+            ]
+          },
+          {
+            "name": "Other",
+            "files": [
+              "owners/view-crlf/Other.swift"
+            ]
+          }
+        ],
+        "exit": 0,
+        "diagnostic": "none"
+      }
+    },
+    {
+      "id": "view-crlf-false-ambiguous",
+      "pass": "where",
+      "files": [
+        "owners/view-crlf-false/World.swift",
+        "owners/view-crlf-false/Kit.swift",
+        "owners/view-crlf-false/Other.swift"
+      ],
+      "args": [
+        "--context",
+        "owners/view-crlf-false/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "owners/view-crlf-false/Kit.swift",
+              "sha256": "c026110127afef545357e1e235dda9eacf74a4269d031e0395d879ac63100849"
+            },
+            {
+              "path": "owners/view-crlf-false/Other.swift",
+              "sha256": "c02b86f44944a616cc53bbf6e426dcac9370d39ae999dad81900df84938f9121"
+            },
+            {
+              "path": "owners/view-crlf-false/World.swift",
+              "sha256": "c87ac4d1151f0662ccf7861a7530ed3bc0cd35f2246ec10b1cab6fbc2c76952a"
+            },
+            {
+              "path": "owners/view-crlf-false/context.json",
+              "sha256": "e336d54bd6aca68844182cab5812f76364360bf776a8833f5a9b1f6a8e37f1c4"
+            }
+          ],
+          "results": {
+            "owners/view-crlf-false/World.swift": {
+              "source": "owners/view-crlf-false/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "owners/view-crlf-false/World.swift:4: ambiguous name Axis"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "owners/view-crlf-false/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "owners/view-crlf-false/Kit.swift"
+            ]
+          },
+          {
+            "name": "Other",
+            "files": [
+              "owners/view-crlf-false/Other.swift"
+            ]
+          }
+        ],
+        "exit": 1,
+        "diagnostic": "addressed"
+      }
+    },
+    {
+      "id": "view-qualified-comments",
+      "pass": "where",
+      "files": [
+        "fragment/view-qualified-comments/World.swift",
+        "fragment/view-qualified-comments/Kit.swift",
+        "fragment/view-qualified-comments/Other.swift"
+      ],
+      "args": [
+        "--context",
+        "fragment/view-qualified-comments/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "outcome": "holds",
+          "inputs": [
+            {
+              "path": "fragment/view-qualified-comments/Kit.swift",
+              "sha256": "53e1049d95a82a3dddcf5d6cf70cdf530d9d41bad131ac9f73d71e27c395279a"
+            },
+            {
+              "path": "fragment/view-qualified-comments/Other.swift",
+              "sha256": "1b2b4b8151c5748d67ccb5073cb87b2f5b9bb81aff339b972711112ab67656c0"
+            },
+            {
+              "path": "fragment/view-qualified-comments/World.swift",
+              "sha256": "df4a12ff6178517fa98fc233a7944bcd8f5a210fc47cc30b901624ecdb787aea"
+            },
+            {
+              "path": "fragment/view-qualified-comments/context.json",
+              "sha256": "69a25246c3559a516bfd8f661f6c32e02082ceeef8dfb154e3e2cf4743a74104"
+            }
+          ],
+          "results": {
+            "fragment/view-qualified-comments/World.swift": {
+              "source": "fragment/view-qualified-comments/World.swift",
+              "outcome": "holds",
+              "minimum": {
+                "equalities": 1
+              }
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "fragment/view-qualified-comments/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "fragment/view-qualified-comments/Kit.swift"
+            ]
+          },
+          {
+            "name": "Other",
+            "files": [
+              "fragment/view-qualified-comments/Other.swift"
+            ]
+          }
+        ],
+        "exit": 0,
+        "diagnostic": "none"
+      }
+    },
+    {
+      "id": "view-qualified-crlf",
+      "pass": "where",
+      "files": [
+        "fragment/view-qualified-crlf/World.swift",
+        "fragment/view-qualified-crlf/Kit.swift",
+        "fragment/view-qualified-crlf/Other.swift"
+      ],
+      "args": [
+        "--context",
+        "fragment/view-qualified-crlf/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "outcome": "holds",
+          "inputs": [
+            {
+              "path": "fragment/view-qualified-crlf/Kit.swift",
+              "sha256": "c026110127afef545357e1e235dda9eacf74a4269d031e0395d879ac63100849"
+            },
+            {
+              "path": "fragment/view-qualified-crlf/Other.swift",
+              "sha256": "c02b86f44944a616cc53bbf6e426dcac9370d39ae999dad81900df84938f9121"
+            },
+            {
+              "path": "fragment/view-qualified-crlf/World.swift",
+              "sha256": "1838429044515481867f7043a5a4f14293e866c1127bb161e5ea73cff3717a0b"
+            },
+            {
+              "path": "fragment/view-qualified-crlf/context.json",
+              "sha256": "64767188882167a84d541ca641f33d141386bbd82245f3451f29e3411c92be17"
+            }
+          ],
+          "results": {
+            "fragment/view-qualified-crlf/World.swift": {
+              "source": "fragment/view-qualified-crlf/World.swift",
+              "outcome": "holds",
+              "minimum": {
+                "equalities": 1
+              }
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "fragment/view-qualified-crlf/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "fragment/view-qualified-crlf/Kit.swift"
+            ]
+          },
+          {
+            "name": "Other",
+            "files": [
+              "fragment/view-qualified-crlf/Other.swift"
+            ]
+          }
+        ],
+        "exit": 0,
+        "diagnostic": "none"
+      }
+    },
+    {
+      "id": "view-qualified-crlf-false",
+      "pass": "where",
+      "files": [
+        "fragment/view-qualified-crlf-false/World.swift",
+        "fragment/view-qualified-crlf-false/Kit.swift",
+        "fragment/view-qualified-crlf-false/Other.swift"
+      ],
+      "args": [
+        "--context",
+        "fragment/view-qualified-crlf-false/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "response": {
+          "question": "where",
+          "outcome": "not-established",
+          "inputs": [
+            {
+              "path": "fragment/view-qualified-crlf-false/Kit.swift",
+              "sha256": "c026110127afef545357e1e235dda9eacf74a4269d031e0395d879ac63100849"
+            },
+            {
+              "path": "fragment/view-qualified-crlf-false/Other.swift",
+              "sha256": "c02b86f44944a616cc53bbf6e426dcac9370d39ae999dad81900df84938f9121"
+            },
+            {
+              "path": "fragment/view-qualified-crlf-false/World.swift",
+              "sha256": "a6441d12ce622a1e0324635422a519d357d6f28f7d560b147ea409149aabc440"
+            },
+            {
+              "path": "fragment/view-qualified-crlf-false/context.json",
+              "sha256": "e7687c4f624c1de1e3c62b430ae014509442a2efeb23703817416f90be2643a8"
+            }
+          ],
+          "results": {
+            "fragment/view-qualified-crlf-false/World.swift": {
+              "source": "fragment/view-qualified-crlf-false/World.swift",
+              "outcome": "not-established",
+              "minimum": {
+                "equalities": 1
+              }
+            }
+          },
+          "diagnostics_contain": [
+            "requires the types"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "fragment/view-qualified-crlf-false/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "fragment/view-qualified-crlf-false/Kit.swift"
+            ]
+          },
+          {
+            "name": "Other",
+            "files": [
+              "fragment/view-qualified-crlf-false/Other.swift"
+            ]
+          }
+        ],
+        "exit": 1,
+        "diagnostic": "addressed"
+      }
+    }
+  ]
+}

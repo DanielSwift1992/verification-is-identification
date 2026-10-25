@@ -1,0 +1,66 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "fragment/view-qualified-crlf-false/World.swift",
+      "source": "fragment/view-qualified-crlf-false/World.swift",
+      "sha256": "a6441d12ce622a1e0324635422a519d357d6f28f7d560b147ea409149aabc440",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Kit",
+        "Other"
+      ],
+      "at": {
+        "input": "view-crlf-false#World.swift/input",
+        "source": "view-crlf-false#World.swift/source",
+        "sha256": "view-crlf-false#World.swift/sha256",
+        "namespace": "view-crlf-false#World.swift/namespace",
+        "module": "view-crlf-false#World.swift/module",
+        "role": "view-crlf-false#World.swift/role",
+        "imports": [
+          "view-crlf-false#imports/0",
+          "view-crlf-false#imports/1"
+        ]
+      }
+    },
+    {
+      "input": "fragment/view-qualified-crlf-false/Kit.swift",
+      "source": "fragment/view-qualified-crlf-false/Kit.swift",
+      "sha256": "c026110127afef545357e1e235dda9eacf74a4269d031e0395d879ac63100849",
+      "namespace": "Kit",
+      "module": "Kit",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "view-crlf-false#Kit.swift/input",
+        "source": "view-crlf-false#Kit.swift/source",
+        "sha256": "view-crlf-false#Kit.swift/sha256",
+        "namespace": "view-crlf-false#Kit.swift/namespace",
+        "module": "view-crlf-false#Kit.swift/module",
+        "role": "view-crlf-false#Kit.swift/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "fragment/view-qualified-crlf-false/Other.swift",
+      "source": "fragment/view-qualified-crlf-false/Other.swift",
+      "sha256": "c02b86f44944a616cc53bbf6e426dcac9370d39ae999dad81900df84938f9121",
+      "namespace": "Other",
+      "module": "Other",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "view-crlf-false#Other.swift/input",
+        "source": "view-crlf-false#Other.swift/source",
+        "sha256": "view-crlf-false#Other.swift/sha256",
+        "namespace": "view-crlf-false#Other.swift/namespace",
+        "module": "view-crlf-false#Other.swift/module",
+        "role": "view-crlf-false#Other.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

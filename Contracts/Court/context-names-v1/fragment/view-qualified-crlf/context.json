@@ -1,0 +1,66 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "fragment/view-qualified-crlf/World.swift",
+      "source": "fragment/view-qualified-crlf/World.swift",
+      "sha256": "1838429044515481867f7043a5a4f14293e866c1127bb161e5ea73cff3717a0b",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Kit",
+        "Other"
+      ],
+      "at": {
+        "input": "view-crlf#World.swift/input",
+        "source": "view-crlf#World.swift/source",
+        "sha256": "view-crlf#World.swift/sha256",
+        "namespace": "view-crlf#World.swift/namespace",
+        "module": "view-crlf#World.swift/module",
+        "role": "view-crlf#World.swift/role",
+        "imports": [
+          "view-crlf#imports/0",
+          "view-crlf#imports/1"
+        ]
+      }
+    },
+    {
+      "input": "fragment/view-qualified-crlf/Kit.swift",
+      "source": "fragment/view-qualified-crlf/Kit.swift",
+      "sha256": "c026110127afef545357e1e235dda9eacf74a4269d031e0395d879ac63100849",
+      "namespace": "Kit",
+      "module": "Kit",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "view-crlf#Kit.swift/input",
+        "source": "view-crlf#Kit.swift/source",
+        "sha256": "view-crlf#Kit.swift/sha256",
+        "namespace": "view-crlf#Kit.swift/namespace",
+        "module": "view-crlf#Kit.swift/module",
+        "role": "view-crlf#Kit.swift/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "fragment/view-qualified-crlf/Other.swift",
+      "source": "fragment/view-qualified-crlf/Other.swift",
+      "sha256": "c02b86f44944a616cc53bbf6e426dcac9370d39ae999dad81900df84938f9121",
+      "namespace": "Other",
+      "module": "Other",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "view-crlf#Other.swift/input",
+        "source": "view-crlf#Other.swift/source",
+        "sha256": "view-crlf#Other.swift/sha256",
+        "namespace": "view-crlf#Other.swift/namespace",
+        "module": "view-crlf#Other.swift/module",
+        "role": "view-crlf#Other.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

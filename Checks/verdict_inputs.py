@@ -181,8 +181,11 @@ def snapshot(root, modules):
         if 'executable' in command and Path(command['executable']).resolve() != driver.resolve():
             raise ValueError(at + '.compiler: prepared module used a different compiler')
         sources = {str((root / target['path'] / s).resolve()) for s in target['sources']}
-        if set(command['sources']) != sources:
-            extra = sorted(set(command['sources']) - sources)
+        # Compare the compiler's sources by their actual paths: a root reached
+        # through a symbolic link (/tmp, /var) names the same files.
+        prepared = {str(actual_path(root, s)) for s in command['sources']}
+        if prepared != sources:
+            extra = sorted(prepared - sources)
             raise ValueError(at + '.sources: unannounced compiler input ' + str(extra or 'missing source'))
         mapping = Path(command['outputFileMapPath'])
         if modules.parent not in mapping.resolve().parents:

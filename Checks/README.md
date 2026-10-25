@@ -42,6 +42,12 @@ refinement and retained access. Use the full verdict suite when shared proof
 relations change, and the grammar check for the source files being edited.
 Prose edits need their relevant quote, voice or link checks.
 
+The local `verdict` receipt is declared in [verdict-inputs.json](verdict-inputs.json). Its fixture list is shared by the combined positive check and the mutation executor. SwiftPM's JSON target graph determines the transitive source closure; the key also binds the law scripts, declaration, package manifest/resolution, compiler version and binaries, prepared modules, and compiler/SDK files named by the selected module compilations. Court and prose outside that closure do not change the key. `VERDICT_JOBS` defaults to 6; `1` is serial. This is the local scheduling choice from T0106's measured 3/10-worker comparison, not a CI time budget.
+
+Before the run, the collector checks SwiftPM compiler source lists, output maps and Make dependency files against that closure. Each fixture uses the existing combined check's whole-module mode with separate source-file boundaries. Each actual compiler call, including semantic refusals, then emits its own dependency record with `-emit-dependencies -output-file-map`; every recorded input must already belong to the key. An unannounced input refuses the receipt with the compiler-call/dependency address. A missing or unread dependency record is also a refusal, never an admitted empty input set. The local receipt retains the raw compiler dependency records and checks their address coverage on reuse. Changed inputs during a run write no receipt. `VERDICT_FULL=1` forces the complete suite; direct scopes and CI do not read or write receipts.
+
+The supported collection carrier is SwiftPM JSON for Swift library targets and the compiler's finite Make dependency transport (escaped paths and joined lines); unsupported target/dependency forms refuse by address. The collector does not parse Swift. Its graph/dependency transport and the correctness of SwiftPM/compiler dependency reporting remain collection premises and debt T0106/Qualification; native controls are observations, not a proof of the reader or of physical execution. The receipt asserts unchanged declared compilation inputs, not a stronger VI theorem or progress on physical §12.
+
 The acquisition cases also separate a stored payload from a source reading,
 and coexisting, comparable records from a uniform verdict. A named compiler
 refusal concerns that attempted construction; absence of a conformance is

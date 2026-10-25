@@ -395,10 +395,10 @@ enum WhereJudge {
     // type, a protocol, a typealias, an associated type, a generic parameter.
     // `file` holds the names this reader reads at file scope: an enum, a
     // protocol or a typealias outside every body.
-    static func declaredNames(_ text: String, _ scope: Scope) throws
+    static func declaredNames(_ text: String, _ scope: Scope, owners: NotationScope? = nil, source: String? = nil) throws
         -> (lines: NameMap<[Int]>, file: NameSet) {
         var lines: NameMap<[Int]> = [:]
-        var file = NameSet()
+        var file = NameSet(), owned: [NotationScope.Member: [Int]] = [:]
         let range = NSRange(text.startIndex..., in: text)
         let nominal = try! NSRegularExpression(
             pattern: #"\b(enum|struct|class|actor|protocol|typealias|associatedtype)\s+(\w+)"#
@@ -407,8 +407,16 @@ enum WhereJudge {
             guard let kind = Range(match.range(at: 1), in: text).map({ String(text[$0]) }),
                   let spelled = Range(match.range(at: 2), in: text).map({ String(text[$0]) }) else { continue }
             let start = match.range.location
-            let name = scope.qualified[start] ?? spelled
+            let lexical = owners?.declarations.last { $0.open < start && start < $0.close }
+            let name = scope.qualified[start] ?? lexical.map { $0.qualified + "." + spelled } ?? spelled
             lines[name, default: []].append(scope.line[start])
+            if owners != nil {
+                let member = NotationScope.Member(owner: lexical.map { ScalarName($0.qualified) }, name: ScalarName(spelled))
+                owned[member, default: []].append(scope.line[start])
+                if lexical != nil, owned[member]!.count > 1 {
+                    try fail("\(source.map { $0 + ":" } ?? "line ")\(scope.line[start]): duplicate declaration '\(name)' at \(spelledLines(owned[member]!)) in the same owner")
+                }
+            }
             if scope.qualified[start] != nil || (scope.depth[start] == 0 && ["enum", "protocol", "typealias"].contains(kind)) {
                 file.insert(name)
             }
@@ -482,7 +490,8 @@ enum WhereJudge {
                 // a parameter pack is spelled `each T`, a value parameter `let n: Int`
                 let bare = parameter.split(whereSeparator: \.isWhitespace).last.map(String.init) ?? parameter
                 if kind == "enum", scope.depth[match.range.location] == 0, scope.namespaces.contains(bare) { continue }
-                lines[bare, default: []].append(scope.line[start])
+                let name = owners?.owner(at: match.range.location).map { $0.qualified + "." + bare } ?? bare
+                lines[name, default: []].append(scope.line[start])
             }
         }
         return (lines.mapValues { $0.sorted() }, file)
@@ -697,7 +706,7 @@ enum WhereJudge {
     }
 
     static func read(_ text: String, lent: NameSet = [], notationV2: Bool = true,
-                     contextV2: Bool = false) throws -> World {
+                     contextV2: Bool = false, source: String? = nil) throws -> World {
         let clean = try stripComments(text, lent: lent)
         var scope = Scope(clean)
         let notation = try NotationScope(clean, enabled: notationV2)
@@ -711,7 +720,7 @@ enum WhereJudge {
         // Use the same Unicode word class as the declaration reader. A name
         // it reads cannot disappear when checking which gates reach the file.
         world.names = NameSet(captures(#"\b(\w+)\b"#, clean).map { $0[0] })
-        let names = try declaredNames(clean, scope)
+        let names = try declaredNames(clean, scope, owners: contextV2 ? notation : nil, source: source)
         world.declared = names.lines
         if world.intrinsicSwift {
             for name in ["Swift", "Never"] + (contextV2 ? ["String"] : []) {
@@ -849,6 +858,19 @@ enum WhereJudge {
             }
             let spelled = parts.joined(separator: ".")
             if parts.count > 1 {
+                // A context/2 definition may lend an empty implementation
+                // extension of a declared nested type. Declaration-bearing or
+                // constrained extensions still require their existing reader.
+                var end = cursor
+                while end < cleanUnits.count, isSpaceUnit(cleanUnits[end]) { end += 1 }
+                if contextV2, world.nestedNames.contains(spelled), end < cleanUnits.count, cleanUnits[end] == 0x7B {
+                    end += 1
+                    while end < cleanUnits.count, isSpaceUnit(cleanUnits[end]) { end += 1 }
+                    if end < cleanUnits.count, cleanUnits[end] == 0x7D {
+                        world.extensions[spelled, default: []].append(line)
+                        continue
+                    }
+                }
                 try fail("cannot read line \(line): the extension of '\(spelled)' names its type through a qualifier, "
                     + "which this court does not resolve")
             }

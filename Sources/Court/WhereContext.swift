@@ -96,6 +96,7 @@ enum WhereContext {
                 }
             }
         }
+        if context.version == 2 { try WhereContextNames.members(units, in: world) }
         try WhereContextNames.applications(resolved.applications, in: world)
         // Availability is checked from source declarations and explicit import
         // edges. A context does not turn an opaque spelling into a supplied type.
@@ -143,7 +144,14 @@ enum WhereContext {
             for name in (try references(unit.world, in: world)).sorted() {
                 guard reached.contains(name) && origins[name] == nil && !intrinsicNames.containsName(name)
                     && !(WhereJudge.sameName(name, "Swift") && world.intrinsicSwift) else { continue }
-                world.contextUnresolved.append("\(unit.context.source): no declared definition for '\(name)' in the supplied context")
+                var at = unit.context.source
+                if context.version == 2, units.contains(where: { $0.world.protocolAxes.values.contains { $0.contains(name) } }),
+                   let alias = unit.world.aliases.keys.sorted().first(where: {
+                       (try? StructuralSource.tokens(unit.world.aliases[$0]!.body))?.containsName(name) == true
+                   }) {
+                    at += ":\(unit.world.certificateLines[alias] ?? 1)"
+                }
+                world.contextUnresolved.append("\(at): no declared definition for '\(name)' in the supplied context")
             }
         }
         world.contextUnresolved.sort()

@@ -57,7 +57,7 @@ enum CourtNotation {
                 && !documents.contains(source.input)
             let view = rawOwn ? (text: text, first: Optional<Int>.none)
                 : try DefinitionView.read(text, path: source.source, lent: lent, contextV2: context.version == 2)
-            let world = try WhereJudge.read(view.text, lent: lent, contextV2: context.version == 2)
+            let world = try WhereJudge.read(view.text, lent: lent, contextV2: context.version == 2, source: source.source)
             for imported in try imports(view.text, lent: lent) {
                 guard source.imports.containsName(imported.module) else {
                     try WhereJudge.fail("\(source.source):\(imported.line): import '\(imported.module)' is not declared by the source context")

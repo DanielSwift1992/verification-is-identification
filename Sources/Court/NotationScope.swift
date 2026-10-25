@@ -3,6 +3,10 @@ import Foundation
 /// Source coordinates and lexical owners for the bounded nested-enum fragment.
 /// This is reader state, not another source format or a source of equations.
 struct NotationScope {
+    struct Member: Hashable {
+        let owner: ScalarName?
+        let name: ScalarName
+    }
     struct Declaration {
         let kind: String
         let name: String
@@ -64,6 +68,12 @@ struct NotationScope {
     }
 
     func name(_ spelling: String, at start: Int) -> String { nested[start] ?? spelling }
+
+    /// The innermost nominal declaration owns its header and body. A header's
+    /// where clause has the same associated-type scope as its protocol body.
+    func owner(at offset: Int) -> Declaration? {
+        declarations.last { $0.start <= offset && offset < $0.close }
+    }
 
     /// Both questions obtain nested declaration headers and fields from these
     /// lexical owners. A child keeps its qualified identity; it is not emitted

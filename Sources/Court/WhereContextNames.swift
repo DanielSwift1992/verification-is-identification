@@ -35,11 +35,6 @@ enum WhereContextNames {
                 origins[key(name), default: []].append(Origin(file: index, name: name,
                     module: module, line: file.world.declared[name]?.first ?? 1))
             }
-            // Comments and excluded conditional branches are already absent
-            // from this read view. An imports row alone is not a re-export.
-            for hit in WhereJudge.captures(#"@_exported\s+import\s+(\w+)"#, file.world.clean) {
-                exports[module, default: []].insert(key(hit[0]))
-            }
         }
         for found in origins.values {
             var seen: [Key: Origin] = [:]
@@ -79,6 +74,15 @@ enum WhereContextNames {
             tape.ends = indices.map { scanned.ends[$0] }
             tape.lines = indices.map { scanned.lines[$0] }
             return tape
+        }
+        // An export edge must be written on the shared, active lexical tape.
+        // An imports row alone supplies no re-export and comments supply none.
+        for (file, tape) in zip(files, tapes)
+        where tape.words.count >= 4 {
+            for i in 0..<(tape.words.count - 3)
+            where WhereJudge.sameNames(Array(tape.words[i..<(i + 3)]), ["@", "_exported", "import"]) {
+                exports[key(file.context.module), default: []].insert(key(tape.words[i + 3]))
+            }
         }
         var qualified: Set<Key> = []
         for tape in tapes
@@ -135,12 +139,46 @@ enum WhereContextNames {
                 imports: accessible.filter { $0 != local }.compactMap { moduleSpellings[$0] }.sorted(),
                 at: context.at, importAddresses: context.importAddresses)
             let collisions = Set(origins.filter { $0.value.count > 1 }.keys)
-            let bound = Set((file.world.parameters.values.flatMap { $0 }
-                + file.world.conformers.values.flatMap { Array($0.table.keys) }
-                + file.world.protocolAxes.values.flatMap { Array($0) }).map(key))
-            // The flat declaration reader has no lexical owner for a shadowed
-            // parameter/axis. Renaming that spelling would choose a false owner.
             let clean = file.view
+            func protocolBindings(_ name: String, seen: NameSet = []) -> NameSet {
+                guard !seen.contains(name) else { return [] }
+                let candidates = files.filter { candidate in
+                    candidate.world.protocolAxes[name] != nil
+                        && accessible.contains(key(candidate.context.module))
+                }
+                let declaration = candidates.first { key($0.context.module) == local } ?? candidates.first
+                guard let declaration else { return [] }
+                var result = declaration.world.protocolAxes[name] ?? []
+                for parent in declaration.world.protocolParents[name] ?? [] {
+                    result.formUnion(protocolBindings(parent, seen: seen.union([name])))
+                }
+                return result
+            }
+            let aliasScopes = try WhereJudge.readAliasSpans(WhereJudge.outsideBodies(file.world.clean))
+                .filter { !$0.fields[1].isEmpty }
+            let scopeBindings = file.notation.declarations.map { owner -> (Int, Int, NameSet) in
+                let start = clean.utf8.distance(from: clean.utf8.startIndex, to: String.Index(utf16Offset: owner.start, in: clean))
+                let end = clean.utf8.distance(from: clean.utf8.startIndex, to: String.Index(utf16Offset: owner.close, in: clean))
+                let children = file.notation.declarations.filter {
+                    WhereJudge.sameName($0.qualified, owner.qualified + "." + $0.name)
+                }.map(\.name)
+                var names = NameSet(file.world.parameters[owner.qualified] ?? [])
+                names.formUnion(protocolBindings(owner.qualified))
+                names.formUnion(file.world.conformers[owner.qualified]?.table.keys ?? [])
+                names.formUnion(children)
+                return (start, end, names)
+            }
+            func bindings(at offset: Int) -> NameSet {
+                var result = scopeBindings.reduce(into: NameSet()) { result, scope in
+                    if scope.0 <= offset && offset < scope.1 { result.formUnion(scope.2) }
+                }
+                let position = clean.utf8.index(clean.utf8.startIndex, offsetBy: offset).utf16Offset(in: clean)
+                for alias in aliasScopes
+                where NSLocationInRange(position, alias.body) {
+                    result.formUnion(WhereJudge.parameterNames(alias.fields[1]))
+                }
+                return result
+            }
             // Use the existing structural token reader, including its original
             // byte coordinates; no second identifier alphabet is introduced.
             let tokens = tapes[fileIndex]
@@ -164,11 +202,12 @@ enum WhereContextNames {
                 let word = tokens.words[i], name = key(word)
                 if name == key("import") { i += 2; continue }
                 if i > 0 && key(tokens.words[i - 1]) == key(".") { i += 1; continue }
+                let bound: NameSet = modules.contains(name) || collisions.contains(name) ? bindings(at: tokens.starts[i]) : []
                 if modules.contains(name), i + 2 < tokens.words.count, key(tokens.words[i + 1]) == key(".") {
                     guard tokens.lines[i] == tokens.lines[i + 2] else {
                         try WhereJudge.fail("\(address(i)): a module qualifier across lines is outside this context fragment")
                     }
-                    guard !bound.contains(name), !(origins[name] ?? []).contains(
+                    guard !bound.contains(word), !(origins[name] ?? []).contains(
                         where: { $0.module == local }) else {
                         try WhereJudge.fail("\(address(i)): module qualifier '\(word)' is shadowed by a local declaration; this binding is outside the nominal context fragment")
                     }
@@ -205,11 +244,8 @@ enum WhereContextNames {
                     i += 3
                     continue
                 }
-                if collisions.contains(name), let origin = try choose(word, at: i),
+                if !bound.contains(word), collisions.contains(name), let origin = try choose(word, at: i),
                    let symbol = symbols[name]?[origin.module], key(symbol) != name {
-                    guard !bound.contains(name) else {
-                        try WhereJudge.fail("\(address(i)): context name '\(word)' is shadowed by a parameter or axis; this binding is outside the nominal context fragment")
-                    }
                     replacements.append((tokens.starts[i], tokens.ends[i], symbol))
                 }
                 i += 1
@@ -223,6 +259,7 @@ enum WhereContextNames {
                 let lines = bytes[start..<end].filter { $0 == 10 }.count
                 return Array((replacement + String(repeating: "\n", count: lines)).utf8)
             }
+            var unread = NameMap<String>()
             for (start, end, at) in genericRanges {
                 var fragment = Array(bytes[start..<end])
                 for (lower, upper, replacement) in replacements.reversed()
@@ -230,8 +267,15 @@ enum WhereContextNames {
                     fragment.replaceSubrange((lower - start)..<(upper - start),
                         with: replacementBytes(lower, upper, replacement))
                 }
-                applications.append(Application(text: String(decoding: fragment, as: UTF8.self), address: at,
-                    bound: NameSet(bound.map(\.text)).union(["Self"])))
+                let position = clean.utf8.index(clean.utf8.startIndex, offsetBy: start).utf16Offset(in: clean)
+                if version == 2, file.context.role == "borrowed",
+                   let alias = aliasScopes.first(where: { NSLocationInRange(position, $0.body) }) {
+                    let symbol = symbols[key(alias.fields[0])]?[local] ?? alias.fields[0]
+                    unread[symbol] = at + " (unapplied generic alias: bound application context)"
+                } else {
+                    applications.append(Application(text: String(decoding: fragment, as: UTF8.self), address: at,
+                        bound: bindings(at: start).union(["Self"])))
+                }
             }
             for (start, end, replacement) in replacements.reversed() {
                 // Preserve source line breaks in the rewritten view so refusal
@@ -239,11 +283,47 @@ enum WhereContextNames {
                 bytes.replaceSubrange(start..<end, with: replacementBytes(start, end, replacement))
             }
             let view = String(decoding: bytes, as: UTF8.self)
-            let world = try WhereJudge.read(view, lent: builders, contextV2: version == 2)
+            var world = try WhereJudge.read(view, lent: builders, contextV2: version == 2, source: context.source)
+            // The existing conditional-declaration boundary prevents an unread
+            // bound application from becoming a nominal reflexivity premise.
+            world.conditionalDeclarations.formUnion(unread.keys)
             return CourtNotation.File(context: context, text: file.text, view: view, world: world,
-                notation: try NotationScope(world.clean), excluded: file.excluded, unchecked: file.unchecked)
+                notation: try NotationScope(world.clean), excluded: file.excluded,
+                unchecked: (file.unchecked + Array(unread.values)).sorted())
         }
         return Resolution(files: resolved, applications: applications)
+    }
+
+    /// Reports the addressed missing member of a supplied concrete owner.
+    /// Bound projections and declarations outside the nominal fragment retain
+    /// their existing reduction/admission rules.
+    static func members(_ files: [CourtNotation.File], in world: WhereJudge.World) throws {
+        for file in files {
+            for (name, alias) in file.world.aliases.sorted(by: { $0.key < $1.key }) {
+                let at = file.context.source + ":\(file.world.certificateLines[name] ?? 1)"
+                func check(_ expression: DefinitionReduction.Expression) throws {
+                    switch expression {
+                    case let .application(_, arguments):
+                        for argument in arguments { try check(argument) }
+                    case let .field(owner, axis):
+                        try check(owner)
+                        if world.nestedNames.contains(expression.text) { return }
+                        if world.namespaces.contains(owner.text) {
+                            try WhereJudge.fail("\(at): owner '\(owner.text)' has no declaration '\(axis)'")
+                        }
+                        let head: String
+                        if case let .application(name, arguments) = owner, arguments.isEmpty { head = name }
+                        else if world.nestedNames.contains(owner.text) { head = owner.text }
+                        else { return }
+                        if let declaration = world.conformers[head], declaration.parameters.isEmpty,
+                           declaration.table[axis] == nil {
+                            try WhereJudge.fail("\(at): cannot read projection '\(expression.text)': no definition of '\(axis)' on '\(head)'")
+                        }
+                    }
+                }
+                try check(DefinitionReduction.parse(alias.body))
+            }
+        }
     }
 
     /// Checks the application that qualification exposed before an equality

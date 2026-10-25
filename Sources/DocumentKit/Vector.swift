@@ -136,26 +136,26 @@ extension StartAt: Pen {
 /// Extends a path vertically to the supplied ordinate.
 public enum UntilY<
     Prev: Pen,
-    Line: Structure
+    Ordinate: Structure
 >: Close {}
 extension UntilY: Pen {
     public typealias AtX = Prev.AtX
-    public typealias AtY = Line
+    public typealias AtY = Ordinate
     public static var typeName: String {
-        "\(XMLEscaped<Prev>.typeName) L\(XMLEscaped<SpanPx<Prev.AtX>>.typeName),\(Line.count)"
+        "\(XMLEscaped<Prev>.typeName) L\(XMLEscaped<SpanPx<Prev.AtX>>.typeName),\(Ordinate.count)"
     }
 }
 
 /// Extends a path horizontally to the supplied abscissa.
 public enum UntilX<
     Prev: Pen,
-    Line: Frac & Structure
+    Abscissa: Frac & Structure
 >: Close {}
 extension UntilX: Pen {
-    public typealias AtX = Line
+    public typealias AtX = Abscissa
     public typealias AtY = Prev.AtY
     public static var typeName: String {
-        "\(XMLEscaped<Prev>.typeName) L\(XMLEscaped<SpanPx<Line>>.typeName),\(Prev.AtY.count)"
+        "\(XMLEscaped<Prev>.typeName) L\(XMLEscaped<SpanPx<Abscissa>>.typeName),\(Prev.AtY.count)"
     }
 }
 

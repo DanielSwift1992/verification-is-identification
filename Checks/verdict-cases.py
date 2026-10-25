@@ -4,12 +4,14 @@ from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
 from collections import OrderedDict, defaultdict
 from pathlib import Path
 import argparse
+import json
 import os
 import re
 import signal
 import subprocess
 import sys
 from threading import Event, Lock
+from verdict_inputs import fixture_paths, capture_command, finish_capture, covered, write_json
 
 CRASH = re.compile(r'Stack dump:|[Pp][Ll][Ee][Aa][Ss][Ee] submit a bug report|Assertion failed|cannot build rewrite system|rule (length|count) limit exceeded|reasonable time')
 MISSING = re.compile(r'error: (cannot find .* in scope|no such module )')
@@ -17,7 +19,7 @@ MISSING = re.compile(r'error: (cannot find .* in scope|no such module )')
 
 def fixtures(root, cases):
     index = defaultdict(set)
-    for path in sorted((root / 'Checks').rglob('*.swift')):
+    for path in [root / name for name in fixture_paths(root)]:
         for flag in re.findall(rb'^#if ([A-Z][A-Z0-9_]*)$', path.read_bytes(), re.M):
             index[flag.decode()].add(str(path.relative_to(root)))
     grouped = OrderedDict()
@@ -76,22 +78,35 @@ def run(root, cases, modules, cache, jobs, output):
     if not cases:
         raise ValueError('no registered mutations selected')
     groups = fixtures(root, cases)
-    commands = {path: ['swiftc', '-typecheck',
+    # Match the combined positive's whole-module mode. Per-primary-file
+    # declaration errors can return before the driver writes dependencies.
+    # Whole-module checking retains the original source-file boundaries.
+    commands = {path: ['swiftc', '-typecheck', '-whole-module-optimization',
                        '-I', str(modules), '-module-cache-path', str(cache), *sources(path)]
                 for path in groups}
     stop = Event()
     running = set()
     process_lock = Lock()
+    audit = Path(os.environ['VERDICT_AUDIT_DIR']) if os.environ.get('VERDICT_AUDIT_DIR') else None
+    start_inputs = json.loads((audit.parent / 'inputs.json').read_text()) if audit else None
     def compile(path, extra):
+        command = [*commands[path], *extra]
+        label = 'mutation:' + extra[0][2:] if extra else 'positive:' + path
+        tracked, folder = capture_command(command, audit, label) if audit else (command, None)
         with process_lock:
             if stop.is_set():
                 return None, ''
-            process = subprocess.Popen([*commands[path], *extra], cwd=root,
+            process = subprocess.Popen(tracked, cwd=root,
                                        stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                                        start_new_session=True)
             running.add(process)
         try:
             diagnostic, _ = process.communicate()
+            if audit:
+                try:
+                    covered(start_inputs, finish_capture(root, folder, label, tracked, process.returncode))
+                except ValueError as error:
+                    raise ValueError(diagnostic.decode('utf-8', errors='replace') + str(error)) from error
             return process.returncode, diagnostic.decode('utf-8', errors='replace')
         finally:
             with process_lock:
@@ -140,6 +155,9 @@ def run(root, cases, modules, cache, jobs, output):
                     stop_compiler(process)
             for future in pending: future.cancel()
 
+    if audit:
+        write_json(audit / 'completed.json', {'labels': ['positive:' + path for path in groups]
+                   + ['mutation:' + flag for flag, _ in cases], 'mutations': len(cases), 'positive_fixtures': len(groups)})
     return 0
 
 
@@ -147,7 +165,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--modules', type=Path, required=True)
     parser.add_argument('--cache', type=Path, required=True)
-    parser.add_argument('--jobs', type=int, default=3)
+    parser.add_argument('--jobs', type=int, default=6)
     args = parser.parse_args()
     if not 1 <= args.jobs <= 64:
         parser.error('--jobs must be between 1 and 64')

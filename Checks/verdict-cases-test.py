@@ -11,6 +11,7 @@ import shutil
 import sys
 import unittest
 from unittest import mock
+from verdict_inputs_test import VerdictReceiptControls
 
 spec = importlib.util.spec_from_file_location('verdict_cases', Path(__file__).with_name('verdict-cases.py'))
 engine = importlib.util.module_from_spec(spec); spec.loader.exec_module(engine)
@@ -23,6 +24,10 @@ class ExecutorControls(unittest.TestCase):
         self.root = Path(self.temp.name)
         (self.root/'Checks').mkdir(); (self.root/'bin').mkdir()
         self.trace = self.root/'trace.jsonl'
+        (self.root/'Checks/verdict-inputs.json').write_text(json.dumps({
+            'schema':'vi.verdict-inputs/1','targets':['Synthetic'],
+            'fixtures':['Checks/A.swift','Checks/B.swift','Checks/C.swift'],
+            'law_inputs':['Checks/synthetic-driver.py']}))
         self.cases = [('A_ONE', 'RejectedAOne'), ('B_ONE', 'RejectedBOne'),
                       ('A_TWO', 'RejectedATwo'), ('C_ONE', 'RejectedCOne')]
         for file, flags in [('A', ['A_ONE','A_TWO']), ('B',['B_ONE']), ('C',['C_ONE'])]:
@@ -100,6 +105,9 @@ print('error: '+{'A_ONE':'RejectedAOne','A_TWO':'RejectedATwo','B_ONE':'Rejected
     def test_missing_duplicate_ambiguous_and_empty_cases_do_not_run_a_compiler(self):
         invalid = [[], self.cases+[self.cases[0]], [('LOST','RejectedLost')]]
         (self.root/'Checks/Twin.swift').write_text('#if A_ONE\n#endif\n')
+        manifest=self.root/'Checks/verdict-inputs.json'
+        declaration=json.loads(manifest.read_text());declaration['fixtures'].append('Checks/Twin.swift')
+        manifest.write_text(json.dumps(declaration))
         invalid.append(self.cases)
         for cases in invalid:
             with self.subTest(cases=cases), mock.patch.object(engine.subprocess,'Popen') as run:
@@ -328,6 +336,8 @@ if [ "${2:-}" = --show-bin-path ]; then printf '%s\\n' "$BUILD_BIN"; fi
         self.assertIn('not a full gate',result.stdout)
         self.assertNotIn('ALL LAWS HOLD',result.stdout)
         self.assertEqual(self.trace.read_text().splitlines(),['build --product Tools','build --show-bin-path'])
+
+
 
 
 if __name__=='__main__': unittest.main()

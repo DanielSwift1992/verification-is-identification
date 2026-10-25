@@ -273,7 +273,7 @@ func landingTopics(_ trailheads: [String]) -> String {
     var topics = "## Topics\n\n"
     topics += group("Why it exists", ["<doc:Purpose>"])
     topics += group("Encode your own", ["<doc:Encoding>"])
-    topics += group("How these pages read", ["<doc:Reading>", "<doc:Results>"])
+    topics += group("How these pages read", ["<doc:HowThesePagesRead>", "<doc:Results>"])
     topics += group("Where it is", ["<doc:Neighbors>"])
     topics += group("Start here", symbols(trailheads))
     topics += group("The seed: one act and its fixpoint", symbols(names(SEED.sorted { title($0) < title($1) })))

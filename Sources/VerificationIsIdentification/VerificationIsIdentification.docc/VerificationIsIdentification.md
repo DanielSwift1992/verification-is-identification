@@ -75,7 +75,7 @@ The page's order follows each type's move. The papers' writing order gives a dif
 - <doc:Encoding>
 ### How these pages read
 
-- <doc:Reading>
+- <doc:HowThesePagesRead>
 - <doc:Results>
 ### Where it is
 

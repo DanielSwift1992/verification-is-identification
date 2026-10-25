@@ -18,8 +18,8 @@ extension ContinuationCourt {
         var promise: ImagePromise
     }
     struct ImageCertificate: Codable {
-        var request: String
-        var constructor: String
+        var request: ScalarName
+        var constructor: ScalarName
         var source: ReadProof
         var equalities: RouteProof?
         var image: RouteProof

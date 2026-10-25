@@ -29,7 +29,7 @@ enum LawBuild: LawRecord {
     typealias Description = LawBuildDescription
     typealias Profile = Integration
     typealias Group = Serial
-    static var typeName: String { #"swift build --build-tests && swift test --skip-build"# }
+    static var typeName: String { #"swift build --build-tests && VI_CHECK_BUILD_BIN=$(swift build --show-bin-path) && export VI_CHECK_BUILD_BIN && swift test --skip-build"# }
 }
 
 enum LawLawcheckPolicyName: LawText { static var typeName: String { #"lawcheck-policy"# } }

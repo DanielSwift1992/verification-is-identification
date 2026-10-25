@@ -75,7 +75,7 @@ extension ContinuationCourt {
         var basis: EqualityBasis
     }
     struct PartitionClass: Codable {
-        var sort: String
+        var sort: ScalarName
         var leaves: [Path]
     }
     struct RequiredClass: Codable, Equatable {
@@ -108,8 +108,8 @@ extension ContinuationCourt {
         var program: Program
     }
     struct RelatedCertificate: Codable {
-        var request: String
-        var constructor: String
+        var request: ScalarName
+        var constructor: ScalarName
         var source: ReadProof
         var observation: RouteProof
         var question: RouteProof
@@ -220,8 +220,8 @@ extension ContinuationCourt {
                 guard mode == .cut else {
                     throw Failure("family leaves must name cut fields")
                 }
-                guard let side = Side(name: axis) else {
-                    throw Failure("route uses an unsupported axis: " + axis)
+                guard let side = Side(name: axis.text) else {
+                    throw Failure("route uses an unsupported axis: " + axis.text)
                 }
                 return try .projection(side, build(owner, .cut, depth + 1))
             default:

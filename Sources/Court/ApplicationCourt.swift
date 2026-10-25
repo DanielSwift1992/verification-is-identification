@@ -9,45 +9,16 @@ enum ApplicationCourt {
     typealias Failure = R.Failure
 
     enum Goal: Hashable, Codable {
-        case root(E), form(E), member(E, String), contract(E, String), equal(E, E)
-        static func == (lhs: Self, rhs: Self) -> Bool {
-            switch (lhs, rhs) {
-            case let (.root(x), .root(y)), let (.form(x), .form(y)): return x == y
-            case let (.member(x, a), .member(y, b)), let (.contract(x, a), .contract(y, b)):
-                return x == y && WhereJudge.sameName(a, b)
-            case let (.equal(a, b), .equal(c, d)): return a == c && b == d
-            default: return false
-            }
-        }
-        func hash(into hasher: inout Hasher) {
-            switch self {
-            case let .root(e):
-                hasher.combine(0)
-                hasher.combine(e)
-            case let .form(e):
-                hasher.combine(1)
-                hasher.combine(e)
-            case let .member(e, n):
-                hasher.combine(2)
-                hasher.combine(e)
-                hasher.combine(ScalarName(n))
-            case let .contract(e, n):
-                hasher.combine(3)
-                hasher.combine(e)
-                hasher.combine(ScalarName(n))
-            case let .equal(a, b):
-                hasher.combine(4)
-                hasher.combine(a)
-                hasher.combine(b)
-            }
-        }
+        case root(E), form(E), member(E, ScalarName), contract(E, ScalarName), equal(E, E)
+        static func member(_ expression: E, _ name: String) -> Self { .member(expression, ScalarName(name)) }
+        static func contract(_ expression: E, _ name: String) -> Self { .contract(expression, ScalarName(name)) }
         var text: String {
             switch self {
             case let .equal(a, b): return a.text + " == " + b.text
             case let .root(e): return "root " + e.text
             case let .form(e): return "form " + e.text
-            case let .member(e, p): return e.text + " : " + p
-            case let .contract(e, p): return "relations " + e.text + " / " + p
+            case let .member(e, p): return e.text + " : " + p.text
+            case let .contract(e, p): return "relations " + e.text + " / " + p.text
             }
         }
     }
@@ -81,6 +52,7 @@ enum ApplicationCourt {
             dependencies.insert(dependency)
             if strict { prerequisites.insert(dependency) }
         }
+        func declaration(_ name: ScalarName) throws -> StructuralSource.Declaration { try declaration(name.text) }
         func declaration(_ name: String) throws -> StructuralSource.Declaration {
             guard let d = source.declarations[name] else {
                 throw Failure("no source declaration for '\(name)'")
@@ -151,7 +123,7 @@ enum ApplicationCourt {
             var values = NameMap(uniqueKeysWithValues: zip(d.parameters, args))
             values["Self"] = owner
             var axes = NameSet(source.syntax.conformers[name]?.table.keys.map { $0 } ?? [])
-            let protos = protocolName.map { [$0] } ?? source.conformanceChoices(name).map { $0.0 }
+            let protos = protocolName.map { [$0] } ?? source.conformanceChoices(name.text).map { $0.0 }
             for p in source.protocolClosure(protos) {
                 axes.formUnion(source.declarations[p]?.axes.map(\.name) ?? [])
             }
@@ -260,9 +232,9 @@ enum ApplicationCourt {
                 for p in d.parents { add(.contract(subject, p)) }
                 for axis in d.axes {
                     add(.form(.field(subject, axis.name)))
-                    try require(axis.constraints, at: subject, protocolName: proto, strict: false)
+                    try require(axis.constraints, at: subject, protocolName: proto.text, strict: false)
                 }
-                try require(d.requirements, at: subject, protocolName: proto, strict: false)
+                try require(d.requirements, at: subject, protocolName: proto.text, strict: false)
             }
             if let proposed, readIndex != proposed.count {
                 throw Failure("unused reductions at \(goal.text)")

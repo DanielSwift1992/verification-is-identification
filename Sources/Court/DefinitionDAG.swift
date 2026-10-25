@@ -119,8 +119,8 @@ extension DefinitionReduction {
                     }
                     return replacement
                 }
-                return try add(.application(name, args.map { try read($0, bindings: bindings) }))
-            case let .field(owner, axis): return try add(.field(read(owner, bindings: bindings), axis))
+                return try add(.application(name.text, args.map { try read($0, bindings: bindings) }))
+            case let .field(owner, axis): return try add(.field(read(owner, bindings: bindings), axis.text))
             }
         }
         func body(_ text: String, bindings: NameMap<Int>) throws -> Int {

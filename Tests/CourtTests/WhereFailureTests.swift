@@ -233,7 +233,7 @@ final class RosterTests: XCTestCase {
         XCTAssertEqual(r.outcome, "holds", r.diagnostics.joined())
         let value = try XCTUnwrap(r.records.first?.literal)
         let original = Data(Array(text.utf8)[value.at.start..<value.at.end])
-        XCTAssertEqual(Data(base64Encoded: value.bytes), original)
+        XCTAssertEqual(Data(base64Encoded: value.bytes.text), original)
         XCTAssertEqual(String(data: original, encoding: .utf8), "β\\n")
         XCTAssertEqual(value.at.line, 3)
         XCTAssertFalse(value.judged)

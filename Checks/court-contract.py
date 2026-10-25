@@ -43,6 +43,38 @@ if __name__ == '__main__' and len(sys.argv) > 1 and sys.argv[1] == '--roster':
         print('roster observation:',case['id'],answer['outcome'])
     print('Court roster observations: %d/%d'%(len(contract['cases']),len(contract['cases'])))
 
+    replay_ref=contract['replay_cases']
+    replay_path=manifest.parent/replay_ref['file']
+    assert hashlib.sha256(replay_path.read_bytes()).hexdigest()==replay_ref['sha256']
+    replay_cases=json.loads(replay_path.read_text())
+    source=manifest.parent/replay_cases['input']
+    assert hashlib.sha256(source.read_bytes()).hexdigest()==replay_cases['sha256']
+    original=subprocess.run([args.tools,'judge','roster',str(source),'--protocol',replay_cases['protocol']],capture_output=True,text=True)
+    assert original.returncode==0 and not original.stderr
+    for case in replay_cases['cases']:
+        proposed=json.loads(original.stdout)
+        for edit in case.get('edits',[]):
+            target=proposed
+            for key in edit['path'][:-1]: target=target[key]
+            target[edit['path'][-1]]=edit['value']
+        text=json.dumps(proposed,ensure_ascii=False)
+        if 'replace_text' in case:
+            old,new=case['replace_text']; assert old in text
+            text=text.replace(old,new)
+        with tempfile.TemporaryDirectory(prefix='vi-roster-scalar-') as tmp:
+            receipt=Path(tmp)/'response.json';receipt.write_text(text,encoding='utf-8')
+            result=subprocess.run([args.tools,'judge','roster-replay',str(receipt),str(source),'--protocol',replay_cases['protocol']],capture_output=True,text=True)
+            answer=json.loads(result.stdout)
+            assert not result.stderr and answer['outcome']==case['outcome'],(case['id'],answer,result.stderr)
+            assert [row['name'] for row in answer['records']]==case['records'],case['id']
+            assert result.returncode==(0 if case['outcome']=='holds' else 2),case['id']
+            if case['outcome']=='holds': assert result.stdout==original.stdout,case['id']
+            else:
+                assert any(str(receipt)+':1:' in d for d in answer['diagnostics']),(case['id'],answer)
+                if 'diagnostic_contains' in case: assert any(case['diagnostic_contains'] in d for d in answer['diagnostics']),(case['id'],answer)
+        print('roster replay observation:',case['id'],case['outcome'])
+    print('Roster replay observations: %d/%d'%(len(replay_cases['cases']),len(replay_cases['cases'])))
+
     reading=contract['reading_cases']
     reading_path=manifest.parent/reading['file']
     assert hashlib.sha256(reading_path.read_bytes()).hexdigest()==reading['sha256']

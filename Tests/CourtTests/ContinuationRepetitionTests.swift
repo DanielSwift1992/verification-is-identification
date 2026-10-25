@@ -95,8 +95,8 @@ final class ContinuationRepetitionTests: XCTestCase {
         XCTAssertEqual(try block(whole).calls, "6")
         XCTAssertEqual(try block(whole).additionalCalls, "5")
         XCTAssertEqual(try block(whole).cycles.map(\.length), [1, 2, 2, 3, 3, 3])
-        XCTAssertFalse(try C.verifyRelated(whole.request, certificate: whole, source: world()))
-        XCTAssertTrue(try C.verifyRelatedRepetition(whole.request, certificate: whole, source: world()))
+        XCTAssertFalse(try C.verifyRelated(whole.request.text, certificate: whole, source: world()))
+        XCTAssertTrue(try C.verifyRelatedRepetition(whole.request.text, certificate: whole, source: world()))
         XCTAssertEqual(try block(proof("FourCycle")).cycles[0].length, 4)
         XCTAssertEqual(try block(proof("EqualClassReturn")).cycles.map(\.length), [1])
         XCTAssertEqual(try block(proof("DuplicateReturnQuestion")).cycles.count, 2)
@@ -105,9 +105,9 @@ final class ContinuationRepetitionTests: XCTestCase {
     func testFixedHiddenEpisodeIsNotIndependentChoiceOrCurrentTarget() throws {
         let p = try proof("AliasedRepeats")
         XCTAssertEqual(try block(p).calls, "2")
-        let oneStep = try C.deriveRelated(p.request, source: world(), actions: true)
-        XCTAssertFalse(try C.verifyRelatedActions(p.request, certificate: oneStep, source: world()))
-        let r = try C.relatedReading(p.request, certificate: p, source: world())
+        let oneStep = try C.deriveRelated(p.request.text, source: world(), actions: true)
+        XCTAssertFalse(try C.verifyRelatedActions(p.request.text, certificate: oneStep, source: world()))
+        let r = try C.relatedReading(p.request.text, certificate: p, source: world())
         let members = try XCTUnwrap(r.hiddenActions)
         let origin: C.Path = [.left]
         for member in members {
@@ -120,7 +120,7 @@ final class ContinuationRepetitionTests: XCTestCase {
         })
         let old = try proof("ReturnFirst")
         refuses("retarget-original-question", at: "ReturnFirst.Question") {
-            _ = try C.verifyRelatedRepetition(old.request, certificate: old, source: changed)
+            _ = try C.verifyRelatedRepetition(old.request.text, certificate: old, source: changed)
         }
     }
     func testCycleAndArithmeticForgeries() throws {
@@ -259,7 +259,7 @@ final class ContinuationRepetitionTests: XCTestCase {
         XCTAssertEqual(result.calls, "32589158477190044730")
         XCTAssertEqual(result.additionalCalls, "32589158477190044729")
         XCTAssertNil(Int(result.calls))
-        XCTAssertTrue(try C.verifyRelatedRepetition(p.request, certificate: saved, source: source))
+        XCTAssertTrue(try C.verifyRelatedRepetition(p.request.text, certificate: saved, source: source))
         print("T0099 LargeReturn: \(count) classes, exact least count \(result.calls); serialized replay agrees")
     }
     func testFormat5CannotMasqueradeAsEarlierJudgment() throws {
@@ -271,7 +271,7 @@ final class ContinuationRepetitionTests: XCTestCase {
         }
         let old = try C.deriveRelated("AliasedRepeats", source: world(), actions: true)
         refuses("old-actions-archive-is-not-u11", at: "certificate.repetition:") {
-            _ = try C.verifyRelatedRepetition(old.request, certificate: old, source: world())
+            _ = try C.verifyRelatedRepetition(old.request.text, certificate: old, source: world())
         }
         refuses("combined-action-and-repeat-questions", at: "--repeat") {
             _ = try C.deriveRelated("ReturnFirst", source: world(), actions: true, repeats: true)

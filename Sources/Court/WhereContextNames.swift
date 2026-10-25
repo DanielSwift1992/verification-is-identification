@@ -325,12 +325,12 @@ enum WhereContextNames {
                             try WhereJudge.fail("\(at): owner '\(owner.text)' has no declaration '\(axis)'")
                         }
                         let head: String
-                        if case let .application(name, arguments) = owner, arguments.isEmpty { head = name }
+                        if case let .application(name, arguments) = owner, arguments.isEmpty { head = name.text }
                         else if world.nestedNames.contains(owner.text) { head = owner.text }
                         else { return }
                         guard world.aliases[head] == nil else { return }
                         let source = DefinitionReduction.Source(world: world, rigid: NameSet(alias.parameters))
-                        do { _ = try source.memberDefinition(head, axis: axis, spelled: expression.text) }
+                        do { _ = try source.memberDefinition(head, axis: axis.text, spelled: expression.text) }
                         catch { try WhereJudge.fail("\(at): \(error)") }
                     }
                 }

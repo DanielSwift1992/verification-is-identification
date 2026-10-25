@@ -1,23 +1,11 @@
 import Foundation
 
-/// Serializes the common scalar identity as its written text.
-/// Accepted T0083 supplies this same conformance on the shared carrier.
-extension ScalarName: Codable {
-    init(from decoder: Decoder) throws {
-        self.init(try decoder.singleValueContainer().decode(String.self))
-    }
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encode(text)
-    }
-}
-
 /// Binds the admitted context's nominal references to full declaration places.
 /// The common lexical tape supplies positions; the fragment admits no shadowing.
 enum ContextNameBinding {
     struct Place: Codable, Hashable {
         let components: [ScalarName]
-        init(parts: [String]) { components = parts.map(ScalarName.init) }
+        init(parts: [String]) { components = parts.map { ScalarName($0) } }
         var parts: [String] { components.map(\.text) }
         var text: String { parts.joined(separator: ".") }
     }
@@ -302,7 +290,7 @@ enum ContextNameBinding {
         }
         if !ambiguities.isEmpty { try WhereJudge.failAll(ambiguities) }
         let certificate = Certificate(schema: ScalarName("vi.court.context-name-bindings/1"), selected: ScalarName(selected),
-            inputs: files.map { Input(input: ScalarName($0.context.input), module: ScalarName($0.context.module), imports: $0.context.imports.map(ScalarName.init),
+            inputs: files.map { Input(input: ScalarName($0.context.input), module: ScalarName($0.context.module), imports: $0.context.imports.map { ScalarName($0) },
                 source: ScalarName($0.context.source), sha256: $0.context.sha256,
                 viewSHA256: courtSHA256(Data($0.world.clean.utf8))) },
             declarations: declarations, references: references)

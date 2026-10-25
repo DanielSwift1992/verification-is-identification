@@ -52,22 +52,16 @@ struct StructuralSource {
     var conditionalSubjects: NameSet = []
 
     struct Address: Codable, Equatable {
-        let path: String
+        let path: ScalarName
         let line: Int
         let start: Int
         let end: Int
-        func matches(_ other: Address) -> Bool {
-            WhereJudge.sameName(path, other.path) && line == other.line && start == other.start && end == other.end
-        }
-        static func == (lhs: Self, rhs: Self) -> Bool { lhs.matches(rhs) }
+        func matches(_ other: Address) -> Bool { self == other }
     }
     struct Literal: Codable, Equatable {
         let at: Address
-        let bytes: String
+        let bytes: ScalarName
         let judged: Bool
-        static func == (lhs: Self, rhs: Self) -> Bool {
-            lhs.at == rhs.at && WhereJudge.sameName(lhs.bytes, rhs.bytes) && lhs.judged == rhs.judged
-        }
     }
     typealias Lexed = WhereJudge.Lexed
     var addresses: NameMap<Address> = [:]
@@ -75,11 +69,8 @@ struct StructuralSource {
     var literals: NameMap<Literal> = [:]
 
     struct Token: Codable, Equatable {
-        let word: String
+        let word: ScalarName
         let bytes: Range<Int>
-        static func == (lhs: Token, rhs: Token) -> Bool {
-            lhs.bytes == rhs.bytes && WhereJudge.sameName(lhs.word, rhs.word)
-        }
     }
     static func tokens(_ source: String) throws -> [String] {
         try scan(source).words
@@ -335,7 +326,7 @@ struct StructuralSource {
 
     struct ReadingCertificate: Codable {
         struct Unit: Codable, Equatable {
-            let kind: String
+            let kind: ScalarName
             let lower: Int
             let upper: Int
         }
@@ -435,7 +426,7 @@ struct StructuralSource {
                 }
             } catch let error as AddressedFailure { throw error }
             catch { throw AddressedFailure("\(origin):\(lexed.lines[start]): \(error)") }
-            units.append(.init(kind: kind, lower: start, upper: i))
+            units.append(.init(kind: ScalarName(kind), lower: start, upper: i))
         }
         return FileReading(origin: origin, source: source, lexed: lexed, scope: scope, regions: regions,
             certificate: ReadingCertificate(tokens: located, units: units),
@@ -483,7 +474,7 @@ struct StructuralSource {
             for region in reading.regions { byStart[region.tokenRange.lowerBound] = region }
             for unit in reading.certificate.units {
                 if ["public", "internal", "private", "fileprivate", "package", "open"].contains(unit.kind) {
-                    pendingAccess = unit.kind
+                    pendingAccess = unit.kind.text
                     continue
                 }
                 guard let region = byStart[unit.lower] else {

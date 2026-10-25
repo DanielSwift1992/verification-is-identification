@@ -10,42 +10,25 @@ enum DefinitionReduction {
     }
 
     indirect enum Expression: Hashable {
-        case application(String, [Expression])
-        case field(Expression, String)
+        case application(ScalarName, [Expression])
+        case field(Expression, ScalarName)
 
-        static func == (lhs: Self, rhs: Self) -> Bool {
-            switch (lhs, rhs) {
-            case let (.application(a, xs), .application(b, ys)): return WhereJudge.sameName(a, b) && xs == ys
-            case let (.field(x, a), .field(y, b)): return x == y && WhereJudge.sameName(a, b)
-            default: return false
-            }
-        }
-        func hash(into hasher: inout Hasher) {
-            switch self {
-            case let .application(n, args):
-                hasher.combine(0)
-                hasher.combine(ScalarName(n))
-                hasher.combine(args)
-            case let .field(e, n):
-                hasher.combine(1)
-                hasher.combine(e)
-                hasher.combine(ScalarName(n))
-            }
-        }
+        static func application(_ name: String, _ arguments: [Expression]) -> Self { .application(ScalarName(name), arguments) }
+        static func field(_ owner: Expression, _ name: String) -> Self { .field(owner, ScalarName(name)) }
 
         var text: String {
             switch self {
             case let .application(name, args):
                 return args.isEmpty
-                    ? name : name + "<" + args.map(\.text).joined(separator: ", ") + ">"
-            case let .field(owner, axis): return owner.text + "." + axis
+                    ? name.text : name.text + "<" + args.map(\.text).joined(separator: ", ") + ">"
+            case let .field(owner, axis): return owner.text + "." + axis.text
             }
         }
 
         var legacy: Press.Term {
             switch self {
             case let .application(name, args):
-                return Press.Term(head: name, args: args.map(\.legacy))
+                return Press.Term(head: name.text, args: args.map(\.legacy))
             case .field: return Press.Term(head: text, args: [])
             }
         }
@@ -123,6 +106,9 @@ enum DefinitionReduction {
         }
     }
 
+    static func parse(_ text: ScalarName, allowRigidNames: Bool = false) throws -> Expression {
+        try parse(text.text, allowRigidNames: allowRigidNames)
+    }
     static func parse(_ text: String, allowRigidNames: Bool = false) throws -> Expression {
         var parser = Parser(characters: Array(text), allowRigidNames: allowRigidNames)
         let result = try parser.expression()
@@ -154,6 +140,9 @@ enum DefinitionReduction {
             }
         }
 
+        func checkApplication(_ name: ScalarName, _ count: Int) throws {
+            try checkApplication(name.text, count)
+        }
         func checkApplication(_ name: String, _ count: Int) throws {
             if rigid.contains(name) {
                 guard count == 0 else {
@@ -224,11 +213,11 @@ enum DefinitionReduction {
                     throw Failure("no declaration of nested name '\(expression.text)'")
                 }
                 let name: String, arguments: [Expression]
-                if case let .application(n, a) = owner { name = n; arguments = a }
+                if case let .application(n, a) = owner { name = n.text; arguments = a }
                 else if world.nestedNames.contains(owner.text) { name = owner.text; arguments = [] }
                 else { return nil }
                 try checkApplication(name, arguments.count)
-                guard let (declaration, body) = try memberDefinition(name, axis: axis, spelled: expression.text) else {
+                guard let (declaration, body) = try memberDefinition(name, axis: axis.text, spelled: expression.text) else {
                     return nil
                 }
                 // Generic parameters and sibling names are bound at this owner,
@@ -248,9 +237,9 @@ enum DefinitionReduction {
     /// A finite proposed derivation, not a trusted verdict. Its endpoints are
     /// reconstructed by replay; the caller cannot append an asserted result.
     indirect enum Derivation: Codable {
-        case name(String)
-        case arguments(String, [Derivation])
-        case field(Derivation, String)
+        case name(ScalarName)
+        case arguments(ScalarName, [Derivation])
+        case field(Derivation, ScalarName)
         case unfold(Expression, Derivation)
         case join(Derivation, Derivation)
     }

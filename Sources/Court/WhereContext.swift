@@ -221,7 +221,7 @@ enum WhereContext {
             if aliasDone.contains(name) { return }
             aliasActive.insert(name)
             if case let .application(next, arguments) = try DefinitionReduction.parse(alias.body), arguments.isEmpty {
-                try visitAlias(next)
+                try visitAlias(next.text)
             }
             aliasActive.remove(name)
             aliasDone.insert(name)

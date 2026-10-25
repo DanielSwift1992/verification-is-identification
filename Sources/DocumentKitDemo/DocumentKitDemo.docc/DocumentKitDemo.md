@@ -6,9 +6,9 @@ Reads this owner's declared layout compositions with its supplied binding.
 
 The SDK relations are documented at [DocumentKit](https://danielswift1992.github.io/verification-is-identification/documentation/documentkit/).
 
-- [Source of the declared canvas](https://danielswift1992.github.io/verification-is-identification/documentation/documentkitdemo/selfshowingexamplesource)
-- [Station A](https://danielswift1992.github.io/verification-is-identification/documentation/documentkitdemo/vectortourstationa)
-- [Station B](https://danielswift1992.github.io/verification-is-identification/documentation/documentkitdemo/vectortourstationb)
+- [Source of the declared canvas](https://danielswift1992.github.io/verification-is-identification/documentation/documentkitdemo/self-showing-example-source)
+- [Station A](https://danielswift1992.github.io/verification-is-identification/documentation/documentkitdemo/vector-tour-station-a)
+- [Station B](https://danielswift1992.github.io/verification-is-identification/documentation/documentkitdemo/vector-tour-station-b)
 - [Covered visible claim](https://danielswift1992.github.io/verification-is-identification/documentation/documentkitdemo/coveredvisibleclaim)
 
 

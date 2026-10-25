@@ -14,7 +14,7 @@ for product in ['DocumentKitDemo', 'FontMetrics']:
     subprocess.run(['swift', 'build', '--product', product], cwd=ROOT, check=True)
 binary = Path(subprocess.check_output(['swift', 'build', '--show-bin-path'], cwd=ROOT, text=True).strip())
 catalog = Path('Sources/DocumentKitDemo/DocumentKitDemo.docc')
-pages = ['DocumentKitDemo', 'SelfShowingExampleSource', 'VectorTourStationA', 'VectorTourStationB', 'CoveredVisibleClaim']
+pages = ['DocumentKitDemo', 'self-showing-example-source', 'vector-tour-station-a', 'vector-tour-station-b', 'CoveredVisibleClaim']
 svgs = ['vector-canvas-example', 'vector-hover-example', 'vector-selfshowing-example',
         'vector-tour-station-a', 'vector-tour-station-b', 'roles-plate', 'roles-plate~dark']
 outputs = [catalog / (n + '.md') for n in pages] + [catalog / 'Resources' / (n + '.svg') for n in svgs]

@@ -134,6 +134,8 @@ if __name__ == '__main__' and len(sys.argv) > 1 and sys.argv[1] == '--roster':
 # An immutable suite name binds the exact manifest bytes, including its case set.
 # New normative expectations require a new release and a deliberate registry entry.
 SUITE_HASHES = {
+    "vi.court.context-binding-replay/1": "54878adea728ed5b802c0d800322ebeb2d992fd237ae45580aa46b70d238cd99",
+    "vi.court.context-owners/2": "f53b4d488bbdbcad35bcb863627c76aeb16301eb193a9d7c5853b10521130bbb",
     "vi.court.context-owner-members/1": "01015a4443c5c2f139f7fd5536e10ec84cd96fb678ace3cf731f3699b42ff606",
     "vi.court.context-owner-views/1": "751472c985299887876b81c274930345d1e3888c0bb91a5d624a6f6f4840ed7e",
     "vi.court.context-owners/1": "5a3956c85e957008c1657b0ca507042ecc42c73aea7bc2f57468a7ba13b8eed8",
@@ -180,6 +182,10 @@ def load_contract(path):
         if digest(within(root, name)) != expected:
             raise ValueError(f'frozen case-set hash mismatch: {name}')
     for case in cases:
+        if '--bindings' in case['args']:
+            index = case['args'].index('--bindings')
+            if index + 1 >= len(case['args']) or case['args'][index + 1] not in contract['files']:
+                raise ValueError(f"unbound binding certificate: {case['id']}")
         if '--context' in case['args']:
             index = case['args'].index('--context')
             if index + 1 >= len(case['args']) or case['args'][index + 1] not in contract['files']:
@@ -218,7 +224,8 @@ def load_contract(path):
             response = case['expected']['response']
             context_path = case['args'][case['args'].index('--context') + 1]
             wanted = [{'path': name, 'sha256': contract['files'][name]['sha256']}
-                      for name in sorted(case['files'] + [context_path])]
+                      for name in sorted(case['files'] + [context_path]
+                          + ([case['args'][case['args'].index('--bindings') + 1]] if '--bindings' in case['args'] else []))]
             if response['inputs'] != wanted or response['question'] != case['pass']:
                 raise ValueError(f"changed structured question binding: {case['id']}")
             if not set(response['results']) <= set(case['files']):

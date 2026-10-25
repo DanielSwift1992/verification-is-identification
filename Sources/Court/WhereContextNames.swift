@@ -23,10 +23,13 @@ enum WhereContextNames {
     struct Resolution {
         let files: [CourtNotation.File]
         let applications: [Application]
+        let nameBindings: ContextNameBinding.Index?
     }
 
     static func resolve(_ files: [CourtNotation.File], selected: String,
                         version: Int) throws -> Resolution {
+        let nameBindings = version == 2 ? try ContextNameBinding.read(files, selected: selected) : nil
+        if let proof = nameBindings { try proof.replay(proof.certificate) }
         var origins: [Key: [Origin]] = [:], exports: [Key: Set<Key>] = [:]
         let modules = Set(files.map { key($0.context.module) })
         for (index, file) in files.enumerated() {
@@ -188,6 +191,14 @@ enum WhereContextNames {
             func address(_ index: Int) -> String { file.context.source + ":\(tokens.lines[index])" }
             func choose(_ name: String, at index: Int) throws -> Origin? {
                 let found = origins[key(name)] ?? []
+                if let nameBindings {
+                    guard let place = nameBindings.place(input: file.context.input, offset: tokens.starts[index]),
+                          let module = place.parts.first,
+                          let selected = found.first(where: { $0.module == key(module) }) else {
+                        try WhereJudge.fail("\(address(index)): no replayed binding for '\(name)'")
+                    }
+                    return selected
+                }
                 if let own = found.first(
                     where: { $0.module == local }) { return own }
                 let imported = found.filter { accessible.contains($0.module) }
@@ -217,6 +228,13 @@ enum WhereContextNames {
                         try WhereJudge.fail("\(address(i)): module '\(word)' is not imported")
                     }
                     let member = tokens.words[i + 2]
+                    if let nameBindings {
+                        guard let reference = nameBindings.reference(input: file.context.input, offset: tokens.starts[i]),
+                              reference.declaration.parts.count >= 2,
+                              WhereJudge.sameNames(Array(reference.declaration.parts.prefix(2)), [word, member]) else {
+                            try WhereJudge.fail("\(address(i)): module reference has no replayed binding")
+                        }
+                    }
                     guard let origin = (origins[key(member)] ?? []).first(
                         where: { $0.module == name }),
                           let symbol = symbols[key(member)]?[name] else {
@@ -294,7 +312,7 @@ enum WhereContextNames {
                 notation: try NotationScope(world.clean), excluded: file.excluded,
                 unchecked: (file.unchecked + Array(unread.values)).sorted())
         }
-        return Resolution(files: resolved, applications: applications)
+        return Resolution(files: resolved, applications: applications, nameBindings: nameBindings)
     }
 
     /// Reports the addressed missing or unread member of a supplied owner.

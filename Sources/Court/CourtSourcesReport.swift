@@ -48,7 +48,7 @@ enum CourtSourcesReport {
         var diagnostics: [String] = []
         var outcome = "unsupported"
         do {
-            var paths: [String] = [], contextPath: String?, documents = NameSet()
+            var paths: [String] = [], contextPath: String?, bindingPath: String?, documents = NameSet()
             var options: NameMap<String> = [:], reports = 0, i = 0
             while i < arguments.count {
                 let word = arguments[i]
@@ -63,6 +63,7 @@ enum CourtSourcesReport {
                     }
                     let value = arguments[i + 1]
                     if word == "--context" && contextPath == nil { contextPath = value }
+                    else if word == "--bindings" && bindingPath == nil && question == "where" { bindingPath = value }
                     else if word == "--document" && documents.insert(value).inserted { }
                     else if question == "count" && ["--predicate", "--encoding", "--sigma"].contains(word)
                                 && options[word] == nil { options[word] = value }
@@ -77,16 +78,25 @@ enum CourtSourcesReport {
                 throw WhereJudge.Failure.input(["source reading requires one --report and --context"])
             }
             var texts: NameMap<String> = [:]
-            for path in (paths + [contextPath]).sorted() {
+            for path in (paths + [contextPath] + (bindingPath.map { [$0] } ?? [])).sorted() {
                 let raw = try load(path)
                 texts[path] = raw
                 inputs.append(["path": path, "sha256": courtSHA256(Data(raw.utf8))])
             }
             let context = try CourtContext(text: texts[contextPath]!, paths: paths, texts: texts)
+            let bindingCertificate = try bindingPath.map {
+                try CourtJSON.decoder().decode([ContextNameBinding.Certificate].self, from: Data(texts[$0]!.utf8))
+            }
             guard context.version == 2 else {
                 throw WhereJudge.Failure.input(["--report requires vi.court.context/2"])
             }
             let own = context.sources.filter { $0.role == "own" }
+            if let bindingCertificate {
+                guard bindingCertificate.count == own.count,
+                      NameSet(bindingCertificate.map { $0.selected.text }) == NameSet(own.map(\.input)) else {
+                    throw WhereJudge.Failure.input(["name binding question coverage differs"])
+                }
+            }
             guard question != "where" || !own.isEmpty else {
                 throw WhereJudge.Failure.input(["where context has no own source"])
             }
@@ -99,7 +109,7 @@ enum CourtSourcesReport {
                     do {
                         let ordered = [source.input] + paths.filter { !WhereJudge.sameName($0, source.input) }
                         let prepared = try WhereContext.prepare(ordered, contextPath: contextPath,
-                            load: { texts[$0]! }, documents: documents, batch: true)
+                            load: { texts[$0]! }, documents: documents, batch: true, bindingCertificate: bindingCertificate?.first { $0.selected == ScalarName(source.input) })
                         row.unchecked = prepared.world.excludedDefinitions
                         let answer = try WhereJudge.evaluate(prepared)
                         row.equalities = answer.equalities

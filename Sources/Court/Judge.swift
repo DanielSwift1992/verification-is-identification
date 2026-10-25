@@ -11,6 +11,10 @@ import Foundation
 
 public enum Judge {
     public static func run(_ arguments: [String]) {
+        if arguments.first == "where-bindings" || arguments.first == "replay-where-bindings" {
+            ContextNameBinding.run(Array(arguments.dropFirst()), replay: arguments.first == "replay-where-bindings")
+            return
+        }
         if arguments.first == "cover-law" || arguments.first == "replay-cover-law" {
             ContinuationCourt.runLawCover(Array(arguments.dropFirst()), replay: arguments.first == "replay-cover-law")
             return

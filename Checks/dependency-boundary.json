@@ -2474,7 +2474,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 53,
+      "line": 57,
       "name": "ShowcaseTools",
       "text": "\"✗ judge \\(arguments[0]) moved with the company: run `swift run ShowcaseTools judge \\(arguments[0])` in the showcase package\\n\".utf8))",
       "occurrence": 1,
@@ -2484,7 +2484,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 53,
+      "line": 57,
       "name": "showcase",
       "text": "\"✗ judge \\(arguments[0]) moved with the company: run `swift run ShowcaseTools judge \\(arguments[0])` in the showcase package\\n\".utf8))",
       "occurrence": 1,
@@ -2494,7 +2494,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 61,
+      "line": 65,
       "name": "showcase",
       "text": "// live in the showcase now (T-0028).",
       "occurrence": 1,
@@ -2504,7 +2504,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 63,
+      "line": 67,
       "name": "ShowcaseTools",
       "text": "\"✗ the plain court moved with the company: run `swift run ShowcaseTools judge <paths>` in the showcase package\\n\".utf8))",
       "occurrence": 1,
@@ -2514,7 +2514,7 @@
     {
       "path": "Sources/Court/Judge.swift",
       "channel": "text",
-      "line": 63,
+      "line": 67,
       "name": "showcase",
       "text": "\"✗ the plain court moved with the company: run `swift run ShowcaseTools judge <paths>` in the showcase package\\n\".utf8))",
       "occurrence": 1,

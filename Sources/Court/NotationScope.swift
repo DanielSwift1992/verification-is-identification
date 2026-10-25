@@ -93,29 +93,38 @@ struct NotationScope {
             let excluded = NameSet(read.parameters + Array(read.fields.keys) + ["Self"])
             result.append(StructuralSource.Declaration(name: declaration.qualified, kind: read.kind,
                 parameters: read.parameters, parents: read.parents, requirements: read.requirements,
-                fields: read.fields.mapValues { resolve($0, in: declaration.qualified, excluding: excluded) },
+                fields: try read.fields.mapValues { try resolve($0, in: declaration.qualified, excluding: excluded) },
                 fieldAccess: read.fieldAccess, axes: read.axes, alias: read.alias,
                 unsupported: read.unsupported, bodyWitness: read.bodyWitness, origin: origin))
         }
         return result
     }
 
-    func resolve(_ body: String, in owner: String, excluding: NameSet = []) -> String {
+    func resolve(_ body: String, in owner: String, excluding: NameSet = []) throws -> String {
         let known = NameSet(nested.values)
-        let regex = try! NSRegularExpression(pattern: #"(?<![\w.])\b\w+\b"#)
-        let result = NSMutableString(string: body)
-        for match in regex.matches(in: body, range: NSRange(body.startIndex..., in: body)).reversed() {
-            guard let bounds = Range(match.range, in: body) else { continue }
-            let word = String(body[bounds])
-            guard !excluding.contains(word) else { continue }
+        let reading = try WhereJudge.lexicalReading(body, scope: .projection, carrying: true)
+        let tape = reading.tape
+        let words = Set(reading.words.map(\.byte))
+        var replacements: [(Int, Int, String)] = []
+        for i in tape.words.indices {
+            let word = tape.words[i]
+            guard words.contains(tape.starts[i]), !excluding.contains(word),
+                  i == 0 || !WhereJudge.sameName(tape.words[i - 1], ".") else { continue }
             var parent = owner.split(separator: ".").map(String.init)
             while !parent.isEmpty {
                 let candidate = (parent + [word]).joined(separator: ".")
-                if known.contains(candidate) { result.replaceCharacters(in: match.range, with: candidate); break }
+                if known.contains(candidate) {
+                    replacements.append((tape.starts[i], tape.ends[i], candidate))
+                    break
+                }
                 parent.removeLast()
             }
         }
-        return result as String
+        var bytes = Array(body.utf8)
+        for (start, end, value) in replacements.reversed() {
+            bytes.replaceSubrange(start..<end, with: value.utf8)
+        }
+        return String(decoding: bytes, as: UTF8.self)
     }
 
     static func intrinsic(_ clean: String, version: Int = 1) throws -> Bool {

@@ -661,6 +661,8 @@ enum WhereJudge {
 
     struct World {
         var contextual = false
+        var contextNameBindings: ContextNameBinding.Index?
+        var contextNameBindingCertificate: ContextNameBinding.Certificate?
         var contextVersion = 1
         var contextSource = ""
         var contextUnresolved: [String] = []
@@ -762,7 +764,7 @@ enum WhereJudge {
                 guard table[aliasHit[0]] == nil else {
                     try fail("duplicate definition of '\(name).\(aliasHit[0])'")
                 }
-                table[aliasHit[0]] = notation.resolve(aliasHit[2], in: name, excluding: NameSet(parameters + ["Self"] + (try readAliases(hit[3])).map { $0[0] }))
+                table[aliasHit[0]] = try notation.resolve(aliasHit[2], in: name, excluding: NameSet(parameters + ["Self"] + (try readAliases(hit[3])).map { $0[0] }))
             }
             world.conformers[name] = Conformer(
                 name: name, parameters: parameters, protocols: protocols, table: table
@@ -1600,6 +1602,12 @@ enum WhereJudge {
     static func evaluate(_ prepared: Prepared, selection: Selection? = nil,
                          requireGrounds: Bool = false) throws -> Judgment {
         let world = prepared.world
+        if let proof = world.contextNameBindings {
+            guard let certificate = world.contextNameBindingCertificate else {
+                try fail("name binding certificate is missing")
+            }
+            try proof.replay(certificate)
+        }
         let ownAliases = prepared.ownAliases
         let excludesConditional = prepared.excludesConditional
         var refusals: [String] = []

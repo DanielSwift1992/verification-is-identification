@@ -7,7 +7,8 @@ enum WhereContext {
 
     static func prepare(_ paths: [String], contextPath: String,
                         load: (String) throws -> String, documents: NameSet = [],
-                        batch: Bool = false, notationOnly: Bool = false) throws -> WhereJudge.Prepared {
+                        batch: Bool = false, notationOnly: Bool = false,
+                        bindingCertificate: ContextNameBinding.Certificate? = nil) throws -> WhereJudge.Prepared {
         guard let first = paths.first else { throw WhereJudge.Failure.input(["context needs a world source"]) }
         var texts: NameMap<String> = [:]
         for path in paths { texts[path] = try load(path) }
@@ -50,6 +51,12 @@ enum WhereContext {
         }
         var world = own.world
         world.contextual = true
+        world.contextNameBindings = resolved.nameBindings
+        world.contextNameBindingCertificate = bindingCertificate ?? resolved.nameBindings?.certificate
+        if let bindingCertificate {
+            guard let index = resolved.nameBindings else { try WhereJudge.fail("name bindings require context/2") }
+            try index.replay(bindingCertificate)
+        }
         world.contextVersion = context.version
         world.contextSource = own.context.source
         world.excludedDefinitions = units.flatMap(\.unchecked).sorted()

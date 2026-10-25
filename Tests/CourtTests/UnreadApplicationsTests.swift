@@ -22,6 +22,7 @@ final class UnreadApplicationsTests: XCTestCase {
         let sha256: [String: String]
         let arguments: [String]
         let expected: Observation
+        let wordClass: [String: Bool]?
     }
     private struct Contract: Decodable { let schema: String; let cases: [Case] }
     func testFrozenUnreadVerdictsAndAddresses() throws {
@@ -29,6 +30,22 @@ final class UnreadApplicationsTests: XCTestCase {
             from: Data(contentsOf: root.appendingPathComponent("Contracts/Court/unread-v1/contract.json")))
         XCTAssertEqual(contract.schema, "vi.where.unread/1")
         XCTAssertEqual(contract.cases.count, 48)
+        XCTAssertEqual(contract.cases.filter { $0.wordClass == nil }.count, 46)
+        let word = try NSRegularExpression(pattern: #"^\w$"#)
+        var compared = 0, notCompared = 0
+        func unmetWordClasses(_ classes: [String: Bool]) throws -> [String] {
+            var missing: [String] = []
+            for (hex, expected) in classes.sorted(by: { $0.key < $1.key }) {
+                let value = try XCTUnwrap(UInt32(hex, radix: 16), "invalid scalar premise")
+                let scalar = try XCTUnwrap(Unicode.Scalar(value), "invalid scalar premise")
+                let text = String(scalar)
+                let observed = word.firstMatch(in: text, range: NSRange(text.startIndex..., in: text)) != nil
+                if observed != expected { missing.append("U+\(hex) word=\(observed), requires \(expected)") }
+            }
+            return missing
+        }
+        XCTAssertTrue(try unmetWordClasses(["61": true]).isEmpty)
+        XCTAssertEqual(try unmetWordClasses(["61": false]), ["U+61 word=true, requires false"])
         let declared = try XCTUnwrap(ProcessInfo.processInfo.environment["VI_CHECK_BUILD_BIN"],
             "VI_CHECK_BUILD_BIN: declare the built Tools directory")
         #if os(Windows)
@@ -47,6 +64,12 @@ final class UnreadApplicationsTests: XCTestCase {
                 XCTAssertEqual(courtSHA256(Data(text.utf8)), entry.sha256[path], entry.id)
                 try Data(text.utf8).write(to: directory.appendingPathComponent(path))
             }
+            let missing = try unmetWordClasses(entry.wordClass ?? [:])
+            if !missing.isEmpty {
+                notCompared += 1
+                print("unread contract \(entry.id): not-compared; " + missing.joined(separator: "; "))
+                continue
+            }
             let output = directory.appendingPathComponent("stdout"), error = directory.appendingPathComponent("stderr")
             FileManager.default.createFile(atPath: output.path, contents: nil)
             FileManager.default.createFile(atPath: error.path, contents: nil)
@@ -64,8 +87,12 @@ final class UnreadApplicationsTests: XCTestCase {
             XCTAssertEqual(Observation(exit: process.terminationStatus,
                 stdout: try String(contentsOf: output, encoding: .utf8),
                 stderr: try String(contentsOf: error, encoding: .utf8)), entry.expected, entry.id)
+            compared += 1
             print("unread contract \(entry.id): exit \(process.terminationStatus)")
         }
+        XCTAssertEqual(compared + notCompared, contract.cases.count)
+        XCTAssertGreaterThanOrEqual(compared, 46)
+        print("unread contract: compared \(compared)/48; not-compared \(notCompared)")
     }
     private func file(_ source: String) throws -> WhereJudge.World {
         let reading = try WhereJudge.strippedReading(source, notating: true)
@@ -99,6 +126,20 @@ final class UnreadApplicationsTests: XCTestCase {
             spans: [NSRange(location: 0, length: world.clean.utf16.count)],
             heads: WhereJudge.UnreadHeads(["Use", "B.Use", "A.B.Use", "X.ा.Use"]))
         XCTAssertTrue(all.applications.isEmpty)
+        // Preserve the running carrier's legacy word boundary, including
+        // private-use scalars whose classes differ between ICU distributions.
+        // This is an offset comparison to the former regex, not an OS selector
+        // or an assumed cross-platform output for the frozen CLI observation.
+        let legacy = try NSRegularExpression(pattern: #"(?<![\w.])Use\s*<"#)
+        for prefix in [" ", ".", "\u{F86F}", "\u{F870}"] {
+            let source = "func f(_ x: " + prefix + "Use<Bad>.Type) {}"
+            let carrier = try file(source)
+            let expected = legacy.matches(in: carrier.clean,
+                range: NSRange(carrier.clean.startIndex..., in: carrier.clean)).map { $0.range.location }
+            let observed = WhereJudge.unreadApplications(carrier, spans: [],
+                heads: WhereJudge.UnreadHeads(["Use"]))
+            XCTAssertEqual(observed.applications.map { $0.at }, expected)
+        }
     }
     func testDiscoveryWorkDoesNotMultiplyNamesByInputOrNesting() throws {
         for size in [32, 128, 512] {

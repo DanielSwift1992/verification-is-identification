@@ -145,6 +145,16 @@ enum WhereJudge {
     // conformance, so it is a form this court reads, in the text that
     // declares it and in a world that text is lent to.
     static func stripComments(_ text: String, lent: NameSet = []) throws -> String {
+        try strippedReading(text, lent: lent).clean
+    }
+
+    static func strippedReading(_ text: String, lent: NameSet = [], notating: Bool = false)
+        throws -> (clean: String, notation: [NotationToken]) {
+        let reading: LexicalReading
+        do { reading = try lexicalReading(text, lent: lent, carrying: false, notating: notating) }
+        catch let error as LexicalFailure {
+            try fail("cannot read line \(error.line): \(error.description)")
+        }
         // Conditional compilation is outside this court's scope. Omit the
         // complete block, including nested alternatives; never expose a tail
         // merely because an inner #endif was encountered. An omitted line
@@ -159,7 +169,23 @@ enum WhereJudge {
         // line rather than omitted.
         var flaggedDepth = 0
         var kept: [String] = []
-        for (index, line) in try blankCommentsAndStrings(text, lent: lent)
+        var notation: [NotationToken] = []
+        var token = 0, oldOffset = 0, newOffset = 0
+        func keepLine(_ line: Substring, included: Bool) {
+            let length = line.utf16.count
+            kept.append(included ? String(line) : "")
+            while token < reading.notation.count, reading.notation[token].range.location < oldOffset + length {
+                if included {
+                    var value = reading.notation[token]
+                    value.range.location += newOffset - oldOffset
+                    notation.append(value)
+                }
+                token += 1
+            }
+            oldOffset += length + 1
+            newOffset += (included ? length : 0) + 1
+        }
+        for (index, line) in reading.blanked
             .split(separator: "\n", omittingEmptySubsequences: false).enumerated() {
             let bare = line.trimmingCharacters(in: .whitespaces)
             if bare.range(of: #"^#if\b"#, options: .regularExpression) != nil {
@@ -169,13 +195,13 @@ enum WhereJudge {
                         + "and this court omits only a block a compilation without its flag skips")
                 }
                 flaggedDepth += 1
-                kept.append("")
+                keepLine(line, included: false)
                 continue
             }
             if bare.range(of: #"^#endif\b"#, options: .regularExpression) != nil {
                 if flaggedDepth == 0 { try fail("unmatched #endif") }
                 flaggedDepth -= 1
-                kept.append("")
+                keepLine(line, included: false)
                 continue
             }
             if bare.range(of: #"^#(?:else|elseif)\b"#, options: .regularExpression) != nil {
@@ -184,13 +210,13 @@ enum WhereJudge {
                     try fail("cannot read line \(index + 1): '\(bare)' opens a branch a compilation without "
                         + "the flag reads, and this court omits only a block that compilation skips")
                 }
-                kept.append("")
+                keepLine(line, included: false)
                 continue
             }
-            kept.append(flaggedDepth > 0 ? "" : String(line))
+            keepLine(line, included: flaggedDepth == 0)
         }
         if flaggedDepth != 0 { try fail("unterminated #if block") }
-        return kept.joined(separator: "\n")
+        return (kept.joined(separator: "\n"), notation)
     }
 
     static func captures(_ pattern: String, _ text: String) -> [[String]] {
@@ -691,6 +717,7 @@ enum WhereJudge {
         /// ranges this court reads as uses, certificates and gate clauses,
         /// and the right sides of the typealiases at file scope
         var clean = ""
+        var notation: [NotationToken] = []
         var lineAt: [Int] = []
         var readSpans: [NSRange] = []
         var aliasSpans: [NSRange] = []
@@ -698,7 +725,8 @@ enum WhereJudge {
 
     static func read(_ text: String, lent: NameSet = [], notationV2: Bool = true,
                      contextV2: Bool = false) throws -> World {
-        let clean = try stripComments(text, lent: lent)
+        let reading = try strippedReading(text, lent: lent, notating: true)
+        let clean = reading.clean
         var scope = Scope(clean)
         let notation = try NotationScope(clean, enabled: notationV2)
         scope.qualified = notation.nested
@@ -1035,6 +1063,7 @@ enum WhereJudge {
         }
         world.readSpans = read
         world.clean = clean
+        world.notation = reading.notation
         world.lineAt = scope.line
         return world
     }
@@ -1503,7 +1532,6 @@ enum WhereJudge {
                 }
             }
         }
-        let declaring: NameSet = ["enum", "struct", "class", "actor", "typealias", "protocol"]
         var unreadPlaces: [(line: Int, message: String)] = []
         // A use or a certificate is judged only at the head its definition
         // exposes. Reading Optional<Use<Bad>> as a term does not judge Use,
@@ -1526,46 +1554,16 @@ enum WhereJudge {
                     + "a gated application outside the root this court judges"))
             }
         }
+        let unreadHeads = UnreadHeads(gatedNames)
         func unread(_ file: World, _ spans: [NSRange], _ spelledPath: String) {
-            let units = Array(file.clean.utf16)
-            var places: [(line: Int, message: String)] = []
-            for name in gatedNames.sorted() {
-                // Comments have become spaces; qualification can still have
-                // spaces before or after each dot, including across lines.
-                let applied = try! NSRegularExpression(pattern: #"(?<![\w.])((?:\w+\s*\.\s*)*)"#
-                    + NSRegularExpression.escapedPattern(for: name) + #"\s*<"#)
-                for match in applied.matches(in: file.clean, range: NSRange(file.clean.startIndex..., in: file.clean)) {
-                    let at = match.range.location
-                    if !spans.filter({ NSLocationInRange(at, $0) }).isEmpty { continue }
-                    var wordEnd = at
-                    while wordEnd > 0, isSpaceUnit(units[wordEnd - 1]) { wordEnd -= 1 }
-                    var wordStart = wordEnd
-                    while wordStart > 0, isWordUnit(units[wordStart - 1]) { wordStart -= 1 }
-                    let word = String(utf16CodeUnits: Array(units[wordStart..<wordEnd]), count: wordEnd - wordStart)
-                    if declaring.contains(word) { continue }
-                    // a metatype whose generic arguments run across lines is a
-                    // use this court reads only on one line
-                    var close = match.range.location + match.range.length
-                    var depth = 1
-                    var broken = false
-                    while close < units.count, depth > 0 {
-                        let unit = units[close]
-                        if unit == 0x3C { depth += 1 }
-                        if unit == 0x3E, units[close - 1] != 0x2D { depth -= 1 }
-                        if unit == 0x0A { broken = true }
-                        if unit == 0x7B || unit == 0x7D || unit == 0x3B { break }
-                        close += 1
-                    }
-                    var after = close
-                    while after < units.count, isSpaceUnit(units[after]) { after += 1 }
-                    let metatype = depth == 0 && after + 4 < units.count
-                        && String(utf16CodeUnits: Array(units[after..<(after + 5)]), count: 5) == ".self"
-                    let reason = metatype && broken
-                        ? "a use written across lines, which this court reads on one line"
-                        : "a place where this court reads no use and no certificate"
-                    places.append((file.lineAt[at], "cannot read line \(file.lineAt[at]) of '\(spelledPath)': '\(name)' "
-                        + "applies a gated head in \(reason)"))
-                }
+            let result = unreadApplications(file, spans: spans, heads: unreadHeads)
+            let places = result.applications.map { application in
+                let reason = application.multilineMetatype
+                    ? "a use written across lines, which this court reads on one line"
+                    : "a place where this court reads no use and no certificate"
+                let line = file.lineAt[application.at]
+                return (line: line, message: "cannot read line \(line) of '\(spelledPath)': '\(application.name)' "
+                    + "applies a gated head in \(reason)")
             }
             unreadPlaces += places.sorted(by: { ($0.line, $0.message) < ($1.line, $1.message) })
         }

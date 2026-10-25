@@ -101,30 +101,9 @@ struct NotationScope {
     }
 
     func resolve(_ body: String, in owner: String, excluding: NameSet = []) throws -> String {
-        let known = NameSet(nested.values)
-        let reading = try WhereJudge.lexicalReading(body, scope: .projection, carrying: true)
-        let tape = reading.tape
-        let words = Set(reading.words.map(\.byte))
-        var replacements: [(Int, Int, String)] = []
-        for i in tape.words.indices {
-            let word = tape.words[i]
-            guard words.contains(tape.starts[i]), !excluding.contains(word),
-                  i == 0 || !WhereJudge.sameName(tape.words[i - 1], ".") else { continue }
-            var parent = owner.split(separator: ".").map(String.init)
-            while !parent.isEmpty {
-                let candidate = (parent + [word]).joined(separator: ".")
-                if known.contains(candidate) {
-                    replacements.append((tape.starts[i], tape.ends[i], candidate))
-                    break
-                }
-                parent.removeLast()
-            }
-        }
-        var bytes = Array(body.utf8)
-        for (start, end, value) in replacements.reversed() {
-            bytes.replaceSubrange(start..<end, with: value.utf8)
-        }
-        return String(decoding: bytes, as: UTF8.self)
+        // ContextNameBinding supplies the selected full place before this
+        // view is reduced. This transport makes no nearest-owner choice.
+        body
     }
 
     static func intrinsic(_ clean: String, version: Int = 1) throws -> Bool {

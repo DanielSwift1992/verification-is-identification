@@ -23,7 +23,7 @@ enum WhereContext {
         if !units.filter({ $0.world.intrinsicSwift }).isEmpty {
             for unit in units.sorted(by: { $0.context.source < $1.context.source }) {
                 for name in ["Swift"] + intrinsicNames {
-                    if let line = unit.world.declared[name]?.first {
+                    if let line = (unit.world.declared[name] ?? unit.world.reservedParameters[name])?.first {
                         try WhereJudge.fail("cannot read line \(line) of '\(unit.context.source)': declaration '\(name)' conflicts with intrinsic Swift/\(context.version)")
                     }
                 }
@@ -67,6 +67,7 @@ enum WhereContext {
             for (name, line) in unit.world.certificateLines { world.addresses[name] = unit.context.source + ":\(line)" }
             guard !WhereJudge.sameName(unit.context.input, first) else { continue }
             world.aliases.merge(unit.world.aliases) { old, _ in old }
+            world.contextSpellings.merge(unit.world.contextSpellings) { old, _ in old }
             world.conformers.merge(unit.world.conformers) { old, _ in old }
             world.parameters.merge(unit.world.parameters) { old, _ in old }
             world.genericRequirements.merge(unit.world.genericRequirements) { old, _ in old }
@@ -208,25 +209,7 @@ enum WhereContext {
             guard reached.contains(name) else { continue }
             try visit(name)
         }
-        // A bare alias edge selects a declaration before reduction. Give a
-        // cycle its declaration address rather than exhausting the reducer's
-        // work allowance without an owner. Other reduction failures retain
-        // their existing boundary.
-        var aliasDone: NameSet = [], aliasActive: NameSet = []
-        func visitAlias(_ name: String) throws {
-            guard let alias = world.aliases[name], alias.parameters.isEmpty else { return }
-            if aliasActive.contains(name) {
-                try WhereJudge.fail("\(world.addresses[name] ?? own.context.source + ":1"): cyclic alias resolution at '\(name)' has no declared nominal ground")
-            }
-            if aliasDone.contains(name) { return }
-            aliasActive.insert(name)
-            if case let .application(next, arguments) = try DefinitionReduction.parse(alias.body), arguments.isEmpty {
-                try visitAlias(next.text)
-            }
-            aliasActive.remove(name)
-            aliasDone.insert(name)
-        }
-        for name in world.aliases.keys.sorted() where reached.contains(name) { try visitAlias(name) }
+        try WhereContextNames.aliasCycles(world, names: reached, source: own.context.source)
         for name in world.gatedProtocols.keys.sorted() {
             let gate = world.gatedProtocols[name]!
             for part in gate.unjudged {

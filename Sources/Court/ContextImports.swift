@@ -2,7 +2,29 @@
 /// The context resolver and binding relation use this one module graph.
 struct ContextImports {
     private let exports: NameMap<NameSet>
-    init(_ files: [CourtNotation.File], words: [[String]]) {
+    init(_ files: [CourtNotation.File], words: [[String]]) throws {
+        var graph = NameMap<[(String, String)]>()
+        for file in files {
+            for (i, target) in file.context.imports.enumerated() {
+                let address = i < file.context.importAddresses.count
+                    ? file.context.importAddresses[i] : file.context.source + ":1 imports"
+                graph[file.context.module, default: []].append((target, address))
+            }
+        }
+        var visited = NameSet(), active = NameSet()
+        func visit(_ module: String) throws {
+            guard !visited.contains(module) else { return }
+            active.insert(module)
+            for (target, address) in graph[module] ?? [] {
+                guard !active.contains(target) else {
+                    try WhereJudge.fail("context \(address): cyclic imports: \(module) -> \(target)")
+                }
+                try visit(target)
+            }
+            active.remove(module)
+            visited.insert(module)
+        }
+        for module in graph.keys.sorted() { try visit(module) }
         var edges = NameMap<NameSet>()
         for (file, raw) in zip(files, words) {
             let tape = raw.filter { !WhereJudge.sameName($0, "\n") }

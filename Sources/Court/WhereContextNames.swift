@@ -26,6 +26,25 @@ enum WhereContextNames {
         let nameBindings: ContextNameBinding.Index?
     }
 
+    /// Alias-head cycles cannot supply a nominal ground. Parameters are bound
+    /// leaves, even when a module alias has the same short spelling.
+    static func aliasCycles(_ world: WhereJudge.World, names: NameSet, source: String) throws {
+        var done = NameSet(), active = NameSet()
+        func visit(_ name: String) throws {
+            guard let alias = world.aliases[name] else { return }
+            if active.contains(name) {
+                try WhereJudge.fail("\(world.addresses[name] ?? source + ":1"): cyclic alias resolution at '\(name)' has no declared nominal ground")
+            }
+            guard !done.contains(name) else { return }
+            active.insert(name)
+            if case let .application(next, _) = try DefinitionReduction.parse(alias.body),
+               !alias.parameters.containsName(next.text) { try visit(next.text) }
+            active.remove(name)
+            done.insert(name)
+        }
+        for name in world.aliases.keys.sorted() where names.contains(name) { try visit(name) }
+    }
+
     static func resolve(_ files: [CourtNotation.File], selected: String,
                         version: Int) throws -> Resolution {
         var origins: [Key: [Origin]] = [:]
@@ -56,9 +75,8 @@ enum WhereContextNames {
             tape.lines = indices.map { scanned.lines[$0] }
             return tape
         }
-        let imports = ContextImports(files, words: tapes.map(\.words))
-        let nameBindings = version == 2
-            ? try ContextNameBinding.read(files, selected: selected, reading: readings, imports: imports) : nil
+        let imports = try ContextImports(files, words: tapes.map(\.words))
+        let nameBindings: ContextNameBinding.Index? = try ContextNameBinding.read(files, selected: selected, reading: readings, imports: imports)
         if let proof = nameBindings { try proof.replay(proof.certificate) }
         for found in origins.values {
             var seen: [Key: Origin] = [:]
@@ -126,135 +144,85 @@ enum WhereContextNames {
                 namespace: context.namespace, module: context.module, role: context.role,
                 imports: accessible.filter { $0 != local }.compactMap { moduleSpellings[$0] }.sorted(),
                 at: context.at, importAddresses: context.importAddresses)
-            let collisions = Set(origins.filter { $0.value.count > 1 }.keys)
             // Tokens and lexical owners share this one line-preserving view.
             // Original bytes/hash remain in File.text and File.context.
             let clean = file.world.clean
-            func protocolBindings(_ name: String, seen: NameSet = []) -> NameSet {
-                guard !seen.contains(name) else { return [] }
-                let candidates = files.filter { candidate in
-                    candidate.world.protocolAxes[name] != nil
-                        && accessible.contains(key(candidate.context.module))
-                }
-                let declaration = candidates.first { key($0.context.module) == local } ?? candidates.first
-                guard let declaration else { return [] }
-                var result = declaration.world.protocolAxes[name] ?? []
-                for parent in declaration.world.protocolParents[name] ?? [] {
-                    result.formUnion(protocolBindings(parent, seen: seen.union([name])))
-                }
-                return result
-            }
-            let aliasScopes = try WhereJudge.readAliasSpans(WhereJudge.outsideBodies(file.world.clean))
+            let aliasScopes = try WhereJudge.readAliasSpans(WhereJudge.outsideBodies(file.world.clean), lent: builders)
                 .filter { !$0.fields[1].isEmpty }
-            let scopeBindings = file.notation.declarations.map { owner -> (Int, Int, NameSet) in
-                let start = clean.utf8.distance(from: clean.utf8.startIndex, to: String.Index(utf16Offset: owner.start, in: clean))
-                let end = clean.utf8.distance(from: clean.utf8.startIndex, to: String.Index(utf16Offset: owner.close, in: clean))
-                let children = file.notation.declarations.filter {
-                    WhereJudge.sameName($0.qualified, owner.qualified + "." + $0.name)
-                }.map(\.name)
-                var names = NameSet(file.world.parameters[owner.qualified] ?? [])
-                names.formUnion(protocolBindings(owner.qualified))
-                names.formUnion(file.world.conformers[owner.qualified]?.table.keys ?? [])
-                names.formUnion(children)
-                return (start, end, names)
+            let declarationTable = Dictionary(uniqueKeysWithValues: nameBindings!.certificate.declarations.map { ($0.place, $0) })
+            func spelling(_ place: ContextNameBinding.Place) -> String {
+                let parts = place.parts
+                if declarationTable[place]?.kind == ScalarName("parameter") { return parts.last! }
+                if declarationTable[place]?.kind == ScalarName("associatedtype") { return "Self." + parts.last! }
+                guard parts.count > 1 else { return place.text }
+                let symbol = symbols[key(parts[1])]?[key(parts[0])] ?? parts[1]
+                return ([symbol] + parts.dropFirst(2)).joined(separator: ".")
             }
-            func bindings(at offset: Int) -> NameSet {
-                var result = scopeBindings.reduce(into: NameSet()) { result, scope in
-                    if scope.0 <= offset && offset < scope.1 { result.formUnion(scope.2) }
-                }
-                let position = clean.utf8.index(clean.utf8.startIndex, offsetBy: offset).utf16Offset(in: clean)
-                for alias in aliasScopes
-                where NSLocationInRange(position, alias.body) {
-                    result.formUnion(WhereJudge.parameterNames(alias.fields[1]))
-                }
-                return result
+            func boundNames(_ start: Int, _ end: Int) -> NameSet {
+                NameSet(nameBindings!.certificate.references.compactMap { reference in
+                    guard reference.input == ScalarName(file.context.input), start <= reference.offset, reference.offset < end,
+                          let declaration = declarationTable[reference.declaration],
+                          ["parameter", "associatedtype"].containsName(declaration.kind.text) else { return nil }
+                    return reference.declaration.parts.last
+                })
             }
             // Use the existing structural token reader, including its original
             // byte coordinates; no second identifier alphabet is introduced.
             let tokens = tapes[fileIndex]
             var replacements: [(Int, Int, String)] = [], genericRanges: [(Int, Int, String)] = [], i = 0
             func address(_ index: Int) -> String { file.context.source + ":\(tokens.lines[index])" }
-            func choose(_ name: String, at index: Int) throws -> Origin? {
-                let found = origins[key(name)] ?? []
-                if let nameBindings {
-                    guard let place = nameBindings.place(input: file.context.input, offset: tokens.starts[index]),
-                          let module = place.parts.first,
-                          let selected = found.first(
-                            where: { $0.module == key(module) }) else {
-                        try WhereJudge.fail("\(address(index)): no replayed binding for '\(name)'")
-                    }
-                    return selected
-                }
-                if let own = found.first(
-                    where: { $0.module == local }) { return own }
-                let imported = found.filter { accessible.contains($0.module) }
-                if imported.count > 1 {
-                    let addresses = imported.map { files[$0.file].context.source + ":\($0.line)" }.sorted().joined(separator: "', '")
-                    try WhereJudge.fail("\(address(index)): unqualified name '\(name)' is ambiguous between '\(addresses)'")
-                }
-                if !found.isEmpty && imported.isEmpty {
-                    try WhereJudge.fail("\(address(index)): '\(name)' belongs to unimported namespace '\(files[found[0].file].context.namespace)'")
-                }
-                return imported.first
-            }
             while i < tokens.words.count {
-                let word = tokens.words[i], name = key(word)
-                if name == key("import") { i += 2; continue }
+                let word = tokens.words[i]
+                if key(word) == key("import") { i += 2; continue }
                 if i > 0 && key(tokens.words[i - 1]) == key(".") { i += 1; continue }
-                let bound: NameSet = modules.contains(name) || collisions.contains(name) ? bindings(at: tokens.starts[i]) : []
-                if modules.contains(name), i + 2 < tokens.words.count, key(tokens.words[i + 1]) == key(".") {
-                    guard tokens.lines[i] == tokens.lines[i + 2] else {
-                        try WhereJudge.fail("\(address(i)): a module qualifier across lines is outside this context fragment")
-                    }
-                    guard !bound.contains(word), !(origins[name] ?? []).contains(
-                        where: { $0.module == local }) else {
-                        try WhereJudge.fail("\(address(i)): module qualifier '\(word)' is shadowed by a local declaration; this binding is outside the nominal context fragment")
-                    }
-                    guard accessible.contains(name) else {
-                        try WhereJudge.fail("\(address(i)): module '\(word)' is not imported")
-                    }
-                    let member = tokens.words[i + 2]
-                    if let nameBindings {
-                        guard let reference = nameBindings.reference(input: file.context.input, offset: tokens.starts[i]),
-                              reference.declaration.parts.count >= 2,
-                              WhereJudge.sameNames(Array(reference.declaration.parts.prefix(2)), [word, member]) else {
-                            try WhereJudge.fail("\(address(i)): module reference has no replayed binding")
+                let offset = tokens.starts[i]
+                if let reference = nameBindings!.reference(input: file.context.input, offset: offset) {
+                    let rendered: String
+                    if let receiver = reference.receiver {
+                        rendered = (reference.spelling.text.hasPrefix("Self.") ? "Self" : spelling(receiver))
+                            + "." + reference.declaration.parts.last!
+                    } else { rendered = spelling(reference.declaration) }
+                    var endIndex = i
+                    while endIndex + 1 < tokens.words.count && tokens.ends[endIndex] < reference.end { endIndex += 1 }
+                    let moduleQualified = modules.contains(key(word)) && endIndex > i
+                    if moduleQualified {
+                        guard tokens.lines[i] == tokens.lines[min(i + 2, endIndex)] else {
+                            try WhereJudge.fail("\(address(i)): a module qualifier across lines is outside this context fragment")
+                        }
+                        let parts = reference.declaration.parts
+                        if parts.count == 2, let origin = (origins[key(parts[1])] ?? []).first(where: { $0.module == key(parts[0]) }) {
+                            let declaration = files[origin.file].world
+                            let parameters = declaration.parameters[parts[1]] ?? declaration.aliases[parts[1]]?.parameters ?? []
+                            if !parameters.isEmpty && (endIndex + 1 == tokens.words.count || key(tokens.words[endIndex + 1]) != key("<")) {
+                                try WhereJudge.fail("\(address(i)): generic declaration '\(reference.spelling.text)' needs explicit arguments in this fragment")
+                            }
+                        }
+                        if endIndex + 1 < tokens.words.count, key(tokens.words[endIndex + 1]) == key("<") {
+                            guard version == 2 else { try WhereJudge.fail("\(address(i)): qualified generic application requires context/2 applicability grounds") }
+                            var end = endIndex + 1, depth = 0
+                            repeat {
+                                if key(tokens.words[end]) == key("<") { depth += 1 }
+                                if key(tokens.words[end]) == key(">") { depth -= 1 }
+                                end += 1
+                            } while end < tokens.words.count && depth > 0
+                            guard depth == 0 else { try WhereJudge.fail("\(address(i)): qualified generic application has unbalanced arguments") }
+                            genericRanges.append((offset, tokens.ends[end - 1], address(i)))
                         }
                     }
-                    guard let origin = (origins[key(member)] ?? []).first(
-                        where: { $0.module == name }),
-                          let symbol = symbols[key(member)]?[name] else {
-                        try WhereJudge.fail("\(address(i)): module '\(word)' has no declaration '\(member)'")
+                    if !WhereJudge.sameName(rendered, reference.spelling.text) {
+                        replacements.append((offset, reference.end, rendered))
                     }
-                    let declaration = files[origin.file].world
-                    let parameters = declaration.parameters[member] ?? declaration.aliases[member]?.parameters ?? []
-                    if !parameters.isEmpty && (i + 3 == tokens.words.count || key(tokens.words[i + 3]) != key("<")) {
-                        try WhereJudge.fail("\(address(i)): generic declaration '\(word).\(member)' needs explicit arguments in this fragment")
+                    i = endIndex + 1
+                } else {
+                    // Only declaration sites can introduce symbols here. Every
+                    // reference decision above is the replayed certificate row.
+                    if let place = nameBindings!.place(input: file.context.input, offset: offset), place.parts.count == 2,
+                       declarationTable[place]?.kind != ScalarName("function") {
+                        let rendered = spelling(place)
+                        if !WhereJudge.sameName(rendered, word) { replacements.append((offset, tokens.ends[i], rendered)) }
                     }
-                    replacements.append((tokens.starts[i], tokens.ends[i + 2], symbol))
-                    if i + 3 < tokens.words.count, key(tokens.words[i + 3]) == key("<") {
-                        guard version == 2 else {
-                            try WhereJudge.fail("\(address(i)): qualified generic application requires context/2 applicability grounds")
-                        }
-                        var end = i + 3, depth = 0
-                        repeat {
-                            if key(tokens.words[end]) == key("<") { depth += 1 }
-                            if key(tokens.words[end]) == key(">") { depth -= 1 }
-                            end += 1
-                        } while end < tokens.words.count && depth > 0
-                        guard depth == 0 else {
-                            try WhereJudge.fail("\(address(i)): qualified generic application has unbalanced arguments")
-                        }
-                        genericRanges.append((tokens.starts[i], tokens.ends[end - 1], address(i)))
-                    }
-                    i += 3
-                    continue
+                    i += 1
                 }
-                if !bound.contains(word), collisions.contains(name), let origin = try choose(word, at: i),
-                   let symbol = symbols[name]?[origin.module], key(symbol) != name {
-                    replacements.append((tokens.starts[i], tokens.ends[i], symbol))
-                }
-                i += 1
             }
             guard !replacements.isEmpty else {
                 return CourtNotation.File(context: context, text: file.text, view: file.view,
@@ -281,7 +249,7 @@ enum WhereContextNames {
                     unread[symbol] = at + " (unapplied generic alias: bound application context)"
                 } else {
                     applications.append(Application(text: String(decoding: fragment, as: UTF8.self), address: at,
-                        bound: bindings(at: start).union(["Self"])))
+                        bound: boundNames(start, end).union(["Self"])))
                 }
             }
             for (start, end, replacement) in replacements.reversed() {
@@ -291,6 +259,32 @@ enum WhereContextNames {
             }
             let view = String(decoding: bytes, as: UTF8.self)
             var world = try WhereJudge.read(view, lent: builders, contextV2: version == 2, source: context.source)
+            // Preserve the written question separately from its bound view.
+            // Positional transport changes no equation or declaration order.
+            for (name, original) in file.world.gatedProtocols {
+                let boundName = symbols[key(name)]?[local] ?? name
+                if world.gatedProtocols[boundName] != nil {
+                    world.gatedProtocols[boundName]!.writtenEqualities = original.equalities
+                }
+            }
+            guard world.gates.count == file.world.gates.count else {
+                try WhereJudge.fail("\(context.source):1: bound view changed gate coverage")
+            }
+            for index in world.gates.indices {
+                world.gates[index].writtenEqualities = file.world.gates[index].equalities
+            }
+            for (name, values) in symbols {
+                for (module, symbol) in values where !WhereJudge.sameName(symbol, name.text) {
+                    world.contextSpellings[symbol] = module.text + "." + name.text
+                }
+            }
+            for reference in nameBindings!.certificate.references
+            where reference.input == ScalarName(file.context.input) && reference.declaration.parts.count == 2 {
+                let rendered = spelling(reference.declaration)
+                if reference.spelling.text.contains("."), !rendered.hasPrefix(prefix) {
+                    world.contextSpellings[rendered] = reference.spelling.text
+                }
+            }
             // The existing conditional-declaration boundary prevents an unread
             // bound application from becoming a nominal reflexivity premise.
             world.conditionalDeclarations.formUnion(unread.keys)

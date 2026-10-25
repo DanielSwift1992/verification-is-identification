@@ -2,6 +2,62 @@ import XCTest
 @testable import Court
 
 final class ContextNameBindingTests: XCTestCase {
+    func testInheritedReferencesHaveOneCertifiedPlace() throws {
+        let base = "public enum Leaf {}\npublic protocol P { associatedtype Axis }\npublic protocol Q: P where Axis == Leaf {}\n"
+        let proof = try index(base)
+        XCTAssertTrue(proof.certificate.references.contains {
+            $0.line == 3 && $0.spelling == ScalarName("Axis")
+                && $0.declaration == .init(parts: ["World", "P", "Axis"])
+        })
+        try proof.replay(proof.certificate)
+        let qualified = try index(base.replacingOccurrences(of: "where Axis", with: "where Self.Axis"))
+        let edge = try XCTUnwrap(qualified.certificate.references.first { $0.receiver != nil })
+        var forged = edge
+        forged.receiver = .init(parts: ["World", "Other"])
+        let changedReceiver = ContextNameBinding.Certificate(schema: qualified.certificate.schema,
+            selected: qualified.certificate.selected, inputs: qualified.certificate.inputs,
+            declarations: qualified.certificate.declarations,
+            references: qualified.certificate.references.map { $0 == edge ? forged : $0 })
+        XCTAssertThrowsError(try qualified.replay(changedReceiver))
+        XCTAssertThrowsError(try index("public enum Axis {}\n" + base)) { error in
+            let message = String(describing: error)
+            XCTAssertTrue(message.contains("ambiguous name Axis"))
+            XCTAssertTrue(message.contains("World.Axis at World.swift:1"))
+            XCTAssertTrue(message.contains("World.P.Axis at World.swift:3"))
+        }
+    }
+
+    func testGenericParameterIsLexicalAndNeverAnOwnerMember() throws {
+        XCTAssertThrowsError(try index("public enum Box<Param> {}\npublic typealias Pick = Box.Param\n")) { error in
+            XCTAssertTrue(String(describing: error).contains("generic parameter, not a member"))
+        }
+        let source = "public protocol Maker { func make<Axis>(_ value: Axis) -> Axis }\n"
+        let proof = try index(source)
+        let parameter = try XCTUnwrap(proof.certificate.declarations.first { $0.kind == ScalarName("parameter") })
+        XCTAssertTrue(parameter.place.parts[2].hasPrefix("make#"))
+        XCTAssertEqual(parameter.place.parts.last, "Axis")
+        XCTAssertEqual(proof.certificate.references.filter { $0.declaration == parameter.place }.count, 2)
+        let multiline = try index("public protocol Maker { func make<Axis>(_ value: Axis) ->\n Axis\n}\npublic enum Outside {}\n")
+        let multilineParameter = try XCTUnwrap(multiline.certificate.declarations.first { $0.kind == ScalarName("parameter") })
+        XCTAssertEqual(multiline.certificate.references.filter { $0.declaration == multilineParameter.place }.count, 2)
+        XCTAssertTrue(multiline.certificate.declarations.contains { $0.place == .init(parts: ["World", "Outside"]) })
+    }
+
+    func testImportAndReexportCyclesRefuseAtTheDeclaredImport() throws {
+        let sources = [("A", "@_exported import B\n", ["B"]), ("B", "import A\n", ["A"])]
+        let files = try sources.map { name, text, imports -> CourtNotation.File in
+            let context = CourtContext.Source(input: name + ".swift", source: name + ".swift",
+                sha256: courtSHA256(Data(text.utf8)), namespace: name, module: name, role: "own",
+                imports: imports, at: [:], importAddresses: [name + ".swift:1 imports"])
+            let world = try WhereJudge.read(text, contextV2: true)
+            return CourtNotation.File(context: context, text: text, view: text, world: world,
+                notation: try NotationScope(world.clean), excluded: nil, unchecked: [])
+        }
+        XCTAssertThrowsError(try ContextNameBinding.read(files, selected: "A.swift")) { error in
+            XCTAssertTrue(String(describing: error).contains("B.swift:1 imports: cyclic imports"))
+        }
+    }
+
     func index(_ text: String) throws -> ContextNameBinding.Index {
         let source = CourtContext.Source(input: "World.swift", source: "World.swift",
             sha256: courtSHA256(Data(text.utf8)), namespace: "World", module: "World", role: "own",

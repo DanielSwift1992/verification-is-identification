@@ -35,6 +35,7 @@ enum ContextNameBinding {
         let end: Int
         let spelling: ScalarName
         let declaration: Place
+        var receiver: Place? = nil
     }
     struct Input: Codable, Equatable {
         let input: ScalarName
@@ -132,13 +133,15 @@ enum ContextNameBinding {
             t.lines = indices.map { reading.tape.lines[$0] }
             return t
         }
-        let imports = given ?? ContextImports(files, words: tapes.map(\.words))
+        let imports = try given ?? ContextImports(files, words: tapes.map(\.words))
         var declarations: [Declaration] = [], scopes: [Scope] = []
         var byPlace: [Place: Declaration] = [:]
         var defaults: Set<Site> = []
         var declaredTokens: [Set<Int>] = files.map { _ in [] }
         let nominal: NameSet = ["enum", "struct", "class", "actor", "protocol"]
         let kinds = nominal.union(["typealias", "associatedtype"])
+        let builders = try files.reduce(into: NameSet()) { $0.formUnion(try WhereJudge.declaredBuilders($1.world.clean)) }
+        let syntaxes = try files.map { try NameDeclarationSyntax($0.world.clean, lent: builders) }
         // Index supplied file-level nominal owners before visiting extensions.
         // The result does not depend on source order or the extension's module.
         var roots = NameMap<Set<Place>>()
@@ -204,6 +207,7 @@ enum ContextNameBinding {
         // Type owners and their children are read in lexical order. No regular
         // expression or second identifier alphabet selects a declaration here.
         for (file, tape) in tapes.enumerated() {
+            let heads = Dictionary(uniqueKeysWithValues: syntaxes[file].heads.map { ($0.keyword, $0) })
             for i in tape.words.indices {
                 let word = tape.words[i]
                 if WhereJudge.sameName(word, "extension"), i + 1 < tape.words.count {
@@ -228,40 +232,44 @@ enum ContextNameBinding {
                         }
                     }
                 }
-                guard kinds.contains(word), i + 1 < tape.words.count,
-                      wordOffsets[file].contains(tape.starts[i + 1]),
-                      i == 0 || ![".", "import"].containsName(tape.words[i - 1]) else { continue }
-                if WhereJudge.sameName(word, "class"),
-                   ["func", "var", "let", "subscript", "init"].containsName(tape.words[i + 1]) { continue }
+                guard let head = heads[i] else { continue }
+                let function = ["func", "init", "subscript"].containsName(head.kind)
+                guard kinds.contains(word) || function else { continue }
                 let parent = owner(file, tape.starts[i])
-                let place = Place(parts: parent.parts + [tape.words[i + 1]])
-                try append(file, i + 1, place, word)
-                if WhereJudge.sameName(word, "typealias"), i + 2 < tape.words.count,
-                   WhereJudge.sameName(tape.words[i + 2], "<") {
-                    var cursor = i + 3, depth = 1, expectsName = true
-                    while cursor < tape.words.count && depth > 0 {
-                        let token = tape.words[cursor]
-                        if depth == 1 && expectsName && wordOffsets[file].contains(tape.starts[cursor]) {
-                            try append(file, cursor, Place(parts: place.parts + [token]), "parameter")
-                            expectsName = false
-                        }
-                        if WhereJudge.sameName(token, "<") { depth += 1 }
-                        if WhereJudge.sameName(token, ">") { depth -= 1 }
-                        if depth == 1 && WhereJudge.sameName(token, ",") { expectsName = true }
-                        cursor += 1
-                    }
-                    var end = cursor, nesting = 0
+                let ownName = function ? tape.words[head.name] + "#" + String(tape.starts[head.name]) : tape.words[head.name]
+                let place = Place(parts: parent.parts + [ownName])
+                try append(file, head.name, place, function ? "function" : word)
+                for parameter in head.parameters {
+                    try append(file, parameter, Place(parts: place.parts + [tape.words[parameter]]), "parameter")
+                }
+                if function || WhereJudge.sameName(word, "typealias") && !head.parameters.isEmpty {
+                    var end = head.genericEnd, brackets: [String] = [], open: Int?
                     while end < tape.words.count {
                         let token = tape.words[end]
-                        if end > cursor && nesting == 0 && tape.lines[end] > tape.lines[end - 1]
-                            && !["=", ","].containsName(tape.words[end - 1]) { break }
-                        if ["<", "(", "["].containsName(token) { nesting += 1 }
-                        if [">", ")", "]"].containsName(token) { nesting -= 1 }
-                        if nesting == 0 && [";", "}"].containsName(token) { break }
+                        if brackets.isEmpty && WhereJudge.sameName(token, "{") { open = end; break }
+                        let startsNext = heads[end] != nil || ["extension", "import", "var", "let"].containsName(token)
+                            || (tape.lines[end] > tape.lines[max(0, end - 1)]
+                                && ["public", "private", "fileprivate", "internal", "package", "open", "static"].containsName(token))
+                        if end > head.genericEnd && brackets.isEmpty && startsNext { break }
+                        if ["<", "(", "["].containsName(token) { brackets.append(token) }
+                        if let last = brackets.last,
+                           WhereJudge.sameNames([last, token], ["<", ">"])
+                            || WhereJudge.sameNames([last, token], ["(", ")"])
+                            || WhereJudge.sameNames([last, token], ["[", "]"]) { brackets.removeLast() }
+                        if brackets.isEmpty && [";", "}"].containsName(token) { break }
                         end += 1
                     }
+                    if let body = open {
+                        var depth = 1
+                        end = body + 1
+                        while end < tape.words.count && depth > 0 {
+                            if WhereJudge.sameName(tape.words[end], "{") { depth += 1 }
+                            if WhereJudge.sameName(tape.words[end], "}") { depth -= 1 }
+                            end += 1
+                        }
+                    }
                     let upper = end < tape.words.count ? tape.starts[end] : fileEnd(tape)
-                    scopes.append(Scope(file: file, start: tape.starts[i + 1], open: tape.starts[i + 1],
+                    scopes.append(Scope(file: file, start: tape.starts[head.name], open: tape.starts[head.name],
                         end: upper, place: place))
                 }
                 if nominal.contains(word) {
@@ -277,22 +285,7 @@ enum ContextNameBinding {
                     guard depth == 0 else { try WhereJudge.fail("\(files[file].context.source):\(tape.lines[i]): nominal owner body is incomplete") }
                     scopes.append(Scope(file: file, start: tape.starts[i + 1], open: tape.starts[open],
                         end: tape.ends[end - 1], place: place))
-                    // A generic parameter is a declaration of this owner. Its
-                    // constraints are references, not additional parameter names.
-                    if i + 2 < open, WhereJudge.sameName(tape.words[i + 2], "<") {
-                        var depth = 1, cursor = i + 3, expectsName = true
-                        while cursor < open && depth > 0 {
-                            let token = tape.words[cursor]
-                            if depth == 1 && expectsName && wordOffsets[file].contains(tape.starts[cursor]) {
-                                try append(file, cursor, Place(parts: place.parts + [token]), "parameter")
-                                expectsName = false
-                            }
-                            if WhereJudge.sameName(token, "<") { depth += 1 }
-                            if WhereJudge.sameName(token, ">") { depth -= 1 }
-                            if depth == 1 && WhereJudge.sameName(token, ",") { expectsName = true }
-                            cursor += 1
-                        }
-                    }
+
                 }
             }
         }
@@ -330,6 +323,56 @@ enum ContextNameBinding {
                 try WhereJudge.fail("\(files[scope.file].context.source):\(line): scope owner '\(scope.place.text)' is not provided")
             }
         }
+        // Header edges name declaration places too. Only nominal owners can
+        // supply inherited members; a parameter is never a member namespace.
+        var inherited: [Place: Set<Place>] = [:]
+        let tokenAt = tapes.map { Dictionary(uniqueKeysWithValues: $0.starts.enumerated().map { ($0.element, $0.offset) }) }
+        func direct(_ names: [String], file: Int) -> Set<Place> {
+            if names.count > 1, modules.contains(names[0]) {
+                let place = Place(parts: names)
+                return imports.visible(files[file].context).contains(names[0]) && byPlace[place] != nil ? [place] : []
+            }
+            return Set(imports.visible(files[file].context).compactMap { module in
+                let place = Place(parts: [module] + names)
+                return byPlace[place] == nil ? nil : place
+            })
+        }
+        for scope in scopes {
+            guard scope.open > scope.start else { continue }
+            let tape = tapes[scope.file]
+            guard let start = tokenAt[scope.file][scope.start],
+                  let end = tokenAt[scope.file][scope.open] else { continue }
+            var cursor = start + 1, genericDepth = 0, inParents = false, expectsParent = false
+            while cursor < end {
+                let word = tape.words[cursor]
+                if WhereJudge.sameName(word, "where") { break }
+                if WhereJudge.sameName(word, "<") { genericDepth += 1 }
+                if WhereJudge.sameName(word, ">") { genericDepth -= 1 }
+                if genericDepth == 0 && WhereJudge.sameName(word, ":") { inParents = true; expectsParent = true; cursor += 1; continue }
+                if inParents && genericDepth == 0 && WhereJudge.sameName(word, ",") { expectsParent = true; cursor += 1; continue }
+                if expectsParent && genericDepth == 0 {
+                    var names = [word]
+                    while cursor + 2 < end && WhereJudge.sameName(tape.words[cursor + 1], ".") {
+                        names.append(tape.words[cursor + 2]); cursor += 2
+                    }
+                    let found = direct(names, file: scope.file)
+                    if found.count == 1, let target = found.first {
+                        inherited[scope.place, default: []].insert(target)
+                    }
+                    expectsParent = false
+                }
+                cursor += 1
+            }
+        }
+        var ancestors: [Place: Set<Place>] = [:]
+        func lineage(_ place: Place, seen: Set<Place> = []) -> Set<Place> {
+            if let cached = ancestors[place] { return cached }
+            guard !seen.contains(place) else { return [] }
+            var result = inherited[place] ?? []
+            for parent in result { result.formUnion(lineage(parent, seen: seen.union([place]))) }
+            return result
+        }
+        for place in inherited.keys { ancestors[place] = lineage(place) }
         let intrinsic = ScalarName("intrinsic")
         let intrinsicRoots = Dictionary(grouping: declarations.filter {
             $0.kind == intrinsic && $0.place.components.count == 2
@@ -358,6 +401,10 @@ enum ContextNameBinding {
                     let candidate = Place(components: parent.components + [name])
                     if byPlace[candidate] != nil { candidates.insert(candidate) }
                 }
+                for parent in active.flatMap({ Array(ancestors[$0.place] ?? []) }) {
+                    let candidate = Place(components: parent.components + [name])
+                    if let row = byPlace[candidate], row.kind != ScalarName("parameter") { candidates.insert(candidate) }
+                }
                 for declaration in intrinsicRoots[name] ?? [] {
                     candidates.insert(declaration.place)
                 }
@@ -382,29 +429,56 @@ enum ContextNameBinding {
                     spelling = word + "." + tape.words[i + 2]
                 }
                 if candidates.count > 1 {
-                    let places = candidates.map(\.text).sorted().joined(separator: ", ")
-                    ambiguities.append("\(files[file].context.source):\(tape.lines[i]): ambiguous name \(word): write Owner.\(word) or Module.\(word); visible: \(places)")
+                    let places = candidates.sorted { $0.text < $1.text }.map { place in
+                        let row = byPlace[place]!
+                        return place.text + " at " + row.source.text + ":\(row.line)"
+                    }.joined(separator: ", ")
+                    let parameter = candidates.contains { byPlace[$0]?.kind == ScalarName("parameter") }
+                    let qualified = Set(candidates.compactMap { place -> ScalarName? in
+                        guard let row = byPlace[place], row.kind != ScalarName("parameter") else { return nil }
+                        return ScalarName(row.kind == ScalarName("associatedtype") ? "Self." + word : place.text)
+                    }).map(\.text).sorted().joined(separator: " or ")
+                    let advice = parameter
+                        ? "rename the parameter" + (qualified.isEmpty ? "" : " or write " + qualified)
+                        : "write " + qualified
+                    ambiguities.append("\(files[file].context.source):\(tape.lines[i]): ambiguous name \(word): \(advice); visible: \(places)")
                     continue
                 }
                 guard let selected = candidates.first else { continue }
-                var target = selected
+                var target = selected, receiver: Place?
                 // A concrete member path selects its declared owner. A generic
                 // or associated projection retains its existing reduction rules.
                 while end + 2 < tape.words.count && WhereJudge.sameName(tape.words[end + 1], ".") {
                     let member = Place(parts: target.parts + [tape.words[end + 2]])
-                    guard byPlace[member] != nil else { break }
-                    target = member
+                    if byPlace[member]?.kind == ScalarName("parameter") {
+                        try WhereJudge.fail("\(files[file].context.source):\(tape.lines[i]): '\(spelling).\(tape.words[end + 2])' names a generic parameter, not a member type")
+                    }
+                    let inheritedMembers = (ancestors[target] ?? []).map {
+                        Place(parts: $0.parts + [tape.words[end + 2]])
+                    }.filter { byPlace[$0] != nil }
+                    let members: Set<Place> = byPlace[member] != nil ? [member] : Set(inheritedMembers)
+                    guard members.count <= 1 else {
+                        try WhereJudge.fail("\(files[file].context.source):\(tape.lines[i]): ambiguous member '\(spelling).\(tape.words[end + 2])'")
+                    }
+                    guard let found = members.first else { break }
+                    if byPlace[found]?.kind == ScalarName("associatedtype") {
+                        if !WhereJudge.sameName(word, "Self"), byPlace[target]?.kind == ScalarName("protocol") {
+                            try WhereJudge.fail("\(files[file].context.source):\(tape.lines[i]): associated member '\(spelling).\(tape.words[end + 2])' needs Self or a concrete conformer")
+                        }
+                        receiver = target
+                    }
+                    target = found
                     spelling += "." + tape.words[end + 2]
                     end += 2
                 }
                 references.append(Reference(input: ScalarName(files[file].context.input), scopes: active.map(\.place),
                     source: ScalarName(files[file].context.source),
                     line: tape.lines[i], offset: tape.starts[i], end: tape.ends[end],
-                    spelling: ScalarName(spelling), declaration: target))
+                    spelling: ScalarName(spelling), declaration: target, receiver: receiver))
             }
         }
         if !ambiguities.isEmpty { try WhereJudge.failAll(ambiguities) }
-        let certificate = Certificate(schema: ScalarName("vi.court.context-name-bindings/1"), selected: ScalarName(selected),
+        let certificate = Certificate(schema: ScalarName("vi.court.context-name-bindings/2"), selected: ScalarName(selected),
             inputs: files.map { Input(input: ScalarName($0.context.input), module: ScalarName($0.context.module), imports: $0.context.imports.map { ScalarName($0) },
                 source: ScalarName($0.context.source), sha256: $0.context.sha256,
                 viewSHA256: courtSHA256(Data($0.world.clean.utf8))) },

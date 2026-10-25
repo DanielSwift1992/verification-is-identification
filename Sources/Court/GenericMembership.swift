@@ -9,7 +9,7 @@ enum GenericMembership {
         case missing(String, open: Bool)
     }
 
-    static func head(_ input: Term, world: WhereJudge.World, rigid: Set<String>) throws -> Term {
+    static func head(_ input: Term, world: WhereJudge.World, rigid: NameSet) throws -> Term {
         let source = DefinitionReduction.Source(world: world, rigid: rigid)
         let builder = DefinitionReduction.SharedBuilder(source: source,
             work: DefinitionReduction.Work(10_000, phase: "membership construction"), depthLimit: 64)
@@ -28,8 +28,8 @@ enum GenericMembership {
     }
 
     static func check(_ input: Term, proto: String, site: String,
-                      world: WhereJudge.World, rigid: Set<String>, counted: inout Int) throws -> [String] {
-        var facts: [String: Set<String>] = [:]
+                      world: WhereJudge.World, rigid: NameSet, counted: inout Int) throws -> [String] {
+        var facts: NameMap<NameSet> = [:]
         var equations: [(Term, Term)] = []
         for conformer in world.conformers.values {
             guard !conformer.parameters.isEmpty else { continue }
@@ -51,7 +51,7 @@ enum GenericMembership {
         }
         func equivalent(_ left: Term, _ right: Term) throws -> Bool {
             if try WhereJudge.compared(left, right, world, rigid: rigid).equal { return true }
-            var reachable: Set<String> = [Press.serialize(left)], changed = true
+            var reachable: NameSet = [Press.serialize(left)], changed = true
             while changed {
                 let old = reachable
                 for (a, b) in equations {
@@ -63,7 +63,7 @@ enum GenericMembership {
             }
             return reachable.contains(Press.serialize(right))
         }
-        var active = Set<String>(), memo: [String: Proof] = [:], remaining = 10_000
+        var active = NameSet(), memo: NameMap<Proof> = [:], remaining = 10_000
         func prove(_ input: Term, _ required: String, depth: Int = 0) throws -> Proof {
             remaining -= 1
             guard remaining >= 0, depth <= 64 else {
@@ -92,9 +92,9 @@ enum GenericMembership {
             if let unsupported = world.genericUnsupported[term.head], !unsupported.isEmpty {
                 try WhereJudge.fail("generic application '\(spelled)' carries unread conditions: " + unsupported.joined(separator: ", "))
             }
-            var bindings = Dictionary(uniqueKeysWithValues: zip(conformer.parameters, term.args))
+            var bindings = NameMap(uniqueKeysWithValues: zip(conformer.parameters, term.args))
             bindings["Self"] = term
-            var axes = Set(conformer.table.keys)
+            var axes = NameSet(conformer.table.keys)
             for parent in WhereJudge.inheritedProtocols(conformer.protocols, world) {
                 axes.formUnion(world.protocolAxes[parent] ?? [])
             }

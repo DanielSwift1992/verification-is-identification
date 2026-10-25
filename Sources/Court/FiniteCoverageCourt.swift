@@ -61,7 +61,7 @@ enum FiniteCoverageCourt {
             case .group: name = "CandidateGroupReading"
             case .join: name = "VerdictCoversBranches"
             }
-            return protocols.contains(name)
+            return protocols.containsName(name)
         }
     }
     static func equations(_ e: E, _ role: Role) -> [(E, E)] {
@@ -178,7 +178,7 @@ enum FiniteCoverageCourt {
             let files = try arguments.dropFirst().map {
                 ($0, try String(contentsOfFile: $0, encoding: .utf8))
             }
-            let source = try StructuralSource(files: files)
+            let source = try StructuralSource(files: files, arguments: [("arguments[0]", arguments[0])])
             let proof = try derive(root, source: source)
             print(
                 "✓ FINITE COVERAGE: \(root.text); \(proof.count) source-bound constructor occurrences"

@@ -31,7 +31,7 @@
   "compiler_controls": [
     {
       "id": "missing-command-literal",
-      "old": "    static var typeName: String { #\"swift build --build-tests && swift test --skip-build\"# }\n",
+      "old": "    static var typeName: String { #\"swift build --build-tests && VI_CHECK_BUILD_BIN=$(swift build --show-bin-path) && export VI_CHECK_BUILD_BIN && swift test --skip-build\"# }\n",
       "new": "",
       "exit": "refused"
     },

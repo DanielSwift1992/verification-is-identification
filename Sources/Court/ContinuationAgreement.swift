@@ -10,7 +10,7 @@ extension ContinuationCourt {
         let source: Path
     }
     struct AgreementCapacity: Codable, Equatable {
-        var sort: String
+        var sort: ScalarName
         var requiredClasses: Int
         var outputClasses: Int
         var fixedRequiredClasses: Int
@@ -36,8 +36,8 @@ extension ContinuationCourt {
         case incompatible(left: Path, right: Path)
     }
     struct AgreementCertificate: Codable {
-        var request: String
-        var constructor: String
+        var request: ScalarName
+        var constructor: ScalarName
         var source: ReadProof
         var equalities: RouteProof?
         var output: ReadProof
@@ -66,7 +66,7 @@ extension ContinuationCourt {
     }
     static func agreementReading(_ request: String, certificate p: AgreementCertificate,
                                   source: StructuralSource, constructor: String = "Paired") throws -> AgreementReading {
-        guard p.request == request, p.constructor == constructor else {
+        guard WhereJudge.sameName(p.request, request), WhereJudge.sameName(p.constructor, constructor) else {
             throw Failure("certificate: request or constructor substituted")
         }
         let c = try Context(request, source: source, constructor: constructor,
@@ -119,7 +119,7 @@ extension ContinuationCourt {
                                    outputBlocks: [Path: Int]) throws -> (fixed: [Int: Int], issue: AgreementConclusion?) {
         var fixed: [Int: Int] = [:], first: [Int: Path] = [:]
         for binding in r.bindings {
-            guard try r.output.sort(binding.output) == r.whole.sort(binding.source) else {
+            guard try WhereJudge.sameName(r.output.sort(binding.output), r.whole.sort(binding.source)) else {
                 return (fixed, .wrongSort(binding: binding.address))
             }
             guard let target = outputBlocks[binding.output], let sourceClass = sourceBlocks[binding.source] else {
@@ -138,12 +138,12 @@ extension ContinuationCourt {
                                     fixed: [Int: Int]) -> [AgreementCapacity] {
         let required = Set(distinctClasses(r.question, blocks: sourceBlocks))
         let supplied = Set(fixed.values)
-        let sorts = Set(outputClasses.map(\.sort) + required.map { sourceClasses[$0].sort }).sorted()
+        let sorts = NameSet(outputClasses.map(\.sort) + required.map { sourceClasses[$0].sort }).sorted()
         return sorts.map { sort in
-            let n = required.filter { sourceClasses[$0].sort == sort }.count
-            let m = outputClasses.filter { $0.sort == sort }.count
-            let bound = required.intersection(supplied).filter { sourceClasses[$0].sort == sort }.count
-            let free = outputClasses.indices.filter { outputClasses[$0].sort == sort && fixed[$0] == nil }.count
+            let n = required.filter { WhereJudge.sameName(sourceClasses[$0].sort, sort) }.count
+            let m = outputClasses.filter { WhereJudge.sameName($0.sort, sort) }.count
+            let bound = required.intersection(supplied).filter { WhereJudge.sameName(sourceClasses[$0].sort, sort) }.count
+            let free = outputClasses.indices.filter { WhereJudge.sameName(outputClasses[$0].sort, sort) && fixed[$0] == nil }.count
             return AgreementCapacity(sort: sort, requiredClasses: n, outputClasses: m, fixedRequiredClasses: bound,
                                      freeOutputClasses: free, minimumResidualLeaves: max(n - bound - free, 0))
         }
@@ -160,7 +160,7 @@ extension ContinuationCourt {
             }
             let origin = assignments[block]
             do {
-                guard try r.whole.sort(origin) == r.output.sort(leaf.source) else { throw Failure("different sort") }
+                guard try WhereJudge.sameName(r.whole.sort(origin), r.output.sort(leaf.source)) else { throw Failure("different sort") }
             } catch { throw Failure(at + ".assignments[\(block)]: " + String(describing: error)) }
             return origin
         }
@@ -178,7 +178,7 @@ extension ContinuationCourt {
     static func constructAgreement(_ r: AgreementReading, classes: [PartitionClass],
                                     blocks: [Path: Int], outputClasses: [PartitionClass],
                                     outputBlocks: [Path: Int]) throws -> AgreementConclusion {
-        let available = Set(classes.map(\.sort))
+        let available = NameSet(classes.map(\.sort))
         for leaf in r.output.source.leaves {
             if !available.contains(leaf.1) { return .unavailable(output: leaf.0) }
         }
@@ -190,8 +190,8 @@ extension ContinuationCourt {
         for (index, target) in outputClasses.enumerated() {
             let sourceClassIndex: Int
             if let fixed = bindings.fixed[index] { sourceClassIndex = fixed }
-            else if let next = (required.first { classes[$0].sort == target.sort && !covered.contains($0) }) { sourceClassIndex = next }
-            else if let fallback = (classes.firstIndex { $0.sort == target.sort }) { sourceClassIndex = fallback }
+            else if let next = (required.first { WhereJudge.sameName(classes[$0].sort, target.sort) && !covered.contains($0) }) { sourceClassIndex = next }
+            else if let fallback = (classes.firstIndex { WhereJudge.sameName($0.sort, target.sort) }) { sourceClassIndex = fallback }
             else { throw Failure("construction.agreement: unavailable output sort") }
             assignments.append(classes[sourceClassIndex].leaves[0])
             covered.insert(sourceClassIndex)
@@ -328,14 +328,14 @@ extension ContinuationCourt {
             let sort: String
             do { sort = try r.output.sort(path) }
             catch { throw Failure("certificate.conclusion.unavailable.output: " + String(describing: error)) }
-            guard !(p.classes.contains { $0.sort == sort }) else {
+            guard !(p.classes.contains { WhereJudge.sameName($0.sort, sort) }) else {
                 throw Failure("certificate.conclusion.unavailable.output: the sort is available at Source")
             }
         case let .wrongSort(address):
             guard let binding = (r.bindings.first { $0.address == address }) else {
                 throw Failure("certificate.conclusion.wrongSort.binding: no declared binding at this address")
             }
-            guard try r.output.sort(binding.output) != r.whole.sort(binding.source) else {
+            guard try !WhereJudge.sameName(r.output.sort(binding.output), r.whole.sort(binding.source)) else {
                 throw Failure("certificate.conclusion.wrongSort.binding: binding sorts agree")
             }
         case let .incompatible(left, right):
@@ -343,8 +343,8 @@ extension ContinuationCourt {
             guard let a = bindings[left], let b = bindings[right] else {
                 throw Failure("certificate.conclusion.incompatible: no declared bindings at these addresses")
             }
-            guard try r.output.sort(a.output) == r.whole.sort(a.source),
-                  try r.output.sort(b.output) == r.whole.sort(b.source),
+            guard try WhereJudge.sameName(r.output.sort(a.output), r.whole.sort(a.source)),
+                  try WhereJudge.sameName(r.output.sort(b.output), r.whole.sort(b.source)),
                   outputs[a.output] == outputs[b.output], blocks[a.source] != blocks[b.source] else {
                 throw Failure("certificate.conclusion.incompatible: bindings do not separate source classes in one output C-class")
             }
@@ -359,7 +359,7 @@ extension ContinuationCourt {
     }
     static func decodeAgreement(_ data: Data) throws -> AgreementCertificate {
         guard data.count <= relatedArchiveLimit else { throw Failure("certificate: input limit") }
-        let archive = try JSONDecoder().decode(AgreementArchive.self, from: data)
+        let archive = try CourtJSON.decoder().decode(AgreementArchive.self, from: data)
         guard archive.format == 7 else { throw Failure("certificate: expected format 7 for an agreement judgment") }
         return archive.certificate
     }

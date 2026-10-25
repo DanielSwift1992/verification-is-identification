@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The original 27 paired CLI cases and two native publication controls."""
+"""Declared native cases from both Press suites, plus publication controls."""
 import importlib.util
 import json
 from pathlib import Path
@@ -18,17 +18,37 @@ with tempfile.TemporaryDirectory(prefix='press-native-') as tmp:
     directory = Path(tmp)
     state = directory / 'state.swift'
     rules = directory / 'rules.swift'
-    for case in cases:
-        if case['id'] not in manifest['native_controls']:
-            continue
-        request, expected = case['request'], case['expected']
-        state.write_text(request['state'], encoding='utf-8')
-        rules.write_text(request['dictionary'], encoding='utf-8')
-        result = subprocess.run(command + request['arguments'] + ['--file', str(state), '--rules', str(rules)], capture_output=True, text=True)
-        refused = expected['refusal'] is not None
-        ok = result.returncode == int(refused) and state.read_bytes() == expected['state'].encode('utf-8')
-        ok = ok and ((not result.stdout and expected['refusal']['reason_contains'] in result.stderr) if refused else (not result.stderr and result.stdout.startswith(('pressed ', 'no-op: '))))
-        results.append((case['id'], ok))
+    manifests = [(manifest, cases), contract.load_contract(root / 'Contracts/Press/v0.2/contract.json')]
+    for suite, observations in manifests:
+        for case in observations:
+            if case['id'] not in suite.get('native_controls', []):
+                continue
+            request, expected = case['request'], case['expected']
+            state.write_bytes(request['state'].encode('utf-8'))
+            rules.write_bytes(request['dictionary'].encode('utf-8'))
+            paths = {request.get('statePath', 'state.swift'): str(state), request.get('dictionaryPath', 'rules.swift'): str(rules)}
+            args = command + request['arguments'] + ['--file', str(state), '--rules', str(rules)]
+            inputs = {rules: rules.read_bytes()}
+            for index, definition in enumerate(request.get('definitions', [])):
+                path = directory / ('definition-' + str(index) + '.swift')
+                path.write_bytes(definition['text'].encode('utf-8'))
+                paths[definition['path']] = str(path)
+                inputs[path] = path.read_bytes()
+                args += ['--definitions', str(path)]
+            result = subprocess.run(args, capture_output=True, text=True)
+            refused = expected['refusal'] is not None
+            ok = result.returncode == int(refused) and state.read_bytes() == expected['state'].encode('utf-8')
+            if refused:
+                address = expected['refusal']['address']
+                reason = expected['refusal']['reason_contains']
+                for original, actual in paths.items():
+                    address = address.replace(original, actual)
+                    reason = reason.replace(original, actual)
+                ok = ok and not result.stdout and reason in result.stderr and address in result.stderr
+            else:
+                ok = ok and not result.stderr and result.stdout.startswith(('pressed ', 'no-op: '))
+            ok = ok and all(path.read_bytes() == data for path, data in inputs.items())
+            results.append((suite['suite'] + '/' + case['id'], ok))
     state.write_text('extension Words {\n public static var typeName: String { "𐐀" }\n}\n', encoding='utf-8')
     result = subprocess.run(command + ['rubout', 'Words', '--file', str(state), '--rules', str(directory / 'absent.swift')], capture_output=True, text=True)
     results.append(('literal-does-not-read-dictionary', result.returncode == 0 and '{ "" }' in state.read_text() and not result.stderr))

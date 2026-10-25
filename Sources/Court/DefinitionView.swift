@@ -4,7 +4,7 @@ import Foundation
 /// methods. This bounded source view is made by the owner after byte binding.
 /// The first excluded declaration is reported for each supplied definition.
 enum DefinitionView {
-    static func read(_ text: String, path: String, lent: Set<String>, contextV2: Bool = false) throws -> (text: String, first: Int?) {
+    static func read(_ text: String, path: String, lent: NameSet, contextV2: Bool = false) throws -> (text: String, first: Int?) {
         if contextV2 { return try scoped(text, path: path, lent: lent) }
         let clean = try WhereJudge.stripComments(text, lent: lent).components(separatedBy: "\n")
         var lines = WhereJudge.sourceLines(text).components(separatedBy: "\n")
@@ -52,7 +52,7 @@ enum DefinitionView {
     /// Exclude balanced value declarations wherever the declaration occurs,
     /// including an inline member. Type declarations inside that region are
     /// refused rather than promoted into the surrounding lexical owner.
-    static func scoped(_ text: String, path: String, lent: Set<String>) throws -> (text: String, first: Int?) {
+    static func scoped(_ text: String, path: String, lent: NameSet) throws -> (text: String, first: Int?) {
         let clean = try WhereJudge.stripComments(text, lent: lent)
         let units = Array(clean.utf16)
         var view = units, consumed = 0, first: Int?

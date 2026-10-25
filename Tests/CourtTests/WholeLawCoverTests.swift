@@ -91,31 +91,31 @@ final class WholeLawCoverTests: XCTestCase {
     func testForeignEEdgeAndBrokenClassRefuse() throws {
         var p = try proof()
         p.connections[0][0].edge = [.right, .right]
-        refuses("certificate.connections[0][0]") { _ = try C.verifyLawCover(p.request, certificate: p, source: world()) }
+        refuses("certificate.connections[0][0]") { _ = try C.verifyLawCover(p.request.text, certificate: p, source: world()) }
         p = try proof()
         p.classes[0].leaves.removeLast()
         p.classes.append(.init(sort: "$continuation0", leaves: [[.right, .right]]))
         p.connections[0].removeLast()
         p.connections.append([])
-        refuses("partition breaks a declared E-edge") { _ = try C.verifyLawCover(p.request, certificate: p, source: world()) }
+        refuses("partition breaks a declared E-edge") { _ = try C.verifyLawCover(p.request.text, certificate: p, source: world()) }
     }
     func testClosedButCoarserPartitionNeedsAnEForest() throws {
         var p = try proof("NoEqualities")
         p.classes = [.init(sort: "$continuation0", leaves: [[.left], [.right]])]
         p.connections = [[.init(edge: [], reversed: false)]]
-        refuses("no declared E-edge") { _ = try C.verifyLawCover(p.request, certificate: p, source: world()) }
+        refuses("no declared E-edge") { _ = try C.verifyLawCover(p.request.text, certificate: p, source: world()) }
     }
     func testLocalTreeNeedsItsWholeClassAndVisibleLink() throws {
         var p = try proof()
         guard case var .holds(trees) = p.conclusion else { return XCTFail("expected holds") }
         trees[0].links[0].domain = [.left, .left]
         p.conclusion = .holds(trees)
-        refuses("not visible in the declared domain") { _ = try C.verifyLawCover(p.request, certificate: p, source: world()) }
+        refuses("not visible in the declared domain") { _ = try C.verifyLawCover(p.request.text, certificate: p, source: world()) }
         p = try proof()
         guard case var .holds(other) = p.conclusion else { return XCTFail("expected holds") }
         other[0].links[0].to = other[0].root
         p.conclusion = .holds(other)
-        refuses("does not attach a new member") { _ = try C.verifyLawCover(p.request, certificate: p, source: world()) }
+        refuses("does not attach a new member") { _ = try C.verifyLawCover(p.request.text, certificate: p, source: world()) }
     }
     func testCountermodelSubsetUniquenessAndProperness() throws {
         let original = try proof("FalseBridge")
@@ -131,7 +131,7 @@ final class WholeLawCoverTests: XCTestCase {
             var bad = model
             bad.one = one
             p.conclusion = .refused(bad)
-            refuses(address) { _ = try C.verifyLawCover(p.request, certificate: p, source: world()) }
+            refuses(address) { _ = try C.verifyLawCover(p.request.text, certificate: p, source: world()) }
         }
     }
     func testCountermodelCrossingAndLocalExtensions() throws {
@@ -139,10 +139,10 @@ final class WholeLawCoverTests: XCTestCase {
         guard case var .refused(model) = p.conclusion else { return XCTFail("expected refused") }
         model.crossing = [.left]
         p.conclusion = .refused(model)
-        refuses(".crossing: no declared E-edge") { _ = try C.verifyLawCover(p.request, certificate: p, source: world()) }
+        refuses(".crossing: no declared E-edge") { _ = try C.verifyLawCover(p.request.text, certificate: p, source: world()) }
         p = try proof()
         p.conclusion = .refused(.init(block: 0, one: [[.left]], crossing: [.left]))
-        refuses("domain splits S") { _ = try C.verifyLawCover(p.request, certificate: p, source: world()) }
+        refuses("domain splits S") { _ = try C.verifyLawCover(p.request.text, certificate: p, source: world()) }
     }
     func testDiscardedDomainAndChangedLiveCoverageRefuse() throws {
         var p = try proof("ThreeDomains")
@@ -154,28 +154,28 @@ final class WholeLawCoverTests: XCTestCase {
             }
         }
         p.coverage = drop(p.coverage)
-        refuses("route body differs from the live source") { _ = try C.verifyLawCover(p.request, certificate: p, source: world()) }
+        refuses("route body differs from the live source") { _ = try C.verifyLawCover(p.request.text, certificate: p, source: world()) }
         let saved = try proof()
         let changed = try world { $0.replacingOccurrences(of: "typealias Coverage = Paired<First, Second>",
                                                           with: "typealias Coverage = Paired<Second, First>") }
-        refuses("route body differs from the live source") { _ = try C.verifyLawCover(saved.request, certificate: saved, source: changed) }
+        refuses("route body differs from the live source") { _ = try C.verifyLawCover(saved.request.text, certificate: saved, source: changed) }
     }
     func testChangedLiveEAndRequestRefuse() throws {
         let saved = try proof("SeparatedClass")
         let changed = try world { $0.replacingOccurrences(of: "typealias Equalities = Paired<Source.Left, Source.Right>",
                                                           with: "typealias Equalities = Paired<Source.Right, Source.Left>") }
-        refuses("route body differs from the live source") { _ = try C.verifyLawCover(saved.request, certificate: saved, source: changed) }
+        refuses("route body differs from the live source") { _ = try C.verifyLawCover(saved.request.text, certificate: saved, source: changed) }
         refuses("request or constructor substituted") { _ = try C.verifyLawCover("NoEqualities", certificate: saved, source: world()) }
     }
     func testSameRouteProofBindsFamilyAndRenamedOpaqueSort() throws {
         let source = try world { $0.replacingOccurrences(of: #"\bS\b"#, with: "Unseen", options: .regularExpression)
             .replacingOccurrences(of: "\n", with: "\r\n") }
         let p = try C.deriveLawCover("SharedLeaf", source: source)
-        XCTAssertTrue(try C.verifyLawCover(p.request, certificate: p, source: source))
+        XCTAssertTrue(try C.verifyLawCover(p.request.text, certificate: p, source: source))
         XCTAssertEqual(try C.encodeLawCover(p), try C.encodeLawCover(proof()))
         var bad = p
         bad.coverage = .domain(.source)
-        refuses("family endpoint substituted") { _ = try C.verifyLawCover(p.request, certificate: bad, source: world()) }
+        refuses("family endpoint substituted") { _ = try C.verifyLawCover(p.request.text, certificate: bad, source: world()) }
         refuses("domain boundary outside a family") {
             let c = try C.Context("SharedLeaf", source: world(), requiredFields: ["Source", "Coverage"])
             _ = try C.replayRoute(.domain(.source), context: c, source: .leaf("$continuation0"))

@@ -89,7 +89,7 @@ final class ContinuationActionsTests: XCTestCase {
         XCTAssertEqual(stable.representatives, [[.left], [.right, .right], [.right, .left]])
         XCTAssertEqual(stable.classes.map(\.word.count), [0, 1, 2])
         XCTAssertEqual(stable.actions[0].targets, [1, 2, 0])
-        let reading = try C.relatedReading(p.request, certificate: p, source: world())
+        let reading = try C.relatedReading(p.request.text, certificate: p, source: world())
         // Fixed first-coordinate question after g reads c; the transported
         // second-coordinate question after this g reads the original a.
         XCTAssertEqual(try reading.actions[0].imageOf([.left]), [.right, .right])
@@ -101,8 +101,8 @@ final class ContinuationActionsTests: XCTestCase {
         XCTAssertEqual(empty.dynamics?.stable?.representatives, [[.right, .right]])
         XCTAssertEqual(empty.dynamics?.stable?.classes[0].word, [])
         XCTAssertNil(empty.dynamics?.hidden)
-        XCTAssertFalse(try C.verifyRelated(empty.request, certificate: empty, source: world()))
-        XCTAssertTrue(try C.verifyRelatedActions(empty.request, certificate: empty, source: world()))
+        XCTAssertFalse(try C.verifyRelated(empty.request.text, certificate: empty, source: world()))
+        XCTAssertTrue(try C.verifyRelatedActions(empty.request.text, certificate: empty, source: world()))
     }
     func testWordDirectionForNoncommutingActions() throws {
         let stable = try XCTUnwrap(proof("NoncommutingWords").dynamics?.stable)
@@ -137,7 +137,7 @@ final class ContinuationActionsTests: XCTestCase {
         XCTAssertEqual(k, .pair(.pick([.left]), .pick([.right])))
         XCTAssertEqual(actions.map(\.program), [k, k])
         guard case .sourceRelation = actions[1].selections[0].basis else { return XCTFail("E-path for fixed k") }
-        XCTAssertTrue(try C.verifyRelatedActions(p.request, certificate: p, source: world()))
+        XCTAssertTrue(try C.verifyRelatedActions(p.request.text, certificate: p, source: world()))
     }
     func testFamilyBoundariesAliasesAndLiveCoverage() throws {
         let scalar = try proof("ScalarActions")
@@ -154,7 +154,7 @@ final class ContinuationActionsTests: XCTestCase {
                                     with: "typealias Actions = Paired<Exchanged<Source>, Source>")
         }
         refuses("changed-live-actions", address: "AliasedActions.Actions") {
-            _ = try C.verifyRelatedActions(aliased.request, certificate: aliased, source: source)
+            _ = try C.verifyRelatedActions(aliased.request.text, certificate: aliased, source: source)
         }
     }
     func testPreservationAndExactClassForgeries() throws {
@@ -297,7 +297,7 @@ final class ContinuationActionsTests: XCTestCase {
         }
         let old = try C.deriveRelated("EmptyActions", source: world())
         refuses("old-archive-is-not-u7", address: "certificate.dynamics:") {
-            _ = try C.verifyRelatedActions(old.request, certificate: old, source: world())
+            _ = try C.verifyRelatedActions(old.request.text, certificate: old, source: world())
         }
     }
     func testAcceptedFormats2And3KeepCanonicalBytes() throws {

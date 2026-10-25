@@ -8,7 +8,7 @@ import subprocess
 import sys
 import time
 
-SUITE_HASHES = {'vi.press.substitution/0.1': 'cf01573a6326db2c7749046867c10de5e6a8ef50b41941ffcbbaf630dc105b64'}
+SUITE_HASHES = {'vi.press.substitution/0.1': 'cf01573a6326db2c7749046867c10de5e6a8ef50b41941ffcbbaf630dc105b64', 'vi.press.substitution/0.2': '81a7af0accd30d7ae82751d82833da393cc04c9f74ff713c00fe3e558345c770'}
 
 
 def digest(path):
@@ -41,6 +41,8 @@ def mismatches(actual, expected):
         errors.append('state bytes')
     if type(actual.get('changed')) is not bool or actual['changed'] != expected['changed']:
         errors.append('changed')
+    if 'replayed' in expected and actual.get('replayed') is not expected['replayed']:
+        errors.append('certificate replay')
     refusal = actual.get('refusal')
     if expected['refusal'] is None:
         if refusal is not None:

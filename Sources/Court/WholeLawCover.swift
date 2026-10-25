@@ -26,8 +26,8 @@ extension ContinuationCourt {
         case refused(CoverCountermodel)
     }
     struct LawCoverCertificate: Codable {
-        var request: String
-        var constructor: String
+        var request: ScalarName
+        var constructor: ScalarName
         var source: ReadProof
         var equalities: RouteProof?
         var coverage: RouteProof
@@ -46,7 +46,7 @@ extension ContinuationCourt {
     }
     static func lawCoverReading(_ request: String, certificate p: LawCoverCertificate,
                                 source: StructuralSource, constructor: String = "Paired") throws -> LawCoverReading {
-        guard p.request == request, p.constructor == constructor else {
+        guard WhereJudge.sameName(p.request, request), WhereJudge.sameName(p.constructor, constructor) else {
             throw Failure("certificate: request or constructor substituted")
         }
         let c = try Context(request, source: source, constructor: constructor, requiredFields: ["Source", "Coverage"])
@@ -231,7 +231,7 @@ extension ContinuationCourt {
     }
     static func decodeLawCover(_ data: Data) throws -> LawCoverCertificate {
         guard data.count <= 8_000_000 else { throw Failure("certificate: archive byte limit") }
-        let archive = try JSONDecoder().decode(LawCoverArchive.self, from: data)
+        let archive = try CourtJSON.decoder().decode(LawCoverArchive.self, from: data)
         guard archive.format == 1, archive.question == "whole-law-cover" else {
             throw Failure("certificate: unsupported format or different question")
         }
@@ -254,7 +254,7 @@ extension ContinuationCourt {
                 throw Failure("usage: judge cover-law [--certificate proof.json] Request sources.swift ...; replay-cover-law proof.json Request sources.swift ...")
             }
             let request = args.removeFirst()
-            let source = try StructuralSource(files: args.map { ($0, try String(contentsOfFile: $0, encoding: .utf8)) })
+            let source = try StructuralSource(files: args.map { ($0, try String(contentsOfFile: $0, encoding: .utf8)) }, arguments: [("request", request)])
             let proof = try saved ?? deriveLawCover(request, source: source)
             let holds = try verifyLawCover(request, certificate: proof, source: source)
             let bytes = try encodeLawCover(proof)

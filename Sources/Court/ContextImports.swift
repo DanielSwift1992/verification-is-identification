@@ -18,7 +18,8 @@ struct ContextImports {
         var result = NameSet(source.imports + [source.module])
         var pending = Array(result)
         while let module = pending.popLast() {
-            for next in exports[module] ?? [] where result.insert(next).inserted {
+            for next in exports[module] ?? []
+            where result.insert(next).inserted {
                 pending.append(next)
             }
         }

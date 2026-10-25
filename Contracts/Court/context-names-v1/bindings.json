@@ -10,35 +10,35 @@
   "missing_files": [],
   "files": {
     "fragment/proofs/valid.json": {
-      "sha256": "f01ec627ec8e05ad8c769b7e263f4eafe3ba4e6cdfd6d3605fd3c64cf4d2bc86",
+      "sha256": "947c056a88795d96363ef6c8397ffa91708b89eddbc0c090dc0e754c24f2062a",
       "origin": "Frozen binding derivation or explicit adversarial mutation over the same source question"
     },
     "fragment/proofs/wrong-reference.json": {
-      "sha256": "2af7744446d8ca4a462ed611e68975d2478543e9c549124d5822d16b9ce137c6",
+      "sha256": "aa958469c789a39f3aeb7a3684f95964285fb239108a2c0c5afa8fbf2c068525",
       "origin": "Frozen binding derivation or explicit adversarial mutation over the same source question"
     },
     "fragment/proofs/wrong-owner.json": {
-      "sha256": "cd945003bbf11c35906a3d36e9b74e64c43c4a5308eeac863033ad3e97229d5a",
+      "sha256": "4e5fcfcfa2575529c07aaa3b2d3c0ff804a4db22468b7cb02e5e6ca96359ec84",
       "origin": "Frozen binding derivation or explicit adversarial mutation over the same source question"
     },
     "fragment/proofs/lost-reference.json": {
-      "sha256": "efce7f6fdab5fef12010154ddbae6243755045d52529899b56d8ca5b0d1fe38e",
+      "sha256": "7ffd08e8e19b1ffd2dbac7ec150495cc92323025a9f59ca37e55e4898a36f987",
       "origin": "Frozen binding derivation or explicit adversarial mutation over the same source question"
     },
     "fragment/proofs/added-reference.json": {
-      "sha256": "27832cf1d9c5f8625264de83163908c5e769669b0dae89d0464377394cd58d3e",
+      "sha256": "42ec07e4879586e26d9f5c62dca058f8e3e80c94cc0361b2fd019113d58e7a63",
       "origin": "Frozen binding derivation or explicit adversarial mutation over the same source question"
     },
     "fragment/proofs/wrong-scope.json": {
-      "sha256": "9eaa03b63d4ddebaee63d94a31a540a7309feea02378ff282706047ac7618b77",
+      "sha256": "778dbb422ff3eb8eafa4014c76b59efd720c1834fe9deb6f34a7534ffc16088a",
       "origin": "Frozen binding derivation or explicit adversarial mutation over the same source question"
     },
     "fragment/proofs/wrong-source.json": {
-      "sha256": "7be5841d6a9f2ce03e961669fdf79775350721eaabb308fc91e863d588543593",
+      "sha256": "9925d6ef7d5f76d6e8ab51b03c28c33c6a33b7471291c943add861adb3d86966",
       "origin": "Frozen binding derivation or explicit adversarial mutation over the same source question"
     },
     "fragment/proofs/wrong-view.json": {
-      "sha256": "d08503fdcf0205fc763f86b825671edffdf953bb6168016b438cc2f8ae5e2ace",
+      "sha256": "1450406eac482a0bbfca19605d235b62e92e787dc3cf5b2be94e46400a54ee25",
       "origin": "Frozen binding derivation or explicit adversarial mutation over the same source question"
     },
     "fragment/qualified-axis/World.swift": {
@@ -73,7 +73,7 @@
           "inputs": [
             {
               "path": "fragment/proofs/valid.json",
-              "sha256": "f01ec627ec8e05ad8c769b7e263f4eafe3ba4e6cdfd6d3605fd3c64cf4d2bc86"
+              "sha256": "947c056a88795d96363ef6c8397ffa91708b89eddbc0c090dc0e754c24f2062a"
             },
             {
               "path": "fragment/qualified-axis/World.swift",
@@ -127,7 +127,7 @@
           "inputs": [
             {
               "path": "fragment/proofs/wrong-reference.json",
-              "sha256": "2af7744446d8ca4a462ed611e68975d2478543e9c549124d5822d16b9ce137c6"
+              "sha256": "aa958469c789a39f3aeb7a3684f95964285fb239108a2c0c5afa8fbf2c068525"
             },
             {
               "path": "fragment/qualified-axis/World.swift",
@@ -180,7 +180,7 @@
           "inputs": [
             {
               "path": "fragment/proofs/wrong-owner.json",
-              "sha256": "cd945003bbf11c35906a3d36e9b74e64c43c4a5308eeac863033ad3e97229d5a"
+              "sha256": "4e5fcfcfa2575529c07aaa3b2d3c0ff804a4db22468b7cb02e5e6ca96359ec84"
             },
             {
               "path": "fragment/qualified-axis/World.swift",
@@ -233,7 +233,7 @@
           "inputs": [
             {
               "path": "fragment/proofs/lost-reference.json",
-              "sha256": "efce7f6fdab5fef12010154ddbae6243755045d52529899b56d8ca5b0d1fe38e"
+              "sha256": "7ffd08e8e19b1ffd2dbac7ec150495cc92323025a9f59ca37e55e4898a36f987"
             },
             {
               "path": "fragment/qualified-axis/World.swift",
@@ -286,7 +286,7 @@
           "inputs": [
             {
               "path": "fragment/proofs/added-reference.json",
-              "sha256": "27832cf1d9c5f8625264de83163908c5e769669b0dae89d0464377394cd58d3e"
+              "sha256": "42ec07e4879586e26d9f5c62dca058f8e3e80c94cc0361b2fd019113d58e7a63"
             },
             {
               "path": "fragment/qualified-axis/World.swift",
@@ -339,7 +339,7 @@
           "inputs": [
             {
               "path": "fragment/proofs/wrong-scope.json",
-              "sha256": "9eaa03b63d4ddebaee63d94a31a540a7309feea02378ff282706047ac7618b77"
+              "sha256": "778dbb422ff3eb8eafa4014c76b59efd720c1834fe9deb6f34a7534ffc16088a"
             },
             {
               "path": "fragment/qualified-axis/World.swift",
@@ -392,7 +392,7 @@
           "inputs": [
             {
               "path": "fragment/proofs/wrong-source.json",
-              "sha256": "7be5841d6a9f2ce03e961669fdf79775350721eaabb308fc91e863d588543593"
+              "sha256": "9925d6ef7d5f76d6e8ab51b03c28c33c6a33b7471291c943add861adb3d86966"
             },
             {
               "path": "fragment/qualified-axis/World.swift",
@@ -445,7 +445,7 @@
           "inputs": [
             {
               "path": "fragment/proofs/wrong-view.json",
-              "sha256": "d08503fdcf0205fc763f86b825671edffdf953bb6168016b438cc2f8ae5e2ace"
+              "sha256": "1450406eac482a0bbfca19605d235b62e92e787dc3cf5b2be94e46400a54ee25"
             },
             {
               "path": "fragment/qualified-axis/World.swift",

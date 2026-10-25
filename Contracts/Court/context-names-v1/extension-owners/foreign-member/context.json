@@ -1,0 +1,46 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "extension-owners/foreign-member/World.swift",
+      "source": "extension-owners/foreign-member/World.swift",
+      "sha256": "d3de2a1e7438023cbc226662401a401cf60b13dadbe9f0d0e880dbca472a770d",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Kit"
+      ],
+      "at": {
+        "input": "extension-owners/foreign-member/context.json#extension-owners/foreign-member/World.swift/input",
+        "source": "extension-owners/foreign-member/context.json#extension-owners/foreign-member/World.swift/source",
+        "sha256": "extension-owners/foreign-member/context.json#extension-owners/foreign-member/World.swift/sha256",
+        "namespace": "extension-owners/foreign-member/context.json#extension-owners/foreign-member/World.swift/namespace",
+        "module": "extension-owners/foreign-member/context.json#extension-owners/foreign-member/World.swift/module",
+        "role": "extension-owners/foreign-member/context.json#extension-owners/foreign-member/World.swift/role",
+        "imports": [
+          "extension-owners/foreign-member/context.json#imports/0"
+        ]
+      }
+    },
+    {
+      "input": "extension-owners/foreign-member/Kit.swift",
+      "source": "extension-owners/foreign-member/Kit.swift",
+      "sha256": "ca5b5a6ae132be5f476606d026de8267b07fd23decb7a3d50ffc657af217a9cc",
+      "namespace": "Kit",
+      "module": "Kit",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "extension-owners/foreign-member/context.json#extension-owners/foreign-member/Kit.swift/input",
+        "source": "extension-owners/foreign-member/context.json#extension-owners/foreign-member/Kit.swift/source",
+        "sha256": "extension-owners/foreign-member/context.json#extension-owners/foreign-member/Kit.swift/sha256",
+        "namespace": "extension-owners/foreign-member/context.json#extension-owners/foreign-member/Kit.swift/namespace",
+        "module": "extension-owners/foreign-member/context.json#extension-owners/foreign-member/Kit.swift/module",
+        "role": "extension-owners/foreign-member/context.json#extension-owners/foreign-member/Kit.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

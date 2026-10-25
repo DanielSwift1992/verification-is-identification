@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "extension-owners/protocol-default/World.swift",
+      "source": "extension-owners/protocol-default/World.swift",
+      "sha256": "59ac0df009fd8e93147ba399ea4c26b85e58e8acc20099c956bf5036a4261ce1",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "extension-owners/protocol-default/context.json#extension-owners/protocol-default/World.swift/input",
+        "source": "extension-owners/protocol-default/context.json#extension-owners/protocol-default/World.swift/source",
+        "sha256": "extension-owners/protocol-default/context.json#extension-owners/protocol-default/World.swift/sha256",
+        "namespace": "extension-owners/protocol-default/context.json#extension-owners/protocol-default/World.swift/namespace",
+        "module": "extension-owners/protocol-default/context.json#extension-owners/protocol-default/World.swift/module",
+        "role": "extension-owners/protocol-default/context.json#extension-owners/protocol-default/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

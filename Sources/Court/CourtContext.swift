@@ -14,6 +14,9 @@ struct CourtContext {
         let at: [String: String]
         let importAddresses: [String]
     }
+    static func intrinsicExports(version: Int) -> [String] {
+        version == 2 ? ["Never", "String"] : ["Never"]
+    }
     let sources: [Source]
     let intrinsicSwift: Bool
     let version: Int
@@ -89,7 +92,7 @@ struct CourtContext {
             try Self.refuse("sources", "supplied input '\(path)' is not declared")
         }
         var swift = false
-        let exports = second ? ["Never", "String"] : ["Never"]
+        let exports = Self.intrinsicExports(version: version)
         let intrinsicVersion = second ? "vi.court.intrinsic-swift/2" : "vi.court.intrinsic-swift/1"
         for (i, item) in intrinsic.enumerated() {
             let at = "intrinsics[\(i)]"

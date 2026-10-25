@@ -1,0 +1,277 @@
+{
+  "schema": "vi.court.conformance/2",
+  "suite": "vi.court.context-extension-owners/1",
+  "reference_revision": "df13e409cbc693ec60e33874a130b9e6618baae8",
+  "scope": "Imported owners are independent of source order and extension module. An associated slot and its one protocol-extension default are distinct declaration/definition roles. Repeated members or defaults refuse.",
+  "versions": {
+    "context": "vi.court.context/2",
+    "normalization_canon": 4
+  },
+  "missing_files": [],
+  "files": {
+    "extension-owners/foreign-member/World.swift": {
+      "sha256": "d3de2a1e7438023cbc226662401a401cf60b13dadbe9f0d0e880dbca472a770d",
+      "origin": "T0105 extension-owner relation and complete native source question"
+    },
+    "extension-owners/foreign-member/Kit.swift": {
+      "sha256": "ca5b5a6ae132be5f476606d026de8267b07fd23decb7a3d50ffc657af217a9cc",
+      "origin": "T0105 extension-owner relation and complete native source question"
+    },
+    "extension-owners/foreign-member/context.json": {
+      "sha256": "05edfdffcf9ecef6cdc7cf01c108dc954e07e75b24d352bdf44efb79a5be3fe7",
+      "origin": "T0105 extension-owner relation and complete native source question"
+    },
+    "extension-owners/foreign-duplicate/World.swift": {
+      "sha256": "9ecab7adbd4166ba66ea9553ec79be7735c10238192c68b90a608ff1fd89f69d",
+      "origin": "T0105 extension-owner relation and complete native source question"
+    },
+    "extension-owners/foreign-duplicate/Kit.swift": {
+      "sha256": "ca5b5a6ae132be5f476606d026de8267b07fd23decb7a3d50ffc657af217a9cc",
+      "origin": "T0105 extension-owner relation and complete native source question"
+    },
+    "extension-owners/foreign-duplicate/context.json": {
+      "sha256": "e437d241c1affcb1923e8e484af67d5f2c8311ddff547ef6e1d4e0c276f52904",
+      "origin": "T0105 extension-owner relation and complete native source question"
+    },
+    "extension-owners/protocol-default/World.swift": {
+      "sha256": "59ac0df009fd8e93147ba399ea4c26b85e58e8acc20099c956bf5036a4261ce1",
+      "origin": "T0105 extension-owner relation and complete native source question"
+    },
+    "extension-owners/protocol-default/context.json": {
+      "sha256": "bcc05ce182a04956b37fa75d4123519209d8f3778a883a9120ceab9bea3d1031",
+      "origin": "T0105 extension-owner relation and complete native source question"
+    },
+    "extension-owners/protocol-default-duplicate/World.swift": {
+      "sha256": "a5c93eb319cf49285e88448ca7772a9ee829a7460f18ffc28053dce2bef13766",
+      "origin": "T0105 extension-owner relation and complete native source question"
+    },
+    "extension-owners/protocol-default-duplicate/context.json": {
+      "sha256": "608b31c4dc99544cbb59b40c3b1274e216fba4a0c1667b0a46899bee07a0dea7",
+      "origin": "T0105 extension-owner relation and complete native source question"
+    }
+  },
+  "cases": [
+    {
+      "id": "extension-foreign-member",
+      "files": [
+        "extension-owners/foreign-member/World.swift",
+        "extension-owners/foreign-member/Kit.swift"
+      ],
+      "args": [
+        "--context",
+        "extension-owners/foreign-member/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "outcome": "holds",
+          "inputs": [
+            {
+              "path": "extension-owners/foreign-member/Kit.swift",
+              "sha256": "ca5b5a6ae132be5f476606d026de8267b07fd23decb7a3d50ffc657af217a9cc"
+            },
+            {
+              "path": "extension-owners/foreign-member/World.swift",
+              "sha256": "d3de2a1e7438023cbc226662401a401cf60b13dadbe9f0d0e880dbca472a770d"
+            },
+            {
+              "path": "extension-owners/foreign-member/context.json",
+              "sha256": "05edfdffcf9ecef6cdc7cf01c108dc954e07e75b24d352bdf44efb79a5be3fe7"
+            }
+          ],
+          "results": {
+            "extension-owners/foreign-member/World.swift": {
+              "source": "extension-owners/foreign-member/World.swift",
+              "outcome": "holds",
+              "minimum": {
+                "equalities": 1
+              }
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "extension-owners/foreign-member/World.swift"
+        ],
+        "exit": 0,
+        "diagnostic": "none",
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "extension-owners/foreign-member/Kit.swift"
+            ]
+          }
+        ]
+      },
+      "pass": "where"
+    },
+    {
+      "id": "extension-foreign-duplicate",
+      "files": [
+        "extension-owners/foreign-duplicate/World.swift",
+        "extension-owners/foreign-duplicate/Kit.swift"
+      ],
+      "args": [
+        "--context",
+        "extension-owners/foreign-duplicate/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "extension-owners/foreign-duplicate/Kit.swift",
+              "sha256": "ca5b5a6ae132be5f476606d026de8267b07fd23decb7a3d50ffc657af217a9cc"
+            },
+            {
+              "path": "extension-owners/foreign-duplicate/World.swift",
+              "sha256": "9ecab7adbd4166ba66ea9553ec79be7735c10238192c68b90a608ff1fd89f69d"
+            },
+            {
+              "path": "extension-owners/foreign-duplicate/context.json",
+              "sha256": "e437d241c1affcb1923e8e484af67d5f2c8311ddff547ef6e1d4e0c276f52904"
+            }
+          ],
+          "results": {
+            "extension-owners/foreign-duplicate/World.swift": {
+              "source": "extension-owners/foreign-duplicate/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "duplicate declaration"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "extension-owners/foreign-duplicate/World.swift"
+        ],
+        "exit": 1,
+        "diagnostic": "addressed",
+        "diagnostics_contain": [
+          "invalid redeclaration"
+        ],
+        "modules": [
+          {
+            "name": "Kit",
+            "files": [
+              "extension-owners/foreign-duplicate/Kit.swift"
+            ]
+          }
+        ]
+      },
+      "pass": "where"
+    },
+    {
+      "id": "extension-protocol-default",
+      "files": [
+        "extension-owners/protocol-default/World.swift"
+      ],
+      "args": [
+        "--context",
+        "extension-owners/protocol-default/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "response": {
+          "question": "where",
+          "outcome": "holds",
+          "inputs": [
+            {
+              "path": "extension-owners/protocol-default/World.swift",
+              "sha256": "59ac0df009fd8e93147ba399ea4c26b85e58e8acc20099c956bf5036a4261ce1"
+            },
+            {
+              "path": "extension-owners/protocol-default/context.json",
+              "sha256": "bcc05ce182a04956b37fa75d4123519209d8f3778a883a9120ceab9bea3d1031"
+            }
+          ],
+          "results": {
+            "extension-owners/protocol-default/World.swift": {
+              "source": "extension-owners/protocol-default/World.swift",
+              "outcome": "holds",
+              "minimum": {
+                "equalities": 1
+              }
+            }
+          },
+          "diagnostics_contain": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "extension-owners/protocol-default/World.swift"
+        ],
+        "exit": 0,
+        "diagnostic": "none"
+      },
+      "pass": "where"
+    },
+    {
+      "id": "extension-protocol-default-duplicate",
+      "files": [
+        "extension-owners/protocol-default-duplicate/World.swift"
+      ],
+      "args": [
+        "--context",
+        "extension-owners/protocol-default-duplicate/context.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "response": {
+          "question": "where",
+          "outcome": "unsupported",
+          "inputs": [
+            {
+              "path": "extension-owners/protocol-default-duplicate/World.swift",
+              "sha256": "a5c93eb319cf49285e88448ca7772a9ee829a7460f18ffc28053dce2bef13766"
+            },
+            {
+              "path": "extension-owners/protocol-default-duplicate/context.json",
+              "sha256": "608b31c4dc99544cbb59b40c3b1274e216fba4a0c1667b0a46899bee07a0dea7"
+            }
+          ],
+          "results": {
+            "extension-owners/protocol-default-duplicate/World.swift": {
+              "source": "extension-owners/protocol-default-duplicate/World.swift",
+              "outcome": "unsupported"
+            }
+          },
+          "diagnostics_contain": [
+            "duplicate declaration"
+          ]
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "extension-owners/protocol-default-duplicate/World.swift"
+        ],
+        "exit": 1,
+        "diagnostic": "addressed",
+        "diagnostics_contain": [
+          "invalid redeclaration"
+        ]
+      },
+      "pass": "where"
+    }
+  ]
+}

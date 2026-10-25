@@ -19,7 +19,7 @@ enum WhereContext {
         let readUnits = try CourtNotation.read(context, texts: texts, selected: notationOnly ? nil : first, documents: documents)
         let resolved = try WhereContextNames.resolve(readUnits, selected: first, version: context.version)
         let units = resolved.files
-        let intrinsicNames = ["Never"] + (context.version == 2 ? ["String"] : [])
+        let intrinsicNames = CourtContext.intrinsicExports(version: context.version)
         if !units.filter({ $0.world.intrinsicSwift }).isEmpty {
             for unit in units.sorted(by: { $0.context.source < $1.context.source }) {
                 for name in ["Swift"] + intrinsicNames {

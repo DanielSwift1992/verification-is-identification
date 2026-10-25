@@ -63,5 +63,44 @@ final class ContextNameBindingTests: XCTestCase {
         let qualified = try index(declarations + "public protocol Q { associatedtype Axis\n typealias Pick = Self.Axis }\n")
         XCTAssertTrue(qualified.certificate.references.contains { WhereJudge.sameNames($0.declaration.parts, ["World", "Q", "Axis"]) })
         try qualified.replay(qualified.certificate)
+        let defaultSource = "public enum Leaf {}\npublic protocol P { associatedtype Slot }\nextension P { public typealias Slot = Leaf }\n"
+        let withDefault = try index(defaultSource)
+        let slot = try XCTUnwrap(withDefault.certificate.declarations.first {
+            WhereJudge.sameNames($0.place.parts, ["World", "P", "Slot"])
+        })
+        XCTAssertEqual(slot.kind, ScalarName("associatedtype"))
+        XCTAssertEqual(slot.definitions.count, 1)
+        try withDefault.replay(withDefault.certificate)
+        var lostDefault = slot
+        lostDefault.definitions = []
+        let omittedDefault = ContextNameBinding.Certificate(schema: withDefault.certificate.schema,
+            selected: withDefault.certificate.selected, inputs: withDefault.certificate.inputs,
+            declarations: withDefault.certificate.declarations.map { $0.place == slot.place ? lostDefault : $0 },
+            references: withDefault.certificate.references)
+        XCTAssertThrowsError(try withDefault.replay(omittedDefault))
+        XCTAssertThrowsError(try index(defaultSource + "extension P { public typealias Slot = Leaf }\n"))
+        let supplied = [
+            ("World", "World.swift", "import Kit\nextension Box { public typealias Item = Leaf }\npublic typealias Pick = Box.Item\n", ["Kit"]),
+            ("Kit", "Kit.swift", "public enum Box {}\npublic enum Leaf {}\n", []),
+        ]
+        let units = try supplied.map { module, path, text, imports in
+            let context = CourtContext.Source(input: path, source: path,
+                sha256: courtSHA256(Data(text.utf8)), namespace: module, module: module, role: "own",
+                imports: imports, at: [:], importAddresses: [])
+            let world = try WhereJudge.read(text, contextV2: true, source: path)
+            return CourtNotation.File(context: context, text: text, view: text, world: world,
+                notation: try NotationScope(world.clean), excluded: nil, unchecked: [])
+        }
+        let foreign = try ContextNameBinding.read(units, selected: "World.swift")
+        XCTAssertTrue(foreign.certificate.declarations.contains {
+            WhereJudge.sameNames($0.place.parts, ["Kit", "Box", "Item"])
+        })
+        XCTAssertTrue(foreign.certificate.references.contains {
+            WhereJudge.sameNames($0.declaration.parts, ["Kit", "Box", "Item"])
+        })
+        try foreign.replay(foreign.certificate)
+        let reordered = try ContextNameBinding.read(Array(units.reversed()), selected: "World.swift")
+        XCTAssertEqual(Set(foreign.certificate.declarations.map(\.place)),
+            Set(reordered.certificate.declarations.map(\.place)))
     }
 }

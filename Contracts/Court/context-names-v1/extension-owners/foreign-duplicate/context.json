@@ -1,0 +1,46 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "extension-owners/foreign-duplicate/World.swift",
+      "source": "extension-owners/foreign-duplicate/World.swift",
+      "sha256": "9ecab7adbd4166ba66ea9553ec79be7735c10238192c68b90a608ff1fd89f69d",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Kit"
+      ],
+      "at": {
+        "input": "extension-owners/foreign-duplicate/context.json#extension-owners/foreign-duplicate/World.swift/input",
+        "source": "extension-owners/foreign-duplicate/context.json#extension-owners/foreign-duplicate/World.swift/source",
+        "sha256": "extension-owners/foreign-duplicate/context.json#extension-owners/foreign-duplicate/World.swift/sha256",
+        "namespace": "extension-owners/foreign-duplicate/context.json#extension-owners/foreign-duplicate/World.swift/namespace",
+        "module": "extension-owners/foreign-duplicate/context.json#extension-owners/foreign-duplicate/World.swift/module",
+        "role": "extension-owners/foreign-duplicate/context.json#extension-owners/foreign-duplicate/World.swift/role",
+        "imports": [
+          "extension-owners/foreign-duplicate/context.json#imports/0"
+        ]
+      }
+    },
+    {
+      "input": "extension-owners/foreign-duplicate/Kit.swift",
+      "source": "extension-owners/foreign-duplicate/Kit.swift",
+      "sha256": "ca5b5a6ae132be5f476606d026de8267b07fd23decb7a3d50ffc657af217a9cc",
+      "namespace": "Kit",
+      "module": "Kit",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "extension-owners/foreign-duplicate/context.json#extension-owners/foreign-duplicate/Kit.swift/input",
+        "source": "extension-owners/foreign-duplicate/context.json#extension-owners/foreign-duplicate/Kit.swift/source",
+        "sha256": "extension-owners/foreign-duplicate/context.json#extension-owners/foreign-duplicate/Kit.swift/sha256",
+        "namespace": "extension-owners/foreign-duplicate/context.json#extension-owners/foreign-duplicate/Kit.swift/namespace",
+        "module": "extension-owners/foreign-duplicate/context.json#extension-owners/foreign-duplicate/Kit.swift/module",
+        "role": "extension-owners/foreign-duplicate/context.json#extension-owners/foreign-duplicate/Kit.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

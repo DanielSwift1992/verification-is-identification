@@ -239,6 +239,29 @@ import U10
 #print axioms U10.sorts_spec
 #print axioms U10.refused_semantic
 
+-- T0123: admission, live allocation, structural existence and exact optimum.
+#print axioms U10.fill_exists
+#print axioms U10.allocation_exists
+#print axioms U10.representative_sort
+#print axioms U10.select_shape
+#print axioms U10.residual_length
+#print axioms U10.fallback_exists
+#print axioms U10.live_allocation
+#print axioms U10.assembled_legal
+#print axioms U10.optimal_plan_exists
+#print axioms U10.legal_admissible
+#print axioms U10.admissible_iff_optimal_plan
+#print axioms U10.legal_exists
+#print axioms U10.admissible_iff_legal
+#print axioms U10.optimal_plan_minimal
+#print axioms U10.solution_exists
+#print axioms U10.solution_boolean_decoder
+#print axioms U10.least_natural
+#print axioms U10.admissible_optimum
+#print axioms U10.admissible_iff_solution
+#print axioms U10.Examples.three_admissible
+#print axioms U10.Examples.agree_three_general
+
 -- T0121: the remaining record questions, with one canonical byte reader.
 #print axioms Record.Canonical.read_write
 #print axioms Record.Canonical.write_read

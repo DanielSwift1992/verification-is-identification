@@ -1,0 +1,46 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "OneRefusal.swift",
+      "source": "OneRefusal.swift",
+      "sha256": "f8d8c9493e91e030afe6cc6bb037351d000820a792e5bd6d725985a595c48b68",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Base"
+      ],
+      "at": {
+        "input": "OneRefusal.json#OneRefusal.swift/input",
+        "source": "OneRefusal.json#OneRefusal.swift/source",
+        "sha256": "OneRefusal.json#OneRefusal.swift/sha256",
+        "namespace": "OneRefusal.json#OneRefusal.swift/namespace",
+        "module": "OneRefusal.json#OneRefusal.swift/module",
+        "role": "OneRefusal.json#OneRefusal.swift/role",
+        "imports": [
+          "OneRefusal.json#OneRefusal.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "Base.swift",
+      "source": "Base.swift",
+      "sha256": "a113f15ebf268c1effb47f87cb6bba396846814f083f14901d5e768984031ce2",
+      "namespace": "Base",
+      "module": "Base",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "OneRefusal.json#Base.swift/input",
+        "source": "OneRefusal.json#Base.swift/source",
+        "sha256": "OneRefusal.json#Base.swift/sha256",
+        "namespace": "OneRefusal.json#Base.swift/namespace",
+        "module": "OneRefusal.json#Base.swift/module",
+        "role": "OneRefusal.json#Base.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

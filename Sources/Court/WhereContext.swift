@@ -187,7 +187,8 @@ enum WhereContext {
             }
             for gate in unit.world.gates {
                 guard reached.contains(gate.head) else { continue }
-                world.addresses[gate.head + ": " + gate.proto] = unit.context.source + ":\(unit.world.extensions[gate.head]?.first ?? 1)"
+                world.addresses[gate.head + ": " + gate.proto] = unit.context.source + ":"
+                    + (gate.protocolLocation ?? "\(unit.world.extensions[gate.head]?.first ?? 1)")
             }
         }
         if notationOnly {
@@ -223,14 +224,11 @@ enum WhereContext {
             let at = world.addresses[gate.head + ": " + gate.proto] ?? own.context.source + ":1"
             for part in gate.writtenUnjudged ?? gate.unjudged { try WhereJudge.fail("\(at): the gate '\(gate.head): \(gate.proto)' carries '\(part)', a conjunct this court does not judge") }
             var equalities = gate.equalities, memberships = gate.memberships
-            for proto in WhereJudge.inheritedProtocols([gate.proto], world).sorted() {
-                if let inherited = world.gatedProtocols[proto] {
-                    equalities += inherited.equalities
-                    memberships += inherited.memberships
-                }
-            }
+            let inherited = WhereJudge.inheritedGateConditions(gate.proto, world)
+            equalities += inherited.equalities
+            memberships += inherited.memberships
             gates.append(WhereJudge.GatedExtension(head: gate.head, proto: gate.proto, equalities: equalities,
-                memberships: memberships, unjudged: []))
+                memberships: memberships, unjudged: [], protocolLocation: gate.protocolLocation))
         }
         world.gates = gates
         try selectConformers(&world, aliases: ownAliases)

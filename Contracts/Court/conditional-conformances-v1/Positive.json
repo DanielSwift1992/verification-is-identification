@@ -1,0 +1,46 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "Positive.swift",
+      "source": "Positive.swift",
+      "sha256": "7bf83b3819521b60d831e055c954b84b23df9f3b7e5eacc32628fc9344f1d88c",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Base"
+      ],
+      "at": {
+        "input": "Positive.json#Positive.swift/input",
+        "source": "Positive.json#Positive.swift/source",
+        "sha256": "Positive.json#Positive.swift/sha256",
+        "namespace": "Positive.json#Positive.swift/namespace",
+        "module": "Positive.json#Positive.swift/module",
+        "role": "Positive.json#Positive.swift/role",
+        "imports": [
+          "Positive.json#Positive.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "Base.swift",
+      "source": "Base.swift",
+      "sha256": "a113f15ebf268c1effb47f87cb6bba396846814f083f14901d5e768984031ce2",
+      "namespace": "Base",
+      "module": "Base",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "Positive.json#Base.swift/input",
+        "source": "Positive.json#Base.swift/source",
+        "sha256": "Positive.json#Base.swift/sha256",
+        "namespace": "Positive.json#Base.swift/namespace",
+        "module": "Positive.json#Base.swift/module",
+        "role": "Positive.json#Base.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

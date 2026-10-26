@@ -47,6 +47,9 @@ enum WhereJudge {
         let unjudged: [String]
         var writtenEqualities: [(String, String)]? = nil
         var writtenUnjudged: [String]? = nil
+        // For a list, the source line and structural position of THIS protocol.
+        // Kept from the original view when context binding rewrites its names.
+        var protocolLocation: String? = nil
     }
 
     struct GatedProtocol {
@@ -844,30 +847,15 @@ enum WhereJudge {
         // A where clause this reader cannot read as a gate is refused by name,
         // never passed over: an unread condition would leave every claim
         // over it unjudged, and a neighbour that holds would pass the file.
-        // A conditional conformance is read with one protocol before its
-        // where clause, a conditional protocol with an inheritance list.
-        for hit in try declarations(#"extension\s+(\w+)\s*:\s*([^{}]*?)\bwhere\b"#, clean, scope)
-        where hit[1].range(of: #"^\w+\s+$"#, options: .regularExpression) == nil {
-            let listed = hit[1].split(whereSeparator: \.isWhitespace).joined(separator: " ")
-            try fail("cannot read conditional conformance '\(hit[0]): \(listed)': "
-                + "this court reads one protocol per conditional extension")
-        }
+        // Every protocol in a conditional extension is an independent gate
+        // with the same condition. Both questions consume this same reading.
+        let conditional = try conditionalConformances(clean, tokens: reading.notation,
+            scope: scope, bindingView: bindingView)
+        world.gates = conditional.gates
         for hit in try declarations(#"protocol\s+(\w+)\b([^{}]*?)\bwhere\b"#, clean, scope)
         where hit[1].range(of: #"^\s*:\s*[\w,\s]+?\s+$"#, options: .regularExpression) == nil {
             try fail("cannot read conditional protocol '\(hit[0])': "
                 + "this court reads a where clause after an inheritance list of plain names")
-        }
-
-        for hit in try declarations(
-            #"extension\s+(\w+)\s*:\s*(\w+)\s+where\s+([^{]+)\{"#, clean, scope
-        ) {
-            let conjuncts = try splitConjuncts(hit[2])
-            world.gates.append(GatedExtension(
-                head: hit[0], proto: hit[1],
-                equalities: conjuncts.equalities,
-                memberships: conjuncts.memberships,
-                unjudged: conjuncts.unjudged
-            ))
         }
 
         for hit in try declarations(
@@ -986,9 +974,7 @@ enum WhereJudge {
                 world.rootApplicationSpans.append(NSRange(location: spans[1].location + span.body.location, length: span.body.length))
             }
         }
-        for spans in try declarationSpans(#"extension\s+(\w+)\s*:\s*(\w+)\s+where\s+([^{]+)\{"#, clean, scope) {
-            read.append(spans[2])
-        }
+        read += conditional.clauses
         for spans in try declarationSpans(#"protocol\s+(\w+)\s*:\s*[\w,\s]+?\s+where\s+([^{]+)\{"#, clean, scope) {
             read.append(spans[1])
         }
@@ -1088,6 +1074,22 @@ enum WhereJudge {
             }
         }
         return seen
+    }
+
+    /// The protocol's own conditions do not disappear when conformance is
+    /// declared by an extension rather than by the nominal type's header.
+    static func inheritedGateConditions(_ proto: String, _ world: World)
+        -> (equalities: [(String, String)], memberships: [(String, String)], written: [(String, String)]) {
+        var equalities: [(String, String)] = [], memberships: [(String, String)] = []
+        var written: [(String, String)] = []
+        for name in inheritedProtocols([proto], world).sorted() {
+            if let inherited = world.gatedProtocols[name] {
+                equalities += inherited.equalities
+                memberships += inherited.memberships
+                written += inherited.writtenEqualities ?? inherited.equalities
+            }
+        }
+        return (equalities, memberships, written)
     }
 
     static func conformerContext(_ conformer: Conformer, _ world: World) throws
@@ -1606,7 +1608,8 @@ enum WhereJudge {
         for gate in world.gates {
             for part in gate.writtenUnjudged ?? gate.unjudged {
                 refusals.append(
-                    "the gate '\(gate.head): \(gate.proto)' carries '\(part)', "
+                    (gate.protocolLocation.map { (world.addresses[gate.head + ": " + gate.proto] ?? prepared.path + ":" + $0) + ": " } ?? "")
+                        + "the gate '\(gate.head): \(gate.proto)' carries '\(part)', "
                         + "a conjunct this court does not judge"
                 )
             }
@@ -1617,6 +1620,57 @@ enum WhereJudge {
                     "the gated protocol '\(gated.name)' carries '\(part)', "
                         + "a conjunct this court does not judge"
                 )
+            }
+        }
+
+        func evaluateGate(_ gate: GatedExtension, site: String, bindings: NameMap<Term>,
+                          rigid: NameSet = []) throws -> [String] {
+            var gate = gate
+            // Context preparation already performs this same closure. The
+            // uncontextual entry must not omit it for either list or singleton.
+            if !world.contextual {
+                let inherited = inheritedGateConditions(gate.proto, world)
+                gate = GatedExtension(head: gate.head, proto: gate.proto,
+                    equalities: gate.equalities + inherited.equalities,
+                    memberships: gate.memberships + inherited.memberships,
+                    unjudged: gate.unjudged,
+                    writtenEqualities: (gate.writtenEqualities ?? gate.equalities) + inherited.written,
+                    protocolLocation: gate.protocolLocation)
+            }
+            let at = gate.protocolLocation.map {
+                world.addresses[gate.head + ": " + gate.proto] ?? prepared.path + ":" + $0
+            }
+            func addressed(_ message: String) -> String { at.map { $0 + ": " + message } ?? message }
+            do {
+                // A newly admitted list cannot turn a missing protocol into
+                // an empty gate in the legacy aggregate entry either.
+                if requireGrounds || at != nil { try requireProtocolGrounds([gate.proto], world) }
+                var messages: [String] = []
+                for (equation, pair) in gate.equalities.enumerated() {
+                    let (left, right) = pair
+                    let (writtenLeft, writtenRight) = gate.writtenEqualities?[equation] ?? pair
+                    judged += 1
+                    let leftTerm = try substitute(try parseTerm(Substring(left)), bindings)
+                    let rightTerm = try substitute(try parseTerm(Substring(right)), bindings)
+                    let comparison = try compared(leftTerm, rightTerm, world, rigid: rigid)
+                    if !comparison.equal {
+                        messages.append("'\(site)' requires the types '\(writtenLeft)' (aka '\(comparison.left)') and "
+                            + "'\(writtenRight)' (aka '\(comparison.right)') be equivalent [\(gate.proto)]")
+                    }
+                }
+                try judgeMemberships(gate.memberships, site: site, tag: gate.proto,
+                    bindings: bindings, world: world, counted: &members, refusals: &messages,
+                    rigid: rigid, requireGrounds: requireGrounds)
+                return messages.map(addressed)
+            } catch let failure as Failure {
+                let messages = failure.messages.map(addressed)
+                switch failure {
+                case .unsupported: throw Failure.unsupported(messages)
+                case .input: throw Failure.input(messages)
+                case .open: throw Failure.open(messages)
+                case .refused: throw Failure.refused(messages)
+                case .empty: throw Failure.empty(messages)
+                }
             }
         }
 
@@ -1646,27 +1700,7 @@ enum WhereJudge {
             guard !matching.isEmpty else { continue }
             let bindings = try gateBindings(claim, world)
             for gate in matching {
-                if requireGrounds { try requireProtocolGrounds([gate.proto], world) }
-                for (equation, pair) in gate.equalities.enumerated() {
-                    let (left, right) = pair
-                    let (writtenLeft, writtenRight) = gate.writtenEqualities?[equation] ?? pair
-                    judged += 1
-                    let leftTerm = try substitute(try parseTerm(Substring(left)), bindings)
-                    let rightTerm = try substitute(try parseTerm(Substring(right)), bindings)
-                    let comparison = try compared(leftTerm, rightTerm, world, rigid: certificate.rigid)
-                    let leftCanon = comparison.left, rightCanon = comparison.right
-                    if !comparison.equal {
-                        refusals.append(
-                            "'\(name) = \(body)' requires the types '\(writtenLeft)' (aka '\(leftCanon)') and "
-                                + "'\(writtenRight)' (aka '\(rightCanon)') be equivalent [\(gate.proto)]"
-                        )
-                    }
-                }
-                try judgeMemberships(
-                    gate.memberships, site: "\(name) = \(body)", tag: gate.proto,
-                    bindings: bindings, world: world,
-                    counted: &members, refusals: &refusals, rigid: certificate.rigid, requireGrounds: requireGrounds
-                )
+                refusals += try evaluateGate(gate, site: "\(name) = \(body)", bindings: bindings, rigid: certificate.rigid)
             }
         }
 
@@ -1677,27 +1711,7 @@ enum WhereJudge {
             guard !matching.isEmpty else { continue }
             let bindings = try gateBindings(claim, world)
             for gate in matching {
-                if requireGrounds { try requireProtocolGrounds([gate.proto], world) }
-                for (equation, pair) in gate.equalities.enumerated() {
-                    let (left, right) = pair
-                    let (writtenLeft, writtenRight) = gate.writtenEqualities?[equation] ?? pair
-                    judged += 1
-                    let leftTerm = try substitute(try parseTerm(Substring(left)), bindings)
-                    let rightTerm = try substitute(try parseTerm(Substring(right)), bindings)
-                    let comparison = try compared(leftTerm, rightTerm, world)
-                    let leftCanon = comparison.left, rightCanon = comparison.right
-                    if !comparison.equal {
-                        refusals.append(
-                            "'\(use)' requires the types '\(writtenLeft)' (aka '\(leftCanon)') and "
-                                + "'\(writtenRight)' (aka '\(rightCanon)') be equivalent [\(gate.proto)]"
-                        )
-                    }
-                }
-                try judgeMemberships(
-                    gate.memberships, site: use, tag: gate.proto,
-                    bindings: bindings, world: world,
-                    counted: &members, refusals: &refusals, requireGrounds: requireGrounds
-                )
+                refusals += try evaluateGate(gate, site: use, bindings: bindings)
             }
         }
 

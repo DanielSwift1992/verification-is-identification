@@ -80,30 +80,38 @@ enum CourtNotation {
         })
         var files: [File] = []
         for source in context.sources {
-            let text = texts[source.input]!
             let rawOwn = (WhereJudge.sameName(source.input, selected) || (selected == nil && source.role == "own"))
                 && !documents.contains(source.input)
-            let view = rawOwn ? (text: text, first: Optional<Int>.none)
-                : try DefinitionView.read(text, path: source.source, lent: lent, contextV2: context.version == 2)
-            let world = try WhereJudge.read(view.text, lent: lent, contextV2: context.version == 2,
-                source: source.source, bindingView: true)
-            for imported in try imports(view.text, lent: lent) {
-                guard source.imports.containsName(imported.module) else {
-                    try WhereJudge.fail("\(source.source):\(imported.line): import '\(imported.module)' is not declared by the source context")
-                }
-            }
-            var unchecked = view.first.map { [source.source + ":\($0)"] } ?? []
-            if context.version == 2 {
-                for (index, line) in try WhereJudge.blankCommentsAndStrings(text, lent: lent)
-                    .components(separatedBy: "\n").enumerated() {
-                    if line.range(of: #"^\s*#if\b"#, options: .regularExpression) != nil {
-                        unchecked.append(source.source + ":\(index + 1) (conditional compilation)")
-                    }
-                }
-            }
-            files.append(File(context: source, text: text, view: view.text, world: world,
-                notation: try NotationScope(world.clean), excluded: view.first, unchecked: unchecked.sorted()))
+            files.append(try readFile(source, text: texts[source.input]!, rawOwn: rawOwn,
+                version: context.version, lent: lent))
         }
         return files
+    }
+
+    /// The independent file-reading phase can be inventoried after another
+    /// file refuses. Its successful result alone supplies no context binding
+    /// or verdict; the ordinary read still requires the complete source set.
+    static func readFile(_ source: CourtContext.Source, text: String, rawOwn: Bool,
+                         version: Int, lent: NameSet) throws -> File {
+        let view = rawOwn ? (text: text, first: Optional<Int>.none)
+            : try DefinitionView.read(text, path: source.source, lent: lent, contextV2: version == 2)
+        let world = try WhereJudge.read(view.text, lent: lent, contextV2: version == 2,
+            source: source.source, bindingView: true)
+        for imported in try imports(view.text, lent: lent) {
+            guard source.imports.containsName(imported.module) else {
+                try WhereJudge.fail("\(source.source):\(imported.line): import '\(imported.module)' is not declared by the source context")
+            }
+        }
+        var unchecked = view.first.map { [source.source + ":\($0)"] } ?? []
+        if version == 2 {
+            for (index, line) in try WhereJudge.blankCommentsAndStrings(text, lent: lent)
+                .components(separatedBy: "\n").enumerated() {
+                if line.range(of: #"^\s*#if\b"#, options: .regularExpression) != nil {
+                    unchecked.append(source.source + ":\(index + 1) (conditional compilation)")
+                }
+            }
+        }
+        return File(context: source, text: text, view: view.text, world: world,
+            notation: try NotationScope(world.clean), excluded: view.first, unchecked: unchecked.sorted())
     }
 }

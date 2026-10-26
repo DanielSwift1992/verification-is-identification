@@ -1,0 +1,46 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "Unknown.swift",
+      "source": "Unknown.swift",
+      "sha256": "ccc4a11a4c8562245ae1ff68f625cb65f0bf46ea56ce6114bb41cfca67f7d096",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Base"
+      ],
+      "at": {
+        "input": "Unknown.json#Unknown.swift/input",
+        "source": "Unknown.json#Unknown.swift/source",
+        "sha256": "Unknown.json#Unknown.swift/sha256",
+        "namespace": "Unknown.json#Unknown.swift/namespace",
+        "module": "Unknown.json#Unknown.swift/module",
+        "role": "Unknown.json#Unknown.swift/role",
+        "imports": [
+          "Unknown.json#Unknown.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "Base.swift",
+      "source": "Base.swift",
+      "sha256": "a113f15ebf268c1effb47f87cb6bba396846814f083f14901d5e768984031ce2",
+      "namespace": "Base",
+      "module": "Base",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "Unknown.json#Base.swift/input",
+        "source": "Unknown.json#Base.swift/source",
+        "sha256": "Unknown.json#Base.swift/sha256",
+        "namespace": "Unknown.json#Base.swift/namespace",
+        "module": "Unknown.json#Base.swift/module",
+        "role": "Unknown.json#Base.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

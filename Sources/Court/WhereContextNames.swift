@@ -307,6 +307,7 @@ enum WhereContextNames {
             for index in world.gates.indices {
                 world.gates[index].writtenEqualities = file.world.gates[index].equalities
                 world.gates[index].writtenUnjudged = file.world.gates[index].unjudged
+                world.gates[index].protocolLocation = file.world.gates[index].protocolLocation
             }
             for (name, values) in symbols {
                 for (module, symbol) in values

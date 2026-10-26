@@ -21,6 +21,21 @@ struct NotationScope {
     var namespaces: NameSet = []
 
     init(_ clean: String, enabled: Bool = true) throws {
+        try self.init(clean, enabled: enabled, refusing: { try WhereJudge.fail($0) })
+    }
+
+    /// Inventory every locally decidable declaration-shape refusal using the
+    /// same admission guards. No partially admitted scope leaves this method.
+    /// A fatal brace/lexical obstruction still ends this phase.
+    static func unreadDeclarations(_ clean: String) -> [String] {
+        var messages: [String] = []
+        do { _ = try NotationScope(clean, enabled: true, refusing: { messages.append($0) }) }
+        catch let failure as WhereJudge.Failure { messages += failure.messages }
+        catch { messages.append(String(describing: error)) }
+        return messages
+    }
+
+    private init(_ clean: String, enabled: Bool, refusing: (String) throws -> Void) throws {
         guard enabled else { return }
         let scope = WhereJudge.Scope(clean)
         let units = Array(clean.utf16)
@@ -46,19 +61,20 @@ struct NotationScope {
             if !parents.isEmpty && parents.count == scope.depth[start] {
                 // A generic or inherited container has additional lexical bindings.
                 // They are not silently resolved as file-scope names.
-                guard parents.allSatisfy({ $0.kind == "enum" && WhereJudge.sameName($0.header.trimmingCharacters(in: .whitespacesAndNewlines), "enum " + $0.name) }) else {
-                    try WhereJudge.fail("cannot read line \(scope.line[start]): nested declaration '\(name)' has an unsupported enclosing type")
+                if !parents.allSatisfy({ $0.kind == "enum" && WhereJudge.sameName($0.header.trimmingCharacters(in: .whitespacesAndNewlines), "enum " + $0.name) }) {
+                    try refusing("cannot read line \(scope.line[start]): nested declaration '\(name)' has an unsupported enclosing type")
+                } else {
+                    qualified = parents.last!.qualified + "." + name
+                    let header = String(decoding: units[start..<open], as: UTF16.self)
+                    if kind != "enum" {
+                        try refusing("cannot read line \(scope.line[start]): nested \(kind) '\(qualified)' is outside the declared notation fragment")
+                    } else if header.contains("<") {
+                        try refusing("cannot read line \(scope.line[start]): nested declaration '\(name)' has an unsupported enclosing type")
+                    } else {
+                        nested[start] = qualified
+                        namespaces.formUnion(parents.map(\.qualified))
+                    }
                 }
-                qualified = parents.last!.qualified + "." + name
-                guard kind == "enum" else {
-                    try WhereJudge.fail("cannot read line \(scope.line[start]): nested \(kind) '\(qualified)' is outside the declared notation fragment")
-                }
-                let header = String(decoding: units[start..<open], as: UTF16.self)
-                guard !header.contains("<") else {
-                    try WhereJudge.fail("cannot read line \(scope.line[start]): nested declaration '\(name)' has an unsupported enclosing type")
-                }
-                nested[start] = qualified
-                namespaces.formUnion(parents.map(\.qualified))
             }
             declarations.append(Declaration(kind: kind, name: name, qualified: qualified,
                 start: start, open: open, close: close,

@@ -1,0 +1,166 @@
+{
+  "schema": "vi.court.conformance/2",
+  "suite": "vi.court.conditional-conformances/1",
+  "reference_revision": "ba48cdf41204613e1245d014db56117dbdd12481",
+  "scope": "A conditional protocol list is a conjunction with shared conditions and replayed source bindings; exact reports, one-protocol refusal and unknown-name refusal. Finite observations, not reader correctness.",
+  "versions": {
+    "context": "vi.court.context/2",
+    "normalization_canon": 4
+  },
+  "missing_files": [],
+  "files": {
+    "Base.swift": {
+      "sha256": "a113f15ebf268c1effb47f87cb6bba396846814f083f14901d5e768984031ce2",
+      "origin": "T0136 declared conditional conformance contract"
+    },
+    "OneRefusal.json": {
+      "sha256": "64cf5d50711bbab08c1f9353ea4329cf62c6ec8ea0b55db26c9fe6944e2cafea",
+      "origin": "T0136 declared conditional conformance contract"
+    },
+    "OneRefusal.swift": {
+      "sha256": "f8d8c9493e91e030afe6cc6bb037351d000820a792e5bd6d725985a595c48b68",
+      "origin": "T0136 declared conditional conformance contract"
+    },
+    "Positive.json": {
+      "sha256": "1f58bacd166d97739e634380414d26e9c6576bf781c592f82df173b412e851c3",
+      "origin": "T0136 declared conditional conformance contract"
+    },
+    "Positive.swift": {
+      "sha256": "7bf83b3819521b60d831e055c954b84b23df9f3b7e5eacc32628fc9344f1d88c",
+      "origin": "T0136 declared conditional conformance contract"
+    },
+    "Unknown.json": {
+      "sha256": "276abd6bb8257f18737eacb45c33e5fb718b39dfef98c77291c648d202c6c367",
+      "origin": "T0136 declared conditional conformance contract"
+    },
+    "Unknown.swift": {
+      "sha256": "ccc4a11a4c8562245ae1ff68f625cb65f0bf46ea56ce6114bb41cfca67f7d096",
+      "origin": "T0136 declared conditional conformance contract"
+    }
+  },
+  "cases": [
+    {
+      "id": "Positive",
+      "files": [
+        "Positive.swift",
+        "Base.swift"
+      ],
+      "args": [
+        "--context",
+        "Positive.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"Base.swift\",\"sha256\":\"a113f15ebf268c1effb47f87cb6bba396846814f083f14901d5e768984031ce2\"},{\"path\":\"Positive.json\",\"sha256\":\"1f58bacd166d97739e634380414d26e9c6576bf781c592f82df173b412e851c3\"},{\"path\":\"Positive.swift\",\"sha256\":\"7bf83b3819521b60d831e055c954b84b23df9f3b7e5eacc32628fc9344f1d88c\"}],\"outcome\":\"holds\",\"question\":\"where\",\"results\":[{\"diagnostics\":[],\"equalities\":3,\"memberships\":0,\"outcome\":\"holds\",\"path\":\"Positive.swift\",\"readings\":0,\"source\":\"Positive.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "Positive.swift"
+        ],
+        "exit": 0,
+        "diagnostic": "none",
+        "modules": [
+          {
+            "name": "Base",
+            "files": [
+              "Base.swift"
+            ]
+          }
+        ]
+      },
+      "pass": "where"
+    },
+    {
+      "id": "OneRefusal",
+      "files": [
+        "OneRefusal.swift",
+        "Base.swift"
+      ],
+      "args": [
+        "--context",
+        "OneRefusal.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"Base.swift\",\"sha256\":\"a113f15ebf268c1effb47f87cb6bba396846814f083f14901d5e768984031ce2\"},{\"path\":\"OneRefusal.json\",\"sha256\":\"64cf5d50711bbab08c1f9353ea4329cf62c6ec8ea0b55db26c9fe6944e2cafea\"},{\"path\":\"OneRefusal.swift\",\"sha256\":\"f8d8c9493e91e030afe6cc6bb037351d000820a792e5bd6d725985a595c48b68\"}],\"outcome\":\"not-established\",\"question\":\"where\",\"results\":[{\"diagnostics\":[\"OneRefusal.swift:4:extension[0].conformances[1]: 'Probe = Use<Good>' requires the types 'Self.Home' (aka 'Base.Blue') and 'Base.Red' (aka 'Base.Red') be equivalent [Fenced]\"],\"equalities\":3,\"memberships\":0,\"outcome\":\"not-established\",\"path\":\"OneRefusal.swift\",\"readings\":0,\"source\":\"OneRefusal.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "OneRefusal.swift"
+        ],
+        "exit": 1,
+        "diagnostic": "addressed",
+        "modules": [
+          {
+            "name": "Base",
+            "files": [
+              "Base.swift"
+            ]
+          }
+        ]
+      },
+      "pass": "where"
+    },
+    {
+      "id": "Unknown",
+      "files": [
+        "Unknown.swift",
+        "Base.swift"
+      ],
+      "args": [
+        "--context",
+        "Unknown.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"Base.swift\",\"sha256\":\"a113f15ebf268c1effb47f87cb6bba396846814f083f14901d5e768984031ce2\"},{\"path\":\"Unknown.json\",\"sha256\":\"276abd6bb8257f18737eacb45c33e5fb718b39dfef98c77291c648d202c6c367\"},{\"path\":\"Unknown.swift\",\"sha256\":\"ccc4a11a4c8562245ae1ff68f625cb65f0bf46ea56ce6114bb41cfca67f7d096\"}],\"outcome\":\"unsupported\",\"question\":\"where\",\"results\":[{\"diagnostics\":[\"Unknown.swift:4: module 'Base' has no declaration 'Missing'\"],\"equalities\":0,\"memberships\":0,\"outcome\":\"unsupported\",\"path\":\"Unknown.swift\",\"readings\":0,\"source\":\"Unknown.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "Unknown.swift"
+        ],
+        "exit": 1,
+        "diagnostic": "addressed",
+        "modules": [
+          {
+            "name": "Base",
+            "files": [
+              "Base.swift"
+            ]
+          }
+        ]
+      },
+      "pass": "where"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # A conditional conformance is read as a gate or refused by name. A gate
 # written on one line is the same gate and is judged; a conditional
-# conformance listing two protocols, a conditional protocol whose where
+# conformance listing two protocols is their conjunction. A conditional protocol whose where
 # clause stands without an inheritance list, and a where clause that spells
 # a function type are forms this court does not read, so it gives no verdict
 # and names them instead of passing over them while a neighbour holds the
@@ -56,9 +56,12 @@ conditional_world oneline 1 \
 "error: global function 'need' requires that 'Bad' conform to 'Required'" \
 "✗ 'BadClaim = Use<Bad>' requires the type 'T' (aka 'Bad') conform to 'Required', and 'Bad: Setting' does not carry it [Admitted]
 ✗ 'Use<Bad>' requires the type 'T' (aka 'Bad') conform to 'Required', and 'Bad: Setting' does not carry it [Admitted]"
-conditional_world listed 2 \
+conditional_world listed 1 \
 "error: global function 'need' requires that 'Bad' conform to 'Required'" \
-"✗ THE WHERE: cannot read conditional conformance 'Use: Admitted, Marked': this court reads one protocol per conditional extension"
+"✗ Checks/where-conditional/listed.swift:12:extension[0].conformances[0]: 'BadClaim = Use<Bad>' requires the type 'T' (aka 'Bad') conform to 'Required', and 'Bad: Setting' does not carry it [Admitted]
+✗ Checks/where-conditional/listed.swift:12:extension[0].conformances[1]: 'BadClaim = Use<Bad>' requires the type 'T' (aka 'Bad') conform to 'Required', and 'Bad: Setting' does not carry it [Marked]
+✗ Checks/where-conditional/listed.swift:12:extension[0].conformances[0]: 'Use<Bad>' requires the type 'T' (aka 'Bad') conform to 'Required', and 'Bad: Setting' does not carry it [Admitted]
+✗ Checks/where-conditional/listed.swift:12:extension[0].conformances[1]: 'Use<Bad>' requires the type 'T' (aka 'Bad') conform to 'Required', and 'Bad: Setting' does not carry it [Marked]"
 conditional_world selfbound 2 \
 "error: type 'Later' does not conform to protocol 'StrictlyBanded'
 error: 'StrictlyBanded' requires the types 'Later.Band' (aka 'Loose') and 'Tight' be equivalent" \
@@ -68,4 +71,4 @@ conditional_world arrow 2 \
 error: global function 'need' requires the types 'Int' and '(Int) -> Int' be equivalent" \
 "✗ THE WHERE: cannot read the where clause conjunct 'F == (Int) -> Int': a function type is a term this court does not read"
 
-echo "✓ where-conditional: a one-line gate is judged, three unread conditional forms are named, the compiler refuses all four"
+echo "✓ where-conditional: one-line and listed gates are judged, two unread conditional forms are named, the compiler refuses all four"

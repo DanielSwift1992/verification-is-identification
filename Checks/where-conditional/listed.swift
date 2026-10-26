@@ -1,9 +1,6 @@
-// A conditional conformance that lists two protocols before its where
-// clause is a gate this court does not read, and the court names it instead
-// of passing over it. The bad claim's setting lacks the premise, and a
-// neighbour gate holds for the good setting. The compiler refuses the bad
-// demand; the court gives no verdict and names the conformance it cannot
-// read.
+// A conditional conformance listing two protocols is two gates with the same
+// condition. The bad claim lacks their shared premise; each refusal names
+// that protocol's structural place. A neighbouring good gate cannot hide it.
 
 public protocol Setting {}
 public protocol Required: Setting {}

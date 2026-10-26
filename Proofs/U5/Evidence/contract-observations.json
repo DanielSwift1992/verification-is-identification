@@ -1,0 +1,314 @@
+[
+  {
+    "accepted" : true,
+    "case" : "AddressIdentity",
+    "conclusion" : "constructed",
+    "diagnostic" : "",
+    "request" : "AddressIdentity",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "OneEquality",
+    "conclusion" : "constructed",
+    "diagnostic" : "",
+    "request" : "OneEquality",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "OneEqualityBadOutput",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.selections[0]: output or input is not the required leaf address",
+    "request" : "OneEquality",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "OneEqualityBadInput",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.selections[0].input: route projects an opaque source place",
+    "request" : "OneEquality",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "OneEqualityValuesGround",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.selections[0].basis: observed value coincidence is not source equality",
+    "request" : "OneEquality",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "OneEqualityFalseAddress",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.selections[0].basis: different source addresses are not identical",
+    "request" : "OneEquality",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "OneEqualityEmptyPath",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.selections[0].basis: expected a finite E-path",
+    "request" : "OneEquality",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "OneEqualityAbsentEdge",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.selections[0].basis.path[0]: no declared E-edge at this address",
+    "request" : "OneEquality",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "OneEqualityWrongDirection",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.selections[0].basis.path[0]: discontinuous E-path",
+    "request" : "OneEquality",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "OneEqualityMissingSelection",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.selections: incomplete output coverage",
+    "request" : "OneEquality",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "OneEqualityExtraSelection",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.selections: incomplete output coverage",
+    "request" : "OneEquality",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "OneEqualityBadProgram",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.program: assembled term differs from the selected addresses",
+    "request" : "OneEquality",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "EqualityChain",
+    "conclusion" : "constructed",
+    "diagnostic" : "",
+    "request" : "EqualityChain",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualityChainBrokenChain",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.selections[0].basis.path[0]: discontinuous E-path",
+    "request" : "EqualityChain",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualityChainWrongEndpoint",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.selections[0].basis: E-path ends at another source leaf",
+    "request" : "EqualityChain",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "ReversedChain",
+    "conclusion" : "constructed",
+    "diagnostic" : "",
+    "request" : "ReversedChain",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "JointQuestion",
+    "conclusion" : "constructed",
+    "diagnostic" : "",
+    "request" : "JointQuestion",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "AliasedView",
+    "conclusion" : "constructed",
+    "diagnostic" : "",
+    "request" : "AliasedView",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "DisconnectedClass",
+    "conclusion" : "obstructed",
+    "diagnostic" : "",
+    "request" : "DisconnectedClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "DisconnectedClassBrokenEdge",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.partition.E: partition breaks a declared E-edge",
+    "request" : "DisconnectedClass",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "SameSortDifferentPlaces",
+    "conclusion" : "obstructed",
+    "diagnostic" : "",
+    "request" : "SameSortDifferentPlaces",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "SameSortDifferentPlacesBadQuestion",
+    "conclusion" : "unresolved",
+    "diagnostic" : "route projects an opaque source place",
+    "request" : "SameSortDifferentPlaces",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "SameSortDifferentPlacesLostLeaf",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.partition: incomplete source coverage",
+    "request" : "SameSortDifferentPlaces",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "SameSortDifferentPlacesDuplicateLeaf",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.partition[0]: repeated leaf or different sort",
+    "request" : "SameSortDifferentPlaces",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "SameSortDifferentPlacesEmptyClass",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.partition: too many classes",
+    "request" : "SameSortDifferentPlaces",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "SameSortDifferentPlacesObservedBlock",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.partition.question: partition does not separate the required class from Observation",
+    "request" : "SameSortDifferentPlaces",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "DisplayCoincidence",
+    "conclusion" : "obstructed",
+    "diagnostic" : "",
+    "request" : "DisplayCoincidence",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "TwoSorts",
+    "conclusion" : "obstructed",
+    "diagnostic" : "",
+    "request" : "TwoSorts",
+    "sorts" : [
+      "$continuation0",
+      "$continuation1"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortsWrongSort",
+    "conclusion" : "unresolved",
+    "diagnostic" : "certificate.partition[1]: repeated leaf or different sort",
+    "request" : "TwoSorts",
+    "sorts" : [
+      "$continuation0",
+      "$continuation1"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "DuplicatedOrigin",
+    "conclusion" : "constructed",
+    "diagnostic" : "",
+    "request" : "DuplicatedOrigin",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "WholeAsObservation",
+    "conclusion" : "constructed",
+    "diagnostic" : "",
+    "request" : "WholeAsObservation",
+    "sorts" : [
+      "$continuation0"
+    ]
+  }
+]

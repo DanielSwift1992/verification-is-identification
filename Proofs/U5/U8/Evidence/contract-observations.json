@@ -1,0 +1,1487 @@
+[
+  {
+    "accepted" : true,
+    "case" : "HiddenDisagreement",
+    "diagnostic" : "",
+    "holds" : false,
+    "kind" : "disagreement",
+    "request" : "HiddenDisagreement",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDisagreementLostHiddenEvidence",
+    "diagnostic" : "certificate.dynamics.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "disagreement",
+    "request" : "HiddenDisagreement",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDisagreementExtraHiddenEvidence",
+    "diagnostic" : "certificate.dynamics.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "disagreement",
+    "request" : "HiddenDisagreement",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDisagreementWrongHiddenMember",
+    "diagnostic" : "certificate.dynamics.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "disagreement",
+    "request" : "HiddenDisagreement",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDisagreementLostHiddenJudgment",
+    "diagnostic" : "certificate.dynamics.hidden: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "HiddenDisagreement",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDisagreementMissingClasses",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "disagreement",
+    "request" : "HiddenDisagreement",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDisagreementDuplicateClass",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "disagreement",
+    "request" : "HiddenDisagreement",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDisagreementUnknownClass",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "disagreement",
+    "request" : "HiddenDisagreement",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDisagreementFalseInheritance",
+    "diagnostic" : "certificate.dynamics.hidden.closureInheritedFromStableView: conditional premise differs",
+    "holds" : false,
+    "kind" : "disagreement",
+    "request" : "HiddenDisagreement",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDisagreementClassOrder",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "disagreement",
+    "request" : "HiddenDisagreement",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDisagreementUnknownDisagreementMember",
+    "diagnostic" : "certificate.dynamics.hidden.disagreement: images are not different same-sort classes",
+    "holds" : false,
+    "kind" : "disagreement",
+    "request" : "HiddenDisagreement",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDisagreementSameMember",
+    "diagnostic" : "certificate.dynamics.hidden.disagreement: images are not different same-sort classes",
+    "holds" : false,
+    "kind" : "disagreement",
+    "request" : "HiddenDisagreement",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDisagreementNonLeafDisagreementObservation",
+    "diagnostic" : "certificate.dynamics.hidden.observation: not an Observation leaf",
+    "holds" : false,
+    "kind" : "disagreement",
+    "request" : "HiddenDisagreement",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDisagreementFalseLeftImage",
+    "diagnostic" : "certificate.dynamics.hidden.disagreement: images are not different same-sort classes",
+    "holds" : false,
+    "kind" : "disagreement",
+    "request" : "HiddenDisagreement",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDisagreementFalseRightImage",
+    "diagnostic" : "certificate.dynamics.hidden.disagreement: images are not different same-sort classes",
+    "holds" : false,
+    "kind" : "disagreement",
+    "request" : "HiddenDisagreement",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenDisagreementCoarsePartitionWithoutForest",
+    "diagnostic" : "certificate.dynamics.connections[0]: incomplete class forest",
+    "holds" : false,
+    "kind" : "disagreement",
+    "request" : "HiddenDisagreement",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "HiddenCommon",
+    "diagnostic" : "",
+    "holds" : true,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonLostHiddenEvidence",
+    "diagnostic" : "certificate.dynamics.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonExtraHiddenEvidence",
+    "diagnostic" : "certificate.dynamics.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonWrongHiddenMember",
+    "diagnostic" : "certificate.dynamics.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonLostHiddenJudgment",
+    "diagnostic" : "certificate.dynamics.hidden: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonMissingClasses",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonDuplicateClass",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonUnknownClass",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonFalseInheritance",
+    "diagnostic" : "certificate.dynamics.hidden.closureInheritedFromStableView: conditional premise differs",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonMissingCommonMember",
+    "diagnostic" : "certificate.dynamics.hidden.common: incomplete member coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonWrongCommonMember",
+    "diagnostic" : "certificate.dynamics.hidden.common[0]: member or closure-edge coverage differs",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonWrongCommonProgram",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].program: not the common k",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonWrongMemberProgram",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].program: assembled term differs from the selected addresses",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonMissingTargets",
+    "diagnostic" : "certificate.dynamics.hidden.common[0]: member or closure-edge coverage differs",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonInvalidTarget",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].targets[0]: closure edge has another image class",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonMissingSelections",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections: incomplete output coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonWrongOutput",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections[0]: output or input is not the required leaf address",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonWrongInput",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections[0].input: route projects an opaque source place",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenCommonObservedValues",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections[0].basis: observed value coincidence is not source equality",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenCommon",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "HiddenOutside",
+    "diagnostic" : "",
+    "holds" : false,
+    "kind" : "outside",
+    "request" : "HiddenOutside",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOutsideLostHiddenEvidence",
+    "diagnostic" : "certificate.dynamics.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "outside",
+    "request" : "HiddenOutside",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOutsideExtraHiddenEvidence",
+    "diagnostic" : "certificate.dynamics.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "outside",
+    "request" : "HiddenOutside",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOutsideWrongHiddenMember",
+    "diagnostic" : "certificate.dynamics.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "outside",
+    "request" : "HiddenOutside",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOutsideLostHiddenJudgment",
+    "diagnostic" : "certificate.dynamics.hidden: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "HiddenOutside",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOutsideMissingClasses",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "outside",
+    "request" : "HiddenOutside",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOutsideDuplicateClass",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "outside",
+    "request" : "HiddenOutside",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOutsideUnknownClass",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "outside",
+    "request" : "HiddenOutside",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOutsideFalseInheritance",
+    "diagnostic" : "certificate.dynamics.hidden.closureInheritedFromStableView: conditional premise differs",
+    "holds" : false,
+    "kind" : "outside",
+    "request" : "HiddenOutside",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOutsideUnknownOutsideMember",
+    "diagnostic" : "certificate.dynamics.hidden.outside: image is not outside the held classes",
+    "holds" : false,
+    "kind" : "outside",
+    "request" : "HiddenOutside",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOutsideNonLeafObservation",
+    "diagnostic" : "certificate.dynamics.hidden.observation: route projects an opaque source place",
+    "holds" : false,
+    "kind" : "outside",
+    "request" : "HiddenOutside",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOutsideFalseOutsideImage",
+    "diagnostic" : "certificate.dynamics.hidden.outside: image is not outside the held classes",
+    "holds" : false,
+    "kind" : "outside",
+    "request" : "HiddenOutside",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOutsideUnknownOutsideImage",
+    "diagnostic" : "certificate.dynamics.hidden.outside: image is not outside the held classes",
+    "holds" : false,
+    "kind" : "outside",
+    "request" : "HiddenOutside",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "HiddenInvalidEqualities",
+    "diagnostic" : "",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "HiddenInvalidEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenInvalidEqualitiesLostHiddenEvidence",
+    "diagnostic" : "certificate.dynamics.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "HiddenInvalidEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenInvalidEqualitiesExtraHiddenEvidence",
+    "diagnostic" : "certificate.dynamics.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "HiddenInvalidEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenInvalidEqualitiesWrongHiddenMember",
+    "diagnostic" : "certificate.dynamics.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "HiddenInvalidEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenInvalidEqualitiesUnknownPreservationEdge",
+    "diagnostic" : "certificate.dynamics.hiddenActions[0].preservation.edge: partition does not separate images of this E-edge",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "HiddenInvalidEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenInvalidEqualitiesFalsePreservation",
+    "diagnostic" : "certificate.dynamics.hiddenActions[0].preservation[0]: different source addresses are not identical",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "HiddenInvalidEqualities",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "HiddenEquivalentProjections",
+    "diagnostic" : "",
+    "holds" : true,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsLostHiddenEvidence",
+    "diagnostic" : "certificate.dynamics.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsExtraHiddenEvidence",
+    "diagnostic" : "certificate.dynamics.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsWrongHiddenMember",
+    "diagnostic" : "certificate.dynamics.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsLostHiddenJudgment",
+    "diagnostic" : "certificate.dynamics.hidden: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsMissingClasses",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsDuplicateClass",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsUnknownClass",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsFalseInheritance",
+    "diagnostic" : "certificate.dynamics.hidden.closureInheritedFromStableView: conditional premise differs",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsMissingCommonMember",
+    "diagnostic" : "certificate.dynamics.hidden.common: incomplete member coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsWrongCommonMember",
+    "diagnostic" : "certificate.dynamics.hidden.common[0]: member or closure-edge coverage differs",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsWrongCommonProgram",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].program: not the common k",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsWrongMemberProgram",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].program: assembled term differs from the selected addresses",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsMissingTargets",
+    "diagnostic" : "certificate.dynamics.hidden.common[0]: member or closure-edge coverage differs",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsInvalidTarget",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].targets[0]: closure edge has another image class",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsMissingSelections",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections: incomplete output coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsWrongOutput",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections[0]: output or input is not the required leaf address",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsWrongInput",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections[0].input: route projects an opaque source place",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsObservedValues",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections[0].basis: observed value coincidence is not source equality",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsLostPreservationGround",
+    "diagnostic" : "certificate.dynamics.hiddenActions[0].preservation: incomplete E-edge coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsFalsePreservationGround",
+    "diagnostic" : "certificate.dynamics.hiddenActions[1].preservation[0]: different source addresses are not identical",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsEqualClassesDisagreement",
+    "diagnostic" : "certificate.dynamics.hidden.disagreement: images are not different same-sort classes",
+    "holds" : false,
+    "kind" : "disagreement",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "HiddenEquivalentProjectionsOtherCommonProgram",
+    "diagnostic" : "",
+    "holds" : true,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenEquivalentProjectionsIndividuallyValidDifferentPrograms",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].program: not the common k",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenEquivalentProjections",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "AliasedActions",
+    "diagnostic" : "",
+    "holds" : true,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsLostHiddenEvidence",
+    "diagnostic" : "certificate.dynamics.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsExtraHiddenEvidence",
+    "diagnostic" : "certificate.dynamics.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsWrongHiddenMember",
+    "diagnostic" : "certificate.dynamics.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsLostHiddenJudgment",
+    "diagnostic" : "certificate.dynamics.hidden: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsMissingClasses",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsDuplicateClass",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsUnknownClass",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsFalseInheritance",
+    "diagnostic" : "certificate.dynamics.hidden.closureInheritedFromStableView: conditional premise differs",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsMissingCommonMember",
+    "diagnostic" : "certificate.dynamics.hidden.common: incomplete member coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsWrongCommonMember",
+    "diagnostic" : "certificate.dynamics.hidden.common[0]: member or closure-edge coverage differs",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsWrongCommonProgram",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].program: not the common k",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsWrongMemberProgram",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].program: assembled term differs from the selected addresses",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsMissingTargets",
+    "diagnostic" : "certificate.dynamics.hidden.common[0]: member or closure-edge coverage differs",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsInvalidTarget",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].targets[0]: closure edge has another image class",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsMissingSelections",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections: incomplete output coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsWrongOutput",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections[0]: output or input is not the required leaf address",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsWrongInput",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections[0].input: route projects an opaque source place",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedActionsObservedValues",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections[0].basis: observed value coincidence is not source equality",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "AliasedActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "HiddenOnly",
+    "diagnostic" : "",
+    "holds" : true,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyLostHiddenEvidence",
+    "diagnostic" : "certificate.dynamics.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyExtraHiddenEvidence",
+    "diagnostic" : "certificate.dynamics.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyWrongHiddenMember",
+    "diagnostic" : "certificate.dynamics.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyLostHiddenJudgment",
+    "diagnostic" : "certificate.dynamics.hidden: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyMissingClasses",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyDuplicateClass",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyUnknownClass",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyFalseInheritance",
+    "diagnostic" : "certificate.dynamics.hidden.closureInheritedFromStableView: conditional premise differs",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyMissingCommonMember",
+    "diagnostic" : "certificate.dynamics.hidden.common: incomplete member coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyWrongCommonMember",
+    "diagnostic" : "certificate.dynamics.hidden.common[0]: member or closure-edge coverage differs",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyWrongCommonProgram",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].program: not the common k",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyWrongMemberProgram",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].program: assembled term differs from the selected addresses",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyMissingTargets",
+    "diagnostic" : "certificate.dynamics.hidden.common[0]: member or closure-edge coverage differs",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyInvalidTarget",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].targets[0]: closure edge has another image class",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyMissingSelections",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections: incomplete output coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyWrongOutput",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections[0]: output or input is not the required leaf address",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyWrongInput",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections[0].input: route projects an opaque source place",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "HiddenOnlyObservedValues",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections[0].basis: observed value coincidence is not source equality",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "HiddenOnly",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : true,
+    "case" : "ScalarActions",
+    "diagnostic" : "",
+    "holds" : true,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsLostHiddenEvidence",
+    "diagnostic" : "certificate.dynamics.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsExtraHiddenEvidence",
+    "diagnostic" : "certificate.dynamics.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsWrongHiddenMember",
+    "diagnostic" : "certificate.dynamics.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsLostHiddenJudgment",
+    "diagnostic" : "certificate.dynamics.hidden: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsMissingClasses",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsDuplicateClass",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsUnknownClass",
+    "diagnostic" : "certificate.dynamics.hidden.classes: expected Observation classes in occurrence order",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsFalseInheritance",
+    "diagnostic" : "certificate.dynamics.hidden.closureInheritedFromStableView: conditional premise differs",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsMissingCommonMember",
+    "diagnostic" : "certificate.dynamics.hidden.common: incomplete member coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsWrongCommonMember",
+    "diagnostic" : "certificate.dynamics.hidden.common[0]: member or closure-edge coverage differs",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsWrongCommonProgram",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].program: not the common k",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsWrongMemberProgram",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].program: assembled term differs from the selected addresses",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsMissingTargets",
+    "diagnostic" : "certificate.dynamics.hidden.common[0]: member or closure-edge coverage differs",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsInvalidTarget",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].targets[0]: closure edge has another image class",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsMissingSelections",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections: incomplete output coverage",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsWrongOutput",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections[0]: output or input is not the required leaf address",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsWrongInput",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections[0].input: route projects an opaque source place",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarActionsObservedValues",
+    "diagnostic" : "certificate.dynamics.hidden.common[0].selections[0].basis: observed value coincidence is not source equality",
+    "holds" : false,
+    "kind" : "common",
+    "request" : "ScalarActions",
+    "sorts" : [
+      "$continuation0"
+    ]
+  }
+]

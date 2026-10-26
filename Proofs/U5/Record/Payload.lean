@@ -195,7 +195,7 @@ def payloadConclusion (j : Json) : Except String (U5.Certificate × Option U6.Re
 
 /-- Named premise: JSON transport and payload-to-certificate translation.
 No fallback certificate is supplied after any decoding failure. -/
-def decodePayload (b : ByteArray) : Except String Payload := do
+def decodeJSON (b : ByteArray) : Except String Json := do
   need (b.size ≤ byteLimit) "certificate" "input byte limit"
   let text ← fromOption (String.fromUTF8? b) "certificate: invalid UTF-8"
   let j ← located "certificate" (Parser.run (do
@@ -203,6 +203,10 @@ def decodePayload (b : ByteArray) : Except String Payload := do
     let value ← proofValue (b.size + 1) 0
     eof
     pure value) text)
+  pure j
+
+def decodePayload (b : ByteArray) : Except String Payload := do
+  let j ← decodeJSON b
   fields j ["format", "record", "conclusion"] ["retention"] "certificate"
   let format ← located "certificate.format" (← field j "format" "certificate").getNat?
   need (format == 8) "certificate.format" "expected format 8"

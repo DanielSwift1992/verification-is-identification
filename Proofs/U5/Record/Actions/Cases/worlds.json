@@ -1,0 +1,91 @@
+{
+  "cases": [
+    {
+      "outcome": "constructed",
+      "record": "{\"schema\":2,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"pair\":[3,4]},{\"sort\":0},{\"sort\":0}],\"equalities\":[{\"at\":[],\"left\":[0],\"right\":[1,0],\"basis\":\"declared\"}],\"observation\":{\"place\":[0]},\"question\":{\"place\":[0]},\"actions\":[{\"at\":[],\"image\":[[1,0],[0],[1,1]]}]}",
+      "request": "PreservesEqualities"
+    },
+    {
+      "outcome": "obstructed",
+      "record": "{\"schema\":2,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"pair\":[3,4]},{\"sort\":0},{\"sort\":0}],\"equalities\":[{\"at\":[],\"left\":[0],\"right\":[1,0],\"basis\":\"declared\"}],\"observation\":{\"place\":[0]},\"question\":{\"place\":[0]},\"actions\":[{\"at\":[],\"image\":[[0],[1,1],[1,0]]}]}",
+      "request": "BreaksEqualities"
+    },
+    {
+      "outcome": "constructed",
+      "record": "{\"schema\":2,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"pair\":[3,4]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[0]},\"actions\":[{\"at\":[],\"image\":[[1,1],[0],[1,0]]}]}",
+      "request": "CyclicQuestion"
+    },
+    {
+      "outcome": "constructed",
+      "record": "{\"schema\":2,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"pair\":[3,4]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[1,1]}}",
+      "request": "EmptyActions"
+    },
+    {
+      "outcome": "obstructed",
+      "record": "{\"schema\":2,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"pair\":[{\"place\":[0]},{\"place\":[1]}]},\"question\":{\"pair\":[{\"place\":[0]},{\"place\":[1]}]},\"actions\":[{\"at\":[0],\"image\":[[0],[1]]},{\"at\":[1],\"image\":[[1],[0]]}],\"hiddenActions\":[{\"at\":[0],\"image\":[[0],[1]]},{\"at\":[1],\"image\":[[1],[0]]}]}",
+      "request": "HiddenDisagreement"
+    },
+    {
+      "outcome": "constructed",
+      "record": "{\"schema\":2,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"pair\":[3,4]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[0]},\"actions\":[{\"at\":[],\"image\":[[0],[1,0],[1,1]]}],\"hiddenActions\":[{\"at\":[0],\"image\":[[0],[1,0],[1,1]]},{\"at\":[1],\"image\":[[0],[1,1],[1,0]]}]}",
+      "request": "HiddenCommon"
+    },
+    {
+      "outcome": "obstructed",
+      "record": "{\"schema\":2,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[0]},\"actions\":[{\"at\":[],\"image\":[[0],[1]]}],\"hiddenActions\":[{\"at\":[],\"image\":[[1],[0]]}]}",
+      "request": "HiddenOutside"
+    },
+    {
+      "outcome": "obstructed",
+      "record": "{\"schema\":2,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"pair\":[3,4]},{\"sort\":0},{\"sort\":0}],\"equalities\":[{\"at\":[],\"left\":[0],\"right\":[1,0],\"basis\":\"declared\"}],\"observation\":{\"place\":[0]},\"question\":{\"place\":[0]},\"hiddenActions\":[{\"at\":[],\"image\":[[0],[1,1],[1,0]]}]}",
+      "request": "HiddenInvalidEqualities"
+    },
+    {
+      "outcome": "constructed",
+      "record": "{\"schema\":2,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[{\"at\":[],\"left\":[0],\"right\":[1],\"basis\":\"declared\"}],\"observation\":{\"pair\":[{\"place\":[0]},{\"place\":[1]}]},\"question\":{\"place\":[0]},\"actions\":[{\"at\":[],\"image\":[[0],[1]]}],\"hiddenActions\":[{\"at\":[0],\"image\":[[0],[1]]},{\"at\":[1],\"image\":[[1],[0]]}]}",
+      "request": "HiddenEquivalentProjections"
+    },
+    {
+      "outcome": "constructed",
+      "record": "{\"schema\":2,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"pair\":[{\"place\":[0]},{\"place\":[1]}]},\"question\":{\"pair\":[{\"place\":[0]},{\"place\":[1]}]},\"actions\":[{\"at\":[0],\"image\":[[0],[1]]},{\"at\":[1],\"image\":[[1],[0]]}],\"hiddenActions\":[{\"at\":[],\"image\":[[0],[1]]}]}",
+      "request": "AliasedActions"
+    },
+    {
+      "outcome": "unsupported",
+      "record": "{\"schema\":2,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[1]},\"actions\":[{\"at\":[],\"image\":[[0]]}]}",
+      "request": "MalformedActionShape"
+    },
+    {
+      "outcome": "unsupported",
+      "record": "{\"schema\":2,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[1]},\"actions\":[{\"at\":[],\"image\":[{\"sort\":0},{\"sort\":0}]}]}",
+      "request": "UnrootedAction"
+    },
+    {
+      "outcome": "unsupported",
+      "record": "{\"schema\":2,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[1]},\"Action\":[{\"at\":[],\"image\":[[0],[1]]}]}",
+      "request": "UnreadActionAxis"
+    },
+    {
+      "outcome": "constructed",
+      "record": "{\"schema\":2,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[0]},\"hiddenActions\":[{\"at\":[],\"image\":[[0],[1]]}]}",
+      "request": "HiddenOnly"
+    },
+    {
+      "outcome": "constructed",
+      "record": "{\"schema\":2,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"pair\":[3,4]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[0]},\"actions\":[{\"at\":[0],\"image\":[[1,0],[1,0],[1,1]]},{\"at\":[1],\"image\":[[0],[1,1],[1,1]]}]}",
+      "request": "NoncommutingWords"
+    },
+    {
+      "outcome": "unsupported",
+      "record": "{\"schema\":2,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":1}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[1]},\"actions\":[{\"at\":[],\"image\":[[1],[0]]}]}",
+      "request": "SortChangingAction"
+    },
+    {
+      "outcome": "constructed",
+      "record": "{\"schema\":2,\"source\":[{\"sort\":0}],\"equalities\":[],\"observation\":{\"place\":[]},\"question\":{\"place\":[]},\"actions\":[{\"at\":[0],\"image\":[[]]},{\"at\":[1,0],\"image\":[[]]},{\"at\":[1,1],\"image\":[[]]}],\"hiddenActions\":[{\"at\":[0],\"image\":[[]]},{\"at\":[1,0],\"image\":[[]]},{\"at\":[1,1],\"image\":[[]]}]}",
+      "request": "ScalarActions"
+    }
+  ],
+  "contract_sha256": "46f0d099375fa13ca28ba004d670e4927967807c6db66600c8104d3c792236ad",
+  "origin": "T0117; canonical records exported by ContinuationRecordActionsTests through the admitted Swift adapter; four explicitly unread counterparts"
+}

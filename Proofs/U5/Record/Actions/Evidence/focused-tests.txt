@@ -1,0 +1,107 @@
+[0/1] Planning build
+Test Suite 'Selected tests' started at 2026-10-26 01:35:10.955.
+Test Suite 'VerificationIsIdentificationPackageTests.xctest' started at 2026-10-26 01:35:10.956.
+Test Suite 'ContinuationRecordActionsAdmissionTests' started at 2026-10-26 01:35:10.956.
+Test Case '-[ContinuationRecordTests.ContinuationRecordActionsAdmissionTests testMissingAndExplicitEmptyFamiliesAndWriterDoNotDropAxes]' started.
+Test Case '-[ContinuationRecordTests.ContinuationRecordActionsAdmissionTests testMissingAndExplicitEmptyFamiliesAndWriterDoNotDropAxes]' passed (0.002 seconds).
+Test Case '-[ContinuationRecordTests.ContinuationRecordActionsAdmissionTests testSourceDepthAndRepeatedNodeAreDifferentRefusals]' started.
+Test Case '-[ContinuationRecordTests.ContinuationRecordActionsAdmissionTests testSourceDepthAndRepeatedNodeAreDifferentRefusals]' passed (0.002 seconds).
+Test Suite 'ContinuationRecordActionsAdmissionTests' passed at 2026-10-26 01:35:10.960.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.004 (0.004) seconds
+Test Suite 'ContinuationRecordActionsTests' started at 2026-10-26 01:35:10.960.
+Test Case '-[CourtTests.ContinuationRecordActionsTests testActionCLIEntrancesAndCheckedBytePrintingAgree]' started.
+Test Case '-[CourtTests.ContinuationRecordActionsTests testActionCLIEntrancesAndCheckedBytePrintingAgree]' passed (1.745 seconds).
+Test Case '-[CourtTests.ContinuationRecordActionsTests testAllSeventeenActionCasesUseTheSameJudgment]' started.
+Test Case '-[CourtTests.ContinuationRecordActionsTests testAllSeventeenActionCasesUseTheSameJudgment]' passed (0.090 seconds).
+Test Suite 'ContinuationRecordActionsTests' passed at 2026-10-26 01:35:12.796.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 1.835 (1.836) seconds
+Test Suite 'ContinuationRecordDifferentialTests' started at 2026-10-26 01:35:12.796.
+Test Case '-[CourtTests.ContinuationRecordDifferentialTests testEveryU5U6ContractCaseHasTheSameJudgment]' started.
+Test Case '-[CourtTests.ContinuationRecordDifferentialTests testEveryU5U6ContractCaseHasTheSameJudgment]' passed (0.072 seconds).
+Test Case '-[CourtTests.ContinuationRecordDifferentialTests testIndependentExecutableAndCourtRecordEntryAgree]' started.
+Test Case '-[CourtTests.ContinuationRecordDifferentialTests testIndependentExecutableAndCourtRecordEntryAgree]' passed (0.680 seconds).
+Test Suite 'ContinuationRecordDifferentialTests' passed at 2026-10-26 01:35:13.548.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.753 (0.753) seconds
+Test Suite 'ContinuationRecordTests' started at 2026-10-26 01:35:13.548.
+Test Case '-[ContinuationRecordTests.ContinuationRecordTests testCertificatesReplayWithoutSearchAndRefuseForgeries]' started.
+Test Case '-[ContinuationRecordTests.ContinuationRecordTests testCertificatesReplayWithoutSearchAndRefuseForgeries]' passed (0.076 seconds).
+Test Case '-[ContinuationRecordTests.ContinuationRecordTests testMalformedRecordsAreAddressed]' started.
+Test Case '-[ContinuationRecordTests.ContinuationRecordTests testMalformedRecordsAreAddressed]' passed (0.001 seconds).
+Test Case '-[ContinuationRecordTests.ContinuationRecordTests testOccurrenceIdentityAndDeclaredEquality]' started.
+Test Case '-[ContinuationRecordTests.ContinuationRecordTests testOccurrenceIdentityAndDeclaredEquality]' passed (0.000 seconds).
+Test Case '-[ContinuationRecordTests.ContinuationRecordTests testRelationCyclesDoNotMakePairTreeCycles]' started.
+Test Case '-[ContinuationRecordTests.ContinuationRecordTests testRelationCyclesDoNotMakePairTreeCycles]' passed (0.000 seconds).
+Test Suite 'ContinuationRecordTests' passed at 2026-10-26 01:35:13.627.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.078 (0.078) seconds
+Test Suite 'VerificationIsIdentificationPackageTests.xctest' passed at 2026-10-26 01:35:13.627.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 2.670 (2.671) seconds
+Test Suite 'Selected tests' passed at 2026-10-26 01:35:13.627.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 2.670 (2.672) seconds
+T0117 differential: 17/17; 13 admitted payloads agree, including classes/words/stable view; 4 explicitly unread counterparts
+T0109 differential AddressIdentity: constructed, minimum 0, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"sort":0}],"equalities":[],"observation":{"place":[0]},"question":{"place":[0]}}
+T0109 differential OneEquality: constructed, minimum 0, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"sort":0}],"equalities":[{"at":[],"left":[0],"right":[1],"basis":"declared"}],"observation":{"place":[0]},"question":{"place":[1]}}
+T0109 differential EqualityChain: constructed, minimum 0, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"pair":[3,4]},{"sort":0},{"sort":0}],"equalities":[{"at":[0],"left":[0],"right":[1,0],"basis":"declared"},{"at":[1],"left":[1,0],"right":[1,1],"basis":"declared"}],"observation":{"place":[0]},"question":{"place":[1,1]}}
+T0109 differential ReversedChain: constructed, minimum 0, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"pair":[3,4]},{"sort":0},{"sort":0}],"equalities":[{"at":[0],"left":[0],"right":[1,0],"basis":"declared"},{"at":[1],"left":[1,0],"right":[1,1],"basis":"declared"}],"observation":{"place":[1,1]},"question":{"place":[0]}}
+T0109 differential JointQuestion: constructed, minimum 0, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"pair":[3,4]},{"sort":0},{"sort":0}],"equalities":[{"at":[],"left":[1,0],"right":[1,1],"basis":"declared"}],"observation":{"pair":[{"place":[0]},{"place":[1,0]}]},"question":{"pair":[{"place":[1,1]},{"pair":[{"place":[0]},{"place":[1,0]}]}]}}
+T0109 differential AliasedView: constructed, minimum 0, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"pair":[3,4]},{"sort":0},{"sort":0}],"equalities":[{"at":[],"left":[0],"right":[1,0],"basis":"declared"}],"observation":{"pair":[{"place":[1,0]},{"place":[1,1]}]},"question":{"pair":[{"place":[0]},{"place":[1,1]}]}}
+T0109 differential DisconnectedClass: obstructed, minimum 1, record {"schema":1,"source":[{"pair":[1,4]},{"pair":[2,3]},{"sort":0},{"sort":0},{"pair":[5,6]},{"sort":0},{"sort":0}],"equalities":[{"at":[],"left":[0,0],"right":[0,1],"basis":"declared"}],"observation":{"place":[0,0]},"question":{"place":[1,1]}}
+T0109 differential SameSortDifferentPlaces: obstructed, minimum 1, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"sort":0}],"equalities":[],"observation":{"place":[0]},"question":{"place":[1]}}
+T0109 differential DisplayCoincidence: obstructed, minimum 1, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"sort":0}],"equalities":[],"observation":{"place":[0]},"question":{"place":[1]}}
+T0109 differential TwoSorts: obstructed, minimum 1, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"sort":1}],"equalities":[],"observation":{"place":[0]},"question":{"place":[1]}}
+T0109 differential CrossSortEquality: Swift unread / record unread: record.equalities[0]: equality endpoints have different sorts
+T0109 differential MismatchedEdgeTrees: Swift unread / record unread: record.equalities[0].left[0]: expected nonnegative integer
+T0109 differential SortIsNotSourcePlace: Swift unread / record unread: record.question.sort: unknown field
+T0109 differential DuplicatedOrigin: constructed, minimum 0, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"sort":0}],"equalities":[],"observation":{"pair":[{"place":[0]},{"place":[0]}]},"question":{"place":[0]}}
+T0109 differential WholeAsObservation: constructed, minimum 0, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"sort":0}],"equalities":[],"observation":{"pair":[{"place":[0]},{"place":[1]}]},"question":{"pair":[{"place":[1]},{"place":[0]}]}}
+T0109 differential UnrootedObservation: Swift unread / record unread: record.observation.pair[1].sort: unknown field
+T0109 differential UnrootedQuestionAlias: Swift unread / record unread: record.question.pair[0].sort: unknown field
+T0109 differential ForeignWholeView: Swift unread / record unread: record.question.whole: unknown field
+T0109 differential MultiClassResidue: obstructed, minimum 2, record {"schema":1,"source":[{"pair":[1,4]},{"pair":[2,3]},{"sort":0},{"sort":0},{"pair":[5,6]},{"sort":0},{"sort":0}],"equalities":[{"at":[],"left":[0,0],"right":[0,1],"basis":"declared"}],"observation":{"place":[0,0]},"question":{"pair":[{"place":[1,0]},{"pair":[{"place":[1,1]},{"place":[1,0]}]}]}}
+T0109 differential ResidueEqualityClass: obstructed, minimum 1, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"pair":[3,4]},{"sort":0},{"sort":0}],"equalities":[{"at":[],"left":[1,0],"right":[1,1],"basis":"declared"}],"observation":{"place":[0]},"question":{"pair":[{"place":[1,0]},{"place":[1,1]}]}}
+T0109 differential ResiduePartialQuestion: obstructed, minimum 2, record {"schema":1,"source":[{"pair":[1,4]},{"pair":[2,3]},{"sort":0},{"sort":0},{"pair":[5,6]},{"sort":0},{"sort":0}],"equalities":[{"at":[],"left":[0,0],"right":[0,1],"basis":"declared"}],"observation":{"place":[0,0]},"question":{"pair":[{"place":[0,1]},{"pair":[{"place":[1,0]},{"place":[1,1]}]}]}}
+T0109 differential MisspelledWholeAxis: Swift unread / record unread: record.Equality: unknown field
+T0109 differential UnreadWholeAxis: Swift unread / record unread: record.Spare: unknown field
+T0109 differential ReadWholeHelperAxes: constructed, minimum 0, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"sort":0}],"equalities":[],"observation":{"place":[0]},"question":{"place":[0]}}
+T0109 differential RetainOneClass: obstructed, minimum 1, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"sort":0}],"equalities":[],"observation":{"place":[0]},"question":{"place":[1]}}
+T0109 differential RetainTwoSorts: obstructed, minimum 2, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"pair":[3,4]},{"sort":1},{"sort":2}],"equalities":[],"observation":{"place":[0]},"question":{"pair":[{"place":[0]},{"pair":[{"place":[1,0]},{"place":[1,1]}]}]}}
+T0109 differential RetainRepeatedClass: obstructed, minimum 1, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"sort":0}],"equalities":[],"observation":{"place":[0]},"question":{"pair":[{"place":[1]},{"place":[1]}]}}
+T0109 differential RetainFromClassOutsideViews: obstructed, minimum 1, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"pair":[3,4]},{"sort":0},{"sort":0}],"equalities":[{"at":[],"left":[0],"right":[1,0],"basis":"declared"}],"observation":{"place":[1,1]},"question":{"place":[1,0]}}
+T0109 differential RetainNothing: constructed, minimum 0, record {"schema":1,"source":[{"pair":[1,2]},{"sort":0},{"sort":0}],"equalities":[{"at":[],"left":[0],"right":[1],"basis":"declared"}],"observation":{"place":[0]},"question":{"place":[1]}}
+T0109 differential complete: 10 constructed / 11 obstructed / 8 unread / 5 U6 plans
+T0109 standalone RecordCourt and Court facade: U5/U6 construction and replay agree
+T0109 refusal substituted record: certificate.record: source record substituted
+T0109 refusal missing residual: certificate.retention.leaves: expected exactly one leaf per missing class
+T0109 refusal extra residual: certificate.retention.leaves: expected exactly one leaf per missing class
+T0109 refusal wrong class: certificate.retention.leaves[0]: not a distinct required missing E-class
+T0109 refusal forged decoder: certificate.retention.program: assembled term differs from the selected addresses
+T0109 refusal forged partition: certificate.partition.question: partition does not separate the required class from Observation
+T0109 refusal missing exact class forest: certificate.residue.connections: incomplete class coverage
+T0109 refusal observed value proof: certificate.selections[0].basis: observed value coincidence is not source equality
+T0109 refusal forged E path: certificate.selections[0].basis.path[0]: no declared E-edge at this address
+T0109 refusal forged address identity: certificate.selections[0].basis: different source addresses are not identical
+T0109 refusal duplicate certificate key: certificate.format: repeated key (byte 763)
+T0109 depth: admitted 61-pair Question; constructed certificate replays
+T0109 refusal unknown place: record.question.place: unknown or nonleaf source address
+T0109 refusal nonleaf: record.question.place: unknown or nonleaf source address
+T0109 refusal cycle: record.source[0].pair[0]: cycle in pair tree
+T0109 refusal shared tree node: record.source[0].pair[1]: repeated tree node
+T0109 refusal unknown node: record.source[0].pair[1]: unknown source node
+T0109 refusal duplicate key: record.schema: repeated key (byte 20)
+T0109 refusal escaped duplicate key: record.schema: repeated key (byte 25)
+T0109 refusal extra bytes: record: extra bytes (byte 129)
+T0109 refusal trailing newline: record: noncanonical serialization (byte 129)
+T0109 refusal BOM: record: token outside JSON fragment (byte 0)
+T0109 refusal Swift is not the record grammar: record: token outside JSON fragment (byte 0)
+T0109 refusal unread action: record.Actions: unknown field
+T0109 refusal wrong version: record.schema: expected version 1 or 2
+T0109 refusal noncanonical sort: record: noncanonical serialization (byte 45)
+T0109 refusal unknown source field: record.source[1].value: unknown field
+T0109 refusal cross sort E: record.equalities[0]: equality endpoints have different sorts
+T0109 refusal observed coincidence: record.equalities[0].basis: expected declared source premise; observed values are not equality
+T0109 refusal invalid UTF8: record: token outside JSON fragment (byte 0)
+T0109 same sort, distinct places: obstructed; declared E: constructed; U6 minimum: 1; sort renaming: same record
+T0109 finite E cycle: admitted; pair tree cycles remain unread
+􀟈  Test run started.
+􀄵  Testing Library Version: 6.3.3 (48d727cc1cf4eda)
+􀄵  Target Platform: arm64-apple-macosx
+􁁛  Test run with 0 tests in 0 suites passed after 0.001 seconds.

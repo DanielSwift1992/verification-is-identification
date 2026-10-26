@@ -1,0 +1,15 @@
+{
+  "head": "8f0a38df3dd38090d4f5006db0996951ee7d2550",
+  "command": [
+    "lake",
+    "build"
+  ],
+  "free_bytes": 12515135488,
+  "started": "2026-10-26T01:29:57.023489-04:00",
+  "inputs_before": "11a45b743acbda90f524bc86ee35c5f3f5224d76138852f01e8963e11cfcf2e0",
+  "exit": 0,
+  "elapsed_seconds": 5.715675958,
+  "finished": "2026-10-26T01:30:02.734540-04:00",
+  "inputs_after": "11a45b743acbda90f524bc86ee35c5f3f5224d76138852f01e8963e11cfcf2e0",
+  "unchanged": true
+}

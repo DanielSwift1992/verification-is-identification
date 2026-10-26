@@ -39,7 +39,7 @@ theorem items_ascii (emit : α → Bytes) (xs : List α)
 @[simp] theorem raw_ascii (w : Raw) : IsASCII (rawEmit w) := by
   have hs := items_ascii nodeCodec.emit w.source (fun n _ => node_ascii n)
   have he := items_ascii edgeCodec.emit w.edges (fun e _ => edge_ascii e)
-  simp_all [rawEmit, arrayCodec, ascii, viewCodec]
+  simp_all [rawEmit, prefixEmit, schemaHeader, arrayCodec, ascii, viewCodec]
 
 /-- This conversion is the only IO boundary for world bytes. It does not use
 String/Unicode decoding, so BOM and non-ASCII bytes cannot disappear. -/

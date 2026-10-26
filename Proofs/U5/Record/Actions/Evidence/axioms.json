@@ -1,0 +1,205 @@
+{
+  "statements": 42,
+  "allowed": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "findings": {
+    "Record.natural_write": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.parse_items_write": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.node_inverse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.view_parse_write": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.raw_parse_write": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.World.admit_model": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.shape_sound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "Record.admit_denotes": [
+      "propext",
+      "Quot.sound"
+    ],
+    "Record.World.denotes": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.read_write": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.write_read": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.write_injective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.raw_ascii": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.byte_values_array": [
+      "propext",
+      "Quot.sound"
+    ],
+    "Record.byte_array_values": [
+      "propext",
+      "Quot.sound"
+    ],
+    "Record.read_write_bytes": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.write_read_bytes": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.write_bytes_injective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.judgment_sound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.replay_sound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.exit_sound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.exit_bytes_sound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.Actions.raw_parse_write": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.Actions.convert_denotes": [
+      "propext"
+    ],
+    "Record.Actions.members_denote": [
+      "propext"
+    ],
+    "Record.Actions.family_denotes": [
+      "propext"
+    ],
+    "Record.Actions.admit_denotes": [
+      "propext",
+      "Quot.sound"
+    ],
+    "Record.Actions.World.admit_environment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.Actions.World.denotes": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.Actions.read_write": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.Actions.write_read": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.Actions.write_injective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.Actions.raw_ascii": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.Actions.read_write_bytes": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.Actions.write_read_bytes": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.Actions.write_bytes_injective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.Actions.judgment_sound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.Actions.replay_sound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.Actions.exit_sound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.Actions.exit_bytes_sound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Record.Actions.pack_sound": [
+      "propext"
+    ],
+    "Record.Actions.MemberDenotes.flat": [
+      "propext"
+    ]
+  }
+}

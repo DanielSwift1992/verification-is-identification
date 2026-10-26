@@ -1,4 +1,5 @@
 import Record.Checker
+import Record.Actions.Checker
 
 #print axioms Record.natural_write
 #print axioms Record.parse_items_write
@@ -22,3 +23,25 @@ import Record.Checker
 #print axioms Record.replay_sound
 #print axioms Record.exit_sound
 #print axioms Record.exit_bytes_sound
+
+#print axioms Record.Actions.raw_parse_write
+#print axioms Record.Actions.convert_denotes
+#print axioms Record.Actions.members_denote
+#print axioms Record.Actions.family_denotes
+#print axioms Record.Actions.admit_denotes
+#print axioms Record.Actions.World.admit_environment
+#print axioms Record.Actions.World.denotes
+#print axioms Record.Actions.read_write
+#print axioms Record.Actions.write_read
+#print axioms Record.Actions.write_injective
+#print axioms Record.Actions.raw_ascii
+#print axioms Record.Actions.read_write_bytes
+#print axioms Record.Actions.write_read_bytes
+#print axioms Record.Actions.write_bytes_injective
+#print axioms Record.Actions.judgment_sound
+#print axioms Record.Actions.replay_sound
+#print axioms Record.Actions.exit_sound
+#print axioms Record.Actions.exit_bytes_sound
+
+#print axioms Record.Actions.pack_sound
+#print axioms Record.Actions.MemberDenotes.flat

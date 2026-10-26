@@ -139,32 +139,45 @@ structure Raw where
   question : Term Path
   deriving DecidableEq, Repr
 
-def rawEmit (w : Raw) : Bytes :=
-  ascii "{\"schema\":1,\"source\":" ++ (arrayCodec nodeCodec).emit w.source ++
+def schemaHeader (version : Nat) : Bytes :=
+  ascii "{\"schema\":" ++ digits version ++ ascii ",\"source\":"
+
+def prefixEmit (version : Nat) (w : Raw) : Bytes :=
+  schemaHeader version ++ (arrayCodec nodeCodec).emit w.source ++
     ascii ",\"equalities\":" ++ (arrayCodec edgeCodec).emit w.edges ++
     ascii ",\"observation\":" ++ viewCodec.emit w.observation ++
-    ascii ",\"question\":" ++ viewCodec.emit w.question ++ [125]
+    ascii ",\"question\":" ++ viewCodec.emit w.question
 
-def expect (value : Option α) (address : String) : Except String α :=
+def rawEmit (w : Raw) : Bytes := prefixEmit 1 w ++ [125]
+
+def expect (value : Option α) (address : String) (version : Nat := 1) : Except String α :=
   match value with
-  | none => .error (address ++ ": unread schema 1 syntax")
+  | none => .error (address ++ ": unread schema " ++ toString version ++ " syntax")
   | some a => .ok a
 
+def prefixParse (version : Nat) (input : Bytes) : Except String (Raw × Bytes) := do
+  let rest ← expect (literal (schemaHeader version) input) "record.schema/source" version
+  let (s, rest) ← expect ((arrayCodec nodeCodec).parse rest) "record.source" version
+  let rest ← expect (literal (ascii ",\"equalities\":") rest) "record.equalities" version
+  let (e, rest) ← expect ((arrayCodec edgeCodec).parse rest) "record.equalities" version
+  let rest ← expect (literal (ascii ",\"observation\":") rest) "record.observation" version
+  let (p, rest) ← expect (viewCodec.parse rest) "record.observation" version
+  let rest ← expect (literal (ascii ",\"question\":") rest) "record.question" version
+  let (q, rest) ← expect (viewCodec.parse rest) "record.question" version
+  pure (⟨s, e, p, q⟩, rest)
+
+theorem prefix_parse_write (v : Nat) (w : Raw) (tail : Bytes) :
+    prefixParse v (prefixEmit v w ++ tail) = .ok (w, tail) := by
+  simp [prefixEmit, prefixParse, List.append_assoc, (arrayCodec nodeCodec).inverse,
+    (arrayCodec edgeCodec).inverse, viewCodec.inverse, expect, Bind.bind, Pure.pure, Except.pure, Except.bind]
+
 def rawParse (input : Bytes) : Except String (Raw × Bytes) := do
-  let rest ← expect (literal (ascii "{\"schema\":1,\"source\":") input) "record.schema/source"
-  let (s, rest) ← expect ((arrayCodec nodeCodec).parse rest) "record.source"
-  let rest ← expect (literal (ascii ",\"equalities\":") rest) "record.equalities"
-  let (e, rest) ← expect ((arrayCodec edgeCodec).parse rest) "record.equalities"
-  let rest ← expect (literal (ascii ",\"observation\":") rest) "record.observation"
-  let (p, rest) ← expect (viewCodec.parse rest) "record.observation"
-  let rest ← expect (literal (ascii ",\"question\":") rest) "record.question"
-  let (q, rest) ← expect (viewCodec.parse rest) "record.question"
+  let (w, rest) ← prefixParse 1 input
   let tail ← expect (literal [125] rest) "record"
-  pure (⟨s, e, p, q⟩, tail)
+  pure (w, tail)
 
 theorem raw_parse_write (w : Raw) (tail : Bytes) :
     rawParse (rawEmit w ++ tail) = .ok (w, tail) := by
-  simp [rawEmit, rawParse, List.append_assoc, (arrayCodec nodeCodec).inverse,
-    (arrayCodec edgeCodec).inverse, viewCodec.inverse, literal, expect, Bind.bind, Pure.pure, Except.pure, Except.bind]
+  simp [rawEmit, rawParse, List.append_assoc, prefix_parse_write, literal, expect, Bind.bind, Pure.pure, Except.pure, Except.bind]
 
 end Record

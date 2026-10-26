@@ -1,0 +1,21 @@
+{
+  "head": "8f0a38df3dd38090d4f5006db0996951ee7d2550",
+  "command": [
+    "python3",
+    "vi/Proofs/U5/Record/Tools/differential.py",
+    "--native",
+    "vi/.build/arm64-apple-macosx/debug/RecordCourt",
+    "--lean",
+    "vi/Proofs/U5/.lake/build/bin/record-check",
+    "--out",
+    "qualification/qualification-schema1-1"
+  ],
+  "free_bytes": 12535947264,
+  "started": "2026-10-26T01:35:25.935465-04:00",
+  "inputs_before": "297ca18df5495fe7c5110f2f0ccd7a798bd534c26fdacb9b7ca6b79409876f75",
+  "exit": 0,
+  "elapsed_seconds": 5.297738208,
+  "finished": "2026-10-26T01:35:31.227982-04:00",
+  "inputs_after": "297ca18df5495fe7c5110f2f0ccd7a798bd534c26fdacb9b7ca6b79409876f75",
+  "unchanged": true
+}

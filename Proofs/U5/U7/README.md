@@ -59,13 +59,13 @@
 ```sh
 df -h /System/Volumes/Data  # продолжать при >= 5 GiB
 ~/.elan/bin/lake build
-~/.elan/bin/lake env lean U7/Axioms.lean
+~/.elan/bin/lake env lean Axioms.lean
 python3 U7/Tools/observe-contract.py --output /private/tmp/reviewer-t0113-u7
 ```
 
 Наблюдательный скрипт проверяет все входные Swift-файлы по `63cacb7a`, собирает только driver с неизменённым Court, воспроизводит архивы и сравнивает замороженные Lean/JSON. Каталог вывода должен отсутствовать или быть пустым. После квитанции его бинарь и module-cache удаляются; материалы наблюдений остаются. Полные ворота/CI/сборка Swift Package не запускаются. Исходники проверяются хешами до и после. Стандартное предупреждение `CourtSourcesReport.swift` о trailing closure уже присутствует на базе и не исправляется этой задачей.
 
-Чистая сборка всего проекта (`lake clean; lake build`) завершилась успешно: **31 build job**, вместе с отдельным выводом аксиом — **5,95 с**. Аксиомы **24** основных утверждений напечатаны в [Axioms.lean](Axioms.lean): только `propext`, `Classical.choice`, `Quot.sound`. Нет `sorry`, пользовательских `axiom`, `native_decide`, `unsafe`, `partial`, `implemented_by`, `extern`; конечные проверки используют проверяемый ядром `decide`. Общие теоремы не импортируют ContractCases/Examples и не зависят от их выборки. Сборка всего проекта и отпечатки сохранены в [lean-build.txt](Evidence/lean-build.txt), [axioms.txt](Evidence/axioms.txt), [lean-receipt.json](Evidence/lean-receipt.json).
+Чистая сборка всего проекта (`lake clean; lake build`) завершилась успешно: **31 build job**, вместе с отдельным выводом аксиом — **5,95 с**. Аксиомы **24** основных утверждений напечатаны в [Axioms.lean](../Axioms.lean): только `propext`, `Classical.choice`, `Quot.sound`. Нет `sorry`, пользовательских `axiom`, `native_decide`, `unsafe`, `partial`, `implemented_by`, `extern`; конечные проверки используют проверяемый ядром `decide`. Общие теоремы не импортируют ContractCases/Examples и не зависят от их выборки. Сборка всего проекта и отпечатки сохранены в [lean-build.txt](Evidence/lean-build.txt), [axioms.txt](Evidence/axioms.txt), [lean-receipt.json](Evidence/lean-receipt.json).
 
 ## Не утверждается
 

@@ -6,4 +6,3 @@ import U7.Refusal
 import U7.Words
 import U7.ContractCases
 import U7.Examples
-import U7.Axioms

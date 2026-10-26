@@ -43,9 +43,9 @@ jobs:
 
       # every law this repository holds itself to lives in ./check.sh, so a
       # person at a desk and this runner ask for the same list. The mirror
-      # runs in the `law` job beside this one, and skips here.
-      - name: Every law but the grammar mirror
-        run: python3 Checks/ci-check.py --skip law
+      # and Lean proofs run in their own jobs beside this one, and skip here.
+      - name: Every law but the separate grammar and proofs jobs
+        run: python3 Checks/ci-check.py --skip law --skip proofs
 
       # Job logs need a signed-in reader; the toolchain and the first DocC
       # diagnostics are repeated as annotations, which the public API serves.
@@ -117,6 +117,25 @@ jobs:
 
       - name: Distinct source carriers are read back and their emitted formations build
         run: python3 Checks/ci-check.py --only law
+
+  # The site consumes neither these proof objects nor their audit result.
+  # This is still a visible law on the commit; deploy does not wait for it.
+  proofs:
+    runs-on: macos-26
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.2.app/Contents/Developer
+    steps:
+      - uses: actions/checkout@v4
+      # Swift reads the single law roster before selecting --only proofs.
+      - uses: ./.github/actions/swift
+      - name: Install elan and the declared Lean toolchain
+        run: |
+          curl -sSfL https://elan.lean-lang.org/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+          sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none --no-modify-path
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          "$HOME/.elan/bin/elan" toolchain install "$(cat Proofs/U5/lean-toolchain)"
+      - name: Build U5-U8 and audit every declared claim
+        run: python3 Checks/ci-check.py --only proofs
 
   deploy:
     needs: [build, law]

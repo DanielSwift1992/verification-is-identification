@@ -32,9 +32,10 @@ vi_check_source_key() {
 from pathlib import Path
 import hashlib
 paths = [Path('Package.swift'), Path('Package.resolved'), Path('check.sh')]
-for folder in ('Sources', 'Plugins', 'Tests', 'Checks'):
+for folder in ('Sources', 'Plugins', 'Tests', 'Checks', 'Proofs'):
     paths.extend(path for path in Path(folder).rglob('*') if path.is_file()
-                 and '__pycache__' not in path.parts and path.suffix != '.pyc')
+                 and '__pycache__' not in path.parts and '.lake' not in path.parts
+                 and path.suffix != '.pyc')
 result = hashlib.sha256()
 for path in sorted(set(paths)):
     if path.is_file():

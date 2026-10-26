@@ -69,13 +69,13 @@
 ```sh
 df -h /System/Volumes/Data  # продолжать при >= 5 GiB
 ~/.elan/bin/lake build
-~/.elan/bin/lake env lean U8/Axioms.lean
+~/.elan/bin/lake env lean Axioms.lean
 python3 U8/Tools/observe-contract.py --output /private/tmp/reviewer-t0114-u8
 ```
 
 Скрипт принимает отсутствующий либо пустой каталог вывода, сверяет каждый Swift-вход с `eeb6ce81`, собирает только небольшой driver с Court, проверяет неизменность входов до/после и сравнивает замороженные результаты. После записи квитанции его бинарь и module-cache удаляются. Полные ворота, CI, сборка Swift Package, загрузка пакетов и тулчейна не запускаются. Предсуществующее предупреждение CourtSourcesReport.swift о trailing closure не изменяется этой задачей.
 
-Чистая сборка всего проекта прошла: **42 build jobs**, вместе с отдельным выводом аксиом — **8,337 с**. [Axioms.lean](Axioms.lean) печатает зависимости **27** основных утверждений: только стандартные `propext`, `Classical.choice`, `Quot.sound`. Нет `sorry`, пользовательских `axiom`, `native_decide`, `unsafe`, `partial`, `implemented_by`, `extern`. Конечные проверки идут через обычный, проверяемый ядром `decide`. Квитанции — [lean-build.txt](Evidence/lean-build.txt), [axioms.txt](Evidence/axioms.txt), [lean-receipt.json](Evidence/lean-receipt.json).
+Чистая сборка всего проекта прошла: **42 build jobs**, вместе с отдельным выводом аксиом — **8,337 с**. [Axioms.lean](../Axioms.lean) печатает зависимости **27** основных утверждений: только стандартные `propext`, `Classical.choice`, `Quot.sound`. Нет `sorry`, пользовательских `axiom`, `native_decide`, `unsafe`, `partial`, `implemented_by`, `extern`. Конечные проверки идут через обычный, проверяемый ядром `decide`. Квитанции — [lean-build.txt](Evidence/lean-build.txt), [axioms.txt](Evidence/axioms.txt), [lean-receipt.json](Evidence/lean-receipt.json).
 
 ## Не утверждается
 

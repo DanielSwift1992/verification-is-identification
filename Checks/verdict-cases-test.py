@@ -337,6 +337,29 @@ if [ "${2:-}" = --show-bin-path ]; then printf '%s\\n' "$BUILD_BIN"; fi
         self.assertNotIn('ALL LAWS HOLD',result.stdout)
         self.assertEqual(self.trace.read_text().splitlines(),['build --product Tools','build --show-bin-path'])
 
+    def test_repeatable_skip_keeps_every_separate_job_out_of_the_site_run(self):
+        root=self.scratch/'separate-jobs'; self.driver(root)
+        result=subprocess.run(['bash','check.sh','--skip','build','--skip','census'],
+                              cwd=root,env=self.env,capture_output=True,text=True)
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+        self.assertNotIn('── ',result.stdout)
+        self.assertIn('not a full gate',result.stdout)
+        self.assertFalse(self.trace.exists())
+
+    def test_proof_inputs_are_bound_but_lake_cache_is_not(self):
+        root=self.scratch/'proof-inputs'; self.driver(root)
+        proof=root/'Proofs/U5/Probe.lean'; proof.parent.mkdir(parents=True)
+        proof.write_text('theorem valid : True := True.intro\n')
+        def key():
+            return subprocess.check_output(['bash','-c',
+                '. Checks/build-tools.sh; vi_check_source_key'],cwd=root,text=True)
+        before=key()
+        cache=proof.parent/'.lake/build/Probe.olean'; cache.parent.mkdir(parents=True)
+        cache.write_bytes(b'regenerable')
+        self.assertEqual(key(),before)
+        proof.write_text('theorem valid : False := by sorry\n')
+        self.assertNotEqual(key(),before)
+
 
 
 

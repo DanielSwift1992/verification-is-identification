@@ -56,11 +56,11 @@
 ```sh
 df -h /System/Volumes/Data  # продолжать при >= 5 GiB
 ~/.elan/bin/lake build
-~/.elan/bin/lake env lean U6/Axioms.lean
+~/.elan/bin/lake env lean Axioms.lean
 python3 U6/Tools/observe-contract.py --output /private/tmp/reviewer-t0111-u6
 ```
 
-`lake build` — зелёный, 20 build jobs для U5 и U6. [Axioms.lean](Axioms.lean) печатает зависимости 18 основных утверждений U6; вместе с 14 прежними утверждениями U5 — только стандартные `propext`, `Classical.choice`, `Quot.sound`. Нет `sorry`, дополнительных `axiom`, `native_decide`, `unsafe`, `partial`, `implemented_by` или `extern` в Lean-модулях. Квитанции — [lean-build.txt](Evidence/lean-build.txt) и [axioms.txt](Evidence/axioms.txt). Скрипт наблюдений требует полного репозитория с объектом базового коммита; сама Lean-сборка автономна и не требует Swift, сети, ворот или CI. Наблюдательный Swift-бинарь и его module-cache удалены после записи квитанции.
+`lake build` — зелёный, 20 build jobs для U5 и U6. [Axioms.lean](../Axioms.lean) печатает зависимости 18 основных утверждений U6; вместе с 14 прежними утверждениями U5 — только стандартные `propext`, `Classical.choice`, `Quot.sound`. Нет `sorry`, дополнительных `axiom`, `native_decide`, `unsafe`, `partial`, `implemented_by` или `extern` в Lean-модулях. Квитанции — [lean-build.txt](Evidence/lean-build.txt) и [axioms.txt](Evidence/axioms.txt). Скрипт наблюдений требует полного репозитория с объектом базового коммита; сама Lean-сборка автономна и не требует Swift, сети, ворот или CI. Наблюдательный Swift-бинарь и его module-cache удалены после записи квитанции.
 
 ## Не утверждается
 

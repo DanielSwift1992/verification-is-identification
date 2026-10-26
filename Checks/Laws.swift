@@ -351,6 +351,17 @@ enum LawQuotes: LawRecord {
     static var typeName: String { #"bash Checks/tools.sh quotes"# }
 }
 
+enum LawProofsName: LawText { static var typeName: String { #"proofs"# } }
+enum LawProofsDescription: LawText { static var typeName: String { #"Lean U5-U8 build and declared claims use only standard axioms"# } }
+enum LawProofs: LawRecord {
+    typealias Command = Self
+    typealias Name = LawProofsName
+    typealias Description = LawProofsDescription
+    typealias Profile = Integration
+    typealias Group = Serial
+    static var typeName: String { #"python3 Checks/proofs.py && python3 Checks/proofs-test.py"# }
+}
+
 enum LawLawName: LawText { static var typeName: String { #"law"# } }
 enum LawLawDescription: LawText { static var typeName: String { #"distinct source carriers are read back and their emitted formations build"# } }
 enum LawLaw: LawRecord {

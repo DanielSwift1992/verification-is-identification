@@ -6,7 +6,7 @@
 #
 #   ./check.sh --list       print the registered laws without executing them
 #   ./check.sh              every law
-#   ./check.sh --skip law   every law but the grammar mirror
+#   ./check.sh --skip law --skip proofs   the site job; each has its own CI job
 #   ./check.sh --only law   the grammar mirror alone
 #   ./check.sh --research-only  historical finite experiments, not type proofs
 #   ./check.sh --only ablation  optional audit of the saved deletion experiment
@@ -14,7 +14,8 @@
 # The mirror checks one distinct, read-back carrier per discovered input path
 # and compiles its emitted formations. Source byte coverage and reference
 # bindings remain reader debt (Contracts/Checks/grammar-reader-v1.md). CI runs
-# this child build in its own job. Checks/Laws.swift names what both jobs run.
+# this child build in its own job. Proofs have a separate job too.
+# Checks/Laws.swift names the laws; --skip is repeatable for independent jobs.
 set -uo pipefail
 cd "$(dirname "$0")"
 # the verdict law may keep a receipt for inputs that did not change
@@ -26,7 +27,7 @@ unset VI_CHECK_BUILD_BIN
 run_input_key=""
 
 MODE_LIST=""
-MODE_SKIP=""
+MODE_SKIP=()
 MODE_ONLY=""
 MODE_RESEARCH=""
 MODE_PROFILE=""
@@ -34,7 +35,7 @@ while [ $# -gt 0 ]; do
     case "$1" in
         --list) MODE_LIST="yes"; shift ;;
         --profile) MODE_PROFILE="$2"; shift 2 ;;
-        --skip) MODE_SKIP="$2"; shift 2 ;;
+        --skip) MODE_SKIP+=("$2"); shift 2 ;;
         --only) MODE_ONLY="$2"; shift 2 ;;
         --research-only) MODE_RESEARCH="yes"; shift ;;
         *) echo "check.sh: unknown argument $1" >&2; exit 2 ;;
@@ -69,7 +70,7 @@ if [ "$projection_input_key" != "$run_input_key" ]; then
 fi
 
 if [ "$MODE_LIST" = "yes" ]; then
-    if [ -n "$MODE_ONLY$MODE_SKIP$MODE_RESEARCH" ]; then
+    if [ -n "$MODE_ONLY${MODE_SKIP[*]+${MODE_SKIP[*]}}$MODE_RESEARCH" ]; then
         echo "check.sh: --list cannot be combined with check selection" >&2
         exit 2
     fi
@@ -147,7 +148,11 @@ for entry in "${LAWS[@]}"; do
     said="${rest%%|*}"
     cmd="${rest#*|}"
     [ -n "$MODE_ONLY" ] && [ "$tag" != "$MODE_ONLY" ] && continue
-    [ -n "$MODE_SKIP" ] && [ "$tag" = "$MODE_SKIP" ] && continue
+    omit=""
+    for excluded in "${MODE_SKIP[@]+"${MODE_SKIP[@]}"}"; do
+        [ "$tag" != "$excluded" ] || omit=yes
+    done
+    [ "$omit" != yes ] || continue
     if [[ " $NEEDS_CLEAN " == *" $tag "* ]] && [ -n "$(git status --porcelain)" ]; then
         flush_laws
         echo "── $tag: $said"
@@ -190,8 +195,8 @@ if [ "$MODE_RESEARCH" = "yes" ]; then
     echo "✓ RESEARCH EXPERIMENTS REPLAY; this is not a type-proof verdict"
     exit 0
 fi
-if [ -n "$MODE_ONLY$MODE_SKIP$MODE_PROFILE" ]; then
-    echo "✓ SELECTED LAWS HOLD; this is not a full gate (--only ${MODE_ONLY:-none}, --skip ${MODE_SKIP:-none}, --profile ${MODE_PROFILE:-none})"
+if [ -n "$MODE_ONLY${MODE_SKIP[*]+${MODE_SKIP[*]}}$MODE_PROFILE" ]; then
+    echo "✓ SELECTED LAWS HOLD; this is not a full gate (--only ${MODE_ONLY:-none}, --skip ${MODE_SKIP[*]:-none}, --profile ${MODE_PROFILE:-none})"
 else
     echo "✓ ALL LAWS HOLD"
 fi

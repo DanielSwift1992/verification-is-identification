@@ -6,4 +6,3 @@ import U8.Soundness
 import U8.Inheritance
 import U8.ContractCases
 import U8.Examples
-import U8.Axioms

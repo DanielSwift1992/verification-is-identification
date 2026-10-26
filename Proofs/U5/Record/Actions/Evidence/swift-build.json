@@ -1,0 +1,16 @@
+{
+  "head": "8f0a38df3dd38090d4f5006db0996951ee7d2550",
+  "command": [
+    "swift",
+    "build",
+    "--build-tests"
+  ],
+  "free_bytes": 12615483392,
+  "started": "2026-10-26T01:35:03.406807-04:00",
+  "inputs_before": "562c818a7b3faf7746d8ac3adf58bf2580c29a0bb93faf4a5744fd85202c481f",
+  "exit": 0,
+  "elapsed_seconds": 4.836462125,
+  "finished": "2026-10-26T01:35:08.238203-04:00",
+  "inputs_after": "562c818a7b3faf7746d8ac3adf58bf2580c29a0bb93faf4a5744fd85202c481f",
+  "unchanged": true
+}

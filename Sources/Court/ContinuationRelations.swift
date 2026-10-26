@@ -71,7 +71,7 @@ extension ContinuationCourt {
         let question: Places
         var actions: [ActionMember] = []
         var hiddenActions: [ActionMember]? = nil
-        var core: ContinuationCore.Reading { .init(whole: whole, observation: observation, question: question) }
+        var core: ContinuationCore.Reading { .init(whole: whole, observation: observation, question: question, actions: actions, hiddenActions: hiddenActions) }
         var source: Shape { whole.source }
         var edges: [SourceEdge] { whole.edges }
         func sort(_ path: Path) throws -> String { try whole.sort(path) }

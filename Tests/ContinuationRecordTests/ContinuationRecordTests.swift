@@ -51,7 +51,7 @@ final class ContinuationRecordTests: XCTestCase {
             ("BOM", "\u{FEFF}" + text, "record"),
             ("Swift is not the record grammar", "enum World<S> {}", "record"),
             ("unread action", text.replacingOccurrences(of: "\"schema\":1", with: "\"Actions\":[],\"schema\":1"), "record.Actions"),
-            ("wrong version", text.replacingOccurrences(of: "\"schema\":1", with: "\"schema\":2"), "record.schema"),
+            ("wrong version", text.replacingOccurrences(of: "\"schema\":1", with: "\"schema\":3"), "record.schema"),
             ("noncanonical sort", text.replacingOccurrences(of: "\"sort\":0", with: "\"sort\":9"), "record: noncanonical"),
             ("unknown source field", text.replacingOccurrences(of: "{\"sort\":0}", with: "{\"sort\":0,\"value\":0}"), "record.source[1].value")
         ]

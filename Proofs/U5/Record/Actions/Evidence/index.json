@@ -1,0 +1,63 @@
+{
+  "origin": "T0117 local qualification, separate from the unchanged T0116 historical evidence",
+  "boundaries": [
+    "independent total families; not R subset H x X_E",
+    "physical section 12 not advanced",
+    "payload decoder, IO and execution remain named premises",
+    "finite observations are not correspondence proofs"
+  ],
+  "module_dependencies": {
+    "ContinuationRecord": [],
+    "RecordCourt": [
+      "ContinuationRecord"
+    ],
+    "Court": [
+      "ContinuationRecord"
+    ],
+    "Tools": [
+      "GrammarLexicon",
+      "Alphabet",
+      "VerificationIsIdentification",
+      "Court"
+    ]
+  },
+  "schema1_canonical_certificates_unchanged": 42,
+  "schema1_original_receipt_sha256": "870afbd321b2d5179006906d0dfe7ddb28a62f266e0205dc62f69bb56f0d1955",
+  "original_receipts_sha256": {
+    "actions-differential.json": "0852c9d39423ce080f7323787553d6e0037a3ef5e1289b78bf7e3938a3319f9e",
+    "schema1-regression.json": "ea4d1b19670db8bea44085260f11423b5bedb4d8d32c7d7f8e1b8c623a0cabfa",
+    "axioms.json": "14c366dca78ec0207fcab71ddd1d66b5be31c001f72b48cd1bf5751c5503a4dd",
+    "swift-build-first.json": "3a194d1f08f278c90f8afc7b3199644f8686663923daed4f2dd444f8fddf6267",
+    "swift-build.json": "34c22bb66d8b3dc3b58a598c3920069a0c573ee18ad8294f14ad9aac0a35f477",
+    "focused-tests.json": "a1786797f083bf1b78f7792e8784e9fe7a122893c8607438b312fbe7c64ee3b5",
+    "isolated-module.json": "f1ba01c38783a1e98801256df22772d295fa123c49e91e717b68e6578969020c",
+    "lean-final.json": "5b4f9e930ee3c261b5735c614ce2d199e2287ea600290dd7c028ebf01c3b2d7b",
+    "differential-actions-1.json": "26993b6ff34984417337eaa8525dc7cd512c89b5909b476571771264d5fe03b5",
+    "differential-schema1-1.json": "c106227f7edeb2fbdb1a36a89f54870166f01b2903c3fc242d429e0005135b7a"
+  },
+  "inputs": {
+    "Contracts/Court/continuation-relations-v1/action-cases.swift": "1496e0eede7e3dc1586f4b8a06405d072860707b412aa3c44a3508db52ae26e5",
+    "Contracts/Court/continuation-relations-v1/contract.json": "46f0d099375fa13ca28ba004d670e4927967807c6db66600c8104d3c792236ad",
+    "Package.swift": "e09285eb9d451764a9ad6d3e2cec5c57b1f91931aeab75d21bef0b5486396312",
+    "Proofs/U5/Record/Actions/Admission.lean": "25a5232e15a69670401d33efe2141c6a2794d1d630632dd7c92c078145aba3d1",
+    "Proofs/U5/Record/Actions/Checker.lean": "4629e0ae6fa33f5df0e44f37ed885d4901f35ba5174ccce9691b5ced0feeb1a6",
+    "Proofs/U5/Record/Actions/Payload.lean": "f959539b511c983cee6074130f543c14883c8bb944131593d0605f776a2a2fd4",
+    "Proofs/U5/Record/Actions/Schema.lean": "621aadc6cefbcde51255169ee6c7983f5715501acb2f613bb0a7f814b04b5b0e",
+    "Proofs/U5/Record/Actions/Tools/differential.py": "2a828d7d3fbbf80599700d1d2b7ccfde9027ebaf0e87c2b4b5b87846408d9e6a",
+    "Proofs/U5/Record/Actions/Wire.lean": "d3f47c9bceb03b87b4f56ef4d0d1978d857e0c78128d183c396484c736ee3be3",
+    "Proofs/U5/Record/Admission.lean": "21ad272d4457048e667a84afbae7814bbd94f5c0ab8e0b8c460b4ded7f5aa2c0",
+    "Proofs/U5/Record/Axioms.lean": "396e72b1e098f74e81eefdc13a00ec0a3c38a0475d4276a6b04eae816340e99d",
+    "Proofs/U5/Record/Bytes.lean": "815bdadef252ce3f7b670fcfeedfd9213a3a4ccca4bcf3d852c6c1b7e4379356",
+    "Proofs/U5/Record/Checker.lean": "a27d3401eb461aca60f98cab11dd9a442c7ba4ebab26ba855e446e1882a38caa",
+    "Proofs/U5/Record/Main.lean": "563957453733a8bfe0eafddcc3a386eed82881925615ad5fef994d1289c73449",
+    "Proofs/U5/Record/Payload.lean": "f3bf3d286be16d5391cbff6ac2bd320f8f85011894da3573ed43c7b02ccccf76",
+    "Proofs/U5/Record/Schema.lean": "6df6c23971c24412439c66f0a5ac0094a24d582afa374d57620a6acc94b0e000",
+    "Proofs/U5/Record/Semantics.lean": "74b03e85c90cf08c3e31aa423291fc3a2da1762a2c012ad6bf043bdc5449142b",
+    "Proofs/U5/Record/Tools/differential.py": "5d6a120baea54ad4be3d2b19a48677c4b2e0915071ccb322f958ffc4e6226943",
+    "Proofs/U5/Record/Wire.lean": "3658f431ebe58e5f6a70f7e47651518846b3f23af2c34ac802b63d90891bffb9",
+    "Sources/ContinuationRecord/ContinuationCore.swift": "918d7514462e824459b20ab4eb47a1991811f1f108bdc5f7dee48f01fad9eaa8",
+    "Sources/ContinuationRecord/ContinuationDynamics.swift": "7414f6949a192258bc0276b104bb7e94996c4aeb86ce22e383fb70ef017daf54",
+    "Sources/ContinuationRecord/RecordContinuation.swift": "599a6943b72d1ceeb74e6973b0069a3657bf49cc6cecd5ce87dcbb71ae91c84a",
+    "Sources/ContinuationRecord/RecordJSON.swift": "fa2ea60a332b3446c600d765f35b0f5b7e6e1b483fa2c90208ceaf5f5e91a957"
+  }
+}

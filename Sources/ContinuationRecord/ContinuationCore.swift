@@ -1,6 +1,6 @@
 import Foundation
 
-// U5/U6 addressed calculus. No source-language reader or nominal context.
+// U5–U8 addressed calculus. No source-language reader or nominal context.
 public enum ContinuationCore {
     public struct Failure: Error, CustomStringConvertible {
         public let description: String
@@ -169,10 +169,14 @@ public enum ContinuationCore {
         public let whole: WholeReading
         public let observation: Places
         public let question: Places
+        public let actions: [ActionMember]
+        public let hiddenActions: [ActionMember]?
         public var edges: [SourceEdge] { whole.edges }
         public var source: Shape { whole.source }
-        public init(whole: WholeReading, observation: Places, question: Places) {
+        public init(whole: WholeReading, observation: Places, question: Places, actions: [ActionMember] = [], hiddenActions: [ActionMember]? = nil) {
             self.whole = whole; self.observation = observation; self.question = question
+            self.actions = actions
+            self.hiddenActions = hiddenActions
         }
         public func sort(_ path: Path) throws -> String { try whole.sort(path) }
     }

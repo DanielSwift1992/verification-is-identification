@@ -1,0 +1,10 @@
+ℹ [95/103] Replayed «record-check»:exe
+info: stderr:
+ld64.lld: warning: directory not found for option -L/usr/local/lib
+✔ [96/103] Built U10.Support (358ms)
+✔ [97/103] Built U9.ContractCases (1.6s)
+✔ [98/103] Built U9 (279ms)
+✔ [100/103] Built U10.ContractCases (3.2s)
+✔ [101/103] Built U10.Examples (292ms)
+✔ [102/103] Built U10 (242ms)
+Build completed successfully (103 jobs).

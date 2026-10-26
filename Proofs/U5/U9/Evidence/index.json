@@ -1,0 +1,22 @@
+{
+  "base": "07a4c7fdd83f8d79ec0d4ed4111286de33ed1b8f",
+  "claims": 173,
+  "newClaims": 48,
+  "nativeSeconds": 17.168,
+  "proofsSeconds": 0.552,
+  "normalizedCertificates": 485,
+  "readingOnly": 18,
+  "contractCases": 68,
+  "forgeries": 435,
+  "finiteObservations": 503,
+  "frozenObservationsMatchReceipt": true,
+  "proofInputsMatchReceipt": true,
+  "evidenceSHA256": {
+    "Proofs/U5/U9/Evidence/contract-observations.json": "c99dc06f220a4b9bec7f8825a7966903952548fedbd13e608428bab172d6f4e6",
+    "Proofs/U5/U9/Evidence/fixture-receipt.json": "16225e9946ddf20c3d5d3aa684fbd8e3844da98a4193395a0d7ce12e5bb1a7e3",
+    "Proofs/U5/U9/Evidence/lean-build.txt": "fe6b19a28eb0f2e7282a9e58c6ec2ddb9a981e5e8f6c99305b8ad0e8a6817262",
+    "Proofs/U5/U9/Evidence/proofs-final.json": "2b9af58271e5163d8c9c1fe5b4a1d403c82c0018d25a6a3cab8f9245506be533",
+    "Proofs/U5/U10/Evidence/contract-observations.json": "9e5f6a723081ca86ed9ead636c8aa44ebaa81cde7286d0a01a1a985ac29a4307",
+    "Proofs/U5/U9/Evidence/proofs-final.txt": "234ae3c2847e54f5786f87ab5b0288500e24d45c1f2330d74b8d660dd6d333ed"
+  }
+}

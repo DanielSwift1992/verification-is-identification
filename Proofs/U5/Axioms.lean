@@ -6,6 +6,8 @@ import U7
 import U8
 import U11
 import Record
+import U9
+import U10
 
 -- U5
 #print axioms U5.closure_minimal
@@ -182,3 +184,57 @@ import Record
 #print axioms U11.Examples.duplicate_b_never
 #print axioms U11.Examples.duplicate_b_no_common
 #print axioms U11.Examples.preservation_refusal_can_return
+
+-- U9
+#print axioms U9.closure_sort
+#print axioms U9.image_forward
+#print axioms U9.image_reverse
+#print axioms U9.exact_image
+#print axioms U9.promise_iff
+#print axioms U9.promise_counterexample
+#print axioms U9.hidden_promise_iff
+#print axioms U9.checked_relation
+#print axioms U9.promise_checked
+#print axioms U9.family_verdict
+#print axioms U9.check_sound
+
+-- U10
+#print axioms U10.split_length
+#print axioms U10.bucket_lower_bound
+#print axioms U10.allocate_length
+#print axioms U10.allocation_covers
+#print axioms U10.allocation_attains
+#print axioms U10.unbound_attains
+#print axioms U10.allocation_minimal
+#print axioms U10.total_lower_bound
+#print axioms U10.total_attains
+#print axioms U10.residual_two
+#print axioms U10.assignment_cover
+#print axioms U10.free_bucket_length
+#print axioms U10.class_plan_bucket_bound
+#print axioms U10.bucket_sum_le
+#print axioms U10.class_plan_lower_bound
+#print axioms U10.obligations_iff
+#print axioms U10.normalize_legal
+#print axioms U10.shape_origin
+#print axioms U10.unavailable_impossible
+#print axioms U10.wrong_sort_impossible
+#print axioms U10.incompatible_impossible
+#print axioms U10.decoder_sound
+#print axioms U10.adequate_class_coverage
+#print axioms U10.normalize_assignments
+#print axioms U10.normalized_covers_step
+#print axioms U10.normalized_coverage
+#print axioms U10.u3_global_lower_bound
+#print axioms U10.plan_legal
+#print axioms U10.plan_count
+#print axioms U10.constructed_sound
+#print axioms U10.negative_sound
+#print axioms U10.refused_sound
+#print axioms U10.unbound_capacity
+#print axioms U10.check_sound
+
+#print axioms U10.Examples.two_necessary_sufficient
+
+#print axioms U10.sorts_spec
+#print axioms U10.refused_semantic

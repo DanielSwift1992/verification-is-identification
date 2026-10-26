@@ -1,0 +1,2119 @@
+[
+  {
+    "accepted" : true,
+    "case" : "AgreeThree",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AgreeThreeMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AgreeThreeMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AgreeThreeMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AgreeThreeMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AgreeThreeWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AgreeThreeMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AgreeThreeWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AgreeThreeWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AgreeThreeMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AgreeThreeMissingResidual",
+    "diagnostic" : "certificate.conclusion.constructed._0.residual: source term differs from retained addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AgreeThreeRepeatedResidualLeaf",
+    "diagnostic" : "certificate.conclusion.constructed._0.residualLeaves: leaf count does not attain the global lower bound",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "BindOriginal",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BindOriginalMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BindOriginalMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BindOriginalMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BindOriginalMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BindOriginalWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BindOriginalMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BindOriginalWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BindOriginalWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BindOriginalMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BindOriginalMissingBindingBases",
+    "diagnostic" : "certificate.conclusion.constructed._0.bindingBases: incomplete binding coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BindOriginalViolatesPrescribedSourceButDecodes",
+    "diagnostic" : "certificate.conclusion.constructed._0.bindingBases[0]: different source addresses are not identical",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BindOriginalMissingResidual",
+    "diagnostic" : "certificate.conclusion.constructed._0.residual: source term differs from retained addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BindOriginalRepeatedResidualLeaf",
+    "diagnostic" : "certificate.conclusion.constructed._0.residualLeaves: leaf count does not attain the global lower bound",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "ZeroResidual",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ZeroResidualMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ZeroResidualMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ZeroResidualMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ZeroResidualMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ZeroResidualWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ZeroResidualMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ZeroResidualWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ZeroResidualWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ZeroResidualMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "ScalarAgreement",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarAgreementMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarAgreementMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarAgreementMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarAgreementMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarAgreementWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarAgreementMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarAgreementWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarAgreementWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarAgreementMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarAgreementMissingResidual",
+    "diagnostic" : "certificate.conclusion.constructed._0.residual: source term differs from retained addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarAgreementRepeatedResidualLeaf",
+    "diagnostic" : "certificate.conclusion.constructed._0.residualLeaves: leaf count does not attain the global lower bound",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "RepeatedQuestion",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedQuestionMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedQuestionMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedQuestionMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedQuestionMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedQuestionWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedQuestionMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedQuestionWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedQuestionWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedQuestionMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "EqualSource",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualSourceMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualSourceMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualSourceMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualSourceMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualSourceWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualSourceMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualSourceWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualSourceWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualSourceMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "ExtraOutputPlaces",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ExtraOutputPlacesMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ExtraOutputPlacesMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ExtraOutputPlacesMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ExtraOutputPlacesMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ExtraOutputPlacesWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ExtraOutputPlacesMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ExtraOutputPlacesWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ExtraOutputPlacesWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ExtraOutputPlacesMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "TwoSortCapacity",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortCapacityMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortCapacityMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortCapacityMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortCapacityMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortCapacityWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortCapacityMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortCapacityWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortCapacityWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortCapacityMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortCapacityMissingResidual",
+    "diagnostic" : "certificate.conclusion.constructed._0.residual: source term differs from retained addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TwoSortCapacityRepeatedResidualLeaf",
+    "diagnostic" : "certificate.conclusion.constructed._0.residualLeaves: leaf count does not attain the global lower bound",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "QuestionSortNotInOutput",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "QuestionSortNotInOutputMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "QuestionSortNotInOutputMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "QuestionSortNotInOutputMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "QuestionSortNotInOutputMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "QuestionSortNotInOutputWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "QuestionSortNotInOutputMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "QuestionSortNotInOutputWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "QuestionSortNotInOutputWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "QuestionSortNotInOutputMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "QuestionSortNotInOutputMissingResidual",
+    "diagnostic" : "certificate.conclusion.constructed._0.residual: source term differs from retained addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "QuestionSortNotInOutputRepeatedResidualLeaf",
+    "diagnostic" : "certificate.conclusion.constructed._0.residualLeaves: leaf count does not attain the global lower bound",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "BoundOutsideQuestion",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundOutsideQuestionMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundOutsideQuestionMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundOutsideQuestionMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundOutsideQuestionMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundOutsideQuestionWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundOutsideQuestionMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundOutsideQuestionWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundOutsideQuestionWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundOutsideQuestionMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundOutsideQuestionMissingBindingBases",
+    "diagnostic" : "certificate.conclusion.constructed._0.bindingBases: incomplete binding coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundOutsideQuestionMissingResidual",
+    "diagnostic" : "certificate.conclusion.constructed._0.residual: source term differs from retained addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundOutsideQuestionRepeatedResidualLeaf",
+    "diagnostic" : "certificate.conclusion.constructed._0.residualLeaves: leaf count does not attain the global lower bound",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "DuplicateFixed",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateFixedMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateFixedMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateFixedMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateFixedMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateFixedWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateFixedMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateFixedWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateFixedWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateFixedMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateFixedMissingBindingBases",
+    "diagnostic" : "certificate.conclusion.constructed._0.bindingBases: incomplete binding coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateFixedMissingResidual",
+    "diagnostic" : "certificate.conclusion.constructed._0.residual: source term differs from retained addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateFixedRepeatedResidualLeaf",
+    "diagnostic" : "certificate.conclusion.constructed._0.residualLeaves: leaf count does not attain the global lower bound",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "FreeBeforeFixed",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FreeBeforeFixedMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FreeBeforeFixedMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FreeBeforeFixedMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FreeBeforeFixedMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FreeBeforeFixedWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FreeBeforeFixedMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FreeBeforeFixedWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FreeBeforeFixedWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FreeBeforeFixedMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FreeBeforeFixedMissingBindingBases",
+    "diagnostic" : "certificate.conclusion.constructed._0.bindingBases: incomplete binding coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FreeBeforeFixedMissingResidual",
+    "diagnostic" : "certificate.conclusion.constructed._0.residual: source term differs from retained addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FreeBeforeFixedRepeatedResidualLeaf",
+    "diagnostic" : "certificate.conclusion.constructed._0.residualLeaves: leaf count does not attain the global lower bound",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "FixedAndFreeCover",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedAndFreeCoverMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedAndFreeCoverMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedAndFreeCoverMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedAndFreeCoverMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedAndFreeCoverWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedAndFreeCoverMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedAndFreeCoverWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedAndFreeCoverWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedAndFreeCoverMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedAndFreeCoverMissingBindingBases",
+    "diagnostic" : "certificate.conclusion.constructed._0.bindingBases: incomplete binding coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "EquivalentBindings",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EquivalentBindingsMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EquivalentBindingsMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EquivalentBindingsMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EquivalentBindingsMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EquivalentBindingsWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EquivalentBindingsMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EquivalentBindingsWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EquivalentBindingsWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EquivalentBindingsMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EquivalentBindingsMissingBindingBases",
+    "diagnostic" : "certificate.conclusion.constructed._0.bindingBases: incomplete binding coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "ChainedBindings",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedBindingsMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedBindingsMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedBindingsMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedBindingsMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedBindingsWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedBindingsMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedBindingsWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedBindingsWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedBindingsMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ChainedBindingsMissingBindingBases",
+    "diagnostic" : "certificate.conclusion.constructed._0.bindingBases: incomplete binding coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "IndependentOutputClasses",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentOutputClassesMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentOutputClassesMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentOutputClassesMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentOutputClassesMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentOutputClassesWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentOutputClassesMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentOutputClassesWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentOutputClassesWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentOutputClassesMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentOutputClassesMissingResidual",
+    "diagnostic" : "certificate.conclusion.constructed._0.residual: source term differs from retained addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IndependentOutputClassesRepeatedResidualLeaf",
+    "diagnostic" : "certificate.conclusion.constructed._0.residualLeaves: leaf count does not attain the global lower bound",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "SeparateSortBindings",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "SeparateSortBindingsMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "SeparateSortBindingsMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "SeparateSortBindingsMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "SeparateSortBindingsMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "SeparateSortBindingsWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "SeparateSortBindingsMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "SeparateSortBindingsWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "SeparateSortBindingsWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "SeparateSortBindingsMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "SeparateSortBindingsMissingBindingBases",
+    "diagnostic" : "certificate.conclusion.constructed._0.bindingBases: incomplete binding coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "SeparateSortBindingsMissingResidual",
+    "diagnostic" : "certificate.conclusion.constructed._0.residual: source term differs from retained addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "SeparateSortBindingsRepeatedResidualLeaf",
+    "diagnostic" : "certificate.conclusion.constructed._0.residualLeaves: leaf count does not attain the global lower bound",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "ScalarSource",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarSourceMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarSourceMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarSourceMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarSourceMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarSourceWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarSourceMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarSourceWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarSourceWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarSourceMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "EmptySourceRelations",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EmptySourceRelationsMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EmptySourceRelationsMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EmptySourceRelationsMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EmptySourceRelationsMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EmptySourceRelationsWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EmptySourceRelationsMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EmptySourceRelationsWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EmptySourceRelationsWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EmptySourceRelationsMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EmptySourceRelationsMissingResidual",
+    "diagnostic" : "certificate.conclusion.constructed._0.residual: source term differs from retained addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EmptySourceRelationsRepeatedResidualLeaf",
+    "diagnostic" : "certificate.conclusion.constructed._0.residualLeaves: leaf count does not attain the global lower bound",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "BoundRepeatSameLeaf",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundRepeatSameLeafMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundRepeatSameLeafMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundRepeatSameLeafMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundRepeatSameLeafMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundRepeatSameLeafWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundRepeatSameLeafMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundRepeatSameLeafWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundRepeatSameLeafWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundRepeatSameLeafMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundRepeatSameLeafMissingBindingBases",
+    "diagnostic" : "certificate.conclusion.constructed._0.bindingBases: incomplete binding coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundRepeatSameLeafMissingResidual",
+    "diagnostic" : "certificate.conclusion.constructed._0.residual: source term differs from retained addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundRepeatSameLeafRepeatedResidualLeaf",
+    "diagnostic" : "certificate.conclusion.constructed._0.residualLeaves: leaf count does not attain the global lower bound",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "AliasedObligations",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedObligationsMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedObligationsMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedObligationsMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedObligationsMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedObligationsWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedObligationsMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedObligationsWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedObligationsWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedObligationsMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedObligationsMissingResidual",
+    "diagnostic" : "certificate.conclusion.constructed._0.residual: source term differs from retained addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedObligationsRepeatedResidualLeaf",
+    "diagnostic" : "certificate.conclusion.constructed._0.residualLeaves: leaf count does not attain the global lower bound",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "SourceAliasOutput",
+    "diagnostic" : "SourceAliasOutput.Output: the target shape is written with sorts; source places are prescribed by BoundOutputs\/BoundSources",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : true,
+    "case" : "MissingSort",
+    "diagnostic" : "",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MissingSortMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MissingSortMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MissingSortMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MissingSortMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MissingSortFalseUnavailable",
+    "diagnostic" : "certificate.conclusion.unavailable.output: route projects an opaque leaf",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "IncompatibleBindings",
+    "diagnostic" : "",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IncompatibleBindingsMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IncompatibleBindingsMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IncompatibleBindingsMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IncompatibleBindingsMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IncompatibleBindingsSameBinding",
+    "diagnostic" : "certificate.conclusion.incompatible: bindings do not separate source classes in one output C-class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "IncompatibleSameOutput",
+    "diagnostic" : "",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IncompatibleSameOutputMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IncompatibleSameOutputMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IncompatibleSameOutputMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IncompatibleSameOutputMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IncompatibleSameOutputSameBinding",
+    "diagnostic" : "certificate.conclusion.incompatible: bindings do not separate source classes in one output C-class",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "WrongBindingSort",
+    "diagnostic" : "",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "WrongBindingSortMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "WrongBindingSortMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "WrongBindingSortMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "WrongBindingSortMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "WrongBindingSortUnknownBinding",
+    "diagnostic" : "certificate.conclusion.wrongSort.binding: no declared binding at this address",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "WrongSortSecond",
+    "diagnostic" : "",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "WrongSortSecondMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "WrongSortSecondMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "WrongSortSecondMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "WrongSortSecondMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "WrongSortSecondUnknownBinding",
+    "diagnostic" : "certificate.conclusion.wrongSort.binding: no declared binding at this address",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MissingBoundSources",
+    "diagnostic" : "MissingBoundSources.BoundSources: both binding endpoint fields are required together",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : false,
+    "case" : "MissingBoundOutputs",
+    "diagnostic" : "MissingBoundOutputs.BoundOutputs: both binding endpoint fields are required together",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : false,
+    "case" : "MismatchedBindingTrees",
+    "diagnostic" : "MismatchedBindingTrees.BoundSources.Right: endpoint shapes differ",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : false,
+    "case" : "SourceIsNotOutputPromise",
+    "diagnostic" : "SourceIsNotOutputPromise.Promise: unsupported or conditional declaration: $continuation0",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : false,
+    "case" : "DifferentAgreementSorts",
+    "diagnostic" : "DifferentAgreementSorts.Promise: endpoints have different sorts",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnreadBindingAxis",
+    "diagnostic" : "UnreadBindingAxis.BoundSource: unread axis in the declared whole",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : false,
+    "case" : "BorrowedOutput",
+    "diagnostic" : "BorrowedOutput.Output: unknown projection Output",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnrootedAgreementQuestion",
+    "diagnostic" : "UnrootedAgreementQuestion.Question: unsupported or conditional declaration: $continuation0",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : true,
+    "case" : "UnavailableBoundSort",
+    "diagnostic" : "",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnavailableBoundSortMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnavailableBoundSortMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnavailableBoundSortMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnavailableBoundSortMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnavailableBoundSortFalseUnavailable",
+    "diagnostic" : "certificate.conclusion.unavailable.output: route projects an opaque leaf",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "BoundDistinctSlots",
+    "diagnostic" : "",
+    "holds" : true,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundDistinctSlotsMissingSourceClasses",
+    "diagnostic" : "certificate.classes: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundDistinctSlotsMissingSourceForests",
+    "diagnostic" : "certificate.connections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundDistinctSlotsMissingOutputClasses",
+    "diagnostic" : "certificate.outputClasses: incomplete source coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundDistinctSlotsMissingOutputForests",
+    "diagnostic" : "certificate.outputConnections: incomplete class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundDistinctSlotsWrongStep",
+    "diagnostic" : "certificate.conclusion.constructed._0.step: term differs from C-class assignments",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundDistinctSlotsMissingAssignments",
+    "diagnostic" : "certificate.conclusion.constructed._0.assignments: incomplete output C-class coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundDistinctSlotsWrongCapacity",
+    "diagnostic" : "certificate.conclusion.constructed._0.capacities: counts differ from exact classes and fixed bindings",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundDistinctSlotsWrongDecoder",
+    "diagnostic" : "certificate.conclusion.constructed._0.decoder: assembled term differs from the selected addresses",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundDistinctSlotsMissingSelections",
+    "diagnostic" : "certificate.conclusion.constructed._0.selections: incomplete output coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "BoundDistinctSlotsMissingBindingBases",
+    "diagnostic" : "certificate.conclusion.constructed._0.bindingBases: incomplete binding coverage",
+    "holds" : false,
+    "layer" : "normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "SwappedOutput",
+    "diagnostic" : "SwappedOutput.Output: the target shape is written with sorts; source places are prescribed by BoundOutputs\/BoundSources",
+    "layer" : "Swift reading only"
+  },
+  {
+    "accepted" : false,
+    "case" : "OutputThroughSourceCut",
+    "diagnostic" : "OutputThroughSourceCut.Output: the target shape is written with sorts; source places are prescribed by BoundOutputs\/BoundSources",
+    "layer" : "Swift reading only"
+  }
+]

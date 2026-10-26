@@ -1,4 +1,5 @@
 import Foundation
+import ContinuationRecord
 
 // U7/U8 on source-addressed total structural actions. This extends the same
 // Context/RouteProof interpretation; it does not read another record language.
@@ -101,12 +102,7 @@ extension ContinuationCourt {
         equalityGraph(r.whole)
     }
     static func equalityGraph(_ whole: WholeReading) -> [Path: [(Path, EqualityStep)]] {
-        var graph: [Path: [(Path, EqualityStep)]] = [:]
-        for edge in whole.edges {
-            graph[edge.left, default: []].append((edge.right, .init(edge: edge.address, reversed: false)))
-            graph[edge.right, default: []].append((edge.left, .init(edge: edge.address, reversed: true)))
-        }
-        return graph
+        ContinuationCore.equalityGraph(whole)
     }
     // Construction only. Replay checks the closed partition and these forests.
     static func constructPartition(_ r: RelatedReading) ->
@@ -115,26 +111,7 @@ extension ContinuationCourt {
     }
     static func constructPartition(_ whole: WholeReading) ->
         (classes: [PartitionClass], connections: [[EqualityStep]], blocks: [Path: Int]) {
-        let adjacent = equalityGraph(whole)
-        var seen: Set<Path> = [], classes: [PartitionClass] = [], connections: [[EqualityStep]] = []
-        var blocks: [Path: Int] = [:]
-        for (path, sort) in whole.source.leaves
-        where seen.insert(path).inserted {
-            var component = [path], forest: [EqualityStep] = []
-            var cursor = 0
-            while cursor < component.count {
-                for (next, step) in adjacent[component[cursor]] ?? []
-                where seen.insert(next).inserted {
-                    component.append(next)
-                    forest.append(step)
-                }
-                cursor += 1
-            }
-            for member in component { blocks[member] = classes.count }
-            classes.append(.init(sort: sort, leaves: component))
-            connections.append(forest)
-        }
-        return (classes, connections, blocks)
+        ContinuationCore.constructPartition(whole)
     }
     static func constructionBasis(_ from: Path, _ to: Path, reading r: RelatedReading,
                                   budget: inout ActionBudget) throws -> EqualityBasis {

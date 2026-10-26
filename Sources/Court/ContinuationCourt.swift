@@ -1,4 +1,5 @@
 import Foundation
+import ContinuationRecord
 
 /// System U5/U6 on a closed source type-field grammar. The reader, constructor,
 /// and replay work on current declarations, never on payload observations.
@@ -6,47 +7,12 @@ import Foundation
 enum ContinuationCourt {
     typealias R = DefinitionReduction
     typealias E = R.Expression
-    typealias Failure = R.Failure
+    typealias Failure = ContinuationCore.Failure
 
-    enum Side: String, Codable, Hashable {
-        case left = "Left", right = "Right"
-        init?(name: String) {
-            if WhereJudge.sameName(name, "Left") { self = .left }
-            else if WhereJudge.sameName(name, "Right") { self = .right }
-            else { return nil }
-        }
-    }
-    typealias Path = [Side]
+    typealias Side = ContinuationCore.Side
+    typealias Path = ContinuationCore.Path
 
-    indirect enum Shape: Equatable {
-        case leaf(String), pair(Shape, Shape)
-        static func == (lhs: Self, rhs: Self) -> Bool {
-            switch (lhs, rhs) {
-            case let (.leaf(a), .leaf(b)): return WhereJudge.sameName(a, b)
-            case let (.pair(a, b), .pair(c, d)): return a == c && b == d
-            default: return false
-            }
-        }
-
-        func at(_ path: Path) throws -> Shape {
-            var node = self
-            for side in path {
-                guard case let .pair(l, r) = node else {
-                    throw Failure("route projects an opaque leaf")
-                }
-                node = side == .left ? l : r
-            }
-            return node
-        }
-        var leaves: [(Path, String)] {
-            switch self {
-            case let .leaf(name): return [([], name)]
-            case let .pair(l, r):
-                return l.leaves.map { ([.left] + $0.0, $0.1) }
-                    + r.leaves.map { ([.right] + $0.0, $0.1) }
-            }
-        }
-    }
+    typealias Shape = ContinuationCore.Shape
 
     /// Input expressions are reconstructed by replay. A definition step's
     /// body is obtained from the live source, not asserted by this certificate.
@@ -57,31 +23,7 @@ enum ContinuationCourt {
         case definition(E, [ReadProof], ReadProof)
     }
 
-    indirect enum Program: Codable, Equatable {
-        case pick(Path), pair(Program, Program)
-        func apply(to input: Shape) throws -> Shape {
-            var remaining = 100_000
-            func walk(_ program: Program, _ depth: Int) throws -> Shape {
-                guard remaining > 0, depth < 256 else {
-                    throw Failure("program exceeds replay limit")
-                }
-                remaining -= 1
-                switch program {
-                case let .pick(path): return try input.at(path)
-                case let .pair(l, r): return try .pair(walk(l, depth + 1), walk(r, depth + 1))
-                }
-            }
-            return try walk(self, 0)
-        }
-        func swift(_ input: String, constructor: String) -> String {
-            switch self {
-            case let .pick(path): return ContinuationCourt.pathText(input, path)
-            case let .pair(l, r):
-                return
-                    "\(constructor)<\(l.swift(input,constructor:constructor)), \(r.swift(input,constructor:constructor))>"
-            }
-        }
-    }
+    typealias Program = ContinuationCore.Program
 
     struct Missing: Codable {
         let source: Path
@@ -523,6 +465,10 @@ enum ContinuationCourt {
     }
 
     static func run(_ arguments: [String], replay: Bool = false) {
+        if arguments.first == "--record" {
+            RecordContinuation.run(Array(arguments.dropFirst()), replay: replay)
+            return
+        }
         if arguments.first == "--relations" {
             runRelations(Array(arguments.dropFirst()), replay: replay)
             return
@@ -585,5 +531,21 @@ extension DefinitionReduction.Expression: Codable {
     func encode(to encoder: Encoder) throws {
         var value = encoder.singleValueContainer()
         try value.encode(text)
+    }
+}
+
+extension ContinuationCore.Side {
+    init?(name: String) {
+        if WhereJudge.sameName(name, "Left") { self = .left }
+        else if WhereJudge.sameName(name, "Right") { self = .right }
+        else { return nil }
+    }
+}
+extension ContinuationCore.Program {
+    func swift(_ input: String, constructor: String) -> String {
+        switch self {
+        case let .pick(path): return ContinuationCourt.pathText(input, path)
+        case let .pair(l, r): return "\(constructor)<\(l.swift(input, constructor: constructor)), \(r.swift(input, constructor: constructor))>"
+        }
     }
 }

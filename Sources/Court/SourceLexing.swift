@@ -1,4 +1,5 @@
 import Foundation
+import ContinuationRecord
 
 extension Judge {
     /// Opaque source spans, projected by the same scalar lexer as Press/Court.
@@ -26,7 +27,7 @@ extension WhereJudge {
     /// Ownership/context binds that spelling to a declaration's place.
     /// Every name key and reconstructed name comparison uses this relation.
     static func sameName(_ lhs: String, _ rhs: String) -> Bool {
-        lhs.unicodeScalars.elementsEqual(rhs.unicodeScalars)
+        ContinuationCore.sameSort(lhs, rhs)
     }
     static func sameName(_ lhs: ScalarName, _ rhs: ScalarName) -> Bool { lhs == rhs }
     static func sameName(_ lhs: ScalarName, _ rhs: String) -> Bool { lhs == ScalarName(rhs) }

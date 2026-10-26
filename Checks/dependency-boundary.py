@@ -9,7 +9,8 @@ CONFIG = 'Checks/dependency-boundary.json'
 # T0095 adds its local open-debt destination; two Encoding sentence contexts change.
 # Scope, vocabulary, probe classes and retirement limits remain unchanged.
 # T0083 removes the obsolete Press header reference; no consumer debt is restored.
-POLICY_SHA256 = 'bca3c57377ceaf8a216cdf6a98b3556dfaad6c1232d0bceb9754555061ad78e1'
+# T0109 removes one obsolete Foundation-only comment; scopes and exceptions stay fixed.
+POLICY_SHA256 = 'eb59bd0adab691fc56823cefefefeeb072f58c6a08496a88e9628521482db84b'
 LAW = ROOT / 'Checks/boundary-law.py'
 exec(compile(LAW.read_bytes(), str(LAW), 'exec'), globals())
 

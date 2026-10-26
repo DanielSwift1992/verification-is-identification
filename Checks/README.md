@@ -3,6 +3,8 @@
 The corpus contains premises, relations and derivations. Experiments and
 their saved results are separate from that mathematical object.
 
+The [direct record entrance](../Contracts/Court/continuation-record-v1/README.md) admits an addressed U5/U6 world without Swift source. ContinuationRecordTests checks byte/schema/address admission and certificate forgeries. ContinuationRecordDifferentialTests compares every U5/U6 relations-contract case, missing classes and the leaf minimum, and exercises the standalone RecordCourt and the Court facade. The target-graph law checks the independent module boundary and refuses added edges to Court. Reader/replay correctness remains a named premise and qualification debt T0109, not a theorem established by this sample.
+
 `bash Checks/receiver-continuation.sh` checks the generic sufficient recovery
 case of System U12a: recovery of the original bound input makes composition
 with that receiver well-formed and derives its answer. Two projections of the

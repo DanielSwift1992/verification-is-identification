@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "worlds": 29,
+  "malformed": 18,
+  "forgeries": 11,
+  "lead_records": 28,
+  "comparisons": 174,
+  "failures": 0,
+  "native_sha256": "6635a293b73591e98e2aaffc23af109fbfbf2578c54c9404d3332ace24914e3a",
+  "lean_sha256": "19b1021df7bf7ddbc667875e142f1fae1e4b3cea9df7240cf6cecc12fa3d8ce7",
+  "frozen_worlds_sha256": "597627bffcba9ea92f51f5e1bb8d1fd5668c393b5a60fbbbdb624fa59121dd54",
+  "harness_sha256": "5d6a120baea54ad4be3d2b19a48677c4b2e0915071ccb322f958ffc4e6226943",
+  "timing_case": "RetainTwoSorts with --retain; process startup included; 21 sequential samples"
+}
+timing medians: {'native': 0.006987500000000146, 'lean': 0.01827129199999966}

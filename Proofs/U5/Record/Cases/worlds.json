@@ -1,0 +1,151 @@
+{
+  "origin": "T0109 fc533f0f; canonical records exported by ContinuationRecordDifferentialTests; eight explicitly unread counterparts",
+  "contract_sha256": "46f0d099375fa13ca28ba004d670e4927967807c6db66600c8104d3c792236ad",
+  "cases": [
+    {
+      "request": "AddressIdentity",
+      "outcome": "constructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[0]}}"
+    },
+    {
+      "request": "OneEquality",
+      "outcome": "constructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[{\"at\":[],\"left\":[0],\"right\":[1],\"basis\":\"declared\"}],\"observation\":{\"place\":[0]},\"question\":{\"place\":[1]}}"
+    },
+    {
+      "request": "EqualityChain",
+      "outcome": "constructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"pair\":[3,4]},{\"sort\":0},{\"sort\":0}],\"equalities\":[{\"at\":[0],\"left\":[0],\"right\":[1,0],\"basis\":\"declared\"},{\"at\":[1],\"left\":[1,0],\"right\":[1,1],\"basis\":\"declared\"}],\"observation\":{\"place\":[0]},\"question\":{\"place\":[1,1]}}"
+    },
+    {
+      "request": "ReversedChain",
+      "outcome": "constructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"pair\":[3,4]},{\"sort\":0},{\"sort\":0}],\"equalities\":[{\"at\":[0],\"left\":[0],\"right\":[1,0],\"basis\":\"declared\"},{\"at\":[1],\"left\":[1,0],\"right\":[1,1],\"basis\":\"declared\"}],\"observation\":{\"place\":[1,1]},\"question\":{\"place\":[0]}}"
+    },
+    {
+      "request": "JointQuestion",
+      "outcome": "constructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"pair\":[3,4]},{\"sort\":0},{\"sort\":0}],\"equalities\":[{\"at\":[],\"left\":[1,0],\"right\":[1,1],\"basis\":\"declared\"}],\"observation\":{\"pair\":[{\"place\":[0]},{\"place\":[1,0]}]},\"question\":{\"pair\":[{\"place\":[1,1]},{\"pair\":[{\"place\":[0]},{\"place\":[1,0]}]}]}}"
+    },
+    {
+      "request": "AliasedView",
+      "outcome": "constructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"pair\":[3,4]},{\"sort\":0},{\"sort\":0}],\"equalities\":[{\"at\":[],\"left\":[0],\"right\":[1,0],\"basis\":\"declared\"}],\"observation\":{\"pair\":[{\"place\":[1,0]},{\"place\":[1,1]}]},\"question\":{\"pair\":[{\"place\":[0]},{\"place\":[1,1]}]}}"
+    },
+    {
+      "request": "DisconnectedClass",
+      "outcome": "obstructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,4]},{\"pair\":[2,3]},{\"sort\":0},{\"sort\":0},{\"pair\":[5,6]},{\"sort\":0},{\"sort\":0}],\"equalities\":[{\"at\":[],\"left\":[0,0],\"right\":[0,1],\"basis\":\"declared\"}],\"observation\":{\"place\":[0,0]},\"question\":{\"place\":[1,1]}}"
+    },
+    {
+      "request": "SameSortDifferentPlaces",
+      "outcome": "obstructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[1]}}"
+    },
+    {
+      "request": "DisplayCoincidence",
+      "outcome": "obstructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[1]}}"
+    },
+    {
+      "request": "TwoSorts",
+      "outcome": "obstructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":1}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[1]}}"
+    },
+    {
+      "request": "CrossSortEquality",
+      "outcome": "unsupported",
+      "record": "{\"equalities\":[{\"at\":[],\"basis\":\"declared\",\"left\":[0],\"right\":[1]}],\"observation\":{\"place\":[0]},\"question\":{\"place\":[1]},\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":1}]}"
+    },
+    {
+      "request": "MismatchedEdgeTrees",
+      "outcome": "unsupported",
+      "record": "{\"equalities\":[{\"at\":[],\"basis\":\"declared\",\"left\":[[0],[1]],\"right\":[1]}],\"observation\":{\"place\":[0]},\"question\":{\"place\":[1]},\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}]}"
+    },
+    {
+      "request": "SortIsNotSourcePlace",
+      "outcome": "unsupported",
+      "record": "{\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"sort\":0},\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}]}"
+    },
+    {
+      "request": "DuplicatedOrigin",
+      "outcome": "constructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"pair\":[{\"place\":[0]},{\"place\":[0]}]},\"question\":{\"place\":[0]}}"
+    },
+    {
+      "request": "WholeAsObservation",
+      "outcome": "constructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"pair\":[{\"place\":[0]},{\"place\":[1]}]},\"question\":{\"pair\":[{\"place\":[1]},{\"place\":[0]}]}}"
+    },
+    {
+      "request": "UnrootedObservation",
+      "outcome": "unsupported",
+      "record": "{\"equalities\":[],\"observation\":{\"pair\":[{\"place\":[0]},{\"sort\":0}]},\"question\":{\"place\":[1]},\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}]}"
+    },
+    {
+      "request": "UnrootedQuestionAlias",
+      "outcome": "unsupported",
+      "record": "{\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"pair\":[{\"sort\":0},{\"sort\":0}]},\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}]}"
+    },
+    {
+      "request": "ForeignWholeView",
+      "outcome": "unsupported",
+      "record": "{\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[1],\"whole\":1},\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}]}"
+    },
+    {
+      "request": "MultiClassResidue",
+      "outcome": "obstructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,4]},{\"pair\":[2,3]},{\"sort\":0},{\"sort\":0},{\"pair\":[5,6]},{\"sort\":0},{\"sort\":0}],\"equalities\":[{\"at\":[],\"left\":[0,0],\"right\":[0,1],\"basis\":\"declared\"}],\"observation\":{\"place\":[0,0]},\"question\":{\"pair\":[{\"place\":[1,0]},{\"pair\":[{\"place\":[1,1]},{\"place\":[1,0]}]}]}}"
+    },
+    {
+      "request": "ResidueEqualityClass",
+      "outcome": "obstructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"pair\":[3,4]},{\"sort\":0},{\"sort\":0}],\"equalities\":[{\"at\":[],\"left\":[1,0],\"right\":[1,1],\"basis\":\"declared\"}],\"observation\":{\"place\":[0]},\"question\":{\"pair\":[{\"place\":[1,0]},{\"place\":[1,1]}]}}"
+    },
+    {
+      "request": "ResiduePartialQuestion",
+      "outcome": "obstructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,4]},{\"pair\":[2,3]},{\"sort\":0},{\"sort\":0},{\"pair\":[5,6]},{\"sort\":0},{\"sort\":0}],\"equalities\":[{\"at\":[],\"left\":[0,0],\"right\":[0,1],\"basis\":\"declared\"}],\"observation\":{\"place\":[0,0]},\"question\":{\"pair\":[{\"place\":[0,1]},{\"pair\":[{\"place\":[1,0]},{\"place\":[1,1]}]}]}}"
+    },
+    {
+      "request": "MisspelledWholeAxis",
+      "outcome": "unsupported",
+      "record": "{\"Equality\":{\"left\":[0],\"right\":[1]},\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[1]},\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}]}"
+    },
+    {
+      "request": "UnreadWholeAxis",
+      "outcome": "unsupported",
+      "record": "{\"Spare\":{\"place\":[1]},\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[1]},\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}]}"
+    },
+    {
+      "request": "ReadWholeHelperAxes",
+      "outcome": "constructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[0]}}"
+    },
+    {
+      "request": "RetainOneClass",
+      "outcome": "obstructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"place\":[1]}}"
+    },
+    {
+      "request": "RetainTwoSorts",
+      "outcome": "obstructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"pair\":[3,4]},{\"sort\":1},{\"sort\":2}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"pair\":[{\"place\":[0]},{\"pair\":[{\"place\":[1,0]},{\"place\":[1,1]}]}]}}"
+    },
+    {
+      "request": "RetainRepeatedClass",
+      "outcome": "obstructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[],\"observation\":{\"place\":[0]},\"question\":{\"pair\":[{\"place\":[1]},{\"place\":[1]}]}}"
+    },
+    {
+      "request": "RetainFromClassOutsideViews",
+      "outcome": "obstructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"pair\":[3,4]},{\"sort\":0},{\"sort\":0}],\"equalities\":[{\"at\":[],\"left\":[0],\"right\":[1,0],\"basis\":\"declared\"}],\"observation\":{\"place\":[1,1]},\"question\":{\"place\":[1,0]}}"
+    },
+    {
+      "request": "RetainNothing",
+      "outcome": "constructed",
+      "record": "{\"schema\":1,\"source\":[{\"pair\":[1,2]},{\"sort\":0},{\"sort\":0}],\"equalities\":[{\"at\":[],\"left\":[0],\"right\":[1],\"basis\":\"declared\"}],\"observation\":{\"place\":[0]},\"question\":{\"place\":[1]}}"
+    }
+  ]
+}

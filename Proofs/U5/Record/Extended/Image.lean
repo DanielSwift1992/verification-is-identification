@@ -110,7 +110,8 @@ def ImageDenotes (w : ImageRaw) (e : ImageEnvironment) : Prop :=
   Record.Denotes (sourceRaw w) e.model ∧ e.promise = w.promise.getD [] ∧
   match w.hidden with
   | none => e.members = [⟨[],w.image⟩]
-  | some hs => Actions.Corresponds (TargetDenotes (U9.output e.model w.image)) hs e.members
+  | some hs => Actions.Corresponds (TargetDenotes (U9.output e.model w.image)) hs e.members ∧
+      ∃ g ∈ e.members, g.image = w.image
 
 theorem image_members_denote {w : ImageRaw} {m : Model} {gs : List U9.Member}
     (h : imageMembers w m = .ok gs) :
@@ -134,6 +135,34 @@ theorem image_members_denote {w : ImageRaw} {m : Model} {gs : List U9.Member}
           subst gs
           exact target_members_denote hg
 
+/-- Successful admission retains the declared Image as a member, not only
+the shape and origins of the other hidden choices. -/
+theorem image_members_include_image {w : ImageRaw} {m : Model} {gs : List U9.Member}
+    (h : imageMembers w m = .ok gs) : ∃ g ∈ gs, g.image = w.image := by
+  unfold imageMembers at h
+  cases hh : w.hidden with
+  | none =>
+    simp [hh] at h
+    subst gs
+    exact ⟨⟨[],w.image⟩,by simp,rfl⟩
+  | some hs =>
+    cases hn : need (!hs.isEmpty && Actions.ordered hs) "record.hiddenActions" "expected a nonempty ordered family" with
+    | error e => simp [hh,hn] at h
+    | ok u =>
+      cases hg : targetMembers m.source (U9.output m w.image) hs 0 with
+      | error e => simp [hh,hn,hg] at h
+      | ok members =>
+        cases hm : need (members.any (fun g => g.image == w.image)) "record.image" "image is not a hiddenActions member" with
+        | error e => simp [hh,hn,hg,hm] at h
+        | ok u =>
+          simp [hh,hn,hg,hm] at h
+          subst gs
+          have ha : members.any (fun g => g.image == w.image) = true := by
+            cases hb : members.any (fun g => g.image == w.image) with
+            | false => simp [need,hb] at hm
+            | true => rfl
+          simpa only [List.any_eq_true,beq_iff_eq] using ha
+
 theorem admit_image_denotes {w : ImageRaw} {e : ImageEnvironment}
     (h : admitImage w = .ok e) : ImageDenotes w e := by
   cases hm : Record.admit (sourceRaw w) with
@@ -147,5 +176,9 @@ theorem admit_image_denotes {w : ImageRaw} {e : ImageEnvironment}
       | ok gs =>
         simp [admitImage,hm,hv,hg] at h
         subst e
-        exact ⟨Record.admit_denotes hm,rfl,image_members_denote hg⟩
+        refine ⟨Record.admit_denotes hm,rfl,?_⟩
+        cases hh : w.hidden with
+        | none => simpa [hh] using image_members_denote hg
+        | some hs =>
+          exact ⟨by simpa [hh] using image_members_denote hg,image_members_include_image hg⟩
 end Record.Extended

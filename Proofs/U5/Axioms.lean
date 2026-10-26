@@ -274,6 +274,7 @@ import U10
 #print axioms Record.Extended.target_flat
 #print axioms Record.Extended.convert_target_denotes
 #print axioms Record.Extended.target_members_denote
+#print axioms Record.Extended.image_members_include_image
 #print axioms Record.Extended.admit_image_denotes
 #print axioms Record.Extended.bind_cuts_flat
 #print axioms Record.Extended.bindings_denote

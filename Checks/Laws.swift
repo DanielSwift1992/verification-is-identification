@@ -352,7 +352,7 @@ enum LawQuotes: LawRecord {
 }
 
 enum LawProofsName: LawText { static var typeName: String { #"proofs"# } }
-enum LawProofsDescription: LawText { static var typeName: String { #"Lean U5-U8 build and declared claims use only standard axioms"# } }
+enum LawProofsDescription: LawText { static var typeName: String { #"Proofs/U5 builds U5-U11 and the record entrance; declared claims use only standard axioms"# } }
 enum LawProofs: LawRecord {
     typealias Command = Self
     typealias Name = LawProofsName

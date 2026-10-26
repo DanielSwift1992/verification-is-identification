@@ -1,0 +1,3152 @@
+[
+  {
+    "accepted" : true,
+    "case" : "ReturnFirst",
+    "diagnostic" : "",
+    "holds" : true,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstMissingRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstExtraRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstDuplicateRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstMissingEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstExtraEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstWrongMemberEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstMissingForests",
+    "diagnostic" : "certificate.repetition.connections: incomplete class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstMissingClasses",
+    "diagnostic" : "certificate.repetition.classes: incomplete source coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstNoConclusion",
+    "diagnostic" : "certificate.repetition.conclusion: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstMissingCycles",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstExtraCycle",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstWrongMember",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstWrongBlock",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstWrongVertex",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices[1]: not the declared class image",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstWrongLength",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].length: differs from the first return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstRepeatedPrefix",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: a vertex repeats before the endpoint",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstEmptyWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstZeroWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstMissingArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstExtraArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstWrongGCD",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstWrongMultiplier",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstWrongStepValue",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0].value: not the exact LCM",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstWrongCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstWrongAdditionalCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.additionalCalls: expected total calls minus the obligatory first call",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnFirstZeroCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnFirst",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "ReturnWhole",
+    "diagnostic" : "",
+    "holds" : true,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeMissingRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeExtraRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeDuplicateRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeMissingEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeExtraEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeWrongMemberEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeMissingForests",
+    "diagnostic" : "certificate.repetition.connections: incomplete class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeMissingClasses",
+    "diagnostic" : "certificate.repetition.classes: incomplete source coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeRequiredOrder",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeNoConclusion",
+    "diagnostic" : "certificate.repetition.conclusion: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeMissingCycles",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeExtraCycle",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeWrongMember",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeWrongBlock",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeWrongVertex",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices[1]: not the declared class image",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeWrongLength",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].length: differs from the first return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeRepeatedPrefix",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: a vertex repeats before the endpoint",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeEmptyWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeZeroWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeMissingArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeExtraArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeWrongGCD",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeWrongMultiplier",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeWrongStepValue",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0].value: not the exact LCM",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeWrongCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeWrongAdditionalCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.additionalCalls: expected total calls minus the obligatory first call",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeZeroCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnWholeCycleOrder",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ReturnWhole",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "FixedQuestion",
+    "diagnostic" : "",
+    "holds" : true,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionMissingRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionExtraRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionDuplicateRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionMissingEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionExtraEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionWrongMemberEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionMissingForests",
+    "diagnostic" : "certificate.repetition.connections: incomplete class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionMissingClasses",
+    "diagnostic" : "certificate.repetition.classes: incomplete source coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionNoConclusion",
+    "diagnostic" : "certificate.repetition.conclusion: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionMissingCycles",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionExtraCycle",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionWrongMember",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionWrongBlock",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionWrongVertex",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices[1]: not the declared class image",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionWrongLength",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].length: differs from the first return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionRepeatedPrefix",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: a vertex repeats before the endpoint",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionEmptyWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionZeroWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionMissingArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionExtraArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionWrongGCD",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionWrongMultiplier",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionWrongStepValue",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0].value: not the exact LCM",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionWrongCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionWrongAdditionalCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.additionalCalls: expected total calls minus the obligatory first call",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FixedQuestionZeroCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FixedQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "FourCycle",
+    "diagnostic" : "",
+    "holds" : true,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleMissingRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleExtraRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleDuplicateRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleMissingEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleExtraEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleWrongMemberEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleMissingForests",
+    "diagnostic" : "certificate.repetition.connections: incomplete class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleMissingClasses",
+    "diagnostic" : "certificate.repetition.classes: incomplete source coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleNoConclusion",
+    "diagnostic" : "certificate.repetition.conclusion: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleMissingCycles",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleExtraCycle",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleWrongMember",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleWrongBlock",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleWrongVertex",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices[1]: not the declared class image",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleWrongLength",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].length: differs from the first return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleRepeatedPrefix",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleEmptyWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleZeroWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleMissingArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleExtraArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleWrongGCD",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleWrongMultiplier",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleWrongStepValue",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0].value: not the exact LCM",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleWrongCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleWrongAdditionalCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.additionalCalls: expected total calls minus the obligatory first call",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "FourCycleZeroCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "FourCycle",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "IdentityReturn",
+    "diagnostic" : "",
+    "holds" : true,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnMissingRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnExtraRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnDuplicateRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnMissingEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnExtraEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnWrongMemberEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnMissingForests",
+    "diagnostic" : "certificate.repetition.connections: incomplete class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnMissingClasses",
+    "diagnostic" : "certificate.repetition.classes: incomplete source coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnRequiredOrder",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnNoConclusion",
+    "diagnostic" : "certificate.repetition.conclusion: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnMissingCycles",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnExtraCycle",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnWrongMember",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnWrongBlock",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnWrongVertex",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices[1]: not the declared class image",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnWrongLength",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].length: differs from the first return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnRepeatedPrefix",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: a vertex repeats before the endpoint",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnEmptyWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnZeroWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnMissingArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnExtraArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnWrongGCD",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnWrongMultiplier",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnWrongStepValue",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0].value: not the exact LCM",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnWrongCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnWrongAdditionalCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.additionalCalls: expected total calls minus the obligatory first call",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnZeroCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "IdentityReturnCycleOrder",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "IdentityReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "EqualClassReturn",
+    "diagnostic" : "",
+    "holds" : true,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnMissingRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnExtraRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnDuplicateRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnMissingEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnExtraEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnWrongMemberEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnMissingForests",
+    "diagnostic" : "certificate.repetition.connections: incomplete class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnMissingClasses",
+    "diagnostic" : "certificate.repetition.classes: incomplete source coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnNoConclusion",
+    "diagnostic" : "certificate.repetition.conclusion: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnMissingCycles",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnExtraCycle",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnWrongMember",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnWrongBlock",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnWrongVertex",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices[1]: not the declared class image",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnWrongLength",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].length: differs from the first return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnRepeatedPrefix",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnEmptyWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnZeroWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnMissingArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnExtraArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnWrongGCD",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnWrongMultiplier",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnWrongStepValue",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0].value: not the exact LCM",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnWrongCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnWrongAdditionalCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.additionalCalls: expected total calls minus the obligatory first call",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnZeroCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnLostEqualityGround",
+    "diagnostic" : "certificate.repetition.connections[0]: incomplete class forest",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "EqualClassReturnLostPreservationGround",
+    "diagnostic" : "certificate.repetition.hiddenActions[0].preservation: incomplete E-edge coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "EqualClassReturn",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "DuplicateReturnQuestion",
+    "diagnostic" : "",
+    "holds" : true,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionMissingRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionExtraRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionDuplicateRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionMissingEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionExtraEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionWrongMemberEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionMissingForests",
+    "diagnostic" : "certificate.repetition.connections: incomplete class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionMissingClasses",
+    "diagnostic" : "certificate.repetition.classes: incomplete source coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionNoConclusion",
+    "diagnostic" : "certificate.repetition.conclusion: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionMissingCycles",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionExtraCycle",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionWrongMember",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionWrongBlock",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionWrongVertex",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices[1]: not the declared class image",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionWrongLength",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].length: differs from the first return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionRepeatedPrefix",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: a vertex repeats before the endpoint",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionEmptyWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionZeroWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionMissingArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionExtraArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionWrongGCD",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionWrongMultiplier",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionWrongStepValue",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0].value: not the exact LCM",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionWrongCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionWrongAdditionalCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.additionalCalls: expected total calls minus the obligatory first call",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "DuplicateReturnQuestionZeroCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "DuplicateReturnQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "AliasedRepeats",
+    "diagnostic" : "",
+    "holds" : true,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsMissingRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsExtraRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsDuplicateRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsMissingEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsExtraEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsWrongMemberEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsMissingForests",
+    "diagnostic" : "certificate.repetition.connections: incomplete class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsMissingClasses",
+    "diagnostic" : "certificate.repetition.classes: incomplete source coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsNoConclusion",
+    "diagnostic" : "certificate.repetition.conclusion: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsMissingCycles",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsExtraCycle",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsWrongMember",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsWrongBlock",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsWrongVertex",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices[1]: not the declared class image",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsWrongLength",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].length: differs from the first return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsRepeatedPrefix",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: a vertex repeats before the endpoint",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsEmptyWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsZeroWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsMissingArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsExtraArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsWrongGCD",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsWrongMultiplier",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsWrongStepValue",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0].value: not the exact LCM",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsWrongCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsWrongAdditionalCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.additionalCalls: expected total calls minus the obligatory first call",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "AliasedRepeatsZeroCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "AliasedRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "OtherClassesMayHaveTails",
+    "diagnostic" : "",
+    "holds" : true,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsMissingRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsExtraRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsDuplicateRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsMissingEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsExtraEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsWrongMemberEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsMissingForests",
+    "diagnostic" : "certificate.repetition.connections: incomplete class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsMissingClasses",
+    "diagnostic" : "certificate.repetition.classes: incomplete source coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsNoConclusion",
+    "diagnostic" : "certificate.repetition.conclusion: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsMissingCycles",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsExtraCycle",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsWrongMember",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsWrongBlock",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsWrongVertex",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices[1]: not the declared class image",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsWrongLength",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].length: differs from the first return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsRepeatedPrefix",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: a vertex repeats before the endpoint",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsEmptyWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsZeroWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsMissingArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsExtraArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsWrongGCD",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsWrongMultiplier",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsWrongStepValue",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0].value: not the exact LCM",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsWrongCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsWrongAdditionalCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.additionalCalls: expected total calls minus the obligatory first call",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "OtherClassesMayHaveTailsZeroCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "OtherClassesMayHaveTails",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "RepeatedHiddenCopies",
+    "diagnostic" : "",
+    "holds" : true,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesMissingRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesExtraRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesDuplicateRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesMissingEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesExtraEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesWrongMemberEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesMissingForests",
+    "diagnostic" : "certificate.repetition.connections: incomplete class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesMissingClasses",
+    "diagnostic" : "certificate.repetition.classes: incomplete source coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesNoConclusion",
+    "diagnostic" : "certificate.repetition.conclusion: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesMissingCycles",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesExtraCycle",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesWrongMember",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesWrongBlock",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesWrongVertex",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices[1]: not the declared class image",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesWrongLength",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].length: differs from the first return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesRepeatedPrefix",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesEmptyWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesZeroWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesMissingArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesExtraArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesWrongGCD",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesWrongMultiplier",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesWrongStepValue",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0].value: not the exact LCM",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesWrongCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesWrongAdditionalCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.additionalCalls: expected total calls minus the obligatory first call",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "RepeatedHiddenCopiesZeroCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "RepeatedHiddenCopies",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "ScalarRepeats",
+    "diagnostic" : "",
+    "holds" : true,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsMissingRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsExtraRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsDuplicateRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsMissingEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsExtraEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsWrongMemberEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsMissingForests",
+    "diagnostic" : "certificate.repetition.connections: incomplete class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsMissingClasses",
+    "diagnostic" : "certificate.repetition.classes: incomplete source coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsNoConclusion",
+    "diagnostic" : "certificate.repetition.conclusion: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsMissingCycles",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsExtraCycle",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsWrongMember",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsWrongBlock",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0]: different member, Question class or pair order",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsWrongVertex",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices[1]: not the declared class image",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsWrongLength",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].length: differs from the first return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsRepeatedPrefix",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsEmptyWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsZeroWalk",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles[0].vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsMissingArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsExtraArithmetic",
+    "diagnostic" : "certificate.repetition.conclusion.returned.cycles: incomplete member\/Question-class coverage",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsWrongGCD",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsWrongMultiplier",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0]: incorrect gcd or LCM multiplier",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsWrongStepValue",
+    "diagnostic" : "certificate.repetition.conclusion.returned.arithmetic[0].value: not the exact LCM",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsWrongCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsWrongAdditionalCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.additionalCalls: expected total calls minus the obligatory first call",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ScalarRepeatsZeroCalls",
+    "diagnostic" : "certificate.repetition.conclusion.returned.calls: expected the least positive common return",
+    "holds" : false,
+    "kind" : "returned",
+    "request" : "ScalarRepeats",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "TailQuestion",
+    "diagnostic" : "",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "TailQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TailQuestionMissingRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "TailQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TailQuestionExtraRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "TailQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TailQuestionDuplicateRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "TailQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TailQuestionMissingEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "TailQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TailQuestionExtraEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "TailQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TailQuestionWrongMemberEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "TailQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TailQuestionMissingForests",
+    "diagnostic" : "certificate.repetition.connections: incomplete class coverage",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "TailQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TailQuestionMissingClasses",
+    "diagnostic" : "certificate.repetition.classes: incomplete source coverage",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "TailQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TailQuestionNoConclusion",
+    "diagnostic" : "certificate.repetition.conclusion: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "TailQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TailQuestionUnknownTailMember",
+    "diagnostic" : "certificate.repetition.conclusion.obstructed.member: no hidden member at this address",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "TailQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TailQuestionWrongTailBlock",
+    "diagnostic" : "certificate.repetition.conclusion.obstructed.block: not the required Question class",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "TailQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TailQuestionWrongTailVertex",
+    "diagnostic" : "certificate.repetition.conclusion.obstructed.vertices[1]: not the declared class image",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "TailQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TailQuestionTailZeroIndex",
+    "diagnostic" : "certificate.repetition.conclusion.obstructed.repeatedIndex: expected the first repeated class different from the start",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "TailQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TailQuestionTailUnknownIndex",
+    "diagnostic" : "certificate.repetition.conclusion.obstructed.repeatedIndex: expected the first repeated class different from the start",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "TailQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TailQuestionTailRepeatedPrefix",
+    "diagnostic" : "certificate.repetition.conclusion.obstructed.vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "TailQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "TailQuestionTailReturnsStart",
+    "diagnostic" : "certificate.repetition.conclusion.obstructed.vertices[2]: not the declared class image",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "TailQuestion",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "LongReturnTail",
+    "diagnostic" : "",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "LongReturnTail",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LongReturnTailMissingRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "LongReturnTail",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LongReturnTailExtraRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "LongReturnTail",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LongReturnTailDuplicateRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "LongReturnTail",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LongReturnTailMissingEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "LongReturnTail",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LongReturnTailExtraEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "LongReturnTail",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LongReturnTailWrongMemberEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "LongReturnTail",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LongReturnTailMissingForests",
+    "diagnostic" : "certificate.repetition.connections: incomplete class coverage",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "LongReturnTail",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LongReturnTailMissingClasses",
+    "diagnostic" : "certificate.repetition.classes: incomplete source coverage",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "LongReturnTail",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LongReturnTailNoConclusion",
+    "diagnostic" : "certificate.repetition.conclusion: wrong preservation premise",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "LongReturnTail",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LongReturnTailUnknownTailMember",
+    "diagnostic" : "certificate.repetition.conclusion.obstructed.member: no hidden member at this address",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "LongReturnTail",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LongReturnTailWrongTailBlock",
+    "diagnostic" : "certificate.repetition.conclusion.obstructed.block: not the required Question class",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "LongReturnTail",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LongReturnTailWrongTailVertex",
+    "diagnostic" : "certificate.repetition.conclusion.obstructed.vertices[1]: not the declared class image",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "LongReturnTail",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LongReturnTailTailZeroIndex",
+    "diagnostic" : "certificate.repetition.conclusion.obstructed.repeatedIndex: expected the first repeated class different from the start",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "LongReturnTail",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LongReturnTailTailUnknownIndex",
+    "diagnostic" : "certificate.repetition.conclusion.obstructed.repeatedIndex: expected the first repeated class different from the start",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "LongReturnTail",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LongReturnTailTailRepeatedPrefix",
+    "diagnostic" : "certificate.repetition.conclusion.obstructed.vertices: expected a finite first-repeat walk",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "LongReturnTail",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "LongReturnTailTailReturnsStart",
+    "diagnostic" : "certificate.repetition.conclusion.obstructed.vertices[4]: not the declared class image",
+    "holds" : false,
+    "kind" : "tail",
+    "request" : "LongReturnTail",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : true,
+    "case" : "ReturnBadPreservation",
+    "diagnostic" : "",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "ReturnBadPreservation",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnBadPreservationMissingRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "ReturnBadPreservation",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnBadPreservationExtraRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "ReturnBadPreservation",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnBadPreservationDuplicateRequired",
+    "diagnostic" : "certificate.repetition.required: expected exactly the Question classes",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "ReturnBadPreservation",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnBadPreservationMissingEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "ReturnBadPreservation",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnBadPreservationExtraEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions: incomplete member coverage",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "ReturnBadPreservation",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnBadPreservationWrongMemberEvidence",
+    "diagnostic" : "certificate.repetition.hiddenActions[0].member: different address or order",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "ReturnBadPreservation",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnBadPreservationMissingForests",
+    "diagnostic" : "certificate.repetition.connections: incomplete class coverage",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "ReturnBadPreservation",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnBadPreservationMissingClasses",
+    "diagnostic" : "certificate.repetition.classes: incomplete source coverage",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "ReturnBadPreservation",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnBadPreservationFalsePreservation",
+    "diagnostic" : "certificate.repetition.hiddenActions[0].preservation: incomplete E-edge coverage",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "ReturnBadPreservation",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "ReturnBadPreservationUnknownPreservationEdge",
+    "diagnostic" : "certificate.repetition.hiddenActions[0].preservation.edge: partition does not separate images of this E-edge",
+    "holds" : false,
+    "kind" : "preservation",
+    "request" : "ReturnBadPreservation",
+    "scope" : "Swift and Lean normalized certificate"
+  },
+  {
+    "accepted" : false,
+    "case" : "MissingHidden",
+    "diagnostic" : "MissingHidden.HiddenActions: a nonempty declared family is required for U11",
+    "scope" : "Swift reader only"
+  },
+  {
+    "accepted" : false,
+    "case" : "UnreadRepeatAxis",
+    "diagnostic" : "UnreadRepeatAxis.HiddenAction: unread axis in the declared whole",
+    "scope" : "Swift reader only"
+  },
+  {
+    "accepted" : false,
+    "case" : "MalformedRepeatMember",
+    "diagnostic" : "MalformedRepeatMember.HiddenActions: expected a complete Source-shaped action",
+    "scope" : "Swift reader only"
+  }
+]

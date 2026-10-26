@@ -4,6 +4,7 @@ import U5
 import U6
 import U7
 import U8
+import U11
 import Record
 
 -- U5
@@ -142,3 +143,42 @@ import Record
 #print axioms Record.Actions.exit_bytes_sound
 #print axioms Record.Actions.pack_sound
 #print axioms Record.Actions.MemberDenotes.flat
+
+-- U11, fixed-member repeat episode
+#print axioms U11.return_iff_dvd
+#print axioms U11.walk_first
+#print axioms U11.tail_never_returns
+#print axioms U11.lcmAll_dvd
+#print axioms U11.lcmAll_positive
+#print axioms U11.lcm_update
+#print axioms U11.first_of_return
+#print axioms U11.finite_common_return_iff
+#print axioms U11.gamma_commutes
+#print axioms U11.iter_commutes
+#print axioms U11.repeatAct_step
+#print axioms U11.repeat_gamma
+#print axioms U11.return_iff_classes
+#print axioms U11.cycle_first
+#print axioms U11.arithmetic_exact
+#print axioms U11.arithmetic_lcm
+#print axioms U11.base_sound
+#print axioms U11.cycles_cover
+#print axioms U11.cycle_origin
+#print axioms U11.return_count
+#print axioms U11.return_sound
+#print axioms U11.first_length_divides
+#print axioms U11.checked_return_counts_iff
+#print axioms U11.least_positive
+#print axioms U11.tail_witness
+#print axioms U11.tail_sound
+#print axioms U11.check_sound
+#print axioms U11.checked_tail_no_common
+#print axioms U11.accepted_nonempty
+#print axioms U11.universal_return_iff_cycles
+#print axioms U11.Examples.first_three
+#print axioms U11.Examples.whole_six
+#print axioms U11.Examples.identity_swap_two
+#print axioms U11.Examples.duplicate_a_one
+#print axioms U11.Examples.duplicate_b_never
+#print axioms U11.Examples.duplicate_b_no_common
+#print axioms U11.Examples.preservation_refusal_can_return

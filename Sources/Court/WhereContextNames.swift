@@ -178,10 +178,11 @@ enum WhereContextNames {
             // parameters when reduction instantiates the enclosing declaration.
             func appliedSelf(_ reference: ContextNameBinding.Reference) -> String? {
                 let parts = reference.spelling.text.components(separatedBy: ".")
-                guard WhereJudge.sameName(parts.first, "Self"),
-                      let owner = reference.scopes.last(where: {
-                          declarationTable[$0].map { ["enum", "struct", "class", "actor", "protocol"].containsName($0.kind.text) } ?? false
-                      }) else { return nil }
+                guard WhereJudge.sameName(parts.first, "Self") else { return nil }
+                let selected = reference.scopes.last {
+                    declarationTable[$0].map { ["enum", "struct", "class", "actor", "protocol"].containsName($0.kind.text) } ?? false
+                }
+                guard let owner = selected else { return nil }
                 let parameters = nameBindings!.certificate.declarations.filter {
                     $0.kind == ScalarName("parameter")
                         && $0.place.components.dropLast().elementsEqual(owner.components)

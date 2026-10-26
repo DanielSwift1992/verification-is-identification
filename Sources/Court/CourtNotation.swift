@@ -25,9 +25,10 @@ enum CourtNotation {
     /// Selectors are read from the admitted binding projection. They state
     /// questions; they establish neither applications nor numerical answers.
     static func countQuestions(_ prepared: WhereJudge.Prepared, input: String) throws -> [NameMap<String>] {
+        let selected = prepared.boundFiles.first { WhereJudge.sameName($0.context.input, input) }
         guard let index = prepared.world.contextNameBindings,
               let proof = prepared.world.contextNameBindingCertificate,
-              let file = prepared.boundFiles.first(where: { WhereJudge.sameName($0.context.input, input) }) else {
+              let file = selected else {
             try WhereJudge.fail("\(input):1: count question selection needs the context name binding derivation")
         }
         try index.replay(proof)

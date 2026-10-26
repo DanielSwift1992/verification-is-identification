@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # The declared owner context retains the three unread multiline applications.
-# Its remaining source reaches the generic-definition boundary named below.
+# Its remaining source instantiates Self with the generic owner's parameters.
 # Native package tests still judge the actual Light declarations.
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -45,10 +45,10 @@ said=0
 python3 - "$said" "$light_tmp/rest.json" <<'PYREPORT'
 import json, sys
 report = json.load(open(sys.argv[2]))
-assert int(sys.argv[1]) == 2 and not report['diagnostics'], report
+assert int(sys.argv[1]) == 0 and not report['diagnostics'], report
 assert len(report['results']) == 1, report
 row = report['results'][0]
-assert row['outcome'] == 'unsupported', row
-assert row['diagnostics'] == ["unresolved definition reduction: 'MatteReading' requires 1 arguments, received 0"], row
+assert row['outcome'] == 'holds' and not row['diagnostics'], row
+assert row['equalities'] == 64 and row['memberships'] == 18, row
 PYREPORT
-echo "✓ where-light: three multiline claims retain their addresses; the complete owner context names the remaining generic-definition boundary"
+echo "✓ where-light: three multiline claims retain their addresses; generic Self instantiates MatteReading and the remaining 64 equalities and 18 memberships hold"

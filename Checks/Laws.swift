@@ -165,7 +165,7 @@ enum LawFamilies: LawRecord {
 }
 
 enum LawLightName: LawText { static var typeName: String { #"light"# } }
-enum LawLightDescription: LawText { static var typeName: String { #"the second judge names Light’s unread multiline claims and its remaining definition boundary"# } }
+enum LawLightDescription: LawText { static var typeName: String { #"the second judge names Light’s unread multiline claims and instantiates its generic Self readings"# } }
 enum LawLight: LawRecord {
     typealias Command = Self
     typealias Name = LawLightName

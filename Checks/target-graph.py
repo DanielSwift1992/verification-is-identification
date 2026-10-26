@@ -17,6 +17,9 @@ def validate(targets, dependencies):
         'VerificationIsIdentification': {'Notation'},
         'DocumentKit': {'Notation', 'Alphabet'},
         'DocumentKitCertificates': {'DocumentKit', 'VerificationIsIdentification'},
+        'ContinuationRecord': set(),
+        'RecordCourt': {'ContinuationRecord'},
+        'Court': {'ContinuationRecord'},
     }
     for name, dependencies in expected.items():
         assert name in targets, 'missing target: ' + name
@@ -30,7 +33,8 @@ def validate(targets, dependencies):
 manifest = json.loads(subprocess.check_output(['swift', 'package', 'dump-package'], cwd=ROOT))
 targets = {t['name']: t for t in manifest['targets']}
 validate(targets, manifest['dependencies'])
-for target, dependency in [('Notation', 'Alphabet'), ('DocumentKit', 'VerificationIsIdentification')]:
+for target, dependency in [('Notation', 'Alphabet'), ('DocumentKit', 'VerificationIsIdentification'),
+                           ('ContinuationRecord', 'Court'), ('RecordCourt', 'Court')]:
     broken = copy.deepcopy(targets)
     broken[target]['dependencies'].append({'byName': [dependency, None]})
     try:
@@ -47,6 +51,7 @@ else:
     raise AssertionError('admitted reverse package dependency on showcase')
 # The compiler reads the actual recursively nested SDK sources. No spelling guard judges imports.
 subprocess.run(['swift','build','--target','DocumentKit','--explicit-target-dependency-import-check','error'],cwd=ROOT,check=True)
+subprocess.run(['swift','build','--target','RecordCourt','--explicit-target-dependency-import-check','error'],cwd=ROOT,check=True)
 with tempfile.TemporaryDirectory(prefix='dk-import-boundary-') as directory:
     temp=Path(directory);sources=temp/'Sources/DocumentKit';sources.mkdir(parents=True)
     for original in (ROOT/'Sources/DocumentKit').rglob('*.swift'):

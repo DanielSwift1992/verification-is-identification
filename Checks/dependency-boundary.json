@@ -2384,7 +2384,7 @@
     {
       "path": "Package.swift",
       "channel": "text",
-      "line": 39,
+      "line": 41,
       "name": "showcase",
       "text": "// Tools and LawCheck as products: the showcase package, which depends on this one,",
       "occurrence": 1,
@@ -2394,17 +2394,7 @@
     {
       "path": "Package.swift",
       "channel": "text",
-      "line": 76,
-      "name": "showcase",
-      "text": "// (Press); the differential seat moved with the company to the showcase package. Foundation only, so a consumer links the judge without",
-      "occurrence": 1,
-      "class": "reference",
-      "reason": "Existing ecosystem description, comment, diagram label, documentation link or diagnostic destination; no build/reader selection by the consumer name."
-    },
-    {
-      "path": "Package.swift",
-      "channel": "text",
-      "line": 89,
+      "line": 93,
       "name": "showcase",
       "text": "// The character vocabulary the showcase's DocumentKit and GrammarLexicon's stream both read —",
       "occurrence": 1,
@@ -2834,7 +2824,7 @@
     {
       "path": "Checks/target-graph.py",
       "channel": "text",
-      "line": 43,
+      "line": 47,
       "name": "verification-is-identification-showcase",
       "text": "validate(targets, manifest['dependencies'] + [{'sourceControl': [{'location': 'https://github.com/DanielSwift1992/verification-is-identification-showcase'}]}])",
       "occurrence": 1,
@@ -2844,7 +2834,7 @@
     {
       "path": "Checks/target-graph.py",
       "channel": "text",
-      "line": 47,
+      "line": 51,
       "name": "showcase",
       "text": "raise AssertionError('admitted reverse package dependency on showcase')",
       "occurrence": 1,

@@ -518,6 +518,8 @@ public enum Schema {
         ("Sources/VerificationIsIdentification", LatticeScope.self)
         ("Sources/Tools", ToolsScope.self)
         ("Sources/Court", ToolsScope.self)
+        ("Sources/ContinuationRecord", ToolsScope.self)
+        ("Sources/RecordCourt", ToolsScope.self)
         ("Sources/GrammarLexicon", ToolsScope.self)
         ("Sources/Alphabet", ToolsScope.self)
         ("Sources/Examples", DemoScope.self)

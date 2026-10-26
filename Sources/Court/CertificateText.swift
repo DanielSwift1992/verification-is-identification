@@ -90,13 +90,6 @@ extension ContinuationCourt.RelatedCertificate {
     }
 }
 
-extension ContinuationCourt.PartitionClass {
-    init(sort: String, leaves: [ContinuationCourt.Path]) {
-        self.sort = ScalarName(sort)
-        self.leaves = leaves
-    }
-}
-
 extension ContinuationCourt.ImageCertificate {
     init(request: String, constructor: String, source: ContinuationCourt.ReadProof, equalities: ContinuationCourt.RouteProof?, image: ContinuationCourt.RouteProof, promise: ContinuationCourt.RouteProof?, hiddenActions: ContinuationCourt.RouteProof?, classes: [ContinuationCourt.PartitionClass], connections: [[ContinuationCourt.EqualityStep]], images: [ContinuationCourt.InducedImage]) {
         self.request = ScalarName(request)

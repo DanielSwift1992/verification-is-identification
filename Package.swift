@@ -35,6 +35,8 @@ let package = Package(
         // consumer links the same judge this repository runs instead of mirroring it:
         // one source of judgement, and executables are views of it.
         .library(name: "Court", targets: ["Court"]),
+        .library(name: "ContinuationRecord", targets: ["ContinuationRecord"]),
+        .executable(name: "RecordCourt", targets: ["RecordCourt"]),
 
         // Tools and LawCheck as products: the showcase package, which depends on this one,
         // runs the same lint, grammar, census, voice and judge, and attaches the same surface
@@ -72,10 +74,12 @@ let package = Package(
         // GrammarLexicon and Alphabet: Linter.swift (DESIGN15) reads the `Alphabet` registry at
         // runtime — the mechanism's only way to know what atoms exist without naming any of
         // them itself.
-        // The second arbiter as its own module: Judge, WhereJudge and the term language
-        // (Press); the differential seat moved with the company to the showcase package. Foundation only, so a consumer links the judge without
-        // pulling the package's tooling behind it.
-        .target(name: "Court"),
+        // The addressed U5/U6 calculus and record reader have no Swift-reader
+        // dependency. Court's source adapters and other judgements depend on it.
+        // Both use Foundation, without the package's tooling or theory targets.
+        .target(name: "ContinuationRecord"),
+        .executableTarget(name: "RecordCourt", dependencies: ["ContinuationRecord"]),
+        .target(name: "Court", dependencies: ["ContinuationRecord"]),
 
         .executableTarget(name: "Tools", dependencies: ["GrammarLexicon", "Alphabet", "VerificationIsIdentification", "Court"]),
 
@@ -108,7 +112,8 @@ let package = Package(
 
         .testTarget(name: "NotationTests", dependencies: ["VerificationIsIdentification"]),
 
-        .testTarget(name: "CourtTests", dependencies: ["Court"]),
+        .testTarget(name: "CourtTests", dependencies: ["Court", "ContinuationRecord"]),
+        .testTarget(name: "ContinuationRecordTests", dependencies: ["ContinuationRecord"]),
 
         // The demos as proofs.
         .testTarget(name: "ExamplesTests", dependencies: ["Examples"]),

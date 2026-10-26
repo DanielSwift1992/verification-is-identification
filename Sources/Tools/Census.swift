@@ -34,6 +34,8 @@ enum Census {
         Target(name: "VerificationIsIdentification", paths: ["Sources/VerificationIsIdentification"]),
         Target(name: "Examples", paths: ["Sources/Examples"]),
         Target(name: "Court", paths: ["Sources/Court"]),
+        Target(name: "ContinuationRecord", paths: ["Sources/ContinuationRecord"]),
+        Target(name: "RecordCourt", paths: ["Sources/RecordCourt"]),
         Target(name: "Tools+Plugins", paths: ["Sources/Tools", "Plugins"]),
     ]
 

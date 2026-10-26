@@ -5,7 +5,9 @@ continuation_tmp="$(mktemp -d "${TMPDIR:-/tmp}/vi-structural-compiler.XXXXXX")"
 trap 'rm -rf "$continuation_tmp"' EXIT
 
 # Court only: no Examples serialization, old binary, JS or modeled payloads.
-swiftc Sources/Court/*.swift Checks/StructuralContinuation.swift -o "$continuation_tmp/check"
+. Checks/build-tools.sh
+vi_check_record_module "$continuation_tmp"
+swiftc -I "$continuation_tmp" "$continuation_tmp/ContinuationRecord.o" Sources/Court/*.swift Checks/StructuralContinuation.swift -o "$continuation_tmp/check"
 "$continuation_tmp/check" "$continuation_tmp"
 
 continuation_input=(Sources/Notation/Primitive.swift

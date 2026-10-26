@@ -14,6 +14,17 @@ vi_check_tools_bin() {
     fi
 }
 
+# The raw-source Court controls link the same independent record module.
+# This is a build transport, not another implementation of its U5/U6 rules.
+vi_check_record_module() {
+    local record_dir="$1"
+    swiftc -parse-as-library -whole-module-optimization -emit-module -emit-object \
+        -module-name ContinuationRecord Sources/ContinuationRecord/*.swift \
+        -module-cache-path "$record_dir/cache" \
+        -emit-module-path "$record_dir/ContinuationRecord.swiftmodule" \
+        -o "$record_dir/ContinuationRecord.o"
+}
+
 # Sharing a build assumes a fixed input tree. Name drift instead of presenting
 # a tool built before an edit as the check of the edited sources.
 vi_check_source_key() {

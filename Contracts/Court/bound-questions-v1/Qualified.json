@@ -1,0 +1,63 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "Qualified.swift",
+      "source": "Qualified.swift",
+      "sha256": "bd8baf0deec5fe44158e513749461ecb8c6ffa91ac6d5c00979d31583b00ae0d",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Engine"
+      ],
+      "at": {
+        "input": "record:Qualified.swift/input",
+        "source": "record:Qualified.swift/source",
+        "sha256": "record:Qualified.swift/sha256",
+        "namespace": "record:Qualified.swift/namespace",
+        "module": "record:Qualified.swift/module",
+        "role": "record:Qualified.swift/role",
+        "imports": [
+          "Qualified.swift:1"
+        ]
+      }
+    },
+    {
+      "input": "Primitive.swift",
+      "source": "Primitive.swift",
+      "sha256": "005ae4575bf7f53a86d32da6fadca2455cc4cf14cd8a1764b8161a010532c34a",
+      "namespace": "Engine",
+      "module": "Engine",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "record:Primitive.swift/input",
+        "source": "record:Primitive.swift/source",
+        "sha256": "record:Primitive.swift/sha256",
+        "namespace": "record:Primitive.swift/namespace",
+        "module": "record:Primitive.swift/module",
+        "role": "record:Primitive.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": [
+    {
+      "namespace": "Swift",
+      "version": "vi.court.intrinsic-swift/2",
+      "exports": [
+        "Never",
+        "String"
+      ],
+      "at": {
+        "namespace": "record:intrinsic",
+        "version": "record:intrinsic",
+        "exports": [
+          "record:Never",
+          "record:String"
+        ]
+      }
+    }
+  ]
+}

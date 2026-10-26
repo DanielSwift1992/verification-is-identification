@@ -267,20 +267,8 @@ enum CountCourt {
         guard NameSet(options.keys) == ["--predicate", "--encoding", "--sigma"] else {
             throw Failure("count context needs predicate, encoding and sigma")
         }
-        let paths = context.sources.map(\.input)
-        guard !paths.isEmpty else {
-            throw Failure("count context needs its explicit file and sources")
-        }
-        let selected = context.sources.filter { $0.role == "own" }.map(\.input)
-        var admitted: WhereJudge.Prepared?
-        for first in selected.isEmpty ? [paths[0]] : selected {
-            let prepared = try WhereContext.prepare([first] + paths.filter { !WhereJudge.sameName($0, first) }, contextPath: contextPath,
-                load: { texts[$0]! }, documents: documents, batch: true, notationOnly: true,
-                bindingCertificate: bindingCertificates?.first { $0.selected == ScalarName(first) })
-            if !prepared.world.contextUnresolved.isEmpty { try WhereJudge.failAll(prepared.world.contextUnresolved) }
-            if admitted == nil { admitted = prepared }
-        }
-        guard let admitted else { throw Failure("count context has no admitted source") }
+        let admitted = try CourtNotation.countContext(context, contextPath: contextPath,
+            texts: texts, documents: documents, bindingCertificates: bindingCertificates)
         let notation = admitted.boundFiles
         let original = context.sources.map { ($0.input, texts[$0.input]!) }
         let source = try StructuralSource(boundFiles: notation, world: admitted.world, arguments: options.keys.sorted().map { ($0, options[$0]!) })

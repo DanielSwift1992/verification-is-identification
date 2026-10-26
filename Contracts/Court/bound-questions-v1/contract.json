@@ -1,0 +1,536 @@
+{
+  "schema": "vi.court.conformance/2",
+  "suite": "vi.court.bound-questions/1",
+  "reference_revision": "aa21e829cc77ccc24d396c697e7c2cae152d20cc",
+  "scope": "Question discovery consumes the replayed context projection. Generic Self carries the lexical owner parameters in where/count. These finite observations do not establish reader correctness or Swift language equivalence.",
+  "versions": {
+    "context": "vi.court.context/2",
+    "normalization_canon": 4,
+    "count_bindings": 1
+  },
+  "missing_files": [],
+  "files": {
+    "Ambiguous.json": {
+      "sha256": "83531d6210facf503f0ec3925300b5436a37f0b4511931e39aed3464be2f49b2",
+      "origin": "Primitive.swift: vi@aa21e829cc77ccc24d396c697e7c2cae152d20cc:Sources/Notation/Primitive.swift; other files: declared bound question and generic Self inputs"
+    },
+    "Ambiguous.swift": {
+      "sha256": "8ecf2b1d76d0141306e5b7f31bfe559af3ece9e1a42facfc408d743e57eb701f",
+      "origin": "Primitive.swift: vi@aa21e829cc77ccc24d396c697e7c2cae152d20cc:Sources/Notation/Primitive.swift; other files: declared bound question and generic Self inputs"
+    },
+    "One.swift": {
+      "sha256": "b4a7fdb7de1d5d627ec36391a8d379783ba457821c32d8ac049c665f230b6468",
+      "origin": "Primitive.swift: vi@aa21e829cc77ccc24d396c697e7c2cae152d20cc:Sources/Notation/Primitive.swift; other files: declared bound question and generic Self inputs"
+    },
+    "Outside.json": {
+      "sha256": "bfa2977cbc1ca50e3bf9da7533281a3ac9efa47b3a483bee02fe23dccdf776b7",
+      "origin": "Primitive.swift: vi@aa21e829cc77ccc24d396c697e7c2cae152d20cc:Sources/Notation/Primitive.swift; other files: declared bound question and generic Self inputs"
+    },
+    "Outside.swift": {
+      "sha256": "4990d6efaffa8b8516f644e9c6eaff2ccc3c0cfbb6534912f69211c496d604d9",
+      "origin": "Primitive.swift: vi@aa21e829cc77ccc24d396c697e7c2cae152d20cc:Sources/Notation/Primitive.swift; other files: declared bound question and generic Self inputs"
+    },
+    "Primitive.swift": {
+      "sha256": "005ae4575bf7f53a86d32da6fadca2455cc4cf14cd8a1764b8161a010532c34a",
+      "origin": "Primitive.swift: vi@aa21e829cc77ccc24d396c697e7c2cae152d20cc:Sources/Notation/Primitive.swift; other files: declared bound question and generic Self inputs"
+    },
+    "Qualified.json": {
+      "sha256": "dc5cfad180feacc8802ed2347dd5c58267ac6fdd1b4e2d0bc77d2880af8fab87",
+      "origin": "Primitive.swift: vi@aa21e829cc77ccc24d396c697e7c2cae152d20cc:Sources/Notation/Primitive.swift; other files: declared bound question and generic Self inputs"
+    },
+    "Qualified.swift": {
+      "sha256": "bd8baf0deec5fe44158e513749461ecb8c6ffa91ac6d5c00979d31583b00ae0d",
+      "origin": "Primitive.swift: vi@aa21e829cc77ccc24d396c697e7c2cae152d20cc:Sources/Notation/Primitive.swift; other files: declared bound question and generic Self inputs"
+    },
+    "SelfOnly.json": {
+      "sha256": "34a60044e21fc78b1993e40ae31d475cea3b0fab06bb9bc9b46427e4dd7d84c9",
+      "origin": "Primitive.swift: vi@aa21e829cc77ccc24d396c697e7c2cae152d20cc:Sources/Notation/Primitive.swift; other files: declared bound question and generic Self inputs"
+    },
+    "SelfOnly.swift": {
+      "sha256": "2bdee882783ba6743cf93c275c0031a1c39de482a803eff25d82d46165852703",
+      "origin": "Primitive.swift: vi@aa21e829cc77ccc24d396c697e7c2cae152d20cc:Sources/Notation/Primitive.swift; other files: declared bound question and generic Self inputs"
+    },
+    "Two.swift": {
+      "sha256": "b4a7fdb7de1d5d627ec36391a8d379783ba457821c32d8ac049c665f230b6468",
+      "origin": "Primitive.swift: vi@aa21e829cc77ccc24d396c697e7c2cae152d20cc:Sources/Notation/Primitive.swift; other files: declared bound question and generic Self inputs"
+    },
+    "Unknown.json": {
+      "sha256": "13cbc44a1f11185bd2c1ff991a77aa2f78ede183e65cb933cb3860aa9dceef8a",
+      "origin": "Primitive.swift: vi@aa21e829cc77ccc24d396c697e7c2cae152d20cc:Sources/Notation/Primitive.swift; other files: declared bound question and generic Self inputs"
+    },
+    "Unknown.swift": {
+      "sha256": "f199f5a3eb6f6515f048ba548be477094d1daf0665ccb4c056f923b5dc78d1d6",
+      "origin": "Primitive.swift: vi@aa21e829cc77ccc24d396c697e7c2cae152d20cc:Sources/Notation/Primitive.swift; other files: declared bound question and generic Self inputs"
+    }
+  },
+  "cases": [
+    {
+      "id": "qualified-where",
+      "files": [
+        "Qualified.swift",
+        "Primitive.swift"
+      ],
+      "args": [
+        "--context",
+        "Qualified.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"Primitive.swift\",\"sha256\":\"005ae4575bf7f53a86d32da6fadca2455cc4cf14cd8a1764b8161a010532c34a\"},{\"path\":\"Qualified.json\",\"sha256\":\"dc5cfad180feacc8802ed2347dd5c58267ac6fdd1b4e2d0bc77d2880af8fab87\"},{\"path\":\"Qualified.swift\",\"sha256\":\"bd8baf0deec5fe44158e513749461ecb8c6ffa91ac6d5c00979d31583b00ae0d\"}],\"outcome\":\"holds\",\"question\":\"where\",\"results\":[{\"diagnostics\":[],\"equalities\":1,\"memberships\":0,\"outcome\":\"holds\",\"path\":\"Qualified.swift\",\"readings\":0,\"source\":\"Qualified.swift\",\"unchecked\":[\"Primitive.swift:51\"]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "Qualified.swift"
+        ],
+        "modules": [
+          {
+            "name": "Engine",
+            "files": [
+              "Primitive.swift"
+            ]
+          }
+        ],
+        "exit": 0,
+        "diagnostic": "none"
+      },
+      "pass": "where"
+    },
+    {
+      "id": "qualified-count",
+      "files": [
+        "Qualified.swift",
+        "Primitive.swift"
+      ],
+      "args": [
+        "--context",
+        "Qualified.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"Primitive.swift\",\"sha256\":\"005ae4575bf7f53a86d32da6fadca2455cc4cf14cd8a1764b8161a010532c34a\"},{\"path\":\"Qualified.json\",\"sha256\":\"dc5cfad180feacc8802ed2347dd5c58267ac6fdd1b4e2d0bc77d2880af8fab87\"},{\"path\":\"Qualified.swift\",\"sha256\":\"bd8baf0deec5fe44158e513749461ecb8c6ffa91ac6d5c00979d31583b00ae0d\"}],\"outcome\":\"holds\",\"question\":\"count\",\"results\":[{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"empty\",\"path\":\"Primitive.swift\",\"readings\":0,\"source\":\"Primitive.swift\",\"unchecked\":[\"Primitive.swift:51\"]},{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"holds\",\"path\":\"Qualified.swift\",\"readings\":1,\"source\":\"Qualified.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "Qualified.swift"
+        ],
+        "modules": [
+          {
+            "name": "Engine",
+            "files": [
+              "Primitive.swift"
+            ]
+          }
+        ],
+        "exit": 0,
+        "diagnostic": "none"
+      },
+      "pass": "count"
+    },
+    {
+      "id": "selfonly-where",
+      "files": [
+        "SelfOnly.swift",
+        "Primitive.swift"
+      ],
+      "args": [
+        "--context",
+        "SelfOnly.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"Primitive.swift\",\"sha256\":\"005ae4575bf7f53a86d32da6fadca2455cc4cf14cd8a1764b8161a010532c34a\"},{\"path\":\"SelfOnly.json\",\"sha256\":\"34a60044e21fc78b1993e40ae31d475cea3b0fab06bb9bc9b46427e4dd7d84c9\"},{\"path\":\"SelfOnly.swift\",\"sha256\":\"2bdee882783ba6743cf93c275c0031a1c39de482a803eff25d82d46165852703\"}],\"outcome\":\"holds\",\"question\":\"where\",\"results\":[{\"diagnostics\":[],\"equalities\":1,\"memberships\":0,\"outcome\":\"holds\",\"path\":\"SelfOnly.swift\",\"readings\":0,\"source\":\"SelfOnly.swift\",\"unchecked\":[\"Primitive.swift:51\"]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "SelfOnly.swift"
+        ],
+        "modules": [
+          {
+            "name": "Engine",
+            "files": [
+              "Primitive.swift"
+            ]
+          }
+        ],
+        "exit": 0,
+        "diagnostic": "none"
+      },
+      "pass": "where"
+    },
+    {
+      "id": "selfonly-count",
+      "files": [
+        "SelfOnly.swift",
+        "Primitive.swift"
+      ],
+      "args": [
+        "--context",
+        "SelfOnly.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"Primitive.swift\",\"sha256\":\"005ae4575bf7f53a86d32da6fadca2455cc4cf14cd8a1764b8161a010532c34a\"},{\"path\":\"SelfOnly.json\",\"sha256\":\"34a60044e21fc78b1993e40ae31d475cea3b0fab06bb9bc9b46427e4dd7d84c9\"},{\"path\":\"SelfOnly.swift\",\"sha256\":\"2bdee882783ba6743cf93c275c0031a1c39de482a803eff25d82d46165852703\"}],\"outcome\":\"holds\",\"question\":\"count\",\"results\":[{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"empty\",\"path\":\"Primitive.swift\",\"readings\":0,\"source\":\"Primitive.swift\",\"unchecked\":[\"Primitive.swift:51\"]},{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"holds\",\"path\":\"SelfOnly.swift\",\"readings\":1,\"source\":\"SelfOnly.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "SelfOnly.swift"
+        ],
+        "modules": [
+          {
+            "name": "Engine",
+            "files": [
+              "Primitive.swift"
+            ]
+          }
+        ],
+        "exit": 0,
+        "diagnostic": "none"
+      },
+      "pass": "count"
+    },
+    {
+      "id": "unknown-where",
+      "files": [
+        "Unknown.swift",
+        "Primitive.swift"
+      ],
+      "args": [
+        "--context",
+        "Unknown.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"Primitive.swift\",\"sha256\":\"005ae4575bf7f53a86d32da6fadca2455cc4cf14cd8a1764b8161a010532c34a\"},{\"path\":\"Unknown.json\",\"sha256\":\"13cbc44a1f11185bd2c1ff991a77aa2f78ede183e65cb933cb3860aa9dceef8a\"},{\"path\":\"Unknown.swift\",\"sha256\":\"f199f5a3eb6f6515f048ba548be477094d1daf0665ccb4c056f923b5dc78d1d6\"}],\"outcome\":\"unsupported\",\"question\":\"where\",\"results\":[{\"diagnostics\":[\"Unknown.swift:16: scope owner 'World.Missing' is not provided\"],\"equalities\":0,\"memberships\":0,\"outcome\":\"unsupported\",\"path\":\"Unknown.swift\",\"readings\":0,\"source\":\"Unknown.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "Unknown.swift"
+        ],
+        "modules": [
+          {
+            "name": "Engine",
+            "files": [
+              "Primitive.swift"
+            ]
+          }
+        ],
+        "exit": 1,
+        "diagnostic": "addressed"
+      },
+      "pass": "where"
+    },
+    {
+      "id": "unknown-count",
+      "files": [
+        "Unknown.swift",
+        "Primitive.swift"
+      ],
+      "args": [
+        "--context",
+        "Unknown.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[\"Unknown.swift:16: scope owner 'World.Missing' is not provided\"],\"inputs\":[{\"path\":\"Primitive.swift\",\"sha256\":\"005ae4575bf7f53a86d32da6fadca2455cc4cf14cd8a1764b8161a010532c34a\"},{\"path\":\"Unknown.json\",\"sha256\":\"13cbc44a1f11185bd2c1ff991a77aa2f78ede183e65cb933cb3860aa9dceef8a\"},{\"path\":\"Unknown.swift\",\"sha256\":\"f199f5a3eb6f6515f048ba548be477094d1daf0665ccb4c056f923b5dc78d1d6\"}],\"outcome\":\"unsupported\",\"question\":\"count\",\"results\":[],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "Unknown.swift"
+        ],
+        "modules": [
+          {
+            "name": "Engine",
+            "files": [
+              "Primitive.swift"
+            ]
+          }
+        ],
+        "exit": 1,
+        "diagnostic": "addressed"
+      },
+      "pass": "count"
+    },
+    {
+      "id": "ambiguous-where",
+      "files": [
+        "Ambiguous.swift",
+        "Primitive.swift",
+        "One.swift",
+        "Two.swift"
+      ],
+      "args": [
+        "--context",
+        "Ambiguous.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"Ambiguous.json\",\"sha256\":\"83531d6210facf503f0ec3925300b5436a37f0b4511931e39aed3464be2f49b2\"},{\"path\":\"Ambiguous.swift\",\"sha256\":\"8ecf2b1d76d0141306e5b7f31bfe559af3ece9e1a42facfc408d743e57eb701f\"},{\"path\":\"One.swift\",\"sha256\":\"b4a7fdb7de1d5d627ec36391a8d379783ba457821c32d8ac049c665f230b6468\"},{\"path\":\"Primitive.swift\",\"sha256\":\"005ae4575bf7f53a86d32da6fadca2455cc4cf14cd8a1764b8161a010532c34a\"},{\"path\":\"Two.swift\",\"sha256\":\"b4a7fdb7de1d5d627ec36391a8d379783ba457821c32d8ac049c665f230b6468\"}],\"outcome\":\"unsupported\",\"question\":\"where\",\"results\":[{\"diagnostics\":[\"Ambiguous.swift:18: extension owner 'Box.Note' is missing or ambiguous in the supplied context\"],\"equalities\":0,\"memberships\":0,\"outcome\":\"unsupported\",\"path\":\"Ambiguous.swift\",\"readings\":0,\"source\":\"Ambiguous.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "Ambiguous.swift"
+        ],
+        "modules": [
+          {
+            "name": "Engine",
+            "files": [
+              "Primitive.swift"
+            ]
+          },
+          {
+            "name": "One",
+            "files": [
+              "One.swift"
+            ]
+          },
+          {
+            "name": "Two",
+            "files": [
+              "Two.swift"
+            ]
+          }
+        ],
+        "exit": 1,
+        "diagnostic": "addressed"
+      },
+      "pass": "where"
+    },
+    {
+      "id": "ambiguous-count",
+      "files": [
+        "Ambiguous.swift",
+        "Primitive.swift",
+        "One.swift",
+        "Two.swift"
+      ],
+      "args": [
+        "--context",
+        "Ambiguous.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[\"Ambiguous.swift:18: extension owner 'Box.Note' is missing or ambiguous in the supplied context\"],\"inputs\":[{\"path\":\"Ambiguous.json\",\"sha256\":\"83531d6210facf503f0ec3925300b5436a37f0b4511931e39aed3464be2f49b2\"},{\"path\":\"Ambiguous.swift\",\"sha256\":\"8ecf2b1d76d0141306e5b7f31bfe559af3ece9e1a42facfc408d743e57eb701f\"},{\"path\":\"One.swift\",\"sha256\":\"b4a7fdb7de1d5d627ec36391a8d379783ba457821c32d8ac049c665f230b6468\"},{\"path\":\"Primitive.swift\",\"sha256\":\"005ae4575bf7f53a86d32da6fadca2455cc4cf14cd8a1764b8161a010532c34a\"},{\"path\":\"Two.swift\",\"sha256\":\"b4a7fdb7de1d5d627ec36391a8d379783ba457821c32d8ac049c665f230b6468\"}],\"outcome\":\"unsupported\",\"question\":\"count\",\"results\":[],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "Ambiguous.swift"
+        ],
+        "modules": [
+          {
+            "name": "Engine",
+            "files": [
+              "Primitive.swift"
+            ]
+          },
+          {
+            "name": "One",
+            "files": [
+              "One.swift"
+            ]
+          },
+          {
+            "name": "Two",
+            "files": [
+              "Two.swift"
+            ]
+          }
+        ],
+        "exit": 1,
+        "diagnostic": "addressed"
+      },
+      "pass": "count"
+    },
+    {
+      "id": "outside-where",
+      "files": [
+        "Outside.swift",
+        "Primitive.swift"
+      ],
+      "args": [
+        "--context",
+        "Outside.json",
+        "--report"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"Outside.json\",\"sha256\":\"bfa2977cbc1ca50e3bf9da7533281a3ac9efa47b3a483bee02fe23dccdf776b7\"},{\"path\":\"Outside.swift\",\"sha256\":\"4990d6efaffa8b8516f644e9c6eaff2ccc3c0cfbb6534912f69211c496d604d9\"},{\"path\":\"Primitive.swift\",\"sha256\":\"005ae4575bf7f53a86d32da6fadca2455cc4cf14cd8a1764b8161a010532c34a\"}],\"outcome\":\"unsupported\",\"question\":\"where\",\"results\":[{\"diagnostics\":[\"Outside.swift:14: Self has no lexical owner in the supplied fragment\"],\"equalities\":0,\"memberships\":0,\"outcome\":\"unsupported\",\"path\":\"Outside.swift\",\"readings\":0,\"source\":\"Outside.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "Outside.swift"
+        ],
+        "modules": [
+          {
+            "name": "Engine",
+            "files": [
+              "Primitive.swift"
+            ]
+          }
+        ],
+        "exit": 1,
+        "diagnostic": "addressed"
+      },
+      "pass": "where"
+    },
+    {
+      "id": "outside-count",
+      "files": [
+        "Outside.swift",
+        "Primitive.swift"
+      ],
+      "args": [
+        "--context",
+        "Outside.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[\"Outside.swift:14: Self has no lexical owner in the supplied fragment\"],\"inputs\":[{\"path\":\"Outside.json\",\"sha256\":\"bfa2977cbc1ca50e3bf9da7533281a3ac9efa47b3a483bee02fe23dccdf776b7\"},{\"path\":\"Outside.swift\",\"sha256\":\"4990d6efaffa8b8516f644e9c6eaff2ccc3c0cfbb6534912f69211c496d604d9\"},{\"path\":\"Primitive.swift\",\"sha256\":\"005ae4575bf7f53a86d32da6fadca2455cc4cf14cd8a1764b8161a010532c34a\"}],\"outcome\":\"unsupported\",\"question\":\"count\",\"results\":[],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "compiler": {
+        "module": "World",
+        "files": [
+          "Outside.swift"
+        ],
+        "modules": [
+          {
+            "name": "Engine",
+            "files": [
+              "Primitive.swift"
+            ]
+          }
+        ],
+        "exit": 1,
+        "diagnostic": "addressed"
+      },
+      "pass": "count"
+    }
+  ]
+}

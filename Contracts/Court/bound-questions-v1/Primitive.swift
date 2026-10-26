@@ -1,0 +1,349 @@
+// Surface-history citations are historical scope, not current SDK contracts.
+// Source: vi@f95b6c69d5ad49ede6cf953b8be42e725bde6ba6 Sources/DocumentKit/SurfaceLaw.swift; SHA-256 d51b07d4195eddee64d0a3e7daf91dc6667bc4c79665c53249222b8350dc4881.
+// ═══════════════════════════════════════════════════════
+// THE FOUNDATION names Structure, Open, Close, Pair, Null.
+//
+// To be one of our things is to be a STRUCTURE. A structure is OPEN (a protocol
+// that opens a tunnel) or CLOSE (an empty enum that seals). The sole structural
+// primitive is PAIR: two named sides. NULL equates their types. A finite-tree
+// interpretation requires separate constructor and termination premises,
+// including a syntax leaf distinct from constructed pairs. [EiF EF2, EF4]
+//
+// For a supplied Null conformance, the compiler checks `Left == Right`
+// at the declared addresses. An answer to a declared question is determined
+// when the compatible set is nonempty and every compatible candidate gives
+// that answer. A proof can derive this agreement from the actual constraint
+// relations without enumerating candidates. Applying the answer to an
+// intended target needs a justified source relation. [V=I U2c, §1b]
+//
+// ── PROTOCOL CREATION RULES (summary, canonical form: Law.swift) ──
+//
+// Only two operations exist:
+//
+//   EXPAND:   associatedtype adds an axis (degree of freedom)
+//   COMPRESS: where clause removes a degree of freedom
+//
+// A valid protocol does at least one of:
+//
+//   associatedtype:  EXPAND   (open an axis)
+//   where:           COMPRESS (constrain an axis)
+//   inherit from 2+: COMPRESS (intersect: A ∩ B, smaller than either)
+//
+// `protocol X: Y {}` (single parent, no where, no axis)
+// is a rename, not a claim. Zero information added.
+//
+// At the meta-level, these rules ARE Pair/Null:
+//   associatedtype = Pair  (two sides: type and protocol)
+//   where X == Y   = Null  (sides collapse)
+//   where X: M     = partial Null (axis constrained)
+// ═══════════════════════════════════════════════════════
+
+// ── Structure / Open / Close ──
+
+/// This names the root ability: what it is to participate in the world. A new name is not written
+/// `: Structure` directly: it is ``Open`` (a `protocol` tunnel, still extensible) or ``Close`` (an
+/// empty `enum` seal, concrete). These are the repository's construction rules. Swift permits
+/// recursive associated types, so conformance does not guarantee that following components
+/// reaches a terminal. The finite-tree interpretation requires that additional premise (EiF EF4).
+public protocol Structure {
+    /// This gives the name of this type: the edge reading. Dynamic dispatch ensures overrides are
+    /// called through generic contexts (Paired chains, associated types).
+    static var typeName: String { get }
+
+    /// Reads this type's count. The default readings give one to an atom and zero to `Never`.
+    /// A composed ``Open`` delegates to its ``Open/Body``. The ``Paired`` reading adds its two sides.
+    static var count: Int { get }
+
+    /// Reads this type's leaf names in body order. The default atom contributes its ``Structure/typeName``
+    /// as one element. A composed ``Open`` delegates to its ``Open/Body``, and ``Paired`` concatenates
+    /// its two lists. Each supplied leaf name remains a separate element.
+    static var labels: [String] { get }
+}
+
+/// This is an OPEN tunnel, written ONLY as a `protocol`. A new name is Open by default: it opens an
+/// axis with `associatedtype` (a hole) and narrows it with `where`. It is extensible, dot-readable,
+/// a criterion. `enum X: Open` is the contradiction the check rejects: an `enum` has already sealed what
+/// Open must keep open.
+///
+/// Every Open type carries a ``Body``: the tunnel for composition. A type that has nothing to compose
+/// defaults to `Never` (the floor). A type that composes children defines its `body` with the one
+/// ``StructureBuilder``, and the builder folds the braces into a ``Paired`` chain.
+public protocol Open: Structure {
+    associatedtype Body: Structure = Never
+    @StructureBuilder
+    static var body: Body { get }
+}
+
+/// This is the default body: `Never`. Lattice protocols, markers, axes, none compose children, so their body is
+/// the floor. The extension gives it for free: conform to ``Open`` and you get `Never` unless you say
+/// otherwise.
+extension Open
+where Body == Never {
+    public static var body: Never { fatalError("a type with Body == Never has no body") }
+}
+
+/// This is a CLOSE: a terminal seal, written ONLY as an empty `enum`: no cases, no `init`, the branch
+/// ends and Swift is handed a concrete empty type. `protocol X: Close` is the contradiction: a Close must be
+/// concrete. Notation declares `extension String: Close`, so a string is one of the sealed leaves: the one place for a value, at the edge.
+public protocol Close: Structure {}   // law:allow: the seal half of Open/Close, not a rename of Structure
+
+// ── Pair / Null ──
+
+/// This provides two named roles for representing a distinction. It is the chosen structural primitive.
+/// Their contents can agree: every ``Null`` is also a ``Pair``. A realized contrast
+/// needs an actual separating relation, not just these two names. [Matter M71]
+/// Its unconstrained axes alone guarantee neither recursive structure nor finite depth.
+/// ``Pair`` is ``Open``: it opens two tunnels (`Left`, `Right`). [EiF EF2, EF4]
+///
+/// - term Left: one side of the distinction.
+/// - term Right: the other side.
+///
+/// > Note: ``Null`` refines ``Pair``, and ``Paired`` is its one concrete realizer.
+public protocol Pair: Open {
+    associatedtype Left
+    associatedtype Right
+}
+
+/// This requires equality of ``Pair``'s two associated types at the declared addresses.
+/// It does not identify the conforming type with either side or with the syntax leaf.
+/// `Never` is one conformer. Other nominal equality witnesses remain distinct. [EiF EF4]
+///
+/// > Note: For a supplied ``Null`` conformance, the compiler checks
+/// > `Left == Right` at these addresses. An answer to a declared question is
+/// > determined when the compatible set is nonempty and every compatible
+/// > candidate gives that answer. The proof can derive this agreement from the
+/// > actual constraint relations without enumerating candidates. Applying the
+/// > answer to an intended target needs a justified source relation. [V=I U2c, §1b]
+public protocol Null: Pair
+where Left == Right {}
+
+// Never conforms to Null by choosing equal associated types.
+// Equality of these sides is not a claim that every Null conformer is Never.
+// typeName = "" / count = 0 / labels = [] break recursion (Never: Open, Open.typeName =
+// Body.typeName, Open.count = Body.count, Open.labels = Body.labels, Never.Body = Never).
+extension Never: Null {
+    public typealias Left = Never
+    public typealias Right = Never
+    public static var typeName: String { "" }
+    public static var count: Int { 0 }
+    public static var labels: [String] { [] }
+}
+
+// Never IS Close: the empty type is the seal, the floor every chain reaches. This is the point
+// where ``Open`` and ``Close`` coincide (``Null``'s `Left == Right`): the one type that is both the
+// empty tunnel and the empty seal, so identification is where opening meets closing.
+extension Never: Close {}
+
+// String IS Close: the sealed leaf where a value is. The one foreign value that enters our world,
+// at the edge ([Surface history S6](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L98)). Above it, the structure carries only types. Here, the String carries text.
+extension String: Close {}
+
+// ── typeName: the one rendering mechanism ──
+
+/// This defaults to the Swift type name. Atoms override for their character.
+extension Structure {
+    public static var typeName: String { String(describing: Self.self) }
+}
+
+/// Reads the Swift name when ``Body`` is `Never`. This specializes the general ``Open`` reading,
+/// which delegates to ``Body`` and reads an empty string for `Never`.
+extension Open
+where Body == Never {
+    public static var typeName: String { String(describing: Self.self) }
+}
+
+/// This is an `Open` type that DOES compose children: it renders its body, `Body.typeName` recurses
+/// through the Paired chain.
+extension Open {
+    public static var typeName: String { Body.typeName }
+}
+
+/// Paired concatenates Left and Right type names.
+extension Paired {
+    public static var typeName: String { L.typeName + R.typeName }
+}
+
+// ── count: the second rendering: how many leaves a body lists ──
+
+/// This is the default, one: a structure counts itself. Atoms (``Close``) keep this: it is also the
+/// floor a leaf ``Open`` type (no custom `body`) falls back to, below.
+extension Structure {
+    public static var count: Int { 1 }
+}
+
+/// Counts one when ``Body`` is `Never`. This specializes the general ``Open`` reading,
+/// whose count would be zero for `Never`.
+extension Open
+where Body == Never {
+    public static var count: Int { 1 }
+}
+
+/// This is an `Open` type that DOES compose children: it counts through its body, the builder folds a `{ }`
+/// block into a ``Paired`` chain, and that chain's count is the number of statements written.
+extension Open {
+    public static var count: Int { Body.count }
+}
+
+/// Paired sums its two sides: composing is exactly what makes a count more than one.
+extension Paired {
+    public static var count: Int { L.count + R.count }
+}
+
+// ── labels: the third reading: each leaf's name, in body order ──
+
+/// This is the default, one label: a structure's `typeName`. Atoms (``Close``) keep this: it is also
+/// the floor a leaf ``Open`` type (no custom `body`) falls back to, below, the same `Body ==
+/// Never` exception `count` needs, for the same reason.
+extension Structure {
+    public static var labels: [String] { [typeName] }
+}
+
+extension Open
+where Body == Never {
+    public static var labels: [String] { [typeName] }
+}
+
+/// An `Open` type that DOES compose children reads its labels through its body.
+extension Open {
+    public static var labels: [String] { Body.labels }
+}
+
+/// This is Paired: it concatenates its two sides' labels, in body order.
+extension Paired {
+    public static var labels: [String] { L.labels + R.labels }
+}
+
+// ── The builder: the ONE @resultBuilder ──
+//
+// The one allowed callable ([Surface history S4](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L65)): folds a `{ }` body into a Pair-chain of Structures, floored at
+// `Never`. ``Paired`` is the ONE concrete `<>` ([Surface history S3](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L43) plumbing): it keeps two Structures as a value
+// so the builder can return them. Everything else is a protocol.
+
+/// This is the concrete Pair realizer: the ONE `<>` in the system, the framework's plumbing that the
+/// builder folds into. It keeps a left and a right as a value and conforms to ``Pair``. Not written in domain code.
+/// The builder produces it behind the `{ }` curtain.
+public enum Paired<
+    L: Structure,
+    R: Structure
+>: Pair {
+    case paired(L, R)
+    public typealias Left = L
+    public typealias Right = R
+}
+
+/// This is the one result builder: it folds a `{ }` body into a ``Pair``-chain of Structures, floored at `Never`.
+/// This is the single `@resultBuilder` the system allows ([Surface history S4](https://github.com/DanielSwift1992/verification-is-identification/blob/f95b6c69d5ad49ede6cf953b8be42e725bde6ba6/Sources/DocumentKit/SurfaceLaw.swift#L65)). The builder is the boundary between the
+/// brace-syntax and the type tree: inside the braces, each statement is a ``Structure``. Outside, the
+/// whole body is a single ``Paired`` chain.
+@resultBuilder
+public enum StructureBuilder {
+    public static func buildExpression<
+        T: Structure
+    >(_ type: T.Type) -> T { fatalError() }
+    public static func buildExpression(_ string: String) -> String { string }
+    @_disfavoredOverload public static func buildExpression<
+        V: Structure
+    >(_ value: V) -> V { value }
+    public static func buildPartialBlock<
+        V: Structure
+    >(first: V) -> V { first }
+    public static func buildPartialBlock<
+        A: Structure,
+        B: Structure
+    >(accumulated: A, next: B) -> Paired<
+        A,
+        B
+    > { .paired(accumulated, next) }
+    public static func buildBlock() -> Never { fatalError() }
+    public static func buildEither<
+        A: Structure,
+        B: Structure
+    >(first: A) -> Paired<
+        A,
+        B
+    > { fatalError() }
+    public static func buildEither<
+        A: Structure,
+        B: Structure
+    >(second: B) -> Paired<
+        A,
+        B
+    > { fatalError() }
+}
+// ── MAGNITUDES ──
+// Unit, Plus, Times, Rest, Half and Tally compose magnitudes through StructureBuilder and are read through count and typeName.
+
+/// Unit counts one: the atom of magnitude. `Close` keeps the default count, which is also
+/// the definition.
+public enum Unit: Close {}
+
+/// Plus sums by composition: the pair of two magnitudes counts as both. The house fold does
+/// the arithmetic, and no member states it.
+public enum Plus<
+    A: Structure,
+    B: Structure
+>: Open {
+    @StructureBuilder
+    public static var body: some Structure {
+        A.self
+        B.self
+    }
+}
+
+/// Twice is no separate object: doubling IS the pair of a thing with itself.
+public typealias Twice<S: Structure> = Plus<S, S>
+
+/// Times composes two counts into their product, the way `Paired` composes them into their
+/// sum: one witness, no other member. ``Plus``, ``Twice`` and ``Times`` compose sums and products without another arithmetic member.
+public enum Times<
+    A: Structure,
+    B: Structure
+>: Close {}
+extension Times {
+    public static var count: Int { A.count * B.count }
+}
+
+/// U1 through U512 are ``Twice`` chains over ``Unit``. Each name's count is read from this definition.
+public typealias U1 = Unit
+public typealias U2 = Twice<U1>
+public typealias U4 = Twice<U2>
+public typealias U8 = Twice<U4>
+public typealias U16 = Twice<U8>
+public typealias U32 = Twice<U16>
+public typealias U64 = Twice<U32>
+public typealias U128 = Twice<U64>
+public typealias U256 = Twice<U128>
+public typealias U512 = Twice<U256>
+
+/// Reads `Whole.count` minus `Taken.count`. The reading requires `Taken.count <= Whole.count`
+/// and refuses underflow before subtraction.
+public enum Rest<
+    Whole: Structure,
+    Taken: Structure
+>: Close {}
+extension Rest {
+    public static var count: Int {
+        let whole = Whole.count
+        let taken = Taken.count
+        precondition(
+            taken <= whole,
+            "Rest underflow: \(Taken.self) takes \(taken) from \(Whole.self) holding \(whole)"
+        )
+        return whole - taken
+    }
+}
+
+/// Divides `Of.count` by two when the count is even. The reading refuses an odd count.
+public enum Half<Of: Structure>: Close {}
+extension Half {
+    public static var count: Int {
+        precondition(Of.count % 2 == 0, "Half of an odd magnitude: \(Of.count) does not split")
+        return Of.count / 2
+    }
+}
+
+/// Reads `Of.count` as decimal text through ``Structure/typeName``.
+public enum Tally<Of: Structure>: Close {}
+extension Tally {
+    public static var typeName: String { String(Of.count) }
+}

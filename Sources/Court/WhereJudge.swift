@@ -629,7 +629,8 @@ enum WhereJudge {
     }
 
     static func read(_ text: String, lent: NameSet = [], notationV2: Bool = true,
-                     contextV2: Bool = false, source: String? = nil) throws -> World {
+                     contextV2: Bool = false, source: String? = nil,
+                     bindingView: Bool = false) throws -> World {
         let reading = try strippedReading(text, lent: lent, notating: true)
         let clean = reading.clean
         var scope = Scope(clean)
@@ -785,6 +786,13 @@ enum WhereJudge {
             }
             let spelled = parts.joined(separator: ".")
             if parts.count > 1 {
+                // This preliminary view supplies declaration places to the
+                // context binder. The replayed binding, not this scan, selects
+                // the extension owner before the bound view is read again.
+                if bindingView {
+                    world.extensions[spelled, default: []].append(line)
+                    continue
+                }
                 // A context/2 definition may lend an empty implementation
                 // extension of a declared nested type. Declaration-bearing or
                 // constrained extensions still require their existing reader.

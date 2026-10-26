@@ -478,10 +478,12 @@ enum ContextNameBinding {
                 for declaration in intrinsicRoots[name] ?? [] {
                     candidates.insert(declaration.place)
                 }
-                if WhereJudge.sameName(word, "Self"), let own = active.last(
-                    where: {
-                    byPlace[$0.place].map { nominal.contains($0.kind.text) } ?? false
-                }) {
+                if WhereJudge.sameName(word, "Self") {
+                    guard let own = active.last(where: {
+                        byPlace[$0.place].map { nominal.contains($0.kind.text) } ?? false
+                    }) else {
+                        try WhereJudge.fail("\(files[file].context.source):\(tape.lines[i]): Self has no lexical owner in the supplied fragment")
+                    }
                     candidates = [own.place]
                 }
                 var end = i, spelling = word

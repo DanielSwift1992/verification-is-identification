@@ -173,6 +173,22 @@ enum WhereContextNames {
                     return reference.declaration.parts.last
                 })
             }
+            // Self denotes the certified lexical owner applied to that owner's
+            // parameters. A member's definition then substitutes those same
+            // parameters when reduction instantiates the enclosing declaration.
+            func appliedSelf(_ reference: ContextNameBinding.Reference) -> String? {
+                let parts = reference.spelling.text.components(separatedBy: ".")
+                guard WhereJudge.sameName(parts.first, "Self"),
+                      let owner = reference.scopes.last(where: {
+                          declarationTable[$0].map { ["enum", "struct", "class", "actor", "protocol"].containsName($0.kind.text) } ?? false
+                      }) else { return nil }
+                let parameters = nameBindings!.certificate.declarations.filter {
+                    $0.kind == ScalarName("parameter")
+                        && $0.place.components.dropLast().elementsEqual(owner.components)
+                }.map { $0.place.parts.last! }
+                guard !parameters.isEmpty else { return nil }
+                return ([spelling(owner) + "<" + parameters.joined(separator: ",") + ">"] + parts.dropFirst()).joined(separator: ".")
+            }
             // Use the existing structural token reader, including its original
             // byte coordinates; no second identifier alphabet is introduced.
             let tokens = tapes[fileIndex]
@@ -185,7 +201,9 @@ enum WhereContextNames {
                 let offset = tokens.starts[i]
                 if let reference = nameBindings!.reference(input: file.context.input, offset: offset) {
                     let rendered: String
-                    if reference.primaryAssociatedType == true {
+                    if let owner = appliedSelf(reference) {
+                        rendered = owner
+                    } else if reference.primaryAssociatedType == true {
                         rendered = reference.spelling.text
                     } else if declarationTable[reference.declaration]?.kind != ScalarName("parameter"), functionLocal(reference.declaration) {
                         // A function's local type has a lexical place, not a

@@ -1,0 +1,121 @@
+✔ [2/42] Built U5.Model (448ms)
+✔ [3/42] Built U5.Codec (366ms)
+✔ [4/42] Built U5.Construction (463ms)
+✔ [5/42] Built U5.Obstruction (330ms)
+ℹ [6/42] Built U5.Axioms (307ms)
+info: U5/Axioms.lean:5:0: 'U5.closure_minimal' does not depend on any axioms
+info: U5/Axioms.lean:6:0: 'U5.construction_sound' depends on axioms: [propext, Quot.sound]
+info: U5/Axioms.lean:7:0: 'U5.construction_full_input' depends on axioms: [propext]
+info: U5/Axioms.lean:8:0: 'U5.obstruction_witnesses' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:9:0: 'U5.obstruction_no_decoder' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:10:0: 'U5.obstruction_not_universal' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:11:0: 'U5.conclusions_disjoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:12:0: 'U5.check_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:13:0: 'U5.compatible_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:14:0: 'U5.accepted_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:15:0: 'U5.Codec.decode_encode' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:16:0: 'U5.Codec.decode_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:17:0: 'U5.Codec.encode_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U5/Axioms.lean:18:0: 'U5.Codec.decoding_unique' does not depend on any axioms
+✔ [7/42] Built U6.Partition (380ms)
+✔ [8/42] Built U5.ContractCases (420ms)
+✔ [9/42] Built U5.Examples (289ms)
+✔ [10/42] Built U6.Factor (289ms)
+✔ [11/42] Built U5 (292ms)
+✔ [13/42] Built U6.Residue (369ms)
+✔ [14/42] Built U7.Actions (371ms)
+✔ [15/42] Built U6.Retention (332ms)
+✔ [16/42] Built U6.Minimality (323ms)
+✔ [17/42] Built U7.Certificate (443ms)
+ℹ [18/42] Built U6.Axioms (301ms)
+info: U6/Axioms.lean:3:0: 'U6.forestFrom_sound' depends on axioms: [propext, Quot.sound]
+info: U6/Axioms.lean:4:0: 'U6.exact_classes' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:5:0: 'U6.partition_covers' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:6:0: 'U6.admitted_cuts_have_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:7:0: 'U6.missing_class_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:8:0: 'U6.missing_classes_complete' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:9:0: 'U6.check_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:10:0: 'U6.accepted_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:11:0: 'U6.leaf_count_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:12:0: 'U6.relative_least' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:13:0: 'U6.relative_least_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:14:0: 'U6.decoder_covers_missing' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:15:0: 'U6.semantic_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:16:0: 'U6.retention_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:17:0: 'U6.retention_semantic_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:18:0: 'U6.fewer_leaves_impossible' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:19:0: 'U6.structural_factor_through_adequate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U6/Axioms.lean:20:0: 'U6.zero_count_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [19/42] Built U7.Reachability (303ms)
+✔ [20/42] Built U6.ContractCases (557ms)
+✔ [21/42] Built U7.Soundness (283ms)
+✔ [22/42] Built U6.Examples (276ms)
+✔ [23/42] Built U6 (258ms)
+✔ [25/42] Built U7.Refusal (283ms)
+✔ [26/42] Built U7.Words (302ms)
+ℹ [27/42] Built U7.Axioms (328ms)
+info: U7/Axioms.lean:3:0: 'U7.action_sort' depends on axioms: [propext, Quot.sound]
+info: U7/Axioms.lean:4:0: 'U7.preserves_closure' depends on axioms: [propext]
+info: U7/Axioms.lean:5:0: 'U7.generators_iff' depends on axioms: [propext]
+info: U7/Axioms.lean:6:0: 'U7.action_gamma' depends on axioms: [propext, Quot.sound]
+info: U7/Axioms.lean:7:0: 'U7.edges_sound' depends on axioms: [propext, Quot.sound]
+info: U7/Axioms.lean:8:0: 'U7.word_preserves' depends on axioms: [propext]
+info: U7/Axioms.lean:9:0: 'U7.evidence_preserves' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U7/Axioms.lean:10:0: 'U7.word_reachable' depends on axioms: [propext]
+info: U7/Axioms.lean:11:0: 'U7.closure_exact' depends on axioms: [propext, Quot.sound]
+info: U7/Axioms.lean:12:0: 'U7.stable_least' depends on axioms: [propext, Quot.sound]
+info: U7/Axioms.lean:13:0: 'U7.stable_closed' depends on axioms: [propext, Quot.sound]
+info: U7/Axioms.lean:14:0: 'U7.stable_size_bound' depends on axioms: [propext]
+info: U7/Axioms.lean:15:0: 'U7.image_commutes' depends on axioms: [propext, Quot.sound]
+info: U7/Axioms.lean:16:0: 'U7.question_decodes' depends on axioms: [propext, Quot.sound]
+info: U7/Axioms.lean:17:0: 'U7.check_stable_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U7/Axioms.lean:18:0: 'U7.accepted_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U7/Axioms.lean:19:0: 'U7.refusal_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U7/Axioms.lean:20:0: 'U7.check_refusal_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U7/Axioms.lean:21:0: 'U7.refusal_not_universal' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U7/Axioms.lean:22:0: 'U7.word_gamma' depends on axioms: [propext, Quot.sound]
+info: U7/Axioms.lean:23:0: 'U7.addressed_word_semantics' depends on axioms: [propext, Quot.sound]
+info: U7/Axioms.lean:24:0: 'U7.words_commute' depends on axioms: [propext, Quot.sound]
+info: U7/Axioms.lean:25:0: 'U7.word_question' depends on axioms: [propext, Quot.sound]
+info: U7/Axioms.lean:26:0: 'U7.check_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [28/42] Built U7.Examples (364ms)
+✔ [29/42] Built U8.Model (346ms)
+✔ [30/42] Built U8.Separation (280ms)
+✔ [31/42] Built U7.ContractCases (849ms)
+✔ [32/42] Built U8.Characterization (275ms)
+✔ [33/42] Built U7 (267ms)
+✔ [35/42] Built U8.Certificate (361ms)
+✔ [36/42] Built U8.Soundness (294ms)
+✔ [37/42] Built U8.Inheritance (308ms)
+✔ [38/42] Built U8.Examples (319ms)
+ℹ [39/42] Built U8.Axioms (303ms)
+info: U8/Axioms.lean:3:0: 'U8.closed_saturation' depends on axioms: [propext]
+info: U8/Axioms.lean:4:0: 'U8.agreement_saturation' depends on axioms: [propext]
+info: U8/Axioms.lean:5:0: 'U8.representatives_iff_classes' depends on axioms: [propext]
+info: U8/Axioms.lean:6:0: 'U8.classBit_gamma' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:7:0: 'U8.missing_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:8:0: 'U8.outside_no_common' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:9:0: 'U8.disagreement_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:10:0: 'U8.disagreement_no_common' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:11:0: 'U8.disagreement_no_source_decoder' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:12:0: 'U8.common_necessary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:13:0: 'U8.common_sufficient' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:14:0: 'U8.structural_to_arbitrary' depends on axioms: [propext]
+info: U8/Axioms.lean:15:0: 'U8.structural_iff_conditions' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:16:0: 'U8.universal_iff_conditions' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:17:0: 'U8.universal_iff_class_conditions' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:18:0: 'U8.boolean_iff_conditions' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:19:0: 'U8.no_common_not_universal' depends on axioms: [propext]
+info: U8/Axioms.lean:20:0: 'U8.image_sound' depends on axioms: [propext, Quot.sound]
+info: U8/Axioms.lean:21:0: 'U8.common_sound' depends on axioms: [propext, Quot.sound]
+info: U8/Axioms.lean:22:0: 'U8.checked_missing' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:23:0: 'U8.outside_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:24:0: 'U8.disagreement_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:25:0: 'U8.hidden_gamma' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:26:0: 'U8.check_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:27:0: 'U8.accepted_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:28:0: 'U8.same_class_views' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: U8/Axioms.lean:29:0: 'U8.inherited_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [40/42] Built U8.ContractCases (1.9s)
+✔ [41/42] Built U8 (250ms)
+Build completed successfully (42 jobs).

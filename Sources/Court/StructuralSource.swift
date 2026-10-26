@@ -130,7 +130,8 @@ struct StructuralSource {
         return result
     }
 
-    static func declaration(kind: String, header: [String], body: [String], origin: String) throws
+    static func declaration(kind: String, header: [String], body: [String], origin: String,
+                            nestedEnums: NameSet = []) throws
         -> Declaration
     {
         var h = plain(header), errors: [String] = []
@@ -206,6 +207,15 @@ struct StructuralSource {
                 continue
             }
             if body[i] == "var", i + 1 < body.count, WhereJudge.sameName(body[i + 1], "body") { bodyWitness = true }
+            // NotationScope has already admitted this enum at its lexical
+            // owner's source place and reads it separately. Its members are
+            // not fields of the enclosing carrier.
+            if body[i] == "enum", i + 1 < body.count, nestedEnums.contains(body[i + 1]) {
+                while i < body.count && body[i] != "{" { i += 1 }
+                _ = try balanced(body, index: &i, open: "{", close: "}")
+                memberAccess = "internal"
+                continue
+            }
             if body[i] == "enum" || body[i] == "struct" || body[i] == "class" {
                 errors.append("nested type declaration")
             }

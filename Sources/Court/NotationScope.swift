@@ -59,9 +59,9 @@ struct NotationScope {
             let parents = declarations.filter { $0.open < start && start < $0.close }
             var qualified = name
             if !parents.isEmpty && parents.count == scope.depth[start] {
-                // A generic or inherited container has additional lexical bindings.
-                // They are not silently resolved as file-scope names.
-                if !parents.allSatisfy({ $0.kind == "enum" && WhereJudge.sameName($0.header.trimmingCharacters(in: .whitespacesAndNewlines), "enum " + $0.name) }) {
+                // Conformances do not change a child's lexical owner. Generic
+                // containers still require bindings outside this fragment.
+                if !parents.allSatisfy({ $0.kind == "enum" && !$0.header.contains("<") }) {
                     try refusing("cannot read line \(scope.line[start]): nested declaration '\(name)' has an unsupported enclosing type")
                 } else {
                     qualified = parents.last!.qualified + "." + name
@@ -72,7 +72,12 @@ struct NotationScope {
                         try refusing("cannot read line \(scope.line[start]): nested declaration '\(name)' has an unsupported enclosing type")
                     } else {
                         nested[start] = qualified
-                        namespaces.formUnion(parents.map(\.qualified))
+                        // Only a plain namespace is omitted as a carrier.
+                        // An inherited owner retains its parents, fields/body
+                        // and conformance obligations in the common reading.
+                        namespaces.formUnion(parents.filter {
+                            WhereJudge.sameName($0.header, "enum " + $0.name)
+                        }.map(\.qualified))
                     }
                 }
             }
@@ -104,8 +109,11 @@ struct NotationScope {
             let body = String(decoding: units[(declaration.open + 1)..<(declaration.close - 1)], as: UTF16.self)
             let words = try WhereJudge.lexicalReading(body, scope: .projection,
                 lent: builders, carrying: false).tape.words
+            let children = NameSet(declarations.filter {
+                declaration.open < $0.start && $0.close < declaration.close && nested[$0.start] != nil
+            }.map(\.name))
             let read = try StructuralSource.declaration(kind: declaration.kind, header: header,
-                body: words, origin: origin)
+                body: words, origin: origin, nestedEnums: children)
             let excluded = NameSet(read.parameters + Array(read.fields.keys) + ["Self"])
             result.append(StructuralSource.Declaration(name: declaration.qualified, kind: read.kind,
                 parameters: read.parameters, parents: read.parents, requirements: read.requirements,

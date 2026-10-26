@@ -1,0 +1,66 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "Ambiguous.swift",
+      "source": "Ambiguous.swift",
+      "sha256": "a0272ca4f819308b23b5611ad60c5f79b893324b44ce5617a71947b24c2e9044",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Left",
+        "Right"
+      ],
+      "at": {
+        "input": "Ambiguous.json#Ambiguous.swift/input",
+        "source": "Ambiguous.json#Ambiguous.swift/source",
+        "sha256": "Ambiguous.json#Ambiguous.swift/sha256",
+        "namespace": "Ambiguous.json#Ambiguous.swift/namespace",
+        "module": "Ambiguous.json#Ambiguous.swift/module",
+        "role": "Ambiguous.json#Ambiguous.swift/role",
+        "imports": [
+          "Ambiguous.json#Ambiguous.swift/imports/0",
+          "Ambiguous.json#Ambiguous.swift/imports/1"
+        ]
+      }
+    },
+    {
+      "input": "Left.swift",
+      "source": "Left.swift",
+      "sha256": "a0dded7666951f969065da0804ee868b40d6dd405e4f36c8decdc236fda3cce4",
+      "namespace": "Left",
+      "module": "Left",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "Ambiguous.json#Left.swift/input",
+        "source": "Ambiguous.json#Left.swift/source",
+        "sha256": "Ambiguous.json#Left.swift/sha256",
+        "namespace": "Ambiguous.json#Left.swift/namespace",
+        "module": "Ambiguous.json#Left.swift/module",
+        "role": "Ambiguous.json#Left.swift/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "Right.swift",
+      "source": "Right.swift",
+      "sha256": "a0dded7666951f969065da0804ee868b40d6dd405e4f36c8decdc236fda3cce4",
+      "namespace": "Right",
+      "module": "Right",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "Ambiguous.json#Right.swift/input",
+        "source": "Ambiguous.json#Right.swift/source",
+        "sha256": "Ambiguous.json#Right.swift/sha256",
+        "namespace": "Ambiguous.json#Right.swift/namespace",
+        "module": "Ambiguous.json#Right.swift/module",
+        "role": "Ambiguous.json#Right.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

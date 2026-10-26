@@ -166,6 +166,7 @@ if __name__ == '__main__' and len(sys.argv) > 1 and sys.argv[1] == '--roster':
 # An immutable suite name binds the exact manifest bytes, including its case set.
 # New normative expectations require a new release and a deliberate registry entry.
 SUITE_HASHES = {
+    "vi.court.nested-carriers/1": "a2a2b56541b0f43875f6b69abd806e859c93b2c30ac7adbaef91877ded62fbf8",
     "vi.court.conditional-conformances/1": "2c4b86ce59dae7b9bd4eebc4d027a811d007253d331993df8861d343ab7a19aa",
     "vi.court.bound-questions/1": "92019276de8a27e481cf42cbc3e8174845ba91fc8caca85b2f84c60713d51a13",
     "vi.court.count-bindings/1": "d77571a45fc5a1d7aabf6a8ca9c230848e73a083f037c8457b9daafd10ac6a41",

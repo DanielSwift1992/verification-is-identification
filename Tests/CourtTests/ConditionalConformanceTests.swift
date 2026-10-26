@@ -105,7 +105,7 @@ final class ConditionalConformanceTests: XCTestCase {
             }
         }
         let source = """
-        enum Container: Role {
+        enum Container<T>: Role {
             enum First {}
             enum Second {}
         }

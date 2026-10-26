@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "Positive.swift",
+      "source": "Positive.swift",
+      "sha256": "155b50c38c5ca633aad4c7e08e510eea08bdae65b1d7d552780aac533feae9c2",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "Positive.json#Positive.swift/input",
+        "source": "Positive.json#Positive.swift/source",
+        "sha256": "Positive.json#Positive.swift/sha256",
+        "namespace": "Positive.json#Positive.swift/namespace",
+        "module": "Positive.json#Positive.swift/module",
+        "role": "Positive.json#Positive.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

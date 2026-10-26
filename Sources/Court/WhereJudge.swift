@@ -1256,6 +1256,8 @@ enum WhereJudge {
         let world: World
         let ownAliases: NameMap<AliasRule>
         let excludesConditional: Bool
+        // The context's replayed binding projection, shared with numerical IR.
+        var boundFiles: [CourtNotation.File] = []
     }
 
     enum Selection: Equatable {

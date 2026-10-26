@@ -262,29 +262,33 @@ enum CountCourt {
                 scope: "\(sigma.text) / \(encoding.text) / \(predicate.text)")
     }
 
-    static func contextRead(_ context: CourtContext, texts: NameMap<String>, documents: NameSet,
-                            options: NameMap<String>) throws -> [CourtSourcesReport.Row] {
+    static func contextRead(_ context: CourtContext, contextPath: String, texts: NameMap<String>, documents: NameSet,
+                            options: NameMap<String>, bindingCertificates: [ContextNameBinding.Certificate]? = nil) throws -> [CourtSourcesReport.Row] {
         guard NameSet(options.keys) == ["--predicate", "--encoding", "--sigma"] else {
             throw Failure("count context needs predicate, encoding and sigma")
         }
         let paths = context.sources.map(\.input)
-        guard let contextPath = texts.keys.filter({ !paths.containsName($0) }).first, !paths.isEmpty else {
+        guard !paths.isEmpty else {
             throw Failure("count context needs its explicit file and sources")
         }
         let selected = context.sources.filter { $0.role == "own" }.map(\.input)
+        var admitted: WhereJudge.Prepared?
         for first in selected.isEmpty ? [paths[0]] : selected {
             let prepared = try WhereContext.prepare([first] + paths.filter { !WhereJudge.sameName($0, first) }, contextPath: contextPath,
-                load: { texts[$0]! }, documents: documents, batch: true, notationOnly: true)
+                load: { texts[$0]! }, documents: documents, batch: true, notationOnly: true,
+                bindingCertificate: bindingCertificates?.first { $0.selected == ScalarName(first) })
             if !prepared.world.contextUnresolved.isEmpty { try WhereJudge.failAll(prepared.world.contextUnresolved) }
+            if admitted == nil { admitted = prepared }
         }
-        let notation = try CourtNotation.read(context, texts: texts, selected: nil, documents: documents)
+        guard let admitted else { throw Failure("count context has no admitted source") }
+        let notation = admitted.boundFiles
         let original = context.sources.map { ($0.input, texts[$0.input]!) }
-        let source = try StructuralSource(files: original, notationFiles: notation, arguments: options.keys.sorted().map { ($0, options[$0]!) })
+        let source = try StructuralSource(boundFiles: notation, world: admitted.world, arguments: options.keys.sorted().map { ($0, options[$0]!) })
         try checkPrimitiveRules(original, source: source)
-        // Count's all-input question still discovers closed negative readings
-        // carried among definitions. Only explicitly selected Document views
-        // exclude implementation bodies; count rules always use original bytes.
-        let readings = notation.map { ($0.context.input, documents.contains($0.context.input) ? $0.view : $0.text) }
+        // Closed negative aliases among definitions remain part of the all-input
+        // question. Discovery and reduction consume the same binding projection;
+        // primitive-rule verification above alone needs the original value bodies.
+        let readings = notation.map { ($0.context.input, $0.view) }
         let evaluation = try evaluate(readings, source: source, options: options)
         return notation.map { file in
             var row = CourtSourcesReport.Row(path: file.context.input, source: file.context.source)

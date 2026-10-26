@@ -63,7 +63,7 @@ enum CourtSourcesReport {
                     }
                     let value = arguments[i + 1]
                     if word == "--context" && contextPath == nil { contextPath = value }
-                    else if word == "--bindings" && bindingPath == nil && question == "where" { bindingPath = value }
+                    else if word == "--bindings" && bindingPath == nil { bindingPath = value }
                     else if word == "--document" && documents.insert(value).inserted { }
                     else if question == "count" && ["--predicate", "--encoding", "--sigma"].contains(word)
                                 && options[word] == nil { options[word] = value }
@@ -131,7 +131,7 @@ enum CourtSourcesReport {
                     results.append(row)
                 }
             } else {
-                results = try CountCourt.contextRead(context, texts: texts, documents: documents, options: options)
+                results = try CountCourt.contextRead(context, contextPath: contextPath, texts: texts, documents: documents, options: options, bindingCertificates: bindingCertificate)
             }
             outcome = aggregate(results)
         } catch let failure as WhereJudge.Failure {

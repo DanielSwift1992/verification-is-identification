@@ -1,0 +1,3417 @@
+[
+  {
+    "declarations": [
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "protocol",
+        "line": 4,
+        "offset": 52,
+        "place": {
+          "components": [
+            "World",
+            "PredicateReading"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "associatedtype",
+        "line": 4,
+        "offset": 93,
+        "place": {
+          "components": [
+            "World",
+            "PredicateReading",
+            "Left"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "associatedtype",
+        "line": 4,
+        "offset": 125,
+        "place": {
+          "components": [
+            "World",
+            "PredicateReading",
+            "Right"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "associatedtype",
+        "line": 4,
+        "offset": 158,
+        "place": {
+          "components": [
+            "World",
+            "PredicateReading",
+            "Answer"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "associatedtype",
+        "line": 4,
+        "offset": 192,
+        "place": {
+          "components": [
+            "World",
+            "PredicateReading",
+            "Sigma"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "associatedtype",
+        "line": 4,
+        "offset": 225,
+        "place": {
+          "components": [
+            "World",
+            "PredicateReading",
+            "Encoding"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "associatedtype",
+        "line": 4,
+        "offset": 261,
+        "place": {
+          "components": [
+            "World",
+            "PredicateReading",
+            "Predicate"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "enum",
+        "line": 5,
+        "offset": 296,
+        "place": {
+          "components": [
+            "World",
+            "UnaryArithmeticEncoding"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "enum",
+        "line": 6,
+        "offset": 342,
+        "place": {
+          "components": [
+            "World",
+            "Measure"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "enum",
+        "line": 7,
+        "offset": 372,
+        "place": {
+          "components": [
+            "World",
+            "UnitsQuestion"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "enum",
+        "line": 8,
+        "offset": 408,
+        "place": {
+          "components": [
+            "World",
+            "Reading"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "parameter",
+        "line": 8,
+        "offset": 416,
+        "place": {
+          "components": [
+            "World",
+            "Reading",
+            "A"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "parameter",
+        "line": 8,
+        "offset": 430,
+        "place": {
+          "components": [
+            "World",
+            "Reading",
+            "B"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "typealias",
+        "line": 9,
+        "offset": 482,
+        "place": {
+          "components": [
+            "World",
+            "Reading",
+            "Left"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "typealias",
+        "line": 10,
+        "offset": 509,
+        "place": {
+          "components": [
+            "World",
+            "Reading",
+            "Right"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "typealias",
+        "line": 11,
+        "offset": 537,
+        "place": {
+          "components": [
+            "World",
+            "Reading",
+            "Answer"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "typealias",
+        "line": 12,
+        "offset": 566,
+        "place": {
+          "components": [
+            "World",
+            "Reading",
+            "Sigma"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "typealias",
+        "line": 13,
+        "offset": 600,
+        "place": {
+          "components": [
+            "World",
+            "Reading",
+            "Encoding"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "typealias",
+        "line": 14,
+        "offset": 653,
+        "place": {
+          "components": [
+            "World",
+            "Reading",
+            "Predicate"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/World.swift",
+        "kind": "typealias",
+        "line": 16,
+        "offset": 698,
+        "place": {
+          "components": [
+            "World",
+            "Probe"
+          ]
+        },
+        "source": "fixtures/count-bindings/World.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "protocol",
+        "line": 46,
+        "offset": 61,
+        "place": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "protocol",
+        "line": 74,
+        "offset": 276,
+        "place": {
+          "components": [
+            "Engine",
+            "Open"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "associatedtype",
+        "line": 75,
+        "offset": 313,
+        "place": {
+          "components": [
+            "Engine",
+            "Open",
+            "Body"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "protocol",
+        "line": 92,
+        "offset": 512,
+        "place": {
+          "components": [
+            "Engine",
+            "Close"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "protocol",
+        "line": 108,
+        "offset": 566,
+        "place": {
+          "components": [
+            "Engine",
+            "Pair"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "associatedtype",
+        "line": 109,
+        "offset": 598,
+        "place": {
+          "components": [
+            "Engine",
+            "Pair",
+            "Left"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "associatedtype",
+        "line": 110,
+        "offset": 622,
+        "place": {
+          "components": [
+            "Engine",
+            "Pair",
+            "Right"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "protocol",
+        "line": 123,
+        "offset": 657,
+        "place": {
+          "components": [
+            "Engine",
+            "Null"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "vi.court.context/2#intrinsic-Never",
+        "kind": "intrinsic",
+        "line": 1,
+        "offset": 0,
+        "place": {
+          "components": [
+            "Swift",
+            "Never"
+          ]
+        },
+        "source": "vi.court.context/2#intrinsic-Never"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "typealias",
+        "line": 131,
+        "offset": 741,
+        "place": {
+          "components": [
+            "Swift",
+            "Never",
+            "Left"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "typealias",
+        "line": 132,
+        "offset": 775,
+        "place": {
+          "components": [
+            "Swift",
+            "Never",
+            "Right"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "vi.court.context/2#intrinsic-String",
+        "kind": "intrinsic",
+        "line": 1,
+        "offset": 0,
+        "place": {
+          "components": [
+            "Swift",
+            "String"
+          ]
+        },
+        "source": "vi.court.context/2#intrinsic-String"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "enum",
+        "line": 236,
+        "offset": 2031,
+        "place": {
+          "components": [
+            "Engine",
+            "Paired"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "parameter",
+        "line": 237,
+        "offset": 2043,
+        "place": {
+          "components": [
+            "Engine",
+            "Paired",
+            "L"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "parameter",
+        "line": 238,
+        "offset": 2061,
+        "place": {
+          "components": [
+            "Engine",
+            "Paired",
+            "R"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "typealias",
+        "line": 241,
+        "offset": 2127,
+        "place": {
+          "components": [
+            "Engine",
+            "Paired",
+            "Left"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "typealias",
+        "line": 242,
+        "offset": 2157,
+        "place": {
+          "components": [
+            "Engine",
+            "Paired",
+            "Right"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "enum",
+        "line": 250,
+        "offset": 2201,
+        "place": {
+          "components": [
+            "Engine",
+            "StructureBuilder"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "enum",
+        "line": 292,
+        "offset": 3182,
+        "place": {
+          "components": [
+            "Engine",
+            "Unit"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "enum",
+        "line": 296,
+        "offset": 3212,
+        "place": {
+          "components": [
+            "Engine",
+            "Plus"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "parameter",
+        "line": 297,
+        "offset": 3222,
+        "place": {
+          "components": [
+            "Engine",
+            "Plus",
+            "A"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "parameter",
+        "line": 298,
+        "offset": 3240,
+        "place": {
+          "components": [
+            "Engine",
+            "Plus",
+            "B"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "typealias",
+        "line": 308,
+        "offset": 3387,
+        "place": {
+          "components": [
+            "Engine",
+            "Twice"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "parameter",
+        "line": 308,
+        "offset": 3393,
+        "place": {
+          "components": [
+            "Engine",
+            "Twice",
+            "S"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "enum",
+        "line": 312,
+        "offset": 3435,
+        "place": {
+          "components": [
+            "Engine",
+            "Times"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "parameter",
+        "line": 313,
+        "offset": 3446,
+        "place": {
+          "components": [
+            "Engine",
+            "Times",
+            "A"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "parameter",
+        "line": 314,
+        "offset": 3464,
+        "place": {
+          "components": [
+            "Engine",
+            "Times",
+            "B"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "typealias",
+        "line": 323,
+        "offset": 3585,
+        "place": {
+          "components": [
+            "Engine",
+            "U1"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "typealias",
+        "line": 324,
+        "offset": 3612,
+        "place": {
+          "components": [
+            "Engine",
+            "U2"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "typealias",
+        "line": 325,
+        "offset": 3644,
+        "place": {
+          "components": [
+            "Engine",
+            "U4"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "typealias",
+        "line": 326,
+        "offset": 3676,
+        "place": {
+          "components": [
+            "Engine",
+            "U8"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "typealias",
+        "line": 327,
+        "offset": 3708,
+        "place": {
+          "components": [
+            "Engine",
+            "U16"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "typealias",
+        "line": 328,
+        "offset": 3741,
+        "place": {
+          "components": [
+            "Engine",
+            "U32"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "typealias",
+        "line": 329,
+        "offset": 3775,
+        "place": {
+          "components": [
+            "Engine",
+            "U64"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "typealias",
+        "line": 330,
+        "offset": 3809,
+        "place": {
+          "components": [
+            "Engine",
+            "U128"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "typealias",
+        "line": 331,
+        "offset": 3844,
+        "place": {
+          "components": [
+            "Engine",
+            "U256"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "typealias",
+        "line": 332,
+        "offset": 3880,
+        "place": {
+          "components": [
+            "Engine",
+            "U512"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "enum",
+        "line": 339,
+        "offset": 3917,
+        "place": {
+          "components": [
+            "Engine",
+            "Rest"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "parameter",
+        "line": 340,
+        "offset": 3927,
+        "place": {
+          "components": [
+            "Engine",
+            "Rest",
+            "Whole"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "parameter",
+        "line": 341,
+        "offset": 3949,
+        "place": {
+          "components": [
+            "Engine",
+            "Rest",
+            "Taken"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "enum",
+        "line": 358,
+        "offset": 4260,
+        "place": {
+          "components": [
+            "Engine",
+            "Half"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "parameter",
+        "line": 358,
+        "offset": 4265,
+        "place": {
+          "components": [
+            "Engine",
+            "Half",
+            "Of"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "enum",
+        "line": 369,
+        "offset": 4448,
+        "place": {
+          "components": [
+            "Engine",
+            "Tally"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/Primitive.swift",
+        "kind": "parameter",
+        "line": 369,
+        "offset": 4454,
+        "place": {
+          "components": [
+            "Engine",
+            "Tally",
+            "Of"
+          ]
+        },
+        "source": "fixtures/Primitive.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/One.swift",
+        "kind": "typealias",
+        "line": 2,
+        "offset": 31,
+        "place": {
+          "components": [
+            "One",
+            "Mark"
+          ]
+        },
+        "source": "fixtures/count-bindings/One.swift"
+      },
+      {
+        "definitions": [],
+        "input": "fixtures/count-bindings/Two.swift",
+        "kind": "typealias",
+        "line": 2,
+        "offset": 31,
+        "place": {
+          "components": [
+            "Two",
+            "Mark"
+          ]
+        },
+        "source": "fixtures/count-bindings/Two.swift"
+      }
+    ],
+    "inputs": [
+      {
+        "imports": [
+          "Engine",
+          "One",
+          "Two"
+        ],
+        "input": "fixtures/count-bindings/World.swift",
+        "module": "World",
+        "sha256": "6ab688ce238b8403e87cf0b3bc0048ea32954443f5b809e0293e1c104397cd21",
+        "source": "fixtures/count-bindings/World.swift",
+        "viewSHA256": "6ab688ce238b8403e87cf0b3bc0048ea32954443f5b809e0293e1c104397cd21"
+      },
+      {
+        "imports": [],
+        "input": "fixtures/Primitive.swift",
+        "module": "Engine",
+        "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a",
+        "source": "fixtures/Primitive.swift",
+        "viewSHA256": "d24969767985862a3c5d6d824aab36faa7cc40305b56f41a33941fe31b805f05"
+      },
+      {
+        "imports": [
+          "Engine"
+        ],
+        "input": "fixtures/count-bindings/One.swift",
+        "module": "One",
+        "sha256": "241d2ecd85cf2b38bbb37c1db2953ee29060df8eb29fae3ea152e80b5630d73c",
+        "source": "fixtures/count-bindings/One.swift",
+        "viewSHA256": "241d2ecd85cf2b38bbb37c1db2953ee29060df8eb29fae3ea152e80b5630d73c"
+      },
+      {
+        "imports": [
+          "Engine"
+        ],
+        "input": "fixtures/count-bindings/Two.swift",
+        "module": "Two",
+        "sha256": "c1620972de83fe298483d8ee094bb1106d4d7116d55f2f5da50f7514cf0765a9",
+        "source": "fixtures/count-bindings/Two.swift",
+        "viewSHA256": "c1620972de83fe298483d8ee094bb1106d4d7116d55f2f5da50f7514cf0765a9"
+      }
+    ],
+    "references": [
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Close"
+          ]
+        },
+        "end": 75,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 4,
+        "offset": 70,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "PredicateReading"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Close"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 108,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 4,
+        "offset": 99,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "PredicateReading"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 141,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 4,
+        "offset": 132,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "PredicateReading"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 175,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 4,
+        "offset": 166,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "PredicateReading"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 208,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 4,
+        "offset": 199,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "PredicateReading"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 244,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 4,
+        "offset": 235,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "PredicateReading"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 281,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 4,
+        "offset": 272,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "PredicateReading"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Close"
+          ]
+        },
+        "end": 326,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 5,
+        "offset": 321,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "UnaryArithmeticEncoding"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Close"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Close"
+          ]
+        },
+        "end": 356,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 6,
+        "offset": 351,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "Measure"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Close"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Close"
+          ]
+        },
+        "end": 392,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 7,
+        "offset": 387,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "UnitsQuestion"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Close"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 428,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 8,
+        "offset": 419,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "Reading"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 442,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 8,
+        "offset": 433,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "Reading"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "World",
+            "PredicateReading"
+          ]
+        },
+        "end": 461,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 8,
+        "offset": 445,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "Reading"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "PredicateReading"
+      },
+      {
+        "declaration": {
+          "components": [
+            "World",
+            "Reading",
+            "A"
+          ]
+        },
+        "end": 490,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 9,
+        "offset": 489,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "Reading"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "A"
+      },
+      {
+        "declaration": {
+          "components": [
+            "World",
+            "Reading",
+            "B"
+          ]
+        },
+        "end": 518,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 10,
+        "offset": 517,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "Reading"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "B"
+      },
+      {
+        "declaration": {
+          "components": [
+            "World",
+            "Reading",
+            "B"
+          ]
+        },
+        "end": 547,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 11,
+        "offset": 546,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "Reading"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "B"
+      },
+      {
+        "declaration": {
+          "components": [
+            "World",
+            "Measure"
+          ]
+        },
+        "end": 581,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 12,
+        "offset": 574,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "Reading"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Measure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "World",
+            "UnaryArithmeticEncoding"
+          ]
+        },
+        "end": 634,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 13,
+        "offset": 611,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "Reading"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "UnaryArithmeticEncoding"
+      },
+      {
+        "declaration": {
+          "components": [
+            "World",
+            "UnitsQuestion"
+          ]
+        },
+        "end": 678,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 14,
+        "offset": 665,
+        "scopes": [
+          {
+            "components": [
+              "World",
+              "Reading"
+            ]
+          }
+        ],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "UnitsQuestion"
+      },
+      {
+        "declaration": {
+          "components": [
+            "World",
+            "Reading"
+          ]
+        },
+        "end": 713,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 16,
+        "offset": 706,
+        "scopes": [],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Reading"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Plus"
+          ]
+        },
+        "end": 718,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 16,
+        "offset": 714,
+        "scopes": [],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Plus"
+      },
+      {
+        "declaration": {
+          "components": [
+            "One",
+            "Mark"
+          ]
+        },
+        "end": 727,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 16,
+        "offset": 719,
+        "scopes": [],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "One.Mark"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Two",
+            "Mark"
+          ]
+        },
+        "end": 736,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 16,
+        "offset": 728,
+        "scopes": [],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Two.Mark"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Plus"
+          ]
+        },
+        "end": 742,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 16,
+        "offset": 738,
+        "scopes": [],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Plus"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Unit"
+          ]
+        },
+        "end": 747,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 16,
+        "offset": 743,
+        "scopes": [],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Unit"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Plus"
+          ]
+        },
+        "end": 752,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 16,
+        "offset": 748,
+        "scopes": [],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Plus"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Unit"
+          ]
+        },
+        "end": 757,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 16,
+        "offset": 753,
+        "scopes": [],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Unit"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Unit"
+          ]
+        },
+        "end": 762,
+        "input": "fixtures/count-bindings/World.swift",
+        "line": 16,
+        "offset": 758,
+        "scopes": [],
+        "source": "fixtures/count-bindings/World.swift",
+        "spelling": "Unit"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 291,
+        "input": "fixtures/Primitive.swift",
+        "line": 74,
+        "offset": 282,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 328,
+        "input": "fixtures/Primitive.swift",
+        "line": 75,
+        "offset": 319,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Swift",
+            "Never"
+          ]
+        },
+        "end": 336,
+        "input": "fixtures/Primitive.swift",
+        "line": 75,
+        "offset": 331,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Never"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "StructureBuilder"
+          ]
+        },
+        "end": 358,
+        "input": "fixtures/Primitive.swift",
+        "line": 76,
+        "offset": 342,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "StructureBuilder"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Open"
+          ]
+        },
+        "end": 413,
+        "input": "fixtures/Primitive.swift",
+        "line": 83,
+        "offset": 409,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Open"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Open",
+            "Body"
+          ]
+        },
+        "end": 424,
+        "input": "fixtures/Primitive.swift",
+        "line": 84,
+        "offset": 420,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Body"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Swift",
+            "Never"
+          ]
+        },
+        "end": 433,
+        "input": "fixtures/Primitive.swift",
+        "line": 84,
+        "offset": 428,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Never"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 528,
+        "input": "fixtures/Primitive.swift",
+        "line": 92,
+        "offset": 519,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Close"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Open"
+          ]
+        },
+        "end": 576,
+        "input": "fixtures/Primitive.swift",
+        "line": 108,
+        "offset": 572,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Pair"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Open"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Pair"
+          ]
+        },
+        "end": 667,
+        "input": "fixtures/Primitive.swift",
+        "line": 123,
+        "offset": 663,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Null"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Pair"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Pair",
+            "Left"
+          ]
+        },
+        "end": 678,
+        "input": "fixtures/Primitive.swift",
+        "line": 124,
+        "offset": 674,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Null"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Left"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Pair",
+            "Right"
+          ]
+        },
+        "end": 687,
+        "input": "fixtures/Primitive.swift",
+        "line": 124,
+        "offset": 682,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Null"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Right"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Swift",
+            "Never"
+          ]
+        },
+        "end": 711,
+        "input": "fixtures/Primitive.swift",
+        "line": 130,
+        "offset": 706,
+        "scopes": [
+          {
+            "components": [
+              "Swift",
+              "Never"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Never"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Null"
+          ]
+        },
+        "end": 717,
+        "input": "fixtures/Primitive.swift",
+        "line": 130,
+        "offset": 713,
+        "scopes": [
+          {
+            "components": [
+              "Swift",
+              "Never"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Null"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Swift",
+            "Never"
+          ]
+        },
+        "end": 753,
+        "input": "fixtures/Primitive.swift",
+        "line": 131,
+        "offset": 748,
+        "scopes": [
+          {
+            "components": [
+              "Swift",
+              "Never"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Never"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Swift",
+            "Never"
+          ]
+        },
+        "end": 788,
+        "input": "fixtures/Primitive.swift",
+        "line": 132,
+        "offset": 783,
+        "scopes": [
+          {
+            "components": [
+              "Swift",
+              "Never"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Never"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Swift",
+            "Never"
+          ]
+        },
+        "end": 941,
+        "input": "fixtures/Primitive.swift",
+        "line": 141,
+        "offset": 936,
+        "scopes": [
+          {
+            "components": [
+              "Swift",
+              "Never"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Never"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Close"
+          ]
+        },
+        "end": 948,
+        "input": "fixtures/Primitive.swift",
+        "line": 141,
+        "offset": 943,
+        "scopes": [
+          {
+            "components": [
+              "Swift",
+              "Never"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Close"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Swift",
+            "String"
+          ]
+        },
+        "end": 971,
+        "input": "fixtures/Primitive.swift",
+        "line": 145,
+        "offset": 965,
+        "scopes": [
+          {
+            "components": [
+              "Swift",
+              "String"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "String"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Close"
+          ]
+        },
+        "end": 978,
+        "input": "fixtures/Primitive.swift",
+        "line": 145,
+        "offset": 973,
+        "scopes": [
+          {
+            "components": [
+              "Swift",
+              "String"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Close"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 1005,
+        "input": "fixtures/Primitive.swift",
+        "line": 150,
+        "offset": 996,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Structure"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Open"
+          ]
+        },
+        "end": 1102,
+        "input": "fixtures/Primitive.swift",
+        "line": 158,
+        "offset": 1098,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Open"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Open",
+            "Body"
+          ]
+        },
+        "end": 1113,
+        "input": "fixtures/Primitive.swift",
+        "line": 159,
+        "offset": 1109,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Body"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Swift",
+            "Never"
+          ]
+        },
+        "end": 1122,
+        "input": "fixtures/Primitive.swift",
+        "line": 159,
+        "offset": 1117,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Never"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Open"
+          ]
+        },
+        "end": 1217,
+        "input": "fixtures/Primitive.swift",
+        "line": 165,
+        "offset": 1213,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Open"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Paired"
+          ]
+        },
+        "end": 1297,
+        "input": "fixtures/Primitive.swift",
+        "line": 170,
+        "offset": 1291,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Paired"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Paired"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 1393,
+        "input": "fixtures/Primitive.swift",
+        "line": 178,
+        "offset": 1384,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Structure"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Open"
+          ]
+        },
+        "end": 1457,
+        "input": "fixtures/Primitive.swift",
+        "line": 187,
+        "offset": 1453,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Open"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Open",
+            "Body"
+          ]
+        },
+        "end": 1468,
+        "input": "fixtures/Primitive.swift",
+        "line": 188,
+        "offset": 1464,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Body"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Swift",
+            "Never"
+          ]
+        },
+        "end": 1477,
+        "input": "fixtures/Primitive.swift",
+        "line": 188,
+        "offset": 1472,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Never"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Open"
+          ]
+        },
+        "end": 1538,
+        "input": "fixtures/Primitive.swift",
+        "line": 194,
+        "offset": 1534,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Open"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Paired"
+          ]
+        },
+        "end": 1609,
+        "input": "fixtures/Primitive.swift",
+        "line": 199,
+        "offset": 1603,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Paired"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Paired"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 1694,
+        "input": "fixtures/Primitive.swift",
+        "line": 208,
+        "offset": 1685,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Structure"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Open"
+          ]
+        },
+        "end": 1768,
+        "input": "fixtures/Primitive.swift",
+        "line": 212,
+        "offset": 1764,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Open"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Open",
+            "Body"
+          ]
+        },
+        "end": 1779,
+        "input": "fixtures/Primitive.swift",
+        "line": 213,
+        "offset": 1775,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Body"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Swift",
+            "Never"
+          ]
+        },
+        "end": 1788,
+        "input": "fixtures/Primitive.swift",
+        "line": 213,
+        "offset": 1783,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Never"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Open"
+          ]
+        },
+        "end": 1863,
+        "input": "fixtures/Primitive.swift",
+        "line": 218,
+        "offset": 1859,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Open"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Open"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Paired"
+          ]
+        },
+        "end": 1941,
+        "input": "fixtures/Primitive.swift",
+        "line": 223,
+        "offset": 1935,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Paired"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Paired"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 2055,
+        "input": "fixtures/Primitive.swift",
+        "line": 237,
+        "offset": 2046,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Paired"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 2073,
+        "input": "fixtures/Primitive.swift",
+        "line": 238,
+        "offset": 2064,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Paired"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Pair"
+          ]
+        },
+        "end": 2081,
+        "input": "fixtures/Primitive.swift",
+        "line": 239,
+        "offset": 2077,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Paired"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Pair"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Paired",
+            "L"
+          ]
+        },
+        "end": 2101,
+        "input": "fixtures/Primitive.swift",
+        "line": 240,
+        "offset": 2100,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Paired"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "L"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Paired",
+            "R"
+          ]
+        },
+        "end": 2104,
+        "input": "fixtures/Primitive.swift",
+        "line": 240,
+        "offset": 2103,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Paired"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "R"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Paired",
+            "L"
+          ]
+        },
+        "end": 2135,
+        "input": "fixtures/Primitive.swift",
+        "line": 241,
+        "offset": 2134,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Paired"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "L"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Paired",
+            "R"
+          ]
+        },
+        "end": 2166,
+        "input": "fixtures/Primitive.swift",
+        "line": 242,
+        "offset": 2165,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Paired"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "R"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Close"
+          ]
+        },
+        "end": 3193,
+        "input": "fixtures/Primitive.swift",
+        "line": 292,
+        "offset": 3188,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Unit"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Close"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 3234,
+        "input": "fixtures/Primitive.swift",
+        "line": 297,
+        "offset": 3225,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Plus"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 3252,
+        "input": "fixtures/Primitive.swift",
+        "line": 298,
+        "offset": 3243,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Plus"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Open"
+          ]
+        },
+        "end": 3260,
+        "input": "fixtures/Primitive.swift",
+        "line": 299,
+        "offset": 3256,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Plus"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Open"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "StructureBuilder"
+          ]
+        },
+        "end": 3284,
+        "input": "fixtures/Primitive.swift",
+        "line": 300,
+        "offset": 3268,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Plus"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "StructureBuilder"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 3405,
+        "input": "fixtures/Primitive.swift",
+        "line": 308,
+        "offset": 3396,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Twice"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Plus"
+          ]
+        },
+        "end": 3413,
+        "input": "fixtures/Primitive.swift",
+        "line": 308,
+        "offset": 3409,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Twice"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Plus"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Twice",
+            "S"
+          ]
+        },
+        "end": 3415,
+        "input": "fixtures/Primitive.swift",
+        "line": 308,
+        "offset": 3414,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Twice"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "S"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Twice",
+            "S"
+          ]
+        },
+        "end": 3418,
+        "input": "fixtures/Primitive.swift",
+        "line": 308,
+        "offset": 3417,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Twice"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "S"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 3458,
+        "input": "fixtures/Primitive.swift",
+        "line": 313,
+        "offset": 3449,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Times"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 3476,
+        "input": "fixtures/Primitive.swift",
+        "line": 314,
+        "offset": 3467,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Times"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Close"
+          ]
+        },
+        "end": 3485,
+        "input": "fixtures/Primitive.swift",
+        "line": 315,
+        "offset": 3480,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Times"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Close"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Times"
+          ]
+        },
+        "end": 3504,
+        "input": "fixtures/Primitive.swift",
+        "line": 316,
+        "offset": 3499,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Times"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Times"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Unit"
+          ]
+        },
+        "end": 3594,
+        "input": "fixtures/Primitive.swift",
+        "line": 323,
+        "offset": 3590,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Unit"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Twice"
+          ]
+        },
+        "end": 3622,
+        "input": "fixtures/Primitive.swift",
+        "line": 324,
+        "offset": 3617,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Twice"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "U1"
+          ]
+        },
+        "end": 3625,
+        "input": "fixtures/Primitive.swift",
+        "line": 324,
+        "offset": 3623,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "U1"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Twice"
+          ]
+        },
+        "end": 3654,
+        "input": "fixtures/Primitive.swift",
+        "line": 325,
+        "offset": 3649,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Twice"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "U2"
+          ]
+        },
+        "end": 3657,
+        "input": "fixtures/Primitive.swift",
+        "line": 325,
+        "offset": 3655,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "U2"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Twice"
+          ]
+        },
+        "end": 3686,
+        "input": "fixtures/Primitive.swift",
+        "line": 326,
+        "offset": 3681,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Twice"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "U4"
+          ]
+        },
+        "end": 3689,
+        "input": "fixtures/Primitive.swift",
+        "line": 326,
+        "offset": 3687,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "U4"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Twice"
+          ]
+        },
+        "end": 3719,
+        "input": "fixtures/Primitive.swift",
+        "line": 327,
+        "offset": 3714,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Twice"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "U8"
+          ]
+        },
+        "end": 3722,
+        "input": "fixtures/Primitive.swift",
+        "line": 327,
+        "offset": 3720,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "U8"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Twice"
+          ]
+        },
+        "end": 3752,
+        "input": "fixtures/Primitive.swift",
+        "line": 328,
+        "offset": 3747,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Twice"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "U16"
+          ]
+        },
+        "end": 3756,
+        "input": "fixtures/Primitive.swift",
+        "line": 328,
+        "offset": 3753,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "U16"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Twice"
+          ]
+        },
+        "end": 3786,
+        "input": "fixtures/Primitive.swift",
+        "line": 329,
+        "offset": 3781,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Twice"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "U32"
+          ]
+        },
+        "end": 3790,
+        "input": "fixtures/Primitive.swift",
+        "line": 329,
+        "offset": 3787,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "U32"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Twice"
+          ]
+        },
+        "end": 3821,
+        "input": "fixtures/Primitive.swift",
+        "line": 330,
+        "offset": 3816,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Twice"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "U64"
+          ]
+        },
+        "end": 3825,
+        "input": "fixtures/Primitive.swift",
+        "line": 330,
+        "offset": 3822,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "U64"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Twice"
+          ]
+        },
+        "end": 3856,
+        "input": "fixtures/Primitive.swift",
+        "line": 331,
+        "offset": 3851,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Twice"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "U128"
+          ]
+        },
+        "end": 3861,
+        "input": "fixtures/Primitive.swift",
+        "line": 331,
+        "offset": 3857,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "U128"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Twice"
+          ]
+        },
+        "end": 3892,
+        "input": "fixtures/Primitive.swift",
+        "line": 332,
+        "offset": 3887,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Twice"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "U256"
+          ]
+        },
+        "end": 3897,
+        "input": "fixtures/Primitive.swift",
+        "line": 332,
+        "offset": 3893,
+        "scopes": [],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "U256"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 3943,
+        "input": "fixtures/Primitive.swift",
+        "line": 340,
+        "offset": 3934,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Rest"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 3965,
+        "input": "fixtures/Primitive.swift",
+        "line": 341,
+        "offset": 3956,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Rest"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Close"
+          ]
+        },
+        "end": 3974,
+        "input": "fixtures/Primitive.swift",
+        "line": 342,
+        "offset": 3969,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Rest"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Close"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Rest"
+          ]
+        },
+        "end": 3992,
+        "input": "fixtures/Primitive.swift",
+        "line": 343,
+        "offset": 3988,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Rest"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Rest"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 4278,
+        "input": "fixtures/Primitive.swift",
+        "line": 358,
+        "offset": 4269,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Half"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Close"
+          ]
+        },
+        "end": 4286,
+        "input": "fixtures/Primitive.swift",
+        "line": 358,
+        "offset": 4281,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Half"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Close"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Half"
+          ]
+        },
+        "end": 4304,
+        "input": "fixtures/Primitive.swift",
+        "line": 359,
+        "offset": 4300,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Half"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Half"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Structure"
+          ]
+        },
+        "end": 4467,
+        "input": "fixtures/Primitive.swift",
+        "line": 369,
+        "offset": 4458,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Tally"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Structure"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Close"
+          ]
+        },
+        "end": 4475,
+        "input": "fixtures/Primitive.swift",
+        "line": 369,
+        "offset": 4470,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Tally"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Close"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Tally"
+          ]
+        },
+        "end": 4494,
+        "input": "fixtures/Primitive.swift",
+        "line": 370,
+        "offset": 4489,
+        "scopes": [
+          {
+            "components": [
+              "Engine",
+              "Tally"
+            ]
+          }
+        ],
+        "source": "fixtures/Primitive.swift",
+        "spelling": "Tally"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Unit"
+          ]
+        },
+        "end": 42,
+        "input": "fixtures/count-bindings/One.swift",
+        "line": 2,
+        "offset": 38,
+        "scopes": [],
+        "source": "fixtures/count-bindings/One.swift",
+        "spelling": "Unit"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Plus"
+          ]
+        },
+        "end": 42,
+        "input": "fixtures/count-bindings/Two.swift",
+        "line": 2,
+        "offset": 38,
+        "scopes": [],
+        "source": "fixtures/count-bindings/Two.swift",
+        "spelling": "Plus"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Unit"
+          ]
+        },
+        "end": 47,
+        "input": "fixtures/count-bindings/Two.swift",
+        "line": 2,
+        "offset": 43,
+        "scopes": [],
+        "source": "fixtures/count-bindings/Two.swift",
+        "spelling": "Unit"
+      },
+      {
+        "declaration": {
+          "components": [
+            "Engine",
+            "Unit"
+          ]
+        },
+        "end": 52,
+        "input": "fixtures/count-bindings/Two.swift",
+        "line": 2,
+        "offset": 48,
+        "scopes": [],
+        "source": "fixtures/count-bindings/Two.swift",
+        "spelling": "Unit"
+      }
+    ],
+    "schema": "vi.court.context-name-bindings/2",
+    "selected": "fixtures/count-bindings/World.swift"
+  }
+]

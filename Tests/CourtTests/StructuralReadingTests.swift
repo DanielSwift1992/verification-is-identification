@@ -52,7 +52,7 @@ final class StructuralReadingTests: XCTestCase {
         let json = String(decoding: try JSONSerialization.data(withJSONObject: object), as: UTF8.self)
         texts["context.json"] = json
         let context = try CourtContext(text: json, paths: paths, texts: texts)
-        let rows = try CountCourt.contextRead(context, texts: texts, documents: [paths[0]], options:
+        let rows = try CountCourt.contextRead(context, contextPath: "context.json", texts: texts, documents: [paths[0]], options:
             ["--predicate": "UnitsQuestion", "--encoding": "UnaryArithmeticEncoding", "--sigma": "Measure"])
         XCTAssertEqual(rows.first?.outcome, "holds")
         XCTAssertEqual(rows.first?.readings, 1)

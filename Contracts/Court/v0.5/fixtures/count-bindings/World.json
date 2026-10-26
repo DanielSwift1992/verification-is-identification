@@ -1,0 +1,111 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "fixtures/count-bindings/World.swift",
+      "source": "fixtures/count-bindings/World.swift",
+      "sha256": "6ab688ce238b8403e87cf0b3bc0048ea32954443f5b809e0293e1c104397cd21",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Engine",
+        "One",
+        "Two"
+      ],
+      "at": {
+        "input": "record:fixtures/count-bindings/World.swift/input",
+        "source": "record:fixtures/count-bindings/World.swift/source",
+        "sha256": "record:fixtures/count-bindings/World.swift/sha256",
+        "module": "record:fixtures/count-bindings/World.swift/module",
+        "namespace": "record:fixtures/count-bindings/World.swift/namespace",
+        "role": "record:fixtures/count-bindings/World.swift/role",
+        "imports": [
+          "record:fixtures/count-bindings/World.swift/imports/0",
+          "record:fixtures/count-bindings/World.swift/imports/1",
+          "record:fixtures/count-bindings/World.swift/imports/2"
+        ]
+      }
+    },
+    {
+      "input": "fixtures/Primitive.swift",
+      "source": "fixtures/Primitive.swift",
+      "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a",
+      "namespace": "Engine",
+      "module": "Engine",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "record:fixtures/Primitive.swift/input",
+        "source": "record:fixtures/Primitive.swift/source",
+        "sha256": "record:fixtures/Primitive.swift/sha256",
+        "module": "record:fixtures/Primitive.swift/module",
+        "namespace": "record:fixtures/Primitive.swift/namespace",
+        "role": "record:fixtures/Primitive.swift/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "fixtures/count-bindings/One.swift",
+      "source": "fixtures/count-bindings/One.swift",
+      "sha256": "241d2ecd85cf2b38bbb37c1db2953ee29060df8eb29fae3ea152e80b5630d73c",
+      "namespace": "One",
+      "module": "One",
+      "role": "borrowed",
+      "imports": [
+        "Engine"
+      ],
+      "at": {
+        "input": "record:fixtures/count-bindings/One.swift/input",
+        "source": "record:fixtures/count-bindings/One.swift/source",
+        "sha256": "record:fixtures/count-bindings/One.swift/sha256",
+        "module": "record:fixtures/count-bindings/One.swift/module",
+        "namespace": "record:fixtures/count-bindings/One.swift/namespace",
+        "role": "record:fixtures/count-bindings/One.swift/role",
+        "imports": [
+          "record:fixtures/count-bindings/One.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "fixtures/count-bindings/Two.swift",
+      "source": "fixtures/count-bindings/Two.swift",
+      "sha256": "c1620972de83fe298483d8ee094bb1106d4d7116d55f2f5da50f7514cf0765a9",
+      "namespace": "Two",
+      "module": "Two",
+      "role": "borrowed",
+      "imports": [
+        "Engine"
+      ],
+      "at": {
+        "input": "record:fixtures/count-bindings/Two.swift/input",
+        "source": "record:fixtures/count-bindings/Two.swift/source",
+        "sha256": "record:fixtures/count-bindings/Two.swift/sha256",
+        "module": "record:fixtures/count-bindings/Two.swift/module",
+        "namespace": "record:fixtures/count-bindings/Two.swift/namespace",
+        "role": "record:fixtures/count-bindings/Two.swift/role",
+        "imports": [
+          "record:fixtures/count-bindings/Two.swift/imports/0"
+        ]
+      }
+    }
+  ],
+  "intrinsics": [
+    {
+      "namespace": "Swift",
+      "version": "vi.court.intrinsic-swift/2",
+      "exports": [
+        "Never",
+        "String"
+      ],
+      "at": {
+        "namespace": "intrinsic/namespace",
+        "version": "intrinsic/version",
+        "exports": [
+          "Primitive.swift:130",
+          "Primitive.swift:145"
+        ]
+      }
+    }
+  ]
+}

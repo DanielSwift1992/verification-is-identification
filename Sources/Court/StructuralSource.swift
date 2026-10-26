@@ -464,7 +464,23 @@ struct StructuralSource {
         return read
     }
 
-    init(files: [(String, String)], notationFiles: [CourtNotation.File] = [], roster: Bool = false, readings: [FileReading] = [], arguments: [(String, String)] = []) throws {
+    /// Context names have already been selected by T0105 and replayed. Read
+    /// their structural productions without consulting the original short keys.
+    init(boundFiles: [CourtNotation.File], world: WhereJudge.World, arguments: [(String, String)] = []) throws {
+        guard let index = world.contextNameBindings, let proof = world.contextNameBindingCertificate else {
+            throw AddressedFailure("context:1: count needs the context name binding derivation")
+        }
+        try index.replay(proof)
+        try self.init(files: boundFiles.map { ($0.context.input, $0.view) },
+            notationFiles: boundFiles, notationViews: true, arguments: arguments)
+        syntax.contextNameBindings = index
+        syntax.contextNameBindingCertificate = proof
+        syntax.contextual = true
+        syntax.contextSpellings = world.contextSpellings
+        syntax.addresses = world.addresses
+    }
+
+    init(files: [(String, String)], notationFiles: [CourtNotation.File] = [], notationViews: Bool = false, roster: Bool = false, readings: [FileReading] = [], arguments: [(String, String)] = []) throws {
         // A FileReading is built by the common grammar judgement, never decoded
         // from an untrusted AST. Roster applies its stricter member relation below.
         if !readings.isEmpty || !notationFiles.isEmpty {
@@ -519,7 +535,7 @@ struct StructuralSource {
             }
         }
         for file in notationFiles {
-            let clean = try WhereJudge.stripComments(file.text, lent: lent)
+            let clean = try WhereJudge.stripComments(notationViews ? file.view : file.text, lent: lent)
             let notation = try NotationScope(clean)
             for declaration in try notation.structural(clean, origin: file.context.input, lent: lent) {
                 guard declaration.kind == "enum" || declaration.kind == "struct" || declaration.kind == "protocol" else { continue }

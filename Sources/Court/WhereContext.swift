@@ -192,7 +192,7 @@ enum WhereContext {
         }
         if notationOnly {
             return WhereJudge.Prepared(path: own.context.source, world: world, ownAliases: ownAliases,
-                excludesConditional: units.contains { WhereJudge.sourceLines($0.text).range(of: #"(?m)^\s*#if\b"#, options: .regularExpression) != nil })
+                excludesConditional: units.contains { WhereJudge.sourceLines($0.text).range(of: #"(?m)^\s*#if\b"#, options: .regularExpression) != nil }, boundFiles: units)
         }
         // A cycle supplies no independent conformance premise. Sorting fixes the
         // named obstruction independently of the order of definitions arguments.

@@ -1,0 +1,298 @@
+{
+  "schema": "vi.court.conformance/2",
+  "suite": "vi.court.count-bindings/1",
+  "reference_revision": "77f61b6d0228b7426f96d9b1494e98febeb73c3d",
+  "scope": "Count consumes the replayed T0105 binding projection; exact reports, distinct owners and addressed refusals. Finite observations, not reader correctness.",
+  "versions": {
+    "context": "vi.court.context/2",
+    "normalization_canon": 4,
+    "count_bindings": 1
+  },
+  "missing_files": [],
+  "files": {
+    "fixtures/Primitive.swift": {
+      "sha256": "c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a",
+      "origin": "Existing v0.5 primitive bytes"
+    },
+    "fixtures/count-bindings/One.swift": {
+      "sha256": "241d2ecd85cf2b38bbb37c1db2953ee29060df8eb29fae3ea152e80b5630d73c",
+      "origin": "T0125: declared count binding contract"
+    },
+    "fixtures/count-bindings/Two.swift": {
+      "sha256": "c1620972de83fe298483d8ee094bb1106d4d7116d55f2f5da50f7514cf0765a9",
+      "origin": "T0125: declared count binding contract"
+    },
+    "fixtures/count-bindings/Ambiguous.json": {
+      "sha256": "3ce142b33dd146b574f5cac41943769ff043e7215c764ee06ef43f44b888dac5",
+      "origin": "T0125: declared count binding contract"
+    },
+    "fixtures/count-bindings/Ambiguous.swift": {
+      "sha256": "b3f27d07ecfd5b4f3ddf0d414f6019fd9df4df8aaeb770e4a117f614a1c1f1a9",
+      "origin": "T0125: declared count binding contract"
+    },
+    "fixtures/count-bindings/False.json": {
+      "sha256": "5c5382fefc57e0bc256aaf595882ee039191664317759bed05e2a5cd803d88a5",
+      "origin": "T0125: declared count binding contract"
+    },
+    "fixtures/count-bindings/False.swift": {
+      "sha256": "ef5dbea968aed79766c11251fa9f98ce2eac26fef0ca2cfa314db15c0abd2ba4",
+      "origin": "T0125: declared count binding contract"
+    },
+    "fixtures/count-bindings/Unknown.json": {
+      "sha256": "4f0508b491dfa469342e90dffc289010b876fdab06c6260d40df5ebcb3e4345f",
+      "origin": "T0125: declared count binding contract"
+    },
+    "fixtures/count-bindings/Unknown.swift": {
+      "sha256": "2f0c952ab14a335804e2bcd2840653e2c2ee541744f24301f9254e2e2deb42bc",
+      "origin": "T0125: declared count binding contract"
+    },
+    "fixtures/count-bindings/World.json": {
+      "sha256": "47db65b7c68f14a376ba02fe858750a5260e3ffa3ec65555fb6fb2762898bf04",
+      "origin": "T0125: declared count binding contract"
+    },
+    "fixtures/count-bindings/World.swift": {
+      "sha256": "6ab688ce238b8403e87cf0b3bc0048ea32954443f5b809e0293e1c104397cd21",
+      "origin": "T0125: declared count binding contract"
+    },
+    "fixtures/count-bindings/swapped.json": {
+      "sha256": "9a0f50ead0d055e977ee11c06e1df7a22153d3f73952a60d9d6484c6ba7638c2",
+      "origin": "T0125: declared count binding contract"
+    },
+    "fixtures/count-bindings/valid.json": {
+      "sha256": "f49a2c082aa16623b089ebc2463807cc61597c5d6f401de3f1d480f564b825fa",
+      "origin": "T0125: declared count binding contract"
+    }
+  },
+  "cases": [
+    {
+      "id": "distinct-owners",
+      "files": [
+        "fixtures/count-bindings/World.swift",
+        "fixtures/Primitive.swift",
+        "fixtures/count-bindings/One.swift",
+        "fixtures/count-bindings/Two.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/count-bindings/World.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"fixtures/Primitive.swift\",\"sha256\":\"c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a\"},{\"path\":\"fixtures/count-bindings/One.swift\",\"sha256\":\"241d2ecd85cf2b38bbb37c1db2953ee29060df8eb29fae3ea152e80b5630d73c\"},{\"path\":\"fixtures/count-bindings/Two.swift\",\"sha256\":\"c1620972de83fe298483d8ee094bb1106d4d7116d55f2f5da50f7514cf0765a9\"},{\"path\":\"fixtures/count-bindings/World.json\",\"sha256\":\"47db65b7c68f14a376ba02fe858750a5260e3ffa3ec65555fb6fb2762898bf04\"},{\"path\":\"fixtures/count-bindings/World.swift\",\"sha256\":\"6ab688ce238b8403e87cf0b3bc0048ea32954443f5b809e0293e1c104397cd21\"}],\"outcome\":\"holds\",\"question\":\"count\",\"results\":[{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"empty\",\"path\":\"fixtures/Primitive.swift\",\"readings\":0,\"source\":\"fixtures/Primitive.swift\",\"unchecked\":[\"fixtures/Primitive.swift:49\"]},{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"empty\",\"path\":\"fixtures/count-bindings/One.swift\",\"readings\":0,\"source\":\"fixtures/count-bindings/One.swift\",\"unchecked\":[]},{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"empty\",\"path\":\"fixtures/count-bindings/Two.swift\",\"readings\":0,\"source\":\"fixtures/count-bindings/Two.swift\",\"unchecked\":[]},{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"holds\",\"path\":\"fixtures/count-bindings/World.swift\",\"readings\":1,\"source\":\"fixtures/count-bindings/World.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "pass": "count",
+      "compiler": {
+        "module": "World",
+        "files": [
+          "fixtures/count-bindings/World.swift"
+        ],
+        "modules": [
+          {
+            "name": "Engine",
+            "files": [
+              "fixtures/Primitive.swift"
+            ]
+          },
+          {
+            "name": "One",
+            "files": [
+              "fixtures/count-bindings/One.swift"
+            ]
+          },
+          {
+            "name": "Two",
+            "files": [
+              "fixtures/count-bindings/Two.swift"
+            ]
+          }
+        ],
+        "exit": 0,
+        "diagnostic": "none"
+      }
+    },
+    {
+      "id": "binding-replayed",
+      "files": [
+        "fixtures/count-bindings/World.swift",
+        "fixtures/Primitive.swift",
+        "fixtures/count-bindings/One.swift",
+        "fixtures/count-bindings/Two.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/count-bindings/World.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure",
+        "--bindings",
+        "fixtures/count-bindings/valid.json"
+      ],
+      "expected": {
+        "exit": 0,
+        "outcome_for_this_case": "holds",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"fixtures/Primitive.swift\",\"sha256\":\"c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a\"},{\"path\":\"fixtures/count-bindings/One.swift\",\"sha256\":\"241d2ecd85cf2b38bbb37c1db2953ee29060df8eb29fae3ea152e80b5630d73c\"},{\"path\":\"fixtures/count-bindings/Two.swift\",\"sha256\":\"c1620972de83fe298483d8ee094bb1106d4d7116d55f2f5da50f7514cf0765a9\"},{\"path\":\"fixtures/count-bindings/World.json\",\"sha256\":\"47db65b7c68f14a376ba02fe858750a5260e3ffa3ec65555fb6fb2762898bf04\"},{\"path\":\"fixtures/count-bindings/World.swift\",\"sha256\":\"6ab688ce238b8403e87cf0b3bc0048ea32954443f5b809e0293e1c104397cd21\"},{\"path\":\"fixtures/count-bindings/valid.json\",\"sha256\":\"f49a2c082aa16623b089ebc2463807cc61597c5d6f401de3f1d480f564b825fa\"}],\"outcome\":\"holds\",\"question\":\"count\",\"results\":[{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"empty\",\"path\":\"fixtures/Primitive.swift\",\"readings\":0,\"source\":\"fixtures/Primitive.swift\",\"unchecked\":[\"fixtures/Primitive.swift:49\"]},{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"empty\",\"path\":\"fixtures/count-bindings/One.swift\",\"readings\":0,\"source\":\"fixtures/count-bindings/One.swift\",\"unchecked\":[]},{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"empty\",\"path\":\"fixtures/count-bindings/Two.swift\",\"readings\":0,\"source\":\"fixtures/count-bindings/Two.swift\",\"unchecked\":[]},{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"holds\",\"path\":\"fixtures/count-bindings/World.swift\",\"readings\":1,\"source\":\"fixtures/count-bindings/World.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "pass": "count"
+    },
+    {
+      "id": "binding-redirected",
+      "files": [
+        "fixtures/count-bindings/World.swift",
+        "fixtures/Primitive.swift",
+        "fixtures/count-bindings/One.swift",
+        "fixtures/count-bindings/Two.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/count-bindings/World.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure",
+        "--bindings",
+        "fixtures/count-bindings/swapped.json"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[\"fixtures/count-bindings/World.swift:16: name binding reference differs at view byte 719\"],\"inputs\":[{\"path\":\"fixtures/Primitive.swift\",\"sha256\":\"c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a\"},{\"path\":\"fixtures/count-bindings/One.swift\",\"sha256\":\"241d2ecd85cf2b38bbb37c1db2953ee29060df8eb29fae3ea152e80b5630d73c\"},{\"path\":\"fixtures/count-bindings/Two.swift\",\"sha256\":\"c1620972de83fe298483d8ee094bb1106d4d7116d55f2f5da50f7514cf0765a9\"},{\"path\":\"fixtures/count-bindings/World.json\",\"sha256\":\"47db65b7c68f14a376ba02fe858750a5260e3ffa3ec65555fb6fb2762898bf04\"},{\"path\":\"fixtures/count-bindings/World.swift\",\"sha256\":\"6ab688ce238b8403e87cf0b3bc0048ea32954443f5b809e0293e1c104397cd21\"},{\"path\":\"fixtures/count-bindings/swapped.json\",\"sha256\":\"9a0f50ead0d055e977ee11c06e1df7a22153d3f73952a60d9d6484c6ba7638c2\"}],\"outcome\":\"unsupported\",\"question\":\"count\",\"results\":[],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "pass": "count"
+    },
+    {
+      "id": "ambiguous-use",
+      "files": [
+        "fixtures/count-bindings/Ambiguous.swift",
+        "fixtures/Primitive.swift",
+        "fixtures/count-bindings/One.swift",
+        "fixtures/count-bindings/Two.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/count-bindings/Ambiguous.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[\"fixtures/count-bindings/Ambiguous.swift:16: ambiguous name Mark: write One.Mark or Two.Mark; visible: One.Mark at fixtures/count-bindings/One.swift:2, Two.Mark at fixtures/count-bindings/Two.swift:2\"],\"inputs\":[{\"path\":\"fixtures/Primitive.swift\",\"sha256\":\"c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a\"},{\"path\":\"fixtures/count-bindings/Ambiguous.json\",\"sha256\":\"3ce142b33dd146b574f5cac41943769ff043e7215c764ee06ef43f44b888dac5\"},{\"path\":\"fixtures/count-bindings/Ambiguous.swift\",\"sha256\":\"b3f27d07ecfd5b4f3ddf0d414f6019fd9df4df8aaeb770e4a117f614a1c1f1a9\"},{\"path\":\"fixtures/count-bindings/One.swift\",\"sha256\":\"241d2ecd85cf2b38bbb37c1db2953ee29060df8eb29fae3ea152e80b5630d73c\"},{\"path\":\"fixtures/count-bindings/Two.swift\",\"sha256\":\"c1620972de83fe298483d8ee094bb1106d4d7116d55f2f5da50f7514cf0765a9\"}],\"outcome\":\"unsupported\",\"question\":\"count\",\"results\":[],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "pass": "count"
+    },
+    {
+      "id": "unknown-member",
+      "files": [
+        "fixtures/count-bindings/Unknown.swift",
+        "fixtures/Primitive.swift",
+        "fixtures/count-bindings/One.swift",
+        "fixtures/count-bindings/Two.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/count-bindings/Unknown.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 2,
+        "outcome_for_this_case": "unsupported",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[\"fixtures/count-bindings/Unknown.swift:16: module 'One' has no declaration 'Missing'\"],\"inputs\":[{\"path\":\"fixtures/Primitive.swift\",\"sha256\":\"c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a\"},{\"path\":\"fixtures/count-bindings/One.swift\",\"sha256\":\"241d2ecd85cf2b38bbb37c1db2953ee29060df8eb29fae3ea152e80b5630d73c\"},{\"path\":\"fixtures/count-bindings/Two.swift\",\"sha256\":\"c1620972de83fe298483d8ee094bb1106d4d7116d55f2f5da50f7514cf0765a9\"},{\"path\":\"fixtures/count-bindings/Unknown.json\",\"sha256\":\"4f0508b491dfa469342e90dffc289010b876fdab06c6260d40df5ebcb3e4345f\"},{\"path\":\"fixtures/count-bindings/Unknown.swift\",\"sha256\":\"2f0c952ab14a335804e2bcd2840653e2c2ee541744f24301f9254e2e2deb42bc\"}],\"outcome\":\"unsupported\",\"question\":\"count\",\"results\":[],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "pass": "count"
+    },
+    {
+      "id": "distinct-values",
+      "files": [
+        "fixtures/count-bindings/False.swift",
+        "fixtures/Primitive.swift",
+        "fixtures/count-bindings/One.swift",
+        "fixtures/count-bindings/Two.swift"
+      ],
+      "args": [
+        "--context",
+        "fixtures/count-bindings/False.json",
+        "--report",
+        "--predicate",
+        "UnitsQuestion",
+        "--encoding",
+        "UnaryArithmeticEncoding",
+        "--sigma",
+        "Measure"
+      ],
+      "expected": {
+        "exit": 1,
+        "outcome_for_this_case": "not-established",
+        "stdout": {
+          "lines": [
+            "{\"diagnostics\":[],\"inputs\":[{\"path\":\"fixtures/Primitive.swift\",\"sha256\":\"c2700f5d176d4f30159b9996cbe41d33fc2f14dfb6e7ad355e081014f8c4482a\"},{\"path\":\"fixtures/count-bindings/False.json\",\"sha256\":\"5c5382fefc57e0bc256aaf595882ee039191664317759bed05e2a5cd803d88a5\"},{\"path\":\"fixtures/count-bindings/False.swift\",\"sha256\":\"ef5dbea968aed79766c11251fa9f98ce2eac26fef0ca2cfa314db15c0abd2ba4\"},{\"path\":\"fixtures/count-bindings/One.swift\",\"sha256\":\"241d2ecd85cf2b38bbb37c1db2953ee29060df8eb29fae3ea152e80b5630d73c\"},{\"path\":\"fixtures/count-bindings/Two.swift\",\"sha256\":\"c1620972de83fe298483d8ee094bb1106d4d7116d55f2f5da50f7514cf0765a9\"}],\"outcome\":\"not-established\",\"question\":\"count\",\"results\":[{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"empty\",\"path\":\"fixtures/Primitive.swift\",\"readings\":0,\"source\":\"fixtures/Primitive.swift\",\"unchecked\":[\"fixtures/Primitive.swift:49\"]},{\"diagnostics\":[\"'Probe' count Left = 3, but Answer = 1 [UnitsQuestion]\"],\"equalities\":0,\"memberships\":0,\"outcome\":\"not-established\",\"path\":\"fixtures/count-bindings/False.swift\",\"readings\":1,\"source\":\"fixtures/count-bindings/False.swift\",\"unchecked\":[]},{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"empty\",\"path\":\"fixtures/count-bindings/One.swift\",\"readings\":0,\"source\":\"fixtures/count-bindings/One.swift\",\"unchecked\":[]},{\"diagnostics\":[],\"equalities\":0,\"memberships\":0,\"outcome\":\"empty\",\"path\":\"fixtures/count-bindings/Two.swift\",\"readings\":0,\"source\":\"fixtures/count-bindings/Two.swift\",\"unchecked\":[]}],\"schema\":\"vi.court.sources/1\"}"
+          ]
+        },
+        "stderr": {
+          "lines": []
+        }
+      },
+      "pass": "count"
+    }
+  ]
+}

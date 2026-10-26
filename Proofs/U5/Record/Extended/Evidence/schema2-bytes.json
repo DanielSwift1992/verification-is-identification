@@ -1,0 +1,71 @@
+{
+  "historical_receipt": "Proofs/U5/Record/Actions/Evidence/actions-differential.json",
+  "historical_sha256": "0852c9d39423ce080f7323787553d6e0037a3ef5e1289b78bf7e3938a3319f9e",
+  "unchanged": [
+    {
+      "case": "PreservesEqualities",
+      "world_sha256": "a38a0d0e1fbf2e48452ebdc6602e8ed487041308f3262b784b2a4ae8e37fd455",
+      "proof_sha256": "8e3370bd4b212bac70dbdc684347396f2d992e3bca5bc33a32511c725cf55142"
+    },
+    {
+      "case": "BreaksEqualities",
+      "world_sha256": "b14277a625518167d1bc93ae082198fde9488ca6b628fb17fb56d5977e943d4b",
+      "proof_sha256": "969b97b1a424619fd278b2996b880804ea52d66df4f6770ee1e1c056eccd906d"
+    },
+    {
+      "case": "CyclicQuestion",
+      "world_sha256": "4185b5ddc2925a404fff9c87e60fcebc0543d8cffba2c3fa39e78a919af08c51",
+      "proof_sha256": "b01802fe13099eec94d5d6e81c0f62089600007f7f35d6ae4d51fdb9370d465b"
+    },
+    {
+      "case": "EmptyActions",
+      "world_sha256": "1d1242e0cf09e94adcf3be6e64c303f4c32a6324f368732ae444de0a307bd229",
+      "proof_sha256": "265cc325cab0034adfd08acd9548c65521f479b77fe284aa1a377f213e88c5d5"
+    },
+    {
+      "case": "HiddenDisagreement",
+      "world_sha256": "becfcc529d273886b94b61774504cffbf287fc0868321ccee88a4cc535e534b8",
+      "proof_sha256": "3eaabf8b2fcd73be338b2b01b5e3ff7a8e530e04bebd28cd933338ee8f1015e9"
+    },
+    {
+      "case": "HiddenCommon",
+      "world_sha256": "409d5457e00e8728134e2f9ddd24815465a1b5c1b1b5f95c62a8bf0b38586d3e",
+      "proof_sha256": "b74c5a61c797d63e25046de2c0f3c87ccd14690660dfdb31cc548ab974a0f26e"
+    },
+    {
+      "case": "HiddenOutside",
+      "world_sha256": "c6f2fd30c5accdefb0e65454c0cb23f96c48d99643b5d35f4a0a74ed6c6be02c",
+      "proof_sha256": "a6be45b0de86ac2517f9f3313d193c83de9fd9ec00d45bcafb34b314da1ac87c"
+    },
+    {
+      "case": "HiddenInvalidEqualities",
+      "world_sha256": "fb686cba51f016ee82ac35c6686dd84b026f0b00b7fdc4a80e61a866c5b75344",
+      "proof_sha256": "80e3346279fbd9bc95fa45363b0ba350336528fe22304222b95f24ccf6b98bf1"
+    },
+    {
+      "case": "HiddenEquivalentProjections",
+      "world_sha256": "2bee6d1ba424d63ef84a74f0b69af12a7ed12febf3c393ee8d4ebd3cea9cf5a4",
+      "proof_sha256": "73094200c3bd97e83e2e246b140685788892f7f3bc8179a74a7f0535f3487ab2"
+    },
+    {
+      "case": "AliasedActions",
+      "world_sha256": "766fe769a056d4a56434d2fb3462361444af1dd4067d47c951af03aa7dba66b2",
+      "proof_sha256": "fd4194238bae33eee6191180df9397504921ba1400448a87bdde0f68566a75bc"
+    },
+    {
+      "case": "HiddenOnly",
+      "world_sha256": "10cc896eec38298a8994e0317ff536a194bae3503ab8ab905916d166df12cd1c",
+      "proof_sha256": "cd079e34e78c2b10c13d48e91d31357c7370f6362b19be1b81a49ec24b28f7e6"
+    },
+    {
+      "case": "NoncommutingWords",
+      "world_sha256": "361b9fb5bf7cbbff069a846d54ae11428e77a312298064e34358c7a387242761",
+      "proof_sha256": "3b2b4c989e1f359381206d5082eba97db46afc7c35a2489bbf31d1d738f5e756"
+    },
+    {
+      "case": "ScalarActions",
+      "world_sha256": "34cc3a5dfe2dba5d8e40ceaec6e6cc75610f84639ef83bb6c89e718ad145f59d",
+      "proof_sha256": "fec7ffc0c80d88026db73ef70b6b1fd66f44314ea765717e2cd3d28630403c99"
+    }
+  ]
+}

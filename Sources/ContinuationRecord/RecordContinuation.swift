@@ -54,43 +54,13 @@ public enum RecordContinuation {
         return try encodeWorld(reading, schema: 2, actionsDeclared: actionsDeclared)
     }
     static func encodeWorld(_ reading: Core.Reading, schema: Int, actionsDeclared: Bool) throws -> Data {
-        var nodes: [String] = [], sorts: [String] = []
-        func source(_ shape: Core.Shape) -> Int {
-            let index = nodes.count
-            nodes.append("")
-            switch shape {
-            case let .leaf(sort):
-                let number: Int
-                let prior = sorts.firstIndex { Core.sameSort($0, sort) }
-                if let prior = prior { number = prior }
-                else {
-                    number = sorts.count
-                    sorts.append(sort)
-                }
-                nodes[index] = "{\"sort\":\(number)}"
-            case let .pair(l, r):
-                let a = source(l), b = source(r)
-                nodes[index] = "{\"pair\":[\(a),\(b)]}"
-            }
-            return index
-        }
-        _ = source(reading.source)
-        let ordered = reading.edges.sorted { a, b in
-            a.address.map { $0 == .left ? 0 : 1 }.lexicographicallyPrecedes(b.address.map { $0 == .left ? 0 : 1 })
-        }
-        let edges = ordered.map { edge in
-            "{\"at\":" + wire(edge.address) + ",\"left\":" + wire(edge.left) + ",\"right\":" + wire(edge.right) + ",\"basis\":\"declared\"}"
-        }
-        func family(_ members: [Core.ActionMember]) -> String {
-            "[" + members.map { member in
-                "{\"at\":" + wire(member.address) + ",\"image\":[" + member.image.leaves.map { wire($0.source) }.joined(separator: ",") + "]}"
-            }.joined(separator: ",") + "]"
-        }
-        var text = "{\"schema\":\(schema),\"source\":[" + nodes.joined(separator: ",")
-            + "],\"equalities\":[" + edges.joined(separator: ",") + "],\"observation\":" + viewText(reading.observation)
-            + ",\"question\":" + viewText(reading.question)
-        if actionsDeclared { text += ",\"actions\":" + family(reading.actions) }
-        if let hidden = reading.hiddenActions { text += ",\"hiddenActions\":" + family(hidden) }
+        var sorts: [String] = []
+        let source = RecordStructure.shapeText(reading.source, sorts: &sorts)
+        var text = "{\"schema\":\(schema),\"source\":" + source
+            + ",\"equalities\":" + RecordStructure.edgesText(reading.edges)
+            + ",\"observation\":" + viewText(reading.observation) + ",\"question\":" + viewText(reading.question)
+        if actionsDeclared { text += ",\"actions\":" + RecordStructure.familyText(reading.actions) }
+        if let hidden = reading.hiddenActions { text += ",\"hiddenActions\":" + RecordStructure.familyText(hidden) }
         return Data((text + "}").utf8)
     }
     public static func read(_ data: Data) throws -> World {
@@ -100,97 +70,15 @@ public enum RecordContinuation {
         if schema == 1, fields["actions"] != nil || fields["hiddenActions"] != nil {
             throw Core.Failure("record.schema: schema 1 has no action axes")
         }
-        let nodes = try fields["source"]!.array("record.source")
-        guard !nodes.isEmpty, nodes.count <= 10_000 else { throw Core.Failure("record.source: expected a nonempty bounded pair tree") }
-        var active: Set<Int> = [], visited: Set<Int> = []
-        func shape(_ index: Int, _ at: String, _ depth: Int) throws -> Core.Shape {
-            guard nodes.indices.contains(index) else { throw Core.Failure(at + ": unknown source node") }
-            guard !active.contains(index) else { throw Core.Failure(at + ": cycle in pair tree") }
-            guard depth < 128 else { throw Core.Failure(at + ": source depth limit") }
-            guard visited.insert(index).inserted else { throw Core.Failure(at + ": repeated tree node") }
-            active.insert(index)
-            defer { active.remove(index) }
-            let node = try nodes[index].object("record.source[\(index)]", keys: [], optional: ["pair", "sort"])
-            guard node.count == 1 else { throw Core.Failure("record.source[\(index)]: expected pair or sort") }
-            if let sort = node["sort"] { return try .leaf(String(sort.integer("record.source[\(index)].sort"))) }
-            let pair = try node["pair"]!.array("record.source[\(index)].pair")
-            guard pair.count == 2 else { throw Core.Failure("record.source[\(index)].pair: expected two roles") }
-            return try .pair(shape(pair[0].integer("record.source[\(index)].pair[0]"), "record.source[\(index)].pair[0]", depth + 1),
-                             shape(pair[1].integer("record.source[\(index)].pair[1]"), "record.source[\(index)].pair[1]", depth + 1))
-        }
-        let tree = try shape(0, "record.source[0]", 0)
-        let unused = nodes.indices.first { !visited.contains($0) }
-        if let unused = unused {
-            throw Core.Failure("record.source[\(unused)]: unreachable source node")
-        }
+        let tree = try RecordStructure.shape(fields["source"]!, at: "record.source")
         let whole = Core.WholeReading(source: tree, edges: [])
-        func leaf(_ value: RecordJSON.Value, _ at: String) throws -> Core.Path {
-            let address = try path(value, at)
-            do { _ = try whole.sort(address) }
-            catch { throw Core.Failure(at + ": unknown or nonleaf source address") }
-            return address
-        }
-        func view(_ value: RecordJSON.Value, _ at: String, _ depth: Int = 0) throws -> Core.Places {
-            guard depth < 128 else { throw Core.Failure(at + ": view depth limit") }
-            let node = try value.object(at, keys: [], optional: ["pair", "place"])
-            guard node.count == 1 else { throw Core.Failure(at + ": expected pair or place") }
-            if let place = node["place"] { return try .leaf(leaf(place, at + ".place")) }
-            let children = try node["pair"]!.array(at + ".pair")
-            guard children.count == 2 else { throw Core.Failure(at + ".pair: expected two roles") }
-            return try .pair(view(children[0], at + ".pair[0]", depth + 1), view(children[1], at + ".pair[1]", depth + 1))
-        }
-        var addresses: Set<Core.Path> = [], edges: [Core.SourceEdge] = []
-        for (index, value) in try fields["equalities"]!.array("record.equalities").enumerated() {
-            let at = "record.equalities[\(index)]"
-            let edge = try value.object(at, keys: ["at", "left", "right", "basis"])
-            guard case .string("declared") = edge["basis"]! else { throw Core.Failure(at + ".basis: expected declared source premise; observed values are not equality") }
-            let address = try path(edge["at"]!, at + ".at")
-            guard addresses.insert(address).inserted else { throw Core.Failure(at + ".at: repeated E-edge address") }
-            let l = try leaf(edge["left"]!, at + ".left"), r = try leaf(edge["right"]!, at + ".right")
-            guard try Core.sameSort(whole.sort(l), whole.sort(r)) else { throw Core.Failure(at + ": equality endpoints have different sorts") }
-            edges.append(.init(address: address, left: l, right: r))
-        }
-        func family(_ key: String, nonempty: Bool) throws -> [Core.ActionMember]? {
-            guard let value = fields[key] else { return nil }
-            let values = try value.array("record." + key)
-            guard !nonempty || !values.isEmpty else { throw Core.Failure("record." + key + ": expected a nonempty hidden family") }
-            var prior: Core.Path?, result: [Core.ActionMember] = []
-            let leaves = tree.leaves
-            for (index, value) in values.enumerated() {
-                let at = "record." + key + "[\(index)]"
-                let fields = try value.object(at, keys: ["at", "image"])
-                let address = try path(fields["at"]!, at + ".at")
-                if let previous = prior {
-                    guard previous.map({ $0 == .left ? 0 : 1 }).lexicographicallyPrecedes(address.map({ $0 == .left ? 0 : 1 })) else {
-                        throw Core.Failure(at + ".at: repeated or noncanonical member order")
-                    }
-                }
-                prior = address
-                let image = try fields["image"]!.array(at + ".image")
-                guard image.count == leaves.count else { throw Core.Failure(at + ".image: expected one source place per Source leaf") }
-                let inputs = try image.enumerated().map { offset, value -> Core.Path in
-                    let here = at + ".image[\(offset)]"
-                    let p = try leaf(value, here)
-                    guard try Core.sameSort(whole.sort(p), leaves[offset].1) else { throw Core.Failure(here + ": action image has another sort") }
-                    return p
-                }
-                var cursor = 0
-                func fill(_ shape: Core.Shape) -> Core.Places {
-                    switch shape {
-                    case .leaf:
-                        let p = inputs[cursor]
-                        cursor += 1
-                        return .leaf(p)
-                    case let .pair(l, r): return .pair(fill(l), fill(r))
-                    }
-                }
-                result.append(.init(address: address, image: fill(tree)))
-            }
-            return result
-        }
+        let edges = try RecordStructure.edges(fields["equalities"]!, whole: whole, at: "record.equalities")
+        let actions = try fields["actions"].map { try RecordStructure.family($0, target: tree, whole: whole, at: "record.actions", nonempty: false) } ?? []
+        let hidden = try fields["hiddenActions"].map { try RecordStructure.family($0, target: tree, whole: whole, at: "record.hiddenActions", nonempty: true) }
         let reading = try Core.Reading(whole: .init(source: tree, edges: edges),
-            observation: view(fields["observation"]!, "record.observation"), question: view(fields["question"]!, "record.question"),
-            actions: family("actions", nonempty: false) ?? [], hiddenActions: family("hiddenActions", nonempty: true))
+            observation: RecordStructure.view(fields["observation"]!, whole: whole, at: "record.observation"),
+            question: RecordStructure.view(fields["question"]!, whole: whole, at: "record.question"),
+            actions: actions, hiddenActions: hidden)
         let canonical = try encodeWorld(reading, schema: schema, actionsDeclared: fields["actions"] != nil)
         guard canonical == data else {
             let difference = zip(canonical, data).enumerated().first { $0.element.0 != $0.element.1 }
@@ -244,6 +132,10 @@ public enum RecordContinuation {
         return proof
     }
     public static func run(_ arguments: [String], replay: Bool = false) {
+        if let first = arguments.first, RecordExtension.Mode(rawValue: first) != nil {
+            RecordExtension.run(arguments, replay: replay)
+            return
+        }
         do {
             var args = arguments
             let retain = args.first == "--retain"

@@ -1,0 +1,24 @@
+Filesystem        Size    Used   Avail Capacity iused ifree %iused  Mounted on
+/dev/disk3s1s1   460Gi    12Gi   7.1Gi    63%    459k   74M    1%   /
+[0/3] Write swift-version-34BD33C54503134E.txt
+[1/4] Write sources
+[3/8] Compiling ContinuationRecord ContinuationAgreement.swift
+[4/8] Compiling ContinuationRecord RecordExtension.swift
+[5/8] Compiling ContinuationRecord RecordStructure.swift
+[6/8] Emitting module ContinuationRecord
+[6/9] Write Objects.LinkFileList
+[7/9] Linking Tools-tool
+[8/9] Applying Tools-tool
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version-34BD33C54503134E.txt
+[1/4] Write sources
+[3/8] Compiling ContinuationRecord ContinuationAgreement.swift
+[4/8] Emitting module ContinuationRecord
+[5/8] Compiling ContinuationRecord RecordExtension.swift
+[6/8] Compiling ContinuationRecord RecordStructure.swift
+[6/9] Write Objects.LinkFileList
+[7/9] Linking Tools
+[8/9] Applying Tools
+Build of product 'Tools' complete! (3.09s)
+✓ THE GRAMMAR holds: 348 carrier file(s) written and read back; emitted formations build (source reading remains debt).

@@ -1,6 +1,6 @@
 import Foundation
 
-// U5–U8 addressed calculus. No source-language reader or nominal context.
+// U5–U11 addressed calculus. No source-language reader or nominal context.
 public enum ContinuationCore {
     public struct Failure: Error, CustomStringConvertible {
         public let description: String

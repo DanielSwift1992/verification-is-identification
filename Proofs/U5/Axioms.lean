@@ -238,3 +238,44 @@ import U10
 
 #print axioms U10.sorts_spec
 #print axioms U10.refused_semantic
+
+-- T0121: the remaining record questions, with one canonical byte reader.
+#print axioms Record.Canonical.read_write
+#print axioms Record.Canonical.write_read
+#print axioms Record.Canonical.write_injective
+#print axioms Record.Canonical.read_write_bytes
+#print axioms Record.Canonical.write_read_bytes
+#print axioms Record.Extended.base_inverse
+#print axioms Record.Extended.image_inverse
+#print axioms Record.Extended.agreement_inverse
+#print axioms Record.Extended.target_flat
+#print axioms Record.Extended.convert_target_denotes
+#print axioms Record.Extended.target_members_denote
+#print axioms Record.Extended.admit_image_denotes
+#print axioms Record.Extended.bind_cuts_flat
+#print axioms Record.Extended.bindings_denote
+#print axioms Record.Extended.admit_agreement_denotes
+#print axioms Record.Extended.image_ascii
+#print axioms Record.Extended.agreement_ascii
+#print axioms Record.Extended.Image.read_write
+#print axioms Record.Extended.Image.write_read
+#print axioms Record.Extended.Image.read_write_bytes
+#print axioms Record.Extended.Image.write_read_bytes
+#print axioms Record.Extended.Image.denotes
+#print axioms Record.Extended.Image.judgment_sound
+#print axioms Record.Extended.Image.replay_sound
+#print axioms Record.Extended.Image.exit_sound
+#print axioms Record.Extended.Image.exit_bytes_sound
+#print axioms Record.Extended.Agreement.read_write
+#print axioms Record.Extended.Agreement.write_read
+#print axioms Record.Extended.Agreement.read_write_bytes
+#print axioms Record.Extended.Agreement.write_read_bytes
+#print axioms Record.Extended.Agreement.denotes
+#print axioms Record.Extended.Agreement.judgment_sound
+#print axioms Record.Extended.Agreement.replay_sound
+#print axioms Record.Extended.Agreement.exit_sound
+#print axioms Record.Extended.Agreement.exit_bytes_sound
+#print axioms Record.Extended.Returns.judgment_sound
+#print axioms Record.Extended.Returns.replay_sound
+#print axioms Record.Extended.Returns.exit_sound
+#print axioms Record.Extended.Returns.exit_bytes_sound

@@ -124,17 +124,6 @@ extension ContinuationCourt.AgreementCertificate {
     }
 }
 
-extension ContinuationCourt.AgreementCapacity {
-    init(sort: String, requiredClasses: Int, outputClasses: Int, fixedRequiredClasses: Int, freeOutputClasses: Int, minimumResidualLeaves: Int) {
-        self.sort = ScalarName(sort)
-        self.requiredClasses = requiredClasses
-        self.outputClasses = outputClasses
-        self.fixedRequiredClasses = fixedRequiredClasses
-        self.freeOutputClasses = freeOutputClasses
-        self.minimumResidualLeaves = minimumResidualLeaves
-    }
-}
-
 extension ContinuationCourt.LawCoverCertificate {
     init(request: String, constructor: String, source: ContinuationCourt.ReadProof, equalities: ContinuationCourt.RouteProof?, coverage: ContinuationCourt.RouteProof, classes: [ContinuationCourt.PartitionClass], connections: [[ContinuationCourt.EqualityStep]], conclusion: ContinuationCourt.LawCoverConclusion) {
         self.request = ScalarName(request)

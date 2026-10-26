@@ -1,0 +1,4 @@
+{
+  "schema1_raw_sha256": "c167efc45786702b277be01c8c3f2b9433a4d5cb7a9fba0f1d5bcce8199a1570",
+  "normalization": "Only the temporary output-directory prefix in diagnostics is replaced with qualification; codes, bytes and archive hashes are unchanged."
+}

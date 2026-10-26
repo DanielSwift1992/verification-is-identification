@@ -71,6 +71,10 @@ extension ContinuationCourt {
         try ContinuationCore.imageAction(action, view: view, classList: classList, classes: classes,
                                          blocks: blocks, reading: r.core)
     }
+    static func constructEvidence(_ members: [ActionMember], reading r: ContinuationCore.Reading,
+                                  blocks: [Path: Int], budget: inout ActionBudget) throws -> [ActionEvidence] {
+        try ContinuationCore.constructEvidence(members, reading: r, blocks: blocks, budget: &budget)
+    }
     static func constructDynamics(_ r: RelatedReading) throws -> Dynamics {
         try ContinuationCore.constructDynamics(r.core)
     }

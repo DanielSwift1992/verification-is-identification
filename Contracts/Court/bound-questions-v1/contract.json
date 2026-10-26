@@ -1,7 +1,7 @@
 {
   "schema": "vi.court.conformance/2",
   "suite": "vi.court.bound-questions/1",
-  "reference_revision": "aa21e829cc77ccc24d396c697e7c2cae152d20cc",
+  "reference_revision": "45440cd4eccd26621db4583bb7a607d7371d9e6f",
   "scope": "Question discovery consumes the replayed context projection. Generic Self carries the lexical owner parameters in where/count. These finite observations do not establish reader correctness or Swift language equivalence.",
   "versions": {
     "context": "vi.court.context/2",

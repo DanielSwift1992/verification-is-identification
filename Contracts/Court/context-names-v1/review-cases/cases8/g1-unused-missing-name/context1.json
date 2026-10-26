@@ -1,0 +1,20 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "review-cases/cases8/g1-unused-missing-name/World.swift",
+      "source": "World.swift",
+      "sha256": "1c94464d3bf39fc127222a1728487c596ed712303015bc0ed177b986c54e5c1e",
+      "namespace": "World",
+      "imports": [],
+      "at": {
+        "input": "review#cases8/g1-unused-missing-name/World.swift/input",
+        "source": "review#cases8/g1-unused-missing-name/World.swift/source",
+        "sha256": "review#cases8/g1-unused-missing-name/World.swift/sha256",
+        "namespace": "review#cases8/g1-unused-missing-name/World.swift/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

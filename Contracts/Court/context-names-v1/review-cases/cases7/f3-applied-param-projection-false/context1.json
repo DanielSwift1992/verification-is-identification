@@ -1,0 +1,20 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "review-cases/cases7/f3-applied-param-projection-false/World.swift",
+      "source": "World.swift",
+      "sha256": "3abc8931ca9d16167701c4390112f978b21fa26576a95858ec11c39d84c5ecc5",
+      "namespace": "World",
+      "imports": [],
+      "at": {
+        "input": "review#cases7/f3-applied-param-projection-false/World.swift/input",
+        "source": "review#cases7/f3-applied-param-projection-false/World.swift/source",
+        "sha256": "review#cases7/f3-applied-param-projection-false/World.swift/sha256",
+        "namespace": "review#cases7/f3-applied-param-projection-false/World.swift/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

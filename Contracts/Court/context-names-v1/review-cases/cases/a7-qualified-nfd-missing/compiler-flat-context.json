@@ -1,0 +1,42 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases/a7-qualified-nfd-missing/World.swift",
+      "source": "World.swift",
+      "sha256": "552d1ea4c544ef2789ff93b92ff03bc226efaa00c30e735f4f32357b7af91ea5",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "flat-native#cases/a7-qualified-nfd-missing/World.swift/input",
+        "source": "flat-native#cases/a7-qualified-nfd-missing/World.swift/source",
+        "sha256": "flat-native#cases/a7-qualified-nfd-missing/World.swift/sha256",
+        "namespace": "flat-native#cases/a7-qualified-nfd-missing/World.swift/namespace",
+        "module": "flat-native#cases/a7-qualified-nfd-missing/World.swift/module",
+        "role": "flat-native#cases/a7-qualified-nfd-missing/World.swift/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "review-cases/cases/a7-qualified-nfd-missing/Kit.swift",
+      "source": "Kit.swift",
+      "sha256": "27a212d71f0c7fac094e3225dee0bc3e697270f95b354d08e0affafd6518d35f",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "flat-native#cases/a7-qualified-nfd-missing/Kit.swift/input",
+        "source": "flat-native#cases/a7-qualified-nfd-missing/Kit.swift/source",
+        "sha256": "flat-native#cases/a7-qualified-nfd-missing/Kit.swift/sha256",
+        "namespace": "flat-native#cases/a7-qualified-nfd-missing/Kit.swift/namespace",
+        "module": "flat-native#cases/a7-qualified-nfd-missing/Kit.swift/module",
+        "role": "flat-native#cases/a7-qualified-nfd-missing/Kit.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

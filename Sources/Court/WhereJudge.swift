@@ -1323,8 +1323,23 @@ enum WhereJudge {
         var extras: [(path: String, text: String, world: World)] = try original.dropFirst().map { extra, more in
             return (extra, more, try read(more, notationV2: notationV2))
         }
+        var nameFiles: [CourtNotation.File] = []
         if notationV2 {
             let inputs = [(path: path, text: text, world: world)] + extras
+            let builders = try inputs.reduce(into: NameSet()) {
+                $0.formUnion(try declaredBuilders($1.world.clean))
+            }
+            for input in inputs {
+                let tape = try lexicalReading(input.world.clean, scope: .notation,
+                    lent: builders, carrying: true).tape
+                for i in tape.words.indices
+                where sameName(tape.words[i], "import") {
+                    let target = tape.words.indices.dropFirst(i + 1).first { !sameName(tape.words[$0], "\n") }
+                    guard let target, sameName(tape.words[target], "Swift") else {
+                        try fail("\(input.path):\(tape.lines[i]): a non-intrinsic import requires a declared source context")
+                    }
+                }
+            }
             let files = try inputs.map { value -> CourtNotation.File in
                 let source = CourtContext.Source(input: value.path, source: value.path,
                     sha256: courtSHA256(Data(value.text.utf8)), namespace: "", module: "", role: "own",
@@ -1333,8 +1348,12 @@ enum WhereJudge {
                     notation: try NotationScope(value.world.clean), excluded: nil, unchecked: [])
             }
             let resolution = try WhereContextNames.resolve(files, selected: path, version: 1)
+            nameFiles = resolution.files
             world = resolution.files[0].world
             for file in resolution.files {
+                for name in file.world.fileTypes {
+                    world.addresses[name] = file.context.source + ":\(file.world.declared[name]?.first ?? 1)"
+                }
                 for (name, line) in file.world.certificateLines { world.addresses[name] = file.context.source + ":\(line)" }
             }
             world.contextNameBindings = resolution.nameBindings
@@ -1438,6 +1457,8 @@ enum WhereJudge {
                 }
                 world.namespaces.formUnion(extra.world.namespaces)
             }
+            try WhereContextNames.members(nameFiles, in: world)
+            try WhereContextNames.closedNames(nameFiles, in: world)
         }
         return try finish(path: path, world: world, ownAliases: ownAliases,
                           excludesConditional: excludesConditional, extras: extras)

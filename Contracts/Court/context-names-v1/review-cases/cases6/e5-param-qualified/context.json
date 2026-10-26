@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases6/e5-param-qualified/World.swift",
+      "source": "World.swift",
+      "sha256": "873cddc56768dbfba86a0e20fdf1ed11b8e9f7a8347e6b631e52d28d5ec57c51",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "review#cases6/e5-param-qualified/World.swift/input",
+        "source": "review#cases6/e5-param-qualified/World.swift/source",
+        "sha256": "review#cases6/e5-param-qualified/World.swift/sha256",
+        "namespace": "review#cases6/e5-param-qualified/World.swift/namespace",
+        "module": "review#cases6/e5-param-qualified/World.swift/module",
+        "role": "review#cases6/e5-param-qualified/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

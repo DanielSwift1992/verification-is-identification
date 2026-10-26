@@ -7,7 +7,9 @@ import sys
 import tempfile
 
 
-COMMON = """public protocol Setting {}
+COMMON = """public enum Optional<T> {}
+public enum Array<T> {}
+public protocol Setting {}
 public protocol Required: Setting {}
 public enum Bad: Setting {}
 public enum Good: Required {}

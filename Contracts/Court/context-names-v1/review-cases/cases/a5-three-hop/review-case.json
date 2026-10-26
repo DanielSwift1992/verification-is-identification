@@ -1,0 +1,47 @@
+{
+  "version": 2,
+  "world": {
+    "files": [
+      "World.swift"
+    ],
+    "imports": [
+      "Top"
+    ]
+  },
+  "modules": [
+    {
+      "name": "Notation",
+      "files": [
+        "Notation.swift"
+      ],
+      "imports": []
+    },
+    {
+      "name": "API",
+      "files": [
+        "API.swift"
+      ],
+      "imports": [
+        "Notation"
+      ]
+    },
+    {
+      "name": "Facade",
+      "files": [
+        "Facade.swift"
+      ],
+      "imports": [
+        "API"
+      ]
+    },
+    {
+      "name": "Top",
+      "files": [
+        "Top.swift"
+      ],
+      "imports": [
+        "Facade"
+      ]
+    }
+  ]
+}

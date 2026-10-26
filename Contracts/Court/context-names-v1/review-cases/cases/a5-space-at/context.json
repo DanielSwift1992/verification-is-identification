@@ -1,0 +1,68 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases/a5-space-at/World.swift",
+      "source": "World.swift",
+      "sha256": "152f4976652a0872595f850459d4af93424aee22d76c03dc65ed67b5f7f067ff",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "API"
+      ],
+      "at": {
+        "input": "review#cases/a5-space-at/World.swift/input",
+        "source": "review#cases/a5-space-at/World.swift/source",
+        "sha256": "review#cases/a5-space-at/World.swift/sha256",
+        "namespace": "review#cases/a5-space-at/World.swift/namespace",
+        "module": "review#cases/a5-space-at/World.swift/module",
+        "role": "review#cases/a5-space-at/World.swift/role",
+        "imports": [
+          "review#cases/a5-space-at/World.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "review-cases/cases/a5-space-at/Notation.swift",
+      "source": "Notation.swift",
+      "sha256": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072",
+      "namespace": "Notation",
+      "module": "Notation",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "review#cases/a5-space-at/Notation.swift/input",
+        "source": "review#cases/a5-space-at/Notation.swift/source",
+        "sha256": "review#cases/a5-space-at/Notation.swift/sha256",
+        "namespace": "review#cases/a5-space-at/Notation.swift/namespace",
+        "module": "review#cases/a5-space-at/Notation.swift/module",
+        "role": "review#cases/a5-space-at/Notation.swift/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "review-cases/cases/a5-space-at/API.swift",
+      "source": "API.swift",
+      "sha256": "1523ec6632f721b1e2ab079969c3be03feb3047b67eddcb0d3e51ec71b1457e1",
+      "namespace": "API",
+      "module": "API",
+      "role": "borrowed",
+      "imports": [
+        "Notation"
+      ],
+      "at": {
+        "input": "review#cases/a5-space-at/API.swift/input",
+        "source": "review#cases/a5-space-at/API.swift/source",
+        "sha256": "review#cases/a5-space-at/API.swift/sha256",
+        "namespace": "review#cases/a5-space-at/API.swift/namespace",
+        "module": "review#cases/a5-space-at/API.swift/module",
+        "role": "review#cases/a5-space-at/API.swift/role",
+        "imports": [
+          "review#cases/a5-space-at/API.swift/imports/0"
+        ]
+      }
+    }
+  ],
+  "intrinsics": []
+}

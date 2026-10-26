@@ -18,7 +18,7 @@ public enum PrismReading<B: BeamShape>: PredicateReading {
     public typealias Sigma = BeamSpace
     public typealias Encoding = PrismSeparator
     public typealias Predicate = PrismQuestion
-    public typealias Answer = Right
+    public typealias Answer = Self.Right
 }
 
 public enum MatteReading<S: SceneLight>: PredicateReading {
@@ -27,7 +27,7 @@ public enum MatteReading<S: SceneLight>: PredicateReading {
     public typealias Sigma = MirrorSpace
     public typealias Encoding = MatteEncoding
     public typealias Predicate = MatteQuestion
-    public typealias Answer = Right
+    public typealias Answer = Self.Right
 }
 
 public enum MirrorReading<S: SceneLight>: PredicateReading {
@@ -36,7 +36,7 @@ public enum MirrorReading<S: SceneLight>: PredicateReading {
     public typealias Sigma = MirrorSpace
     public typealias Encoding = MirrorSeparator
     public typealias Predicate = MirrorQuestion
-    public typealias Answer = Right
+    public typealias Answer = Self.Right
 }
 
 /// Salt is an explicit construction parameter, not a proved source fact.
@@ -47,5 +47,5 @@ public enum SaltedVisibleReading<B: BeamShape, S: Structure>: PredicateReading {
     public typealias Sigma = BeamSpace
     public typealias Encoding = EyeEncoding
     public typealias Predicate = VisibleQuestion
-    public typealias Answer = Right
+    public typealias Answer = Self.Right
 }

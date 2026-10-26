@@ -1,0 +1,305 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "Sources/Examples/Light.swift",
+      "source": "Sources/Examples/Light.swift",
+      "sha256": "27dc914be0c24003d40ff208b6f9581de5aed2765611f92fec85348c3b8c7ad9",
+      "namespace": "Examples",
+      "imports": [
+        "VerificationIsIdentification"
+      ],
+      "at": {
+        "input": "Light#sources/0/input",
+        "source": "Light#sources/0/source",
+        "sha256": "Light#sources/0/sha256",
+        "namespace": "Light#sources/0/namespace",
+        "imports": [
+          "Light#sources/0/imports/0"
+        ],
+        "module": "Light#sources/0/module",
+        "role": "Light#sources/0/role"
+      },
+      "module": "Examples",
+      "role": "own"
+    },
+    {
+      "input": "Sources/Notation/Primitive.swift",
+      "source": "Sources/Notation/Primitive.swift",
+      "sha256": "005ae4575bf7f53a86d32da6fadca2455cc4cf14cd8a1764b8161a010532c34a",
+      "namespace": "Notation",
+      "imports": [],
+      "at": {
+        "input": "Light#sources/1/input",
+        "source": "Light#sources/1/source",
+        "sha256": "Light#sources/1/sha256",
+        "namespace": "Light#sources/1/namespace",
+        "imports": [],
+        "module": "Light#sources/1/module",
+        "role": "Light#sources/1/role"
+      },
+      "module": "Notation",
+      "role": "borrowed"
+    },
+    {
+      "input": "Sources/Notation/IntegerValued.swift",
+      "source": "Sources/Notation/IntegerValued.swift",
+      "sha256": "13d948fdc5cb6bdf168b5d07ad59afb6a721dfea02e9d78045076c4eda989f92",
+      "namespace": "Notation",
+      "imports": [],
+      "at": {
+        "input": "Light#sources/2/input",
+        "source": "Light#sources/2/source",
+        "sha256": "Light#sources/2/sha256",
+        "namespace": "Light#sources/2/namespace",
+        "imports": [],
+        "module": "Light#sources/2/module",
+        "role": "Light#sources/2/role"
+      },
+      "module": "Notation",
+      "role": "borrowed"
+    },
+    {
+      "input": "Sources/Notation/Numeral.swift",
+      "source": "Sources/Notation/Numeral.swift",
+      "sha256": "dd2a1b0d82044567fd34872905924b3694e9316b3ad7b6b4f6f4d5613e7596dc",
+      "namespace": "Notation",
+      "imports": [],
+      "at": {
+        "input": "Light#sources/3/input",
+        "source": "Light#sources/3/source",
+        "sha256": "Light#sources/3/sha256",
+        "namespace": "Light#sources/3/namespace",
+        "imports": [],
+        "module": "Light#sources/3/module",
+        "role": "Light#sources/3/role"
+      },
+      "module": "Notation",
+      "role": "borrowed"
+    },
+    {
+      "input": "Sources/VerificationIsIdentification/Exports.swift",
+      "source": "Sources/VerificationIsIdentification/Exports.swift",
+      "sha256": "1d1d0bb422a9445cb44fbfdda36bc257cb83446b9277436bb40208fce7454db1",
+      "namespace": "VerificationIsIdentification",
+      "imports": [
+        "Notation"
+      ],
+      "at": {
+        "input": "Light#sources/4/input",
+        "source": "Light#sources/4/source",
+        "sha256": "Light#sources/4/sha256",
+        "namespace": "Light#sources/4/namespace",
+        "imports": [
+          "Light#sources/4/imports/0"
+        ],
+        "module": "Light#sources/4/module",
+        "role": "Light#sources/4/role"
+      },
+      "module": "VerificationIsIdentification",
+      "role": "borrowed"
+    },
+    {
+      "input": "Sources/VerificationIsIdentification/Core.swift",
+      "source": "Sources/VerificationIsIdentification/Core.swift",
+      "sha256": "40b48b1009d6127b55a5a4b3918abea2be884a512c241f9e822cda23d35bb142",
+      "namespace": "VerificationIsIdentification",
+      "module": "VerificationIsIdentification",
+      "role": "borrowed",
+      "imports": [
+        "Notation"
+      ],
+      "at": {
+        "input": "Light#sources/5/input",
+        "source": "Light#sources/5/source",
+        "sha256": "Light#sources/5/sha256",
+        "namespace": "Light#sources/5/namespace",
+        "module": "Light#sources/5/module",
+        "role": "Light#sources/5/role",
+        "imports": [
+          "Light#sources/5/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "Sources/VerificationIsIdentification/Verdict.swift",
+      "source": "Sources/VerificationIsIdentification/Verdict.swift",
+      "sha256": "5ae2ea85ad65efe9415e842e04499cf704c68c53405a189c7a3613b2941b5bdf",
+      "namespace": "VerificationIsIdentification",
+      "module": "VerificationIsIdentification",
+      "role": "borrowed",
+      "imports": [
+        "Notation",
+        "Swift"
+      ],
+      "at": {
+        "input": "Light#sources/6/input",
+        "source": "Light#sources/6/source",
+        "sha256": "Light#sources/6/sha256",
+        "namespace": "Light#sources/6/namespace",
+        "module": "Light#sources/6/module",
+        "role": "Light#sources/6/role",
+        "imports": [
+          "Light#sources/6/imports/0",
+          "Light#sources/6/imports/1"
+        ]
+      }
+    },
+    {
+      "input": "Sources/VerificationIsIdentification/Seeing.swift",
+      "source": "Sources/VerificationIsIdentification/Seeing.swift",
+      "sha256": "29c4feefc5e2582ff8d38512294d0f370ea8a9a42698d1043ebfec2b2886fb3d",
+      "namespace": "VerificationIsIdentification",
+      "module": "VerificationIsIdentification",
+      "role": "borrowed",
+      "imports": [
+        "Notation",
+        "Swift"
+      ],
+      "at": {
+        "input": "Light#sources/7/input",
+        "source": "Light#sources/7/source",
+        "sha256": "Light#sources/7/sha256",
+        "namespace": "Light#sources/7/namespace",
+        "module": "Light#sources/7/module",
+        "role": "Light#sources/7/role",
+        "imports": [
+          "Light#sources/7/imports/0",
+          "Light#sources/7/imports/1"
+        ]
+      }
+    },
+    {
+      "input": "Sources/VerificationIsIdentification/Colour.swift",
+      "source": "Sources/VerificationIsIdentification/Colour.swift",
+      "sha256": "5435fc0c494b26eeea5b5785ece21f0f41a19b46acb44f259affc540f8a75baf",
+      "namespace": "VerificationIsIdentification",
+      "module": "VerificationIsIdentification",
+      "role": "borrowed",
+      "imports": [
+        "Notation",
+        "Swift"
+      ],
+      "at": {
+        "input": "Light#sources/8/input",
+        "source": "Light#sources/8/source",
+        "sha256": "Light#sources/8/sha256",
+        "namespace": "Light#sources/8/namespace",
+        "module": "Light#sources/8/module",
+        "role": "Light#sources/8/role",
+        "imports": [
+          "Light#sources/8/imports/0",
+          "Light#sources/8/imports/1"
+        ]
+      }
+    },
+    {
+      "input": "Sources/Examples/Hydrogen.swift",
+      "source": "Sources/Examples/Hydrogen.swift",
+      "sha256": "4b872e8f67150ca9dcf3dda76ebdb02b863f3653f806553ba30eb803932bd1fe",
+      "namespace": "Examples",
+      "module": "Examples",
+      "role": "borrowed",
+      "imports": [
+        "VerificationIsIdentification"
+      ],
+      "at": {
+        "input": "Light#sources/9/input",
+        "source": "Light#sources/9/source",
+        "sha256": "Light#sources/9/sha256",
+        "namespace": "Light#sources/9/namespace",
+        "module": "Light#sources/9/module",
+        "role": "Light#sources/9/role",
+        "imports": [
+          "Light#sources/9/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "Sources/VerificationIsIdentification/Voice.swift",
+      "source": "Sources/VerificationIsIdentification/Voice.swift",
+      "sha256": "ffe3fa74ce3aa5dd42433e4508a03fa28895921e4cc42bcd4d220b2be93a4f13",
+      "namespace": "VerificationIsIdentification",
+      "module": "VerificationIsIdentification",
+      "role": "borrowed",
+      "imports": [
+        "Notation",
+        "Swift"
+      ],
+      "at": {
+        "input": "Light#sources/10/input",
+        "source": "Light#sources/10/source",
+        "sha256": "Light#sources/10/sha256",
+        "namespace": "Light#sources/10/namespace",
+        "module": "Light#sources/10/module",
+        "role": "Light#sources/10/role",
+        "imports": [
+          "Light#sources/10/imports/0",
+          "Light#sources/11/imports/1"
+        ]
+      }
+    },
+    {
+      "input": "Sources/Examples/LatticeReadingContracts.swift",
+      "source": "Sources/Examples/LatticeReadingContracts.swift",
+      "sha256": "aa36b90412b1f450ec6f4e8acedceaccd9dc4427dd5002e82f0a2585daf67373",
+      "namespace": "Examples",
+      "module": "Examples",
+      "role": "borrowed",
+      "imports": [
+        "VerificationIsIdentification"
+      ],
+      "at": {
+        "input": "Light#sources/11/input",
+        "source": "Light#sources/11/source",
+        "sha256": "Light#sources/11/sha256",
+        "namespace": "Light#sources/11/namespace",
+        "module": "Light#sources/11/module",
+        "role": "Light#sources/11/role",
+        "imports": [
+          "Light#sources/11/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "Sources/Examples/VisibleQuestion.swift",
+      "source": "Sources/Examples/VisibleQuestion.swift",
+      "sha256": "420a5d8d957cef184da4644f7350c66e7074d784e3ef046a19a3b187132c7051",
+      "namespace": "Examples",
+      "module": "Examples",
+      "role": "borrowed",
+      "imports": [
+        "VerificationIsIdentification"
+      ],
+      "at": {
+        "input": "Light#sources/12/input",
+        "source": "Light#sources/12/source",
+        "sha256": "Light#sources/12/sha256",
+        "namespace": "Light#sources/12/namespace",
+        "module": "Light#sources/12/module",
+        "role": "Light#sources/12/role",
+        "imports": [
+          "Light#sources/12/imports/0"
+        ]
+      }
+    }
+  ],
+  "intrinsics": [
+    {
+      "namespace": "Swift",
+      "version": "vi.court.intrinsic-swift/2",
+      "exports": [
+        "Never",
+        "String"
+      ],
+      "at": {
+        "namespace": "Light#Swift/namespace",
+        "version": "Light#Swift/version",
+        "exports": [
+          "Light#Swift/Never",
+          "Light#Swift/String"
+        ]
+      }
+    }
+  ]
+}

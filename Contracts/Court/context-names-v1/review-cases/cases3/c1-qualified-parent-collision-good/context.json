@@ -1,0 +1,64 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases3/c1-qualified-parent-collision-good/World.swift",
+      "source": "World.swift",
+      "sha256": "0693666b6b9897c31aa95d9f5e6b01c35640d65f1c62eefb9e48b735b2523805",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Kit"
+      ],
+      "at": {
+        "input": "review#cases3/c1-qualified-parent-collision-good/World.swift/input",
+        "source": "review#cases3/c1-qualified-parent-collision-good/World.swift/source",
+        "sha256": "review#cases3/c1-qualified-parent-collision-good/World.swift/sha256",
+        "namespace": "review#cases3/c1-qualified-parent-collision-good/World.swift/namespace",
+        "module": "review#cases3/c1-qualified-parent-collision-good/World.swift/module",
+        "role": "review#cases3/c1-qualified-parent-collision-good/World.swift/role",
+        "imports": [
+          "review#cases3/c1-qualified-parent-collision-good/World.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "review-cases/cases3/c1-qualified-parent-collision-good/Kit.swift",
+      "source": "Kit.swift",
+      "sha256": "3e3accba2baf53c1b13af36becb3a97b795c67229fc5d3a0a740d86915111a66",
+      "namespace": "Kit",
+      "module": "Kit",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "review#cases3/c1-qualified-parent-collision-good/Kit.swift/input",
+        "source": "review#cases3/c1-qualified-parent-collision-good/Kit.swift/source",
+        "sha256": "review#cases3/c1-qualified-parent-collision-good/Kit.swift/sha256",
+        "namespace": "review#cases3/c1-qualified-parent-collision-good/Kit.swift/namespace",
+        "module": "review#cases3/c1-qualified-parent-collision-good/Kit.swift/module",
+        "role": "review#cases3/c1-qualified-parent-collision-good/Kit.swift/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "review-cases/cases3/c1-qualified-parent-collision-good/Spare.swift",
+      "source": "Spare.swift",
+      "sha256": "1b2b4b8151c5748d67ccb5073cb87b2f5b9bb81aff339b972711112ab67656c0",
+      "namespace": "Spare",
+      "module": "Spare",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "review#cases3/c1-qualified-parent-collision-good/Spare.swift/input",
+        "source": "review#cases3/c1-qualified-parent-collision-good/Spare.swift/source",
+        "sha256": "review#cases3/c1-qualified-parent-collision-good/Spare.swift/sha256",
+        "namespace": "review#cases3/c1-qualified-parent-collision-good/Spare.swift/namespace",
+        "module": "review#cases3/c1-qualified-parent-collision-good/Spare.swift/module",
+        "role": "review#cases3/c1-qualified-parent-collision-good/Spare.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

@@ -1,0 +1,34 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "review-cases/cases/a3-two-files-same-module/World.swift",
+      "source": "World.swift",
+      "sha256": "2d507cfc57513f53feb3c01dde857431912c5a1c3bea64b46e5ff212eb3f2f5a",
+      "namespace": "World",
+      "imports": [],
+      "at": {
+        "input": "review#cases/a3-two-files-same-module/World.swift/input",
+        "source": "review#cases/a3-two-files-same-module/World.swift/source",
+        "sha256": "review#cases/a3-two-files-same-module/World.swift/sha256",
+        "namespace": "review#cases/a3-two-files-same-module/World.swift/namespace",
+        "imports": []
+      }
+    },
+    {
+      "input": "review-cases/cases/a3-two-files-same-module/World2.swift",
+      "source": "World2.swift",
+      "sha256": "471ed148c00f4cf9ccc67a38fbb23ccc9f44a832b987a70a067ec7be34e7f2cf",
+      "namespace": "World",
+      "imports": [],
+      "at": {
+        "input": "review#cases/a3-two-files-same-module/World2.swift/input",
+        "source": "review#cases/a3-two-files-same-module/World2.swift/source",
+        "sha256": "review#cases/a3-two-files-same-module/World2.swift/sha256",
+        "namespace": "review#cases/a3-two-files-same-module/World2.swift/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

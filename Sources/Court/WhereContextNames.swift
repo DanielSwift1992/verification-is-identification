@@ -351,6 +351,49 @@ enum WhereContextNames {
         }
     }
 
+    /// Refuses an undeclared type root or cyclic refinement in the supplied
+    /// fragment. No opaque spelling can supply a missing declaration.
+    static func closedNames(_ files: [CourtNotation.File], in world: WhereJudge.World) throws {
+        var known = files.reduce(into: NameSet()) { $0.formUnion($1.world.fileTypes) }
+            .union(CourtContext.intrinsicExports(version: 1))
+            .union(world.intrinsicSwift ? CourtContext.intrinsicExports(version: world.contextVersion) : [])
+        for row in world.contextNameBindings?.certificate.declarations ?? []
+        where row.kind == ScalarName("intrinsic") {
+            if let name = row.place.components.last { known.insert(name) }
+        }
+        var parents = NameMap<[String]>(), addresses = NameMap<String>()
+        for file in files {
+            for name in file.world.protocolParents.keys {
+                parents[name] = file.world.protocolParents[name]
+                addresses[name] = file.context.source + ":\(file.world.certificateLines[name] ?? file.world.declared[name]?.first ?? 1)"
+            }
+            let missing = try WhereContext.references(file.world, in: world).filter {
+                !known.contains($0) && !(WhereJudge.sameName($0, "Swift") && world.intrinsicSwift)
+            }.sorted()
+            if let name = missing.first {
+                let builders = try files.reduce(into: NameSet()) {
+                    $0.formUnion(try WhereJudge.declaredBuilders($1.world.clean))
+                }
+                let tape = try WhereJudge.lexicalReading(file.world.clean, scope: .notation,
+                    lent: builders, carrying: true).tape
+                let line = tape.words.firstIndex(
+                    where: { WhereJudge.sameName($0, name) }).map { tape.lines[$0] } ?? 1
+                try WhereJudge.fail("\(file.context.source):\(line): no declared definition for '\(name)' in the supplied fragment")
+            }
+        }
+        var done = NameSet(), active = NameSet()
+        func visit(_ name: String) throws {
+            if active.contains(name) {
+                try WhereJudge.fail("\(addresses[name] ?? "source:1"): protocol refinement cycle at '\(name)' has no independent ground")
+            }
+            guard !done.contains(name) else { return }
+            active.insert(name)
+            for parent in (parents[name] ?? []).sorted() { try visit(parent) }
+            active.remove(name); done.insert(name)
+        }
+        for name in parents.keys.sorted() { try visit(name) }
+    }
+
     /// Checks the application that qualification exposed before an equality
     /// can use its nominal head. Existing membership derivations supply bounds.
     static func applications(_ applications: [Application], in world: WhereJudge.World) throws {

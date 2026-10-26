@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases15/w3-nominal-where-inherited/World.swift",
+      "source": "World.swift",
+      "sha256": "408b5fbb1c79a27916386128dc981f06fd838f94bdb8a4ddf2d142974846d394",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "review#cases15/w3-nominal-where-inherited/World.swift/input",
+        "source": "review#cases15/w3-nominal-where-inherited/World.swift/source",
+        "sha256": "review#cases15/w3-nominal-where-inherited/World.swift/sha256",
+        "namespace": "review#cases15/w3-nominal-where-inherited/World.swift/namespace",
+        "module": "review#cases15/w3-nominal-where-inherited/World.swift/module",
+        "role": "review#cases15/w3-nominal-where-inherited/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

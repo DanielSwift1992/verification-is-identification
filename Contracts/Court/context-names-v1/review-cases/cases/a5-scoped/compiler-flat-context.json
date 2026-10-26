@@ -1,0 +1,60 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases/a5-scoped/World.swift",
+      "source": "World.swift",
+      "sha256": "152f4976652a0872595f850459d4af93424aee22d76c03dc65ed67b5f7f067ff",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "flat-native#cases/a5-scoped/World.swift/input",
+        "source": "flat-native#cases/a5-scoped/World.swift/source",
+        "sha256": "flat-native#cases/a5-scoped/World.swift/sha256",
+        "namespace": "flat-native#cases/a5-scoped/World.swift/namespace",
+        "module": "flat-native#cases/a5-scoped/World.swift/module",
+        "role": "flat-native#cases/a5-scoped/World.swift/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "review-cases/cases/a5-scoped/Notation.swift",
+      "source": "Notation.swift",
+      "sha256": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "flat-native#cases/a5-scoped/Notation.swift/input",
+        "source": "flat-native#cases/a5-scoped/Notation.swift/source",
+        "sha256": "flat-native#cases/a5-scoped/Notation.swift/sha256",
+        "namespace": "flat-native#cases/a5-scoped/Notation.swift/namespace",
+        "module": "flat-native#cases/a5-scoped/Notation.swift/module",
+        "role": "flat-native#cases/a5-scoped/Notation.swift/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "review-cases/cases/a5-scoped/API.swift",
+      "source": "API.swift",
+      "sha256": "2cfc9bc47a27bb23e8c15213f33ba10368945a0f5f69f57ec589b2e900496a49",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "flat-native#cases/a5-scoped/API.swift/input",
+        "source": "flat-native#cases/a5-scoped/API.swift/source",
+        "sha256": "flat-native#cases/a5-scoped/API.swift/sha256",
+        "namespace": "flat-native#cases/a5-scoped/API.swift/namespace",
+        "module": "flat-native#cases/a5-scoped/API.swift/module",
+        "role": "flat-native#cases/a5-scoped/API.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

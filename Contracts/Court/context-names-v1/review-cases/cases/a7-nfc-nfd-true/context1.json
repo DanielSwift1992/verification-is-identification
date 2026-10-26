@@ -1,0 +1,20 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "review-cases/cases/a7-nfc-nfd-true/World.swift",
+      "source": "World.swift",
+      "sha256": "392e36665783fc0f4bed3e5956580328ab898882a4bbd0d0de39c99ff72bb2fa",
+      "namespace": "World",
+      "imports": [],
+      "at": {
+        "input": "review#cases/a7-nfc-nfd-true/World.swift/input",
+        "source": "review#cases/a7-nfc-nfd-true/World.swift/source",
+        "sha256": "review#cases/a7-nfc-nfd-true/World.swift/sha256",
+        "namespace": "review#cases/a7-nfc-nfd-true/World.swift/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

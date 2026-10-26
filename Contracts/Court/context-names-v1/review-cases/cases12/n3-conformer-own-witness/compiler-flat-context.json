@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases12/n3-conformer-own-witness/World.swift",
+      "source": "World.swift",
+      "sha256": "95feb4de1adfe3b0ef430a42a73808c51cc49bf757e6899c55fc28f5000ddd52",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "flat-native#cases12/n3-conformer-own-witness/World.swift/input",
+        "source": "flat-native#cases12/n3-conformer-own-witness/World.swift/source",
+        "sha256": "flat-native#cases12/n3-conformer-own-witness/World.swift/sha256",
+        "namespace": "flat-native#cases12/n3-conformer-own-witness/World.swift/namespace",
+        "module": "flat-native#cases12/n3-conformer-own-witness/World.swift/module",
+        "role": "flat-native#cases12/n3-conformer-own-witness/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

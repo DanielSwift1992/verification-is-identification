@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases5/d2-string-duplicate-axis/World.swift",
+      "source": "World.swift",
+      "sha256": "9d70b29fcd7f955cd6b5e877002e7071d8156cd95fa2acb9dd601db9cf80a13d",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "review#cases5/d2-string-duplicate-axis/World.swift/input",
+        "source": "review#cases5/d2-string-duplicate-axis/World.swift/source",
+        "sha256": "review#cases5/d2-string-duplicate-axis/World.swift/sha256",
+        "namespace": "review#cases5/d2-string-duplicate-axis/World.swift/namespace",
+        "module": "review#cases5/d2-string-duplicate-axis/World.swift/module",
+        "role": "review#cases5/d2-string-duplicate-axis/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

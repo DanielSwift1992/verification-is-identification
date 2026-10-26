@@ -1,0 +1,20 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "review-cases/cases/a8-inherited-self-bad/World.swift",
+      "source": "World.swift",
+      "sha256": "793ac2d9be8c1127c9296a7cfb8574ca3ba5dd7f1118c02cfd40ef1cbc8ee090",
+      "namespace": "World",
+      "imports": [],
+      "at": {
+        "input": "review#cases/a8-inherited-self-bad/World.swift/input",
+        "source": "review#cases/a8-inherited-self-bad/World.swift/source",
+        "sha256": "review#cases/a8-inherited-self-bad/World.swift/sha256",
+        "namespace": "review#cases/a8-inherited-self-bad/World.swift/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

@@ -25,36 +25,24 @@ for ladder_test in testDeclaredEnergyStitchesThroughTheirOwnCountReading testEqu
     fi
 done
 
-if "$ladder_bin/Tools" judge where Sources/Examples/RydbergLadder.swift \
-    Sources/Notation/Primitive.swift >"$ladder_tmp/where.log" 2>&1; then
-    echo "Rydberg: the where court accepted distinct count constructions as one type" >&2
-    exit 1
-else
-    ladder_status=$?
-fi
-if [ "$ladder_status" -ne 1 ]; then
-    cat "$ladder_tmp/where.log"
-    echo "Rydberg: the where court did not return its nominal refusal verdict" >&2
-    exit 1
-fi
-
-# Accept only these four addressed refusals. An extra refusal, missing one,
-# parsing failure or different premise is a failed check, not an exception.
-python3 - "$ladder_tmp/where.log" <<'PY'
-from pathlib import Path
-import re, sys
-expected = {
-    'ThirdFloorStitch', 'SecondFloorStitch',
-    'GroundFloorStitch', 'TwoRoadsOneDrop',
-}
-lines = Path(sys.argv[1]).read_text().splitlines()
-pattern = re.compile(r"^\u2717 '([A-Za-z]+) = EnergySum<.*\[EnergyClosed\]$")
-matches = [pattern.fullmatch(line) for line in lines]
-if len(lines) != len(expected) or any(m is None for m in matches):
-    raise SystemExit('Rydberg: unexpected where-court output')
-if {m.group(1) for m in matches} != expected:
-    raise SystemExit('Rydberg: missing or duplicated nominal refusal')
-PY
+ladder_inputs=()
+while IFS= read -r path; do ladder_inputs+=("$path"); done < <(python3 Checks/where-contexts.py RydbergLadder)
+ladder_status=0
+"$ladder_bin/Tools" judge where "${ladder_inputs[@]}" --context Checks/where-contexts/RydbergLadder.json --report \
+    >"$ladder_tmp/where.json" || ladder_status=$?
+# Keep the same four nominal failures; an input refusal cannot replace them.
+python3 - "$ladder_status" "$ladder_tmp/where.json" <<'PYREPORT'
+import json, sys
+report = json.load(open(sys.argv[2]))
+assert int(sys.argv[1]) == 1 and not report['diagnostics'], report
+assert len(report['results']) == 1, report
+row = report['results'][0]
+assert row['outcome'] == 'not-established', row
+expected = {'ThirdFloorStitch', 'SecondFloorStitch', 'GroundFloorStitch', 'TwoRoadsOneDrop'}
+lines = row['diagnostics']
+assert len(lines) == 4 and all(line.endswith('[EnergyClosed]') for line in lines), row
+assert {line.split(' = EnergySum<', 1)[0].removeprefix("'") for line in lines} == expected, row
+PYREPORT
 
 # Naming EnergySum's type is legal Swift; granting EnergyClosed is the
 # stronger claim. Check the same four failed grants with the actual compiler.

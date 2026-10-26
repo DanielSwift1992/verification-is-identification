@@ -1,0 +1,1 @@
+public enum Leaf: Structure {}

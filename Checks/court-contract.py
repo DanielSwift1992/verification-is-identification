@@ -166,6 +166,10 @@ if __name__ == '__main__' and len(sys.argv) > 1 and sys.argv[1] == '--roster':
 # An immutable suite name binds the exact manifest bytes, including its case set.
 # New normative expectations require a new release and a deliberate registry entry.
 SUITE_HASHES = {
+    "vi.court.questions/0.1-context4": "69b7bb8098877c640874e6e58ece14e3a22a62ab138eaf213525cbf3d4558a3b",
+    "vi.court.questions/0.4-resolution4": "b53752b5b9c109a3c42805ff53c3d88c77b712631815af34ad5670e8d41a9402",
+    "vi.court.context-owners/4": "cf1a641e10e66850d1e7d11e6ff8d9b6d5dacc9b32c9ddc4d427f978f4ab405b",
+    "vi.court.context-review/4": "14d97ed239c320b4a1bdf7a9c800794ff465d71cea1d7d5627f127a44263c1fd",
     "vi.court.context-binding-replay/2": "4dcabb44bc13b5111625c549ffd8b260b0a6259a10641f451e877b0db720756d",
     "vi.court.questions/0.4-resolution3": "75dfe27bf30e638943e03a6416a902c911d3e90780bc25176eb27c119698376a",
     "vi.court.questions/0.5-resolution3": "d584957cba593fb813d92197fbc77ed9eee92a9788590c7b46990db420764e88",
@@ -237,6 +241,8 @@ def load_contract(path):
         if not set(case['files']) <= set(contract['files']) | absent:
             raise ValueError(f"unbound input: {case['id']}")
         compiler = case.get('compiler', {})
+        if ('context' in compiler or 'failure_stage' in compiler) and 'module' not in compiler:
+            raise ValueError(f"compiler context/failure stage requires a module plan: {case['id']}")
         native_files = list(compiler.get('files', case['files']))
         module_names = []
         for module in compiler.get('modules', []):
@@ -249,17 +255,36 @@ def load_contract(path):
         if 'module' in compiler:
             if len(native_files) != len(set(native_files)) or not compiler.get('files'):
                 raise ValueError(f"compiler source owners overlap or have no primary: {case['id']}")
-            if '--context' not in case['args']:
+            context_name = compiler.get('context')
+            if '--context' in case['args']:
+                if context_name is not None:
+                    raise ValueError(f"two compiler source contexts: {case['id']}")
+                context_name = case['args'][case['args'].index('--context') + 1]
+            if context_name is None:
                 raise ValueError(f"compiler module plan has no judged context: {case['id']}")
-            context_name = case['args'][case['args'].index('--context') + 1]
+            if context_name not in contract['files']:
+                raise ValueError(f"unbound compiler source context: {case['id']}")
             context = json.loads(within(root, context_name).read_bytes())
             owners = {source['input']: source.get('module', source['namespace']) for source in context['sources']}
+            if compiler.get('context') is not None:
+                if context.get('schema') not in ('vi.court.context/1', 'vi.court.context/2'):
+                    raise ValueError(f"unknown compiler source context: {case['id']}")
+                if len(owners) != len(context['sources']) or set(owners) != set(case['files']) or any(
+                    source['sha256'] != contract['files'][source['input']]['sha256']
+                    for source in context['sources']
+                ):
+                    raise ValueError(f"compiler source context differs from input bytes: {case['id']}")
             plans = compiler.get('modules', []) + [{'name': compiler['module'], 'files': compiler['files']}]
             for module in plans:
                 if not re.fullmatch(r'[A-Za-z_][A-Za-z_0-9]*', module['name']):
                     raise ValueError(f"invalid compiler module: {case['id']}")
                 if not module['files'] or any(owners.get(name) != module['name'] for name in module['files']):
                     raise ValueError(f"compiler module differs from context owner: {case['id']}")
+        if 'failure_stage' in compiler:
+            if compiler['failure_stage'] not in module_names or compiler.get('exit') == 0:
+                raise ValueError(f"invalid compiler failure stage: {case['id']}")
+        if compiler.get('diagnostic') == 'warnings' and compiler.get('exit') != 0:
+            raise ValueError(f"warnings require compiler success: {case['id']}")
         if 'response' in case['expected']:
             if contract['schema'] != 'vi.court.conformance/2' or '--report' not in case['args']:
                 raise ValueError(f"undeclared structured response: {case['id']}")
@@ -388,6 +413,9 @@ def compiler_failures(actual, expected):
     if expected['diagnostic'] == 'none':
         if actual['stderr']:
             errors.append('compiler diagnostic')
+    elif expected['diagnostic'] == 'warnings':
+        if any(': error:' in line or line.startswith('error:') for line in actual['stderr'].splitlines()):
+            errors.append('compiler error among warnings')
     elif expected['diagnostic'] == 'equivalence':
         lines = re.findall(r'^.*:\d+:\d+: error:.*$', actual['stderr'], re.M)
         if len(lines) != 1 or 'requires the types' not in lines[0] or 'be equivalent' not in lines[0]:
@@ -405,7 +433,7 @@ def compiler_failures(actual, expected):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--manifest', type=Path, default=Path(__file__).resolve().parents[1] / 'Contracts/Court/v0.1/contract.json')
+    parser.add_argument('--manifest', type=Path, default=Path(__file__).resolve().parents[1] / 'Contracts/Court/v0.1/context-fragment-v4.json')
     parser.add_argument('--command-json', required=True, help='JSON argv prefix, e.g. ["/absolute/Tools", "judge"]')
     parser.add_argument('--implementation-id', required=True, help='caller-supplied identity; not proof of a source/binary correspondence')
     parser.add_argument('--compiler', help='optional Swift compiler for the six compiler-backed fixtures')
@@ -438,6 +466,8 @@ def main():
                     native = Path(tmp) / case['id']
                     native.mkdir()
                     stages = []
+                    expected_failed = case['compiler'].get('failure_stage')
+                    failed_stage = None
                     for module in case['compiler'].get('modules', []):
                         stage = run([args.compiler, '-emit-module', '-module-name', module['name'],
                                      '-I', str(native), '-module-cache-path', tmp + '/cache',
@@ -445,12 +475,20 @@ def main():
                                     + module['files'], root, args.timeout)
                         stages.append(stage)
                         if stage.get('exit') != 0:
-                            failures.append('compiler prerequisite module: ' + module['name'])
+                            failed_stage = module['name']
+                            if failed_stage != expected_failed:
+                                failures.append('compiler prerequisite module: ' + module['name'])
                             break
                     row['compiler_modules'] = stages
                     module_args = ['-module-name', case['compiler']['module']] if 'module' in case['compiler'] else []
-                    compiled = run([args.compiler, '-typecheck', *module_args, '-I', str(native), '-module-cache-path', tmp + '/cache']
-                                   + case['compiler'].get('files', case['files']), root, args.timeout)
+                    if expected_failed:
+                        if failed_stage != expected_failed:
+                            failures.append('compiler failure stage')
+                        compiled = stages[-1]
+                        row['compiler_observation_stage'] = 'module:' + failed_stage if failed_stage else None
+                    else:
+                        compiled = run([args.compiler, '-typecheck', *module_args, '-I', str(native), '-module-cache-path', tmp + '/cache']
+                                       + case['compiler'].get('files', case['files']), root, args.timeout)
                     row['compiler'] = compiled
                     failures.extend(compiler_failures(compiled, case['compiler']))
                 row['matched'] = not failures

@@ -1,0 +1,18 @@
+{
+  "schema": "vi.court.literal-omissions/1",
+  "source": "Sources/Examples/Light.swift",
+  "fragments": [
+    {
+      "name": "darkFringe",
+      "bytes": "public let darkFringe: SettlesToDark.Type = OppositePair<\n    Contribution<Lit1, Phase0>,\n    Contribution<Lit1, PhaseHalf>\n>.self\n"
+    },
+    {
+      "name": "diagonalHalvingChecked",
+      "bytes": "public let diagonalHalvingChecked: HalfOfRoundTrip.Type = Halves<\n    Plus<DiagonalAfterLampH.Horizontal, DiagonalAfterLampH.Vertical>,\n    Lit8\n>.self\n"
+    },
+    {
+      "name": "threePanesRevive",
+      "bytes": "public let threePanesRevive: HalfOfRoundTrip.Type = Halves<\n    ThreePanes.Vertical,\n    Plus<DiagonalAfterLampH.Horizontal, DiagonalAfterLampH.Vertical>\n>.self\n"
+    }
+  ]
+}

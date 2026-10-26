@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases15/w4-nominal-where-inherited-noown/World.swift",
+      "source": "World.swift",
+      "sha256": "906c32672c095550973c9859fe2399369b9d8ef5bd366bd2e49f531f7d7b0343",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "flat-native#cases15/w4-nominal-where-inherited-noown/World.swift/input",
+        "source": "flat-native#cases15/w4-nominal-where-inherited-noown/World.swift/source",
+        "sha256": "flat-native#cases15/w4-nominal-where-inherited-noown/World.swift/sha256",
+        "namespace": "flat-native#cases15/w4-nominal-where-inherited-noown/World.swift/namespace",
+        "module": "flat-native#cases15/w4-nominal-where-inherited-noown/World.swift/module",
+        "role": "flat-native#cases15/w4-nominal-where-inherited-noown/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

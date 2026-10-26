@@ -83,7 +83,6 @@ public enum OppositeAmplitudeReading<M: IntegerValued>: PredicateReading {
 }
 
 public enum NaturalArithmeticSpace: Close {}
-public enum UnaryArithmeticEncoding: Close {}
 public enum NaturalSumQuestion: Close {}
 public enum NaturalProductQuestion: Close {}
 

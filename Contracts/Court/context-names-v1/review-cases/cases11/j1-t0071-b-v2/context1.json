@@ -1,0 +1,38 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "review-cases/cases11/j1-t0071-b-v2/World.swift",
+      "source": "World.swift",
+      "sha256": "6835e08ee3e83a49992358f2543a3498b3da6055d47275a0523143859212e5c9",
+      "namespace": "World",
+      "imports": [
+        "Kit"
+      ],
+      "at": {
+        "input": "review#cases11/j1-t0071-b-v2/World.swift/input",
+        "source": "review#cases11/j1-t0071-b-v2/World.swift/source",
+        "sha256": "review#cases11/j1-t0071-b-v2/World.swift/sha256",
+        "namespace": "review#cases11/j1-t0071-b-v2/World.swift/namespace",
+        "imports": [
+          "review#cases11/j1-t0071-b-v2/World.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "review-cases/cases11/j1-t0071-b-v2/Kit.swift",
+      "source": "Kit.swift",
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "namespace": "Kit",
+      "imports": [],
+      "at": {
+        "input": "review#cases11/j1-t0071-b-v2/Kit.swift/input",
+        "source": "review#cases11/j1-t0071-b-v2/Kit.swift/source",
+        "sha256": "review#cases11/j1-t0071-b-v2/Kit.swift/sha256",
+        "namespace": "review#cases11/j1-t0071-b-v2/Kit.swift/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

@@ -9,7 +9,7 @@ python3 Checks/court-contract-test.py
 python3 Checks/count-dag-arithmetic.py
 for suite in v0.1 v0.2 v0.3 v0.4 v0.5; do
     court_contract_manifest="Contracts/Court/$suite/contract.json"
-    case "$suite" in v0.4|v0.5) court_contract_manifest="Contracts/Court/$suite/resolution-v3.json" ;; esac
+    case "$suite" in v0.1) court_contract_manifest="Contracts/Court/v0.1/context-fragment-v4.json" ;; v0.4) court_contract_manifest="Contracts/Court/v0.4/resolution-v4.json" ;; v0.5) court_contract_manifest="Contracts/Court/$suite/resolution-v3.json" ;; esac
     python3 Checks/court-contract.py \
         --manifest "$court_contract_manifest" \
         --command-json "$court_contract_command" \
@@ -22,7 +22,7 @@ python3 Checks/court-contract.py \
     --implementation-id "local SwiftPM Tools build" \
     --compiler "$(command -v swiftc)" "$@"
 python3 Checks/court-contract.py \
-    --manifest Contracts/Court/context-names-v1/fragment-v3.json \
+    --manifest Contracts/Court/context-names-v1/fragment-v4.json \
     --command-json "$court_contract_command" \
     --implementation-id "local SwiftPM Tools build" \
     --compiler "$(command -v swiftc)" "$@"
@@ -48,6 +48,11 @@ python3 Checks/court-contract.py \
     --compiler "$(command -v swiftc)" "$@"
 python3 Checks/court-contract.py \
     --manifest Contracts/Court/context-names-v1/resolution.json \
+    --command-json "$court_contract_command" \
+    --implementation-id "local SwiftPM Tools build" \
+    --compiler "$(command -v swiftc)" "$@"
+python3 Checks/court-contract.py \
+    --manifest Contracts/Court/context-names-v1/review-v4.json \
     --command-json "$court_contract_command" \
     --implementation-id "local SwiftPM Tools build" \
     --compiler "$(command -v swiftc)" "$@"

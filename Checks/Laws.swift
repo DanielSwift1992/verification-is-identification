@@ -165,7 +165,7 @@ enum LawFamilies: LawRecord {
 }
 
 enum LawLightName: LawText { static var typeName: String { #"light"# } }
-enum LawLightDescription: LawText { static var typeName: String { #"the second judge names the claims of Light it does not read, and the rest holds"# } }
+enum LawLightDescription: LawText { static var typeName: String { #"the second judge names Light’s unread multiline claims and its remaining definition boundary"# } }
 enum LawLight: LawRecord {
     typealias Command = Self
     typealias Name = LawLightName
@@ -194,7 +194,7 @@ enum LawGrants: LawRecord {
     typealias Description = LawGrantsDescription
     typealias Profile = Court
     typealias Group = Parallel
-    static var typeName: String { #"bash Checks/tools.sh judge where Sources/Examples/Grants.swift"# }
+    static var typeName: String { #"bash Checks/where-grants.sh"# }
 }
 
 enum LawAliasName: LawText { static var typeName: String { #"alias"# } }

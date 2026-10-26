@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases12/n5-conditional-region-other-ext/World.swift",
+      "source": "World.swift",
+      "sha256": "815cc52e059a112b803b339902495ef6091cc71af82ffca45a256e0876e9634f",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "flat-native#cases12/n5-conditional-region-other-ext/World.swift/input",
+        "source": "flat-native#cases12/n5-conditional-region-other-ext/World.swift/source",
+        "sha256": "flat-native#cases12/n5-conditional-region-other-ext/World.swift/sha256",
+        "namespace": "flat-native#cases12/n5-conditional-region-other-ext/World.swift/namespace",
+        "module": "flat-native#cases12/n5-conditional-region-other-ext/World.swift/module",
+        "role": "flat-native#cases12/n5-conditional-region-other-ext/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

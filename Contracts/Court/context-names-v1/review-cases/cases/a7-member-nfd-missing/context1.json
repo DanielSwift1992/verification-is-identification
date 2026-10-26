@@ -1,0 +1,20 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "review-cases/cases/a7-member-nfd-missing/World.swift",
+      "source": "World.swift",
+      "sha256": "b6668b1b1ba2958c470d13e544cd003f7a71dd1b8065969b49d413bd5d01f9b6",
+      "namespace": "World",
+      "imports": [],
+      "at": {
+        "input": "review#cases/a7-member-nfd-missing/World.swift/input",
+        "source": "review#cases/a7-member-nfd-missing/World.swift/source",
+        "sha256": "review#cases/a7-member-nfd-missing/World.swift/sha256",
+        "namespace": "review#cases/a7-member-nfd-missing/World.swift/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

@@ -1,0 +1,56 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "review-cases/cases/a5-if-false/World.swift",
+      "source": "World.swift",
+      "sha256": "152f4976652a0872595f850459d4af93424aee22d76c03dc65ed67b5f7f067ff",
+      "namespace": "World",
+      "imports": [
+        "API"
+      ],
+      "at": {
+        "input": "review#cases/a5-if-false/World.swift/input",
+        "source": "review#cases/a5-if-false/World.swift/source",
+        "sha256": "review#cases/a5-if-false/World.swift/sha256",
+        "namespace": "review#cases/a5-if-false/World.swift/namespace",
+        "imports": [
+          "review#cases/a5-if-false/World.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "review-cases/cases/a5-if-false/Notation.swift",
+      "source": "Notation.swift",
+      "sha256": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072",
+      "namespace": "Notation",
+      "imports": [],
+      "at": {
+        "input": "review#cases/a5-if-false/Notation.swift/input",
+        "source": "review#cases/a5-if-false/Notation.swift/source",
+        "sha256": "review#cases/a5-if-false/Notation.swift/sha256",
+        "namespace": "review#cases/a5-if-false/Notation.swift/namespace",
+        "imports": []
+      }
+    },
+    {
+      "input": "review-cases/cases/a5-if-false/API.swift",
+      "source": "API.swift",
+      "sha256": "b2fdc455fee4957b9aaacd023f8fdc90d62644768baec398dcbd1f3e02f977d7",
+      "namespace": "API",
+      "imports": [
+        "Notation"
+      ],
+      "at": {
+        "input": "review#cases/a5-if-false/API.swift/input",
+        "source": "review#cases/a5-if-false/API.swift/source",
+        "sha256": "review#cases/a5-if-false/API.swift/sha256",
+        "namespace": "review#cases/a5-if-false/API.swift/namespace",
+        "imports": [
+          "review#cases/a5-if-false/API.swift/imports/0"
+        ]
+      }
+    }
+  ],
+  "intrinsics": []
+}

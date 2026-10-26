@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/bounds/qualified-class-where/World.swift",
+      "source": "World.swift",
+      "sha256": "ff560dd641400e8ce8859c3fef8ec2bc2c71d57eb261d2b0a6f542cf8c174147",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "flat-native#bounds/qualified-class-where/World.swift/input",
+        "source": "flat-native#bounds/qualified-class-where/World.swift/source",
+        "sha256": "flat-native#bounds/qualified-class-where/World.swift/sha256",
+        "namespace": "flat-native#bounds/qualified-class-where/World.swift/namespace",
+        "module": "flat-native#bounds/qualified-class-where/World.swift/module",
+        "role": "flat-native#bounds/qualified-class-where/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

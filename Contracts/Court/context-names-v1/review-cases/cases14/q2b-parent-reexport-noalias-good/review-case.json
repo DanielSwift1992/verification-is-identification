@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "world": {
+    "files": [
+      "World.swift"
+    ],
+    "imports": [
+      "Mid"
+    ]
+  },
+  "modules": [
+    {
+      "name": "Kit",
+      "files": [
+        "Kit.swift"
+      ],
+      "imports": []
+    },
+    {
+      "name": "Mid",
+      "files": [
+        "Mid.swift"
+      ],
+      "imports": [
+        "Kit"
+      ]
+    }
+  ]
+}

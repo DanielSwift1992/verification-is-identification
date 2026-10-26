@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases12/n21-protocol-cycle/World.swift",
+      "source": "World.swift",
+      "sha256": "3c423e7e4aa492a8a4134880c0e8a530732ec3b27c00cac7ed909385edfa8e21",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "review#cases12/n21-protocol-cycle/World.swift/input",
+        "source": "review#cases12/n21-protocol-cycle/World.swift/source",
+        "sha256": "review#cases12/n21-protocol-cycle/World.swift/sha256",
+        "namespace": "review#cases12/n21-protocol-cycle/World.swift/namespace",
+        "module": "review#cases12/n21-protocol-cycle/World.swift/module",
+        "role": "review#cases12/n21-protocol-cycle/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

@@ -1,0 +1,42 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases14/q1-parent-unimported/World.swift",
+      "source": "World.swift",
+      "sha256": "e00f6316954d8f815266809a1a4f09a6e3a3f86169e8fa0c3833904be76e6694",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "flat-native#cases14/q1-parent-unimported/World.swift/input",
+        "source": "flat-native#cases14/q1-parent-unimported/World.swift/source",
+        "sha256": "flat-native#cases14/q1-parent-unimported/World.swift/sha256",
+        "namespace": "flat-native#cases14/q1-parent-unimported/World.swift/namespace",
+        "module": "flat-native#cases14/q1-parent-unimported/World.swift/module",
+        "role": "flat-native#cases14/q1-parent-unimported/World.swift/role",
+        "imports": []
+      }
+    },
+    {
+      "input": "review-cases/cases14/q1-parent-unimported/Kit.swift",
+      "source": "Kit.swift",
+      "sha256": "b89c7e2863d2782727b73de983d0d9698a4dd2f25e2ba32d10e0affb74686472",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "flat-native#cases14/q1-parent-unimported/Kit.swift/input",
+        "source": "flat-native#cases14/q1-parent-unimported/Kit.swift/source",
+        "sha256": "flat-native#cases14/q1-parent-unimported/Kit.swift/sha256",
+        "namespace": "flat-native#cases14/q1-parent-unimported/Kit.swift/namespace",
+        "module": "flat-native#cases14/q1-parent-unimported/Kit.swift/module",
+        "role": "flat-native#cases14/q1-parent-unimported/Kit.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

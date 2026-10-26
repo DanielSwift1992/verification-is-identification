@@ -1,0 +1,56 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "review-cases/cases14/q2-parent-reexport-collision/World.swift",
+      "source": "World.swift",
+      "sha256": "f0aa58a443955ec6fe50edf8c183bb99a71746dd74d1a05f20310bf789b2bee6",
+      "namespace": "World",
+      "imports": [
+        "Mid"
+      ],
+      "at": {
+        "input": "review#cases14/q2-parent-reexport-collision/World.swift/input",
+        "source": "review#cases14/q2-parent-reexport-collision/World.swift/source",
+        "sha256": "review#cases14/q2-parent-reexport-collision/World.swift/sha256",
+        "namespace": "review#cases14/q2-parent-reexport-collision/World.swift/namespace",
+        "imports": [
+          "review#cases14/q2-parent-reexport-collision/World.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "review-cases/cases14/q2-parent-reexport-collision/Kit.swift",
+      "source": "Kit.swift",
+      "sha256": "b89c7e2863d2782727b73de983d0d9698a4dd2f25e2ba32d10e0affb74686472",
+      "namespace": "Kit",
+      "imports": [],
+      "at": {
+        "input": "review#cases14/q2-parent-reexport-collision/Kit.swift/input",
+        "source": "review#cases14/q2-parent-reexport-collision/Kit.swift/source",
+        "sha256": "review#cases14/q2-parent-reexport-collision/Kit.swift/sha256",
+        "namespace": "review#cases14/q2-parent-reexport-collision/Kit.swift/namespace",
+        "imports": []
+      }
+    },
+    {
+      "input": "review-cases/cases14/q2-parent-reexport-collision/Mid.swift",
+      "source": "Mid.swift",
+      "sha256": "012dcb6b0492251707f6541fcdf2db512fcaa08187c8a231c677c484421bed09",
+      "namespace": "Mid",
+      "imports": [
+        "Kit"
+      ],
+      "at": {
+        "input": "review#cases14/q2-parent-reexport-collision/Mid.swift/input",
+        "source": "review#cases14/q2-parent-reexport-collision/Mid.swift/source",
+        "sha256": "review#cases14/q2-parent-reexport-collision/Mid.swift/sha256",
+        "namespace": "review#cases14/q2-parent-reexport-collision/Mid.swift/namespace",
+        "imports": [
+          "review#cases14/q2-parent-reexport-collision/Mid.swift/imports/0"
+        ]
+      }
+    }
+  ],
+  "intrinsics": []
+}

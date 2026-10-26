@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases/a7-nfc-nfd-true/World.swift",
+      "source": "World.swift",
+      "sha256": "392e36665783fc0f4bed3e5956580328ab898882a4bbd0d0de39c99ff72bb2fa",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "flat-native#cases/a7-nfc-nfd-true/World.swift/input",
+        "source": "flat-native#cases/a7-nfc-nfd-true/World.swift/source",
+        "sha256": "flat-native#cases/a7-nfc-nfd-true/World.swift/sha256",
+        "namespace": "flat-native#cases/a7-nfc-nfd-true/World.swift/namespace",
+        "module": "flat-native#cases/a7-nfc-nfd-true/World.swift/module",
+        "role": "flat-native#cases/a7-nfc-nfd-true/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

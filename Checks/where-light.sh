@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
-# The second judge reads Light beside Primitive and states its exact
-# outcome. Three of Light's claims are metatypes whose generic arguments run
-# across lines, a use this court reads only on one line, so it gives no
-# verdict over the file and names those three lines and their reason; the
-# rest of Light, read without them, holds with the equalities and uses
-# counted here. Either half moving is visible: a court that learns to read
-# a claim changes the named lines, and one that stops reading another
-# changes them too, or the count the rest holds with.
+# The declared owner context retains the three unread multiline applications.
+# Its remaining source reaches the generic-definition boundary named below.
+# Native package tests still judge the actual Light declarations.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -15,41 +10,45 @@ trap 'rm -rf "$light_tmp"' EXIT
 
 . Checks/build-tools.sh
 light_bin=$(vi_check_tools_bin)
-primitive=Sources/Notation/Primitive.swift
-
-across="applies a gated head in a use written across lines, which this court reads on one line"
+light_context=Checks/where-contexts/Light.json
+light_inputs=()
+while IFS= read -r path; do light_inputs+=("$path"); done < <(python3 Checks/where-contexts.py Light)
 said=0
-"$light_bin/Tools" judge where Sources/Examples/Light.swift "$primitive" \
-    >"$light_tmp/light.out" 2>"$light_tmp/light.err" || said=$?
-expected="✗ THE WHERE: cannot read line 249 of 'Sources/Examples/Light.swift': 'OppositePair' $across
-✗ THE WHERE: cannot read line 304 of 'Sources/Examples/Light.swift': 'Halves' $across
-✗ THE WHERE: cannot read line 314 of 'Sources/Examples/Light.swift': 'Halves' $across"
-if [ "$said" -ne 2 ] || [ -s "$light_tmp/light.out" ] || [ "$(cat "$light_tmp/light.err")" != "$expected" ]; then
-    cat "$light_tmp/light.out" "$light_tmp/light.err"
-    echo "where-light: the court did not name exactly Light's three unread claims" >&2
-    exit 1
-fi
+"$light_bin/Tools" judge where "${light_inputs[@]}" --context "$light_context" --report \
+    >"$light_tmp/light.json" 2>"$light_tmp/light.err" || said=$?
+python3 - "$said" "$light_tmp/light.json" <<'PYREPORT'
+import json, sys
+report = json.load(open(sys.argv[2]))
+across = "applies a gated head in a use written across lines, which this court reads on one line"
+expected = [f"cannot read line {line} of 'Sources/Examples/Light.swift': '{name}' {across}"
+            for line, name in [(249, 'OppositePair'), (304, 'Halves'), (314, 'Halves')]]
+assert int(sys.argv[1]) == 2 and not report['diagnostics'], report
+assert len(report['results']) == 1 and report['results'][0]['diagnostics'] == expected, report
+PYREPORT
 
 # The rest of Light: the same file without the three named claims.
 python3 - Sources/Examples/Light.swift "$light_tmp/Light.swift" <<'PY'
 from pathlib import Path
-import re, sys
+import json, sys
 text = Path(sys.argv[1]).read_text()
-for name in ("darkFringe", "diagonalHalvingChecked", "threePanesRevive"):
-    text, count = re.subn(r"public let " + name + r":[^=]*=.*?>\.self\n", "", text, flags=re.S)
-    if count != 1:
-        raise SystemExit(f"where-light: Light no longer spells the claim {name} once")
+record = json.loads(Path('Checks/where-contexts/Light-omissions.json').read_text())
+assert record['source'] == sys.argv[1]
+for row in record['fragments']:
+    assert text.count(row['bytes']) == 1, row['name']
+    text = text.replace(row['bytes'], '', 1)
 Path(sys.argv[2]).write_text(text)
 PY
-if ! "$light_bin/Tools" judge where "$light_tmp/Light.swift" "$primitive" >"$light_tmp/rest.out" 2>&1; then
-    cat "$light_tmp/rest.out"
-    echo "where-light: the rest of Light does not hold" >&2
-    exit 1
-fi
-if [ "$(cat "$light_tmp/rest.out")" != "THE WHERE scope: conditional compilation blocks are excluded.
-✓ THE WHERE holds: 14 equalities and 0 memberships judged across 11 uses, the certificates, and the gated conformers, source-replayed definition reductions (canon v4)." ]; then
-    cat "$light_tmp/rest.out"
-    echo "where-light: the rest of Light holds with other counts" >&2
-    exit 1
-fi
-echo "✓ where-light: three claims across lines are named at their lines, and the rest of Light holds with 14 equalities across 11 uses"
+light_rest=()
+while IFS= read -r path; do light_rest+=("$path"); done < <(python3 Checks/where-contexts.py Light --project "$light_tmp/Light.swift" --output "$light_tmp/context.json")
+said=0
+"$light_bin/Tools" judge where "${light_rest[@]}" --context "$light_tmp/context.json" --report >"$light_tmp/rest.json" || said=$?
+python3 - "$said" "$light_tmp/rest.json" <<'PYREPORT'
+import json, sys
+report = json.load(open(sys.argv[2]))
+assert int(sys.argv[1]) == 2 and not report['diagnostics'], report
+assert len(report['results']) == 1, report
+row = report['results'][0]
+assert row['outcome'] == 'unsupported', row
+assert row['diagnostics'] == ["unresolved definition reduction: 'MatteReading' requires 1 arguments, received 0"], row
+PYREPORT
+echo "✓ where-light: three multiline claims retain their addresses; the complete owner context names the remaining generic-definition boundary"

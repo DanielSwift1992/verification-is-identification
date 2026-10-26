@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases/a3-associated-and-nested-dup/World.swift",
+      "source": "World.swift",
+      "sha256": "fb1d1b5e21c70c0a2ac91433a159a6f966f17a70e04c39a78fcdeeef07208c44",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "flat-native#cases/a3-associated-and-nested-dup/World.swift/input",
+        "source": "flat-native#cases/a3-associated-and-nested-dup/World.swift/source",
+        "sha256": "flat-native#cases/a3-associated-and-nested-dup/World.swift/sha256",
+        "namespace": "flat-native#cases/a3-associated-and-nested-dup/World.swift/namespace",
+        "module": "flat-native#cases/a3-associated-and-nested-dup/World.swift/module",
+        "role": "flat-native#cases/a3-associated-and-nested-dup/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

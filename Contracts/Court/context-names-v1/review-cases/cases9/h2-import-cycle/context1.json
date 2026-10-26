@@ -1,0 +1,60 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "review-cases/cases9/h2-import-cycle/World.swift",
+      "source": "World.swift",
+      "sha256": "20d8adff2f1ba0eb8c562ea9a941895b049b766f5d6d7bee769a249936a96e64",
+      "namespace": "World",
+      "imports": [
+        "B"
+      ],
+      "at": {
+        "input": "review#cases9/h2-import-cycle/World.swift/input",
+        "source": "review#cases9/h2-import-cycle/World.swift/source",
+        "sha256": "review#cases9/h2-import-cycle/World.swift/sha256",
+        "namespace": "review#cases9/h2-import-cycle/World.swift/namespace",
+        "imports": [
+          "review#cases9/h2-import-cycle/World.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "review-cases/cases9/h2-import-cycle/A.swift",
+      "source": "A.swift",
+      "sha256": "0c7ad8ade18c2f0ff5cfaa25c5b452fd70f1433965d17258e0e1178ce9bb20b0",
+      "namespace": "A",
+      "imports": [
+        "B"
+      ],
+      "at": {
+        "input": "review#cases9/h2-import-cycle/A.swift/input",
+        "source": "review#cases9/h2-import-cycle/A.swift/source",
+        "sha256": "review#cases9/h2-import-cycle/A.swift/sha256",
+        "namespace": "review#cases9/h2-import-cycle/A.swift/namespace",
+        "imports": [
+          "review#cases9/h2-import-cycle/A.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "review-cases/cases9/h2-import-cycle/B.swift",
+      "source": "B.swift",
+      "sha256": "fd04769954369d8e4f95b2c814447eb4790916b66b4ac79f39f43d49012fccc3",
+      "namespace": "B",
+      "imports": [
+        "A"
+      ],
+      "at": {
+        "input": "review#cases9/h2-import-cycle/B.swift/input",
+        "source": "review#cases9/h2-import-cycle/B.swift/source",
+        "sha256": "review#cases9/h2-import-cycle/B.swift/sha256",
+        "namespace": "review#cases9/h2-import-cycle/B.swift/namespace",
+        "imports": [
+          "review#cases9/h2-import-cycle/B.swift/imports/0"
+        ]
+      }
+    }
+  ],
+  "intrinsics": []
+}

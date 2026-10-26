@@ -219,3 +219,81 @@ with tempfile.TemporaryDirectory(prefix='vi-module-contract-tests-') as tmp:
     check(row['actual']['exit'] == 0 and row['compiler']['exit'] == 0 and row['compiler_modules'][0]['exit'] == 1
           and any('prerequisite module' in text for text in row['mismatches']), 'prerequisite failure survives successful neighbors')
 print(f'court-contract reader: {checks} checks including source-bound module delivery')
+
+# A native module plan remains byte-bound when Court deliberately has no
+# source context. The context below belongs to the compiler observation only.
+with tempfile.TemporaryDirectory(prefix='vi-native-context-tests-') as tmp:
+    target = Path(tmp) / 'contract'
+    for mutation in ('positive', 'unbound', 'two-contexts', 'changed-source-hash', 'missing-owner', 'wrong-schema', 'duplicate-owner', 'no-module-plan', 'unknown-failure-stage', 'successful-failure-stage'):
+        shutil.copytree(names_root, target)
+        value = copy.deepcopy(names_suite)
+        value['suite'] = 'local-test.native-context/1'
+        value['cases'] = [value['cases'][0]]
+        case = value['cases'][0]
+        context_name = case['args'][case['args'].index('--context') + 1]
+        case['args'] = []
+        case['compiler']['context'] = context_name
+        if mutation == 'unbound': case['compiler']['context'] = 'absent-context.json'
+        if mutation == 'two-contexts': case['args'] = ['--context', context_name]
+        if mutation in ('changed-source-hash', 'missing-owner', 'wrong-schema', 'duplicate-owner'):
+            context_path = target / context_name
+            context = json.loads(context_path.read_text())
+            if mutation == 'changed-source-hash': context['sources'][0]['sha256'] = '0' * 64
+            elif mutation == 'missing-owner': context['sources'] = context['sources'][:-1]
+            elif mutation == 'wrong-schema': context['schema'] = 'unsupported/1'
+            else: context['sources'].append(copy.deepcopy(context['sources'][0]))
+            context_path.write_text(json.dumps(context))
+            value['files'][context_name]['sha256'] = contract.digest(context_path)
+        if mutation == 'no-module-plan': del case['compiler']['module']
+        if mutation == 'unknown-failure-stage':
+            case['compiler'].update(failure_stage='Unprovided', exit=1)
+        if mutation == 'successful-failure-stage':
+            case['compiler'].update(failure_stage=case['compiler']['modules'][0]['name'], exit=0)
+        manifest = target / 'contract.json'
+        manifest.write_text(json.dumps(value))
+        contract.SUITE_HASHES[value['suite']] = contract.digest(manifest)
+        try:
+            contract.load_contract(manifest)
+        except ValueError:
+            check(mutation != 'positive', 'native context ' + mutation)
+        else:
+            check(mutation == 'positive', 'native context ' + mutation)
+        finally:
+            del contract.SUITE_HASHES[value['suite']]
+            shutil.rmtree(target)
+
+    shutil.copytree(names_root, target)
+    value = copy.deepcopy(names_suite)
+    value['suite'] = 'local-test.declared-native-failure/1'
+    value['cases'] = [value['cases'][0]]
+    case = value['cases'][0]
+    case['compiler'].update(failure_stage=case['compiler']['modules'][0]['name'], exit=1, diagnostic='addressed')
+    case['expected'] = dict(exit=2, outcome_for_this_case='unsupported', stdout=dict(lines=[]), stderr=dict(lines=['outside fragment']))
+    manifest = target / 'contract.json'
+    manifest.write_text(json.dumps(value))
+    contract.SUITE_HASHES[value['suite']] = contract.digest(manifest)
+    original_run, original_argv = contract.run, sys.argv
+    report = target / 'observed.json'
+    try:
+        for actual_exit in (1, 0, 2):
+            def declared_failure(argv, root, timeout):
+                if '-emit-module' in argv:
+                    return dict(argv=argv, exit=actual_exit, stdout='', stderr='Kit.swift:1:1: error: failed prerequisite\n' if actual_exit else '', seconds=0)
+                return dict(argv=argv, exit=2, stdout='', stderr='outside fragment\n', seconds=0)
+            contract.run = declared_failure
+            sys.argv = ['court-contract.py', '--manifest', str(manifest), '--command-json', json.dumps([sys.executable]),
+                        '--implementation-id', 'declared physical failure control', '--compiler', 'injected-swiftc', '--report', str(report)]
+            with contextlib.redirect_stdout(io.StringIO()):
+                status = contract.main()
+            check((status == 0) == (actual_exit == 1), 'declared native failure requires its exact exit ' + str(actual_exit))
+            observed = json.loads(report.read_text())['results'][0]
+            check('compiler failure stage' in observed['mismatches'] if actual_exit == 0 else observed['compiler_observation_stage'].startswith('module:'),
+                  'declared native failure records its actual stage ' + str(actual_exit))
+    finally:
+        contract.run, sys.argv = original_run, original_argv
+        del contract.SUITE_HASHES[value['suite']]
+
+warning = dict(exit=0, diagnostic='warnings')
+check(not contract.compiler_failures(dict(exit=0, stdout='', stderr='World.swift:1:1: warning: notice\n'), warning), 'native success permits a warning')
+check(bool(contract.compiler_failures(dict(exit=0, stdout='', stderr='World.swift:1:1: error: hidden failure\n'), warning)), 'native warning allowance cannot hide an error')
+print(f'court-contract reader: {checks} checks including context-free native ownership and declared failures')

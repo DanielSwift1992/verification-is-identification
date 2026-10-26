@@ -1,0 +1,213 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "Sources/Examples/RydbergLadder.swift",
+      "source": "Sources/Examples/RydbergLadder.swift",
+      "sha256": "2ca5fa874b4706c0255d0ad38dc58fff5cd19b414a2573403e9ecdcc6ca84f04",
+      "namespace": "Examples",
+      "imports": [
+        "VerificationIsIdentification"
+      ],
+      "at": {
+        "input": "RydbergLadder#sources/0/input",
+        "source": "RydbergLadder#sources/0/source",
+        "sha256": "RydbergLadder#sources/0/sha256",
+        "namespace": "RydbergLadder#sources/0/namespace",
+        "imports": [
+          "RydbergLadder#sources/0/imports/0"
+        ],
+        "module": "RydbergLadder#sources/0/module",
+        "role": "RydbergLadder#sources/0/role"
+      },
+      "module": "Examples",
+      "role": "own"
+    },
+    {
+      "input": "Sources/Notation/Primitive.swift",
+      "source": "Sources/Notation/Primitive.swift",
+      "sha256": "005ae4575bf7f53a86d32da6fadca2455cc4cf14cd8a1764b8161a010532c34a",
+      "namespace": "Notation",
+      "imports": [],
+      "at": {
+        "input": "RydbergLadder#sources/1/input",
+        "source": "RydbergLadder#sources/1/source",
+        "sha256": "RydbergLadder#sources/1/sha256",
+        "namespace": "RydbergLadder#sources/1/namespace",
+        "imports": [],
+        "module": "RydbergLadder#sources/1/module",
+        "role": "RydbergLadder#sources/1/role"
+      },
+      "module": "Notation",
+      "role": "borrowed"
+    },
+    {
+      "input": "Sources/Notation/IntegerValued.swift",
+      "source": "Sources/Notation/IntegerValued.swift",
+      "sha256": "13d948fdc5cb6bdf168b5d07ad59afb6a721dfea02e9d78045076c4eda989f92",
+      "namespace": "Notation",
+      "imports": [],
+      "at": {
+        "input": "RydbergLadder#sources/2/input",
+        "source": "RydbergLadder#sources/2/source",
+        "sha256": "RydbergLadder#sources/2/sha256",
+        "namespace": "RydbergLadder#sources/2/namespace",
+        "imports": [],
+        "module": "RydbergLadder#sources/2/module",
+        "role": "RydbergLadder#sources/2/role"
+      },
+      "module": "Notation",
+      "role": "borrowed"
+    },
+    {
+      "input": "Sources/Notation/Numeral.swift",
+      "source": "Sources/Notation/Numeral.swift",
+      "sha256": "dd2a1b0d82044567fd34872905924b3694e9316b3ad7b6b4f6f4d5613e7596dc",
+      "namespace": "Notation",
+      "imports": [],
+      "at": {
+        "input": "RydbergLadder#sources/3/input",
+        "source": "RydbergLadder#sources/3/source",
+        "sha256": "RydbergLadder#sources/3/sha256",
+        "namespace": "RydbergLadder#sources/3/namespace",
+        "imports": [],
+        "module": "RydbergLadder#sources/3/module",
+        "role": "RydbergLadder#sources/3/role"
+      },
+      "module": "Notation",
+      "role": "borrowed"
+    },
+    {
+      "input": "Sources/VerificationIsIdentification/Exports.swift",
+      "source": "Sources/VerificationIsIdentification/Exports.swift",
+      "sha256": "1d1d0bb422a9445cb44fbfdda36bc257cb83446b9277436bb40208fce7454db1",
+      "namespace": "VerificationIsIdentification",
+      "imports": [
+        "Notation"
+      ],
+      "at": {
+        "input": "RydbergLadder#sources/4/input",
+        "source": "RydbergLadder#sources/4/source",
+        "sha256": "RydbergLadder#sources/4/sha256",
+        "namespace": "RydbergLadder#sources/4/namespace",
+        "imports": [
+          "RydbergLadder#sources/4/imports/0"
+        ],
+        "module": "RydbergLadder#sources/4/module",
+        "role": "RydbergLadder#sources/4/role"
+      },
+      "module": "VerificationIsIdentification",
+      "role": "borrowed"
+    },
+    {
+      "input": "Sources/Examples/UnaryArithmeticEncoding.swift",
+      "source": "Sources/Examples/UnaryArithmeticEncoding.swift",
+      "sha256": "610c6c7c7d68a8bae42ca42c5154d01529c0d59ac0abeedc138b60c92b143329",
+      "namespace": "Examples",
+      "imports": [
+        "VerificationIsIdentification"
+      ],
+      "at": {
+        "input": "RydbergLadder#sources/5/input",
+        "source": "RydbergLadder#sources/5/source",
+        "sha256": "RydbergLadder#sources/5/sha256",
+        "namespace": "RydbergLadder#sources/5/namespace",
+        "imports": [
+          "RydbergLadder#sources/5/imports/0"
+        ],
+        "module": "RydbergLadder#sources/5/module",
+        "role": "RydbergLadder#sources/5/role"
+      },
+      "module": "Examples",
+      "role": "borrowed"
+    },
+    {
+      "input": "Sources/VerificationIsIdentification/Core.swift",
+      "source": "Sources/VerificationIsIdentification/Core.swift",
+      "sha256": "40b48b1009d6127b55a5a4b3918abea2be884a512c241f9e822cda23d35bb142",
+      "namespace": "VerificationIsIdentification",
+      "imports": [
+        "Notation"
+      ],
+      "at": {
+        "input": "RydbergLadder#sources/6/input",
+        "source": "RydbergLadder#sources/6/source",
+        "sha256": "RydbergLadder#sources/6/sha256",
+        "namespace": "RydbergLadder#sources/6/namespace",
+        "imports": [
+          "RydbergLadder#sources/6/imports/0"
+        ],
+        "module": "RydbergLadder#sources/6/module",
+        "role": "RydbergLadder#sources/6/role"
+      },
+      "module": "VerificationIsIdentification",
+      "role": "borrowed"
+    },
+    {
+      "input": "Sources/VerificationIsIdentification/Verdict.swift",
+      "source": "Sources/VerificationIsIdentification/Verdict.swift",
+      "sha256": "5ae2ea85ad65efe9415e842e04499cf704c68c53405a189c7a3613b2941b5bdf",
+      "namespace": "VerificationIsIdentification",
+      "imports": [
+        "Notation",
+        "Swift"
+      ],
+      "at": {
+        "input": "RydbergLadder#sources/7/input",
+        "source": "RydbergLadder#sources/7/source",
+        "sha256": "RydbergLadder#sources/7/sha256",
+        "namespace": "RydbergLadder#sources/7/namespace",
+        "imports": [
+          "RydbergLadder#sources/7/imports/0",
+          "RydbergLadder#sources/7/imports/1"
+        ],
+        "module": "RydbergLadder#sources/7/module",
+        "role": "RydbergLadder#sources/7/role"
+      },
+      "module": "VerificationIsIdentification",
+      "role": "borrowed"
+    },
+    {
+      "input": "Sources/VerificationIsIdentification/Seeing.swift",
+      "source": "Sources/VerificationIsIdentification/Seeing.swift",
+      "sha256": "29c4feefc5e2582ff8d38512294d0f370ea8a9a42698d1043ebfec2b2886fb3d",
+      "namespace": "VerificationIsIdentification",
+      "imports": [
+        "Notation",
+        "Swift"
+      ],
+      "at": {
+        "input": "RydbergLadder#sources/8/input",
+        "source": "RydbergLadder#sources/8/source",
+        "sha256": "RydbergLadder#sources/8/sha256",
+        "namespace": "RydbergLadder#sources/8/namespace",
+        "imports": [
+          "RydbergLadder#sources/8/imports/0",
+          "RydbergLadder#sources/8/imports/1"
+        ],
+        "module": "RydbergLadder#sources/8/module",
+        "role": "RydbergLadder#sources/8/role"
+      },
+      "module": "VerificationIsIdentification",
+      "role": "borrowed"
+    }
+  ],
+  "intrinsics": [
+    {
+      "namespace": "Swift",
+      "version": "vi.court.intrinsic-swift/2",
+      "exports": [
+        "Never",
+        "String"
+      ],
+      "at": {
+        "namespace": "RydbergLadder#Swift/namespace",
+        "version": "RydbergLadder#Swift/version",
+        "exports": [
+          "RydbergLadder#Swift/Never",
+          "RydbergLadder#Swift/String"
+        ]
+      }
+    }
+  ]
+}

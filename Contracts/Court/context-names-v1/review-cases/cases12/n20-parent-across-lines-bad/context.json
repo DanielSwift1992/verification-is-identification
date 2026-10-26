@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases12/n20-parent-across-lines-bad/World.swift",
+      "source": "World.swift",
+      "sha256": "40a6b64bf77a66005347b259ccb91b40826771764fd118d22080150d8fbdb65c",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "review#cases12/n20-parent-across-lines-bad/World.swift/input",
+        "source": "review#cases12/n20-parent-across-lines-bad/World.swift/source",
+        "sha256": "review#cases12/n20-parent-across-lines-bad/World.swift/sha256",
+        "namespace": "review#cases12/n20-parent-across-lines-bad/World.swift/namespace",
+        "module": "review#cases12/n20-parent-across-lines-bad/World.swift/module",
+        "role": "review#cases12/n20-parent-across-lines-bad/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

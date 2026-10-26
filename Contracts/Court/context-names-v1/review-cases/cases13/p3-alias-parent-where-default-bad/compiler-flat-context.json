@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases13/p3-alias-parent-where-default-bad/World.swift",
+      "source": "World.swift",
+      "sha256": "16d3df6e397ce9ba8c6d7343ada1f87bd4fd2f97712425c5d466f40528a8776d",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "flat-native#cases13/p3-alias-parent-where-default-bad/World.swift/input",
+        "source": "flat-native#cases13/p3-alias-parent-where-default-bad/World.swift/source",
+        "sha256": "flat-native#cases13/p3-alias-parent-where-default-bad/World.swift/sha256",
+        "namespace": "flat-native#cases13/p3-alias-parent-where-default-bad/World.swift/namespace",
+        "module": "flat-native#cases13/p3-alias-parent-where-default-bad/World.swift/module",
+        "role": "flat-native#cases13/p3-alias-parent-where-default-bad/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

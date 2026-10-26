@@ -1,0 +1,121 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "Sources/Examples/Grants.swift",
+      "source": "Sources/Examples/Grants.swift",
+      "sha256": "88c7402d918fb12087622910b4690649bb790c38e7152a12de44988c432bba40",
+      "namespace": "Examples",
+      "imports": [
+        "VerificationIsIdentification"
+      ],
+      "at": {
+        "input": "Grants#sources/0/input",
+        "source": "Grants#sources/0/source",
+        "sha256": "Grants#sources/0/sha256",
+        "namespace": "Grants#sources/0/namespace",
+        "imports": [
+          "Grants#sources/0/imports/0"
+        ],
+        "module": "Grants#sources/0/module",
+        "role": "Grants#sources/0/role"
+      },
+      "module": "Examples",
+      "role": "own"
+    },
+    {
+      "input": "Sources/Notation/Primitive.swift",
+      "source": "Sources/Notation/Primitive.swift",
+      "sha256": "005ae4575bf7f53a86d32da6fadca2455cc4cf14cd8a1764b8161a010532c34a",
+      "namespace": "Notation",
+      "imports": [],
+      "at": {
+        "input": "Grants#sources/1/input",
+        "source": "Grants#sources/1/source",
+        "sha256": "Grants#sources/1/sha256",
+        "namespace": "Grants#sources/1/namespace",
+        "imports": [],
+        "module": "Grants#sources/1/module",
+        "role": "Grants#sources/1/role"
+      },
+      "module": "Notation",
+      "role": "borrowed"
+    },
+    {
+      "input": "Sources/Notation/IntegerValued.swift",
+      "source": "Sources/Notation/IntegerValued.swift",
+      "sha256": "13d948fdc5cb6bdf168b5d07ad59afb6a721dfea02e9d78045076c4eda989f92",
+      "namespace": "Notation",
+      "imports": [],
+      "at": {
+        "input": "Grants#sources/2/input",
+        "source": "Grants#sources/2/source",
+        "sha256": "Grants#sources/2/sha256",
+        "namespace": "Grants#sources/2/namespace",
+        "imports": [],
+        "module": "Grants#sources/2/module",
+        "role": "Grants#sources/2/role"
+      },
+      "module": "Notation",
+      "role": "borrowed"
+    },
+    {
+      "input": "Sources/Notation/Numeral.swift",
+      "source": "Sources/Notation/Numeral.swift",
+      "sha256": "dd2a1b0d82044567fd34872905924b3694e9316b3ad7b6b4f6f4d5613e7596dc",
+      "namespace": "Notation",
+      "imports": [],
+      "at": {
+        "input": "Grants#sources/3/input",
+        "source": "Grants#sources/3/source",
+        "sha256": "Grants#sources/3/sha256",
+        "namespace": "Grants#sources/3/namespace",
+        "imports": [],
+        "module": "Grants#sources/3/module",
+        "role": "Grants#sources/3/role"
+      },
+      "module": "Notation",
+      "role": "borrowed"
+    },
+    {
+      "input": "Sources/VerificationIsIdentification/Exports.swift",
+      "source": "Sources/VerificationIsIdentification/Exports.swift",
+      "sha256": "1d1d0bb422a9445cb44fbfdda36bc257cb83446b9277436bb40208fce7454db1",
+      "namespace": "VerificationIsIdentification",
+      "imports": [
+        "Notation"
+      ],
+      "at": {
+        "input": "Grants#sources/4/input",
+        "source": "Grants#sources/4/source",
+        "sha256": "Grants#sources/4/sha256",
+        "namespace": "Grants#sources/4/namespace",
+        "imports": [
+          "Grants#sources/4/imports/0"
+        ],
+        "module": "Grants#sources/4/module",
+        "role": "Grants#sources/4/role"
+      },
+      "module": "VerificationIsIdentification",
+      "role": "borrowed"
+    }
+  ],
+  "intrinsics": [
+    {
+      "namespace": "Swift",
+      "version": "vi.court.intrinsic-swift/2",
+      "exports": [
+        "Never",
+        "String"
+      ],
+      "at": {
+        "namespace": "Grants#Swift/namespace",
+        "version": "Grants#Swift/version",
+        "exports": [
+          "Grants#Swift/Never",
+          "Grants#Swift/String"
+        ]
+      }
+    }
+  ]
+}

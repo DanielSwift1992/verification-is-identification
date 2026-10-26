@@ -110,6 +110,7 @@ final class WhereFailureTests: XCTestCase {
     func testUnreadApplicationDiagnosticsRemainSeparateAndAddressed() throws {
         let path = try write(equality("A") + """
 
+        enum Optional<T> {}
         typealias First = Optional<Match<A, A>>
         typealias Second = Optional<Match<A, B>>
         """)
@@ -118,8 +119,9 @@ final class WhereFailureTests: XCTestCase {
             XCTFail("nested applications must not be hidden by a good certificate")
         } catch WhereJudge.Failure.unsupported(let messages) {
             XCTAssertEqual(messages.count, 2)
-            XCTAssertTrue(messages[0].contains("line 7"))
-            XCTAssertTrue(messages[1].contains("line 8"))
+            guard messages.count == 2 else { return }
+            XCTAssertTrue(messages[0].contains("line 8"))
+            XCTAssertTrue(messages[1].contains("line 9"))
         }
     }
 }

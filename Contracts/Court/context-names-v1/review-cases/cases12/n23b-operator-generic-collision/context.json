@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases12/n23b-operator-generic-collision/World.swift",
+      "source": "World.swift",
+      "sha256": "ac9165b4e6681ee8c70538f5e13a9eb999ac2fdf73bcb3634de6253fedc1a22b",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "review#cases12/n23b-operator-generic-collision/World.swift/input",
+        "source": "review#cases12/n23b-operator-generic-collision/World.swift/source",
+        "sha256": "review#cases12/n23b-operator-generic-collision/World.swift/sha256",
+        "namespace": "review#cases12/n23b-operator-generic-collision/World.swift/namespace",
+        "module": "review#cases12/n23b-operator-generic-collision/World.swift/module",
+        "role": "review#cases12/n23b-operator-generic-collision/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

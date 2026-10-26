@@ -16,3 +16,7 @@ The complete pinned Primitive/Vector and Primitive/Core/Verdict/Seeing inputs ar
 A missing free definition cannot be admitted by comparing its spelling with itself. `C-missing-leaf` and `C-missing-borrowed-leaf` refuse missing declarations, while `C-opaque-leaf` retains unknown contents carried by an actual nominal declaration. The context checks the reached free references after respecting lexical parameters and associated types; an earlier false or unsupported obligation retains its diagnostic.
 
 The context binds the original UTF-8 byte sequence, including a supplied BOM, before the reader constructs any notation view. The owner uses a lossless UTF-8 file load, checked by a byte round trip. The BOM-positive world and definition twins hold; a digest computed after removing the BOM refuses. Foundation text-file loading would silently consume that prefix and accept the wrong digest, so it is not the byte-binding boundary.
+
+## Current closed fragment · revision 4 (2026-10-25)
+
+resolution-v4.json retains all 73 source questions and changes only five addressed diagnostic expectations from resolution-v3.json: absent nested child, missing context for an import, missing free Unit, and two missing-leaf inputs. Both preceding manifests remain frozen. The shared context-names-v1 README declares the current admission language and its whole-file-compilation boundary.

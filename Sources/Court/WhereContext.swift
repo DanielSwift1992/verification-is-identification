@@ -104,7 +104,7 @@ enum WhereContext {
                 }
             }
         }
-        if context.version == 2 { try WhereContextNames.members(units, in: world) }
+        try WhereContextNames.members(units, in: world)
         try WhereContextNames.applications(resolved.applications, in: world)
         // Availability is checked from source declarations and explicit import
         // edges. A context does not turn an opaque spelling into a supplied type.
@@ -235,6 +235,7 @@ enum WhereContext {
         world.gates = gates
         try selectConformers(&world, aliases: ownAliases)
         try groundedMemberships(world)
+        try WhereContextNames.closedNames(units, in: world)
         let extras = units.filter { !WhereJudge.sameName($0.context.input, first) }.map { (path: $0.context.source, text: $0.text, world: $0.world) }
         return try WhereJudge.finish(path: own.context.source, world: world, ownAliases: ownAliases,
             excludesConditional: units.contains { WhereJudge.sourceLines($0.text).range(of: #"(?m)^\s*#if\b"#, options: .regularExpression) != nil }, extras: extras)

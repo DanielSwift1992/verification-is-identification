@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases13/p4-alias-parent-bad-noctx-holds/World.swift",
+      "source": "World.swift",
+      "sha256": "14239171369d0d33a24489f07f3fa76431bd2c448be9ad1d7492016c5cb831c8",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "flat-native#cases13/p4-alias-parent-bad-noctx-holds/World.swift/input",
+        "source": "flat-native#cases13/p4-alias-parent-bad-noctx-holds/World.swift/source",
+        "sha256": "flat-native#cases13/p4-alias-parent-bad-noctx-holds/World.swift/sha256",
+        "namespace": "flat-native#cases13/p4-alias-parent-bad-noctx-holds/World.swift/namespace",
+        "module": "flat-native#cases13/p4-alias-parent-bad-noctx-holds/World.swift/module",
+        "role": "flat-native#cases13/p4-alias-parent-bad-noctx-holds/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

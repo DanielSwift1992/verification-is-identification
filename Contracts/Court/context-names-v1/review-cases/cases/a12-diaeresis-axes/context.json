@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases/a12-diaeresis-axes/World.swift",
+      "source": "World.swift",
+      "sha256": "4a4c739f1d214a7f97e7f0b280e96220b4361e7140b60be48b00153ed534966b",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "review#cases/a12-diaeresis-axes/World.swift/input",
+        "source": "review#cases/a12-diaeresis-axes/World.swift/source",
+        "sha256": "review#cases/a12-diaeresis-axes/World.swift/sha256",
+        "namespace": "review#cases/a12-diaeresis-axes/World.swift/namespace",
+        "module": "review#cases/a12-diaeresis-axes/World.swift/module",
+        "role": "review#cases/a12-diaeresis-axes/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

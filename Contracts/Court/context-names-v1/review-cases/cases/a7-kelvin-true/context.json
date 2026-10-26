@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases/a7-kelvin-true/World.swift",
+      "source": "World.swift",
+      "sha256": "6cb208ef166625e5a1aeb1180ffe445911e09f272fcf6372dbdba8c89db7e8a5",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "review#cases/a7-kelvin-true/World.swift/input",
+        "source": "review#cases/a7-kelvin-true/World.swift/source",
+        "sha256": "review#cases/a7-kelvin-true/World.swift/sha256",
+        "namespace": "review#cases/a7-kelvin-true/World.swift/namespace",
+        "module": "review#cases/a7-kelvin-true/World.swift/module",
+        "role": "review#cases/a7-kelvin-true/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

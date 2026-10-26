@@ -1,0 +1,9 @@
+{
+  "world": {
+    "files": [
+      "s6.swift"
+    ],
+    "imports": []
+  },
+  "modules": []
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "review-cases/probes/r0105r3/s4/s4.swift",
+      "source": "s4.swift",
+      "sha256": "81ed17e4236a9d651ec3fa90d821e2c1cecd895d4007a34aedfb99ee1655bfae",
+      "namespace": "World",
+      "imports": [],
+      "at": {
+        "input": "review#probes/r0105r3/s4/s4.swift/input",
+        "source": "review#probes/r0105r3/s4/s4.swift/source",
+        "sha256": "review#probes/r0105r3/s4/s4.swift/sha256",
+        "namespace": "review#probes/r0105r3/s4/s4.swift/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

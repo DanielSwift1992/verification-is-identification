@@ -1,0 +1,46 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases14/q3-imported-axis-conformer-body/World.swift",
+      "source": "World.swift",
+      "sha256": "c27cc9113842d5032bd1c2f02a560aec6c19bb1747f620c88a4cd44f3b6a8560",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Kit"
+      ],
+      "at": {
+        "input": "review#cases14/q3-imported-axis-conformer-body/World.swift/input",
+        "source": "review#cases14/q3-imported-axis-conformer-body/World.swift/source",
+        "sha256": "review#cases14/q3-imported-axis-conformer-body/World.swift/sha256",
+        "namespace": "review#cases14/q3-imported-axis-conformer-body/World.swift/namespace",
+        "module": "review#cases14/q3-imported-axis-conformer-body/World.swift/module",
+        "role": "review#cases14/q3-imported-axis-conformer-body/World.swift/role",
+        "imports": [
+          "review#cases14/q3-imported-axis-conformer-body/World.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "review-cases/cases14/q3-imported-axis-conformer-body/Kit.swift",
+      "source": "Kit.swift",
+      "sha256": "b89c7e2863d2782727b73de983d0d9698a4dd2f25e2ba32d10e0affb74686472",
+      "namespace": "Kit",
+      "module": "Kit",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "review#cases14/q3-imported-axis-conformer-body/Kit.swift/input",
+        "source": "review#cases14/q3-imported-axis-conformer-body/Kit.swift/source",
+        "sha256": "review#cases14/q3-imported-axis-conformer-body/Kit.swift/sha256",
+        "namespace": "review#cases14/q3-imported-axis-conformer-body/Kit.swift/namespace",
+        "module": "review#cases14/q3-imported-axis-conformer-body/Kit.swift/module",
+        "role": "review#cases14/q3-imported-axis-conformer-body/Kit.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

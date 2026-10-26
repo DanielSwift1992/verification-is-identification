@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases/a1b-inside-nested-ambiguous/World.swift",
+      "source": "World.swift",
+      "sha256": "f31ada49a0ce2d0cd5b4214cc53d00be7d7c7857cb435c6a68b04b27fa1af2e5",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "review#cases/a1b-inside-nested-ambiguous/World.swift/input",
+        "source": "review#cases/a1b-inside-nested-ambiguous/World.swift/source",
+        "sha256": "review#cases/a1b-inside-nested-ambiguous/World.swift/sha256",
+        "namespace": "review#cases/a1b-inside-nested-ambiguous/World.swift/namespace",
+        "module": "review#cases/a1b-inside-nested-ambiguous/World.swift/module",
+        "role": "review#cases/a1b-inside-nested-ambiguous/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

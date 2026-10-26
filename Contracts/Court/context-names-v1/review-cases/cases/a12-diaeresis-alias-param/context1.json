@@ -1,0 +1,38 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "review-cases/cases/a12-diaeresis-alias-param/World.swift",
+      "source": "World.swift",
+      "sha256": "856216bf662e800a4472944fdbdc95981664ea0cb5aa6cb383b5f83675d86893",
+      "namespace": "World",
+      "imports": [
+        "Kit"
+      ],
+      "at": {
+        "input": "review#cases/a12-diaeresis-alias-param/World.swift/input",
+        "source": "review#cases/a12-diaeresis-alias-param/World.swift/source",
+        "sha256": "review#cases/a12-diaeresis-alias-param/World.swift/sha256",
+        "namespace": "review#cases/a12-diaeresis-alias-param/World.swift/namespace",
+        "imports": [
+          "review#cases/a12-diaeresis-alias-param/World.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "review-cases/cases/a12-diaeresis-alias-param/Kit.swift",
+      "source": "Kit.swift",
+      "sha256": "a12654dae4cffc25c889e70c368b72530bcae785cf4b1896f6447e32a8bba2f0",
+      "namespace": "Kit",
+      "imports": [],
+      "at": {
+        "input": "review#cases/a12-diaeresis-alias-param/Kit.swift/input",
+        "source": "review#cases/a12-diaeresis-alias-param/Kit.swift/source",
+        "sha256": "review#cases/a12-diaeresis-alias-param/Kit.swift/sha256",
+        "namespace": "review#cases/a12-diaeresis-alias-param/Kit.swift/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

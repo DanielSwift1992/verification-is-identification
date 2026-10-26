@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases15/w7-nominal-where-member-file-collision/World.swift",
+      "source": "World.swift",
+      "sha256": "6d46d233d7a422a709d75da50f3b788e4343f4d2f6024babb406dff4b6402484",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "review#cases15/w7-nominal-where-member-file-collision/World.swift/input",
+        "source": "review#cases15/w7-nominal-where-member-file-collision/World.swift/source",
+        "sha256": "review#cases15/w7-nominal-where-member-file-collision/World.swift/sha256",
+        "namespace": "review#cases15/w7-nominal-where-member-file-collision/World.swift/namespace",
+        "module": "review#cases15/w7-nominal-where-member-file-collision/World.swift/module",
+        "role": "review#cases15/w7-nominal-where-member-file-collision/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

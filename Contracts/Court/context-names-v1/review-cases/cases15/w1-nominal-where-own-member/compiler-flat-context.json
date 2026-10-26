@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases15/w1-nominal-where-own-member/World.swift",
+      "source": "World.swift",
+      "sha256": "4f26bbe81739cafd4a815613d6528eaea4fff5134eecd038228fd79e6937c1e5",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "flat-native#cases15/w1-nominal-where-own-member/World.swift/input",
+        "source": "flat-native#cases15/w1-nominal-where-own-member/World.swift/source",
+        "sha256": "flat-native#cases15/w1-nominal-where-own-member/World.swift/sha256",
+        "namespace": "flat-native#cases15/w1-nominal-where-own-member/World.swift/namespace",
+        "module": "flat-native#cases15/w1-nominal-where-own-member/World.swift/module",
+        "role": "flat-native#cases15/w1-nominal-where-own-member/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

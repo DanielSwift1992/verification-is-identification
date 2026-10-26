@@ -1,0 +1,52 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "review-cases/cases3/c2-plain-parent-collision-good/World.swift",
+      "source": "World.swift",
+      "sha256": "0046d3e97bd4b2a3b4dbfed7580c88feaad6ef395166874facb5ea5cb1afda96",
+      "namespace": "World",
+      "imports": [
+        "Kit"
+      ],
+      "at": {
+        "input": "review#cases3/c2-plain-parent-collision-good/World.swift/input",
+        "source": "review#cases3/c2-plain-parent-collision-good/World.swift/source",
+        "sha256": "review#cases3/c2-plain-parent-collision-good/World.swift/sha256",
+        "namespace": "review#cases3/c2-plain-parent-collision-good/World.swift/namespace",
+        "imports": [
+          "review#cases3/c2-plain-parent-collision-good/World.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "review-cases/cases3/c2-plain-parent-collision-good/Kit.swift",
+      "source": "Kit.swift",
+      "sha256": "3e3accba2baf53c1b13af36becb3a97b795c67229fc5d3a0a740d86915111a66",
+      "namespace": "Kit",
+      "imports": [],
+      "at": {
+        "input": "review#cases3/c2-plain-parent-collision-good/Kit.swift/input",
+        "source": "review#cases3/c2-plain-parent-collision-good/Kit.swift/source",
+        "sha256": "review#cases3/c2-plain-parent-collision-good/Kit.swift/sha256",
+        "namespace": "review#cases3/c2-plain-parent-collision-good/Kit.swift/namespace",
+        "imports": []
+      }
+    },
+    {
+      "input": "review-cases/cases3/c2-plain-parent-collision-good/Spare.swift",
+      "source": "Spare.swift",
+      "sha256": "1b2b4b8151c5748d67ccb5073cb87b2f5b9bb81aff339b972711112ab67656c0",
+      "namespace": "Spare",
+      "imports": [],
+      "at": {
+        "input": "review#cases3/c2-plain-parent-collision-good/Spare.swift/input",
+        "source": "review#cases3/c2-plain-parent-collision-good/Spare.swift/source",
+        "sha256": "review#cases3/c2-plain-parent-collision-good/Spare.swift/sha256",
+        "namespace": "review#cases3/c2-plain-parent-collision-good/Spare.swift/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "review-cases/cases/a1-inside-header-ambiguous/World.swift",
+      "source": "World.swift",
+      "sha256": "403bb60db8bea14690bffdbd4e30c73b6338993e7980a32fa01c358c6b8c6029",
+      "namespace": "World",
+      "imports": [],
+      "at": {
+        "input": "review#cases/a1-inside-header-ambiguous/World.swift/input",
+        "source": "review#cases/a1-inside-header-ambiguous/World.swift/source",
+        "sha256": "review#cases/a1-inside-header-ambiguous/World.swift/sha256",
+        "namespace": "review#cases/a1-inside-header-ambiguous/World.swift/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

@@ -179,7 +179,8 @@ enum DefinitionReduction {
                 throw Failure("cannot read declaration '\(name)': body outside flat-definition fragment")
             }
             guard let declaration = world.conformers[name] else {
-                if world.contextual, let address = world.addresses[name] {
+                if world.contextual || world.contextNameBindings != nil,
+                   let address = world.addresses[name] {
                     throw Failure("\(address): cannot read projection '\(spelled)': "
                         + "no member definition on supplied owner '\(name)'")
                 }

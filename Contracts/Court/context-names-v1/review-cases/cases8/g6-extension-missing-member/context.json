@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases8/g6-extension-missing-member/World.swift",
+      "source": "World.swift",
+      "sha256": "eec0293082c41190735258f0f77a746cb2ec800c451981c608f86c146bd60e74",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "review#cases8/g6-extension-missing-member/World.swift/input",
+        "source": "review#cases8/g6-extension-missing-member/World.swift/source",
+        "sha256": "review#cases8/g6-extension-missing-member/World.swift/sha256",
+        "namespace": "review#cases8/g6-extension-missing-member/World.swift/namespace",
+        "module": "review#cases8/g6-extension-missing-member/World.swift/module",
+        "role": "review#cases8/g6-extension-missing-member/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases/a11-module-vs-type/World.swift",
+      "source": "World.swift",
+      "sha256": "d982cda3a7317b3bdc47ba596565caa3acfac5c14ec0fff0a607598bad4bf32c",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [
+        "Kit"
+      ],
+      "at": {
+        "input": "review#cases/a11-module-vs-type/World.swift/input",
+        "source": "review#cases/a11-module-vs-type/World.swift/source",
+        "sha256": "review#cases/a11-module-vs-type/World.swift/sha256",
+        "namespace": "review#cases/a11-module-vs-type/World.swift/namespace",
+        "module": "review#cases/a11-module-vs-type/World.swift/module",
+        "role": "review#cases/a11-module-vs-type/World.swift/role",
+        "imports": [
+          "review#cases/a11-module-vs-type/World.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "review-cases/cases/a11-module-vs-type/Kit.swift",
+      "source": "Kit.swift",
+      "sha256": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13",
+      "namespace": "Kit",
+      "module": "Kit",
+      "role": "borrowed",
+      "imports": [],
+      "at": {
+        "input": "review#cases/a11-module-vs-type/Kit.swift/input",
+        "source": "review#cases/a11-module-vs-type/Kit.swift/source",
+        "sha256": "review#cases/a11-module-vs-type/Kit.swift/sha256",
+        "namespace": "review#cases/a11-module-vs-type/Kit.swift/namespace",
+        "module": "review#cases/a11-module-vs-type/Kit.swift/module",
+        "role": "review#cases/a11-module-vs-type/Kit.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

@@ -25,11 +25,12 @@ final class ContextNameBindingTests: XCTestCase {
             XCTAssertTrue(message.contains("World.Axis at World.swift:1"))
             XCTAssertTrue(message.contains("World.P.Axis at World.swift:3"))
         }
-        let parents = try index("public protocol Base { associatedtype Target }\npublic protocol Target {}\npublic protocol Derived: Base, Target {}\n")
-        XCTAssertTrue(parents.certificate.references.contains {
-            $0.line == 3 && $0.spelling == ScalarName("Target")
-                && $0.declaration == .init(parts: ["World", "Target"])
-        })
+        XCTAssertThrowsError(try index("public protocol Base { associatedtype Target }\npublic protocol Target {}\npublic protocol Derived: Base, Target {}\n")) { error in
+            let message = String(describing: error)
+            XCTAssertTrue(message.contains("ambiguous name Target"))
+            XCTAssertTrue(message.contains("World.Base.Target at World.swift:1"))
+            XCTAssertTrue(message.contains("World.Target at World.swift:2"))
+        }
         let conditional = try index("public enum Leaf {}\npublic protocol Base {}\npublic protocol P { associatedtype Axis }\npublic protocol Q: Base where Self: P, Axis == Leaf {}\n")
         XCTAssertTrue(conditional.certificate.references.contains {
             $0.line == 4 && $0.spelling == ScalarName("Axis")

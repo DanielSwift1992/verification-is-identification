@@ -373,6 +373,9 @@ enum ContextNameBinding {
                     }
                     let found = direct(names, file: scope.file)
                     if found.count == 1, let target = found.first {
+                        if !inWhere, byPlace[target]?.kind == ScalarName("typealias") {
+                            try WhereJudge.fail("\(files[scope.file].context.source):\(tape.lines[cursor]): protocol inheritance through typealias '\(names.joined(separator: "."))' is outside this fragment")
+                        }
                         parents.insert(target)
                     }
                     expectsParent = false
@@ -443,7 +446,25 @@ enum ContextNameBinding {
                     let candidate = Place(components: parent.components + [name])
                     if byPlace[candidate] != nil { candidates.insert(candidate) }
                 }
-                let memberScopes = active.filter { position > $0.open || $0.whereStart.map { position >= $0 } == true }
+                let memberScopes = active.filter {
+                    position > $0.open || (!$0.extensionBody && byPlace[$0.place]?.kind == ScalarName("protocol"))
+                        || ($0.extensionBody && $0.whereStart.map { position >= $0 } == true)
+                }
+                // An ordinary nominal header has parameters and outer names,
+                // but a member spelling in its where clause is outside the
+                // fragment even when an outer declaration shares that name.
+                for scope in active
+                where !scope.extensionBody && byPlace[scope.place]?.kind != ScalarName("protocol")
+                    && position <= scope.open && scope.whereStart.map({ position >= $0 }) == true {
+                    let parents = visibleParents(scope).union([scope.place])
+                    if parents.contains(
+                        where: { parent in
+                        let row = byPlace[Place(components: parent.components + [name])]
+                        return row != nil && row?.kind != ScalarName("parameter")
+                    }) {
+                        try WhereJudge.fail("\(files[file].context.source):\(tape.lines[i]): member name '\(word)' in an ordinary nominal where clause is outside this fragment")
+                    }
+                }
                 for scope in active {
                     let candidate = Place(components: scope.place.components + [name])
                     if let row = byPlace[candidate], row.kind == ScalarName("parameter")
@@ -483,9 +504,11 @@ enum ContextNameBinding {
                     }.joined(separator: ", ")
                     let parameter = candidates.contains { byPlace[$0]?.kind == ScalarName("parameter") }
                     let local = candidates.contains { lexicalOnly($0) }
+                    let axes = candidates.filter { byPlace[$0]?.kind == ScalarName("associatedtype") }
                     let qualified = Set(candidates.compactMap { place -> ScalarName? in
                         guard let row = byPlace[place], !lexicalOnly(place),
                               !(place.components.count == 2 && place.parts[0].isEmpty) else { return nil }
+                        if row.kind == ScalarName("associatedtype"), axes.count > 1 { return nil }
                         return ScalarName(row.kind == ScalarName("associatedtype") ? "Self." + word : place.text)
                     }).map(\.text).sorted().joined(separator: " or ")
                     let unnamedModule = candidates.contains { $0.components.count == 2 && $0.parts[0].isEmpty }
@@ -493,7 +516,7 @@ enum ContextNameBinding {
                         + (unnamedModule ? " or provide a declared module context" : "")
                     let advice = local
                         ? (parameter ? "rename the parameter" : "rename the local declaration") + routes
-                        : (qualified.isEmpty ? "provide a declared module context" : "write " + qualified)
+                        : (axes.count > 1 ? "inherited members have distinct owners; this reference is outside the fragment" : qualified.isEmpty ? "provide a declared module context" : "write " + qualified)
                             + (!qualified.isEmpty && unnamedModule ? " or provide a declared module context" : "")
                     ambiguities.append("\(files[file].context.source):\(tape.lines[i]): ambiguous name \(word): \(advice); visible: \(places)")
                     continue
@@ -515,7 +538,11 @@ enum ContextNameBinding {
                     }.filter { byPlace[$0] != nil }
                     let members: Set<Place> = byPlace[member] != nil ? [member] : Set(inheritedMembers)
                     guard members.count <= 1 else {
-                        try WhereJudge.fail("\(files[file].context.source):\(tape.lines[i]): ambiguous member '\(spelling).\(tape.words[end + 2])'")
+                        let places = members.sorted { $0.text < $1.text }.map {
+                            let row = byPlace[$0]!
+                            return $0.text + " at " + row.source.text + ":\(row.line)"
+                        }.joined(separator: ", ")
+                        try WhereJudge.fail("\(files[file].context.source):\(tape.lines[i]): ambiguous member '\(spelling).\(tape.words[end + 2])'; visible: \(places)")
                     }
                     guard let found = members.first else { break }
                     if byPlace[found]?.kind == ScalarName("associatedtype") {
@@ -527,6 +554,16 @@ enum ContextNameBinding {
                     target = found
                     spelling += "." + tape.words[end + 2]
                     end += 2
+                }
+                if byPlace[target]?.kind != ScalarName("parameter"), target.components.count > 2 {
+                    let parent = Place(components: Array(target.components.dropLast()))
+                    for scope in active
+                    where !scope.extensionBody && byPlace[scope.place]?.kind != ScalarName("protocol")
+                        && position <= scope.open && scope.whereStart.map({ position >= $0 }) == true {
+                        if parent == scope.place || visibleParents(scope).contains(parent) {
+                            try WhereJudge.fail("\(files[file].context.source):\(tape.lines[i]): member reference '\(spelling)' in an ordinary nominal where clause is outside this fragment")
+                        }
+                    }
                 }
                 references.append(Reference(input: ScalarName(files[file].context.input), scopes: active.map(\.place),
                     source: ScalarName(files[file].context.source),

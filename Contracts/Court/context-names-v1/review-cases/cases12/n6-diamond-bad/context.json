@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases12/n6-diamond-bad/World.swift",
+      "source": "World.swift",
+      "sha256": "6fa5521a22f67b77ba5e1b850dcb9aa3d14f4a82cbbfab7bcb2586f28b052408",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "review#cases12/n6-diamond-bad/World.swift/input",
+        "source": "review#cases12/n6-diamond-bad/World.swift/source",
+        "sha256": "review#cases12/n6-diamond-bad/World.swift/sha256",
+        "namespace": "review#cases12/n6-diamond-bad/World.swift/namespace",
+        "module": "review#cases12/n6-diamond-bad/World.swift/module",
+        "role": "review#cases12/n6-diamond-bad/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

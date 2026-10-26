@@ -1,6 +1,6 @@
 # Court contract · questions suite 0.1
 
-This suite checks that a replacement reader preserves the questions and addressed outcomes in thirteen fixed cases. The fixtures, their hashes and their expected results are in [contract.json](contract.json). The supplied implementation is run against those inputs; its own declarations of success are not used as expectations. The driver binds the suite identifier to the exact manifest SHA-256. An edited or shortened manifest cannot keep the released suite identity. A new release needs an explicit registry entry.
+This suite checks that a replacement reader preserves the questions and addressed outcomes in thirteen fixed cases. The original fixtures, hashes and expectations remain in [contract.json](contract.json). The current default is [context-fragment-v4.json](context-fragment-v4.json): the same source bytes, with an addressed refusal for the nominal ladder question whose non-intrinsic import has no source context. The supplied implementation is run against those inputs; its own declarations of success are not used as expectations. The driver binds the suite identifier to the exact manifest SHA-256. An edited or shortened manifest cannot keep the released suite identity. A new release needs an explicit registry entry.
 
 ## Questions and versions
 
@@ -38,7 +38,7 @@ The report retains each command, actual exit and output, failed expectations, du
 
 `holds`, `not-established`, `unsupported` and `input-error` in the manifest describe these known fixtures. They are not classifications inferred from an arbitrary process exit. In particular, exit 1 is not a general proof of type inequality, and exit 2 does not distinguish an unsupported expression from an unavailable file. The driver checks the addressed reason as well. The where missing-file CLI reports only the unread filename; the test knows the file was deliberately absent.
 
-The same Rydberg input has four nominal refusals under `where` and ten accepted readings under `count`. Two aliases with their actual definitions pass; three name/count shortcuts fail. The suite also distinguishes false numeric answers, an unsupported product, an unread nested application and two missing-file errors.
+In the original release the same Rydberg input had four nominal refusals under `where` and ten accepted readings under `count`. The current context-free fixture refuses its missing module context; the separate Rydberg law supplies an explicit context and retains the four nominal refusals. Two aliases with their actual definitions pass; three name/count shortcuts fail. The suite also distinguishes false numeric answers, an unsupported product, an unread nested application and two missing-file errors.
 
 Passing is necessary for claiming conformance to this suite. It does not establish full Swift coverage, general equivalence of implementations, completion of the organizational migration or readiness to replace gate's judge. The existing alias, extension, conditional, lexical, scope, applications, Light and Rydberg laws remain separate obligations for a port. Structured request identities, per-obligation coverage and separate unsupported/tool-error results remain the response-contract task. The known generic-membership defect is not made normative here.
 

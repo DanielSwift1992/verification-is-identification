@@ -1,0 +1,20 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "review-cases/probes/r0105/inh-bad/inh-bad.swift",
+      "source": "inh-bad.swift",
+      "sha256": "5a094a98748ee08ea0940e37050ed6e8b7c156fbe548b8d83c448653e9a81a27",
+      "namespace": "World",
+      "imports": [],
+      "at": {
+        "input": "review#probes/r0105/inh-bad/inh-bad.swift/input",
+        "source": "review#probes/r0105/inh-bad/inh-bad.swift/source",
+        "sha256": "review#probes/r0105/inh-bad/inh-bad.swift/sha256",
+        "namespace": "review#probes/r0105/inh-bad/inh-bad.swift/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

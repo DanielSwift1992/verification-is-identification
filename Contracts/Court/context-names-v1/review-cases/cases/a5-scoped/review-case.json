@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "world": {
+    "files": [
+      "World.swift"
+    ],
+    "imports": [
+      "API"
+    ]
+  },
+  "modules": [
+    {
+      "name": "Notation",
+      "files": [
+        "Notation.swift"
+      ],
+      "imports": []
+    },
+    {
+      "name": "API",
+      "files": [
+        "API.swift"
+      ],
+      "imports": [
+        "Notation"
+      ]
+    }
+  ]
+}

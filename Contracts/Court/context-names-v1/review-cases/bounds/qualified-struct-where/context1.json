@@ -1,0 +1,20 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "review-cases/bounds/qualified-struct-where/World.swift",
+      "source": "World.swift",
+      "sha256": "f146598101c7382bd9c9f9984e3db58bea8c92a8e9a69964d14b7d912425debb",
+      "namespace": "World",
+      "imports": [],
+      "at": {
+        "input": "bounds#bounds/qualified-struct-where/input",
+        "source": "bounds#bounds/qualified-struct-where/source",
+        "sha256": "bounds#bounds/qualified-struct-where/sha256",
+        "namespace": "bounds#bounds/qualified-struct-where/namespace",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

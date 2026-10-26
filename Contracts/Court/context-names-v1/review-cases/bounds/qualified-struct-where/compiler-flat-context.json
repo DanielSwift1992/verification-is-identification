@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/bounds/qualified-struct-where/World.swift",
+      "source": "World.swift",
+      "sha256": "f146598101c7382bd9c9f9984e3db58bea8c92a8e9a69964d14b7d912425debb",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "flat-native#bounds/qualified-struct-where/World.swift/input",
+        "source": "flat-native#bounds/qualified-struct-where/World.swift/source",
+        "sha256": "flat-native#bounds/qualified-struct-where/World.swift/sha256",
+        "namespace": "flat-native#bounds/qualified-struct-where/World.swift/namespace",
+        "module": "flat-native#bounds/qualified-struct-where/World.swift/module",
+        "role": "flat-native#bounds/qualified-struct-where/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

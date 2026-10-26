@@ -1,0 +1,24 @@
+{
+  "schema": "vi.court.context/2",
+  "sources": [
+    {
+      "input": "review-cases/cases10/i1-func-generic/World.swift",
+      "source": "World.swift",
+      "sha256": "8d76f2c6e3f3c61559519992ed1881f51d5227cec4f27c6dbbc7d0e94697f7a3",
+      "namespace": "World",
+      "module": "World",
+      "role": "own",
+      "imports": [],
+      "at": {
+        "input": "review#cases10/i1-func-generic/World.swift/input",
+        "source": "review#cases10/i1-func-generic/World.swift/source",
+        "sha256": "review#cases10/i1-func-generic/World.swift/sha256",
+        "namespace": "review#cases10/i1-func-generic/World.swift/namespace",
+        "module": "review#cases10/i1-func-generic/World.swift/module",
+        "role": "review#cases10/i1-func-generic/World.swift/role",
+        "imports": []
+      }
+    }
+  ],
+  "intrinsics": []
+}

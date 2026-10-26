@@ -1,0 +1,60 @@
+{
+  "schema": "vi.court.context/1",
+  "sources": [
+    {
+      "input": "review-cases/cases9/h1-reexport-cycle/World.swift",
+      "source": "World.swift",
+      "sha256": "b62e331b7212c199d90c04bca984bdb1b305ee6254dbb5e15b02f72cf63af7cd",
+      "namespace": "World",
+      "imports": [
+        "A"
+      ],
+      "at": {
+        "input": "review#cases9/h1-reexport-cycle/World.swift/input",
+        "source": "review#cases9/h1-reexport-cycle/World.swift/source",
+        "sha256": "review#cases9/h1-reexport-cycle/World.swift/sha256",
+        "namespace": "review#cases9/h1-reexport-cycle/World.swift/namespace",
+        "imports": [
+          "review#cases9/h1-reexport-cycle/World.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "review-cases/cases9/h1-reexport-cycle/A.swift",
+      "source": "A.swift",
+      "sha256": "8d86f3ab6178a0350bd65a79c2c6979fddb6230da13590903aafad90eb8b9962",
+      "namespace": "A",
+      "imports": [
+        "B"
+      ],
+      "at": {
+        "input": "review#cases9/h1-reexport-cycle/A.swift/input",
+        "source": "review#cases9/h1-reexport-cycle/A.swift/source",
+        "sha256": "review#cases9/h1-reexport-cycle/A.swift/sha256",
+        "namespace": "review#cases9/h1-reexport-cycle/A.swift/namespace",
+        "imports": [
+          "review#cases9/h1-reexport-cycle/A.swift/imports/0"
+        ]
+      }
+    },
+    {
+      "input": "review-cases/cases9/h1-reexport-cycle/B.swift",
+      "source": "B.swift",
+      "sha256": "0ad8ee818bbfea1b63bed373e8a996cf6979304e43b473273439192c5ce847fb",
+      "namespace": "B",
+      "imports": [
+        "A"
+      ],
+      "at": {
+        "input": "review#cases9/h1-reexport-cycle/B.swift/input",
+        "source": "review#cases9/h1-reexport-cycle/B.swift/source",
+        "sha256": "review#cases9/h1-reexport-cycle/B.swift/sha256",
+        "namespace": "review#cases9/h1-reexport-cycle/B.swift/namespace",
+        "imports": [
+          "review#cases9/h1-reexport-cycle/B.swift/imports/0"
+        ]
+      }
+    }
+  ],
+  "intrinsics": []
+}

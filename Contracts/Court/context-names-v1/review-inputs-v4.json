@@ -1,0 +1,2864 @@
+[
+  {
+    "id": "cases/a1-inside-header-ambiguous",
+    "prefix": "review-cases/cases/a1-inside-header-ambiguous",
+    "origin": "r0105r3/cases/a1-inside-header-ambiguous",
+    "sources": {
+      "World.swift": "403bb60db8bea14690bffdbd4e30c73b6338993e7980a32fa01c358c6b8c6029"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a10-parameter-file",
+    "prefix": "review-cases/cases/a10-parameter-file",
+    "origin": "r0105r3/cases/a10-parameter-file",
+    "sources": {
+      "World.swift": "79dde9b9b1ddb4b5d113c30c272f4ad4bb13b08978ae3533fc9d7208afa9da49"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a11-module-vs-type",
+    "prefix": "review-cases/cases/a11-module-vs-type",
+    "origin": "r0105r3/cases/a11-module-vs-type",
+    "sources": {
+      "World.swift": "d982cda3a7317b3bdc47ba596565caa3acfac5c14ec0fff0a607598bad4bf32c",
+      "Kit.swift": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "Kit"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Kit",
+          "files": [
+            "Kit.swift"
+          ],
+          "imports": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases/a12-diaeresis-alias-param",
+    "prefix": "review-cases/cases/a12-diaeresis-alias-param",
+    "origin": "r0105r3/cases/a12-diaeresis-alias-param",
+    "sources": {
+      "World.swift": "856216bf662e800a4472944fdbdc95981664ea0cb5aa6cb383b5f83675d86893",
+      "Kit.swift": "a12654dae4cffc25c889e70c368b72530bcae785cf4b1896f6447e32a8bba2f0"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "Kit"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Kit",
+          "files": [
+            "Kit.swift"
+          ],
+          "imports": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases/a12-diaeresis-axes",
+    "prefix": "review-cases/cases/a12-diaeresis-axes",
+    "origin": "r0105r3/cases/a12-diaeresis-axes",
+    "sources": {
+      "World.swift": "4a4c739f1d214a7f97e7f0b280e96220b4361e7140b60be48b00153ed534966b"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a1b-inside-nested-ambiguous",
+    "prefix": "review-cases/cases/a1b-inside-nested-ambiguous",
+    "origin": "r0105r3/cases/a1b-inside-nested-ambiguous",
+    "sources": {
+      "World.swift": "f31ada49a0ce2d0cd5b4214cc53d00be7d7c7857cb435c6a68b04b27fa1af2e5"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a2-outside-file-false",
+    "prefix": "review-cases/cases/a2-outside-file-false",
+    "origin": "r0105r3/cases/a2-outside-file-false",
+    "sources": {
+      "World.swift": "1f76dc496405b8609d29091a3fc2154ca8fc624639f4877800decfe7ac42af7e"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a2-outside-file-true",
+    "prefix": "review-cases/cases/a2-outside-file-true",
+    "origin": "r0105r3/cases/a2-outside-file-true",
+    "sources": {
+      "World.swift": "d5e81a896af7e2e486276927ad66b97e1cd2894805f5c10f2d9b307f6df73506"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a3-associated-and-nested-dup",
+    "prefix": "review-cases/cases/a3-associated-and-nested-dup",
+    "origin": "r0105r3/cases/a3-associated-and-nested-dup",
+    "sources": {
+      "World.swift": "fb1d1b5e21c70c0a2ac91433a159a6f966f17a70e04c39a78fcdeeef07208c44"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a3-extension-nested-dup",
+    "prefix": "review-cases/cases/a3-extension-nested-dup",
+    "origin": "r0105r3/cases/a3-extension-nested-dup",
+    "sources": {
+      "World.swift": "40e09946ba72825716ef38c0e9b664690c8d0d50a17b449c4bc36e79f71315da"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a3-two-files-same-module",
+    "prefix": "review-cases/cases/a3-two-files-same-module",
+    "origin": "r0105r3/cases/a3-two-files-same-module",
+    "sources": {
+      "World.swift": "2d507cfc57513f53feb3c01dde857431912c5a1c3bea64b46e5ff212eb3f2f5a",
+      "World2.swift": "471ed148c00f4cf9ccc67a38fbb23ccc9f44a832b987a70a067ec7be34e7f2cf"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift",
+          "World2.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a4-nested-outside",
+    "prefix": "review-cases/cases/a4-nested-outside",
+    "origin": "r0105r3/cases/a4-nested-outside",
+    "sources": {
+      "World.swift": "578499ad91106af5651c2354d79fc9fd18cb5dd42eead6282094a53add80482e"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a5-comment",
+    "prefix": "review-cases/cases/a5-comment",
+    "origin": "r0105r3/cases/a5-comment",
+    "sources": {
+      "World.swift": "152f4976652a0872595f850459d4af93424aee22d76c03dc65ed67b5f7f067ff",
+      "Notation.swift": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072",
+      "API.swift": "adb3289a63a3be8fa0f498f87c3cf2cb37be3fd94e303d008ca1ae6efee46f87"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "API"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Notation",
+          "files": [
+            "Notation.swift"
+          ],
+          "imports": []
+        },
+        {
+          "name": "API",
+          "files": [
+            "API.swift"
+          ],
+          "imports": [
+            "Notation"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases/a5-if-false",
+    "prefix": "review-cases/cases/a5-if-false",
+    "origin": "r0105r3/cases/a5-if-false",
+    "sources": {
+      "World.swift": "152f4976652a0872595f850459d4af93424aee22d76c03dc65ed67b5f7f067ff",
+      "Notation.swift": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072",
+      "API.swift": "b2fdc455fee4957b9aaacd023f8fdc90d62644768baec398dcbd1f3e02f977d7"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "API"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Notation",
+          "files": [
+            "Notation.swift"
+          ],
+          "imports": []
+        },
+        {
+          "name": "API",
+          "files": [
+            "API.swift"
+          ],
+          "imports": [
+            "Notation"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases/a5-if-os",
+    "prefix": "review-cases/cases/a5-if-os",
+    "origin": "r0105r3/cases/a5-if-os",
+    "sources": {
+      "World.swift": "152f4976652a0872595f850459d4af93424aee22d76c03dc65ed67b5f7f067ff",
+      "Notation.swift": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072",
+      "API.swift": "a236ddea4dc0e22d1540a0bc3ee2b03ab7ec4499b5575a7e6655309d8bb8a494"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "API"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Notation",
+          "files": [
+            "Notation.swift"
+          ],
+          "imports": []
+        },
+        {
+          "name": "API",
+          "files": [
+            "API.swift"
+          ],
+          "imports": [
+            "Notation"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases/a5-scoped",
+    "prefix": "review-cases/cases/a5-scoped",
+    "origin": "r0105r3/cases/a5-scoped",
+    "sources": {
+      "World.swift": "152f4976652a0872595f850459d4af93424aee22d76c03dc65ed67b5f7f067ff",
+      "Notation.swift": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072",
+      "API.swift": "2cfc9bc47a27bb23e8c15213f33ba10368945a0f5f69f57ec589b2e900496a49"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "API"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Notation",
+          "files": [
+            "Notation.swift"
+          ],
+          "imports": []
+        },
+        {
+          "name": "API",
+          "files": [
+            "API.swift"
+          ],
+          "imports": [
+            "Notation"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases/a5-space-at",
+    "prefix": "review-cases/cases/a5-space-at",
+    "origin": "r0105r3/cases/a5-space-at",
+    "sources": {
+      "World.swift": "152f4976652a0872595f850459d4af93424aee22d76c03dc65ed67b5f7f067ff",
+      "Notation.swift": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072",
+      "API.swift": "1523ec6632f721b1e2ab079969c3be03feb3047b67eddcb0d3e51ec71b1457e1"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "API"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Notation",
+          "files": [
+            "Notation.swift"
+          ],
+          "imports": []
+        },
+        {
+          "name": "API",
+          "files": [
+            "API.swift"
+          ],
+          "imports": [
+            "Notation"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases/a5-string",
+    "prefix": "review-cases/cases/a5-string",
+    "origin": "r0105r3/cases/a5-string",
+    "sources": {
+      "World.swift": "152f4976652a0872595f850459d4af93424aee22d76c03dc65ed67b5f7f067ff",
+      "Notation.swift": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072",
+      "API.swift": "4fd9caf4da833d17474dd822497635fca1c90679cb2c37b045271e069d4d80ae"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "API"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Notation",
+          "files": [
+            "Notation.swift"
+          ],
+          "imports": []
+        },
+        {
+          "name": "API",
+          "files": [
+            "API.swift"
+          ],
+          "imports": [
+            "Notation"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases/a5-three-hop",
+    "prefix": "review-cases/cases/a5-three-hop",
+    "origin": "r0105r3/cases/a5-three-hop",
+    "sources": {
+      "World.swift": "102f49e8545ddec1655db1d2d49006214682922263465789d49800b4b0cba667",
+      "Notation.swift": "b3279aa281f172c3e010915ad8f030b59baeffa4b313ab1d375ea608d2175072",
+      "API.swift": "1d1d0bb422a9445cb44fbfdda36bc257cb83446b9277436bb40208fce7454db1",
+      "Facade.swift": "0a5167b227b8e14c2d1133e90052c7bf1b2af9f7adf9eccf3e73c663176c998e",
+      "Top.swift": "8965b9488866edbf5b4bf4708d4c2425672bbab48ec38428055426c4148840a4"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "Top"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Notation",
+          "files": [
+            "Notation.swift"
+          ],
+          "imports": []
+        },
+        {
+          "name": "API",
+          "files": [
+            "API.swift"
+          ],
+          "imports": [
+            "Notation"
+          ]
+        },
+        {
+          "name": "Facade",
+          "files": [
+            "Facade.swift"
+          ],
+          "imports": [
+            "API"
+          ]
+        },
+        {
+          "name": "Top",
+          "files": [
+            "Top.swift"
+          ],
+          "imports": [
+            "Facade"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases/a6-cycle-cross-qualified",
+    "prefix": "review-cases/cases/a6-cycle-cross-qualified",
+    "origin": "r0105r3/cases/a6-cycle-cross-qualified",
+    "sources": {
+      "World.swift": "6a85c5caac58a5f29a0e598c0589bc569c0554e8b4bda4f39c09b7c389e35138"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a6-cycle-generic",
+    "prefix": "review-cases/cases/a6-cycle-generic",
+    "origin": "r0105r3/cases/a6-cycle-generic",
+    "sources": {
+      "World.swift": "92133810d2b52cd5b75c65e3844af94ac6f90f48a10975af95bed79dc3388ee0"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a6-cycle-three",
+    "prefix": "review-cases/cases/a6-cycle-three",
+    "origin": "r0105r3/cases/a6-cycle-three",
+    "sources": {
+      "World.swift": "713c3ad539ce4827395192fc9301cef5601fd8da1b0b6a42c1b860d877da85d5"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a6-cycle-two",
+    "prefix": "review-cases/cases/a6-cycle-two",
+    "origin": "r0105r3/cases/a6-cycle-two",
+    "sources": {
+      "World.swift": "1d3300d0b6705c888b1103f0eee026552c83766a1a451c431bf8b05d28fd7eb0"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a7-kelvin-false",
+    "prefix": "review-cases/cases/a7-kelvin-false",
+    "origin": "r0105r3/cases/a7-kelvin-false",
+    "sources": {
+      "World.swift": "5e4ea950676fbbbe4a2a6b8a0539ab5151095e106a61c25328eceaad31e567f2"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a7-kelvin-true",
+    "prefix": "review-cases/cases/a7-kelvin-true",
+    "origin": "r0105r3/cases/a7-kelvin-true",
+    "sources": {
+      "World.swift": "6cb208ef166625e5a1aeb1180ffe445911e09f272fcf6372dbdba8c89db7e8a5"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a7-member-nfd-missing",
+    "prefix": "review-cases/cases/a7-member-nfd-missing",
+    "origin": "r0105r3/cases/a7-member-nfd-missing",
+    "sources": {
+      "World.swift": "b6668b1b1ba2958c470d13e544cd003f7a71dd1b8065969b49d413bd5d01f9b6"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a7-nfc-nfd-false",
+    "prefix": "review-cases/cases/a7-nfc-nfd-false",
+    "origin": "r0105r3/cases/a7-nfc-nfd-false",
+    "sources": {
+      "World.swift": "0420063f85104437f714d37884221ddf27cebd57b5924a3f98e3aa0590658c44"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a7-nfc-nfd-true",
+    "prefix": "review-cases/cases/a7-nfc-nfd-true",
+    "origin": "r0105r3/cases/a7-nfc-nfd-true",
+    "sources": {
+      "World.swift": "392e36665783fc0f4bed3e5956580328ab898882a4bbd0d0de39c99ff72bb2fa"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a7-qualified-nfd-missing",
+    "prefix": "review-cases/cases/a7-qualified-nfd-missing",
+    "origin": "r0105r3/cases/a7-qualified-nfd-missing",
+    "sources": {
+      "World.swift": "552d1ea4c544ef2789ff93b92ff03bc226efaa00c30e735f4f32357b7af91ea5",
+      "Kit.swift": "27a212d71f0c7fac094e3225dee0bc3e697270f95b354d08e0affafd6518d35f"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "Kit"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Kit",
+          "files": [
+            "Kit.swift"
+          ],
+          "imports": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases/a8-inherited-bad",
+    "prefix": "review-cases/cases/a8-inherited-bad",
+    "origin": "r0105r3/cases/a8-inherited-bad",
+    "sources": {
+      "World.swift": "5a094a98748ee08ea0940e37050ed6e8b7c156fbe548b8d83c448653e9a81a27"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a8-inherited-enum-good",
+    "prefix": "review-cases/cases/a8-inherited-enum-good",
+    "origin": "r0105r3/cases/a8-inherited-enum-good",
+    "sources": {
+      "World.swift": "5553282ef1860bfec27321e1abc2e1a5ccd15d30f7cdc29e21ae7beddfd56c09"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a8-inherited-good",
+    "prefix": "review-cases/cases/a8-inherited-good",
+    "origin": "r0105r3/cases/a8-inherited-good",
+    "sources": {
+      "World.swift": "8f4e0ec5f1bd6ebc4ccd76169940a5a18718edf2dbc2f9eec925658ed10bc2a4"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a8-inherited-noalias-bad",
+    "prefix": "review-cases/cases/a8-inherited-noalias-bad",
+    "origin": "r0105r3/cases/a8-inherited-noalias-bad",
+    "sources": {
+      "World.swift": "b914299c50d5880ae2eb73ffce257edff5ef20c8e26def5bc61bf2295f022ca0"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a8-inherited-self-bad",
+    "prefix": "review-cases/cases/a8-inherited-self-bad",
+    "origin": "r0105r3/cases/a8-inherited-self-bad",
+    "sources": {
+      "World.swift": "793ac2d9be8c1127c9296a7cfb8574ca3ba5dd7f1118c02cfd40ef1cbc8ee090"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases/a9-own-vs-imported",
+    "prefix": "review-cases/cases/a9-own-vs-imported",
+    "origin": "r0105r3/cases/a9-own-vs-imported",
+    "sources": {
+      "World.swift": "8a397a8af92e00f0e933532e1bc4acbcb6e07976287e4b44209c29f44fdd32a3",
+      "Kit.swift": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "Kit"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Kit",
+          "files": [
+            "Kit.swift"
+          ],
+          "imports": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases/a9-own-vs-imported-qualified",
+    "prefix": "review-cases/cases/a9-own-vs-imported-qualified",
+    "origin": "r0105r3/cases/a9-own-vs-imported-qualified",
+    "sources": {
+      "World.swift": "348ede45ee1c162db96c783b8fe08d1c5cf0357ad89e5ff7e62b42ddb4b2081e",
+      "Kit.swift": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "Kit"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Kit",
+          "files": [
+            "Kit.swift"
+          ],
+          "imports": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases/a9-qualified-false",
+    "prefix": "review-cases/cases/a9-qualified-false",
+    "origin": "r0105r3/cases/a9-qualified-false",
+    "sources": {
+      "World.swift": "f9eebb950f95003e73bafdf35a74fbd753920ddea62ebc4fb4a17fbaf15ef88b",
+      "Kit.swift": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "Kit"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Kit",
+          "files": [
+            "Kit.swift"
+          ],
+          "imports": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases10/i1-func-generic",
+    "prefix": "review-cases/cases10/i1-func-generic",
+    "origin": "r0105r3/cases10/i1-func-generic",
+    "sources": {
+      "World.swift": "8d76f2c6e3f3c61559519992ed1881f51d5227cec4f27c6dbbc7d0e94697f7a3"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases11/j1-t0071-b-v2",
+    "prefix": "review-cases/cases11/j1-t0071-b-v2",
+    "origin": "r0105r3/cases11/j1-t0071-b-v2",
+    "sources": {
+      "World.swift": "6835e08ee3e83a49992358f2543a3498b3da6055d47275a0523143859212e5c9",
+      "Kit.swift": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "Kit"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Kit",
+          "files": [
+            "Kit.swift"
+          ],
+          "imports": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases11/j2-t0071-b-v2-qualified",
+    "prefix": "review-cases/cases11/j2-t0071-b-v2-qualified",
+    "origin": "r0105r3/cases11/j2-t0071-b-v2-qualified",
+    "sources": {
+      "World.swift": "3352afe3ced3992b100087cbf06dd3799b53900b8ce348c43790b46cfcfd41a0",
+      "Kit.swift": "52e156a4e055cc70933a8a2efa5d9472ae3649b8f29bc4ec5f8a97d90dffcf13"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "Kit"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Kit",
+          "files": [
+            "Kit.swift"
+          ],
+          "imports": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases12/n1-typealias-parent-file-bad",
+    "prefix": "review-cases/cases12/n1-typealias-parent-file-bad",
+    "origin": "r0105r3/cases12/n1-typealias-parent-file-bad",
+    "sources": {
+      "World.swift": "14239171369d0d33a24489f07f3fa76431bd2c448be9ad1d7492016c5cb831c8"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n1-typealias-parent-file-good",
+    "prefix": "review-cases/cases12/n1-typealias-parent-file-good",
+    "origin": "r0105r3/cases12/n1-typealias-parent-file-good",
+    "sources": {
+      "World.swift": "487772cd9bc332681fcaec090571ffe67c7396f4f42bac2a14c6a413b971a501"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n1-typealias-parent-noalias-bad",
+    "prefix": "review-cases/cases12/n1-typealias-parent-noalias-bad",
+    "origin": "r0105r3/cases12/n1-typealias-parent-noalias-bad",
+    "sources": {
+      "World.swift": "15e926afe2a6d6bd92bdebb7b71ea20a331eb12bcac1eff7c3d5411c32d18cc3"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n16-nested-inherited-default-bad",
+    "prefix": "review-cases/cases12/n16-nested-inherited-default-bad",
+    "origin": "r0105r3/cases12/n16-nested-inherited-default-bad",
+    "sources": {
+      "World.swift": "9cd97b46d9c22e45b8a220f5e64167dde2122474497839b1c3fe2770915c5ace"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n16-nested-inherited-default-good",
+    "prefix": "review-cases/cases12/n16-nested-inherited-default-good",
+    "origin": "r0105r3/cases12/n16-nested-inherited-default-good",
+    "sources": {
+      "World.swift": "05a16fb0a48806bdf815b291b521a11505d99fbc68ffd713b8cf85f9f0097535"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n16b-nested-inherited-witness-ext-bad",
+    "prefix": "review-cases/cases12/n16b-nested-inherited-witness-ext-bad",
+    "origin": "r0105r3/cases12/n16b-nested-inherited-witness-ext-bad",
+    "sources": {
+      "World.swift": "cf3bfa3b85fef255bf51047e51179126df91691e25544c666fcec240c3059852"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n16c-conformer-default-bad",
+    "prefix": "review-cases/cases12/n16c-conformer-default-bad",
+    "origin": "r0105r3/cases12/n16c-conformer-default-bad",
+    "sources": {
+      "World.swift": "09653f59b019b19aa93d2dd822e65ac0251529a72e96747b24485f09c37b2e93"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n16c-conformer-default-good",
+    "prefix": "review-cases/cases12/n16c-conformer-default-good",
+    "origin": "r0105r3/cases12/n16c-conformer-default-good",
+    "sources": {
+      "World.swift": "b3da948f2e42006bbedb76324c1975f623f4393a3267c29c4c84cf2fc0f7b31a"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n17-protocol-ext-where",
+    "prefix": "review-cases/cases12/n17-protocol-ext-where",
+    "origin": "r0105r3/cases12/n17-protocol-ext-where",
+    "sources": {
+      "World.swift": "ceca7302d4cc23bb5efc933b718b84e91acfe85da60a76a4960412653bdb57d6"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n18-param-in-extension",
+    "prefix": "review-cases/cases12/n18-param-in-extension",
+    "origin": "r0105r3/cases12/n18-param-in-extension",
+    "sources": {
+      "World.swift": "24df7c48e53002530906d4fe1831283d855cb43c94f14710d7c3b603acff80ee"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n18-param-in-extension-false",
+    "prefix": "review-cases/cases12/n18-param-in-extension-false",
+    "origin": "r0105r3/cases12/n18-param-in-extension-false",
+    "sources": {
+      "World.swift": "14dff7d97ab9e82867a37a92afd8c35a5919079d93e533a52105a4f579b78664"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n19-where-self-parent-bad",
+    "prefix": "review-cases/cases12/n19-where-self-parent-bad",
+    "origin": "r0105r3/cases12/n19-where-self-parent-bad",
+    "sources": {
+      "World.swift": "7dbe79613a13913c5867f05c237d78a6a4e0b6a7efd3d554b9d4a53a169047bb"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n2-composition-parent-file-bad",
+    "prefix": "review-cases/cases12/n2-composition-parent-file-bad",
+    "origin": "r0105r3/cases12/n2-composition-parent-file-bad",
+    "sources": {
+      "World.swift": "c5e6c507c724fcc421ae17f187e5dddf0bcb91dc422bfa6aeb3e9d95061a3a23"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n2-composition-parent-noalias-bad",
+    "prefix": "review-cases/cases12/n2-composition-parent-noalias-bad",
+    "origin": "r0105r3/cases12/n2-composition-parent-noalias-bad",
+    "sources": {
+      "World.swift": "2e0a95e9cbae7af38157988b33443f8c246d63a7fba1f41e6fea887a21f115ac"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n20-parent-across-lines-bad",
+    "prefix": "review-cases/cases12/n20-parent-across-lines-bad",
+    "origin": "r0105r3/cases12/n20-parent-across-lines-bad",
+    "sources": {
+      "World.swift": "40a6b64bf77a66005347b259ccb91b40826771764fd118d22080150d8fbdb65c"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n21-protocol-cycle",
+    "prefix": "review-cases/cases12/n21-protocol-cycle",
+    "origin": "r0105r3/cases12/n21-protocol-cycle",
+    "sources": {
+      "World.swift": "3c423e7e4aa492a8a4134880c0e8a530732ec3b27c00cac7ed909385edfa8e21"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n22-primary-assoc-file",
+    "prefix": "review-cases/cases12/n22-primary-assoc-file",
+    "origin": "r0105r3/cases12/n22-primary-assoc-file",
+    "sources": {
+      "World.swift": "ca04feb324d275c24e22b52279868e4e6eb5da869b2e46367b005268a359aca1"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n22b-primary-assoc-file-false",
+    "prefix": "review-cases/cases12/n22b-primary-assoc-file-false",
+    "origin": "r0105r3/cases12/n22b-primary-assoc-file-false",
+    "sources": {
+      "World.swift": "0120ce3c9d669f0b83874bbea0478d78f969f77c3788781ca5ea0cc7f37dac35"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n23-operator-generic",
+    "prefix": "review-cases/cases12/n23-operator-generic",
+    "origin": "r0105r3/cases12/n23-operator-generic",
+    "sources": {
+      "World.swift": "c8e26c2057cfc3837313e7de2cfcb34ceb4041caeaa34f754ea76ed2c3733f39"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n23b-operator-generic-collision",
+    "prefix": "review-cases/cases12/n23b-operator-generic-collision",
+    "origin": "r0105r3/cases12/n23b-operator-generic-collision",
+    "sources": {
+      "World.swift": "ac9165b4e6681ee8c70538f5e13a9eb999ac2fdf73bcb3634de6253fedc1a22b"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n24-alias-param-file",
+    "prefix": "review-cases/cases12/n24-alias-param-file",
+    "origin": "r0105r3/cases12/n24-alias-param-file",
+    "sources": {
+      "World.swift": "555993d1be9cf1c28a13117553ed40fe9203e25836d55d739662f5f076d023ed"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n2b-second-parent-noalias-bad",
+    "prefix": "review-cases/cases12/n2b-second-parent-noalias-bad",
+    "origin": "r0105r3/cases12/n2b-second-parent-noalias-bad",
+    "sources": {
+      "World.swift": "ac4739bf253143e93b2680b5daac3b57be6dd23bbf40c7b38b78f436b0d5cd84"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n2b-second-parent-noalias-good",
+    "prefix": "review-cases/cases12/n2b-second-parent-noalias-good",
+    "origin": "r0105r3/cases12/n2b-second-parent-noalias-good",
+    "sources": {
+      "World.swift": "332ffe576c80f83d176804498a34452533892dfd11a454003b253b06de859350"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n3-conformer-own-witness",
+    "prefix": "review-cases/cases12/n3-conformer-own-witness",
+    "origin": "r0105r3/cases12/n3-conformer-own-witness",
+    "sources": {
+      "World.swift": "95feb4de1adfe3b0ef430a42a73808c51cc49bf757e6899c55fc28f5000ddd52"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n4-ext-conformance-other-ext-noalias-bad",
+    "prefix": "review-cases/cases12/n4-ext-conformance-other-ext-noalias-bad",
+    "origin": "r0105r3/cases12/n4-ext-conformance-other-ext-noalias-bad",
+    "sources": {
+      "World.swift": "39699f1734a4af2da2d9c2588b53d324599d7eee61158aaec06ecca63e851b0f"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n4-ext-conformance-other-ext-noalias-good",
+    "prefix": "review-cases/cases12/n4-ext-conformance-other-ext-noalias-good",
+    "origin": "r0105r3/cases12/n4-ext-conformance-other-ext-noalias-good",
+    "sources": {
+      "World.swift": "50b929159509a66f5e245111237311c8058fd91111839413c420b4527ea5aa02"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n5-conditional-region-other-ext",
+    "prefix": "review-cases/cases12/n5-conditional-region-other-ext",
+    "origin": "r0105r3/cases12/n5-conditional-region-other-ext",
+    "sources": {
+      "World.swift": "815cc52e059a112b803b339902495ef6091cc71af82ffca45a256e0876e9634f"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n5b-constrained-member-other-ext",
+    "prefix": "review-cases/cases12/n5b-constrained-member-other-ext",
+    "origin": "r0105r3/cases12/n5b-constrained-member-other-ext",
+    "sources": {
+      "World.swift": "1904a84e3fd952f1236b8bb8ec280a1785fa8b87d6386bf7e79699cde438948d"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n6-diamond-bad",
+    "prefix": "review-cases/cases12/n6-diamond-bad",
+    "origin": "r0105r3/cases12/n6-diamond-bad",
+    "sources": {
+      "World.swift": "6fa5521a22f67b77ba5e1b850dcb9aa3d14f4a82cbbfab7bcb2586f28b052408"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n6-diamond-good",
+    "prefix": "review-cases/cases12/n6-diamond-good",
+    "origin": "r0105r3/cases12/n6-diamond-good",
+    "sources": {
+      "World.swift": "b10d45ec4fab7994b10477ca271c48b6709ad98d8b75ec610bf97668062f8675"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n7-two-parents-same-axis",
+    "prefix": "review-cases/cases12/n7-two-parents-same-axis",
+    "origin": "r0105r3/cases12/n7-two-parents-same-axis",
+    "sources": {
+      "World.swift": "89260bfcc2e6cec37375afd0febd20fbac3dad3d1c81e0a019af60628b5d7088"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases12/n7-two-parents-self-advice",
+    "prefix": "review-cases/cases12/n7-two-parents-self-advice",
+    "origin": "r0105r3/cases12/n7-two-parents-self-advice",
+    "sources": {
+      "World.swift": "f3ffeeb2bb17a85c91e3e6ace6e89738ccf5db9c98886411f4f39153e7855a2e"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases13/p1-alias-conformer-default-bad",
+    "prefix": "review-cases/cases13/p1-alias-conformer-default-bad",
+    "origin": "r0105r3/cases13/p1-alias-conformer-default-bad",
+    "sources": {
+      "World.swift": "81d197450971bbc70bda645c42aa6dc996ec840c2c885bdcee6e29e0f652f8c0"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases13/p1-alias-conformer-default-good",
+    "prefix": "review-cases/cases13/p1-alias-conformer-default-good",
+    "origin": "r0105r3/cases13/p1-alias-conformer-default-good",
+    "sources": {
+      "World.swift": "c779902d21abbe442a4d62c7f19b8b3051db2e2060059f906c9d88bddeeb652a"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases13/p1c-direct-conformer-default-bad",
+    "prefix": "review-cases/cases13/p1c-direct-conformer-default-bad",
+    "origin": "r0105r3/cases13/p1c-direct-conformer-default-bad",
+    "sources": {
+      "World.swift": "ea0110c796d9c95cfb78d92ae262b404fedea3447e6ccaf2a4fd9bef962b5efb"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases13/p2-alias-conformer-witness-bad",
+    "prefix": "review-cases/cases13/p2-alias-conformer-witness-bad",
+    "origin": "r0105r3/cases13/p2-alias-conformer-witness-bad",
+    "sources": {
+      "World.swift": "1780b53f53902f7aa76d92490e65c85ac28ba65b70cff2e2a0dda68e85eed21b"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases13/p3-alias-parent-where-default-bad",
+    "prefix": "review-cases/cases13/p3-alias-parent-where-default-bad",
+    "origin": "r0105r3/cases13/p3-alias-parent-where-default-bad",
+    "sources": {
+      "World.swift": "16d3df6e397ce9ba8c6d7343ada1f87bd4fd2f97712425c5d466f40528a8776d"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases13/p4-alias-parent-bad-noctx-holds",
+    "prefix": "review-cases/cases13/p4-alias-parent-bad-noctx-holds",
+    "origin": "r0105r3/cases13/p4-alias-parent-bad-noctx-holds",
+    "sources": {
+      "World.swift": "14239171369d0d33a24489f07f3fa76431bd2c448be9ad1d7492016c5cb831c8"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases14/q1-parent-unimported",
+    "prefix": "review-cases/cases14/q1-parent-unimported",
+    "origin": "r0105r3/cases14/q1-parent-unimported",
+    "sources": {
+      "World.swift": "e00f6316954d8f815266809a1a4f09a6e3a3f86169e8fa0c3833904be76e6694",
+      "Kit.swift": "b89c7e2863d2782727b73de983d0d9698a4dd2f25e2ba32d10e0affb74686472"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": [
+        {
+          "name": "Kit",
+          "files": [
+            "Kit.swift"
+          ],
+          "imports": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases14/q2-parent-reexport-collision",
+    "prefix": "review-cases/cases14/q2-parent-reexport-collision",
+    "origin": "r0105r3/cases14/q2-parent-reexport-collision",
+    "sources": {
+      "World.swift": "f0aa58a443955ec6fe50edf8c183bb99a71746dd74d1a05f20310bf789b2bee6",
+      "Kit.swift": "b89c7e2863d2782727b73de983d0d9698a4dd2f25e2ba32d10e0affb74686472",
+      "Mid.swift": "012dcb6b0492251707f6541fcdf2db512fcaa08187c8a231c677c484421bed09"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "Mid"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Kit",
+          "files": [
+            "Kit.swift"
+          ],
+          "imports": []
+        },
+        {
+          "name": "Mid",
+          "files": [
+            "Mid.swift"
+          ],
+          "imports": [
+            "Kit"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases14/q2b-parent-reexport-noalias-good",
+    "prefix": "review-cases/cases14/q2b-parent-reexport-noalias-good",
+    "origin": "r0105r3/cases14/q2b-parent-reexport-noalias-good",
+    "sources": {
+      "World.swift": "2ea213c1dc56b60cd54a5b6d781819833e1d633a799337d9ff724fb4a4245684",
+      "Kit.swift": "b89c7e2863d2782727b73de983d0d9698a4dd2f25e2ba32d10e0affb74686472",
+      "Mid.swift": "012dcb6b0492251707f6541fcdf2db512fcaa08187c8a231c677c484421bed09"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "Mid"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Kit",
+          "files": [
+            "Kit.swift"
+          ],
+          "imports": []
+        },
+        {
+          "name": "Mid",
+          "files": [
+            "Mid.swift"
+          ],
+          "imports": [
+            "Kit"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases14/q2c-parent-reexport-noalias-bad",
+    "prefix": "review-cases/cases14/q2c-parent-reexport-noalias-bad",
+    "origin": "r0105r3/cases14/q2c-parent-reexport-noalias-bad",
+    "sources": {
+      "World.swift": "44b267ed96aea0a28172516cb04d37c6d480acc996f02172929c86eb35f59ead",
+      "Kit.swift": "b89c7e2863d2782727b73de983d0d9698a4dd2f25e2ba32d10e0affb74686472",
+      "Mid.swift": "012dcb6b0492251707f6541fcdf2db512fcaa08187c8a231c677c484421bed09"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "Mid"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Kit",
+          "files": [
+            "Kit.swift"
+          ],
+          "imports": []
+        },
+        {
+          "name": "Mid",
+          "files": [
+            "Mid.swift"
+          ],
+          "imports": [
+            "Kit"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases14/q3-imported-axis-conformer-body",
+    "prefix": "review-cases/cases14/q3-imported-axis-conformer-body",
+    "origin": "r0105r3/cases14/q3-imported-axis-conformer-body",
+    "sources": {
+      "World.swift": "c27cc9113842d5032bd1c2f02a560aec6c19bb1747f620c88a4cd44f3b6a8560",
+      "Kit.swift": "b89c7e2863d2782727b73de983d0d9698a4dd2f25e2ba32d10e0affb74686472"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "Kit"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Kit",
+          "files": [
+            "Kit.swift"
+          ],
+          "imports": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases15/w1-nominal-where-own-member",
+    "prefix": "review-cases/cases15/w1-nominal-where-own-member",
+    "origin": "r0105r3/cases15/w1-nominal-where-own-member",
+    "sources": {
+      "World.swift": "4f26bbe81739cafd4a815613d6528eaea4fff5134eecd038228fd79e6937c1e5"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases15/w2-nominal-where-own-member-unused",
+    "prefix": "review-cases/cases15/w2-nominal-where-own-member-unused",
+    "origin": "r0105r3/cases15/w2-nominal-where-own-member-unused",
+    "sources": {
+      "World.swift": "a4e433c92626c58e4ed1af4ba34feea6c59c70d9bca2976d5d2a8482cd3fafe9"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases15/w3-nominal-where-inherited",
+    "prefix": "review-cases/cases15/w3-nominal-where-inherited",
+    "origin": "r0105r3/cases15/w3-nominal-where-inherited",
+    "sources": {
+      "World.swift": "408b5fbb1c79a27916386128dc981f06fd838f94bdb8a4ddf2d142974846d394"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases15/w4-nominal-where-inherited-noown",
+    "prefix": "review-cases/cases15/w4-nominal-where-inherited-noown",
+    "origin": "r0105r3/cases15/w4-nominal-where-inherited-noown",
+    "sources": {
+      "World.swift": "906c32672c095550973c9859fe2399369b9d8ef5bd366bd2e49f531f7d7b0343"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases15/w5-enum-where-own-member",
+    "prefix": "review-cases/cases15/w5-enum-where-own-member",
+    "origin": "r0105r3/cases15/w5-enum-where-own-member",
+    "sources": {
+      "World.swift": "cfe9e8175db03433bdf579f2d063b36f03fefdec973d4c9cc47ef0042a11a67c"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases15/w6-extension-where-own-member",
+    "prefix": "review-cases/cases15/w6-extension-where-own-member",
+    "origin": "r0105r3/cases15/w6-extension-where-own-member",
+    "sources": {
+      "World.swift": "3724b83234518571bccda787efd7bb86479d6b37278656e4eab4dd6edeacbee4"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases15/w7-nominal-where-member-file-collision",
+    "prefix": "review-cases/cases15/w7-nominal-where-member-file-collision",
+    "origin": "r0105r3/cases15/w7-nominal-where-member-file-collision",
+    "sources": {
+      "World.swift": "6d46d233d7a422a709d75da50f3b788e4343f4d2f6024babb406dff4b6402484"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases2/b1-conformer-default-alias-false",
+    "prefix": "review-cases/cases2/b1-conformer-default-alias-false",
+    "origin": "r0105r3/cases2/b1-conformer-default-alias-false",
+    "sources": {
+      "World.swift": "601cbd3d5c2e4b1950fa54b695d7a746012d27d7a9ba067f76285e13e97eb4e9"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases2/b1-conformer-default-alias-true",
+    "prefix": "review-cases/cases2/b1-conformer-default-alias-true",
+    "origin": "r0105r3/cases2/b1-conformer-default-alias-true",
+    "sources": {
+      "World.swift": "7ddda78bab0baf3355d6515fc521c5b39e0c7791d1127e0d2c63c720c02f3e57"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases2/b2-inherited-alias-chain-bad",
+    "prefix": "review-cases/cases2/b2-inherited-alias-chain-bad",
+    "origin": "r0105r3/cases2/b2-inherited-alias-chain-bad",
+    "sources": {
+      "World.swift": "3c74c24343d47ab5956466d5a8b61faf8568ed1534000a8b7f28d9aac0157221"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases2/b3-inherited-two-levels-good",
+    "prefix": "review-cases/cases2/b3-inherited-two-levels-good",
+    "origin": "r0105r3/cases2/b3-inherited-two-levels-good",
+    "sources": {
+      "World.swift": "137d0ac9b87d923847b23503574f77ecb29ec78d18c51765a92ff3fb5ec9174d"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases2/b4-extension-conformer-alias-false",
+    "prefix": "review-cases/cases2/b4-extension-conformer-alias-false",
+    "origin": "r0105r3/cases2/b4-extension-conformer-alias-false",
+    "sources": {
+      "World.swift": "bcd358b9468b7dd61dc501068c65c0e87ab2a25a67a8ddf186d4f5d4ee35e04d"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases3/c1-qualified-parent-collision-bad",
+    "prefix": "review-cases/cases3/c1-qualified-parent-collision-bad",
+    "origin": "r0105r3/cases3/c1-qualified-parent-collision-bad",
+    "sources": {
+      "World.swift": "5a28caeef2dd181bd56d1035f4e3bf4a65c6fb74e30d3d1ded222dbb98e96482",
+      "Kit.swift": "3e3accba2baf53c1b13af36becb3a97b795c67229fc5d3a0a740d86915111a66",
+      "Spare.swift": "1b2b4b8151c5748d67ccb5073cb87b2f5b9bb81aff339b972711112ab67656c0"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "Kit"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Kit",
+          "files": [
+            "Kit.swift"
+          ],
+          "imports": []
+        },
+        {
+          "name": "Spare",
+          "files": [
+            "Spare.swift"
+          ],
+          "imports": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases3/c1-qualified-parent-collision-good",
+    "prefix": "review-cases/cases3/c1-qualified-parent-collision-good",
+    "origin": "r0105r3/cases3/c1-qualified-parent-collision-good",
+    "sources": {
+      "World.swift": "0693666b6b9897c31aa95d9f5e6b01c35640d65f1c62eefb9e48b735b2523805",
+      "Kit.swift": "3e3accba2baf53c1b13af36becb3a97b795c67229fc5d3a0a740d86915111a66",
+      "Spare.swift": "1b2b4b8151c5748d67ccb5073cb87b2f5b9bb81aff339b972711112ab67656c0"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "Kit"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Kit",
+          "files": [
+            "Kit.swift"
+          ],
+          "imports": []
+        },
+        {
+          "name": "Spare",
+          "files": [
+            "Spare.swift"
+          ],
+          "imports": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases3/c2-plain-parent-collision-bad",
+    "prefix": "review-cases/cases3/c2-plain-parent-collision-bad",
+    "origin": "r0105r3/cases3/c2-plain-parent-collision-bad",
+    "sources": {
+      "World.swift": "62d990a74fcadd060e01764d2ca80acc16dc84dac6c70bc1bcaeabb9cdc56721",
+      "Kit.swift": "3e3accba2baf53c1b13af36becb3a97b795c67229fc5d3a0a740d86915111a66",
+      "Spare.swift": "1b2b4b8151c5748d67ccb5073cb87b2f5b9bb81aff339b972711112ab67656c0"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "Kit"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Kit",
+          "files": [
+            "Kit.swift"
+          ],
+          "imports": []
+        },
+        {
+          "name": "Spare",
+          "files": [
+            "Spare.swift"
+          ],
+          "imports": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases3/c2-plain-parent-collision-good",
+    "prefix": "review-cases/cases3/c2-plain-parent-collision-good",
+    "origin": "r0105r3/cases3/c2-plain-parent-collision-good",
+    "sources": {
+      "World.swift": "0046d3e97bd4b2a3b4dbfed7580c88feaad6ef395166874facb5ea5cb1afda96",
+      "Kit.swift": "3e3accba2baf53c1b13af36becb3a97b795c67229fc5d3a0a740d86915111a66",
+      "Spare.swift": "1b2b4b8151c5748d67ccb5073cb87b2f5b9bb81aff339b972711112ab67656c0"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "Kit"
+        ]
+      },
+      "modules": [
+        {
+          "name": "Kit",
+          "files": [
+            "Kit.swift"
+          ],
+          "imports": []
+        },
+        {
+          "name": "Spare",
+          "files": [
+            "Spare.swift"
+          ],
+          "imports": []
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases4/t1-kind",
+    "prefix": "review-cases/cases4/t1-kind",
+    "origin": "r0105r3/cases4/t1-kind",
+    "sources": {
+      "World.swift": "d25f08f818ab91e66579a6c47b7705a51eb30f770481236ae2eb6a52109ce0f9"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases5/d1-string-phantom",
+    "prefix": "review-cases/cases5/d1-string-phantom",
+    "origin": "r0105r3/cases5/d1-string-phantom",
+    "sources": {
+      "World.swift": "f1874293598305fdcc76ccda04ad7882e38ed2b93d0ace004cc327b6cb5f51a4"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases5/d2-string-duplicate-axis",
+    "prefix": "review-cases/cases5/d2-string-duplicate-axis",
+    "origin": "r0105r3/cases5/d2-string-duplicate-axis",
+    "sources": {
+      "World.swift": "9d70b29fcd7f955cd6b5e877002e7071d8156cd95fa2acb9dd601db9cf80a13d"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases5/d3-nested-two-levels",
+    "prefix": "review-cases/cases5/d3-nested-two-levels",
+    "origin": "r0105r3/cases5/d3-nested-two-levels",
+    "sources": {
+      "World.swift": "78fcaa40dc79a6348afebef1b7d06584b29f6cfaea313b9e7b407f9d6b3538fa"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases5/d4-param-and-nested-same",
+    "prefix": "review-cases/cases5/d4-param-and-nested-same",
+    "origin": "r0105r3/cases5/d4-param-and-nested-same",
+    "sources": {
+      "World.swift": "4bf0667e743468e7e25d4cb5b689acabdc1e6d97d1864d3a1da860c0eee856b9"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases5/d5-raw-string-attr",
+    "prefix": "review-cases/cases5/d5-raw-string-attr",
+    "origin": "r0105r3/cases5/d5-raw-string-attr",
+    "sources": {
+      "World.swift": "41b15ba03dfde9ffa8f2103bd33708cbaa8988df520a676f782686a4339f1d36"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases6/e1-protocol-qualified-outside",
+    "prefix": "review-cases/cases6/e1-protocol-qualified-outside",
+    "origin": "r0105r3/cases6/e1-protocol-qualified-outside",
+    "sources": {
+      "World.swift": "479eee6b959787b360e908fa9af87979d4d81d23a9ac7412c6966e2f5ffea99d"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases6/e2-protocol-qualified-header",
+    "prefix": "review-cases/cases6/e2-protocol-qualified-header",
+    "origin": "r0105r3/cases6/e2-protocol-qualified-header",
+    "sources": {
+      "World.swift": "cca7a2a3a16b43460695e9156d1652b192f13103b2f4a3c3997d14106b1b88ac"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases6/e3-protocol-qualified-header-bad",
+    "prefix": "review-cases/cases6/e3-protocol-qualified-header-bad",
+    "origin": "r0105r3/cases6/e3-protocol-qualified-header-bad",
+    "sources": {
+      "World.swift": "6b22c33adfcff4ee63949904c5f4dceb303aee811550affdc0cd1cd7260f9164"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases6/e4-self-qualified-header-bad",
+    "prefix": "review-cases/cases6/e4-self-qualified-header-bad",
+    "origin": "r0105r3/cases6/e4-self-qualified-header-bad",
+    "sources": {
+      "World.swift": "eafc2c2aaf6823a3eb936f63dff12bfa1eb83786f625fe0fd7bdf92c45c17870"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases6/e5-param-qualified",
+    "prefix": "review-cases/cases6/e5-param-qualified",
+    "origin": "r0105r3/cases6/e5-param-qualified",
+    "sources": {
+      "World.swift": "873cddc56768dbfba86a0e20fdf1ed11b8e9f7a8347e6b631e52d28d5ec57c51"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases7/f1-advice-applied",
+    "prefix": "review-cases/cases7/f1-advice-applied",
+    "origin": "r0105r3/cases7/f1-advice-applied",
+    "sources": {
+      "World.swift": "1d347309137881cce3026cf0120ddc6c4986986f6d54ad0cb32429732f620299"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases7/f2-applied-param-projection",
+    "prefix": "review-cases/cases7/f2-applied-param-projection",
+    "origin": "r0105r3/cases7/f2-applied-param-projection",
+    "sources": {
+      "World.swift": "6c7b15a9d589b9d1829d6005f8bdf682ea03e6d47ef185612d52bf785b7dc083"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases7/f3-applied-param-projection-false",
+    "prefix": "review-cases/cases7/f3-applied-param-projection-false",
+    "origin": "r0105r3/cases7/f3-applied-param-projection-false",
+    "sources": {
+      "World.swift": "3abc8931ca9d16167701c4390112f978b21fa26576a95858ec11c39d84c5ecc5"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases7/f4-conformer-requirement",
+    "prefix": "review-cases/cases7/f4-conformer-requirement",
+    "origin": "r0105r3/cases7/f4-conformer-requirement",
+    "sources": {
+      "World.swift": "a38a156efb32b8b39e9ba5b2b62f7e845793122838eada6be06b1098ec0bc857"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases8/g1-unused-missing-name",
+    "prefix": "review-cases/cases8/g1-unused-missing-name",
+    "origin": "r0105r3/cases8/g1-unused-missing-name",
+    "sources": {
+      "World.swift": "1c94464d3bf39fc127222a1728487c596ed712303015bc0ed177b986c54e5c1e"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases8/g2-unused-missing-member",
+    "prefix": "review-cases/cases8/g2-unused-missing-member",
+    "origin": "r0105r3/cases8/g2-unused-missing-member",
+    "sources": {
+      "World.swift": "1da706479ea6e248dc954a795669b3fb304b53df8f728c9d908a93ef7d236dba"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases8/g3-unused-param-member-alias",
+    "prefix": "review-cases/cases8/g3-unused-param-member-alias",
+    "origin": "r0105r3/cases8/g3-unused-param-member-alias",
+    "sources": {
+      "World.swift": "f72e13558fe169134f8f9b0816ecf25c503506af5bdc4f519603fba33016652b"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases8/g4-conformer-missing-member",
+    "prefix": "review-cases/cases8/g4-conformer-missing-member",
+    "origin": "r0105r3/cases8/g4-conformer-missing-member",
+    "sources": {
+      "World.swift": "043bf7e527f9aabc60670caa34a8777bb27b955e14a1507165c595a201d5cc3b"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases8/g5-extension-param-member",
+    "prefix": "review-cases/cases8/g5-extension-param-member",
+    "origin": "r0105r3/cases8/g5-extension-param-member",
+    "sources": {
+      "World.swift": "1ebc47e05293adf5c51682c9c6f2fbd5ee7bd158bf4e3314e1ae98abc4f855db"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases8/g6-extension-missing-member",
+    "prefix": "review-cases/cases8/g6-extension-missing-member",
+    "origin": "r0105r3/cases8/g6-extension-missing-member",
+    "sources": {
+      "World.swift": "eec0293082c41190735258f0f77a746cb2ec800c451981c608f86c146bd60e74"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "cases9/h1-reexport-cycle",
+    "prefix": "review-cases/cases9/h1-reexport-cycle",
+    "origin": "r0105r3/cases9/h1-reexport-cycle",
+    "sources": {
+      "World.swift": "b62e331b7212c199d90c04bca984bdb1b305ee6254dbb5e15b02f72cf63af7cd",
+      "A.swift": "8d86f3ab6178a0350bd65a79c2c6979fddb6230da13590903aafad90eb8b9962",
+      "B.swift": "0ad8ee818bbfea1b63bed373e8a996cf6979304e43b473273439192c5ce847fb"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "A"
+        ]
+      },
+      "modules": [
+        {
+          "name": "A",
+          "files": [
+            "A.swift"
+          ],
+          "imports": [
+            "B"
+          ]
+        },
+        {
+          "name": "B",
+          "files": [
+            "B.swift"
+          ],
+          "imports": [
+            "A"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "cases9/h2-import-cycle",
+    "prefix": "review-cases/cases9/h2-import-cycle",
+    "origin": "r0105r3/cases9/h2-import-cycle",
+    "sources": {
+      "World.swift": "20d8adff2f1ba0eb8c562ea9a941895b049b766f5d6d7bee769a249936a96e64",
+      "A.swift": "0c7ad8ade18c2f0ff5cfaa25c5b452fd70f1433965d17258e0e1178ce9bb20b0",
+      "B.swift": "fd04769954369d8e4f95b2c814447eb4790916b66b4ac79f39f43d49012fccc3"
+    },
+    "spec": {
+      "version": 2,
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": [
+          "B"
+        ]
+      },
+      "modules": [
+        {
+          "name": "A",
+          "files": [
+            "A.swift"
+          ],
+          "imports": [
+            "B"
+          ]
+        },
+        {
+          "name": "B",
+          "files": [
+            "B.swift"
+          ],
+          "imports": [
+            "A"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "probes/r0105/gp",
+    "prefix": "review-cases/probes/r0105/gp",
+    "origin": "r0105/swift-probe",
+    "sources": {
+      "gp.swift": "af77ab5ff5e154a3965b39aaa81e3f4db7091856625d0d0a99f0727cae3ce1dd"
+    },
+    "spec": {
+      "world": {
+        "files": [
+          "gp.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "probes/r0105/gp2",
+    "prefix": "review-cases/probes/r0105/gp2",
+    "origin": "r0105/swift-probe",
+    "sources": {
+      "gp2.swift": "ed0d16b53b2aae6771964fd1cb4a806e22fce58885b6f4094fb4bae7bcc92483"
+    },
+    "spec": {
+      "world": {
+        "files": [
+          "gp2.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "probes/r0105/inh-bad",
+    "prefix": "review-cases/probes/r0105/inh-bad",
+    "origin": "r0105/swift-probe",
+    "sources": {
+      "inh-bad.swift": "5a094a98748ee08ea0940e37050ed6e8b7c156fbe548b8d83c448653e9a81a27"
+    },
+    "spec": {
+      "world": {
+        "files": [
+          "inh-bad.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "probes/r0105/inh-good",
+    "prefix": "review-cases/probes/r0105/inh-good",
+    "origin": "r0105/swift-probe",
+    "sources": {
+      "inh-good.swift": "8f4e0ec5f1bd6ebc4ccd76169940a5a18718edf2dbc2f9eec925658ed10bc2a4"
+    },
+    "spec": {
+      "world": {
+        "files": [
+          "inh-good.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "probes/r0105r3/s1",
+    "prefix": "review-cases/probes/r0105r3/s1",
+    "origin": "r0105r3/swift-probe",
+    "sources": {
+      "s1.swift": "515dc65e0aeb37797dbc28a3d055d2f1540c83b6f393dd597b2b14ec025bd3cb"
+    },
+    "spec": {
+      "world": {
+        "files": [
+          "s1.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "probes/r0105r3/s2",
+    "prefix": "review-cases/probes/r0105r3/s2",
+    "origin": "r0105r3/swift-probe",
+    "sources": {
+      "s2.swift": "e8b68255f35edcc57c50443fa0c2ad0c6e94ca96791cb9ce1669ba3666eccbb3"
+    },
+    "spec": {
+      "world": {
+        "files": [
+          "s2.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "probes/r0105r3/s3",
+    "prefix": "review-cases/probes/r0105r3/s3",
+    "origin": "r0105r3/swift-probe",
+    "sources": {
+      "s3.swift": "1ce062ba1d69f37b45bca6404059ba00db2f4e5b19db667633a9c38453821065"
+    },
+    "spec": {
+      "world": {
+        "files": [
+          "s3.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "probes/r0105r3/s4",
+    "prefix": "review-cases/probes/r0105r3/s4",
+    "origin": "r0105r3/swift-probe",
+    "sources": {
+      "s4.swift": "81ed17e4236a9d651ec3fa90d821e2c1cecd895d4007a34aedfb99ee1655bfae"
+    },
+    "spec": {
+      "world": {
+        "files": [
+          "s4.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "probes/r0105r3/s5",
+    "prefix": "review-cases/probes/r0105r3/s5",
+    "origin": "r0105r3/swift-probe",
+    "sources": {
+      "s5.swift": "f01e33e3bcaffde387e777642a4b1b8f037af4537b5dbaa05f2414d166f0d4d7"
+    },
+    "spec": {
+      "world": {
+        "files": [
+          "s5.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "probes/r0105r3/s6",
+    "prefix": "review-cases/probes/r0105r3/s6",
+    "origin": "r0105r3/swift-probe",
+    "sources": {
+      "s6.swift": "ffe4e525121fed27fe2cfea0199ffdb80b6bfa51ef4836bcdad3017d88e76470"
+    },
+    "spec": {
+      "world": {
+        "files": [
+          "s6.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "bounds/qualified-struct-where",
+    "prefix": "review-cases/bounds/qualified-struct-where",
+    "origin": "T0105 r4: same excluded ordinary-where member place with explicit qualification",
+    "sources": {
+      "World.swift": "f146598101c7382bd9c9f9984e3db58bea8c92a8e9a69964d14b7d912425debb"
+    },
+    "spec": {
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  },
+  {
+    "id": "bounds/qualified-class-where",
+    "prefix": "review-cases/bounds/qualified-class-where",
+    "origin": "T0105 r4: same excluded ordinary-where member place with explicit qualification",
+    "sources": {
+      "World.swift": "ff560dd641400e8ce8859c3fef8ec2bc2c71d57eb261d2b0a6f542cf8c174147"
+    },
+    "spec": {
+      "world": {
+        "files": [
+          "World.swift"
+        ],
+        "imports": []
+      },
+      "modules": []
+    }
+  }
+]
